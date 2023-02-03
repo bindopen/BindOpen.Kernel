@@ -1,4 +1,7 @@
 ﻿using BindOpen.Data.Items;
+using BindOpen.Logging;
+using BindOpen.Runtime.Scopes;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BindOpen.Data.Meta
@@ -7,7 +10,7 @@ namespace BindOpen.Data.Meta
     /// This class represents a catalog el that is an el whose els are entities.
     /// </summary>
     public partial class BdoMetaSet :
-        TBdoItemSet<IBdoMetaItem>,
+        TBdoItemSet<IBdoMetaData>,
         IBdoMetaSet
     {
         // ------------------------------------------
@@ -20,7 +23,7 @@ namespace BindOpen.Data.Meta
         /// Converts from data element array.
         /// </summary>
         /// <param name="elems">The elems to consider.</param>
-        public static explicit operator BdoMetaSet(IBdoMetaItem[] elems)
+        public static explicit operator BdoMetaSet(IBdoMetaData[] elems)
         {
             return BdoMeta.NewSet(elems);
         }
@@ -29,7 +32,7 @@ namespace BindOpen.Data.Meta
         /// Converts from data element array.
         /// </summary>
         /// <param name="elems">The elems to consider.</param>
-        public static explicit operator IBdoMetaItem[](BdoMetaSet metaSet)
+        public static explicit operator IBdoMetaData[](BdoMetaSet metaSet)
         {
             return metaSet?.ToArray();
         }
@@ -51,32 +54,16 @@ namespace BindOpen.Data.Meta
 
         #endregion
 
-        // --------------------------------------------------
-        // IBdoMetaItem Implementation
-        // --------------------------------------------------
+        // ------------------------------------------
+        // IReferenced Implementation
+        // ------------------------------------------
 
-        #region IBdoMetaItem
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public BdoMetaDataKind Kind
-                => BdoMetaDataKind.Set;
+        #region IReferenced
 
         /// <summary>
         /// 
         /// </summary>
-        public IBdoMetaItem Parent { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int? Index { get; set; }
+        public override string Key() => Name;
 
         #endregion
 
@@ -94,7 +81,7 @@ namespace BindOpen.Data.Meta
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
         public new IBdoMetaSet Add(
-            params IBdoMetaItem[] items)
+            params IBdoMetaData[] items)
         {
             base.Add(items);
 
@@ -107,11 +94,281 @@ namespace BindOpen.Data.Meta
         /// <param name="items">The items to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
         public new IBdoMetaSet WithItems(
-            params IBdoMetaItem[] items)
+            params IBdoMetaData[] items)
         {
             base.WithItems(items);
 
             return this;
+        }
+
+        #endregion
+
+        // --------------------------------------------------
+        // IBdoMetaData Implementation
+        // --------------------------------------------------
+
+        #region IBdoMetaData
+
+        // Items --------------------------------------------
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public BdoMetaDataKind Kind
+            => BdoMetaDataKind.Set;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IBdoMetaData Parent { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int? Index { get; set; }
+
+        /// <summary>
+        /// The value type of this instance.
+        /// </summary>
+        public DataValueTypes DataValueType { get; set; } = DataValueTypes.Any;
+
+        /// <summary>
+        /// The itemization mode of this instance.
+        /// </summary>
+        public DataItemizationMode ItemizationMode { get; set; }
+
+        /// <summary>
+        /// Item reference of this instance.
+        /// </summary>
+        public IBdoReference DataReference { get; set; }
+
+        /// <summary>
+        /// The script of this instance.
+        /// </summary>
+        public IBdoExpression DataExpression { get; set; }
+
+        // Specification -------------------------------
+
+        /// <summary>
+        /// Specification of this instance.
+        /// </summary>
+        public List<IBdoMetaSpec> Specs { get; set; }
+
+        // Specification ---------------------
+
+        /// <summary>
+        /// Gets a new specification.
+        /// </summary>
+        /// <returns>Returns the new specifcation.</returns>
+        public IBdoMetaSpec NewSpecification()
+        {
+            return null;
+        }
+
+        /// <summary>
+        /// Indicates whether this instance is compatible with the specified item.
+        /// </summary>
+        /// <param name="item">The item to consider.</param>
+        /// <returns></returns>
+        public bool IsCompatibleWithItem(object item)
+        {
+            return (DataValueType == DataValueTypes.Any || item.GetValueType().IsCompatibleWith(DataValueType));
+        }
+
+        // Specification
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public IBdoMetaSpec GetSpec(string name = null)
+        {
+            return Specs?.FirstOrDefault(
+                q => (name == null && q.Name == null) || q.Name.BdoKeyEquals(name));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IBdoMetaData WithSpecs(params IBdoMetaSpec[] specs)
+        {
+            Specs = specs?.ToList();
+
+            return this;
+        }
+
+        // Clear
+
+        /// <summary>
+        /// Clears the item of this instance.
+        /// </summary>
+        public void ClearData()
+        {
+            base.ClearItems();
+        }
+
+        /// <summary>
+        /// Sets the item of this instance.
+        /// </summary>
+        /// <param name="item">The string item of this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
+        /// <returns>Returns True if the specified has been well added.</returns>
+        public IBdoMetaData WithData(object obj)
+        {
+            var list = obj.ToBdoData(GetSpec()).ToObjectList();
+            var arr = list.Select(q => q as IBdoMetaData).ToArray();
+            base.WithItems(arr);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the item of this instance.
+        /// </summary>
+        /// <param name="item">The string item of this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
+        /// <returns>Returns True if the specified has been well added.</returns>
+        public IBdoMetaData WithDataList(params object[] objs)
+        {
+            var arr = objs.Select(q => q as IBdoMetaData).ToArray();
+            WithItems(arr);
+
+            return this;
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public List<object> GetDataList(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            return Items.Cast<object>().ToList();
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public List<Q> GetDataList<Q>(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var list = GetDataList(scope, varSet, log);
+            return list?.Select(q =>
+            {
+                if (q is Q q_Q)
+                    return q_Q;
+
+                return default;
+            }).ToList();
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public object GetData(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var list = GetDataList(scope, varSet, log);
+            return list?.FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public object GetData(
+            int index,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var obj = GetData<object>(index, scope, varSet, log); ;
+            return obj;
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public Q GetData<Q>(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var list = GetDataList<Q>(scope, varSet, log);
+            if (list == null)
+            {
+                return default;
+            }
+
+            return list.FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public Q GetData<Q>(
+            int index,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var list = GetDataList(scope, varSet, log);
+            var obj = list?.FirstOrDefault(q =>
+                q is Q
+                && q is IIndexed indexed
+                && indexed.Index == index);
+            if (obj == null)
+            {
+                obj = list?.GetAt(index);
+                if (obj is not Q)
+                    obj = default;
+            }
+            return (Q)obj;
+        }
+
+        // Accessors --------------------------
+
+        /// <summary>
+        /// Returns a text node representing this instance.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Empty;
         }
 
         #endregion

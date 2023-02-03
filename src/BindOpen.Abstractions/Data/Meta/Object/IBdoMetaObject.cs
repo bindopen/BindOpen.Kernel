@@ -9,7 +9,7 @@ namespace BindOpen.Data.Meta
     /// 
     /// </summary>
     public interface IBdoMetaObject :
-        ITBdoMetaItem<IBdoMetaObject, IBdoMetaObjectSpec, object>,
+        ITBdoMetaData<IBdoMetaObject, IBdoMetaObjectSpec, object>,
         IBdoMetaSet
     {
         /// <summary>
@@ -47,15 +47,15 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        new IBdoMetaObject Add(
-            params IBdoMetaItem[] items);
+        IBdoMetaObject Add(
+            params IBdoMetaSet[] items);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        new IBdoMetaObject WithItems(
-            params IBdoMetaItem[] items);
+        IBdoMetaObject WithItems(
+            params IBdoMetaSet[] items);
     }
 }

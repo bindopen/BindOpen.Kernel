@@ -9,7 +9,7 @@ namespace BindOpen.Data.Meta
     /// </summary>
     [XmlType("MetaSet", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot(ElementName = "metaSet", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class MetaSetDto : MetaItemDto, IIdentified
+    public class MetaSetDto : MetaDataDto, IIdentified
     {
         // ------------------------------------------
         // PROPERTIES
@@ -32,7 +32,7 @@ namespace BindOpen.Data.Meta
         [XmlArrayItem("set", Type = typeof(MetaSetDto))]
         [XmlArrayItem("object", Type = typeof(MetaObjectDto))]
         [XmlArrayItem("scalar", Type = typeof(MetaScalarDto))]
-        public List<MetaItemDto> Items { get; set; }
+        public List<MetaDataDto> Items { get; set; }
 
         /// <summary>
         /// Indicates whether the entities property must be ignored.

@@ -9,7 +9,7 @@ namespace BindOpen.Data.Meta
     /// This class represents a data element set.
     /// </summary>
     public partial class BdoMetaSet :
-        TBdoItemSet<IBdoMetaItem>,
+        TBdoItemSet<IBdoMetaData>,
         IBdoMetaSet
     {
 
@@ -48,6 +48,24 @@ namespace BindOpen.Data.Meta
         public IBdoMetaScalar GetScalar(
             int index)
             => Get<IBdoMetaScalar>(index);
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public IBdoMetaSet GetSet(
+            string key = null)
+            => Get<IBdoMetaSet>(key);
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="index">The index to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public IBdoMetaSet GetSet(
+            int index)
+            => Get<IBdoMetaSet>(index);
 
         // Data
 

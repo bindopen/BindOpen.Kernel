@@ -202,7 +202,8 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public virtual Q Get<Q>(string key = null) where Q : T
+        public virtual Q Get<Q>(string key = null)
+            where Q : T
         {
             var obj = Get(key);
             if (obj is Q obj_Q)
@@ -287,7 +288,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        public string Key() => Id;
+        public virtual string Key() => Id;
 
         #endregion
 

@@ -123,7 +123,7 @@
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.IBdoConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Connecting.IBdoConfiguration.WithBindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
@@ -340,7 +340,7 @@
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.IBdoConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Modeling.IBdoConfiguration.WithBindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
@@ -424,7 +424,7 @@
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.IBdoConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Modeling.IBdoConfiguration.WithBindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
@@ -468,7 +468,7 @@
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.IBdoConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Modeling.IBdoConfiguration.WithBindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
@@ -538,7 +538,7 @@
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Processing.IBdoConfiguration.WithBindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
@@ -610,7 +610,7 @@
             <param name="taskEntryKinds"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoTask.IsCompatibleWith(BindOpen.Data.Elements.IBdoElementSpecSet,BindOpen.Runtime.Definition.TaskEntryKind)">
+        <member name="M:BindOpen.Extensions.Processing.IBdoTask.IsCompatibleWithBindOpen.Data.Elements.IBdoElementSpecSet,BindOpen.Runtime.Definition.TaskEntryKind)">
             <summary>
             
             </summary>
@@ -700,7 +700,7 @@
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Processing.IBdoConfiguration.WithBindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
@@ -3134,7 +3134,7 @@
             <param name="endIndex">The end index to consider.</param>
             <returns>The formated path.</returns>
         </member>
-        <member name="M:BindOpen.Data.StringHelper.StartingWith(System.String,System.String)">
+        <member name="M:BindOpen.Data.StringHelper.StartingWithSystem.String,System.String)">
             <summary>
             Gets the string with the specified starting string.
             </summary>
@@ -3142,7 +3142,7 @@
             <param name="startingString">The starting string to consider.</param>
             <returns>The formated path.</returns>
         </member>
-        <member name="M:BindOpen.Data.StringHelper.EndingWith(System.String,System.String)">
+        <member name="M:BindOpen.Data.StringHelper.EndingWithSystem.String,System.String)">
             <summary>
             Gets the string with the specified ending string.
             </summary>
@@ -3905,7 +3905,7 @@
             <param name="item"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Items.ITBdoItemSet`1.WithItems(`0[])">
+        <member name="M:BindOpen.Data.Items.ITBdoItemSet`1.With`0[])">
             <summary>
             
             </summary>
@@ -4636,7 +4636,7 @@
             <param name="obj">The object to consider.</param>
             <returns>The result object.</returns>
         </member>
-        <member name="M:BindOpen.Data.DataValueTypesExtensions.IsCompatibleWith(BindOpen.Data.DataValueTypes,BindOpen.Data.DataValueTypes)">
+        <member name="M:BindOpen.Data.DataValueTypesExtensions.IsCompatibleWithBindOpen.Data.DataValueTypes,BindOpen.Data.DataValueTypes)">
             <summary>
             Returns the value type of the specified object.
             </summary>

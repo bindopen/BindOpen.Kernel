@@ -47,7 +47,7 @@ namespace BindOpen.Data.Specification
         /// <param name="constraintName">The name of the constraint to return.</param>
         /// <param name="parameterName">The name of the parameter to return.</param>
         /// <returns>Returns the specified constrainst parameter.</returns>
-        public IBdoMetaItem GetConstraintParameter(
+        public IBdoMetaData GetConstraintParameter(
             string constraintName,
             string parameterName = null)
         {

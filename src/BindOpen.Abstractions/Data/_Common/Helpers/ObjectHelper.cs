@@ -50,7 +50,10 @@ namespace BindOpen.Data
         /// <param name="object1">The object to consider.</param>
         /// <param name="object2">The object to compare with.</param>
         /// <returns>Returns True if the keys of the considered objects equal.</returns>
-        public static bool BdoKeyEquals(this object object1, object object2) => object1 != null && object2 != null && string.Compare(object1.ToBdoKey(), object2.ToBdoKey(), StringComparison.OrdinalIgnoreCase) == 0;
+        public static bool BdoKeyEquals(this object object1, object object2)
+            => object1 != null
+            && object2 != null
+            && string.Compare(object1.ToBdoKey(), object2.ToBdoKey(), StringComparison.OrdinalIgnoreCase) == 0;
 
         /// <summary>
         /// Returns the string representation of the specified object.

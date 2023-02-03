@@ -2651,7 +2651,7 @@
             Returns null if the new item is null or else its name is null.</returns>
             <remarks>The new item must have a name.</remarks>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoItemSet`1.WithItems(`0[])">
+        <member name="M:BindOpen.Data.Items.TBdoItemSet`1.With`0[])">
             <summary>
             Sets the specified single item of this instance.
             </summary>

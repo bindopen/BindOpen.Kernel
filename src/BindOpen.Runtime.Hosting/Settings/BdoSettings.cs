@@ -99,7 +99,7 @@ namespace BindOpen.Runtime.Settings
 
             if (propertyName != null)
             {
-                IBdoMetaItem element = Configuration.Get(propertyName);
+                IBdoMetaData element = Configuration.Get(propertyName);
                 if (element != null)
                 {
                     return (T)Configuration.GetData(propertyName, Scope);
@@ -135,7 +135,7 @@ namespace BindOpen.Runtime.Settings
 
             if (propertyName != null)
             {
-                IBdoMetaItem element = Configuration.Get(propertyName);
+                IBdoMetaData element = Configuration.Get(propertyName);
                 if (element != null)
                 {
                     return (T)Configuration.GetData(propertyName, Scope);

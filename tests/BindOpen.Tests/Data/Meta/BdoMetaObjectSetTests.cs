@@ -3,6 +3,7 @@ using BindOpen.Data.Meta;
 using BindOpen.Extensions;
 using Bogus;
 using NUnit.Framework;
+using System.Linq;
 
 namespace BindOpen.Tests.Data
 {
@@ -29,34 +30,46 @@ namespace BindOpen.Tests.Data
 
         public void Test(IBdoMetaSet metaSet)
         {
+            var value1 = metaSet // set
+                .GetObject("object1") // meta object
+                .FirstOrDefault()   // first meta item
+                .GetData();
+
             var metaObj1 = metaSet.Get<IBdoMetaObject>("object1");
-            var metaObj2 = metaSet["object2"] as IBdoMetaObject;
+            var metaObj2 = (metaSet["object2"] as IBdoMetaObject);
             var metaObj3 = metaSet.Get<IBdoMetaObject>(2);
             var metaObj4 = metaSet.Get<IBdoMetaObject>("object4");
 
             Assert.That(metaSet?.Count == 4, "Bad object element set - Count");
 
-            var path1 = metaObj1?.GetPropertyData<string>("path");
+            var path1 = metaObj1?.GetData<string>(0);
             Assert.That(
                 path1 == _testData.path1
                 , "Bad object element - Set1");
 
             Assert.That(
-                metaObj2?.GetPropertyData<string>("path") == _testData.path2
+                metaObj2?.GetData<string>("path") == _testData.path2
                 , "Bad object element - Set2");
 
             Assert.That(
-                metaObj3?.GetPropertyData<string>("path") == _testData.path3
+                metaObj3?.GetData<string>("path") == _testData.path3
                 , "Bad object element - Set3");
 
             Assert.That(
-                metaObj4?.GetPropertyData<string>("path") == _testData.path4
+                metaObj4?.GetData<string>("path") == _testData.path4
                 , "Bad object element - Set4");
         }
 
         [Test, Order(1)]
         public void NewTest()
         {
+            BdoMeta.NewObject()
+                .WithProperties()
+                .WithName("")
+                .WithItems()
+                .GetObject();
+
+
             var metaObj1 = BdoMeta.NewObject("object1")
                 .WithItems(
                     BdoConfig.NewExtension(

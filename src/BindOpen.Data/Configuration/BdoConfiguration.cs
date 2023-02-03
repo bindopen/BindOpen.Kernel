@@ -55,7 +55,7 @@ namespace BindOpen.Data.Configuration
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
         public new IBdoConfiguration Add(
-            params IBdoMetaItem[] items)
+            params IBdoMetaData[] items)
         {
             base.Add(items);
 
@@ -68,7 +68,7 @@ namespace BindOpen.Data.Configuration
         /// <param name="items">The items to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
         public new IBdoConfiguration WithItems(
-            params IBdoMetaItem[] items)
+            params IBdoMetaData[] items)
         {
             base.WithItems(items);
 
@@ -92,19 +92,6 @@ namespace BindOpen.Data.Configuration
         /// Last modification date of this instance.
         /// </summary>
         public DateTime? LastModificationDate { get; set; }
-
-        #endregion
-
-        // ------------------------------------------
-        // INamed Implementation
-        // ------------------------------------------
-
-        #region INamed
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Name { get; set; }
 
         #endregion
 

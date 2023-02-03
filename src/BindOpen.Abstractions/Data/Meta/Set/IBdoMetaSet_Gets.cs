@@ -9,8 +9,8 @@ namespace BindOpen.Data.Meta
     /// This class represents an extension of the DataValueType enumeration.
     /// </summary>
     public partial interface IBdoMetaSet :
-        ITBdoItemSet<IBdoMetaItem>,
-        IBdoMetaItem
+        ITBdoItemSet<IBdoMetaData>,
+        IBdoMetaData
     {
         /// <summary>
         /// Returns the specified item of this instance.
@@ -44,7 +44,23 @@ namespace BindOpen.Data.Meta
         public IBdoMetaScalar GetScalar(
             int index);
 
-        //
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public IBdoMetaSet GetSet(
+            string key = null);
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="index">The index to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public IBdoMetaSet GetSet(
+            int index);
+
+        // Data
 
         /// <summary>
         /// 

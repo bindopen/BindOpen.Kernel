@@ -8,8 +8,21 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoMetaData : IBdoMetaItem
+    public interface IBdoMetaData :
+        IBdoItem,
+        INamed, IReferenced,
+        IIndexed
     {
+        /// <summary>
+        /// The kind of meta data of this instance.
+        /// </summary>
+        BdoMetaDataKind Kind { get; }
+
+        /// <summary>
+        /// The parent instance.
+        /// </summary>
+        IBdoMetaData Parent { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -30,13 +43,6 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <returns></returns>
         IBdoMetaSpec NewSpecification();
-
-        /// <summary>
-        /// Indicates whether this instance is compatible with the specified item.
-        /// </summary>
-        /// <param name="item">The item to consider.</param>
-        /// <returns></returns>
-        bool IsCompatibleWithItem(object item);
 
         // Data
 
@@ -64,7 +70,7 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         /// <returns></returns>
-        IBdoMetaData ClearData();
+        void ClearData();
 
         /// <summary>
         /// 
@@ -91,7 +97,33 @@ namespace BindOpen.Data.Meta
         /// <param name="varSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
+        object GetData(
+            int index,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scope"></param>
+        /// <param name="varSet"></param>
+        /// <param name="log"></param>
+        /// <returns></returns>
         Q GetData<Q>(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scope"></param>
+        /// <param name="varSet"></param>
+        /// <param name="log"></param>
+        /// <returns></returns>
+        Q GetData<Q>(
+            int index,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null);

@@ -62,7 +62,10 @@ namespace BindOpen.Data.Meta
         /// </summary>
         public IBdoMetaObject WithProperties(
             params IBdoMetaData[] metas)
-            => this.WithProperties(BdoMeta.NewSet(metas));
+        {
+            PropertySet = BdoMeta.NewSet(metas);
+            return this;
+        }
 
         /// <summary>
         /// The class full name of this instance.
@@ -143,13 +146,13 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Returns the number of items.
         /// </summary>
-        public List<IBdoMetaItem> Items
+        public List<IBdoMetaData> Items
             => ItemMetaSet?.Items;
 
         /// <summary>
         /// Returns the el with the specified indexed.
         /// </summary>
-        public IBdoMetaItem this[int index]
+        public IBdoMetaData this[int index]
             => ItemMetaSet?.Get(index);
 
         /// <summary>
@@ -157,7 +160,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public IBdoMetaItem this[string key]
+        public IBdoMetaData this[string key]
             => ItemMetaSet?.Get(key);
 
         /// <summary>
@@ -174,40 +177,59 @@ namespace BindOpen.Data.Meta
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
         public IBdoMetaObject Add(
-            params IBdoMetaItem[] items)
+            params IBdoMetaSet[] items)
         {
-            ItemMetaSet?.Add(items);
+            (this as ITBdoItemSet<IBdoMetaData>).Add(items);
             return this;
         }
 
         IBdoMetaSet IBdoMetaSet.Add(
-            params IBdoMetaItem[] items)
-            => ItemMetaSet?.Add(items);
+            params IBdoMetaData[] items)
+        {
+            (this as ITBdoItemSet<IBdoMetaData>).Add(items);
+            return this;
+        }
 
-        ITBdoItemSet<IBdoMetaItem> ITBdoItemSet<IBdoMetaItem>.Add(
-            params IBdoMetaItem[] items)
-            => ItemMetaSet?.Add(items);
+        ITBdoItemSet<IBdoMetaData> ITBdoItemSet<IBdoMetaData>.Add(
+            params IBdoMetaData[] items)
+        {
+            ItemMetaSet ??= BdoMeta.NewSet();
+            ItemMetaSet.Add(items);
+            return this;
+        }
 
         public IBdoMetaObject WithItems(
-            params IBdoMetaItem[] items)
+            params IBdoMetaSet[] items)
         {
-            ItemMetaSet?.WithItems(items);
+            (this as ITBdoItemSet<IBdoMetaData>).WithItems(items);
             return this;
         }
 
         IBdoMetaSet IBdoMetaSet.WithItems(
-            params IBdoMetaItem[] items)
-            => ItemMetaSet?.WithItems(items);
+            params IBdoMetaData[] items)
+        {
+            (this as ITBdoItemSet<IBdoMetaData>).WithItems(items);
+            return this;
+        }
 
-        ITBdoItemSet<IBdoMetaItem> ITBdoItemSet<IBdoMetaItem>.WithItems(
-            params IBdoMetaItem[] items)
-            => ItemMetaSet?.WithItems(items);
+        ITBdoItemSet<IBdoMetaData> ITBdoItemSet<IBdoMetaData>.WithItems(
+            params IBdoMetaData[] items)
+        {
+            ItemMetaSet ??= BdoMeta.NewSet();
+            return ItemMetaSet.WithItems(items);
+        }
 
-        public IBdoMetaItem Insert(IBdoMetaItem item)
-            => ItemMetaSet?.Insert(item);
+        public IBdoMetaData Insert(IBdoMetaData item)
+        {
+            ItemMetaSet ??= BdoMeta.NewSet();
+            return ItemMetaSet.Insert(item);
+        }
 
         public void ClearItems()
-            => ItemMetaSet?.ClearItems();
+        {
+            ItemMetaSet ??= BdoMeta.NewSet();
+            ItemMetaSet.ClearItems();
+        }
 
         public bool HasItem(string key = null)
             => ItemMetaSet?.HasItem(key) ?? false;
@@ -217,7 +239,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public virtual IBdoMetaItem Get(string key = null)
+        public virtual IBdoMetaData Get(string key = null)
             => ItemMetaSet?.Get(key);
 
         /// <summary>
@@ -225,7 +247,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public IBdoMetaItem Get(int index)
+        public IBdoMetaData Get(int index)
             => ItemMetaSet?.Get(index);
 
         /// <summary>
@@ -234,7 +256,7 @@ namespace BindOpen.Data.Meta
         /// <param name="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
         public virtual Q Get<Q>(string key = null)
-            where Q : IBdoMetaItem
+            where Q : IBdoMetaData
         {
             if (ItemMetaSet != null)
             {
@@ -250,7 +272,7 @@ namespace BindOpen.Data.Meta
         /// <param name="index">The index to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
         public virtual Q Get<Q>(int index)
-            where Q : IBdoMetaItem
+            where Q : IBdoMetaData
         {
             if (ItemMetaSet != null)
             {
@@ -264,14 +286,14 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         /// <returns></returns>
-        public IBdoMetaItem[] ToArray()
+        public IBdoMetaData[] ToArray()
             => ItemMetaSet?.ToArray();
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<IBdoMetaItem> ToList()
+        public List<IBdoMetaData> ToList()
             => ItemMetaSet?.ToList();
 
         #endregion
@@ -286,7 +308,7 @@ namespace BindOpen.Data.Meta
         /// Indicates the enumerator of this instance.
         /// </summary>
         /// <returns>Returns the enumerator of this instance.</returns>
-        public IEnumerator<IBdoMetaItem> GetEnumerator()
+        public IEnumerator<IBdoMetaData> GetEnumerator()
             => ItemMetaSet?.GetEnumerator();
 
         /// <summary>

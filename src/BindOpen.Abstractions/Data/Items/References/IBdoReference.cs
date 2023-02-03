@@ -17,7 +17,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaItem RootElement();
+        IBdoMetaData RootElement();
 
         /// <summary>
         /// 

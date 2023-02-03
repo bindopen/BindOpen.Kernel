@@ -1,5 +1,5 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Data.Items;
+﻿using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using System.Linq;
 
 namespace BindOpen.Data.Stores
@@ -21,7 +21,7 @@ namespace BindOpen.Data.Stores
             BdoDatasourceDepotDto dto = new()
             {
                 Id = poco.Id,
-                Sources = poco.Items?.Select(q=> q?.ToDto()).ToList()
+                Sources = poco.Items?.Select(q => q?.ToDto()).ToList()
             };
 
             return dto;
@@ -37,10 +37,10 @@ namespace BindOpen.Data.Stores
             if (dto == null) return null;
 
             BdoDatasourceDepot poco = new();
-            poco                
+            poco
                 .WithItems(dto.Sources?.Select(q => q?.ToPoco()).ToArray())
                 .WithId(dto.Id);
-            
+
             return poco;
         }
     }

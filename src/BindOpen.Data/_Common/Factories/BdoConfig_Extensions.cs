@@ -16,7 +16,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param definitionUniqueId="items">The items to consider.</param>
         public static BdoConfiguration NewExtension(
-            params IBdoMetaItem[] items)
+            params IBdoMetaData[] items)
         => NewExtension<BdoConfiguration>(items);
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace BindOpen.Data
         /// <param definitionUniqueId="items">The items to consider.</param>
         public static BdoConfiguration NewExtension(
             string definitionUniqueId,
-            params IBdoMetaItem[] items)
+            params IBdoMetaData[] items)
         => NewExtension<BdoConfiguration>(definitionUniqueId, items);
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace BindOpen.Data
         public static BdoConfiguration NewExtension(
             string definitionUniqueId,
             string[] usingIds,
-            params IBdoMetaItem[] items)
+            params IBdoMetaData[] items)
         => NewExtension<BdoConfiguration>(definitionUniqueId, usingIds, items);
 
         // NewExtension<T>
@@ -49,7 +49,7 @@ namespace BindOpen.Data
         /// <param definitionUniqueId="items">The items to consider.</param>
         public static T NewExtension<T>(
             string definitionUniqueId,
-            params IBdoMetaItem[] items)
+            params IBdoMetaData[] items)
             where T : BdoConfiguration, new()
         => NewExtension<T>(definitionUniqueId, null as string[], items);
 
@@ -58,7 +58,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param definitionUniqueId="items">The items to consider.</param>
         public static T NewExtension<T>(
-            params IBdoMetaItem[] items)
+            params IBdoMetaData[] items)
             where T : BdoConfiguration, new()
         => NewExtension<T>(null as string, null as string[], items);
 
@@ -70,7 +70,7 @@ namespace BindOpen.Data
         public static T NewExtension<T>(
             string definitionUniqueId,
             string[] usingIds,
-            params IBdoMetaItem[] items)
+            params IBdoMetaData[] items)
             where T : BdoConfiguration, new()
         {
             var config = New<T>(definitionUniqueId, items);

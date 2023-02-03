@@ -22,7 +22,7 @@ namespace BindOpen.Data.Specification
         /// <param name="constraintName"></param>
         /// <param name="parameterName"></param>
         /// <returns></returns>
-        IBdoMetaItem GetConstraintParameter(string constraintName, string parameterName = null);
+        IBdoMetaData GetConstraintParameter(string constraintName, string parameterName = null);
 
         /// <summary>
         /// 

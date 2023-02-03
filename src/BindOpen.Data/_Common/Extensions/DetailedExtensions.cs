@@ -13,7 +13,7 @@ namespace BindOpen.Data
         /// <param name="detail"></param>
         public static T WithDetail<T>(
             this T obj,
-            params IBdoMetaItem[] elms)
+            params IBdoMetaData[] elms)
             where T : IDetailed
         {
             if (obj != null)

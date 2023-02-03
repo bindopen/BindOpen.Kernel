@@ -7,9 +7,9 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// 
     /// </summary>
-    public interface ITBdoMetaItem<TElement, TSpec, TItem> :
+    public interface ITBdoMetaData<TElement, TSpec, TItem> :
         IBdoMetaData
-        where TElement : IBdoMetaItem
+        where TElement : IBdoMetaData
         where TSpec : IBdoMetaSpec
         where TItem : class
     {
@@ -27,12 +27,18 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        new TSpec GetSpecification(string name = null);
+        new TSpec GetSpec(string name = null);
 
         /// <summary>
         /// 
         /// </summary>
-        new TElement WithSpecifications(params IBdoMetaSpec[] specs);
+        TElement WithSpecs(params TSpec[] specs);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objs"></param>
+        TElement WithDataList(params TItem[] objs);
 
         /// <summary>
         /// 

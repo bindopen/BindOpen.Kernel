@@ -23,7 +23,7 @@ namespace BindOpen.Data
             object obj,
             Type type = null,
             bool onlyMetaAttributes = false)
-            where T : ITBdoItemSet<IBdoMetaItem>
+            where T : ITBdoItemSet<IBdoMetaData>
         {
             set?.WithItems(
                 obj.ToMetaArray(type, onlyMetaAttributes));

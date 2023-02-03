@@ -28,7 +28,7 @@ namespace BindOpen.Data.Configuration
         /// <param name="items"></param>
         /// <returns></returns>
         new IBdoConfiguration Add(
-            params IBdoMetaItem[] items);
+            params IBdoMetaData[] items);
 
         /// <summary>
         /// 
@@ -36,6 +36,6 @@ namespace BindOpen.Data.Configuration
         /// <param name="items"></param>
         /// <returns></returns>
         new IBdoConfiguration WithItems(
-            params IBdoMetaItem[] items);
+            params IBdoMetaData[] items);
     }
 }

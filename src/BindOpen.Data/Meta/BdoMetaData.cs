@@ -23,36 +23,6 @@ namespace BindOpen.Data.Meta
         #endregion
 
         // --------------------------------------------------
-        // PROPERTIES
-        // --------------------------------------------------
-
-        #region Properties
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public BdoMetaDataKind Kind
-        {
-            get
-            {
-                if (this is IBdoMetaDocument)
-                    return BdoMetaDataKind.Document;
-                else if (this is IBdoMetaObject)
-                    return BdoMetaDataKind.Object;
-                else if (this is IBdoMetaScalar)
-                    return BdoMetaDataKind.Scalar;
-                return BdoMetaDataKind.None;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IBdoMetaItem Parent { get; set; }
-
-        #endregion
-
-        // --------------------------------------------------
         // CONSTRUCTORS
         // --------------------------------------------------
 
@@ -97,10 +67,10 @@ namespace BindOpen.Data.Meta
         #endregion
 
         // --------------------------------------------------
-        // IBdoElement Implementation
+        // IBdoMetaData Implementation
         // --------------------------------------------------
 
-        #region IBdoElement
+        #region IBdoMetaData
 
         /// <summary>
         /// The item of this instance.
@@ -108,6 +78,28 @@ namespace BindOpen.Data.Meta
         protected object _item;
 
         // Items --------------------------------------------
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public BdoMetaDataKind Kind
+        {
+            get
+            {
+                if (this is IBdoMetaDocument)
+                    return BdoMetaDataKind.Document;
+                else if (this is IBdoMetaObject)
+                    return BdoMetaDataKind.Object;
+                else if (this is IBdoMetaScalar)
+                    return BdoMetaDataKind.Scalar;
+                return BdoMetaDataKind.None;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IBdoMetaData Parent { get; set; }
 
         /// <summary>
         /// The value type of this instance.
@@ -255,11 +247,9 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Clears the item of this instance.
         /// </summary>
-        public IBdoMetaData ClearData()
+        public void ClearData()
         {
             _item = null;
-
-            return this;
         }
 
         /// <summary>
@@ -351,6 +341,23 @@ namespace BindOpen.Data.Meta
         /// <param name="scope">The scope to consider.</param>
         /// <param name="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
+        public object GetData(
+            int index,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var obj = GetData<object>(index, scope, varSet, log); ;
+            return obj;
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
         public Q GetData<Q>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
@@ -363,6 +370,33 @@ namespace BindOpen.Data.Meta
             }
 
             return list.FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public Q GetData<Q>(
+            int index,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var list = GetDataList(scope, varSet, log);
+            var obj = list?.FirstOrDefault(q =>
+                q is Q
+                && q is IIndexed indexed
+                && indexed.Index == index);
+            if (obj == null)
+            {
+                obj = list?.GetAt(index);
+                if (obj is not Q)
+                    obj = default;
+            }
+            return (Q)obj;
         }
 
         // Accessors --------------------------

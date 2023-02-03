@@ -141,7 +141,7 @@
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.BdoConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Connecting.BdoConfiguration.WithBindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
@@ -443,7 +443,7 @@
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoConfiguration.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Modeling.BdoConfiguration.WithBindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
@@ -601,7 +601,7 @@
             <param name="log">The log to populate.</param>
             <param name="taskEntryKinds">The kind end entries to consider.</param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTask.IsCompatibleWith(BindOpen.Data.Elements.IBdoElementSpecSet,BindOpen.Runtime.Definition.TaskEntryKind)">
+        <member name="M:BindOpen.Extensions.Processing.BdoTask.IsCompatibleWithBindOpen.Data.Elements.IBdoElementSpecSet,BindOpen.Runtime.Definition.TaskEntryKind)">
             <summary>
             Indicates whether this instance has compatible entries with the specified element set.
             </summary>
@@ -662,7 +662,7 @@
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoConfig.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Processing.BdoConfig.WithBindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
@@ -1126,7 +1126,7 @@
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoConfig.WithItems(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Extensions.Scripting.BdoConfig.WithBindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>

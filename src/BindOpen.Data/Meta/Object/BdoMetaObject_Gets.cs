@@ -47,7 +47,25 @@ namespace BindOpen.Data.Meta
             int index)
             => Get<IBdoMetaScalar>(index);
 
-        //
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public IBdoMetaSet GetSet(
+            string key = null)
+            => Get<IBdoMetaSet>(key);
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="index">The index to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public IBdoMetaSet GetSet(
+            int index)
+            => Get<IBdoMetaSet>(index);
+
+        // Data
 
         /// <summary>
         /// 

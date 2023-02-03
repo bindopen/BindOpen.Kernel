@@ -1,9 +1,8 @@
-﻿using BindOpen.Logging;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System.IO;
 using System.Xml.Schema;
-using BindOpen.Data.Meta;
-using BindOpen.Data;
 
 namespace BindOpen.Data.Configuration
 {
