@@ -46,7 +46,7 @@ namespace BindOpen.Data.Meta
         public new IBdoMetaSpecSet WithItems(
             params IBdoMetaSpec[] items)
         {
-            base.WithItems(items);
+            base.With(items);
 
             return this;
         }

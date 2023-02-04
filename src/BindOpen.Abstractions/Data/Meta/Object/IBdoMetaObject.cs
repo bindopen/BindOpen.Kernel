@@ -12,16 +12,27 @@ namespace BindOpen.Data.Meta
         ITBdoMetaData<IBdoMetaObject, IBdoMetaObjectSpec, object>,
         IBdoMetaSet
     {
-        /// <summary>
-        /// 
-        /// </summary>
+        new void Clear();
+
         IBdoMetaSet PropertySet { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaObject WithProperties(
-            params IBdoMetaData[] metas);
+        /// <param name="objs"></param>
+        IBdoMetaObject WithData(object obj);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scope"></param>
+        /// <param name="varSet"></param>
+        /// <param name="log"></param>
+        /// <returns></returns>
+        Q GetData<Q>(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -41,21 +52,5 @@ namespace BindOpen.Data.Meta
         Type GetClassType(
             IBdoScope scope = null,
             IBdoLog log = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="items"></param>
-        /// <returns></returns>
-        IBdoMetaObject Add(
-            params IBdoMetaSet[] items);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="items"></param>
-        /// <returns></returns>
-        IBdoMetaObject WithItems(
-            params IBdoMetaSet[] items);
     }
 }

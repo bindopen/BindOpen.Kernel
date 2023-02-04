@@ -25,7 +25,7 @@ namespace BindOpen.Data
             bool onlyMetaAttributes = false)
             where T : ITBdoItemSet<IBdoMetaData>
         {
-            set?.WithItems(
+            set?.With(
                 obj.ToMetaArray(type, onlyMetaAttributes));
             return set;
         }
@@ -56,20 +56,23 @@ namespace BindOpen.Data
             {
                 type ??= obj.GetType();
 
-                set = new();
-                foreach (var propInfo in type.GetProperties())
+                if (!type.IsScalar())
                 {
-                    string propName = propInfo.Name;
-                    object propValue = propInfo.GetValue(obj);
-
-                    var bdoAttribute = propInfo.GetCustomAttribute(typeof(BdoDataAttribute)) as BdoDataAttribute;
-                    if (bdoAttribute != null || !onlyMetaAttributes)
+                    set = new();
+                    foreach (var propInfo in type.GetProperties())
                     {
-                        if (!string.IsNullOrEmpty(bdoAttribute?.Name))
+                        string propName = propInfo.Name;
+                        object propValue = propInfo.GetValue(obj);
+
+                        var bdoAttribute = propInfo.GetCustomAttribute(typeof(BdoDataAttribute)) as BdoDataAttribute;
+                        if (bdoAttribute != null || !onlyMetaAttributes)
                         {
-                            propName = bdoAttribute.Name;
+                            if (!string.IsNullOrEmpty(bdoAttribute?.Name))
+                            {
+                                propName = bdoAttribute.Name;
+                            }
+                            set.Add(propValue.ToMetaData(propName));
                         }
-                        set.Add(propValue.ToMetaData(propName));
                     }
                 }
             }
@@ -93,7 +96,7 @@ namespace BindOpen.Data
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            if (obj == null || !set.HasItem()) return;
+            if (obj == null || !set.Has()) return;
 
             foreach (var propInfo in obj.GetType().GetProperties())
             {
@@ -108,7 +111,7 @@ namespace BindOpen.Data
 
                     try
                     {
-                        if (set.HasItem(name))
+                        if (set.Has(name))
                         {
                             var type = propInfo.PropertyType;
                             var value = set.GetData(name, scope, varSet, log);

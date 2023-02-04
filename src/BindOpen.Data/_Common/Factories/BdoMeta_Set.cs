@@ -76,7 +76,7 @@ namespace BindOpen.Data
             where T : class, IBdoMetaSet, new()
         {
             var set = NewSet<T>();
-            set.WithItems(elems);
+            set.With(elems);
 
             return set;
         }
@@ -104,7 +104,7 @@ namespace BindOpen.Data
             where T : class, IBdoMetaSet, new()
         {
             var set = NewSet<T>(
-                triplets.Select(q => BdoMeta.New(q.Name, q.ValueType, q.Value)).ToArray());
+                triplets.Select(q => New(q.Name, q.ValueType, q.Value)).ToArray());
 
             return set;
         }
@@ -121,9 +121,9 @@ namespace BindOpen.Data
             var index = 0;
             return NewSet<T>(objects?.Select(p =>
             {
-                var scalar = NewScalar(DataValueTypes.Any, p);
-                scalar.WithIndex(++index);
-                return scalar;
+                var meta = New(null, p)
+                    .WithIndex(++index);
+                return meta;
             }).ToArray());
         }
 

@@ -3,7 +3,6 @@ using BindOpen.Data.Meta;
 using BindOpen.Extensions;
 using Bogus;
 using NUnit.Framework;
-using System.Linq;
 
 namespace BindOpen.Tests.Data
 {
@@ -30,48 +29,48 @@ namespace BindOpen.Tests.Data
 
         public void Test(IBdoMetaSet metaSet)
         {
-            var value1 = metaSet // set
-                .GetObject("object1") // meta object
-                .FirstOrDefault()   // first meta item
-                .GetData();
+            // set
+            //  - "object1"
+            //      - "path1"
+            //          
 
-            var metaObj1 = metaSet.Get<IBdoMetaObject>("object1");
+            Assert.That(metaSet?.Count == 4, "Bad object element set - Count");
+
+            var metaObj1 = metaSet.Object("object1");
             var metaObj2 = (metaSet["object2"] as IBdoMetaObject);
             var metaObj3 = metaSet.Get<IBdoMetaObject>(2);
             var metaObj4 = metaSet.Get<IBdoMetaObject>("object4");
 
-            Assert.That(metaSet?.Count == 4, "Bad object element set - Count");
-
-            var path1 = metaObj1?.GetData<string>(0);
+            var path1 = metaObj1?.GetData<string>("path");
             Assert.That(
                 path1 == _testData.path1
                 , "Bad object element - Set1");
 
+            var path2 = metaObj2?.GetData<string>("path");
             Assert.That(
-                metaObj2?.GetData<string>("path") == _testData.path2
+                path2 == _testData.path2
                 , "Bad object element - Set2");
 
+            var path3 = metaObj3?.GetData<string>("path");
             Assert.That(
-                metaObj3?.GetData<string>("path") == _testData.path3
+                path3 == _testData.path3
                 , "Bad object element - Set3");
 
+            var path4 = metaObj4?.GetData<string>("path");
             Assert.That(
-                metaObj4?.GetData<string>("path") == _testData.path4
+                path4 == _testData.path4
                 , "Bad object element - Set4");
         }
 
         [Test, Order(1)]
         public void NewTest()
         {
-            BdoMeta.NewObject()
-                .WithProperties()
-                .WithName("")
-                .WithItems()
-                .GetObject();
-
-
             var metaObj1 = BdoMeta.NewObject("object1")
-                .WithItems(
+                .With(
+                    BdoMeta.NewScalar("path", _testData.path1 as string));
+
+            var metaObj5 = BdoMeta.NewObject("object1")
+                .With(
                     BdoConfig.NewExtension(
                         "tests.core$testEntity",
                         BdoMeta.NewScalar("path", _testData.path1 as string)));
@@ -81,7 +80,7 @@ namespace BindOpen.Tests.Data
                 {
                     Path = _testData.path2 as string
                 });
-            metaObj2.UpdateMetaTree();
+            metaObj2.Update();
 
             var obj3 = new EntityFake(
                 _testData.path3,

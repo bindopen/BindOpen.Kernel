@@ -100,7 +100,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Clears the items of this instance.
         /// </summary>
-        public void ClearItems()
+        public virtual void Clear()
         {
             _items = null;
         }
@@ -152,9 +152,9 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="items">The items to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public ITBdoItemSet<T> WithItems(params T[] items)
+        public ITBdoItemSet<T> With(params T[] items)
         {
-            ClearItems();
+            Clear();
             Add(items);
 
             return this;
@@ -165,7 +165,7 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="key">The key of the item to check.</param>
         /// <returns>Returns true if the instance has an item with the specified name.</returns>
-        public bool HasItem(string key = null)
+        public bool Has(string key = null)
         {
             if (key == null) return _items?.Count > 0;
             return _items?.Any(p => p.BdoKeyEquals(key)) == true;

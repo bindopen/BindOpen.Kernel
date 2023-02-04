@@ -79,9 +79,9 @@ namespace BindOpen.Data.Meta
         /// Gets a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public new TSpec NewSpecification()
+        public new TSpec NewSpec()
         {
-            return (TSpec)base.NewSpecification();
+            return (TSpec)base.NewSpec();
         }
 
         /// <summary>
@@ -97,15 +97,17 @@ namespace BindOpen.Data.Meta
         // Data
 
         /// <summary>
-        /// Sets the item of this instance.
+        /// Returns the item object of this instance.
         /// </summary>
-        /// <param name="item">The string item of this instance.</param>
-        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
-        /// <returns>Returns True if the specified has been well added.</returns>
-        public virtual TElement WithDataList(params TItem[] objs)
-        {
-            return (TElement)base.WithDataList(objs);
-        }
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public new virtual TItem GetData(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+            => GetData<TItem>(scope, varSet, log);
 
         /// <summary>
         /// Returns the item object of this instance.
@@ -114,50 +116,11 @@ namespace BindOpen.Data.Meta
         /// <param name="scope">The scope to consider.</param>
         /// <param name="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public new List<TItem> GetDataList(
+        public abstract Q GetData<Q>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
-            => base.GetDataList<TItem>(scope, varSet, log);
-
-        /// <summary>
-        /// Returns the item object of this instance.
-        /// </summary>
-        /// <param name="log">The log to populate.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public new List<Q> GetDataList<Q>(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-            => base.GetDataList<Q>(scope, varSet, log);
-
-        /// <summary>
-        /// Returns the item object of this instance.
-        /// </summary>
-        /// <param name="log">The log to populate.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public new TItem GetData(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-            => base.GetData<TItem>(scope, varSet, log);
-
-        /// <summary>
-        /// Returns the item object of this instance.
-        /// </summary>
-        /// <param name="log">The log to populate.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public new Q GetData<Q>(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-            => base.GetData<Q>(scope, varSet, log);
+            where Q : TItem;
 
         #endregion
     }

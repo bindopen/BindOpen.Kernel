@@ -16,37 +16,16 @@ namespace BindOpen.Data.Meta
         /// <param name="items">The items to consider.</param>
         public static IBdoMetaData ToMetaData(
             this object obj,
-            string name = null)
-        {
-            var objList = obj.ToObjectList();
-            var meta = BdoMeta.New(name, objList?.ToArray());
-            meta?.UpdateMetaTree();
-
-            return meta;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public static T UpdateMetaTree<T>(
-            this T meta,
+            string name = null,
             IBdoScope scope = null,
             IBdoLog log = null)
-            where T : IBdoMetaData
         {
+            var meta = BdoMeta.New(name, obj);
             if (meta is IBdoMetaObject metaObj)
             {
-                var obj = metaObj?.GetData();
-                metaObj.PropertySet = obj.ToMetaSet(
-                    metaObj.GetClassType(scope, log));
-            }
-            else if (meta is IBdoMetaSet metaSet)
-            {
-                foreach (var subMeta in metaSet)
-                {
-                    subMeta?.UpdateMetaTree(scope, log);
-                }
+                metaObj.With(
+                    obj.ToMetaArray(
+                        metaObj.GetClassType(scope, log)));
             }
 
             return meta;

@@ -49,6 +49,12 @@ namespace BindOpen.Data
             return obj.GetValueType().IsScalar();
         }
 
+        public static bool IsScalar(this Type type)
+        {
+            var valueType = type?.GetValueType() ?? DataValueTypes.None;
+            return valueType.IsScalar();
+        }
+
         /// <summary>
         /// Returns the value type of the specified object.
         /// </summary>
@@ -123,7 +129,9 @@ namespace BindOpen.Data
         /// <param name="obj">The object to consider.</param>
         /// <param name="guessRowCount">The number of items used to guess the object's value type if it is a list.</param>
         /// <returns>The result object.</returns>
-        public static DataValueTypes GetValueType(this object obj, int guessRowCount = 20)
+        public static DataValueTypes GetValueType(
+            this object obj,
+            int guessRowCount = 20)
         {
             if (obj is IEnumerable arr)
             {

@@ -54,7 +54,7 @@ namespace BindOpen.Data.Meta
                 el.WithDataExpression(refEl.DataExpression);
                 el.WithDataReference(refEl.DataReference);
 
-                el.WithDataList(refEl.GetData(log: log));
+                //el.WithData(refEl.GetData(log: log));
             }
 
             if ((specificationAreas.Contains(nameof(DataAreaKind.Any)))

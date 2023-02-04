@@ -38,7 +38,7 @@ namespace BindOpen.Data.Stores
 
             BdoDatasourceDepot poco = new();
             poco
-                .WithItems(dto.Sources?.Select(q => q?.ToPoco()).ToArray())
+                .With(dto.Sources?.Select(q => q?.ToPoco()).ToArray())
                 .WithId(dto.Id);
 
             return poco;

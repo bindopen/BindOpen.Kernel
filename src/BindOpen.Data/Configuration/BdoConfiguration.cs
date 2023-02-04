@@ -70,7 +70,7 @@ namespace BindOpen.Data.Configuration
         public new IBdoConfiguration WithItems(
             params IBdoMetaData[] items)
         {
-            base.WithItems(items);
+            base.With(items);
 
             return this;
         }

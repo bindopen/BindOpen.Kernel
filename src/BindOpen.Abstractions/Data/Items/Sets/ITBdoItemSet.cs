@@ -78,19 +78,19 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        ITBdoItemSet<T> WithItems(params T[] items);
+        ITBdoItemSet<T> With(params T[] items);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        bool HasItem(string key = null);
+        bool Has(string key = null);
 
         /// <summary>
         /// 
         /// </summary>
-        void ClearItems();
+        void Clear();
 
         /// <summary>
         /// 

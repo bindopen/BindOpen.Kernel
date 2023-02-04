@@ -22,7 +22,7 @@ namespace BindOpen.Data
         /// <param name="obj">The object to consider.</param>
         /// <param name="index">The index to consider.</param>
         /// <returns></returns>
-        public static object GetAt(this IList obj, int index)
+        public static Q GetAt<Q>(this IList<Q> obj, int index)
             => obj != null && index >= 0 && index < obj.Count ? obj[index] : default;
 
         /// <summary>
@@ -63,6 +63,14 @@ namespace BindOpen.Data
         public static string ToNotNullString(this object object1)
         {
             return object1 == null ? string.Empty : object1.ToString();
+        }
+
+        public static Q As<Q>(this object obj)
+        {
+            if (obj is Q q)
+                return q;
+
+            return default;
         }
 
         /// <summary>
@@ -453,6 +461,14 @@ namespace BindOpen.Data
 
             return objList;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsList(this object obj)
+            => obj?.GetType().IsList() ?? false;
 
         /// <summary>
         /// 

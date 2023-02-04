@@ -12,11 +12,11 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public static BdoMetaData New(
-            string name,
-            params object[] items)
+        public static IBdoMetaData New(
+            string name = null,
+            object data = null)
         {
-            return New(name, DataValueTypes.Any, items);
+            return New(name, DataValueTypes.Any, data);
         }
 
         /// <summary>
@@ -24,25 +24,34 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public static BdoMetaData New(
+        public static IBdoMetaData New(
             string name,
             DataValueTypes valueType,
-            params object[] items)
+            object data)
         {
             if (valueType == DataValueTypes.Any || valueType == DataValueTypes.None)
             {
-                valueType = items.GetValueType();
+                valueType = data.GetValueType();
             }
 
             if (valueType.IsScalar())
             {
-                var meta = NewScalar(name, valueType, items);
-                return meta;
+                var metaScalar = NewScalar(name, valueType, data);
+                return metaScalar;
             }
             else
             {
-                var meta = NewObject(name, items);
-                return meta;
+                if (valueType.IsList())
+                {
+                    var objList = data.ToObjectList();
+                    var metaSet = NewSet(name, objList?.ToArray());
+                    return metaSet;
+                }
+                else
+                {
+                    var metaObj = NewObject(name, data);
+                    return metaObj;
+                }
             }
         }
 
@@ -51,20 +60,14 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public static BdoMetaData New<T>(
+        public static IBdoMetaData New<T>(
             string name,
-            params object[] items)
+            T data)
         {
             var type = typeof(T);
 
             var valueType = type.GetValueType();
-            var meta = New(name, valueType, items);
-
-            if (meta.GetType().IsAssignableFrom(typeof(IBdoMetaObjectSpec)))
-            {
-                var objectEl = meta as IBdoMetaObjectSpec;
-                objectEl.ClassFilter.AddedValues.Add(meta.GetType().ToString());
-            }
+            var meta = New(name, valueType, data);
 
             return meta;
         }

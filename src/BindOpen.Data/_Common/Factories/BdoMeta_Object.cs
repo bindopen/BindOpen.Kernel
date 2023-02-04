@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Meta;
-using System.Linq;
 
 namespace BindOpen.Data
 {
@@ -12,20 +11,20 @@ namespace BindOpen.Data
         /// <summary>
         /// Initializes a new object el.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
         public static BdoMetaObject NewObject(
-            string name,
-            params object[] items)
-            => NewObject(name, null, items);
+            string name = null)
+            => NewObject(name, null, null);
 
         /// <summary>
         /// Initializes a new object el.
         /// </summary>
+        /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
         public static BdoMetaObject NewObject(
-            params object[] items)
-            => NewObject(null, null, items);
+            string name,
+            object item)
+            => NewObject(name, null, item);
 
         /// <summary>
         /// Initializes a new object el.
@@ -36,12 +35,14 @@ namespace BindOpen.Data
         public static BdoMetaObject NewObject(
             string name,
             IBdoClassReference reference,
-            params object[] items)
+            object item)
         {
             var el = new BdoMetaObject();
             el.WithName(name);
             el.WithClassReference(reference);
-            el.WithDataList(items);
+            el.WithData(item);
+
+            //el.ClassReference .ClassFilter.AddedValues.Add(meta.GetType().ToString());
 
             return el;
         }
@@ -55,21 +56,21 @@ namespace BindOpen.Data
         /// <param name="items">The items to consider.</param>
         public static BdoMetaObject NewObject<T>(
             string name,
-            params T[] items)
+            T item)
             where T : class, new()
         {
-            var classReference = BdoData.Class<T>();
-            var el = NewObject(name, classReference, items?.Cast<object>().ToArray());
+            var classRef = BdoData.Class<T>();
+            var el = NewObject(name, classRef, item);
             return el;
         }
 
         /// <summary>
         /// Initializes a new object el.
         /// </summary>
-        /// <param name="items">The items to consider.</param>
+        /// <param name="item">The items to consider.</param>
         public static BdoMetaObject NewObject<T>(
-            params T[] items)
+            T item)
             where T : class, new()
-            => NewObject<T>(null, items);
+            => NewObject<T>(null, item);
     }
 }

@@ -42,7 +42,7 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         /// <returns></returns>
-        IBdoMetaSpec NewSpecification();
+        IBdoMetaSpec NewSpec();
 
         // Data
 
@@ -70,13 +70,7 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         /// <returns></returns>
-        void ClearData();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="objs"></param>
-        IBdoMetaData WithDataList(params object[] objs);
+        void Clear();
 
         /// <summary>
         /// 
@@ -86,68 +80,6 @@ namespace BindOpen.Data.Meta
         /// <param name="log"></param>
         /// <returns></returns>
         object GetData(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="scope"></param>
-        /// <param name="varSet"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        object GetData(
-            int index,
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="scope"></param>
-        /// <param name="varSet"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        Q GetData<Q>(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="scope"></param>
-        /// <param name="varSet"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        Q GetData<Q>(
-            int index,
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="scope"></param>
-        /// <param name="varSet"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        List<object> GetDataList(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="scope"></param>
-        /// <param name="varSet"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        List<Q> GetDataList<Q>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null);

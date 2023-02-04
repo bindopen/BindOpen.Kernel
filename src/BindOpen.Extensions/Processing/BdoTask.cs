@@ -52,7 +52,7 @@ namespace BindOpen.Extensions.Processing
         {
             IBdoMetaData entry = null;// Config?.GetEntryWithName(name, taskEntryKinds);
 
-            return entry?.GetDataList(scope, varSet, log);
+            return entry?.GetData(scope, varSet, log);
         }
 
         // General ---------------------------------------

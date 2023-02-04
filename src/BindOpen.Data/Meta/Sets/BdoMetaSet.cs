@@ -93,10 +93,10 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="items">The items to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public new IBdoMetaSet WithItems(
+        public new IBdoMetaSet With(
             params IBdoMetaData[] items)
         {
-            base.WithItems(items);
+            base.With(items);
 
             return this;
         }
@@ -165,7 +165,7 @@ namespace BindOpen.Data.Meta
         /// Gets a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public IBdoMetaSpec NewSpecification()
+        public IBdoMetaSpec NewSpec()
         {
             return null;
         }
@@ -203,80 +203,14 @@ namespace BindOpen.Data.Meta
             return this;
         }
 
-        // Clear
+        // Data
 
         /// <summary>
         /// Clears the item of this instance.
         /// </summary>
-        public void ClearData()
+        public override void Clear()
         {
-            base.ClearItems();
-        }
-
-        /// <summary>
-        /// Sets the item of this instance.
-        /// </summary>
-        /// <param name="item">The string item of this instance.</param>
-        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
-        /// <returns>Returns True if the specified has been well added.</returns>
-        public IBdoMetaData WithData(object obj)
-        {
-            var list = obj.ToBdoData(GetSpec()).ToObjectList();
-            var arr = list.Select(q => q as IBdoMetaData).ToArray();
-            base.WithItems(arr);
-
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the item of this instance.
-        /// </summary>
-        /// <param name="item">The string item of this instance.</param>
-        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
-        /// <returns>Returns True if the specified has been well added.</returns>
-        public IBdoMetaData WithDataList(params object[] objs)
-        {
-            var arr = objs.Select(q => q as IBdoMetaData).ToArray();
-            WithItems(arr);
-
-            return this;
-        }
-
-        /// <summary>
-        /// Returns the item object of this instance.
-        /// </summary>
-        /// <param name="log">The log to populate.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public List<object> GetDataList(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            return Items.Cast<object>().ToList();
-        }
-
-        /// <summary>
-        /// Returns the item object of this instance.
-        /// </summary>
-        /// <param name="log">The log to populate.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public List<Q> GetDataList<Q>(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            var list = GetDataList(scope, varSet, log);
-            return list?.Select(q =>
-            {
-                if (q is Q q_Q)
-                    return q_Q;
-
-                return default;
-            }).ToList();
+            base.Clear();
         }
 
         /// <summary>
@@ -293,23 +227,6 @@ namespace BindOpen.Data.Meta
         {
             var list = GetDataList(scope, varSet, log);
             return list?.FirstOrDefault();
-        }
-
-        /// <summary>
-        /// Returns the item object of this instance.
-        /// </summary>
-        /// <param name="log">The log to populate.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public object GetData(
-            int index,
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            var obj = GetData<object>(index, scope, varSet, log); ;
-            return obj;
         }
 
         /// <summary>
@@ -340,6 +257,23 @@ namespace BindOpen.Data.Meta
         /// <param name="scope">The scope to consider.</param>
         /// <param name="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
+        public object GetData(
+            int index,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var obj = GetData<object>(index, scope, varSet, log); ;
+            return obj;
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
         public Q GetData<Q>(
             int index,
             IBdoScope scope = null,
@@ -358,6 +292,45 @@ namespace BindOpen.Data.Meta
                     obj = default;
             }
             return (Q)obj;
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public List<object> GetDataList(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            return Items
+                .Select(q => q.GetData(scope, varSet, log))
+                .ToList();
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public List<Q> GetDataList<Q>(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var list = GetDataList(scope, varSet, log);
+            return list?.Select(q =>
+            {
+                if (q is Q q_Q)
+                    return q_Q;
+
+                return default;
+            }).ToList();
         }
 
         // Accessors --------------------------

@@ -1,4 +1,9 @@
-﻿namespace BindOpen.Data.Meta
+﻿using BindOpen.Logging;
+using BindOpen.Runtime.Scopes;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a scalar element that is an element whose items are scalars.
@@ -64,9 +69,9 @@
 
         #region IBdoMetaScalar
 
-        IBdoMetaSpec IBdoMetaData.NewSpecification()
+        IBdoMetaSpec IBdoMetaData.NewSpec()
         {
-            return NewSpecification();
+            return NewSpec();
         }
 
         // Items ----------------------------
@@ -77,9 +82,148 @@
         /// <returns></returns>
         public override string ToString()
         {
-            return _item.ToString(DataValueType);
+            return _data.ToString(DataValueType);
         }
-        // Items ----------------------------
+
+        // Data ----------------------------
+
+        /// <summary>
+        /// Sets the item of this instance.
+        /// </summary>
+        /// <param name="item">The string item of this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
+        /// <returns>Returns True if the specified has been well added.</returns>
+        public IBdoMetaScalar WithData(object obj)
+        {
+            _data = obj.ToBdoData(GetSpec());
+
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the item of this instance.
+        /// </summary>
+        /// <param name="item">The string item of this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
+        /// <returns>Returns True if the specified has been well added.</returns>
+        public IBdoMetaScalar WithDataList(params object[] objs)
+        {
+            _data = objs.ToBdoData(GetSpec()).ToObjectList();
+
+            return this;
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public override object GetData(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var list = GetDataList(scope, varSet, log);
+            return list?.FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public override Q GetData<Q>(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var list = GetDataList<Q>(scope, varSet, log);
+            if (list == null)
+            {
+                return default;
+            }
+
+            return list.FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public object GetData(
+            int index,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var obj = GetData<object>(index, scope, varSet, log); ;
+            return obj;
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public Q GetData<Q>(
+            int index,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var list = GetDataList<Q>(scope, varSet, log); ;
+            var obj = list.GetAt(index);
+            return obj;
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public List<object> GetDataList(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var obj = DataObject(scope, varSet, log);
+
+            var list = obj?.ToObjectList();
+            return list;
+        }
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param name="log">The log to populate.</param>
+        /// <param name="scope">The scope to consider.</param>
+        /// <param name="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public List<Q> GetDataList<Q>(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var list = GetDataList(scope, varSet, log);
+            return list?.Select(q =>
+            {
+                if (q is Q q_Q)
+                    return q_Q;
+
+                return default;
+            }).ToList();
+        }
 
         #endregion
 
