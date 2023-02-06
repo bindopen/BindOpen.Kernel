@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData.Elements;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -8,8 +8,8 @@ namespace BindOpen.Runtime.Definition
     /// <summary>
     /// This class represents a DTO connector definition.
     /// </summary>
-    [XmlType("ConnectorDefinition", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "connector.definition", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ConnectorDefinition", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "connector.definition", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoConnectorDefinitionDto : BdoExtensionItemDefinitionDto
     {
         // --------------------------------------------------
@@ -39,7 +39,7 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         [JsonPropertyName("dataSource.specification")]
         [XmlElement("dataSource.specification")]
-        public BdoElementSpecSetDto DatasourceDetailSpec { get; set; }
+        public MetaSpecSetDto DatasourceDetailSpec { get; set; }
 
         #endregion
 

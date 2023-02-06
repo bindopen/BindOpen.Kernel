@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
 using System.Collections.Generic;
 
 namespace BindOpen.Runtime.Definition
@@ -8,10 +8,8 @@ namespace BindOpen.Runtime.Definition
     /// This interface defines the extension definition.
     /// </summary>
     public interface IBdoExtensionDefinition : IReferenced,
-        ITIdentifiedPoco<IBdoExtensionDefinition>,
-        ITNamedPoco<IBdoExtensionDefinition>,
-        ITGloballyTitledPoco<IBdoExtensionDefinition>,
-        ITGloballyDescribedPoco<IBdoExtensionDefinition>
+        IIdentified, INamed,
+        IGloballyTitled, IGloballyDescribed
     {
         /// <summary>
         /// 

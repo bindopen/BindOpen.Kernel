@@ -1,6 +1,6 @@
-﻿using BindOpen.Runtime.Definition;
+﻿using BindOpen.Logging;
+using BindOpen.Runtime.Definition;
 using System;
-using BindOpen.Logging;
 
 namespace BindOpen.Extensions.Connecting
 {
@@ -8,7 +8,7 @@ namespace BindOpen.Extensions.Connecting
     /// 
     /// </summary>
     public interface IBdoConnector :
-        ITBdoExtensionItem<IBdoConnectorDefinition, IBdoConnectorConfiguration, IBdoConnector>
+        ITBdoExtensionItem<IBdoConnector, IBdoConnectorDefinition>
     {
         /// <summary>
         /// The connection string of this instance.
@@ -25,11 +25,6 @@ namespace BindOpen.Extensions.Connecting
         }
 
         /// <summary>
-        /// The connection timeout of this instance.
-        /// </summary>
-        int ConnectionTimeOut { get; set; }
-
-        /// <summary>
         /// 
         /// </summary>
         IBdoConnector WithConnectionTimeOut(int timeOut)
@@ -37,6 +32,11 @@ namespace BindOpen.Extensions.Connecting
             ConnectionTimeOut = timeOut;
             return this;
         }
+
+        /// <summary>
+        /// The connection timeout of this instance.
+        /// </summary>
+        int ConnectionTimeOut { get; set; }
 
         /// <summary>
         /// Creates a new connection.

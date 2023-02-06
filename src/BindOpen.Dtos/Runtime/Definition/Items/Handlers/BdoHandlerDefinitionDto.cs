@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data.Meta;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -7,8 +7,8 @@ namespace BindOpen.Runtime.Definition
     /// <summary>
     /// This class represents a handler definition.
     /// </summary>
-    [XmlType("HandlerDefinition", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "dataHandler.definition", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("HandlerDefinition", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "dataHandler.definition", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoHandlerDefinitionDto : BdoExtensionItemDefinitionDto
     {
         // --------------------------------------------------
@@ -45,67 +45,39 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         [JsonPropertyName("parameter.specification")]
         [XmlElement("parameter.specification")]
-        public BdoElementSpecSetDto ParameterSpecification { get; set; }
+        public MetaSpecSetDto ParameterSpecification { get; set; }
 
         // Source
-
-        /// <summary>
-        /// The source carrier specification of this instance.
-        /// </summary>
-        [JsonPropertyName("source-carrier.specification")]
-        [XmlElement("source-carrier.specification")]
-        public CarrierElementSpecDto SourceCarrierSpecification { get; set; }
 
         /// <summary>
         /// The source object specification of this instance.
         /// </summary>
         [JsonPropertyName("source.specification")]
         [XmlElement("source-object.specification")]
-        public ObjectElementSpecDto SourceObjectSpecification { get; set; }
+        public MetaObjectSpecDto SourceObjectSpecification { get; set; }
 
         /// <summary>
         /// The source scalar specification of this instance.
         /// </summary>
         [JsonPropertyName("source-scalar.specification")]
         [XmlElement("source-scalar.specification")]
-        public ScalarElementSpecDto SourceScalarSpecification { get; set; }
-
-        /// <summary>
-        /// The source specification of this instance.
-        /// </summary>
-        [JsonPropertyName("source-datasource.specification")]
-        [XmlElement("source-datasource.specification")]
-        public SourceElementSpecDto SourceDataSourceSpecification { get; set; }
+        public MetaScalarSpecDto SourceScalarSpecification { get; set; }
 
         // Target
-
-        /// <summary>
-        /// The target carrier specification of this instance.
-        /// </summary>
-        [JsonPropertyName("target-carrier.specification")]
-        [XmlElement("target-carrier.specification")]
-        public CarrierElementSpecDto TargetCarrierSpecification { get; set; }
 
         /// <summary>
         /// The target object specification of this instance.
         /// </summary>
         [JsonPropertyName("target.specification")]
         [XmlElement("target-object.specification")]
-        public ObjectElementSpecDto TargetObjectSpecification { get; set; }
+        public MetaObjectSpecDto TargetObjectSpecification { get; set; }
 
         /// <summary>
         /// The target scalar specification of this instance.
         /// </summary>
         [JsonPropertyName("target-scalar.specification")]
         [XmlElement("target-scalar.specification")]
-        public ScalarElementSpecDto TargetScalarSpecification { get; set; }
-
-        /// <summary>
-        /// The target specification of this instance.
-        /// </summary>
-        [JsonPropertyName("target-datatarget.specification")]
-        [XmlElement("target-datatarget.specification")]
-        public SourceElementSpecDto TargetDataSourceSpecification { get; set; }
+        public MetaScalarSpecDto TargetScalarSpecification { get; set; }
 
         #endregion
 

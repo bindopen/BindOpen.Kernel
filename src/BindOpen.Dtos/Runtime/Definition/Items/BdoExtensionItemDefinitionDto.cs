@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -8,7 +8,7 @@ namespace BindOpen.Runtime.Definition
     /// <summary>
     /// This class represents the definition of BindOpen extension item.
     /// </summary>
-    [XmlType("ExtensionItemDefinition", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlType("ExtensionItemDefinition", Namespace = "https://xsd.bindopen.org")]
     public abstract class BdoExtensionItemDefinitionDto : IndexedDataItemDto
     {
         // --------------------------------------------------

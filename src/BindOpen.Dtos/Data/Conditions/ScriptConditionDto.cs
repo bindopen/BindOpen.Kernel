@@ -1,14 +1,14 @@
-﻿using BindOpen.MetaData.Items;
+﻿using BindOpen.Data.Items;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.MetaData.Conditions
+namespace BindOpen.Data.Conditions
 {
     /// <summary>
     /// This class represents a script condition DTO.
     /// </summary>
-    [XmlType("ScriptCondition", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "script.condition", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ScriptCondition", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "script.condition", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class ScriptConditionDto : ConditionDto
     {
         // ------------------------------------------
@@ -22,7 +22,7 @@ namespace BindOpen.MetaData.Conditions
         /// </summary>
         [JsonPropertyName("exp")]
         [XmlElement("exp")]
-        public DataExpressionDto Expression { get; set; }
+        public ExpressionDto Expression { get; set; }
 
         #endregion
 

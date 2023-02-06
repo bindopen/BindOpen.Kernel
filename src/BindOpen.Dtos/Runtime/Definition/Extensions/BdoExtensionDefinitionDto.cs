@@ -1,4 +1,5 @@
-﻿using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -8,8 +9,8 @@ namespace BindOpen.Runtime.Definition
     /// <summary>
     /// This class represents the definition of a library.
     /// </summary>
-    [XmlType("ExtensionDefinition", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "extension", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ExtensionDefinition", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "extension", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoExtensionDefinitionDto : DescribedDataItemDto
     {
         // ------------------------------------------
@@ -63,7 +64,7 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         [JsonPropertyName("indexes")]
         [XmlElement("indexes")]
-        public DictionaryDataItemDto ItemIndexFullNameDictionary { get; set; }
+        public DictionaryDto ItemIndexFullNameDictionary { get; set; }
 
         #endregion
 

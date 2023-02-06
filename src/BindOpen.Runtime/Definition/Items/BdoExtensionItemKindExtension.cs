@@ -1,4 +1,5 @@
-﻿using BindOpen.Extensions.Connecting;
+﻿using BindOpen.Extensions;
+using BindOpen.Extensions.Connecting;
 using BindOpen.Extensions.Modeling;
 using BindOpen.Extensions.Processing;
 using BindOpen.Extensions.Scripting;
@@ -27,37 +28,31 @@ namespace BindOpen.Runtime.Definition
         public static BdoExtensionItemKind GetExtensionItemKind(this Type type)
         {
             if ((typeof(IBdoTaskDefinition).IsAssignableFrom(type))
-                || (typeof(IBdoTaskConfiguration).IsAssignableFrom(type))
                 || (typeof(IBdoTask).IsAssignableFrom(type)))
             {
                 return BdoExtensionItemKind.Task;
             }
-            else if ((typeof(IBdoCarrierDefinition).IsAssignableFrom(type))
-                || (typeof(IBdoCarrierConfiguration).IsAssignableFrom(type))
-                || (typeof(IBdoCarrier).IsAssignableFrom(type)))
+            else if ((typeof(IBdoEntityDefinition).IsAssignableFrom(type))
+                || (typeof(IBdoEntity).IsAssignableFrom(type)))
             {
-                return BdoExtensionItemKind.Carrier;
+                return BdoExtensionItemKind.Entity;
             }
             else if ((typeof(IBdoConnectorDefinition).IsAssignableFrom(type))
-                || (typeof(IBdoConnectorConfiguration).IsAssignableFrom(type))
                 || (typeof(IBdoConnector).IsAssignableFrom(type)))
             {
                 return BdoExtensionItemKind.Connector;
             }
             else if ((typeof(IBdoRoutineDefinition).IsAssignableFrom(type))
-                || (typeof(IBdoRoutineConfiguration).IsAssignableFrom(type))
                 || (typeof(IResourceAllocation).IsAssignableFrom(type)))
             {
                 return BdoExtensionItemKind.Routine;
             }
             else if ((typeof(IBdoEntityDefinition).IsAssignableFrom(type))
-                || (typeof(IBdoEntityConfiguration).IsAssignableFrom(type))
                 || (typeof(IBdoEntity).IsAssignableFrom(type)))
             {
                 return BdoExtensionItemKind.Entity;
             }
             else if ((typeof(IBdoFormatDefinition).IsAssignableFrom(type))
-                || (typeof(IBdoFormatConfiguration).IsAssignableFrom(type))
                 || (typeof(IBdoFormat).IsAssignableFrom(type)))
             {
                 return BdoExtensionItemKind.Format;

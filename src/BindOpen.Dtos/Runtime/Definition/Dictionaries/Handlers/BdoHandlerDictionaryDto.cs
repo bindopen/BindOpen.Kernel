@@ -7,8 +7,8 @@ namespace BindOpen.Runtime.Definition
     /// <summary>
     /// This class represents a handler index.
     /// </summary>
-    [XmlType("HandlerDictionary", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "handlers.dico", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("HandlerDictionary", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "handlers.dico", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoHandlerDictionaryDto
         : TBdoExtensionDictionaryDto<BdoHandlerDefinitionDto>
     {

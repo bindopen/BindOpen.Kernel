@@ -6,8 +6,8 @@ namespace BindOpen.Runtime.Definition
     /// <summary>
     /// This class represents a metrics definition.
     /// </summary>
-    [XmlType("MetricsDefinition", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "metrics.definition", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("MetricsDefinition", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "metrics.definition", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoMetricsDefinitionDto : BdoExtensionItemDefinitionDto
     {
         // ------------------------------------------

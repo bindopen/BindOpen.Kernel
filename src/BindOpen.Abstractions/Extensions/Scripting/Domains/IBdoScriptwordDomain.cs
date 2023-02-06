@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data.Meta;
 using BindOpen.Runtime.Scopes;
 
 namespace BindOpen.Extensions.Scripting
@@ -21,12 +21,12 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// The variable element set of this instance.
         /// </summary>
-        IBdoElementSet ScriptVariableSet { get; }
+        IBdoMetaList ScriptVariableSet { get; }
 
         /// <summary>
         /// Sets the variable element set of this instance.
         /// </summary>
-        IBdoScriptwordDomain WithScriptVariableSet(IBdoElementSet variableSet);
+        IBdoScriptwordDomain WithScriptVariableSet(IBdoMetaList variableSet);
 
         /// <summary>
         /// The script word of this instance.

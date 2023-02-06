@@ -1,4 +1,5 @@
-﻿using BindOpen.Logging;
+﻿using BindOpen.Data;
+using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 
 namespace BindOpen.Extensions.Scripting

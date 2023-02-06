@@ -1,5 +1,6 @@
-﻿using BindOpen.Extensions.Scripting;
-using BindOpen.MetaData;
+﻿using BindOpen.Data;
+using BindOpen.Extensions;
+using BindOpen.Extensions.Scripting;
 using System;
 
 namespace BindOpen.Tests.Runtime

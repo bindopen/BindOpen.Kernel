@@ -1,4 +1,5 @@
-﻿using BindOpen.MetaData.Items;
+﻿using BindOpen.Data.Configuration;
+using BindOpen.Data.Items;
 using BindOpen.Extensions.Connecting;
 using BindOpen.Logging;
 
@@ -19,7 +20,7 @@ namespace BindOpen.Runtime.Scopes
         /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
         public static T Open<T>(
             this IBdoScope scope,
-            IBdoDataSource dataSource,
+            IBdoDatasource dataSource,
             string connectorDefinitionUniqueId,
             IBdoLog log = null)
             where T : class, IBdoConnection
@@ -30,8 +31,8 @@ namespace BindOpen.Runtime.Scopes
                 log?.AddError("Connection not defined in data source", description: "No connector is defined in the specified data source.");
             else if (!string.IsNullOrEmpty(connectorDefinitionUniqueId))
                 return scope.Open<T>(dataSource.GetConfig(connectorDefinitionUniqueId), log);
-            else if (dataSource.Configurations.Count > 0)
-                return scope.Open<T>(dataSource.Configurations[0], log);
+            else if (dataSource.ConfigList.Count > 0)
+                return scope.Open<T>(dataSource.ConfigList[0], log);
 
             return default;
         }
@@ -40,22 +41,22 @@ namespace BindOpen.Runtime.Scopes
         /// Creates a connector using the specified data module and connector unique name.
         /// </summary>
         /// <param name="scope">The scope to consider.</param>
-        /// <param name="configuration">The connector configuration to consider.</param>
+        /// <param name="config">The connector config to consider.</param>
         /// <param name="log">The log of execution to consider.</param>
         /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
         public static T Open<T>(
             this IBdoScope scope,
-            IBdoConnectorConfiguration configuration,
+            IBdoConfiguration config,
             IBdoLog log = null)
             where T : class, IBdoConnection
         {
-            if (configuration == null)
+            if (config == null)
             {
                 log?.AddError("Connection missing");
             }
             else if (scope?.Check(true, log: log) == true)
             {
-                var connector = scope.NewConnector(configuration, log: log);
+                var connector = scope.NewConnector(config, log: log);
 
                 if (connector != null)
                 {

@@ -1,12 +1,11 @@
-﻿using BindOpen.MetaData;
-using BindOpen.Runtime.Definition;
+﻿using BindOpen.Runtime.Definition;
 
 namespace BindOpen.Extensions.Modeling
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoEntity : ITBdoExtensionItem<IBdoEntityDefinition, IBdoEntityConfiguration, IBdoEntity>, INamed
+    public interface IBdoEntity : ITBdoExtensionItem<IBdoEntity, IBdoEntityDefinition>
     {
     }
 }

@@ -1,5 +1,5 @@
-﻿using BindOpen.Runtime.Definition;
-using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Extensions;
 using System;
 using System.Collections.Generic;
 
@@ -33,17 +33,12 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// 
         /// </summary>
-        List<IDataSchema> PossibleMetaSchemas { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         string ViewerClass { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoElementSpecSet DetailSpec { get; set; }
+        IBdoMetaSpecList DetailSpec { get; set; }
 
         /// <summary>
         /// 

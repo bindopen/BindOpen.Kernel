@@ -1,8 +1,6 @@
-﻿using BindOpen.MetaData.Items;
-using BindOpen.Extensions.Connecting;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 
-namespace BindOpen.MetaData.Stores
+namespace BindOpen.Data.Stores
 {
     /// <summary>
     /// This class represents an data source extensions.
@@ -13,7 +11,7 @@ namespace BindOpen.MetaData.Stores
         /// Adds sources from connection strings.
         /// </summary>
         /// <param name="depot">The datasource depot to consider.</param>
-        /// <param name="config">The configuration to consider.</param>
+        /// <param name="config">The config to consider.</param>
         /// <param name="keyName">The key name to consider.</param>
         public static IBdoSourceDepot AddFromConnectionStrings(this IBdoSourceDepot depot, IConfiguration config, string keyName = "connectionStrings")
         {
@@ -23,9 +21,9 @@ namespace BindOpen.MetaData.Stores
                 foreach (var section in sections)
                 {
                     depot.Add(
-                        BdoMeta.NewDatasource(section.Key, DatasourceKind.Database)
+                        BdoData.NewDatasource(section.Key, DatasourceKind.Database)
                             .WithConfig(
-                                new BdoConnectorConfiguration().WithConnectionString(section.Value) as BdoConnectorConfiguration)
+                                BdoConfig.New().WithConnectionString(section.Value))
                     );
                 }
             };

@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData.Elements;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System;
@@ -7,7 +7,7 @@ using System;
 namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// This static class extends .Net core configuration.
+    /// This static class extends .Net core config.
     /// </summary>
     public static class ConfigurationExtension
     {
@@ -15,27 +15,27 @@ namespace Microsoft.Extensions.Configuration
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="configuration"></param>
+        /// <param name="config"></param>
         /// <param name="key"></param>
         /// <param name="scope"></param>
-        /// <param name="varElementSet"></param>
+        /// <param name="varSet"></param>
         /// <param name="log"></param>
         /// <returns></returns>
         public static T GetBdoValue<T>(
-            this IConfiguration configuration,
+            this IConfiguration config,
             string key, IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
             where T : class
         {
-            return configuration?.GetBdoValue<T>(key, default, scope, varElementSet, log);
+            return config?.GetBdoValue<T>(key, default, scope, varSet, log);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="configuration"></param>
+        /// <param name="config"></param>
         /// <param name="key"></param>
         /// <param name="defaultValue"></param>
         /// <param name="scope"></param>
@@ -43,61 +43,62 @@ namespace Microsoft.Extensions.Configuration
         /// <param name="log"></param>
         /// <returns></returns>
         public static T GetBdoValue<T>(
-            this IConfiguration configuration,
+            this IConfiguration config,
             string key,
             string defaultValue,
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
             where T : class
         {
-            return configuration?.GetBdoValue(typeof(T), key, defaultValue, scope, varElementSet, log) as T;
+            return config?.GetBdoValue(typeof(T), key, defaultValue, scope, varSet, log) as T;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="configuration"></param>
+        /// <param name="config"></param>
         /// <param name="type"></param>
         /// <param name="key"></param>
         /// <returns></returns>
         public static object GetBdoValue(
-            this IConfiguration configuration,
+            this IConfiguration config,
             Type type,
             string key)
         {
-            if (configuration == default) return default;
-            return configuration.GetValue(type, key);
+            if (config == default) return default;
+            return config.GetValue(type, key);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="configuration"></param>
+        /// <param name="config"></param>
         /// <param name="type"></param>
         /// <param name="key"></param>
         /// <param name="defaultValue"></param>
         /// <param name="scope"></param>
-        /// <param name="varElementSet">The script variable set to consider.</param>
+        /// <param name="varSet">The script variable set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         public static object GetBdoValue(
-            this IConfiguration configuration,
+            this IConfiguration config,
             Type type,
             string key,
             string defaultValue,
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
-            if (configuration == default) return default;
-            var value = configuration.GetValue<string>(key, defaultValue);
+            if (config == default) return default;
+            var value = config.GetValue<string>(key, defaultValue);
 
             if (scope != null)
             {
                 var interpreter = scope.NewScriptInterpreter();
 
-                return Convert.ChangeType(interpreter?.Evaluate(value, BdoExpressionKind.Script, varElementSet, log), type);
+                return Convert.ChangeType(interpreter?.Evaluate(
+                    value, BdoExpressionKind.Script, varSet, log), type);
             }
             else if (type == typeof(string))
             {

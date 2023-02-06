@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://xsd.bindopen.org" elementFormDefault="qualified" targetNamespace="https://xsd.bindopen.org" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="https://xsd.bindopen.org/StoredDataItem.xsd" />
+  
+  <xs:complexType name="NamedDataItem">
+    <xs:complexContent mixed="false">
+      <xs:extension base="StoredDataItem">
+        <xs:attribute name="name" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

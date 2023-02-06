@@ -1,7 +1,7 @@
 ﻿using BindOpen.Extensions.Processing;
 using BindOpen.Logging;
-using BindOpen.MetaData;
-using BindOpen.MetaData.Items;
+using BindOpen.Data;
+using BindOpen.Data.Items;
 using BindOpen.Runtime.Definition;
 using System;
 using System.Linq;
@@ -31,7 +31,7 @@ namespace BindOpen.Runtime.Stores
                 return -1;
             }
 
-            // we load the carrier dico from the assembly
+            // we load the entity dico from the assembly
 
             var dico = ExtractDictionaryFromAssembly<IBdoTaskDefinition>(assembly, log);
 

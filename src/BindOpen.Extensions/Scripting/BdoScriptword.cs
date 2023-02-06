@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +9,7 @@ namespace BindOpen.Extensions.Scripting
     /// This class represents a script word.
     /// </summary>
     public class BdoScriptword :
-        TBdoExtensionItem<IBdoScriptwordDefinition, IBdoScriptwordConfiguration, IBdoScriptword>,
+        TBdoExtensionItem<IBdoScriptword, IBdoScriptwordDefinition>,
         IBdoScriptword
     {
         // ------------------------------------------
@@ -239,7 +239,7 @@ namespace BindOpen.Extensions.Scripting
             IBdoScriptword scriptWord = base.Clone(areas) as BdoScriptword;
 
             scriptWord.WithDefinition(Definition);
-            scriptWord.WithConfiguration(Configuration?.Clone<BdoScriptwordConfiguration>());
+            scriptWord.WithConfig(Config?.Clone<BdoConfiguration>());
 
             if (Parameters != null)
             {
@@ -260,26 +260,15 @@ namespace BindOpen.Extensions.Scripting
         #endregion
 
         // ------------------------------------------
-        // INamedPoco Implementation
+        // INamed Implementation
         // ------------------------------------------
 
-        #region INamedPoco Implementation
+        #region INamed Implementation
 
         /// <summary>
         /// Name of this instance.
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public IBdoScriptword WithName(string name)
-        {
-            Name = BdoMeta.NewName(name, "word_");
-            return this;
-        }
 
         #endregion
     }

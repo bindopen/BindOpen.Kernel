@@ -1,11 +1,12 @@
-﻿using BindOpen.MetaData;
+﻿using BindOpen.Data;
 
 namespace BindOpen.Extensions.Processing
 {
     /// <summary>
     /// This class represents an resource allocation.
     /// </summary>
-    public interface IResourceAllocation : ITIdentifiedPoco<IResourceAllocation>
+    public interface IResourceAllocation :
+        IIdentified
     {
         // ------------------------------------------
         // PROPERTIES

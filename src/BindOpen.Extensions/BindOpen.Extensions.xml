@@ -114,47 +114,47 @@
             <param name="isAutoConnected">Indicates whether the connection is automatically opened.</param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Extensions.Connecting.BdoConnectorConfiguration">
+        <member name="T:BindOpen.Extensions.Connecting.BdoConfiguration">
             <summary>
-            This class represents a connector configuration.
+            This class represents a connector config.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.BdoConnectorConfiguration.#ctor">
+        <member name="M:BindOpen.Extensions.Connecting.BdoConfiguration.#ctor">
             <summary>
-            Instantiates a new instance of the BdoConnectorConfiguration class.
+            Instantiates a new instance of the BdoConfiguration class.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.BdoConnectorConfiguration.#ctor(System.String)">
+        <member name="M:BindOpen.Extensions.Connecting.BdoConfiguration.#ctor(System.String)">
             <summary>
-            Instantiates a new instance of the BdoConnectorConfiguration class.
+            Instantiates a new instance of the BdoConfiguration class.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.BdoConnectorConfiguration.GetConnectionString">
+        <member name="M:BindOpen.Extensions.Connecting.BdoConfiguration.GetConnectionString">
             <summary>
             Gets the connection string.
             </summary>
             <returns>Returns a clone of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.BdoConnectorConfiguration.Add(BindOpen.MetaData.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.Extensions.Connecting.BdoConfiguration.Add(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.BdoConnectorConfiguration.WithItems(BindOpen.MetaData.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.Extensions.Connecting.BdoConfiguration.WithBindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.BdoConnectorConfiguration.WithConnectionString(System.String)">
+        <member name="M:BindOpen.Extensions.Connecting.BdoConfiguration.WithConnectionString(System.String)">
             <summary>
             Sets the connection string with the specified string.
             </summary>
             <param name="connectionString">The connection string to consider.</param>
             <returns>Returns a clone of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.BdoConnectorConfiguration.Clone(System.String[])">
+        <member name="M:BindOpen.Extensions.Connecting.BdoConfiguration.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
@@ -286,7 +286,7 @@
             This static class provides methods to create extension items.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.BdoExt.NewCarrier``1(BindOpen.Extensions.Modeling.IBdoCarrierConfiguration)">
+        <member name="M:BindOpen.Extensions.BdoExt.NewEntity``1(BindOpen.Extensions.Modeling.IBdoConfiguration)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -294,13 +294,13 @@
             <param name="config"></param>
             <returns>Returns the created connector.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.BdoExt.NewCarrierConfig(System.String,BindOpen.MetaData.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.Extensions.BdoConfig.New(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
-            Creates the instance of the specified configuration.
+            Creates the instance of the specified config.
             </summary>
             <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
         </member>
-        <member name="M:BindOpen.Extensions.BdoExt.NewConnector``1(BindOpen.Extensions.Connecting.IBdoConnectorConfiguration)">
+        <member name="M:BindOpen.Extensions.BdoExt.NewConnector``1(BindOpen.Extensions.Connecting.IBdoConfiguration)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -308,14 +308,14 @@
             <param name="config"></param>
             <returns>Returns the created connector.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.BdoExt.NewConnectorConfig(System.String,BindOpen.MetaData.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.Extensions.BdoConfig.New(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
-            Creates the instance of the specified configuration.
+            Creates the instance of the specified config.
             </summary>
             <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
-            <param name="elements">The configuration elements of the definition to consider.</param>
+            <param name="elements">The config elements of the definition to consider.</param>
         </member>
-        <member name="M:BindOpen.Extensions.BdoExt.NewTask``1(BindOpen.Extensions.Processing.IBdoTaskConfiguration)">
+        <member name="M:BindOpen.Extensions.BdoExt.NewTask``1(BindOpen.Extensions.Processing.IBdoConfiguration)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -323,33 +323,33 @@
             <param name="config"></param>
             <returns>Returns the created connector.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.BdoExt.NewTaskConfig(System.String,BindOpen.MetaData.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.Extensions.BdoExt.NewTaskConfig(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
-            Creates the instance of the specified configuration.
+            Creates the instance of the specified config.
             </summary>
             <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
         </member>
-        <member name="T:BindOpen.Extensions.Modeling.BdoCarrier">
+        <member name="T:BindOpen.Extensions.Modeling.BdoEntity">
             <summary>
-            This class represents a carrier.
+            This class represents a entity.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoCarrier.#ctor">
+        <member name="M:BindOpen.Extensions.Modeling.BdoEntity.#ctor">
             <summary>
-            Instantiates a new instance of the BdoCarrier class.
+            Instantiates a new instance of the BdoEntity class.
             </summary>
         </member>
-        <member name="P:BindOpen.Extensions.Modeling.BdoCarrier.Path">
+        <member name="P:BindOpen.Extensions.Modeling.BdoEntity.Path">
             <summary>
             Path of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Extensions.Modeling.BdoCarrier.RelativePath">
+        <member name="P:BindOpen.Extensions.Modeling.BdoEntity.RelativePath">
             <summary>
             The relative path of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoCarrier.WithPath(System.String,System.String)">
+        <member name="M:BindOpen.Extensions.Modeling.BdoEntity.WithPath(System.String,System.String)">
             <summary>
             Sets the path of this instance.
             </summary>
@@ -357,128 +357,128 @@
             <param name="relativePath">The new relative path to consider. Null to keep the existing one.</param>
             <returns>Returns True if this instance exists. False otherwise.</returns>
         </member>
-        <member name="P:BindOpen.Extensions.Modeling.BdoCarrier.CreationDate">
+        <member name="P:BindOpen.Extensions.Modeling.BdoEntity.CreationDate">
             <summary>
             The creation date of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoCarrier.WithCreationDate(System.Nullable{System.DateTime})">
+        <member name="M:BindOpen.Extensions.Modeling.BdoEntity.WithCreationDate(System.Nullable{System.DateTime})">
             <summary>
             
             </summary>
             <param name="date"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Extensions.Modeling.BdoCarrier.Flag">
+        <member name="P:BindOpen.Extensions.Modeling.BdoEntity.Flag">
             <summary>
             The information flag of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoCarrier.WithFlag(System.String)">
+        <member name="M:BindOpen.Extensions.Modeling.BdoEntity.WithFlag(System.String)">
             <summary>
             
             </summary>
             <param name="flag"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Extensions.Modeling.BdoCarrier.IsReadonly">
+        <member name="P:BindOpen.Extensions.Modeling.BdoEntity.IsReadonly">
             <summary>
             Indicates whether this instance is read only.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoCarrier.AsReadonly(System.Boolean)">
+        <member name="M:BindOpen.Extensions.Modeling.BdoEntity.AsReadonly(System.Boolean)">
             <summary>
             
             </summary>
             <param name="readOnly"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Extensions.Modeling.BdoCarrier.LastAccessDate">
+        <member name="P:BindOpen.Extensions.Modeling.BdoEntity.LastAccessDate">
             <summary>
             The date of last access of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoCarrier.WithLastAccessDate(System.Nullable{System.DateTime})">
+        <member name="M:BindOpen.Extensions.Modeling.BdoEntity.WithLastAccessDate(System.Nullable{System.DateTime})">
             <summary>
             
             </summary>
             <param name="date"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Extensions.Modeling.BdoCarrier.ParentPath">
+        <member name="P:BindOpen.Extensions.Modeling.BdoEntity.ParentPath">
             <summary>
             The parent path of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoCarrier.WithParentPath(System.String)">
+        <member name="M:BindOpen.Extensions.Modeling.BdoEntity.WithParentPath(System.String)">
             <summary>
             
             </summary>
             <param name="path"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Extensions.Modeling.BdoCarrier.LastWriteDate">
+        <member name="P:BindOpen.Extensions.Modeling.BdoEntity.LastWriteDate">
             <summary>
             The date of last write of this instance.
             </summary>
         </member>
-        <member name="T:BindOpen.Extensions.Modeling.BdoCarrierConfiguration">
+        <member name="T:BindOpen.Extensions.Modeling.BdoConfiguration">
             <summary>
-            This class represents a carrier configuration.
+            This class represents a entity config.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoCarrierConfiguration.#ctor">
+        <member name="M:BindOpen.Extensions.Modeling.BdoConfiguration.#ctor">
             <summary>
-            Instantiates a new instance of the BdoCarrierConfiguration class.
+            Instantiates a new instance of the BdoConfiguration class.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoCarrierConfiguration.#ctor(System.String)">
+        <member name="M:BindOpen.Extensions.Modeling.BdoConfiguration.#ctor(System.String)">
             <summary>
-            Instantiates a new instance of the BdoCarrierConfiguration class.
+            Instantiates a new instance of the BdoConfiguration class.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoCarrierConfiguration.Add(BindOpen.MetaData.Elements.IBdoMetaElement[])">
-            <summary>
-            
-            </summary>
-            <param name="items"></param>
-        </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoCarrierConfiguration.WithItems(BindOpen.MetaData.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.Extensions.Modeling.BdoConfiguration.Add(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoCarrierConfiguration.Clone(System.String[])">
+        <member name="M:BindOpen.Extensions.Modeling.BdoConfiguration.WithBindOpen.Data.Elements.IBdoDataElement[])">
+            <summary>
+            
+            </summary>
+            <param name="items"></param>
+        </member>
+        <member name="M:BindOpen.Extensions.Modeling.BdoConfiguration.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a clone of this instance.</returns>
         </member>
-        <member name="T:BindOpen.Extensions.Modeling.BdoCarrierExtension">
+        <member name="T:BindOpen.Extensions.Modeling.BdoEntityExtension">
             <summary>
-            This class represents a carrier extension.
+            This class represents a entity extension.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoCarrierExtension.AsMeta(BindOpen.Extensions.Modeling.IBdoCarrier,System.String)">
+        <member name="M:BindOpen.Extensions.Modeling.BdoEntityExtension.AsMeta(BindOpen.Extensions.Modeling.IBdoEntity,System.String)">
             <summary>
             Returns a data element representing this instance.
             </summary>
-            <param name="carrier">The carrier to consider.</param>
+            <param name="entity">The entity to consider.</param>
             <param name="name">The name of the element to create.</param>
             <returns>Retuns the data element that represents this instace.</returns>
         </member>
-        <member name="T:BindOpen.Extensions.Modeling.TBdoCarrier`1">
+        <member name="T:BindOpen.Extensions.Modeling.TBdoEntity`1">
             <summary>
-            This class represents a carrier.
+            This class represents a entity.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.TBdoCarrier`1.#ctor">
+        <member name="M:BindOpen.Extensions.Modeling.TBdoEntity`1.#ctor">
             <summary>
-            Instantiates a new instance of the TBdoCarrier class.
+            Instantiates a new instance of the TBdoEntity class.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.TBdoCarrier`1.WithPath(System.String,System.String)">
+        <member name="M:BindOpen.Extensions.Modeling.TBdoEntity`1.WithPath(System.String,System.String)">
             <summary>
             Sets the path of this instance.
             </summary>
@@ -486,42 +486,42 @@
             <param name="relativePath">The new relative path to consider. Null to keep the existing one.</param>
             <returns>Returns True if this instance exists. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.TBdoCarrier`1.WithParentPath(System.String)">
+        <member name="M:BindOpen.Extensions.Modeling.TBdoEntity`1.WithParentPath(System.String)">
             <summary>
             
             </summary>
             <param name="path"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.TBdoCarrier`1.WithCreationDate(System.Nullable{System.DateTime})">
+        <member name="M:BindOpen.Extensions.Modeling.TBdoEntity`1.WithCreationDate(System.Nullable{System.DateTime})">
             <summary>
             
             </summary>
             <param name="date"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.TBdoCarrier`1.WithFlag(System.String)">
+        <member name="M:BindOpen.Extensions.Modeling.TBdoEntity`1.WithFlag(System.String)">
             <summary>
             
             </summary>
             <param name="flag"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.TBdoCarrier`1.AsReadonly(System.Boolean)">
+        <member name="M:BindOpen.Extensions.Modeling.TBdoEntity`1.AsReadonly(System.Boolean)">
             <summary>
             
             </summary>
             <param name="readOnly"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.TBdoCarrier`1.WithLastAccessDate(System.Nullable{System.DateTime})">
+        <member name="M:BindOpen.Extensions.Modeling.TBdoEntity`1.WithLastAccessDate(System.Nullable{System.DateTime})">
             <summary>
             
             </summary>
             <param name="date"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.TBdoCarrier`1.WithLastWriteDate(System.Nullable{System.DateTime})">
+        <member name="M:BindOpen.Extensions.Modeling.TBdoEntity`1.WithLastWriteDate(System.Nullable{System.DateTime})">
             <summary>
             
             </summary>
@@ -591,25 +591,25 @@
             Instantiates a new instance of the BdoTask class.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTask.GetEntryObjectWithName(System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog,BindOpen.Runtime.Definition.TaskEntryKind[])">
+        <member name="M:BindOpen.Extensions.Processing.BdoTask.GetEntryObjectWithName(System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog,BindOpen.Runtime.Definition.TaskEntryKind[])">
             <summary>
             Gets the item object of the specified entry.
             </summary>
             <param name="name">The name of the entry to consider.</param>
             <param name="scope">The scope to consider.</param>
-            <param name="varElementSet">The variable element set to use.</param>
+            <param name="varSet">The variable element set to use.</param>
             <param name="log">The log to populate.</param>
             <param name="taskEntryKinds">The kind end entries to consider.</param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTask.IsCompatibleWith(BindOpen.MetaData.Elements.IBdoElementSpecSet,BindOpen.Runtime.Definition.TaskEntryKind)">
+        <member name="M:BindOpen.Extensions.Processing.BdoTask.IsCompatibleWithBindOpen.Data.Elements.IBdoElementSpecSet,BindOpen.Runtime.Definition.TaskEntryKind)">
             <summary>
-            Indicates whether this instance has compatible entries with the specified element collection.
+            Indicates whether this instance has compatible entries with the specified element set.
             </summary>
             <param name="dataElementSpecSet">The set of element specifications to consider.</param>
             <param name="taskEntryKind">The task entry kind to consider.</param>
-            <returns>True if this instance is compatible with the specified element collection.</returns>
+            <returns>True if this instance is compatible with the specified element set.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTask.IsConfigurable(BindOpen.MetaData.SpecificationLevels)">
+        <member name="M:BindOpen.Extensions.Processing.BdoTask.IsConfigurable(BindOpen.Data.SpecificationLevels)">
             <summary>
             Indicates whether this instance is configurable.
             </summary>
@@ -621,85 +621,85 @@
             </summary>
             <param name="relativePath">The relative path to consider.</param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTask.Execute(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.MetaData.RuntimeModes,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Extensions.Processing.BdoTask.Execute(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.RuntimeModes,BindOpen.Logging.IBdoLog)">
             <summary>
             Executes this instance.
             </summary>
             <param name="log">The log to consider.</param>
             <param name="scope">The scope to consider.</param>
-            <param name="varElementSet">The variable element set to use for execution.</param>
+            <param name="varSet">The variable element set to use for execution.</param>
             <param name="runtimeMode">The runtime mode to consider.</param>
             <returns>Returns the output value of the execution.</returns>
         </member>
-        <member name="T:BindOpen.Extensions.Processing.BdoTaskConfiguration">
+        <member name="T:BindOpen.Extensions.Processing.BdoConfig">
             <summary>
-            This class represents a task configuration.
+            This class represents a task config.
             </summary>
         </member>
-        <member name="P:BindOpen.Extensions.Processing.BdoTaskConfiguration.InputDetail">
+        <member name="P:BindOpen.Extensions.Processing.BdoConfig.InputDetail">
             <summary>
             Input detail of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Extensions.Processing.BdoTaskConfiguration.OutputDetail">
+        <member name="P:BindOpen.Extensions.Processing.BdoConfig.OutputDetail">
             <summary>
             Output detail of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTaskConfiguration.#ctor">
+        <member name="M:BindOpen.Extensions.Processing.BdoConfig.#ctor">
             <summary>
-            Instantiates a new instance of the BdoTaskConfiguration class.
+            Instantiates a new instance of the BdoConfig class.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTaskConfiguration.#ctor(System.String)">
+        <member name="M:BindOpen.Extensions.Processing.BdoConfig.#ctor(System.String)">
             <summary>
-            Instantiates a new instance of the BdoTaskConfiguration class.
+            Instantiates a new instance of the BdoConfig class.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTaskConfiguration.Add(BindOpen.MetaData.Elements.IBdoMetaElement[])">
-            <summary>
-            
-            </summary>
-            <param name="items"></param>
-        </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTaskConfiguration.WithItems(BindOpen.MetaData.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.Extensions.Processing.BdoConfig.Add(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTaskConfiguration.AddInputs(BindOpen.MetaData.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.Extensions.Processing.BdoConfig.WithBindOpen.Data.Elements.IBdoDataElement[])">
+            <summary>
+            
+            </summary>
+            <param name="items"></param>
+        </member>
+        <member name="M:BindOpen.Extensions.Processing.BdoConfig.AddInputs(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="inputs"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTaskConfiguration.WithInputs(BindOpen.MetaData.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.Extensions.Processing.BdoConfig.WithInputs(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="inputs"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTaskConfiguration.AddOutputs(BindOpen.MetaData.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.Extensions.Processing.BdoConfig.AddOutputs(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="outputs"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTaskConfiguration.WithOutputs(BindOpen.MetaData.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.Extensions.Processing.BdoConfig.WithOutputs(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="outputs"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTaskConfiguration.GetEntries(BindOpen.Runtime.Definition.TaskEntryKind[])">
+        <member name="M:BindOpen.Extensions.Processing.BdoConfig.GetEntries(BindOpen.Runtime.Definition.TaskEntryKind[])">
             <summary>
             Gets the specified entries.
             </summary>
             <param name="taskEntryKinds">The kind end entries to consider.</param>
             <returns>True if this instance is configurable.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTaskConfiguration.GetEntryWithName(System.String,BindOpen.Runtime.Definition.TaskEntryKind[])">
+        <member name="M:BindOpen.Extensions.Processing.BdoConfig.GetEntryWithName(System.String,BindOpen.Runtime.Definition.TaskEntryKind[])">
             <summary>
             Returns the entry of the specified kind with the specified unique name.
             </summary>
@@ -707,13 +707,13 @@
             <param name="taskEntryKinds">The kind end entries to consider.</param>
             <returns>Returns the input with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTaskConfiguration.Clone(System.String[])">
+        <member name="M:BindOpen.Extensions.Processing.BdoConfig.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns the cloned metrics definition.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTaskConfiguration.Dispose(System.Boolean)">
+        <member name="M:BindOpen.Extensions.Processing.BdoConfig.Dispose(System.Boolean)">
             <summary>
             Disposes this instance. 
             </summary>
@@ -735,13 +735,13 @@
             </summary>
             <param name="relativePath">The relative path to consider.</param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.TBdoTask`1.Execute(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.MetaData.RuntimeModes,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Extensions.Processing.TBdoTask`1.Execute(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.RuntimeModes,BindOpen.Logging.IBdoLog)">
             <summary>
             Executes this instance.
             </summary>
             <param name="log">The log to consider.</param>
             <param name="scope">The scope to consider.</param>
-            <param name="varElementSet">The variable element set to use for execution.</param>
+            <param name="varSet">The variable element set to use for execution.</param>
             <param name="runtimeMode">The runtime mode to consider.</param>
             <returns>Returns the output value of the execution.</returns>
         </member>
@@ -816,7 +816,7 @@
             <param name="index">The index position to begin analyse.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptHelper.GetWordDefinitions(BindOpen.Extensions.Scripting.IBdoScriptInterpreter,System.String,System.Int32,System.Boolean,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Extensions.Scripting.BdoScriptHelper.GetWordDefinitions(BindOpen.Extensions.Scripting.IBdoScriptInterpreter,System.String,System.Int32,System.Boolean,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Gets the possible definitions corresponding to the specified script.
             </summary>
@@ -824,7 +824,7 @@
             <param name="script">The script to analyse.</param>
             <param name="index">The index position of the parent script word.</param>
             <param name="isSuggest">False if all the child script words of the parent must be returned.
-            <param name="varElementSet">The variable element set to use.</param>
+            <param name="varSet">The variable element set to use.</param>
             True if only the child script words similar to the child script word present in the script
             must be returned.</param>
             <returns>Returns the possible child script word definitions.</returns>
@@ -874,63 +874,63 @@
             <param name="parentDefinition">The parent definition.</param>
             <returns>The script words with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptInterpreter.Evaluate(BindOpen.MetaData.Items.IBdoExpression,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Extensions.Scripting.BdoScriptInterpreter.Evaluate(BindOpen.Data.Items.IBdoExpression,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Evaluates the specified data exp.
             </summary>
             <param name="exp">The data exp to consider.</param>
-            <param name="varElementSet">The variable element set to consider.</param>
+            <param name="varSet">The variable element set to consider.</param>
             <param name="log">The log to consider.</param>
             <returns>Literal or script value according to the specified default mode.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptInterpreter.Evaluate``1(BindOpen.MetaData.Items.IBdoExpression,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Extensions.Scripting.BdoScriptInterpreter.Evaluate``1(BindOpen.Data.Items.IBdoExpression,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Evaluates the specified data exp.
             </summary>
             <param name="exp">The data exp to consider.</param>
-            <param name="varElementSet">The variable element set to consider.</param>
+            <param name="varSet">The variable element set to consider.</param>
             <param name="log">The log to consider.</param>
             <returns>Literal or script value according to the specified default mode.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptInterpreter.Evaluate(System.String,BindOpen.MetaData.Items.BdoExpressionKind,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Extensions.Scripting.BdoScriptInterpreter.Evaluate(System.String,BindOpen.Data.Items.BdoExpressionKind,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Evaluates the specified script using the defined script words of this instance
             of the specified libraries.
             </summary>
             <param name="script">The script to consider.</param>
             <param name="expKind">The exp kind to consider.</param>
-            <param name="varElementSet">The variable element set to use.</param>
+            <param name="varSet">The variable element set to use.</param>
             <param name="log">The log to consider.</param>
             <returns>The log of the interpretation task.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptInterpreter.Evaluate``1(System.String,BindOpen.MetaData.Items.BdoExpressionKind,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Extensions.Scripting.BdoScriptInterpreter.Evaluate``1(System.String,BindOpen.Data.Items.BdoExpressionKind,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Evaluates the specified script using the defined script words of this instance
             of the specified libraries.
             </summary>
             <param name="script">The script to consider.</param>
             <param name="expKind">The exp kind to consider.</param>
-            <param name="varElementSet">The variable element set to use.</param>
+            <param name="varSet">The variable element set to use.</param>
             <param name="log">The log to consider.</param>
             <returns>The log of the interpretation task.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptInterpreter.Evaluate(BindOpen.Extensions.Scripting.IBdoScriptword,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Extensions.Scripting.BdoScriptInterpreter.Evaluate(BindOpen.Extensions.Scripting.IBdoScriptword,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Evaluates the specified script word using the defined script words of this instance
             of the specified libraries.
             </summary>
             <param name="scriptword">The script word to consider.</param>
-            <param name="varElementSet">The variable element set to use.</param>
+            <param name="varSet">The variable element set to use.</param>
             <param name="log">The log to consider.</param>
             <returns>The log of the interpretation task.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptInterpreter.Evaluate``1(BindOpen.Extensions.Scripting.IBdoScriptword,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Extensions.Scripting.BdoScriptInterpreter.Evaluate``1(BindOpen.Extensions.Scripting.IBdoScriptword,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Evaluates the specified script word using the defined script words of this instance
             of the specified libraries.
             </summary>
             <param name="scriptword">The script word to consider.</param>
-            <param name="varElementSet">The variable element set to use.</param>
+            <param name="varSet">The variable element set to use.</param>
             <param name="log">The log to consider.</param>
             <returns>The log of the interpretation task.</returns>
         </member>
@@ -942,7 +942,7 @@
             <param name="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptInterpreter.FindNextScriptword(System.String,BindOpen.Extensions.Scripting.IBdoScriptword,System.Int32@,System.Int32,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Extensions.Scripting.BdoScriptInterpreter.FindNextScriptword(System.String,BindOpen.Extensions.Scripting.IBdoScriptword,System.Int32@,System.Int32,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Finds the next script words at the specified index.
             </summary>
@@ -950,7 +950,7 @@
             <param name="parentScriptword">The parent script word to consider.</param>
             <param name="index">The index to consider.</param>
             <param name="offsetIndex">The offset index to consider.</param>
-            <param name="varElementSet">The variable element set to consider.</param>
+            <param name="varSet">The variable element set to consider.</param>
             <param name="log"></param>
             <returns></returns>
         </member>
@@ -1094,57 +1094,57 @@
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Extensions.Scripting.BdoScriptwordConfiguration">
+        <member name="T:BindOpen.Extensions.Scripting.BdoConfig">
             <summary>
-            This class represents a script word configuration.
+            This class represents a script word config.
             </summary>
         </member>
-        <member name="P:BindOpen.Extensions.Scripting.BdoScriptwordConfiguration.WordKind">
+        <member name="P:BindOpen.Extensions.Scripting.BdoConfig.WordKind">
             <summary>
             Kind of this instance.
             </summary>
             <example>Script word, syntax, text...</example>
         </member>
-        <member name="P:BindOpen.Extensions.Scripting.BdoScriptwordConfiguration.SubScriptword">
+        <member name="P:BindOpen.Extensions.Scripting.BdoConfig.SubScriptword">
             <summary>
             Sub script word of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptwordConfiguration.#ctor">
+        <member name="M:BindOpen.Extensions.Scripting.BdoConfig.#ctor">
             <summary>
-            Instantiates a new instance of the BdoScriptwordConfiguration class.
+            Instantiates a new instance of the BdoConfig class.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptwordConfiguration.#ctor(System.String)">
+        <member name="M:BindOpen.Extensions.Scripting.BdoConfig.#ctor(System.String)">
             <summary>
-            Instantiates a new instance of the BdoScriptwordConfiguration class.
+            Instantiates a new instance of the BdoConfig class.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptwordConfiguration.Add(BindOpen.MetaData.Elements.IBdoMetaElement[])">
-            <summary>
-            
-            </summary>
-            <param name="items"></param>
-        </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptwordConfiguration.WithItems(BindOpen.MetaData.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.Extensions.Scripting.BdoConfig.Add(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
             <param name="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptwordConfiguration.WithWordKind(BindOpen.Extensions.Scripting.ScriptItemKinds)">
+        <member name="M:BindOpen.Extensions.Scripting.BdoConfig.WithBindOpen.Data.Elements.IBdoDataElement[])">
+            <summary>
+            
+            </summary>
+            <param name="items"></param>
+        </member>
+        <member name="M:BindOpen.Extensions.Scripting.BdoConfig.WithWordKind(BindOpen.Extensions.Scripting.ScriptItemKinds)">
             <summary>
             
             </summary>
             <param name="wordKind"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptwordConfiguration.WithSubScriptword(BindOpen.Extensions.Scripting.IBdoScriptwordConfiguration)">
+        <member name="M:BindOpen.Extensions.Scripting.BdoConfig.WithSubScriptword(BindOpen.Extensions.Scripting.IBdoConfiguration)">
             <summary>
             
             </summary>
             <param name="scriptword"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptwordConfiguration.Clone(System.String[])">
+        <member name="M:BindOpen.Extensions.Scripting.BdoConfig.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
@@ -1170,12 +1170,12 @@
             The script word of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptwordDomain.#ctor(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Extensions.Scripting.IBdoScriptword)">
+        <member name="M:BindOpen.Extensions.Scripting.BdoScriptwordDomain.#ctor(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Extensions.Scripting.IBdoScriptword)">
             <summary>
             Initializes a new instance of the BdoScriptwordArea class.
             </summary>
             <param name="scope">The scope to consider.</param>
-            <param name="varElementSet">The variable element set to consider.</param>
+            <param name="varSet">The variable element set to consider.</param>
             <param name="scriptword">The script word to consider.</param>
         </member>
         <member name="M:BindOpen.Extensions.Scripting.BdoScriptwordDomain.WithScope(BindOpen.Runtime.Scopes.IBdoScope)">
@@ -1185,7 +1185,7 @@
             <param name="scope"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptwordDomain.WithScriptVariableSet(BindOpen.MetaData.Elements.IBdoElementSet)">
+        <member name="M:BindOpen.Extensions.Scripting.BdoScriptwordDomain.WithScriptVariableSet(BindOpen.Data.Elements.IBdoElementSet)">
             <summary>
             
             </summary>
@@ -1325,7 +1325,7 @@
         </member>
         <member name="T:BindOpen.Extensions.TBdoExtensionItem`3">
             <summary>
-            This class represents a BindOpen extension item configuration.
+            This class represents a BindOpen extension item config.
             </summary>
         </member>
         <member name="M:BindOpen.Extensions.TBdoExtensionItem`3.#ctor">
@@ -1335,7 +1335,7 @@
         </member>
         <member name="P:BindOpen.Extensions.TBdoExtensionItem`3.Configuration">
             <summary>
-            The configuration of this instance.
+            The config of this instance.
             </summary>
         </member>
         <member name="M:BindOpen.Extensions.TBdoExtensionItem`3.WithConfiguration(`1)">
@@ -1371,7 +1371,7 @@
         </member>
         <member name="T:BindOpen.Extensions.TBdoExtensionItemConfiguration`1">
             <summary>
-            This class represents a BindOpen extension item configuration.
+            This class represents a BindOpen extension item config.
             </summary>
         </member>
         <member name="P:BindOpen.Extensions.TBdoExtensionItemConfiguration`1.Kind">
@@ -1394,7 +1394,7 @@
             Instantiates a new instance of the BdoExtensionItemConfiguration class.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.TBdoExtensionItemConfiguration`1.#ctor(BindOpen.Runtime.Definition.BdoExtensionItemKind,System.String,BindOpen.MetaData.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.Extensions.TBdoExtensionItemConfiguration`1.#ctor(BindOpen.Runtime.Definition.BdoExtensionItemKind,System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Instantiates a new instance of the BdoExtensionItemConfiguration class.
             </summary>
@@ -1408,30 +1408,30 @@
             </summary>
             <returns>Returns the cloned metrics definition.</returns>
         </member>
-        <member name="T:BindOpen.Extensions.TBdoExtensionTitledItemConfiguration`1">
+        <member name="T:BindOpen.Extensions.TBdoExtensionItemConfiguration`1">
             <summary>
-            This class represents a BindOpen extension titled item configuration.
+            This class represents a BindOpen extension titled item config.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.TBdoExtensionTitledItemConfiguration`1.#ctor">
+        <member name="M:BindOpen.Extensions.TBdoExtensionItemConfiguration`1.#ctor">
             <summary>
-            Instantiates a new instance of the TBdoExtensionTitledItemConfiguration class.
+            Instantiates a new instance of the TBdoExtensionItemConfiguration class.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.TBdoExtensionTitledItemConfiguration`1.#ctor(BindOpen.Runtime.Definition.BdoExtensionItemKind,System.String)">
+        <member name="M:BindOpen.Extensions.TBdoExtensionItemConfiguration`1.#ctor(BindOpen.Runtime.Definition.BdoExtensionItemKind,System.String)">
             <summary>
-            Instantiates a new instance of the TBdoExtensionTitledItemConfiguration class.
+            Instantiates a new instance of the TBdoExtensionItemConfiguration class.
             </summary>
             <param name="kind">The kind to consider.</param>
             <param name="definitionUniqueId">The definition unique ID to consider.</param>
         </member>
-        <member name="M:BindOpen.Extensions.TBdoExtensionTitledItemConfiguration`1.Clone(System.String[])">
+        <member name="M:BindOpen.Extensions.TBdoExtensionItemConfiguration`1.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns the cloned metrics definition.</returns>
         </member>
-        <member name="P:BindOpen.Extensions.TBdoExtensionTitledItemConfiguration`1.Title">
+        <member name="P:BindOpen.Extensions.TBdoExtensionItemConfiguration`1.Title">
             <summary>
             
             </summary>

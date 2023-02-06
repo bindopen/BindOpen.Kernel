@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
 using System.Collections.Generic;
 
 namespace BindOpen.Runtime.Definition
@@ -137,50 +137,28 @@ namespace BindOpen.Runtime.Definition
         #endregion
 
         // ------------------------------------------
-        // IIdentifiedPoco Implementation
+        // IIdentified Implementation
         // ------------------------------------------
 
-        #region IIdentifiedPoco
+        #region IIdentified
 
         /// <summary>
         /// 
         /// </summary>
         public string Id { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IBdoExtensionDefinition WithId(string id)
-        {
-            Id = id;
-            return this;
-        }
-
         #endregion
 
         // ------------------------------------------
-        // INamedPoco Implementation
+        // INamed Implementation
         // ------------------------------------------
 
-        #region INamedPoco
+        #region INamed
 
         /// <summary>
         /// 
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public IBdoExtensionDefinition WithName(string name)
-        {
-            Name = BdoMeta.NewName(name, "spec_");
-            return this;
-        }
 
         #endregion
 
@@ -195,35 +173,6 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         public IBdoDictionary Title { get; set; }
 
-        public IBdoExtensionDefinition AddTitle(KeyValuePair<string, string> item)
-        {
-            Title ??= BdoMeta.NewDictionary();
-            Title.Add(item);
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dico"></param>
-        /// <returns></returns>
-        public IBdoExtensionDefinition WithTitle(IBdoDictionary dico)
-        {
-            Title = dico;
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="defaultKey"></param>
-        /// <returns></returns>
-        public string GetTitleText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
-        {
-            return Title?[key, defaultKey];
-        }
-
         #endregion
 
         // ------------------------------------------
@@ -236,24 +185,6 @@ namespace BindOpen.Runtime.Definition
         /// 
         /// </summary>
         public IBdoDictionary Description { get; set; }
-
-        public IBdoExtensionDefinition AddDescription(KeyValuePair<string, string> item)
-        {
-            Description ??= BdoMeta.NewDictionary();
-            Description.Add(item);
-            return this;
-        }
-
-        public IBdoExtensionDefinition WithDescription(IBdoDictionary dico)
-        {
-            Description = dico;
-            return this;
-        }
-
-        public string GetDescriptionText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star)
-        {
-            return Description?[key, defaultKey];
-        }
 
         #endregion
     }

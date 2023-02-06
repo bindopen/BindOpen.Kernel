@@ -1,16 +1,16 @@
-﻿using BindOpen.MetaData;
+﻿using BindOpen.Data.Items;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.MetaData.Specification
+namespace BindOpen.Data.Specification
 {
     /// <summary>
     /// This abstract class represents a data specification.
     /// </summary>
-    [XmlType("DataSpecification", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "specification", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DataSpecification", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "specification", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public abstract class DataSpecificationDto
     {
         // --------------------------------------------------
@@ -46,10 +46,9 @@ namespace BindOpen.MetaData.Specification
         /// <summary>
         /// The requirement script of this instance.
         /// </summary>
-        [JsonPropertyName("requirementScript")]
-        [XmlElement("requirementScript")]
-        [DefaultValue(null)]
-        public string RequirementScript { get; set; }
+        [JsonPropertyName("requirementExp")]
+        [XmlElement("requirementExp")]
+        public ExpressionDto RequirementExpression { get; set; }
 
         /// <summary>
         /// Levels of specification of this instance.

@@ -3,6 +3,8 @@ Todo list for BindOpen
 
 ## Next tasks
 
+- [ ] Handle IO for MetaData classes
+- [ ] Handle IO for Extensions classes
 - [ ] Configuration bundle
 - [ ] Fix bug with repeated parameter script function
 - [ ] ToString() data elements
@@ -35,5 +37,5 @@ Todo list for BindOpen
 * SetConfiguration ExtensionItem
 
 ### v.1.2
-* Integrate .net core logging/configuration
+* Integrate .net core logging/config
 

@@ -1,9 +1,9 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
-using BindOpen.Runtime.Settings;
+﻿using BindOpen.Data;
+using BindOpen.Data.Configuration;
+using BindOpen.Data.Meta;
 using BindOpen.Runtime.Scopes;
+using BindOpen.Runtime.Settings;
 using System.Text.Json.Serialization;
-using BindOpen.Abstractions.Meta.Configuration;
 
 namespace BindOpen.Runtime.Hosts
 {
@@ -23,7 +23,7 @@ namespace BindOpen.Runtime.Hosts
         /// <summary>
         /// The library folder path of this instance.
         /// </summary>
-        [BdoMeta(Name = "library.folderPath")]
+        [BdoData(Name = "library.folderPath")]
         [JsonPropertyName("library.folderPath")]
         public string LibraryFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultLibraryFolderPath).ToPath();
 
@@ -47,11 +47,11 @@ namespace BindOpen.Runtime.Hosts
         /// Instantiates a new instance of the BdoHostSettings class.
         /// </summary>
         /// <param name="scope">The scope to consider.</param>
-        /// <param name="configuration">The configuration to consider.</param>
+        /// <param name="config">The config to consider.</param>
         public BdoHostSettings(
             IBdoScope scope,
-            IBdoConfiguration configuration)
-            : base(scope, configuration)
+            IBdoConfiguration config)
+            : base(scope, config)
         {
         }
 

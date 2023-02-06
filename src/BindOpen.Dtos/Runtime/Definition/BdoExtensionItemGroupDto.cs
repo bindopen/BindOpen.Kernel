@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -8,8 +8,8 @@ namespace BindOpen.Runtime.Definition
     /// <summary>
     /// This class represents the group of BindOpen extension items.
     /// </summary>
-    [XmlType("ExtensionItemGroup", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "extension.item.group", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ExtensionItemGroup", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "extension.item.group", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoExtensionItemGroupDto : DescribedDataItemDto
     {
         // ------------------------------------------

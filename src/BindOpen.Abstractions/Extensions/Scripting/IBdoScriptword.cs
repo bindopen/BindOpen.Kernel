@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData;
+﻿using BindOpen.Data;
 using System.Collections.Generic;
 
 namespace BindOpen.Extensions.Scripting
@@ -6,8 +6,9 @@ namespace BindOpen.Extensions.Scripting
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoScriptword : ITBdoExtensionItem<IBdoScriptwordDefinition, IBdoScriptwordConfiguration, IBdoScriptword>,
-        ITNamedPoco<IBdoScriptword>
+    public interface IBdoScriptword :
+        ITBdoExtensionItem<IBdoScriptword, IBdoScriptwordDefinition>,
+        INamed
     {
         /// <summary>
         /// 

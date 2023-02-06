@@ -1,14 +1,14 @@
 ﻿using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.MetaData.Conditions
+namespace BindOpen.Data.Conditions
 {
 
     /// <summary>
     /// This class represents a basic condition DTO.
     /// </summary>
-    [XmlType("BasicCondition", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "basic.condition", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("BasicCondition", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "basic.condition", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BasicConditionDto : ConditionDto
     {
         // ------------------------------------------

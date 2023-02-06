@@ -1,5 +1,6 @@
-﻿using BindOpen.Extensions.Scripting;
-using BindOpen.MetaData;
+﻿using BindOpen.Data;
+using BindOpen.Extensions;
+using BindOpen.Extensions.Scripting;
 using BindOpen.Runtime.Definition;
 using System.Collections.Generic;
 
@@ -8,7 +9,8 @@ namespace BindOpen.Runtime.Stores
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoExtensionStore : ITIdentifiedPoco<IBdoExtensionStore>
+    public interface IBdoExtensionStore :
+        IIdentified
     {
         /// <summary>
         /// Adds the specified definition.
@@ -38,6 +40,15 @@ namespace BindOpen.Runtime.Stores
         /// <param name="uniqueId"></param>
         /// <returns></returns>
         T GetItemDefinitionWithUniqueId<T>(string uniqueId) where T : IBdoExtensionItemDefinition;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uniqueId"></param>
+        /// <returns></returns>
+        IBdoExtensionItemDefinition GetItemDefinitionWithUniqueId(
+            BdoExtensionItemKind kind,
+            string uniqueId);
 
         /// <summary>
         /// 

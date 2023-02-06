@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -7,8 +7,8 @@ namespace BindOpen.Runtime.Definition
     /// <summary>
     /// This class represents the format definition.
     /// </summary>
-    [XmlType("FormatDefinition", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "format.definition", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("FormatDefinition", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "format.definition", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoFormatDefinitionDto : BdoExtensionItemDefinitionDto
     {
         // --------------------------------------------------

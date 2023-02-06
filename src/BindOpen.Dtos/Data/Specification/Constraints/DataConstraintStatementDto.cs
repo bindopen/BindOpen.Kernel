@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace BindOpen.MetaData.Specification
+namespace BindOpen.Data.Specification
 {
     /// <summary>
     /// This class represents the data constraint statement.
     /// </summary>
-    [XmlType("DataConstraintStatement", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "constraintStatement", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DataConstraintStatement", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "constraintStatement", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class DataConstraintStatementDto
     {
         // ------------------------------------------
@@ -21,7 +21,7 @@ namespace BindOpen.MetaData.Specification
         /// </summary>
         /// <remarks>If empty then all the values are added.</remarks>
         //[XmlElement("add")]
-        //public List<BdoRoutineConfigurationDto> Constraints { get; set; }
+        //public List<BdoConfigurationDto> Constraints { get; set; }
 
         #endregion
 

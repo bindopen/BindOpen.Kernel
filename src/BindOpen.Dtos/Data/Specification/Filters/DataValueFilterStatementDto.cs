@@ -2,13 +2,13 @@
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.MetaData.Specification
+namespace BindOpen.Data.Specification
 {
     /// <summary>
     /// This interface specifies the value filter statement.
     /// </summary>
-    [XmlType("DataValueFilterStatement", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "value.filter.statement", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("DataValueFilterStatement", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "value.filter.statement", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class DataValueFilterStatementDto
     {
         // ------------------------------------------

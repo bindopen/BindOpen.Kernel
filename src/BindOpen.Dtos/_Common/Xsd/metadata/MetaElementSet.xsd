@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://xsd.bindopen.org" elementFormDefault="qualified" targetNamespace="https://xsd.bindopen.org" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="https://xsd.bindopen.org/StoredDataItem.xsd" />
+  <xs:include schemaLocation="https://xsd.bindopen.org/EntityElement.xsd" />
+  <!--<xs:include schemaLocation="https://xsd.bindopen.org/DocumentElement.xsd" />-->
+  <xs:include schemaLocation="https://xsd.bindopen.org/EntityElement.xsd" />
+  <xs:include schemaLocation="https://xsd.bindopen.org/MetaBdoElement.xsd" />
+  <xs:include schemaLocation="https://xsd.bindopen.org/ObjectElement.xsd" />
+  <xs:include schemaLocation="https://xsd.bindopen.org/ScalarElement.xsd" />
+  <xs:include schemaLocation="https://xsd.bindopen.org/SchemaElement.xsd" />
+  <xs:include schemaLocation="https://xsd.bindopen.org/SourceElement.xsd" />
+
+  <xs:complexType name="BdoElementSet">
+    <xs:complexContent mixed="false">
+      <xs:extension base="DataItem">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded">
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entity" nillable="true" type="EntityElement" />
+            <!--<xs:element minOccurs="0" maxOccurs="unbounded" name="documentElement" nillable="true" type="DocumentElement" />-->
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entity" nillable="true" type="EntityElement" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="object" nillable="true" type="ObjectElement" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="meta" nillable="true" type="MetaBdoElement" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="scalar" nillable="true" type="ScalarElement" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="schema" nillable="true" type="SchemaElement" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="source" nillable="true" type="SourceElement" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+</xs:schema>

@@ -1,9 +1,9 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Items;
-using BindOpen.MetaData.Stores;
+﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
+using BindOpen.Data.Items;
+using BindOpen.Data.Stores;
 using BindOpen.Logging;
 using BindOpen.Runtime.Hosting.Exceptions;
-using BindOpen.Runtime.References;
 using BindOpen.Runtime.Scopes;
 using BindOpen.Runtime.Services;
 using Microsoft.Extensions.Logging;
@@ -32,7 +32,7 @@ namespace BindOpen.Runtime.Hosts
         public IBdoHostSettings Settings { get; internal set; } = new BdoHostSettings();
 
         /// <summary>
-        /// The host configuration file path.
+        /// The host config file path.
         /// </summary>
         public string SettingsFilePath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultHostConfigFileName).ToPath();
 
@@ -136,7 +136,7 @@ namespace BindOpen.Runtime.Hosts
         /// <param name="specificationAreas">The specification areas to consider.</param>
         /// <param name="updateModes">The update modes to consider.</param>
         /// <returns>The log of the operation.</returns>
-        /// <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
+        /// <remarks>Put reference sets as null if you do not want to repair this instance.</remarks>
         public void Update<T>(
             T item = default,
             string[] specificationAreas = null,

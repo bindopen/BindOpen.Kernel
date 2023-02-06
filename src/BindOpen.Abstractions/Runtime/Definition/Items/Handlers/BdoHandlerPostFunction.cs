@@ -1,7 +1,8 @@
-﻿using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data.Meta;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
 using BindOpen.Logging;
+using BindOpen.Data.Meta;
 
 namespace BindOpen.Runtime.Definition
 {
@@ -11,13 +12,13 @@ namespace BindOpen.Runtime.Definition
     /// <param name="targetObject">The target object to consider.</param>
     /// <param name="sourceBdoElement">The source data element to consider.</param>
     /// <param name="scope">The scope to consider.</param>
-    /// <param name="varElementSet">The variable element set to consider.</param>
+    /// <param name="varSet">The variable element set to consider.</param>
     /// <param name="alog">The log to consider.</param>
     /// <returns>Returns the source object.</returns>
     public delegate List<object> BdoHandlerPostFunction(
             object targetObject,
-            ref IBdoMetaElement sourceBdoElement,
+            ref IBdoMetaData sourceBdoElement,
             IBdoScope scope = null,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog alog = null);
 }

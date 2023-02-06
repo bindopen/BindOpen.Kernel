@@ -1,9 +1,10 @@
-﻿using BindOpen.Logging;
-using BindOpen.MetaData;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
+using BindOpen.Data.Items;
+using BindOpen.Extensions;
+using BindOpen.Logging;
 using BindOpen.Runtime.Assemblies;
 using BindOpen.Runtime.Definition;
-using BindOpen.Runtime.References;
 using BindOpen.Runtime.Scopes;
 using System;
 using System.IO;
@@ -34,7 +35,8 @@ namespace BindOpen.Runtime.Stores
 
             if (loadOptions == null)
             {
-                loadOptions = new ExtensionLoadOptions().WithSourceKinds(DatasourceKind.Memory);
+                loadOptions = new ExtensionLoadOptions().WithSourceKinds(
+                    DatasourceKind.Memory);
             }
             _loadOptions = loadOptions;
         }
@@ -44,7 +46,9 @@ namespace BindOpen.Runtime.Stores
         /// </summary>
         /// <param name="references">The library references to consider.</param>
         /// <param name="log">The log to consider.</param>
-        public bool LoadExtensionsInStore(IBdoAssemblyReference[] references, IBdoLog log = null)
+        public bool LoadExtensionsInStore(
+            IBdoAssemblyReference[] references,
+            IBdoLog log = null)
         {
             if (_store == null) return false;
 
@@ -56,7 +60,7 @@ namespace BindOpen.Runtime.Stores
 
             if (references?.Any(q => q.BdoKeyEquals(StringHelper.__Star)) == true)
             {
-                references = _appDomain.GetAssemblies().Select(q => BdoRtm.Assembly(q)).ToArray();
+                references = _appDomain.GetAssemblies().Select(q => BdoData.Assembly(q)).ToArray();
             }
 
             foreach (IBdoAssemblyReference reference in references)
@@ -67,11 +71,11 @@ namespace BindOpen.Runtime.Stores
 
                     if (log?.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning) == true)
                     {
-                        log?.AddSubLog(subLog, title: "Loading extension '" + (reference?.Name ?? "?") + "'");
+                        log?.AddSubLog(subLog, title: "Loading extension '" + (reference?.AssemblyName ?? "?") + "'");
                     }
                     else
                     {
-                        log?.AddMessage("Extension '" + (reference?.Name ?? "?") + "' loaded");
+                        log?.AddMessage("Extension '" + (reference?.AssemblyName ?? "?") + "' loaded");
                     }
                 }
             }
@@ -98,7 +102,7 @@ namespace BindOpen.Runtime.Stores
                     // first we load the assembly
 
                     IBdoLog newLog = log?.NewLog()
-                        .WithDisplayName("Loading library '" + libraryReference.Name + "'");
+                        .WithDisplayName("Loading library '" + libraryReference.AssemblyName + "'");
 
                     foreach (DatasourceKind dataSourceKind in _loadOptions?.SourceKinds)
                     {
@@ -109,11 +113,11 @@ namespace BindOpen.Runtime.Stores
                         switch (dataSourceKind)
                         {
                             case DatasourceKind.Memory:
-                                if (!string.IsNullOrEmpty(libraryReference.Name))
+                                if (!string.IsNullOrEmpty(libraryReference.AssemblyName))
                                 {
                                     assembly = AppDomainPool.LoadAssembly(
                                         _appDomain,
-                                        libraryReference.Name,
+                                        libraryReference.AssemblyName,
                                         subLog);
                                 }
                                 else
@@ -122,10 +126,10 @@ namespace BindOpen.Runtime.Stores
                                 }
                                 break;
                             case DatasourceKind.Repository:
-                                string fileName = libraryReference.FileName;
+                                string fileName = libraryReference.AssemblyFileName;
                                 if (string.IsNullOrEmpty(fileName))
                                 {
-                                    fileName = libraryReference.Name + ".dll";
+                                    fileName = libraryReference.AssemblyName + ".dll";
                                 }
 
                                 string filePath = _loadOptions.LibraryFolderPath.EndingWith(@"\").ToPath() + fileName;
@@ -188,7 +192,8 @@ namespace BindOpen.Runtime.Stores
                                 {
                                     fileName += ".dll";
                                 }
-                                IBdoAssemblyReference reference = BdoRtm.Assembly(st).WithFileName(fileName);
+                                IBdoAssemblyReference reference = BdoData.Assembly(st)
+                                    .WithFileName(fileName);
 
                                 IBdoLog subSubLog = log?.NewLog()
                                     .WithDisplayName("Loading using extensions...") as IBdoLog;
@@ -199,7 +204,7 @@ namespace BindOpen.Runtime.Stores
                         // we load the item definition specifiying the extension definition
 
                         foreach (BdoExtensionItemKind kind in new[] {
-                                BdoExtensionItemKind.Carrier,
+                                BdoExtensionItemKind.Entity,
                                 BdoExtensionItemKind.Connector,
                                 BdoExtensionItemKind.Entity,
                                 BdoExtensionItemKind.Handler,

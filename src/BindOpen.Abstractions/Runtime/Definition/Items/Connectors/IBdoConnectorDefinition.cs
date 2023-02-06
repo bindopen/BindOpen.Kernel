@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData.Elements;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using System;
 
 namespace BindOpen.Runtime.Definition
@@ -22,7 +22,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// 
         /// </summary>
-        IBdoElementSpecSet DatasourceDetailSpec { get; set; }
+        IBdoMetaSpecList DatasourceDetailSpec { get; set; }
 
         /// <summary>
         /// 

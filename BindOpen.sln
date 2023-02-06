@@ -18,7 +18,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abstractions", "src\BindOpe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dtos", "src\BindOpen.Dtos\Dtos.csproj", "{0F72A99E-9D43-444A-98B5-65FE50AA0BF3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaData", "src\BindOpen.MetaData\MetaData.csproj", "{E4825F6C-23EA-482E-B24F-4343926FF214}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "src\BindOpen.Data\Data.csproj", "{E4825F6C-23EA-482E-B24F-4343926FF214}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Extensions", "src\BindOpen.Extensions\Extensions.csproj", "{BBA4194A-7110-443E-A1A1-1A1B6DA116C9}"
 EndProject

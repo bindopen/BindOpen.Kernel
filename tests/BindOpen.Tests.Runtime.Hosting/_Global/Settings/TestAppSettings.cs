@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data.Meta;
 using BindOpen.Runtime.Settings;
 using System.Collections.Generic;
 
@@ -18,13 +18,13 @@ namespace BindOpen.Tests.Core.Settings
         /// <summary>
         /// The test folder path of this instance.
         /// </summary>
-        [BdoMeta(Name = "test.folderPath")]
+        [BdoData(Name = "test.folderPath")]
         public string TestFolderPath { get; set; }
 
         /// <summary>
         /// The URIs of this instance.
         /// </summary>
-        [BdoMeta(Name = "test.uris")]
+        [BdoData(Name = "test.uris")]
         public Dictionary<string, string> Uris { get; set; }
 
         #endregion

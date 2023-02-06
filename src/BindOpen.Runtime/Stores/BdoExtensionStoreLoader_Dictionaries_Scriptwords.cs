@@ -1,5 +1,5 @@
 ﻿using BindOpen.Extensions.Scripting;
-using BindOpen.MetaData.Items;
+using BindOpen.Data.Items;
 using BindOpen.Runtime.Definition;
 using System;
 using System.Collections.Generic;
@@ -31,7 +31,7 @@ namespace BindOpen.Runtime.Stores
                 return -1;
             }
 
-            // we load the carrier dico from the assembly
+            // we load the entity dico from the assembly
 
             var dico = ExtractDictionaryFromAssembly<IBdoScriptwordDefinition>(assembly, log) as BdoScriptwordDictionary;
 

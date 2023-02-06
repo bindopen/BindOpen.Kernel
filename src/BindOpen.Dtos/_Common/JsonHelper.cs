@@ -3,7 +3,7 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace BindOpen.MetaData
+namespace BindOpen.Data
 {
     public static class JsonHelper
     {
@@ -13,7 +13,7 @@ namespace BindOpen.MetaData
         /// <param name="dto">The DTO to save.</param>
         /// <param name="log">The saving log to consider.</param>
         /// <returns>The Json string of this instance.</returns>
-        public static string ToJson<T>(this T dto, IBdoLog log = null) where T : IDto
+        public static string ToJson<T>(this T dto, IBdoLog log = null) where T : class
         {
             if (dto == null) return null;
 
@@ -46,7 +46,7 @@ namespace BindOpen.MetaData
         /// <param name="filePath">Path of the file to save.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>True if the saving operation has been done. False otherwise.</returns>
-        public static bool SaveJson<T>(this T dto, string filePath, IBdoLog log = null) where T : IDto
+        public static bool SaveJson<T>(this T dto, string filePath, IBdoLog log = null) where T : class
         {
             if (dto == null) return false;
 
@@ -96,7 +96,7 @@ namespace BindOpen.MetaData
         public static T LoadJson<T>(
             string filePath,
             IBdoLog log = null,
-            bool mustFileExist = true) where T : class, IDto
+            bool mustFileExist = true) where T : class
         {
             T dto = default;
 
@@ -141,7 +141,7 @@ namespace BindOpen.MetaData
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T LoadJsonFromString<T>(
             string jsonString,
-            IBdoLog log = null) where T : class, IDto
+            IBdoLog log = null) where T : class
         {
             T dto = default;
 

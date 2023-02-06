@@ -144,7 +144,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinition.WithTitle(BindOpen.MetaData.Items.IBdoDictionary)">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinition.WithTitle(BindOpen.Data.Items.IBdoDictionary)">
             <summary>
             
             </summary>
@@ -267,14 +267,14 @@
             <param name="defaultKey"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Runtime.Definition.BdoCarrierDictionary">
+        <member name="T:BindOpen.Runtime.Definition.BdoEntityDictionary">
             <summary>
-            This class represents a DTO carrier dico.
+            This class represents a DTO entity dico.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoCarrierDictionary.#ctor">
+        <member name="M:BindOpen.Runtime.Definition.BdoEntityDictionary.#ctor">
             <summary>
-            Instantiates a new instance of the BdoCarrierDictionary class.
+            Instantiates a new instance of the BdoEntityDictionary class.
             </summary>
         </member>
         <member name="T:BindOpen.Runtime.Definition.BdoConnectorDictionary">
@@ -597,44 +597,44 @@
             </summary>
             <param name="type">The type to consider.</param>
         </member>
-        <member name="T:BindOpen.Runtime.Definition.BdoCarrierDefinition">
+        <member name="T:BindOpen.Runtime.Definition.BdoEntityDefinition">
             <summary>
-            This class represents a DTO carrier definition.
+            This class represents a DTO entity definition.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoCarrierDefinition.DatasourceKind">
+        <member name="P:BindOpen.Runtime.Definition.BdoEntityDefinition.DatasourceKind">
             <summary>
             The data source kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoCarrierDefinition.DetailSpec">
+        <member name="P:BindOpen.Runtime.Definition.BdoEntityDefinition.DetailSpec">
             <summary>
             Data constraint statement of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoCarrierDefinition.ItemClass">
+        <member name="P:BindOpen.Runtime.Definition.BdoEntityDefinition.ItemClass">
             <summary>
             The item class of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoCarrierDefinition.RuntimeType">
+        <member name="P:BindOpen.Runtime.Definition.BdoEntityDefinition.RuntimeType">
             <summary>
             The runtime type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoCarrierDefinition.UniqueId">
+        <member name="P:BindOpen.Runtime.Definition.BdoEntityDefinition.UniqueId">
             <summary>
             The unique ID of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoCarrierDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoExtensionDefinition)">
+        <member name="M:BindOpen.Runtime.Definition.BdoEntityDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoExtensionDefinition)">
             <summary>
-            Instantiates a new instance of the CarrierDefinition class.
+            Instantiates a new instance of the EntityDefinition class.
             </summary>
             <param name="name">The name to consider.</param>
             <param name="extensionDefinition">The extensition definition to consider.</param>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoCarrierDefinition.Key">
+        <member name="M:BindOpen.Runtime.Definition.BdoEntityDefinition.Key">
             <summary>
             Returns the key of this instance.
             </summary>
@@ -1071,7 +1071,7 @@
             <summary>
             This class represents a task definition.
             </summary>
-            <seealso cref="!:BdoTaskConfiguration"/>
+            <seealso cref="!:BdoConfig"/>
         </member>
         <member name="P:BindOpen.Runtime.Definition.BdoTaskDefinition.GroupName">
             <summary>
@@ -1202,25 +1202,25 @@
             <param name="references">The references to consider.</param>
             <returns>Returns the itemized list of the specified library list.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.BdoRtm.NewCarrierConfiguration(System.String,BindOpen.MetaData.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.Runtime.BdoRtm.NewEntityConfiguration(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
-            Creates the instance of the specified configuration.
+            Creates the instance of the specified config.
             </summary>
             <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
         </member>
-        <member name="M:BindOpen.Runtime.BdoRtm.NewConnectorConfiguration(System.String,BindOpen.MetaData.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.Runtime.BdoRtm.NewConnectorConfiguration(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
-            Creates the instance of the specified configuration.
+            Creates the instance of the specified config.
             </summary>
             <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
         </member>
-        <member name="M:BindOpen.Runtime.BdoRtm.NewTaskConfiguration(System.String,BindOpen.MetaData.Elements.IBdoMetaElement[])">
+        <member name="M:BindOpen.Runtime.BdoRtm.NewTaskConfiguration(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
-            Creates the instance of the specified configuration.
+            Creates the instance of the specified config.
             </summary>
             <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
         </member>
-        <member name="M:BindOpen.Runtime.BdoRtm.NewCarrierDefinition(BindOpen.Runtime.Definition.IBdoExtensionDefinition,System.String)">
+        <member name="M:BindOpen.Runtime.BdoRtm.NewEntityDefinition(BindOpen.Runtime.Definition.IBdoExtensionDefinition,System.String)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -1313,7 +1313,7 @@
             <summary>
             Creates a assembly reference from the specified extension one.
             </summary>
-            <param name="references">The reference collection to consider.</param>
+            <param name="references">The reference set to consider.</param>
             <param name="name">The name to consider.</param>
             <param name="version">The version to consider.</param>
             <returns>Returns the itemized list of the specified library list.</returns>
@@ -1322,14 +1322,14 @@
             <summary>
             Creates a assembly reference of the spcefied type.
             </summary>
-            <param name="references">The reference collection to consider.</param>
+            <param name="references">The reference set to consider.</param>
             <returns>Returns the itemized list of the spcefied type</returns>
         </member>
         <member name="M:BindOpen.Runtime.References.BdoAssemblyReferenceExtension.AddAllAssemblies(BindOpen.Runtime.References.IBdoAssemblyReferenceCollection)">
             <summary>
             Creates a assembly reference that represents all the references.
             </summary>
-            <param name="references">The reference collection to consider.</param>
+            <param name="references">The reference set to consider.</param>
             <returns>Returns a assembly reference that represents all the references.</returns>
         </member>
         <member name="T:BindOpen.Runtime.References.ClassReference">
@@ -1439,7 +1439,7 @@
             <param name="checkDataStore">Indicates whether the data store extistence is chekced.</param>
             <returns>The log of check log.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.Open``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Items.IBdoDataSource,System.String,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.Open``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Items.IBdoDataSource,System.String,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates a connector.
             </summary>
@@ -1449,76 +1449,76 @@
             <param name="log">The log of execution to consider.</param>
             <returns>Returns True if the connector has been opened. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.Open``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.Open``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Connecting.IBdoConfiguration,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates a connector using the specified data module and connector unique name.
             </summary>
             <param name="scope">The scope to consider.</param>
-            <param name="configuration">The connector configuration to consider.</param>
+            <param name="config">The connector config to consider.</param>
             <param name="log">The log of execution to consider.</param>
             <returns>Returns True if the connector has been opened. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewCarrier``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Modeling.IBdoCarrierConfiguration,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewEntity``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Modeling.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
             <param name="scope">The scope to consider.</param>
-            <param name="configuration">The configuration to consider.</param>
+            <param name="config">The config to consider.</param>
             <param name="log">The log to consider.</param>
-            <param name="varElementSet">The variable element set to use.</param>
-            <typeparam name="T">The carrier class to return.</typeparam>
-            <returns>Returns the created carrier.</returns>
+            <param name="varSet">The variable element set to use.</param>
+            <typeparam name="T">The entity class to return.</typeparam>
+            <returns>Returns the created entity.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewCarrier(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Modeling.IBdoCarrierConfiguration,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewEntity(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Modeling.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
             <param name="scope">The scope to consider.</param>
-            <param name="configuration">The configuration to consider.</param>
+            <param name="config">The config to consider.</param>
             <param name="log">The log to consider.</param>
-            <param name="varElementSet">The variable element set to use.</param>
-            <returns>Returns the created carrier.</returns>
+            <param name="varSet">The variable element set to use.</param>
+            <returns>Returns the created entity.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewConnector``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewConnector``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Connecting.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
             <param name="scope">The scope to consider.</param>
-            <param name="configuration">The configuration to consider.</param>
+            <param name="config">The config to consider.</param>
             <param name="log">The log to consider.</param>
-            <param name="varElementSet">The variable element set to use.</param>
+            <param name="varSet">The variable element set to use.</param>
             <typeparam name="T">The connector class to return.</typeparam>
             <returns>Returns the created connector.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewConnector(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Connecting.IBdoConnectorConfiguration,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewConnector(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Connecting.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
             <param name="scope">The scope to consider.</param>
-            <param name="configuration">The configuration to consider.</param>
+            <param name="config">The config to consider.</param>
             <param name="log">The log to consider.</param>
-            <param name="varElementSet">The variable element set to use.</param>
+            <param name="varSet">The variable element set to use.</param>
             <returns>Returns the created connector.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewTask``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Processing.IBdoTaskConfiguration,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewTask``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Processing.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
             <param name="scope">The scope to consider.</param>
-            <param name="configuration">The configuration to consider.</param>
+            <param name="config">The config to consider.</param>
             <param name="log">The log to consider.</param>
-            <param name="varElementSet">The variable element set to use.</param>
-            <typeparam name="T">The carrier class to return.</typeparam>
-            <returns>Returns the created carrier.</returns>
+            <param name="varSet">The variable element set to use.</param>
+            <typeparam name="T">The entity class to return.</typeparam>
+            <returns>Returns the created entity.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewTask(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Processing.IBdoTaskConfiguration,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewTask(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Processing.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
             <param name="scope">The scope to consider.</param>
-            <param name="configuration">The configuration to consider.</param>
+            <param name="config">The config to consider.</param>
             <param name="log">The log to consider.</param>
-            <param name="varElementSet">The variable element set to use.</param>
+            <param name="varSet">The variable element set to use.</param>
             <returns>Returns the created task.</returns>
         </member>
         <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.CreateScoped``1(BindOpen.Runtime.Scopes.IBdoScope)">
@@ -1577,7 +1577,7 @@
             <param name="uri">The URI of the remote server.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Scopes.ExtensionLoadOptions.WithSourceKinds(BindOpen.MetaData.Items.DatasourceKind[])">
+        <member name="M:BindOpen.Runtime.Scopes.ExtensionLoadOptions.WithSourceKinds(BindOpen.Data.Items.DatasourceKind[])">
             <summary>
             Sets the source kinds of this instance.
             </summary>
@@ -1750,23 +1750,23 @@
             </summary>
             <returns>Returns the class of the specified dico.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.UpdateDictionary(BindOpen.Runtime.Definition.IBdoExtensionItemDefinition,BindOpen.MetaData.Items.DescribedDataItemAttribute)">
+        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.UpdateDictionary(BindOpen.Runtime.Definition.IBdoExtensionItemDefinition,BindOpen.Data.Items.DescribedDataItemAttribute)">
             <summary>
             Updates this instance with the specified attribute information.
             </summary>
             <param name="definition">The definition to consider.</param>
             <param name="attribute">The attribute to consider.</param>
         </member>
-        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.UpdateDictionary(BindOpen.Runtime.Definition.IBdoExtensionItemDefinition,BindOpen.MetaData.Items.TitledDescribedDataItemAttribute)">
+        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.UpdateDictionary(BindOpen.Runtime.Definition.IBdoExtensionItemDefinition,BindOpen.Data.Items.TitledDescribedDataItemAttribute)">
             <summary>
             Updates this instance with the specified attribute information.
             </summary>
             <param name="definition">The definition to consider.</param>
             <param name="attribute">The attribute to consider.</param>
         </member>
-        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadCarrierDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoExtensionDefinition,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadEntityDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoExtensionDefinition,BindOpen.Logging.IBdoLog)">
             <summary>
-            Loads the carrier dico from the specified assembly.
+            Loads the entity dico from the specified assembly.
             </summary>
             <param name="assembly">The assembly to consider.</param>
             <param name="extensionDefinition">The extension definition to consider.</param>
@@ -1859,7 +1859,7 @@
             <param name="log">The log to consider.</param>
             <returns>The created library.</returns>
         </member>
-        <member name="T:BindOpen.MetaData.Specification.BdoElementChecker">
+        <member name="T:BindOpen.Data.Specification.BdoElementChecker">
             <summary>
             This static class provides methods to check data elements.
             </summary>

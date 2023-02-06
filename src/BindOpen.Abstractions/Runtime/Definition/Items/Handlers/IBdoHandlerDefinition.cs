@@ -1,4 +1,5 @@
-﻿using BindOpen.MetaData.Elements;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Data.Meta;
 
 namespace BindOpen.Runtime.Definition
 {
@@ -30,7 +31,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// 
         /// </summary>
-        IBdoElementSpecSet ParameterSpecification { get; set; }
+        IBdoMetaSpecList ParameterSpecification { get; set; }
 
         /// <summary>
         /// 
@@ -40,11 +41,11 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaElementSpec SourceSpecification { get; set; }
+        IBdoMetaSpec SourceSpecification { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaElementSpec TargetSpecification { get; set; }
+        IBdoMetaSpec TargetSpecification { get; set; }
     }
 }

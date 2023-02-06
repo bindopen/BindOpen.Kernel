@@ -1,6 +1,6 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 
 namespace BindOpen.Logging
 {
@@ -17,7 +17,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        IBdoElementSet Detail { get; set; }
+        IBdoMetaList Detail { get; set; }
 
         /// <summary>
         /// 

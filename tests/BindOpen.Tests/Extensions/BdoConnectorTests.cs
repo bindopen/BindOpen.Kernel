@@ -1,6 +1,6 @@
-﻿using BindOpen.Extensions;
+﻿using BindOpen.Data;
+using BindOpen.Extensions;
 using BindOpen.Extensions.Connecting;
-using BindOpen.MetaData;
 using NUnit.Framework;
 
 namespace BindOpen.Tests.Extensions
@@ -25,14 +25,14 @@ namespace BindOpen.Tests.Extensions
         /// <returns></returns>
         public static IBdoConnector CreateConnector(dynamic data)
         {
-            IBdoConnectorConfiguration config =
-                BdoExt.NewConnectorConfig("tests.core$testConnector")
-                .WithItems(
+            var config =
+                BdoConfig.New("tests.core$testConnector")
+                .With(
                     BdoMeta.NewScalar("host", data.host),
                     BdoMeta.NewScalar("port", data.port),
                     BdoMeta.NewScalar("isSslEnabled", data.isSslEnabled));
 
-            return BdoExt.NewConnector<ConnectorFake>(config);
+            return Bdo.NewConnector<ConnectorFake>(config);
         }
 
         [Test, Order(1)]

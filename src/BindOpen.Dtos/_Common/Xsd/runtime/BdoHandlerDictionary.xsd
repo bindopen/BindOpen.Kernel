@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://xsd.bindopen.org" elementFormDefault="qualified" targetNamespace="https://xsd.bindopen.org" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:include schemaLocation="https://xsd.bindopen.org/DataItem.xsd" />
+  <xs:include schemaLocation="https://xsd.bindopen.org/HandlerDefinition.xsd" />
+  <xs:include schemaLocation="https://xsd.bindopen.org/BdoExtensionItemGroup.xsd" />
+
+  <xs:element name="handlers.dico" type="BdoHandlerDictionaryDto" />
+
+  <xs:complexType name="BdoHandlerDictionaryDto">
+    <xs:complexContent mixed="false">
+      <xs:extension base="TBdoExtensionDictionary_DataHandler" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TBdoExtensionDictionary_DataHandler">
+    <xs:complexContent mixed="false">
+      <xs:extension base="StoredDataItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="definitions" type="ArrayOfHandlerDefinition" />
+          <xs:element minOccurs="0" maxOccurs="1" name="groups" type="ArrayOfBdoExtensionItemGroup" />
+        </xs:sequence>
+        <xs:attribute name="libraryId" type="xs:string" />
+        <xs:attribute name="library" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfHandlerDefinition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="BdoHandlerDefinition" />
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

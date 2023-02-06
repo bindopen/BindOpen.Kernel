@@ -1,7 +1,7 @@
-﻿using BindOpen.Abstractions.Meta.Configuration;
-using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Configuration;
+using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using BindOpen.Runtime.Scopes;
 using System;
 using System.Reflection;
@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 namespace BindOpen.Runtime.Settings
 {
     /// <summary>
-    /// This class represents a configuration.
+    /// This class represents a config.
     /// </summary>
     public class BdoSettings : BdoItem, IBdoSettings
     {
@@ -25,20 +25,20 @@ namespace BindOpen.Runtime.Settings
         /// </summary>
         public BdoSettings()
         {
-            Configuration = BdoMeta.NewConfig();
+            Configuration = BdoConfig.New();
         }
 
         /// <summary>
         /// Instantiates a new instance of the TBdoSettings class.
         /// </summary>
         /// <param name="scope">The scope to consider.</param>
-        /// <param name="configuration">The configuration to consider.</param>
+        /// <param name="config">The config to consider.</param>
         public BdoSettings(
             IBdoScope scope,
-            IBdoConfiguration configuration)
+            IBdoConfiguration config)
         {
             Scope = scope;
-            Configuration = configuration;
+            Configuration = config;
         }
 
         #endregion
@@ -74,8 +74,9 @@ namespace BindOpen.Runtime.Settings
         /// <typeparam name="T"></typeparam>
         /// <param name="name">The name to consider.</param>
         public T Get<T>(string name)
+            where T : class
         {
-            return Configuration.GetItem<T>(name, Scope);
+            return Configuration.GetData<T>(name, Scope);
         }
 
         /// <summary>
@@ -84,7 +85,7 @@ namespace BindOpen.Runtime.Settings
         /// <param name="name">The name to consider.</param>
         public object Get(string name)
         {
-            return Configuration.GetItem(name, Scope);
+            return Configuration.GetData(name, Scope);
         }
 
         /// <summary>
@@ -98,21 +99,21 @@ namespace BindOpen.Runtime.Settings
 
             if (propertyName != null)
             {
-                IBdoMetaElement element = Configuration.Get(propertyName);
+                IBdoMetaData element = Configuration.Get(propertyName);
                 if (element != null)
                 {
-                    return (T)Configuration.GetItem(propertyName, Scope);
+                    return (T)Configuration.GetData(propertyName, Scope);
                 }
                 else
                 {
                     _ = GetType().GetPropertyInfo(
                         propertyName,
-                        new Type[] { typeof(BdoMetaAttribute) },
-                        out BdoMetaAttribute attribute);
+                        new Type[] { typeof(BdoDataAttribute) },
+                        out BdoDataAttribute attribute);
 
-                    if (attribute is BdoMetaAttribute)
+                    if (attribute is BdoDataAttribute)
                     {
-                        object value = Configuration.GetItem(attribute.Name, Scope);
+                        object value = Configuration.GetData(attribute.Name, Scope);
                         if (value is T t)
                             return t;
                     }
@@ -134,20 +135,20 @@ namespace BindOpen.Runtime.Settings
 
             if (propertyName != null)
             {
-                IBdoMetaElement element = Configuration.Get(propertyName);
+                IBdoMetaData element = Configuration.Get(propertyName);
                 if (element != null)
                 {
-                    return (T)Configuration.GetItem(propertyName, Scope);
+                    return (T)Configuration.GetData(propertyName, Scope);
                 }
                 else
                 {
                     _ = GetType().GetPropertyInfo(
                         propertyName,
-                        new Type[] { typeof(BdoMetaAttribute) },
-                        out BdoMetaAttribute attribute);
+                        new Type[] { typeof(BdoDataAttribute) },
+                        out BdoDataAttribute attribute);
 
-                    if (attribute is BdoMetaAttribute)
-                        return (Configuration.GetItem(attribute.Name, Scope) as string)?.ToEnum<T>(defaultValue) ?? default;
+                    if (attribute is BdoDataAttribute)
+                        return (Configuration.GetData(attribute.Name, Scope) as string)?.ToEnum<T>(defaultValue) ?? default;
                 }
             }
 
@@ -165,10 +166,10 @@ namespace BindOpen.Runtime.Settings
             {
                 PropertyInfo propertyInfo = GetType().GetPropertyInfo(
                     propertyName,
-                    new Type[] { typeof(BdoMetaAttribute) },
-                    out BdoMetaAttribute attribute);
+                    new Type[] { typeof(BdoDataAttribute) },
+                    out BdoDataAttribute attribute);
 
-                if (attribute is BdoMetaAttribute)
+                if (attribute is BdoDataAttribute)
                 {
                     Configuration.Add(
                         BdoMeta.NewScalar(
