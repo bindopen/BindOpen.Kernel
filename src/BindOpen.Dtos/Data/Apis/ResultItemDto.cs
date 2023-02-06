@@ -1,14 +1,14 @@
-﻿using BindOpen.MetaData;
+﻿using BindOpen.Data;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.MetaData.Apis
+namespace BindOpen.Data.Apis
 {
     /// <summary>
     /// This class represents a DTO item result.
     /// </summary>
-    [XmlType("ResultItemDto", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot("resultItemDto", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ResultItemDto", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot("resultItemDto", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class ResultItemDto
     {
         // -------------------------------------------------------

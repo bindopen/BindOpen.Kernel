@@ -1,9 +1,9 @@
-﻿using BindOpen.Extensions.Scripting;
+﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
+using BindOpen.Data.Context;
+using BindOpen.Data.Stores;
+using BindOpen.Extensions.Scripting;
 using BindOpen.Logging;
-using BindOpen.MetaData;
-using BindOpen.MetaData.Context;
-using BindOpen.MetaData.Stores;
-using BindOpen.Runtime.References;
 using BindOpen.Runtime.Scopes;
 using BindOpen.Runtime.Services;
 using BindOpen.Runtime.Stores;
@@ -88,6 +88,14 @@ namespace BindOpen.Runtime.Hosts
 
             return this;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="reference"></param>
+        /// <returns></returns>
+        public Type CreateType(IBdoClassReference reference)
+            => Scope?.CreateType(reference);
 
         /// <summary>
         /// Starts the application.
@@ -259,13 +267,13 @@ namespace BindOpen.Runtime.Hosts
             {
                 try
                 {
-                    // we load the host configuration
+                    // we load the host config
 
                     string hostConfigFilePath = GetKnownPath(BdoHostPathKind.HostConfigFile);
 
                     if (!File.Exists(hostConfigFilePath))
                     {
-                        var message = "Host configuration file ('" + BdoDefaultHostPaths.__DefaultHostConfigFileName + "') not found";
+                        var message = "Host config file ('" + BdoDefaultHostPaths.__DefaultHostConfigFileName + "') not found";
                         if (Options.IsSettingsFileRequired == true)
                         {
                             log?.AddError(message);
@@ -278,14 +286,14 @@ namespace BindOpen.Runtime.Hosts
                     }
                     else
                     {
-                        subLog = log?.InsertSubLog(title: "Loading host configuration...", eventKind: EventKinds.Message);
+                        subLog = log?.InsertSubLog(title: "Loading host config...", eventKind: EventKinds.Message);
                         //Options.Settings.UpdateFromFile(
                         //        hostConfigFilePath,
                         //        new SpecificationLevels[] { SpecificationLevels.Definition, SpecificationLevels.Configuration },
                         //        null, _scope, null).AddEventsTo(log);
                         if (subLog?.HasEvent(EventKinds.Error, EventKinds.Exception) != true)
                         {
-                            subLog?.AddMessage("Host configuration loaded");
+                            subLog?.AddMessage("Host config loaded");
                         }
                     }
 

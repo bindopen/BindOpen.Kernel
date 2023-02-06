@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>BindOpen.Dtos</AssemblyName>
     <PackageId>BindOpen.Dtos</PackageId>
     <Product>BindOpen.Runtime</Product>
@@ -40,6 +40,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BindOpen.MetaData\MetaData.csproj" />
+    <ProjectReference Include="..\BindOpen.Data\Data.csproj" />
   </ItemGroup>
 </Project>

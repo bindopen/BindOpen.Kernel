@@ -6,7 +6,7 @@
     <members>
         <member name="T:BindOpen.Runtime.Configuration.BdoHostConfiguration">
             <summary>
-            This class represents a BindOpen host configuration.
+            This class represents a BindOpen host config.
             </summary>
         </member>
         <member name="M:BindOpen.Runtime.Configuration.BdoHostConfiguration.#ctor">
@@ -44,14 +44,14 @@
             </summary>
             <param name="log"></param>
         </member>
-        <member name="M:BindOpen.Runtime.Hosts.BdoHost.WithExecutionState(BindOpen.MetaData.ProcessExecutionState)">
+        <member name="M:BindOpen.Runtime.Hosts.BdoHost.WithExecutionState(BindOpen.Data.ProcessExecutionState)">
             <summary>
             
             </summary>
             <param name="state"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Runtime.Hosts.BdoHost.WithExecutionStatus(BindOpen.MetaData.ProcessExecutionStatus)">
+        <member name="M:BindOpen.Runtime.Hosts.BdoHost.WithExecutionStatus(BindOpen.Data.ProcessExecutionStatus)">
             <summary>
             
             </summary>
@@ -89,7 +89,7 @@
             </summary>
             <returns>Returns true if this instance is started.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Hosts.BdoHost.End(BindOpen.MetaData.ProcessExecutionStatus)">
+        <member name="M:BindOpen.Runtime.Hosts.BdoHost.End(BindOpen.Data.ProcessExecutionStatus)">
             <summary>
             Indicates the application ends.
             </summary>
@@ -193,7 +193,7 @@
         </member>
         <member name="P:BindOpen.Runtime.Hosts.BdoHostOptions.SettingsFilePath">
             <summary>
-            The host configuration file path.
+            The host config file path.
             </summary>
         </member>
         <member name="P:BindOpen.Runtime.Hosts.BdoHostOptions.IsSettingsFileRequired">
@@ -257,7 +257,7 @@
             Instantiates a new instance of the BdoHostOptions class.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Hosts.BdoHostOptions.Update``1(``0,System.String[],BindOpen.MetaData.UpdateModes[],BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Hosts.BdoHostOptions.Update``1(``0,System.String[],BindOpen.Data.UpdateModes[],BindOpen.Logging.IBdoLog)">
             <summary>
             Updates this instance.
             </summary>
@@ -265,7 +265,7 @@
             <param name="specificationAreas">The specification areas to consider.</param>
             <param name="updateModes">The update modes to consider.</param>
             <returns>The log of the operation.</returns>
-            <remarks>Put reference collections as null if you do not want to repair this instance.</remarks>
+            <remarks>Put reference sets as null if you do not want to repair this instance.</remarks>
         </member>
         <member name="M:BindOpen.Runtime.Hosts.BdoHostOptions.SetRootFolder(System.Predicate{BindOpen.Runtime.Hosts.IBdoHostOptions},System.String)">
             <summary>
@@ -361,7 +361,7 @@
             Throws an exception when start fails.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Hosts.BdoHostOptions.AddDataStore(System.Action{BindOpen.MetaData.Stores.IBdoDataStore})">
+        <member name="M:BindOpen.Runtime.Hosts.BdoHostOptions.AddDataStore(System.Action{BindOpen.Data.Stores.IBdoDataStore})">
             <summary>
             Adds the data store executing the specified action.
             </summary>
@@ -408,7 +408,7 @@
             Instantiates a new instance of the BdoHostSettings class.
             </summary>
             <param name="scope">The scope to consider.</param>
-            <param name="configuration">The configuration to consider.</param>
+            <param name="config">The config to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.Hosts.BdoHostSettings.WithLibraryFolder(System.String)">
             <summary>
@@ -498,14 +498,14 @@
             </summary>
             <returns>Returns true if this instance is started.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Services.BdoJob.WithExecutionState(BindOpen.MetaData.ProcessExecutionState)">
+        <member name="M:BindOpen.Runtime.Services.BdoJob.WithExecutionState(BindOpen.Data.ProcessExecutionState)">
             <summary>
             
             </summary>
             <param name="state"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Runtime.Services.BdoJob.WithExecutionStatus(BindOpen.MetaData.ProcessExecutionStatus)">
+        <member name="M:BindOpen.Runtime.Services.BdoJob.WithExecutionStatus(BindOpen.Data.ProcessExecutionStatus)">
             <summary>
             
             </summary>
@@ -525,7 +525,7 @@
             <param name="log">The log to consider.</param>
             <returns>Returns true if this instance is started.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Services.BdoJob.End(BindOpen.MetaData.ProcessExecutionStatus)">
+        <member name="M:BindOpen.Runtime.Services.BdoJob.End(BindOpen.Data.ProcessExecutionStatus)">
             <summary>
             Indicates the application ends.
             </summary>
@@ -539,7 +539,7 @@
         </member>
         <member name="T:BindOpen.Runtime.Settings.BdoSettings">
             <summary>
-            This class represents a configuration.
+            This class represents a config.
             </summary>
         </member>
         <member name="M:BindOpen.Runtime.Settings.BdoSettings.#ctor">
@@ -552,7 +552,7 @@
             Instantiates a new instance of the TBdoSettings class.
             </summary>
             <param name="scope">The scope to consider.</param>
-            <param name="configuration">The configuration to consider.</param>
+            <param name="config">The config to consider.</param>
         </member>
         <member name="P:BindOpen.Runtime.Settings.BdoSettings.Scope">
             <summary>
@@ -611,25 +611,25 @@
             </summary>
             <param name="isDisposing">Indicates whether this instance is disposing</param>
         </member>
-        <member name="T:BindOpen.MetaData.Stores.BdoDatasourceExtensions">
+        <member name="T:BindOpen.Data.Stores.BdoDatasourceExtensions">
             <summary>
             This class represents an data source extensions.
             </summary>
         </member>
-        <member name="M:BindOpen.MetaData.Stores.BdoDatasourceExtensions.AddFromConnectionStrings(BindOpen.MetaData.Stores.IBdoSourceDepot,Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+        <member name="M:BindOpen.Data.Stores.BdoDatasourceExtensions.AddFromConnectionStrings(BindOpen.Data.Stores.IBdoSourceDepot,Microsoft.Extensions.Configuration.IConfiguration,System.String)">
             <summary>
             Adds sources from connection strings.
             </summary>
             <param name="depot">The datasource depot to consider.</param>
-            <param name="config">The configuration to consider.</param>
+            <param name="config">The config to consider.</param>
             <param name="keyName">The key name to consider.</param>
         </member>
-        <member name="T:BindOpen.MetaData.Stores.BdoRuntimeDatasourceExtensions">
+        <member name="T:BindOpen.Data.Stores.BdoRuntimeDatasourceExtensions">
             <summary>
             This class represents a runtime data source extensions.
             </summary>
         </member>
-        <member name="M:BindOpen.MetaData.Stores.BdoRuntimeDatasourceExtensions.AddDatasource(BindOpen.MetaData.Stores.IBdoSourceDepot,BindOpen.MetaData.Items.BdoDatasource)">
+        <member name="M:BindOpen.Data.Stores.BdoRuntimeDatasourceExtensions.AddDatasource(BindOpen.Data.Stores.IBdoSourceDepot,BindOpen.Data.Items.BdoDatasource)">
             <summary>
             Adds the specified source.
             </summary>
@@ -645,7 +645,7 @@
             <summary>
             Adds a BindOpen default service.
             </summary>
-            <param name="services">The collection of services to populate.</param>
+            <param name="services">The set of services to populate.</param>
             <param name="setupAction">The setup action to consider.</param>
             <returns></returns>
         </member>
@@ -662,37 +662,37 @@
             Adds a BidnOpen hosted service as singleton.
             </summary>
             <typeparam name="TImplementation">The service implementation to consider.</typeparam>
-            <param name="services">The collection of services to populate.</param>
+            <param name="services">The set of services to populate.</param>
             <param name="setupAction">The setup action to consider.</param>
-            <returns>Returns the updated service collection.</returns>
+            <returns>Returns the updated service set.</returns>
         </member>
         <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddScopedBdoScope``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Func{BindOpen.Runtime.Hosts.IBdoHost,``0})">
             <summary>
             Adds a BidnOpen scoped service as scoped.
             </summary>
             <typeparam name="TImplementation">The service implementation to consider.</typeparam>
-            <param name="services">The collection of services to populate.</param>
+            <param name="services">The set of services to populate.</param>
             <param name="setupAction">The setup action to consider.</param>
-            <returns>Returns the updated service collection.</returns>
+            <returns>Returns the updated service set.</returns>
         </member>
         <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddTransientBdoScope``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Func{BindOpen.Runtime.Hosts.IBdoHost,``0})">
             <summary>
             Adds a BidnOpen scoped service as transient.
             </summary>
             <typeparam name="TImplementation">The service implementation to consider.</typeparam>
-            <param name="services">The collection of services to populate.</param>
+            <param name="services">The set of services to populate.</param>
             <param name="setupAction">The setup action to consider.</param>
-            <returns>Returns the updated service collection.</returns>
+            <returns>Returns the updated service set.</returns>
         </member>
         <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBdoScope``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.DependencyInjection.ServiceLifetime,System.Func{BindOpen.Runtime.Hosts.IBdoHost,``0})">
             <summary>
             Adds a BidnOpen hosted service.
             </summary>
             <typeparam name="TImplementation">The service implementation to consider.</typeparam>
-            <param name="services">The collection of services to populate.</param>
+            <param name="services">The set of services to populate.</param>
             <param name="setupAction">The setup action to consider.</param>
             <param name="serviceLifetime">The service life time to consider.</param>
-            <returns>Returns the updated service collection.</returns>
+            <returns>Returns the updated service set.</returns>
         </member>
         <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddSingletonBdoService``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Func{BindOpen.Runtime.Hosts.IBdoHost,``1})">
             <summary>
@@ -700,9 +700,9 @@
             </summary>
             <typeparam name="TService">The interface of BindOpen hosted service to consider.</typeparam>
             <typeparam name="TImplementation">The service implementation to consider.</typeparam>
-            <param name="services">The collection of services to populate.</param>
+            <param name="services">The set of services to populate.</param>
             <param name="setupAction">The setup action to consider.</param>
-            <returns>Returns the updated service collection.</returns>
+            <returns>Returns the updated service set.</returns>
         </member>
         <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddScopedBdoService``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Func{BindOpen.Runtime.Hosts.IBdoHost,``1})">
             <summary>
@@ -710,9 +710,9 @@
             </summary>
             <typeparam name="TService">The interface of BindOpen hosted service to consider.</typeparam>
             <typeparam name="TImplementation">The service implementation to consider.</typeparam>
-            <param name="services">The collection of services to populate.</param>
+            <param name="services">The set of services to populate.</param>
             <param name="setupAction">The setup action to consider.</param>
-            <returns>Returns the updated service collection.</returns>
+            <returns>Returns the updated service set.</returns>
         </member>
         <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddTransientBdoService``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Func{BindOpen.Runtime.Hosts.IBdoHost,``1})">
             <summary>
@@ -720,9 +720,9 @@
             </summary>
             <typeparam name="TService">The interface of BindOpen hosted service to consider.</typeparam>
             <typeparam name="TImplementation">The service implementation to consider.</typeparam>
-            <param name="services">The collection of services to populate.</param>
+            <param name="services">The set of services to populate.</param>
             <param name="setupAction">The setup action to consider.</param>
-            <returns>Returns the updated service collection.</returns>
+            <returns>Returns the updated service set.</returns>
         </member>
         <member name="M:Microsoft.Extensions.DependencyInjection.BdoAppServiceCollectionExtensions.AddBdoService``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.DependencyInjection.ServiceLifetime,System.Func{BindOpen.Runtime.Hosts.IBdoHost,``1})">
             <summary>
@@ -730,34 +730,34 @@
             </summary>
             <typeparam name="TService">The interface of BindOpen hosted service to consider.</typeparam>
             <typeparam name="TImplementation">The service implementation to consider.</typeparam>
-            <param name="services">The collection of services to populate.</param>
+            <param name="services">The set of services to populate.</param>
             <param name="setupAction">The setup action to consider.</param>
             <param name="serviceLifetime">The service life time to consider.</param>
-            <returns>Returns the updated service collection.</returns>
+            <returns>Returns the updated service set.</returns>
         </member>
         <member name="T:Microsoft.Extensions.Configuration.ConfigurationExtension">
             <summary>
-            This static class extends .Net core configuration.
+            This static class extends .Net core config.
             </summary>
         </member>
-        <member name="M:Microsoft.Extensions.Configuration.ConfigurationExtension.GetBdoValue``1(Microsoft.Extensions.Configuration.IConfiguration,System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:Microsoft.Extensions.Configuration.ConfigurationExtension.GetBdoValue``1(Microsoft.Extensions.Configuration.IConfiguration,System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="configuration"></param>
+            <param name="config"></param>
             <param name="key"></param>
             <param name="scope"></param>
-            <param name="varElementSet"></param>
+            <param name="varSet"></param>
             <param name="log"></param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.Configuration.ConfigurationExtension.GetBdoValue``1(Microsoft.Extensions.Configuration.IConfiguration,System.String,System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:Microsoft.Extensions.Configuration.ConfigurationExtension.GetBdoValue``1(Microsoft.Extensions.Configuration.IConfiguration,System.String,System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="configuration"></param>
+            <param name="config"></param>
             <param name="key"></param>
             <param name="defaultValue"></param>
             <param name="scope"></param>
@@ -769,21 +769,21 @@
             <summary>
             
             </summary>
-            <param name="configuration"></param>
+            <param name="config"></param>
             <param name="type"></param>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.Configuration.ConfigurationExtension.GetBdoValue(Microsoft.Extensions.Configuration.IConfiguration,System.Type,System.String,System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.MetaData.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:Microsoft.Extensions.Configuration.ConfigurationExtension.GetBdoValue(Microsoft.Extensions.Configuration.IConfiguration,System.Type,System.String,System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
-            <param name="configuration"></param>
+            <param name="config"></param>
             <param name="type"></param>
             <param name="key"></param>
             <param name="defaultValue"></param>
             <param name="scope"></param>
-            <param name="varElementSet">The script variable set to consider.</param>
+            <param name="varSet">The script variable set to consider.</param>
             <param name="log"></param>
             <returns></returns>
         </member>

@@ -9,7 +9,7 @@ using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
-namespace BindOpen.MetaData
+namespace BindOpen.Data
 {
     public static class XmlHelper
     {
@@ -19,7 +19,7 @@ namespace BindOpen.MetaData
         /// <param name="dto">The DTO to save.</param>
         /// <param name="log">The saving log to consider.</param>
         /// <returns>The Xml string of this instance.</returns>
-        public static string ToXml(this IDto dto, IBdoLog log = null)
+        public static string ToXml(this object dto, IBdoLog log = null)
         {
             if (dto == null) return null;
             XmlSerializer serializer = new(dto.GetType());
@@ -48,7 +48,7 @@ namespace BindOpen.MetaData
         /// <param name="filePath">Path of the file to save.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>True if the saving operation has been done. False otherwise.</returns>
-        public static bool SaveXml(this IDto dto, string filePath, IBdoLog log = null)
+        public static bool SaveXml(this object dto, string filePath, IBdoLog log = null)
         {
             if (dto == null) return false;
 
@@ -93,7 +93,7 @@ namespace BindOpen.MetaData
             string filePath,
             IBdoLog log = null,
             XmlSchemaSet xmlSchemaSet = null,
-            bool mustFileExist = true) where T : class, IDto
+            bool mustFileExist = true) where T : class
         {
             T dto = default;
 
@@ -141,7 +141,7 @@ namespace BindOpen.MetaData
         public static T LoadXmlFromString<T>(
             string xmlString,
             IBdoLog log = null,
-            XmlSchemaSet xmlSchemaSet = null) where T : class, IDto
+            XmlSchemaSet xmlSchemaSet = null) where T : class
         {
             T dto = default;
 
@@ -192,7 +192,7 @@ namespace BindOpen.MetaData
             foreach (string currentXsdResource in xsdResources)
             {
                 var stream = assembly.GetManifestResourceStream(currentXsdResource);
-                xmlSchemaSet.Add("https://docs.bindopen.org/xsd", XmlReader.Create(new StreamReader(stream)));
+                xmlSchemaSet.Add("https://xsd.bindopen.org", XmlReader.Create(new StreamReader(stream)));
             }
 
             return xmlSchemaSet;

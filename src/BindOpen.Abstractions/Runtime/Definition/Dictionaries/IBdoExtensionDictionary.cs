@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData;
+﻿using BindOpen.Data;
 
 namespace BindOpen.Runtime.Definition
 {
@@ -6,11 +6,9 @@ namespace BindOpen.Runtime.Definition
     /// 
     /// </summary>
     public interface IBdoExtensionDictionary :
-        ITIdentifiedPoco<IBdoExtensionDictionary>,
-        ITNamedPoco<IBdoExtensionDictionary>,
-        ITGloballyTitledPoco<IBdoExtensionDictionary>,
-        ITGloballyDescribedPoco<IBdoExtensionDictionary>,
-        ITStorablePoco<IBdoExtensionDictionary>
+        IIdentified, INamed,
+        IGloballyTitled, IGloballyDescribed,
+        IStorable
     {
     }
 }

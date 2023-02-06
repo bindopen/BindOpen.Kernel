@@ -1,7 +1,7 @@
-﻿using BindOpen.Extensions.Scripting;
-using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
+using BindOpen.Extensions;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -11,8 +11,8 @@ namespace BindOpen.Runtime.Definition
     /// <summary>
     /// This class represents a script word definition.
     /// </summary>
-    [XmlType("ScriptwordDefinition", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "scriptWord.definition", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ScriptwordDefinition", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "scriptWord.definition", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoScriptwordDefinitionDto : BdoExtensionItemDefinitionDto
     {
         // ------------------------------------------
@@ -113,7 +113,7 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         [JsonPropertyName("parameter.specification")]
         [XmlElement("parameter.specification")]
-        public BdoElementSpecSetDto ParameterSpecification { get; set; }
+        public MetaSpecSetDto ParameterSpecification { get; set; }
 
         /// <summary>
         /// Description of parameters of this instance when parameters are repeated.
@@ -122,7 +122,7 @@ namespace BindOpen.Runtime.Definition
         /// <seealso cref="RepeatedParameterName"/>
         [JsonPropertyName("repeatedParameterDescription")]
         [XmlElement("repeatedParameterDescription")]
-        public DictionaryDataItemDto RepeatedParameterDescription { get; set; }
+        public DictionaryDto RepeatedParameterDescription { get; set; }
 
         #endregion
 

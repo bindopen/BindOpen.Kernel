@@ -1,18 +1,20 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
+using BindOpen.Extensions;
+using BindOpen.Logging;
 using BindOpen.Runtime.Definition;
 using System;
 using System.IO;
 using System.Reflection;
 using System.Xml.Serialization;
-using BindOpen.Logging;
 
 namespace BindOpen.Runtime.Stores
 {
     /// <summary>
     /// This class represents a extension scope loader.
     /// </summary>
-    internal partial class BdoExtensionStoreLoader : BdoItem, IBdoExtensionStoreLoader
+    internal partial class BdoExtensionStoreLoader :
+        BdoItem, IBdoExtensionStoreLoader
     {
         /// <summary>
         /// Loads the extension dico of the specified kind from the specified assembly.
@@ -35,8 +37,6 @@ namespace BindOpen.Runtime.Stores
 
             switch (kind)
             {
-                case BdoExtensionItemKind.Carrier:
-                    return LoadCarrierDictionaryFromAssembly(assembly, extensionDefinition, log);
                 case BdoExtensionItemKind.Connector:
                     return LoadConnectorDictionaryFromAssembly(assembly, extensionDefinition, log);
                 case BdoExtensionItemKind.Entity:
@@ -82,7 +82,7 @@ namespace BindOpen.Runtime.Stores
                 Stream stream = null;
                 if (resourceFullName == null)
                 {
-                    log?.AddWarning("No dico named '" + resourceFileName + "' found in assembly");
+                    log?.AddWarning("No dictionary named '" + resourceFileName + "' found in assembly");
                 }
                 else
                 {
@@ -91,7 +91,7 @@ namespace BindOpen.Runtime.Stores
                         stream = assembly.GetManifestResourceStream(resourceFullName);
                         if (stream == null)
                         {
-                            log?.AddError("Could not open the item dico named '" + resourceFullName + "' in assembly");
+                            log?.AddError("Could not open the item dictionary named '" + resourceFullName + "' in assembly");
                         }
                         else
                         {
@@ -125,7 +125,6 @@ namespace BindOpen.Runtime.Stores
 
             return itemKind switch
             {
-                BdoExtensionItemKind.Carrier => "BindOpen.Carriers",
                 BdoExtensionItemKind.Connector => "BindOpen.Connectors",
                 BdoExtensionItemKind.Entity => "BindOpen.Entities",
                 BdoExtensionItemKind.Format => "BindOpen.Formats",
@@ -148,7 +147,6 @@ namespace BindOpen.Runtime.Stores
 
             return itemKind switch
             {
-                BdoExtensionItemKind.Carrier => typeof(BdoCarrierDictionary),
                 BdoExtensionItemKind.Connector => typeof(BdoConnectorDictionary),
                 BdoExtensionItemKind.Format => null,
                 BdoExtensionItemKind.Entity => typeof(BdoEntityDictionary),
@@ -173,7 +171,7 @@ namespace BindOpen.Runtime.Stores
             definition.WithName(attribute.Name?.IndexOf("$") > 0 ?
                 attribute.Name[(attribute.Name.IndexOf("$") + 1)..] : attribute.Name);
 
-            definition.WithDescription(BdoMeta.NewDictionary(attribute.Description));
+            definition.WithDescription(BdoData.NewDictionary(attribute.Description));
             definition.WithCreationDate(attribute.CreationDate.ToDateTime());
             definition.WithLastModificationDate(attribute.LastModificationDate.ToDateTime());
         }
@@ -188,7 +186,7 @@ namespace BindOpen.Runtime.Stores
             TitledDescribedDataItemAttribute attribute)
         {
             UpdateDictionary(definition, attribute as DescribedDataItemAttribute);
-            definition.WithTitle(BdoMeta.NewDictionary(attribute.Title));
+            definition.WithTitle(BdoData.NewDictionary(attribute.Title));
         }
     }
 }

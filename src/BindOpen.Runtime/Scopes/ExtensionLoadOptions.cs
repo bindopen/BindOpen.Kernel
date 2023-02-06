@@ -1,4 +1,5 @@
-﻿using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
@@ -8,7 +9,7 @@ namespace BindOpen.Runtime.Scopes
     /// <summary>
     /// This class represents the extension loading options.
     /// </summary>
-    [XmlType("ExtensionLoadOptions", Namespace = "https://docs.bindopen.org/xsd")]
+    [XmlType("ExtensionLoadOptions", Namespace = "https://xsd.bindopen.org")]
     public class ExtensionLoadOptions : BdoItem, IExtensionLoadOptions
     {
         // --------------------------------------------------
@@ -82,7 +83,8 @@ namespace BindOpen.Runtime.Scopes
         /// </summary>
         /// <param name="sourceKinds">The source kinds to consider.</param>
         /// <returns>Returns this instance.</returns>
-        public IExtensionLoadOptions WithSourceKinds(params DatasourceKind[] sourceKinds)
+        public IExtensionLoadOptions WithSourceKinds(
+            params DatasourceKind[] sourceKinds)
         {
             SourceKinds = sourceKinds?.ToList();
             return this;

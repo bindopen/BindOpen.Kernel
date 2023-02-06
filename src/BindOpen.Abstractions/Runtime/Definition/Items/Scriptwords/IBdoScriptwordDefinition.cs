@@ -1,6 +1,6 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using BindOpen.Runtime.Definition;
 
 namespace BindOpen.Extensions.Scripting
@@ -53,7 +53,7 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// 
         /// </summary>
-        IBdoElementSpecSet ParameterSpecification { get; set; }
+        IBdoMetaSpecList ParameterSpecification { get; set; }
 
         /// <summary>
         /// 

@@ -1,0 +1,22 @@
+﻿using Bogus;
+using System;
+
+namespace BindOpen.Tests
+{
+    public static class ClassObjectFaker
+    {
+        public static object Fake()
+        {
+            var f = new Faker();
+            return new ClassFake()
+            {
+                DateTimeProp = DateTime.Now,
+                DoubleProp = f.Random.Double(),
+                FloatProp = f.Random.Float(),
+                IntProp = f.Random.Int(),
+                StringProp = f.Random.String(),
+                TimeSpanProp = f.Date.Timespan()
+            };
+        }
+    }
+}

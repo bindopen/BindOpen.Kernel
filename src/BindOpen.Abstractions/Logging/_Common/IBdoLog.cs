@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData;
-using BindOpen.Extensions.Processing;
+﻿using BindOpen.Data;
+using BindOpen.Data.Configuration;
 using System;
 using System.Collections.Generic;
 
@@ -9,11 +9,9 @@ namespace BindOpen.Logging
     /// 
     /// </summary>
     public interface IBdoLog :
-        ITIdentifiedPoco<IBdoLog>,
-        ITNamedPoco<IBdoLog>,
+        IIdentified, INamed,
         IDisplayNamed, IDescribed,
-        ITDetailedPoco<IBdoLog>,
-        IDisposable
+        IDetailed, IDisposable
     {
         /// <summary>
         /// 
@@ -37,14 +35,14 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        IBdoTaskConfiguration Task { get; }
+        IBdoConfiguration TaskConfig { get; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="task"></param>
         /// <returns></returns>
-        IBdoLog WithTask(IBdoTaskConfiguration task);
+        IBdoLog WithTask(IBdoConfiguration task);
 
         // Logs
 

@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData.Elements;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using System;
 
 namespace BindOpen.Runtime.Definition
@@ -7,7 +7,8 @@ namespace BindOpen.Runtime.Definition
     /// <summary>
     /// This class represents a DTO connector definition.
     /// </summary>
-    public class BdoConnectorDefinition : BdoExtensionItemDefinition, IBdoConnectorDefinition
+    public class BdoConnectorDefinition : BdoExtensionItemDefinition,
+        IBdoConnectorDefinition
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -23,7 +24,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// Data constraint statement of this instance.
         /// </summary>
-        public IBdoElementSpecSet DatasourceDetailSpec { get; set; } = new BdoMetaElementSpecSet();
+        public IBdoMetaSpecList DatasourceDetailSpec { get; set; } = new BdoMetaSpecList();
 
         /// <summary>
         /// Item class of this instance.

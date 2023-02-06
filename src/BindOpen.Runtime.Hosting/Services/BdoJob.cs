@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
 using BindOpen.Logging;
 using BindOpen.Runtime.Assemblies;
 using BindOpen.Runtime.Scopes;
@@ -30,50 +30,28 @@ namespace BindOpen.Runtime.Services
         #endregion
 
         // ------------------------------------------
-        // IIdentifiedPoco Implementation
+        // IIdentified Implementation
         // ------------------------------------------
 
-        #region IIdentifiedPoco
+        #region IIdentified
 
         /// <summary>
         /// 
         /// </summary>
         public string Id { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IBdoJob WithId(string id)
-        {
-            Id = id;
-            return this;
-        }
-
         #endregion
 
         // ------------------------------------------
-        // INamedPoco Implementation
+        // INamed Implementation
         // ------------------------------------------
 
-        #region INamedPoco
+        #region INamed
 
         /// <summary>
         /// 
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public IBdoJob WithName(string name)
-        {
-            Name = BdoMeta.NewName(name, "job_");
-            return this;
-        }
 
         #endregion
 
@@ -249,7 +227,7 @@ namespace BindOpen.Runtime.Services
         {
             // we initialize the application scope
 
-            Scope = BdoRtm.NewScope();
+            Scope = BdoRuntime.NewScope();
             Scope.Context.AddSystemItem("bdoHost", this);
 
             _isLoaded = true;

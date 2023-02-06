@@ -2,13 +2,13 @@
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.MetaData.Conditions
+namespace BindOpen.Data.Conditions
 {
     /// <summary>
     /// This class represents an advanced condition DTO.
     /// </summary>
-    [XmlType("AdvancedCondition", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "advanced.condition", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("AdvancedCondition", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "advanced.condition", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class AdvancedConditionDto : ConditionDto
     {
         // ------------------------------------------

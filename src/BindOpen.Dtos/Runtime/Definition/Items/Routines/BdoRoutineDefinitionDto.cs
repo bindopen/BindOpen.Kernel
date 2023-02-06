@@ -1,5 +1,5 @@
-﻿using BindOpen.MetaData.Elements;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -9,8 +9,8 @@ namespace BindOpen.Runtime.Definition
     /// <summary>
     /// This class represents a routine definition.
     /// </summary>
-    [XmlType("RoutineDefinition", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "routine.definition", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("RoutineDefinition", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "routine.definition", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoRoutineDefinitionDto : BdoExtensionItemDefinitionDto
     {
         // --------------------------------------------------
@@ -41,7 +41,7 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         [JsonPropertyName("parameterStatement")]
         [XmlElement("parameterStatement")]
-        public BdoElementSetDto ParameterStatement { get; set; }
+        public MetaListDto ParameterStatement { get; set; }
 
         #endregion
 

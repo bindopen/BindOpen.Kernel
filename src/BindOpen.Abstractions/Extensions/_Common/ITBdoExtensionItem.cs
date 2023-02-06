@@ -1,4 +1,4 @@
-﻿using BindOpen.MetaData;
+﻿using BindOpen.Data;
 using BindOpen.Runtime.Definition;
 
 namespace BindOpen.Extensions
@@ -6,24 +6,12 @@ namespace BindOpen.Extensions
     /// <summary>
     /// This class represents a BindOpen extension runtime item.
     /// </summary>
-    public interface ITBdoExtensionItem<D, C, T> : IBdoExtensionItem, ITIdentifiedPoco<T>,
-        ITBdoExtensionDefinable<D>, ITBdoExtensionConfigurable<D, C>
-        where D : IBdoExtensionItemDefinition
-        where C : ITBdoExtensionItemConfiguration<D>
+    public interface ITBdoExtensionItem<T, D> :
+        IBdoExtensionItem, IIdentified,
+        ITBdoExtensionDefinable<D>
         where T : IBdoExtensionItem
+        where D : IBdoExtensionItemDefinition
     {
-        /// <summary>
-        /// Sets the specified definition of this instance.
-        /// </summary>
-        /// <param name="def">The definition to consider.</param>
-        T WithDefinition(D def);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="config"></param>
-        /// <returns></returns>
-        T WithConfiguration(C config);
     }
 }
 

@@ -16,9 +16,9 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         /// <typeparam name="TService">The interface of BindOpen hosted service to consider.</typeparam>
         /// <typeparam name="TImplementation">The service implementation to consider.</typeparam>
-        /// <param name="services">The collection of services to populate.</param>
+        /// <param name="services">The set of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
-        /// <returns>Returns the updated service collection.</returns>
+        /// <returns>Returns the updated service set.</returns>
         public static IServiceCollection AddSingletonBdoService<TService, TImplementation>(
             this IServiceCollection services,
             Func<IBdoHost, TImplementation> setupAction)
@@ -31,9 +31,9 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         /// <typeparam name="TService">The interface of BindOpen hosted service to consider.</typeparam>
         /// <typeparam name="TImplementation">The service implementation to consider.</typeparam>
-        /// <param name="services">The collection of services to populate.</param>
+        /// <param name="services">The set of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
-        /// <returns>Returns the updated service collection.</returns>
+        /// <returns>Returns the updated service set.</returns>
         public static IServiceCollection AddScopedBdoService<TService, TImplementation>(
             this IServiceCollection services,
             Func<IBdoHost, TImplementation> setupAction)
@@ -46,9 +46,9 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         /// <typeparam name="TService">The interface of BindOpen hosted service to consider.</typeparam>
         /// <typeparam name="TImplementation">The service implementation to consider.</typeparam>
-        /// <param name="services">The collection of services to populate.</param>
+        /// <param name="services">The set of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
-        /// <returns>Returns the updated service collection.</returns>
+        /// <returns>Returns the updated service set.</returns>
         public static IServiceCollection AddTransientBdoService<TService, TImplementation>(
             this IServiceCollection services,
             Func<IBdoHost, TImplementation> setupAction)
@@ -61,10 +61,10 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         /// <typeparam name="TService">The interface of BindOpen hosted service to consider.</typeparam>
         /// <typeparam name="TImplementation">The service implementation to consider.</typeparam>
-        /// <param name="services">The collection of services to populate.</param>
+        /// <param name="services">The set of services to populate.</param>
         /// <param name="setupAction">The setup action to consider.</param>
         /// <param name="serviceLifetime">The service life time to consider.</param>
-        /// <returns>Returns the updated service collection.</returns>
+        /// <returns>Returns the updated service set.</returns>
         private static IServiceCollection AddBdoService<TService, TImplementation>(
             this IServiceCollection services,
             ServiceLifetime serviceLifetime,

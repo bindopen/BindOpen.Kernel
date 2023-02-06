@@ -1,4 +1,5 @@
-﻿using BindOpen.Runtime;
+﻿using BindOpen.Data;
+using BindOpen.Runtime;
 using BindOpen.Runtime.Scopes;
 
 namespace BindOpen.Tests.Runtime
@@ -16,8 +17,8 @@ namespace BindOpen.Tests.Runtime
             {
                 if (_appScope == null)
                 {
-                    _appScope = BdoRtm.NewScope();
-                    _appScope.LoadExtensions(new[] { BdoRtm.AssemblyAsAll() });
+                    _appScope = BdoRuntime.NewScope();
+                    _appScope.LoadExtensions(new[] { BdoData.AssemblyAsAll() });
                 }
 
                 return _appScope;

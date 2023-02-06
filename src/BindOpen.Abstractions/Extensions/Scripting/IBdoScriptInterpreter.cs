@@ -1,5 +1,6 @@
-﻿using BindOpen.MetaData.Elements;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using BindOpen.Logging;
 using System.Collections.Generic;
 
@@ -14,24 +15,24 @@ namespace BindOpen.Extensions.Scripting
         /// 
         /// </summary>
         /// <param name="exp"></param>
-        /// <param name="varElementSet">The variable element set to consider.</param>
+        /// <param name="varSet">The variable element set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         object Evaluate(
             IBdoExpression exp,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="exp"></param>
-        /// <param name="varElementSet">The variable element set to consider.</param>
+        /// <param name="varSet">The variable element set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         T Evaluate<T>(
             IBdoExpression exp,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -39,13 +40,13 @@ namespace BindOpen.Extensions.Scripting
         /// </summary>
         /// <param name="script"></param>
         /// <param name="expKind">The exp kind to consider.</param>
-        /// <param name="varElementSet">The variable element set to consider.</param>
+        /// <param name="varSet">The variable element set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         object Evaluate(
             string script,
             BdoExpressionKind expKind = BdoExpressionKind.Auto,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -53,25 +54,25 @@ namespace BindOpen.Extensions.Scripting
         /// </summary>
         /// <param name="script"></param>
         /// <param name="expKind">The exp kind to consider.</param>
-        /// <param name="varElementSet">The variable element set to consider.</param>
+        /// <param name="varSet">The variable element set to consider.</param>
         /// <param name="log"></param>
         /// <returns></returns>
         T Evaluate<T>(
             string script,
             BdoExpressionKind expKind = BdoExpressionKind.Auto,
-            IBdoElementSet varElementSet = null, IBdoLog log = null);
+            IBdoMetaList varSet = null, IBdoLog log = null);
 
         /// <summary>
         /// Evaluates the specified script word using the defined script words of this instance
         /// of the specified libraries.
         /// </summary>
         /// <param name="scriptword">The script word to consider.</param>
-        /// <param name="varElementSet">The variable element set to use.</param>
+        /// <param name="varSet">The variable element set to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the interpretation task.</returns>
         object Evaluate(
             IBdoScriptword scriptword,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -79,12 +80,12 @@ namespace BindOpen.Extensions.Scripting
         /// of the specified libraries.
         /// </summary>
         /// <param name="scriptword">The script word to consider.</param>
-        /// <param name="varElementSet">The variable element set to use.</param>
+        /// <param name="varSet">The variable element set to use.</param>
         /// <param name="log">The log to consider.</param>
         /// <returns>The log of the interpretation task.</returns>
         T Evaluate<T>(
             IBdoScriptword scriptword,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -94,7 +95,7 @@ namespace BindOpen.Extensions.Scripting
         /// <param name="parentScriptword"></param>
         /// <param name="index"></param>
         /// <param name="offsetIndex"></param>
-        /// <param name="varElementSet">The variable element set to consider.</param>
+        /// <param name="varSet">The variable element set to consider.</param>
         /// <param name="isSimulationModeOn"></param>
         /// <param name="log"></param>
         /// <returns></returns>
@@ -109,7 +110,7 @@ namespace BindOpen.Extensions.Scripting
         /// <param name="parentScriptword"></param>
         /// <param name="index"></param>
         /// <param name="offsetIndex"></param>
-        /// <param name="varElementSet">The variable element set to consider.</param>
+        /// <param name="varSet">The variable element set to consider.</param>
         /// <param name="isSimulationModeOn"></param>
         /// <param name="log"></param>
         /// <returns></returns>
@@ -118,7 +119,7 @@ namespace BindOpen.Extensions.Scripting
             IBdoScriptword parentScriptword,
             ref int index,
             int offsetIndex,
-            IBdoElementSet varElementSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
 
         /// <summary>

@@ -1,7 +1,8 @@
-﻿using BindOpen.Extensions;
+﻿using BindOpen.Data;
+using BindOpen.Data.Configuration;
+using BindOpen.Data.Meta;
+using BindOpen.Extensions;
 using BindOpen.Extensions.Connecting;
-using BindOpen.MetaData;
-using BindOpen.MetaData.Elements;
 using BindOpen.Tests.Extensions;
 using NUnit.Framework;
 using System.IO;
@@ -44,8 +45,8 @@ namespace BindOpen.Tests.IO.Extensions
                 SaveXmlConnectorTest();
             }
 
-            var configuration = XmlHelper.LoadXml<BdoConnectorConfigurationDto>(BdoConnectorFaker.XmlFilePath).ToPoco();
-            ConnectorFake connector = BdoExt.NewConnector<ConnectorFake>(configuration);
+            var config = XmlHelper.LoadXml<BdoConfigurationDto>(BdoConnectorFaker.XmlFilePath).ToPoco();
+            ConnectorFake connector = Bdo.NewConnector<ConnectorFake>(config);
 
             BdoConnectorFaker.AssertFake(connector, _testData);
         }
@@ -73,8 +74,8 @@ namespace BindOpen.Tests.IO.Extensions
                 SaveJsonConnectorTest();
             }
 
-            var configuration = JsonHelper.LoadJson<BdoConnectorConfigurationDto>(BdoConnectorFaker.JsonFilePath).ToPoco();
-            ConnectorFake connector = BdoExt.NewConnector<ConnectorFake>(configuration);
+            var config = JsonHelper.LoadJson<BdoConfigurationDto>(BdoConnectorFaker.JsonFilePath).ToPoco();
+            ConnectorFake connector = Bdo.NewConnector<ConnectorFake>(config);
 
             BdoConnectorFaker.AssertFake(connector, _testData);
         }

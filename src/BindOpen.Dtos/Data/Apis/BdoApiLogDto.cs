@@ -1,16 +1,16 @@
-﻿using BindOpen.MetaData.Items;
+﻿using BindOpen.Data.Items;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.MetaData.Apis
+namespace BindOpen.Data.Apis
 {
     /// <summary>
     /// This class represents a Api log DTO.
     /// </summary>
-    [XmlType("ApiLogDto", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "log", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ApiLogDto", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "log", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class BdoApiLogDto : NamedDataItemDto
     {
         // ------------------------------------------

@@ -1,12 +1,13 @@
-﻿using BindOpen.MetaData;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
 
 namespace BindOpen.Extensions.Scripting
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IScriptItem : IBdoItem, ITNamedPoco<IScriptItem>
+    public interface IScriptItem :
+        IBdoItem, INamed
     {
         /// <summary>
         /// The kind.

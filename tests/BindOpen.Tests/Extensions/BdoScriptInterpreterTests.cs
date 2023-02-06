@@ -1,6 +1,6 @@
-﻿using BindOpen.Extensions.Scripting;
-using BindOpen.MetaData;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
+using BindOpen.Extensions.Scripting;
 using NUnit.Framework;
 using System;
 
@@ -39,13 +39,13 @@ namespace BindOpen.Tests.Extensions
         [Test, Order(2)]
         public void CreateVariableSetTest()
         {
-            var varElementSet = BdoMeta.NewSet(
+            var varSet = BdoMeta.NewList(
                 ("var1", "sample1"),
                 ("var2", 4.55));
 
-            Assert.That(varElementSet.Count == 2, "Bad script interpretation");
-            Assert.That(varElementSet.GetItem<string>("var1") == "sample1", "Bad script interpretation");
-            Assert.That(varElementSet.GetItem<double>("var2") == 4.55, "Bad script interpretation");
+            Assert.That(varSet.Count == 2, "Bad script interpretation");
+            Assert.That(varSet.GetData<string>("var1") == "sample1", "Bad script interpretation");
+            Assert.That(varSet.GetData<double>("var2") == 4.55, "Bad script interpretation");
         }
 
         [Test, Order(3)]

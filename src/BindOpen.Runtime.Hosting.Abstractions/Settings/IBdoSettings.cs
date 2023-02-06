@@ -1,6 +1,6 @@
-﻿using BindOpen.Abstractions.Meta.Configuration;
-using BindOpen.MetaData;
-using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Configuration;
+using BindOpen.Data.Items;
 using BindOpen.Runtime.Scopes;
 using System;
 using System.Runtime.CompilerServices;
@@ -23,7 +23,7 @@ namespace BindOpen.Runtime.Settings
         /// <typeparam name="T"></typeparam>
         /// <param name="name"></param>
         /// <returns></returns>
-        T Get<T>(string name);
+        T Get<T>(string name) where T : class;
 
         /// <summary>
         /// 

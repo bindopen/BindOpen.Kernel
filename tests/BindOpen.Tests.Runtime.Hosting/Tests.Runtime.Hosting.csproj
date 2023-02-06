@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>BindOpen.Tests.Runtime.Hosting</AssemblyName>
     <PackageId>BindOpen.Tests.Runtime.Hosting</PackageId>
     <Product>BindOpen.Runtime</Product>

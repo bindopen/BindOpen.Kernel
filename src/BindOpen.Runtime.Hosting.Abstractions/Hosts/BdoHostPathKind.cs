@@ -16,7 +16,7 @@
         LibraryFolder,
 
         /// <summary>
-        /// The host configuration file.
+        /// The host config file.
         /// </summary>
         HostConfigFile
     }

@@ -1,16 +1,16 @@
-﻿using BindOpen.Extensions.Connecting;
+﻿using BindOpen.Data.Configuration;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.MetaData.Items
+namespace BindOpen.Data.Items
 {
     /// <summary>
     /// This class represents a data source.
     /// </summary>
-    [XmlType("Datasource", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "datasource", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("Datasource", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "datasource", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class DatasourceDto : IdentifiedNamedDataItemDto
     {
         // -----------------------------------------------
@@ -20,12 +20,12 @@ namespace BindOpen.MetaData.Items
         #region Properties
 
         /// <summary>
-        /// The configuration items for this instance.
+        /// The config items for this instance.
         /// </summary>
-        [JsonPropertyName("configuration")]
-        [XmlArray("configuration")]
+        [JsonPropertyName("config")]
+        [XmlArray("config")]
         [XmlArrayItem("add")]
-        public List<BdoConnectorConfigurationDto> Configurations { get; set; }
+        public List<BdoConfigurationDto> Configurations { get; set; }
 
         /// <summary>
         /// Kind of the data module of this instance. 

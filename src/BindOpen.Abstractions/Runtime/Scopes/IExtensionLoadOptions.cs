@@ -1,4 +1,5 @@
-﻿using BindOpen.MetaData.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
 using System.Collections.Generic;
 
 namespace BindOpen.Runtime.Scopes
@@ -42,6 +43,7 @@ namespace BindOpen.Runtime.Scopes
         /// </summary>
         /// <param name="sourceKinds">The source kinds to consider.</param>
         /// <returns>Returns this instance.</returns>
-        IExtensionLoadOptions WithSourceKinds(params DatasourceKind[] sourceKinds);
+        IExtensionLoadOptions WithSourceKinds(
+            params DatasourceKind[] sourceKinds);
     }
 }
