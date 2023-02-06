@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static MetaSpecSetDto ToDto(this IBdoMetaSpecSet poco)
+        public static MetaSpecSetDto ToDto(this IBdoMetaSpecList poco)
         {
             if (poco == null) return null;
 
@@ -26,11 +26,11 @@
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoMetaSpecSet ToPoco(this MetaSpecSetDto dto)
+        public static IBdoMetaSpecList ToPoco(this MetaSpecSetDto dto)
         {
             if (dto == null) return null;
 
-            BdoMetaSpecSet poco = new()
+            BdoMetaSpecList poco = new()
             {
             };
 

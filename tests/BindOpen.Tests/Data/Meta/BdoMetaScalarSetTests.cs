@@ -39,7 +39,7 @@ namespace BindOpen.Tests.Data
             var el3 = BdoMeta.NewScalar("integer3", arrayInteger);
             var el4 = BdoMeta.NewScalar("byteArray4", arrayArrayByte);
 
-            var elSet = BdoMeta.NewSet(el1, el2, el3, el4);
+            var elSet = BdoMeta.NewList(el1, el2, el3, el4);
 
             var itemList1 = elSet.GetDataList<double>("number1");
             Assert.That(
@@ -66,13 +66,13 @@ namespace BindOpen.Tests.Data
             var elAB = BdoMeta.NewScalar("name1", "Test1");
             elAA.Repair(elAB);
 
-            var elSetA = BdoMeta.NewSet(elAA, elAB);
+            var elSetA = BdoMeta.NewList(elAA, elAB);
 
             var elBA = BdoMeta.NewScalar("name1", "Test1");
             var elBB = BdoMeta.NewScalar("name1", null);
             elBA.Repair(elBB);
 
-            var elSetB = BdoMeta.NewSet(elBA, elBB);
+            var elSetB = BdoMeta.NewList(elBA, elBB);
 
             elSetB.Add(elBB);
             elSetA.Add(elAB);

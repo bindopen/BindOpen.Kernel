@@ -35,5 +35,27 @@ namespace BindOpen.Data
                 Kind = BdoExpressionKind.Word,
                 Word = word
             };
+
+        // Alias
+
+        /// <summary>
+        /// Creates the exp.
+        /// </summary>
+        /// <param name="kind">The kind of exp to consider.</param>
+        /// <param name="text">The text to consider.</param>
+        /// <returns>Returns the created exp.</returns>
+        public static BdoExpression NewExp(
+            string text,
+            BdoExpressionKind kind = BdoExpressionKind.Auto)
+            => NewExpression(text, kind);
+
+        /// <summary>
+        /// Creates the exp.
+        /// </summary>
+        /// <param name="word">The word of exp to consider.</param>
+        /// <returns>Returns the created exp.</returns>
+        public static BdoExpression NewExp(
+            IBdoScriptword word)
+            => NewExpression(word);
     }
 }

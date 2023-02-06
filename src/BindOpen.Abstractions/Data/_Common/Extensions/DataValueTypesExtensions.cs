@@ -97,7 +97,7 @@ namespace BindOpen.Data
                 return DataValueTypes.Date;
             else if (type == typeof(int) || type == typeof(int?))
                 return DataValueTypes.Integer;
-            else if (type == typeof(float) || type == typeof(float?) || (type == typeof(double)) || (type == typeof(double?)))
+            else if (type == typeof(float) || type == typeof(float?) || type == typeof(double) || type == typeof(double?))
                 return DataValueTypes.Number;
             else if (type.IsEnum)
                 return DataValueTypes.Text;

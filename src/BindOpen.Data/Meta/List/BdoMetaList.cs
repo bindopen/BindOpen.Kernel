@@ -9,9 +9,9 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a catalog el that is an el whose els are entities.
     /// </summary>
-    public partial class BdoMetaSet :
-        TBdoItemSet<IBdoMetaData>,
-        IBdoMetaSet
+    public partial class BdoMetaList :
+        TBdoList<IBdoMetaData>,
+        IBdoMetaList
     {
         // ------------------------------------------
         // CONVERTERS
@@ -23,16 +23,16 @@ namespace BindOpen.Data.Meta
         /// Converts from data element array.
         /// </summary>
         /// <param name="elems">The elems to consider.</param>
-        public static explicit operator BdoMetaSet(IBdoMetaData[] elems)
+        public static explicit operator BdoMetaList(IBdoMetaData[] elems)
         {
-            return BdoMeta.NewSet(elems);
+            return BdoMeta.NewList(elems);
         }
 
         /// <summary><<                    
         /// Converts from data element array.
         /// </summary>
         /// <param name="elems">The elems to consider.</param>
-        public static explicit operator IBdoMetaData[](BdoMetaSet metaSet)
+        public static explicit operator IBdoMetaData[](BdoMetaList metaSet)
         {
             return metaSet?.ToArray();
         }
@@ -48,7 +48,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Initializes a new instance of the CollectionElement class.
         /// </summary>
-        public BdoMetaSet() : base()
+        public BdoMetaList() : base()
         {
         }
 
@@ -68,10 +68,10 @@ namespace BindOpen.Data.Meta
         #endregion
 
         // --------------------------------------------------
-        // IBdoMetaSet Implementation
+        // IBdoMetaList Implementation
         // --------------------------------------------------
 
-        #region IBdoMetaSet
+        #region IBdoMetaList
 
         /// <summary>
         /// Adds the specified item.
@@ -80,11 +80,10 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns the new item that has been added.
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
-        public new IBdoMetaSet Add(
+        public new IBdoMetaList Add(
             params IBdoMetaData[] items)
         {
             base.Add(items);
-
             return this;
         }
 
@@ -93,7 +92,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="items">The items to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public new IBdoMetaSet With(
+        public new IBdoMetaList With(
             params IBdoMetaData[] items)
         {
             base.With(items);
@@ -222,7 +221,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns the items of this instance.</returns>
         public object GetData(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             var list = GetDataList(scope, varSet, log);
@@ -238,7 +237,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns the items of this instance.</returns>
         public Q GetData<Q>(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             var list = GetDataList<Q>(scope, varSet, log);
@@ -260,7 +259,7 @@ namespace BindOpen.Data.Meta
         public object GetData(
             int index,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             var obj = GetData<object>(index, scope, varSet, log); ;
@@ -277,7 +276,7 @@ namespace BindOpen.Data.Meta
         public Q GetData<Q>(
             int index,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             var list = GetDataList(scope, varSet, log);
@@ -303,7 +302,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns the items of this instance.</returns>
         public List<object> GetDataList(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             return Items
@@ -320,7 +319,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns the items of this instance.</returns>
         public List<Q> GetDataList<Q>(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             var list = GetDataList(scope, varSet, log);
@@ -358,7 +357,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone(params string[] areas)
         {
-            var el = base.Clone(areas) as BdoMetaSet;
+            var el = base.Clone(areas) as BdoMetaList;
             return el;
         }
 

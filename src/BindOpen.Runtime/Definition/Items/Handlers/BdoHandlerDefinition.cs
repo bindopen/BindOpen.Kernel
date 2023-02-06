@@ -26,7 +26,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// The parameter specification of this instance.
         /// </summary>
-        public IBdoMetaSpecSet ParameterSpecification { get; set; } = new BdoMetaSpecSet();
+        public IBdoMetaSpecList ParameterSpecification { get; set; } = new BdoMetaSpecList();
 
         /// <summary>
         /// Name of the POST function.

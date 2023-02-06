@@ -52,18 +52,18 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public IBdoMetaSet Set(
+        public IBdoMetaList Set(
             string key = null)
-            => Get<IBdoMetaSet>(key);
+            => Get<IBdoMetaList>(key);
 
         /// <summary>
         /// Returns the specified item of this instance.
         /// </summary>
         /// <param name="index">The index to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public IBdoMetaSet Set(
+        public IBdoMetaList Set(
             int index)
-            => Get<IBdoMetaSet>(index);
+            => Get<IBdoMetaList>(index);
 
         // Data
 
@@ -79,7 +79,7 @@ namespace BindOpen.Data.Meta
         public List<object> GetDataList(
             string key,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             var meta = this[key];
@@ -101,7 +101,7 @@ namespace BindOpen.Data.Meta
         public List<Q> GetDataList<Q>(
             string key,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             var meta = this[key];
@@ -122,7 +122,7 @@ namespace BindOpen.Data.Meta
         public object GetData(
             string key,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             var meta = this[key];
@@ -130,7 +130,7 @@ namespace BindOpen.Data.Meta
                 return metaObject.GetData(scope, varSet, log);
             else if (meta is IBdoMetaScalar metaScalar)
                 return metaScalar.GetData(scope, varSet, log);
-            else if (meta is IBdoMetaSet metaSet)
+            else if (meta is IBdoMetaList metaSet)
                 return metaSet.GetData(scope, varSet, log);
 
             return default;
@@ -147,7 +147,7 @@ namespace BindOpen.Data.Meta
         public object GetData(
             int index,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             var meta = this[index];
@@ -155,7 +155,7 @@ namespace BindOpen.Data.Meta
                 return metaObject.GetData(scope, varSet, log);
             else if (meta is IBdoMetaScalar metaScalar)
                 return metaScalar.GetData(scope, varSet, log);
-            else if (meta is IBdoMetaSet metaSet)
+            else if (meta is IBdoMetaList metaSet)
                 return metaSet.GetData(scope, varSet, log);
 
             return default;
@@ -172,7 +172,7 @@ namespace BindOpen.Data.Meta
         public Q GetData<Q>(
             string key,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             var meta = this[key];
@@ -195,7 +195,7 @@ namespace BindOpen.Data.Meta
         public Q GetData<Q>(
             int index,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             var meta = this[index];

@@ -5,7 +5,7 @@ namespace BindOpen.Data
     /// <summary>
     /// This interface represents an described data item.
     /// </summary>
-    public static class GloballyDescribedExtensions
+    public static class IGloballyDescribedExtensions
     {
         public static T AddDescription<T>(
             this T obj,

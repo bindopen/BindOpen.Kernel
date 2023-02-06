@@ -6,11 +6,11 @@ using System.Collections.Generic;
 namespace BindOpen.Data.Meta
 {
     /// <summary>
-    /// This class represents an extension of the DataValueType enumeration.
+    /// This class represents a data element set.
     /// </summary>
-    public partial interface IBdoMetaSet :
-        ITBdoItemSet<IBdoMetaData>,
-        IBdoMetaData
+    public partial class BdoMetaList :
+        TBdoList<IBdoMetaData>,
+        IBdoMetaList
     {
         /// <summary>
         /// Returns the specified item of this instance.
@@ -18,7 +18,8 @@ namespace BindOpen.Data.Meta
         /// <param name="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
         public IBdoMetaObject Object(
-            string key = null);
+            string key = null)
+            => Get<IBdoMetaObject>(key);
 
         /// <summary>
         /// Returns the specified item of this instance.
@@ -26,7 +27,8 @@ namespace BindOpen.Data.Meta
         /// <param name="index">The index to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
         public IBdoMetaObject Object(
-            int index);
+            int index)
+            => Get<IBdoMetaObject>(index);
 
         /// <summary>
         /// Returns the specified item of this instance.
@@ -34,7 +36,8 @@ namespace BindOpen.Data.Meta
         /// <param name="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
         public IBdoMetaScalar Scalar(
-            string key = null);
+            string key = null)
+            => Get<IBdoMetaScalar>(key);
 
         /// <summary>
         /// Returns the specified item of this instance.
@@ -42,23 +45,26 @@ namespace BindOpen.Data.Meta
         /// <param name="index">The index to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
         public IBdoMetaScalar Scalar(
-            int index);
+            int index)
+            => Get<IBdoMetaScalar>(index);
 
         /// <summary>
         /// Returns the specified item of this instance.
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public IBdoMetaSet Set(
-            string key = null);
+        public IBdoMetaList Set(
+            string key = null)
+            => Get<IBdoMetaList>(key);
 
         /// <summary>
         /// Returns the specified item of this instance.
         /// </summary>
         /// <param name="index">The index to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public IBdoMetaSet Set(
-            int index);
+        public IBdoMetaList Set(
+            int index)
+            => Get<IBdoMetaList>(index);
 
         // Data
 
@@ -74,8 +80,15 @@ namespace BindOpen.Data.Meta
         public List<object> GetDataList(
             string key,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null);
+            IBdoMetaList varSet = null,
+            IBdoLog log = null)
+        {
+            var meta = this[key];
+            if (meta is IBdoMetaScalar metaScalar)
+                return metaScalar.GetDataList(scope, varSet, log);
+
+            return default;
+        }
 
         /// <summary>
         /// 
@@ -89,8 +102,15 @@ namespace BindOpen.Data.Meta
         public List<Q> GetDataList<Q>(
             string key,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null);
+            IBdoMetaList varSet = null,
+            IBdoLog log = null)
+        {
+            var meta = this[key];
+            if (meta is IBdoMetaScalar metaScalar)
+                return metaScalar.GetDataList<Q>(scope, varSet, log);
+
+            return default;
+        }
 
         /// <summary>
         /// 
@@ -103,8 +123,19 @@ namespace BindOpen.Data.Meta
         public object GetData(
             string key,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null);
+            IBdoMetaList varSet = null,
+            IBdoLog log = null)
+        {
+            var meta = this[key];
+            if (meta is IBdoMetaObject metaObject)
+                return metaObject.GetData(scope, varSet, log);
+            else if (meta is IBdoMetaScalar metaScalar)
+                return metaScalar.GetData(scope, varSet, log);
+            else if (meta is IBdoMetaList metaSet)
+                return metaSet.GetData(scope, varSet, log);
+
+            return default;
+        }
 
         /// <summary>
         /// 
@@ -117,7 +148,17 @@ namespace BindOpen.Data.Meta
         public Q GetData<Q>(
             string key,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null);
+            IBdoMetaList varSet = null,
+            IBdoLog log = null)
+        {
+            var meta = this[key];
+            if (meta is IBdoMetaObject metaObject)
+                return metaObject.GetData<Q>(scope, varSet, log);
+            else if (meta is IBdoMetaScalar metaScalar)
+                return metaScalar.GetData<Q>(scope, varSet, log);
+
+            return default;
+        }
     }
 }
+

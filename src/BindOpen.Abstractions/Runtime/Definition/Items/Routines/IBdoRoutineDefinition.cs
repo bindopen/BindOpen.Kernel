@@ -28,6 +28,6 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaSet ParameterStatement { get; set; }
+        IBdoMetaList ParameterStatement { get; set; }
     }
 }

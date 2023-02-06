@@ -11,7 +11,7 @@ namespace BindOpen.Data
     /// <summary>
     /// 
     /// </summary>
-    public static class BdoMetaSetExtensions
+    public static class IBdoMetaListExtensions
     {
         /// <summary>
         /// 
@@ -23,7 +23,7 @@ namespace BindOpen.Data
             object obj,
             Type type = null,
             bool onlyMetaAttributes = false)
-            where T : ITBdoItemSet<IBdoMetaData>
+            where T : ITBdoList<IBdoMetaData>
         {
             set?.With(
                 obj.ToMetaArray(type, onlyMetaAttributes));
@@ -34,21 +34,21 @@ namespace BindOpen.Data
         /// Creates a data element set from a dynamic object.
         /// </summary>
         /// <param name="obj">The objet to consider.</param>
-        public static IBdoMetaSet ToMetaSet(
+        public static IBdoMetaList ToMetaList(
             this object obj,
             Type type = null,
             bool onlyMetaAttributes = true)
-            => obj.ToMetaSet<BdoMetaSet>(type, onlyMetaAttributes);
+            => obj.ToMetaList<BdoMetaList>(type, onlyMetaAttributes);
 
         /// <summary>
         /// Creates a data element set from a dynamic object.
         /// </summary>
         /// <param name="obj">The objet to consider.</param>
-        public static T ToMetaSet<T>(
+        public static T ToMetaList<T>(
             this object obj,
             Type type = null,
             bool onlyMetaAttributes = true)
-            where T : class, IBdoMetaSet, new()
+            where T : class, IBdoMetaList, new()
         {
             T set = default;
 
@@ -90,10 +90,10 @@ namespace BindOpen.Data
         /// <param name="log">The log to consider.</param>
         public static void UpdateFromMeta(
             this object obj,
-            IBdoMetaSet set,
+            IBdoMetaList set,
             bool onlyMetaAttributes = true,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             if (obj == null || !set.Has()) return;

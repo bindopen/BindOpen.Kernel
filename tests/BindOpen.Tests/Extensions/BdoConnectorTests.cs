@@ -27,7 +27,7 @@ namespace BindOpen.Tests.Extensions
         {
             var config =
                 BdoConfig.New("tests.core$testConnector")
-                .WithItems(
+                .With(
                     BdoMeta.NewScalar("host", data.host),
                     BdoMeta.NewScalar("port", data.port),
                     BdoMeta.NewScalar("isSslEnabled", data.isSslEnabled));

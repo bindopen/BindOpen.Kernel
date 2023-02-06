@@ -24,7 +24,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// Data constraint statement of this instance.
         /// </summary>
-        public IBdoMetaSpecSet DatasourceDetailSpec { get; set; } = new BdoMetaSpecSet();
+        public IBdoMetaSpecList DatasourceDetailSpec { get; set; } = new BdoMetaSpecList();
 
         /// <summary>
         /// Item class of this instance.

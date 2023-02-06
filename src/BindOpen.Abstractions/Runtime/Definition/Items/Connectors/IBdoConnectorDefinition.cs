@@ -22,7 +22,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaSpecSet DatasourceDetailSpec { get; set; }
+        IBdoMetaSpecList DatasourceDetailSpec { get; set; }
 
         /// <summary>
         /// 

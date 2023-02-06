@@ -8,13 +8,13 @@
     <xs:complexContent mixed="false">
       <xs:extension base="Routine">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="outputEventSet" type="DataItemSetOfConditionalEvent" />
+          <xs:element minOccurs="0" maxOccurs="1" name="outputEventSet" type="DataListOfConditionalEvent" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
 
-  <xs:complexType name="DataItemSetOfConditionalEvent">
+  <xs:complexType name="DataListOfConditionalEvent">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="description" type="DictionaryDataItem" />
       <xs:element minOccurs="0" maxOccurs="1" name="items" type="ArrayOfConditionalEvent1" />

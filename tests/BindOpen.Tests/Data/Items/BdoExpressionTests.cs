@@ -43,7 +43,7 @@ namespace BindOpen.Tests.Data
         [Test, Order(1)]
         public void Create1Test()
         {
-            _exp = BdoData.NewExpression(
+            _exp = BdoData.NewExp(
                 _valueSet.Literal as string,
                 BdoExpressionKind.Literal);
 
@@ -62,8 +62,8 @@ namespace BindOpen.Tests.Data
         [Test, Order(3)]
         public void Create3Test()
         {
-            _exp = BdoData.NewExpression(
-                BdoScript.Function(_valueSet.ScriptwordName as string));
+            _exp = BdoData.NewExp(
+                BdoScript.Func(_valueSet.ScriptwordName as string));
 
             Test(_exp);
         }

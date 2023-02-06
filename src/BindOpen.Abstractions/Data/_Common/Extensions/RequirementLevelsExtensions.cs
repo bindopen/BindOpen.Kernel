@@ -13,8 +13,8 @@
         /// <returns>The result object.</returns>
         public static bool IsPossible(this RequirementLevels requirementLevel)
         {
-            return (requirementLevel == RequirementLevels.Optional)
-                || (requirementLevel == RequirementLevels.Required);
+            return requirementLevel == RequirementLevels.Optional
+                || requirementLevel == RequirementLevels.Required;
         }
     }
 }

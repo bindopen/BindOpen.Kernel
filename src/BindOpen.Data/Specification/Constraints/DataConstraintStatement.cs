@@ -7,7 +7,7 @@ namespace BindOpen.Data.Specification
     /// <summary>
     /// This class represents the data constraint statement.
     /// </summary>
-    public class DataConstraintStatement : TBdoItemSet<IBdoConfiguration>,
+    public class DataConstraintStatement : TBdoList<IBdoConfiguration>,
         IDataConstraintStatement
     {
         // ------------------------------------------

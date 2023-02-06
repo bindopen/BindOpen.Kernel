@@ -16,14 +16,6 @@ namespace BindOpen.Data
     /// </summary>
     public static class ObjectHelper
     {
-        /// <summary>
-        /// Returns the string representation of the specified object.
-        /// </summary>
-        /// <param name="obj">The object to consider.</param>
-        /// <param name="index">The index to consider.</param>
-        /// <returns></returns>
-        public static Q GetAt<Q>(this IList<Q> obj, int index)
-            => obj != null && index >= 0 && index < obj.Count ? obj[index] : default;
 
         /// <summary>
         /// Returns the key representing the specified object i.e. in lower case and empty if null.
@@ -349,7 +341,9 @@ namespace BindOpen.Data
         /// Creates a byte array from the string, using the 
         /// System.Text.Encoding.Default encoding unless another is specified.
         /// </summary>
-        public static byte[] ToByteArray(this string str, Encoding encoding = null)
+        public static byte[] ToByteArray(
+            this string str,
+            Encoding encoding = null)
         {
             return (encoding ?? Encoding.Default).GetBytes(str);
         }
@@ -359,7 +353,8 @@ namespace BindOpen.Data
         /// </summary>
         /// <typeparam name="type">The enumeration type to consider.</typeparam>
         /// <returns>Returns the string array.</returns>
-        public static string[] GetEnumFields(this Type type)
+        public static string[] GetEnumFields(
+            this Type type)
         {
             List<string> fieldNames = new();
             foreach (var field in Enum.GetValues(type))

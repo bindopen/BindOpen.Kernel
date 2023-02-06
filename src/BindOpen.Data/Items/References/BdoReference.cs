@@ -39,7 +39,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// The path detail of this instance.
         /// </summary>
-        public IBdoMetaSet PathDetail { get; set; }
+        public IBdoMetaList PathDetail { get; set; }
 
         #endregion
 
@@ -89,7 +89,7 @@ namespace BindOpen.Data.Items
         /// <returns>Returns the retrieved items.</returns>
         public object Get(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             //SetDefinition((scope== null ? null : scope.BdoExtension));
@@ -127,7 +127,7 @@ namespace BindOpen.Data.Items
         {
             BdoReference dataReference = Clone<BdoReference>(areas);
             dataReference.SourceMetaData = SourceMetaData.Clone<IBdoMetaData>();
-            dataReference.PathDetail = PathDetail.Clone<BdoMetaSet>();
+            dataReference.PathDetail = PathDetail.Clone<BdoMetaList>();
 
             return dataReference;
         }

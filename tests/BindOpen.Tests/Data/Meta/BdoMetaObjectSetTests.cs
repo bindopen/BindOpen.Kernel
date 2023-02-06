@@ -11,7 +11,7 @@ namespace BindOpen.Tests.Data
     {
         private dynamic _testData;
 
-        private IBdoMetaSet _metaObjSet = null;
+        private IBdoMetaList _metaObjSet = null;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -27,7 +27,7 @@ namespace BindOpen.Tests.Data
             };
         }
 
-        public void Test(IBdoMetaSet metaSet)
+        public void Test(IBdoMetaList metaSet)
         {
             // set
             //  - "object1"
@@ -69,12 +69,6 @@ namespace BindOpen.Tests.Data
                 .With(
                     BdoMeta.NewScalar("path", _testData.path1 as string));
 
-            var metaObj5 = BdoMeta.NewObject("object1")
-                .With(
-                    BdoConfig.NewExtension(
-                        "tests.core$testEntity",
-                        BdoMeta.NewScalar("path", _testData.path1 as string)));
-
             var metaObj2 = BdoMeta.NewObject("object2", "tests.core$testEntity")
                 .WithData(new EntityFake()
                 {
@@ -93,7 +87,13 @@ namespace BindOpen.Tests.Data
                     .FromObject(new { path = _testData.path4 as string }));
             var metaObj4 = obj4?.ToMetaData("object4");
 
-            _metaObjSet = BdoMeta.NewSet(
+            var metaObj5 = BdoMeta.NewObject("object1")
+                .AddRange(
+                    BdoConfig.NewExtension(
+                        "tests.core$testEntity",
+                        BdoMeta.NewScalar("path", _testData.path1 as string)));
+
+            _metaObjSet = BdoMeta.NewList(
                 metaObj1,
                 metaObj2,
                 metaObj3,

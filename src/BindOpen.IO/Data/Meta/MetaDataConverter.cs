@@ -28,7 +28,7 @@ namespace BindOpen.Data.Meta
             {
                 dto = scalar.ToDto();
             }
-            else if (poco is IBdoMetaSet set)
+            else if (poco is IBdoMetaList set)
             {
                 dto = set.ToDto();
             }
@@ -61,7 +61,7 @@ namespace BindOpen.Data.Meta
             {
                 return scalar.ToPoco();
             }
-            else if (dto is MetaSetDto set)
+            else if (dto is MetaListDto set)
             {
                 return set.ToPoco();
             }

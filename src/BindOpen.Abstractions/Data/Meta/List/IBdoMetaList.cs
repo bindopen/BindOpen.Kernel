@@ -7,8 +7,8 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// 
     /// </summary>
-    public partial interface IBdoMetaSet :
-        ITBdoItemSet<IBdoMetaData>,
+    public partial interface IBdoMetaList :
+        ITBdoList<IBdoMetaData>,
         IBdoMetaData
     {
         new void Clear();
@@ -18,7 +18,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        new IBdoMetaSet Add(
+        new IBdoMetaList Add(
             params IBdoMetaData[] items);
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        new IBdoMetaSet With(
+        new IBdoMetaList With(
             params IBdoMetaData[] items);
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace BindOpen.Data.Meta
         object GetData(
             int index,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace BindOpen.Data.Meta
         Q GetData<Q>(
             int index,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
     }
 }

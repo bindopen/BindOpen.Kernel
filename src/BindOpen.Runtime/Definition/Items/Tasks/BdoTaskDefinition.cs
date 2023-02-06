@@ -29,7 +29,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// Input specification of this instance.
         /// </summary>
-        public IBdoMetaSpecSet InputSpecification { get; set; }
+        public IBdoMetaSpecList InputSpecification { get; set; }
 
         /// <summary>
         /// Indicates whether this instance is executable.
@@ -49,7 +49,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// Output specification of this instance.
         /// </summary>
-        public IBdoMetaSpecSet OutputSpecification { get; set; }
+        public IBdoMetaSpecList OutputSpecification { get; set; }
 
         /// <summary>
         /// The runtime type of this instance.

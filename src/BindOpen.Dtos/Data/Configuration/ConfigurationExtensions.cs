@@ -25,7 +25,7 @@ namespace BindOpen.Data.Configuration
         public static T LoadXml<T>(
             string filePath,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null,
             XmlSchemaSet xmlSchemaSet = null,
             bool mustFileExist = true) where T : BdoConfigurationDto, new()

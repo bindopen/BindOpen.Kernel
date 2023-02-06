@@ -30,7 +30,7 @@ namespace BindOpen.Data.References
         /// </summary>
         [JsonPropertyName("path")]
         [XmlElement("path")]
-        public MetaSetDto PathDetail { get; set; }
+        public MetaListDto PathDetail { get; set; }
 
         /// <summary>
         /// Source element of this instance.

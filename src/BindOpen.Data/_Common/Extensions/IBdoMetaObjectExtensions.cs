@@ -6,7 +6,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    public static partial class BdoMetaObjectExtensions
+    public static partial class IBdoMetaObjectExtensions
     {
         /// <summary>
         /// 

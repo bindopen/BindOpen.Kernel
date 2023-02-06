@@ -18,7 +18,7 @@ namespace BindOpen.Data.Conditions
         public static bool Evaluate(
             this ICondition condition,
             IBdoScriptInterpreter scriptInterpreter,
-            IBdoMetaSet varSet)
+            IBdoMetaList varSet)
         {
             if (condition is IAdvancedCondition advancedCondition)
             {
@@ -46,7 +46,7 @@ namespace BindOpen.Data.Conditions
         private static bool Evaluate(
             this IAdvancedCondition condition,
             IBdoScriptInterpreter scriptInterpreter,
-            IBdoMetaSet varSet)
+            IBdoMetaList varSet)
         {
             if (condition == null) return false;
 
@@ -113,7 +113,7 @@ namespace BindOpen.Data.Conditions
         private static bool Evaluate(
             this IScriptCondition condition,
             IBdoScriptInterpreter scriptInterpreter,
-            IBdoMetaSet varSet)
+            IBdoMetaList varSet)
         {
             if (condition == null) return false;
 

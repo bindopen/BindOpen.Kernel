@@ -122,7 +122,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns the items of this instance.</returns>
         public override object GetData(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             var list = GetDataList(scope, varSet, log);
@@ -138,7 +138,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns the items of this instance.</returns>
         public override Q GetData<Q>(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             var list = GetDataList<Q>(scope, varSet, log);
@@ -160,7 +160,7 @@ namespace BindOpen.Data.Meta
         public object GetData(
             int index,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             var obj = GetData<object>(index, scope, varSet, log); ;
@@ -177,7 +177,7 @@ namespace BindOpen.Data.Meta
         public Q GetData<Q>(
             int index,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             var list = GetDataList<Q>(scope, varSet, log); ;
@@ -194,7 +194,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns the items of this instance.</returns>
         public List<object> GetDataList(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             var obj = DataObject(scope, varSet, log);
@@ -212,7 +212,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns the items of this instance.</returns>
         public List<Q> GetDataList<Q>(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             var list = GetDataList(scope, varSet, log);

@@ -8,22 +8,22 @@ namespace BindOpen.Data.Items
     /// This class represents a data item set.
     /// </summary>
     /// <typeparam name="T">The class of the named data items.</typeparam>
-    public class TBdoItemSet<T> : BdoItem, ITBdoItemSet<T>
+    public class TBdoList<T> : BdoItem, ITBdoList<T>
         where T : IReferenced
     {
         // ------------------------------------------
-        // ITDataItemSet Implementation
+        // ITDataList Implementation
         // ------------------------------------------
 
-        #region ITDataItemSet
+        #region ITDataList
 
         /// <summary>
         /// Converts from string.
         /// </summary>
         /// <param name="st">The string to consider.</param>
-        public static implicit operator TBdoItemSet<T>(T[] items)
+        public static implicit operator TBdoList<T>(T[] items)
         {
-            return BdoData.NewItemSet<T>(items);
+            return BdoData.NewList<T>(items);
         }
 
         #endregion
@@ -48,19 +48,19 @@ namespace BindOpen.Data.Items
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the DataItemSet class.
+        /// Instantiates a new instance of the DataList class.
         /// </summary>
-        public TBdoItemSet() : base()
+        public TBdoList() : base()
         {
         }
 
         #endregion
 
         // ------------------------------------------
-        // ITDataItemSet Implementation
+        // ITDataList Implementation
         // ------------------------------------------
 
-        #region ITDataItemSet
+        #region ITDataList
 
         /// <summary>
         /// 
@@ -134,7 +134,7 @@ namespace BindOpen.Data.Items
         /// <returns>Returns the new item that has been added.
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
-        public ITBdoItemSet<T> Add(params T[] items)
+        public ITBdoList<T> Add(params T[] items)
         {
             if (items != null)
             {
@@ -148,11 +148,25 @@ namespace BindOpen.Data.Items
         }
 
         /// <summary>
+        /// Adds the specified item.
+        /// </summary>
+        /// <param name="items">The items of the item to add.</param>
+        /// <returns>Returns the new item that has been added.
+        /// Returns null if the new item is null or else its name is null.</returns>
+        /// <remarks>The new item must have a name.</remarks>
+        public ITBdoList<T> AddRange(
+            ITBdoList<T> list)
+        {
+            var items = list?.Items?.ToArray();
+            return Add(items);
+        }
+
+        /// <summary>
         /// Sets the specified single item of this instance.
         /// </summary>
         /// <param name="items">The items to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public ITBdoItemSet<T> With(params T[] items)
+        public ITBdoList<T> With(params T[] items)
         {
             Clear();
             Add(items);
@@ -304,7 +318,7 @@ namespace BindOpen.Data.Items
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone(params string[] areas)
         {
-            var obj = base.Clone<TBdoItemSet<T>>(areas);
+            var obj = base.Clone<TBdoList<T>>(areas);
             obj.Id = StringHelper.NewGuid();
             obj._items = _items?.Select(p =>
             {

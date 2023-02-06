@@ -7,7 +7,7 @@ namespace BindOpen.Data.Configuration
     /// 
     /// </summary>
     public interface IBdoConfiguration :
-        IBdoMetaSet,
+        IBdoMetaList,
         INamed, IReferenced,
         IGloballyTitled, IGloballyDescribed,
         IStorable
@@ -35,7 +35,7 @@ namespace BindOpen.Data.Configuration
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        new IBdoConfiguration WithItems(
+        new IBdoConfiguration With(
             params IBdoMetaData[] items);
     }
 }

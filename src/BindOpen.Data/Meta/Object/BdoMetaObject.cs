@@ -50,7 +50,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The items of this instance.
         /// </summary>
-        public IBdoMetaSet PropertySet { get; set; }
+        public IBdoMetaList PropertySet { get; set; }
 
         /// <summary>
         /// The class full name of this instance.
@@ -83,7 +83,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns the items of this instance.</returns>
         public override Q GetData<Q>(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             return _data.As<Q>();
@@ -155,10 +155,10 @@ namespace BindOpen.Data.Meta
         #endregion
 
         // --------------------------------------------------
-        // IDataItemSet Implementation
+        // IDataList Implementation
         // --------------------------------------------------
 
-        #region IDataItemSet Implementation
+        #region IDataList Implementation
 
         /// <summary>
         /// Returns the number of items.
@@ -194,23 +194,23 @@ namespace BindOpen.Data.Meta
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
         public IBdoMetaObject Add(
-            params IBdoMetaSet[] items)
+            params IBdoMetaList[] items)
         {
-            (this as ITBdoItemSet<IBdoMetaData>).Add(items);
+            (this as ITBdoList<IBdoMetaData>).Add(items);
             return this;
         }
 
-        IBdoMetaSet IBdoMetaSet.Add(
+        IBdoMetaList IBdoMetaList.Add(
             params IBdoMetaData[] items)
         {
-            (this as ITBdoItemSet<IBdoMetaData>).Add(items);
+            (this as ITBdoList<IBdoMetaData>).Add(items);
             return this;
         }
 
-        ITBdoItemSet<IBdoMetaData> ITBdoItemSet<IBdoMetaData>.Add(
+        ITBdoList<IBdoMetaData> ITBdoList<IBdoMetaData>.Add(
             params IBdoMetaData[] items)
         {
-            PropertySet ??= BdoMeta.NewSet();
+            PropertySet ??= BdoMeta.NewList();
             PropertySet.Add(items);
             return this;
         }
@@ -218,27 +218,27 @@ namespace BindOpen.Data.Meta
         public IBdoMetaObject With(
             params IBdoMetaData[] items)
         {
-            (this as ITBdoItemSet<IBdoMetaData>).With(items);
+            (this as ITBdoList<IBdoMetaData>).With(items);
             return this;
         }
 
-        IBdoMetaSet IBdoMetaSet.With(
+        IBdoMetaList IBdoMetaList.With(
             params IBdoMetaData[] items)
         {
-            (this as ITBdoItemSet<IBdoMetaData>).With(items);
+            (this as ITBdoList<IBdoMetaData>).With(items);
             return this;
         }
 
-        ITBdoItemSet<IBdoMetaData> ITBdoItemSet<IBdoMetaData>.With(
+        ITBdoList<IBdoMetaData> ITBdoList<IBdoMetaData>.With(
             params IBdoMetaData[] items)
         {
-            PropertySet ??= BdoMeta.NewSet();
+            PropertySet ??= BdoMeta.NewList();
             return PropertySet.With(items);
         }
 
         public IBdoMetaData Insert(IBdoMetaData item)
         {
-            PropertySet ??= BdoMeta.NewSet();
+            PropertySet ??= BdoMeta.NewList();
             return PropertySet.Insert(item);
         }
 

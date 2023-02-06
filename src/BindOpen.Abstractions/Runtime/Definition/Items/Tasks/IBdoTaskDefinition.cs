@@ -29,12 +29,12 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaSpecSet InputSpecification { get; set; }
+        IBdoMetaSpecList InputSpecification { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaSpecSet OutputSpecification { get; set; }
+        IBdoMetaSpecList OutputSpecification { get; set; }
 
         /// <summary>
         /// 

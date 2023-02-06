@@ -5,8 +5,8 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a set of data element specifications.
     /// </summary>
-    public class BdoMetaSpecSet : TBdoItemSet<IBdoMetaSpec>,
-        IBdoMetaSpecSet
+    public class BdoMetaSpecList : TBdoList<IBdoMetaSpec>,
+        IBdoMetaSpecList
     {
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -17,7 +17,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Initializes a new instance of the BdoElementSpecSet class.
         /// </summary>
-        public BdoMetaSpecSet() : base()
+        public BdoMetaSpecList() : base()
         {
         }
 
@@ -30,7 +30,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns the new item that has been added.
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
-        public new IBdoMetaSpecSet Add(
+        public new IBdoMetaSpecList Add(
             params IBdoMetaSpec[] items)
         {
             base.Add(items);
@@ -43,7 +43,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="items">The items to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public new IBdoMetaSpecSet WithItems(
+        public new IBdoMetaSpecList With(
             params IBdoMetaSpec[] items)
         {
             base.With(items);

@@ -12,11 +12,11 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static MetaSetDto ToDto(this IBdoMetaSet poco)
+        public static MetaListDto ToDto(this IBdoMetaList poco)
         {
             if (poco == null) return null;
 
-            MetaSetDto dto = new()
+            MetaListDto dto = new()
             {
                 Id = poco.Id,
                 Items = poco.Items?.Select(q => q.ToDto()).ToList()
@@ -30,11 +30,11 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoMetaSet ToPoco(this MetaSetDto dto)
+        public static IBdoMetaList ToPoco(this MetaListDto dto)
         {
             if (dto == null) return null;
 
-            BdoMetaSet poco = new();
+            BdoMetaList poco = new();
             poco.WithId(dto.Id);
 
             poco.Add(dto.Items?.Select(q => q.ToPoco()).ToArray());

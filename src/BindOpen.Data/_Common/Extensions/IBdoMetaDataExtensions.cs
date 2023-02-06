@@ -7,7 +7,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    public static partial class BdoMetaItemExtensions
+    public static partial class IBdoMetaDataExtensions
     {
         /// <summary>
         /// Creates a meta data of the specified object.
@@ -39,6 +39,6 @@ namespace BindOpen.Data.Meta
             this object obj,
             Type type = null,
             bool onlyMetaAttributes = true)
-            => obj.ToMetaSet(type, onlyMetaAttributes)?.ToArray();
+            => obj.ToMetaList(type, onlyMetaAttributes)?.ToArray();
     }
 }

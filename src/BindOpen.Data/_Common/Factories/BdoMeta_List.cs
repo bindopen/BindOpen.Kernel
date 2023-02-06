@@ -12,48 +12,48 @@ namespace BindOpen.Data
         /// Defines the parameters of this instance.
         /// </summary>
         /// <returns>Return this instance.</returns>
-        public static BdoMetaSet NewSet()
-            => NewSet<BdoMetaSet>();
+        public static BdoMetaList NewList()
+            => NewList<BdoMetaList>();
 
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
         /// <param name="elems">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static BdoMetaSet NewSet(params IBdoMetaData[] elems)
-            => NewSet<BdoMetaSet>(elems);
+        public static BdoMetaList NewList(params IBdoMetaData[] elems)
+            => NewList<BdoMetaList>(elems);
 
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
         /// <param name="pairs">The pairs to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static BdoMetaSet NewSet(params (string Name, object Value)[] pairs)
-            => NewSet<BdoMetaSet>(pairs);
+        public static BdoMetaList NewList(params (string Name, object Value)[] pairs)
+            => NewList<BdoMetaList>(pairs);
 
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
         /// <param name="pairs">The pairs to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static BdoMetaSet NewSet(params (string Name, DataValueTypes ValueType, object Value)[] triplets)
-            => NewSet<BdoMetaSet>(triplets);
+        public static BdoMetaList NewList(params (string Name, DataValueTypes ValueType, object Value)[] triplets)
+            => NewList<BdoMetaList>(triplets);
 
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
         /// <param name="objects">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static BdoMetaSet NewSet(params object[] objects)
-            => NewSet<BdoMetaSet>(objects);
+        public static BdoMetaList NewList(params object[] objects)
+            => NewList<BdoMetaList>(objects);
 
         /// <summary>
         /// Creates a new instance of the IBdoElementSet class.
         /// </summary>
         /// <param name="stringObject">The string to consider.</param>
         /// <returns>The set.</returns>
-        public static BdoMetaSet NewSet(string stringObject)
-            => NewSet<BdoMetaSet>(stringObject);
+        public static BdoMetaList NewList(string stringObject)
+            => NewList<BdoMetaList>(stringObject);
 
         // Static T creators -------------------------
 
@@ -61,10 +61,10 @@ namespace BindOpen.Data
         /// Defines the parameters of this instance.
         /// </summary>
         /// <returns>Return this instance.</returns>
-        public static T NewSet<T>()
-            where T : class, IBdoMetaSet, new()
+        public static T NewList<T>()
+            where T : class, IBdoMetaList, new()
         {
-            return BdoData.NewItemSet<T, IBdoMetaData>();
+            return BdoData.NewList<T, IBdoMetaData>();
         }
 
         /// <summary>
@@ -72,10 +72,10 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="elems">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static T NewSet<T>(params IBdoMetaData[] elems)
-            where T : class, IBdoMetaSet, new()
+        public static T NewList<T>(params IBdoMetaData[] elems)
+            where T : class, IBdoMetaList, new()
         {
-            var set = NewSet<T>();
+            var set = NewList<T>();
             set.With(elems);
 
             return set;
@@ -86,10 +86,10 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="pairs">The pairs to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static T NewSet<T>(params (string Name, object Value)[] pairs)
-            where T : class, IBdoMetaSet, new()
+        public static T NewList<T>(params (string Name, object Value)[] pairs)
+            where T : class, IBdoMetaList, new()
         {
-            var set = NewSet<T>(
+            var set = NewList<T>(
                 pairs.Select(q => New(q.Name, q.Value)).ToArray());
 
             return set;
@@ -100,10 +100,10 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="pairs">The pairs to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static T NewSet<T>(params (string Name, DataValueTypes ValueType, object Value)[] triplets)
-            where T : class, IBdoMetaSet, new()
+        public static T NewList<T>(params (string Name, DataValueTypes ValueType, object Value)[] triplets)
+            where T : class, IBdoMetaList, new()
         {
-            var set = NewSet<T>(
+            var set = NewList<T>(
                 triplets.Select(q => New(q.Name, q.ValueType, q.Value)).ToArray());
 
             return set;
@@ -115,11 +115,11 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="objects">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static T NewSet<T>(params object[] objects)
-            where T : class, IBdoMetaSet, new()
+        public static T NewList<T>(params object[] objects)
+            where T : class, IBdoMetaList, new()
         {
             var index = 0;
-            return NewSet<T>(objects?.Select(p =>
+            return NewList<T>(objects?.Select(p =>
             {
                 var meta = New(null, p)
                     .WithIndex(++index);
@@ -132,9 +132,9 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="stringObject">The string to consider.</param>
         /// <returns>The set.</returns>
-        public static T NewSet<T>(
+        public static T NewList<T>(
             string stringObject)
-            where T : class, IBdoMetaSet, new()
+            where T : class, IBdoMetaList, new()
         {
             var set = new T();
             if (stringObject != null)

@@ -5,20 +5,21 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoMetaSpecSet : ITBdoItemSet<IBdoMetaSpec>
+    public interface IBdoMetaSpecList : ITBdoList<IBdoMetaSpec>
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        new IBdoMetaSpecSet Add(params IBdoMetaSpec[] items);
+        new IBdoMetaSpecList Add(params IBdoMetaSpec[] items);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        new IBdoMetaSpecSet WithItems(params IBdoMetaSpec[] items);
+        new IBdoMetaSpecList With(
+            params IBdoMetaSpec[] items);
     }
 }

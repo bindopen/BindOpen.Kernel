@@ -6,7 +6,7 @@ namespace BindOpen.Data.Items
     /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface ITBdoItemSet<T> :
+    public interface ITBdoList<T> :
         IBdoItem, IEnumerable<T>,
         IIdentified, IReferenced
         where T : IReferenced
@@ -71,14 +71,14 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        ITBdoItemSet<T> Add(params T[] items);
+        ITBdoList<T> Add(params T[] items);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
-        ITBdoItemSet<T> With(params T[] items);
+        ITBdoList<T> With(params T[] items);
 
         /// <summary>
         /// 

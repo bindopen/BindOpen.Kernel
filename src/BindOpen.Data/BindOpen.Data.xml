@@ -1709,13 +1709,13 @@
             <param name="name">The name to consider.</param>
             <param name="valueType">The value type to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewSpecSet(BindOpen.Data.Elements.IBdoDataElementSpec[])">
+        <member name="M:BindOpen.Data.BdoData.NewSpecList(BindOpen.Data.Elements.IBdoDataElementSpec[])">
             <summary>
             Instantiates a new instance of the BdoElementSet class.
             </summary>
             <param name="specs">The elems to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewSpecSet``1(BindOpen.Data.Elements.IBdoDataElementSpec[])">
+        <member name="M:BindOpen.Data.BdoData.NewSpecList``1(BindOpen.Data.Elements.IBdoDataElementSpec[])">
             <summary>
             Instantiates a new instance of the BdoElementSet class.
             </summary>
@@ -1903,35 +1903,35 @@
             </summary>
             <returns>Return this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewSet(BindOpen.Data.Elements.IBdoDataElement[])">
+        <member name="M:BindOpen.Data.BdoData.NewList(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Defines the parameters of this instance.
             </summary>
             <param name="elems">The parameters to consider.</param>
             <returns>Return this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewSet(System.ValueTuple{System.String,System.Object}[])">
+        <member name="M:BindOpen.Data.BdoData.NewList(System.ValueTuple{System.String,System.Object}[])">
             <summary>
             Defines the parameters of this instance.
             </summary>
             <param name="pairs">The pairs to consider.</param>
             <returns>Return this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewSet(System.ValueTuple{System.String,BindOpen.Data.DataValueTypes,System.Object}[])">
+        <member name="M:BindOpen.Data.BdoData.NewList(System.ValueTuple{System.String,BindOpen.Data.DataValueTypes,System.Object}[])">
             <summary>
             Defines the parameters of this instance.
             </summary>
             <param name="pairs">The pairs to consider.</param>
             <returns>Return this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewSet(System.Object[])">
+        <member name="M:BindOpen.Data.BdoData.NewList(System.Object[])">
             <summary>
             Defines the parameters of this instance.
             </summary>
             <param name="objects">The parameters to consider.</param>
             <returns>Return this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewSet(System.String)">
+        <member name="M:BindOpen.Data.BdoData.NewList(System.String)">
             <summary>
             Creates a new instance of the IBdoElementSet class.
             </summary>
@@ -2108,17 +2108,17 @@
             <param name="word">The word of exp to consider.</param>
             <returns>Returns the created exp.</returns>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewItemSet``2(``1[])">
+        <member name="M:BindOpen.Data.BdoData.NewList``2(``1[])">
             <summary>
-            Instantiates a new instance of the DataItemSet class.
+            Instantiates a new instance of the DataList class.
             </summary>
             <param name="items">The items to consider.</param>
             <typeparam name="Q">The data item set type to consider.</typeparam>
             <typeparam name="T">The identified data item to consider.</typeparam>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewItemSet``1(``0[])">
+        <member name="M:BindOpen.Data.BdoData.NewList``1(``0[])">
             <summary>
-            Instantiates a new instance of the DataItemSet class.
+            Instantiates a new instance of the DataList class.
             </summary>
             <param name="items">The items to consider.</param>
             <typeparam name="T">The class of the named data items.</typeparam>
@@ -2584,56 +2584,56 @@
             </summary>
             <param name="isDisposing">Indicates whether this instance is disposing</param>
         </member>
-        <member name="T:BindOpen.Data.Items.TBdoItemSet`1">
+        <member name="T:BindOpen.Data.Items.TBdoList`1">
             <summary>
             This class represents a data item set.
             </summary>
             <typeparam name="T">The class of the named data items.</typeparam>
         </member>
-        <member name="F:BindOpen.Data.Items.TBdoItemSet`1._items">
+        <member name="F:BindOpen.Data.Items.TBdoList`1._items">
             <summary>
             The items of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoItemSet`1.#ctor">
+        <member name="M:BindOpen.Data.Items.TBdoList`1.#ctor">
             <summary>
-            Instantiates a new instance of the DataItemSet class.
+            Instantiates a new instance of the DataList class.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoItemSet`1.op_Implicit(`0[])~BindOpen.Data.Items.TBdoItemSet{`0}">
+        <member name="M:BindOpen.Data.Items.TBdoList`1.op_Implicit(`0[])~BindOpen.Data.Items.TBdoList{`0}">
             <summary>
             Converts from string.
             </summary>
             <param name="st">The string to consider.</param>
         </member>
-        <member name="P:BindOpen.Data.Items.TBdoItemSet`1.Items">
+        <member name="P:BindOpen.Data.Items.TBdoList`1.Items">
             <summary>
             
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Data.Items.TBdoItemSet`1.Count">
+        <member name="P:BindOpen.Data.Items.TBdoList`1.Count">
             <summary>
             Returns the number of items.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.TBdoItemSet`1.Item(System.Int32)">
+        <member name="P:BindOpen.Data.Items.TBdoList`1.Item(System.Int32)">
             <summary>
             Returns the element with the specified indexed.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.TBdoItemSet`1.Item(System.String)">
+        <member name="P:BindOpen.Data.Items.TBdoList`1.Item(System.String)">
             <summary>
             Returns the element with the specified key.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoItemSet`1.ClearItems">
+        <member name="M:BindOpen.Data.Items.TBdoList`1.ClearItems">
             <summary>
             Clears the items of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoItemSet`1.Add(`0[])">
+        <member name="M:BindOpen.Data.Items.TBdoList`1.Add(`0[])">
             <summary>
             Adds the specified item.
             </summary>
@@ -2642,7 +2642,7 @@
             Returns null if the new item is null or else its name is null.</returns>
             <remarks>The new item must have a name.</remarks>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoItemSet`1.Insert(`0)">
+        <member name="M:BindOpen.Data.Items.TBdoList`1.Insert(`0)">
             <summary>
             Adds the specified item.
             </summary>
@@ -2651,84 +2651,84 @@
             Returns null if the new item is null or else its name is null.</returns>
             <remarks>The new item must have a name.</remarks>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoItemSet`1.With`0[])">
+        <member name="M:BindOpen.Data.Items.TBdoList`1.With`0[])">
             <summary>
             Sets the specified single item of this instance.
             </summary>
             <param name="items">The items to apply to this instance.</param>
             <remarks>_items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoItemSet`1.Remove(System.String[])">
+        <member name="M:BindOpen.Data.Items.TBdoList`1.Remove(System.String[])">
             <summary>
             Removes the item with the specified name.
             </summary>
             <param name="keys">The keys of the item to remove.</param>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoItemSet`1.HasItem(System.String)">
+        <member name="M:BindOpen.Data.Items.TBdoList`1.HasItem(System.String)">
             <summary>
             Checks if this instance has an item with the specified name.
             </summary>
             <param name="key">The key of the item to check.</param>
             <returns>Returns true if the instance has an item with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoItemSet`1.Get(System.String)">
+        <member name="M:BindOpen.Data.Items.TBdoList`1.Get(System.String)">
             <summary>
             Returns the specified item of this instance.
             </summary>
             <param name="key">The key to consider.</param>
             <returns>Returns the item of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoItemSet`1.Get``1(System.String)">
+        <member name="M:BindOpen.Data.Items.TBdoList`1.Get``1(System.String)">
             <summary>
             Returns the specified item of this instance.
             </summary>
             <param name="key">The key to consider.</param>
             <returns>Returns the item of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoItemSet`1.Get``1(System.Int32)">
+        <member name="M:BindOpen.Data.Items.TBdoList`1.Get``1(System.Int32)">
             <summary>
             Returns the specified item of this instance.
             </summary>
             <param name="index">The index to consider.</param>
             <returns>Returns the item of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoItemSet`1.ToArray">
+        <member name="M:BindOpen.Data.Items.TBdoList`1.ToArray">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoItemSet`1.ToList">
+        <member name="M:BindOpen.Data.Items.TBdoList`1.ToList">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoItemSet`1.GetEnumerator">
+        <member name="M:BindOpen.Data.Items.TBdoList`1.GetEnumerator">
             <summary>
             Indicates the enumerator of this instance.
             </summary>
             <returns>Returns the enumerator of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoItemSet`1.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:BindOpen.Data.Items.TBdoList`1.System#Collections#IEnumerable#GetEnumerator">
             <summary>
             Indicates the enumerator of this instance.
             </summary>
             <returns>Returns the enumerator of this instance.</returns>
         </member>
-        <member name="P:BindOpen.Data.Items.TBdoItemSet`1.Id">
+        <member name="P:BindOpen.Data.Items.TBdoList`1.Id">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoItemSet`1.WithId(System.String)">
+        <member name="M:BindOpen.Data.Items.TBdoList`1.WithId(System.String)">
             <summary>
             
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoItemSet`1.Clone(System.String[])">
+        <member name="M:BindOpen.Data.Items.TBdoList`1.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>

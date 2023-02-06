@@ -5,11 +5,11 @@
 
   <xs:complexType name="DataConstraintStatement">
     <xs:complexContent mixed="false">
-      <xs:extension base="DataItemSetOfRoutineConfiguration" />
+      <xs:extension base="DataListOfRoutineConfiguration" />
     </xs:complexContent>
   </xs:complexType>
 
-  <xs:complexType name="DataItemSetOfRoutineConfiguration">
+  <xs:complexType name="DataListOfRoutineConfiguration">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="1" name="description" type="DictionaryDataItem" />
       <xs:element minOccurs="0" maxOccurs="1" name="items" type="ArrayOfRoutineConfiguration1" />

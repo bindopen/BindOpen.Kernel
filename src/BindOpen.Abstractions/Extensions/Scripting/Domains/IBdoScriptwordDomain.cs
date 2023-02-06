@@ -21,12 +21,12 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// The variable element set of this instance.
         /// </summary>
-        IBdoMetaSet ScriptVariableSet { get; }
+        IBdoMetaList ScriptVariableSet { get; }
 
         /// <summary>
         /// Sets the variable element set of this instance.
         /// </summary>
-        IBdoScriptwordDomain WithScriptVariableSet(IBdoMetaSet variableSet);
+        IBdoScriptwordDomain WithScriptVariableSet(IBdoMetaList variableSet);
 
         /// <summary>
         /// The script word of this instance.

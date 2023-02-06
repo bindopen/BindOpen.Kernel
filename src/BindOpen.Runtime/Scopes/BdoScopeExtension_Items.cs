@@ -29,7 +29,7 @@ namespace BindOpen.Runtime.Scopes
         public static T NewEntity<T>(
             this IBdoScope scope,
             IBdoConfiguration config = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null) where T : BdoEntity
         {
             return scope.NewEntity(config, varSet, log) as T;
@@ -46,7 +46,7 @@ namespace BindOpen.Runtime.Scopes
         public static BdoEntity NewEntity(
             this IBdoScope scope,
             IBdoConfiguration config,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             BdoEntity entity = null;
@@ -91,7 +91,7 @@ namespace BindOpen.Runtime.Scopes
         public static T NewConnector<T>(
             this IBdoScope scope,
             IBdoConfiguration config,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null) where T : class, IBdoConnector, new()
         {
             return scope.NewConnector(config, varSet, log) as T;
@@ -108,7 +108,7 @@ namespace BindOpen.Runtime.Scopes
         public static IBdoConnector NewConnector(
             this IBdoScope scope,
             IBdoConfiguration config,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             if (config != null && scope?.Check(true, log: log) == true)
@@ -150,7 +150,7 @@ namespace BindOpen.Runtime.Scopes
         public static T NewTask<T>(
             this IBdoScope scope,
             IBdoConfiguration config = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null) where T : BdoTask
         {
             return scope.NewTask(config, varSet, log) as T;
@@ -167,7 +167,7 @@ namespace BindOpen.Runtime.Scopes
         public static BdoTask NewTask(
             this IBdoScope scope,
             IBdoConfiguration config = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             BdoTask task = null;
@@ -190,8 +190,8 @@ namespace BindOpen.Runtime.Scopes
                     if (log?.HasEvent(EventKinds.Error, EventKinds.Exception) != false)
                     {
                         task = item as BdoTask;
-                        //task.UpdateFromMetaSet<BdoTaskInputAttribute>(config, scope, varSet);
-                        //task.UpdateFromMetaSet<BdoTaskOutputAttribute>(config, scope, varSet);
+                        //task.UpdateFromMetaList<BdoTaskInputAttribute>(config, scope, varSet);
+                        //task.UpdateFromMetaList<BdoTaskOutputAttribute>(config, scope, varSet);
                     }
                 }
             }

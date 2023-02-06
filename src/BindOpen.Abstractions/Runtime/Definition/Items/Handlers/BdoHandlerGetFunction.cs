@@ -16,8 +16,8 @@ namespace BindOpen.Runtime.Definition
     /// <returns>Returns the target objects.</returns>
     public delegate List<object> BdoHandlerGetFunction(
             IBdoMetaData sourceElement = null,
-            IBdoMetaSet pathDetail = null,
+            IBdoMetaList pathDetail = null,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog alog = null);
 }

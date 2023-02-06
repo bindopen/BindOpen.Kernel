@@ -26,7 +26,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         [JsonPropertyName("subDataSet")]
         [XmlElement("subDataSet")]
-        public MetaSetDto SubDataSet { get; set; }
+        public MetaListDto SubDataSet { get; set; }
 
         /// <summary>
         /// The class full name of this instance.

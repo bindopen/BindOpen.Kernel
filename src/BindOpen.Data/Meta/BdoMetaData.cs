@@ -93,6 +93,8 @@ namespace BindOpen.Data.Meta
                     return BdoMetaDataKind.Object;
                 else if (this is IBdoMetaScalar)
                     return BdoMetaDataKind.Scalar;
+                else if (this is IBdoMetaList)
+                    return BdoMetaDataKind.Set;
                 return BdoMetaDataKind.None;
             }
         }
@@ -182,7 +184,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns the items of this instance.</returns>
         protected object DataObject(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             object obj = default;
@@ -262,7 +264,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns the items of this instance.</returns>
         public object GetData(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
             => DataObject(scope, varSet, log);
 

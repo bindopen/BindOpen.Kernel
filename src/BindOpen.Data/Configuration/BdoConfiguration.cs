@@ -8,7 +8,7 @@ namespace BindOpen.Data.Configuration
     /// <summary>
     /// This class represents a config.
     /// </summary>
-    public class BdoConfiguration : BdoMetaSet,
+    public class BdoConfiguration : BdoMetaList,
         IBdoConfiguration
     {
         // -------------------------------------------------------------
@@ -67,7 +67,7 @@ namespace BindOpen.Data.Configuration
         /// </summary>
         /// <param name="items">The items to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public new IBdoConfiguration WithItems(
+        public new IBdoConfiguration With(
             params IBdoMetaData[] items)
         {
             base.With(items);

@@ -6,7 +6,7 @@ namespace BindOpen.Data.Configuration
     /// This class represents a config.
     /// </summary>
     public class BdoConfigurationBundle :
-        TBdoItemSet<IBdoConfiguration>,
+        TBdoList<IBdoConfiguration>,
         IBdoConfigurationBundle
     {
         // -------------------------------------------------------------

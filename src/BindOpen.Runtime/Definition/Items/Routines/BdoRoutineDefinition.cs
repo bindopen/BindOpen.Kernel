@@ -31,7 +31,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// The parameter statement of this instance.
         /// </summary>
-        public IBdoMetaSet ParameterStatement { get; set; } = new BdoMetaSet();
+        public IBdoMetaList ParameterStatement { get; set; } = new BdoMetaList();
 
         /// <summary>
         /// The runtime type of this instance.

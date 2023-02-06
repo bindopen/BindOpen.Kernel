@@ -39,7 +39,7 @@ namespace BindOpen.Tests.Extensions
         [Test, Order(2)]
         public void CreateVariableSetTest()
         {
-            var varSet = BdoMeta.NewSet(
+            var varSet = BdoMeta.NewList(
                 ("var1", "sample1"),
                 ("var2", 4.55));
 

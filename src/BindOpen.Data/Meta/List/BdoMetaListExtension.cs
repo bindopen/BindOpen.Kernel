@@ -1,12 +1,26 @@
-﻿using BindOpen.Logging;
+﻿using BindOpen.Data.Items;
+using BindOpen.Logging;
+using System.Linq;
 
 namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    public static class BdoMetaSetExtension
+    public static class BdoMetaListExtension
     {
+        public static Q AddRange<Q, T>(
+            this Q list1,
+            ITBdoList<T> list2)
+            where Q : IBdoMetaList
+            where T : IBdoMetaData
+        {
+            list1?.Add(list2?.Items?
+                .Cast<IBdoMetaData>()
+                .ToArray());
+            return list1;
+        }
+
         /// <summary>
         /// Updates this instance.
         /// </summary>
@@ -16,8 +30,8 @@ namespace BindOpen.Data.Meta
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference sets as null if you do not want to repair this instance.</remarks>
         public static void Update(
-            this BdoMetaSet metaSet,
-            IBdoMetaSet refElementSet = null,
+            this BdoMetaList metaSet,
+            IBdoMetaList refElementSet = null,
             UpdateModes[] updateModes = null,
             string[] specAreas = null,
             IBdoLog log = null)
@@ -38,8 +52,8 @@ namespace BindOpen.Data.Meta
         /// <returns>Log of the operation.</returns>
         /// <remarks>Put reference sets as null if you do not want to repair this instance.</remarks>
         public static void Update(
-            this BdoMetaSet metaSet,
-            IBdoMetaSpecSet refElementSpecSet = null,
+            this BdoMetaList metaSet,
+            IBdoMetaSpecList refElementSpecSet = null,
             UpdateModes[] updateModes = null,
             string[] specAreas = null,
             IBdoLog log = null)
@@ -59,8 +73,8 @@ namespace BindOpen.Data.Meta
         /// <param name="specAreas">The specification areas to consider.</param>
         /// <returns>Returns the check log.</returns>
         public static void Check(
-            this BdoMetaSet metaSet,
-            IBdoMetaSet refElementSet = null,
+            this BdoMetaList metaSet,
+            IBdoMetaList refElementSet = null,
             string[] specAreas = null,
             bool isExistenceChecked = true,
             IBdoLog log = null)
@@ -77,8 +91,8 @@ namespace BindOpen.Data.Meta
         /// <param name="updateModes">The update modes to consider.</param>
         /// <returns>Log of the operation.</returns>
         public static void Repair(
-            this BdoMetaSet metaSet,
-            IBdoMetaSet refElementSet = null,
+            this BdoMetaList metaSet,
+            IBdoMetaList refElementSet = null,
             UpdateModes[] updateModes = null,
             string[] specAreas = null,
             IBdoLog log = null)

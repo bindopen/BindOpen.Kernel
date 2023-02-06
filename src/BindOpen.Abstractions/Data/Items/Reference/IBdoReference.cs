@@ -27,7 +27,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaSet PathDetail { get; set; }
+        IBdoMetaList PathDetail { get; set; }
 
         /// <summary>
         /// 
@@ -49,7 +49,7 @@ namespace BindOpen.Data.Items
         /// <returns></returns>
         object Get(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
     }
 }

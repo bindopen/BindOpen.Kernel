@@ -53,6 +53,6 @@ namespace BindOpen.Data
         /// <param name="name">The name to consider.</param>
         /// <param name="kind">The kind of the data source to consider.</param>
         public static IBdoSourceDepot NewDatasourceDepot(params IBdoDatasource[] datasources)
-            => BdoData.NewItemSet<BdoDatasourceDepot, IBdoDatasource>(datasources);
+            => BdoData.NewList<BdoDatasourceDepot, IBdoDatasource>(datasources);
     }
 }

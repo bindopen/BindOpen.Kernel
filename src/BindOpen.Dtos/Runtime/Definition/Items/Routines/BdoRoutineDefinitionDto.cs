@@ -41,7 +41,7 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         [JsonPropertyName("parameterStatement")]
         [XmlElement("parameterStatement")]
-        public MetaSetDto ParameterStatement { get; set; }
+        public MetaListDto ParameterStatement { get; set; }
 
         #endregion
 

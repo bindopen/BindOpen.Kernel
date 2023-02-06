@@ -5,7 +5,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a catalog element specification.
     /// </summary>
-    public class BdoMetaSetSpec : BdoMetaSpec, IBdoMetaSpec
+    public class BdoMetaListSpec : BdoMetaSpec, IBdoMetaSpec
     {
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -16,7 +16,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Initializes a new instance of the CollectionElementSpec class.
         /// </summary>
-        public BdoMetaSetSpec() : base()
+        public BdoMetaListSpec() : base()
         {
         }
 
@@ -34,7 +34,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone(params string[] areas)
         {
-            BdoMetaSetSpec specification = base.Clone(areas) as BdoMetaSetSpec;
+            BdoMetaListSpec specification = base.Clone(areas) as BdoMetaListSpec;
             if (ClassFilter != null)
                 specification.ClassFilter = ClassFilter.Clone() as DataValueFilter;
             //if (FormatUniqueNameFilter != null)

@@ -11,10 +11,10 @@ namespace BindOpen.Data.Meta
     /// This class represents a data element.
     /// </summary>
     [XmlType("MetaData", Namespace = "https://xsd.bindopen.org")]
-    [XmlInclude(typeof(MetaSetDto))]
+    [XmlInclude(typeof(MetaListDto))]
     [XmlInclude(typeof(MetaObjectDto))]
     [XmlInclude(typeof(MetaScalarDto))]
-    [JsonDerivedType(typeof(MetaSetDto), "set")]
+    [JsonDerivedType(typeof(MetaListDto), "set")]
     [JsonDerivedType(typeof(MetaObjectDto), "object")]
     [JsonDerivedType(typeof(MetaScalarDto), "scalar")]
     public class MetaDataDto : IDto
@@ -95,7 +95,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         [JsonPropertyName("propertySet")]
         [XmlElement("propertySet")]
-        public MetaSetDto PropertySet { get; set; }
+        public MetaListDto PropertySet { get; set; }
 
         #endregion
 

@@ -20,7 +20,7 @@ namespace BindOpen.Extensions.Scripting
         /// <returns></returns>
         object Evaluate(
             IBdoExpression exp,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace BindOpen.Extensions.Scripting
         /// <returns></returns>
         T Evaluate<T>(
             IBdoExpression exp,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace BindOpen.Extensions.Scripting
         object Evaluate(
             string script,
             BdoExpressionKind expKind = BdoExpressionKind.Auto,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace BindOpen.Extensions.Scripting
         T Evaluate<T>(
             string script,
             BdoExpressionKind expKind = BdoExpressionKind.Auto,
-            IBdoMetaSet varSet = null, IBdoLog log = null);
+            IBdoMetaList varSet = null, IBdoLog log = null);
 
         /// <summary>
         /// Evaluates the specified script word using the defined script words of this instance
@@ -72,7 +72,7 @@ namespace BindOpen.Extensions.Scripting
         /// <returns>The log of the interpretation task.</returns>
         object Evaluate(
             IBdoScriptword scriptword,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace BindOpen.Extensions.Scripting
         /// <returns>The log of the interpretation task.</returns>
         T Evaluate<T>(
             IBdoScriptword scriptword,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace BindOpen.Extensions.Scripting
             IBdoScriptword parentScriptword,
             ref int index,
             int offsetIndex,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
 
         /// <summary>

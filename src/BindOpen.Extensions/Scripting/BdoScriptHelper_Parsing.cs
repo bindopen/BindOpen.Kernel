@@ -484,7 +484,7 @@ namespace BindOpen.Extensions.Scripting
             string script,
             int index,
             bool isSuggest,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
             if (scriptInterpreter == null) return new Dictionary<string, IBdoScriptwordDefinition>();

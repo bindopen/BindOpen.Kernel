@@ -81,7 +81,7 @@ namespace BindOpen.Data.Meta
         /// <returns></returns>
         object GetData(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
     }
 }

@@ -12,7 +12,7 @@ namespace BindOpen.Data.Configuration
     /// </summary>
     [XmlType("BaseConfiguration", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot("config", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class BdoConfigurationDto : MetaSetDto
+    public class BdoConfigurationDto : MetaListDto
     {
         // -------------------------------------------------------
         // PROPERTIES

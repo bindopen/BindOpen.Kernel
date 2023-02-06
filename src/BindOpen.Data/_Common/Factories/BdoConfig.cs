@@ -15,7 +15,7 @@ namespace BindOpen.Data
         public static BdoConfigurationBundle NewBundle(
             params IBdoConfiguration[] items)
         {
-            var config = BdoData.NewItemSet<BdoConfigurationBundle, IBdoConfiguration>(items);
+            var config = BdoData.NewList<BdoConfigurationBundle, IBdoConfiguration>(items);
             return config;
         }
 
@@ -100,7 +100,7 @@ namespace BindOpen.Data
             params IBdoMetaData[] items)
             where T : BdoConfiguration, new()
         {
-            var config = BdoMeta.NewSet<T>(items);
+            var config = BdoMeta.NewList<T>(items);
             config.WithName(name);
             config.Using(usingIds);
             return config;

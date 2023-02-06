@@ -10,11 +10,11 @@ namespace BindOpen.Data.Meta
     /// </summary>
     public interface IBdoMetaObject :
         ITBdoMetaData<IBdoMetaObject, IBdoMetaObjectSpec, object>,
-        IBdoMetaSet
+        IBdoMetaList
     {
         new void Clear();
 
-        IBdoMetaSet PropertySet { get; set; }
+        IBdoMetaList PropertySet { get; set; }
 
         /// <summary>
         /// 
@@ -31,7 +31,7 @@ namespace BindOpen.Data.Meta
         /// <returns></returns>
         Q GetData<Q>(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
 
         /// <summary>

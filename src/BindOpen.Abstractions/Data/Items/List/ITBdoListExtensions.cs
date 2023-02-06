@@ -5,14 +5,14 @@ namespace BindOpen.Data.Items
     /// <summary>
     /// 
     /// </summary>
-    public static class ITBdoItemSetExtensions
+    public static class ITBdoListExtensions
     {
         /// <summary>
         /// Removes the item with the specified name.
         /// </summary>
         /// <param name="keys">The keys of the item to remove.</param>
-        public static ITBdoItemSet<T> Remove<T>(
-            this ITBdoItemSet<T> obj,
+        public static ITBdoList<T> Remove<T>(
+            this ITBdoList<T> obj,
             params string[] keys)
             where T : IReferenced
         {

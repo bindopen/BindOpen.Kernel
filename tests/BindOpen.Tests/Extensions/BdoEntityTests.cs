@@ -27,11 +27,12 @@ namespace BindOpen.Tests.Extensions
         /// <returns></returns>
         public static IBdoEntity CreateEntity(dynamic data)
         {
-            BdoConfig.New().WithItems(BdoMeta.NewScalar());
+            BdoConfig.New()
+                .With(BdoMeta.NewScalar());
 
             var config =
                 BdoConfig.New("tests.core$testEntity")
-                .WithItems(
+                .With(
                     BdoMeta.NewScalar("boolValue", data.boolValue),
                     BdoMeta.NewScalar("enumValue", data.enumValue),
                     BdoMeta.NewScalar("intValue", data.intValue),

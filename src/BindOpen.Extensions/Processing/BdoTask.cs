@@ -46,7 +46,7 @@ namespace BindOpen.Extensions.Processing
         public object GetEntryObjectWithName(
             string name,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null,
             params TaskEntryKind[] taskEntryKinds)
         {
@@ -64,7 +64,7 @@ namespace BindOpen.Extensions.Processing
         /// <param name="taskEntryKind">The task entry kind to consider.</param>
         /// <returns>True if this instance is compatible with the specified element set.</returns>
         public bool IsCompatibleWith(
-            IBdoMetaSpecSet dataElementSpecSet,
+            IBdoMetaSpecList dataElementSpecSet,
             TaskEntryKind taskEntryKind = TaskEntryKind.Any)
         {
             if (Config == null) return false;
@@ -175,7 +175,7 @@ namespace BindOpen.Extensions.Processing
         /// <returns>Returns the output value of the execution.</returns>
         public virtual IBdoTask Execute(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             RuntimeModes runtimeMode = RuntimeModes.Normal,
             IBdoLog log = null)
         {

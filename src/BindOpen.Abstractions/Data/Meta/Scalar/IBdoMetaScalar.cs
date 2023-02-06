@@ -25,7 +25,7 @@ namespace BindOpen.Data.Meta
         /// <returns></returns>
         Q GetData<Q>(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace BindOpen.Data.Meta
         /// <returns></returns>
         List<object> GetDataList(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace BindOpen.Data.Meta
         /// <returns></returns>
         List<Q> GetDataList<Q>(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace BindOpen.Data.Meta
         object GetData(
             int index,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace BindOpen.Data.Meta
         Q GetData<Q>(
             int index,
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null);
     }
 }

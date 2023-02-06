@@ -105,7 +105,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns the items of this instance.</returns>
         public new virtual TItem GetData(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
             => GetData<TItem>(scope, varSet, log);
 
@@ -118,7 +118,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns the items of this instance.</returns>
         public abstract Q GetData<Q>(
             IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoMetaList varSet = null,
             IBdoLog log = null)
             where Q : TItem;
 

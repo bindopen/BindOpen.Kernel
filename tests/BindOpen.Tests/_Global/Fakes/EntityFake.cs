@@ -63,7 +63,7 @@ namespace BindOpen.Tests
         /// </summary>
         [BdoData(Name = "inputs")]
         [BdoScriptword(Name = "input")]
-        public BdoMetaSet Inputs { get; set; }
+        public BdoMetaList Inputs { get; set; }
 
 
         /// <summary>

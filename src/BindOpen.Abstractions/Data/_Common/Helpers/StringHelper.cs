@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -420,28 +419,6 @@ namespace BindOpen.Data
         }
 
         /// <summary>
-        /// Gets the string at the specified index from the specified index.
-        /// </summary>
-        /// <param name="strings">The objects to consider.</param>
-        /// <param name="index">The index to consider.</param>
-        /// <returns>Returns the normalized string.</returns>
-        public static string GetAtIndex(this IList<string> strings, int index)
-        {
-            return strings != null && strings.Count > index && strings[index] != null ? strings[index] : string.Empty;
-        }
-
-        /// <summary>
-        /// Gets the string at the specified index from the specified index.
-        /// </summary>
-        /// <param name="strings">The objects to consider.</param>
-        /// <param name="index">The index to consider.</param>
-        /// <returns>Returns the normalized string.</returns>
-        public static string GetAtIndex(this string[] strings, int index)
-        {
-            return strings != null && strings.Length > index && strings[index] != null ? strings[index] : string.Empty;
-        }
-
-        /// <summary>
         /// Concatenates the two specified string only if the second one starts with the specified character. Returns the second string otherwise.
         /// </summary>
         /// <param name="st1">The first string to concatenate.</param>
@@ -530,70 +507,16 @@ namespace BindOpen.Data
         }
 
         /// <summary>
-        /// Excludes the specified string items from the specified string items.
+        /// Gets the string at the specified index from the specified index.
         /// </summary>
-        /// <param name="stringItems">The string items to consider.</param>
-        /// <param name="excludingStringItems">The string items to exclude.</param>
-        /// <returns>Returns the excluded string items.</returns>
-        public static IEnumerable<string> Excluding(this IEnumerable<string> stringItems, params string[] excludingStringItems)
+        /// <param name="strings">The objects to consider.</param>
+        /// <param name="index">The index to consider.</param>
+        /// <returns>Returns the normalized string.</returns>
+        public static string GetAtIndex(
+            this IList<string> strings,
+            int index)
         {
-            return stringItems.Excluding(excludingStringItems.ToList());
-        }
-
-        /// <summary>
-        /// Excludes the specified string items from the specified string items.
-        /// </summary>
-        /// <param name="stringItems">The string items to consider.</param>
-        /// <param name="excludingStringItems">The string items to exclude.</param>
-        /// <returns>Returns the excluded string items.</returns>
-        public static IEnumerable<string> Excluding(this IEnumerable<string> stringItems, IEnumerable<string> excludingStringItems)
-        {
-            if (stringItems == null)
-            {
-                return new List<string>();
-            }
-            else if (excludingStringItems == null)
-            {
-                return stringItems;
-            }
-            else
-            {
-                List<string> stringItems1 = new List<string>(stringItems).Select(p => p.ToBdoKey()).ToList();
-                stringItems1.RemoveAll(p => excludingStringItems.Contains(p.ToBdoKey()));
-                return stringItems1;
-            }
-        }
-
-        /// <summary>
-        /// Adds the specified string items from the specified string items.
-        /// </summary>
-        /// <param name="stringItems">The string items to consider.</param>
-        /// <param name="addingStringItems">The string items to add.</param>
-        /// <returns>Returns the added string items.</returns>
-        public static IEnumerable<string> Adding(this IEnumerable<string> stringItems, params string[] addingStringItems)
-        {
-            return stringItems.Adding(addingStringItems.ToList());
-        }
-
-        /// <summary>
-        /// Adds the specified string items from the specified string items.
-        /// </summary>
-        /// <param name="stringItems">The string items to consider.</param>
-        /// <param name="addingStringItems">The string items to add.</param>
-        /// <returns>Returns the added string items.</returns>
-        public static IEnumerable<string> Adding(this IEnumerable<string> stringItems, IEnumerable<string> addingStringItems)
-        {
-            if (stringItems == null)
-            {
-                return new List<string>();
-            }
-            else if (addingStringItems == null)
-                return stringItems;
-            else
-            {
-                new List<string>(stringItems).AddRange(addingStringItems);
-                return stringItems;
-            }
+            return strings != null && strings.Count > index && strings[index] != null ? strings[index] : string.Empty;
         }
 
         /// <summary>

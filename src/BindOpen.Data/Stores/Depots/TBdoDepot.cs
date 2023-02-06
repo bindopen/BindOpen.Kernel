@@ -8,7 +8,7 @@ namespace BindOpen.Data.Stores
     /// <summary>
     /// This class represents a depot.
     /// </summary>
-    public abstract class TBdoDepot<T> : TBdoItemSet<T>, ITBdoDepot<T>
+    public abstract class TBdoDepot<T> : TBdoList<T>, ITBdoDepot<T>
         where T : IReferenced
     {
         // ------------------------------------------

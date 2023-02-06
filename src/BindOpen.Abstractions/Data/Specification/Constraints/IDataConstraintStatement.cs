@@ -7,7 +7,7 @@ namespace BindOpen.Data.Specification
     /// <summary>
     /// 
     /// </summary>
-    public interface IDataConstraintStatement : ITBdoItemSet<IBdoConfiguration>
+    public interface IDataConstraintStatement : ITBdoList<IBdoConfiguration>
     {
         /// <summary>
         /// 

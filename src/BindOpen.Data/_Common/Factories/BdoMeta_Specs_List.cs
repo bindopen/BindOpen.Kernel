@@ -13,8 +13,8 @@ namespace BindOpen.Data
         /// Instantiates a new instance of the BdoElementSet class.
         /// </summary>
         /// <param name="specs">The elems to consider.</param>
-        public static BdoMetaSpecSet NewSpecSet(params IBdoMetaSpec[] specs)
-            => NewSpecSet<BdoMetaSpecSet>(specs);
+        public static BdoMetaSpecList NewSpecList(params IBdoMetaSpec[] specs)
+            => NewSpecList<BdoMetaSpecList>(specs);
 
         // Static T creators -------------------------
 
@@ -22,11 +22,11 @@ namespace BindOpen.Data
         /// Instantiates a new instance of the BdoElementSet class.
         /// </summary>
         /// <param name="elems">The elems to consider.</param>
-        public static BdoMetaSpecSet NewSpecSet<T>(params IBdoMetaSpec[] specs)
-            where T : class, IBdoMetaSpecSet, new()
+        public static BdoMetaSpecList NewSpecList<T>(params IBdoMetaSpec[] specs)
+            where T : class, IBdoMetaSpecList, new()
         {
-            var elemSpecSet = new BdoMetaSpecSet()
-                .WithItems(specs) as BdoMetaSpecSet;
+            var elemSpecSet = new BdoMetaSpecList()
+                .With(specs) as BdoMetaSpecList;
 
             return elemSpecSet;
         }

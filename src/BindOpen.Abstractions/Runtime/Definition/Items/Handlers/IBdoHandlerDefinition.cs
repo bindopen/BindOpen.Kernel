@@ -31,7 +31,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaSpecSet ParameterSpecification { get; set; }
+        IBdoMetaSpecList ParameterSpecification { get; set; }
 
         /// <summary>
         /// 
