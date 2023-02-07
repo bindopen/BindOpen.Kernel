@@ -10,7 +10,7 @@ namespace BindOpen.Data.Meta
     public interface ITBdoMetaData<TMetaData, TSpec, TItem> :
         IBdoMetaData
         where TMetaData : IBdoMetaData
-        where TSpec : IBdoMetaSpec
+        where TSpec : IBdoSpec
         where TItem : class
     {
         /// <summary>

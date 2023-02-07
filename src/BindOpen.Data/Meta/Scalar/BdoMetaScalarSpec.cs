@@ -1,10 +1,12 @@
-﻿namespace BindOpen.Data.Meta
+﻿using BindOpen.Data.Meta;
+
+namespace BindOpen.Data.Meta
 {
 
     /// <summary>
     /// This class represents a scalar element specification.
     /// </summary>
-    public class BdoMetaScalarSpec : BdoMetaSpec, IBdoMetaScalarSpec
+    public class BdoMetaScalarSpec : BdoSpec, IBdoScalarSpec
     {
         // --------------------------------------------------
         // CONSTRUCTORS

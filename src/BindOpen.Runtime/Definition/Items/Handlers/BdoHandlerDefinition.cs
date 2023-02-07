@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Meta;
+using BindOpen.Data.Meta;
 
 namespace BindOpen.Runtime.Definition
 {
@@ -26,7 +27,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// The parameter specification of this instance.
         /// </summary>
-        public IBdoMetaSpecList ParameterSpecification { get; set; } = new BdoMetaSpecList();
+        public IBdoSpecList ParameterSpecification { get; set; } = new BdoSpecList();
 
         /// <summary>
         /// Name of the POST function.
@@ -46,12 +47,12 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// The parameter specification of this instance.
         /// </summary>
-        public IBdoMetaSpec SourceSpecification { get; set; }
+        public IBdoSpec SourceSpecification { get; set; }
 
         /// <summary>
         /// The target specification of this instance.
         /// </summary>
-        public IBdoMetaSpec TargetSpecification { get; set; }
+        public IBdoSpec TargetSpecification { get; set; }
 
         /// <summary>
         /// The unique ID of this instance.

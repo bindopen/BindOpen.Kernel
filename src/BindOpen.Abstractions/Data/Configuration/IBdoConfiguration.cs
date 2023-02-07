@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace BindOpen.Data.Configuration
 {
     /// <summary>
-    /// 
+    /// This interface defines a configuration.
     /// </summary>
     public interface IBdoConfiguration :
         IBdoMetaList,
@@ -13,7 +13,7 @@ namespace BindOpen.Data.Configuration
         IStorable
     {
         /// <summary>
-        /// 
+        /// The unique ID of the definition.
         /// </summary>
         string DefinitionUniqueId { get; set; }
 

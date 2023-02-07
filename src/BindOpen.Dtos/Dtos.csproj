@@ -25,6 +25,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\Meta\Data\gt2z3lni.cmr~" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\..\docs\images\bindopen_icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>

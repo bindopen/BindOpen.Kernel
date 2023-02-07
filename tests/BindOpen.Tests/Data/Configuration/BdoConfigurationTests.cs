@@ -40,7 +40,7 @@ namespace BindOpen.Tests.Data
         }
 
         [Test, Order(1)]
-        public void CreateConfigurationBundle()
+        public void CreateConfigurationSet()
         {
             var bundle = BdoConfig.NewBundle(
                 _config1,

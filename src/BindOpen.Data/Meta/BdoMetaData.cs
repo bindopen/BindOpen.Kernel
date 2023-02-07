@@ -107,7 +107,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The value type of this instance.
         /// </summary>
-        public DataValueTypes DataValueType { get; set; } = DataValueTypes.Any;
+        public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
 
         /// <summary>
         /// The itemization mode of this instance.
@@ -118,9 +118,9 @@ namespace BindOpen.Data.Meta
             {
                 if (_itemizationMode != DataItemizationMode.Any)
                     return _itemizationMode;
-                else if (DataExpression != null)
+                else if (Expression != null)
                     return DataItemizationMode.Expression;
-                else if (DataReference != null)
+                else if (Reference != null)
                     return DataItemizationMode.Reference;
 
                 return DataItemizationMode.Value;
@@ -131,19 +131,19 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Item reference of this instance.
         /// </summary>
-        public IBdoReference DataReference { get; set; }
+        public IBdoReference Reference { get; set; }
 
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        public IBdoExpression DataExpression { get; set; }
+        public IBdoExpression Expression { get; set; }
 
         // Specification -------------------------------
 
         /// <summary>
         /// Specification of this instance.
         /// </summary>
-        public List<IBdoMetaSpec> Specs { get; set; }
+        public List<IBdoSpec> Specs { get; set; }
 
         // Specification ---------------------
 
@@ -151,11 +151,11 @@ namespace BindOpen.Data.Meta
         /// Gets a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public IBdoMetaSpec NewSpec()
+        public IBdoSpec NewSpec()
         {
             if (this is IBdoMetaObject)
             {
-                return BdoMeta.NewSpec<BdoMetaObjectSpec>();
+                return BdoMeta.NewSpec<BdoObjectSpec>();
             }
             else if (this is IBdoMetaScalar)
             {
@@ -163,16 +163,6 @@ namespace BindOpen.Data.Meta
             }
 
             return null;
-        }
-
-        /// <summary>
-        /// Indicates whether this instance is compatible with the specified item.
-        /// </summary>
-        /// <param name="item">The item to consider.</param>
-        /// <returns></returns>
-        public bool IsCompatibleWithItem(object item)
-        {
-            return (DataValueType == DataValueTypes.Any || item.GetValueType().IsCompatibleWith(DataValueType));
         }
 
         /// <summary>
@@ -195,11 +185,11 @@ namespace BindOpen.Data.Meta
                     obj = _data;
                     break;
                 case DataItemizationMode.Reference:
-                    if (DataReference == null)
+                    if (Reference == null)
                     {
                         log?.AddWarning(title: "Reference missing");
                     }
-                    obj = DataReference.Get(scope, varSet, log);
+                    obj = Reference.Get(scope, varSet, log);
                     break;
                 case DataItemizationMode.Expression:
                     if (scope == null)
@@ -208,13 +198,13 @@ namespace BindOpen.Data.Meta
                     }
                     else
                     {
-                        if (DataExpression == null)
+                        if (Expression == null)
                         {
                             log?.AddWarning(title: "Script missing");
                         }
 
                         var interpreter = scope.NewScriptInterpreter();
-                        obj = interpreter.Evaluate<object>(DataExpression, varSet, log);
+                        obj = interpreter.Evaluate<object>(Expression, varSet, log);
                     }
                     break;
             }
@@ -229,7 +219,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public IBdoMetaSpec GetSpec(string name = null)
+        public IBdoSpec GetSpec(string name = null)
         {
             return Specs?.FirstOrDefault(
                 q => (name == null && q.Name == null) || q.Name.BdoKeyEquals(name));
@@ -238,7 +228,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public IBdoMetaData WithSpecs(params IBdoMetaSpec[] specs)
+        public IBdoMetaData WithSpecs(params IBdoSpec[] specs)
         {
             Specs = specs?.ToList();
 
@@ -300,9 +290,9 @@ namespace BindOpen.Data.Meta
 
             var el = base.Clone<BdoMetaData>(areas);
 
-            el.DataReference = DataReference?.Clone<BdoReference>();
-            el.Specs = Specs?.Select(q => q?.Clone<BdoMetaSpec>())
-                .Cast<IBdoMetaSpec>().ToList();
+            el.Reference = Reference?.Clone<BdoReference>();
+            el.Specs = Specs?.Select(q => q?.Clone<BdoSpec>())
+                .Cast<IBdoSpec>().ToList();
 
             return el;
         }

@@ -36,7 +36,7 @@ namespace BindOpen.Data.Items
         /// </summary>
         [JsonPropertyName("word")]
         [XmlElement("word")]
-        public BdoConfigurationDto Word { get; set; }
+        public ConfigurationDto Word { get; set; }
 
         #endregion
 

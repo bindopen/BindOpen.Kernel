@@ -28,7 +28,7 @@ namespace BindOpen.Data.Configuration
             IBdoMetaList varSet = null,
             IBdoLog log = null,
             XmlSchemaSet xmlSchemaSet = null,
-            bool mustFileExist = true) where T : BdoConfigurationDto, new()
+            bool mustFileExist = true) where T : ConfigurationDto, new()
         {
             T unionConfiguration = new();
 
@@ -36,7 +36,7 @@ namespace BindOpen.Data.Configuration
             {
                 unionConfiguration.Update(topConfiguration);
 
-                if (topConfiguration is BdoConfigurationDto topDynamicConfiguration)
+                if (topConfiguration is ConfigurationDto topDynamicConfiguration)
                 {
                     foreach (string usingFilePath in topDynamicConfiguration.UsingFilePaths)
                     {

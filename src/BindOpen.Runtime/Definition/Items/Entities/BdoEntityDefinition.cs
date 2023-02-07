@@ -1,4 +1,5 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Data;
 using BindOpen.Data.Meta;
 using BindOpen.Extensions;
 using System;
@@ -26,7 +27,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// The set of detail specifications of this instance.
         /// </summary>
-        public IBdoMetaSpecList DetailSpec { get; set; } = new BdoMetaSpecList();
+        public IBdoSpecList DetailSpec { get; set; } = new BdoSpecList();
 
         /// <summary>
         /// Formats of this instance.

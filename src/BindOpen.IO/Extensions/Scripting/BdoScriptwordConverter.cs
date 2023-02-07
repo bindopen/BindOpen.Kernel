@@ -13,7 +13,7 @@ namespace BindOpen.Extensions.Scripting
         /// </summary>
         /// <param name="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static BdoConfigurationDto ToDto(this IBdoScriptword poco)
+        public static ConfigurationDto ToDto(this IBdoScriptword poco)
         {
             if (poco == null) return null;
 
@@ -28,7 +28,7 @@ namespace BindOpen.Extensions.Scripting
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static T ToPoco<T>(this BdoConfigurationDto dto) where T : class, IBdoScriptword, new()
+        public static T ToPoco<T>(this ConfigurationDto dto) where T : class, IBdoScriptword, new()
         {
             if (dto == null) return null;
 

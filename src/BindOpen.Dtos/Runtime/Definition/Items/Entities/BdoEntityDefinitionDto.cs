@@ -47,7 +47,7 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         [JsonPropertyName("detail.spec")]
         [XmlElement("detail.spec")]
-        public MetaSpecSetDto DetailSpec { get; set; }
+        public SpecListDto DetailSpec { get; set; }
 
         /// <summary>
         /// Formats of this instance.

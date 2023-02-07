@@ -51,7 +51,7 @@ namespace BindOpen.Extensions.Connecting
         /// <summary>
         /// The connection string of this instance.
         /// </summary>
-        [BdoData("connectionString")]
+        [BdoMeta("connectionString")]
         public string ConnectionString { get; set; }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace BindOpen.Extensions.Connecting
         /// <summary>
         /// The connection string of this instance.
         /// </summary>
-        [BdoData("connectionTimeOut")]
+        [BdoMeta("connectionTimeOut")]
         public int ConnectionTimeOut { get; set; }
 
         /// <summary>

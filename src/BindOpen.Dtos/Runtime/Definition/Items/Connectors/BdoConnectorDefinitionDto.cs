@@ -39,7 +39,7 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         [JsonPropertyName("dataSource.specification")]
         [XmlElement("dataSource.specification")]
-        public MetaSpecSetDto DatasourceDetailSpec { get; set; }
+        public SpecListDto DatasourceDetailSpec { get; set; }
 
         #endregion
 

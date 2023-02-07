@@ -67,7 +67,7 @@ namespace BindOpen.Tests.IO.Extensions
                 SaveXmlEntityTest();
             }
 
-            var config = XmlHelper.LoadXml<BdoConfigurationDto>(_filePath).ToPoco();
+            var config = XmlHelper.LoadXml<ConfigurationDto>(_filePath).ToPoco();
             var entity = Bdo.NewEntity<EntityFake>(config);
 
             Assert.That(entity != null, "Entity loading failed");
@@ -98,7 +98,7 @@ namespace BindOpen.Tests.IO.Extensions
                 SaveJsonEntityTest();
             }
 
-            var config = JsonHelper.LoadJson<BdoConfigurationDto>(_filePath).ToPoco();
+            var config = JsonHelper.LoadJson<ConfigurationDto>(_filePath).ToPoco();
             var entity = Bdo.NewEntity<EntityFake>(config);
 
             Assert.That(entity != null, "Entity loading failed");

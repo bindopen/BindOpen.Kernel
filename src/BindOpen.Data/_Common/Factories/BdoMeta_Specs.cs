@@ -1,5 +1,5 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Data.Specification;
+﻿using BindOpen.Data.Configuration;
+using BindOpen.Data.Meta;
 using System;
 
 namespace BindOpen.Data
@@ -14,14 +14,14 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
-        public static BdoMetaSpec NewSpec(
+        public static BdoSpec NewSpec(
             string name,
             DataValueTypes valueType)
         {
             if (valueType.IsScalar())
             {
                 var scalarSpec = NewSpec<BdoMetaScalarSpec>(name);
-                scalarSpec.WithDataValueType(valueType);
+                scalarSpec.WithValueType(valueType);
                 return scalarSpec;
             }
             else
@@ -29,7 +29,7 @@ namespace BindOpen.Data
                 switch (valueType)
                 {
                     case DataValueTypes.Object:
-                        return NewSpec<BdoMetaObjectSpec>(name);
+                        return NewSpec<BdoObjectSpec>(name);
                 }
             }
 
@@ -42,7 +42,7 @@ namespace BindOpen.Data
         /// <param name="name"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static BdoMetaSpec NewSpec(
+        public static BdoSpec NewSpec(
             string name,
             Type type)
         {
@@ -57,10 +57,11 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
-        public static TElementSpec NewSpec<TElementSpec>(string name = null)
-        where TElementSpec : class, IBdoMetaSpec, new()
+        public static T NewSpec<T>(
+            string name = null)
+            where T : class, IBdoSpec, new()
         {
-            var spec = new TElementSpec();
+            var spec = new T();
             spec.WithName(name);
 
             return spec;
@@ -71,52 +72,40 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="type">The value type to consider.</param>
-        public static TElementSpec NewSpec<TElementSpec, T>(
-            string name = null)
-            where TElementSpec : class, IBdoMetaSpec, new()
-        {
-            var spec = NewSpec<TElementSpec>(name, typeof(TElementSpec));
-            return spec;
-        }
-
-        /// <summary>
-        /// Creates a data element of the specified kind.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="type">The value type to consider.</param>
-        public static TElementSpec NewSpec<TElementSpec>(
+        public static T NewSpec<T>(
             string name,
             Type type)
-            where TElementSpec : class, IBdoMetaSpec, new()
+            where T : class, IBdoSpec, new()
         {
             if (type == null) return default;
 
-            var spec = NewSpec<TElementSpec>(name);
-            spec.WithDataValueType(type.GetValueType());
-            spec.AsType(type);
+            var spec = NewSpec<T>(name)
+                .WithValueType(type.GetValueType())
+                .AsType(type);
 
             return spec;
         }
 
-        private static IBdoMetaSpec AsType(
-            this IBdoMetaSpec spec,
+        private static T AsType<T>(
+            this T spec,
             Type type)
+            where T : IBdoSpec
         {
             if (spec != null)
             {
-                if (spec.GetType().IsAssignableFrom(typeof(IBdoMetaObjectSpec)))
+                if (spec.GetType().IsAssignableFrom(typeof(IBdoObjectSpec)))
                 {
-                    var objectSpec = spec as IBdoMetaObjectSpec;
+                    var objectSpec = spec as IBdoObjectSpec;
                     objectSpec.ClassFilter.AddedValues.Add(spec.GetType().ToString());
                 }
 
                 if (type.IsArray)
                 {
-                    spec.WithMaximumItemNumber(-1);
+                    spec.WithMaximumItemNumber();
                 }
                 else if (type.IsEnum)
                 {
-                    spec.WithConstraintStatement(spec.ConstraintStatement ?? new DataConstraintStatement());
+                    spec.WithConstraintStatement(spec.ConstraintStatement ?? new BdoConfigurationSet());
                     //spec.ConstraintStatement.Add(
                     //    BdoMango.
                     //    null,
@@ -133,9 +122,12 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="valueType">The value type to consider.</param>
-        public static BdoMetaScalarSpec NewMetaScalarSpec<T>(string name = null)
+        public static T NewScalarSpec<T>(
+            string name = null)
+            where T : BdoMetaScalarSpec, new()
         {
-            return NewSpec<BdoMetaScalarSpec, T>(name);
+            var spec = NewSpec<T>(name);
+            return spec;
         }
     }
 }

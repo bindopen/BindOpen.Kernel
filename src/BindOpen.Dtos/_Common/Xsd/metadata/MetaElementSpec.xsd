@@ -5,9 +5,9 @@
   <xs:include schemaLocation="https://xsd.bindopen.org/DataItemizationMode.xsd" />
   <xs:include schemaLocation="https://xsd.bindopen.org/RequirementLevel.xsd" />
   <xs:include schemaLocation="https://xsd.bindopen.org/Arrays.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/DataConstraintStatement.xsd" />
+  <xs:include schemaLocation="https://xsd.bindopen.org/BdoConfigurationSet.xsd" />
   <xs:include schemaLocation="https://xsd.bindopen.org/BdoElementDesignStatement.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/BdoElementSpecSet.xsd" />
+  <xs:include schemaLocation="https://xsd.bindopen.org/BdoSpecList.xsd" />
 
   <xs:complexType name="BdoElementSpec" abstract="true">
     <xs:complexContent mixed="false">
@@ -35,9 +35,9 @@
           <xs:element minOccurs="0" maxOccurs="1" name="minimumItemNumber" type="xs:int" />
           <xs:element minOccurs="0" maxOccurs="1" name="maximumItemNumber" type="xs:int" />
 
-          <xs:element minOccurs="0" maxOccurs="1" name="constraint.statement" type="DataConstraintStatement" />
+          <xs:element minOccurs="0" maxOccurs="1" name="constraint.statement" type="BdoConfigurationSet" />
           <xs:element minOccurs="0" maxOccurs="1" name="design.statement" type="BdoElementDesignStatement" />
-          <xs:element minOccurs="0" maxOccurs="1" name="detail.spec" type="BdoElementSpecSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="detail.spec" type="BdoSpecList" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

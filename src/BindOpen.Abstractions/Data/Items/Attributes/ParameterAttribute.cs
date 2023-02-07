@@ -7,7 +7,7 @@ namespace BindOpen.Data.Items
     /// This class represents a parameter attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public class ParameterAttribute : BdoDataAttribute
+    public class ParameterAttribute : BdoMetaAttribute
     {
         // ------------------------------------------
         // CONSTRUCTORS

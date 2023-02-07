@@ -9,7 +9,7 @@ namespace BindOpen.Data.Meta
     /// This class represents a scalar element that is an element whose items are scalars.
     /// </summary>
     public class BdoMetaScalar :
-        TBdoMetaData<IBdoMetaScalar, IBdoMetaScalarSpec, object>,
+        TBdoMetaData<IBdoMetaScalar, IBdoScalarSpec, object>,
         IBdoMetaScalar
     {
         // --------------------------------------------------
@@ -69,7 +69,7 @@ namespace BindOpen.Data.Meta
 
         #region IBdoMetaScalar
 
-        IBdoMetaSpec IBdoMetaData.NewSpec()
+        IBdoSpec IBdoMetaData.NewSpec()
         {
             return NewSpec();
         }
@@ -82,7 +82,7 @@ namespace BindOpen.Data.Meta
         /// <returns></returns>
         public override string ToString()
         {
-            return _data.ToString(DataValueType);
+            return _data.ToString(ValueType);
         }
 
         // Data ----------------------------
