@@ -7,7 +7,7 @@ namespace BindOpen.Extensions.Processing
     /// This class represents a input property attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public class BdoTaskInputAttribute : BdoDataAttribute
+    public class BdoTaskInputAttribute : BdoMetaAttribute
     {
         // ------------------------------------------
         // CONSTRUCTORS

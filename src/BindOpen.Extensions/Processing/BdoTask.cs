@@ -60,16 +60,16 @@ namespace BindOpen.Extensions.Processing
         /// <summary>
         /// Indicates whether this instance has compatible entries with the specified element set.
         /// </summary>
-        /// <param name="dataElementSpecSet">The set of element specifications to consider.</param>
+        /// <param name="dataSpecList">The set of element specifications to consider.</param>
         /// <param name="taskEntryKind">The task entry kind to consider.</param>
         /// <returns>True if this instance is compatible with the specified element set.</returns>
         public bool IsCompatibleWith(
-            IBdoMetaSpecList dataElementSpecSet,
+            IBdoSpecList dataSpecList,
             TaskEntryKind taskEntryKind = TaskEntryKind.Any)
         {
             if (Config == null) return false;
 
-            if (dataElementSpecSet == null)
+            if (dataSpecList == null)
             {
                 return true;
             }
@@ -77,10 +77,10 @@ namespace BindOpen.Extensions.Processing
             {
                 //foreach (IBdoMetaData entry in Config.GetEntries(taskEntryKind))
                 //{
-                //    IBdoMetaSpec dataElementSpec = dataElementSpecSet[entry.Key()];
+                //    IBdoSpec dataElementSpec = dataSpecList[entry.Key()];
                 //    if (dataElementSpec != null)
                 //    {
-                //        bool isCompatible = dataElementSpec.IsCompatibleWithItem(entry);
+                //        bool isCompatible = dataElementSpec.IsCompatibleWithData(entry);
                 //        if (!isCompatible) return false;
                 //    }
                 //}

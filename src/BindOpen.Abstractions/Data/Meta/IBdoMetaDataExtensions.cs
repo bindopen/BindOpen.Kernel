@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 
-namespace BindOpen.Data.Meta
+namespace BindOpen.Data
 {
     /// <summary>
     /// This class represents a data element set.
@@ -33,7 +34,7 @@ namespace BindOpen.Data.Meta
         {
             if (meta != null)
             {
-                meta.DataValueType = valueType;
+                meta.ValueType = valueType;
             }
 
             return meta;
@@ -49,7 +50,7 @@ namespace BindOpen.Data.Meta
         {
             if (meta != null)
             {
-                meta.DataReference = reference;
+                meta.Reference = reference;
             }
 
             return meta;
@@ -65,7 +66,7 @@ namespace BindOpen.Data.Meta
         {
             if (meta != null)
             {
-                meta.DataExpression = exp;
+                meta.Expression = exp;
             }
 
             return meta;

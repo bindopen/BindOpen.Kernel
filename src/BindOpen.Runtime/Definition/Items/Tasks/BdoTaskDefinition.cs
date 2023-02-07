@@ -1,6 +1,6 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Data;
 using BindOpen.Data.Items;
-using BindOpen.Data.Meta;
 using BindOpen.Extensions;
 using BindOpen.Logging;
 using System;
@@ -29,7 +29,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// Input specification of this instance.
         /// </summary>
-        public IBdoMetaSpecList InputSpecification { get; set; }
+        public IBdoSpecList InputSpecification { get; set; }
 
         /// <summary>
         /// Indicates whether this instance is executable.
@@ -49,7 +49,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// Output specification of this instance.
         /// </summary>
-        public IBdoMetaSpecList OutputSpecification { get; set; }
+        public IBdoSpecList OutputSpecification { get; set; }
 
         /// <summary>
         /// The runtime type of this instance.
@@ -104,21 +104,21 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
         /// <returns>True if this instance is configurable.</returns>
-        public List<IBdoMetaSpec> GetEntries(params TaskEntryKind[] taskEntryKinds)
+        public List<IBdoSpec> GetEntries(params TaskEntryKind[] taskEntryKinds)
         {
             if (taskEntryKinds.Length == 0)
                 taskEntryKinds = new TaskEntryKind[1] { TaskEntryKind.Any };
 
-            var dataElements = new List<IBdoMetaSpec>();
+            var dataElements = new List<IBdoSpec>();
 
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.Input)))
                 dataElements.AddRange(InputSpecification.Items);
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.Output)))
                 dataElements.AddRange(OutputSpecification.Items);
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.ScalarOutput)))
-                dataElements.AddRange(OutputSpecification.Items.Where(p => p.DataValueType.IsScalar()));
+                dataElements.AddRange(OutputSpecification.Items.Where(p => p.ValueType.IsScalar()));
             if ((taskEntryKinds.Contains(TaskEntryKind.Any)) || (taskEntryKinds.Contains(TaskEntryKind.ScalarOutput)))
-                dataElements.AddRange(OutputSpecification.Items.Where(p => p.DataValueType.IsScalar()));
+                dataElements.AddRange(OutputSpecification.Items.Where(p => p.ValueType.IsScalar()));
 
             return dataElements;
         }
@@ -129,7 +129,7 @@ namespace BindOpen.Runtime.Definition
         /// <param name="key">The key to consider.</param>
         /// <param name="taskEntryKinds">The kind end entries to consider.</param>
         /// <returns>Returns the input with the specified name.</returns>
-        public IBdoMetaSpec GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds)
+        public IBdoSpec GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds)
         {
             return GetEntries(taskEntryKinds).Find(p => p.BdoKeyEquals(key));
         }
@@ -145,7 +145,7 @@ namespace BindOpen.Runtime.Definition
             IBdoLog log = null,
             params TaskEntryKind[] taskEntryKinds)
         {
-            IBdoMetaSpec entry = GetEntryWithName(name, taskEntryKinds);
+            IBdoSpec entry = GetEntryWithName(name, taskEntryKinds);
 
             return entry?.DefaultItem;
         }

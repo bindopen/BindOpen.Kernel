@@ -113,7 +113,7 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         [JsonPropertyName("parameter.specification")]
         [XmlElement("parameter.specification")]
-        public MetaSpecSetDto ParameterSpecification { get; set; }
+        public SpecListDto ParameterSpecification { get; set; }
 
         /// <summary>
         /// Description of parameters of this instance when parameters are repeated.

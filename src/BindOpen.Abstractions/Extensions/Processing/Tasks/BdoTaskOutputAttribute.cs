@@ -7,7 +7,7 @@ namespace BindOpen.Extensions.Processing
     /// This class represents a output property attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public class BdoTaskOutputAttribute : BdoDataAttribute
+    public class BdoTaskOutputAttribute : BdoMetaAttribute
     {
         // ------------------------------------------
         // CONSTRUCTORS

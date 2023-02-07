@@ -6,8 +6,8 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element attribute.
     /// </summary>
-    [AttributeUsageAttribute(AttributeTargets.Property, AllowMultiple = false)]
-    public class BdoDataAttribute : TitledDescribedDataItemAttribute
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
+    public class BdoMetaAttribute : TitledDescribedDataItemAttribute
     {
         // --------------------------------------------------
         // VARIABLES
@@ -157,14 +157,14 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Instantiates a new instance of the BdoElementAttribute class.
         /// </summary>
-        public BdoDataAttribute() : base()
+        public BdoMetaAttribute() : base()
         {
         }
 
         /// <summary>
         /// Instantiates a new instance of the BdoElementAttribute class.
         /// </summary>
-        public BdoDataAttribute(string name) : base()
+        public BdoMetaAttribute(string name) : base()
         {
             Name = name;
         }

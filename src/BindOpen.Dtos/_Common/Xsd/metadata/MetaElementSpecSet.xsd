@@ -9,7 +9,7 @@
   <xs:include schemaLocation="https://xsd.bindopen.org/SchemaElementSpec.xsd" />
   <xs:include schemaLocation="https://xsd.bindopen.org/SourceElementSpec.xsd" />
 
-  <xs:complexType name="BdoElementSpecSet">
+  <xs:complexType name="BdoSpecList">
     <xs:complexContent mixed="false">
       <xs:extension base="StoredDataItem">
         <xs:sequence>

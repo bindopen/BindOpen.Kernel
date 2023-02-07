@@ -986,14 +986,14 @@
             Instantiates a new instance of the DataReferenceDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Specification.DataConstraintStatementDto">
+        <member name="T:BindOpen.Data.Specification.BdoConfigurationSetDto">
             <summary>
             This class represents the data constraint statement.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataConstraintStatementDto.#ctor">
+        <member name="M:BindOpen.Data.Specification.BdoConfigurationSetDto.#ctor">
             <summary>
-            Instantiates a new instance of the DataConstraintStatementDto class.
+            Instantiates a new instance of the BdoConfigurationSetDto class.
             </summary>
         </member>
         <member name="T:BindOpen.Data.Specification.DataSpecificationDto">
@@ -1031,41 +1031,41 @@
             Initializes a new insance of the DataSpecificationDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Specification.DataValueFilterDto">
+        <member name="T:BindOpen.Data.Specification.StringFilterDto">
             <summary>
             This class specifies the data value filter.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Specification.DataValueFilterDto.AddedValues">
+        <member name="P:BindOpen.Data.Specification.StringFilterDto.AddedValues">
             <summary>
             The added values of this instance.
             </summary>
             <remarks>If empty then all the values are added.</remarks>
         </member>
-        <member name="P:BindOpen.Data.Specification.DataValueFilterDto.RemovedValues">
+        <member name="P:BindOpen.Data.Specification.StringFilterDto.RemovedValues">
             <summary>
             The removed values of this instance.
             </summary>
             <remarks>If empty then no value is removed.</remarks>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataValueFilterDto.#ctor">
+        <member name="M:BindOpen.Data.Specification.StringFilterDto.#ctor">
             <summary>
-            Instantiates a new instance of the DataValueFilterDto class.
+            Instantiates a new instance of the StringFilterDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Specification.DataValueFilterStatementDto">
+        <member name="T:BindOpen.Data.Specification.StringFilterStatementDto">
             <summary>
             This interface specifies the value filter statement.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Specification.DataValueFilterStatementDto.Filters">
+        <member name="P:BindOpen.Data.Specification.StringFilterStatementDto.Filters">
             <summary>
             Filters of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataValueFilterStatementDto.#ctor">
+        <member name="M:BindOpen.Data.Specification.StringFilterStatementDto.#ctor">
             <summary>
-            Instantiates a new instance of the DataValueFilterStatementDto class.
+            Instantiates a new instance of the StringFilterStatementDto class.
             </summary>
         </member>
         <member name="T:BindOpen.Data.Stores.BdoDatasourceDepotDto">

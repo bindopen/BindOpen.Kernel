@@ -2,7 +2,7 @@
 <xs:schema xmlns="https://xsd.bindopen.org" elementFormDefault="qualified" targetNamespace="https://xsd.bindopen.org" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:include schemaLocation="https://xsd.bindopen.org/BdoExtensionItemDefinition.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/BdoElementSpecSet.xsd" />
+  <xs:include schemaLocation="https://xsd.bindopen.org/BdoSpecList.xsd" />
   <xs:include schemaLocation="https://xsd.bindopen.org/BdoElementSet.xsd" />
 
   <xs:complexType name="BdoHandlerDefinition">
@@ -20,7 +20,7 @@
             <xs:element name="source-schema.specification" nillable="true" type="SchemaElementSpec" />
             <xs:element name="source-dataSource.specification" nillable="true" type="SourceElementSpec" />
           </xs:choice>
-          <xs:element minOccurs="0" maxOccurs="1" name="parameter.specification" type="BdoElementSpecSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="parameter.specification" type="BdoSpecList" />
           <xs:choice>
             <xs:element name="target-entity.specification" nillable="true" type="EntityElementSpec" />
             <!--<xs:element minOccurs="0" maxOccurs="unbounded" name="documentElement" nillable="true" type="DocumentElement" />-->

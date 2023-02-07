@@ -26,23 +26,23 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        List<IBdoMetaSpec> Specs { get; set; }
+        List<IBdoSpec> Specs { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaSpec GetSpec(string name = null);
+        IBdoSpec GetSpec(string name = null);
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaData WithSpecs(params IBdoMetaSpec[] specs);
+        IBdoMetaData WithSpecs(params IBdoSpec[] specs);
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        IBdoMetaSpec NewSpec();
+        IBdoSpec NewSpec();
 
         // Data
 
@@ -54,17 +54,17 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        DataValueTypes DataValueType { get; set; }
+        DataValueTypes ValueType { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoReference DataReference { get; set; }
+        IBdoReference Reference { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoExpression DataExpression { get; set; }
+        IBdoExpression Expression { get; set; }
 
         /// <summary>
         /// 

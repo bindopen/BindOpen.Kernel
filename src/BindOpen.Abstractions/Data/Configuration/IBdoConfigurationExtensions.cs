@@ -1,6 +1,7 @@
-﻿using System.Linq;
+﻿using BindOpen.Data.Configuration;
+using System.Linq;
 
-namespace BindOpen.Data.Configuration
+namespace BindOpen.Data
 {
     /// <summary>
     /// 
