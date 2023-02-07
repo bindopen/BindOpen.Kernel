@@ -290,7 +290,7 @@ namespace BindOpen.Data
             this Type objectType,
             string propertyName,
             Type[] attributeTypes,
-            out BdoDataAttribute attribute)
+            out BdoMetaAttribute attribute)
         {
             attribute = null;
             PropertyInfo propertyInfo = null;
@@ -302,7 +302,7 @@ namespace BindOpen.Data
                 {
                     foreach (Type attributeType in attributeTypes)
                     {
-                        if (propertyInfo.GetCustomAttribute(attributeType) is BdoDataAttribute elementAttribute)
+                        if (propertyInfo.GetCustomAttribute(attributeType) is BdoMetaAttribute elementAttribute)
                         {
                             attribute = elementAttribute;
                             break;
@@ -373,13 +373,13 @@ namespace BindOpen.Data
         /// <returns></returns>
         public static object ToBdoData(
             this object obj,
-            IBdoMetaSpec spec)
+            IBdoSpec spec)
         {
             object item = null;
 
             if (obj != null)
             {
-                if (spec == null || spec.IsCompatibleWithItem(obj))
+                if (spec == null || spec.IsCompatibleWithData(obj))
                 {
                     IEnumerable objEnum;
 
@@ -423,7 +423,7 @@ namespace BindOpen.Data
                         if (spec.MaximumItemNumber == -1
                             || (list?.Count ?? 0) < spec.MaximumItemNumber)
                         {
-                            if (spec.IsCompatibleWithItem(subItem))
+                            if (spec.IsCompatibleWithData(subItem))
                             {
                                 list.Add(subItem);
                             }

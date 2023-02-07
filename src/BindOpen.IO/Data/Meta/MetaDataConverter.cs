@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using BindOpen.Data.References;
 
 namespace BindOpen.Data.Meta
@@ -35,8 +36,8 @@ namespace BindOpen.Data.Meta
 
             if (dto != null)
             {
-                dto.DataExpression = poco.DataExpression?.ToDto();
-                dto.DataReference = poco.DataReference?.ToDto();
+                dto.DataExpression = poco.Expression?.ToDto();
+                dto.DataReference = poco.Reference?.ToDto();
             }
 
             return dto;

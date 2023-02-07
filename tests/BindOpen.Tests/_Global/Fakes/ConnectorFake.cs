@@ -13,19 +13,19 @@ namespace BindOpen.Tests
         /// <summary>
         /// The host of this instance.
         /// </summary>
-        [BdoData(Name = "host")]
+        [BdoMeta(Name = "host")]
         public string Host { get; set; }
 
         /// <summary>
         /// Indicates whether this instance enables SSL.
         /// </summary>
-        [BdoData(Name = "isSslEnabled")]
+        [BdoMeta(Name = "isSslEnabled")]
         public bool? IsSslEnabled { get; set; }
 
         /// <summary>
         /// The port of this instance.
         /// </summary>
-        [BdoData(Name = "port")]
+        [BdoMeta(Name = "port")]
         public int? Port { get; set; }
 
         // ------------------------------------------

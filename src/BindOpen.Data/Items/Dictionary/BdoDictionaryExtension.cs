@@ -1,6 +1,7 @@
-﻿using System.Reflection;
+﻿using BindOpen.Data.Items;
+using System.Reflection;
 
-namespace BindOpen.Data.Items
+namespace BindOpen.Data
 {
     /// <summary>
     /// This class represents a dico data item extension.

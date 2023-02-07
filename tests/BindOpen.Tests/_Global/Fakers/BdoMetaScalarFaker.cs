@@ -21,7 +21,9 @@ namespace BindOpen.Tests
             };
         }
 
-        public static void AssertFake(IBdoMetaScalar element, IBdoMetaScalar reference)
+        public static void AssertFake(
+            IBdoMetaScalar element,
+            IBdoMetaScalar reference)
         {
             Assert.That(element?.Name == reference?.Name, "Name different");
         }

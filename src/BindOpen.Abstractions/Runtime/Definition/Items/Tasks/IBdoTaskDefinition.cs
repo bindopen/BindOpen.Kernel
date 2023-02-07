@@ -29,12 +29,12 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaSpecList InputSpecification { get; set; }
+        IBdoSpecList InputSpecification { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaSpecList OutputSpecification { get; set; }
+        IBdoSpecList OutputSpecification { get; set; }
 
         /// <summary>
         /// 
@@ -51,7 +51,7 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         /// <param name="taskEntryKinds"></param>
         /// <returns></returns>
-        List<IBdoMetaSpec> GetEntries(
+        List<IBdoSpec> GetEntries(
             params TaskEntryKind[] taskEntryKinds);
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace BindOpen.Runtime.Definition
         /// <param name="key"></param>
         /// <param name="taskEntryKinds"></param>
         /// <returns></returns>
-        IBdoMetaSpec GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds);
+        IBdoSpec GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds);
 
         /// <summary>
         /// 

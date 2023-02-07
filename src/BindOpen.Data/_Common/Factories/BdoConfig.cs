@@ -9,13 +9,13 @@ namespace BindOpen.Data
     public partial class BdoConfig
     {
         /// <summary>
-        /// Instantiates a new instance of the BdoConfigurationBundle class.
+        /// Instantiates a new instance of the BdoConfigurationSet class.
         /// </summary>
         /// <param name="items">The items to consider.</param>
-        public static BdoConfigurationBundle NewBundle(
+        public static BdoConfigurationSet NewBundle(
             params IBdoConfiguration[] items)
         {
-            var config = BdoData.NewList<BdoConfigurationBundle, IBdoConfiguration>(items);
+            var config = BdoData.NewList<BdoConfigurationSet, IBdoConfiguration>(items);
             return config;
         }
 

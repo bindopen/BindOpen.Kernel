@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Data.Assemblies
+﻿using BindOpen.Data.Assemblies;
+
+namespace BindOpen.Data
 {
     /// <summary>
     /// This class represents an extension reference extension.

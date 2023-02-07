@@ -55,7 +55,7 @@ namespace BindOpen.Runtime.Stores
                     UpdateDictionary(definition, entityAttribute);
                 }
 
-                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoDataAttribute)).Any()))
+                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoMetaAttribute)).Any()))
                 {
                     definition.DetailSpec.Add(BdoMeta.NewSpec(property.Name, property.PropertyType));
                 }

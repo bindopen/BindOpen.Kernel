@@ -45,7 +45,7 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         [JsonPropertyName("parameter.specification")]
         [XmlElement("parameter.specification")]
-        public MetaSpecSetDto ParameterSpecification { get; set; }
+        public SpecListDto ParameterSpecification { get; set; }
 
         // Source
 
@@ -54,14 +54,14 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         [JsonPropertyName("source.specification")]
         [XmlElement("source-object.specification")]
-        public MetaObjectSpecDto SourceObjectSpecification { get; set; }
+        public ObjectSpecDto SourceObjectSpecification { get; set; }
 
         /// <summary>
         /// The source scalar specification of this instance.
         /// </summary>
         [JsonPropertyName("source-scalar.specification")]
         [XmlElement("source-scalar.specification")]
-        public MetaScalarSpecDto SourceScalarSpecification { get; set; }
+        public ScalarSpecDto SourceScalarSpecification { get; set; }
 
         // Target
 
@@ -70,14 +70,14 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         [JsonPropertyName("target.specification")]
         [XmlElement("target-object.specification")]
-        public MetaObjectSpecDto TargetObjectSpecification { get; set; }
+        public ObjectSpecDto TargetObjectSpecification { get; set; }
 
         /// <summary>
         /// The target scalar specification of this instance.
         /// </summary>
         [JsonPropertyName("target-scalar.specification")]
         [XmlElement("target-scalar.specification")]
-        public MetaScalarSpecDto TargetScalarSpecification { get; set; }
+        public ScalarSpecDto TargetScalarSpecification { get; set; }
 
         #endregion
 

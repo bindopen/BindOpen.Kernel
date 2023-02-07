@@ -69,7 +69,7 @@ namespace BindOpen.Data.Items
         /// The root element of this instance.
         /// </summary>
         public IBdoMetaData RootElement() =>
-            SourceMetaData?.DataReference?.SourceMetaData;
+            SourceMetaData?.Reference?.SourceMetaData;
 
         /// <summary>
         /// Gets the initial data source of this instance.

@@ -1,6 +1,7 @@
-﻿using System.Linq;
+﻿using BindOpen.Data.Items;
+using System.Linq;
 
-namespace BindOpen.Data.Items
+namespace BindOpen.Data
 {
     /// <summary>
     /// 

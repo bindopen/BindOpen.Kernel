@@ -769,7 +769,7 @@ namespace BindOpen.Extensions.Scripting
                 var index = 0;
                 foreach (var param in scriptword.Parameters)
                 {
-                    var paramSpecification = definition?.ParameterSpecification.Items[index];
+                    var paramSpec = definition?.ParameterSpecification.Items[index];
 
                     // we check that the value type of the current script word parameter corresponds to the defined one (considering the en-US culture info)
 
@@ -777,9 +777,9 @@ namespace BindOpen.Extensions.Scripting
                     {
                         return definition.RepeatedParameterValueType.IsCompatibleWith(param.GetValueType());
                     }
-                    else if (paramSpecification.DataValueType != DataValueTypes.Any)
+                    else if (paramSpec.ValueType != DataValueTypes.Any)
                     {
-                        return paramSpecification.IsCompatibleWithItem(param);
+                        return paramSpec.IsCompatibleWithData(param);
                     }
                     index++;
                 }

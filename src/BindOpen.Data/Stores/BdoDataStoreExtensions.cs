@@ -1,8 +1,9 @@
-﻿using BindOpen.Logging;
+﻿using BindOpen.Data.Stores;
+using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System;
 
-namespace BindOpen.Data.Stores
+namespace BindOpen.Data
 {
     /// <summary>
     /// This class represents an data source extensions.

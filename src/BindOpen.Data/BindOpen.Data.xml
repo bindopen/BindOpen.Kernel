@@ -256,14 +256,14 @@
             
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Configuration.BdoConfigurationBundle">
+        <member name="T:BindOpen.Data.Configuration.BdoConfigurationSet">
             <summary>
             This class represents a config.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Configuration.BdoConfigurationBundle.#ctor">
+        <member name="M:BindOpen.Data.Configuration.BdoConfigurationSet.#ctor">
             <summary>
-            Instantiates a new instance of the BdoConfigurationBundle class.
+            Instantiates a new instance of the BdoConfigurationSet class.
             </summary>
         </member>
         <member name="T:BindOpen.Data.Context.BdoDataContext">
@@ -454,7 +454,7 @@
             </summary>
             <returns>Returns the new specifcation.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElement.IsCompatibleWithItem(System.Object)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElement.IsCompatibleWithData(System.Object)">
             <summary>
             Indicates whether this instance is compatible with the specified item.
             </summary>
@@ -782,7 +782,7 @@
             Data constraint statement of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElementSpec.WithConstraintStatement(BindOpen.Data.Specification.IDataConstraintStatement)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElementSpec.WithConstraintStatement(BindOpen.Data.Specification.IBdoConfigurationSet)">
             <summary>
             
             </summary>
@@ -905,7 +905,7 @@
             The definition filter of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoEntitySpec.WithDefinitionFilter(BindOpen.Data.Specification.IDataValueFilter)">
+        <member name="M:BindOpen.Data.Elements.BdoEntitySpec.WithDefinitionFilter(BindOpen.Data.Specification.IStringFilter)">
             <summary>
             
             </summary>
@@ -1044,7 +1044,7 @@
             The class filter of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataObjectSpec.WithClassFilter(BindOpen.Data.Specification.IDataValueFilter)">
+        <member name="M:BindOpen.Data.Elements.BdoDataObjectSpec.WithClassFilter(BindOpen.Data.Specification.IStringFilter)">
             <summary>
             
             </summary>
@@ -1056,7 +1056,7 @@
             The definition filter of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataObjectSpec.WithDefinitionFilter(BindOpen.Data.Specification.IDataValueFilter)">
+        <member name="M:BindOpen.Data.Elements.BdoDataObjectSpec.WithDefinitionFilter(BindOpen.Data.Specification.IStringFilter)">
             <summary>
             
             </summary>
@@ -1137,7 +1137,7 @@
             The class filter of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataObjectSpec.WithClassFilter(BindOpen.Data.Specification.IDataValueFilter)">
+        <member name="M:BindOpen.Data.Elements.BdoDataObjectSpec.WithClassFilter(BindOpen.Data.Specification.IStringFilter)">
             <summary>
             
             </summary>
@@ -1149,7 +1149,7 @@
             The definition filter of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataObjectSpec.WithDefinitionFilter(BindOpen.Data.Specification.IDataValueFilter)">
+        <member name="M:BindOpen.Data.Elements.BdoDataObjectSpec.WithDefinitionFilter(BindOpen.Data.Specification.IStringFilter)">
             <summary>
             
             </summary>
@@ -1312,7 +1312,7 @@
             <returns>Log of the operation.</returns>
             <remarks>Put reference sets as null if you do not want to repair this instance.</remarks>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElementSetExtension.Update(BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.Elements.IBdoElementSpecSet,BindOpen.Data.UpdateModes[],System.String[],BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElementSetExtension.Update(BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.Elements.IBdoMetaSpecList,BindOpen.Data.UpdateModes[],System.String[],BindOpen.Logging.IBdoLog)">
             <summary>
             Updates this instance.
             </summary>
@@ -1340,17 +1340,17 @@
             <param name="updateModes">The update modes to consider.</param>
             <returns>Log of the operation.</returns>
         </member>
-        <member name="T:BindOpen.Data.Elements.BdoDataElementSpecSet">
+        <member name="T:BindOpen.Data.Elements.BdoDataSpecList">
             <summary>
             This class represents a set of data element specifications.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElementSpecSet.#ctor">
+        <member name="M:BindOpen.Data.Elements.BdoDataSpecList.#ctor">
             <summary>
-            Initializes a new instance of the BdoElementSpecSet class.
+            Initializes a new instance of the BdoMetaSpecList class.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElementSpecSet.Clone(System.String[])">
+        <member name="M:BindOpen.Data.Elements.BdoDataSpecList.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
@@ -1601,7 +1601,7 @@
         </member>
         <member name="M:BindOpen.Data.BdoConfig.NewBundle(BindOpen.Abstractions.Meta.Configuration.IBdoConfiguration[])">
             <summary>
-            Instantiates a new instance of the BdoConfigurationBundle class.
+            Instantiates a new instance of the BdoConfigurationSet class.
             </summary>
             <param name="items">The items to consider.</param>
         </member>
@@ -2734,24 +2734,24 @@
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Data.Specification.DataConstraintStatement">
+        <member name="T:BindOpen.Data.Specification.BdoConfigurationSet">
             <summary>
             This class represents the data constraint statement.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataConstraintStatement.#ctor">
+        <member name="M:BindOpen.Data.Specification.BdoConfigurationSet.#ctor">
             <summary>
-            Instantiates a new instance of the DataConstraintStatement class.
+            Instantiates a new instance of the BdoConfigurationSet class.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataConstraintStatement.GetConstraint(System.String)">
+        <member name="M:BindOpen.Data.Specification.BdoConfigurationSet.GetConstraint(System.String)">
             <summary>
             Returns the constraint with the specified name.
             </summary>
             <param name="name">The name of the item to return.</param>
             <returns>Returns the item with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataConstraintStatement.GetConstraintParameter(System.String,System.String)">
+        <member name="M:BindOpen.Data.Specification.BdoConfigurationSet.GetConstraintParameter(System.String,System.String)">
             <summary>
             Returns the constraint parameter.
             </summary>
@@ -2759,7 +2759,7 @@
             <param name="parameterName">The name of the parameter to return.</param>
             <returns>Returns the specified constrainst parameter.</returns>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataConstraintStatement.GetConstraintParameterValue(System.String,System.String)">
+        <member name="M:BindOpen.Data.Specification.BdoConfigurationSet.GetConstraintParameterValue(System.String,System.String)">
             <summary>
             Returns the constraint parameter value.
             </summary>
@@ -2767,7 +2767,7 @@
             <param name="parameterName">The name of the parameter to return.</param>
             <returns>Returns the specified constrainst parameter.</returns>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataConstraintStatement.Clone(System.String[])">
+        <member name="M:BindOpen.Data.Specification.BdoConfigurationSet.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
@@ -2789,7 +2789,7 @@
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataSpecification.IsCompatibleWithItem(System.Object)">
+        <member name="M:BindOpen.Data.Specification.DataSpecification.IsCompatibleWithData(System.Object)">
             <summary>
             Indicates whether this instance is compatible with the specified data item.
             </summary>
@@ -2910,43 +2910,43 @@
             
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Specification.DataValueFilter">
+        <member name="T:BindOpen.Data.Specification.StringFilter">
             <summary>
             This class specifies the data value filter.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Specification.DataValueFilter.AddedValues">
+        <member name="P:BindOpen.Data.Specification.StringFilter.AddedValues">
             <summary>
             The added values of this instance.
             </summary>
             <remarks>If empty then all the values are added.</remarks>
         </member>
-        <member name="P:BindOpen.Data.Specification.DataValueFilter.RemovedValues">
+        <member name="P:BindOpen.Data.Specification.StringFilter.RemovedValues">
             <summary>
             The removed values of this instance.
             </summary>
             <remarks>If empty then no value is removed.</remarks>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataValueFilter.#ctor">
+        <member name="M:BindOpen.Data.Specification.StringFilter.#ctor">
             <summary>
-            Instantiates a new instance of the DataValueFilter class.
+            Instantiates a new instance of the StringFilter class.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataValueFilter.#ctor(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.Data.Specification.StringFilter.#ctor(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
             <summary>
-            Instantiates a new instance of the DataValueFilter class specifying the action kind.
+            Instantiates a new instance of the StringFilter class specifying the action kind.
             </summary>
             <param name="addedValues">The allowed values to consider.</param>
             <param name="removedValues">The forbidden values to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataValueFilter.GetValues(System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.Data.Specification.StringFilter.GetValues(System.Collections.Generic.List{System.String})">
             <summary>
             Gets the values allowed by this instance.
             </summary>
             <param name="allValues">All the values to consider.</param>
             <returns>Returns all the values allowed by this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataValueFilter.IsValueAllowed(System.String,System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.Data.Specification.StringFilter.IsValueAllowed(System.String,System.Collections.Generic.List{System.String})">
             <summary>
             Indicates whether the value is allowed by this instance.
             </summary>
@@ -2954,31 +2954,31 @@
             <param name="allValues">All the values to consider.</param>
             <returns>Returns True if the specified is validated by this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataValueFilter.Repair(System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.Data.Specification.StringFilter.Repair(System.Collections.Generic.List{System.String})">
             <summary>
             Repairs this instance.
             </summary>
             <param name="allValues">All the values to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataValueFilter.Clone(System.String[])">
+        <member name="M:BindOpen.Data.Specification.StringFilter.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Data.Specification.DataValueFilterStatement">
+        <member name="T:BindOpen.Data.Specification.StringFilterStatement">
             <summary>
             This interface specifies the value filter statement.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Specification.DataValueFilterStatement.Filters">
+        <member name="P:BindOpen.Data.Specification.StringFilterStatement.Filters">
             <summary>
             Output detail of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.DataValueFilterStatement.#ctor">
+        <member name="M:BindOpen.Data.Specification.StringFilterStatement.#ctor">
             <summary>
-            Instantiates a new instance of the DataValueFilterStatement class.
+            Instantiates a new instance of the StringFilterStatement class.
             </summary>
         </member>
         <member name="T:BindOpen.Data.Stores.BdoDataStore">

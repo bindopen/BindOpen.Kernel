@@ -1,7 +1,8 @@
-﻿using BindOpen.Extensions.Scripting;
+﻿using BindOpen.Data.Conditions;
 using BindOpen.Data.Meta;
+using BindOpen.Extensions.Scripting;
 
-namespace BindOpen.Data.Conditions
+namespace BindOpen.Data
 {
     /// <summary>
     /// This static class provides methods to handle conditions.

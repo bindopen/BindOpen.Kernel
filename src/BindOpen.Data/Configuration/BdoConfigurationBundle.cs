@@ -5,9 +5,9 @@ namespace BindOpen.Data.Configuration
     /// <summary>
     /// This class represents a config.
     /// </summary>
-    public class BdoConfigurationBundle :
+    public class BdoConfigurationSet :
         TBdoList<IBdoConfiguration>,
-        IBdoConfigurationBundle
+        IBdoConfigurationSet
     {
         // -------------------------------------------------------------
         // CONSTRUCTORS
@@ -16,9 +16,9 @@ namespace BindOpen.Data.Configuration
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BdoConfigurationBundle class.
+        /// Instantiates a new instance of the BdoConfigurationSet class.
         /// </summary>
-        public BdoConfigurationBundle() : base()
+        public BdoConfigurationSet() : base()
         {
         }
 

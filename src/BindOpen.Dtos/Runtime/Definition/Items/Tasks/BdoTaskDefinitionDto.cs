@@ -56,7 +56,7 @@ namespace BindOpen.Runtime.Definition
         /// <seealso cref="OutputSpecification"/>
         [JsonPropertyName("input.specification")]
         [XmlElement("input.specification")]
-        public MetaSpecSetDto InputSpecification { get; set; }
+        public SpecListDto InputSpecification { get; set; }
 
         /// <summary>
         /// Output specification of this instance.
@@ -64,7 +64,7 @@ namespace BindOpen.Runtime.Definition
         /// <seealso cref="InputSpecification"/>
         [JsonPropertyName("output.specification")]
         [XmlElement("output.specification")]
-        public MetaSpecSetDto OutputSpecification { get; set; }
+        public SpecListDto OutputSpecification { get; set; }
 
         #endregion
 

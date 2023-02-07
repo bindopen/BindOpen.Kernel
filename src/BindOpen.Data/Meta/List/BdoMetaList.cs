@@ -134,7 +134,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The value type of this instance.
         /// </summary>
-        public DataValueTypes DataValueType { get; set; } = DataValueTypes.Any;
+        public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
 
         /// <summary>
         /// The itemization mode of this instance.
@@ -144,19 +144,19 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Item reference of this instance.
         /// </summary>
-        public IBdoReference DataReference { get; set; }
+        public IBdoReference Reference { get; set; }
 
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        public IBdoExpression DataExpression { get; set; }
+        public IBdoExpression Expression { get; set; }
 
         // Specification -------------------------------
 
         /// <summary>
         /// Specification of this instance.
         /// </summary>
-        public List<IBdoMetaSpec> Specs { get; set; }
+        public List<IBdoSpec> Specs { get; set; }
 
         // Specification ---------------------
 
@@ -164,19 +164,9 @@ namespace BindOpen.Data.Meta
         /// Gets a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
-        public IBdoMetaSpec NewSpec()
+        public IBdoSpec NewSpec()
         {
             return null;
-        }
-
-        /// <summary>
-        /// Indicates whether this instance is compatible with the specified item.
-        /// </summary>
-        /// <param name="item">The item to consider.</param>
-        /// <returns></returns>
-        public bool IsCompatibleWithItem(object item)
-        {
-            return (DataValueType == DataValueTypes.Any || item.GetValueType().IsCompatibleWith(DataValueType));
         }
 
         // Specification
@@ -186,7 +176,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public IBdoMetaSpec GetSpec(string name = null)
+        public IBdoSpec GetSpec(string name = null)
         {
             return Specs?.FirstOrDefault(
                 q => (name == null && q.Name == null) || q.Name.BdoKeyEquals(name));
@@ -195,7 +185,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public IBdoMetaData WithSpecs(params IBdoMetaSpec[] specs)
+        public IBdoMetaData WithSpecs(params IBdoSpec[] specs)
         {
             Specs = specs?.ToList();
 

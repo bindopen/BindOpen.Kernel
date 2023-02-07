@@ -7,7 +7,7 @@ namespace BindOpen.Data.Items
     /// This class represents an scalar attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public class ScalarAttribute : BdoDataAttribute
+    public class ScalarAttribute : BdoMetaAttribute
     {
         // --------------------------------------------------
         // VARIABLES

@@ -1,4 +1,5 @@
-﻿using BindOpen.Logging;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace BindOpen.Data.Meta
         BdoMetaData,
         ITBdoMetaData<TElement, TSpec, TItem>
         where TElement : IBdoMetaData
-        where TSpec : IBdoMetaSpec
+        where TSpec : IBdoSpec
         where TItem : class
     {
         // --------------------------------------------------
@@ -62,7 +63,7 @@ namespace BindOpen.Data.Meta
         public new List<TSpec> Specs
         {
             get => base.Specs?.Cast<TSpec>().ToList();
-            set { base.WithSpecs(value?.Cast<IBdoMetaSpec>().ToArray()); }
+            set { base.WithSpecs(value?.Cast<IBdoSpec>().ToArray()); }
         }
 
         /// <summary>
@@ -91,7 +92,7 @@ namespace BindOpen.Data.Meta
         /// <returns></returns>
         public TElement WithSpecs(params TSpec[] specs)
         {
-            return (TElement)base.WithSpecs(specs.Cast<IBdoMetaSpec>().ToArray());
+            return (TElement)base.WithSpecs(specs.Cast<IBdoSpec>().ToArray());
         }
 
         // Data

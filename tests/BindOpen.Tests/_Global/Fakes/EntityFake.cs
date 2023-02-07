@@ -37,31 +37,31 @@ namespace BindOpen.Tests
         /// <summary>
         /// The boolean value of this instance.
         /// </summary>
-        [BdoData(Name = "boolValue")]
+        [BdoMeta(Name = "boolValue")]
         public bool BoolValue { get; set; }
 
         /// <summary>
         /// The string value of this instance.
         /// </summary>
-        [BdoData(Name = "stringValue")]
+        [BdoMeta(Name = "stringValue")]
         public string StringValue { get; set; }
 
         /// <summary>
         /// The integer value of this instance.
         /// </summary>
-        [BdoData(Name = "intValue")]
+        [BdoMeta(Name = "intValue")]
         public int IntValue { get; set; }
 
         /// <summary>
         /// Enumeration value of this instance.
         /// </summary>
-        [BdoData(Name = "enumValue")]
+        [BdoMeta(Name = "enumValue")]
         public ActionPriorities EnumValue { get; set; }
 
         /// <summary>
         /// Enumeration value of this instance.
         /// </summary>
-        [BdoData(Name = "inputs")]
+        [BdoMeta(Name = "inputs")]
         [BdoScriptword(Name = "input")]
         public BdoMetaList Inputs { get; set; }
 
@@ -69,7 +69,7 @@ namespace BindOpen.Tests
         /// <summary>
         /// The sub entity of this instance.
         /// </summary>
-        [BdoData(Name = "subEntity")]
+        [BdoMeta(Name = "subEntity")]
         public EntityFake SubEntity { get; set; }
 
         // Path --------------------------
@@ -77,7 +77,7 @@ namespace BindOpen.Tests
         /// <summary>
         /// Path of this instance.
         /// </summary>
-        [BdoData("path")]
+        [BdoMeta("path")]
         public string Path { get; set; }
 
         /// <summary>
@@ -129,13 +129,13 @@ namespace BindOpen.Tests
         /// <summary>
         /// The creation date of this instance.
         /// </summary>
-        [BdoData("creationDate")]
+        [BdoMeta("creationDate")]
         public DateTime? CreationDate { get; set; }
 
         /// <summary>
         /// The information flag of this instance.
         /// </summary>
-        [BdoData("flag")]
+        [BdoMeta("flag")]
         public string Flag { get; set; }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace BindOpen.Tests
         /// <summary>
         /// Indicates whether this instance is read only.
         /// </summary>
-        [BdoData("isReadOnly")]
+        [BdoMeta("isReadOnly")]
         [DefaultValue(false)]
         public bool IsReadonly { get; set; }
 
@@ -172,7 +172,7 @@ namespace BindOpen.Tests
         /// <summary>
         /// The date of last access of this instance.
         /// </summary>
-        [BdoData("lastAccessDate")]
+        [BdoMeta("lastAccessDate")]
         public DateTime? LastAccessDate { get; set; }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace BindOpen.Tests
         /// <summary>
         /// The parent path of this instance.
         /// </summary>
-        [BdoData("parentPath")]
+        [BdoMeta("parentPath")]
         public string ParentPath { get; set; }
 
         /// <summary>
@@ -208,7 +208,7 @@ namespace BindOpen.Tests
         /// <summary>
         /// The date of last write of this instance.
         /// </summary>
-        [BdoData("lastWriteDate")]
+        [BdoMeta("lastWriteDate")]
         public DateTime? LastWriteDate { get; set; }
 
         public IBdoEntity WithLastWriteDate(DateTime? date)

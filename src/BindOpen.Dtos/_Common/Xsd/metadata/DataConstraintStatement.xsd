@@ -3,7 +3,7 @@
   <xs:include schemaLocation="https://xsd.bindopen.org/DictionaryDataItem.xsd" />
   <xs:include schemaLocation="https://xsd.bindopen.org/RoutineConfiguration.xsd" />
 
-  <xs:complexType name="DataConstraintStatement">
+  <xs:complexType name="BdoConfigurationSet">
     <xs:complexContent mixed="false">
       <xs:extension base="DataListOfRoutineConfiguration" />
     </xs:complexContent>

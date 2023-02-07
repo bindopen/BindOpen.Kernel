@@ -1,4 +1,5 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Data;
 using BindOpen.Data.Meta;
 using BindOpen.Logging;
 using BindOpen.Runtime.Definition;
@@ -31,10 +32,10 @@ namespace BindOpen.Extensions.Processing
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="dataElementSpecSet"></param>
+        /// <param name="dataSpecList"></param>
         /// <param name="taskEntryKind"></param>
         /// <returns></returns>
-        bool IsCompatibleWith(IBdoMetaSpecList dataElementSpecSet, TaskEntryKind taskEntryKind = TaskEntryKind.Any);
+        bool IsCompatibleWith(IBdoSpecList dataSpecList, TaskEntryKind taskEntryKind = TaskEntryKind.Any);
 
         /// <summary>
         /// 

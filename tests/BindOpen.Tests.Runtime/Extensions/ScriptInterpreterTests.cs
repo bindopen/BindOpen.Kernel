@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Items;
 using BindOpen.Extensions.Scripting;
 using NUnit.Framework;
 using System;
@@ -116,7 +115,8 @@ namespace BindOpen.Tests.Runtime
         public void VarElementSetTest()
         {
             var varSet = BdoMeta.NewList(
-                ((string Name, object Value))("value1", _scriptVarValue81), ((string Name, object Value))("value2", _scriptVarValue82));
+                ((string Name, object Value))("value1", _scriptVarValue81),
+                ((string Name, object Value))("value2", _scriptVarValue82));
 
             var interpreter = GlobalVariables.Scope.NewScriptInterpreter();
             var resultScript = interpreter.Evaluate<string>(
