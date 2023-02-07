@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Meta;
-using BindOpen.Data.Meta;
 
 namespace BindOpen.Data
 {

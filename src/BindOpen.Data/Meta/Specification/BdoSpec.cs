@@ -310,7 +310,7 @@ namespace BindOpen.Data.Meta
                 {
                     return RequirementLevels.Required;
                 }
-                else if (MinimumItemNumber == null)
+                else if (MinimumItemNumber == 0)
                 {
                     return RequirementLevels.Optional;
                 }

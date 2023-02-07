@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
-using BindOpen.Dtos.Data.Meta.Data;
 
 namespace BindOpen.Data.Meta
 {

@@ -5,8 +5,7 @@ namespace BindOpen.Data.Configuration
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoConfigurationSet :
-        ITBdoList<IBdoConfiguration>
+    public interface IBdoConfigurationSet : ITBdoList<IBdoConfiguration>
     {
     }
 }

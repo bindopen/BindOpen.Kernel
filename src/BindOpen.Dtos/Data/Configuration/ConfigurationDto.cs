@@ -1,7 +1,6 @@
 ﻿using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -40,14 +39,6 @@ namespace BindOpen.Data.Configuration
         [JsonPropertyName("lastModificationDate")]
         [XmlElement("lastModificationDate")]
         public string LastModificationDate { get; set; }
-
-        /// <summary>
-        /// Name of this instance.
-        /// </summary>
-        [JsonPropertyName("name")]
-        [XmlAttribute("name")]
-        [DefaultValue("")]
-        public string Name { get; set; }
 
         /// <summary>
         /// The using file paths of this instance.
