@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Data
+﻿using BindOpen.Data.Helpers;
+
+namespace BindOpen.Data
 {
     /// <summary>
     /// This class represents an accessibility level extension.

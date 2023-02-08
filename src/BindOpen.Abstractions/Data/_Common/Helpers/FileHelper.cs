@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
-namespace BindOpen.Data
+namespace BindOpen.Data.Helpers
 {
     /// <summary>
     /// This class represents a helper for files.

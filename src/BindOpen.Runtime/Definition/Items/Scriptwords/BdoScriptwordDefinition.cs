@@ -1,6 +1,7 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Data;
+﻿using BindOpen.Data;
+using BindOpen.Data.Helpers;
 using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using BindOpen.Extensions;
 using BindOpen.Extensions.Scripting;
 using System;
@@ -166,7 +167,9 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <param name="defaultKey">The default variant name to consider.</param>
-        public string GetRepeatedParameterDescriptionText(String key = StringHelper.__Star, String defaultKey = StringHelper.__Star)
+        public string GetRepeatedParameterDescriptionText(
+            string key = StringHelper.__Star,
+            string defaultKey = StringHelper.__Star)
         {
             return RepeatedParameterDescription?[key, defaultKey];
         }

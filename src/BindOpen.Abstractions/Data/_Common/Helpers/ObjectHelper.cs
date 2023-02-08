@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 
-namespace BindOpen.Data
+namespace BindOpen.Data.Helpers
 {
     /// <summary>
     /// This class represents a helper for objects.

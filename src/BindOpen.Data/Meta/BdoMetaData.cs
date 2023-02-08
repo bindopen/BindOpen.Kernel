@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Items;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
@@ -159,7 +160,7 @@ namespace BindOpen.Data.Meta
             }
             else if (this is IBdoMetaScalar)
             {
-                return BdoMeta.NewSpec<BdoMetaScalarSpec>();
+                return BdoMeta.NewSpec<BdoScalarSpec>();
             }
 
             return null;

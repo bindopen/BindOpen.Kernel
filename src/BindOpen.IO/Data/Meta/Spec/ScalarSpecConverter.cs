@@ -49,7 +49,7 @@ namespace BindOpen.Data.Meta
         {
             if (dto == null) return null;
 
-            BdoMetaScalarSpec poco = new()
+            BdoScalarSpec poco = new()
             {
                 //AccessibilityLevel = dto.AccessibilityLevel,
                 //Aliases = dto.Aliases?.ToList(),

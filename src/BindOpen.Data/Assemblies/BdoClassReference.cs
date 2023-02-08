@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Data.Assemblies
+﻿using BindOpen.Data.Helpers;
+
+namespace BindOpen.Data.Assemblies
 {
     /// <summary>
     /// This structure represents an class reference.

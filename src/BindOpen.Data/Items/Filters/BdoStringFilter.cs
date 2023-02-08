@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BindOpen.Data.Helpers;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BindOpen.Data.Items
@@ -7,7 +8,7 @@ namespace BindOpen.Data.Items
     /// <summary>
     /// This class specifies the data value filter.
     /// </summary>
-    public class StringFilter : BdoItem, IStringFilter
+    public class BdoStringFilter : BdoItem, IBdoStringFilter
     {
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -18,21 +19,8 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Instantiates a new instance of the StringFilter class.
         /// </summary>
-        public StringFilter()
+        public BdoStringFilter()
         {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the StringFilter class specifying the action kind.
-        /// </summary>
-        /// <param name="addedValues">The allowed values to consider.</param>
-        /// <param name="removedValues">The forbidden values to consider.</param>
-        public StringFilter(
-            List<string> addedValues = null,
-            List<string> removedValues = null)
-        {
-            AddedValues = addedValues ?? new List<string>();
-            RemovedValues = removedValues ?? new List<string>();
         }
 
         #endregion
@@ -62,11 +50,17 @@ namespace BindOpen.Data.Items
         /// <returns>Returns all the values allowed by this instance.</returns>
         public List<string> GetValues(List<string> allValues = null)
         {
-            allValues = new List<string>(AddedValues == null || AddedValues.Count == 0 ? allValues : AddedValues);
-            if (allValues != null && RemovedValues != null)
+            allValues ??= new List<string>();
+            if (AddedValues != null)
+            {
+                allValues.AddRange(AddedValues);
+            }
+            if (RemovedValues != null)
+            {
                 allValues.RemoveAll(p => RemovedValues.Contains(p));
+            }
 
-            return allValues;
+            return allValues ?? new();
         }
 
         /// <summary>
@@ -107,7 +101,7 @@ namespace BindOpen.Data.Items
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone(params string[] areas)
         {
-            return new StringFilter()
+            return new BdoStringFilter()
             {
                 AddedValues = new List<string>(AddedValues),
                 RemovedValues = new List<string>(RemovedValues),

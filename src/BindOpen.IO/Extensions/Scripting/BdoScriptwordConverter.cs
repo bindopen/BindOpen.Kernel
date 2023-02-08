@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Configuration;
+using BindOpen.Data.Helpers;
 
 namespace BindOpen.Extensions.Scripting
 {

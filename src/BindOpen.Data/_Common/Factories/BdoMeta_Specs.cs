@@ -20,7 +20,7 @@ namespace BindOpen.Data
         {
             if (valueType.IsScalar())
             {
-                var scalarSpec = NewSpec<BdoMetaScalarSpec>(name);
+                var scalarSpec = NewSpec<BdoScalarSpec>(name);
                 scalarSpec.WithValueType(valueType);
                 return scalarSpec;
             }
@@ -124,7 +124,7 @@ namespace BindOpen.Data
         /// <param name="valueType">The value type to consider.</param>
         public static T NewScalarSpec<T>(
             string name = null)
-            where T : BdoMetaScalarSpec, new()
+            where T : BdoScalarSpec, new()
         {
             var spec = NewSpec<T>(name);
             return spec;

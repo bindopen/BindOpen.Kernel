@@ -37,7 +37,7 @@ namespace BindOpen.Data.Meta
         {
             BdoObjectSpec specification = base.Clone(areas) as BdoObjectSpec;
             if (ClassFilter != null)
-                specification.ClassFilter = ClassFilter.Clone() as StringFilter;
+                specification.ClassFilter = ClassFilter.Clone() as BdoStringFilter;
             //if (FormatUniqueNameFilter != null)
             //    entityElementSpec.FormatUniqueNameFilter = FormatUniqueNameFilter.Clone() as StringFilter;
             return specification;
@@ -54,14 +54,14 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The class filter of this instance.
         /// </summary>
-        public IStringFilter ClassFilter { get; private set; }
+        public IBdoStringFilter ClassFilter { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        public IBdoObjectSpec WithClassFilter(IStringFilter filter)
+        public IBdoObjectSpec WithClassFilter(IBdoStringFilter filter)
         {
             ClassFilter = filter;
 
@@ -71,14 +71,14 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The definition filter of this instance.
         /// </summary>
-        public IStringFilter DefinitionFilter { get; private set; }
+        public IBdoStringFilter DefinitionFilter { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        public IBdoObjectSpec WithDefinitionFilter(IStringFilter filter)
+        public IBdoObjectSpec WithDefinitionFilter(IBdoStringFilter filter)
         {
             DefinitionFilter = filter;
 

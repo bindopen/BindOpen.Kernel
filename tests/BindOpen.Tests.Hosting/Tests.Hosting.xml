@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BindOpen.Tests.Hosting</name>
+    </assembly>
+    <members>
+        <member name="T:BindOpen.Hosting.Tests.GlobalSetUp">
+            <summary>
+            This class set the global settings up.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Tests.Core.Settings.TestAppSettings">
+            <summary>
+            This class represents a test application settings.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Tests.Core.Settings.TestAppSettings.TestFolderPath">
+            <summary>
+            The test folder path of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Tests.Core.Settings.TestAppSettings.Uris">
+            <summary>
+            The URIs of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Tests.Core.Settings.TestAppSettings.#ctor">
+            <summary>
+            Instantiates a new instance of the TestAppSettings class.
+            </summary>
+        </member>
+    </members>
+</doc>

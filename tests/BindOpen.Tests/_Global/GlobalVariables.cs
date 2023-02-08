@@ -1,5 +1,5 @@
-﻿using BindOpen.Extensions.Scripting;
-using BindOpen.Data;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Extensions.Scripting;
 
 namespace BindOpen.Tests
 {

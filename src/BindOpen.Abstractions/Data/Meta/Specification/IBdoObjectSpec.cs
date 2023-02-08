@@ -10,25 +10,25 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        IStringFilter ClassFilter { get; }
+        IBdoStringFilter ClassFilter { get; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        IBdoObjectSpec WithClassFilter(IStringFilter filter);
+        IBdoObjectSpec WithClassFilter(IBdoStringFilter filter);
 
         /// <summary>
         /// 
         /// </summary>
-        IStringFilter DefinitionFilter { get; }
+        IBdoStringFilter DefinitionFilter { get; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        IBdoObjectSpec WithDefinitionFilter(IStringFilter filter);
+        IBdoObjectSpec WithDefinitionFilter(IBdoStringFilter filter);
     }
 }

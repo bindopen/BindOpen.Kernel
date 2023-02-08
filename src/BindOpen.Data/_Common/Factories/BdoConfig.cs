@@ -12,7 +12,7 @@ namespace BindOpen.Data
         /// Instantiates a new instance of the BdoConfigurationSet class.
         /// </summary>
         /// <param name="items">The items to consider.</param>
-        public static BdoConfigurationSet NewBundle(
+        public static BdoConfigurationSet NewSet(
             params IBdoConfiguration[] items)
         {
             var config = BdoData.NewList<BdoConfigurationSet, IBdoConfiguration>(items);

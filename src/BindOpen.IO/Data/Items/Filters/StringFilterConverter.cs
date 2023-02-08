@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static StringFilterDto ToDto(this IStringFilter poco)
+        public static StringFilterDto ToDto(this IBdoStringFilter poco)
         {
             if (poco == null) return null;
 
@@ -26,9 +26,9 @@
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IStringFilter ToPoco(this StringFilterDto dto)
+        public static IBdoStringFilter ToPoco(this StringFilterDto dto)
         {
-            StringFilter poco = new()
+            BdoStringFilter poco = new()
             {
             };
 
