@@ -15,7 +15,7 @@ namespace BindOpen.Data.Configuration
         /// <summary>
         /// The unique ID of the definition.
         /// </summary>
-        string DefinitionUniqueId { get; set; }
+        string DefinitionUniqueName { get; set; }
 
         /// <summary>
         /// 

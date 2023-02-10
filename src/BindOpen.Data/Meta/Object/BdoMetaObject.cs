@@ -37,7 +37,7 @@ namespace BindOpen.Data.Meta
         public BdoMetaObject(string name = null, string id = null)
             : base(name, "object_", id)
         {
-            this.WithDataValueType(DataValueTypes.Object);
+            this.WithValueType(DataValueTypes.Object);
         }
 
         #endregion

@@ -58,7 +58,7 @@
             Instantiates a new instance of BdoExtensionDefinition class.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.UniqueId">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.UniqueName">
             <summary>
             The unique ID of this instance.
             </summary> 
@@ -476,7 +476,7 @@
             The library of this instance.
             </summary>        
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.UniqueId">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.UniqueName">
             <summary>
             The unique identifier of this instance.
             </summary>
@@ -622,7 +622,7 @@
             The runtime type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoEntityDefinition.UniqueId">
+        <member name="P:BindOpen.Runtime.Definition.BdoEntityDefinition.UniqueName">
             <summary>
             The unique ID of this instance.
             </summary>
@@ -665,7 +665,7 @@
             The runtime type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoConnectorDefinition.UniqueId">
+        <member name="P:BindOpen.Runtime.Definition.BdoConnectorDefinition.UniqueName">
             <summary>
             The unique ID of this instance.
             </summary>
@@ -718,7 +718,7 @@
             The runtime type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoEntityDefinition.UniqueId">
+        <member name="P:BindOpen.Runtime.Definition.BdoEntityDefinition.UniqueName">
             <summary>
             The unique ID of this instance.
             </summary>
@@ -788,7 +788,7 @@
             </summary>
             <remarks>Class using the following format: winForm=xxx.xxx.xxx;webForm=xxx.xxx.xxx</remarks>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoFormatDefinition.UniqueId">
+        <member name="P:BindOpen.Runtime.Definition.BdoFormatDefinition.UniqueName">
             <summary>
             The unique ID of this instance.
             </summary>
@@ -851,7 +851,7 @@
             The target specification of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoHandlerDefinition.UniqueId">
+        <member name="P:BindOpen.Runtime.Definition.BdoHandlerDefinition.UniqueName">
             <summary>
             The unique ID of this instance.
             </summary>
@@ -884,7 +884,7 @@
             The runtime type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoMetricsDefinition.UniqueId">
+        <member name="P:BindOpen.Runtime.Definition.BdoMetricsDefinition.UniqueName">
             <summary>
             The unique ID of this instance.
             </summary>
@@ -926,7 +926,7 @@
             The runtime type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoRoutineDefinition.UniqueId">
+        <member name="P:BindOpen.Runtime.Definition.BdoRoutineDefinition.UniqueName">
             <summary>
             The unique ID of this instance.
             </summary>
@@ -1031,7 +1031,7 @@
             The runtime type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoScriptwordDefinition.UniqueId">
+        <member name="P:BindOpen.Runtime.Definition.BdoScriptwordDefinition.UniqueName">
             <summary>
             The unique ID of this instance.
             </summary>
@@ -1108,7 +1108,7 @@
             The runtime type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoTaskDefinition.UniqueId">
+        <member name="P:BindOpen.Runtime.Definition.BdoTaskDefinition.UniqueName">
             <summary>
             The unique ID of this instance.
             </summary>
@@ -1206,19 +1206,19 @@
             <summary>
             Creates the instance of the specified config.
             </summary>
-            <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
+            <param name="definitionUniqueName">The unique ID of the definition to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.BdoRtm.NewConnectorConfiguration(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Creates the instance of the specified config.
             </summary>
-            <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
+            <param name="definitionUniqueName">The unique ID of the definition to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.BdoRtm.NewTaskConfiguration(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Creates the instance of the specified config.
             </summary>
-            <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
+            <param name="definitionUniqueName">The unique ID of the definition to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.BdoRtm.NewEntityDefinition(BindOpen.Runtime.Definition.IBdoExtensionDefinition,System.String)">
             <summary>
@@ -1445,7 +1445,7 @@
             </summary>
             <param name="scope">The scope to consider.</param>
             <param name="dataSource">The data source to consider.</param>
-            <param name="connectorDefinitionUniqueId">The connector definition name to consider.</param>
+            <param name="connectorDefinitionUniqueName">The connector definition name to consider.</param>
             <param name="log">The log of execution to consider.</param>
             <returns>Returns True if the connector has been opened. False otherwise.</returns>
         </member>
@@ -1614,7 +1614,7 @@
             </summary>
             <returns>The item words of specified library names.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStore.GetItemDefinitionWithUniqueId``1(System.String)">
+        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStore.GetItemDefinitionWithUniqueName``1(System.String)">
             <summary>
             Returns the item definition with the specified unique name.
             </summary>

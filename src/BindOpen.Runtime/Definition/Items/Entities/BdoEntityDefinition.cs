@@ -52,7 +52,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// The unique ID of this instance.
         /// </summary>
-        public new string UniqueId { get => ExtensionDefinition?.UniqueId + "$" + Name; }
+        public new string UniqueName { get => ExtensionDefinition?.UniqueName + "$" + Name; }
 
         /// <summary>
         /// Viewer class of this instance.
@@ -93,7 +93,7 @@ namespace BindOpen.Runtime.Definition
         /// <returns></returns>
         public override string Key()
         {
-            return UniqueId;
+            return UniqueName;
         }
 
         // Formats ----------------------------
@@ -127,11 +127,11 @@ namespace BindOpen.Runtime.Definition
         /// </summary>
         /// <param ID="id">Id of the application module.</param>
         /// <returns>The current visitor application module.</returns>
-        public IBdoFormatDefinition GetFormatWithId(string uniqueId)
+        public IBdoFormatDefinition GetFormatWithId(string uniqueName)
         {
-            if (uniqueId == null) return null;
+            if (uniqueName == null) return null;
 
-            return (IBdoFormatDefinition)FormatDefinitions.Find(p => p.UniqueId.BdoKeyEquals(uniqueId));
+            return (IBdoFormatDefinition)FormatDefinitions.Find(p => p.UniqueName.BdoKeyEquals(uniqueName));
         }
 
         #endregion

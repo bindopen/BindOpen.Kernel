@@ -12,9 +12,9 @@ namespace BindOpen.Data.Stores
         /// 
         /// </summary>
         /// <param name="sourceName"></param>
-        /// <param name="connectorDefinitionUniqueId"></param>
+        /// <param name="connectorDefinitionUniqueName"></param>
         /// <returns></returns>
-        IBdoConfiguration GetConnectorConfig(string sourceName, string connectorDefinitionUniqueId = null);
+        IBdoConfiguration GetConnectorConfig(string sourceName, string connectorDefinitionUniqueName = null);
 
         /// <summary>
         /// 
@@ -41,16 +41,16 @@ namespace BindOpen.Data.Stores
         /// 
         /// </summary>
         /// <param name="sourceName"></param>
-        /// <param name="connectorDefinitionUniqueId"></param>
+        /// <param name="connectorDefinitionUniqueName"></param>
         /// <returns></returns>
-        string GetConnectionString(string sourceName = null, string connectorDefinitionUniqueId = null);
+        string GetConnectionString(string sourceName = null, string connectorDefinitionUniqueName = null);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sourceName"></param>
-        /// <param name="connectorDefinitionUniqueId"></param>
+        /// <param name="connectorDefinitionUniqueName"></param>
         /// <returns></returns>
-        bool HasConnectorConfig(string sourceName = null, string connectorDefinitionUniqueId = null);
+        bool HasConnectorConfig(string sourceName = null, string connectorDefinitionUniqueName = null);
     }
 }

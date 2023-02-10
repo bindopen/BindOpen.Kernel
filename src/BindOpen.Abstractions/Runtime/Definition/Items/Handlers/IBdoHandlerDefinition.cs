@@ -10,12 +10,12 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// 
         /// </summary>
-        BdoHandlerGetFunction RuntimeFunctionGet { get; set; }
+        BdoHandlerGetFunction RuntimeGetFunction { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        BdoHandlerPostFunction RuntimeFunctionPost { get; set; }
+        BdoHandlerPostFunction RuntimePostFunction { get; set; }
 
         /// <summary>
         /// 

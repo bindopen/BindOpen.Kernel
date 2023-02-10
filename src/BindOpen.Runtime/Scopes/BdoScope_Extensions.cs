@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Configuration;
+using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
 using BindOpen.Extensions;
 using BindOpen.Extensions.Connecting;
@@ -11,9 +12,9 @@ using BindOpen.Runtime.Definition;
 namespace BindOpen.Runtime.Scopes
 {
     /// <summary>
-    /// This static class provides methods to create extension items.
+    /// This class represents an application 
     /// </summary>
-    public static partial class BdoScopeExtension
+    public partial class BdoScope : BdoItem, IBdoScope
     {
         // Entities ------------------------------------------------
 
@@ -24,38 +25,19 @@ namespace BindOpen.Runtime.Scopes
         /// <param name="config">The config to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <param name="varSet">The variable element set to use.</param>
-        /// <typeparam name="T">The entity class to return.</typeparam>
         /// <returns>Returns the created entity.</returns>
-        public static T NewEntity<T>(
-            this IBdoScope scope,
-            IBdoConfiguration config = null,
-            IBdoMetaList varSet = null,
-            IBdoLog log = null) where T : BdoEntity
-        {
-            return scope.CreateEntity(config, varSet, log) as T;
-        }
-
-        /// <summary>
-        /// Creates the instance of the specified definition.
-        /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="config">The config to consider.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
-        /// <returns>Returns the created entity.</returns>
-        public static BdoEntity NewEntity(
-            this IBdoScope scope,
+        public IBdoEntity CreateEntity(
             IBdoConfiguration config,
             IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
-            BdoEntity entity = null;
+            IBdoEntity entity = null;
 
-            if (config != null && scope?.Check(true, log: log) == false)
+            if (config != null && this.Check(true, log: log) == false)
             {
                 // we get the entity class reference
 
-                IBdoEntityDefinition definition = scope.ExtensionStore.GetItemDefinitionWithUniqueName<IBdoEntityDefinition>(config.DefinitionUniqueName);
+                IBdoEntityDefinition definition = ExtensionStore.GetItemDefinitionWithUniqueName<IBdoEntityDefinition>(config.DefinitionUniqueName);
                 if (definition == null)
                 {
                     log?.AddError("Could not retrieve the extension entity '" + config.DefinitionUniqueName + "' definition");
@@ -66,10 +48,9 @@ namespace BindOpen.Runtime.Scopes
 
                     AssemblyHelper.CreateInstance(definition.RuntimeType, out object item, log);
 
-                    if (item != null)
+                    if ((entity = item as IBdoEntity) != null)
                     {
-                        entity = item as BdoEntity;
-                        entity.UpdateFromMeta(config, true, scope, varSet);
+                        entity.UpdateFromMeta(config, true, this, varSet);
                     }
                 }
             }
@@ -86,36 +67,19 @@ namespace BindOpen.Runtime.Scopes
         /// <param name="config">The config to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <param name="varSet">The variable element set to use.</param>
-        /// <typeparam name="T">The connector class to return.</typeparam>
         /// <returns>Returns the created connector.</returns>
-        public static T NewConnector<T>(
-            this IBdoScope scope,
-            IBdoConfiguration config,
-            IBdoMetaList varSet = null,
-            IBdoLog log = null) where T : class, IBdoConnector, new()
-        {
-            return scope.CreateConnector(config, varSet, log) as T;
-        }
-
-        /// <summary>
-        /// Creates the instance of the specified definition.
-        /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="config">The config to consider.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
-        /// <returns>Returns the created connector.</returns>
-        public static IBdoConnector NewConnector(
-            this IBdoScope scope,
+        public IBdoConnector CreateConnector(
             IBdoConfiguration config,
             IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
-            if (config != null && scope?.Check(true, log: log) == true)
+            IBdoConnector connector = null;
+
+            if (config != null && this.Check(true, log: log) == true)
             {
                 // we get the connector class reference
 
-                IBdoConnectorDefinition definition = scope.ExtensionStore.GetItemDefinitionWithUniqueName<IBdoConnectorDefinition>(config?.DefinitionUniqueName);
+                IBdoConnectorDefinition definition = ExtensionStore.GetItemDefinitionWithUniqueName<IBdoConnectorDefinition>(config?.DefinitionUniqueName);
                 if (definition == null)
                 {
                     log?.AddError("Could not retrieve the extension connector '" + config.DefinitionUniqueName + "' definition");
@@ -125,10 +89,9 @@ namespace BindOpen.Runtime.Scopes
                     // we intantiate the connector
                     AssemblyHelper.CreateInstance(definition.RuntimeType, out object item, log);
 
-                    if (item != null)
+                    if ((connector = item as IBdoConnector) != null)
                     {
-                        var connector = item as IBdoConnector;
-                        connector.UpdateFromMeta(config, true, scope, varSet);
+                        connector.UpdateFromMeta(config, true, this, varSet);
                     }
                 }
             }
@@ -145,38 +108,19 @@ namespace BindOpen.Runtime.Scopes
         /// <param name="config">The config to consider.</param>
         /// <param name="log">The log to consider.</param>
         /// <param name="varSet">The variable element set to use.</param>
-        /// <typeparam name="T">The entity class to return.</typeparam>
-        /// <returns>Returns the created entity.</returns>
-        public static T NewTask<T>(
-            this IBdoScope scope,
-            IBdoConfiguration config = null,
-            IBdoMetaList varSet = null,
-            IBdoLog log = null) where T : BdoTask
-        {
-            return scope.CreateTask(config, varSet, log) as T;
-        }
-
-        /// <summary>
-        /// Creates the instance of the specified definition.
-        /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="config">The config to consider.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
         /// <returns>Returns the created task.</returns>
-        public static BdoTask NewTask(
-            this IBdoScope scope,
+        public IBdoTask CreateTask(
             IBdoConfiguration config = null,
             IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
-            BdoTask task = null;
+            IBdoTask task = null;
 
-            if (config != null && scope?.Check(true, log: log) == true)
+            if (config != null && this.Check(true, log: log) == true)
             {
                 // we get the task class reference
 
-                IBdoTaskDefinition definition = scope.ExtensionStore.GetItemDefinitionWithUniqueName<IBdoTaskDefinition>(config?.DefinitionUniqueName);
+                IBdoTaskDefinition definition = ExtensionStore.GetItemDefinitionWithUniqueName<IBdoTaskDefinition>(config?.DefinitionUniqueName);
                 if (definition == null)
                 {
                     log?.AddError("Could not retrieve the extension task '" + config.DefinitionUniqueName + "' definition");
@@ -189,7 +133,10 @@ namespace BindOpen.Runtime.Scopes
 
                     if (log?.HasEvent(EventKinds.Error, EventKinds.Exception) != false)
                     {
-                        task = item as BdoTask;
+                        if ((task = item as IBdoTask) != null)
+                        {
+                            task.UpdateFromMeta(config, true, this, varSet);
+                        }
                         //task.UpdateFromMetaList<BdoTaskInputAttribute>(config, scope, varSet);
                         //task.UpdateFromMetaList<BdoTaskOutputAttribute>(config, scope, varSet);
                     }
@@ -197,6 +144,74 @@ namespace BindOpen.Runtime.Scopes
             }
 
             return task;
+        }
+
+        // Handlers -------------------------------
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataHandlerUniqueName"></param>
+        /// <param name="obj"></param>
+        /// <param name="pathDetail"></param>
+        /// <param name="varSet"></param>
+        /// <param name="log"></param>
+        /// <returns></returns>
+        public object GetData(
+            string dataHandlerUniqueName,
+            object obj, IBdoMetaList pathDetail,
+            IBdoMetaList varSet, IBdoLog log)
+        {
+            var definition = ExtensionStore?.GetItemDefinitionWithUniqueName<BdoHandlerDefinition>(
+                dataHandlerUniqueName);
+
+            if (definition == null)
+            {
+                log?.AddError(title: "Definition not found");
+            }
+            else if (definition.RuntimeGetFunction == null)
+            {
+                log?.AddError(title: "Data handler Get function missing");
+            }
+            else
+            {
+                definition.RuntimeGetFunction(obj, pathDetail, this, varSet, log);
+            }
+
+            return obj;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataHandlerUniqueName"></param>
+        /// <param name="obj"></param>
+        /// <param name="pathDetail"></param>
+        /// <param name="varSet"></param>
+        /// <param name="log"></param>
+        /// <returns></returns>
+        public object PostData(
+            string dataHandlerUniqueName,
+            object obj, IBdoMetaList pathDetail,
+            IBdoMetaList varSet, IBdoLog log)
+        {
+            var definition = ExtensionStore?.GetItemDefinitionWithUniqueName<BdoHandlerDefinition>(
+                dataHandlerUniqueName);
+
+            if (definition == null)
+            {
+                log?.AddError(title: "Definition not found");
+            }
+            else if (definition.RuntimePostFunction == null)
+            {
+                log?.AddError(title: "Data handler Post function missing");
+            }
+            else
+            {
+                definition.RuntimePostFunction(obj, pathDetail, this, varSet, log);
+            }
+
+            return obj;
         }
     }
 }

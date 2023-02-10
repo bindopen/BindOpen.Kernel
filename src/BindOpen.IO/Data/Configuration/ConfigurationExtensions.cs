@@ -1,8 +1,6 @@
-﻿using BindOpen.Data.Helpers;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Meta;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
-using System.IO;
 using System.Xml.Schema;
 
 namespace BindOpen.Data.Configuration
@@ -23,31 +21,30 @@ namespace BindOpen.Data.Configuration
         /// <param name="mustFileExist">Indicates whether the file must exist.</param>
         /// <param name="isRuntimeUpdated">Indicates whether the runtime is updated.</param>
         /// <returns>The Xml operation project defined in the Xml file.</returns>
-        public static T LoadXml<T>(
+        public static TPoco LoadXml<TPoco, TDto>(
             string filePath,
             IBdoScope scope = null,
             IBdoMetaList varSet = null,
             IBdoLog log = null,
             XmlSchemaSet xmlSchemaSet = null,
-            bool mustFileExist = true) where T : ConfigurationDto, new()
+            bool mustFileExist = true)
+            where TPoco : BdoConfiguration, new()
+            where TDto : ConfigurationDto, new()
         {
-            T unionConfiguration = new();
+            TPoco unionConfiguration = new();
 
-            if (XmlHelper.LoadXml<T>(filePath, log, xmlSchemaSet, mustFileExist) is T topConfiguration)
+            if (XmlHelper.LoadXml<TDto>(filePath, log, xmlSchemaSet, mustFileExist) is TDto topConfigurationDto)
             {
-                unionConfiguration.Update(topConfiguration);
+                var topConfiguration = topConfigurationDto?.ToPoco();
 
-                if (topConfiguration is ConfigurationDto topDynamicConfiguration)
-                {
-                    foreach (string usingFilePath in topDynamicConfiguration.UsingFilePaths)
-                    {
-                        string completeUsingFilePath = (usingFilePath.Contains(':') ?
-                            usingFilePath :
-                            Path.GetDirectoryName(filePath).EndingWith(@"\") + usingFilePath).ToPath();
-                        if (LoadXml<T>(completeUsingFilePath, scope, varSet, log, xmlSchemaSet, mustFileExist) is T usingConfiguration)
-                            unionConfiguration.Update(usingConfiguration);
-                    }
-                }
+                //foreach (string usingFilePath in topConfiguration.)
+                //{
+                //    string completeUsingFilePath = (usingFilePath.Contains(':') ?
+                //        usingFilePath :
+                //        Path.GetDirectoryName(filePath).EndingWith(@"\") + usingFilePath).ToPath();
+                //    if (LoadXml<T>(completeUsingFilePath, scope, varSet, log, xmlSchemaSet, mustFileExist) is T usingConfiguration)
+                //        unionConfiguration.Update(usingConfiguration);
+                //}
             }
 
             return unionConfiguration;

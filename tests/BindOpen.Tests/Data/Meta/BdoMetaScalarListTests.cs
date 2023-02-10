@@ -7,7 +7,7 @@ using System.Linq;
 namespace BindOpen.Tests.Data
 {
     [TestFixture, Order(202)]
-    public class BdoMetaScalarSetTests
+    public class BdoMetaScalarListTests
     {
         private dynamic _testData;
 
@@ -64,13 +64,13 @@ namespace BindOpen.Tests.Data
         {
             var elAA = BdoMeta.NewScalar("name1", null);
             var elAB = BdoMeta.NewScalar("name1", "Test1");
-            elAA.Repair(elAB);
+            elAA.Update(elAB);
 
             var elSetA = BdoMeta.NewList(elAA, elAB);
 
             var elBA = BdoMeta.NewScalar("name1", "Test1");
             var elBB = BdoMeta.NewScalar("name1", null);
-            elBA.Repair(elBB);
+            elBA.Update(elBB);
 
             var elSetB = BdoMeta.NewList(elBA, elBB);
 
@@ -88,7 +88,6 @@ namespace BindOpen.Tests.Data
             elSetA.Add(BdoMeta.New("name2", null as EntityFake));
             elSetA.Add(BdoMeta.NewScalar("name4", DataValueTypes.Text, null));
             elSetA.Add(BdoMeta.New("name5", null as string));
-            elSetB.Repair(elSetA);
             elSetB.Update(elSetA);
         }
 

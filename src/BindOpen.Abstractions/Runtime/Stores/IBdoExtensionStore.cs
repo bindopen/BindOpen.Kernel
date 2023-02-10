@@ -37,26 +37,26 @@ namespace BindOpen.Runtime.Stores
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="uniqueId"></param>
+        /// <param name="uniqueName"></param>
         /// <returns></returns>
-        T GetItemDefinitionWithUniqueId<T>(string uniqueId) where T : IBdoExtensionItemDefinition;
+        T GetItemDefinitionWithUniqueName<T>(string uniqueName) where T : IBdoExtensionItemDefinition;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="uniqueId"></param>
+        /// <param name="uniqueName"></param>
         /// <returns></returns>
-        IBdoExtensionItemDefinition GetItemDefinitionWithUniqueId(
+        IBdoExtensionItemDefinition GetItemDefinitionWithUniqueName(
             BdoExtensionItemKind kind,
-            string uniqueId);
+            string uniqueName);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="uniqueId"></param>
+        /// <param name="uniqueName"></param>
         /// <param name="parentDefinition"></param>
         /// <returns></returns>
-        IBdoScriptwordDefinition GetScriptwordDefinitionWithUniqueName(string uniqueId, IBdoScriptwordDefinition parentDefinition = null);
+        IBdoScriptwordDefinition GetScriptwordDefinitionWithUniqueName(string uniqueName, IBdoScriptwordDefinition parentDefinition = null);
 
         /// <summary>
         /// Clears this instance.

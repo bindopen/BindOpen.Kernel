@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace BindOpen.Tests.Data
 {
     [TestFixture, Order(200)]
-    public class BdoMetaObjectSetTests
+    public class BdoMetaListTests_Object
     {
         private dynamic _testData;
 
@@ -74,7 +74,7 @@ namespace BindOpen.Tests.Data
                 {
                     Path = _testData.path2 as string
                 });
-            metaObj2.Update();
+            metaObj2.UpdateTree();
 
             var obj3 = new EntityFake(
                 _testData.path3,

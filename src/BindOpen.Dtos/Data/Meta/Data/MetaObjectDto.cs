@@ -42,7 +42,7 @@ namespace BindOpen.Data.Meta
         [JsonPropertyName("definition")]
         [XmlAttribute("definition")]
         [DefaultValue("")]
-        public string DefinitionUniqueId { get; set; }
+        public string DefinitionUniqueName { get; set; }
 
         // --------------------------------------------------
 

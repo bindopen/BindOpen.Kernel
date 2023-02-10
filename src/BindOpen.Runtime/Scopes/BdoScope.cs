@@ -15,7 +15,7 @@ namespace BindOpen.Runtime.Scopes
     /// <summary>
     /// This class represents an application scope.
     /// </summary>
-    public class BdoScope : BdoItem, IBdoScope
+    public partial class BdoScope : BdoItem, IBdoScope
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -71,10 +71,10 @@ namespace BindOpen.Runtime.Scopes
         public Type CreateType(
             IBdoClassReference reference)
         {
-            if (!string.IsNullOrEmpty(reference?.DefinitionUniqueId))
+            if (!string.IsNullOrEmpty(reference?.DefinitionUniqueName))
             {
-                var definition = ExtensionStore?.GetItemDefinitionWithUniqueId<IBdoEntityDefinition>(
-                    reference.DefinitionUniqueId);
+                var definition = ExtensionStore?.GetItemDefinitionWithUniqueName<IBdoEntityDefinition>(
+                    reference.DefinitionUniqueName);
 
                 return definition?.RuntimeType;
             }
@@ -99,6 +99,8 @@ namespace BindOpen.Runtime.Scopes
         /// <returns>Returns the new script interpreter.</returns>
         public IBdoScriptInterpreter NewScriptInterpreter()
             => BdoScript.CreateInterpreter(this);
+
+        // Load extensions
 
         /// <summary>
         /// Loads the specified extensions.
@@ -150,7 +152,7 @@ namespace BindOpen.Runtime.Scopes
         /// <param name="references">The extension references to consider.</param>
         public bool LoadExtensions(
             params IBdoAssemblyReference[] references)
-            => LoadExtensions(references, null);
+            => LoadExtensions(null, references, null);
 
         /// <summary>
         /// Clears this instance.

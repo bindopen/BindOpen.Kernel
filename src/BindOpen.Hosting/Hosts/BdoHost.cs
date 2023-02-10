@@ -17,7 +17,7 @@ namespace BindOpen.Hosting.Hosts
     /// <summary>
     /// This class represents a host.
     /// </summary>
-    public class BdoHost : BdoJob, IBdoHost
+    public partial class BdoHost : BdoJob, IBdoHost
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -316,7 +316,7 @@ namespace BindOpen.Hosting.Hosts
                             _isLoaded &= Scope.LoadExtensions(
                                 p =>
                                 {
-                                    p.Update(Options?.ExtensionLoadOptions);
+                                    //p.Update(Options?.ExtensionLoadOptions);
                                     return true;
                                 },
                                 new[] { reference },

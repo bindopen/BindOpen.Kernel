@@ -58,7 +58,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// The unique identifier of this instance.
         /// </summary>
-        public string UniqueId { get; set; }
+        public string UniqueName { get; set; }
 
         /// <summary>
         /// Uri of the image representing this instance.

@@ -27,7 +27,7 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        public static T WithDataValueType<T>(
+        public static T WithValueType<T>(
             this T meta,
             DataValueTypes valueType)
             where T : IBdoMetaData
@@ -43,7 +43,7 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        public static T WithDataReference<T>(
+        public static T WithReference<T>(
             this T meta,
             IBdoReference reference)
             where T : IBdoMetaData
@@ -59,7 +59,7 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        public static T WithDataExpression<T>(
+        public static T WithExpression<T>(
             this T meta,
             IBdoExpression exp)
             where T : IBdoMetaData

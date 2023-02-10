@@ -1,8 +1,10 @@
-﻿using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace BindOpen.Data
@@ -12,6 +14,26 @@ namespace BindOpen.Data
     /// </summary>
     public static class BdoMetaListExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="Q"></typeparam>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list1"></param>
+        /// <param name="list2"></param>
+        /// <returns></returns>
+        public static Q AddRange<Q, T>(
+            this Q list1,
+            ITBdoList<T> list2)
+            where Q : IBdoMetaList
+            where T : IBdoMetaData
+        {
+            list1?.Add(list2?.Items?
+                .Cast<IBdoMetaData>()
+                .ToArray());
+            return list1;
+        }
+
         /// <summary>
         /// Creates a data element set from a dynamic object.
         /// </summary>

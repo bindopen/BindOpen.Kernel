@@ -87,41 +87,41 @@ namespace BindOpen.Data.Stores
         /// Gets the specified connector config.
         /// </summary>
         /// <param name="sourceName">The name of the data module to consider.</param>
-        /// <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
+        /// <param name="connectorDefinitionUniqueName">The unique ID of the connector definition to consider.</param>
         /// <returns>The specified connector.</returns>
         public IBdoConfiguration GetConnectorConfig(
             string sourceName = null,
-            string connectorDefinitionUniqueId = null)
+            string connectorDefinitionUniqueName = null)
         {
             IBdoDatasource dataSource = Get(sourceName);
 
-            return dataSource?.GetConfig(connectorDefinitionUniqueId);
+            return dataSource?.GetConfig(connectorDefinitionUniqueName);
         }
 
         /// <summary>
         /// Indicates whether this instance has the specified connector config.
         /// </summary>
         /// <param name="sourceName">The name of the data module to consider.</param>
-        /// <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
+        /// <param name="connectorDefinitionUniqueName">The unique ID of the connector definition to consider.</param>
         /// <returns>The data source with the specified data module name.</returns>
-        public bool HasConnectorConfig(string sourceName = null, string connectorDefinitionUniqueId = null)
+        public bool HasConnectorConfig(string sourceName = null, string connectorDefinitionUniqueName = null)
         {
             IBdoDatasource dataSource = Get(sourceName);
 
-            return dataSource?.HasConfig(connectorDefinitionUniqueId) == true;
+            return dataSource?.HasConfig(connectorDefinitionUniqueName) == true;
         }
 
         /// <summary>
         /// Returns the connection string corresponding to the specified config.
         /// </summary>
         /// <param name="sourceName">The name of the data source to consider.</param>
-        /// <param name="connectorDefinitionUniqueId">The connector unique name to consider.</param>
+        /// <param name="connectorDefinitionUniqueName">The connector unique name to consider.</param>
         /// <returns>The connection string corresponding to the specified data module name.</returns>
         public string GetConnectionString(
             string sourceName = null,
-            string connectorDefinitionUniqueId = null)
+            string connectorDefinitionUniqueName = null)
         {
-            IBdoConfiguration config = GetConnectorConfig(sourceName, connectorDefinitionUniqueId);
+            IBdoConfiguration config = GetConnectorConfig(sourceName, connectorDefinitionUniqueName);
 
             return config?.GetData<string>("connectionString");
         }

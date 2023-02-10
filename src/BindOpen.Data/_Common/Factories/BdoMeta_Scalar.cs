@@ -109,7 +109,7 @@ namespace BindOpen.Data
 
             var el = new T();
             el.WithName(name);
-            el.WithDataValueType(valueType);
+            el.WithValueType(valueType);
 
             if (items != null)
             {

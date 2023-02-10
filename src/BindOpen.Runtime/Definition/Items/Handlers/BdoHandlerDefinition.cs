@@ -36,12 +36,12 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// Runtime GET function of this instance.
         /// </summary>
-        public BdoHandlerGetFunction RuntimeFunctionGet { get; set; }
+        public BdoHandlerGetFunction RuntimeGetFunction { get; set; }
 
         /// <summary>
         /// Runtime POST function of this instance.
         /// </summary>
-        public BdoHandlerPostFunction RuntimeFunctionPost { get; set; }
+        public BdoHandlerPostFunction RuntimePostFunction { get; set; }
 
         /// <summary>
         /// The parameter specification of this instance.
@@ -56,7 +56,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// The unique ID of this instance.
         /// </summary>
-        public new string UniqueId { get => ExtensionDefinition?.UniqueId + "$" + Name; set { } }
+        public new string UniqueName { get => ExtensionDefinition?.UniqueName + "$" + Name; set { } }
 
         #endregion
 
@@ -91,7 +91,7 @@ namespace BindOpen.Runtime.Definition
         /// <returns></returns>
         public override string Key()
         {
-            return UniqueId;
+            return UniqueName;
         }
 
         #endregion

@@ -34,7 +34,6 @@ namespace BindOpen.Data.Items
 
         #endregion
 
-
         // ------------------------------------------
         // CLONING
         // ------------------------------------------
@@ -154,7 +153,7 @@ namespace BindOpen.Data.Items
         public IBdoDatasource RemoveConfig(string definitionName)
         {
             ConfigList ??= new List<IBdoConfiguration>();
-            ConfigList?.RemoveAll(p => p.DefinitionUniqueId.BdoKeyEquals(definitionName));
+            ConfigList?.RemoveAll(p => p.DefinitionUniqueName.BdoKeyEquals(definitionName));
 
             return this;
         }
@@ -180,7 +179,7 @@ namespace BindOpen.Data.Items
         /// <returns>The specified connector.</returns>
         public IBdoConfiguration GetConfig(string definitionName = null)
         {
-            return ConfigList?.FirstOrDefault(p => definitionName == null || p.DefinitionUniqueId.BdoKeyEquals(definitionName));
+            return ConfigList?.FirstOrDefault(p => definitionName == null || p.DefinitionUniqueName.BdoKeyEquals(definitionName));
         }
 
         /// <summary>
@@ -190,7 +189,7 @@ namespace BindOpen.Data.Items
         /// <returns>The data source with the specified data module name.</returns>
         public bool HasConfig(string definitionName = null)
         {
-            return ConfigList?.Any(p => definitionName == null || p.DefinitionUniqueId.BdoKeyEquals(definitionName)) == true;
+            return ConfigList?.Any(p => definitionName == null || p.DefinitionUniqueName.BdoKeyEquals(definitionName)) == true;
         }
 
         #endregion

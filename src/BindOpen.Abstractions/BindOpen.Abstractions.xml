@@ -1329,7 +1329,7 @@
             
             </summary>
         </member>
-        <member name="P:BindOpen.Extensions.ITBdoExtensionItemConfiguration`1.DefinitionUniqueId">
+        <member name="P:BindOpen.Extensions.ITBdoExtensionItemConfiguration`1.DefinitionUniqueName">
             <summary>
             
             </summary>
@@ -2192,12 +2192,12 @@
             
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.IBdoEntity.DefinitionUniqueId">
+        <member name="P:BindOpen.Data.Elements.IBdoEntity.DefinitionUniqueName">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoEntity.WithDefinitionUniqueId(System.String)">
+        <member name="M:BindOpen.Data.Elements.IBdoEntity.WithDefinitionUniqueName(System.String)">
             <summary>
             
             </summary>
@@ -2657,12 +2657,12 @@
             
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.IBdoDataObject.DefinitionUniqueId">
+        <member name="P:BindOpen.Data.Elements.IBdoDataObject.DefinitionUniqueName">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoDataObject.WithDefinitionUniqueId(System.String)">
+        <member name="M:BindOpen.Data.Elements.IBdoDataObject.WithDefinitionUniqueName(System.String)">
             <summary>
             
             </summary>
@@ -2777,12 +2777,12 @@
             
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.IBdoDataSource.DefinitionUniqueId">
+        <member name="P:BindOpen.Data.Elements.IBdoDataSource.DefinitionUniqueName">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoDataSource.WithDefinitionUniqueId(System.String)">
+        <member name="M:BindOpen.Data.Elements.IBdoDataSource.WithDefinitionUniqueName(System.String)">
             <summary>
             
             </summary>
@@ -4205,7 +4205,7 @@
             
             </summary>
             <param name="sourceName"></param>
-            <param name="connectorDefinitionUniqueId"></param>
+            <param name="connectorDefinitionUniqueName"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Stores.IBdoSourceDepot.GetInstanceName(System.String)">
@@ -4234,7 +4234,7 @@
             
             </summary>
             <param name="sourceName"></param>
-            <param name="connectorDefinitionUniqueId"></param>
+            <param name="connectorDefinitionUniqueName"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Stores.IBdoSourceDepot.HasConnectorConfiguration(System.String,System.String)">
@@ -4242,7 +4242,7 @@
             
             </summary>
             <param name="sourceName"></param>
-            <param name="connectorDefinitionUniqueId"></param>
+            <param name="connectorDefinitionUniqueName"></param>
             <returns></returns>
         </member>
         <member name="T:BindOpen.Data.Stores.ITBdoDepot`1">
@@ -5268,7 +5268,7 @@
             This interface represents an unique data.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.IUnique.UniqueId">
+        <member name="P:BindOpen.Data.IUnique.UniqueName">
             <summary>
             Unique name of this instance.
             </summary>
@@ -5587,7 +5587,7 @@
             
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.IBdoExtensionDefinition.UniqueId">
+        <member name="P:BindOpen.Runtime.Definition.IBdoExtensionDefinition.UniqueName">
             <summary>
             The unique ID of this instance.
             </summary> 
@@ -5950,7 +5950,7 @@
             
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.IBdoExtensionItemDefinition.UniqueId">
+        <member name="P:BindOpen.Runtime.Definition.IBdoExtensionItemDefinition.UniqueName">
             <summary>
             The unique ID of this instance.
             </summary> 
@@ -6339,19 +6339,19 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Runtime.Stores.IBdoExtensionStore.GetItemDefinitionWithUniqueId``1(System.String)">
+        <member name="M:BindOpen.Runtime.Stores.IBdoExtensionStore.GetItemDefinitionWithUniqueName``1(System.String)">
             <summary>
             
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="uniqueId"></param>
+            <param name="uniqueName"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Runtime.Stores.IBdoExtensionStore.GetScriptwordDefinitionWithUniqueName(System.String,BindOpen.Extensions.Scripting.IBdoScriptwordDefinition)">
             <summary>
             
             </summary>
-            <param name="uniqueId"></param>
+            <param name="uniqueName"></param>
             <param name="parentDefinition"></param>
             <returns></returns>
         </member>

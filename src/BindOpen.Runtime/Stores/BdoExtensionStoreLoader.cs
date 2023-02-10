@@ -64,7 +64,7 @@ namespace BindOpen.Runtime.Stores
                 references = _appDomain.GetAssemblies().Select(q => BdoData.Assembly(q)).ToArray();
             }
 
-            foreach (IBdoAssemblyReference reference in references)
+            foreach (var reference in references)
             {
                 if (reference != null)
                 {
@@ -116,8 +116,7 @@ namespace BindOpen.Runtime.Stores
                             case DatasourceKind.Memory:
                                 if (!string.IsNullOrEmpty(libraryReference.AssemblyName))
                                 {
-                                    assembly = AppDomainPool.LoadAssembly(
-                                        _appDomain,
+                                    assembly = _appDomain.LoadAssembly(
                                         libraryReference.AssemblyName,
                                         subLog);
                                 }
@@ -141,7 +140,7 @@ namespace BindOpen.Runtime.Stores
                                 }
                                 else
                                 {
-                                    assembly = AppDomainPool.LoadAssemblyFromFile(_appDomain, filePath, subLog);
+                                    assembly = _appDomain.LoadAssemblyFromFile(filePath, subLog);
 
                                     if (assembly == null)
                                     {
@@ -186,18 +185,12 @@ namespace BindOpen.Runtime.Stores
 
                         if (extensionDefinition?.UsingAssemblyFileNames != null)
                         {
-                            foreach (var st in extensionDefinition.UsingAssemblyFileNames)
+                            foreach (var dependency in assembly.GetReferencedAssemblies())
                             {
-                                var fileName = st;
-                                if (!fileName.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
-                                {
-                                    fileName += ".dll";
-                                }
-                                IBdoAssemblyReference reference = BdoData.Assembly(st)
-                                    .WithFileName(fileName);
+                                var reference = BdoData.Assembly(dependency.Name);
 
                                 IBdoLog subSubLog = log?.NewLog()
-                                    .WithDisplayName("Loading using extensions...") as IBdoLog;
+                                    .WithDisplayName("Loading using extensions...");
                                 loaded &= LoadExtensionsInStore(new[] { reference }, subSubLog);
                             }
                         }

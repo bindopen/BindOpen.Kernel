@@ -10,6 +10,8 @@ namespace BindOpen.Data.Items
     /// </summary>
     public class BdoReference : BdoItem, IBdoReference
     {
+        private const int __MaxLevel = 255;
+
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
@@ -19,17 +21,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Source element of this instance.
         /// </summary>
-        public IBdoMetaData SourceMetaData { get; set; }
-
-        /// <summary>
-        /// Source item of this instance.
-        /// </summary>
-        public object SourceObject => SourceMetaData?.GetData();
-
-        /// <summary>
-        /// Target item of this instance.
-        /// </summary>
-        public object TargetObject { get; set; }
+        public IBdoMetaData Source { get; set; }
 
         /// <summary>
         /// The data handler unique name of this instance.
@@ -40,6 +32,11 @@ namespace BindOpen.Data.Items
         /// The path detail of this instance.
         /// </summary>
         public IBdoMetaList PathDetail { get; set; }
+
+        /// <summary>
+        /// Target item of this instance.
+        /// </summary>
+        public object TargetObject { get; set; }
 
         #endregion
 
@@ -68,16 +65,33 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// The root element of this instance.
         /// </summary>
-        public IBdoMetaData RootElement() =>
-            SourceMetaData?.Reference?.SourceMetaData;
+        public IBdoMetaData Root() => Root(-1);
 
-        /// <summary>
-        /// Gets the initial data source of this instance.
-        /// </summary>
-        /// <returns>Returns the initial data source of this instance.</returns>
-        public IBdoDatasource GetDatasource()
+        private IBdoMetaData Root(int current = -1, int max = __MaxLevel)
         {
+            if (current <= max)
+            {
+                return Source?.Reference == null ? Source : Root(current + 1);
+            }
             return null;
+        }
+
+        private void BuildLineage(
+            ref List<IBdoMetaData> tree,
+            int current = -1,
+            int max = __MaxLevel)
+        {
+            if (tree != null && current <= max)
+            {
+                if (Source == null)
+                {
+                    return;
+                }
+                tree.Add(Source);
+                BuildLineage(ref tree, current, max);
+            }
+            tree = null;
+            return;
         }
 
         /// <summary>
@@ -92,23 +106,33 @@ namespace BindOpen.Data.Items
             IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
-            //SetDefinition((scope== null ? null : scope.BdoExtension));
-            //log.AddEvents(Check());
+            if (scope == null)
+            {
+                log?.AddError("Scope missing");
+                return null;
+            }
 
-            var dataItems = new List<object>();
-            //parameterDetail = (parameterDetail ?? new BdoElementSet());
+            var line = new List<IBdoMetaData>();
+            BuildLineage(ref line);
 
-            //if (!log.HasErrorsOrExceptions())
-            //    if (Definition == null)
-            //        log.AddError(title: "Definition not found");
-            //    else if (Definition.RuntimeFunction_Get == null)
-            //        log.AddError(title: "Calling function missing");
-            //    else if (aSourceElement == null)
-            //        log.AddError(title: "Source element missing");
-            //    else
-            //        dataItems.AddRange(Definition.RuntimeFunction_Get(aSourceElement, parameterDetail, scope, varSet, log));
+            if (line == null)
+            {
+                log?.AddError("Circular source refernce found");
+                return null;
+            }
 
-            return dataItems;
+            line?.Reverse();
+
+            object obj = null;
+            foreach (var meta in line)
+            {
+                obj = scope.GetData(
+                    DataHandlerUniqueName,
+                    obj, PathDetail,
+                    varSet, log);
+            }
+
+            return obj;
         }
 
         #endregion
@@ -126,7 +150,7 @@ namespace BindOpen.Data.Items
         public override object Clone(params string[] areas)
         {
             BdoReference dataReference = Clone<BdoReference>(areas);
-            dataReference.SourceMetaData = SourceMetaData.Clone<IBdoMetaData>();
+            dataReference.Source = Source.Clone<IBdoMetaData>();
             dataReference.PathDetail = PathDetail.Clone<BdoMetaList>();
 
             return dataReference;

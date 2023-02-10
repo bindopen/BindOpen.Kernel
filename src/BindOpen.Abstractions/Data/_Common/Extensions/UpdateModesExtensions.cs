@@ -22,9 +22,14 @@ namespace BindOpen.Data
         /// <returns></returns>
         public static bool Has(
             this UpdateModes[] updateModes,
-            UpdateModes updateMode)
+            params UpdateModes[] modes)
         {
-            return (updateModes.Aggregate((current, value) => current | value) & updateMode) == updateMode;
+            var b = modes?.Length > 0;
+            foreach (var mode in modes)
+            {
+                b &= (updateModes.Aggregate((current, value) => current | value) & mode) == mode;
+            }
+            return b;
         }
 
         /// <summary>

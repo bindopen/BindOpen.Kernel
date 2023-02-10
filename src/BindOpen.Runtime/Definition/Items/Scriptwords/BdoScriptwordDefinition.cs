@@ -104,7 +104,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// The unique ID of this instance.
         /// </summary>
-        public new string UniqueId { get => ExtensionDefinition?.UniqueId + "$" + Name; }
+        public new string UniqueName { get => ExtensionDefinition?.UniqueName + "$" + Name; }
 
         #endregion
 
@@ -139,7 +139,7 @@ namespace BindOpen.Runtime.Definition
         /// <returns></returns>
         public override string Key()
         {
-            return UniqueId;
+            return UniqueName;
         }
 
         /// <summary>

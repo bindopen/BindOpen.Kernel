@@ -1,7 +1,6 @@
 ﻿using BindOpen.Data.Meta;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
-using System.Collections.Generic;
 
 namespace BindOpen.Runtime.Definition
 {
@@ -14,8 +13,8 @@ namespace BindOpen.Runtime.Definition
     /// <param name="varSet">The variable element set to consider.</param>
     /// <param name="alog">The log to consider.</param>
     /// <returns>Returns the target objects.</returns>
-    public delegate List<object> BdoHandlerGetFunction(
-            IBdoMetaData sourceElement = null,
+    public delegate object BdoHandlerGetFunction(
+            object obj = null,
             IBdoMetaList pathDetail = null,
             IBdoScope scope = null,
             IBdoMetaList varSet = null,

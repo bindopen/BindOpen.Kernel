@@ -26,15 +26,15 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="definitionUniqueId"></param>
-        public static T WithDefinitionUniqueId<T>(
+        /// <param name="definitionUniqueName"></param>
+        public static T WithDefinitionUniqueName<T>(
             this T obj,
-            string definitionUniqueId)
+            string definitionUniqueName)
             where T : IBdoAssemblyReference
         {
             if (obj != null)
             {
-                obj.DefinitionUniqueId = definitionUniqueId;
+                obj.DefinitionUniqueName = definitionUniqueName;
             }
             return obj;
         }

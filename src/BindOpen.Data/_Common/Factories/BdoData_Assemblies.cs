@@ -91,10 +91,10 @@ namespace BindOpen.Data
         /// </summary>
         /// <returns>Returns the itemized list of the spcefied type</returns>
         public static IBdoClassReference ClassFromEntity(
-            string definitionUniqueId)
+            string definitionUniqueName)
         {
             return new BdoClassReference()
-                .WithDefinitionUniqueId(definitionUniqueId);
+                .WithDefinitionUniqueName(definitionUniqueName);
         }
 
         /// <summary>

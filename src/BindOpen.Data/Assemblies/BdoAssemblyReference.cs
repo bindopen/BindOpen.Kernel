@@ -46,7 +46,7 @@ namespace BindOpen.Data.Assemblies
         /// <summary>
         /// The library name of this instance.
         /// </summary>
-        public string DefinitionUniqueId { get; set; }
+        public string DefinitionUniqueName { get; set; }
 
         /// <summary>
         /// The library name of this instance.

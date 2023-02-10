@@ -33,7 +33,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// The unique ID of this instance.
         /// </summary> 
-        public string UniqueId { get => Name; }
+        public string UniqueName { get => Name; }
 
         /// <summary>
         /// Name of the group of this instance.

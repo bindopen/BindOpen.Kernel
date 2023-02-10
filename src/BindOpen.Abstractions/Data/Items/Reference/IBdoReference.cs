@@ -12,12 +12,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaData SourceMetaData { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoMetaData RootElement();
+        IBdoMetaData Source { get; set; }
 
         /// <summary>
         /// 
@@ -32,13 +27,16 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        object TargetObject { get; set; }
+        IBdoMetaData Root();
+
+        // Objects
 
         /// <summary>
         /// 
         /// </summary>
-        /// <returns></returns>
-        IBdoDatasource GetDatasource();
+        object TargetObject { get; set; }
+
+        // Gets
 
         /// <summary>
         /// 

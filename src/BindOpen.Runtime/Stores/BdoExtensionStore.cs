@@ -82,65 +82,65 @@ namespace BindOpen.Runtime.Stores
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="uniqueId"></param>
+        /// <param name="uniqueName"></param>
         /// <returns></returns>
-        public T GetItemDefinitionWithUniqueId<T>(
-            string uniqueId)
+        public T GetItemDefinitionWithUniqueName<T>(
+            string uniqueName)
             where T : IBdoExtensionItemDefinition
         {
-            var definition = GetItemDefinitionWithUniqueId(
+            var definition = GetItemDefinitionWithUniqueName(
                 typeof(T).GetExtensionItemKind(),
-                uniqueId);
+                uniqueName);
             return (T)definition;
         }
 
         /// <summary>
         /// Returns the item definition with the specified unique name.
         /// </summary>
-        /// <param name="uniqueId">The unique ID of item to return.</param>
+        /// <param name="uniqueName">The unique ID of item to return.</param>
         /// <returns>The item with the specified unique name.</returns>
-        public IBdoExtensionItemDefinition GetItemDefinitionWithUniqueId(
+        public IBdoExtensionItemDefinition GetItemDefinitionWithUniqueName(
             BdoExtensionItemKind kind,
-            string uniqueId)
+            string uniqueName)
         {
-            string upperUniqueId = uniqueId?.ToUpper();
+            string upperUniqueName = uniqueName?.ToUpper();
 
-            if (uniqueId != null)
+            if (uniqueName != null)
             {
                 switch (kind)
                 {
                     case BdoExtensionItemKind.Connector:
                         {
-                            _connectorDefinitions.TryGetValue(upperUniqueId, out IBdoConnectorDefinition connectorDefinition);
+                            _connectorDefinitions.TryGetValue(upperUniqueName, out IBdoConnectorDefinition connectorDefinition);
                             return connectorDefinition;
                         }
                     case BdoExtensionItemKind.Entity:
                         {
-                            _entityDefinitions.TryGetValue(upperUniqueId, out IBdoEntityDefinition entityDefinition);
+                            _entityDefinitions.TryGetValue(upperUniqueName, out IBdoEntityDefinition entityDefinition);
                             return entityDefinition;
                         }
                     case BdoExtensionItemKind.Handler:
                         {
-                            _handlerDefinitions.TryGetValue(upperUniqueId, out IBdoHandlerDefinition handlerDefinition);
+                            _handlerDefinitions.TryGetValue(upperUniqueName, out IBdoHandlerDefinition handlerDefinition);
                             return handlerDefinition;
                         }
                     case BdoExtensionItemKind.Metrics:
                         {
-                            _metricsDefinitions.TryGetValue(upperUniqueId, out IBdoMetricsDefinition metricsDefinition);
+                            _metricsDefinitions.TryGetValue(upperUniqueName, out IBdoMetricsDefinition metricsDefinition);
                             return metricsDefinition;
                         }
                     case BdoExtensionItemKind.Routine:
                         {
-                            _routineDefinitions.TryGetValue(upperUniqueId, out IBdoRoutineDefinition routineDefinition);
+                            _routineDefinitions.TryGetValue(upperUniqueName, out IBdoRoutineDefinition routineDefinition);
                             return routineDefinition;
                         }
                     case BdoExtensionItemKind.Scriptword:
                         {
-                            return GetScriptwordDefinitionWithUniqueName(uniqueId);
+                            return GetScriptwordDefinitionWithUniqueName(uniqueName);
                         }
                     case BdoExtensionItemKind.Task:
                         {
-                            _taskDefinitions.TryGetValue(upperUniqueId, out IBdoTaskDefinition taskDefinition);
+                            _taskDefinitions.TryGetValue(upperUniqueName, out IBdoTaskDefinition taskDefinition);
                             return taskDefinition;
                         }
                     default:
@@ -156,12 +156,12 @@ namespace BindOpen.Runtime.Stores
         /// <summary>
         /// Returns the script word definition with the specified unique name.
         /// </summary>
-        /// <param name="uniqueId">The unique ID of script word to return.</param>
+        /// <param name="uniqueName">The unique ID of script word to return.</param>
         /// <param name="parentDefinition"></param>
         /// <returns>The script word with the specified unique name.</returns>
-        public IBdoScriptwordDefinition GetScriptwordDefinitionWithUniqueName(string uniqueId, IBdoScriptwordDefinition parentDefinition = null)
+        public IBdoScriptwordDefinition GetScriptwordDefinitionWithUniqueName(string uniqueName, IBdoScriptwordDefinition parentDefinition = null)
         {
-            if (_scriptWordDefinitions != null || string.IsNullOrEmpty(uniqueId))
+            if (_scriptWordDefinitions != null || string.IsNullOrEmpty(uniqueName))
             {
                 return null;
             }
@@ -170,7 +170,7 @@ namespace BindOpen.Runtime.Stores
 
             foreach (var pair in _scriptWordDefinitions)
             {
-                if (string.Compare(pair.Key, uniqueId) == 0)
+                if (string.Compare(pair.Key, uniqueName) == 0)
                 {
                     scriptWordDefinition = pair.Value;
                     break;
@@ -204,62 +204,62 @@ namespace BindOpen.Runtime.Stores
         /// <param name="definition">The definition to add.</param>
         public IBdoExtensionStore Add<T>(T definition) where T : IBdoExtensionItemDefinition
         {
-            var uniqueId = definition?.UniqueId?.ToUpper();
+            var uniqueName = definition?.UniqueName?.ToUpper();
 
             if (definition is IBdoEntityDefinition carier)
             {
-                if (!_entityDefinitions.ContainsKey(uniqueId))
+                if (!_entityDefinitions.ContainsKey(uniqueName))
                 {
-                    _entityDefinitions.Add(uniqueId, carier);
+                    _entityDefinitions.Add(uniqueName, carier);
                 }
             }
             else if (definition is IBdoConnectorDefinition connector)
             {
-                if (!_connectorDefinitions.ContainsKey(uniqueId))
+                if (!_connectorDefinitions.ContainsKey(uniqueName))
                 {
-                    _connectorDefinitions.Add(uniqueId, connector);
+                    _connectorDefinitions.Add(uniqueName, connector);
                 }
             }
             else if (definition is IBdoEntityDefinition entity)
             {
-                if (!_entityDefinitions.ContainsKey(uniqueId))
+                if (!_entityDefinitions.ContainsKey(uniqueName))
                 {
-                    _entityDefinitions.Add(uniqueId, entity);
+                    _entityDefinitions.Add(uniqueName, entity);
                 }
             }
             else if (definition is IBdoHandlerDefinition handler)
             {
-                if (!_handlerDefinitions.ContainsKey(uniqueId))
+                if (!_handlerDefinitions.ContainsKey(uniqueName))
                 {
-                    _handlerDefinitions.Add(uniqueId, handler);
+                    _handlerDefinitions.Add(uniqueName, handler);
                 }
             }
             else if (definition is IBdoMetricsDefinition metrics)
             {
-                if (!_metricsDefinitions.ContainsKey(uniqueId))
+                if (!_metricsDefinitions.ContainsKey(uniqueName))
                 {
-                    _metricsDefinitions.Add(uniqueId, metrics);
+                    _metricsDefinitions.Add(uniqueName, metrics);
                 }
             }
             else if (definition is IBdoRoutineDefinition routine)
             {
-                if (!_routineDefinitions.ContainsKey(uniqueId))
+                if (!_routineDefinitions.ContainsKey(uniqueName))
                 {
-                    _routineDefinitions.Add(uniqueId, routine);
+                    _routineDefinitions.Add(uniqueName, routine);
                 }
             }
             else if (definition is IBdoScriptwordDefinition scriptWord)
             {
-                if (!_scriptWordDefinitions.ContainsKey(uniqueId))
+                if (!_scriptWordDefinitions.ContainsKey(uniqueName))
                 {
-                    _scriptWordDefinitions.Add(uniqueId, scriptWord);
+                    _scriptWordDefinitions.Add(uniqueName, scriptWord);
                 }
             }
             else if (definition is IBdoTaskDefinition task)
             {
-                if (!_taskDefinitions.ContainsKey(uniqueId))
+                if (!_taskDefinitions.ContainsKey(uniqueName))
                 {
-                    _taskDefinitions.Add(uniqueId, task);
+                    _taskDefinitions.Add(uniqueName, task);
                 }
             }
 

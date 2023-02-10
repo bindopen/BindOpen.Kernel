@@ -98,7 +98,7 @@ namespace BindOpen.Extensions.Scripting
             {
                 foreach (var def in Definitions.Where(p => p.Value?.Name.BdoKeyEquals(name) == true).Select(p => p.Value))
                 {
-                    matchingDefinitions.Add(def.UniqueId, def);
+                    matchingDefinitions.Add(def.UniqueName, def);
                 }
             }
 
@@ -121,7 +121,7 @@ namespace BindOpen.Extensions.Scripting
             {
                 foreach (var def in Definitions.Where(p => p.Value?.Name.IndexOf(name, StringComparison.OrdinalIgnoreCase) > 0).Select(p => p.Value))
                 {
-                    matchingDefinitions.Add(def.UniqueId, def);
+                    matchingDefinitions.Add(def.UniqueName, def);
                 }
             }
 

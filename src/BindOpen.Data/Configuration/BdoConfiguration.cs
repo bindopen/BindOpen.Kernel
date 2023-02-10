@@ -35,7 +35,7 @@ namespace BindOpen.Data.Configuration
         /// <summary>
         /// 
         /// </summary>
-        public string DefinitionUniqueId { get; set; }
+        public string DefinitionUniqueName { get; set; }
 
         /// <summary>
         /// The using file paths of this instance.

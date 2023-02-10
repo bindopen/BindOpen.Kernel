@@ -11,7 +11,7 @@ namespace BindOpen.Runtime.Scopes
     /// <summary>
     /// This interface defines an application scope.
     /// </summary>
-    public interface IBdoScope : IDisposable
+    public partial interface IBdoScope : IDisposable
     {
         /// <summary>
         /// The application domain.

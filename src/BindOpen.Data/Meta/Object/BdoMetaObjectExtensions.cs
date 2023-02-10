@@ -13,7 +13,7 @@ namespace BindOpen.Data
         /// 
         /// </summary>
         /// <returns></returns>
-        public static T Update<T>(
+        public static T UpdateTree<T>(
             this T meta,
             IBdoScope scope = null,
             IBdoLog log = null)

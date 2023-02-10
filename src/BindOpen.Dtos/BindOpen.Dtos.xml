@@ -213,7 +213,7 @@
             This class represents a entity element.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.EntityElementDto.DefinitionUniqueId">
+        <member name="P:BindOpen.Data.Elements.EntityElementDto.DefinitionUniqueName">
             <summary>
             The definition unique ID of this instance.
             </summary>
@@ -488,7 +488,7 @@
             The class full name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.ObjectElementDto.DefinitionUniqueId">
+        <member name="P:BindOpen.Data.Elements.ObjectElementDto.DefinitionUniqueName">
             <summary>
             The definition unique ID of this instance.
             </summary>
@@ -674,7 +674,7 @@
             </summary>
             <remarks>A data source element can only have one item maximum.</remarks>
         </member>
-        <member name="P:BindOpen.Data.Elements.SourceElementDto.DefinitionUniqueId">
+        <member name="P:BindOpen.Data.Elements.SourceElementDto.DefinitionUniqueName">
             <summary>
             The definition unique ID of this instance.
             </summary>
@@ -1201,7 +1201,7 @@
             The kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Extensions.TBdoExtensionItemConfigurationDto`1.DefinitionUniqueId">
+        <member name="P:BindOpen.Extensions.TBdoExtensionItemConfigurationDto`1.DefinitionUniqueName">
             <summary>
             Definition unique ID of this instance.
             </summary>

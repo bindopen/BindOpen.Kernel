@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Configuration;
-using BindOpen.Data.Helpers;
 
 namespace BindOpen.Extensions.Modeling
 {
@@ -19,7 +18,6 @@ namespace BindOpen.Extensions.Modeling
             if (poco == null) return null;
 
             var dto = poco.Config.ToDto();
-            dto.Update(dto);
 
             return dto;
         }

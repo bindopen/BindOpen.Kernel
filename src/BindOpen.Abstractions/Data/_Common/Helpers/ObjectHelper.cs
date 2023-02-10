@@ -183,39 +183,6 @@ namespace BindOpen.Data.Helpers
         }
 
         /// <summary>
-        /// Gets the result of the serialization of the specified object.
-        /// </summary>
-        /// <param name="obj">The object to serialize.</param>
-        /// <param name="updateObj">The update object to consider.</param>
-        /// <returns>The Xml string serializing the specified object.</returns>
-        public static void Update(this object obj, object updateObj)
-        {
-            if (obj != null && updateObj != null)
-            {
-                foreach (PropertyInfo updatePropertyInfo in updateObj.GetType().GetProperties())
-                {
-                    try
-                    {
-                        PropertyInfo propertyInfo = obj.GetType().GetProperty(updatePropertyInfo.Name);
-
-                        if (propertyInfo != null)
-                        {
-                            object property = updatePropertyInfo.GetValue(updateObj);
-                            if (property is IBdoItem propertyDataItem)
-                            {
-                                property = propertyDataItem.Clone();
-                            }
-                            propertyInfo.SetValue(obj, property);
-                        }
-                    }
-                    catch
-                    {
-                    }
-                }
-            }
-        }
-
-        /// <summary>
         /// Gets the object at the specified index from the specified index.
         /// </summary>
         /// <param name="objects">The objects to consider.</param>

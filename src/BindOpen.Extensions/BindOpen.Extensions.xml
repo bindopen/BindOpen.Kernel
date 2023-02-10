@@ -298,7 +298,7 @@
             <summary>
             Creates the instance of the specified config.
             </summary>
-            <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
+            <param name="definitionUniqueName">The unique ID of the definition to consider.</param>
         </member>
         <member name="M:BindOpen.Extensions.BdoExt.NewConnector``1(BindOpen.Extensions.Connecting.IBdoConfiguration)">
             <summary>
@@ -312,7 +312,7 @@
             <summary>
             Creates the instance of the specified config.
             </summary>
-            <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
+            <param name="definitionUniqueName">The unique ID of the definition to consider.</param>
             <param name="elements">The config elements of the definition to consider.</param>
         </member>
         <member name="M:BindOpen.Extensions.BdoExt.NewTask``1(BindOpen.Extensions.Processing.IBdoConfiguration)">
@@ -327,7 +327,7 @@
             <summary>
             Creates the instance of the specified config.
             </summary>
-            <param name="definitionUniqueId">The unique ID of the definition to consider.</param>
+            <param name="definitionUniqueName">The unique ID of the definition to consider.</param>
         </member>
         <member name="T:BindOpen.Extensions.Modeling.BdoEntity">
             <summary>
@@ -1379,7 +1379,7 @@
             The kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Extensions.TBdoExtensionItemConfiguration`1.DefinitionUniqueId">
+        <member name="P:BindOpen.Extensions.TBdoExtensionItemConfiguration`1.DefinitionUniqueName">
             <summary>
             Definition unique ID of this instance.
             </summary>
@@ -1399,7 +1399,7 @@
             Instantiates a new instance of the BdoExtensionItemConfiguration class.
             </summary>
             <param name="kind">The kind to consider.</param>
-            <param name="definitionUniqueId">The definition unique ID to consider.</param>
+            <param name="definitionUniqueName">The definition unique ID to consider.</param>
             <param name="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Extensions.TBdoExtensionItemConfiguration`1.Clone(System.String[])">
@@ -1423,7 +1423,7 @@
             Instantiates a new instance of the TBdoExtensionItemConfiguration class.
             </summary>
             <param name="kind">The kind to consider.</param>
-            <param name="definitionUniqueId">The definition unique ID to consider.</param>
+            <param name="definitionUniqueName">The definition unique ID to consider.</param>
         </member>
         <member name="M:BindOpen.Extensions.TBdoExtensionItemConfiguration`1.Clone(System.String[])">
             <summary>

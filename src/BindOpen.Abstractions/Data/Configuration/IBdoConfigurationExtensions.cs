@@ -29,14 +29,14 @@ namespace BindOpen.Data
         /// 
         /// </summary>
         /// <param name="detail"></param>
-        public static T WithDefinitionUniqueId<T>(
+        public static T WithDefinitionUniqueName<T>(
             this T obj,
-            string definitionUniqueId)
+            string definitionUniqueName)
             where T : IBdoConfiguration
         {
             if (obj != null)
             {
-                obj.DefinitionUniqueId = definitionUniqueId;
+                obj.DefinitionUniqueName = definitionUniqueName;
             }
             return obj;
         }

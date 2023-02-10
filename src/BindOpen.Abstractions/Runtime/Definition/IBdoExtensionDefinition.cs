@@ -50,7 +50,7 @@ namespace BindOpen.Runtime.Definition
         /// <summary>
         /// The unique ID of this instance.
         /// </summary> 
-        string UniqueId { get; }
+        string UniqueName { get; }
 
         /// <summary>
         /// 

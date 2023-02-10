@@ -845,16 +845,16 @@
             <param name="name">The name to consider.</param>
             <param name="id">The ID to consider.</param>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoEntity.DefinitionUniqueId">
+        <member name="P:BindOpen.Data.Elements.BdoEntity.DefinitionUniqueName">
             <summary>
             The definition unique ID of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoEntity.WithDefinitionUniqueId(System.String)">
+        <member name="M:BindOpen.Data.Elements.BdoEntity.WithDefinitionUniqueName(System.String)">
             <summary>
             
             </summary>
-            <param name="definitionUniqueId"></param>
+            <param name="definitionUniqueName"></param>
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
@@ -1080,7 +1080,7 @@
             <param name="name">The name to consider.</param>
             <param name="id">The ID to consider.</param>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoDataObject.DefinitionUniqueId">
+        <member name="P:BindOpen.Data.Elements.BdoDataObject.DefinitionUniqueName">
             <summary>
             The definition unique ID of this instance.
             </summary>
@@ -1374,16 +1374,16 @@
             <param name="name">The name to consider.</param>
             <param name="id">The ID to consider.</param>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoDataSource.DefinitionUniqueId">
+        <member name="P:BindOpen.Data.Elements.BdoDataSource.DefinitionUniqueName">
             <summary>
             The definition unique ID of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataSource.WithDefinitionUniqueId(System.String)">
+        <member name="M:BindOpen.Data.Elements.BdoDataSource.WithDefinitionUniqueName(System.String)">
             <summary>
             
             </summary>
-            <param name="definitionUniqueId"></param>
+            <param name="definitionUniqueName"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataSource.BindOpen#MetaData#Elements#IBdoDataElement#NewSpecification">
@@ -1726,7 +1726,7 @@
             Initializes a new entity el.
             </summary>
             <param name="name">The name to consider.</param>
-            <param name="definitionUniqueId ">The definition unique ID to consider.</param>
+            <param name="definitionUniqueName ">The definition unique ID to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewEntity(System.String,BindOpen.Extensions.Modeling.IBdoConfiguration)">
             <summary>
@@ -1740,7 +1740,7 @@
             Initializes a new entity el.
             </summary>
             <param name="name">The name to consider.</param>
-            <param name="definitionUniqueId ">The definition unique ID to consider.</param>
+            <param name="definitionUniqueName ">The definition unique ID to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewEntity``1(System.String,BindOpen.Extensions.Modeling.IBdoConfiguration)">
             <summary>
@@ -1754,14 +1754,14 @@
             Initializes a new entity el.
             </summary>
             <param name="name">The name to consider.</param>
-            <param name="definitionUniqueId ">The definition unique ID to consider.</param>
+            <param name="definitionUniqueName ">The definition unique ID to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewCollection(BindOpen.Data.Elements.IBdoDataElement[][])">
             <summary>
             Initializes a new entity el.
             </summary>
             <param name="name">The name to consider.</param>
-            <param name="definitionUniqueId ">The definition unique ID to consider.</param>
+            <param name="definitionUniqueName ">The definition unique ID to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewCollection(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
@@ -1985,7 +1985,7 @@
             </summary>
             <param name="name">The name to consider.</param>
             <param name="id">The ID to consider.</param>
-            <param name="definitionUniqueId ">The definition unique ID to consider.</param>
+            <param name="definitionUniqueName ">The definition unique ID to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSource(System.String,BindOpen.Extensions.Connecting.IBdoConfiguration)">
             <summary>
@@ -2008,7 +2008,7 @@
             </summary>
             <param name="name">The name to consider.</param>
             <param name="id">The ID to consider.</param>
-            <param name="definitionUniqueId ">The definition unique ID to consider.</param>
+            <param name="definitionUniqueName ">The definition unique ID to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSource``1(System.String,BindOpen.Extensions.Connecting.IBdoConfiguration)">
             <summary>
@@ -3106,7 +3106,7 @@
             Gets the specified connector config.
             </summary>
             <param name="sourceName">The name of the data module to consider.</param>
-            <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
+            <param name="connectorDefinitionUniqueName">The unique ID of the connector definition to consider.</param>
             <returns>The specified connector.</returns>
         </member>
         <member name="M:BindOpen.Data.Stores.BdoDatasourceDepot.HasConnectorConfiguration(System.String,System.String)">
@@ -3114,7 +3114,7 @@
             Indicates whether this instance has the specified connector config.
             </summary>
             <param name="sourceName">The name of the data module to consider.</param>
-            <param name="connectorDefinitionUniqueId">The unique ID of the connector definition to consider.</param>
+            <param name="connectorDefinitionUniqueName">The unique ID of the connector definition to consider.</param>
             <returns>The data source with the specified data module name.</returns>
         </member>
         <member name="M:BindOpen.Data.Stores.BdoDatasourceDepot.GetConnectionString(System.String,System.String)">
@@ -3122,7 +3122,7 @@
             Returns the connection string corresponding to the specified config.
             </summary>
             <param name="sourceName">The name of the data source to consider.</param>
-            <param name="connectorDefinitionUniqueId">The connector unique name to consider.</param>
+            <param name="connectorDefinitionUniqueName">The connector unique name to consider.</param>
             <returns>The connection string corresponding to the specified data module name.</returns>
         </member>
         <member name="T:BindOpen.Data.Stores.TBdoDepot`1">
