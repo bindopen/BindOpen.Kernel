@@ -8,7 +8,7 @@ namespace BindOpen.Data.Items
     /// This class specifies the data value filter.
     /// </summary>
     [XmlType("StringFilter", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "value.filter", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlRoot(ElementName = "filter", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class StringFilterDto
     {
         // ------------------------------------------

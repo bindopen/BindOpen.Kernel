@@ -45,8 +45,8 @@ namespace BindOpen.Data
                 if (valueType.IsList())
                 {
                     var objList = data.ToObjectList();
-                    var metaSet = NewList(name, objList?.ToArray());
-                    return metaSet;
+                    var metaList = NewList(name, objList?.ToArray());
+                    return metaList;
                 }
                 else
                 {

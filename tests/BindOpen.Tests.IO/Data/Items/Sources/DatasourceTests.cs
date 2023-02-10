@@ -4,7 +4,7 @@ using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Tests.IO.Meta
+namespace BindOpen.Tests.IO.Data
 {
     [TestFixture, Order(210)]
     public class DatasourceTests
@@ -28,12 +28,14 @@ namespace BindOpen.Tests.IO.Meta
         }
 
         [Test, Order(1)]
-        public void CreateDatasourceTest()
+        public void CreateTest()
         {
             _datasource = BdoData.NewDatasource("name", DatasourceKind.Database)
                 .WithConfig(
                     BdoConfig.New("tests.core$test")
-                        ?.WithConnectionString("connectionString"));
+                        ?.WithConnectionString("connectionString")
+                        .With(
+                            BdoMeta.New("name1", "value1")));
 
             Assert.That(
                 _datasource != null, "Bad data source creation");
@@ -42,23 +44,23 @@ namespace BindOpen.Tests.IO.Meta
         // Xml
 
         [Test, Order(2)]
-        public void SaveXmlBdoElementSetTest()
+        public void SaveXmlTest()
         {
             if (_datasource == null)
             {
-                CreateDatasourceTest();
+                CreateTest();
             }
 
             var isSaved = _datasource.ToDto().SaveXml(_filePath_xml);
-            Assert.That(isSaved, "Element set saving failed. ");
+            Assert.That(isSaved, "Data source saving failed. ");
         }
 
         [Test, Order(3)]
-        public void LoadXmlBdoElementSetTest()
+        public void LoadXmlTest()
         {
             if (_datasource == null || !File.Exists(_filePath_xml))
             {
-                SaveXmlBdoElementSetTest();
+                SaveXmlTest();
             }
 
             var datasource = XmlHelper.LoadXml<DatasourceDto>(_filePath_xml).ToPoco();
@@ -68,23 +70,23 @@ namespace BindOpen.Tests.IO.Meta
         // Json
 
         [Test, Order(4)]
-        public void SaveJsonBdoElementSetTest()
+        public void SaveJsonTest()
         {
             if (_datasource == null)
             {
-                CreateDatasourceTest();
+                CreateTest();
             }
 
             var isSaved = _datasource.ToDto().SaveJson(_filePath_json);
-            Assert.That(isSaved, "Element set saving failed. ");
+            Assert.That(isSaved, "Data source saving failed. ");
         }
 
         [Test, Order(5)]
-        public void LoadJsonBdoElementSetTest()
+        public void LoadJsonTest()
         {
             if (_datasource == null || !File.Exists(_filePath_json))
             {
-                SaveJsonBdoElementSetTest();
+                SaveJsonTest();
             }
 
             var datasource = JsonHelper.LoadJson<DatasourceDto>(_filePath_json).ToPoco();

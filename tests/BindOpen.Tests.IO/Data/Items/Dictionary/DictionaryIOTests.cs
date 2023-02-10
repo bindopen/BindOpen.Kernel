@@ -1,10 +1,11 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Items;
+using Bogus;
 using NUnit.Framework;
 using System.IO;
 using System.Linq;
 
-namespace BindOpen.Tests.IO.Meta
+namespace BindOpen.Tests.IO.Data
 {
     [TestFixture, Order(210)]
     public class DictionaryIOTests
@@ -14,11 +15,17 @@ namespace BindOpen.Tests.IO.Meta
         dynamic _valueSet;
         private IBdoDictionary _dico = null;
 
-
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            _valueSet = new { value1 = "toto", value2 = "totomax" };
+            File.Delete(_filePath_xml);
+
+            var f = new Faker();
+            _valueSet = new
+            {
+                value1 = f.Random.Word(),
+                value2 = f.Random.Word()
+            };
         }
 
         public static bool Equals(
@@ -31,8 +38,7 @@ namespace BindOpen.Tests.IO.Meta
             return b;
         }
 
-        [Test, Order(1)]
-        public void CreateTest()
+        private void CreateTest()
         {
             _dico = BdoData.NewDictionary(
                 ("value1", _valueSet.value1),
@@ -50,7 +56,7 @@ namespace BindOpen.Tests.IO.Meta
             }
 
             var isSaved = _dico.ToDto().SaveXml(_filePath_xml);
-            Assert.That(isSaved, "Element set saving failed");
+            Assert.That(isSaved, "Dictionary saving failed");
         }
 
         [Test, Order(4)]
@@ -76,7 +82,7 @@ namespace BindOpen.Tests.IO.Meta
             }
 
             var isSaved = _dico.ToDto().SaveJson(_filePath_json);
-            Assert.That(isSaved, "Element set saving failed");
+            Assert.That(isSaved, "Dictionary saving failed");
         }
 
         [Test, Order(6)]

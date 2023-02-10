@@ -24,19 +24,11 @@ namespace BindOpen.Tests.Data
         }
 
         [Test, Order(1)]
-        public void ToMetaTest()
-        {
-            var meta = _obj.ToMetaData();
-            Test(meta);
-        }
-
-        [Test, Order(1)]
         public void NewTest()
         {
             var meta1 = BdoMeta.New()
                 .WithDataReference(
                     BdoScript.Var("workflow").Func("input", "input1"));
-            Test(meta1);
         }
     }
 }

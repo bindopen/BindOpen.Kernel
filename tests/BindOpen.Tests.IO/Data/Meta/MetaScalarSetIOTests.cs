@@ -7,17 +7,17 @@ using NUnit.Framework;
 using System.IO;
 using System.Linq;
 
-namespace BindOpen.Tests.IO.Meta
+namespace BindOpen.Tests.IO.Data
 {
     [TestFixture, Order(202)]
-    public class MetaScalarSetIOTests
+    public class MetaScalarListIOTests
     {
-        private readonly string _filePath_xml = GlobalVariables.WorkingFolder + "ScalarElementSet.xml";
-        private readonly string _filePath_json = GlobalVariables.WorkingFolder + "ScalarElementSet.json";
+        private readonly string _filePath_xml = GlobalVariables.WorkingFolder + "MetaScalarList.xml";
+        private readonly string _filePath_json = GlobalVariables.WorkingFolder + "MetaScalarList.json";
 
         private dynamic _testData;
 
-        private IBdoMetaList _metaSet = null;
+        private IBdoMetaList _metaList = null;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -33,23 +33,23 @@ namespace BindOpen.Tests.IO.Meta
         }
 
         public static bool Equals(
-            IBdoMetaList set1,
-            IBdoMetaList set2)
+            IBdoMetaList list1,
+            IBdoMetaList list2)
         {
-            var b = set1 != null && set2 != null
-                && set1.IsDeepEqual(set2);
+            var b = list1 != null && list2 != null
+                && list1.IsDeepEqual(list2);
             return b;
         }
 
         [Test, Order(2)]
         public void CreateTest()
         {
-            var el1 = BdoMeta.NewScalar("float1", DataValueTypes.Number, _testData.arrayNumber1 as double[]);
-            var el2 = BdoMeta.NewScalar("text2", DataValueTypes.Text, _testData.arrayString2 as string[]);
-            var el3 = BdoMeta.NewScalar("integer3", DataValueTypes.Integer, _testData.arrayInteger3 as int[]);
-            var el4 = BdoMeta.NewScalar("byteArray4", DataValueTypes.ByteArray, _testData.arrayArrayByte4 as byte[][]);
+            var meta1 = BdoMeta.NewScalar("float1", DataValueTypes.Number, _testData.arrayNumber1 as double[]);
+            var meta2 = BdoMeta.NewScalar("text2", DataValueTypes.Text, _testData.arrayString2 as string[]);
+            var meta3 = BdoMeta.NewScalar("integer3", DataValueTypes.Integer, _testData.arrayInteger3 as int[]);
+            var meta4 = BdoMeta.NewScalar("byteArray4", DataValueTypes.ByteArray, _testData.arrayArrayByte4 as byte[][]);
 
-            _metaSet = BdoMeta.NewList(el1, el2, el3, el4);
+            _metaList = BdoMeta.NewList(meta1, meta2, meta3, meta4);
         }
 
         // Xml
@@ -57,25 +57,25 @@ namespace BindOpen.Tests.IO.Meta
         [Test, Order(5)]
         public void SaveXmlTest()
         {
-            if (_metaSet == null)
+            if (_metaList == null)
             {
                 CreateTest();
             }
 
-            var isSaved = _metaSet.ToDto().SaveXml(_filePath_xml);
-            Assert.That(isSaved, "Element set saving failed. ");
+            var isSaved = _metaList.ToDto().SaveXml(_filePath_xml);
+            Assert.That(isSaved, "Meta list saving failed. ");
         }
 
         [Test, Order(6)]
         public void LoadXmlTest()
         {
-            if (_metaSet == null || !File.Exists(_filePath_xml))
+            if (_metaList == null || !File.Exists(_filePath_xml))
             {
                 SaveXmlTest();
             }
 
-            var metaSet = XmlHelper.LoadXml<MetaListDto>(_filePath_xml).ToPoco();
-            Equals(metaSet, _metaSet);
+            var metaList = XmlHelper.LoadXml<MetaListDto>(_filePath_xml).ToPoco();
+            Equals(metaList, _metaList);
         }
 
         // Json
@@ -83,25 +83,25 @@ namespace BindOpen.Tests.IO.Meta
         [Test, Order(7)]
         public void SaveJsonTest()
         {
-            if (_metaSet == null)
+            if (_metaList == null)
             {
                 CreateTest();
             }
 
-            var isSaved = _metaSet.ToDto().SaveJson(_filePath_json);
-            Assert.That(isSaved, "Element set saving failed. ");
+            var isSaved = _metaList.ToDto().SaveJson(_filePath_json);
+            Assert.That(isSaved, "Meta list saving failed. ");
         }
 
         [Test, Order(8)]
         public void LoadJsonTest()
         {
-            if (_metaSet == null || !File.Exists(_filePath_json))
+            if (_metaList == null || !File.Exists(_filePath_json))
             {
                 SaveJsonTest();
             }
 
-            var metaSet = JsonHelper.LoadJson<MetaListDto>(_filePath_json).ToPoco();
-            Equals(metaSet, _metaSet);
+            var metaList = JsonHelper.LoadJson<MetaListDto>(_filePath_json).ToPoco();
+            Equals(metaList, _metaList);
         }
     }
 }

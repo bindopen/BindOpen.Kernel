@@ -39,6 +39,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\src\BindOpen.IO\IO.csproj" />
     <ProjectReference Include="..\BindOpen.Tests\Tests.csproj" />
   </ItemGroup>

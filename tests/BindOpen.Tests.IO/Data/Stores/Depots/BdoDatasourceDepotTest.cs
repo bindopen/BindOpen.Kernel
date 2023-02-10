@@ -6,7 +6,7 @@ using Bogus;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Tests.IO.Meta
+namespace BindOpen.Tests.IO.Data
 {
     [TestFixture, Order(101)]
     public class DatasourceDepotTests
@@ -78,7 +78,7 @@ namespace BindOpen.Tests.IO.Meta
             }
 
             var isSaved = _datasourceDepot.ToDto().SaveXml(_filePath_xml);
-            Assert.That(isSaved, "Element set saving failed");
+            Assert.That(isSaved, "Meta list saving failed");
 
             TestBdoDatasourceDepot(_datasourceDepot);
         }
@@ -107,7 +107,7 @@ namespace BindOpen.Tests.IO.Meta
             }
 
             var isSaved = _datasourceDepot.ToDto().SaveJson(_filePath_json);
-            Assert.That(isSaved, "Element set saving failed");
+            Assert.That(isSaved, "Meta list saving failed");
 
             TestBdoDatasourceDepot(_datasourceDepot);
         }

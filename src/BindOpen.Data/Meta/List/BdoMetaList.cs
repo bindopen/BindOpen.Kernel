@@ -33,9 +33,9 @@ namespace BindOpen.Data.Meta
         /// Converts from data element array.
         /// </summary>
         /// <param name="elems">The elems to consider.</param>
-        public static explicit operator IBdoMetaData[](BdoMetaList metaSet)
+        public static explicit operator IBdoMetaData[](BdoMetaList metaList)
         {
-            return metaSet?.ToArray();
+            return metaList?.ToArray();
         }
 
         #endregion

@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Data.Items
+﻿using System.Collections.Generic;
+
+namespace BindOpen.Data.Items
 {
     /// <summary>
     /// This static class represents a data reference converter.
@@ -16,6 +18,8 @@
 
             StringFilterDto dto = new()
             {
+                AddedValues = new List<string>(poco?.AddedValues),
+                RemovedValues = new List<string>(poco?.RemovedValues)
             };
 
             return dto;
@@ -30,6 +34,8 @@
         {
             BdoStringFilter poco = new()
             {
+                AddedValues = new List<string>(dto?.AddedValues),
+                RemovedValues = new List<string>(dto?.RemovedValues)
             };
 
             return poco;

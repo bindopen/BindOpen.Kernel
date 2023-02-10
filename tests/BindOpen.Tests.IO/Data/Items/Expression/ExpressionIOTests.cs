@@ -5,7 +5,7 @@ using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Tests.IO.Meta
+namespace BindOpen.Tests.IO.Data
 {
     [TestFixture, Order(210)]
     public class ExpressionIOTests
@@ -56,7 +56,7 @@ namespace BindOpen.Tests.IO.Meta
             }
 
             var isSaved = _exp.ToDto().SaveXml(_filePath_xml);
-            Assert.That(isSaved, "Element set saving failed");
+            Assert.That(isSaved, "Expression saving failed");
         }
 
         [Test, Order(4)]
@@ -82,7 +82,7 @@ namespace BindOpen.Tests.IO.Meta
             }
 
             var isSaved = _exp.ToDto().SaveJson(_filePath_json);
-            Assert.That(isSaved, "Element set saving failed");
+            Assert.That(isSaved, "Expression saving failed");
         }
 
         [Test, Order(6)]

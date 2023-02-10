@@ -131,8 +131,8 @@ namespace BindOpen.Data.Meta
                 return metaObject.GetData(scope, varSet, log);
             else if (meta is IBdoMetaScalar metaScalar)
                 return metaScalar.GetData(scope, varSet, log);
-            else if (meta is IBdoMetaList metaSet)
-                return metaSet.GetData(scope, varSet, log);
+            else if (meta is IBdoMetaList metaList)
+                return metaList.GetData(scope, varSet, log);
 
             return default;
         }
