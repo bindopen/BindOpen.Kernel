@@ -39,11 +39,6 @@ namespace BindOpen.Extensions
         Format,
 
         /// <summary>
-        /// Handler.
-        /// </summary>
-        Handler,
-
-        /// <summary>
         /// Metrics.
         /// </summary>
         Metrics,

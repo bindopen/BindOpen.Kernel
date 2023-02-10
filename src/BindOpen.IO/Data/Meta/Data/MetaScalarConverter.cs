@@ -2,7 +2,6 @@
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
-using BindOpen.Data.References;
 using System.Linq;
 
 namespace BindOpen.Data.Meta
@@ -23,7 +22,7 @@ namespace BindOpen.Data.Meta
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<BdoMetaScalar, MetaScalarDto>()
-                    .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.Reference.ToDto()))
+                    .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.DataReference.ToDto()))
                     .ForMember(q => q.Specs, opt => opt.Ignore())
             );
 
@@ -32,9 +31,9 @@ namespace BindOpen.Data.Meta
 
             //dto.WithSpecifications(poco.Specs.Select(q => q?.ToDto()).Cast<IBdoDataElementSpec>().ToArray());
 
-            if (poco.ItemizationMode == DataItemizationMode.Value)
+            if (poco.ValueMode == DataValueMode.Value)
             {
-                var dataList = poco.GetDataList<object>().Select(q => q.ToString(poco.ValueType)).ToList();
+                var dataList = poco.GetDataList<object>().Select(q => q.ToString(poco.DataValueType)).ToList();
                 if (dataList.Count == 1)
                 {
                     dto.Item = dataList.FirstOrDefault();
@@ -59,14 +58,14 @@ namespace BindOpen.Data.Meta
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<MetaScalarDto, BdoMetaScalar>()
-                    .ForMember(q => q.Reference, opt => opt.Ignore())
+                    .ForMember(q => q.DataReference, opt => opt.Ignore())
                     .ForMember(q => q.Specs, opt => opt.Ignore())
                 );
 
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoMetaScalar>(dto);
 
-            poco.Reference = dto.DataReference.ToPoco();
+            poco.DataReference = dto.DataReference.ToPoco();
             poco.Specs = dto.Specs?.Select(q => q.ToPoco()).ToList();
 
             if (!string.IsNullOrEmpty(dto.Item))
@@ -75,7 +74,7 @@ namespace BindOpen.Data.Meta
             }
             else
             {
-                var objects = dto.Items.Select(q => q.ToObject(poco.ValueType)).ToList();
+                var objects = dto.Items.Select(q => q.ToObject(poco.DataValueType)).ToList();
                 poco.WithDataList(objects);
             }
 

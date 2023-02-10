@@ -44,8 +44,6 @@ namespace BindOpen.Runtime.Stores
                     return LoadEntityDictionaryFromAssembly(assembly, extensionDefinition, log);
                 case BdoExtensionItemKind.Format:
                     return LoadFormatDictionaryFromAssembly(assembly, extensionDefinition, log);
-                case BdoExtensionItemKind.Handler:
-                    return LoadHandlerDictionaryFromAssembly(assembly, extensionDefinition, log);
                 case BdoExtensionItemKind.Metrics:
                     return LoadMetricsDictionaryFromAssembly(assembly, extensionDefinition, log);
                 case BdoExtensionItemKind.Routine:
@@ -129,7 +127,6 @@ namespace BindOpen.Runtime.Stores
                 BdoExtensionItemKind.Connector => "BindOpen.Connectors",
                 BdoExtensionItemKind.Entity => "BindOpen.Entities",
                 BdoExtensionItemKind.Format => "BindOpen.Formats",
-                BdoExtensionItemKind.Handler => "BindOpen.Handlers",
                 BdoExtensionItemKind.Metrics => "BindOpen.Metrics",
                 BdoExtensionItemKind.Routine => "BindOpen.Routines",
                 BdoExtensionItemKind.Scriptword => "BindOpen.Scriptwords",
@@ -151,7 +148,6 @@ namespace BindOpen.Runtime.Stores
                 BdoExtensionItemKind.Connector => typeof(BdoConnectorDictionary),
                 BdoExtensionItemKind.Format => null,
                 BdoExtensionItemKind.Entity => typeof(BdoEntityDictionary),
-                BdoExtensionItemKind.Handler => typeof(BdoHandlerDictionary),
                 BdoExtensionItemKind.Metrics => typeof(BdoMetricsDictionary),
                 BdoExtensionItemKind.Routine => typeof(BdoRoutineDictionary),
                 BdoExtensionItemKind.Scriptword => typeof(BdoScriptwordDictionary),

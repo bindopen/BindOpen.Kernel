@@ -75,10 +75,10 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The available itemization modes of this instance.
         /// </summary>
-        [JsonPropertyName("availableItemizationModes")]
-        [XmlArray("availableItemizationModes")]
+        [JsonPropertyName("availableValueModes")]
+        [XmlArray("availableValueModes")]
         [XmlArrayItem("add.mode")]
-        public List<DataItemizationMode> AvailableItemizationModes { get; set; }
+        public List<DataValueMode> AvailableValueModes { get; set; }
 
         /// <summary>
         /// Minimum item number of this instance.

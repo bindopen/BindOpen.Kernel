@@ -522,7 +522,7 @@
             This static class represents a data reference converter.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.References.DataReferenceConverter.ToDto(BindOpen.Data.Items.IBdoReference)">
+        <member name="M:BindOpen.Data.References.DataReferenceConverter.ToDto(BindOpen.Data.Items.IBdoExpression)">
             <summary>
             Converts to DTO.
             </summary>

@@ -57,12 +57,6 @@ namespace BindOpen.Runtime.Definition
             {
                 return BdoExtensionItemKind.Format;
             }
-            //else if ((type == typeof(BdoMetricsDefinition)) || type == typeof(MetricsConfiguration) || (type.IsSubclassOf(typeof(MetricsConfiguration))))
-            //    return BdoExtensionItemKind.Metrics;
-            else if (typeof(IBdoHandlerDefinition).IsAssignableFrom(type))
-            {
-                return BdoExtensionItemKind.Handler;
-            }
             else if ((typeof(IBdoScriptwordDefinition).IsAssignableFrom(type))
                 || (typeof(IBdoScriptword).IsAssignableFrom(type)))
             {

@@ -60,37 +60,5 @@ namespace BindOpen.Hosting.Hosts
             IBdoMetaList varSet = null,
             IBdoLog log = null)
             => Scope?.CreateTask(config, varSet, log);
-
-        // Handlers -------------------------------
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dataHandlerUniqueName"></param>
-        /// <param name="obj"></param>
-        /// <param name="pathDetail"></param>
-        /// <param name="varSet"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        public object GetData(
-            string handlerUniqueName,
-            object obj, IBdoMetaList pathDetail,
-            IBdoMetaList varSet, IBdoLog log)
-            => Scope?.GetData(handlerUniqueName, obj, pathDetail, varSet, log);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dataHandlerUniqueName"></param>
-        /// <param name="obj"></param>
-        /// <param name="pathDetail"></param>
-        /// <param name="varSet"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        public object PostData(
-            string handlerUniqueName,
-            object obj, IBdoMetaList pathDetail,
-            IBdoMetaList varSet, IBdoLog log)
-            => Scope?.PostData(handlerUniqueName, obj, pathDetail, varSet, log);
     }
 }

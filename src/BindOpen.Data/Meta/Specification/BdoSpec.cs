@@ -38,7 +38,7 @@ namespace BindOpen.Data.Meta
 
         #region Variables
 
-        private List<DataItemizationMode> _availableItemizationModes = null;
+        private List<DataValueMode> _availableValueModes = null;
 
         #endregion
 
@@ -72,7 +72,7 @@ namespace BindOpen.Data.Meta
             var dataElementSpec = base.Clone<BdoSpec>(areas);
 
             dataElementSpec.WithAliases(Aliases?.ToArray());
-            dataElementSpec.WithItemizationModes(ItemizationModes?.ToArray());
+            dataElementSpec.WithValueModes(ValueModes?.ToArray());
             dataElementSpec.WithConstraintStatement(ConstraintStatement.Clone<BdoConfigurationSet>());
             dataElementSpec.WithSpecificationLevels(SpecificationLevels?.ToArray());
             dataElementSpec.WithSubSpecs(SubSpecs?.ToArray());
@@ -264,15 +264,15 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The available itemization modes of this instance.
         /// </summary>
-        public List<DataItemizationMode> ItemizationModes
+        public List<DataValueMode> ValueModes
         {
-            get => _availableItemizationModes;
+            get => _availableValueModes;
             set
             {
-                if (value == null || value.Count == 0 || value.Contains(DataItemizationMode.Any))
-                    _availableItemizationModes = new List<DataItemizationMode>() { DataItemizationMode.Any };
+                if (value == null || value.Count == 0 || value.Contains(DataValueMode.Any))
+                    _availableValueModes = new List<DataValueMode>() { DataValueMode.Any };
                 else
-                    _availableItemizationModes = value;
+                    _availableValueModes = value;
             }
         }
 

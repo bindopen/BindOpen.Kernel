@@ -11,14 +11,14 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        public static T WithItemizationMode<T>(
+        public static T WithValueMode<T>(
             this T meta,
-            DataItemizationMode mode)
+            DataValueMode mode)
             where T : IBdoMetaData
         {
             if (meta != null)
             {
-                meta.ItemizationMode = mode;
+                meta.ValueMode = mode;
             }
 
             return meta;
@@ -34,7 +34,7 @@ namespace BindOpen.Data
         {
             if (meta != null)
             {
-                meta.ValueType = valueType;
+                meta.DataValueType = valueType;
             }
 
             return meta;
@@ -43,30 +43,14 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        public static T WithReference<T>(
+        public static T WithDataReference<T>(
             this T meta,
-            IBdoReference reference)
+            IBdoExpression reference)
             where T : IBdoMetaData
         {
             if (meta != null)
             {
-                meta.Reference = reference;
-            }
-
-            return meta;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T WithExpression<T>(
-            this T meta,
-            IBdoExpression exp)
-            where T : IBdoMetaData
-        {
-            if (meta != null)
-            {
-                meta.Expression = exp;
+                meta.DataReference = reference;
             }
 
             return meta;

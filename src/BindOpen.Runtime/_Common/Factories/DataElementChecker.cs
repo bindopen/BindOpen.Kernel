@@ -53,7 +53,7 @@
 
         //    if (specificationAreas.Contains(nameof(DataAreaKind.Any)) || specificationAreas.Contains("element"))
         //    {
-        //        if (!_availableItemizationModes.Contains(DataItemizationMode.Any) && !_availableItemizationModes.Contains(dataElement.ItemizationMode))
+        //        if (!_availableValueModes.Contains(DataValueMode.Any) && !_availableValueModes.Contains(dataElement.ValueMode))
         //        {
         //            log.AddError(
         //                title: "Itemization mode not available",
@@ -61,9 +61,9 @@
         //        }
         //        else
         //        {
-        //            switch (dataElement.ItemizationMode)
+        //            switch (dataElement.ValueMode)
         //            {
-        //                case DataItemizationMode.Referenced:
+        //                case DataValueMode.Referenced:
         //                    if (dataElement.ItemReference == null)
         //                    {
         //                        log.AddWarning(
@@ -93,7 +93,7 @@
         //                            break;
         //                    }
         //                    break;
-        //                case DataItemizationMode.Script:
+        //                case DataValueMode.Script:
         //                    if (string.IsNullOrEmpty(dataElement.ItemScript))
         //                        log.AddWarning(
         //                            title: "Item script missing in element",
@@ -121,7 +121,7 @@
         //                            break;
         //                    }
         //                    break;
-        //                case DataItemizationMode.Valued:
+        //                case DataValueMode.Valued:
         //                    if ((!IsValueList) && (dataElement.Items.Count > 1))
         //                        log.AddWarning(
         //                            title: "More than one item found in element",

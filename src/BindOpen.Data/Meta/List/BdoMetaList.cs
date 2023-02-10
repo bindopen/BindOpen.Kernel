@@ -135,22 +135,22 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The value type of this instance.
         /// </summary>
-        public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
+        public DataValueTypes DataValueType { get; set; } = DataValueTypes.Any;
 
         /// <summary>
         /// The itemization mode of this instance.
         /// </summary>
-        public DataItemizationMode ItemizationMode { get; set; }
+        public DataValueMode ValueMode { get; set; }
 
         /// <summary>
         /// Item reference of this instance.
         /// </summary>
-        public IBdoReference Reference { get; set; }
+        public IBdoExpression Reference { get; set; }
 
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        public IBdoExpression Expression { get; set; }
+        public IBdoExpression DataReference { get; set; }
 
         // Specification -------------------------------
 

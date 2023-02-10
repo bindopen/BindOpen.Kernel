@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Meta;
+using BindOpen.Extensions.Scripting;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System;
@@ -10,6 +11,41 @@ namespace BindOpen.Data
     /// </summary>
     public static partial class BdoMetaDataExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithDataReference<T>(
+            this T meta,
+            string text,
+            BdoExpressionKind kind = BdoExpressionKind.Auto)
+            where T : IBdoMetaData
+        {
+            if (meta != null)
+            {
+                meta.DataReference = BdoData.NewExp(text, kind);
+            }
+
+            return meta;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithDataReference<T>(
+            this T meta,
+            IBdoScriptword word)
+            where T : IBdoMetaData
+        {
+            if (meta != null)
+            {
+                meta.DataReference = BdoData.NewExp(word);
+            }
+
+            return meta;
+        }
+
+
         /// <summary>
         /// Creates a meta data of the specified object.
         /// </summary>

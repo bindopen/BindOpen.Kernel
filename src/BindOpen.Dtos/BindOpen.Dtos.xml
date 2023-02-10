@@ -378,7 +378,7 @@
             This class represents a data element.
             </summary>
         </member>
-        <member name="F:BindOpen.Data.Elements.BdoElementDto.ItemizationMode">
+        <member name="F:BindOpen.Data.Elements.BdoElementDto.ValueMode">
             <summary>
             The itemization mode of this instance.
             </summary>
@@ -448,7 +448,7 @@
             The script of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecDto.AvailableItemizationModes">
+        <member name="P:BindOpen.Data.Elements.BdoElementSpecDto.AvailableValueModes">
             <summary>
             The available itemization modes of this instance.
             </summary>

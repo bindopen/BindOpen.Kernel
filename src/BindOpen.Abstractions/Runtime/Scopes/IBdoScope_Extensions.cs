@@ -57,40 +57,6 @@ namespace BindOpen.Runtime.Scopes
             IBdoConfiguration config = null,
             IBdoMetaList varSet = null,
             IBdoLog log = null);
-
-        // Data handlers ---------------------------------------
-
-        /// <summary>
-        /// Handles the specified data object.
-        /// </summary>
-        /// <param name="handlerUniqueName"></param>
-        /// <param name="obj"></param>
-        /// <param name="pathDetail"></param>
-        /// <param name="varSet"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        object GetData(
-            string handlerUniqueName,
-            object obj,
-            IBdoMetaList pathDetail,
-            IBdoMetaList varSet,
-            IBdoLog log);
-
-        /// <summary>
-        /// Handles the specified data object.
-        /// </summary>
-        /// <param name="handlerUniqueName"></param>
-        /// <param name="obj"></param>
-        /// <param name="pathDetail"></param>
-        /// <param name="varSet"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        object PostData(
-            string handlerUniqueName,
-            object obj,
-            IBdoMetaList pathDetail,
-            IBdoMetaList varSet,
-            IBdoLog log);
     }
 }
 

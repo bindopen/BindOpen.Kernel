@@ -49,22 +49,17 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        DataItemizationMode ItemizationMode { get; set; }
+        DataValueMode ValueMode { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        DataValueTypes ValueType { get; set; }
+        DataValueTypes DataValueType { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoReference Reference { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoExpression Expression { get; set; }
+        IBdoExpression DataReference { get; set; }
 
         /// <summary>
         /// 

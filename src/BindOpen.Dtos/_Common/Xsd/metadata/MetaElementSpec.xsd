@@ -2,7 +2,7 @@
 <xs:schema xmlns="https://xsd.bindopen.org" elementFormDefault="qualified" targetNamespace="https://xsd.bindopen.org" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="https://xsd.bindopen.org/DataSpecification.xsd" />
   <xs:include schemaLocation="https://xsd.bindopen.org/DataValueType.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/DataItemizationMode.xsd" />
+  <xs:include schemaLocation="https://xsd.bindopen.org/DataValueMode.xsd" />
   <xs:include schemaLocation="https://xsd.bindopen.org/RequirementLevel.xsd" />
   <xs:include schemaLocation="https://xsd.bindopen.org/Arrays.xsd" />
   <xs:include schemaLocation="https://xsd.bindopen.org/BdoConfigurationSet.xsd" />
@@ -23,7 +23,7 @@
           </xs:element>
           <xs:element minOccurs="0" maxOccurs="1" name="areaSpecifications" type="ArrayOfDataAreaSpecification" />
           <xs:element minOccurs="0" maxOccurs="1" name="isAllocatable" type="xs:boolean" />
-          <xs:element minOccurs="0" maxOccurs="1" name="availableItemizationModes" type="ArrayOfDataItemizationMode" />
+          <xs:element minOccurs="0" maxOccurs="1" name="availableValueModes" type="ArrayOfDataValueMode" />
           <xs:element minOccurs="0" maxOccurs="1" name="itemSpecificationLevels" type="ArrayOfSpecificationLevel" />
           <xs:element minOccurs="0" maxOccurs="1" name="defaultStringItems">
             <xs:complexType>

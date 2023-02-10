@@ -17,7 +17,7 @@ namespace BindOpen.Data.Meta
 
         private string[] _aliases = null;
 
-        private DataItemizationMode[] _availableItemizationModes = null;
+        private DataValueMode[] _availableValueModes = null;
 
         private string[] _defaultStringItems = null;
 
@@ -66,15 +66,15 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The available itemization modes of this instance.
         /// </summary>
-        public DataItemizationMode[] AvailableItemizationModes
+        public DataValueMode[] AvailableValueModes
         {
             get
             {
-                return _availableItemizationModes;
+                return _availableValueModes;
             }
             set
             {
-                _availableItemizationModes = value ?? Array.Empty<DataItemizationMode>();
+                _availableValueModes = value ?? Array.Empty<DataValueMode>();
             }
         }
 

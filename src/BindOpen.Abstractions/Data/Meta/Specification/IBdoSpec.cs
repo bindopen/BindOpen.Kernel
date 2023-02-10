@@ -76,7 +76,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        List<DataItemizationMode> ItemizationModes { get; set; }
+        List<DataValueMode> ValueModes { get; set; }
 
         /// <summary>
         /// 

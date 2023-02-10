@@ -83,7 +83,7 @@ namespace BindOpen.Data.Meta
         /// <returns></returns>
         public override string ToString()
         {
-            return _data.ToString(ValueType);
+            return _data.ToString(DataValueType);
         }
 
         // Data ----------------------------

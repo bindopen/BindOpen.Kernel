@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
-using BindOpen.Data.References;
 
 namespace BindOpen.Data.Meta
 {
@@ -22,11 +21,10 @@ namespace BindOpen.Data.Meta
             {
                 //Elements = poco.Elements?.Select(q => q.ToDto()).ToList(),
                 //Index = poco.Index,
-                ItemizationMode = poco.ItemizationMode,
-                DataReference = poco.Reference.ToDto(),
-                DataExpression = poco.Expression.ToDto(),
+                ValueMode = poco.ValueMode,
+                DataReference = poco.DataReference.ToDto(),
                 PropertySet = poco.PropertySet.ToDto(),
-                ValueType = poco.ValueType
+                ValueType = poco.DataValueType
             };
             //dto.Specifications = poco.Specifications.Select(q => q.ToDto()).ToList(),
 

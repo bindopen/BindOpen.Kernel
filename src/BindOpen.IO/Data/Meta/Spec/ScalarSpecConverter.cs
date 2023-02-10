@@ -23,7 +23,7 @@ namespace BindOpen.Data.Meta
             {
                 AccessibilityLevel = poco.AccessibilityLevel,
                 Aliases = poco.Aliases?.ToList(),
-                AvailableItemizationModes = poco.ItemizationModes?.ToList(),
+                AvailableValueModes = poco.ValueModes?.ToList(),
                 ConstraintStatement = poco.ConstraintStatement?.ToDto(),
                 InheritanceLevel = poco.InheritanceLevel,
                 IsAllocatable = poco.IsAllocatable,
@@ -54,7 +54,7 @@ namespace BindOpen.Data.Meta
                 //AccessibilityLevel = dto.AccessibilityLevel,
                 //Aliases = dto.Aliases?.ToList(),
                 //AreaSpecifications = dto.AreaSpecifications.Select(q => q.ToPoco()).ToList(),
-                //AvailableItemizationModes = dto.AvailableItemizationModes?.ToList(),
+                //AvailableValueModes = dto.AvailableValueModes?.ToList(),
                 //ConstraintStatement = dto.ConstraintStatement?.ToPoco(),
                 //GroupId = dto.GroupId,
                 //InheritanceLevel = dto.InheritanceLevel,

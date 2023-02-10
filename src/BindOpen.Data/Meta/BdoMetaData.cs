@@ -20,7 +20,7 @@ namespace BindOpen.Data.Meta
         #region Variables
 
         private string _namePreffix;
-        private DataItemizationMode _itemizationMode = DataItemizationMode.Any;
+        private DataValueMode _valueMode = DataValueMode.Any;
 
         /// <summary>
         /// The item of this instance.
@@ -108,36 +108,27 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The value type of this instance.
         /// </summary>
-        public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
+        public DataValueTypes DataValueType { get; set; } = DataValueTypes.Any;
 
         /// <summary>
         /// The itemization mode of this instance.
         /// </summary>
-        public DataItemizationMode ItemizationMode
+        public DataValueMode ValueMode
         {
             get
             {
-                if (_itemizationMode != DataItemizationMode.Any)
-                    return _itemizationMode;
-                else if (Expression != null)
-                    return DataItemizationMode.Expression;
-                else if (Reference != null)
-                    return DataItemizationMode.Reference;
-
-                return DataItemizationMode.Value;
+                if (_valueMode != DataValueMode.Any)
+                    return _valueMode;
+                else
+                    return DataReference != null ? DataValueMode.Reference : DataValueMode.Value;
             }
-            set { _itemizationMode = value; }
+            set { _valueMode = value; }
         }
-
-        /// <summary>
-        /// Item reference of this instance.
-        /// </summary>
-        public IBdoReference Reference { get; set; }
 
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        public IBdoExpression Expression { get; set; }
+        public IBdoExpression DataReference { get; set; }
 
         // Specification -------------------------------
 
@@ -180,32 +171,25 @@ namespace BindOpen.Data.Meta
         {
             object obj = default;
 
-            switch (ItemizationMode)
+            switch (ValueMode)
             {
-                case DataItemizationMode.Value:
+                case DataValueMode.Value:
                     obj = _data;
                     break;
-                case DataItemizationMode.Reference:
-                    if (Reference == null)
-                    {
-                        log?.AddWarning(title: "Reference missing");
-                    }
-                    obj = Reference.Get(scope, varSet, log);
-                    break;
-                case DataItemizationMode.Expression:
+                case DataValueMode.Reference:
                     if (scope == null)
                     {
                         log?.AddWarning(title: "Application scope missing");
                     }
                     else
                     {
-                        if (Expression == null)
+                        if (DataReference == null)
                         {
                             log?.AddWarning(title: "Script missing");
                         }
 
                         var interpreter = scope.NewScriptInterpreter();
-                        obj = interpreter.Evaluate<object>(Expression, varSet, log);
+                        obj = interpreter.Evaluate<object>(DataReference, varSet, log);
                     }
                     break;
             }
@@ -291,7 +275,7 @@ namespace BindOpen.Data.Meta
 
             var el = base.Clone<BdoMetaData>(areas);
 
-            el.Reference = Reference?.Clone<BdoReference>();
+            el.DataReference = DataReference?.Clone<BdoExpression>();
             el.Specs = Specs?.Select(q => q?.Clone<BdoSpec>())
                 .Cast<IBdoSpec>().ToList();
 

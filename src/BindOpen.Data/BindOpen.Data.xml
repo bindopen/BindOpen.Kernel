@@ -428,7 +428,7 @@
             The value type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoDataElement.ItemizationMode">
+        <member name="P:BindOpen.Data.Elements.BdoDataElement.ValueMode">
             <summary>
             The itemization mode of this instance.
             </summary>
@@ -480,12 +480,12 @@
             <param name="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElement.WithItemizationMode(BindOpen.Data.Items.DataItemizationMode)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElement.WithValueMode(BindOpen.Data.Items.DataValueMode)">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElement.WithItemReference(BindOpen.Data.Items.IBdoReference)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElement.WithItemReference(BindOpen.Data.Items.IBdoExpression)">
             <summary>
             
             </summary>
@@ -714,12 +714,12 @@
             <param name="script"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoDataElementSpec.AvailableItemizationModes">
+        <member name="P:BindOpen.Data.Elements.BdoDataElementSpec.AvailableValueModes">
             <summary>
             The available itemization modes of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElementSpec.WithAvailableItemizationModes(BindOpen.Data.Items.DataItemizationMode[])">
+        <member name="M:BindOpen.Data.Elements.BdoDataElementSpec.WithAvailableValueModes(BindOpen.Data.Items.DataValueMode[])">
             <summary>
             
             </summary>
@@ -1487,14 +1487,14 @@
             <param name="index"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.WithItemizationMode(BindOpen.Data.Items.DataItemizationMode)">
+        <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.WithValueMode(BindOpen.Data.Items.DataValueMode)">
             <summary>
             
             </summary>
             <param name="mode"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.WithItemReference(BindOpen.Data.Items.IBdoReference)">
+        <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.WithItemReference(BindOpen.Data.Items.IBdoExpression)">
             <summary>
             
             </summary>
@@ -2517,53 +2517,53 @@
             <param name="scriptword">The script word to consider.</param>
             <returns>Returns the script exp.</returns>
         </member>
-        <member name="T:BindOpen.Data.Items.BdoReference">
+        <member name="T:BindOpen.Data.Items.BdoExpression">
             <summary>
             This class represents a data reference.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.BdoReference.SourceElement">
+        <member name="P:BindOpen.Data.Items.BdoExpression.SourceElement">
             <summary>
             Source element of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.BdoReference.SourceObject">
+        <member name="P:BindOpen.Data.Items.BdoExpression.SourceObject">
             <summary>
             Source item of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.BdoReference.TargetObject">
+        <member name="P:BindOpen.Data.Items.BdoExpression.TargetObject">
             <summary>
             Target item of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.BdoReference.DataHandlerUniqueName">
+        <member name="P:BindOpen.Data.Items.BdoExpression.DataHandlerUniqueName">
             <summary>
             The data handler unique name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.BdoReference.PathDetail">
+        <member name="P:BindOpen.Data.Items.BdoExpression.PathDetail">
             <summary>
             The path detail of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.BdoReference.#ctor">
+        <member name="M:BindOpen.Data.Items.BdoExpression.#ctor">
             <summary>
             Instantiates a new instance of the DataReference class.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.BdoReference.RootElement">
+        <member name="M:BindOpen.Data.Items.BdoExpression.RootElement">
             <summary>
             The root element of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.BdoReference.GetDatasource">
+        <member name="M:BindOpen.Data.Items.BdoExpression.GetDatasource">
             <summary>
             Gets the initial data source of this instance.
             </summary>
             <returns>Returns the initial data source of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.BdoReference.Get(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Items.BdoExpression.Get(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Gets the items from the source of this instance and update the target items.
             </summary>
@@ -2572,13 +2572,13 @@
             <param name="log">The log to consider.</param>
             <returns>Returns the retrieved items.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.BdoReference.Clone(System.String[])">
+        <member name="M:BindOpen.Data.Items.BdoExpression.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.BdoReference.Dispose(System.Boolean)">
+        <member name="M:BindOpen.Data.Items.BdoExpression.Dispose(System.Boolean)">
             <summary>
             Disposes this instance. 
             </summary>

@@ -201,7 +201,6 @@ namespace BindOpen.Runtime.Stores
                                 BdoExtensionItemKind.Entity,
                                 BdoExtensionItemKind.Connector,
                                 BdoExtensionItemKind.Entity,
-                                BdoExtensionItemKind.Handler,
                                 BdoExtensionItemKind.Metrics,
                                 BdoExtensionItemKind.Routine,
                                 BdoExtensionItemKind.Scriptword,

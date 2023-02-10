@@ -21,7 +21,6 @@ namespace BindOpen.Runtime.Stores
 
         private readonly Dictionary<string, IBdoConnectorDefinition> _connectorDefinitions = new();
         private readonly Dictionary<string, IBdoEntityDefinition> _entityDefinitions = new();
-        private readonly Dictionary<string, IBdoHandlerDefinition> _handlerDefinitions = new();
         private readonly Dictionary<string, IBdoMetricsDefinition> _metricsDefinitions = new();
         private readonly Dictionary<string, IBdoRoutineDefinition> _routineDefinitions = new();
         private readonly Dictionary<string, IBdoScriptwordDefinition> _scriptWordDefinitions = new();
@@ -70,7 +69,6 @@ namespace BindOpen.Runtime.Stores
                 BdoExtensionItemKind.Connector => _connectorDefinitions as Dictionary<string, T>,
                 BdoExtensionItemKind.Entity => _entityDefinitions as Dictionary<string, T>,
                 BdoExtensionItemKind.Format => _entityDefinitions.SelectMany(p => p.Value?.FormatDefinitions).Distinct().ToList() as Dictionary<string, T>,
-                BdoExtensionItemKind.Handler => _handlerDefinitions as Dictionary<string, T>,
                 BdoExtensionItemKind.Metrics => _metricsDefinitions as Dictionary<string, T>,
                 BdoExtensionItemKind.Routine => _routineDefinitions as Dictionary<string, T>,
                 BdoExtensionItemKind.Scriptword => _scriptWordDefinitions as Dictionary<string, T>,
@@ -118,11 +116,6 @@ namespace BindOpen.Runtime.Stores
                         {
                             _entityDefinitions.TryGetValue(upperUniqueName, out IBdoEntityDefinition entityDefinition);
                             return entityDefinition;
-                        }
-                    case BdoExtensionItemKind.Handler:
-                        {
-                            _handlerDefinitions.TryGetValue(upperUniqueName, out IBdoHandlerDefinition handlerDefinition);
-                            return handlerDefinition;
                         }
                     case BdoExtensionItemKind.Metrics:
                         {
@@ -188,7 +181,6 @@ namespace BindOpen.Runtime.Stores
             _entityDefinitions.Clear();
             _connectorDefinitions.Clear();
             _entityDefinitions.Clear();
-            _handlerDefinitions.Clear();
             _metricsDefinitions.Clear();
             _routineDefinitions.Clear();
             _scriptWordDefinitions.Clear();
@@ -225,13 +217,6 @@ namespace BindOpen.Runtime.Stores
                 if (!_entityDefinitions.ContainsKey(uniqueName))
                 {
                     _entityDefinitions.Add(uniqueName, entity);
-                }
-            }
-            else if (definition is IBdoHandlerDefinition handler)
-            {
-                if (!_handlerDefinitions.ContainsKey(uniqueName))
-                {
-                    _handlerDefinitions.Add(uniqueName, handler);
                 }
             }
             else if (definition is IBdoMetricsDefinition metrics)

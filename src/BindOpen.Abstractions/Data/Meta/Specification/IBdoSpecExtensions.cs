@@ -14,14 +14,14 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         /// <param name="modes"></param>
-        public static T WithItemizationModes<T>(
+        public static T WithValueModes<T>(
             this T metaSpec,
-            params DataItemizationMode[] modes)
+            params DataValueMode[] modes)
             where T : IBdoSpec
         {
             if (metaSpec != null)
             {
-                metaSpec.ItemizationModes = modes?.ToList();
+                metaSpec.ValueModes = modes?.ToList();
             }
             return metaSpec;
         }

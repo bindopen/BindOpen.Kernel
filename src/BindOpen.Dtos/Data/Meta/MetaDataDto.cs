@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Items;
-using BindOpen.Data.References;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml;
@@ -61,24 +60,17 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The itemization mode of this instance.
         /// </summary>
-        [JsonPropertyName("itemizationMode")]
-        [XmlElement("itemizationMode")]
-        [DefaultValue(DataItemizationMode.Value)]
-        public DataItemizationMode ItemizationMode = DataItemizationMode.Value;
+        [JsonPropertyName("valueMode")]
+        [XmlElement("valueMode")]
+        [DefaultValue(DataValueMode.Value)]
+        public DataValueMode ValueMode = DataValueMode.Value;
 
         /// <summary>
         /// Item reference of this instance.
         /// </summary>
-        [JsonPropertyName("dataReference")]
-        [XmlElement("dataReference")]
-        public DataReferenceDto DataReference { get; set; }
-
-        /// <summary>
-        /// The script of this instance.
-        /// </summary>
-        [JsonPropertyName("dataExp")]
-        [XmlAttribute("dataExp")]
-        public ExpressionDto DataExpression { get; set; }
+        [JsonPropertyName("reference")]
+        [XmlElement("reference")]
+        public ExpressionDto DataReference { get; set; }
 
         /// <summary>
         /// The value type of this instance.

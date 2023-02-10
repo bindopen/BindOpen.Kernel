@@ -2122,7 +2122,7 @@
             Indicates whether the instance can be allocated.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoMetaAttribute.AvailableItemizationModes">
+        <member name="P:BindOpen.Data.Elements.BdoMetaAttribute.AvailableValueModes">
             <summary>
             The available itemization modes of this instance.
             </summary>
@@ -2273,12 +2273,12 @@
             
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.IBdoDataElement.ItemizationMode">
+        <member name="P:BindOpen.Data.Elements.IBdoDataElement.ValueMode">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoDataElement.WithItemizationMode(BindOpen.Data.Items.DataItemizationMode)">
+        <member name="M:BindOpen.Data.Elements.IBdoDataElement.WithValueMode(BindOpen.Data.Items.DataValueMode)">
             <summary>
             
             </summary>
@@ -2288,7 +2288,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoDataElement.WithItemReference(BindOpen.Data.Items.IBdoReference)">
+        <member name="M:BindOpen.Data.Elements.IBdoDataElement.WithItemReference(BindOpen.Data.Items.IBdoExpression)">
             <summary>
             
             </summary>
@@ -2463,12 +2463,12 @@
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Data.Elements.IBdoDataElementSpec.AvailableItemizationModes">
+        <member name="P:BindOpen.Data.Elements.IBdoDataElementSpec.AvailableValueModes">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoDataElementSpec.WithAvailableItemizationModes(BindOpen.Data.Items.DataItemizationMode[])">
+        <member name="M:BindOpen.Data.Elements.IBdoDataElementSpec.WithAvailableValueModes(BindOpen.Data.Items.DataValueMode[])">
             <summary>
             
             </summary>
@@ -2594,12 +2594,12 @@
             </summary>
             <param name="objs"></param>
         </member>
-        <member name="M:BindOpen.Data.Elements.ITBdoDataElement`3.WithItemizationMode(BindOpen.Data.Items.DataItemizationMode)">
+        <member name="M:BindOpen.Data.Elements.ITBdoDataElement`3.WithValueMode(BindOpen.Data.Items.DataValueMode)">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.ITBdoDataElement`3.WithItemReference(BindOpen.Data.Items.IBdoReference)">
+        <member name="M:BindOpen.Data.Elements.ITBdoDataElement`3.WithItemReference(BindOpen.Data.Items.IBdoExpression)">
             <summary>
             
             </summary>
@@ -3458,32 +3458,32 @@
             Instantiates a new instance of the TitledDescribedDataItemAttribute class.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Items.DataItemizationMode">
+        <member name="T:BindOpen.Data.Items.DataValueMode">
             <summary>
             This enumeration represents the data element itemization modes.
             </summary>
         </member>
-        <member name="F:BindOpen.Data.Items.DataItemizationMode.None">
+        <member name="F:BindOpen.Data.Items.DataValueMode.None">
             <summary>
             None.
             </summary>
         </member>
-        <member name="F:BindOpen.Data.Items.DataItemizationMode.Any">
+        <member name="F:BindOpen.Data.Items.DataValueMode.Any">
             <summary>
             Any.
             </summary>
         </member>
-        <member name="F:BindOpen.Data.Items.DataItemizationMode.Valued">
+        <member name="F:BindOpen.Data.Items.DataValueMode.Valued">
             <summary>
             Valued.
             </summary>
         </member>
-        <member name="F:BindOpen.Data.Items.DataItemizationMode.Referenced">
+        <member name="F:BindOpen.Data.Items.DataValueMode.Referenced">
             <summary>
             Referenced.
             </summary>
         </member>
-        <member name="F:BindOpen.Data.Items.DataItemizationMode.Script">
+        <member name="F:BindOpen.Data.Items.DataValueMode.Script">
             <summary>
             Script.
             </summary>
@@ -3790,48 +3790,48 @@
             
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Items.IBdoReference">
+        <member name="T:BindOpen.Data.Items.IBdoExpression">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.IBdoReference.SourceElement">
+        <member name="P:BindOpen.Data.Items.IBdoExpression.SourceElement">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoReference.RootElement">
+        <member name="M:BindOpen.Data.Items.IBdoExpression.RootElement">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.IBdoReference.SourceObject">
+        <member name="P:BindOpen.Data.Items.IBdoExpression.SourceObject">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.IBdoReference.DataHandlerUniqueName">
+        <member name="P:BindOpen.Data.Items.IBdoExpression.DataHandlerUniqueName">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.IBdoReference.PathDetail">
+        <member name="P:BindOpen.Data.Items.IBdoExpression.PathDetail">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.IBdoReference.TargetObject">
+        <member name="P:BindOpen.Data.Items.IBdoExpression.TargetObject">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoReference.GetDatasource">
+        <member name="M:BindOpen.Data.Items.IBdoExpression.GetDatasource">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Items.IBdoReference.Get(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Items.IBdoExpression.Get(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
