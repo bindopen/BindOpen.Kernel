@@ -170,7 +170,7 @@ namespace BindOpen.Extensions.Scripting
                             {
                                 var subScript = script[2..][0..^2];
                                 subScript = Evaluate(
-                                    subScript.AsExpression(BdoExpressionKind.Script),
+                                    subScript.ToExpression(BdoExpressionKind.Script),
                                     varSet,
                                     log)?.ToString();
 
@@ -226,7 +226,7 @@ namespace BindOpen.Extensions.Scripting
                                         if (paramValue is IBdoScriptword scriptwordParam)
                                         {
                                             var paramObject = Evaluate(
-                                                scriptwordParam.AsExpression(),
+                                                scriptwordParam.ToExpression(),
                                                 varSet,
                                                 log);
                                             cloned.Parameters.Add(paramObject);
@@ -286,7 +286,7 @@ namespace BindOpen.Extensions.Scripting
             IBdoLog log = null)
         {
             return Evaluate(
-                script.AsExpression(expKind),
+                script.ToExpression(expKind),
                 varSet,
                 log);
         }
@@ -307,7 +307,7 @@ namespace BindOpen.Extensions.Scripting
             IBdoLog log = null)
         {
             return (T)Evaluate(
-                script.AsExpression(expKind),
+                script.ToExpression(expKind),
                 varSet,
                 log);
         }
@@ -327,7 +327,7 @@ namespace BindOpen.Extensions.Scripting
             IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
-            return Evaluate(scriptword.AsExpression(), varSet, log);
+            return Evaluate(scriptword.ToExpression(), varSet, log);
         }
 
         /// <summary>
@@ -343,7 +343,7 @@ namespace BindOpen.Extensions.Scripting
             IBdoMetaList varSet = null,
             IBdoLog log = null)
         {
-            return (T)Evaluate(scriptword.AsExpression(), varSet, log);
+            return (T)Evaluate(scriptword.ToExpression(), varSet, log);
         }
 
         #endregion

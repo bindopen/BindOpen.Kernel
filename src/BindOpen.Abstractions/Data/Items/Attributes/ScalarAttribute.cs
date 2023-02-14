@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Items;
 using System;
 
 namespace BindOpen.Data.Items
@@ -7,7 +7,7 @@ namespace BindOpen.Data.Items
     /// This class represents an scalar attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public class ScalarAttribute : BdoMetaAttribute
+    public class ScalarAttribute : BdoDataAttribute
     {
         // --------------------------------------------------
         // VARIABLES

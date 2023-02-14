@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
+using BindOpen.Runtime.Scopes;
 using System.Linq;
 
 namespace BindOpen.Data.Stores
@@ -32,13 +33,15 @@ namespace BindOpen.Data.Stores
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoSourceDepot ToPoco(this BdoDatasourceDepotDto dto)
+        public static IBdoSourceDepot ToPoco(
+            this BdoDatasourceDepotDto dto,
+            IBdoScope scope)
         {
             if (dto == null) return null;
 
             BdoDatasourceDepot poco = new();
             poco
-                .With(dto.Sources?.Select(q => q?.ToPoco()).ToArray())
+                .With(dto.Sources?.Select(q => q?.ToPoco(scope)).ToArray())
                 .WithId(dto.Id);
 
             return poco;

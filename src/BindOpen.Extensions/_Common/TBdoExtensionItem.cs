@@ -33,15 +33,32 @@ namespace BindOpen.Extensions
 
         #region ITBdoExtensionItem<T, D>
 
+        string _definitionUniqueName;
+
         /// <summary>
         /// The config of this instance.
         /// </summary>
-        public IBdoConfiguration Config { get; set; }
+        public string DefinitionUniqueName
+        {
+            get => Definition?.UniqueName ?? _definitionUniqueName;
+            set
+            {
+                if (!string.IsNullOrEmpty(Definition?.UniqueName))
+                {
+                    _definitionUniqueName = value;
+                }
+            }
+        }
 
         /// <summary>
         /// The definition of this instance.
         /// </summary>
         public D Definition { get; set; }
+
+        /// <summary>
+        /// The configuration of this instance.
+        /// </summary>
+        public IBdoConfiguration Config { get; set; }
 
         #endregion
 

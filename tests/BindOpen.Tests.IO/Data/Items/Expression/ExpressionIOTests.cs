@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Items;
+using BindOpen.Extensions.Scripting;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
@@ -42,7 +43,8 @@ namespace BindOpen.Tests.IO.Data
         {
             _exp = BdoData.NewExpression(
                 _valueSet.Literal as string,
-                _valueSet.ExpressionKind as BdoExpressionKind? ?? BdoExpressionKind.Auto);
+                _valueSet.ExpressionKind as BdoExpressionKind? ?? BdoExpressionKind.Auto)
+                .WithWord(BdoScript.Func("Fun1").Func("Fun2", BdoScript.Var("var1")));
         }
 
         // Xml
@@ -67,7 +69,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveXmlTest();
             }
 
-            var exp = XmlHelper.LoadXml<ExpressionDto>(_filePath_xml).ToPoco();
+            var exp = XmlHelper.LoadXml<ExpressionDto>(_filePath_xml).ToPoco(null);
             Assert.That(Equals(exp, _exp), "Error while loading");
         }
 
@@ -93,7 +95,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveJsonTest();
             }
 
-            var exp = JsonHelper.LoadJson<ExpressionDto>(_filePath_json).ToPoco();
+            var exp = JsonHelper.LoadJson<ExpressionDto>(_filePath_json).ToPoco(null);
             Assert.That(Equals(exp, _exp), "Error while loading");
         }
     }

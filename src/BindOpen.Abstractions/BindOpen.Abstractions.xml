@@ -2097,72 +2097,72 @@
             <param name="contextSectionName"></param>
             <param name="persistenceLevel"></param>
         </member>
-        <member name="T:BindOpen.Data.Elements.BdoMetaAttribute">
+        <member name="T:BindOpen.Data.Elements.BdoDataAttribute">
             <summary>
             This class represents a data element attribute.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoMetaAttribute.GroupId">
+        <member name="P:BindOpen.Data.Elements.BdoDataAttribute.GroupId">
             <summary>
             ID of the group of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoMetaAttribute.ValueType">
+        <member name="P:BindOpen.Data.Elements.BdoDataAttribute.ValueType">
             <summary>
             The value type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoMetaAttribute.Aliases">
+        <member name="P:BindOpen.Data.Elements.BdoDataAttribute.Aliases">
             <summary>
             The aliases of the entry.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoMetaAttribute.IsAllocatable">
+        <member name="P:BindOpen.Data.Elements.BdoDataAttribute.IsAllocatable">
             <summary>
             Indicates whether the instance can be allocated.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoMetaAttribute.AvailableValueModes">
+        <member name="P:BindOpen.Data.Elements.BdoDataAttribute.AvailableValueModes">
             <summary>
             The available itemization modes of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoMetaAttribute.DefaultStringItems">
+        <member name="P:BindOpen.Data.Elements.BdoDataAttribute.DefaultStringItems">
             <summary>
             Default string items of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoMetaAttribute.MinimumItemNumber">
+        <member name="P:BindOpen.Data.Elements.BdoDataAttribute.MinimumItemNumber">
             <summary>
             Minimum item number of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoMetaAttribute.MaximumItemNumber">
+        <member name="P:BindOpen.Data.Elements.BdoDataAttribute.MaximumItemNumber">
             <summary>
             Maximum item number of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoMetaAttribute.IsValueList">
+        <member name="P:BindOpen.Data.Elements.BdoDataAttribute.IsValueList">
             <summary>
             Indicates whether the value of this instance is a list.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoMetaAttribute.ItemRequirementLevel">
+        <member name="P:BindOpen.Data.Elements.BdoDataAttribute.ItemRequirementLevel">
             <summary>
             The item requirement level of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoMetaAttribute.ItemSpecificationLevels">
+        <member name="P:BindOpen.Data.Elements.BdoDataAttribute.ItemSpecificationLevels">
             <summary>
             Levels of specification of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoMetaAttribute.#ctor">
+        <member name="M:BindOpen.Data.Elements.BdoDataAttribute.#ctor">
             <summary>
             Instantiates a new instance of the BdoElementAttribute class.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoMetaAttribute.#ctor(System.String)">
+        <member name="M:BindOpen.Data.Elements.BdoDataAttribute.#ctor(System.String)">
             <summary>
             Instantiates a new instance of the BdoElementAttribute class.
             </summary>
@@ -2970,7 +2970,7 @@
             <param name="item">The item to use.</param>
             <param name="action">The action to execute.</param>
         </member>
-        <member name="M:BindOpen.Data.ObjectHelper.GetPropertyInfo(System.Type,System.String,System.Type[],BindOpen.Data.Elements.BdoMetaAttribute@)">
+        <member name="M:BindOpen.Data.ObjectHelper.GetPropertyInfo(System.Type,System.String,System.Type[],BindOpen.Data.Elements.BdoDataAttribute@)">
             <summary>
             Gets information of the specified property.
             </summary>

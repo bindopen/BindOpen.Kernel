@@ -11,7 +11,7 @@ namespace BindOpen.Data
         public static T WithDescription<T>(
             this T obj,
             IBdoDictionary dictionary)
-            where T : IGloballyDescribed
+            where T : IBdoDescribed
         {
             if (obj != null)
             {
@@ -33,7 +33,7 @@ namespace BindOpen.Data
             this T obj,
             string key = StringHelper.__Star,
             string defaultKey = StringHelper.__Star)
-            where T : IGloballyDescribed
+            where T : IBdoDescribed
         {
             return obj?.Description?[key, defaultKey];
         }

@@ -1,13 +1,12 @@
-﻿using BindOpen.Data.Items;
-using System;
+﻿using System;
 
-namespace BindOpen.Data.Meta
+namespace BindOpen.Data.Items
 {
     /// <summary>
     /// This class represents a data element attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-    public class BdoMetaAttribute : TitledDescribedDataItemAttribute
+    public class BdoDataAttribute : TitledDescribedDataItemAttribute
     {
         // --------------------------------------------------
         // VARIABLES
@@ -107,7 +106,7 @@ namespace BindOpen.Data.Meta
         {
             get
             {
-                return (MaximumItemNumber == -1) | (MaximumItemNumber > 1);
+                return MaximumItemNumber == -1 | MaximumItemNumber > 1;
             }
         }
 
@@ -157,14 +156,14 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Instantiates a new instance of the BdoElementAttribute class.
         /// </summary>
-        public BdoMetaAttribute() : base()
+        public BdoDataAttribute() : base()
         {
         }
 
         /// <summary>
         /// Instantiates a new instance of the BdoElementAttribute class.
         /// </summary>
-        public BdoMetaAttribute(string name) : base()
+        public BdoDataAttribute(string name) : base()
         {
             Name = name;
         }

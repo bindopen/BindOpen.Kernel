@@ -5,7 +5,7 @@ namespace BindOpen.Data
     /// <summary>
     /// This interface represents a data with detail.
     /// </summary>
-    public interface IDetailed
+    public interface IBdoDetailed
     {
         /// <summary>
         /// The detail of this instance.

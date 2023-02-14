@@ -13,7 +13,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="text">The script text to consider.</param>
         /// <returns>Returns the script exp.</returns>
-        public static BdoExpression AsExpression(
+        public static BdoExpression ToExpression(
             this string text,
             BdoExpressionKind kind = BdoExpressionKind.Auto)
         {
@@ -26,7 +26,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param name="scriptword">The script word to consider.</param>
         /// <returns>Returns the script exp.</returns>
-        public static BdoExpression AsExpression(
+        public static BdoExpression ToExpression(
             this IBdoScriptword scriptword)
         {
             var exp = BdoData.NewExpression(scriptword);

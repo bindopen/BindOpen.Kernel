@@ -16,7 +16,7 @@ namespace BindOpen.Data.Items
         {
             KeyValuePairDto dto = new()
             {
-                Content = poco.Value,
+                Value = poco.Value,
                 Key = poco.Key
             };
 
@@ -30,7 +30,7 @@ namespace BindOpen.Data.Items
         /// <returns>The DTO object.</returns>
         public static KeyValuePair<string, string> ToPoco(this KeyValuePairDto dto)
         {
-            KeyValuePair<string, string> poco = new(dto?.Key, dto?.Content);
+            KeyValuePair<string, string> poco = new(dto?.Key, dto?.Value);
 
             return poco;
         }

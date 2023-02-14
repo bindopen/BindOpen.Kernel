@@ -7,7 +7,7 @@ namespace BindOpen.Runtime.Definition
     /// </summary>
     public interface IBdoExtensionDictionary :
         IIdentified, INamed,
-        IGloballyTitled, IGloballyDescribed,
+        IBdoTitled, IBdoDescribed,
         IStorable
     {
     }

@@ -7,7 +7,7 @@ namespace BindOpen.Runtime.Definition
     /// </summary>
     public interface IBdoExtensionItemDefinition :
         IIdentified, INamed,
-        IGloballyTitled, IGloballyDescribed,
+        IBdoTitled, IBdoDescribed,
         IIndexed, IStorable, IReferenced
     {
         /// <summary>

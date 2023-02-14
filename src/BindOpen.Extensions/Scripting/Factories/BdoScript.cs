@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data;
-using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 
 namespace BindOpen.Extensions.Scripting
@@ -29,20 +28,6 @@ namespace BindOpen.Extensions.Scripting
             this IBdoScope scope)
         {
             return new BdoScriptInterpreter(scope);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="script"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        public static BdoScriptword CreateWord(
-            string script,
-            IBdoLog log = null)
-        {
-            var interpreter = CreateInterpreter();
-            return interpreter.FindNextScriptword(script, log) as BdoScriptword;
         }
 
         /// <summary>

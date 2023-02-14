@@ -91,7 +91,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveXmlBdoDatasourceDepotTest();
             }
 
-            var depot = XmlHelper.LoadXml<BdoDatasourceDepotDto>(_filePath_xml).ToPoco();
+            var depot = XmlHelper.LoadXml<BdoDatasourceDepotDto>(_filePath_xml).ToPoco(null);
 
             TestBdoDatasourceDepot(depot);
         }
@@ -120,7 +120,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveJsonBdoDatasourceDepotTest();
             }
 
-            var depot = JsonHelper.LoadJson<BdoDatasourceDepotDto>(_filePath_json).ToPoco();
+            var depot = JsonHelper.LoadJson<BdoDatasourceDepotDto>(_filePath_json).ToPoco(null);
 
             TestBdoDatasourceDepot(depot);
         }

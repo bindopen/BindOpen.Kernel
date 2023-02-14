@@ -1,12 +1,13 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Data;
 using BindOpen.Data.Configuration;
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Items;
-using BindOpen.Data.Meta;
 using BindOpen.Runtime.Scopes;
 using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using BindOpen.Data.Items;
 
 namespace BindOpen.Hosting.Settings
 {
@@ -109,10 +110,10 @@ namespace BindOpen.Hosting.Settings
                 {
                     _ = GetType().GetPropertyInfo(
                         propertyName,
-                        new Type[] { typeof(BdoMetaAttribute) },
-                        out BdoMetaAttribute attribute);
+                        new Type[] { typeof(BdoDataAttribute) },
+                        out BdoDataAttribute attribute);
 
-                    if (attribute is BdoMetaAttribute)
+                    if (attribute is BdoDataAttribute)
                     {
                         object value = Configuration.GetData(attribute.Name, Scope);
                         if (value is T t)
@@ -145,10 +146,10 @@ namespace BindOpen.Hosting.Settings
                 {
                     _ = GetType().GetPropertyInfo(
                         propertyName,
-                        new Type[] { typeof(BdoMetaAttribute) },
-                        out BdoMetaAttribute attribute);
+                        new Type[] { typeof(BdoDataAttribute) },
+                        out BdoDataAttribute attribute);
 
-                    if (attribute is BdoMetaAttribute)
+                    if (attribute is BdoDataAttribute)
                         return (Configuration.GetData(attribute.Name, Scope) as string)?.ToEnum<T>(defaultValue) ?? default;
                 }
             }
@@ -167,10 +168,10 @@ namespace BindOpen.Hosting.Settings
             {
                 PropertyInfo propertyInfo = GetType().GetPropertyInfo(
                     propertyName,
-                    new Type[] { typeof(BdoMetaAttribute) },
-                    out BdoMetaAttribute attribute);
+                    new Type[] { typeof(BdoDataAttribute) },
+                    out BdoDataAttribute attribute);
 
-                if (attribute is BdoMetaAttribute)
+                if (attribute is BdoDataAttribute)
                 {
                     Configuration.Add(
                         BdoMeta.NewScalar(

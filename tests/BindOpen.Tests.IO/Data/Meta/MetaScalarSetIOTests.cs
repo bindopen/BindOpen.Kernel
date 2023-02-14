@@ -1,9 +1,11 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
+using BindOpen.Extensions.Scripting;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -44,12 +46,19 @@ namespace BindOpen.Tests.IO.Data
         [Test, Order(2)]
         public void CreateTest()
         {
-            var meta1 = BdoMeta.NewScalar("float1", DataValueTypes.Number, _testData.arrayNumber1 as double[]);
-            var meta2 = BdoMeta.NewScalar("text2", DataValueTypes.Text, _testData.arrayString2 as string[]);
-            var meta3 = BdoMeta.NewScalar("integer3", DataValueTypes.Integer, _testData.arrayInteger3 as int[]);
-            var meta4 = BdoMeta.NewScalar("byteArray4", DataValueTypes.ByteArray, _testData.arrayArrayByte4 as byte[][]);
+            var metas = new List<IBdoMetaData>
+            {
+                BdoMeta.NewScalar("float1", DataValueTypes.Number, _testData.arrayNumber1 as double[]),
+                BdoMeta.NewScalar("text2", DataValueTypes.Text, _testData.arrayString2 as string[]),
+                BdoMeta.NewScalar("integer3", DataValueTypes.Integer, _testData.arrayInteger3 as int[]),
+                BdoMeta.NewScalar("byteArray4", DataValueTypes.ByteArray, _testData.arrayArrayByte4 as byte[][]),
+                BdoMeta.NewScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[0]),
+                BdoMeta.NewScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[1])
+                    .WithDataReference(BdoScript.Var("klkl"))
+                    //.WithSpecs(BdoMeta.NewSpec(), BdoMeta.NewSpec("spec1"))
+            };
 
-            _metaList = BdoMeta.NewList(meta1, meta2, meta3, meta4);
+            _metaList = BdoMeta.NewList(metas.ToArray());
         }
 
         // Xml

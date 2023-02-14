@@ -1,7 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Configuration;
 using BindOpen.Data.Helpers;
-using BindOpen.Data.Meta;
+using BindOpen.Data.Items;
 using BindOpen.Hosting.Settings;
 using BindOpen.Runtime.Scopes;
 using System.Text.Json.Serialization;
@@ -24,7 +24,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// The library folder path of this instance.
         /// </summary>
-        [BdoMeta(Name = "library.folderPath")]
+        [BdoData(Name = "library.folderPath")]
         [JsonPropertyName("library.folderPath")]
         public string LibraryFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultLibraryFolderPath).ToPath();
 

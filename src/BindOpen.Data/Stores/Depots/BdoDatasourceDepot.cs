@@ -35,10 +35,12 @@ namespace BindOpen.Data.Stores
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public override IBdoDatasource Get(string key = null)
+        public override IBdoDatasource Get(string key = null, string alternateKey = null)
         {
-            if (key == null) return Items?.FirstOrDefault(p => p.IsDefault) ?? this[0];
-            return this[key];
+            if (key == null && alternateKey == null)
+                return Items?.FirstOrDefault(p => p.IsDefault) ?? this[0];
+
+            return base.Get(key, alternateKey);
         }
 
         /// <summary>

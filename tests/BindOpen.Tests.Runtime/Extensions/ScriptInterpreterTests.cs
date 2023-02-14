@@ -97,7 +97,7 @@ namespace BindOpen.Tests.Runtime
         public void InterpreteScript6Test()
         {
             var interpreter = GlobalVariables.Scope.NewScriptInterpreter();
-            var resultScript = interpreter.Evaluate<bool?>(_scriptword6.AsExpression())?.ToString();
+            var resultScript = interpreter.Evaluate<bool?>(_scriptword6.ToExpression())?.ToString();
 
             Assert.That(_interpretedScript6.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }

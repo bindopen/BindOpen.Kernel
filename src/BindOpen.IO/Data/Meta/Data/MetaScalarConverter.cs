@@ -2,6 +2,7 @@
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
+using BindOpen.Runtime.Scopes;
 using System.Linq;
 
 namespace BindOpen.Data.Meta
@@ -52,7 +53,9 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoMetaScalar ToPoco(this MetaScalarDto dto)
+        public static IBdoMetaScalar ToPoco(
+            this MetaScalarDto dto,
+            IBdoScope scope)
         {
             if (dto == null) return null;
 
@@ -65,7 +68,7 @@ namespace BindOpen.Data.Meta
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoMetaScalar>(dto);
 
-            poco.DataReference = dto.DataReference.ToPoco();
+            poco.DataReference = dto.DataReference.ToPoco(scope);
             poco.Specs = dto.Specs?.Select(q => q.ToPoco()).ToList();
 
             if (!string.IsNullOrEmpty(dto.Item))
@@ -74,7 +77,7 @@ namespace BindOpen.Data.Meta
             }
             else
             {
-                var objects = dto.Items.Select(q => q.ToObject(poco.DataValueType)).ToList();
+                var objects = dto.Items?.Select(q => q.ToObject(poco.DataValueType)).ToList();
                 poco.WithDataList(objects);
             }
 

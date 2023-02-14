@@ -3,6 +3,7 @@ using BindOpen.Data.Configuration;
 using BindOpen.Extensions.Connecting;
 using BindOpen.Extensions.Modeling;
 using BindOpen.Extensions.Processing;
+using BindOpen.Extensions.Scripting;
 
 namespace BindOpen.Extensions
 {
@@ -24,6 +25,7 @@ namespace BindOpen.Extensions
             T connector = new();
             connector.WithConfig(config);
             connector.UpdateFromMeta(config);
+            connector.DefinitionUniqueName = config?.DefinitionUniqueName;
 
             return connector;
         }
@@ -41,6 +43,7 @@ namespace BindOpen.Extensions
             T entity = new();
             entity.WithConfig(config);
             entity.UpdateFromMeta(config);
+            entity.DefinitionUniqueName = config?.DefinitionUniqueName;
 
             return entity;
         }
@@ -58,8 +61,26 @@ namespace BindOpen.Extensions
         {
             T task = new();
             task.WithConfig(config);
+            task.UpdateFromMeta(config);
+            task.DefinitionUniqueName = config?.DefinitionUniqueName;
 
             return task;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="config"></param>
+        /// <returns></returns>
+        public static IBdoScriptword NewScriptword(IBdoConfiguration config)
+        {
+            BdoScriptword scriptword = new();
+            scriptword.WithConfig(config);
+            scriptword.UpdateFromMeta(config);
+            scriptword.DefinitionUniqueName = config?.DefinitionUniqueName;
+
+            return scriptword;
+        }
+
     }
 }

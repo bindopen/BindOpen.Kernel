@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Configuration;
 using BindOpen.Data.Helpers;
 using System.Collections.Generic;
 using System.Linq;
@@ -133,7 +132,7 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// Parameters of this instance.
         /// </summary>
-        public List<object> Parameters { get; set; } = new List<object>();
+        public List<object> Parameters { get; set; }
 
         /// <summary>
         /// 
@@ -142,7 +141,7 @@ namespace BindOpen.Extensions.Scripting
         /// <returns></returns>
         public IBdoScriptword AddParameter(object value)
         {
-            if (Parameters == null) Parameters = new List<object>();
+            Parameters ??= new List<object>();
             Parameters.Add(value);
 
             return this;
@@ -240,7 +239,6 @@ namespace BindOpen.Extensions.Scripting
             IBdoScriptword scriptWord = base.Clone(areas) as BdoScriptword;
 
             scriptWord.WithDefinition(Definition);
-            scriptWord.WithConfig(Config?.Clone<BdoConfiguration>());
 
             if (Parameters != null)
             {

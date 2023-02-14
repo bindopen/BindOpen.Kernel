@@ -1,7 +1,6 @@
 ﻿using BindOpen.Data.Items;
-using BindOpen.Data.Meta;
 
-namespace BindOpen.Data
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a data element set.

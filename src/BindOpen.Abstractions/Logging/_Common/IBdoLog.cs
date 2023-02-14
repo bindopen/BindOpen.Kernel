@@ -11,7 +11,7 @@ namespace BindOpen.Logging
     public interface IBdoLog :
         IIdentified, INamed,
         IDisplayNamed, IDescribed,
-        IDetailed, IDisposable
+        IBdoDetailed, IDisposable
     {
         /// <summary>
         /// 

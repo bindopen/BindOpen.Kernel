@@ -1,12 +1,12 @@
 ﻿using BindOpen.Extensions.Modeling;
 using BindOpen.Logging;
 using BindOpen.Data;
-using BindOpen.Data.Meta;
 using BindOpen.Data.Items;
 using BindOpen.Runtime.Definition;
 using System;
 using System.Linq;
 using System.Reflection;
+using BindOpen.Data.Items;
 
 namespace BindOpen.Runtime.Stores
 {
@@ -55,7 +55,7 @@ namespace BindOpen.Runtime.Stores
                     UpdateDictionary(definition, entityAttribute);
                 }
 
-                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoMetaAttribute)).Any()))
+                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoDataAttribute)).Any()))
                 {
                     definition.DetailSpec.Add(BdoMeta.NewSpec(property.Name, property.PropertyType));
                 }

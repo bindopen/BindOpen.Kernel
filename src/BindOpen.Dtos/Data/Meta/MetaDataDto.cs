@@ -77,17 +77,8 @@ namespace BindOpen.Data.Meta
         /// </summary>
         [JsonPropertyName("valueType")]
         [XmlAttribute("valueType")]
-        [DefaultValue(DataValueTypes.Text)]
+        [DefaultValue(DataValueTypes.Any)]
         public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
-
-        // Properties -------------------------------
-
-        /// <summary>
-        /// Property detail of this instance.
-        /// </summary>
-        [JsonPropertyName("propertySet")]
-        [XmlElement("propertySet")]
-        public MetaListDto PropertySet { get; set; }
 
         #endregion
 

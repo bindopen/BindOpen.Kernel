@@ -257,7 +257,7 @@ namespace BindOpen.Data.Helpers
             this Type objectType,
             string propertyName,
             Type[] attributeTypes,
-            out BdoMetaAttribute attribute)
+            out BdoDataAttribute attribute)
         {
             attribute = null;
             PropertyInfo propertyInfo = null;
@@ -269,7 +269,7 @@ namespace BindOpen.Data.Helpers
                 {
                     foreach (Type attributeType in attributeTypes)
                     {
-                        if (propertyInfo.GetCustomAttribute(attributeType) is BdoMetaAttribute elementAttribute)
+                        if (propertyInfo.GetCustomAttribute(attributeType) is BdoDataAttribute elementAttribute)
                         {
                             attribute = elementAttribute;
                             break;

@@ -8,7 +8,7 @@ namespace BindOpen.Extensions
     /// </summary>
     public interface ITBdoExtensionItem<T, D> :
         IBdoExtensionItem, IIdentified,
-        ITBdoExtensionDefinable<D>
+        ITBdoExtensionDefinable<D>, IBdoConfigurable
         where T : IBdoExtensionItem
         where D : IBdoExtensionItemDefinition
     {

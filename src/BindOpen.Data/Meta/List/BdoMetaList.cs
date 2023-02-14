@@ -51,6 +51,8 @@ namespace BindOpen.Data.Meta
         /// </summary>
         public BdoMetaList() : base()
         {
+            ValueMode = DataValueMode.Value;
+            DataValueType = DataValueTypes.Any;
         }
 
         #endregion
@@ -141,11 +143,6 @@ namespace BindOpen.Data.Meta
         /// The itemization mode of this instance.
         /// </summary>
         public DataValueMode ValueMode { get; set; }
-
-        /// <summary>
-        /// Item reference of this instance.
-        /// </summary>
-        public IBdoExpression Reference { get; set; }
 
         /// <summary>
         /// The script of this instance.

@@ -10,7 +10,7 @@ namespace BindOpen.Data
         public static T AddDescription<T>(
             this T obj,
             KeyValuePair<string, string> item)
-            where T : IGloballyDescribed
+            where T : IBdoDescribed
         {
             if (obj != null)
             {

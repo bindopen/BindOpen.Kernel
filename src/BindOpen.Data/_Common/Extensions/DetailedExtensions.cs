@@ -14,7 +14,7 @@ namespace BindOpen.Data
         public static T WithDetail<T>(
             this T obj,
             params IBdoMetaData[] elms)
-            where T : IDetailed
+            where T : IBdoDetailed
         {
             if (obj != null)
             {

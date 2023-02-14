@@ -6,6 +6,11 @@
     public enum BdoExpressionKind
     {
         /// <summary>
+        /// Any.
+        /// </summary>
+        Any,
+
+        /// <summary>
         /// Literal expression that can be script if it begins by "=".
         /// </summary>
         Auto,

@@ -63,7 +63,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveXmlTest();
             }
 
-            var datasource = XmlHelper.LoadXml<DatasourceDto>(_filePath_xml).ToPoco();
+            var datasource = XmlHelper.LoadXml<DatasourceDto>(_filePath_xml).ToPoco(null);
             Assert.That(Equals(datasource, _datasource), "Error while loading");
         }
 
@@ -89,7 +89,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveJsonTest();
             }
 
-            var datasource = JsonHelper.LoadJson<DatasourceDto>(_filePath_json).ToPoco();
+            var datasource = JsonHelper.LoadJson<DatasourceDto>(_filePath_json).ToPoco(null);
             Assert.That(Equals(datasource, _datasource), "Error while loading");
         }
     }

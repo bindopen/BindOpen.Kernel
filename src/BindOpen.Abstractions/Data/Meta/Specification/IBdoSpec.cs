@@ -11,7 +11,7 @@ namespace BindOpen.Data.Meta
     public interface IBdoSpec :
         IBdoItem, IReferenced,
         IIdentified, INamed,
-        IGloballyTitled, IGloballyDescribed,
+        IBdoTitled, IBdoDescribed,
         IIndexed
     {
         /// <summary>

@@ -22,6 +22,7 @@ namespace BindOpen.Data
         {
             if (meta != null)
             {
+                meta.WithValueMode(DataValueMode.Reference);
                 meta.DataReference = BdoData.NewExp(text, kind);
             }
 
@@ -39,6 +40,7 @@ namespace BindOpen.Data
         {
             if (meta != null)
             {
+                meta.WithValueMode(DataValueMode.Reference);
                 meta.DataReference = BdoData.NewExp(word);
             }
 

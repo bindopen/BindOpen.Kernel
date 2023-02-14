@@ -87,16 +87,17 @@ namespace BindOpen.Data.Items
         public T this[int index] => Get(index);
 
         /// <summary>
+        /// Returns the item of the specified key.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <param name="defaultKey">The default key to consider.</param>
+        /// <returns>Returns the specified text.</returns>
+        public T this[string key, string alternateKey] => Get(key, alternateKey);
+
+        /// <summary>
         /// Returns the element with the specified key.
         /// </summary>
-        public T this[string key]
-        {
-            get
-            {
-                if (key == null || _items == null) return default;
-                return _items.FirstOrDefault(p => p.BdoKeyEquals(key));
-            }
-        }
+        public T this[string key] => Get(key);
 
         /// <summary>
         /// Clears the items of this instance.
@@ -191,10 +192,18 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public virtual T Get(string key = null)
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param name="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public virtual T Get(string key = null, string alternateKey = null)
         {
-            if (key == null) return this[0];
-            return this[key];
+            if ((key == null && alternateKey == null) || _items == null)
+                return default;
+
+            var newKey = Has(key) ? key : alternateKey;
+            return _items.FirstOrDefault(p => p.BdoKeyEquals(newKey));
         }
 
         /// <summary>
@@ -217,10 +226,10 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public virtual Q Get<Q>(string key = null)
+        public virtual Q Get<Q>(string key = null, string alternateKey = null)
             where Q : T
         {
-            var obj = Get(key);
+            var obj = Has(key) ? Get(key) : Get(alternateKey);
             if (obj is Q obj_Q)
                 return obj_Q;
 

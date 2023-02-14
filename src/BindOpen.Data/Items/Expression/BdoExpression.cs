@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Extensions.Scripting;
+﻿using BindOpen.Extensions.Scripting;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data.Items
@@ -18,25 +17,26 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// The value of this instance.
         /// </summary>
-        [BdoMeta]
+        [BdoData]
         [XmlElement("text")]
         public string Text { get; set; }
 
         /// <summary>
         /// The kind of this instance.
         /// </summary>
-        [BdoMeta]
+        [BdoData]
         [XmlElement("kind")]
         public BdoExpressionKind Kind { get; set; } = BdoExpressionKind.Auto;
 
         /// <summary>
         /// The script word of this instance.
         /// </summary>
-        [BdoMeta]
+        [BdoData]
         [XmlElement("word")]
         public IBdoScriptword Word { get; set; }
 
         #endregion
+
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -71,32 +71,6 @@ namespace BindOpen.Data.Items
 
         #endregion
 
-
-        // ------------------------------------------
-        // MUTATORS
-        // ------------------------------------------
-
-        #region Mutators
-
-        public IBdoExpression AsScript()
-        {
-            Kind = BdoExpressionKind.Script;
-            return this;
-        }
-
-        public IBdoExpression AsLiteral()
-        {
-            Kind = BdoExpressionKind.Literal;
-            return this;
-        }
-
-        public IBdoExpression AsAuto()
-        {
-            Kind = BdoExpressionKind.Auto;
-            return this;
-        }
-
-        #endregion
 
         // ------------------------------------------
         // ACCCESSORS

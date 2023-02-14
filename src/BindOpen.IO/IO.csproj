@@ -53,8 +53,4 @@
     <ProjectReference Include="..\BindOpen.Dtos\Dtos.csproj" />
     <ProjectReference Include="..\BindOpen.Extensions\Extensions.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\References\" />
-  </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@ namespace BindOpen.Data
     /// <summary>
     /// This interface defines a configurable data.
     /// </summary>
-    public interface IConfigurable
+    public interface IBdoConfigurable
     {
         /// <summary>
         /// 

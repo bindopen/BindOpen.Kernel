@@ -11,7 +11,7 @@ namespace BindOpen.Data
         public static T WithTitle<T>(
             this T obj,
             IBdoDictionary dictionary)
-            where T : IGloballyTitled
+            where T : IBdoTitled
         {
             if (obj != null)
             {
@@ -33,7 +33,7 @@ namespace BindOpen.Data
             this T obj,
             string key = StringHelper.__Star,
             string defaultKey = StringHelper.__Star)
-            where T : IGloballyTitled
+            where T : IBdoTitled
         {
             return obj?.Title?[key, defaultKey];
         }

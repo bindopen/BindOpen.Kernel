@@ -8,7 +8,7 @@ namespace BindOpen.Runtime.Definition
     /// </summary>
     public interface IBdoExtensionItemGroup :
         IIdentified, INamed,
-        IGloballyTitled, IGloballyDescribed,
+        IBdoTitled, IBdoDescribed,
         IStorable
     {
         /// <summary>

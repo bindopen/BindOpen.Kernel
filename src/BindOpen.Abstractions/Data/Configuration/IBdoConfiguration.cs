@@ -8,8 +8,7 @@ namespace BindOpen.Data.Configuration
     /// </summary>
     public interface IBdoConfiguration :
         IBdoMetaList,
-        INamed, IReferenced,
-        IGloballyTitled, IGloballyDescribed,
+        IBdoTitled, IBdoDescribed,
         IStorable
     {
         /// <summary>

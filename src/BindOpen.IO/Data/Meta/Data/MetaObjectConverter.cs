@@ -23,7 +23,7 @@ namespace BindOpen.Data.Meta
                 //Index = poco.Index,
                 ValueMode = poco.ValueMode,
                 DataReference = poco.DataReference.ToDto(),
-                PropertySet = poco.PropertySet.ToDto(),
+                //PropertySet = poco.PropertySet.ToDto(),
                 ValueType = poco.DataValueType
             };
             //dto.Specifications = poco.Specifications.Select(q => q.ToDto()).ToList(),

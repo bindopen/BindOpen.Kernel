@@ -31,7 +31,7 @@ namespace BindOpen.Data.Items
         /// </summary>
         [JsonPropertyName("value")]
         [XmlText]
-        public string Content { get; set; }
+        public string Value { get; set; }
 
         #endregion
 

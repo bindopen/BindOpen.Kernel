@@ -182,6 +182,14 @@ namespace BindOpen.Data.Meta
             => PropertySet?.Get(key);
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public IBdoMetaData this[string key, string alternateKey]
+            => PropertySet?.Get(key, alternateKey);
+
+        /// <summary>
         /// Returns the number of items.
         /// </summary>
         public int Count
@@ -257,8 +265,8 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public virtual IBdoMetaData Get(string key = null)
-            => PropertySet?.Get(key);
+        public virtual IBdoMetaData Get(string key = null, string alternateKey = null)
+            => PropertySet?.Get(key, alternateKey);
 
         /// <summary>
         /// Returns the specified item of this instance.
@@ -273,12 +281,12 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public virtual Q Get<Q>(string key = null)
+        public virtual Q Get<Q>(string key = null, string alternateKey = null)
             where Q : IBdoMetaData
         {
             if (PropertySet != null)
             {
-                return PropertySet.Get<Q>(key);
+                return PropertySet.Get<Q>(key, alternateKey);
             }
 
             return default;

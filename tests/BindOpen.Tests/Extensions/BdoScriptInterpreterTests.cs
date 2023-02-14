@@ -61,7 +61,7 @@ namespace BindOpen.Tests.Extensions
         [Test, Order(4)]
         public void CreateWordFromScriptTest()
         {
-            var scriptword = BdoScript.CreateWord(_script1);
+            var scriptword = BdoScript.CreateInterpreter().CreateWordFromScript(_script1);
             Assert.That(
                 _scriptword1.Name.Equals(scriptword.Name, StringComparison.OrdinalIgnoreCase)
                 && _scriptword1.Parameters.Count == scriptword.Parameters.Count

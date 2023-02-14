@@ -1,6 +1,6 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Data.Items;
+using BindOpen.Data;
 using BindOpen.Data.Items;
-using BindOpen.Data.Meta;
 using BindOpen.Extensions.Connecting;
 using BindOpen.Logging;
 using BindOpen.Runtime.Definition;
@@ -58,7 +58,7 @@ namespace BindOpen.Runtime.Stores
 
                 // we create the detail specification from detail property attributes
 
-                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoMetaAttribute)).Any()))
+                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoDataAttribute)).Any()))
                 {
                     definition.DatasourceDetailSpec.Add(
                         BdoMeta.NewSpec(property.Name, property.PropertyType));

@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Configuration;
+using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
 
 namespace BindOpen.Data
@@ -57,6 +58,15 @@ namespace BindOpen.Data
         }
 
         /// <summary>
+        /// Instantiates a new instance of the BdoConfiguration class.
+        /// </summary>
+        /// <param name="obj">The object to consider.</param>
+        public static BdoConfiguration NewFrom(
+            object obj,
+            string name = null)
+            => NewFrom<BdoConfiguration>(obj, name);
+
+        /// <summary>
         /// Creates a data meta with specified items.
         /// </summary>
         /// <param name="name">The name to consider.</param>
@@ -72,5 +82,20 @@ namespace BindOpen.Data
 
             return meta;
         }
+
+        /// <summary>
+        /// Instantiates a new instance of the BdoConfiguration class.
+        /// </summary>
+        /// <param name="obj">The object to consider.</param>
+        public static T NewFrom<T>(
+            object obj,
+            string name = null)
+            where T : BdoMetaList, new()
+        {
+            var list = NewList<T>(obj.ToMetaArray())
+                .WithName(name);
+            return list;
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Configuration;
 using BindOpen.Extensions.Connecting;
+using BindOpen.Runtime.Scopes;
 using System.Linq;
 
 namespace BindOpen.Data.Items
@@ -37,12 +38,14 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoDatasource ToPoco(this DatasourceDto dto)
+        public static IBdoDatasource ToPoco(
+            this DatasourceDto dto,
+            IBdoScope scope)
         {
             var poco = BdoData.NewDatasource(
                 dto.Name,
                 dto.Kind,
-                dto.Configurations?.Select(q => q?.ToPoco()).ToArray())
+                dto.Configurations?.Select(q => q?.ToPoco(scope)).ToArray())
                 .WithInstanceName(dto.InstanceName)
                 .AsDefault(dto.IsDefault)
                 .WithModuleName(dto.ModuleName)

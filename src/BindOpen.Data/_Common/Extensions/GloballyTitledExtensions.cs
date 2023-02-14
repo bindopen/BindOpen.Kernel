@@ -10,7 +10,7 @@ namespace BindOpen.Data
         public static T AddTitle<T>(
             this T obj,
             KeyValuePair<string, string> item)
-            where T : IGloballyTitled
+            where T : IBdoTitled
         {
             if (obj != null)
             {
