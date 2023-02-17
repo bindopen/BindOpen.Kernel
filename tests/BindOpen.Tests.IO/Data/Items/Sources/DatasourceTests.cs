@@ -1,5 +1,8 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Items;
+using BindOpen.Dtos.Json;
+using BindOpen.Dtos.Xml;
+using BindOpen.Tests.Runtime;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
@@ -10,8 +13,8 @@ namespace BindOpen.Tests.IO.Data
     public class DatasourceTests
     {
         private IBdoDatasource _datasource;
-        private readonly string _filePath_xml = GlobalVariables.WorkingFolder + "Datasource.xml";
-        private readonly string _filePath_json = GlobalVariables.WorkingFolder + "Datasource.json";
+        private readonly string _filePath_xml = Tests.WorkingFolder + "Datasource.xml";
+        private readonly string _filePath_json = Tests.WorkingFolder + "Datasource.json";
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -63,7 +66,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveXmlTest();
             }
 
-            var datasource = XmlHelper.LoadXml<DatasourceDto>(_filePath_xml).ToPoco(null);
+            var datasource = RuntimeTests.Scope.ConvertToPoco(XmlHelper.LoadXml<DatasourceDto>(_filePath_xml));
             Assert.That(Equals(datasource, _datasource), "Error while loading");
         }
 
@@ -89,7 +92,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveJsonTest();
             }
 
-            var datasource = JsonHelper.LoadJson<DatasourceDto>(_filePath_json).ToPoco(null);
+            var datasource = RuntimeTests.Scope.ConvertToPoco(JsonHelper.LoadJson<DatasourceDto>(_filePath_json));
             Assert.That(Equals(datasource, _datasource), "Error while loading");
         }
     }

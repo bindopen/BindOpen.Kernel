@@ -10,7 +10,7 @@ namespace BindOpen.Tests.Extensions
     {
         private EntityFake _entity = null;
 
-        private readonly string _filePath = GlobalVariables.WorkingFolder + "Entity.xml";
+        private readonly string _filePath = Tests.WorkingFolder + "Entity.xml";
 
         private dynamic _testData;
 

@@ -6,6 +6,7 @@ using BindOpen.Runtime.Scopes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.Data.Meta
 {
@@ -130,7 +131,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns True if the specified has been well added.</returns>
         public IBdoMetaObject WithData(object obj)
         {
-            _data = obj.ToBdoData(GetSpec());
+            _data = obj.ToBdoData();
 
             return this;
         }
@@ -335,14 +336,14 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <returns>Returns the enumerator of this instance.</returns>
         public IEnumerator<IBdoMetaData> GetEnumerator()
-            => PropertySet?.GetEnumerator();
+            => PropertySet?.GetEnumerator() ?? Enumerable.Empty<IBdoMetaData>().GetEnumerator();
 
         /// <summary>
         /// Indicates the enumerator of this instance.
         /// </summary>
         /// <returns>Returns the enumerator of this instance.</returns>
         IEnumerator IEnumerable.GetEnumerator()
-            => PropertySet?.GetEnumerator();
+            => PropertySet?.GetEnumerator() ?? Enumerable.Empty<IBdoMetaData>().GetEnumerator();
 
         #endregion
     }

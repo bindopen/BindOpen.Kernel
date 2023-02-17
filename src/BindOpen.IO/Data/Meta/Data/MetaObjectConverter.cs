@@ -1,5 +1,7 @@
 ﻿using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
+using BindOpen.Logging;
+using BindOpen.Runtime.Scopes;
 
 namespace BindOpen.Data.Meta
 {
@@ -22,7 +24,7 @@ namespace BindOpen.Data.Meta
                 //Elements = poco.Elements?.Select(q => q.ToDto()).ToList(),
                 //Index = poco.Index,
                 ValueMode = poco.ValueMode,
-                DataReference = poco.DataReference.ToDto(),
+                DataExpression = poco.DataExpression.ToDto(),
                 //PropertySet = poco.PropertySet.ToDto(),
                 ValueType = poco.DataValueType
             };
@@ -36,7 +38,10 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoMetaObject ToPoco(this MetaObjectDto dto)
+        public static IBdoMetaObject ConvertToPoco(
+            this IBdoScope scope,
+            MetaObjectDto dto,
+            IBdoLog log = null)
         {
             if (dto == null) return null;
 

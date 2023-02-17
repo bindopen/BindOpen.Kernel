@@ -5,7 +5,7 @@ namespace BindOpen.Data.Items
     /// <summary>
     /// This interface defines a data expression.
     /// </summary>
-    public interface IBdoExpression : IBdoItem
+    public interface IBdoExpression : IBdoHandledItem
     {
         /// <summary>
         /// The kind.

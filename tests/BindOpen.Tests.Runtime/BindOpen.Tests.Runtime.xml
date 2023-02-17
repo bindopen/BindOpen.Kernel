@@ -60,7 +60,7 @@
             
             </summary>
         </member>
-        <member name="P:BindOpen.Tests.Runtime.GlobalVariables.Scope">
+        <member name="P:BindOpen.Tests.Runtime.RuntimeTests.Scope">
             <summary>
             The global scope.
             </summary>

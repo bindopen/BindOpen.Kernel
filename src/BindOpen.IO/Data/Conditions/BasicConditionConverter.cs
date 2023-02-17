@@ -4,7 +4,7 @@
     /// This class represents a Xml helper.
     /// </summary>
     public static class BasicConditionConverter
-    {        
+    {
         /// <summary>
         /// Converts to DTO.
         /// </summary>
@@ -30,7 +30,8 @@
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static IBasicCondition ToPoco(this BasicConditionDto dto)
+        public static IBasicCondition ToPoco(
+            this BasicConditionDto dto)
         {
             if (dto == null) return null;
 

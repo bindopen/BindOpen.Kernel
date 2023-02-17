@@ -1,4 +1,7 @@
-﻿namespace BindOpen.Data.Meta
+﻿using BindOpen.Logging;
+using BindOpen.Runtime.Scopes;
+
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a Xml helper.
@@ -26,7 +29,10 @@
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoSpecList ToPoco(this SpecListDto dto)
+        public static IBdoSpecList ConvertToPoco(
+            this IBdoScope scope,
+            SpecListDto dto,
+            IBdoLog log = null)
         {
             if (dto == null) return null;
 

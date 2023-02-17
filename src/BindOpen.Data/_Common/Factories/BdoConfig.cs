@@ -97,24 +97,5 @@ namespace BindOpen.Data
                 .Using(usingIds);
             return config;
         }
-
-        /// <summary>
-        /// Instantiates a new instance of the BdoConfiguration class.
-        /// </summary>
-        /// <param name="obj">The object to consider.</param>
-        public static BdoConfiguration NewFrom(
-            object obj,
-            string name = null)
-            => BdoMeta.NewFrom(obj, name);
-
-        /// <summary>
-        /// Instantiates a new instance of the BdoConfiguration class.
-        /// </summary>
-        /// <param name="obj">The object to consider.</param>
-        public static T NewFrom<T>(
-            object obj,
-            string name = null)
-            where T : BdoConfiguration, new()
-            => BdoMeta.NewFrom<T>(obj, name);
     }
 }

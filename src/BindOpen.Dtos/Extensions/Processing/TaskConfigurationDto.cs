@@ -6,8 +6,8 @@ namespace BindOpen.Extensions.Processing
     /// <summary>
     /// This class represents a task configuration.
     /// </summary>
-    [XmlType("TaskConfiguration", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "task", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("TaskConfiguration", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "task", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class TaskConfigurationDto : ExtensionItemConfigurationDto
     {
         // ------------------------------------------

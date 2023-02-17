@@ -558,6 +558,7 @@ namespace BindOpen.Extensions.Scripting
                                         varSet,
                                         log);
 
+                                    scriptword.Parameters ??= new();
                                     scriptword.Parameters.Add(parameterValue);
                                     scriptwordParameterCount++;
                                 }

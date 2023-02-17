@@ -42,14 +42,14 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public static T WithDataReference<T>(
+        public static T WithDataExpression<T>(
             this T meta,
-            IBdoExpression reference)
+            IBdoExpression expression)
             where T : IBdoMetaData
         {
             if (meta != null)
             {
-                meta.DataReference = reference;
+                meta.DataExpression = expression;
             }
 
             return meta;

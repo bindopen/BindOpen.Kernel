@@ -1,9 +1,9 @@
-﻿using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Configuration;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System.Xml.Schema;
 
-namespace BindOpen.Data.Configuration
+namespace BindOpen.Dtos.Xml
 {
     /// <summary>
     /// This static class provides methods to handle configs.
@@ -24,7 +24,6 @@ namespace BindOpen.Data.Configuration
         public static TPoco LoadXml<TPoco, TDto>(
             string filePath,
             IBdoScope scope = null,
-            IBdoMetaList varSet = null,
             IBdoLog log = null,
             XmlSchemaSet xmlSchemaSet = null,
             bool mustFileExist = true)
@@ -35,7 +34,7 @@ namespace BindOpen.Data.Configuration
 
             if (XmlHelper.LoadXml<TDto>(filePath, log, xmlSchemaSet, mustFileExist) is TDto topConfigurationDto)
             {
-                var topConfiguration = topConfigurationDto?.ToPoco();
+                //var topConfiguration = topConfigurationDto?.ToPoco();
 
                 //foreach (string usingFilePath in topConfiguration.)
                 //{

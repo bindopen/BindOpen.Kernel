@@ -280,13 +280,15 @@ namespace BindOpen.Data.Items
         /// Indicates the enumerator of this instance.
         /// </summary>
         /// <returns>Returns the enumerator of this instance.</returns>
-        public IEnumerator<T> GetEnumerator() => _items.GetEnumerator();
+        public IEnumerator<T> GetEnumerator()
+            => _items?.GetEnumerator() ?? Enumerable.Empty<T>().GetEnumerator();
 
         /// <summary>
         /// Indicates the enumerator of this instance.
         /// </summary>
         /// <returns>Returns the enumerator of this instance.</returns>
-        IEnumerator IEnumerable.GetEnumerator() => _items.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator()
+            => _items?.GetEnumerator() ?? Enumerable.Empty<T>().GetEnumerator();
 
         #endregion
 

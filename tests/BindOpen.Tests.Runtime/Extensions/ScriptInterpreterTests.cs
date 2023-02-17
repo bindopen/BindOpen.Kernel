@@ -47,7 +47,7 @@ namespace BindOpen.Tests.Runtime
         [Test, Order(201)]
         public void InterpreteWord1Test()
         {
-            var interpreter = GlobalVariables.Scope.NewScriptInterpreter();
+            var interpreter = RuntimeTests.Scope.NewScriptInterpreter();
             var resultScript = interpreter.Evaluate<bool?>(_scriptword1)?.ToString();
 
             Assert.That(_interpretedScript1.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
@@ -58,7 +58,7 @@ namespace BindOpen.Tests.Runtime
         {
             var varSet = BdoMeta.NewList();
 
-            var interpreter = GlobalVariables.Scope.NewScriptInterpreter();
+            var interpreter = RuntimeTests.Scope.NewScriptInterpreter();
             var resultScript = interpreter.Evaluate<bool?>(_script2, BdoExpressionKind.Script, varSet)?.ToString();
 
             Assert.That(_interpretedScript2.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
@@ -69,7 +69,7 @@ namespace BindOpen.Tests.Runtime
         {
             var varSet = BdoMeta.NewList();
 
-            var interpreter = GlobalVariables.Scope.NewScriptInterpreter();
+            var interpreter = RuntimeTests.Scope.NewScriptInterpreter();
             var resultScript = interpreter.Evaluate<string>(_script3, BdoExpressionKind.Script, varSet);
 
             Assert.That(_interpretedScript3.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
@@ -78,7 +78,7 @@ namespace BindOpen.Tests.Runtime
         [Test, Order(204)]
         public void InterpreteScript4Test()
         {
-            var interpreter = GlobalVariables.Scope.NewScriptInterpreter();
+            var interpreter = RuntimeTests.Scope.NewScriptInterpreter();
             var resultScript = interpreter.Evaluate<bool?>(_script4, BdoExpressionKind.Script)?.ToString();
 
             Assert.That(_interpretedScript4.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
@@ -87,7 +87,7 @@ namespace BindOpen.Tests.Runtime
         [Test, Order(205)]
         public void InterpreteScript5Test()
         {
-            var interpreter = GlobalVariables.Scope.NewScriptInterpreter();
+            var interpreter = RuntimeTests.Scope.NewScriptInterpreter();
             var resultScript = interpreter.Evaluate<string>(_script5, BdoExpressionKind.Auto);
 
             Assert.That(_interpretedScript5.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
@@ -96,7 +96,7 @@ namespace BindOpen.Tests.Runtime
         [Test, Order(206)]
         public void InterpreteScript6Test()
         {
-            var interpreter = GlobalVariables.Scope.NewScriptInterpreter();
+            var interpreter = RuntimeTests.Scope.NewScriptInterpreter();
             var resultScript = interpreter.Evaluate<bool?>(_scriptword6.ToExpression())?.ToString();
 
             Assert.That(_interpretedScript6.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
@@ -105,7 +105,7 @@ namespace BindOpen.Tests.Runtime
         [Test, Order(207)]
         public void InterpreteScript7Test()
         {
-            var interpreter = GlobalVariables.Scope.NewScriptInterpreter();
+            var interpreter = RuntimeTests.Scope.NewScriptInterpreter();
             var resultScript = interpreter.Evaluate<string>(_script7);
 
             Assert.That(_interpretedScript7.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
@@ -118,7 +118,7 @@ namespace BindOpen.Tests.Runtime
                 ((string Name, object Value))("value1", _scriptVarValue81),
                 ((string Name, object Value))("value2", _scriptVarValue82));
 
-            var interpreter = GlobalVariables.Scope.NewScriptInterpreter();
+            var interpreter = RuntimeTests.Scope.NewScriptInterpreter();
             var resultScript = interpreter.Evaluate<string>(
                 _script8, varSet: varSet);
 

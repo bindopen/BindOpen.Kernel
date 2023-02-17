@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BindOpen.Extensions.Scripting;
+using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 
 namespace BindOpen.Data.Items
@@ -33,15 +34,16 @@ namespace BindOpen.Data.Items
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoExpression ToPoco(
-            this ExpressionDto dto,
-            IBdoScope scope)
+        public static IBdoExpression ConvertToPoco(
+            this IBdoScope scope,
+            ExpressionDto dto,
+            IBdoLog log = null)
         {
             if (dto == null) return null;
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<ExpressionDto, BdoExpression>()
-                    .ForMember(q => q.Word, opt => opt.MapFrom(q => q.Word.ToPoco(scope))));
+                    .ForMember(q => q.Word, opt => opt.MapFrom(q => scope.ConvertToPoco(q.Word, log))));
 
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoExpression>(dto);

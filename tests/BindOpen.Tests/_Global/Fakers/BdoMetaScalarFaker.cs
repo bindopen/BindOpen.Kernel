@@ -7,7 +7,7 @@ namespace BindOpen.Tests
 {
     public static class BdoMetaScalarFaker
     {
-        public static readonly string XmlFilePath = GlobalVariables.WorkingFolder + "MetaScalarList.xml";
+        public static readonly string XmlFilePath = Tests.WorkingFolder + "MetaScalarList.xml";
 
         public static dynamic Fake()
         {

@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace BindOpen.Tests.Data
 {
     [TestFixture, Order(201)]
-    public class BdoMetaDataReferenceTests
+    public class BdoMetaDataExpressionTests
     {
         private object _obj = null;
 
@@ -26,8 +26,8 @@ namespace BindOpen.Tests.Data
         [Test, Order(1)]
         public void NewTest()
         {
-            var meta1 = BdoMeta.New()
-                .WithDataReference(
+            var meta1 = BdoMeta.NewObject()
+                .WithDataExpression(
                     BdoScript.Var("workflow").Func("input", "input1"));
         }
     }

@@ -1,6 +1,9 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Items;
+using BindOpen.Dtos.Json;
+using BindOpen.Dtos.Xml;
 using BindOpen.Extensions.Scripting;
+using BindOpen.Tests.Runtime;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
@@ -11,8 +14,8 @@ namespace BindOpen.Tests.IO.Data
     [TestFixture, Order(210)]
     public class ExpressionIOTests
     {
-        private readonly string _filePath_xml = GlobalVariables.WorkingFolder + "DataExpression.xml";
-        private readonly string _filePath_json = GlobalVariables.WorkingFolder + "DataExpression.json";
+        private readonly string _filePath_xml = Tests.WorkingFolder + "DataExpression.xml";
+        private readonly string _filePath_json = Tests.WorkingFolder + "DataExpression.json";
         dynamic _valueSet;
         private IBdoExpression _exp = null;
 
@@ -69,7 +72,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveXmlTest();
             }
 
-            var exp = XmlHelper.LoadXml<ExpressionDto>(_filePath_xml).ToPoco(null);
+            var exp = RuntimeTests.Scope.ConvertToPoco(XmlHelper.LoadXml<ExpressionDto>(_filePath_xml));
             Assert.That(Equals(exp, _exp), "Error while loading");
         }
 
@@ -95,7 +98,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveJsonTest();
             }
 
-            var exp = JsonHelper.LoadJson<ExpressionDto>(_filePath_json).ToPoco(null);
+            var exp = RuntimeTests.Scope.ConvertToPoco(JsonHelper.LoadJson<ExpressionDto>(_filePath_json));
             Assert.That(Equals(exp, _exp), "Error while loading");
         }
     }

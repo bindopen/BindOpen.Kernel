@@ -1,6 +1,9 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
+using BindOpen.Dtos.Json;
+using BindOpen.Dtos.Xml;
 using BindOpen.Extensions.Modeling;
+using BindOpen.Tests.Runtime;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
@@ -10,8 +13,8 @@ namespace BindOpen.Tests.IO.Data
     [TestFixture, Order(201)]
     public class MetaObjectSetTests
     {
-        private readonly string _filePath_xml = GlobalVariables.WorkingFolder + "EntityElementSet.xml";
-        private readonly string _filePath_json = GlobalVariables.WorkingFolder + "EntityElementSet.json";
+        private readonly string _filePath_xml = Tests.WorkingFolder + "EntityElementSet.xml";
+        private readonly string _filePath_json = Tests.WorkingFolder + "EntityElementSet.json";
 
         private BdoMetaList _metaList;
 
@@ -87,7 +90,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveXmlTest();
             }
 
-            var metaList = XmlHelper.LoadXml<MetaListDto>(_filePath_xml).ToPoco();
+            var metaList = RuntimeTests.Scope.ConvertToPoco(XmlHelper.LoadXml<MetaListDto>(_filePath_xml));
             Equals(metaList, _metaList);
         }
 
@@ -113,7 +116,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveJsonTest();
             }
 
-            var metaList = JsonHelper.LoadJson<MetaListDto>(_filePath_json).ToPoco();
+            var metaList = RuntimeTests.Scope.ConvertToPoco(JsonHelper.LoadJson<MetaListDto>(_filePath_json));
             Equals(metaList, _metaList);
         }
     }

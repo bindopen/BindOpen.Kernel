@@ -44,7 +44,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\BindOpen.IO\IO.csproj" />
-    <ProjectReference Include="..\BindOpen.Tests\Tests.csproj" />
+    <ProjectReference Include="..\BindOpen.Tests.Runtime\Tests.Runtime.csproj" />
   </ItemGroup>
 
 </Project>

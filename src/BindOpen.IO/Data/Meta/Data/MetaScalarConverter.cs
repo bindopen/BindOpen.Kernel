@@ -2,6 +2,7 @@
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
+using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System.Linq;
 
@@ -23,7 +24,7 @@ namespace BindOpen.Data.Meta
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<BdoMetaScalar, MetaScalarDto>()
-                    .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.DataReference.ToDto()))
+                    .ForMember(q => q.DataExpression, opt => opt.MapFrom(q => q.DataExpression.ToDto()))
                     .ForMember(q => q.Specs, opt => opt.Ignore())
             );
 
@@ -53,23 +54,24 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoMetaScalar ToPoco(
-            this MetaScalarDto dto,
-            IBdoScope scope)
+        public static IBdoMetaScalar ConvertToPoco(
+            this IBdoScope scope,
+            MetaScalarDto dto,
+            IBdoLog log = null)
         {
             if (dto == null) return null;
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<MetaScalarDto, BdoMetaScalar>()
-                    .ForMember(q => q.DataReference, opt => opt.Ignore())
+                    .ForMember(q => q.DataExpression, opt => opt.Ignore())
                     .ForMember(q => q.Specs, opt => opt.Ignore())
                 );
 
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoMetaScalar>(dto);
 
-            poco.DataReference = dto.DataReference.ToPoco(scope);
-            poco.Specs = dto.Specs?.Select(q => q.ToPoco()).ToList();
+            poco.DataExpression = scope.ConvertToPoco(dto.DataExpression, log);
+            poco.Specs = dto.Specs?.Select(q => scope.ConvertToPoco(q, log)).ToList();
 
             if (!string.IsNullOrEmpty(dto.Item))
             {

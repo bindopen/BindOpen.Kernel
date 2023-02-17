@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Items;
-using BindOpen.Data.Meta;
 using BindOpen.Extensions.Scripting;
 using System;
 using System.Collections;
@@ -339,70 +338,26 @@ namespace BindOpen.Data.Helpers
         /// <param name="spec"></param>
         /// <returns></returns>
         public static object ToBdoData(
-            this object obj,
-            IBdoSpec spec)
+            this object obj)
         {
-            object item = null;
-
-            if (obj != null)
+            if (obj?.IsList() == true)
             {
-                if (spec == null || spec.IsCompatibleWithData(obj))
-                {
-                    IEnumerable objEnum;
-
-                    //// if object is a singleton of scalar list
-
-                    //if (obj is not byte[]
-                    //    && obj is not string
-                    //    && (objEnum = obj as IEnumerable) != null
-                    //    && objEnum.Cast<object>().Count() == 1
-                    //    && objEnum.Cast<object>().FirstOrDefault() is IEnumerable list
-                    //    && list is not string)
-                    //{
-                    //    item = list.Cast<object>().ToList();
-                    //}
-                    // if object is a scalar list
-                    if (obj is not byte[]
-                       && obj is not string
-                       && (objEnum = obj as IEnumerable) != null
-                       && objEnum.Cast<object>().FirstOrDefault() is not IBdoItem)
-                    {
-                        if (objEnum.Cast<object>().Count() > 1)
-                        {
-                            item = objEnum.Cast<object>().ToList();
-                        }
-                        else
-                        {
-                            item = objEnum.Cast<object>().FirstOrDefault();
-                        }
-                    }
-                    else
-                    {
-                        item = obj;
-                    }
-                }
-                else
-                {
-                    var list = new List<object>();
-
-                    foreach (object subItem in obj as IEnumerable)
-                    {
-                        if (spec.MaximumItemNumber == -1
-                            || (list?.Count ?? 0) < spec.MaximumItemNumber)
-                        {
-                            if (spec.IsCompatibleWithData(subItem))
-                            {
-                                list.Add(subItem);
-                            }
-                        }
-                    }
-
-                    item = list;
-                }
+                var list = obj.ToObjectList();
+                return list.Count > 1 ? list : list.FirstOrDefault();
             }
-
-            return item;
+            else
+            {
+                return obj;
+            }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static object[] ToObjectArray(this object obj)
+            => obj.ToObjectList()?.ToArray();
 
         /// <summary>
         /// 
@@ -411,7 +366,7 @@ namespace BindOpen.Data.Helpers
         /// <returns></returns>
         public static List<object> ToObjectList(this object obj)
         {
-            List<object> objList = null;
+            List<object> objList;
             if (obj?.GetType().IsList() == true)
             {
                 objList = (obj as IEnumerable).Cast<object>().ToList();
@@ -442,6 +397,8 @@ namespace BindOpen.Data.Helpers
             if (type == null) { return false; }
 
             if (type == typeof(string)) { return false; }
+
+            if (type == typeof(byte[])) { return false; }
 
             return typeof(Array).IsAssignableFrom(type)
                 || typeof(IEnumerable).IsAssignableFrom(type)

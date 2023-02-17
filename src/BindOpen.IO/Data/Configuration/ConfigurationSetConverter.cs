@@ -1,4 +1,7 @@
-﻿namespace BindOpen.Data.Configuration
+﻿using BindOpen.Logging;
+using BindOpen.Runtime.Scopes;
+
+namespace BindOpen.Data.Configuration
 {
     /// <summary>
     /// This class represents a Xml helper.
@@ -26,7 +29,10 @@
         /// </summary>
         /// <param name="dto">The dto to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static IBdoConfigurationSet ToPoco(this ConfigurationSetDto dto)
+        public static IBdoConfigurationSet ConvertToPoco(
+            this IBdoScope scope,
+            ConfigurationSetDto dto,
+            IBdoLog log = null)
         {
             if (dto == null) return null;
 

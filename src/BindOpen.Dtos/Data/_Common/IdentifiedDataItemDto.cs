@@ -8,7 +8,7 @@ namespace BindOpen.Data
     /// </summary>
     [XmlType("IdentifiedDataItem", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot("identifiedDataItem", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class IdentifiedDataItemDto : IDto
+    public class IdentifiedDataItemDto : BdoItemDto
     {
         // ------------------------------------------
         // PROPERTIES

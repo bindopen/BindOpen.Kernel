@@ -5,7 +5,7 @@ namespace BindOpen.Data.Items
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoStringFilter : IBdoItem
+    public interface IBdoStringFilter : IBdoHandledItem
     {
         /// <summary>
         /// 

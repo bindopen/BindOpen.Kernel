@@ -8,8 +8,8 @@ namespace BindOpen.Tests.Data
     [TestFixture, Order(101)]
     public class BdoDatasourceDepotTest
     {
-        private readonly string _filePath_xml = GlobalVariables.WorkingFolder + "DatasourceDepot.xml";
-        private readonly string _filePath_json = GlobalVariables.WorkingFolder + "DatasourceDepot.json";
+        private readonly string _filePath_xml = Tests.WorkingFolder + "DatasourceDepot.xml";
+        private readonly string _filePath_json = Tests.WorkingFolder + "DatasourceDepot.json";
 
         private IBdoSourceDepot _datasourceDepot = null;
 

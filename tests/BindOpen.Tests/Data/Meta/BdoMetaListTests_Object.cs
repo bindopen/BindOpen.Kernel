@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Meta.Reflection;
 using BindOpen.Extensions;
 using Bogus;
 using NUnit.Framework;
@@ -83,8 +84,8 @@ namespace BindOpen.Tests.Data
             var metaObj3 = obj3?.ToMetaData();
 
             var obj4 = Bdo.NewEntity<EntityFake>(
-                BdoConfig.New("tests.core$testEntity")
-                    .FromObject(new { path = _testData.path4 as string }));
+                BdoConfig.New("tests.core$testEntity",
+                    (new { path = _testData.path4 as string }).ToMetaData().ToArray()));
             var metaObj4 = obj4?.ToMetaData("object4");
 
             var metaObj5 = BdoMeta.NewObject("object1")

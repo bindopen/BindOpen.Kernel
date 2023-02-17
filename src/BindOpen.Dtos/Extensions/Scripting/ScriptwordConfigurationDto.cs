@@ -7,8 +7,8 @@ namespace BindOpen.Extensions.Scripting
     /// <summary>
     /// This class represents a script word configuration.
     /// </summary>
-    [XmlType("ScriptwordConfiguration", Namespace = "https://docs.bindopen.org/xsd")]
-    [XmlRoot(ElementName = "scriptword", Namespace = "https://docs.bindopen.org/xsd", IsNullable = false)]
+    [XmlType("ScriptwordConfiguration", Namespace = "https://xsd.bindopen.org")]
+    [XmlRoot(ElementName = "scriptword", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
     public class ScriptwordConfigurationDto
         : ExtensionItemConfigurationDto
     {
@@ -22,8 +22,8 @@ namespace BindOpen.Extensions.Scripting
         /// Kind of this instance.
         /// </summary>
         /// <example>Script word, syntax, text...</example>
-        [JsonPropertyName("kind")]
-        [XmlElement("kind")]
+        [JsonPropertyName("wordKind")]
+        [XmlAttribute("wordKind")]
         public ScriptItemKinds WordKind { get; set; } = ScriptItemKinds.None;
 
         // Tree ----------------------------------
@@ -31,8 +31,8 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// Sub script words of this instance.
         /// </summary>
-        [JsonPropertyName("subScriptword")]
-        [XmlElement("subScriptword")]
+        [JsonPropertyName("subWord")]
+        [XmlElement("subWord")]
         public ScriptwordConfigurationDto SubScriptword { get; set; }
 
         #endregion

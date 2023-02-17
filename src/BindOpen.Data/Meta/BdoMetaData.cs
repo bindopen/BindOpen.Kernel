@@ -120,7 +120,7 @@ namespace BindOpen.Data.Meta
                 if (_valueMode != DataValueMode.Any)
                     return _valueMode;
                 else
-                    return DataReference != null ? DataValueMode.Reference : DataValueMode.Value;
+                    return DataExpression != null ? DataValueMode.Expression : DataValueMode.Value;
             }
             set { _valueMode = value; }
         }
@@ -128,7 +128,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        public IBdoExpression DataReference { get; set; }
+        public IBdoExpression DataExpression { get; set; }
 
         // Specification -------------------------------
 
@@ -176,20 +176,20 @@ namespace BindOpen.Data.Meta
                 case DataValueMode.Value:
                     obj = _data;
                     break;
-                case DataValueMode.Reference:
+                case DataValueMode.Expression:
                     if (scope == null)
                     {
                         log?.AddWarning(title: "Application scope missing");
                     }
                     else
                     {
-                        if (DataReference == null)
+                        if (DataExpression == null)
                         {
                             log?.AddWarning(title: "Script missing");
                         }
 
                         var interpreter = scope.NewScriptInterpreter();
-                        obj = interpreter.Evaluate<object>(DataReference, varSet, log);
+                        obj = interpreter.Evaluate<object>(DataExpression, varSet, log);
                     }
                     break;
             }
@@ -275,7 +275,7 @@ namespace BindOpen.Data.Meta
 
             var el = base.Clone<BdoMetaData>(areas);
 
-            el.DataReference = DataReference?.Clone<BdoExpression>();
+            el.DataExpression = DataExpression?.Clone<BdoExpression>();
             el.Specs = Specs?.Select(q => q?.Clone<BdoSpec>())
                 .Cast<IBdoSpec>().ToList();
 

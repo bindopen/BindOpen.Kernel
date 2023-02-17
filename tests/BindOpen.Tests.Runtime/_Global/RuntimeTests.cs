@@ -4,7 +4,7 @@ using BindOpen.Runtime.Scopes;
 
 namespace BindOpen.Tests.Runtime
 {
-    public static class GlobalVariables
+    public static class RuntimeTests
     {
         static IBdoScope _appScope = null;
 

@@ -16,7 +16,7 @@ namespace BindOpen.Tests.Runtime
         {
             // Setup singleton variables for the first time
 
-            var _ = GlobalVariables.Scope;
+            var _ = RuntimeTests.Scope;
         }
     }
 }

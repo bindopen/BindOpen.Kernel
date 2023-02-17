@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Meta;
 using NUnit.Framework;
 using System;
 using System.Linq;
@@ -80,11 +79,11 @@ namespace BindOpen.Tests.Data
 
             elSetA.Add(null);
             elSetB.Add(null);
-            elSetB.Add(BdoMeta.New("name1"));
-            elSetB.Add(BdoMeta.New("name3"));
-            elSetB.Add(BdoMeta.New("name4"));
+            elSetB.Add(BdoMeta.New("name1", typeof(string)));
+            elSetB.Add(BdoMeta.New("name3", typeof(int)));
+            elSetB.Add(BdoMeta.New("name4", typeof(double)));
             elSetB.Add(BdoMeta.New("name5", DataValueTypes.Text));
-            elSetA.Add(BdoMeta.New("name1"));
+            elSetA.Add(BdoMeta.New("name1", typeof(string)));
             elSetA.Add(BdoMeta.New("name2", null as EntityFake));
             elSetA.Add(BdoMeta.NewScalar("name4", DataValueTypes.Text, null));
             elSetA.Add(BdoMeta.New("name5", null as string));

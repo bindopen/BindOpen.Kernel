@@ -1,9 +1,12 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Configuration;
 using BindOpen.Data.Meta;
+using BindOpen.Dtos.Json;
+using BindOpen.Dtos.Xml;
 using BindOpen.Extensions;
 using BindOpen.Extensions.Modeling;
 using BindOpen.Tests.Extensions;
+using BindOpen.Tests.Runtime;
 using Bogus;
 using NUnit.Framework;
 using System.IO;
@@ -15,7 +18,7 @@ namespace BindOpen.Tests.IO.Extensions
     {
         private EntityFake _entity = null;
 
-        private readonly string _filePath = GlobalVariables.WorkingFolder + "Entity.xml";
+        private readonly string _filePath = Tests.WorkingFolder + "Entity.xml";
 
         private dynamic _testData;
 
@@ -67,7 +70,7 @@ namespace BindOpen.Tests.IO.Extensions
                 SaveXmlEntityTest();
             }
 
-            var config = XmlHelper.LoadXml<ConfigurationDto>(_filePath).ToPoco(null);
+            var config = RuntimeTests.Scope.ConvertToPoco(XmlHelper.LoadXml<ConfigurationDto>(_filePath));
             var entity = Bdo.NewEntity<EntityFake>(config);
 
             Assert.That(entity != null, "Entity loading failed");
@@ -98,7 +101,7 @@ namespace BindOpen.Tests.IO.Extensions
                 SaveJsonEntityTest();
             }
 
-            var config = JsonHelper.LoadJson<ConfigurationDto>(_filePath).ToPoco(null);
+            var config = RuntimeTests.Scope.ConvertToPoco(JsonHelper.LoadJson<ConfigurationDto>(_filePath));
             var entity = Bdo.NewEntity<EntityFake>(config);
 
             Assert.That(entity != null, "Entity loading failed");

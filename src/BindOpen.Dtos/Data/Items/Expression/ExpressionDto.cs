@@ -9,7 +9,7 @@ namespace BindOpen.Data.Items
     /// </summary>
     [XmlType("Expression", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot(ElementName = "expression", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class ExpressionDto
+    public class ExpressionDto : BdoItemDto
     {
         // ------------------------------------------
         // PROPERTIES

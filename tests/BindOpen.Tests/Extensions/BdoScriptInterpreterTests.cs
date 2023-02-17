@@ -31,7 +31,7 @@ namespace BindOpen.Tests.Extensions
         public void InterpreteScriptNullTest()
         {
             BdoExpression exp = null;
-            var resultScript = GlobalVariables.ScriptInterpreter.Evaluate<bool?>(exp)?.ToString();
+            var resultScript = Tests.ScriptInterpreter.Evaluate<bool?>(exp)?.ToString();
 
             Assert.That(resultScript == null, "Bad script interpretation");
         }

@@ -2,7 +2,9 @@
 using BindOpen.Data;
 using BindOpen.Data.Configuration;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Meta.Reflection;
 using BindOpen.Extensions.Connecting;
+using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System.Linq;
 
@@ -22,13 +24,16 @@ namespace BindOpen.Extensions.Processing
         {
             if (poco == null) return null;
 
-            var items = poco.ToMetaArray()?.Select(p => p.ToDto()).ToList();
+            var items = poco
+                .ToMetaData(true)
+                .AsMetaList()?.Select(p => p.ToDto()).ToList();
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<IBdoTask, TaskConfigurationDto>()
-                    .ForMember(q => q.DataReference, opt => opt.Ignore())
+                    .ForMember(q => q.DataExpression, opt => opt.Ignore())
                     .ForMember(q => q.DefinitionUniqueName, opt => opt.MapFrom(q => q.Definition == null ? null : q.Definition.UniqueName))
                     .ForMember(q => q.Description, opt => opt.Ignore())
+                    .ForMember(q => q.ExtensionKind, opt => opt.MapFrom(q => BdoExtensionItemKind.Task))
                     .ForMember(q => q.Items, opt => opt.MapFrom(q => items))
                     .ForMember(q => q.Title, opt => opt.Ignore())
                     .ForMember(q => q.UsedItemIds, opt => opt.Ignore())
@@ -45,13 +50,14 @@ namespace BindOpen.Extensions.Processing
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoTask ToPoco(
-            this TaskConfigurationDto dto,
-            IBdoScope scope)
+        public static IBdoTask ConvertToPoco(
+            this IBdoScope scope,
+            TaskConfigurationDto dto,
+            IBdoLog log = null)
         {
-            if (dto == null) return null;
+            if (dto == null || scope == null) return null;
 
-            var metas = dto.Items.Select(p => p.ToPoco()).ToArray();
+            var metas = dto.Items.Select(p => scope.ConvertToPoco(p, log)).ToArray();
             var config = BdoConfig.New(metas);
 
             var poco = scope.CreateTask(config);

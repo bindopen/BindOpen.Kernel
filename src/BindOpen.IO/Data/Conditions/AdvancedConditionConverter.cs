@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using BindOpen.Logging;
+using BindOpen.Runtime.Scopes;
+using System.Linq;
 
 namespace BindOpen.Data.Conditions
 {
@@ -18,7 +20,7 @@ namespace BindOpen.Data.Conditions
 
             AdvancedConditionDto dto = new()
             {
-                Conditions= poco.Conditions?.Select(q=> q.ToDto()).ToList(),
+                Conditions = poco.Conditions?.Select(q => q.ToDto()).ToList(),
                 Kind = poco.Kind,
                 TrueValue = poco.TrueValue
             };
@@ -31,13 +33,16 @@ namespace BindOpen.Data.Conditions
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static IAdvancedCondition ToPoco(this AdvancedConditionDto dto)
+        public static IAdvancedCondition ConvertToPoco(
+            this IBdoScope scope,
+            AdvancedConditionDto dto,
+            IBdoLog log = null)
         {
             if (dto == null) return null;
 
             AdvancedCondition poco = new()
             {
-                Conditions = dto.Conditions?.Select(q => q.ToPoco()).ToList(),
+                Conditions = dto.Conditions?.Select(q => scope.ConvertToPoco(q, log)).ToList(),
                 Kind = dto.Kind,
                 TrueValue = dto.TrueValue
             };

@@ -20,9 +20,9 @@ namespace BindOpen.Runtime.Dtos.Extensions
         /// <summary>
         /// The kind of this instance.
         /// </summary>
-        [JsonPropertyName("kind")]
-        [XmlAttribute("kind")]
-        public BdoExtensionItemKind Kind { get; } = BdoExtensionItemKind.Any;
+        [JsonPropertyName("extensionKind")]
+        [XmlAttribute("extensionKind")]
+        public BdoExtensionItemKind ExtensionKind { get; } = BdoExtensionItemKind.Any;
 
         /// <summary>
         /// Name of this instance.

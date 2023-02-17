@@ -38,11 +38,11 @@ namespace BindOpen.Data
             object item)
         {
             var el = new BdoMetaObject();
-            el.WithName(name);
-            el.WithClassReference(reference);
-            el.WithData(item);
 
-            //el.ClassReference .ClassFilter.AddedValues.Add(meta.GetType().ToString());
+            el
+                .WithName(name)
+                .WithClassReference(reference)
+                .WithData(item);
 
             return el;
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BindOpen.Data.Items;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml;
@@ -47,13 +48,24 @@ namespace BindOpen.Data.Meta
         // --------------------------------------------------
 
         /// <summary>
+        /// The value of this instance.
+        /// </summary>
+        [JsonPropertyName("item")]
+        [XmlElement("item.datasource", Type = typeof(DatasourceDto))]
+        [XmlElement("item.dictionary", Type = typeof(DictionaryDto))]
+        [XmlElement("item.expression", Type = typeof(ExpressionDto))]
+        [XmlElement("item.filter", Type = typeof(StringFilterDto))]
+        public BdoItemDto Item { get; set; }
+
+        /// <summary>
         /// The elements of this instance.
         /// </summary>
         [JsonPropertyName("elements")]
         [XmlArray("elements")]
         [XmlArrayItem("object", Type = typeof(MetaObjectDto))]
         [XmlArrayItem("scalar", Type = typeof(MetaScalarDto))]
-        public List<MetaDataDto> Elements { get; set; }
+        [XmlArrayItem("list", Type = typeof(MetaListDto))]
+        public List<MetaDataDto> MetaElements { get; set; }
 
         // Specification -----------------------
 

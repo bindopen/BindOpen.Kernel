@@ -96,7 +96,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns True if the specified has been well added.</returns>
         public IBdoMetaScalar WithData(object obj)
         {
-            _data = obj.ToBdoData(GetSpec());
+            _data = obj.ToBdoData();
 
             return this;
         }
@@ -109,7 +109,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns True if the specified has been well added.</returns>
         public IBdoMetaScalar WithDataList(params object[] objs)
         {
-            _data = objs.ToBdoData(GetSpec()).ToObjectList();
+            _data = objs.ToBdoData().ToObjectList();
 
             return this;
         }

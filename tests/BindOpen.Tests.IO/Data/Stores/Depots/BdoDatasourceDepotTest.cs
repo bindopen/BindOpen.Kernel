@@ -2,6 +2,9 @@
 using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Stores;
+using BindOpen.Dtos.Json;
+using BindOpen.Dtos.Xml;
+using BindOpen.Tests.Runtime;
 using Bogus;
 using NUnit.Framework;
 using System.IO;
@@ -11,8 +14,8 @@ namespace BindOpen.Tests.IO.Data
     [TestFixture, Order(101)]
     public class DatasourceDepotTests
     {
-        private readonly string _filePath_xml = GlobalVariables.WorkingFolder + "DatasourceDepot.xml";
-        private readonly string _filePath_json = GlobalVariables.WorkingFolder + "DatasourceDepot.json";
+        private readonly string _filePath_xml = Tests.WorkingFolder + "DatasourceDepot.xml";
+        private readonly string _filePath_json = Tests.WorkingFolder + "DatasourceDepot.json";
 
         private IBdoSourceDepot _datasourceDepot = null;
 
@@ -91,7 +94,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveXmlBdoDatasourceDepotTest();
             }
 
-            var depot = XmlHelper.LoadXml<BdoDatasourceDepotDto>(_filePath_xml).ToPoco(null);
+            var depot = RuntimeTests.Scope.ConvertToPoco(XmlHelper.LoadXml<BdoDatasourceDepotDto>(_filePath_xml));
 
             TestBdoDatasourceDepot(depot);
         }
@@ -120,7 +123,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveJsonBdoDatasourceDepotTest();
             }
 
-            var depot = JsonHelper.LoadJson<BdoDatasourceDepotDto>(_filePath_json).ToPoco(null);
+            var depot = RuntimeTests.Scope.ConvertToPoco(JsonHelper.LoadJson<BdoDatasourceDepotDto>(_filePath_json));
 
             TestBdoDatasourceDepot(depot);
         }

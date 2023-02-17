@@ -13,7 +13,7 @@ namespace BindOpen.Data.Meta
     [XmlInclude(typeof(MetaListDto))]
     [XmlInclude(typeof(MetaObjectDto))]
     [XmlInclude(typeof(MetaScalarDto))]
-    [JsonDerivedType(typeof(MetaListDto), "set")]
+    [JsonDerivedType(typeof(MetaListDto), "list")]
     [JsonDerivedType(typeof(MetaObjectDto), "object")]
     [JsonDerivedType(typeof(MetaScalarDto), "scalar")]
     public class MetaDataDto : IDto
@@ -66,11 +66,11 @@ namespace BindOpen.Data.Meta
         public DataValueMode ValueMode = DataValueMode.Value;
 
         /// <summary>
-        /// Item reference of this instance.
+        /// The expression of this instance.
         /// </summary>
-        [JsonPropertyName("reference")]
-        [XmlElement("reference")]
-        public ExpressionDto DataReference { get; set; }
+        [JsonPropertyName("expression")]
+        [XmlElement("expression")]
+        public ExpressionDto DataExpression { get; set; }
 
         /// <summary>
         /// The value type of this instance.

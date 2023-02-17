@@ -7,7 +7,7 @@ namespace BindOpen.Data.Items
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface ITBdoList<T> :
-        IBdoItem, IEnumerable<T>,
+        IBdoHandledItem, IEnumerable<T>,
         IIdentified, IReferenced
         where T : IReferenced
     {

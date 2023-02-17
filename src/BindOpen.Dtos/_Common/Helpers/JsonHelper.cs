@@ -3,7 +3,7 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace BindOpen.Data
+namespace BindOpen.Dtos.Json
 {
     public static class JsonHelper
     {
@@ -27,7 +27,7 @@ namespace BindOpen.Data
 
             try
             {
-                st = JsonSerializer.Serialize<T>(dto, options);
+                st = JsonSerializer.Serialize(dto, options);
             }
             catch (JsonException ex)
             {

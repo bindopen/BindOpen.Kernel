@@ -209,12 +209,11 @@ namespace BindOpen.Runtime.Stores
                             var subSubLog = log?.NewLog();
                             int count = LoadDictionary(assembly, kind, extensionDefinition, subSubLog);
 
-                            if (subSubLog.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning))
+                            if (subSubLog?.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning) == true)
                             {
                                 log?.AddSubLog(
                                     subSubLog,
                                     title: "Dictionary '" + kind.ToString() + "' not loaded correctly (" + count.ToString() + " items added)");
-                                loaded = false;
                             }
                             else
                             {

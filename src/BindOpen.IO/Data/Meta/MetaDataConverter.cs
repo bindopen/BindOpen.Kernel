@@ -1,5 +1,7 @@
 ﻿using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
+using BindOpen.Logging;
+using BindOpen.Runtime.Scopes;
 
 namespace BindOpen.Data.Meta
 {
@@ -35,7 +37,7 @@ namespace BindOpen.Data.Meta
 
             if (dto != null)
             {
-                dto.DataReference = poco.DataReference?.ToDto();
+                dto.DataExpression = poco.DataExpression?.ToDto();
             }
 
             return dto;
@@ -46,7 +48,10 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoMetaData ToPoco(this MetaDataDto dto)
+        public static IBdoMetaData ConvertToPoco(
+            this IBdoScope scope,
+            MetaDataDto dto,
+            IBdoLog log = null)
         {
             if (dto == null) return null;
 
@@ -54,15 +59,15 @@ namespace BindOpen.Data.Meta
 
             if (dto is MetaObjectDto obj)
             {
-                return obj.ToPoco();
+                return scope.ConvertToPoco(obj, log);
             }
             else if (dto is MetaScalarDto scalar)
             {
-                return scalar.ToPoco();
+                return scope.ConvertToPoco(scalar, log);
             }
             else if (dto is MetaListDto set)
             {
-                return set.ToPoco();
+                return scope.ConvertToPoco(set, log);
             }
 
             return poco;

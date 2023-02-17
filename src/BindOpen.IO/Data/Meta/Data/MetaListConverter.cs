@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using BindOpen.Logging;
+using BindOpen.Runtime.Scopes;
+using System.Linq;
 
 namespace BindOpen.Data.Meta
 {
@@ -30,14 +32,17 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param name="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoMetaList ToPoco(this MetaListDto dto)
+        public static IBdoMetaList ConvertToPoco(
+            this IBdoScope scope,
+            MetaListDto dto,
+            IBdoLog log = null)
         {
             if (dto == null) return null;
 
             BdoMetaList poco = new();
             poco.WithId(dto.Id);
 
-            poco.Add(dto.Items?.Select(q => q.ToPoco()).ToArray());
+            poco.Add(dto.Items?.Select(q => scope.ConvertToPoco(q, log)).ToArray());
 
             return poco;
         }

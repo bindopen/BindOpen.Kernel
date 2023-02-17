@@ -147,7 +147,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        public IBdoExpression DataReference { get; set; }
+        public IBdoExpression DataExpression { get; set; }
 
         // Specification -------------------------------
 

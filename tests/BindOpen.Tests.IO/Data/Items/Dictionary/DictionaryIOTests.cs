@@ -1,5 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Items;
+using BindOpen.Dtos.Json;
+using BindOpen.Dtos.Xml;
 using Bogus;
 using NUnit.Framework;
 using System.IO;
@@ -10,8 +12,8 @@ namespace BindOpen.Tests.IO.Data
     [TestFixture, Order(210)]
     public class DictionaryIOTests
     {
-        private readonly string _filePath_xml = GlobalVariables.WorkingFolder + "Dictionary.xml";
-        private readonly string _filePath_json = GlobalVariables.WorkingFolder + "Dictionary.json";
+        private readonly string _filePath_xml = Tests.WorkingFolder + "Dictionary.xml";
+        private readonly string _filePath_json = Tests.WorkingFolder + "Dictionary.json";
         dynamic _valueSet;
         private IBdoDictionary _dico = null;
 

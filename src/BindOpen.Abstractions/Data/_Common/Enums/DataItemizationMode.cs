@@ -24,8 +24,8 @@ namespace BindOpen.Data
         Value,
 
         /// <summary>
-        /// Reference.
+        /// Expression.
         /// </summary>
-        Reference
+        Expression
     }
 }

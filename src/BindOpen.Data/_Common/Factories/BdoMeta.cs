@@ -1,6 +1,6 @@
-﻿using BindOpen.Data.Configuration;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
+using System;
 
 namespace BindOpen.Data
 {
@@ -9,17 +9,7 @@ namespace BindOpen.Data
     /// </summary>
     public static partial class BdoMeta
     {
-        /// <summary>
-        /// Creates a data meta with specified items.
-        /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public static IBdoMetaData New(
-            string name = null,
-            object data = null)
-        {
-            return New(name, DataValueTypes.Any, data);
-        }
+        // New
 
         /// <summary>
         /// Creates a data meta with specified items.
@@ -29,73 +19,93 @@ namespace BindOpen.Data
         public static IBdoMetaData New(
             string name,
             DataValueTypes valueType,
-            object data)
+            object data = null)
         {
-            if (valueType == DataValueTypes.Any || valueType == DataValueTypes.None)
-            {
-                valueType = data.GetValueType();
-            }
-
-            if (valueType.IsScalar())
-            {
-                var metaScalar = NewScalar(name, valueType, data);
-                return metaScalar;
-            }
-            else
-            {
-                if (valueType.IsList())
-                {
-                    var objList = data.ToObjectList();
-                    var metaList = NewList(name, objList?.ToArray());
-                    return metaList;
-                }
-                else
-                {
-                    var metaObj = NewObject(name, data);
-                    return metaObj;
-                }
-            }
+            return New(name, null, valueType, data);
         }
-
-        /// <summary>
-        /// Instantiates a new instance of the BdoConfiguration class.
-        /// </summary>
-        /// <param name="obj">The object to consider.</param>
-        public static BdoConfiguration NewFrom(
-            object obj,
-            string name = null)
-            => NewFrom<BdoConfiguration>(obj, name);
 
         /// <summary>
         /// Creates a data meta with specified items.
         /// </summary>
         /// <param name="name">The name to consider.</param>
         /// <param name="items">The items to consider.</param>
-        public static IBdoMetaData New<T>(
+        public static IBdoMetaData New(
             string name,
-            T data)
+            Type type,
+            object data = null)
         {
-            var type = typeof(T);
+            return New(name, type, DataValueTypes.Any, data);
+        }
 
-            var valueType = type.GetValueType();
-            var meta = New(name, valueType, data);
+        /// <summary>
+        /// Creates a data meta with specified items.
+        /// </summary>
+        /// <param name="name">The name to consider.</param>
+        /// <param name="items">The items to consider.</param>
+        public static IBdoMetaData New(
+            string name,
+            object data)
+        {
+            if (data == null) return NewObject(name);
+
+            var type = data.GetType();
+            var meta = New(name, type, data);
 
             return meta;
         }
 
         /// <summary>
-        /// Instantiates a new instance of the BdoConfiguration class.
+        /// Creates a data meta with specified items.
         /// </summary>
-        /// <param name="obj">The object to consider.</param>
-        public static T NewFrom<T>(
-            object obj,
-            string name = null)
-            where T : BdoMetaList, new()
+        /// <param name="name">The name to consider.</param>
+        /// <param name="items">The items to consider.</param>
+        private static IBdoMetaData New(
+            string name,
+            Type type,
+            DataValueTypes valueType,
+            object data = null)
         {
-            var list = NewList<T>(obj.ToMetaArray())
-                .WithName(name);
-            return list;
-        }
+            if (type != null)
+            {
+                valueType = type.GetValueType();
+            }
+            if (valueType == DataValueTypes.Any || valueType == DataValueTypes.None)
+            {
+                valueType = data.GetValueType();
+            }
 
+            if (type != null)
+            {
+                if (type.IsScalar())
+                {
+                    var metaScalar = NewScalar(name, valueType, data);
+                    return metaScalar;
+                }
+                else
+                {
+                    if (type.IsList())
+                    {
+                        var objList = data.ToObjectArray();
+
+                        var metaList = NewList(name);
+                        if (objList != null)
+                        {
+                            foreach (var obj in objList)
+                            {
+                                metaList.Add(obj);
+                            }
+                        }
+                        return metaList;
+                    }
+                    else
+                    {
+                        var metaObj = NewObject(name, data);
+                        return metaObj;
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 }

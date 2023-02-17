@@ -9,7 +9,7 @@ namespace BindOpen.Data.Meta
     /// 
     /// </summary>
     public interface IBdoMetaData :
-        IBdoItem,
+        IBdoHandledItem,
         INamed, IReferenced,
         IIndexed
     {
@@ -59,7 +59,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        IBdoExpression DataReference { get; set; }
+        IBdoExpression DataExpression { get; set; }
 
         /// <summary>
         /// 

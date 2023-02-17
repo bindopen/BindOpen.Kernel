@@ -1,7 +1,7 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Configuration;
+﻿using BindOpen.Data.Configuration;
 using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Meta.Reflection;
 using BindOpen.Extensions;
 using BindOpen.Extensions.Connecting;
 using BindOpen.Extensions.Modeling;

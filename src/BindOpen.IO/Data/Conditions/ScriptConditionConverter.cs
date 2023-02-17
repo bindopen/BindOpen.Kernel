@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Items;
+using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 
 namespace BindOpen.Data.Conditions
@@ -31,15 +32,16 @@ namespace BindOpen.Data.Conditions
         /// </summary>
         /// <param name="dto">The dto to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static IScriptCondition ToPoco(
-            this ScriptConditionDto dto,
-            IBdoScope scope)
+        public static IScriptCondition ConvertToPoco(
+            this IBdoScope scope,
+            ScriptConditionDto dto,
+            IBdoLog log = null)
         {
             if (dto == null) return null;
 
             ScriptCondition poco = new()
             {
-                Expression = dto.Expression.ToPoco(scope),
+                Expression = scope.ConvertToPoco(dto.Expression, log),
                 TrueValue = dto.TrueValue
             };
 

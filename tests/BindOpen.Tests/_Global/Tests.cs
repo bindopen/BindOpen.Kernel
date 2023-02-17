@@ -3,7 +3,7 @@ using BindOpen.Extensions.Scripting;
 
 namespace BindOpen.Tests
 {
-    public static class GlobalVariables
+    public static class Tests
     {
         static string _workingFolder;
         static IBdoScriptInterpreter _scriptInterpreter;
