@@ -3,7 +3,7 @@
 
   <xs:include schemaLocation="https://xsd.bindopen.org/DataItem.xsd" />
   <xs:include schemaLocation="https://xsd.bindopen.org/metrics/BdoMetricsDefinition.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/BdoExtensionItemGroup.xsd" />
+  <xs:include schemaLocation="https://xsd.bindopen.org/BdoExtensionGroup.xsd" />
 
   <xs:element name="metrics.dico" type="BdoMetricsDictionaryDto" />
 
@@ -17,7 +17,7 @@
       <xs:extension base="StoredDataItem">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="definitions" type="ArrayOfMetricsDefinition" />
-          <xs:element minOccurs="0" maxOccurs="1" name="groups" type="ArrayOfBdoExtensionItemGroup" />
+          <xs:element minOccurs="0" maxOccurs="1" name="groups" type="ArrayOfBdoExtensionGroup" />
         </xs:sequence>
         <xs:attribute name="libraryId" type="xs:string" />
         <xs:attribute name="library" type="xs:string" />

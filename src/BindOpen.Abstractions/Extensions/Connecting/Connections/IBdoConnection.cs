@@ -17,7 +17,7 @@ namespace BindOpen.Extensions.Connecting
         /// <summary>
         /// Sets the specified connector.
         /// </summary>
-        /// <param name="connector">The connector to consider.</param>
+        /// <param key="connector">The connector to consider.</param>
         IBdoConnection WithConnector(IBdoConnector connector)
         {
             Connector = connector;

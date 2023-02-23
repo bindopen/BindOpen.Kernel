@@ -59,7 +59,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="filter"></param>
+        /// <param key="filter"></param>
         /// <returns></returns>
         public IBdoObjectSpec WithClassFilter(IBdoStringFilter filter)
         {
@@ -76,7 +76,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="filter"></param>
+        /// <param key="filter"></param>
         /// <returns></returns>
         public IBdoObjectSpec WithDefinitionFilter(IBdoStringFilter filter)
         {
@@ -88,7 +88,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Indicates whether this instance is compatible with the specified item.
         /// </summary>
-        /// <param name="item">The item to consider.</param>
+        /// <param key="item">The item to consider.</param>
         /// <returns></returns>
         public override bool IsCompatibleWithData(object item)
         {

@@ -1,13 +1,12 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Data;
+﻿using BindOpen.Data;
 using BindOpen.Data.Configuration;
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using BindOpen.Runtime.Scopes;
 using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using BindOpen.Data.Items;
 
 namespace BindOpen.Hosting.Settings
 {
@@ -33,8 +32,8 @@ namespace BindOpen.Hosting.Settings
         /// <summary>
         /// Instantiates a new instance of the TBdoSettings class.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="config">The config to consider.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="config">The config to consider.</param>
         public BdoSettings(
             IBdoScope scope,
             IBdoConfiguration config)
@@ -74,7 +73,7 @@ namespace BindOpen.Hosting.Settings
         /// Gets the specified value.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="name">The name to consider.</param>
+        /// <param key="name">The name to consider.</param>
         public T Get<T>(string name)
             where T : class
         {
@@ -84,7 +83,7 @@ namespace BindOpen.Hosting.Settings
         /// <summary>
         /// Gets the specified value.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
+        /// <param key="name">The name to consider.</param>
         public object Get(string name)
         {
             return Configuration.GetData(name, Scope);
@@ -94,7 +93,7 @@ namespace BindOpen.Hosting.Settings
         /// Gets the specified value.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="propertyName">The calling property name to consider.</param>
+        /// <param key="propertyName">The calling property name to consider.</param>
         public T GetProperty<T>([CallerMemberName] string propertyName = null)
         {
             if (Configuration == null) return default;
@@ -129,8 +128,8 @@ namespace BindOpen.Hosting.Settings
         /// Gets the specified value.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="defaultValue">The default value to consider.</param>
-        /// <param name="propertyName">The calling property name to consider.</param>
+        /// <param key="defaultValue">The default value to consider.</param>
+        /// <param key="propertyName">The calling property name to consider.</param>
         public T GetProperty<T>(T defaultValue, [CallerMemberName] string propertyName = null) where T : struct, IConvertible
         {
             if (Configuration == null) return default;
@@ -160,8 +159,8 @@ namespace BindOpen.Hosting.Settings
         /// <summary>
         /// Sets the specified value.
         /// </summary>
-        /// <param name="value">The value to set.</param>
-        /// <param name="propertyName">The calling property name to consider.</param>
+        /// <param key="value">The value to set.</param>
+        /// <param key="propertyName">The calling property name to consider.</param>
         public void SetProperty(object value, [CallerMemberName] string propertyName = null)
         {
             if (propertyName != null)
@@ -195,7 +194,7 @@ namespace BindOpen.Hosting.Settings
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
-        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
+        /// <param key="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
             if (_isDisposed)

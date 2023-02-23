@@ -47,8 +47,8 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Instantiates a new instance of the BdoHostSettings class.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="config">The config to consider.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="config">The config to consider.</param>
         public BdoHostSettings(
             IBdoScope scope,
             IBdoConfiguration config)
@@ -67,7 +67,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Sets the library folder path.
         /// </summary>
-        /// <param name="libraryFolderPath"></param>
+        /// <param key="libraryFolderPath"></param>
         /// <returns>Returns this instance.</returns>
         public IBdoHostSettings WithLibraryFolder(string libraryFolderPath = null)
         {

@@ -9,38 +9,10 @@ namespace BindOpen.Data.Helpers
     public static partial class StringHelper
     {
         /// <summary>
-        /// Returns the string representation of the specified object.
-        /// </summary>
-        /// <param name="obj">The object to consider.</param>
-        /// <param name="index">The index to consider.</param>
-        /// <returns></returns>
-        public static Q GetAt<Q>(
-            this IList<Q> obj,
-            int index)
-            => obj != null
-            && index >= 0
-            && index < obj.Count ? obj[index] : default;
-
-        /// <summary>
-        /// Gets the string at the specified index from the specified index.
-        /// </summary>
-        /// <param name="arr">The objects to consider.</param>
-        /// <param name="index">The index to consider.</param>
-        /// <returns>Returns the normalized string.</returns>
-        public static T GetAt<T>(
-            this T[] arr,
-            int index)
-        {
-            return arr != null
-                && arr.Length > index
-                && arr[index] != null ? arr[index] : default;
-        }
-
-        /// <summary>
         /// Excludes the specified string items from the specified string items.
         /// </summary>
-        /// <param name="items">The string items to consider.</param>
-        /// <param name="excludingStringItems">The string items to exclude.</param>
+        /// <param key="items">The string items to consider.</param>
+        /// <param key="excludingStringItems">The string items to exclude.</param>
         /// <returns>Returns the excluded string items.</returns>
         public static T Excluding<T>(
             this T items,
@@ -62,8 +34,8 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Adds the specified string items from the specified string items.
         /// </summary>
-        /// <param name="items">The string items to consider.</param>
-        /// <param name="addingItems">The string items to add.</param>
+        /// <param key="items">The string items to consider.</param>
+        /// <param key="addingItems">The string items to add.</param>
         /// <returns>Returns the added string items.</returns>
         public static T Adding<T>(
             this T items,

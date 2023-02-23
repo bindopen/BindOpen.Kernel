@@ -15,16 +15,16 @@ namespace Microsoft.Extensions.Configuration
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="config"></param>
-        /// <param name="key"></param>
-        /// <param name="scope"></param>
-        /// <param name="varSet"></param>
-        /// <param name="log"></param>
+        /// <param key="config"></param>
+        /// <param key="key"></param>
+        /// <param key="scope"></param>
+        /// <param key="varSet"></param>
+        /// <param key="log"></param>
         /// <returns></returns>
         public static T GetBdoValue<T>(
             this IConfiguration config,
             string key, IBdoScope scope = null,
-            IBdoMetaList varSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
             where T : class
         {
@@ -35,19 +35,19 @@ namespace Microsoft.Extensions.Configuration
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="config"></param>
-        /// <param name="key"></param>
-        /// <param name="defaultValue"></param>
-        /// <param name="scope"></param>
-        /// <param name="scriptVariableSet">The script variable set to consider.</param>
-        /// <param name="log"></param>
+        /// <param key="config"></param>
+        /// <param key="key"></param>
+        /// <param key="defaultValue"></param>
+        /// <param key="scope"></param>
+        /// <param key="scriptVariableSet">The script variable set to consider.</param>
+        /// <param key="log"></param>
         /// <returns></returns>
         public static T GetBdoValue<T>(
             this IConfiguration config,
             string key,
             string defaultValue,
             IBdoScope scope = null,
-            IBdoMetaList varSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
             where T : class
         {
@@ -57,9 +57,9 @@ namespace Microsoft.Extensions.Configuration
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="config"></param>
-        /// <param name="type"></param>
-        /// <param name="key"></param>
+        /// <param key="config"></param>
+        /// <param key="type"></param>
+        /// <param key="key"></param>
         /// <returns></returns>
         public static object GetBdoValue(
             this IConfiguration config,
@@ -73,13 +73,13 @@ namespace Microsoft.Extensions.Configuration
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="config"></param>
-        /// <param name="type"></param>
-        /// <param name="key"></param>
-        /// <param name="defaultValue"></param>
-        /// <param name="scope"></param>
-        /// <param name="varSet">The script variable set to consider.</param>
-        /// <param name="log"></param>
+        /// <param key="config"></param>
+        /// <param key="type"></param>
+        /// <param key="key"></param>
+        /// <param key="defaultValue"></param>
+        /// <param key="scope"></param>
+        /// <param key="varSet">The script variable set to consider.</param>
+        /// <param key="log"></param>
         /// <returns></returns>
         public static object GetBdoValue(
             this IConfiguration config,
@@ -87,7 +87,7 @@ namespace Microsoft.Extensions.Configuration
             string key,
             string defaultValue,
             IBdoScope scope = null,
-            IBdoMetaList varSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             if (config == default) return default;
@@ -95,10 +95,10 @@ namespace Microsoft.Extensions.Configuration
 
             if (scope != null)
             {
-                var interpreter = scope.NewScriptInterpreter();
+                var interpreter = scope.CreateInterpreter();
 
                 return Convert.ChangeType(interpreter?.Evaluate(
-                    value, BdoExpressionKind.Script, varSet, log), type);
+                    BdoData.NewExp(value, BdoExpressionKind.Script), varSet, log), type);
             }
             else if (type == typeof(string))
             {

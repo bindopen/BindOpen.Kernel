@@ -132,9 +132,9 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Updates this instance.
         /// </summary>
-        /// <param name="item">The item to consider.</param>
-        /// <param name="specificationAreas">The specification areas to consider.</param>
-        /// <param name="updateModes">The update modes to consider.</param>
+        /// <param key="item">The item to consider.</param>
+        /// <param key="specificationAreas">The specification areas to consider.</param>
+        /// <param key="updateModes">The update modes to consider.</param>
         /// <returns>The log of the operation.</returns>
         /// <remarks>Put reference sets as null if you do not want to repair this instance.</remarks>
         public void Update<T>(
@@ -171,8 +171,8 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Set the root folder.
         /// </summary>
-        /// <param name="predicate">The condition that must be satisfied.</param>
-        /// <param name="rootFolderPath">The root folder path.</param>
+        /// <param key="predicate">The condition that must be satisfied.</param>
+        /// <param key="rootFolderPath">The root folder path.</param>
         /// <returns>Returns the host option.</returns>
         public IBdoHostOptions SetRootFolder(Predicate<IBdoHostOptions> predicate, string rootFolderPath)
         {
@@ -185,7 +185,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Sets the specified root folder path.
         /// </summary>
-        /// <param name="path">The path to consider.</param>
+        /// <param key="path">The path to consider.</param>
         /// <returns>Returns this instance.</returns>
         public IBdoHostOptions SetRootFolder(string path)
         {
@@ -199,8 +199,8 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Adds the extensions.
         /// </summary>
-        /// <param name="action">The action for adding extensions.</param>
-        /// <param name="loadOptionsAction">The action for loading options.</param>
+        /// <param key="action">The action for adding extensions.</param>
+        /// <param key="loadOptionsAction">The action for loading options.</param>
         /// <returns>Returns the host option.</returns>
         public IBdoHostOptions AddExtensions(Action<IBdoAssemblyReferenceCollection> action = null, Action<IExtensionLoadOptions> loadOptionsAction = null)
         {
@@ -222,8 +222,8 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Sets the host settings applying action on it.
         /// </summary>
-        /// <param name="hostSettings">The host settings to consider.</param>
-        /// <param name="action">The action to apply on the settings.</param>
+        /// <param key="hostSettings">The host settings to consider.</param>
+        /// <param key="action">The action to apply on the settings.</param>
         public IBdoHostOptions SetSettings(Action<IBdoHostSettings> action = null)
         {
             Settings = new BdoHostSettings();
@@ -236,8 +236,8 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Set the specified host settings file path.
         /// </summary>
-        /// <param name="path">The settings file path.</param>
-        /// <param name="isRequired">Indicates whether the host settings file is required.</param>
+        /// <param key="path">The settings file path.</param>
+        /// <param key="isRequired">Indicates whether the host settings file is required.</param>
         /// <returns>Returns the host option.</returns>
         public IBdoHostOptions SetSettingsFile(string path, bool? isRequired = false)
         {
@@ -248,8 +248,8 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Set the specified host settings file path.
         /// </summary>
-        /// <param name="path">The settings file path.</param>
-        /// <param name="isRequired">Indicates whether the host settings file is required.</param>
+        /// <param key="path">The settings file path.</param>
+        /// <param key="isRequired">Indicates whether the host settings file is required.</param>
         /// <returns>Returns the host option.</returns>
         public IBdoHostOptions SetSettingsFile(bool? isRequired)
         {
@@ -263,7 +263,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Adds the specified logger.
         /// </summary>
-        /// <param name="factory">The logger factory to consider.</param>
+        /// <param key="factory">The logger factory to consider.</param>
         /// <returns>Returns the host option.</returns>
         public IBdoHostOptions SetLogger(ILoggerFactory factory)
         {
@@ -275,7 +275,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Adds the specified logger.
         /// </summary>
-        /// <param name="initLogger">The logger initialization to consider.</param>
+        /// <param key="initLogger">The logger initialization to consider.</param>
         /// <returns>Returns the host option.</returns>
         public IBdoHostOptions SetLogger(Func<IBdoHost, ILogger> initLogger)
         {
@@ -289,7 +289,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>  
         /// The action that is executed when the start of this instance succedes.
         /// </summary>
-        /// <param name="action">The action to execute.</param>
+        /// <param key="action">The action to execute.</param>
         public IBdoHostOptions ExecuteOnStartSuccess(Action<IBdoHost> action)
         {
             Action_OnStartSuccess = new Action<IBdoJob>(p => action?.Invoke(p as IBdoHost));
@@ -300,7 +300,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// The action that is executed when the start of this instance fails.
         /// </summary>
-        /// <param name="action">The action to execute.</param>
+        /// <param key="action">The action to execute.</param>
         public IBdoHostOptions ExecuteOnStartFailure(Action<IBdoHost> action)
         {
             Action_OnStartFailure = new Action<IBdoJob>(p => action?.Invoke(p as IBdoHost));
@@ -311,7 +311,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// The action that is executed when this instance is successfully completed.
         /// </summary>
-        /// <param name="action">The action to execute.</param>
+        /// <param key="action">The action to execute.</param>
         public IBdoHostOptions ExecuteOnExecutionSuccess(Action<IBdoHost> action)
         {
             Action_OnExecutionSucess = new Action<IBdoJob>(p => action?.Invoke(p as IBdoHost));
@@ -322,7 +322,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// The action that is executed when this instance execution fails.
         /// </summary>
-        /// <param name="action">The action to execute.</param>
+        /// <param key="action">The action to execute.</param>
         public IBdoHostOptions ExecuteOnExecutionFailure(Action<IBdoHost> action)
         {
             Action_OnExecutionFailure = new Action<IBdoJob>(p => action?.Invoke(p as IBdoHost));
@@ -359,7 +359,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Adds the data store executing the specified action.
         /// </summary>
-        /// <param name="action">The action to execute on the created data store.</param>
+        /// <param key="action">The action to execute on the created data store.</param>
         public IBdoHostOptions AddDataStore(Action<IBdoDataStore> action = null)
         {
             DataStore ??= new BdoDataStore();
@@ -381,7 +381,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
-        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
+        /// <param key="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
             if (_isDisposed)

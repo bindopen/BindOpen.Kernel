@@ -38,7 +38,7 @@ namespace BindOpen.Tests.Data
             var el3 = BdoMeta.NewScalar("integer3", arrayInteger);
             var el4 = BdoMeta.NewScalar("byteArray4", arrayArrayByte);
 
-            var elSet = BdoMeta.NewList(el1, el2, el3, el4);
+            var elSet = BdoMeta.NewSet(el1, el2, el3, el4);
 
             var itemList1 = elSet.GetDataList<double>("number1");
             Assert.That(
@@ -65,28 +65,30 @@ namespace BindOpen.Tests.Data
             var elAB = BdoMeta.NewScalar("name1", "Test1");
             elAA.Update(elAB);
 
-            var elSetA = BdoMeta.NewList(elAA, elAB);
+            var elSetA = BdoMeta.NewSet(elAA, elAB);
 
             var elBA = BdoMeta.NewScalar("name1", "Test1");
             var elBB = BdoMeta.NewScalar("name1", null);
             elBA.Update(elBB);
 
-            var elSetB = BdoMeta.NewList(elBA, elBB);
+            var elSetB = BdoMeta.NewSet(elBA, elBB);
 
             elSetB.Add(elBB);
             elSetA.Add(elAB);
             elSetB.Update(elSetA);
 
             elSetA.Add(null);
-            elSetB.Add(null);
-            elSetB.Add(BdoMeta.New("name1", typeof(string)));
-            elSetB.Add(BdoMeta.New("name3", typeof(int)));
-            elSetB.Add(BdoMeta.New("name4", typeof(double)));
-            elSetB.Add(BdoMeta.New("name5", DataValueTypes.Text));
-            elSetA.Add(BdoMeta.New("name1", typeof(string)));
-            elSetA.Add(BdoMeta.New("name2", null as EntityFake));
-            elSetA.Add(BdoMeta.NewScalar("name4", DataValueTypes.Text, null));
-            elSetA.Add(BdoMeta.New("name5", null as string));
+            elSetB
+                .Add(null)
+                .Add(BdoMeta.New("name1", typeof(string)))
+                .Add(BdoMeta.New("name3", typeof(int)))
+                .Add(BdoMeta.New("name4", typeof(double)))
+                .Add(BdoMeta.New("name5", DataValueTypes.Text));
+            elSetA
+                .Add(BdoMeta.New("name1", typeof(string)))
+                .Add(BdoMeta.New("name2", null as EntityFake))
+                .Add(BdoMeta.NewScalar("name4", DataValueTypes.Text, null))
+                .Add(BdoMeta.New("name5", null as string));
             elSetB.Update(elSetA);
         }
 

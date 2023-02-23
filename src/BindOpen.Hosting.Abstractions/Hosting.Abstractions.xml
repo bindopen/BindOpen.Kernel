@@ -18,14 +18,14 @@
             <summary>
             Initializes a new instance of the BdoHostLoadException class.
             </summary>
-            <param name="message">The message to consider.</param>
+            <param key="message">The message to consider.</param>
         </member>
         <member name="M:BindOpen.Hosting.Exceptions.BdoHostLoadException.#ctor(System.String,System.Exception)">
             <summary>
             Initializes a new instance of the BdoHostLoadException class.
             </summary>
-            <param name="message">The message to consider.</param>
-            <param name="innerException">The inner exception to consider.</param>
+            <param key="message">The message to consider.</param>
+            <param key="innerException">The inner exception to consider.</param>
         </member>
         <member name="T:BindOpen.Hosting.Hosts.BdoHostPathKind">
             <summary>
@@ -56,7 +56,7 @@
             <summary>
             Get the specified known path.
             </summary>
-            <param name="pathKind">The kind of known path.</param>
+            <param key="pathKind">The kind of known path.</param>
             <returns>Returns the specified path.</returns>
         </member>
         <member name="P:BindOpen.Hosting.Hosts.IBdoHost.Options">
@@ -68,14 +68,14 @@
             <summary>
             Configures the bot.
             </summary>
-            <param name="setupOptions">The action to setup the bot.</param>
+            <param key="setupOptions">The action to setup the bot.</param>
             <returns>Returns the bot.</returns>
         </member>
         <member name="M:BindOpen.Hosting.Hosts.IBdoHost.WithOptions(BindOpen.Hosting.Hosts.IBdoHostOptions)">
             <summary>
             Sets the specfied options
             </summary>
-            <param name="options"></param>
+            <param key="options"></param>
             <returns>Returns this instance.</returns>
         </member>
         <member name="M:BindOpen.Hosting.Hosts.IBdoHost.Start">
@@ -88,14 +88,14 @@
             <summary>
             Ends the process specifying the status.
             </summary>
-            <param name="executionStatus">The execution status to apply.</param>
+            <param key="executionStatus">The execution status to apply.</param>
             <returns>Returns the bot to consider.</returns>
         </member>
         <member name="M:BindOpen.Hosting.Hosts.IBdoHost.Run(System.Action{BindOpen.Hosting.Hosts.IBdoHost})">
             <summary>
             Runs the specified action.
             </summary>
-            <param name="action">The action to consider.</param>
+            <param key="action">The action to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
         <member name="T:BindOpen.Hosting.Hosts.IBdoHostOptions">
@@ -117,15 +117,15 @@
             <summary>
             Set the root folder.
             </summary>
-            <param name="predicate">The condition that muse be satistfied.</param>
-            <param name="rootFolderPath">The root folder path to consider.</param>
+            <param key="predicate">The condition that muse be satistfied.</param>
+            <param key="rootFolderPath">The root folder path to consider.</param>
             <returns>Returns the host option.</returns>
         </member>
         <member name="M:BindOpen.Hosting.Hosts.IBdoHostOptions.SetRootFolder(System.String)">
             <summary>
             Set the root folder.
             </summary>
-            <param name="rootFolderPath">The root folder path to consider.</param>
+            <param key="rootFolderPath">The root folder path to consider.</param>
             <returns>Returns the host option.</returns>
         </member>
         <member name="P:BindOpen.Hosting.Hosts.IBdoHostOptions.ExtensionReferences">
@@ -142,8 +142,8 @@
             <summary>
             Adds the extensions.
             </summary>
-            <param name="action">The action for adding extensions.</param>
-            <param name="loadOptionsAction">The action for loading options.</param>
+            <param key="action">The action for adding extensions.</param>
+            <param key="loadOptionsAction">The action for loading options.</param>
             <returns>Returns the host option.</returns>
         </member>
         <member name="P:BindOpen.Hosting.Hosts.IBdoHostOptions.DataStore">
@@ -176,22 +176,22 @@
             <summary>
             Set the host settings file.
             </summary>
-            <param name="filePath">The host settings file path.</param>
-            <param name="isRequired">Indicates whether the host settings file is required.</param>
+            <param key="filePath">The host settings file path.</param>
+            <param key="isRequired">Indicates whether the host settings file is required.</param>
             <returns>Returns the host option.</returns>
         </member>
         <member name="M:BindOpen.Hosting.Hosts.IBdoHostOptions.SetSettingsFile(System.Nullable{System.Boolean})">
             <summary>
             Set the host settings file.
             </summary>
-            <param name="isRequired">Indicates whether the host settings file is required.</param>
+            <param key="isRequired">Indicates whether the host settings file is required.</param>
             <returns>Returns the host option.</returns>
         </member>
         <member name="M:BindOpen.Hosting.Hosts.IBdoHostOptions.SetSettings(System.Action{BindOpen.Hosting.Hosts.IBdoHostSettings})">
             <summary>
             Sets the host settings applying action on it.
             </summary>
-            <param name="action">The action to apply on the settings.</param>
+            <param key="action">The action to apply on the settings.</param>
         </member>
         <member name="P:BindOpen.Hosting.Hosts.IBdoHostOptions.LoggerInit">
             <summary>
@@ -202,14 +202,14 @@
             <summary>
             Adds the specified logger.
             </summary>
-            <param name="loggerFactory">The logger factory to consider.</param>
+            <param key="loggerFactory">The logger factory to consider.</param>
             <returns>Returns the host option.</returns>
         </member>
         <member name="M:BindOpen.Hosting.Hosts.IBdoHostOptions.SetLogger(System.Func{BindOpen.Hosting.Hosts.IBdoHost,Microsoft.Extensions.Logging.ILogger})">
             <summary>
             Adds the specified logger.
             </summary>
-            <param name="initLogger">The logger initialization to consider.</param>
+            <param key="initLogger">The logger initialization to consider.</param>
             <returns>Returns the host option.</returns>
         </member>
         <member name="P:BindOpen.Hosting.Hosts.IBdoHostOptions.Action_OnStartSuccess">
@@ -236,25 +236,25 @@
             <summary>  
             The action that is executed when start succeeds.
             </summary>
-            <param name="action">The action to execute.</param>
+            <param key="action">The action to execute.</param>
         </member>
         <member name="M:BindOpen.Hosting.Hosts.IBdoHostOptions.ExecuteOnStartFailure(System.Action{BindOpen.Hosting.Hosts.IBdoHost})">
             <summary>
             The action that is executed when start fails.
             </summary>
-            <param name="action">The action to execute.</param>
+            <param key="action">The action to execute.</param>
         </member>
         <member name="M:BindOpen.Hosting.Hosts.IBdoHostOptions.ExecuteOnExecutionSuccess(System.Action{BindOpen.Hosting.Hosts.IBdoHost})">
             <summary>
             The action that is executed when execution succeeds.
             </summary>
-            <param name="action">The action to execute.</param>
+            <param key="action">The action to execute.</param>
         </member>
         <member name="M:BindOpen.Hosting.Hosts.IBdoHostOptions.ExecuteOnExecutionFailure(System.Action{BindOpen.Hosting.Hosts.IBdoHost})">
             <summary>
             The action that is executed when execution fails.
             </summary>
-            <param name="action">The action to execute.</param>
+            <param key="action">The action to execute.</param>
         </member>
         <member name="M:BindOpen.Hosting.Hosts.IBdoHostOptions.ThrowExceptionOnStartFailure(System.Boolean)">
             <summary>
@@ -280,7 +280,7 @@
             <summary>
             Set the library folder.
             </summary>
-            <param name="libraryFolderPath">The library folder path.</param>
+            <param key="libraryFolderPath">The library folder path.</param>
             <returns>Returns the host option.</returns>
         </member>
         <member name="T:BindOpen.Hosting.Services.IBdoHosted">
@@ -307,7 +307,7 @@
             <summary>
             
             </summary>
-            <param name="logger"></param>
+            <param key="logger"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Hosting.Services.IBdoJob.Log">
@@ -319,7 +319,7 @@
             <summary>
             
             </summary>
-            <param name="log"></param>
+            <param key="log"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Hosting.Services.IBdoJob.IsLoaded">
@@ -357,7 +357,7 @@
             <summary>
             Ends the process specifying the status.
             </summary>
-            <param name="executionStatus">The execution status to apply.</param>
+            <param key="executionStatus">The execution status to apply.</param>
             <returns>Returns the job to consider.</returns>
         </member>
         <member name="T:BindOpen.Hosting.Services.ITBdoJob`1">
@@ -385,7 +385,7 @@
             <summary>
             Ends the process specifying the status.
             </summary>
-            <param name="executionStatus">The execution status to apply.</param>
+            <param key="executionStatus">The execution status to apply.</param>
             <returns>Returns the service to consider.</returns>
         </member>
         <member name="T:BindOpen.Hosting.Settings.IBdoSettings">
@@ -403,14 +403,14 @@
             
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="name"></param>
+            <param key="name"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Hosting.Settings.IBdoSettings.Get(System.String)">
             <summary>
             
             </summary>
-            <param name="name"></param>
+            <param key="name"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Hosting.Settings.IBdoSettings.GetProperty``1(System.String)">
@@ -418,7 +418,7 @@
             
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="propertyName"></param>
+            <param key="propertyName"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Hosting.Settings.IBdoSettings.GetProperty``1(``0,System.String)">
@@ -426,16 +426,16 @@
             
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="defaultValue"></param>
-            <param name="propertyName"></param>
+            <param key="defaultValue"></param>
+            <param key="propertyName"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Hosting.Settings.IBdoSettings.SetProperty(System.Object,System.String)">
             <summary>
             
             </summary>
-            <param name="value"></param>
-            <param name="propertyName"></param>
+            <param key="value"></param>
+            <param key="propertyName"></param>
         </member>
     </members>
 </doc>

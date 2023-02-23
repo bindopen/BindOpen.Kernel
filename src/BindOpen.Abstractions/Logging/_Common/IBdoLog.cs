@@ -16,16 +16,9 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="displayName"></param>
+        /// <param key="displayName"></param>
         /// <returns></returns>
         IBdoLog WithDisplayName(string displayName);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="description"></param>
-        /// <returns></returns>
-        IBdoLog WithDescription(string description);
 
         /// <summary>
         /// 
@@ -40,7 +33,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="task"></param>
+        /// <param key="task"></param>
         /// <returns></returns>
         IBdoLog WithTask(IBdoConfiguration task);
 
@@ -65,7 +58,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="parent"></param>
+        /// <param key="parent"></param>
         /// <returns></returns>
         IBdoLog WithParent(IBdoLog parent);
 
@@ -79,43 +72,43 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="filterFinder"></param>
-        /// <param name="eventKind"></param>
-        /// <param name="title"></param>
-        /// <param name="criticality"></param>
-        /// <param name="description"></param>
-        /// <param name="resultCode"></param>
-        /// <param name="source"></param>
-        /// <param name="date"></param>
+        /// <param key="filterFinder"></param>
+        /// <param key="eventKind"></param>
+        /// <param key="title"></param>
+        /// <param key="criticality"></param>
+        /// <param key="description"></param>
+        /// <param key="resultCode"></param>
+        /// <param key="source"></param>
+        /// <param key="date"></param>
         /// <returns></returns>
         IBdoLog InsertSubLog(Predicate<IBdoLog> filterFinder = null, EventKinds eventKind = EventKinds.Any, string title = null, Criticalities criticality = Criticalities.None, string description = null, string resultCode = null, string source = null, DateTime? date = null);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="filterFinder"></param>
-        /// <param name="eventKind"></param>
-        /// <param name="title"></param>
-        /// <param name="criticality"></param>
-        /// <param name="description"></param>
-        /// <param name="resultCode"></param>
-        /// <param name="source"></param>
-        /// <param name="date"></param>
+        /// <param key="filterFinder"></param>
+        /// <param key="eventKind"></param>
+        /// <param key="title"></param>
+        /// <param key="criticality"></param>
+        /// <param key="description"></param>
+        /// <param key="resultCode"></param>
+        /// <param key="source"></param>
+        /// <param key="date"></param>
         /// <returns></returns>
         IBdoLog AddSubLog(Predicate<IBdoLog> filterFinder = null, EventKinds eventKind = EventKinds.Any, string title = null, Criticalities criticality = Criticalities.None, string description = null, string resultCode = null, string source = null, DateTime? date = null);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="childLog"></param>
-        /// <param name="logFinder"></param>
-        /// <param name="eventKind"></param>
-        /// <param name="title"></param>
-        /// <param name="criticality"></param>
-        /// <param name="description"></param>
-        /// <param name="resultCode"></param>
-        /// <param name="source"></param>
-        /// <param name="date"></param>
+        /// <param key="childLog"></param>
+        /// <param key="logFinder"></param>
+        /// <param key="eventKind"></param>
+        /// <param key="title"></param>
+        /// <param key="criticality"></param>
+        /// <param key="description"></param>
+        /// <param key="resultCode"></param>
+        /// <param key="source"></param>
+        /// <param key="date"></param>
         /// <returns></returns>
         IBdoLog AddSubLog(IBdoLog childLog, Predicate<IBdoLog> logFinder = null, EventKinds eventKind = EventKinds.Any, string title = null, Criticalities criticality = Criticalities.None, string description = null, string resultCode = null, string source = null, DateTime? date = null);
 
@@ -124,82 +117,82 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="title"></param>
-        /// <param name="criticality"></param>
-        /// <param name="description"></param>
-        /// <param name="resultCode"></param>
-        /// <param name="source"></param>
-        /// <param name="date"></param>
-        /// <param name="childLog"></param>
-        /// <param name="logFinder"></param>
+        /// <param key="title"></param>
+        /// <param key="criticality"></param>
+        /// <param key="description"></param>
+        /// <param key="resultCode"></param>
+        /// <param key="source"></param>
+        /// <param key="date"></param>
+        /// <param key="childLog"></param>
+        /// <param key="logFinder"></param>
         /// <returns></returns>
         IBdoLog AddCheckpoint(string title, Criticalities criticality = Criticalities.None, string description = null, string resultCode = null, string source = null, DateTime? date = null, IBdoLog childLog = null, Predicate<IBdoLog> logFinder = null);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="title"></param>
-        /// <param name="criticality"></param>
-        /// <param name="description"></param>
-        /// <param name="resultCode"></param>
-        /// <param name="source"></param>
-        /// <param name="date"></param>
-        /// <param name="childLog"></param>
-        /// <param name="logFinder"></param>
+        /// <param key="title"></param>
+        /// <param key="criticality"></param>
+        /// <param key="description"></param>
+        /// <param key="resultCode"></param>
+        /// <param key="source"></param>
+        /// <param key="date"></param>
+        /// <param key="childLog"></param>
+        /// <param key="logFinder"></param>
         /// <returns></returns>
         IBdoLog AddError(string title, Criticalities criticality = Criticalities.None, string description = null, string resultCode = null, string source = null, DateTime? date = null, IBdoLog childLog = null, Predicate<IBdoLog> logFinder = null);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="exception"></param>
-        /// <param name="criticality"></param>
-        /// <param name="resultCode"></param>
-        /// <param name="source"></param>
-        /// <param name="childLog"></param>
-        /// <param name="logFinder"></param>
+        /// <param key="exception"></param>
+        /// <param key="criticality"></param>
+        /// <param key="resultCode"></param>
+        /// <param key="source"></param>
+        /// <param key="childLog"></param>
+        /// <param key="logFinder"></param>
         /// <returns></returns>
         IBdoLog AddException(Exception exception, Criticalities criticality = Criticalities.None, string resultCode = null, string source = null, IBdoLog childLog = null, Predicate<IBdoLog> logFinder = null);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="title"></param>
-        /// <param name="criticality"></param>
-        /// <param name="description"></param>
-        /// <param name="resultCode"></param>
-        /// <param name="source"></param>
-        /// <param name="date"></param>
-        /// <param name="childLog"></param>
-        /// <param name="logFinder"></param>
+        /// <param key="title"></param>
+        /// <param key="criticality"></param>
+        /// <param key="description"></param>
+        /// <param key="resultCode"></param>
+        /// <param key="source"></param>
+        /// <param key="date"></param>
+        /// <param key="childLog"></param>
+        /// <param key="logFinder"></param>
         /// <returns></returns>
         IBdoLog AddException(string title, Criticalities criticality = Criticalities.None, string description = null, string resultCode = null, string source = null, DateTime? date = null, IBdoLog childLog = null, Predicate<IBdoLog> logFinder = null);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="title"></param>
-        /// <param name="criticality"></param>
-        /// <param name="description"></param>
-        /// <param name="resultCode"></param>
-        /// <param name="source"></param>
-        /// <param name="date"></param>
-        /// <param name="childLog"></param>
-        /// <param name="logFinder"></param>
+        /// <param key="title"></param>
+        /// <param key="criticality"></param>
+        /// <param key="description"></param>
+        /// <param key="resultCode"></param>
+        /// <param key="source"></param>
+        /// <param key="date"></param>
+        /// <param key="childLog"></param>
+        /// <param key="logFinder"></param>
         /// <returns></returns>
         IBdoLog AddMessage(string title, Criticalities criticality = Criticalities.None, string description = null, string resultCode = null, string source = null, DateTime? date = null, IBdoLog childLog = null, Predicate<IBdoLog> logFinder = null);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="title"></param>
-        /// <param name="criticality"></param>
-        /// <param name="description"></param>
-        /// <param name="resultCode"></param>
-        /// <param name="source"></param>
-        /// <param name="date"></param>
-        /// <param name="childLog"></param>
-        /// <param name="logFinder"></param>
+        /// <param key="title"></param>
+        /// <param key="criticality"></param>
+        /// <param key="description"></param>
+        /// <param key="resultCode"></param>
+        /// <param key="source"></param>
+        /// <param key="date"></param>
+        /// <param key="childLog"></param>
+        /// <param key="logFinder"></param>
         /// <returns></returns>
         IBdoLog AddWarning(string title, Criticalities criticality = Criticalities.None, string description = null, string resultCode = null, string source = null, DateTime? date = null, IBdoLog childLog = null, Predicate<IBdoLog> logFinder = null);
 
@@ -208,87 +201,87 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="kind"></param>
-        /// <param name="title"></param>
-        /// <param name="criticality"></param>
-        /// <param name="description"></param>
-        /// <param name="resultCode"></param>
-        /// <param name="source"></param>
-        /// <param name="date"></param>
-        /// <param name="childLog"></param>
-        /// <param name="logFinder"></param>
+        /// <param key="kind"></param>
+        /// <param key="title"></param>
+        /// <param key="criticality"></param>
+        /// <param key="description"></param>
+        /// <param key="resultCode"></param>
+        /// <param key="source"></param>
+        /// <param key="date"></param>
+        /// <param key="childLog"></param>
+        /// <param key="logFinder"></param>
         /// <returns></returns>
         IBdoLog AddEvent(EventKinds kind, string title, Criticalities criticality = Criticalities.None, string description = null, string resultCode = null, string source = null, DateTime? date = null, IBdoLog childLog = null, Predicate<IBdoLog> logFinder = null);
 
         /// <summary>
         /// Adds the events of this instance to the specified log.
         /// </summary>
-        /// <param name="log">The log to consider.</param>
-        /// <param name="logFinder"></param>
-        /// <param name="kinds"></param>
+        /// <param key="log">The log to consider.</param>
+        /// <param key="logFinder"></param>
+        /// <param key="kinds"></param>
         /// <returns></returns>
         IBdoLog AddEventsTo(IBdoLog log, Predicate<IBdoLog> logFinder = null, params EventKinds[] kinds);
 
         /// <summary>
         /// Adds the events of this instance to the specified log.
         /// </summary>
-        /// <param name="log">The log to consider.</param>
-        /// <param name="kinds"></param>
+        /// <param key="log">The log to consider.</param>
+        /// <param key="kinds"></param>
         /// <returns></returns>
         IBdoLog AddEventsTo(IBdoLog log, params EventKinds[] kinds);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="kinds"></param>
+        /// <param key="kinds"></param>
         /// <returns></returns>
         bool HasEvent(params EventKinds[] kinds);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="isRecursive"></param>
-        /// <param name="kinds"></param>
+        /// <param key="isRecursive"></param>
+        /// <param key="kinds"></param>
         /// <returns></returns>
         bool HasEvent(bool isRecursive = true, params EventKinds[] kinds);
 
         /// <summary>
         /// Adds the specified events to this instance.
         /// </summary>
-        /// <param name="log">The log to consider.</param>
-        /// <param name="logFinder"></param>
-        /// <param name="kinds"></param>
+        /// <param key="log">The log to consider.</param>
+        /// <param key="logFinder"></param>
+        /// <param key="kinds"></param>
         /// <returns></returns>
         IBdoLog AddEvents(IBdoLog log, Predicate<IBdoLog> logFinder = null, params EventKinds[] kinds);
 
         /// <summary>
         /// Adds the specified events to this instance.
         /// </summary>
-        /// <param name="log">The log to consider.</param>
-        /// <param name="kinds"></param>
+        /// <param key="log">The log to consider.</param>
+        /// <param key="kinds"></param>
         /// <returns></returns>
         IBdoLog AddEvents(IBdoLog log, params EventKinds[] kinds);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="isRecursive"></param>
-        /// <param name="kinds"></param>
+        /// <param key="isRecursive"></param>
+        /// <param key="kinds"></param>
         IBdoLog ClearEvents(bool isRecursive = true, params EventKinds[] kinds);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="isRecursive"></param>
-        /// <param name="kinds"></param>
+        /// <param key="isRecursive"></param>
+        /// <param key="kinds"></param>
         /// <returns></returns>
         int GetEventCount(bool isRecursive = false, params EventKinds[] kinds);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="isRecursive"></param>
-        /// <param name="kinds"></param>
+        /// <param key="isRecursive"></param>
+        /// <param key="kinds"></param>
         /// <returns></returns>
         EventKinds GetMaxEventKind(bool isRecursive = true, params EventKinds[] kinds);
 
@@ -297,8 +290,8 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="isRecursive"></param>
+        /// <param key="id"></param>
+        /// <param key="isRecursive"></param>
         /// <returns></returns>
         IBdoLog GetSubLogWithId(string id, bool isRecursive = false);
 
@@ -311,16 +304,16 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="childLog"></param>
-        /// <param name="isRecursive"></param>
+        /// <param key="childLog"></param>
+        /// <param key="isRecursive"></param>
         /// <returns></returns>
         IBdoLog RemoveSubLog(IBdoLog childLog, bool isRecursive = true);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="isRecursive"></param>
+        /// <param key="id"></param>
+        /// <param key="isRecursive"></param>
         /// <returns></returns>
         IBdoLog RemoveSubLog(string id, bool isRecursive = true);
 
@@ -329,13 +322,13 @@ namespace BindOpen.Logging
         /// <summary>
         /// Clones this instance considering the parent log.
         /// </summary>
-        /// <param name="parent"></param>
+        /// <param key="parent"></param>
         IBdoLog Clone(IBdoLog parent, params string[] areas);
 
         /// <summary>
         /// Clones this instance considering the parent log.
         /// </summary>
-        /// <param name="parent"></param>
+        /// <param key="parent"></param>
         T Clone<T>(IBdoLog parent, params string[] areas) where T : class;
 
         // Execution
@@ -348,7 +341,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="execution"></param>
+        /// <param key="execution"></param>
         /// <returns></returns>
         IBdoLog WithExecution(IProcessExecution execution);
 
@@ -365,7 +358,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="status"></param>
+        /// <param key="status"></param>
         IBdoLog End(ProcessExecutionStatus status = ProcessExecutionStatus.Completed);
     }
 }

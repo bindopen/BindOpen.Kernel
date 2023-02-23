@@ -10,8 +10,8 @@ namespace BindOpen.Data.Meta.Reflection
         /// <summary>
         /// Creates a meta data of the specified object.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="items">The items to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="items">The items to consider.</param>
         public static IBdoMetaData ToMetaData(
             this object obj,
             string name)
@@ -20,8 +20,8 @@ namespace BindOpen.Data.Meta.Reflection
         /// <summary>
         /// Creates a meta data of the specified object.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="items">The items to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="items">The items to consider.</param>
         public static IBdoMetaData ToMetaData(
             this object obj,
             bool onlyMetaAttributes = false,
@@ -32,8 +32,8 @@ namespace BindOpen.Data.Meta.Reflection
         /// <summary>
         /// Creates a meta data of the specified object.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="items">The items to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="items">The items to consider.</param>
         public static T ToMetaData<T>(
             this object obj,
             string name)
@@ -43,8 +43,8 @@ namespace BindOpen.Data.Meta.Reflection
         /// <summary>
         /// Creates a meta data of the specified object.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="items">The items to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="items">The items to consider.</param>
         public static T ToMetaData<T>(
             this object obj,
             bool onlyMetaAttributes = false,
@@ -55,16 +55,16 @@ namespace BindOpen.Data.Meta.Reflection
         /// <summary>
         /// Creates a meta data of the specified object.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="items">The items to consider.</param>
-        public static IBdoMetaList AsMetaList(
+        /// <param key="name">The name to consider.</param>
+        /// <param key="items">The items to consider.</param>
+        public static IBdoMetaSet AsMetaSet(
             this IBdoMetaData meta)
-            => meta as IBdoMetaList;
+            => meta as IBdoMetaSet;
 
         /// <summary>
         /// Creates a data element list from a dynamic object.
         /// </summary>
-        /// <param name="obj">The objet to consider.</param>
+        /// <param key="obj">The objet to consider.</param>
         public static IBdoMetaData[] ToArray(
             this IBdoMetaData meta)
             => meta.ToList()?.ToArray();
@@ -72,11 +72,11 @@ namespace BindOpen.Data.Meta.Reflection
         /// <summary>
         /// Creates a data element list from a dynamic object.
         /// </summary>
-        /// <param name="obj">The objet to consider.</param>
+        /// <param key="obj">The objet to consider.</param>
         public static List<IBdoMetaData> ToList(
             this IBdoMetaData meta)
         {
-            if (meta is IBdoMetaList metaList)
+            if (meta is IBdoMetaSet metaList)
             {
                 return metaList.ToList();
             }

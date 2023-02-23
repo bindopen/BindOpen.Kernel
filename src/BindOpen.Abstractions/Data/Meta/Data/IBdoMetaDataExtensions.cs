@@ -54,5 +54,21 @@ namespace BindOpen.Data.Meta
 
             return meta;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithParent<T>(
+            this T meta,
+            IBdoMetaData parent)
+            where T : IBdoMetaData
+        {
+            if (meta != null)
+            {
+                meta.Parent = parent;
+            }
+
+            return meta;
+        }
     }
 }

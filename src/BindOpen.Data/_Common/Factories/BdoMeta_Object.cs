@@ -11,7 +11,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Initializes a new object el.
         /// </summary>
-        /// <param name="items">The items to consider.</param>
+        /// <param key="items">The items to consider.</param>
         public static BdoMetaObject NewObject(
             string name = null)
             => NewObject(name, null, null);
@@ -19,8 +19,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Initializes a new object el.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="items">The items to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="items">The items to consider.</param>
         public static BdoMetaObject NewObject(
             string name,
             object item)
@@ -29,9 +29,9 @@ namespace BindOpen.Data
         /// <summary>
         /// Initializes a new object el.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="classFullName">The class full name to consider.</param>
-        /// <param name="items">The items to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="classFullName">The class full name to consider.</param>
+        /// <param key="items">The items to consider.</param>
         public static BdoMetaObject NewObject(
             string name,
             IBdoClassReference reference,
@@ -52,8 +52,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Initializes a new object el.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="items">The items to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="items">The items to consider.</param>
         public static BdoMetaObject NewObject<T>(
             string name,
             T item)
@@ -67,7 +67,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Initializes a new object el.
         /// </summary>
-        /// <param name="item">The items to consider.</param>
+        /// <param key="item">The items to consider.</param>
         public static BdoMetaObject NewObject<T>(
             T item)
             where T : class, new()

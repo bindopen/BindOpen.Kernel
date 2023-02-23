@@ -8,7 +8,7 @@ namespace BindOpen.Extensions.Connecting
     /// </summary>
     [XmlType("ConnectorConfiguration", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot(ElementName = "connector", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class ConnectorConfigurationDto : ExtensionItemConfigurationDto
+    public class ConnectorConfigurationDto : ExtensionConfigurationDto
     {
         // ------------------------------------------
         // CONSTRUCTORS

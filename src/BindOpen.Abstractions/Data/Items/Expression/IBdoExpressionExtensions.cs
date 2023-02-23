@@ -11,7 +11,7 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="text"></param>
+        /// <param key="text"></param>
         /// <returns></returns>
         public static T WithText<T>(
             this T exp,
@@ -34,7 +34,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Removes the item with the specified name.
         /// </summary>
-        /// <param name="keys">The keys of the item to remove.</param>
+        /// <param key="keys">The keys of the item to remove.</param>
         public static T WithWord<T>(
             this T exp,
             IBdoScriptword word)

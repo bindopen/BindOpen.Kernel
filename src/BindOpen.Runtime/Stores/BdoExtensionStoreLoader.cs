@@ -5,7 +5,7 @@ using BindOpen.Data.Items;
 using BindOpen.Extensions;
 using BindOpen.Logging;
 using BindOpen.Runtime.Assemblies;
-using BindOpen.Runtime.Definition;
+using BindOpen.Runtime.Definitions;
 using BindOpen.Runtime.Scopes;
 using System;
 using System.IO;
@@ -26,9 +26,9 @@ namespace BindOpen.Runtime.Stores
         /// <summary>
         /// Initializes a new instance of BdoExtensionStoreLoader the class.
         /// </summary>
-        /// <param name="appDomain">The application domain to consider.</param>
-        /// <param name="store">The extension store to consider.</param>
-        /// <param name="loadOptions">The load options to consider.</param>
+        /// <param key="appDomain">The application domain to consider.</param>
+        /// <param key="store">The extension store to consider.</param>
+        /// <param key="loadOptions">The load options to consider.</param>
         public BdoExtensionStoreLoader(AppDomain appDomain, IBdoExtensionStore store, IExtensionLoadOptions loadOptions)
         {
             _appDomain = appDomain;
@@ -45,8 +45,8 @@ namespace BindOpen.Runtime.Stores
         /// <summary>
         /// Loads the specified extensions into the specified scope.
         /// </summary>
-        /// <param name="references">The library references to consider.</param>
-        /// <param name="log">The log to consider.</param>
+        /// <param key="references">The library references to consider.</param>
+        /// <param key="log">The log to consider.</param>
         public bool LoadExtensionsInStore(
             IBdoAssemblyReference[] references,
             IBdoLog log = null)
@@ -87,8 +87,8 @@ namespace BindOpen.Runtime.Stores
         /// <summary>
         /// Loads the specified library.
         /// </summary>
-        /// <param name="libraryReference">The library reference to consider.</param>
-        /// <param name="log">The log to consider.</param>
+        /// <param key="libraryReference">The library reference to consider.</param>
+        /// <param key="log">The log to consider.</param>
         /// <returns>Returns the loaded library.</returns>
         private bool LoadLibrary(IBdoAssemblyReference libraryReference, IBdoLog log = null)
         {
@@ -179,7 +179,7 @@ namespace BindOpen.Runtime.Stores
 
                         // we get the extension definition
 
-                        IBdoExtensionDefinition extensionDefinition = ExtractExtensionDefinition(assembly, null, log);
+                        IBdoPackageDefinition extensionDefinition = ExtractPackageDefinition(assembly, null, log);
 
                         // we load the using assemblies
 
@@ -197,14 +197,14 @@ namespace BindOpen.Runtime.Stores
 
                         // we load the item definition specifiying the extension definition
 
-                        foreach (BdoExtensionItemKind kind in new[] {
-                                BdoExtensionItemKind.Entity,
-                                BdoExtensionItemKind.Connector,
-                                BdoExtensionItemKind.Entity,
-                                BdoExtensionItemKind.Metrics,
-                                BdoExtensionItemKind.Routine,
-                                BdoExtensionItemKind.Scriptword,
-                                BdoExtensionItemKind.Task })
+                        foreach (BdoExtensionKind kind in new[] {
+                                BdoExtensionKind.Entity,
+                                BdoExtensionKind.Connector,
+                                BdoExtensionKind.Entity,
+                                BdoExtensionKind.Metrics,
+                                BdoExtensionKind.Routine,
+                                BdoExtensionKind.Scriptword,
+                                BdoExtensionKind.Task })
                         {
                             var subSubLog = log?.NewLog();
                             int count = LoadDictionary(assembly, kind, extensionDefinition, subSubLog);
@@ -243,7 +243,7 @@ namespace BindOpen.Runtime.Stores
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
-        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
+        /// <param key="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
             if (_isDisposed)

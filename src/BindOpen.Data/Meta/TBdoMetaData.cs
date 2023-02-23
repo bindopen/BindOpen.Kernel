@@ -31,9 +31,9 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Initializes a new data element.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="namePreffix">The name preffix to consider.</param>
-        /// <param name="id">The ID to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="namePreffix">The name preffix to consider.</param>
+        /// <param key="id">The ID to consider.</param>
         protected TBdoMetaData(
             string name = null,
             string namePreffix = null,
@@ -68,7 +68,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
+        /// <param key="name"></param>
         /// <returns></returns>
         public new TSpec GetSpec(string name = null)
         {
@@ -87,7 +87,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="spec"></param>
+        /// <param key="spec"></param>
         /// <returns></returns>
         public TElement WithSpecs(params TSpec[] specs)
         {
@@ -99,28 +99,15 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Returns the item object of this instance.
         /// </summary>
-        /// <param name="log">The log to populate.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
+        /// <param key="log">The log to populate.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         public new virtual TItem GetData(
             IBdoScope scope = null,
-            IBdoMetaList varSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
             => GetData<TItem>(scope, varSet, log);
-
-        /// <summary>
-        /// Returns the item object of this instance.
-        /// </summary>
-        /// <param name="log">The log to populate.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public abstract Q GetData<Q>(
-            IBdoScope scope = null,
-            IBdoMetaList varSet = null,
-            IBdoLog log = null)
-            where Q : TItem;
 
         #endregion
     }

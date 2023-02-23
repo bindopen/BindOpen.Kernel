@@ -8,13 +8,13 @@ namespace BindOpen.Data
     /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public static class BdoMetaListURCExtensions
+    public static class BdoMetaSetURCExtensions
     {
         // Update
 
-        public static IBdoMetaList Update(
-            this IBdoMetaList list,
-            IBdoMetaList refList = default,
+        public static IBdoMetaSet Update(
+            this IBdoMetaSet list,
+            IBdoMetaSet refList = default,
             UpdateModes[] updateModes = null,
             string[] specAreas = null,
             IBdoLog log = null)
@@ -88,8 +88,8 @@ namespace BindOpen.Data
         // Check
 
         public static bool Check(
-            this IBdoMetaList list,
-            IBdoMetaList refList = default,
+            this IBdoMetaSet list,
+            IBdoMetaSet refList = default,
             string[] specAreas = null,
             bool isExistenceChecked = true,
             IBdoLog log = null)
@@ -100,7 +100,7 @@ namespace BindOpen.Data
         // Repair
 
         public static void Repair(
-            this IBdoMetaList list,
+            this IBdoMetaSet list,
             IBdoSpec spec = null,
             UpdateModes[] updateModes = null,
             string[] specAreas = null,

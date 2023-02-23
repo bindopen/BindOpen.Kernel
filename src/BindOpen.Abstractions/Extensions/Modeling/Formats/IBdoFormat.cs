@@ -1,11 +1,9 @@
-﻿using BindOpen.Runtime.Definition;
-
-namespace BindOpen.Extensions.Modeling
+﻿namespace BindOpen.Extensions.Modeling
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoFormat : ITBdoExtensionItem<IBdoFormat, IBdoFormatDefinition>
+    public interface IBdoFormat : IBdoExtension
     {
     }
 }

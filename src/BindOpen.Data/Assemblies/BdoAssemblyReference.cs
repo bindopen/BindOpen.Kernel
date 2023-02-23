@@ -25,8 +25,8 @@ namespace BindOpen.Data.Assemblies
         /// <summary>
         /// Instantiates a new instance of the BdoAssemblyReference class.
         /// </summary>
-        /// <param name="name">The library name to consider.</param>
-        /// <param name="version">The library version to consider.</param>
+        /// <param key="name">The library name to consider.</param>
+        /// <param key="version">The library version to consider.</param>
         public BdoAssemblyReference(
             string name,
             string version = null) : this()

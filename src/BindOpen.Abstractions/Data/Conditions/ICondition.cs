@@ -15,7 +15,7 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="value"></param>
+        /// <param key="value"></param>
         /// <returns></returns>
         ICondition AsTrue(bool value)
         {

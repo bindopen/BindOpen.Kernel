@@ -18,7 +18,7 @@ namespace BindOpen.Hosting.Services
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="logger"></param>
+        /// <param key="logger"></param>
         /// <returns></returns>
         IBdoJob WithLogger(ILogger logger);
 
@@ -32,7 +32,7 @@ namespace BindOpen.Hosting.Services
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="log"></param>
+        /// <param key="log"></param>
         /// <returns></returns>
         IBdoJob WithLog(IBdoLog log);
 
@@ -76,7 +76,7 @@ namespace BindOpen.Hosting.Services
         /// <summary>
         /// Ends the process specifying the status.
         /// </summary>
-        /// <param name="executionStatus">The execution status to apply.</param>
+        /// <param key="executionStatus">The execution status to apply.</param>
         /// <returns>Returns the job to consider.</returns>
         IBdoJob End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped);
     }

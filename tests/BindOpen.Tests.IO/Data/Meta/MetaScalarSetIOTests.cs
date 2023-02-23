@@ -4,7 +4,6 @@ using BindOpen.Data.Meta;
 using BindOpen.Dtos.Json;
 using BindOpen.Dtos.Xml;
 using BindOpen.Extensions.Scripting;
-using BindOpen.Tests.Runtime;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
@@ -22,7 +21,7 @@ namespace BindOpen.Tests.IO.Data
 
         private dynamic _testData;
 
-        private IBdoMetaList _metaList = null;
+        private IBdoMetaSet _metaList = null;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -38,8 +37,8 @@ namespace BindOpen.Tests.IO.Data
         }
 
         public static bool Equals(
-            IBdoMetaList list1,
-            IBdoMetaList list2)
+            IBdoMetaSet list1,
+            IBdoMetaSet list2)
         {
             var b = list1 != null && list2 != null
                 && list1.IsDeepEqual(list2);
@@ -61,7 +60,7 @@ namespace BindOpen.Tests.IO.Data
                     //.WithSpecs(BdoMeta.NewSpec(), BdoMeta.NewSpec("spec1"))
             };
 
-            _metaList = BdoMeta.NewList(metas.ToArray());
+            _metaList = BdoMeta.NewSet(metas.ToArray());
         }
 
         // Xml
@@ -86,7 +85,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveXmlTest();
             }
 
-            var metaList = RuntimeTests.Scope.ConvertToPoco(XmlHelper.LoadXml<MetaListDto>(_filePath_xml));
+            var metaList = XmlHelper.LoadXml<MetaSetDto>(_filePath_xml).ToPoco();
             Equals(metaList, _metaList);
         }
 
@@ -112,7 +111,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveJsonTest();
             }
 
-            var metaList = RuntimeTests.Scope.ConvertToPoco(JsonHelper.LoadJson<MetaListDto>(_filePath_json));
+            var metaList = JsonHelper.LoadJson<MetaSetDto>(_filePath_json).ToPoco();
             Equals(metaList, _metaList);
         }
     }

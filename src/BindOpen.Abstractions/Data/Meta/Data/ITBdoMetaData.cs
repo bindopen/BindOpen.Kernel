@@ -37,13 +37,13 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="scope"></param>
-        /// <param name="varSet"></param>
-        /// <param name="log"></param>
+        /// <param key="scope"></param>
+        /// <param key="varSet"></param>
+        /// <param key="log"></param>
         /// <returns></returns>
         new TItem GetData(
             IBdoScope scope = null,
-            IBdoMetaList varSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null);
     }
 }

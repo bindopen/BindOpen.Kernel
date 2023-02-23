@@ -46,7 +46,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Gets the values allowed by this instance.
         /// </summary>
-        /// <param name="allValues">All the values to consider.</param>
+        /// <param key="allValues">All the values to consider.</param>
         /// <returns>Returns all the values allowed by this instance.</returns>
         public List<string> GetValues(List<string> allValues = null)
         {
@@ -66,8 +66,8 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Indicates whether the value is allowed by this instance.
         /// </summary>
-        /// <param name="value">The value to validate.</param>
-        /// <param name="allValues">All the values to consider.</param>
+        /// <param key="value">The value to validate.</param>
+        /// <param key="allValues">All the values to consider.</param>
         /// <returns>Returns True if the specified is validated by this instance.</returns>
         public bool IsValueAllowed(string value, List<string> allValues = null)
         {
@@ -77,7 +77,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Repairs this instance.
         /// </summary>
-        /// <param name="allValues">All the values to consider.</param>
+        /// <param key="allValues">All the values to consider.</param>
         public void UpdateWith(List<string> allValues = null)
         {
             AddedValues?.RemoveAll(p => allValues.Any(q => p.BdoKeyEquals(q)));

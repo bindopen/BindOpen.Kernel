@@ -13,7 +13,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="modes"></param>
+        /// <param key="modes"></param>
         public static T WithValueModes<T>(
             this T metaSpec,
             params DataValueMode[] modes)
@@ -29,7 +29,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="script"></param>
+        /// <param key="script"></param>
         public static T WithItemExpression<T>(
             this T metaSpec,
             IBdoExpression exp)
@@ -45,7 +45,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="levels"></param>
+        /// <param key="levels"></param>
         public static T WithItemSpecificationLevels<T>(
             this T metaSpec,
             params SpecificationLevels[] levels)
@@ -61,7 +61,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="condition"></param>
+        /// <param key="condition"></param>
         public static T WithCondition<T>(
             this T metaSpec,
             ICondition condition)
@@ -77,7 +77,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="aliases"></param>
+        /// <param key="aliases"></param>
         public static T WithAliases<T>(
             this T metaSpec,
             params string[] aliases)
@@ -93,7 +93,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="specs"></param>
+        /// <param key="specs"></param>
         public static T WithSubSpecs<T>(
             this T metaSpec,
             params IBdoSpec[] specs)
@@ -109,7 +109,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="statement"></param>
+        /// <param key="statement"></param>
         public static T WithConstraintStatement<T>(
             this T metaSpec,
             IBdoConfigurationSet statement)
@@ -125,7 +125,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="isAllocatable"></param>
+        /// <param key="isAllocatable"></param>
         public static T AsAllocatable<T>(
             this T metaSpec,
             bool isAllocatable = true)
@@ -141,7 +141,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="item"></param>
+        /// <param key="item"></param>
         public static T WithDefaultItem<T>(
             this T metaSpec,
             object item)
@@ -157,7 +157,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="number"></param>
+        /// <param key="number"></param>
         public static T WithMaximumItemNumber<T>(
             this T metaSpec,
             uint? number = null)
@@ -173,7 +173,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="number"></param>
+        /// <param key="number"></param>
         public static T WithMinimumItemNumber<T>(
             this T metaSpec,
             uint number)
@@ -189,7 +189,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="number"></param>
+        /// <param key="number"></param>
         public static T WithValueType<T>(
             this T spec,
             DataValueTypes valueType)
@@ -206,7 +206,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="level"></param>
+        /// <param key="level"></param>
         public static T WithAccessibilityLevel<T>(
             this T spec,
             AccessibilityLevels level)
@@ -223,7 +223,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="level"></param>
+        /// <param key="level"></param>
         public static T WithInheritanceLevel<T>(
             this T spec,
             InheritanceLevels level)
@@ -240,7 +240,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="level"></param>
+        /// <param key="level"></param>
         public static T WithRequirementLevel<T>(
             this T spec,
             RequirementLevels level)
@@ -296,7 +296,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="script"></param>
+        /// <param key="script"></param>
         public static T WithRequirementScript<T>(
             this T spec,
             IBdoExpression exp)
@@ -313,7 +313,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="levels"></param>
+        /// <param key="levels"></param>
         public static T WithSpecificationLevels<T>(
             this T spec,
             params SpecificationLevels[] levels)

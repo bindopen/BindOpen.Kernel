@@ -10,7 +10,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="poco">The poco to consider.</param>
+        /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static KeyValuePairDto ToDto(this KeyValuePair<string, string> poco)
         {
@@ -26,7 +26,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="dto">The DTO to consider.</param>
+        /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
         public static KeyValuePair<string, string> ToPoco(this KeyValuePairDto dto)
         {

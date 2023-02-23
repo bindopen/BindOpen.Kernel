@@ -9,7 +9,6 @@ namespace BindOpen.Tests.Runtime
     /// <summary>
     /// This class represents a script word definition fake.
     /// </summary>
-    [BdoScriptwordDefinition]
     public static class ScriptWordDefinitionFake
     {
         // ------------------------------------------
@@ -43,7 +42,7 @@ namespace BindOpen.Tests.Runtime
             CreationDate = "2022-06-24")]
         public static object Fun_Func1(IBdoScriptwordDomain domain)
         {
-            return domain?.Scriptword?.Parameters?.Get(0, q => q?.ToString());
+            return domain?.Scriptword.Get<string>(0);
         }
 
         /// <summary>
@@ -59,8 +58,8 @@ namespace BindOpen.Tests.Runtime
             Parameter2Name = "value2", Parameter2ValueType = DataValueTypes.Text)]
         public static object Fun_Func2(IBdoScriptwordDomain domain)
         {
-            string value1 = domain?.Scriptword?.Parameters.GetString(0);
-            string value2 = domain?.Scriptword?.Parameters.GetString(1);
+            string value1 = domain?.Scriptword.Get<string>(0);
+            string value2 = domain?.Scriptword.Get<string>(1);
 
             return value1.Equals(value2, StringComparison.OrdinalIgnoreCase);
         }
@@ -88,8 +87,8 @@ namespace BindOpen.Tests.Runtime
         [BdoScriptword]
         public static object Fun_Func4(IBdoScriptwordDomain domain)
         {
-            string value = domain?.Scriptword?.Parameters?.Get(0, q => q.ToString());
-            string parentValue = domain?.Scriptword?.Parent?.Item?.ToString();
+            string value = domain?.Scriptword.Get<string>(0);
+            string parentValue = domain?.Scriptword?.Parent.Get<string>();
 
             return parentValue + ":" + value;
         }
@@ -103,7 +102,7 @@ namespace BindOpen.Tests.Runtime
             object value1,
             params string[] values)
         {
-            string parentValueText = domain?.Scriptword?.Parent?.Item?.ToString();
+            string parentValueText = domain?.Scriptword?.Parent?.Get<string>();
             string valueText = value1?.ToString();
             string valuesText = string.Join('-', values);
 

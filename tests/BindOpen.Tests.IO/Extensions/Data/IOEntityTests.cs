@@ -3,8 +3,8 @@ using BindOpen.Data.Configuration;
 using BindOpen.Data.Meta;
 using BindOpen.Dtos.Json;
 using BindOpen.Dtos.Xml;
-using BindOpen.Extensions;
 using BindOpen.Extensions.Modeling;
+using BindOpen.Runtime.Scopes;
 using BindOpen.Tests.Extensions;
 using BindOpen.Tests.Runtime;
 using Bogus;
@@ -57,7 +57,7 @@ namespace BindOpen.Tests.IO.Extensions
                 _entity = BdoEntityTests.CreateEntity(_testData);
             }
 
-            var isSaved = _entity.ToDto().SaveXml(_filePath);
+            var isSaved = _entity.ToConfig().ToDto().SaveXml(_filePath);
 
             Assert.That(isSaved, "Entity saving failed");
         }
@@ -70,8 +70,8 @@ namespace BindOpen.Tests.IO.Extensions
                 SaveXmlEntityTest();
             }
 
-            var config = RuntimeTests.Scope.ConvertToPoco(XmlHelper.LoadXml<ConfigurationDto>(_filePath));
-            var entity = Bdo.NewEntity<EntityFake>(config);
+            var config = XmlHelper.LoadXml<ConfigurationDto>(_filePath).ToPoco();
+            var entity = RuntimeTests.Scope.CreateEntity<EntityFake>(config);
 
             Assert.That(entity != null, "Entity loading failed");
 
@@ -88,7 +88,7 @@ namespace BindOpen.Tests.IO.Extensions
                 _entity = BdoEntityTests.CreateEntity(_testData);
             }
 
-            var isSaved = _entity.ToDto().SaveJson(_filePath);
+            var isSaved = _entity.ToConfig().ToDto().SaveJson(_filePath);
 
             Assert.That(isSaved, "Entity saving failed");
         }
@@ -101,8 +101,8 @@ namespace BindOpen.Tests.IO.Extensions
                 SaveJsonEntityTest();
             }
 
-            var config = RuntimeTests.Scope.ConvertToPoco(JsonHelper.LoadJson<ConfigurationDto>(_filePath));
-            var entity = Bdo.NewEntity<EntityFake>(config);
+            var config = JsonHelper.LoadJson<ConfigurationDto>(_filePath).ToPoco();
+            var entity = RuntimeTests.Scope.CreateEntity<EntityFake>(config);
 
             Assert.That(entity != null, "Entity loading failed");
 

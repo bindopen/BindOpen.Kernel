@@ -7,9 +7,9 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    [XmlType("MetaList", Namespace = "https://xsd.bindopen.org")]
+    [XmlType("MetaSet", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot(ElementName = "list", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class MetaListDto : MetaDataDto, IIdentified
+    public class MetaSetDto : MetaDataDto, IIdentified
     {
         // ------------------------------------------
         // PROPERTIES
@@ -21,7 +21,7 @@ namespace BindOpen.Data.Meta
         /// The elements of this instance.
         /// </summary>
         [JsonPropertyName("items")]
-        [XmlElement("list", Type = typeof(MetaListDto))]
+        [XmlElement("list", Type = typeof(MetaSetDto))]
         [XmlElement("object", Type = typeof(MetaObjectDto))]
         [XmlElement("scalar", Type = typeof(MetaScalarDto))]
         public List<MetaDataDto> Items { get; set; }
@@ -44,7 +44,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Instantiates a new instance of the BdoElementSetDto class.
         /// </summary>
-        public MetaListDto()
+        public MetaSetDto()
         {
         }
 

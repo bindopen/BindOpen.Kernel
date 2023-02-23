@@ -1,5 +1,5 @@
 ﻿using BindOpen.Data.Items;
-using BindOpen.Runtime.Definition;
+using BindOpen.Runtime.Definitions;
 using System.Reflection;
 using BindOpen.Logging;
 
@@ -13,13 +13,13 @@ namespace BindOpen.Runtime.Stores
         /// <summary>
         /// Loads the routine dico from the specified assembly.
         /// </summary>
-        /// <param name="assembly">The assembly to consider.</param>
-        /// <param name="extensionDefinition">The extension definition to consider.</param>
-        /// <param name="log">The log to consider.</param>
+        /// <param key="assembly">The assembly to consider.</param>
+        /// <param key="extensionDefinition">The extension definition to consider.</param>
+        /// <param key="log">The log to consider.</param>
         /// <returns></returns>
         private int LoadRoutineDictionaryFromAssembly(
             Assembly assembly,
-            IBdoExtensionDefinition extensionDefinition,
+            IBdoPackageDefinition extensionDefinition,
             IBdoLog log = null)
         {
             if (assembly == null)

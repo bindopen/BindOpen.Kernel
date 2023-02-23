@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Items;
 using System.Collections.Generic;
 
 namespace BindOpen.Extensions.Scripting
@@ -6,14 +7,22 @@ namespace BindOpen.Extensions.Scripting
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoScriptword :
-        ITBdoExtensionItem<IBdoScriptword, IBdoScriptwordDefinition>,
-        INamed
+    public interface IBdoScriptword : IBdoHandledItem, IList<object>, INamed, IIdentified, IReferenced
     {
         /// <summary>
         /// 
         /// </summary>
-        ScriptItemKinds Kind { get; }
+        string DefinitionUniqueName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        ScriptItemKinds Kind { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        IBdoScriptword Child { get; set; }
 
         /// <summary>
         /// 
@@ -23,53 +32,18 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// 
         /// </summary>
-        IBdoScriptword WithParent(IBdoScriptword scriptword);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoScriptword SubScriptword { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoScriptword WithSubScriptword(IBdoScriptword scriptword);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        List<object> Parameters { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoScriptword WithParameters(params object[] objects);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoScriptword AddParameter(object value);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        object Item { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoScriptword WithItem(object item);
+        object Data { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        IBdoScriptword Last();
+        IBdoScriptword Root(int levelMax = 50);
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        IBdoScriptword Root();
+        IBdoScriptword Last(int levelMax = 50);
     }
 }

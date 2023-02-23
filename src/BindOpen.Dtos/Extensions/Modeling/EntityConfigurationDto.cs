@@ -8,7 +8,7 @@ namespace BindOpen.Extensions.Modeling
     /// </summary>
     [XmlType("EntityConfiguration", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot(ElementName = "entity", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class EntityConfigurationDto : ExtensionItemConfigurationDto
+    public class EntityConfigurationDto : ExtensionConfigurationDto
     {
         // ------------------------------------------
         // CONSTRUCTORS

@@ -12,7 +12,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Adds the specified strings.
         /// </summary>
-        /// <param name="values">The string values to consider.</param>
+        /// <param key="values">The string values to consider.</param>
         /// <returns>Returns the script exp.</returns>
         public static T Adding<T>(
             this T filter,
@@ -27,7 +27,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Adds the specified strings.
         /// </summary>
-        /// <param name="values">The string values to consider.</param>
+        /// <param key="values">The string values to consider.</param>
         /// <returns>Returns the script exp.</returns>
         public static T Removing<T>(
             this T filter,

@@ -16,12 +16,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The kind of meta data of this instance.
         /// </summary>
-        BdoMetaDataKind Kind { get; }
-
-        /// <summary>
-        /// The parent instance.
-        /// </summary>
-        IBdoMetaData Parent { get; set; }
+        BdoMetaDataKind MetaDataKind { get; }
 
         /// <summary>
         /// 
@@ -70,13 +65,36 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="scope"></param>
-        /// <param name="varSet"></param>
-        /// <param name="log"></param>
+        /// <param key="scope"></param>
+        /// <param key="varSet"></param>
+        /// <param key="log"></param>
         /// <returns></returns>
         object GetData(
             IBdoScope scope = null,
-            IBdoMetaList varSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="scope"></param>
+        /// <param key="varSet"></param>
+        /// <param key="log"></param>
+        /// <returns></returns>
+        T GetData<T>(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        IBdoMetaData Parent { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        IBdoMetaData Root(int levelMax = 50);
     }
 }

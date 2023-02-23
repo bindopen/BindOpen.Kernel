@@ -11,7 +11,7 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ids"></param>
+        /// <param key="ids"></param>
         /// <returns></returns>
         public static T Using<T>(
             this T obj,
@@ -28,7 +28,7 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="detail"></param>
+        /// <param key="detail"></param>
         public static T WithDefinitionUniqueName<T>(
             this T obj,
             string definitionUniqueName)

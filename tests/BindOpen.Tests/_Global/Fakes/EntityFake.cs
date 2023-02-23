@@ -64,7 +64,7 @@ namespace BindOpen.Tests
         /// </summary>
         [BdoData(Name = "inputs")]
         [BdoScriptword(Name = "input")]
-        public BdoMetaList Inputs { get; set; }
+        public BdoMetaSet Inputs { get; set; }
 
 
         /// <summary>
@@ -98,8 +98,8 @@ namespace BindOpen.Tests
         /// <summary>
         /// Sets the path of this instance.
         /// </summary>
-        /// <param name="path">The new path to consider. Null to update the existing one.</param>
-        /// <param name="relativePath">The new relative path to consider. Null to keep the existing one.</param>
+        /// <param key="path">The new path to consider. Null to update the existing one.</param>
+        /// <param key="relativePath">The new relative path to consider. Null to keep the existing one.</param>
         /// <returns>Returns True if this instance exists. False otherwise.</returns>
         public virtual IBdoEntity WithPath(string path = null, string relativePath = null)
         {
@@ -142,7 +142,7 @@ namespace BindOpen.Tests
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="flag"></param>
+        /// <param key="flag"></param>
         /// <returns></returns>
         public IBdoEntity WithFlag(string flag)
         {
@@ -161,7 +161,7 @@ namespace BindOpen.Tests
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="readOnly"></param>
+        /// <param key="readOnly"></param>
         /// <returns></returns>
         public IBdoEntity AsReadonly(bool readOnly = false)
         {
@@ -179,7 +179,7 @@ namespace BindOpen.Tests
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="date"></param>
+        /// <param key="date"></param>
         /// <returns></returns>
         public IBdoEntity WithLastAccessDate(DateTime? date)
         {
@@ -197,7 +197,7 @@ namespace BindOpen.Tests
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="path"></param>
+        /// <param key="path"></param>
         /// <returns></returns>
         public IBdoEntity WithParentPath(string path)
         {
@@ -237,7 +237,7 @@ namespace BindOpen.Tests
         /// <summary>
         /// Instantiates a new instance of the EntityFake class.
         /// </summary>
-        /// <param name="path">The path of the instance.</param>
+        /// <param key="path">The path of the instance.</param>
         public EntityFake(string path) : base()
         {
             WithPath(path);
@@ -246,8 +246,8 @@ namespace BindOpen.Tests
         /// <summary>
         /// Instantiates a new instance of the TestEntity class.
         /// </summary>
-        /// <param name="fileName">The file name of the instance.</param>
-        /// <param name="folderPath">The folder path of the instance.</param>
+        /// <param key="fileName">The file name of the instance.</param>
+        /// <param key="folderPath">The folder path of the instance.</param>
         public EntityFake(
             string fileName,
             string folderPath,

@@ -1,8 +1,6 @@
 ﻿using BindOpen.Data.Configuration;
 using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
-using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
 using System.Linq;
 
 namespace BindOpen.Data.Meta
@@ -15,7 +13,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="poco">The poco to consider.</param>
+        /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static ScalarSpecDto ToDto(this IBdoScalarSpec poco)
         {
@@ -45,12 +43,10 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="dto">The DTO to consider.</param>
+        /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoScalarSpec ConvertToPoco(
-            this IBdoScope scope,
-            ScalarSpecDto dto,
-            IBdoLog log = null)
+        public static IBdoScalarSpec ToPoco(
+            this ScalarSpecDto dto)
         {
             if (dto == null) return null;
 

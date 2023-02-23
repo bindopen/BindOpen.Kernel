@@ -1,9 +1,8 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Helpers;
 using BindOpen.Data.Items;
 using BindOpen.Extensions;
 using BindOpen.Logging;
-using BindOpen.Runtime.Definition;
+using BindOpen.Runtime.Definitions;
 using System;
 using System.IO;
 using System.Reflection;
@@ -20,15 +19,15 @@ namespace BindOpen.Runtime.Stores
         /// <summary>
         /// Loads the extension dico of the specified kind from the specified assembly.
         /// </summary>
-        /// <param name="assembly">The assembly to consider.</param>
-        /// <param name="kind">The kind of item to consider.</param>
-        /// <param name="extensionDefinition">The extension definition to consider.</param>
-        /// <param name="log">The log to consider.</param>
+        /// <param key="assembly">The assembly to consider.</param>
+        /// <param key="kind">The kind of item to consider.</param>
+        /// <param key="extensionDefinition">The extension definition to consider.</param>
+        /// <param key="log">The log to consider.</param>
         /// <returns></returns>
         private int LoadDictionary(
             Assembly assembly,
-            BdoExtensionItemKind kind,
-            IBdoExtensionDefinition extensionDefinition = null,
+            BdoExtensionKind kind,
+            IBdoPackageDefinition extensionDefinition = null,
             IBdoLog log = null)
         {
             if (assembly == null)
@@ -38,22 +37,22 @@ namespace BindOpen.Runtime.Stores
 
             switch (kind)
             {
-                case BdoExtensionItemKind.Connector:
+                case BdoExtensionKind.Connector:
                     return LoadConnectorDictionaryFromAssembly(assembly, extensionDefinition, log);
-                case BdoExtensionItemKind.Entity:
+                case BdoExtensionKind.Entity:
                     return LoadEntityDictionaryFromAssembly(assembly, extensionDefinition, log);
-                case BdoExtensionItemKind.Format:
+                case BdoExtensionKind.Format:
                     return LoadFormatDictionaryFromAssembly(assembly, extensionDefinition, log);
-                case BdoExtensionItemKind.Metrics:
+                case BdoExtensionKind.Metrics:
                     return LoadMetricsDictionaryFromAssembly(assembly, extensionDefinition, log);
-                case BdoExtensionItemKind.Routine:
+                case BdoExtensionKind.Routine:
                     return LoadRoutineDictionaryFromAssembly(assembly, extensionDefinition, log);
-                case BdoExtensionItemKind.Scriptword:
+                case BdoExtensionKind.Scriptword:
                     return LoadScripwordDictionaryFromAssembly(assembly, extensionDefinition, log);
-                case BdoExtensionItemKind.Task:
+                case BdoExtensionKind.Task:
                     return LoadTaskDictionaryFromAssembly(assembly, extensionDefinition, log);
-                case BdoExtensionItemKind.Any:
-                case BdoExtensionItemKind.None:
+                case BdoExtensionKind.Any:
+                case BdoExtensionKind.None:
                     break;
             }
             return -1;
@@ -62,12 +61,12 @@ namespace BindOpen.Runtime.Stores
         /// <summary>
         /// Loads the specified BindOpen extension dico.
         /// </summary>
-        /// <param name="assembly">The assembly to consider.</param>
-        /// <param name="log">The log to consider.</param>
+        /// <param key="assembly">The assembly to consider.</param>
+        /// <param key="log">The log to consider.</param>
         /// <returns>The created library.</returns>
         private static ITBdoExtensionDictionary<T> ExtractDictionaryFromAssembly<T>(
             Assembly assembly,
-            IBdoLog log = null) where T : IBdoExtensionItemDefinition
+            IBdoLog log = null) where T : IBdoExtensionDefinition
         {
             ITBdoExtensionDictionary<T> dico = default;
 
@@ -118,19 +117,19 @@ namespace BindOpen.Runtime.Stores
         /// Gets the dico resource name.
         /// </summary>
         /// <returns>Returns the class of the specified dico.</returns>
-        private static string GetDictionaryResourceName<T>() where T : IBdoExtensionItemDefinition
+        private static string GetDictionaryResourceName<T>() where T : IBdoExtensionDefinition
         {
-            BdoExtensionItemKind itemKind = typeof(T).GetExtensionItemKind();
+            BdoExtensionKind itemKind = typeof(T).GetExtensionKind();
 
             return itemKind switch
             {
-                BdoExtensionItemKind.Connector => "BindOpen.Connectors",
-                BdoExtensionItemKind.Entity => "BindOpen.Entities",
-                BdoExtensionItemKind.Format => "BindOpen.Formats",
-                BdoExtensionItemKind.Metrics => "BindOpen.Metrics",
-                BdoExtensionItemKind.Routine => "BindOpen.Routines",
-                BdoExtensionItemKind.Scriptword => "BindOpen.Scriptwords",
-                BdoExtensionItemKind.Task => "BindOpen.Tasks",
+                BdoExtensionKind.Connector => "BindOpen.Connectors",
+                BdoExtensionKind.Entity => "BindOpen.Entities",
+                BdoExtensionKind.Format => "BindOpen.Formats",
+                BdoExtensionKind.Metrics => "BindOpen.Metrics",
+                BdoExtensionKind.Routine => "BindOpen.Routines",
+                BdoExtensionKind.Scriptword => "BindOpen.Scriptwords",
+                BdoExtensionKind.Task => "BindOpen.Tasks",
                 _ => null,
             };
         }
@@ -139,19 +138,19 @@ namespace BindOpen.Runtime.Stores
         /// Gets the item definition file name of the TO specified extension item definition class.
         /// </summary>
         /// <returns>Returns the class of the specified dico.</returns>
-        private static Type GetDictionaryType<T>() where T : IBdoExtensionItemDefinition
+        private static Type GetDictionaryType<T>() where T : IBdoExtensionDefinition
         {
-            BdoExtensionItemKind itemKind = typeof(T).GetExtensionItemKind();
+            BdoExtensionKind itemKind = typeof(T).GetExtensionKind();
 
             return itemKind switch
             {
-                BdoExtensionItemKind.Connector => typeof(BdoConnectorDictionary),
-                BdoExtensionItemKind.Format => null,
-                BdoExtensionItemKind.Entity => typeof(BdoEntityDictionary),
-                BdoExtensionItemKind.Metrics => typeof(BdoMetricsDictionary),
-                BdoExtensionItemKind.Routine => typeof(BdoRoutineDictionary),
-                BdoExtensionItemKind.Scriptword => typeof(BdoScriptwordDictionary),
-                BdoExtensionItemKind.Task => typeof(BdoTaskDictionary),
+                BdoExtensionKind.Connector => typeof(BdoConnectorDictionary),
+                BdoExtensionKind.Format => null,
+                BdoExtensionKind.Entity => typeof(BdoEntityDictionary),
+                BdoExtensionKind.Metrics => typeof(BdoMetricsDictionary),
+                BdoExtensionKind.Routine => typeof(BdoRoutineDictionary),
+                BdoExtensionKind.Scriptword => typeof(BdoScriptwordDictionary),
+                BdoExtensionKind.Task => typeof(BdoTaskDictionary),
                 _ => null,
             };
         }
@@ -159,31 +158,31 @@ namespace BindOpen.Runtime.Stores
         /// <summary>
         /// Updates this instance with the specified attribute information.
         /// </summary>
-        /// <param name="definition">The definition to consider.</param>
-        /// <param name="attribute">The attribute to consider.</param>
+        /// <param key="definition">The definition to consider.</param>
+        /// <param key="attribute">The attribute to consider.</param>
         public static void UpdateDictionary(
-            IBdoExtensionItemDefinition definition,
-            DescribedDataItemAttribute attribute)
+            IBdoExtensionDefinition definition,
+            MetaExtensionAttribute attribute)
         {
             definition.WithName(attribute.Name?.IndexOf("$") > 0 ?
                 attribute.Name[(attribute.Name.IndexOf("$") + 1)..] : attribute.Name);
 
             definition.WithDescription(BdoData.NewDictionary(attribute.Description));
-            definition.WithCreationDate(attribute.CreationDate.ToDateTime());
-            definition.WithLastModificationDate(attribute.LastModificationDate.ToDateTime());
+            //definition.WithCreationDate(attribute.CreationDate.ToDateTime());
+            //definition.WithLastModificationDate(attribute.LastModificationDate.ToDateTime());
         }
 
-        /// <summary>
-        /// Updates this instance with the specified attribute information.
-        /// </summary>
-        /// <param name="definition">The definition to consider.</param>
-        /// <param name="attribute">The attribute to consider.</param>
-        public static void UpdateDictionary(
-            IBdoExtensionItemDefinition definition,
-            TitledDescribedDataItemAttribute attribute)
-        {
-            UpdateDictionary(definition, attribute as DescribedDataItemAttribute);
-            definition.WithTitle(BdoData.NewDictionary(attribute.Title));
-        }
+        ///// <summary>
+        ///// Updates this instance with the specified attribute information.
+        ///// </summary>
+        ///// <param key="definition">The definition to consider.</param>
+        ///// <param key="attribute">The attribute to consider.</param>
+        //public static void UpdateDictionary(
+        //    IBdoExtensionDefinition definition,
+        //    MetaExtensionAttribute attribute)
+        //{
+        //    //UpdateDictionary(definition, attribute as MetaExtensionAttribute);
+        //    //definition.WithTitle(BdoData.NewDictionary(attribute.Title));
+        //}
     }
 }

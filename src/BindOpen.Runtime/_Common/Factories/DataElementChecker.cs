@@ -14,8 +14,8 @@
         ///// <summary>
         ///// Check the specified item.
         ///// </summary>
-        ///// <param name="item">The item to consider.</param>
-        ///// <param name="dataElement">The element to consider.</param>
+        ///// <param key="item">The item to consider.</param>
+        ///// <param key="dataElement">The element to consider.</param>
         ///// <returns>The log of check log.</returns>
         //public static IBdoLog CheckItem(
         //    object item,
@@ -36,8 +36,8 @@
         ///// <summary>
         ///// Check the specified item.
         ///// </summary>
-        ///// <param name="dataElement">The element to consider.</param>
-        ///// <param name="specificationAreas">The specification areas to consider.</param>
+        ///// <param key="dataElement">The element to consider.</param>
+        ///// <param key="specificationAreas">The specification areas to consider.</param>
         ///// <returns>The log of check log.</returns>
         //public virtual IBdoLog CheckElement(
         //    IBdoElement dataElement,

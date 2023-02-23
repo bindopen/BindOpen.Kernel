@@ -52,7 +52,7 @@ namespace BindOpen.Tests
         /// <summary>
         /// Creates a new connection.
         /// </summary>
-        /// <param name="log">The log to consider.</param>
+        /// <param key="log">The log to consider.</param>
         public override ConnectionFake NewConnection(IBdoLog log = null)
         {
             return new ConnectionFake(this);

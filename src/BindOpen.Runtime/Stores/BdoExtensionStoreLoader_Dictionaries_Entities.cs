@@ -1,12 +1,11 @@
-﻿using BindOpen.Extensions.Modeling;
-using BindOpen.Logging;
-using BindOpen.Data;
+﻿using BindOpen.Data;
 using BindOpen.Data.Items;
-using BindOpen.Runtime.Definition;
+using BindOpen.Extensions.Modeling;
+using BindOpen.Logging;
+using BindOpen.Runtime.Definitions;
 using System;
 using System.Linq;
 using System.Reflection;
-using BindOpen.Data.Items;
 
 namespace BindOpen.Runtime.Stores
 {
@@ -18,13 +17,13 @@ namespace BindOpen.Runtime.Stores
         /// <summary>
         /// Loads the entity dico from the specified assembly.
         /// </summary>
-        /// <param name="assembly">The assembly to consider.</param>
-        /// <param name="extensionDefinition">The extension definition to consider.</param>
-        /// <param name="log">The log to consider.</param>
+        /// <param key="assembly">The assembly to consider.</param>
+        /// <param key="extensionDefinition">The extension definition to consider.</param>
+        /// <param key="log">The log to consider.</param>
         /// <returns></returns>
         private int LoadEntityDictionaryFromAssembly(
             Assembly assembly,
-            IBdoExtensionDefinition extensionDefinition,
+            IBdoPackageDefinition extensionDefinition,
             IBdoLog log = null)
         {
             if (assembly == null)

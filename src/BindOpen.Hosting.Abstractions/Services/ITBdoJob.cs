@@ -28,7 +28,7 @@ namespace BindOpen.Hosting.Services
         /// <summary>
         /// Ends the process specifying the status.
         /// </summary>
-        /// <param name="executionStatus">The execution status to apply.</param>
+        /// <param key="executionStatus">The execution status to apply.</param>
         /// <returns>Returns the service to consider.</returns>
         new T End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped);
     }

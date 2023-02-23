@@ -13,7 +13,7 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Gets the date string of this instance.
         /// </summary>
-        /// <param name="date">The date to consider.</param>
+        /// <param key="date">The date to consider.</param>
         /// <returns>Returns the date string of this instance.</returns>
         public static string ToString(this DateTime date)
         {
@@ -23,7 +23,7 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Gets the date string of this instance.
         /// </summary>
-        /// <param name="date">The date to consider.</param>
+        /// <param key="date">The date to consider.</param>
         /// <returns>Returns the date string of this instance.</returns>
         public static string ToString(this DateTime? date)
         {
@@ -33,9 +33,9 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Gets the string shorten to the specified characters.
         /// </summary>
-        /// <param name="st">The string to consider.</param>
-        /// <param name="charNumber">The number of characters to consider.</param>
-        /// <param name="addedString">Indicates whether dots are added.</param>
+        /// <param key="st">The string to consider.</param>
+        /// <param key="charNumber">The number of characters to consider.</param>
+        /// <param key="addedString">Indicates whether dots are added.</param>
         /// <returns>Returns the specified string shorten.</returns>
         public static string ToShortString(this string st, int charNumber, string addedString = "...")
         {
@@ -48,7 +48,7 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Gets the normalized string from the specified string.
         /// </summary>
-        /// <param name="st">The string to normalize.</param>
+        /// <param key="st">The string to normalize.</param>
         /// <returns>Returns the normalized string.</returns>
         /// <remarks>The normalized string is a string in which only the alphanumeric characters and _ are allowed.</remarks>
         public static string ToNormalizedName(this string st)
@@ -59,7 +59,7 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Gets the titled string from the specified string.
         /// </summary>
-        /// <param name="st">The string to normalize.</param>
+        /// <param key="st">The string to normalize.</param>
         /// <returns>Returns the normalized string.</returns>
         /// <remarks>The normalized string is a string in which only the alphanumeric characters and _ are allowed.</remarks>
         public static string ToTitleCasedName(string st)
@@ -70,9 +70,9 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Gets the object from the specified string.
         /// </summary>
-        /// <param name="st">The string to consider.</param>
-        /// <param name="valueType">The value type to consider.</param>
-        /// <param name="textFormat">The text format to consider.</param>
+        /// <param key="st">The string to consider.</param>
+        /// <param key="valueType">The value type to consider.</param>
+        /// <param key="textFormat">The text format to consider.</param>
         /// <returns>Returns the object corresponding to the specified string.</returns>
         public static object ToObject(this string st, DataValueTypes valueType = DataValueTypes.Any, string textFormat = null)
         {
@@ -160,8 +160,8 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Gets the date time object from the specified string.
         /// </summary>
-        /// <param name="st">The string to consider.</param>
-        /// <param name="textFormat">The text format to consider.</param>
+        /// <param key="st">The string to consider.</param>
+        /// <param key="textFormat">The text format to consider.</param>
         /// <returns>Returns the object corresponding to the specified string.</returns>
         public static DateTime? ToDateTime(this string st, string textFormat = null)
         {
@@ -172,8 +172,8 @@ namespace BindOpen.Data.Helpers
         /// Gets the enumration from the specified string.
         /// </summary>
         /// <typeparam name="T">The structure to consider.</typeparam>
-        /// <param name="st">The string to consider.</param>
-        /// <param name="defaultEnum">The default enumeration to consider.</param>
+        /// <param key="st">The string to consider.</param>
+        /// <param key="defaultEnum">The default enumeration to consider.</param>
         /// <returns>Returns the object corresponding to the specified string.</returns>
         public static T ToEnum<T>(this string st, T defaultEnum = default) where T : struct, IConvertible
         {

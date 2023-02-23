@@ -16,7 +16,7 @@ namespace BindOpen.Data.Assemblies
         /// <summary>
         /// Instantiates a new instance of the BdoAssemblyReferenceCollection class.
         /// </summary>
-        /// <param name="references">The references to consider.</param>
+        /// <param key="references">The references to consider.</param>
         public BdoAssemblyReferenceCollection(IEnumerable<IBdoAssemblyReference> references = null)
         {
             if (references != null)

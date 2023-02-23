@@ -15,7 +15,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="filter"></param>
+        /// <param key="filter"></param>
         /// <returns></returns>
         IBdoObjectSpec WithClassFilter(IBdoStringFilter filter);
 
@@ -27,7 +27,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="filter"></param>
+        /// <param key="filter"></param>
         /// <returns></returns>
         IBdoObjectSpec WithDefinitionFilter(IBdoStringFilter filter);
     }

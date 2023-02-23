@@ -1,7 +1,4 @@
-﻿using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
-
-namespace BindOpen.Data.Conditions
+﻿namespace BindOpen.Data.Conditions
 {
     /// <summary>
     /// This static class represents a converter.
@@ -11,7 +8,7 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="poco">The poco to consider.</param>
+        /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static ConditionDto ToDto(this ICondition poco)
         {
@@ -34,16 +31,14 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Converts to POCO.
         /// </summary>
-        /// <param name="dto">The dto to consider.</param>
+        /// <param key="dto">The dto to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static ICondition ConvertToPoco(
-            this IBdoScope scope,
-            ConditionDto dto,
-            IBdoLog log = null)
+        public static ICondition ToPoco(
+            this ConditionDto dto)
         {
             if (dto is AdvancedConditionDto advancedConditionDto)
             {
-                return scope.ConvertToPoco(advancedConditionDto, log);
+                return advancedConditionDto.ToPoco();
             }
             else if (dto is BasicConditionDto basicConditionDto)
             {
@@ -51,7 +46,7 @@ namespace BindOpen.Data.Conditions
             }
             else if (dto is ScriptConditionDto scriptConditionDto)
             {
-                return scope.ConvertToPoco(scriptConditionDto, log);
+                return scriptConditionDto.ToPoco();
             }
 
             return null;

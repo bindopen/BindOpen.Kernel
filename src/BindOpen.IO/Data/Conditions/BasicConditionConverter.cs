@@ -8,7 +8,7 @@
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="poco">The poco to consider.</param>
+        /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static BasicConditionDto ToDto(this IBasicCondition poco)
         {
@@ -28,7 +28,7 @@
         /// <summary>
         /// Converts to POCO.
         /// </summary>
-        /// <param name="dto">The DTO to consider.</param>
+        /// <param key="dto">The DTO to consider.</param>
         /// <returns>The POCO object.</returns>
         public static IBasicCondition ToPoco(
             this BasicConditionDto dto)

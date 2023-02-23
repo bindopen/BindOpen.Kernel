@@ -25,9 +25,9 @@ namespace BindOpen.Data
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="obj"></param>
-        /// <param name="key"></param>
-        /// <param name="defaultKey"></param>
+        /// <param key="obj"></param>
+        /// <param key="key"></param>
+        /// <param key="defaultKey"></param>
         /// <returns></returns>
         public static string GetTitleText<T>(
             this T obj,

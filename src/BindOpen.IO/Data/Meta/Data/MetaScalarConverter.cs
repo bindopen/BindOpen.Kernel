@@ -2,8 +2,6 @@
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
-using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
 using System.Linq;
 
 namespace BindOpen.Data.Meta
@@ -16,7 +14,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="poco">The poco to consider.</param>
+        /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static MetaScalarDto ToDto(this IBdoMetaScalar poco)
         {
@@ -52,12 +50,10 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="dto">The DTO to consider.</param>
+        /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoMetaScalar ConvertToPoco(
-            this IBdoScope scope,
-            MetaScalarDto dto,
-            IBdoLog log = null)
+        public static IBdoMetaScalar ToPoco(
+            this MetaScalarDto dto)
         {
             if (dto == null) return null;
 
@@ -70,8 +66,8 @@ namespace BindOpen.Data.Meta
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoMetaScalar>(dto);
 
-            poco.DataExpression = scope.ConvertToPoco(dto.DataExpression, log);
-            poco.Specs = dto.Specs?.Select(q => scope.ConvertToPoco(q, log)).ToList();
+            poco.DataExpression = dto.DataExpression.ToPoco();
+            poco.Specs = dto.Specs?.Select(q => q.ToPoco()).ToList();
 
             if (!string.IsNullOrEmpty(dto.Item))
             {

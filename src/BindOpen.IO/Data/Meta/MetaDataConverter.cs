@@ -1,7 +1,5 @@
 ﻿using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
-using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
 
 namespace BindOpen.Data.Meta
 {
@@ -13,7 +11,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="poco">The poco to consider.</param>
+        /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static MetaDataDto ToDto(
             this IBdoMetaData poco)
@@ -30,7 +28,7 @@ namespace BindOpen.Data.Meta
             {
                 dto = scalar.ToDto();
             }
-            else if (poco is IBdoMetaList set)
+            else if (poco is IBdoMetaSet set)
             {
                 dto = set.ToDto();
             }
@@ -46,12 +44,10 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="dto">The DTO to consider.</param>
+        /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoMetaData ConvertToPoco(
-            this IBdoScope scope,
-            MetaDataDto dto,
-            IBdoLog log = null)
+        public static IBdoMetaData ToPoco(
+            this MetaDataDto dto)
         {
             if (dto == null) return null;
 
@@ -59,15 +55,15 @@ namespace BindOpen.Data.Meta
 
             if (dto is MetaObjectDto obj)
             {
-                return scope.ConvertToPoco(obj, log);
+                return obj.ToPoco();
             }
             else if (dto is MetaScalarDto scalar)
             {
-                return scope.ConvertToPoco(scalar, log);
+                return scalar.ToPoco();
             }
-            else if (dto is MetaListDto set)
+            else if (dto is MetaSetDto list)
             {
-                return scope.ConvertToPoco(set, log);
+                return list.ToPoco();
             }
 
             return poco;

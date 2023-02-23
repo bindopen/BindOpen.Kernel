@@ -16,8 +16,8 @@ namespace BindOpen.Dtos.Xml
         /// <summary>
         /// Saves the XML string of this instance.
         /// </summary>
-        /// <param name="dto">The DTO to save.</param>
-        /// <param name="log">The saving log to consider.</param>
+        /// <param key="dto">The DTO to save.</param>
+        /// <param key="log">The saving log to consider.</param>
         /// <returns>The Xml string of this instance.</returns>
         public static string ToXml(this object dto, IBdoLog log = null)
         {
@@ -44,9 +44,9 @@ namespace BindOpen.Dtos.Xml
         /// <summary>
         /// Saves this instance to the specified XML file path.
         /// </summary>
-        /// <param name="dto">The DTO to save.</param>
-        /// <param name="filePath">Path of the file to save.</param>
-        /// <param name="log">The log to consider.</param>
+        /// <param key="dto">The DTO to save.</param>
+        /// <param key="filePath">Path of the file to save.</param>
+        /// <param key="log">The log to consider.</param>
         /// <returns>True if the saving operation has been done. False otherwise.</returns>
         public static bool SaveXml(this object dto, string filePath, IBdoLog log = null)
         {
@@ -83,10 +83,10 @@ namespace BindOpen.Dtos.Xml
         /// <summary>
         /// Loads a data item from the specified XML file path.
         /// </summary>
-        /// <param name="filePath">The path of the file to load.</param>
-        /// <param name="log">The output log of the method.</param>
-        /// <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
-        /// <param name="mustFileExist">Indicates whether the file must exist.</param>
+        /// <param key="filePath">The path of the file to load.</param>
+        /// <param key="log">The output log of the method.</param>
+        /// <param key="xmlSchemaSet">The XML schema set to consider for checking.</param>
+        /// <param key="mustFileExist">Indicates whether the file must exist.</param>
         /// <returns>The loaded log.</returns>
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T LoadXml<T>(
@@ -133,9 +133,9 @@ namespace BindOpen.Dtos.Xml
         /// Loads the data item from the specified XML file path.
         /// </summary>
         /// <typeparam name="T">The data item class to consider.</typeparam>
-        /// <param name="xmlString">The XML string to load.</param>
-        /// <param name="log">The output log of the load method.</param>
-        /// <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
+        /// <param key="xmlString">The XML string to load.</param>
+        /// <param key="log">The output log of the load method.</param>
+        /// <param key="xmlSchemaSet">The XML schema set to consider for checking.</param>
         /// <returns>The loaded log.</returns>
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T LoadXmlFromString<T>(
@@ -178,9 +178,9 @@ namespace BindOpen.Dtos.Xml
         /// <summary>
         /// Loads the specified XML schema set.
         /// </summary>
-        /// <param name="xmlSchemaSet">The XML schema set to consider.</param>
-        /// <param name="assembly">The assembly to consider.</param>
-        /// <param name="xsdResources">The XSD resources to consider.</param>
+        /// <param key="xmlSchemaSet">The XML schema set to consider.</param>
+        /// <param key="assembly">The assembly to consider.</param>
+        /// <param key="xsdResources">The XSD resources to consider.</param>
         /// <returns>The XML schema set.</returns>
         public static XmlSchemaSet LoadXmlSchemaSet(
             XmlSchemaSet xmlSchemaSet,

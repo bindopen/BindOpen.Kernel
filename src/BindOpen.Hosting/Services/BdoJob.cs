@@ -147,7 +147,7 @@ namespace BindOpen.Hosting.Services
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="state"></param>
+        /// <param key="state"></param>
         /// <returns></returns>
         public IBdoJob WithExecutionState(ProcessExecutionState state)
         {
@@ -163,7 +163,7 @@ namespace BindOpen.Hosting.Services
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="status"></param>
+        /// <param key="status"></param>
         /// <returns></returns>
         public IBdoJob WithExecutionStatus(ProcessExecutionStatus status)
         {
@@ -192,7 +192,7 @@ namespace BindOpen.Hosting.Services
         /// <summary>
         /// Processes the application.
         /// </summary>
-        /// <param name="log">The log to consider.</param>
+        /// <param key="log">The log to consider.</param>
         /// <returns>Returns true if this instance is started.</returns>
         protected virtual IBdoJob Process()
         {
@@ -213,7 +213,7 @@ namespace BindOpen.Hosting.Services
         /// <summary>
         /// Indicates the application ends.
         /// </summary>
-        /// <param name="executionStatus">The execution status to consider.</param>
+        /// <param key="executionStatus">The execution status to consider.</param>
         public virtual IBdoJob End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
         {
             Log?.End(executionStatus);

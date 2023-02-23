@@ -42,7 +42,7 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Instantiates a new instance of the AdvancedCondition class.
         /// </summary>
-        /// <param name="conditions">The conditions to consider.</param>
+        /// <param key="conditions">The conditions to consider.</param>
         public AdvancedCondition(params ICondition[] conditions)
         {
             Conditions = conditions?.ToList();
@@ -51,8 +51,8 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Instantiates a new instance of the AdvancedCondition class.
         /// </summary>
-        /// <param name="trueValue">The true value to consider.</param>
-        /// <param name="conditions">The conditions to consider.</param>
+        /// <param key="trueValue">The true value to consider.</param>
+        /// <param key="conditions">The conditions to consider.</param>
         public AdvancedCondition(bool trueValue, params ICondition[] conditions)
         {
             TrueValue = trueValue;
@@ -70,7 +70,7 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Clones this instance.
         /// </summary>
-        /// <param name="areas">The areas to consider.</param>
+        /// <param key="areas">The areas to consider.</param>
         public override object Clone(params string[] areas)
         {
             var condition = new AdvancedCondition();

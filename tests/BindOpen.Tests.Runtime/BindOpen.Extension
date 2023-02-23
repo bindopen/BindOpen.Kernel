@@ -3,7 +3,7 @@
 <!-- Tests.Runtime -->
 
 <extension id="001444da-7c6e-4d00-a498-c9048cad1832"  name="tests.Runtime"
-  xmlns="https://xsd.bindopen.org" xmlns:SchemaLocation="BdoExtensionDefinition BdoExtensionDefinition.xsd" >
+  xmlns="https://xsd.bindopen.org" xmlns:SchemaLocation="BdoPackageDefinition BdoPackageDefinition.xsd" >
   <creationDate>2010-08-05</creationDate>
   <lastModificationDate>2023-02-09</lastModificationDate>
   <title>

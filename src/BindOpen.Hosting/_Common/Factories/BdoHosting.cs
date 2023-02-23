@@ -12,7 +12,7 @@ namespace BindOpen.Hosting
         /// <summary>
         /// Adds a BindOpen host.
         /// </summary>
-        /// <param name="setupAction">The setup action to consider.</param>
+        /// <param key="setupAction">The setup action to consider.</param>
         /// <returns></returns>
         public static BdoHost NewHost(
             IBdoLog log = null)
@@ -24,7 +24,7 @@ namespace BindOpen.Hosting
         /// <summary>
         /// Adds a BindOpen host.
         /// </summary>
-        /// <param name="setupAction">The setup action to consider.</param>
+        /// <param key="setupAction">The setup action to consider.</param>
         /// <returns></returns>
         public static BdoHost NewHost(
             Action<IBdoHostOptions> setupAction,

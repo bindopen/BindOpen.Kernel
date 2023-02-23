@@ -1,13 +1,14 @@
 ﻿using BindOpen.Data.Configuration;
+using BindOpen.Data.Helpers;
 using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
-using BindOpen.Extensions;
 using BindOpen.Extensions.Connecting;
 using BindOpen.Extensions.Modeling;
 using BindOpen.Extensions.Processing;
+using BindOpen.Extensions.Scripting;
 using BindOpen.Logging;
-using BindOpen.Runtime.Definition;
+using BindOpen.Runtime.Definitions;
 
 namespace BindOpen.Runtime.Scopes
 {
@@ -21,14 +22,14 @@ namespace BindOpen.Runtime.Scopes
         /// <summary>
         /// Creates the instance of the specified definition.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="config">The config to consider.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="config">The config to consider.</param>
+        /// <param key="log">The log to consider.</param>
+        /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the created entity.</returns>
         public IBdoEntity CreateEntity(
             IBdoConfiguration config,
-            IBdoMetaList varSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             IBdoEntity entity = null;
@@ -37,7 +38,7 @@ namespace BindOpen.Runtime.Scopes
             {
                 // we get the entity class reference
 
-                IBdoEntityDefinition definition = ExtensionStore.GetItemDefinitionWithUniqueName<IBdoEntityDefinition>(config.DefinitionUniqueName);
+                IBdoEntityDefinition definition = ExtensionStore.GetDefinition<IBdoEntityDefinition>(config.DefinitionUniqueName);
                 if (definition == null)
                 {
                     log?.AddError("Could not retrieve the extension entity '" + config.DefinitionUniqueName + "' definition");
@@ -63,14 +64,14 @@ namespace BindOpen.Runtime.Scopes
         /// <summary>
         /// Creates the instance of the specified definition.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="config">The config to consider.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="config">The config to consider.</param>
+        /// <param key="log">The log to consider.</param>
+        /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the created connector.</returns>
         public IBdoConnector CreateConnector(
             IBdoConfiguration config,
-            IBdoMetaList varSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             IBdoConnector connector = null;
@@ -79,7 +80,7 @@ namespace BindOpen.Runtime.Scopes
             {
                 // we get the connector class reference
 
-                IBdoConnectorDefinition definition = ExtensionStore.GetItemDefinitionWithUniqueName<IBdoConnectorDefinition>(config?.DefinitionUniqueName);
+                IBdoConnectorDefinition definition = ExtensionStore.GetDefinition<IBdoConnectorDefinition>(config?.DefinitionUniqueName);
                 if (definition == null)
                 {
                     log?.AddError("Could not retrieve the extension connector '" + config.DefinitionUniqueName + "' definition");
@@ -104,14 +105,14 @@ namespace BindOpen.Runtime.Scopes
         /// <summary>
         /// Creates the instance of the specified definition.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="config">The config to consider.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="config">The config to consider.</param>
+        /// <param key="log">The log to consider.</param>
+        /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the created task.</returns>
         public IBdoTask CreateTask(
             IBdoConfiguration config = null,
-            IBdoMetaList varSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             IBdoTask task = null;
@@ -120,7 +121,7 @@ namespace BindOpen.Runtime.Scopes
             {
                 // we get the task class reference
 
-                IBdoTaskDefinition definition = ExtensionStore.GetItemDefinitionWithUniqueName<IBdoTaskDefinition>(config?.DefinitionUniqueName);
+                IBdoTaskDefinition definition = ExtensionStore.GetDefinition<IBdoTaskDefinition>(config?.DefinitionUniqueName);
                 if (definition == null)
                 {
                     log?.AddError("Could not retrieve the extension task '" + config.DefinitionUniqueName + "' definition");
@@ -137,13 +138,22 @@ namespace BindOpen.Runtime.Scopes
                         {
                             task.UpdateFromMeta(config, true, this, varSet);
                         }
-                        //task.UpdateFromMetaList<BdoTaskInputAttribute>(config, scope, varSet);
-                        //task.UpdateFromMetaList<BdoTaskOutputAttribute>(config, scope, varSet);
+                        //task.UpdateFromMetaSet<BdoTaskInputAttribute>(config, scope, varSet);
+                        //task.UpdateFromMetaSet<BdoTaskOutputAttribute>(config, scope, varSet);
                     }
                 }
             }
 
             return task;
         }
+
+        // Script ------------------------------------------------
+
+        /// <summary>
+        /// Creates a new script interpreter.
+        /// </summary>
+        /// <returns>Returns the new script interpreter.</returns>
+        public IBdoScriptInterpreter CreateInterpreter()
+            => BdoScript.CreateInterpreter(this);
     }
 }

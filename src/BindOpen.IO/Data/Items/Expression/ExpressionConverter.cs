@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using BindOpen.Extensions.Scripting;
-using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
 
 namespace BindOpen.Data.Items
 {
@@ -13,15 +11,14 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="poco">The poco to consider.</param>
+        /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static ExpressionDto ToDto(this IBdoExpression poco)
         {
             if (poco == null) return null;
 
             var config = new MapperConfiguration(
-                cfg => cfg.CreateMap<BdoExpression, ExpressionDto>()
-                    .ForMember(q => q.Word, opt => opt.MapFrom(q => q.Word.ToDto())));
+                cfg => cfg.CreateMap<BdoExpression, ExpressionDto>());
 
             var mapper = new Mapper(config);
             var dto = mapper.Map<ExpressionDto>(poco);
@@ -32,21 +29,25 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="dto">The DTO to consider.</param>
+        /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoExpression ConvertToPoco(
-            this IBdoScope scope,
-            ExpressionDto dto,
-            IBdoLog log = null)
+        public static IBdoExpression ToPoco(
+            this ExpressionDto dto)
         {
             if (dto == null) return null;
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<ExpressionDto, BdoExpression>()
-                    .ForMember(q => q.Word, opt => opt.MapFrom(q => scope.ConvertToPoco(q.Word, log))));
+                    .ForMember(q => q.Word, opt => opt.Ignore()));
 
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoExpression>(dto);
+
+            if (poco.Kind == BdoExpressionKind.Word)
+            {
+                poco.Word = BdoScript.NewWordFromScript(poco.Text);
+                poco.Text = "";
+            }
 
             return poco;
         }

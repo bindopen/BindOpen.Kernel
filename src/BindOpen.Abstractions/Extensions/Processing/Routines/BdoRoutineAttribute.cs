@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Items;
-using System;
+﻿using System;
 
 namespace BindOpen.Extensions.Processing
 {
@@ -7,7 +6,7 @@ namespace BindOpen.Extensions.Processing
     /// This class represents an attribute of routines.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public class BdoRoutineAttribute : TitledDescribedDataItemAttribute
+    public class BdoRoutineAttribute : MetaExtensionAttribute
     {
         // ------------------------------------------
         // CONSTRUCTORS

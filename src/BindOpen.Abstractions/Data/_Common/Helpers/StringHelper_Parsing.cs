@@ -11,7 +11,7 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Gets the quoted string.
         /// </summary>
-        /// <param name="st">The string to normalize.</param>
+        /// <param key="st">The string to normalize.</param>
         /// <returns>Returns the quoted string.</returns>
         public static string ToQuoted(this string st)
         {
@@ -21,8 +21,8 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Gets the unquoted string.
         /// </summary>
-        /// <param name="st">The string to normalize.</param>
-        /// <param name="quoteChar">The quote character to consider.</param>
+        /// <param key="st">The string to normalize.</param>
+        /// <param key="quoteChar">The quote character to consider.</param>
         /// <returns>Returns the quoted string.</returns>
         public static string ToUnquoted(this string st, char quoteChar = '\'')
         {
@@ -36,10 +36,10 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Formats the specified string replacing the specified index by the specified string.
         /// </summary>
-        /// <param name="st">The string to consider.</param>
-        /// <param name="index">The index to consider.</param>
-        /// <param name="replaceString">The replacement string to consider.</param>
-        /// <param name="wholeReplaceString">The whole replacement string to consider.</param>
+        /// <param key="st">The string to consider.</param>
+        /// <param key="index">The index to consider.</param>
+        /// <param key="replaceString">The replacement string to consider.</param>
+        /// <param key="wholeReplaceString">The whole replacement string to consider.</param>
         /// <example>The string should be formated this way: {0} {1} or { .. {0} .. } { .. {1} .. } and so on.</example>
         /// <returns>The formated string.</returns>
         public static string ToFormatedString(this string st, int index, string replaceString, string wholeReplaceString = null)
@@ -76,9 +76,9 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Gets the specified sub string.
         /// </summary>
-        /// <param name="st">The string to consider.</param>
-        /// <param name="startIndex">The start index to consider.</param>
-        /// <param name="endIndex">The end index to consider.</param>
+        /// <param key="st">The string to consider.</param>
+        /// <param key="startIndex">The start index to consider.</param>
+        /// <param key="endIndex">The end index to consider.</param>
         /// <returns>The formated path.</returns>
         public static string ToSubstring(this string st, int startIndex, int endIndex = -1)
         {
@@ -94,8 +94,8 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Gets the string with the specified starting string.
         /// </summary>
-        /// <param name="st">The string to consider.</param>
-        /// <param name="startingString">The starting string to consider.</param>
+        /// <param key="st">The string to consider.</param>
+        /// <param key="startingString">The starting string to consider.</param>
         /// <returns>The formated path.</returns>
         public static string StartingWith(this string st, string startingString)
         {
@@ -106,8 +106,8 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Gets the string with the specified ending string.
         /// </summary>
-        /// <param name="st">The string to consider.</param>
-        /// <param name="endingString">The ending string to consider.</param>
+        /// <param key="st">The string to consider.</param>
+        /// <param key="endingString">The ending string to consider.</param>
         /// <returns>The formated path.</returns>
         public static string EndingWith(this string st, string endingString)
         {
@@ -118,9 +118,9 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Gets the index of the last sub string in the specified string.
         /// </summary>
-        /// <param name="st">The string to consider.</param>
-        /// <param name="stv">The string to search.</param>
-        /// <param name="startIndex">The start index to consider.</param>
+        /// <param key="st">The string to consider.</param>
+        /// <param key="stv">The string to search.</param>
+        /// <param key="startIndex">The start index to consider.</param>
         /// <returns>The formated string.</returns>
         public static void IndexOfLastString(this string st, string stv, ref int startIndex)
         {
@@ -130,9 +130,9 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Gets the index of the last sub string in the specified string.
         /// </summary>
-        /// <param name="st">The string to consider.</param>
-        /// <param name="stv">The string to search.</param>
-        /// <param name="startIndex">The start index to consider.</param>
+        /// <param key="st">The string to consider.</param>
+        /// <param key="stv">The string to search.</param>
+        /// <param key="startIndex">The start index to consider.</param>
         /// <returns>The formated string.</returns>
         public static int IndexOfLastString(this string st, string stv, int startIndex)
         {
@@ -172,9 +172,9 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Gets the index of the next sub string in the specified string.
         /// </summary>
-        /// <param name="st">The string to consider.</param>
-        /// <param name="stv">The string to search.</param>
-        /// <param name="startIndex">The start index to consider.</param>
+        /// <param key="st">The string to consider.</param>
+        /// <param key="stv">The string to search.</param>
+        /// <param key="startIndex">The start index to consider.</param>
         /// <returns>The formated string.</returns>
         public static void IndexOfNextString(this string st, string stv, ref int startIndex)
         {
@@ -184,10 +184,10 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Gets the index of the next sub string in the specified string.
         /// </summary>
-        /// <param name="st">The string to consider.</param>
-        /// <param name="stv">The string to search.</param>
-        /// <param name="startIndex">The start index to consider.</param>
-        /// <param name="stringComparison">The string comparison to consider.</param>
+        /// <param key="st">The string to consider.</param>
+        /// <param key="stv">The string to search.</param>
+        /// <param key="startIndex">The start index to consider.</param>
+        /// <param key="stringComparison">The string comparison to consider.</param>
         /// <returns>The formated string.</returns>
         public static int IndexOfNextString(this string st, string stv, int startIndex = 0, StringComparison stringComparison = StringComparison.OrdinalIgnoreCase)
         {

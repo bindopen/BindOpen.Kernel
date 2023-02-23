@@ -1,7 +1,5 @@
 ﻿using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
-using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
 
 namespace BindOpen.Data.Meta
 {
@@ -13,7 +11,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="poco">The poco to consider.</param>
+        /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static MetaObjectDto ToDto(this IBdoMetaObject poco)
         {
@@ -36,12 +34,10 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="dto">The DTO to consider.</param>
+        /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoMetaObject ConvertToPoco(
-            this IBdoScope scope,
-            MetaObjectDto dto,
-            IBdoLog log = null)
+        public static IBdoMetaObject ToPoco(
+            this MetaObjectDto dto)
         {
             if (dto == null) return null;
 

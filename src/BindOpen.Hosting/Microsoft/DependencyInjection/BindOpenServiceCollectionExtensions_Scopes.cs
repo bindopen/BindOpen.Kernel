@@ -15,8 +15,8 @@ namespace Microsoft.Extensions.DependencyInjection
         /// Adds a BidnOpen hosted service as singleton.
         /// </summary>
         /// <typeparam name="TImplementation">The service implementation to consider.</typeparam>
-        /// <param name="services">The set of services to populate.</param>
-        /// <param name="setupAction">The setup action to consider.</param>
+        /// <param key="services">The set of services to populate.</param>
+        /// <param key="setupAction">The setup action to consider.</param>
         /// <returns>Returns the updated service set.</returns>
         public static IServiceCollection AddSingletonBdoScope<TImplementation>(
             this IServiceCollection services,
@@ -28,8 +28,8 @@ namespace Microsoft.Extensions.DependencyInjection
         /// Adds a BidnOpen scoped service as scoped.
         /// </summary>
         /// <typeparam name="TImplementation">The service implementation to consider.</typeparam>
-        /// <param name="services">The set of services to populate.</param>
-        /// <param name="setupAction">The setup action to consider.</param>
+        /// <param key="services">The set of services to populate.</param>
+        /// <param key="setupAction">The setup action to consider.</param>
         /// <returns>Returns the updated service set.</returns>
         public static IServiceCollection AddScopedBdoScope<TImplementation>(
             this IServiceCollection services,
@@ -41,8 +41,8 @@ namespace Microsoft.Extensions.DependencyInjection
         /// Adds a BidnOpen scoped service as transient.
         /// </summary>
         /// <typeparam name="TImplementation">The service implementation to consider.</typeparam>
-        /// <param name="services">The set of services to populate.</param>
-        /// <param name="setupAction">The setup action to consider.</param>
+        /// <param key="services">The set of services to populate.</param>
+        /// <param key="setupAction">The setup action to consider.</param>
         /// <returns>Returns the updated service set.</returns>
         public static IServiceCollection AddTransientBdoScope<TImplementation>(
             this IServiceCollection services,
@@ -54,9 +54,9 @@ namespace Microsoft.Extensions.DependencyInjection
         /// Adds a BidnOpen hosted service.
         /// </summary>
         /// <typeparam name="TImplementation">The service implementation to consider.</typeparam>
-        /// <param name="services">The set of services to populate.</param>
-        /// <param name="setupAction">The setup action to consider.</param>
-        /// <param name="serviceLifetime">The service life time to consider.</param>
+        /// <param key="services">The set of services to populate.</param>
+        /// <param key="setupAction">The setup action to consider.</param>
+        /// <param key="serviceLifetime">The service life time to consider.</param>
         /// <returns>Returns the updated service set.</returns>
         private static IServiceCollection AddBdoScope<TImplementation>(
             this IServiceCollection services,

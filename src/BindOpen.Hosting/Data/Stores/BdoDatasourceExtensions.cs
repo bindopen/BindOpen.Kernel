@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using BindOpen.Data.Configuration;
+using Microsoft.Extensions.Configuration;
 
 namespace BindOpen.Data.Stores
 {
@@ -10,10 +11,13 @@ namespace BindOpen.Data.Stores
         /// <summary>
         /// Adds sources from connection strings.
         /// </summary>
-        /// <param name="depot">The datasource depot to consider.</param>
-        /// <param name="config">The config to consider.</param>
-        /// <param name="keyName">The key name to consider.</param>
-        public static IBdoSourceDepot AddFromConnectionStrings(this IBdoSourceDepot depot, IConfiguration config, string keyName = "connectionStrings")
+        /// <param key="depot">The datasource depot to consider.</param>
+        /// <param key="config">The config to consider.</param>
+        /// <param key="keyName">The key name to consider.</param>
+        public static IBdoSourceDepot AddFromConnectionStrings(
+            this IBdoSourceDepot depot,
+            IConfiguration config,
+            string keyName = "connectionStrings")
         {
             if (depot != null && config != null)
             {
@@ -22,9 +26,9 @@ namespace BindOpen.Data.Stores
                 {
                     depot.Add(
                         BdoData.NewDatasource(section.Key, DatasourceKind.Database)
-                            .WithConfig(
-                                BdoConfig.New().WithConnectionString(section.Value))
-                    );
+                            .With(
+                                BdoConfig.New()
+                                    .WithConnectionString(section.Value)));
                 }
             };
 

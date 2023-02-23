@@ -1,18 +1,17 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
-using BindOpen.Extensions;
 using Bogus;
 using NUnit.Framework;
 
 namespace BindOpen.Tests.Data
 {
     [TestFixture, Order(200)]
-    public class BdoMetaListTests_Object
+    public class BdoMetaSetTests_Object
     {
         private dynamic _testData;
 
-        private IBdoMetaList _metaObjSet = null;
+        private IBdoMetaSet _metaObjSet = null;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -28,7 +27,7 @@ namespace BindOpen.Tests.Data
             };
         }
 
-        public void Test(IBdoMetaList metaList)
+        public void Test(IBdoMetaSet metaList)
         {
             // set
             //  - "object1"
@@ -74,8 +73,8 @@ namespace BindOpen.Tests.Data
                 .WithData(new EntityFake()
                 {
                     Path = _testData.path2 as string
-                });
-            metaObj2.UpdateTree();
+                })
+                .UpdateTree();
 
             var obj3 = new EntityFake(
                 _testData.path3,
@@ -83,9 +82,7 @@ namespace BindOpen.Tests.Data
                 new EntityFake(_testData.path1 as string, _testData.folderPath3 as string));
             var metaObj3 = obj3?.ToMetaData();
 
-            var obj4 = Bdo.NewEntity<EntityFake>(
-                BdoConfig.New("tests.core$testEntity",
-                    (new { path = _testData.path4 as string }).ToMetaData().ToArray()));
+            var obj4 = new EntityFake(_testData.path4 as string);
             var metaObj4 = obj4?.ToMetaData("object4");
 
             var metaObj5 = BdoMeta.NewObject("object1")
@@ -94,7 +91,7 @@ namespace BindOpen.Tests.Data
                         "tests.core$testEntity",
                         BdoMeta.NewScalar("path", _testData.path1 as string)));
 
-            _metaObjSet = BdoMeta.NewList(
+            _metaObjSet = BdoMeta.NewSet(
                 metaObj1,
                 metaObj2,
                 metaObj3,

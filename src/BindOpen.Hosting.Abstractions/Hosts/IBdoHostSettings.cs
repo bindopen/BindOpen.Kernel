@@ -17,7 +17,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Set the library folder.
         /// </summary>
-        /// <param name="libraryFolderPath">The library folder path.</param>
+        /// <param key="libraryFolderPath">The library folder path.</param>
         /// <returns>Returns the host option.</returns>
         IBdoHostSettings WithLibraryFolder(string libraryFolderPath);
     }

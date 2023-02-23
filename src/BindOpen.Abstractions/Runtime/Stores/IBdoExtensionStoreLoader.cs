@@ -11,8 +11,8 @@ namespace BindOpen.Runtime.Stores
         /// <summary>
         /// Loads the specified extensions into the specified scope.
         /// </summary>
-        /// <param name="references">The library references to consider.</param>
-        /// <param name="log">The log to populate.</param>
+        /// <param key="references">The library references to consider.</param>
+        /// <param key="log">The log to populate.</param>
         bool LoadExtensionsInStore(IBdoAssemblyReference[] references, IBdoLog log = null);
     }
 }

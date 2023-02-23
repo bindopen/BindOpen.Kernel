@@ -23,18 +23,18 @@
             <summary>
             Gets the assembly of this instance from file.
             </summary>
-            <param name="appDomain">Application domain to consider.</param>
-            <param name="filePath">Path of the file to use.</param>
-            <param name="log">The loading log to consider.</param>
+            <param key="appDomain">Application domain to consider.</param>
+            <param key="filePath">Path of the file to use.</param>
+            <param key="log">The loading log to consider.</param>
             <returns>The assembly of this instance.</returns>
         </member>
         <member name="M:BindOpen.Runtime.Assemblies.AppDomainPool.LoadAssembly(System.AppDomain,System.String,BindOpen.Logging.IBdoLog)">
             <summary>
             Gets the assembly of this instance from embed resource.
             </summary>
-            <param name="appDomain">Application domain to consider.</param>
-            <param name="assemblyName">The assembly name to use.</param>
-            <param name="log">The loading log to consider.</param>
+            <param key="appDomain">Application domain to consider.</param>
+            <param key="assemblyName">The assembly name to use.</param>
+            <param key="log">The loading log to consider.</param>
             <returns>The assembly of this instance.</returns>
         </member>
         <member name="T:BindOpen.Runtime.Assemblies.AssemblyResolver">
@@ -46,225 +46,225 @@
             <summary>
             Resolves the domain i.e. initializes the assembly resolving routines.
             </summary>
-            <param name="appDomain">The domain to consider.</param>
+            <param key="appDomain">The domain to consider.</param>
         </member>
-        <member name="T:BindOpen.Runtime.Definition.BdoExtensionDefinition">
+        <member name="T:BindOpen.Runtime.Definition.BdoPackageDefinition">
             <summary>
             This class represents the definition of a library.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinition.#ctor">
+        <member name="M:BindOpen.Runtime.Definition.BdoPackageDefinition.#ctor">
             <summary>
-            Instantiates a new instance of BdoExtensionDefinition class.
+            Instantiates a new instance of BdoPackageDefinition class.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.UniqueName">
+        <member name="P:BindOpen.Runtime.Definition.BdoPackageDefinition.UniqueName">
             <summary>
             The unique ID of this instance.
             </summary> 
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.GroupName">
+        <member name="P:BindOpen.Runtime.Definition.BdoPackageDefinition.GroupName">
             <summary>
             Name of the group of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.AssemblyName">
+        <member name="P:BindOpen.Runtime.Definition.BdoPackageDefinition.AssemblyName">
             <summary>
             Name of the assembly where the library can be loaded.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.RootNamespace">
+        <member name="P:BindOpen.Runtime.Definition.BdoPackageDefinition.RootNamespace">
             <summary>
             Root name space of this intance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.FileName">
+        <member name="P:BindOpen.Runtime.Definition.BdoPackageDefinition.FileName">
             <summary>
             File name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.UsingAssemblyFileNames">
+        <member name="P:BindOpen.Runtime.Definition.BdoPackageDefinition.UsingAssemblyFileNames">
             <summary>
             Names of the using assembly files of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.ItemIndexFullNameDictionary">
+        <member name="P:BindOpen.Runtime.Definition.BdoPackageDefinition.ItemIndexFullNameDictionary">
             <summary>
             Dictionary full names of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinition.GetRootNamespace">
+        <member name="M:BindOpen.Runtime.Definition.BdoPackageDefinition.GetRootNamespace">
             <summary>
             Gets the root namespace.
             </summary>
             <returns>Returns the root namspace.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinition.Initialize">
+        <member name="M:BindOpen.Runtime.Definition.BdoPackageDefinition.Initialize">
             <summary>
             Initializes this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinition.Dispose(System.Boolean)">
+        <member name="M:BindOpen.Runtime.Definition.BdoPackageDefinition.Dispose(System.Boolean)">
             <summary>
             Disposes this instance. 
             </summary>
-            <param name="isDisposing">Indicates whether this instance is disposing</param>
+            <param key="isDisposing">Indicates whether this instance is disposing</param>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinition.Key">
+        <member name="M:BindOpen.Runtime.Definition.BdoPackageDefinition.Key">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.Id">
+        <member name="P:BindOpen.Runtime.Definition.BdoPackageDefinition.Id">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinition.WithId(System.String)">
+        <member name="M:BindOpen.Runtime.Definition.BdoPackageDefinition.WithId(System.String)">
             <summary>
             
             </summary>
-            <param name="id"></param>
+            <param key="id"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.Name">
+        <member name="P:BindOpen.Runtime.Definition.BdoPackageDefinition.Name">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinition.WithName(System.String)">
+        <member name="M:BindOpen.Runtime.Definition.BdoPackageDefinition.WithName(System.String)">
             <summary>
             
             </summary>
-            <param name="name"></param>
+            <param key="name"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.Title">
+        <member name="P:BindOpen.Runtime.Definition.BdoPackageDefinition.Title">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinition.WithTitle(BindOpen.Data.Items.IBdoDictionary)">
+        <member name="M:BindOpen.Runtime.Definition.BdoPackageDefinition.WithTitle(BindOpen.Data.Items.IBdoDictionary)">
             <summary>
             
             </summary>
-            <param name="dico"></param>
+            <param key="dico"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinition.GetTitleText(System.String,System.String)">
+        <member name="M:BindOpen.Runtime.Definition.BdoPackageDefinition.GetTitleText(System.String,System.String)">
             <summary>
             
             </summary>
-            <param name="key"></param>
-            <param name="defaultKey"></param>
+            <param key="key"></param>
+            <param key="defaultKey"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.Description">
+        <member name="P:BindOpen.Runtime.Definition.BdoPackageDefinition.Description">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Runtime.Definition.BdoExtensionItemGroup">
+        <member name="T:BindOpen.Runtime.Definition.BdoExtensionGroup">
             <summary>
             This class represents the group of BindOpen extension items.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemGroup.#ctor">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionGroup.#ctor">
             <summary>
-            Instantiates a new instance of the BdoExtensionItemGroup class.
+            Instantiates a new instance of the BdoExtensionGroup class.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemGroup.SubGroups">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionGroup.SubGroups">
             <summary>
             Area specifications of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemGroup.GetGroupWithName(System.String)">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionGroup.GetGroupWithName(System.String)">
             <summary>
             Returns the group with the specified name.
             </summary>
-            <param name="name">The name of the sub group to return.</param>
+            <param key="name">The name of the sub group to return.</param>
             <returns>Returns the sub group with the specified name.</returns>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemGroup.CreationDate">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionGroup.CreationDate">
             <summary>
             Creation date of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemGroup.WithCreationDate(System.Nullable{System.DateTime})">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionGroup.WithCreationDate(System.Nullable{System.DateTime})">
             <summary>
             Creation date of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemGroup.LastModificationDate">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionGroup.LastModificationDate">
             <summary>
             Last modification date of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemGroup.WithLastModificationDate(System.Nullable{System.DateTime})">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionGroup.WithLastModificationDate(System.Nullable{System.DateTime})">
             <summary>
             Creation date of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemGroup.Key">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionGroup.Key">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemGroup.Id">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionGroup.Id">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemGroup.WithId(System.String)">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionGroup.WithId(System.String)">
             <summary>
             
             </summary>
-            <param name="id"></param>
+            <param key="id"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemGroup.Name">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionGroup.Name">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemGroup.WithName(System.String)">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionGroup.WithName(System.String)">
             <summary>
             
             </summary>
-            <param name="name"></param>
+            <param key="name"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemGroup.Title">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionGroup.Title">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemGroup.AddTitle(System.Collections.Generic.KeyValuePair{System.String,System.String})">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionGroup.AddTitle(System.Collections.Generic.KeyValuePair{System.String,System.String})">
             <summary>
             
             </summary>
-            <param name="item"></param>
+            <param key="item"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemGroup.Description">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionGroup.Description">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemGroup.AddDescription(System.Collections.Generic.KeyValuePair{System.String,System.String})">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionGroup.AddDescription(System.Collections.Generic.KeyValuePair{System.String,System.String})">
             <summary>
             
             </summary>
-            <param name="item"></param>
+            <param key="item"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemGroup.GetDescriptionText(System.String,System.String)">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionGroup.GetDescriptionText(System.String,System.String)">
             <summary>
             
             </summary>
-            <param name="key"></param>
-            <param name="defaultKey"></param>
+            <param key="key"></param>
+            <param key="defaultKey"></param>
             <returns></returns>
         </member>
         <member name="T:BindOpen.Runtime.Definition.BdoEntityDictionary">
@@ -346,9 +346,9 @@
             <summary>
             Gets the specified definition.
             </summary>
-            <param name="definitionName">The defintion name to consider.</param>
-            <param name="methodName">The name of the method to consider.</param>
-            <param name="parent">The parent to consider.</param>
+            <param key="definitionName">The defintion name to consider.</param>
+            <param key="methodName">The name of the method to consider.</param>
+            <param key="parent">The parent to consider.</param>
             <returns></returns>
         </member>
         <member name="T:BindOpen.Runtime.Definition.BdoTaskDictionary">
@@ -386,7 +386,7 @@
             <summary>
             
             </summary>
-            <param name="libraryName"></param>
+            <param key="libraryName"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Runtime.Definition.TBdoExtensionDictionary`1.Definitions">
@@ -433,7 +433,7 @@
             <summary>
             
             </summary>
-            <param name="id"></param>
+            <param key="id"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Runtime.Definition.TBdoExtensionDictionary`1.Name">
@@ -445,7 +445,7 @@
             <summary>
             
             </summary>
-            <param name="name"></param>
+            <param key="name"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Runtime.Definition.TBdoExtensionDictionary`1.Title">
@@ -458,144 +458,144 @@
             
             </summary>
         </member>
-        <member name="T:BindOpen.Runtime.Definition.BdoExtensionItemDefinition">
+        <member name="T:BindOpen.Runtime.Definition.BdoExtensionDefinition">
             <summary>
             This class represents the definition of BindOpen extension item.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.#ctor(System.String,System.String,BindOpen.Runtime.Definition.IBdoExtensionDefinition)">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinition.#ctor(System.String,System.String,BindOpen.Runtime.Definition.IBdoPackageDefinition)">
             <summary>
-            Instantiates a new instance of the BdoExtensionItemDefinition class.
+            Instantiates a new instance of the BdoExtensionDefinition class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="preffix">The preffix to consider.</param>
-            <param name="extensionDefinition">The extensition definition to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="preffix">The preffix to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.ExtensionDefinition">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.PackageDefinition">
             <summary>
             The library of this instance.
             </summary>        
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.UniqueName">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.UniqueName">
             <summary>
             The unique identifier of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.ImageUri">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.ImageUri">
             <summary>
             Uri of the image representing this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.IsEditable">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.IsEditable">
             <summary>
             Indicates whether this instance is editable.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.IsIndexed">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.IsIndexed">
             <summary>
             Indicates whether this instance is indexed.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.LibraryId">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.LibraryId">
             <summary>
             Business library ID of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.CreationDate">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.CreationDate">
             <summary>
             Creation date of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.WithCreationDate(System.Nullable{System.DateTime})">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinition.WithCreationDate(System.Nullable{System.DateTime})">
             <summary>
             Creation date of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.LastModificationDate">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.LastModificationDate">
             <summary>
             Last modification date of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.WithLastModificationDate(System.Nullable{System.DateTime})">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinition.WithLastModificationDate(System.Nullable{System.DateTime})">
             <summary>
             Creation date of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.Index">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.Index">
             <summary>
             The index of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.WithIndex(System.Nullable{System.Int32})">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinition.WithIndex(System.Nullable{System.Int32})">
             <summary>
             
             </summary>
-            <param name="index"></param>
+            <param key="index"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.Key">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinition.Key">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.Id">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.Id">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.WithId(System.String)">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinition.WithId(System.String)">
             <summary>
             
             </summary>
-            <param name="id"></param>
+            <param key="id"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.Name">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.Name">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.WithName(System.String)">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinition.WithName(System.String)">
             <summary>
             
             </summary>
-            <param name="name"></param>
+            <param key="name"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.Title">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.Title">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.GetTitleText(System.String,System.String)">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinition.GetTitleText(System.String,System.String)">
             <summary>
             
             </summary>
-            <param name="key"></param>
-            <param name="defaultKey"></param>
+            <param key="key"></param>
+            <param key="defaultKey"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemDefinition.Description">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinition.Description">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Runtime.Definition.BdoExtensionItemKindExtension">
+        <member name="T:BindOpen.Runtime.Definition.BdoExtensionKindExtension">
             <summary>
             This class represents an extension item kind extension.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemKindExtension.GetExtensionItemKind(BindOpen.Runtime.Definition.IBdoExtensionItemDefinition)">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionKindExtension.GetExtensionKind(BindOpen.Runtime.Definition.IBdoExtensionDefinition)">
             <summary>
             Gets the extension item kind corresponding to the specified object.
             </summary>
-            <param name="extensionItemDefinition">The BindOpen extension item to consider.</param>
+            <param key="extensionDefinition">The BindOpen extension item to consider.</param>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemKindExtension.GetExtensionItemKind(System.Type)">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionKindExtension.GetExtensionKind(System.Type)">
             <summary>
             Gets the extension item kind corresponding to the specified type.
             </summary>
-            <param name="type">The type to consider.</param>
+            <param key="type">The type to consider.</param>
         </member>
         <member name="T:BindOpen.Runtime.Definition.BdoEntityDefinition">
             <summary>
@@ -627,12 +627,12 @@
             The unique ID of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoEntityDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoExtensionDefinition)">
+        <member name="M:BindOpen.Runtime.Definition.BdoEntityDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoPackageDefinition)">
             <summary>
             Instantiates a new instance of the EntityDefinition class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="extensionDefinition">The extensition definition to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.Definition.BdoEntityDefinition.Key">
             <summary>
@@ -670,12 +670,12 @@
             The unique ID of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoConnectorDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoExtensionDefinition)">
+        <member name="M:BindOpen.Runtime.Definition.BdoConnectorDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoPackageDefinition)">
             <summary>
             Instantiates a new instance of the ConnectorDefinition class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="extensionDefinition">The extensition definition to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.Definition.BdoConnectorDefinition.Key">
             <summary>
@@ -728,12 +728,12 @@
             Viewer class of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoEntityDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoExtensionDefinition)">
+        <member name="M:BindOpen.Runtime.Definition.BdoEntityDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoPackageDefinition)">
             <summary>
             Instantiates a new instance of the EntityDefinition class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="extensionDefinition">The extensition definition to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.Definition.BdoEntityDefinition.Key">
             <summary>
@@ -745,14 +745,14 @@
             <summary>
             Gets the format with the specified unique name.
             </summary>
-            <param name="uniqueName">Unique name of the application module.</param>
+            <param key="uniqueName">Unique name of the application module.</param>
             <returns>The current visitor application module.</returns>
         </member>
         <member name="M:BindOpen.Runtime.Definition.BdoEntityDefinition.GetFormatWithName(System.String)">
             <summary>
             Gets the format with the specified name.
             </summary>
-            <param name="name">Name of the application module.</param>
+            <param key="name">Name of the application module.</param>
             <returns>The current visitor application module.</returns>
         </member>
         <member name="M:BindOpen.Runtime.Definition.BdoEntityDefinition.GetFormatWithId(System.String)">
@@ -793,12 +793,12 @@
             The unique ID of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoFormatDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoExtensionDefinition)">
+        <member name="M:BindOpen.Runtime.Definition.BdoFormatDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoPackageDefinition)">
             <summary>
             Instantiates a new instance of the FormatDefinition class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="extensionDefinition">The extensition definition to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.Definition.BdoFormatDefinition.Key">
             <summary>
@@ -856,12 +856,12 @@
             The unique ID of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoHandlerDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoExtensionDefinition)">
+        <member name="M:BindOpen.Runtime.Definition.BdoHandlerDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoPackageDefinition)">
             <summary>
             Instantiates a new instance of the HandlerDefinition class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="extensionDefinition">The extensition definition to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.Definition.BdoHandlerDefinition.Key">
             <summary>
@@ -894,12 +894,12 @@
             Unit code of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoMetricsDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoExtensionDefinition)">
+        <member name="M:BindOpen.Runtime.Definition.BdoMetricsDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoPackageDefinition)">
             <summary>
             Instantiates a new instance of the MetricsDefinition class. 
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="extensionDefinition">The extensition definition to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
         </member>
         <member name="T:BindOpen.Runtime.Definition.BdoRoutineDefinition">
             <summary>
@@ -931,12 +931,12 @@
             The unique ID of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoRoutineDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoExtensionDefinition)">
+        <member name="M:BindOpen.Runtime.Definition.BdoRoutineDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoPackageDefinition)">
             <summary>
             Initializes a new instance of the RoutineDefinition class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="extensionDefinition">The extensition definition to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.Definition.BdoRoutineDefinition.Key">
             <summary>
@@ -1036,12 +1036,12 @@
             The unique ID of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoScriptwordDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoExtensionDefinition)">
+        <member name="M:BindOpen.Runtime.Definition.BdoScriptwordDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoPackageDefinition)">
             <summary>
             Instantiates a new instance of the ScriptwordDefinition class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="extensionDefinition">The extensition definition to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.Definition.BdoScriptwordDefinition.Key">
             <summary>
@@ -1058,14 +1058,14 @@
             <summary>
             Returns the repeated parameter description text.
             </summary>
-            <param name="key">The key to consider.</param>
-            <param name="defaultKey">The default variant name to consider.</param>
+            <param key="key">The key to consider.</param>
+            <param key="defaultKey">The default variant name to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.Definition.BdoScriptwordDefinition.Dispose(System.Boolean)">
             <summary>
             Disposes this instance. 
             </summary>
-            <param name="isDisposing">Indicates whether this instance is disposing</param>
+            <param key="isDisposing">Indicates whether this instance is disposing</param>
         </member>
         <member name="T:BindOpen.Runtime.Definition.BdoTaskDefinition">
             <summary>
@@ -1113,12 +1113,12 @@
             The unique ID of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoTaskDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoExtensionDefinition)">
+        <member name="M:BindOpen.Runtime.Definition.BdoTaskDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoPackageDefinition)">
             <summary>
             Instantiates a new instance of the TaskDefinition class. 
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="extensionDefinition">The extensition definition to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.Definition.BdoTaskDefinition.Key">
             <summary>
@@ -1130,36 +1130,36 @@
             <summary>
             Gets the specified entries.
             </summary>
-            <param name="taskEntryKinds">The kind end entries to consider.</param>
+            <param key="taskEntryKinds">The kind end entries to consider.</param>
             <returns>True if this instance is configurable.</returns>
         </member>
         <member name="M:BindOpen.Runtime.Definition.BdoTaskDefinition.GetEntryWithName(System.String,BindOpen.Runtime.Definition.TaskEntryKind[])">
             <summary>
             Returns the entry of the specified kind with the specified unique name.
             </summary>
-            <param name="key">The key to consider.</param>
-            <param name="taskEntryKinds">The kind end entries to consider.</param>
+            <param key="key">The key to consider.</param>
+            <param key="taskEntryKinds">The kind end entries to consider.</param>
             <returns>Returns the input with the specified name.</returns>
         </member>
         <member name="M:BindOpen.Runtime.Definition.BdoTaskDefinition.GetEntryDefaultItemWithName(System.String,BindOpen.Logging.IBdoLog,BindOpen.Runtime.Definition.TaskEntryKind[])">
             <summary>
             Gets the value of the specified entry.
             </summary>
-            <param name="name">The name of the entry to consider.</param>
-            <param name="log">The log to populate.</param>
-            <param name="taskEntryKinds">The kind end entries to consider.</param>
+            <param key="name">The name of the entry to consider.</param>
+            <param key="log">The log to populate.</param>
+            <param key="taskEntryKinds">The kind end entries to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.Definition.BdoTaskDefinition.Repair(BindOpen.Runtime.Definition.IBdoTaskDefinition)">
             <summary>
             Repairs this instance basing on the specified definition task.
             </summary>
-            <param name="taskDefinition">The definition task to consider.</param>
+            <param key="taskDefinition">The definition task to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.Definition.BdoTaskDefinition.Dispose(System.Boolean)">
             <summary>
             Disposes this instance. 
             </summary>
-            <param name="isDisposing">Indicates whether this instance is disposing</param>
+            <param key="isDisposing">Indicates whether this instance is disposing</param>
         </member>
         <member name="T:BindOpen.Runtime.BdoRtm">
             <summary>
@@ -1179,8 +1179,8 @@
             <summary>
             Creates a assembly reference from the specified extension one.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="version">The version to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="version">The version to consider.</param>
             <returns>Returns the itemized list of the specified library list.</returns>
         </member>
         <member name="M:BindOpen.Runtime.BdoRtm.AssemblyFrom``1">
@@ -1199,60 +1199,60 @@
             <summary>
             Gets the distinct list of the specified library reference list.
             </summary>
-            <param name="references">The references to consider.</param>
+            <param key="references">The references to consider.</param>
             <returns>Returns the itemized list of the specified library list.</returns>
         </member>
         <member name="M:BindOpen.Runtime.BdoRtm.NewEntityConfiguration(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Creates the instance of the specified config.
             </summary>
-            <param name="definitionUniqueName">The unique ID of the definition to consider.</param>
+            <param key="definitionUniqueName">The unique ID of the definition to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.BdoRtm.NewConnectorConfiguration(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Creates the instance of the specified config.
             </summary>
-            <param name="definitionUniqueName">The unique ID of the definition to consider.</param>
+            <param key="definitionUniqueName">The unique ID of the definition to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.BdoRtm.NewTaskConfiguration(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Creates the instance of the specified config.
             </summary>
-            <param name="definitionUniqueName">The unique ID of the definition to consider.</param>
+            <param key="definitionUniqueName">The unique ID of the definition to consider.</param>
         </member>
-        <member name="M:BindOpen.Runtime.BdoRtm.NewEntityDefinition(BindOpen.Runtime.Definition.IBdoExtensionDefinition,System.String)">
+        <member name="M:BindOpen.Runtime.BdoRtm.NewEntityDefinition(BindOpen.Runtime.Definition.IBdoPackageDefinition,System.String)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
-            <param name="extensionDefinition">The extension definition DTO to consider.</param>
-            <param name="name">The name of the definition DTO to consider.</param>
+            <param key="extensionDefinition">The extension definition DTO to consider.</param>
+            <param key="name">The name of the definition DTO to consider.</param>
         </member>
-        <member name="M:BindOpen.Runtime.BdoRtm.NewConnectorDefinition(BindOpen.Runtime.Definition.IBdoExtensionDefinition,System.String)">
+        <member name="M:BindOpen.Runtime.BdoRtm.NewConnectorDefinition(BindOpen.Runtime.Definition.IBdoPackageDefinition,System.String)">
             <summary>
             Creates the instance of the specified definition DTO.
             </summary>
-            <param name="extensionDefinition">The extension definition DTO to consider.</param>
-            <param name="name">The name of the definition DTO to consider.</param>
+            <param key="extensionDefinition">The extension definition DTO to consider.</param>
+            <param key="name">The name of the definition DTO to consider.</param>
         </member>
-        <member name="M:BindOpen.Runtime.BdoRtm.NewEntityDefinition(BindOpen.Runtime.Definition.IBdoExtensionDefinition,System.String)">
+        <member name="M:BindOpen.Runtime.BdoRtm.NewEntityDefinition(BindOpen.Runtime.Definition.IBdoPackageDefinition,System.String)">
             <summary>
             Creates the instance of the specified definition DTO.
             </summary>
-            <param name="extensionDefinition">The extension definition DTO to consider.</param>
-            <param name="name">The name of the definition DTO to consider.</param>
+            <param key="extensionDefinition">The extension definition DTO to consider.</param>
+            <param key="name">The name of the definition DTO to consider.</param>
         </member>
-        <member name="M:BindOpen.Runtime.BdoRtm.NewTaskDefinition(BindOpen.Runtime.Definition.IBdoExtensionDefinition,System.String)">
+        <member name="M:BindOpen.Runtime.BdoRtm.NewTaskDefinition(BindOpen.Runtime.Definition.IBdoPackageDefinition,System.String)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
-            <param name="extensionDefinition">The extension definition DTO to consider.</param>
-            <param name="name">The name of the definition DTO to consider.</param>
+            <param key="extensionDefinition">The extension definition DTO to consider.</param>
+            <param key="name">The name of the definition DTO to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.BdoRtm.NewScope(System.AppDomain)">
             <summary>
             Creates a new scope.
             </summary>
-            <param name="appDomain">The application domain to consider.</param>
+            <param key="appDomain">The application domain to consider.</param>
             <returns>The log of check log.</returns>
         </member>
         <member name="T:BindOpen.Runtime.References.BdoAssemblyReference">
@@ -1284,14 +1284,14 @@
             <summary>
             Instantiates a new instance of the BdoAssemblyReference class.
             </summary>
-            <param name="name">The library name to consider.</param>
-            <param name="version">The library version to consider.</param>
+            <param key="name">The library name to consider.</param>
+            <param key="version">The library version to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.References.BdoAssemblyReference.WithFileName(System.String)">
             <summary>
             Adds the specified file name.
             </summary>
-            <param name="fileName">The file name to consider.</param>
+            <param key="fileName">The file name to consider.</param>
         </member>
         <member name="T:BindOpen.Runtime.References.BdoAssemblyReferenceCollection">
             <summary>
@@ -1302,7 +1302,7 @@
             <summary>
             Instantiates a new instance of the BdoAssemblyReferenceCollection class.
             </summary>
-            <param name="references">The references to consider.</param>
+            <param key="references">The references to consider.</param>
         </member>
         <member name="T:BindOpen.Runtime.References.BdoAssemblyReferenceExtension">
             <summary>
@@ -1313,23 +1313,23 @@
             <summary>
             Creates a assembly reference from the specified extension one.
             </summary>
-            <param name="references">The reference set to consider.</param>
-            <param name="name">The name to consider.</param>
-            <param name="version">The version to consider.</param>
+            <param key="references">The reference set to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="version">The version to consider.</param>
             <returns>Returns the itemized list of the specified library list.</returns>
         </member>
         <member name="M:BindOpen.Runtime.References.BdoAssemblyReferenceExtension.AddAssembly``1(BindOpen.Runtime.References.IBdoAssemblyReferenceCollection)">
             <summary>
             Creates a assembly reference of the spcefied type.
             </summary>
-            <param name="references">The reference set to consider.</param>
+            <param key="references">The reference set to consider.</param>
             <returns>Returns the itemized list of the spcefied type</returns>
         </member>
         <member name="M:BindOpen.Runtime.References.BdoAssemblyReferenceExtension.AddAllAssemblies(BindOpen.Runtime.References.IBdoAssemblyReferenceCollection)">
             <summary>
             Creates a assembly reference that represents all the references.
             </summary>
-            <param name="references">The reference set to consider.</param>
+            <param key="references">The reference set to consider.</param>
             <returns>Returns a assembly reference that represents all the references.</returns>
         </member>
         <member name="T:BindOpen.Runtime.References.ClassReference">
@@ -1376,7 +1376,7 @@
             <summary>
             Instantiates a new instance of the BdoScope class.
             </summary>
-            <param name="appDomain">The application domain to instance.</param>
+            <param key="appDomain">The application domain to instance.</param>
         </member>
         <member name="M:BindOpen.Runtime.Scopes.BdoScope.NewScriptInterpreter">
             <summary>
@@ -1388,28 +1388,28 @@
             <summary>
             Loads the specified extensions.
             </summary>
-            <param name="loadOptionsAction">The load options action to consider.</param>
-            <param name="references">The extension references to consider.</param>
+            <param key="loadOptionsAction">The load options action to consider.</param>
+            <param key="references">The extension references to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.Scopes.BdoScope.LoadExtensions(System.Func{BindOpen.Runtime.Scopes.IExtensionLoadOptions,System.Boolean},BindOpen.Runtime.References.IBdoAssemblyReference[])">
             <summary>
             Loads the specified extensions.
             </summary>
-            <param name="loadOptionsAction">The load options action to consider.</param>
-            <param name="references">The extension references to consider.</param>
+            <param key="loadOptionsAction">The load options action to consider.</param>
+            <param key="references">The extension references to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.Scopes.BdoScope.LoadExtensions(BindOpen.Runtime.References.IBdoAssemblyReference[],BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the specified extensions.
             </summary>
-            <param name="references">The extension references to consider.</param>
+            <param key="references">The extension references to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.Scopes.BdoScope.LoadExtensions(BindOpen.Runtime.References.IBdoAssemblyReference[])">
             <summary>
             Loads the specified extensions.
             </summary>
-            <param name="loadOptionsAction">The load options action to consider.</param>
-            <param name="references">The extension references to consider.</param>
+            <param key="loadOptionsAction">The load options action to consider.</param>
+            <param key="references">The extension references to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.Scopes.BdoScope.Clear">
             <summary>
@@ -1434,38 +1434,38 @@
             <summary>
             Check the specified item.
             </summary>
-            <param name="checkExtensionStore">Indicates whether the extension item definition store extistence is chekced.</param>
-            <param name="checkDataContext">Indicates whether the data context extistence is chekced.</param>
-            <param name="checkDataStore">Indicates whether the data store extistence is chekced.</param>
+            <param key="checkExtensionStore">Indicates whether the extension item definition store extistence is chekced.</param>
+            <param key="checkDataContext">Indicates whether the data context extistence is chekced.</param>
+            <param key="checkDataStore">Indicates whether the data store extistence is chekced.</param>
             <returns>The log of check log.</returns>
         </member>
         <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.Open``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Items.IBdoDataSource,System.String,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates a connector.
             </summary>
-            <param name="scope">The scope to consider.</param>
-            <param name="dataSource">The data source to consider.</param>
-            <param name="connectorDefinitionUniqueName">The connector definition name to consider.</param>
-            <param name="log">The log of execution to consider.</param>
+            <param key="scope">The scope to consider.</param>
+            <param key="dataSource">The data source to consider.</param>
+            <param key="connectorDefinitionUniqueName">The connector definition name to consider.</param>
+            <param key="log">The log of execution to consider.</param>
             <returns>Returns True if the connector has been opened. False otherwise.</returns>
         </member>
         <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.Open``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Connecting.IBdoConfiguration,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates a connector using the specified data module and connector unique name.
             </summary>
-            <param name="scope">The scope to consider.</param>
-            <param name="config">The connector config to consider.</param>
-            <param name="log">The log of execution to consider.</param>
+            <param key="scope">The scope to consider.</param>
+            <param key="config">The connector config to consider.</param>
+            <param key="log">The log of execution to consider.</param>
             <returns>Returns True if the connector has been opened. False otherwise.</returns>
         </member>
         <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewEntity``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Modeling.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
-            <param name="scope">The scope to consider.</param>
-            <param name="config">The config to consider.</param>
-            <param name="log">The log to consider.</param>
-            <param name="varSet">The variable element set to use.</param>
+            <param key="scope">The scope to consider.</param>
+            <param key="config">The config to consider.</param>
+            <param key="log">The log to consider.</param>
+            <param key="varSet">The variable element set to use.</param>
             <typeparam name="T">The entity class to return.</typeparam>
             <returns>Returns the created entity.</returns>
         </member>
@@ -1473,20 +1473,20 @@
             <summary>
             Creates the instance of the specified definition.
             </summary>
-            <param name="scope">The scope to consider.</param>
-            <param name="config">The config to consider.</param>
-            <param name="log">The log to consider.</param>
-            <param name="varSet">The variable element set to use.</param>
+            <param key="scope">The scope to consider.</param>
+            <param key="config">The config to consider.</param>
+            <param key="log">The log to consider.</param>
+            <param key="varSet">The variable element set to use.</param>
             <returns>Returns the created entity.</returns>
         </member>
         <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewConnector``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Connecting.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
-            <param name="scope">The scope to consider.</param>
-            <param name="config">The config to consider.</param>
-            <param name="log">The log to consider.</param>
-            <param name="varSet">The variable element set to use.</param>
+            <param key="scope">The scope to consider.</param>
+            <param key="config">The config to consider.</param>
+            <param key="log">The log to consider.</param>
+            <param key="varSet">The variable element set to use.</param>
             <typeparam name="T">The connector class to return.</typeparam>
             <returns>Returns the created connector.</returns>
         </member>
@@ -1494,20 +1494,20 @@
             <summary>
             Creates the instance of the specified definition.
             </summary>
-            <param name="scope">The scope to consider.</param>
-            <param name="config">The config to consider.</param>
-            <param name="log">The log to consider.</param>
-            <param name="varSet">The variable element set to use.</param>
+            <param key="scope">The scope to consider.</param>
+            <param key="config">The config to consider.</param>
+            <param key="log">The log to consider.</param>
+            <param key="varSet">The variable element set to use.</param>
             <returns>Returns the created connector.</returns>
         </member>
         <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.NewTask``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Extensions.Processing.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
-            <param name="scope">The scope to consider.</param>
-            <param name="config">The config to consider.</param>
-            <param name="log">The log to consider.</param>
-            <param name="varSet">The variable element set to use.</param>
+            <param key="scope">The scope to consider.</param>
+            <param key="config">The config to consider.</param>
+            <param key="log">The log to consider.</param>
+            <param key="varSet">The variable element set to use.</param>
             <typeparam name="T">The entity class to return.</typeparam>
             <returns>Returns the created entity.</returns>
         </member>
@@ -1515,17 +1515,17 @@
             <summary>
             Creates the instance of the specified definition.
             </summary>
-            <param name="scope">The scope to consider.</param>
-            <param name="config">The config to consider.</param>
-            <param name="log">The log to consider.</param>
-            <param name="varSet">The variable element set to use.</param>
+            <param key="scope">The scope to consider.</param>
+            <param key="config">The config to consider.</param>
+            <param key="log">The log to consider.</param>
+            <param key="varSet">The variable element set to use.</param>
             <returns>Returns the created task.</returns>
         </member>
         <member name="M:BindOpen.Runtime.Scopes.BdoScopeExtension.CreateScoped``1(BindOpen.Runtime.Scopes.IBdoScope)">
             <summary>
             Creates a new service.
             </summary>
-            <param name="scope"></param>
+            <param key="scope"></param>
             <typeparam name="T"></typeparam>
             <returns>Returns the log of the operation.</returns>
         </member>
@@ -1533,8 +1533,8 @@
             <summary>
             Creates a new connected service.
             </summary>
-            <param name="scope"></param>
-            <param name="connector"></param>
+            <param key="scope"></param>
+            <param key="connector"></param>
             <typeparam name="T"></typeparam>
             <returns>Returns the log of the operation.</returns>
         </member>
@@ -1567,21 +1567,21 @@
             <summary>
             Sets the path of the library folder of this instance.
             </summary>
-            <param name="folderPath"></param>
+            <param key="folderPath"></param>
             <returns>Returns this instance.</returns>
         </member>
         <member name="M:BindOpen.Runtime.Scopes.ExtensionLoadOptions.WithRemoteServerUri(System.String)">
             <summary>
             Sets the URI of the remote server of this instance.
             </summary>
-            <param name="uri">The URI of the remote server.</param>
+            <param key="uri">The URI of the remote server.</param>
             <returns>Returns this instance.</returns>
         </member>
         <member name="M:BindOpen.Runtime.Scopes.ExtensionLoadOptions.WithSourceKinds(BindOpen.Data.Items.DatasourceKind[])">
             <summary>
             Sets the source kinds of this instance.
             </summary>
-            <param name="sourceKinds">The source kinds to consider.</param>
+            <param key="sourceKinds">The source kinds to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
         <member name="M:BindOpen.Runtime.Scopes.ExtensionLoadOptions.Update``1(``0)">
@@ -1589,7 +1589,7 @@
             
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="item"></param>
+            <param key="item"></param>
             <returns></returns>
         </member>
         <member name="T:BindOpen.Runtime.Stores.BdoExtensionStore">
@@ -1618,15 +1618,15 @@
             <summary>
             Returns the item definition with the specified unique name.
             </summary>
-            <param name="uniqueName">The unique ID of item to return.</param>
+            <param key="uniqueName">The unique ID of item to return.</param>
             <returns>The item with the specified unique name.</returns>
         </member>
         <member name="M:BindOpen.Runtime.Stores.BdoExtensionStore.GetScriptwordDefinitionWithUniqueName(System.String,BindOpen.Extensions.Scripting.IBdoScriptwordDefinition)">
             <summary>
             Returns the script word definition with the specified unique name.
             </summary>
-            <param name="uniqueName">The unique ID of script word to return.</param>
-            <param name="parentDefinition"></param>
+            <param key="uniqueName">The unique ID of script word to return.</param>
+            <param key="parentDefinition"></param>
             <returns>The script word with the specified unique name.</returns>
         </member>
         <member name="M:BindOpen.Runtime.Stores.BdoExtensionStore.Clear">
@@ -1639,7 +1639,7 @@
             Adds the specified definition.
             </summary>
             <typeparam name="T">The BindOpen extension item definition class to consider.</typeparam>
-            <param name="definition">The definition to add.</param>
+            <param key="definition">The definition to add.</param>
         </member>
         <member name="P:BindOpen.Runtime.Stores.BdoExtensionStore.Id">
             <summary>
@@ -1650,7 +1650,7 @@
             <summary>
             
             </summary>
-            <param name="id"></param>
+            <param key="id"></param>
             <returns></returns>
         </member>
         <member name="T:BindOpen.Runtime.Stores.BdoExtensionStoreLoader">
@@ -1695,47 +1695,47 @@
             <summary>
             Initializes a new instance of BdoExtensionStoreLoader the class.
             </summary>
-            <param name="appDomain">The application domain to consider.</param>
-            <param name="store">The extension store to consider.</param>
-            <param name="loadOptions">The load options to consider.</param>
+            <param key="appDomain">The application domain to consider.</param>
+            <param key="store">The extension store to consider.</param>
+            <param key="loadOptions">The load options to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadExtensionsInStore(BindOpen.Runtime.References.IBdoAssemblyReference[],BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the specified extensions into the specified scope.
             </summary>
-            <param name="references">The library references to consider.</param>
-            <param name="log">The log to consider.</param>
+            <param key="references">The library references to consider.</param>
+            <param key="log">The log to consider.</param>
         </member>
         <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadLibrary(BindOpen.Runtime.References.IBdoAssemblyReference,BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the specified library.
             </summary>
-            <param name="libraryReference">The library reference to consider.</param>
-            <param name="log">The log to consider.</param>
+            <param key="libraryReference">The library reference to consider.</param>
+            <param key="log">The log to consider.</param>
             <returns>Returns the loaded library.</returns>
         </member>
         <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.Dispose(System.Boolean)">
             <summary>
             Disposes this instance. 
             </summary>
-            <param name="isDisposing">Indicates whether this instance is disposing</param>
+            <param key="isDisposing">Indicates whether this instance is disposing</param>
         </member>
-        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadDictionary(System.Reflection.Assembly,BindOpen.Runtime.Definition.BdoExtensionItemKind,BindOpen.Runtime.Definition.IBdoExtensionDefinition,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadDictionary(System.Reflection.Assembly,BindOpen.Runtime.Definition.BdoExtensionKind,BindOpen.Runtime.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the extension dico of the specified kind from the specified assembly.
             </summary>
-            <param name="assembly">The assembly to consider.</param>
-            <param name="kind">The kind of item to consider.</param>
-            <param name="extensionDefinition">The extension definition to consider.</param>
-            <param name="log">The log to consider.</param>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="kind">The kind of item to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.ExtractDictionaryFromAssembly``1(System.Reflection.Assembly,BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the specified BindOpen extension dico.
             </summary>
-            <param name="assembly">The assembly to consider.</param>
-            <param name="log">The log to consider.</param>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="log">The log to consider.</param>
             <returns>The created library.</returns>
         </member>
         <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.GetDictionaryResourceName``1">
@@ -1750,99 +1750,99 @@
             </summary>
             <returns>Returns the class of the specified dico.</returns>
         </member>
-        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.UpdateDictionary(BindOpen.Runtime.Definition.IBdoExtensionItemDefinition,BindOpen.Data.Items.DescribedDataItemAttribute)">
+        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.UpdateDictionary(BindOpen.Runtime.Definition.IBdoExtensionDefinition,BindOpen.Data.Items.DescribedDataItemAttribute)">
             <summary>
             Updates this instance with the specified attribute information.
             </summary>
-            <param name="definition">The definition to consider.</param>
-            <param name="attribute">The attribute to consider.</param>
+            <param key="definition">The definition to consider.</param>
+            <param key="attribute">The attribute to consider.</param>
         </member>
-        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.UpdateDictionary(BindOpen.Runtime.Definition.IBdoExtensionItemDefinition,BindOpen.Data.Items.TitledDescribedDataItemAttribute)">
+        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.UpdateDictionary(BindOpen.Runtime.Definition.IBdoExtensionDefinition,BindOpen.Data.Items.TitledDescribedDataItemAttribute)">
             <summary>
             Updates this instance with the specified attribute information.
             </summary>
-            <param name="definition">The definition to consider.</param>
-            <param name="attribute">The attribute to consider.</param>
+            <param key="definition">The definition to consider.</param>
+            <param key="attribute">The attribute to consider.</param>
         </member>
-        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadEntityDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoExtensionDefinition,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadEntityDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the entity dico from the specified assembly.
             </summary>
-            <param name="assembly">The assembly to consider.</param>
-            <param name="extensionDefinition">The extension definition to consider.</param>
-            <param name="log">The log to consider.</param>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadConnectorDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoExtensionDefinition,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadConnectorDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the connector dico from the specified assembly.
             </summary>
-            <param name="assembly">The assembly to consider.</param>
-            <param name="extensionDefinition">The extension definition to consider.</param>
-            <param name="log">The log to consider.</param>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadEntityDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoExtensionDefinition,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadEntityDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the entity dico from the specified assembly.
             </summary>
-            <param name="assembly">The assembly to consider.</param>
-            <param name="extensionDefinition">The extension definition to consider.</param>
-            <param name="log">The log to consider.</param>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadFormatDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoExtensionDefinition,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadFormatDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the format dico from the specified assembly.
             </summary>
-            <param name="assembly">The assembly to consider.</param>
-            <param name="extensionDefinition">The extension definition to consider.</param>
-            <param name="log">The log to consider.</param>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadHandlerDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoExtensionDefinition,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadHandlerDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the handler dico from the specified assembly.
             </summary>
-            <param name="assembly">The assembly to consider.</param>
-            <param name="extensionDefinition">The extension definition to consider.</param>
-            <param name="log">The log to consider.</param>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadMetricsDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoExtensionDefinition,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadMetricsDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the metrics dico from the specified assembly.
             </summary>
-            <param name="assembly">The assembly to consider.</param>
-            <param name="extensionDefinition">The extension definition to consider.</param>
-            <param name="log">The log to consider.</param>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadRoutineDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoExtensionDefinition,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadRoutineDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the routine dico from the specified assembly.
             </summary>
-            <param name="assembly">The assembly to consider.</param>
-            <param name="extensionDefinition">The extension definition to consider.</param>
-            <param name="log">The log to consider.</param>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadScripwordDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoExtensionDefinition,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadScripwordDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the script word dico from the specified assembly.
             </summary>
-            <param name="assembly">The assembly to consider.</param>
-            <param name="extensionDefinition">The extension definition to consider.</param>
-            <param name="log">The log to consider.</param>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadTaskDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoExtensionDefinition,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadTaskDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the task dico from the specified assembly.
             </summary>
-            <param name="assembly">The assembly to consider.</param>
-            <param name="extensionDefinition">The extension definition to consider.</param>
-            <param name="log">The log to consider.</param>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
             <returns></returns>
         </member>
         <member name="F:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.__DefaultResourceFileName">
@@ -1850,13 +1850,13 @@
             The default resource file name for library definition.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.ExtractExtensionDefinition(System.Reflection.Assembly,System.String,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.ExtractPackageDefinition(System.Reflection.Assembly,System.String,BindOpen.Logging.IBdoLog)">
             <summary>
             Extract extension definition from the specified assembly.
             </summary>
-            <param name="assembly">The assembly to consider.</param>
-            <param name="resourceFullName">The full name of the resouce to consider.</param>
-            <param name="log">The log to consider.</param>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="resourceFullName">The full name of the resouce to consider.</param>
+            <param key="log">The log to consider.</param>
             <returns>The created library.</returns>
         </member>
         <member name="T:BindOpen.Data.Specification.BdoElementChecker">

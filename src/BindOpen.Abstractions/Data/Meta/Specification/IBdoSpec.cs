@@ -47,7 +47,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="item"></param>
+        /// <param key="item"></param>
         /// <returns></returns>
         bool IsCompatibleWithData(object item);
 
@@ -69,7 +69,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
+        /// <param key="name"></param>
         /// <returns></returns>
         IBdoSpec GetSubSpec(string name);
 

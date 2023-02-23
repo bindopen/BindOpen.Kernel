@@ -20,22 +20,22 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="allValues"></param>
+        /// <param key="allValues"></param>
         /// <returns></returns>
         List<string> GetValues(List<string> allValues = null);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="allValues"></param>
+        /// <param key="value"></param>
+        /// <param key="allValues"></param>
         /// <returns></returns>
         bool IsValueAllowed(string value, List<string> allValues = null);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="allValues"></param>
+        /// <param key="allValues"></param>
         void UpdateWith(List<string> allValues = null);
     }
 }

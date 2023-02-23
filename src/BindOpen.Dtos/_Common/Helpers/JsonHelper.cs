@@ -10,8 +10,8 @@ namespace BindOpen.Dtos.Json
         /// <summary>
         /// Saves the JSON string of this instance.
         /// </summary>
-        /// <param name="dto">The DTO to save.</param>
-        /// <param name="log">The saving log to consider.</param>
+        /// <param key="dto">The DTO to save.</param>
+        /// <param key="log">The saving log to consider.</param>
         /// <returns>The Json string of this instance.</returns>
         public static string ToJson<T>(this T dto, IBdoLog log = null) where T : class
         {
@@ -42,9 +42,9 @@ namespace BindOpen.Dtos.Json
         /// <summary>
         /// Saves this instance to the specified file path.
         /// </summary>
-        /// <param name="dto">The DTO to save.</param>
-        /// <param name="filePath">Path of the file to save.</param>
-        /// <param name="log">The log to consider.</param>
+        /// <param key="dto">The DTO to save.</param>
+        /// <param key="filePath">Path of the file to save.</param>
+        /// <param key="log">The log to consider.</param>
         /// <returns>True if the saving operation has been done. False otherwise.</returns>
         public static bool SaveJson<T>(this T dto, string filePath, IBdoLog log = null) where T : class
         {
@@ -88,9 +88,9 @@ namespace BindOpen.Dtos.Json
         /// <summary>
         /// Loads a data item from the specified file path.
         /// </summary>
-        /// <param name="filePath">The path of the Json file to load.</param>
-        /// <param name="log">The output log of the method.</param>
-        /// <param name="mustFileExist">Indicates whether the file must exist.</param>
+        /// <param key="filePath">The path of the Json file to load.</param>
+        /// <param key="log">The output log of the method.</param>
+        /// <param key="mustFileExist">Indicates whether the file must exist.</param>
         /// <returns>The loaded log.</returns>
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T LoadJson<T>(
@@ -135,8 +135,8 @@ namespace BindOpen.Dtos.Json
         /// Loads the data item from the specified file path.
         /// </summary>
         /// <typeparam name="T">The data item class to consider.</typeparam>
-        /// <param name="jsonString">The Json string to load.</param>
-        /// <param name="log">The output log of the load method.</param>
+        /// <param key="jsonString">The Json string to load.</param>
+        /// <param key="log">The output log of the load method.</param>
         /// <returns>The loaded log.</returns>
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T LoadJsonFromString<T>(

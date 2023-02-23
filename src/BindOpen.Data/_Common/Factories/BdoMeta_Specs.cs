@@ -12,8 +12,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Creates a data element of the specified kind.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="valueType">The value type to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="valueType">The value type to consider.</param>
         public static BdoSpec NewSpec(
             string name = null,
             DataValueTypes valueType = DataValueTypes.Any)
@@ -39,8 +39,8 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="type"></param>
+        /// <param key="name"></param>
+        /// <param key="type"></param>
         /// <returns></returns>
         public static BdoSpec NewSpec(
             Type type)
@@ -49,8 +49,8 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="type"></param>
+        /// <param key="name"></param>
+        /// <param key="type"></param>
         /// <returns></returns>
         public static BdoSpec NewSpec(
             string name,
@@ -67,8 +67,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Creates a data element of the specified kind.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="valueType">The value type to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="valueType">The value type to consider.</param>
         public static T NewSpec<T>(
             string name = null)
             where T : class, IBdoSpec, new()
@@ -82,8 +82,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Creates a data element of the specified kind.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="type">The value type to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="type">The value type to consider.</param>
         public static T NewSpec<T>(
             Type type)
             where T : class, IBdoSpec, new()
@@ -92,8 +92,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Creates a data element of the specified kind.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="type">The value type to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="type">The value type to consider.</param>
         public static T NewSpec<T>(
             string name,
             Type type)
@@ -142,8 +142,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Creates a data element of the specified kind.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="valueType">The value type to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="valueType">The value type to consider.</param>
         public static T NewScalarSpec<T>(
             string name = null)
             where T : BdoScalarSpec, new()

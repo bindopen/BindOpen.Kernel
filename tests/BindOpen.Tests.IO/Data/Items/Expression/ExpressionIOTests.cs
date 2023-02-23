@@ -3,7 +3,6 @@ using BindOpen.Data.Items;
 using BindOpen.Dtos.Json;
 using BindOpen.Dtos.Xml;
 using BindOpen.Extensions.Scripting;
-using BindOpen.Tests.Runtime;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
@@ -72,7 +71,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveXmlTest();
             }
 
-            var exp = RuntimeTests.Scope.ConvertToPoco(XmlHelper.LoadXml<ExpressionDto>(_filePath_xml));
+            var exp = XmlHelper.LoadXml<ExpressionDto>(_filePath_xml).ToPoco();
             Assert.That(Equals(exp, _exp), "Error while loading");
         }
 
@@ -98,7 +97,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveJsonTest();
             }
 
-            var exp = RuntimeTests.Scope.ConvertToPoco(JsonHelper.LoadJson<ExpressionDto>(_filePath_json));
+            var exp = JsonHelper.LoadJson<ExpressionDto>(_filePath_json).ToPoco();
             Assert.That(Equals(exp, _exp), "Error while loading");
         }
     }

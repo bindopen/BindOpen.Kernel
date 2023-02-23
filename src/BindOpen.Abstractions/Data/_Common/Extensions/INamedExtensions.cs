@@ -8,7 +8,7 @@
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
+        /// <param key="name"></param>
         public static T WithName<T>(
             this T obj,
             string name)

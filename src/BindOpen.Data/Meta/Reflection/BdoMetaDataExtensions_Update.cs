@@ -15,17 +15,17 @@ namespace BindOpen.Data.Meta.Reflection
         /// <summary>
         /// Sets information of the specified prop.
         /// </summary>
-        /// <param name="obj">The object to update.</param>
-        /// <param name="list">The list of elements to return.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element list to use.</param>
-        /// <param name="log">The log to consider.</param>
+        /// <param key="obj">The object to update.</param>
+        /// <param key="list">The list of elements to return.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable element list to use.</param>
+        /// <param key="log">The log to consider.</param>
         public static void UpdateFromMeta(
             this object obj,
-            IBdoMetaList list,
+            IBdoMetaSet list,
             bool onlyMetaAttributes = false,
             IBdoScope scope = null,
-            IBdoMetaList varSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             if (obj == null || !list.Has()) return;

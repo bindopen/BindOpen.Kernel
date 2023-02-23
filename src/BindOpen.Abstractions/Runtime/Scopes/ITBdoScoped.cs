@@ -8,7 +8,7 @@
         /// <summary>
         /// Sets the specified scope.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
+        /// <param key="scope">The scope to consider.</param>
         T WithScope(IBdoScope scope)
         {
             Scope = scope;

@@ -14,9 +14,9 @@ namespace BindOpen.Runtime.Assemblies
         /// <summary>
         /// Gets the assembly of this instance from file.
         /// </summary>
-        /// <param name="appDomain">Application domain to consider.</param>
-        /// <param name="filePath">Path of the file to use.</param>
-        /// <param name="log">The loading log to consider.</param>
+        /// <param key="appDomain">Application domain to consider.</param>
+        /// <param key="filePath">Path of the file to use.</param>
+        /// <param key="log">The loading log to consider.</param>
         /// <returns>The assembly of this instance.</returns>
         public static Assembly LoadAssemblyFromFile(
             this AppDomain appDomain,
@@ -65,9 +65,9 @@ namespace BindOpen.Runtime.Assemblies
         /// <summary>
         /// Gets the assembly of this instance from embed resource.
         /// </summary>
-        /// <param name="appDomain">Application domain to consider.</param>
-        /// <param name="assemblyName">The assembly name to use.</param>
-        /// <param name="log">The loading log to consider.</param>
+        /// <param key="appDomain">Application domain to consider.</param>
+        /// <param key="assemblyName">The assembly name to use.</param>
+        /// <param key="log">The loading log to consider.</param>
         /// <returns>The assembly of this instance.</returns>
         public static Assembly LoadAssembly(
             this AppDomain appDomain,

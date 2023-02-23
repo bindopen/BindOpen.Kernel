@@ -10,7 +10,7 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="detail"></param>
+        /// <param key="detail"></param>
         public static T WithDetail<T>(
             this T obj,
             params IBdoMetaData[] elms)
@@ -18,7 +18,7 @@ namespace BindOpen.Data
         {
             if (obj != null)
             {
-                obj.Detail = BdoMeta.NewList(elms);
+                obj.Detail = BdoMeta.NewSet(elms);
             }
             return obj;
         }

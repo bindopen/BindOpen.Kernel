@@ -8,7 +8,7 @@ namespace BindOpen.Extensions.Processing
     /// </summary>
     [XmlType("TaskConfiguration", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot(ElementName = "task", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class TaskConfigurationDto : ExtensionItemConfigurationDto
+    public class TaskConfigurationDto : ExtensionConfigurationDto
     {
         // ------------------------------------------
         // CONSTRUCTORS

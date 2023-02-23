@@ -14,8 +14,19 @@ namespace BindOpen.Data
         /// <summary>
         /// Creates a data meta with specified items.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="items">The items to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="items">The items to consider.</param>
+        public static IBdoMetaData New(
+            object data)
+        {
+            return New(null, data);
+        }
+
+        /// <summary>
+        /// Creates a data meta with specified items.
+        /// </summary>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="items">The items to consider.</param>
         public static IBdoMetaData New(
             string name,
             DataValueTypes valueType,
@@ -27,8 +38,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Creates a data meta with specified items.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="items">The items to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="items">The items to consider.</param>
         public static IBdoMetaData New(
             string name,
             Type type,
@@ -40,8 +51,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Creates a data meta with specified items.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="items">The items to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="items">The items to consider.</param>
         public static IBdoMetaData New(
             string name,
             object data)
@@ -57,8 +68,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Creates a data meta with specified items.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="items">The items to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="items">The items to consider.</param>
         private static IBdoMetaData New(
             string name,
             Type type,
@@ -87,12 +98,12 @@ namespace BindOpen.Data
                     {
                         var objList = data.ToObjectArray();
 
-                        var metaList = NewList(name);
+                        var metaList = NewSet(name);
                         if (objList != null)
                         {
                             foreach (var obj in objList)
                             {
-                                metaList.Add(obj);
+                                metaList.Add(New(obj));
                             }
                         }
                         return metaList;

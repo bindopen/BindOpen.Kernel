@@ -92,7 +92,7 @@ namespace BindOpen.Data.Apis
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="displayName"></param>
+        /// <param key="displayName"></param>
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
         public IDisplayNamed WithDisplayName(string displayName)

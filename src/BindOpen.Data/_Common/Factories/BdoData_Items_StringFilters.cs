@@ -12,7 +12,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Instantiates a new instance of the DataList class.
         /// </summary>
-        /// <param name="items">The items to consider.</param>
+        /// <param key="items">The items to consider.</param>
         /// <typeparam name="Q">The data item set type to consider.</typeparam>
         /// <typeparam name="T">The identified data item to consider.</typeparam>
         public static BdoStringFilter NewStringFilter()
@@ -23,7 +23,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Instantiates a new instance of the DataList class.
         /// </summary>
-        /// <param name="items">The items to consider.</param>
+        /// <param key="items">The items to consider.</param>
         /// <typeparam name="T">The class of the named data items.</typeparam>
         public static BdoStringFilter NewStringFilter(
             List<string> addedValues = null,

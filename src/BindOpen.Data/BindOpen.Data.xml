@@ -28,20 +28,20 @@
             <summary>
             Instantiates a new instance of the AdvancedCondition class.
             </summary>
-            <param name="conditions">The conditions to consider.</param>
+            <param key="conditions">The conditions to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Conditions.AdvancedCondition.#ctor(System.Boolean,BindOpen.Data.Conditions.ICondition[])">
             <summary>
             Instantiates a new instance of the AdvancedCondition class.
             </summary>
-            <param name="trueValue">The true value to consider.</param>
-            <param name="conditions">The conditions to consider.</param>
+            <param key="trueValue">The true value to consider.</param>
+            <param key="conditions">The conditions to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Conditions.AdvancedCondition.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
-            <param name="areas">The areas to consider.</param>
+            <param key="areas">The areas to consider.</param>
         </member>
         <member name="T:BindOpen.Data.Conditions.BasicCondition">
             <summary>
@@ -72,24 +72,24 @@
             <summary>
             Instantiates a new instance of the BasicCondition class.
             </summary>
-            <param name="trueValue">The value that expresses that the condition is satisfied.</param>
+            <param key="trueValue">The value that expresses that the condition is satisfied.</param>
         </member>
         <member name="M:BindOpen.Data.Conditions.BasicCondition.#ctor(System.String,BindOpen.Data.Conditions.ConditionOperator,System.String)">
             <summary>
             Instantiates a new instance of the BasicCondition class.
             </summary>
-            <param name="arg1">The argument 1 to consider.</param>
-            <param name="ope">The operator to consider.</param>
-            <param name="arg2">The argument 2 to consider.</param>
+            <param key="arg1">The argument 1 to consider.</param>
+            <param key="ope">The operator to consider.</param>
+            <param key="arg2">The argument 2 to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Conditions.BasicCondition.#ctor(System.Boolean,System.String,BindOpen.Data.Conditions.ConditionOperator,System.String)">
             <summary>
             Instantiates a new instance of the BasicCondition class.
             </summary>
-            <param name="trueValue">The value that expresses that the condition is satisfied.</param>
-            <param name="arg1">The argument 1 to consider.</param>
-            <param name="ope">The operator to consider.</param>
-            <param name="arg2">The argument 2 to consider.</param>
+            <param key="trueValue">The value that expresses that the condition is satisfied.</param>
+            <param key="arg1">The argument 1 to consider.</param>
+            <param key="ope">The operator to consider.</param>
+            <param key="arg2">The argument 2 to consider.</param>
         </member>
         <member name="T:BindOpen.Data.Conditions.Condition">
             <summary>
@@ -110,7 +110,7 @@
             <summary>
             Instantiates a new instance of the Condition class.
             </summary>
-            <param name="trueValue">The true value to consider.</param>
+            <param key="trueValue">The true value to consider.</param>
         </member>
         <member name="T:BindOpen.Data.Conditions.ConditionsExtensions">
             <summary>
@@ -121,36 +121,36 @@
             <summary>
             Evaluate this instance.
             </summary>
-            <param name="condition">The condition to consider.</param>
-            <param name="scriptInterpreter">Script interpreter.</param>
-            <param name="varSet">The variable element set used to evaluate.</param>
+            <param key="condition">The condition to consider.</param>
+            <param key="scriptInterpreter">Script interpreter.</param>
+            <param key="varSet">The variable element set used to evaluate.</param>
             <returns>True if this instance is true.</returns>
         </member>
         <member name="M:BindOpen.Data.Conditions.ConditionsExtensions.Evaluate(BindOpen.Data.Conditions.IAdvancedCondition,BindOpen.Extensions.Scripting.IBdoScriptInterpreter,BindOpen.Data.Elements.IBdoElementSet)">
             <summary>
             Evaluate this instance.
             </summary>
-            <param name="condition">The condition to consider.</param>
-            <param name="scriptInterpreter">Script interpreter.</param>
-            <param name="varSet">The variable element set used to evaluate.</param>
+            <param key="condition">The condition to consider.</param>
+            <param key="scriptInterpreter">Script interpreter.</param>
+            <param key="varSet">The variable element set used to evaluate.</param>
             <returns>True if this instance is true.</returns>
         </member>
         <member name="M:BindOpen.Data.Conditions.ConditionsExtensions.Evaluate(BindOpen.Data.Conditions.IBasicCondition)">
             <summary>
             Evaluate this instance.
             </summary>
-            <param name="condition">The condition to consider.</param>
-            <param name="scriptInterpreter">Script interpreter.</param>
-            <param name="varSet">The variable element set used to evaluate.</param>
+            <param key="condition">The condition to consider.</param>
+            <param key="scriptInterpreter">Script interpreter.</param>
+            <param key="varSet">The variable element set used to evaluate.</param>
             <returns>True if this instance is true.</returns>
         </member>
         <member name="M:BindOpen.Data.Conditions.ConditionsExtensions.Evaluate(BindOpen.Data.Conditions.IScriptCondition,BindOpen.Extensions.Scripting.IBdoScriptInterpreter,BindOpen.Data.Elements.IBdoElementSet)">
             <summary>
             Evaluate this instance.
             </summary>
-            <param name="condition">The condition to consider.</param>
-            <param name="scriptInterpreter">Script interpreter.</param>
-            <param name="varSet">The variable element set used to evaluate.</param>
+            <param key="condition">The condition to consider.</param>
+            <param key="scriptInterpreter">Script interpreter.</param>
+            <param key="varSet">The variable element set used to evaluate.</param>
             <returns>True if the business script value is the true value.</returns>
         </member>
         <member name="T:BindOpen.Data.Conditions.ScriptCondition">
@@ -167,8 +167,8 @@
             <summary>
             Instantiates a new instance of the ScriptCondition class.
             </summary>
-            <param name="trueValue">The true value to consider.</param>
-            <param name="exp">The exp to consider.</param>
+            <param key="trueValue">The true value to consider.</param>
+            <param key="exp">The exp to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Conditions.ScriptCondition.Clone(System.String[])">
             <summary>
@@ -184,7 +184,7 @@
             <summary>
             
             </summary>
-            <param name="exp"></param>
+            <param key="exp"></param>
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
@@ -212,7 +212,7 @@
             <summary>
             Sets the file paths of this instance.
             </summary>
-            <param name="filePaths">The file paths to consider.</param>
+            <param key="filePaths">The file paths to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Configuration.BdoConfiguration.Key">
             <summary>
@@ -248,7 +248,7 @@
             <summary>
             
             </summary>
-            <param name="name"></param>
+            <param key="name"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Configuration.BdoConfiguration.Description">
@@ -300,7 +300,7 @@
             <summary>
             Merges this instance with the specified data context.
             </summary>
-            <param name="dataContext">The data context to consider.</param>
+            <param key="dataContext">The data context to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Context.BdoDataContext.Clear">
             <summary>
@@ -311,93 +311,93 @@
             <summary>
             Adds a new item to this instance.
             </summary>
-            <param name="name">Name of the item to add.</param>
-            <param name="item">Item to add.</param>
-            <param name="contextSectionName">Name of the context section to consider.</param>
-            <param name="persistenceLevel">Persistence level of the item to add.</param>
+            <param key="name">Name of the item to add.</param>
+            <param key="item">Item to add.</param>
+            <param key="contextSectionName">Name of the context section to consider.</param>
+            <param key="persistenceLevel">Persistence level of the item to add.</param>
         </member>
         <member name="M:BindOpen.Data.Context.BdoDataContext.AddSystemItem(System.String,System.Object)">
             <summary>
             Adds a new system item to this instance.
             </summary>
-            <param name="name">Name of the item to add.</param>
-            <param name="item">The item to consider.</param>
+            <param key="name">Name of the item to add.</param>
+            <param key="item">The item to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Context.BdoDataContext.AddSingletonItem(System.String,System.Object,System.String)">
             <summary>
             Adds a new singleton item to this instance.
             </summary>
-            <param name="name">Name of the item to add.</param>
-            <param name="item">The item to consider.</param>
-            <param name="contextSectionName">Name of the context section to consider.</param>
+            <param key="name">Name of the item to add.</param>
+            <param key="item">The item to consider.</param>
+            <param key="contextSectionName">Name of the context section to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Context.BdoDataContext.AddScopedItem(System.String,System.Object,System.String)">
             <summary>
             Adds a new scoped item to this instance.
             </summary>
-            <param name="name">Name of the item to add.</param>
-            <param name="item">The item to consider.</param>
-            <param name="contextSectionName">Name of the context section to consider.</param>
+            <param key="name">Name of the item to add.</param>
+            <param key="item">The item to consider.</param>
+            <param key="contextSectionName">Name of the context section to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Context.BdoDataContext.AddTransientItem(System.String,System.Object,System.String)">
             <summary>
             Adds a new transient item to this instance.
             </summary>
-            <param name="name">Name of the item to add.</param>
-            <param name="item">The item to consider.</param>
-            <param name="contextSectionName">Name of the context section to consider.</param>
+            <param key="name">Name of the item to add.</param>
+            <param key="item">The item to consider.</param>
+            <param key="contextSectionName">Name of the context section to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Context.BdoDataContext.ClearItems(BindOpen.Data.PersistenceLevels)">
             <summary>
             Clears the specified items of this instance.
             </summary>
-            <param name="persistenceLevel">Persistence level of the item to add.</param>
+            <param key="persistenceLevel">Persistence level of the item to add.</param>
         </member>
         <member name="M:BindOpen.Data.Context.BdoDataContext.RemoveItems(System.String,BindOpen.Data.PersistenceLevels)">
             <summary>
             Removes the singleton items of a specific type.
             </summary>
-            <param name="contextSectionName">Name of the context section to consider.</param>
-            <param name="persistenceLevel">The persistence level to consider.</param>
+            <param key="contextSectionName">Name of the context section to consider.</param>
+            <param key="persistenceLevel">The persistence level to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Context.BdoDataContext.GetSystemItem(System.String)">
             <summary>
             Returns a specific system item.
             </summary>
-            <param name="name">Name of the dynamic item to return.</param>
+            <param key="name">Name of the dynamic item to return.</param>
             <returns>The dynamic item with specified name and type.</returns>
         </member>
         <member name="M:BindOpen.Data.Context.BdoDataContext.GetSingletonItem(System.String,System.String)">
             <summary>
             Returns a specific singleton item.
             </summary>
-            <param name="name">Name of the dynamic item to return.</param>
-            <param name="contextSectionName">Name of the context section to consider.</param>
+            <param key="name">Name of the dynamic item to return.</param>
+            <param key="contextSectionName">Name of the context section to consider.</param>
             <returns>The dynamic item with specified name and type.</returns>
         </member>
         <member name="M:BindOpen.Data.Context.BdoDataContext.GetScopedItem(System.String,System.String)">
             <summary>
             Returns a specific scoped item.
             </summary>
-            <param name="name">Name of the dynamic item to return.</param>
-            <param name="contextSectionName">Name of the context section to consider.</param>
+            <param key="name">Name of the dynamic item to return.</param>
+            <param key="contextSectionName">Name of the context section to consider.</param>
             <returns>The dynamic item with specified name and type.</returns>
         </member>
         <member name="M:BindOpen.Data.Context.BdoDataContext.GetTransientItem(System.String,System.String)">
             <summary>
             Returns a specific transient item.
             </summary>
-            <param name="name">Name of the dynamic item to return.</param>
-            <param name="contextSectionName">Name of the context section to consider.</param>
+            <param key="name">Name of the dynamic item to return.</param>
+            <param key="contextSectionName">Name of the context section to consider.</param>
             <returns>The dynamic item with specified name and type.</returns>
         </member>
         <member name="M:BindOpen.Data.Context.BdoDataContext.GetItem(System.String,System.String,BindOpen.Data.PersistenceLevels)">
             <summary>
             Returns a specific item.
             </summary>
-            <param name="name">Name of the dynamic item to return.</param>
-            <param name="contextSectionName">Name of the context section to consider.</param>
-            <param name="persistenceLevel">The persistence level to consider.</param>
+            <param key="name">Name of the dynamic item to return.</param>
+            <param key="contextSectionName">Name of the context section to consider.</param>
+            <param key="persistenceLevel">The persistence level to consider.</param>
             <returns>The dynamic item with specified name and type.</returns>
         </member>
         <member name="T:BindOpen.Data.Elements.BdoDataElement">
@@ -414,9 +414,9 @@
             <summary>
             Initializes a new data element.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="namePreffix">The name preffix to consider.</param>
-            <param name="id">The ID to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="namePreffix">The name preffix to consider.</param>
+            <param key="id">The ID to consider.</param>
         </member>
         <member name="F:BindOpen.Data.Elements.BdoDataElement._item">
             <summary>
@@ -458,16 +458,16 @@
             <summary>
             Indicates whether this instance is compatible with the specified item.
             </summary>
-            <param name="item">The item to consider.</param>
+            <param key="item">The item to consider.</param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElement.GetItem(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Returns the item object of this instance.
             </summary>
-            <param name="log">The log to populate.</param>
-            <param name="scope">The scope to consider.</param>
-            <param name="varSet">The variable element set to use.</param>
+            <param key="log">The log to populate.</param>
+            <param key="scope">The scope to consider.</param>
+            <param key="varSet">The variable element set to use.</param>
             <returns>Returns the items of this instance.</returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElement.GetItem``1(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
@@ -475,9 +475,9 @@
             
             </summary>
             <typeparam name="Q"></typeparam>
-            <param name="scope"></param>
-            <param name="varSet"></param>
-            <param name="log"></param>
+            <param key="scope"></param>
+            <param key="varSet"></param>
+            <param key="log"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElement.WithValueMode(BindOpen.Data.Items.DataValueMode)">
@@ -504,7 +504,7 @@
             <summary>
             
             </summary>
-            <param name="name"></param>
+            <param key="name"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElement.WithSpecifications(BindOpen.Data.Elements.IBdoDataElementSpec[])">
@@ -521,7 +521,7 @@
             <summary>
             Sets the item of this instance.
             </summary>
-            <param name="item">The string item of this instance.</param>
+            <param key="item">The string item of this instance.</param>
             <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
             <returns>Returns True if the specified has been well added.</returns>
         </member>
@@ -546,7 +546,7 @@
             <summary>
             
             </summary>
-            <param name="index"></param>
+            <param key="index"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElement.Key">
@@ -563,7 +563,7 @@
             <summary>
             
             </summary>
-            <param name="id"></param>
+            <param key="id"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Elements.BdoDataElement.Name">
@@ -575,7 +575,7 @@
             <summary>
             
             </summary>
-            <param name="name"></param>
+            <param key="name"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Elements.BdoDataElement.Detail">
@@ -587,14 +587,14 @@
             <summary>
             
             </summary>
-            <param name="name"></param>
+            <param key="name"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElement.WithDetail(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             
             </summary>
-            <param name="detail"></param>
+            <param key="detail"></param>
         </member>
         <member name="P:BindOpen.Data.Elements.BdoDataElement.Title">
             <summary>
@@ -610,7 +610,7 @@
             <summary>
             Disposes this instance. 
             </summary>
-            <param name="isDisposing">Indicates whether this instance is disposing</param>
+            <param key="isDisposing">Indicates whether this instance is disposing</param>
         </member>
         <member name="T:BindOpen.Data.Elements.BdoDataElementExtension">
             <summary>
@@ -621,9 +621,9 @@
             <summary>
             Updates this instance.
             </summary>
-            <param name="item">The item to consider.</param>
-            <param name="specificationAreas">The specification areas to consider.</param>
-            <param name="updateModes">The update modes to consider.</param>
+            <param key="item">The item to consider.</param>
+            <param key="specificationAreas">The specification areas to consider.</param>
+            <param key="updateModes">The update modes to consider.</param>
             <returns>ILog of the operation.</returns>
             <remarks>Put reference sets as null if you do not want to repair this instance.</remarks>
         </member>
@@ -631,18 +631,18 @@
             <summary>
             Checks this instance.
             </summary>
-            <param name="isExistenceChecked">Indicates whether the entity existence is checked.</param>
-            <param name="item">The item to consider.</param>
-            <param name="specificationAreas">The specification areas to consider.</param>
+            <param key="isExistenceChecked">Indicates whether the entity existence is checked.</param>
+            <param key="item">The item to consider.</param>
+            <param key="specificationAreas">The specification areas to consider.</param>
             <returns>Returns the check log.</returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElementExtension.Repair(BindOpen.Data.Elements.IBdoDataElement,BindOpen.Data.Elements.IBdoDataElement,System.String[],BindOpen.Data.UpdateModes[],BindOpen.Logging.IBdoLog)">
             <summary>
             Repairs this instance with the specified definition.
             </summary>
-            <param name="item">The item to consider.</param>
-            <param name="specificationAreas">The specification areas to consider.</param>
-            <param name="updateModes">The update modes to consider.</param>
+            <param key="item">The item to consider.</param>
+            <param key="specificationAreas">The specification areas to consider.</param>
+            <param key="updateModes">The update modes to consider.</param>
             <returns>ILog of the operation.</returns>
         </member>
         <member name="T:BindOpen.Data.Elements.BdoDataElementSpec">
@@ -675,7 +675,7 @@
             <summary>
             
             </summary>
-            <param name="condition"></param>
+            <param key="condition"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Elements.BdoDataElementSpec.Aliases">
@@ -687,7 +687,7 @@
             <summary>
             
             </summary>
-            <param name="aliases"></param>
+            <param key="aliases"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Elements.BdoDataElementSpec.IsAllocatable">
@@ -699,7 +699,7 @@
             <summary>
             
             </summary>
-            <param name="isAllocatable"></param>
+            <param key="isAllocatable"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Elements.BdoDataElementSpec.ItemScript">
@@ -711,7 +711,7 @@
             <summary>
             
             </summary>
-            <param name="script"></param>
+            <param key="script"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Elements.BdoDataElementSpec.AvailableValueModes">
@@ -723,7 +723,7 @@
             <summary>
             
             </summary>
-            <param name="modes"></param>
+            <param key="modes"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Elements.BdoDataElementSpec.DefaultItem">
@@ -740,7 +740,7 @@
             <summary>
             
             </summary>
-            <param name="number"></param>
+            <param key="number"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Elements.BdoDataElementSpec.MaximumItemNumber">
@@ -752,7 +752,7 @@
             <summary>
             
             </summary>
-            <param name="number"></param>
+            <param key="number"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Elements.BdoDataElementSpec.IsValueList">
@@ -774,7 +774,7 @@
             <summary>
             
             </summary>
-            <param name="levels"></param>
+            <param key="levels"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Elements.BdoDataElementSpec.ConstraintStatement">
@@ -786,7 +786,7 @@
             <summary>
             
             </summary>
-            <param name="statement"></param>
+            <param key="statement"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Elements.BdoDataElementSpec.SubSpecs">
@@ -798,35 +798,35 @@
             <summary>
             
             </summary>
-            <param name="specs"></param>
+            <param key="specs"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElementSpec.AddSubSpecs(BindOpen.Data.Elements.IBdoDataElementSpec[])">
             <summary>
             
             </summary>
-            <param name="specs"></param>
+            <param key="specs"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElementSpec.GetSubSpec(System.String)">
             <summary>
             
             </summary>
-            <param name="name"></param>
+            <param key="name"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElementSpec.WithDefaultItem(System.Object)">
             <summary>
             
             </summary>
-            <param name="item"></param>
+            <param key="item"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElementSpec.Dispose(System.Boolean)">
             <summary>
             Disposes this instance. 
             </summary>
-            <param name="isDisposing">Indicates whether this instance is disposing</param>
+            <param key="isDisposing">Indicates whether this instance is disposing</param>
         </member>
         <member name="T:BindOpen.Data.Elements.BdoEntity">
             <summary>
@@ -842,8 +842,8 @@
             <summary>
             Initializes a new instance of the EntityElement class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="id">The ID to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="id">The ID to consider.</param>
         </member>
         <member name="P:BindOpen.Data.Elements.BdoEntity.DefinitionUniqueName">
             <summary>
@@ -854,7 +854,7 @@
             <summary>
             
             </summary>
-            <param name="definitionUniqueName"></param>
+            <param key="definitionUniqueName"></param>
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
@@ -862,7 +862,7 @@
             <summary>
             Sets a new single item of this instance.
             </summary>
-            <param name="item">The string item of this instance.</param>
+            <param key="item">The string item of this instance.</param>
             <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
             <returns>Returns True if the specified has been well added.</returns>
         </member>
@@ -909,7 +909,7 @@
             <summary>
             
             </summary>
-            <param name="filter"></param>
+            <param key="filter"></param>
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
@@ -917,7 +917,7 @@
             <summary>
             Disposes this instance. 
             </summary>
-            <param name="isDisposing">Indicates whether this instance is disposing</param>
+            <param key="isDisposing">Indicates whether this instance is disposing</param>
         </member>
         <member name="T:BindOpen.Data.Elements.BdoDataObject">
             <summary>
@@ -933,7 +933,7 @@
             <summary>
             
             </summary>
-            <param name="key"></param>
+            <param key="key"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Elements.BdoDataObject.Count">
@@ -950,8 +950,8 @@
             <summary>
             Initializes a new instance of the CollectionElement class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="id">The ID to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="id">The ID to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataObject.BindOpen#MetaData#Elements#IBdoDataElement#NewSpecification">
             <summary>
@@ -975,28 +975,28 @@
             <summary>
             
             </summary>
-            <param name="id"></param>
+            <param key="id"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataObject.Get(System.String)">
             <summary>
             Returns the specified item of this instance.
             </summary>
-            <param name="key">The key to consider.</param>
+            <param key="key">The key to consider.</param>
             <returns>Returns the item of this instance.</returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataObject.Get``1(System.String)">
             <summary>
             Returns the specified item of this instance.
             </summary>
-            <param name="key">The key to consider.</param>
+            <param key="key">The key to consider.</param>
             <returns>Returns the item of this instance.</returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataObject.Get``1(System.Int32)">
             <summary>
             Returns the specified item of this instance.
             </summary>
-            <param name="index">The index to consider.</param>
+            <param key="index">The index to consider.</param>
             <returns>Returns the item of this instance.</returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataObject.ToArray">
@@ -1048,7 +1048,7 @@
             <summary>
             
             </summary>
-            <param name="filter"></param>
+            <param key="filter"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Elements.BdoDataObjectSpec.DefinitionFilter">
@@ -1060,7 +1060,7 @@
             <summary>
             
             </summary>
-            <param name="filter"></param>
+            <param key="filter"></param>
             <returns></returns>
         </member>
         <member name="T:BindOpen.Data.Elements.BdoDataObject">
@@ -1077,8 +1077,8 @@
             <summary>
             Initializes a new instance of the ObjectElement class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="id">The ID to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="id">The ID to consider.</param>
         </member>
         <member name="P:BindOpen.Data.Elements.BdoDataObject.DefinitionUniqueName">
             <summary>
@@ -1100,7 +1100,7 @@
             <summary>
             Adds a new single item of this instance.
             </summary>
-            <param name="objs">The string item of this instance.</param>
+            <param key="objs">The string item of this instance.</param>
             <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
             <returns>Returns True if the specified has been well added.</returns>
         </member>
@@ -1141,7 +1141,7 @@
             <summary>
             
             </summary>
-            <param name="filter"></param>
+            <param key="filter"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Elements.BdoDataObjectSpec.DefinitionFilter">
@@ -1153,7 +1153,7 @@
             <summary>
             
             </summary>
-            <param name="filter"></param>
+            <param key="filter"></param>
             <returns></returns>
         </member>
         <member name="T:BindOpen.Data.Elements.BdoDataScalar">
@@ -1165,13 +1165,13 @@
             <summary>
             Converts from string.
             </summary>
-            <param name="st">The string to consider.</param>
+            <param key="st">The string to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataScalar.op_Explicit(BindOpen.Data.Elements.BdoDataScalar)~System.String">
             <summary>
             Converts to string.
             </summary>
-            <param name="element">The element to consider.</param>
+            <param key="element">The element to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataScalar.#ctor">
             <summary>
@@ -1182,8 +1182,8 @@
             <summary>
             Initializes a new instance of the ScalarElement class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="id">The ID to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="id">The ID to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataScalar.ToString">
             <summary>
@@ -1228,8 +1228,8 @@
             <summary>
             Returns the item with the specified name and group ID.
             </summary>
-            <param name="key">The name of the item to return.</param>
-            <param name="groupId">The ID of the group of the item to return.</param>
+            <param key="key">The name of the item to return.</param>
+            <param key="groupId">The ID of the group of the item to return.</param>
             <returns>Returns the item with the specified name and group ID.</returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetSpecIds">
@@ -1242,30 +1242,30 @@
             <summary>
             Returns the item object of this instance.
             </summary>
-            <param name="key">The element key to consider.</param>
-            <param name="scope">The scope to consider.</param>
-            <param name="varSet">The variable element set to use.</param>
-            <param name="log">The log to populate.</param>
+            <param key="key">The element key to consider.</param>
+            <param key="scope">The scope to consider.</param>
+            <param key="varSet">The variable element set to use.</param>
+            <param key="log">The log to populate.</param>
             <returns>Returns the items of this instance.</returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetItem``1(System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Returns the item object of this instance.
             </summary>
-            <param name="key">The element key to consider.</param>
-            <param name="log">The log to populate.</param>
-            <param name="scope">The scope to consider.</param>
-            <param name="varSet">The variable element set to use.</param>
+            <param key="key">The element key to consider.</param>
+            <param key="log">The log to populate.</param>
+            <param key="scope">The scope to consider.</param>
+            <param key="varSet">The variable element set to use.</param>
             <returns>Returns the items of this instance.</returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetItemList(System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
-            <param name="key">The element key to consider.</param>
-            <param name="scope"></param>
-            <param name="varSet"></param>
-            <param name="log"></param>
+            <param key="key">The element key to consider.</param>
+            <param key="scope"></param>
+            <param key="varSet"></param>
+            <param key="log"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetItemList``1(System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
@@ -1273,10 +1273,10 @@
             
             </summary>
             <typeparam name="Q"></typeparam>
-            <param name="key">The element key to consider.</param>
-            <param name="scope"></param>
-            <param name="varSet"></param>
-            <param name="log"></param>
+            <param key="key">The element key to consider.</param>
+            <param key="scope"></param>
+            <param key="varSet"></param>
+            <param key="log"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElementSet.Clone(System.String[])">
@@ -1294,21 +1294,21 @@
             <summary>
             Creates a data element set from a dynamic object.
             </summary>
-            <param name="obj">The objet to consider.</param>
+            <param key="obj">The objet to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElementSetExtension.AsElementSet``1(System.Object)">
             <summary>
             Creates a data element set from a dynamic object.
             </summary>
-            <param name="obj">The objet to consider.</param>
+            <param key="obj">The objet to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElementSetExtension.Update(BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.UpdateModes[],System.String[],BindOpen.Logging.IBdoLog)">
             <summary>
             Updates this instance.
             </summary>
-            <param name="item">The item to consider.</param>
-            <param name="specAreas">The specification areas to consider.</param>
-            <param name="updateModes">The update modes to consider.</param>
+            <param key="item">The item to consider.</param>
+            <param key="specAreas">The specification areas to consider.</param>
+            <param key="updateModes">The update modes to consider.</param>
             <returns>Log of the operation.</returns>
             <remarks>Put reference sets as null if you do not want to repair this instance.</remarks>
         </member>
@@ -1316,9 +1316,9 @@
             <summary>
             Updates this instance.
             </summary>
-            <param name="item">The item to consider.</param>
-            <param name="specAreas">The specification areas to consider.</param>
-            <param name="updateModes">The update modes to consider.</param>
+            <param key="item">The item to consider.</param>
+            <param key="specAreas">The specification areas to consider.</param>
+            <param key="updateModes">The update modes to consider.</param>
             <returns>Log of the operation.</returns>
             <remarks>Put reference sets as null if you do not want to repair this instance.</remarks>
         </member>
@@ -1326,18 +1326,18 @@
             <summary>
             Checks this instance.
             </summary>
-            <param name="isExistenceChecked">Indicates whether the entity existence is checked.</param>
-            <param name="item">The item to consider.</param>
-            <param name="specAreas">The specification areas to consider.</param>
+            <param key="isExistenceChecked">Indicates whether the entity existence is checked.</param>
+            <param key="item">The item to consider.</param>
+            <param key="specAreas">The specification areas to consider.</param>
             <returns>Returns the check log.</returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataElementSetExtension.Repair(BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.UpdateModes[],System.String[],BindOpen.Logging.IBdoLog)">
             <summary>
             Repairs this instance with the specified definition.
             </summary>
-            <param name="item">The item to consider.</param>
-            <param name="specAreas">The specification areas to consider.</param>
-            <param name="updateModes">The update modes to consider.</param>
+            <param key="item">The item to consider.</param>
+            <param key="specAreas">The specification areas to consider.</param>
+            <param key="updateModes">The update modes to consider.</param>
             <returns>Log of the operation.</returns>
         </member>
         <member name="T:BindOpen.Data.Elements.BdoDataSpecList">
@@ -1371,8 +1371,8 @@
             <summary>
             Initializes a new instance of the SourceElement class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="id">The ID to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="id">The ID to consider.</param>
         </member>
         <member name="P:BindOpen.Data.Elements.BdoDataSource.DefinitionUniqueName">
             <summary>
@@ -1383,7 +1383,7 @@
             <summary>
             
             </summary>
-            <param name="definitionUniqueName"></param>
+            <param key="definitionUniqueName"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.BdoDataSource.BindOpen#MetaData#Elements#IBdoDataElement#NewSpecification">
@@ -1396,7 +1396,7 @@
             <summary>
             Sets a new single item of this instance.
             </summary>
-            <param name="item">The string item of this instance.</param>
+            <param key="item">The string item of this instance.</param>
             <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
             <returns>Returns True if the specified has been well added.</returns>
         </member>
@@ -1452,9 +1452,9 @@
             <summary>
             Initializes a new data element.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="namePreffix">The name preffix to consider.</param>
-            <param name="id">The ID to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="namePreffix">The name preffix to consider.</param>
+            <param key="id">The ID to consider.</param>
         </member>
         <member name="P:BindOpen.Data.Elements.TBdoDataElement`3.Specs">
             <summary>
@@ -1465,7 +1465,7 @@
             <summary>
             
             </summary>
-            <param name="name"></param>
+            <param key="name"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.NewSpecification">
@@ -1484,49 +1484,49 @@
             <summary>
             
             </summary>
-            <param name="index"></param>
+            <param key="index"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.WithValueMode(BindOpen.Data.Items.DataValueMode)">
             <summary>
             
             </summary>
-            <param name="mode"></param>
+            <param key="mode"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.WithItemReference(BindOpen.Data.Items.IBdoExpression)">
             <summary>
             
             </summary>
-            <param name="reference"></param>
+            <param key="reference"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.WithItemScript(System.String)">
             <summary>
             
             </summary>
-            <param name="script"></param>
+            <param key="script"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.WithDataValueType(BindOpen.Data.DataValueTypes)">
             <summary>
             
             </summary>
-            <param name="valueType"></param>
+            <param key="valueType"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.WithSpecifications(BindOpen.Data.Elements.IBdoDataElementSpec[])">
             <summary>
             
             </summary>
-            <param name="spec"></param>
+            <param key="spec"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.WithItem(`2[])">
             <summary>
             Sets the item of this instance.
             </summary>
-            <param name="item">The string item of this instance.</param>
+            <param key="item">The string item of this instance.</param>
             <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
             <returns>Returns True if the specified has been well added.</returns>
         </member>
@@ -1534,18 +1534,18 @@
             <summary>
             
             </summary>
-            <param name="scope"></param>
-            <param name="varSet"></param>
-            <param name="log"></param>
+            <param key="scope"></param>
+            <param key="varSet"></param>
+            <param key="log"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.GetFirstItem(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
-            <param name="scope"></param>
-            <param name="varSet"></param>
-            <param name="log"></param>
+            <param key="scope"></param>
+            <param key="varSet"></param>
+            <param key="log"></param>
             <returns></returns>
         </member>
         <member name="T:BindOpen.Data.BdoData">
@@ -1603,299 +1603,299 @@
             <summary>
             Instantiates a new instance of the BdoConfigurationSet class.
             </summary>
-            <param name="items">The items to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoConfig.New(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Instantiates a new instance of the BdoBaseConfiguration class.
             </summary>
-            <param name="items">The items to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoConfig.New(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Instantiates a new instance of the BdoBaseConfiguration class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="items">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoConfig.New(System.String,System.String[],BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Instantiates a new instance of the BdoBaseConfiguration class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="items">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoConfig.New``1(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Instantiates a new instance of the BdoBaseConfiguration class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="items">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoConfig.New``1(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Instantiates a new instance of the BdoBaseConfiguration class.
             </summary>
-            <param name="items">The items to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoConfig.New``1(System.String,System.String[],BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Instantiates a new instance of the BdoBaseConfiguration class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="items">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoMeta.New(System.String,System.Object[])">
             <summary>
             Creates a data element with specified items.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="items">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoMeta.New(System.String,BindOpen.Data.DataValueTypes,System.Object[])">
             <summary>
             Creates a data element with specified items.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="items">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewElement``1(System.String,System.Object[])">
             <summary>
             Creates a data element with specified items.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="items">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSpec(System.String,BindOpen.Data.DataValueTypes)">
             <summary>
             Creates a data element of the specified kind.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="valueType">The value type to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="valueType">The value type to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSpec(System.String,System.Type)">
             <summary>
             
             </summary>
-            <param name="name"></param>
-            <param name="type"></param>
+            <param key="name"></param>
+            <param key="type"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSpec``1(System.String)">
             <summary>
             Creates a data element of the specified kind.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="valueType">The value type to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="valueType">The value type to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSpec``2(System.String)">
             <summary>
             Creates a data element of the specified kind.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="type">The value type to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="type">The value type to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSpec``1(System.String,System.Type)">
             <summary>
             Creates a data element of the specified kind.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="type">The value type to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="type">The value type to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewScalarSpec``1(System.String)">
             <summary>
             Creates a data element of the specified kind.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="valueType">The value type to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="valueType">The value type to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSpecList(BindOpen.Data.Elements.IBdoDataElementSpec[])">
             <summary>
             Instantiates a new instance of the BdoElementSet class.
             </summary>
-            <param name="specs">The elems to consider.</param>
+            <param key="specs">The elems to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSpecList``1(BindOpen.Data.Elements.IBdoDataElementSpec[])">
             <summary>
             Instantiates a new instance of the BdoElementSet class.
             </summary>
-            <param name="elems">The elems to consider.</param>
+            <param key="elems">The elems to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewEntity(System.String,System.String)">
             <summary>
             Initializes a new entity el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="definitionUniqueName ">The definition unique ID to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="definitionUniqueName ">The definition unique ID to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewEntity(System.String,BindOpen.Extensions.Modeling.IBdoConfiguration)">
             <summary>
             Initializes a new entity el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="item">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="item">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewEntity``1(System.String,System.String)">
             <summary>
             Initializes a new entity el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="definitionUniqueName ">The definition unique ID to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="definitionUniqueName ">The definition unique ID to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewEntity``1(System.String,BindOpen.Extensions.Modeling.IBdoConfiguration)">
             <summary>
             Initializes a new entity el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="item">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="item">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewCollection(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Initializes a new entity el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="definitionUniqueName ">The definition unique ID to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="definitionUniqueName ">The definition unique ID to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewCollection(BindOpen.Data.Elements.IBdoDataElement[][])">
             <summary>
             Initializes a new entity el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="definitionUniqueName ">The definition unique ID to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="definitionUniqueName ">The definition unique ID to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewCollection(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Initializes a new entity el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="id">The ID to consider.</param>
-            <param name="item">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="id">The ID to consider.</param>
+            <param key="item">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewCollection(System.String,BindOpen.Data.Elements.IBdoDataElement[][])">
             <summary>
             Initializes a new entity el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="id">The ID to consider.</param>
-            <param name="item">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="id">The ID to consider.</param>
+            <param key="item">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewCollection``1(BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Initializes a new set el.
             </summary>
-            <param name="elems">The elems to consider.</param>
+            <param key="elems">The elems to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewCollection``1(BindOpen.Data.Elements.IBdoDataElement[][])">
             <summary>
             Initializes a new set el.
             </summary>
-            <param name="elems">The elems to consider.</param>
+            <param key="elems">The elems to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewCollection``1(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
             <summary>
             Initializes a new set el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="elems">The elems to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="elems">The elems to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewCollection``1(System.String,BindOpen.Data.Elements.IBdoDataElement[][])">
             <summary>
             Initializes a new set el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="elems">The elems to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="elems">The elems to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewObject(System.String,System.Object[])">
             <summary>
             Initializes a new object el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="items">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewObject(System.Object[])">
             <summary>
             Initializes a new object el.
             </summary>
-            <param name="items">The items to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewObject(System.String,System.String,System.Object[])">
             <summary>
             Initializes a new object el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="classFullName">The class full name to consider.</param>
-            <param name="items">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="classFullName">The class full name to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewObject``1(System.String,System.Object[])">
             <summary>
             Initializes a new object el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="items">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewObject``1(System.Object[])">
             <summary>
             Initializes a new object el.
             </summary>
-            <param name="items">The items to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewObject``1(System.String,System.String,System.Object[])">
             <summary>
             Initializes a new object el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="id">The ID to consider.</param>
-            <param name="classFullName">The class full name to consider.</param>
-            <param name="items">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="id">The ID to consider.</param>
+            <param key="classFullName">The class full name to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewScalar(System.Object[])">
             <summary>
             Creates a new instance of the ScalarElement class.
             </summary>
-            <param name="items">The items to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewScalar(BindOpen.Data.DataValueTypes,System.Object[])">
             <summary>
             Creates a new instance of the ScalarElement class.
             </summary>
-            <param name="valueType">The value type to consider.</param>
-            <param name="items">The items to consider.</param>
+            <param key="valueType">The value type to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewScalar(System.String,System.Object[])">
             <summary>
             Creates a new instance of the ScalarElement class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="items">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewScalar(System.String,BindOpen.Data.DataValueTypes,System.Object[])">
             <summary>
             Creates a new instance of the ScalarElement class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="valueType">The value type to consider.</param>
-            <param name="items">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="valueType">The value type to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewScalar``1(System.Object[])">
             <summary>
             Creates a new instance of the ScalarElement class.
             </summary>
-            <param name="items">The items to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewScalar``1(System.String,System.Object[])">
             <summary>
             Creates a new instance of the ScalarElement class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="items">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewScalar``1(System.String,BindOpen.Data.DataValueTypes,System.Object[])">
             <summary>
             Creates a new instance of the ScalarElement class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="valueType">The value type to consider.</param>
-            <param name="items">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="valueType">The value type to consider.</param>
+            <param key="items">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSet">
             <summary>
@@ -1907,35 +1907,35 @@
             <summary>
             Defines the parameters of this instance.
             </summary>
-            <param name="elems">The parameters to consider.</param>
+            <param key="elems">The parameters to consider.</param>
             <returns>Return this instance.</returns>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewList(System.ValueTuple{System.String,System.Object}[])">
             <summary>
             Defines the parameters of this instance.
             </summary>
-            <param name="pairs">The pairs to consider.</param>
+            <param key="pairs">The pairs to consider.</param>
             <returns>Return this instance.</returns>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewList(System.ValueTuple{System.String,BindOpen.Data.DataValueTypes,System.Object}[])">
             <summary>
             Defines the parameters of this instance.
             </summary>
-            <param name="pairs">The pairs to consider.</param>
+            <param key="pairs">The pairs to consider.</param>
             <returns>Return this instance.</returns>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewList(System.Object[])">
             <summary>
             Defines the parameters of this instance.
             </summary>
-            <param name="objects">The parameters to consider.</param>
+            <param key="objects">The parameters to consider.</param>
             <returns>Return this instance.</returns>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewList(System.String)">
             <summary>
             Creates a new instance of the IBdoElementSet class.
             </summary>
-            <param name="stringObject">The string to consider.</param>
+            <param key="stringObject">The string to consider.</param>
             <returns>The set.</returns>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSet``1">
@@ -1948,121 +1948,121 @@
             <summary>
             Defines the parameters of this instance.
             </summary>
-            <param name="elems">The parameters to consider.</param>
+            <param key="elems">The parameters to consider.</param>
             <returns>Return this instance.</returns>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSet``1(System.ValueTuple{System.String,System.Object}[])">
             <summary>
             Defines the parameters of this instance.
             </summary>
-            <param name="pairs">The pairs to consider.</param>
+            <param key="pairs">The pairs to consider.</param>
             <returns>Return this instance.</returns>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSet``1(System.ValueTuple{System.String,BindOpen.Data.DataValueTypes,System.Object}[])">
             <summary>
             Defines the parameters of this instance.
             </summary>
-            <param name="pairs">The pairs to consider.</param>
+            <param key="pairs">The pairs to consider.</param>
             <returns>Return this instance.</returns>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSet``1(System.Object[])">
             <summary>
             Defines the parameters of this instance.
             </summary>
-            <param name="objects">The parameters to consider.</param>
+            <param key="objects">The parameters to consider.</param>
             <returns>Return this instance.</returns>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSet``1(System.String)">
             <summary>
             Creates a new instance of the IBdoElementSet class.
             </summary>
-            <param name="stringObject">The string to consider.</param>
+            <param key="stringObject">The string to consider.</param>
             <returns>The set.</returns>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSource(System.String,System.String,System.String)">
             <summary>
             Initializes a new source el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="id">The ID to consider.</param>
-            <param name="definitionUniqueName ">The definition unique ID to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="id">The ID to consider.</param>
+            <param key="definitionUniqueName ">The definition unique ID to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSource(System.String,BindOpen.Extensions.Connecting.IBdoConfiguration)">
             <summary>
             Initializes a new source el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="item">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="item">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSource(System.String,System.String,BindOpen.Extensions.Connecting.IBdoConfiguration)">
             <summary>
             Initializes a new source el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="id">The ID to consider.</param>
-            <param name="item">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="id">The ID to consider.</param>
+            <param key="item">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSource``1(System.String,System.String,System.String)">
             <summary>
             Initializes a new source el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="id">The ID to consider.</param>
-            <param name="definitionUniqueName ">The definition unique ID to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="id">The ID to consider.</param>
+            <param key="definitionUniqueName ">The definition unique ID to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSource``1(System.String,BindOpen.Extensions.Connecting.IBdoConfiguration)">
             <summary>
             Initializes a new source el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="item">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="item">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewSource``1(System.String,System.String,BindOpen.Extensions.Connecting.IBdoConfiguration)">
             <summary>
             Initializes a new source el.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="id">The ID to consider.</param>
-            <param name="item">The items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="id">The ID to consider.</param>
+            <param key="item">The items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.ToKeyValues(System.String)">
             <summary>
             Get the key values from the specified string.
             </summary>
-            <param name="st">The string to consider.</param>
+            <param key="st">The string to consider.</param>
             <returns>Returns the added string items.</returns>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewName(System.String,System.String,System.Boolean)">
             <summary>
             
             </summary>
-            <param name="name"></param>
-            <param name="namePreffix"></param>
-            <param name="asClone"></param>
+            <param key="name"></param>
+            <param key="namePreffix"></param>
+            <param key="asClone"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewDatasource(BindOpen.Data.Items.DatasourceKind,BindOpen.Extensions.Connecting.IBdoConfiguration[])">
             <summary>
             Instantiates a new instance of the Datasource class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="kind">The kind of the data source to consider.</param>
-            <param name="configs">The config items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="kind">The kind of the data source to consider.</param>
+            <param key="configs">The config items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewDatasource(System.String,BindOpen.Data.Items.DatasourceKind,BindOpen.Extensions.Connecting.IBdoConfiguration[])">
             <summary>
             Instantiates a new instance of the Datasource class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="kind">The kind of the data source to consider.</param>
-            <param name="configs">The config items to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="kind">The kind of the data source to consider.</param>
+            <param key="configs">The config items to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewDatasourceDepot(BindOpen.Data.Items.IBdoDataSource[])">
             <summary>
             Instantiates a new instance of the Datasource class.
             </summary>
-            <param name="name">The name to consider.</param>
-            <param name="kind">The kind of the data source to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="kind">The kind of the data source to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewDictionary">
             <summary>
@@ -2073,46 +2073,46 @@
             <summary>
             Instantiates a new instance of the DictionaryDataItem class specifying the values.
             </summary>
-            <param name="values">The values to consider.</param>
+            <param key="values">The values to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewDictionary(System.ValueTuple{System.String,System.String}[])">
             <summary>
             Instantiates a new instance of the DictionaryDataItem class specifying the values.
             </summary>
-            <param name="values">The values to consider.</param>
+            <param key="values">The values to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewDictionary(System.String)">
             <summary>
             Instantiates a new instance of the DictionaryDataItem class specifying the values.
             </summary>
-            <param name="values">The values to consider.</param>
+            <param key="values">The values to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewKeyPair(System.String,System.String)">
             <summary>
             Instantiates a new instance of the DictionaryDataItem class specifying the values.
             </summary>
-            <param name="values">The values to consider.</param>
+            <param key="values">The values to consider.</param>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewExpression(System.String,BindOpen.Data.Items.BdoExpressionKind)">
             <summary>
             Creates the exp.
             </summary>
-            <param name="kind">The kind of exp to consider.</param>
-            <param name="text">The text to consider.</param>
+            <param key="kind">The kind of exp to consider.</param>
+            <param key="text">The text to consider.</param>
             <returns>Returns the created exp.</returns>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewExpression(BindOpen.Extensions.Scripting.IBdoScriptword)">
             <summary>
             Creates the exp.
             </summary>
-            <param name="word">The word of exp to consider.</param>
+            <param key="word">The word of exp to consider.</param>
             <returns>Returns the created exp.</returns>
         </member>
         <member name="M:BindOpen.Data.BdoData.NewList``2(``1[])">
             <summary>
             Instantiates a new instance of the DataList class.
             </summary>
-            <param name="items">The items to consider.</param>
+            <param key="items">The items to consider.</param>
             <typeparam name="Q">The data item set type to consider.</typeparam>
             <typeparam name="T">The identified data item to consider.</typeparam>
         </member>
@@ -2120,7 +2120,7 @@
             <summary>
             Instantiates a new instance of the DataList class.
             </summary>
-            <param name="items">The items to consider.</param>
+            <param key="items">The items to consider.</param>
             <typeparam name="T">The class of the named data items.</typeparam>
         </member>
         <member name="T:BindOpen.Data.Items.BdoItem">
@@ -2143,14 +2143,14 @@
             <summary>
             Clones this instance.
             </summary>
-            <param name="areas">The areas to consider.</param>
+            <param key="areas">The areas to consider.</param>
             <returns>Returns a cloned instance.</returns>
         </member>
         <member name="M:BindOpen.Data.Items.BdoItem.Clone``1(System.String[])">
             <summary>
             Clones this instance.
             </summary>
-            <param name="areas">The areas to consider.</param>
+            <param key="areas">The areas to consider.</param>
             <returns>Returns a cloned instance.</returns>
         </member>
         <member name="M:BindOpen.Data.Items.BdoItem.Dispose">
@@ -2162,7 +2162,7 @@
             <summary>
             Disposes specifying whether this instance is disposing.
             </summary>
-            <param name="isDisposing">Indicates whether this instance is disposing</param>
+            <param key="isDisposing">Indicates whether this instance is disposing</param>
         </member>
         <member name="T:BindOpen.Data.Items.BdoDatasource">
             <summary>
@@ -2178,7 +2178,7 @@
             <summary>
             This instantiates a new instance of the Datasource class.
             </summary>
-            <param name="name">The name to consider.</param>
+            <param key="name">The name to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDatasource.Clone(System.String[])">
             <summary>
@@ -2195,7 +2195,7 @@
             <summary>
             Sets the specified kind of this instance. 
             </summary>
-            <param name="kind">The kind to consider.</param>
+            <param key="kind">The kind to consider.</param>
         </member>
         <member name="P:BindOpen.Data.Items.BdoDatasource.ModuleName">
             <summary>
@@ -2206,7 +2206,7 @@
             <summary>
             Sets the specified module name of this instance. 
             </summary>
-            <param name="moduleName">The module name to consider.</param>
+            <param key="moduleName">The module name to consider.</param>
         </member>
         <member name="P:BindOpen.Data.Items.BdoDatasource.IsDefault">
             <summary>
@@ -2217,7 +2217,7 @@
             <summary>
             Specifies that this instance is the default. 
             </summary>
-            <param name="isDefault"></param>
+            <param key="isDefault"></param>
         </member>
         <member name="P:BindOpen.Data.Items.BdoDatasource.InstanceName">
             <summary>
@@ -2228,7 +2228,7 @@
             <summary>
             Sets the specified module name of this instance. 
             </summary>
-            <param name="instanceName">The instance name to consider.</param>
+            <param key="instanceName">The instance name to consider.</param>
         </member>
         <member name="P:BindOpen.Data.Items.BdoDatasource.Configuration">
             <summary>
@@ -2244,32 +2244,32 @@
             <summary>
             Adds the specified connector config.
             </summary>
-            <param name="config">The connector to add.</param>
+            <param key="config">The connector to add.</param>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDatasource.RemoveConfig(System.String)">
             <summary>
             Removes the specified connector config.
             </summary>
-            <param name="definitionName">The unique ID of the connector definition to consider.</param>
+            <param key="definitionName">The unique ID of the connector definition to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDatasource.WithConfig(BindOpen.Extensions.Connecting.IBdoConfiguration[])">
             <summary>
             Sets the specified configs.
             </summary>
-            <param name="configs">The configs to consider.</param>
+            <param key="configs">The configs to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDatasource.GetConfig(System.String)">
             <summary>
             Gets the specified connector config.
             </summary>
-            <param name="definitionName">The unique ID of the connector definition to consider.</param>
+            <param key="definitionName">The unique ID of the connector definition to consider.</param>
             <returns>The specified connector.</returns>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDatasource.HasConfig(System.String)">
             <summary>
             Indicates whether this instance has the specified connector config.
             </summary>
-            <param name="definitionName">The unique ID of the connector definition to consider.</param>
+            <param key="definitionName">The unique ID of the connector definition to consider.</param>
             <returns>The data source with the specified data module name.</returns>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDatasource.Key">
@@ -2286,7 +2286,7 @@
             <summary>
             
             </summary>
-            <param name="id"></param>
+            <param key="id"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Items.BdoDatasource.Name">
@@ -2298,7 +2298,7 @@
             <summary>
             
             </summary>
-            <param name="name"></param>
+            <param key="name"></param>
             <returns></returns>
         </member>
         <!-- Badly formed XML comment ignored for member "T:BindOpen.Data.Items.BdoDictionary" -->
@@ -2311,13 +2311,13 @@
             <summary>
             
             </summary>
-            <param name="items"></param>
+            <param key="items"></param>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDictionary.op_Implicit(System.String)~BindOpen.Data.Items.BdoDictionary">
             <summary>
             
             </summary>
-            <param name="items"></param>
+            <param key="items"></param>
         </member>
         <member name="P:BindOpen.Data.Items.BdoDictionary.Id">
             <summary>
@@ -2328,77 +2328,77 @@
             <summary>
             Text of the specified key.
             </summary>
-            <param name="key">The key to consider.</param>
+            <param key="key">The key to consider.</param>
             <returns>Returns the specified text.</returns>
         </member>
         <member name="P:BindOpen.Data.Items.BdoDictionary.Item(System.String,System.String)">
             <summary>
             Text of the specified key.
             </summary>
-            <param name="key">The key to consider.</param>
-            <param name="defaultKey">The default key to consider.</param>
+            <param key="key">The key to consider.</param>
+            <param key="defaultKey">The default key to consider.</param>
             <returns>Returns the specified text.</returns>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDictionary.Add(System.Collections.Generic.KeyValuePair{System.String,System.String}[])">
             <summary>
             Adds a new value to this instance.
             </summary>
-            <param name="pairs">The value to add.</param>
+            <param key="pairs">The value to add.</param>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDictionary.Add(System.String)">
             <summary>
             Adds a new value to this instance with the specified key and text.
             </summary>
-            <param name="text">The text to consider.</param>
+            <param key="text">The text to consider.</param>
             <returns>Returns the added data key value.</returns>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDictionary.Add(System.String,System.String,System.Collections.Generic.List{System.String})">
             <summary>
             Adds a new value to this instance with the specified key and text.
             </summary>
-            <param name="key">The key to consider.</param>
-            <param name="text">The text to consider.</param>
-            <param name="availableKeys">The available keys to consider.</param>
+            <param key="key">The key to consider.</param>
+            <param key="text">The text to consider.</param>
+            <param key="availableKeys">The available keys to consider.</param>
             <returns>Returns the added data key value.</returns>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDictionary.Set(System.Collections.Generic.KeyValuePair{System.String,System.String}[])">
             <summary>
             Adds a new value to this instance.
             </summary>
-            <param name="pairs">The value to add.</param>
+            <param key="pairs">The value to add.</param>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDictionary.Set(System.String)">
             <summary>
             Sets the text of the default value.
             </summary>
-            <param name="text">The text of the value to add.</param>
+            <param key="text">The text of the value to add.</param>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDictionary.Set(System.String,System.String)">
             <summary>
             Sets the text of the default value.
             </summary>
-            <param name="key">The key of the value to add.</param>
-            <param name="text">The text of the value to add.</param>
+            <param key="key">The key of the value to add.</param>
+            <param key="text">The text of the value to add.</param>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDictionary.Get(System.String,System.String)">
             <summary>
             
             </summary>
-            <param name="key"></param>
-            <param name="alternateKey"></param>
+            <param key="key"></param>
+            <param key="alternateKey"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDictionary.Remove(System.String[])">
             <summary>
             Removes the value with the specified key.
             </summary>
-            <param name="key">The key to consider.</param>
+            <param key="key">The key to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDictionary.Equals(BindOpen.Data.Items.IBdoDictionary)">
             <summary>
             Indicates whether this intance equals the specified dico.
             </summary>
-            <param name="dico">The dictionar to consider.</param>
+            <param key="dico">The dictionar to consider.</param>
             <returns>Returns true if this instance equals the specified dico. False otherwise.</returns>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDictionary.GetCultureInfoItems">
@@ -2411,8 +2411,8 @@
             <summary>
             Returns the content corresponding to the specified key.
             </summary>
-            <param name="key">The key to consider.</param>
-            <param name="alternateKey">The alternate key to used if the key is not found.</param>
+            <param key="key">The key to consider.</param>
+            <param key="alternateKey">The alternate key to used if the key is not found.</param>
             <returns>Returns the text corresponding to the specified user interface language ID.
             Returns empty if there is none.</returns>
         </member>
@@ -2426,7 +2426,7 @@
             <summary>
             Clones this instance.
             </summary>
-            <param name="areas">The areas to consider.</param>
+            <param key="areas">The areas to consider.</param>
             <returns>Returns a cloned instance.</returns>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDictionary.Dispose">
@@ -2438,13 +2438,13 @@
             <summary>
             Disposes specifying whether this instance is disposing.
             </summary>
-            <param name="isDisposing">Indicates whether this instance is disposing</param>
+            <param key="isDisposing">Indicates whether this instance is disposing</param>
         </member>
         <member name="M:BindOpen.Data.Items.BdoDictionary.WithId(System.String)">
             <summary>
             
             </summary>
-            <param name="text"></param>
+            <param key="text"></param>
             <returns></returns>
         </member>
         <member name="T:BindOpen.Data.Items.BdoDictionaryExtension">
@@ -2458,8 +2458,8 @@
             Instantiates a new instance of the DictionaryDataItem class
             from an object.
             </summary>
-            <param name="obj">The object to consider.</param>
-            <param name="mappings">The mappings to consider.</param>
+            <param key="obj">The object to consider.</param>
+            <param key="mappings">The mappings to consider.</param>
         </member>
         <member name="T:BindOpen.Data.Items.BdoExpression">
             <summary>
@@ -2490,7 +2490,7 @@
             <summary>
             Converts from string.
             </summary>
-            <param name="st">The string to consider.</param>
+            <param key="st">The string to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Items.BdoExpression.ToString">
             <summary>
@@ -2507,14 +2507,14 @@
             <summary>
             Creates a new literal exp into auto mode.
             </summary>
-            <param name="text">The script text to consider.</param>
+            <param key="text">The script text to consider.</param>
             <returns>Returns the script exp.</returns>
         </member>
         <member name="M:BindOpen.Data.Items.BdoExpressionExtension.AsExpression(BindOpen.Extensions.Scripting.IBdoScriptword)">
             <summary>
             Creates a new word exp.
             </summary>
-            <param name="scriptword">The script word to consider.</param>
+            <param key="scriptword">The script word to consider.</param>
             <returns>Returns the script exp.</returns>
         </member>
         <member name="T:BindOpen.Data.Items.BdoExpression">
@@ -2567,9 +2567,9 @@
             <summary>
             Gets the items from the source of this instance and update the target items.
             </summary>
-            <param name="scope">The scope to consider.</param>
-            <param name="varSet">The variable element set to use.</param>
-            <param name="log">The log to consider.</param>
+            <param key="scope">The scope to consider.</param>
+            <param key="varSet">The variable element set to use.</param>
+            <param key="log">The log to consider.</param>
             <returns>Returns the retrieved items.</returns>
         </member>
         <member name="M:BindOpen.Data.Items.BdoExpression.Clone(System.String[])">
@@ -2582,153 +2582,153 @@
             <summary>
             Disposes this instance. 
             </summary>
-            <param name="isDisposing">Indicates whether this instance is disposing</param>
+            <param key="isDisposing">Indicates whether this instance is disposing</param>
         </member>
-        <member name="T:BindOpen.Data.Items.TBdoList`1">
+        <member name="T:BindOpen.Data.Items.TBdoSet`1">
             <summary>
             This class represents a data item set.
             </summary>
             <typeparam name="T">The class of the named data items.</typeparam>
         </member>
-        <member name="F:BindOpen.Data.Items.TBdoList`1._items">
+        <member name="F:BindOpen.Data.Items.TBdoSet`1._items">
             <summary>
             The items of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoList`1.#ctor">
+        <member name="M:BindOpen.Data.Items.TBdoSet`1.#ctor">
             <summary>
             Instantiates a new instance of the DataList class.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoList`1.op_Implicit(`0[])~BindOpen.Data.Items.TBdoList{`0}">
+        <member name="M:BindOpen.Data.Items.TBdoSet`1.op_Implicit(`0[])~BindOpen.Data.Items.TBdoSet{`0}">
             <summary>
             Converts from string.
             </summary>
-            <param name="st">The string to consider.</param>
+            <param key="st">The string to consider.</param>
         </member>
-        <member name="P:BindOpen.Data.Items.TBdoList`1.Items">
+        <member name="P:BindOpen.Data.Items.TBdoSet`1.Items">
             <summary>
             
             </summary>
-            <param name="key"></param>
+            <param key="key"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Data.Items.TBdoList`1.Count">
+        <member name="P:BindOpen.Data.Items.TBdoSet`1.Count">
             <summary>
             Returns the number of items.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.TBdoList`1.Item(System.Int32)">
+        <member name="P:BindOpen.Data.Items.TBdoSet`1.Item(System.Int32)">
             <summary>
             Returns the element with the specified indexed.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Items.TBdoList`1.Item(System.String)">
+        <member name="P:BindOpen.Data.Items.TBdoSet`1.Item(System.String)">
             <summary>
             Returns the element with the specified key.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoList`1.ClearItems">
+        <member name="M:BindOpen.Data.Items.TBdoSet`1.ClearItems">
             <summary>
             Clears the items of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoList`1.Add(`0[])">
+        <member name="M:BindOpen.Data.Items.TBdoSet`1.Add(`0[])">
             <summary>
             Adds the specified item.
             </summary>
-            <param name="items">The items of the item to add.</param>
+            <param key="items">The items of the item to add.</param>
             <returns>Returns the new item that has been added.
             Returns null if the new item is null or else its name is null.</returns>
             <remarks>The new item must have a name.</remarks>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoList`1.Insert(`0)">
+        <member name="M:BindOpen.Data.Items.TBdoSet`1.Insert(`0)">
             <summary>
             Adds the specified item.
             </summary>
-            <param name="item">The item of the item to add.</param>
+            <param key="item">The item of the item to add.</param>
             <returns>Returns the new item that has been added.
             Returns null if the new item is null or else its name is null.</returns>
             <remarks>The new item must have a name.</remarks>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoList`1.With`0[])">
+        <member name="M:BindOpen.Data.Items.TBdoSet`1.With`0[])">
             <summary>
             Sets the specified single item of this instance.
             </summary>
-            <param name="items">The items to apply to this instance.</param>
+            <param key="items">The items to apply to this instance.</param>
             <remarks>_items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoList`1.Remove(System.String[])">
+        <member name="M:BindOpen.Data.Items.TBdoSet`1.Remove(System.String[])">
             <summary>
             Removes the item with the specified name.
             </summary>
-            <param name="keys">The keys of the item to remove.</param>
+            <param key="keys">The keys of the item to remove.</param>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoList`1.HasItem(System.String)">
+        <member name="M:BindOpen.Data.Items.TBdoSet`1.HasItem(System.String)">
             <summary>
             Checks if this instance has an item with the specified name.
             </summary>
-            <param name="key">The key of the item to check.</param>
+            <param key="key">The key of the item to check.</param>
             <returns>Returns true if the instance has an item with the specified name.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoList`1.Get(System.String)">
+        <member name="M:BindOpen.Data.Items.TBdoSet`1.Get(System.String)">
             <summary>
             Returns the specified item of this instance.
             </summary>
-            <param name="key">The key to consider.</param>
+            <param key="key">The key to consider.</param>
             <returns>Returns the item of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoList`1.Get``1(System.String)">
+        <member name="M:BindOpen.Data.Items.TBdoSet`1.Get``1(System.String)">
             <summary>
             Returns the specified item of this instance.
             </summary>
-            <param name="key">The key to consider.</param>
+            <param key="key">The key to consider.</param>
             <returns>Returns the item of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoList`1.Get``1(System.Int32)">
+        <member name="M:BindOpen.Data.Items.TBdoSet`1.Get``1(System.Int32)">
             <summary>
             Returns the specified item of this instance.
             </summary>
-            <param name="index">The index to consider.</param>
+            <param key="index">The index to consider.</param>
             <returns>Returns the item of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoList`1.ToArray">
+        <member name="M:BindOpen.Data.Items.TBdoSet`1.ToArray">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoList`1.ToList">
+        <member name="M:BindOpen.Data.Items.TBdoSet`1.ToList">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoList`1.GetEnumerator">
+        <member name="M:BindOpen.Data.Items.TBdoSet`1.GetEnumerator">
             <summary>
             Indicates the enumerator of this instance.
             </summary>
             <returns>Returns the enumerator of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoList`1.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:BindOpen.Data.Items.TBdoSet`1.System#Collections#IEnumerable#GetEnumerator">
             <summary>
             Indicates the enumerator of this instance.
             </summary>
             <returns>Returns the enumerator of this instance.</returns>
         </member>
-        <member name="P:BindOpen.Data.Items.TBdoList`1.Id">
+        <member name="P:BindOpen.Data.Items.TBdoSet`1.Id">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoList`1.WithId(System.String)">
+        <member name="M:BindOpen.Data.Items.TBdoSet`1.WithId(System.String)">
             <summary>
             
             </summary>
-            <param name="id"></param>
+            <param key="id"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Items.TBdoList`1.Clone(System.String[])">
+        <member name="M:BindOpen.Data.Items.TBdoSet`1.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
@@ -2748,23 +2748,23 @@
             <summary>
             Returns the constraint with the specified name.
             </summary>
-            <param name="name">The name of the item to return.</param>
+            <param key="name">The name of the item to return.</param>
             <returns>Returns the item with the specified name.</returns>
         </member>
         <member name="M:BindOpen.Data.Specification.BdoConfigurationSet.GetConstraintParameter(System.String,System.String)">
             <summary>
             Returns the constraint parameter.
             </summary>
-            <param name="constraintName">The name of the constraint to return.</param>
-            <param name="parameterName">The name of the parameter to return.</param>
+            <param key="constraintName">The name of the constraint to return.</param>
+            <param key="parameterName">The name of the parameter to return.</param>
             <returns>Returns the specified constrainst parameter.</returns>
         </member>
         <member name="M:BindOpen.Data.Specification.BdoConfigurationSet.GetConstraintParameterValue(System.String,System.String)">
             <summary>
             Returns the constraint parameter value.
             </summary>
-            <param name="constraintName">The name of the constraint to return.</param>
-            <param name="parameterName">The name of the parameter to return.</param>
+            <param key="constraintName">The name of the constraint to return.</param>
+            <param key="parameterName">The name of the parameter to return.</param>
             <returns>Returns the specified constrainst parameter.</returns>
         </member>
         <member name="M:BindOpen.Data.Specification.BdoConfigurationSet.Clone(System.String[])">
@@ -2793,7 +2793,7 @@
             <summary>
             Indicates whether this instance is compatible with the specified data item.
             </summary>
-            <param name="item">The data item to consider.</param>
+            <param key="item">The data item to consider.</param>
             <returns>True if this instance is compatible with the specified data item.</returns>
         </member>
         <member name="P:BindOpen.Data.Specification.DataSpecification.ValueType">
@@ -2805,7 +2805,7 @@
             <summary>
             
             </summary>
-            <param name="valueType"></param>
+            <param key="valueType"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Specification.DataSpecification.RequirementLevel">
@@ -2817,7 +2817,7 @@
             <summary>
             
             </summary>
-            <param name="level"></param>
+            <param key="level"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Data.Specification.DataSpecification.AsOptional">
@@ -2867,7 +2867,7 @@
             <summary>
             
             </summary>
-            <param name="index"></param>
+            <param key="index"></param>
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
@@ -2885,7 +2885,7 @@
             <summary>
             
             </summary>
-            <param name="id"></param>
+            <param key="id"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Specification.DataSpecification.Name">
@@ -2897,7 +2897,7 @@
             <summary>
             
             </summary>
-            <param name="name"></param>
+            <param key="name"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Specification.DataSpecification.Title">
@@ -2936,29 +2936,29 @@
             <summary>
             Instantiates a new instance of the StringFilter class specifying the action kind.
             </summary>
-            <param name="addedValues">The allowed values to consider.</param>
-            <param name="removedValues">The forbidden values to consider.</param>
+            <param key="addedValues">The allowed values to consider.</param>
+            <param key="removedValues">The forbidden values to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Specification.StringFilter.GetValues(System.Collections.Generic.List{System.String})">
             <summary>
             Gets the values allowed by this instance.
             </summary>
-            <param name="allValues">All the values to consider.</param>
+            <param key="allValues">All the values to consider.</param>
             <returns>Returns all the values allowed by this instance.</returns>
         </member>
         <member name="M:BindOpen.Data.Specification.StringFilter.IsValueAllowed(System.String,System.Collections.Generic.List{System.String})">
             <summary>
             Indicates whether the value is allowed by this instance.
             </summary>
-            <param name="value">The value to validate.</param>
-            <param name="allValues">All the values to consider.</param>
+            <param key="value">The value to validate.</param>
+            <param key="allValues">All the values to consider.</param>
             <returns>Returns True if the specified is validated by this instance.</returns>
         </member>
         <member name="M:BindOpen.Data.Specification.StringFilter.Repair(System.Collections.Generic.List{System.String})">
             <summary>
             Repairs this instance.
             </summary>
-            <param name="allValues">All the values to consider.</param>
+            <param key="allValues">All the values to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Specification.StringFilter.Clone(System.String[])">
             <summary>
@@ -3000,8 +3000,8 @@
             <summary>
             Adds the specified depot executing the specified action.
             </summary>
-            <param name="depot">The depot to consider.</param>
-            <param name="action">The action to execute on the newly created depot.</param>
+            <param key="depot">The depot to consider.</param>
+            <param key="action">The action to execute on the newly created depot.</param>
             <typeparam name="T">The depot class to consider.</typeparam>
         </member>
         <member name="M:BindOpen.Data.Stores.BdoDataStore.Get``1">
@@ -3018,8 +3018,8 @@
             <summary>
             Executes the lazy functions of all the depots of this instance.
             </summary>
-            <param name="scope">The scope to append.</param>
-            <param name="log"></param>
+            <param key="scope">The scope to append.</param>
+            <param key="log"></param>
         </member>
         <member name="T:BindOpen.Data.Stores.BdoDataStoreExtensions">
             <summary>
@@ -3030,37 +3030,37 @@
             <summary>
             Add a datasource depot into the specified data store executing the specified action.
             </summary>
-            <param name="dataStore">The data store to consider.</param>
+            <param key="dataStore">The data store to consider.</param>
             <returns>Returns the data store to update.</returns>
         </member>
         <member name="M:BindOpen.Data.Stores.BdoDataStoreExtensions.RegisterDatasources(BindOpen.Data.Stores.IBdoDataStore,System.Action{BindOpen.Data.Stores.IBdoSourceDepot})">
             <summary>
             Add a datasource depot into the specified data store executing the specified action.
             </summary>
-            <param name="dataStore">The data store to consider.</param>
-            <param name="action">The action to execute on the created depot.</param>
+            <param key="dataStore">The data store to consider.</param>
+            <param key="action">The action to execute on the created depot.</param>
             <returns>Returns the data store to update.</returns>
         </member>
         <member name="M:BindOpen.Data.Stores.BdoDataStoreExtensions.RegisterDatasources(BindOpen.Data.Stores.IBdoDataStore,System.Action{BindOpen.Data.Stores.IBdoSourceDepot,BindOpen.Logging.IBdoLog})">
             <summary>
             Add a data source depot into the specified data store using the specified options.
             </summary>
-            <param name="dataStore">The data store to consider.</param>
-            <param name="action">The action to execute on the created depot.</param>
+            <param key="dataStore">The data store to consider.</param>
+            <param key="action">The action to execute on the created depot.</param>
             <returns>Returns the data store to update.</returns>
         </member>
         <member name="M:BindOpen.Data.Stores.BdoDataStoreExtensions.GetDatasourceDepot(BindOpen.Data.Stores.IBdoDataStore)">
             <summary>
             Gets the datasource depot of the specified data store.
             </summary>
-            <param name="dataStore">The data store to consider.</param>
+            <param key="dataStore">The data store to consider.</param>
             <returns>Returns the datasource depot of the specified data store.</returns>
         </member>
         <member name="M:BindOpen.Data.Stores.BdoDataStoreExtensions.GetDatasourceDepot(BindOpen.Runtime.Scopes.IBdoScope)">
             <summary>
             Gets the datasource depot of the specified scope.
             </summary>
-            <param name="scope">The data store to consider.</param>
+            <param key="scope">The data store to consider.</param>
             <returns>Returns the datasource depot of the specified scope.</returns>
         </member>
         <member name="T:BindOpen.Data.Stores.BdoDatasourceDepot">
@@ -3077,52 +3077,52 @@
             <summary>
             Returns the specified item of this instance.
             </summary>
-            <param name="key">The key to consider.</param>
+            <param key="key">The key to consider.</param>
             <returns>Returns the item of this instance.</returns>
         </member>
         <member name="M:BindOpen.Data.Stores.BdoDatasourceDepot.GetModuleName(System.String)">
             <summary>
             Returns the module name of the specified data source.
             </summary>
-            <param name="sourceName">The name of the data source to consider.</param>
+            <param key="sourceName">The name of the data source to consider.</param>
             <returns>The module name corresponding to the specified data module name.</returns>
         </member>
         <member name="M:BindOpen.Data.Stores.BdoDatasourceDepot.GetInstanceName(System.String)">
             <summary>
             Returns the instance name of the specified data source.
             </summary>
-            <param name="sourceName">The name of the data source to consider.</param>
+            <param key="sourceName">The name of the data source to consider.</param>
             <returns>The instance name corresponding to the specified data module name.</returns>
         </member>
         <member name="M:BindOpen.Data.Stores.BdoDatasourceDepot.GetInstanceOtherwiseModuleName(System.String)">
             <summary>
             Returns the instance name otherwise module name of the specified data source.
             </summary>
-            <param name="sourceName">The name of the data source to consider.</param>
+            <param key="sourceName">The name of the data source to consider.</param>
             <returns>The instance name corresponding to the specified data module name.</returns>
         </member>
         <member name="M:BindOpen.Data.Stores.BdoDatasourceDepot.GetConnectorConfiguration(System.String,System.String)">
             <summary>
             Gets the specified connector config.
             </summary>
-            <param name="sourceName">The name of the data module to consider.</param>
-            <param name="connectorDefinitionUniqueName">The unique ID of the connector definition to consider.</param>
+            <param key="sourceName">The name of the data module to consider.</param>
+            <param key="connectorDefinitionUniqueName">The unique ID of the connector definition to consider.</param>
             <returns>The specified connector.</returns>
         </member>
         <member name="M:BindOpen.Data.Stores.BdoDatasourceDepot.HasConnectorConfiguration(System.String,System.String)">
             <summary>
             Indicates whether this instance has the specified connector config.
             </summary>
-            <param name="sourceName">The name of the data module to consider.</param>
-            <param name="connectorDefinitionUniqueName">The unique ID of the connector definition to consider.</param>
+            <param key="sourceName">The name of the data module to consider.</param>
+            <param key="connectorDefinitionUniqueName">The unique ID of the connector definition to consider.</param>
             <returns>The data source with the specified data module name.</returns>
         </member>
         <member name="M:BindOpen.Data.Stores.BdoDatasourceDepot.GetConnectionString(System.String,System.String)">
             <summary>
             Returns the connection string corresponding to the specified config.
             </summary>
-            <param name="sourceName">The name of the data source to consider.</param>
-            <param name="connectorDefinitionUniqueName">The connector unique name to consider.</param>
+            <param key="sourceName">The name of the data source to consider.</param>
+            <param key="connectorDefinitionUniqueName">The connector unique name to consider.</param>
             <returns>The connection string corresponding to the specified data module name.</returns>
         </member>
         <member name="T:BindOpen.Data.Stores.TBdoDepot`1">
@@ -3144,7 +3144,7 @@
             <summary>
             
             </summary>
-            <param name="id"></param>
+            <param key="id"></param>
             <returns></returns>
         </member>
         <member name="P:BindOpen.Data.Stores.TBdoDepot`1.LazyLoadFunction">
@@ -3156,26 +3156,26 @@
             <summary>
             Add the items from all the assemblies.
             </summary>
-            <param name="log">The log to append.</param>
+            <param key="log">The log to append.</param>
         </member>
         <member name="M:BindOpen.Data.Stores.TBdoDepot`1.AddFromAssembly(System.String,BindOpen.Logging.IBdoLog)">
             <summary>
             Add the items from the specified assembly.
             </summary>
-            <param name="assemblyName">The name of the assembly.</param>
-            <param name="log">The log to append.</param>
+            <param key="assemblyName">The name of the assembly.</param>
+            <param key="log">The log to append.</param>
         </member>
         <member name="M:BindOpen.Data.Stores.TBdoDepot`1.AddFromAssembly``1(BindOpen.Logging.IBdoLog)">
             <summary>
             Add the items from the assembly of the specified type.
             </summary>
-            <param name="log">The log to append.</param>
+            <param key="log">The log to append.</param>
         </member>
         <member name="M:BindOpen.Data.Stores.TBdoDepot`1.LoadLazy(BindOpen.Logging.IBdoLog)">
             <summary>
             Loads this instance.
             </summary>
-            <param name="log">The log to append.</param>
+            <param key="log">The log to append.</param>
         </member>
         <member name="T:BindOpen.Data.AccessibilityLevelExtension">
             <summary>
@@ -3186,8 +3186,8 @@
             <summary>
             Gets the accessibility level corresponding to the specified string.
             </summary>
-            <param name="levelString">The visibility to consider.</param>
-            <param name="defaultLevelString">The default visibility to consider.</param>
+            <param key="levelString">The visibility to consider.</param>
+            <param key="defaultLevelString">The default visibility to consider.</param>
             <returns>Returns the visibility corresponding to the specified strings.</returns>
         </member>
     </members>

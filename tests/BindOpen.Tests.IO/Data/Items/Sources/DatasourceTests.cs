@@ -1,8 +1,9 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Configuration;
 using BindOpen.Data.Items;
 using BindOpen.Dtos.Json;
 using BindOpen.Dtos.Xml;
-using BindOpen.Tests.Runtime;
+using BindOpen.Extensions.Connecting;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
@@ -34,9 +35,9 @@ namespace BindOpen.Tests.IO.Data
         public void CreateTest()
         {
             _datasource = BdoData.NewDatasource("name", DatasourceKind.Database)
-                .WithConfig(
+                .With(
                     BdoConfig.New("tests.core$test")
-                        ?.WithConnectionString("connectionString")
+                        .WithConnectionString("connectionString")
                         .With(
                             BdoMeta.New("name1", "value1")));
 
@@ -66,7 +67,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveXmlTest();
             }
 
-            var datasource = RuntimeTests.Scope.ConvertToPoco(XmlHelper.LoadXml<DatasourceDto>(_filePath_xml));
+            var datasource = XmlHelper.LoadXml<DatasourceDto>(_filePath_xml).ToPoco();
             Assert.That(Equals(datasource, _datasource), "Error while loading");
         }
 
@@ -92,7 +93,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveJsonTest();
             }
 
-            var datasource = RuntimeTests.Scope.ConvertToPoco(JsonHelper.LoadJson<DatasourceDto>(_filePath_json));
+            var datasource = JsonHelper.LoadJson<DatasourceDto>(_filePath_json).ToPoco();
             Assert.That(Equals(datasource, _datasource), "Error while loading");
         }
     }

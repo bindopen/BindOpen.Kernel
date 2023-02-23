@@ -10,7 +10,7 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="assemblyFileName"></param>
+        /// <param key="assemblyFileName"></param>
         public static T WithFileName<T>(
             this T obj,
             string assemblyFileName)
@@ -26,7 +26,7 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="definitionUniqueName"></param>
+        /// <param key="definitionUniqueName"></param>
         public static T WithDefinitionUniqueName<T>(
             this T obj,
             string definitionUniqueName)

@@ -11,8 +11,8 @@ namespace BindOpen.Data.Stores
         /// <summary>
         /// Adds the specified source.
         /// </summary>
-        /// <param name="depot">The depot to consider.</param>
-        /// <param name="datasource">The datasource to consider.</param>
+        /// <param key="depot">The depot to consider.</param>
+        /// <param key="datasource">The datasource to consider.</param>
         public static IBdoSourceDepot AddDatasource(
             this IBdoSourceDepot depot,
             BdoDatasource datasource)

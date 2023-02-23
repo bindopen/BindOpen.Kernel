@@ -63,7 +63,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Converts from string.
         /// </summary>
-        /// <param name="st">The string to consider.</param>
+        /// <param key="st">The string to consider.</param>
         public static explicit operator string(BdoExpression exp)
         {
             return exp?.ToString();

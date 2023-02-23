@@ -59,7 +59,7 @@ namespace BindOpen.Runtime.Scopes
         /// <summary>
         /// Sets the path of the library folder of this instance.
         /// </summary>
-        /// <param name="folderPath"></param>
+        /// <param key="folderPath"></param>
         /// <returns>Returns this instance.</returns>
         public IExtensionLoadOptions WithLibraryFolderPath(string folderPath)
         {
@@ -70,7 +70,7 @@ namespace BindOpen.Runtime.Scopes
         /// <summary>
         /// Sets the URI of the remote server of this instance.
         /// </summary>
-        /// <param name="uri">The URI of the remote server.</param>
+        /// <param key="uri">The URI of the remote server.</param>
         /// <returns>Returns this instance.</returns>
         public IExtensionLoadOptions WithRemoteServerUri(string uri)
         {
@@ -81,7 +81,7 @@ namespace BindOpen.Runtime.Scopes
         /// <summary>
         /// Sets the source kinds of this instance.
         /// </summary>
-        /// <param name="sourceKinds">The source kinds to consider.</param>
+        /// <param key="sourceKinds">The source kinds to consider.</param>
         /// <returns>Returns this instance.</returns>
         public IExtensionLoadOptions WithSourceKinds(
             params DatasourceKind[] sourceKinds)
@@ -94,7 +94,7 @@ namespace BindOpen.Runtime.Scopes
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="item"></param>
+        /// <param key="item"></param>
         /// <returns></returns>
         public void Update<T>(T item = default)
         {

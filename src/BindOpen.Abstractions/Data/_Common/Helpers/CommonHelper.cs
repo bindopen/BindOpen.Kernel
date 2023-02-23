@@ -10,8 +10,8 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Executes the specified action if the specified value is null or empry.
         /// </summary>
-        /// <param name="value">The value to consider.</param>
-        /// <param name="action">The action to consider.</param>
+        /// <param key="value">The value to consider.</param>
+        /// <param key="action">The action to consider.</param>
         public static void IsNullOrEmpty(string value, Action action)
         {
             if (string.IsNullOrEmpty(value))
@@ -23,8 +23,8 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Executes the specified action if the specified value is true.
         /// </summary>
-        /// <param name="value">The value to consider.</param>
-        /// <param name="action">The action to consider.</param>
+        /// <param key="value">The value to consider.</param>
+        /// <param key="action">The action to consider.</param>
         public static void If(bool value, Action action)
         {
             if (value)

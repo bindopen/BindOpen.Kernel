@@ -28,7 +28,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Instantiates a new instance of the BdoHost class.
         /// </summary>
-        /// <param name="log"></param>
+        /// <param key="log"></param>
         public BdoHost(IBdoLog log) : base(log)
         {
         }
@@ -44,7 +44,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="state"></param>
+        /// <param key="state"></param>
         /// <returns></returns>
         public new IBdoHost WithExecutionState(ProcessExecutionState state)
         {
@@ -54,7 +54,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="status"></param>
+        /// <param key="status"></param>
         /// <returns></returns>
         public new IBdoHost WithExecutionStatus(ProcessExecutionStatus status)
         {
@@ -69,7 +69,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Sets the specfied options
         /// </summary>
-        /// <param name="options"></param>
+        /// <param key="options"></param>
         /// <returns>Returns this instance.</returns>
         public IBdoHost WithOptions(IBdoHostOptions options)
         {
@@ -81,7 +81,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Runs the specified action.
         /// </summary>
-        /// <param name="action">The action to consider.</param>
+        /// <param key="action">The action to consider.</param>
         /// <returns>Returns this instance.</returns>
         public IBdoHost Run(Action<IBdoHost> action)
         {
@@ -93,7 +93,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="reference"></param>
+        /// <param key="reference"></param>
         /// <returns></returns>
         public Type CreateType(IBdoClassReference reference)
             => Scope?.CreateType(reference);
@@ -137,7 +137,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Indicates the application ends.
         /// </summary>
-        /// <param name="executionStatus">The execution status to consider.</param>
+        /// <param key="executionStatus">The execution status to consider.</param>
         public new virtual IBdoHost End(ProcessExecutionStatus executionStatus = ProcessExecutionStatus.Stopped)
         {
             // we unload the host (syncrhonously for the moment)
@@ -151,7 +151,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Configures the application host.
         /// </summary>
-        /// <param name="setupOptions">The action to setup the application host.</param>
+        /// <param key="setupOptions">The action to setup the application host.</param>
         /// <returns>Returns the application host.</returns>
         public IBdoHost Configure(Action<IBdoHostOptions> setupOptions)
         {
@@ -200,7 +200,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Returns the path of the application temporary folder.
         /// </summary>
-        /// <param name="pathKind">The kind of paths.</param>
+        /// <param key="pathKind">The kind of paths.</param>
         /// <returns>The path of the application temporary folder.</returns>
         public string GetKnownPath(BdoHostPathKind pathKind)
         {
@@ -398,10 +398,15 @@ namespace BindOpen.Hosting.Hosts
         public IBdoDataContext Context => Scope?.Context;
 
         /// <summary>
+        /// The script interpreter of this instance.
+        /// </summary>
+        public IBdoScriptInterpreter Interpreter => Scope?.Interpreter;
+
+        /// <summary>
         /// Loads the specified extensions.
         /// </summary>
-        /// <param name="references">The extension references to consider.</param>
-        /// <param name="log">The log to consider.</param>
+        /// <param key="references">The extension references to consider.</param>
+        /// <param key="log">The log to consider.</param>
         public bool LoadExtensions(
             IBdoAssemblyReference[] references,
             IBdoLog log = null)
@@ -414,9 +419,9 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Loads the specified extensions.
         /// </summary>
-        /// <param name="loadOptionsAction">The load options action to consider.</param>
-        /// <param name="references">The extension references to consider.</param>
-        /// <param name="log">The log to consider.</param>
+        /// <param key="loadOptionsAction">The load options action to consider.</param>
+        /// <param key="references">The extension references to consider.</param>
+        /// <param key="log">The log to consider.</param>
         public bool LoadExtensions(
             Func<IExtensionLoadOptions, bool> loadOptionsAction,
             IBdoAssemblyReference[] references,
@@ -433,15 +438,6 @@ namespace BindOpen.Hosting.Hosts
         /// </summary>
         public void Clear()
             => Scope?.Clear();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public IBdoScriptInterpreter NewScriptInterpreter()
-        {
-            return Scope?.NewScriptInterpreter();
-        }
 
         #endregion
     }

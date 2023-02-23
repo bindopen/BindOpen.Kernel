@@ -13,7 +13,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// Gets the maximum kind of events of the specified event kinds.
         /// </summary>
-        /// <param name="eventKinds">The event kinds to consider.</param>
+        /// <param key="eventKinds">The event kinds to consider.</param>
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
         public static EventKinds Max(this List<EventKinds> eventKinds)
         {
@@ -28,8 +28,8 @@ namespace BindOpen.Logging
         /// <summary>
         /// Gets the maximum between the two specified event kinds.
         /// </summary>
-        /// <param name="eventKind1">The first event kind to consider.</param>
-        /// <param name="eventKind2">The second event kind to consider.</param>
+        /// <param key="eventKind1">The first event kind to consider.</param>
+        /// <param key="eventKind2">The second event kind to consider.</param>
         /// <returns>True if the first event kind is greater than the second one.</returns>
         public static EventKinds Max(this EventKinds eventKind1, EventKinds eventKind2)
         {
@@ -39,8 +39,8 @@ namespace BindOpen.Logging
         /// <summary>
         /// Indicates whether the first event kind is greater than the second one.
         /// </summary>
-        /// <param name="eventKind1">The first event kind to consider.</param>
-        /// <param name="eventKind2">The second event kind to consider.</param>
+        /// <param key="eventKind1">The first event kind to consider.</param>
+        /// <param key="eventKind2">The second event kind to consider.</param>
         /// <returns>True if the first event kind is greater than the second one.</returns>
         public static bool IsGreaterThan(this EventKinds eventKind1, EventKinds eventKind2)
         {

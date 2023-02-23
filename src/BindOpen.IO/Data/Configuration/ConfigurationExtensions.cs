@@ -13,13 +13,13 @@ namespace BindOpen.Dtos.Xml
         /// <summary>
         /// Instantiates a new instance of Configuration class from a xml file.
         /// </summary>
-        /// <param name="filePath">The file path to consider.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The set of script variables to consider.</param>
-        /// <param name="log">The log to consider.</param>
-        /// <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
-        /// <param name="mustFileExist">Indicates whether the file must exist.</param>
-        /// <param name="isRuntimeUpdated">Indicates whether the runtime is updated.</param>
+        /// <param key="filePath">The file path to consider.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The set of script variables to consider.</param>
+        /// <param key="log">The log to consider.</param>
+        /// <param key="xmlSchemaSet">The XML schema set to consider for checking.</param>
+        /// <param key="mustFileExist">Indicates whether the file must exist.</param>
+        /// <param key="isRuntimeUpdated">Indicates whether the runtime is updated.</param>
         /// <returns>The Xml operation project defined in the Xml file.</returns>
         public static TPoco LoadXml<TPoco, TDto>(
             string filePath,

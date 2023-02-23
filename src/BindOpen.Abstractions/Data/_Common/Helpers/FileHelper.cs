@@ -13,8 +13,8 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Creates the specified file directory if it does not exist.
         /// </summary>
-        /// <param name="folderPath">The path of the file directory to consider.</param>
-        /// <param name="log">The log to append.</param>
+        /// <param key="folderPath">The path of the file directory to consider.</param>
+        /// <param key="log">The log to append.</param>
         /// <returns>Returns True whether the directory exists henceforth. False otherwise.</returns>
         public static bool CreateDirectory(string folderPath, IBdoLog log = null)
         {
@@ -39,7 +39,7 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Converts the specified path according to the environment.
         /// </summary>
-        /// <param name="st">The string to consider.</param>
+        /// <param key="st">The string to consider.</param>
         /// <returns></returns>
         public static string ToPath(this string st)
         {
@@ -49,8 +49,8 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Converts the specified path according to the environment.
         /// </summary>
-        /// <param name="path">The path to consider.</param>
-        /// <param name="rootPath">The root path to consider.</param>
+        /// <param key="path">The path to consider.</param>
+        /// <param key="rootPath">The root path to consider.</param>
         /// <returns></returns>
         public static string GetConcatenatedPath(this string path, string rootPath)
         {
@@ -97,9 +97,9 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Delete the files that are older than the specified day number.
         /// </summary>
-        /// <param name="folderPath">The folder path to consider.</param>
-        /// <param name="expirationDayNumber">The number of expiration days to consider.</param>
-        /// <param name="fileFormat">The file format to consider.</param>
+        /// <param key="folderPath">The folder path to consider.</param>
+        /// <param key="expirationDayNumber">The number of expiration days to consider.</param>
+        /// <param key="fileFormat">The file format to consider.</param>
         /// <remarks>With expiration day number equaling to -1, no files expires. Equaling to 0, all files except the current one expires.</remarks>
         public static int DeleteExpiredFiles(
             string folderPath,

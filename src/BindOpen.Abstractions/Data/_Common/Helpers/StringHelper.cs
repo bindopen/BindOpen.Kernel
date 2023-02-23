@@ -13,7 +13,7 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Generates a password.
         /// </summary>
-        /// <param name="charNumber">The character number to consider.</param>
+        /// <param key="charNumber">The character number to consider.</param>
         /// <returns>Returns the generated password.</returns>
         public static string GeneratePassword(int charNumber)
         {
@@ -25,8 +25,8 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Gets the number of occurences of a specfied character in the specified string.
         /// </summary>
-        /// <param name="st">The string to consider.</param>
-        /// <param name="subString">The sub string to consider.</param>
+        /// <param key="st">The string to consider.</param>
+        /// <param key="subString">The sub string to consider.</param>
         /// <returns>The number of occurences of a specfied character in the specified string.</returns>
         public static int CountOccurences(this string st, string subString)
         {
@@ -43,8 +43,8 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Returns the string value of the specified settings.
         /// </summary>
-        /// <param name="stringValue">string value to consider.</param>
-        /// <param name="limitSize">Limit string size to consider.</param>
+        /// <param key="stringValue">string value to consider.</param>
+        /// <param key="limitSize">Limit string size to consider.</param>
         /// <returns>The string value of the specified settings.</returns>
         public static bool CheckNameFormat(this string stringValue, int limitSize)
         {
@@ -67,8 +67,8 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Hashes the string.
         /// </summary>
-        /// <param name="st">The string to hash.</param>
-        /// <param name="hashName">The name of the algorithm to consider.</param>
+        /// <param key="st">The string to hash.</param>
+        /// <param key="hashName">The name of the algorithm to consider.</param>
         /// <returns></returns>
         public static string HashString(this string st, string hashName)
         {
@@ -86,7 +86,7 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Sanitizes the specified string.
         /// </summary>
-        /// <param name="st">The string to consider.</param>
+        /// <param key="st">The string to consider.</param>
         /// <returns>The formated string.</returns>
         public static string Sanitize(this string st)
         {
@@ -115,9 +115,9 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Concatenates the two specified string only if the second one starts with the specified character. Returns the second string otherwise.
         /// </summary>
-        /// <param name="st1">The first string to concatenate.</param>
-        /// <param name="st2">The second string to concatenate.</param>
-        /// <param name="charString">The string value to consider.</param>
+        /// <param key="st1">The first string to concatenate.</param>
+        /// <param key="st2">The second string to concatenate.</param>
+        /// <param key="charString">The string value to consider.</param>
         /// <returns>Returns the concatenated string.</returns>
         /// <remarks>If the leading char is null then the two strings are always concatenated.</remarks>
         public static string Concatenate(this string st1, string st2, string charString = null)
@@ -137,9 +137,9 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Sets the first string as the second one if the specified condition is statisfied.
         /// </summary>
-        /// <param name="st1">The first string to concatenate.</param>
-        /// <param name="condition">The condition to consider.</param>
-        /// <param name="st2">The second string to concatenate.</param>
+        /// <param key="st1">The first string to concatenate.</param>
+        /// <param key="condition">The condition to consider.</param>
+        /// <param key="st2">The second string to concatenate.</param>
         /// <returns>Returns the concatenated string.</returns>
         public static string If(this string st1, bool condition, string st2)
         {
@@ -154,9 +154,9 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Concatenates the first string with the second one if the specified condition is statisfied.
         /// </summary>
-        /// <param name="st1">The first string to concatenate.</param>
-        /// <param name="condition">The condition to consider.</param>
-        /// <param name="st2">The second string to concatenate.</param>
+        /// <param key="st1">The first string to concatenate.</param>
+        /// <param key="condition">The condition to consider.</param>
+        /// <param key="st2">The second string to concatenate.</param>
         /// <returns>Returns the concatenated string.</returns>
         public static string ConcatenateIf(this string st1, bool condition, string st2)
         {
@@ -171,8 +171,8 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Concatenates the first string with the second only if the first one is not empty.
         /// </summary>
-        /// <param name="st1">The first string to concatenate.</param>
-        /// <param name="st2">The second string to concatenate.</param>
+        /// <param key="st1">The first string to concatenate.</param>
+        /// <param key="st2">The second string to concatenate.</param>
         /// <returns>Returns the concatenated string.</returns>
         public static string ConcatenateIfFirstNotEmpty(this string st1, string st2)
         {
@@ -187,8 +187,8 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Concatenates the first string with the second only if the second one is not empty.
         /// </summary>
-        /// <param name="st1">The first string to concatenate.</param>
-        /// <param name="st2">The second string to concatenate.</param>
+        /// <param key="st1">The first string to concatenate.</param>
+        /// <param key="st2">The second string to concatenate.</param>
         /// <returns>Returns the concatenated string.</returns>
         public static string ConcatenateIfSecondNotEmpty(this string st1, string st2)
         {
@@ -203,8 +203,8 @@ namespace BindOpen.Data.Helpers
         /// <summary>
         /// Get a random string from the specified string with the specified length.
         /// </summary>
-        /// <param name="pattern">The pattern to consider.</param>
-        /// <param name="charLists">The lists of chars to consider.</param>
+        /// <param key="pattern">The pattern to consider.</param>
+        /// <param key="charLists">The lists of chars to consider.</param>
         /// <returns>A random password with the specified length.</returns>
         public static string GetRandomString(
             string pattern = "{{char1,8}}",

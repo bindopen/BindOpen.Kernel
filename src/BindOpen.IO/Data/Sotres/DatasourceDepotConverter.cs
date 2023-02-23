@@ -1,7 +1,5 @@
 ﻿using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
-using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
 using System.Linq;
 
 namespace BindOpen.Data.Stores
@@ -14,7 +12,7 @@ namespace BindOpen.Data.Stores
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="poco">The poco to consider.</param>
+        /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static BdoDatasourceDepotDto ToDto(this IBdoSourceDepot poco)
         {
@@ -32,18 +30,16 @@ namespace BindOpen.Data.Stores
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="dto">The DTO to consider.</param>
+        /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoSourceDepot ConvertToPoco(
-            this IBdoScope scope,
-            BdoDatasourceDepotDto dto,
-            IBdoLog log = null)
+        public static IBdoSourceDepot ToPoco(
+            this BdoDatasourceDepotDto dto)
         {
             if (dto == null) return null;
 
             BdoDatasourceDepot poco = new();
             poco
-                .With(dto.Sources?.Select(q => scope.ConvertToPoco(q, log)).ToArray())
+                .With(dto.Sources?.Select(q => q.ToPoco()).ToArray())
                 .WithId(dto.Id);
 
             return poco;

@@ -30,15 +30,15 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Set the root folder.
         /// </summary>
-        /// <param name="predicate">The condition that muse be satistfied.</param>
-        /// <param name="rootFolderPath">The root folder path to consider.</param>
+        /// <param key="predicate">The condition that muse be satistfied.</param>
+        /// <param key="rootFolderPath">The root folder path to consider.</param>
         /// <returns>Returns the host option.</returns>
         IBdoHostOptions SetRootFolder(Predicate<IBdoHostOptions> predicate, string rootFolderPath);
 
         /// <summary>
         /// Set the root folder.
         /// </summary>
-        /// <param name="rootFolderPath">The root folder path to consider.</param>
+        /// <param key="rootFolderPath">The root folder path to consider.</param>
         /// <returns>Returns the host option.</returns>
         IBdoHostOptions SetRootFolder(string rootFolderPath);
 
@@ -59,8 +59,8 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Adds the extensions.
         /// </summary>
-        /// <param name="action">The action for adding extensions.</param>
-        /// <param name="loadOptionsAction">The action for loading options.</param>
+        /// <param key="action">The action for adding extensions.</param>
+        /// <param key="loadOptionsAction">The action for loading options.</param>
         /// <returns>Returns the host option.</returns>
         IBdoHostOptions AddExtensions(Action<IBdoAssemblyReferenceCollection> action = null, Action<IExtensionLoadOptions> loadOptionsAction = null);
 
@@ -101,22 +101,22 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Set the host settings file.
         /// </summary>
-        /// <param name="filePath">The host settings file path.</param>
-        /// <param name="isRequired">Indicates whether the host settings file is required.</param>
+        /// <param key="filePath">The host settings file path.</param>
+        /// <param key="isRequired">Indicates whether the host settings file is required.</param>
         /// <returns>Returns the host option.</returns>
         IBdoHostOptions SetSettingsFile(string filePath, bool? isRequired = false);
 
         /// <summary>
         /// Set the host settings file.
         /// </summary>
-        /// <param name="isRequired">Indicates whether the host settings file is required.</param>
+        /// <param key="isRequired">Indicates whether the host settings file is required.</param>
         /// <returns>Returns the host option.</returns>
         IBdoHostOptions SetSettingsFile(bool? isRequired);
 
         /// <summary>
         /// Sets the host settings applying action on it.
         /// </summary>
-        /// <param name="action">The action to apply on the settings.</param>
+        /// <param key="action">The action to apply on the settings.</param>
         IBdoHostOptions SetSettings(Action<IBdoHostSettings> action = null);
 
         // Loggers ----------------------
@@ -131,14 +131,14 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Adds the specified logger.
         /// </summary>
-        /// <param name="loggerFactory">The logger factory to consider.</param>
+        /// <param key="loggerFactory">The logger factory to consider.</param>
         /// <returns>Returns the host option.</returns>
         IBdoHostOptions SetLogger(ILoggerFactory loggerFactory);
 
         /// <summary>
         /// Adds the specified logger.
         /// </summary>
-        /// <param name="initLogger">The logger initialization to consider.</param>
+        /// <param key="initLogger">The logger initialization to consider.</param>
         /// <returns>Returns the host option.</returns>
         IBdoHostOptions SetLogger(Func<IBdoHost, ILogger> initLogger);
 
@@ -169,25 +169,25 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>  
         /// The action that is executed when start succeeds.
         /// </summary>
-        /// <param name="action">The action to execute.</param>
+        /// <param key="action">The action to execute.</param>
         IBdoHostOptions ExecuteOnStartSuccess(Action<IBdoHost> action);
 
         /// <summary>
         /// The action that is executed when start fails.
         /// </summary>
-        /// <param name="action">The action to execute.</param>
+        /// <param key="action">The action to execute.</param>
         IBdoHostOptions ExecuteOnStartFailure(Action<IBdoHost> action);
 
         /// <summary>
         /// The action that is executed when execution succeeds.
         /// </summary>
-        /// <param name="action">The action to execute.</param>
+        /// <param key="action">The action to execute.</param>
         IBdoHostOptions ExecuteOnExecutionSuccess(Action<IBdoHost> action);
 
         /// <summary>
         /// The action that is executed when execution fails.
         /// </summary>
-        /// <param name="action">The action to execute.</param>
+        /// <param key="action">The action to execute.</param>
         IBdoHostOptions ExecuteOnExecutionFailure(Action<IBdoHost> action);
 
         /// <summary>

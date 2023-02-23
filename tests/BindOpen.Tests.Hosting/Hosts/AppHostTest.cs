@@ -1,6 +1,9 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Configuration;
+using BindOpen.Data.Items;
 using BindOpen.Data.Stores;
 using NUnit.Framework;
+using System.Linq;
 
 namespace BindOpen.Hosting.Tests
 {
@@ -57,21 +60,19 @@ namespace BindOpen.Hosting.Tests
             var datasourceA = datasourceDepot?["db.testA"];
             Assert.That(datasourceA?.Name == "db.testA", "Bad data source loading");
 
-            Assert.That(datasourceDepot?.GetConnectionString("db.testA") != null,
+            Assert.That(datasourceDepot?.Get("db.testA").FirstOrDefault().GetConnectionString() != null,
                 "Bad data source loading");
 
-            Assert.That(datasourceDepot?.GetConnectionString("db.testA", "database.mssqlserver$client") != null,
+            Assert.That(datasourceDepot?.Get("db.testA").Get("database.mssqlserver$client").GetConnectionString() != null,
                 "Bad data source loading");
 
             var datasourceB = datasourceDepot?["db.testB"];
             Assert.That(datasourceB?.Name == "db.testB", "Bad data source loading from .NET Core config");
 
-            Assert.That(datasourceDepot?.GetConnectionString("db.testB") != null,
+            Assert.That(datasourceDepot.Descendant<IBdoConfiguration>("db.testB", null).GetConnectionString() != null,
                 "Bad data source loading from .NET Core config");
 
             Assert.That(datasourceDepot.Get()?.Name == "db.testA", "Bad data source loading");
-
-            Assert.That(datasourceDepot.GetConnectionString() != null, "Bad data source loading");
         }
     }
 }

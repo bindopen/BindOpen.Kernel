@@ -4,6 +4,20 @@
         <name>BindOpen.Tests.Runtime</name>
     </assembly>
     <members>
+        <member name="M:BindOpen.Tests.Extensions.BdoConnectorTests.CreateConnector(System.Object)">
+            <summary>
+            
+            </summary>
+            <param key="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Tests.Extensions.BdoEntityTests.CreateEntity(System.Object)">
+            <summary>
+            
+            </summary>
+            <param key="data"></param>
+            <returns></returns>
+        </member>
         <member name="T:BindOpen.Tests.Runtime.ScriptInterpreterTests">
             <summary>
             

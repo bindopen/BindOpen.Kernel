@@ -17,7 +17,7 @@ namespace BindOpen.Hosting.Exceptions
         /// <summary>
         /// Initializes a new instance of the BdoHostLoadException class.
         /// </summary>
-        /// <param name="message">The message to consider.</param>
+        /// <param key="message">The message to consider.</param>
         public BdoHostLoadException(string message) : base(message)
         {
         }
@@ -25,8 +25,8 @@ namespace BindOpen.Hosting.Exceptions
         /// <summary>
         /// Initializes a new instance of the BdoHostLoadException class.
         /// </summary>
-        /// <param name="message">The message to consider.</param>
-        /// <param name="innerException">The inner exception to consider.</param>
+        /// <param key="message">The message to consider.</param>
+        /// <param key="innerException">The inner exception to consider.</param>
         public BdoHostLoadException(string message, Exception innerException = null) : base(message, innerException)
         {
         }

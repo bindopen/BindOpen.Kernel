@@ -32,7 +32,7 @@ namespace BindOpen.Data.Meta.Reflection
                     list = new();
 
                     if (!type.IsScalar() && !type.IsList()
-                        && type.IsAssignableFrom(typeof(IBdoHandledItem)))
+                        && !type.IsAssignableFrom(typeof(IBdoHandledItem)))
                     {
                         foreach (var propInfo in type.GetProperties())
                         {
@@ -63,9 +63,9 @@ namespace BindOpen.Data.Meta.Reflection
                                             subMetaObject.WithData(propValue)
                                                 .UpdateTree();
                                         }
-                                        else if (subMeta is IBdoMetaList subMetaList)
+                                        else if (subMeta is IBdoMetaSet subMetaSet)
                                         {
-                                            subMetaList.UpdateTree();
+                                            subMetaSet.UpdateTree();
                                         }
                                     }
                                 }

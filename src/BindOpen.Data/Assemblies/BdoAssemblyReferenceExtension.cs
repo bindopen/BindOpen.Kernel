@@ -10,9 +10,9 @@ namespace BindOpen.Data
         /// <summary>
         /// Creates a assembly reference from the specified extension one.
         /// </summary>
-        /// <param name="references">The reference set to consider.</param>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="version">The version to consider.</param>
+        /// <param key="references">The reference set to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="version">The version to consider.</param>
         /// <returns>Returns the itemized list of the specified library list.</returns>
         public static IBdoAssemblyReference AddAssembly(this IBdoAssemblyReferenceCollection references, string name, string version = null)
         {
@@ -24,7 +24,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Creates a assembly reference of the spcefied type.
         /// </summary>
-        /// <param name="references">The reference set to consider.</param>
+        /// <param key="references">The reference set to consider.</param>
         /// <returns>Returns the itemized list of the spcefied type</returns>
         public static IBdoAssemblyReference AddAssembly<T>(this IBdoAssemblyReferenceCollection references)
         {
@@ -36,7 +36,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Creates a assembly reference that represents all the references.
         /// </summary>
-        /// <param name="references">The reference set to consider.</param>
+        /// <param key="references">The reference set to consider.</param>
         /// <returns>Returns a assembly reference that represents all the references.</returns>
         public static IBdoAssemblyReference AddAllAssemblies(this IBdoAssemblyReferenceCollection references)
         {
