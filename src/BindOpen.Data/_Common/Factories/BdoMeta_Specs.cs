@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Configuration;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Data.Configuration;
 using BindOpen.Data.Meta;
 using System;
 

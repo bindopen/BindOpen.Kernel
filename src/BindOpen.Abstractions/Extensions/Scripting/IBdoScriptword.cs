@@ -1,5 +1,5 @@
-﻿using BindOpen.Data.Items;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Data.Items;
 
 namespace BindOpen.Extensions.Scripting
 {

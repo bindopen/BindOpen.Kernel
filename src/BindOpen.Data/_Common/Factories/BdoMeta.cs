@@ -1,7 +1,5 @@
-﻿using BindOpen.Data.Configuration;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
-using BindOpen.Data.Meta.Reflection;
 using BindOpen.Extensions;
 using System;
 
@@ -104,7 +102,7 @@ namespace BindOpen.Data
                     if (valueType == DataValueTypes.MetaData)
                     {
                         var meta = data as IBdoMetaData;
-                        meta.Name ??= name;
+                        if (meta != null) meta.Name ??= name;
                         return meta;
                     }
                     else if (
@@ -113,9 +111,15 @@ namespace BindOpen.Data
                         || valueType == DataValueTypes.Entity
                         || valueType == DataValueTypes.Task)
                     {
-                        var ext = data as IBdoExtension;
-                        var config = ext.ToMetaData<IBdoConfiguration>();
-                        config.DefinitionUniqueName = ext?.DefinitionUniqueName;
+                        if (data is IBdoExtension extension)
+                        {
+                            var config = BdoConfig.NewFrom(extension, name);
+                            if (config != null)
+                            {
+                                config.DefinitionUniqueName = extension?.DefinitionUniqueName;
+                            }
+                            return config;
+                        }
                     }
                     else if (type.IsList())
                     {

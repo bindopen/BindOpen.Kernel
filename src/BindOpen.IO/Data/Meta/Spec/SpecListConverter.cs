@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Data.Meta
+﻿using BindOpen.Data.Meta;
+
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a Xml helper.
@@ -31,7 +33,7 @@
         {
             if (dto == null) return null;
 
-            BdoSpecList poco = new()
+            BdoSpecSet poco = new()
             {
             };
 

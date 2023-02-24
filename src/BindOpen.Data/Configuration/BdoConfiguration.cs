@@ -8,7 +8,7 @@ namespace BindOpen.Data.Configuration
     /// <summary>
     /// This class represents a config.
     /// </summary>
-    public class BdoConfiguration : BdoMetaSet,
+    public class BdoConfiguration : BdoMetaObject,
         IBdoConfiguration
     {
         // -------------------------------------------------------------

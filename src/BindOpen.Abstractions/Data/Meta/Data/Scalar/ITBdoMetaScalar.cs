@@ -7,14 +7,14 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoMetaScalar :
-        ITBdoMetaData<IBdoMetaScalar, IBdoScalarSpec, object>
+    public interface ITBdoMetaScalar<TItem> :
+        ITBdoMetaData<TItem, IBdoScalarSpec>
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param key="objs"></param>
-        IBdoMetaScalar WithData(object obj);
+        ITBdoMetaScalar<TItem> WithData(TItem obj);
 
         /// <summary>
         /// 
@@ -47,7 +47,7 @@ namespace BindOpen.Data.Meta
         /// <param key="varSet"></param>
         /// <param key="log"></param>
         /// <returns></returns>
-        object GetData(
+        TItem GetData(
             int index,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,

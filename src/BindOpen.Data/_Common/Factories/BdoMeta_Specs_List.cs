@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Meta;
+using BindOpen.Data.Meta;
 
 namespace BindOpen.Data
 {
@@ -13,8 +14,8 @@ namespace BindOpen.Data
         /// Instantiates a new instance of the BdoElementSet class.
         /// </summary>
         /// <param key="specs">The elems to consider.</param>
-        public static BdoSpecList NewSpecList(params IBdoSpec[] specs)
-            => NewSpecList<BdoSpecList>(specs);
+        public static BdoSpecSet NewSpecList(params IBdoSpec[] specs)
+            => NewSpecList<BdoSpecSet>(specs);
 
         // Static T creators -------------------------
 
@@ -22,11 +23,11 @@ namespace BindOpen.Data
         /// Instantiates a new instance of the BdoElementSet class.
         /// </summary>
         /// <param key="elems">The elems to consider.</param>
-        public static BdoSpecList NewSpecList<T>(params IBdoSpec[] specs)
+        public static BdoSpecSet NewSpecList<T>(params IBdoSpec[] specs)
             where T : class, IBdoSpecSet, new()
         {
-            var elemSpecSet = new BdoSpecList()
-                .With(specs) as BdoSpecList;
+            var elemSpecSet = new BdoSpecSet()
+                .With(specs) as BdoSpecSet;
 
             return elemSpecSet;
         }

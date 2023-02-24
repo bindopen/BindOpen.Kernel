@@ -21,7 +21,7 @@ namespace BindOpen.Data.Meta
         /// The value of this instance.
         /// </summary>
         [JsonPropertyName("item")]
-        [XmlAttribute("item")]
+        [XmlText()]
         public string Item { get; set; }
 
         /// <summary>

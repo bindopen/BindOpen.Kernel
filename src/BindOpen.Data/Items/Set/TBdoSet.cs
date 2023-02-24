@@ -210,7 +210,8 @@ namespace BindOpen.Data.Items
             if (name == null && alternateKey == null)
                 return _items.FirstOrDefault();
 
-            var newKey = Has(name) ? name : alternateKey;
+            var newKey = alternateKey == null || Has(name) ? name : alternateKey;
+
             return _items.FirstOrDefault(p => p.BdoKeyEquals(newKey));
         }
 
@@ -237,11 +238,8 @@ namespace BindOpen.Data.Items
         public virtual Q Get<Q>(string name = null, string alternateKey = null)
             where Q : T
         {
-            var obj = Has(name) ? Get(name) : Get(alternateKey);
-            if (obj is Q obj_Q)
-                return obj_Q;
-
-            return default;
+            var newKey = alternateKey == null || Has(name) ? name : alternateKey;
+            return Get(newKey).As<Q>();
         }
 
         /// <summary>

@@ -6,28 +6,8 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// 
     /// </summary>
-    public interface ITBdoMetaData<TMetaData, TSpec, TItem> :
-        IBdoMetaData
-        where TMetaData : IBdoMetaData
-        where TSpec : IBdoSpec
-        where TItem : class
+    public interface ITBdoMetaData<TItem> : IBdoMetaData
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        new TSpec NewSpec();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        new TSpec GetSpec(string name = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        TMetaData WithSpecs(params TSpec[] specs);
-
         /// <summary>
         /// 
         /// </summary>
