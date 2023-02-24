@@ -1,13 +1,13 @@
-﻿using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
+﻿using System.Linq;
 
 namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a data element.
     /// </summary>
-    public abstract class TBdoMetaData<TItem> : BdoMetaData,
+    public abstract class TBdoMetaData<TItem, TSpec> : TBdoMetaData<TItem>,
         ITBdoMetaData<TItem>
+        where TSpec : IBdoSpec
     {
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -45,17 +45,33 @@ namespace BindOpen.Data.Meta
         #region ITBdoElement
 
         /// <summary>
-        /// Returns the item object of this instance.
+        /// 
         /// </summary>
-        /// <param key="log">The log to populate.</param>
-        /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable element set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public new virtual TItem GetData(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-            => GetData<TItem>(scope, varSet, log);
+        /// <param key="name"></param>
+        /// <returns></returns>
+        public new TSpec GetSpec(string name = null)
+        {
+            return (TSpec)base.GetSpec(name);
+        }
+
+        /// <summary>
+        /// Gets a new specification.
+        /// </summary>
+        /// <returns>Returns the new specifcation.</returns>
+        public new TSpec NewSpec()
+        {
+            return (TSpec)base.NewSpec();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="spec"></param>
+        /// <returns></returns>
+        public ITBdoMetaData<TItem, TSpec> WithSpecs(params TSpec[] specs)
+        {
+            return (ITBdoMetaData<TItem, TSpec>)base.WithSpecs(specs.Cast<IBdoSpec>().ToArray());
+        }
 
         #endregion
     }

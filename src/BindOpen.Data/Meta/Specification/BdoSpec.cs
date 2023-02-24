@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Conditions;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Data.Conditions;
 using BindOpen.Data.Configuration;
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Items;

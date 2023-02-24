@@ -5,7 +5,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a set of data element specifications.
     /// </summary>
-    public class BdoSpecList : TBdoSet<IBdoSpec>,
+    public class BdoSpecSet : TBdoSet<IBdoSpec>,
         IBdoSpecSet
     {
         // --------------------------------------------------
@@ -17,7 +17,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Initializes a new instance of the BdoMetaSpecList class.
         /// </summary>
-        public BdoSpecList() : base()
+        public BdoSpecSet() : base()
         {
         }
 

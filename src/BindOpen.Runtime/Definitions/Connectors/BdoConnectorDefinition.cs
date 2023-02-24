@@ -1,4 +1,5 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Data;
 using BindOpen.Data.Meta;
 using System;
 
@@ -24,7 +25,7 @@ namespace BindOpen.Runtime.Definitions
         /// <summary>
         /// Data constraint statement of this instance.
         /// </summary>
-        public IBdoSpecSet DatasourceDetailSpec { get; set; } = new BdoSpecList();
+        public IBdoSpecSet DatasourceDetailSpec { get; set; } = new BdoSpecSet();
 
         /// <summary>
         /// Item class of this instance.
