@@ -7,7 +7,7 @@ namespace BindOpen.Data.Items
     /// 
     /// </summary>
     public interface IBdoDictionary :
-        IBdoHandledItem, IIdentified,
+        IBdoNotMetableItem, IIdentified,
         IDictionary<string, string>
     {
         /// <summary>

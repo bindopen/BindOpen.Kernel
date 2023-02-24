@@ -11,13 +11,20 @@ namespace BindOpen.Runtime.Definitions
     /// </summary>
     [XmlType("PackageDefinition", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot(ElementName = "extension", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class PackageDefinitionDto : DescribedDataItemDto
+    public class PackageDefinitionDto : IDto
     {
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// Description of this instance.
+        /// </summary>
+        [JsonPropertyName("description")]
+        [XmlElement("description")]
+        public DictionaryDto Description { get; set; }
 
         /// <summary>
         /// Name of the group of this instance.

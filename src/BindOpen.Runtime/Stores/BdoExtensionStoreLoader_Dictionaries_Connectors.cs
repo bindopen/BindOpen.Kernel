@@ -57,7 +57,7 @@ namespace BindOpen.Runtime.Stores
 
                 // we create the detail specification from detail property attributes
 
-                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoDataAttribute)).Any()))
+                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any()))
                 {
                     definition.DatasourceDetailSpec.Add(
                         BdoMeta.NewSpec(property.Name, property.PropertyType));

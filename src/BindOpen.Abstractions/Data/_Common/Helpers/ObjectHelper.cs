@@ -88,10 +88,6 @@ namespace BindOpen.Data.Helpers
             {
                 return scriptword.ToString();
             }
-            else if (obj is IBdoExpression expression)
-            {
-                return expression.ToString();
-            }
 
             // if object is a singleton of scalar list
 
@@ -206,7 +202,7 @@ namespace BindOpen.Data.Helpers
             this Type objectType,
             string propertyName,
             Type[] attributeTypes,
-            out BdoDataAttribute attribute)
+            out BdoPropertyAttribute attribute)
         {
             attribute = null;
             PropertyInfo propertyInfo = null;
@@ -218,7 +214,7 @@ namespace BindOpen.Data.Helpers
                 {
                     foreach (Type attributeType in attributeTypes)
                     {
-                        if (propertyInfo.GetCustomAttribute(attributeType) is BdoDataAttribute elementAttribute)
+                        if (propertyInfo.GetCustomAttribute(attributeType) is BdoPropertyAttribute elementAttribute)
                         {
                             attribute = elementAttribute;
                             break;

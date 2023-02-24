@@ -18,7 +18,9 @@ namespace BindOpen.Data.Items
             if (poco == null) return null;
 
             var config = new MapperConfiguration(
-                cfg => cfg.CreateMap<BdoExpression, ExpressionDto>());
+                cfg => cfg.CreateMap<BdoExpression, ExpressionDto>()
+                    .ForMember(q => q.Word, opt => opt.MapFrom(q => q.Word.ToDto()))
+            );
 
             var mapper = new Mapper(config);
             var dto = mapper.Map<ExpressionDto>(poco);
@@ -36,18 +38,12 @@ namespace BindOpen.Data.Items
         {
             if (dto == null) return null;
 
-            var config = new MapperConfiguration(
-                cfg => cfg.CreateMap<ExpressionDto, BdoExpression>()
-                    .ForMember(q => q.Word, opt => opt.Ignore()));
-
-            var mapper = new Mapper(config);
-            var poco = mapper.Map<BdoExpression>(dto);
-
-            if (poco.Kind == BdoExpressionKind.Word)
+            var poco = new BdoExpression()
             {
-                poco.Word = BdoScript.NewWordFromScript(poco.Text);
-                poco.Text = "";
-            }
+                Kind = dto.Kind,
+                Text = dto.Text,
+                Word = dto.Word.ToPoco()
+            };
 
             return poco;
         }

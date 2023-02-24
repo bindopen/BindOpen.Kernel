@@ -21,7 +21,7 @@ namespace BindOpen.Tests.IO.Data
 
         private dynamic _testData;
 
-        private IBdoMetaSet _metaList = null;
+        private IBdoMetaSet _metaSet = null;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -60,7 +60,7 @@ namespace BindOpen.Tests.IO.Data
                     //.WithSpecs(BdoMeta.NewSpec(), BdoMeta.NewSpec("spec1"))
             };
 
-            _metaList = BdoMeta.NewSet(metas.ToArray());
+            _metaSet = BdoMeta.NewSet(metas.ToArray());
         }
 
         // Xml
@@ -68,25 +68,25 @@ namespace BindOpen.Tests.IO.Data
         [Test, Order(5)]
         public void SaveXmlTest()
         {
-            if (_metaList == null)
+            if (_metaSet == null)
             {
                 CreateTest();
             }
 
-            var isSaved = _metaList.ToDto().SaveXml(_filePath_xml);
+            var isSaved = _metaSet.ToDto().SaveXml(_filePath_xml);
             Assert.That(isSaved, "Meta list saving failed. ");
         }
 
         [Test, Order(6)]
         public void LoadXmlTest()
         {
-            if (_metaList == null || !File.Exists(_filePath_xml))
+            if (_metaSet == null || !File.Exists(_filePath_xml))
             {
                 SaveXmlTest();
             }
 
-            var metaList = XmlHelper.LoadXml<MetaSetDto>(_filePath_xml).ToPoco();
-            Equals(metaList, _metaList);
+            var metaSet = XmlHelper.LoadXml<MetaSetDto>(_filePath_xml).ToPoco();
+            Equals(metaSet, _metaSet);
         }
 
         // Json
@@ -94,25 +94,25 @@ namespace BindOpen.Tests.IO.Data
         [Test, Order(7)]
         public void SaveJsonTest()
         {
-            if (_metaList == null)
+            if (_metaSet == null)
             {
                 CreateTest();
             }
 
-            var isSaved = _metaList.ToDto().SaveJson(_filePath_json);
+            var isSaved = _metaSet.ToDto().SaveJson(_filePath_json);
             Assert.That(isSaved, "Meta list saving failed. ");
         }
 
         [Test, Order(8)]
         public void LoadJsonTest()
         {
-            if (_metaList == null || !File.Exists(_filePath_json))
+            if (_metaSet == null || !File.Exists(_filePath_json))
             {
                 SaveJsonTest();
             }
 
-            var metaList = JsonHelper.LoadJson<MetaSetDto>(_filePath_json).ToPoco();
-            Equals(metaList, _metaList);
+            var metaSet = JsonHelper.LoadJson<MetaSetDto>(_filePath_json).ToPoco();
+            Equals(metaSet, _metaSet);
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Meta;
-using System.Collections.Generic;
+﻿using BindOpen.Data.Meta;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -27,14 +25,6 @@ namespace BindOpen.Runtime.Definitions
         public string ItemClass { get; set; }
 
         // DTO
-
-        /// <summary>
-        /// The output result codes of this instance.
-        /// </summary>
-        [JsonPropertyName("outputResultCodes")]
-        [XmlArray("outputResultCodes")]
-        [XmlArrayItem("add")]
-        public List<DescribedDataItemDto> OutputResultCodes { get; set; }
 
         /// <summary>
         /// The parameter statement of this instance.

@@ -18,6 +18,13 @@
             <param key="data"></param>
             <returns></returns>
         </member>
+        <member name="M:BindOpen.Tests.Extensions.BdoTaskTests.CreateTask(System.Object)">
+            <summary>
+            
+            </summary>
+            <param key="data"></param>
+            <returns></returns>
+        </member>
         <member name="T:BindOpen.Tests.Runtime.ScriptInterpreterTests">
             <summary>
             

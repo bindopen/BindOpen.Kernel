@@ -1,13 +1,12 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Items;
-using System.Collections.Generic;
+﻿using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 
 namespace BindOpen.Extensions.Scripting
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoScriptword : IBdoHandledItem, IList<object>, INamed, IIdentified, IReferenced
+    public interface IBdoScriptword : IBdoMetaObject, IBdoNotMetableItem
     {
         /// <summary>
         /// 
@@ -23,22 +22,6 @@ namespace BindOpen.Extensions.Scripting
         /// 
         /// </summary>
         IBdoScriptword Child { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoScriptword Parent { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        object Data { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        IBdoScriptword Root(int levelMax = 50);
 
         /// <summary>
         /// 

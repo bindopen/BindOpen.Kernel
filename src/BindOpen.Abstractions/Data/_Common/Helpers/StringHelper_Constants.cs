@@ -28,7 +28,7 @@
         /// <summary>
         /// The string that is returned when the instance is not found.
         /// </summary>
-        public static readonly string __TimeFormat = "HH:mm:ss.fff";
+        public static readonly string __TimeFormat = @"c";
 
         /// <summary>
         /// The string that presents all items.

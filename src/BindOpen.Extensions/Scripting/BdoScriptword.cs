@@ -1,8 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Helpers;
-using BindOpen.Data.Items;
-using System.Collections;
-using System.Collections.Generic;
+using BindOpen.Data.Meta;
 using System.Linq;
 
 namespace BindOpen.Extensions.Scripting
@@ -10,8 +8,7 @@ namespace BindOpen.Extensions.Scripting
     /// <summary>
     /// This class represents a script word.
     /// </summary>
-    public class BdoScriptword : BdoItem,
-        IBdoScriptword
+    public class BdoScriptword : BdoMetaObject, IBdoScriptword
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -24,6 +21,7 @@ namespace BindOpen.Extensions.Scripting
         /// </summary>
         public BdoScriptword() : base()
         {
+            this.WithDataValueType(DataValueTypes.Scriptword);
         }
 
         #endregion
@@ -76,16 +74,6 @@ namespace BindOpen.Extensions.Scripting
         public string DefinitionUniqueName { get; set; }
 
         /// <summary>
-        /// The name of this instance.
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// The name of this instance.
-        /// </summary>
-        public string Id { get; set; }
-
-        /// <summary>
         /// Kind of this instance.
         /// </summary>
         /// <example>Script word, syntax, text...</example>
@@ -98,34 +86,13 @@ namespace BindOpen.Extensions.Scripting
         /// </summary>
         public IBdoScriptword Child { get; set; }
 
-        /// <summary>
-        /// Sub script words of this instance.
-        /// </summary>
-        public IBdoScriptword Parent { get; set; }
-
-        // Item ----------------------------------
-
-        /// <summary>
-        /// The item of this instance that is the result of interpretation.
-        /// </summary>
-        public object Data { get; set; }
-
         // Parameters ----------------------------------
 
         /// <summary>
         /// Returns a string that represents this instance.
         /// </summary>
         /// <returns>Retuns the string that represents this instance.</returns>
-        public string Key() => Id;
-
-        /// <summary>
-        /// Get the root script word of this instance.
-        /// </summary>
-        /// <returns>The root script word of this instance.</returns>
-        public IBdoScriptword Root(int levelMax = 50)
-        {
-            return levelMax > 0 ? (Parent == null ? this : Parent.Root(levelMax--)) : null;
-        }
+        public override string Key() => Id;
 
         /// <summary>
         /// Get the root script word of this instance.
@@ -179,83 +146,6 @@ namespace BindOpen.Extensions.Scripting
                     return Name;
             }
         }
-
-        #endregion
-
-        // ------------------------------------------
-        // ITDataList Implementation
-        // ------------------------------------------
-
-        #region ITDataList
-
-        private List<object> _params = new();
-
-        /// <summary>
-        /// Returns the number of items.
-        /// </summary>
-        public int Count
-        {
-            get => _params?.Count ?? 0;
-        }
-
-        public object this[int index]
-        {
-            get => _params.GetAt(index);
-            set
-            {
-                if (index > 0 && index < Count) _params[index] = value;
-            }
-        }
-
-        public bool IsReadOnly
-        {
-            get => false;
-        }
-
-        public int IndexOf(object item)
-        {
-            return _params?.IndexOf(item) ?? -1;
-        }
-
-        public void Insert(int index, object item)
-        {
-            _params?.Insert(index, item);
-        }
-
-
-        public void RemoveAt(int index)
-        {
-            _params?.RemoveAt(index);
-        }
-
-        public void Add(object item)
-        {
-            _params?.Add(item);
-        }
-
-        public void Clear()
-        {
-            _params?.Clear();
-        }
-
-        public bool Contains(object item)
-        {
-            return _params?.Contains(item) ?? false;
-        }
-
-        public void CopyTo(object[] array, int arrayIndex)
-        {
-            _params?.CopyTo(array, arrayIndex);
-        }
-
-        public bool Remove(object item)
-        {
-            return _params?.Remove(item) ?? false;
-        }
-
-        public IEnumerator<object> GetEnumerator() => _params.GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator() => _params.GetEnumerator();
 
         #endregion
 

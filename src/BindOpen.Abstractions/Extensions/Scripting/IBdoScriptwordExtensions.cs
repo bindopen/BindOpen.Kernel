@@ -57,21 +57,6 @@ namespace BindOpen.Extensions
         /// <summary>
         /// 
         /// </summary>
-        public static T WithItem<T>(
-            this T word, object item)
-            where T : IBdoScriptword
-        {
-            if (word != null)
-            {
-                word.Data = item;
-            }
-
-            return word;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param key="name"></param>
         public static T WithDefinitionUniqueName<T>(
             this T word,

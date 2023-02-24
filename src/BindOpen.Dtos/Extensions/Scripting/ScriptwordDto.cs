@@ -1,4 +1,4 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Data.Meta;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -9,7 +9,7 @@ namespace BindOpen.Extensions.Scripting
     /// </summary>
     [XmlType("Scriptword", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot(ElementName = "scriptword", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class ScriptwordDto : IBdoDto
+    public class ScriptwordDto : MetaObjectDto
     {
         // ------------------------------------------
         // PROPERTIES
@@ -24,14 +24,6 @@ namespace BindOpen.Extensions.Scripting
         [JsonPropertyName("kind")]
         [XmlAttribute("kind")]
         public ScriptItemKinds Kind { get; set; } = ScriptItemKinds.None;
-
-        /// <summary>
-        /// Kind of this instance.
-        /// </summary>
-        /// <example>Script word, syntax, text...</example>
-        [JsonPropertyName("text")]
-        [XmlText()]
-        public ScriptItemKinds Text { get; set; } = ScriptItemKinds.None;
 
         // Tree ----------------------------------
 

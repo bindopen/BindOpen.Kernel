@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Configuration;
 using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using BindOpen.Dtos.Json;
 using BindOpen.Dtos.Xml;
 using BindOpen.Extensions.Connecting;
@@ -26,8 +27,11 @@ namespace BindOpen.Tests.IO.Data
             IBdoDatasource source1,
             IBdoDatasource source2)
         {
-            var b = source1 != null && source2 != null
-                && source1.IsDeepEqual(source2);
+            var b = source1 != null && source2 != null;
+
+            source1.WithDeepEqual(source2)
+                .IgnoreProperty<BdoMetaData>(x => x.Id).Assert();
+
             return b;
         }
 

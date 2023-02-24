@@ -42,10 +42,10 @@ namespace BindOpen.Tests.IO.Data
             Assert.That(depot.Has("smtp_default"), "Error with item existence check");
             Assert.That(depot.Get("smtp_default")?.Count == 1, "Bad config count");
             Assert.That(depot.Get("smtp_default")?.Get()?.GetData<string>("host") == _testData.host, "Bad string");
-            Assert.That(depot.Get("smtp_default")?.Get()?.GetData<int>("port") == _testData.port, "Bad integer");
+            Assert.That(depot["smtp_default"]?.Descendant<IBdoMetaData>(null, "port")?.GetData<int>() == _testData.port, "Bad integer");
             Assert.That(depot.Descendant<IBdoConfiguration>("smtp_default", null)?.GetData<bool>("isDefaultCredentialsUsed") == _testData.isDefaultCredentialsUsed, "Bad boolean");
             Assert.That(depot.Get("smtp_default")?.Get()?.GetData<bool>("isSslEnabled") == _testData.isSslEnabled, "Bad boolean");
-            Assert.That(depot.Get("smtp_default")?.Get()?.GetData<int>("timeout") == _testData.timeout, "Bad integer");
+            Assert.That(depot.Descendant<IBdoMetaData>("smtp_default", null, "timeout")?.GetData<int>() == _testData.timeout, "Bad integer");
             Assert.That(depot.Get("smtp_default")?.Get()?.GetData<string>("login") == _testData.login, "Bad string");
             Assert.That(depot.Get("smtp_default")?.Get()?.GetData<string>("password") == _testData.password, "Bad string");
         }

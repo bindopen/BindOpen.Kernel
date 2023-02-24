@@ -16,9 +16,9 @@
 
             SpecDto dto = null;
 
-            if (poco is IBdoObjectSpec objSpec)
+            if (poco is IBdoObjectSpec objectSpec)
             {
-                return objSpec.ToDto();
+                return objectSpec.ToDto();
             }
             else if (poco is IBdoScalarSpec scalarSpec)
             {

@@ -19,7 +19,7 @@ namespace BindOpen.Data
         {
             if (meta != null)
             {
-                meta.WithValueMode(DataValueMode.Expression);
+                meta.WithDataMode(DataMode.Expression);
                 meta.DataExpression = BdoData.NewExp(text, kind);
             }
 
@@ -37,7 +37,7 @@ namespace BindOpen.Data
         {
             if (meta != null)
             {
-                meta.WithValueMode(DataValueMode.Expression);
+                meta.WithDataMode(DataMode.Expression);
                 meta.DataExpression = BdoData.NewExp(word);
             }
 

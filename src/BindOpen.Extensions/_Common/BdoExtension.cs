@@ -1,6 +1,4 @@
-﻿using BindOpen.Data.Configuration;
-using BindOpen.Data.Items;
-using BindOpen.Data.Meta.Reflection;
+﻿using BindOpen.Data.Items;
 
 namespace BindOpen.Extensions
 {
@@ -34,17 +32,6 @@ namespace BindOpen.Extensions
         /// The config of this instance.
         /// </summary>
         public string DefinitionUniqueName { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public virtual IBdoConfiguration ToConfig()
-        {
-            var config = this.ToMetaData<IBdoConfiguration>();
-            config.DefinitionUniqueName = DefinitionUniqueName;
-            return config;
-        }
 
         #endregion
 

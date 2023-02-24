@@ -86,7 +86,7 @@ namespace BindOpen.Extensions.Scripting
             var index = 0;
             foreach (var param in parameters)
             {
-                scriptword.Add(param);
+                scriptword.InsertData(param);
                 index++;
             }
 

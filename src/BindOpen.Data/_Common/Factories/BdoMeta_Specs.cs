@@ -21,7 +21,7 @@ namespace BindOpen.Data
             if (valueType.IsScalar())
             {
                 var scalarSpec = NewSpec<BdoScalarSpec>(name);
-                scalarSpec.WithValueType(valueType);
+                scalarSpec.WithDataValueType(valueType);
                 return scalarSpec;
             }
             else
@@ -102,7 +102,7 @@ namespace BindOpen.Data
             if (type == null) return default;
 
             var spec = NewSpec<T>(name)
-                .WithValueType(type.GetValueType())
+                .WithDataValueType(type.GetValueType())
                 .AsType(type);
 
             return spec;

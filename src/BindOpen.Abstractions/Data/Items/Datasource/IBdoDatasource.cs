@@ -7,7 +7,7 @@ namespace BindOpen.Data.Items
     /// </summary>
     public interface IBdoDatasource :
         IBdoConfigurationSet,
-        IBdoHandledItem, IIdentified, INamed, IReferenced
+        IBdoNotMetableItem, IIdentified, INamed, IReferenced
     {
         /// <summary>
         /// 

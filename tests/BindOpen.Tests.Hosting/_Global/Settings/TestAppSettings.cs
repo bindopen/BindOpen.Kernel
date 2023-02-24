@@ -18,13 +18,13 @@ namespace BindOpen.Tests.Core.Settings
         /// <summary>
         /// The test folder path of this instance.
         /// </summary>
-        [BdoData(Name = "test.folderPath")]
+        [BdoProperty(Name = "test.folderPath")]
         public string TestFolderPath { get; set; }
 
         /// <summary>
         /// The URIs of this instance.
         /// </summary>
-        [BdoData(Name = "test.uris")]
+        [BdoProperty(Name = "test.uris")]
         public Dictionary<string, string> Uris { get; set; }
 
         #endregion

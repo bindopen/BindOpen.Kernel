@@ -27,19 +27,19 @@ namespace BindOpen.Tests.Data
             };
         }
 
-        public void Test(IBdoMetaSet metaList)
+        public void Test(IBdoMetaSet metaSet)
         {
             // set
             //  - "object1"
             //      - "path1"
             //          
 
-            Assert.That(metaList?.Count == 4, "Bad object element set - Count");
+            Assert.That(metaSet?.Count == 4, "Bad object element set - Count");
 
-            var metaObj1 = metaList.Object("object1");
-            var metaObj2 = (metaList["object2"] as IBdoMetaObject);
-            var metaObj3 = metaList.Get<IBdoMetaObject>(2);
-            var metaObj4 = metaList.Get<IBdoMetaObject>("object4");
+            var metaObj1 = metaSet.Object("object1");
+            var metaObj2 = (metaSet["object2"] as IBdoMetaObject);
+            var metaObj3 = metaSet.Get<IBdoMetaObject>(2);
+            var metaObj4 = metaSet.Get<IBdoMetaObject>("object4");
 
             var path1 = metaObj1?.GetData<string>("path");
             Assert.That(

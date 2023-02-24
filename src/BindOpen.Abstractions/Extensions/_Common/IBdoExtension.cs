@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Configuration;
 using BindOpen.Data.Items;
 
 namespace BindOpen.Extensions
@@ -10,8 +9,6 @@ namespace BindOpen.Extensions
     public interface IBdoExtension : IBdoItem, IIdentified
     {
         string DefinitionUniqueName { get; set; }
-
-        IBdoConfiguration ToConfig();
     }
 }
 

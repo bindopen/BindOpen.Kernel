@@ -5,7 +5,7 @@ namespace BindOpen.Data.Conditions
     /// <summary>
     /// 
     /// </summary>
-    public interface ICondition : IBdoHandledItem
+    public interface ICondition : IBdoNotMetableItem
     {
         /// <summary>
         /// 

@@ -5,8 +5,8 @@ namespace BindOpen.Data
     /// <summary>
     /// This enumeration represents the data element itemization modes.
     /// </summary>
-    [XmlType("DataValueMode", Namespace = "https://xsd.bindopen.org")]
-    public enum DataValueMode
+    [XmlType("DataMode", Namespace = "https://xsd.bindopen.org")]
+    public enum DataMode
     {
         /// <summary>
         /// None.

@@ -209,11 +209,11 @@ namespace BindOpen.Extensions.Scripting
                                         if (expParam != default)
                                         {
                                             var paramObject = Evaluate(expParam, varSet, log);
-                                            cloned.Add(paramObject);
+                                            cloned.InsertData(paramObject);
                                         }
                                         else
                                         {
-                                            cloned.Add(paramValue);
+                                            cloned.InsertData(paramValue);
                                         }
                                     }
                                 }
@@ -269,7 +269,7 @@ namespace BindOpen.Extensions.Scripting
                             scriptword, varSet, log, index + offsetIndex);
 
                         // we replace the script word by its value
-                        return scriptword.WithItem(obj);
+                        return scriptword.WithData(obj);
                     }
                     else
                     {
@@ -430,7 +430,7 @@ namespace BindOpen.Extensions.Scripting
                                         varSet,
                                         log);
 
-                                    scriptword.Add(parameterValue);
+                                    scriptword.InsertData(parameterValue);
                                     scriptwordParameterCount++;
                                 }
                                 index = nextIndex;

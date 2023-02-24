@@ -2984,7 +2984,7 @@
             Sets information of the specified property.
             </summary>
             <param key="obj">The object to update.</param>
-            <param key="metaList">The set of elements to return.</param>
+            <param key="metaSet">The set of elements to return.</param>
             <param key="scope">The scope to consider.</param>
             <param key="varSet">The variable element set to use.</param>
             <param key="log">The log to consider.</param>
@@ -2994,7 +2994,7 @@
             Sets information of the specified property.
             </summary>
             <param key="obj">The object to update.</param>
-            <param key="metaList">The set of elements to return.</param>
+            <param key="metaSet">The set of elements to return.</param>
             <param key="scope">The scope to consider.</param>
             <param key="varSet">The variable element set to use.</param>
             <param key="log">The log to consider.</param>

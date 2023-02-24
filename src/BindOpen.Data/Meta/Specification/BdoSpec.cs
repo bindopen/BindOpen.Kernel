@@ -38,7 +38,7 @@ namespace BindOpen.Data.Meta
 
         #region Variables
 
-        private List<DataValueMode> _availableValueModes = null;
+        private List<DataMode> _availableValueModes = null;
 
         #endregion
 
@@ -264,13 +264,13 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The available itemization modes of this instance.
         /// </summary>
-        public List<DataValueMode> ValueModes
+        public List<DataMode> ValueModes
         {
             get => _availableValueModes;
             set
             {
-                if (value == null || value.Count == 0 || value.Contains(DataValueMode.Any))
-                    _availableValueModes = new List<DataValueMode>() { DataValueMode.Any };
+                if (value == null || value.Count == 0 || value.Contains(DataMode.Any))
+                    _availableValueModes = new List<DataMode>() { DataMode.Any };
                 else
                     _availableValueModes = value;
             }

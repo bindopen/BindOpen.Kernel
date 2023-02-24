@@ -22,6 +22,13 @@ namespace BindOpen.Data.Configuration
         /// <summary>
         /// Creation date of this instance.
         /// </summary>
+        [JsonPropertyName("definitionUniqueName")]
+        [XmlElement("definitionUniqueName")]
+        public string DefinitionUniqueName { get; set; }
+
+        /// <summary>
+        /// Creation date of this instance.
+        /// </summary>
         [JsonPropertyName("creationDate")]
         [XmlElement("creationDate")]
         public string CreationDate { get; set; }

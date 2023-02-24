@@ -21,7 +21,6 @@ namespace BindOpen.Data.Meta
         #region Variables
 
         private string _namePreffix;
-        private DataValueMode _valueMode = DataValueMode.Any;
 
         /// <summary>
         /// The item of this instance.
@@ -56,7 +55,7 @@ namespace BindOpen.Data.Meta
         {
             _namePreffix = namePreffix ?? "element_";
             this.WithName(name);
-            Id = id;
+            Id = id ?? StringHelper.NewGuid();
         }
 
         #endregion
@@ -123,17 +122,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The itemization mode of this instance.
         /// </summary>
-        public DataValueMode ValueMode
-        {
-            get
-            {
-                if (_valueMode != DataValueMode.Any)
-                    return _valueMode;
-                else
-                    return DataExpression != null ? DataValueMode.Expression : DataValueMode.Value;
-            }
-            set { _valueMode = value; }
-        }
+        public DataMode DataMode { get; set; } = DataMode.Value;
 
         /// <summary>
         /// The script of this instance.
@@ -181,12 +170,12 @@ namespace BindOpen.Data.Meta
         {
             object obj = default;
 
-            switch (ValueMode)
+            switch (DataMode)
             {
-                case DataValueMode.Value:
+                case DataMode.Value:
                     obj = _data;
                     break;
-                case DataValueMode.Expression:
+                case DataMode.Expression:
                     if (scope == null)
                     {
                         log?.AddWarning(title: "Application scope missing");
@@ -328,7 +317,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public string Key() => Name;
+        public virtual string Key() => Name;
 
         #endregion
 

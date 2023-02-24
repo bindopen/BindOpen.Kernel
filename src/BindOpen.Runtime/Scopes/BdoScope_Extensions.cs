@@ -41,7 +41,7 @@ namespace BindOpen.Runtime.Scopes
                 IBdoEntityDefinition definition = ExtensionStore.GetDefinition<IBdoEntityDefinition>(config.DefinitionUniqueName);
                 if (definition == null)
                 {
-                    log?.AddError("Could not retrieve the extension entity '" + config.DefinitionUniqueName + "' definition");
+                    log?.AddError("Could not retrieve the extension entity '" + config.DefinitionUniqueName + "' definition in scope");
                 }
                 else
                 {
@@ -83,7 +83,7 @@ namespace BindOpen.Runtime.Scopes
                 IBdoConnectorDefinition definition = ExtensionStore.GetDefinition<IBdoConnectorDefinition>(config?.DefinitionUniqueName);
                 if (definition == null)
                 {
-                    log?.AddError("Could not retrieve the extension connector '" + config.DefinitionUniqueName + "' definition");
+                    log?.AddError("Could not retrieve the extension connector '" + config.DefinitionUniqueName + "' definitio in scope");
                 }
                 else
                 {
@@ -124,7 +124,7 @@ namespace BindOpen.Runtime.Scopes
                 IBdoTaskDefinition definition = ExtensionStore.GetDefinition<IBdoTaskDefinition>(config?.DefinitionUniqueName);
                 if (definition == null)
                 {
-                    log?.AddError("Could not retrieve the extension task '" + config.DefinitionUniqueName + "' definition");
+                    log?.AddError("Could not retrieve the extension task '" + config.DefinitionUniqueName + "' definition in scope");
                 }
                 else
                 {

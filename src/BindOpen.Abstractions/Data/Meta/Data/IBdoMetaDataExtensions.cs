@@ -10,14 +10,14 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public static T WithValueMode<T>(
+        public static T WithDataMode<T>(
             this T meta,
-            DataValueMode mode)
+            DataMode mode)
             where T : IBdoMetaData
         {
             if (meta != null)
             {
-                meta.ValueMode = mode;
+                meta.DataMode = mode;
             }
 
             return meta;
@@ -26,7 +26,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public static T WithValueType<T>(
+        public static T WithDataValueType<T>(
             this T meta,
             DataValueTypes valueType)
             where T : IBdoMetaData

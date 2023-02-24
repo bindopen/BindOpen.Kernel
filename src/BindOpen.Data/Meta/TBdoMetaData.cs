@@ -1,6 +1,5 @@
 ﻿using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BindOpen.Data.Meta
@@ -55,15 +54,6 @@ namespace BindOpen.Data.Meta
         // --------------------------------------------------
 
         // Specifications ---------------------
-
-        /// <summary>
-        /// Data constraint statement of this instance.
-        /// </summary>
-        public new List<TSpec> Specs
-        {
-            get => base.Specs?.Cast<TSpec>().ToList();
-            set { base.WithSpecs(value?.Cast<IBdoSpec>().ToArray()); }
-        }
 
         /// <summary>
         /// 

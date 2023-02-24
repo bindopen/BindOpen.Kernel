@@ -24,20 +24,20 @@ namespace BindOpen.Runtime.Scopes
             if (checkExtensionStore && scope?.ExtensionStore == null)
             {
                 log?.AddError(title: "Application extension missing", description: "No extension item definition store specified.");
-                return true;
+                return false;
             }
             if (checkDataContext && scope?.Context == null)
             {
                 log?.AddError(title: "Data context missing", description: "No data context specified.");
-                return true;
+                return false;
             }
             if (checkDataStore && scope?.DataStore == null)
             {
                 log?.AddError(title: "Depot set missing", description: "No depot set specified.");
-                return true;
+                return false;
             }
 
-            return false;
+            return true;
         }
     }
 }

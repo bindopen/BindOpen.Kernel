@@ -9,7 +9,7 @@ namespace BindOpen.Data.Meta
     /// 
     /// </summary>
     public interface IBdoMetaData :
-        IBdoHandledItem,
+        IBdoNotMetableItem,
         INamed, IReferenced,
         IIndexed
     {
@@ -44,7 +44,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        DataValueMode ValueMode { get; set; }
+        DataMode DataMode { get; set; }
 
         /// <summary>
         /// 

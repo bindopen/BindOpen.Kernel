@@ -109,10 +109,10 @@ namespace BindOpen.Hosting.Settings
                 {
                     _ = GetType().GetPropertyInfo(
                         propertyName,
-                        new Type[] { typeof(BdoDataAttribute) },
-                        out BdoDataAttribute attribute);
+                        new Type[] { typeof(BdoPropertyAttribute) },
+                        out BdoPropertyAttribute attribute);
 
-                    if (attribute is BdoDataAttribute)
+                    if (attribute is BdoPropertyAttribute)
                     {
                         object value = Configuration.GetData(attribute.Name, Scope);
                         if (value is T t)
@@ -145,10 +145,10 @@ namespace BindOpen.Hosting.Settings
                 {
                     _ = GetType().GetPropertyInfo(
                         propertyName,
-                        new Type[] { typeof(BdoDataAttribute) },
-                        out BdoDataAttribute attribute);
+                        new Type[] { typeof(BdoPropertyAttribute) },
+                        out BdoPropertyAttribute attribute);
 
-                    if (attribute is BdoDataAttribute)
+                    if (attribute is BdoPropertyAttribute)
                         return (Configuration.GetData(attribute.Name, Scope) as string)?.ToEnum<T>(defaultValue) ?? default;
                 }
             }
@@ -167,10 +167,10 @@ namespace BindOpen.Hosting.Settings
             {
                 PropertyInfo propertyInfo = GetType().GetPropertyInfo(
                     propertyName,
-                    new Type[] { typeof(BdoDataAttribute) },
-                    out BdoDataAttribute attribute);
+                    new Type[] { typeof(BdoPropertyAttribute) },
+                    out BdoPropertyAttribute attribute);
 
-                if (attribute is BdoDataAttribute)
+                if (attribute is BdoPropertyAttribute)
                 {
                     Configuration.Add(
                         BdoMeta.NewScalar(

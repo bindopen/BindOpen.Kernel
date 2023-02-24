@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using BindOpen.Extensions.Scripting;
+using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data.Items
@@ -29,6 +30,13 @@ namespace BindOpen.Data.Items
         [JsonPropertyName("kind")]
         [XmlAttribute("kind")]
         public BdoExpressionKind Kind { get; set; } = BdoExpressionKind.Auto;
+
+        /// <summary>
+        /// The script word of this instance.
+        /// </summary>
+        [JsonPropertyName("word")]
+        [XmlElement("word")]
+        public ScriptwordDto Word { get; set; }
 
         #endregion
 

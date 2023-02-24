@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using AutoMapper;
+using BindOpen.Data.Items;
+using System.Linq;
 
 namespace BindOpen.Data.Meta
 {
@@ -16,11 +18,16 @@ namespace BindOpen.Data.Meta
         {
             if (poco == null) return null;
 
-            MetaSetDto dto = new()
-            {
-                Id = poco.Id,
-                Items = poco.Items?.Select(q => q.ToDto()).ToList()
-            };
+            var config = new MapperConfiguration(
+                cfg => cfg.CreateMap<BdoMetaSet, MetaSetDto>()
+                    .ForMember(q => q.DataExpression, opt => opt.MapFrom(q => q.DataExpression.ToDto()))
+            //.ForMember(q => q.Specs, opt => opt.Ignore())
+            );
+
+            var mapper = new Mapper(config);
+            var dto = mapper.Map<MetaSetDto>(poco);
+
+            dto.MetaItems = poco.Items?.Select(q => q.ToDto()).ToList();
 
             return dto;
         }
@@ -35,10 +42,18 @@ namespace BindOpen.Data.Meta
         {
             if (dto == null) return null;
 
-            BdoMetaSet poco = new();
-            poco.WithId(dto.Id);
+            var config = new MapperConfiguration(
+                cfg => cfg.CreateMap<MetaSetDto, BdoMetaSet>()
+                    .ForMember(q => q.DataExpression, opt => opt.Ignore())
+                    .ForMember(q => q.Specs, opt => opt.Ignore())
+                );
 
-            poco.Add(dto.Items?.Select(q => q.ToPoco()).ToArray());
+            var mapper = new Mapper(config);
+            var poco = mapper.Map<BdoMetaSet>(dto);
+
+            poco.DataExpression = dto.DataExpression.ToPoco();
+            //poco.Specs = dto.Specs?.Count == 0 ? null : dto.Specs?.Select(q => q.ToPoco()).Cast<IBdoSpec>().ToList();
+            poco.With(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
 
             return poco;
         }

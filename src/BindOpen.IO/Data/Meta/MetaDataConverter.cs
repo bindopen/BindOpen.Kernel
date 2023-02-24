@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
+using BindOpen.Extensions.Scripting;
 
 namespace BindOpen.Data.Meta
 {
@@ -20,7 +21,11 @@ namespace BindOpen.Data.Meta
 
             MetaDataDto dto = null;
 
-            if (poco is IBdoMetaObject obj)
+            if (poco is IBdoScriptword script)
+            {
+                dto = BdoScriptwordConverter.ToDto(script);
+            }
+            else if (poco is IBdoMetaObject obj)
             {
                 dto = obj.ToDto();
             }
@@ -53,7 +58,11 @@ namespace BindOpen.Data.Meta
 
             BdoMetaData poco = null;
 
-            if (dto is MetaObjectDto obj)
+            if (dto is ScriptwordDto script)
+            {
+                return script.ToPoco();
+            }
+            else if (dto is MetaObjectDto obj)
             {
                 return obj.ToPoco();
             }

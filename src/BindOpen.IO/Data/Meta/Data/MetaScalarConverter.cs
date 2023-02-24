@@ -29,18 +29,16 @@ namespace BindOpen.Data.Meta
             var mapper = new Mapper(config);
             var dto = mapper.Map<MetaScalarDto>(poco);
 
-            //dto.WithSpecifications(poco.Specs.Select(q => q?.ToDto()).Cast<IBdoDataElementSpec>().ToArray());
-
-            if (poco.ValueMode == DataValueMode.Value)
+            if (poco.DataMode == DataMode.Value)
             {
-                var dataList = poco.GetDataList<object>().Select(q => q.ToString(poco.DataValueType)).ToList();
-                if (dataList.Count == 1)
+                var dataList = poco.GetDataList<object>()?.Select(q => q.ToString(poco.DataValueType)).ToList();
+                if (dataList?.Count > 1)
                 {
-                    dto.Item = dataList.FirstOrDefault();
+                    dto.Items = dataList;
                 }
                 else
                 {
-                    dto.Items = dataList;
+                    dto.Item = dataList?.FirstOrDefault();
                 }
             }
 
@@ -67,11 +65,11 @@ namespace BindOpen.Data.Meta
             var poco = mapper.Map<BdoMetaScalar>(dto);
 
             poco.DataExpression = dto.DataExpression.ToPoco();
-            poco.Specs = dto.Specs?.Select(q => q.ToPoco()).ToList();
+            poco.Specs = dto.Specs?.Count == 0 ? null : dto.Specs?.Select(q => q.ToPoco()).Cast<IBdoSpec>().ToList();
 
             if (!string.IsNullOrEmpty(dto.Item))
             {
-                poco.WithData(dto.Item);
+                poco.WithData(dto.Item.ToObject(poco.DataValueType));
             }
             else
             {

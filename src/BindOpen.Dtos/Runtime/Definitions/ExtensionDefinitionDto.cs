@@ -9,13 +9,20 @@ namespace BindOpen.Runtime.Definitions
     /// This class represents the definition of BindOpen extension item.
     /// </summary>
     [XmlType("ExtensionDefinition", Namespace = "https://xsd.bindopen.org")]
-    public abstract class ExtensionDefinitionDto : IndexedDataItemDto
+    public abstract class ExtensionDefinitionDto : IDto
     {
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// The index of this instance.
+        /// </summary>
+        [JsonPropertyName("index")]
+        [XmlAttribute("index")]
+        public int Index { get; set; } = -1;
 
         /// <summary>
         /// Uri of the image representing this instance.

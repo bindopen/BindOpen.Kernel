@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data;
-using BindOpen.Runtime.Definitions;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -10,7 +10,7 @@ namespace BindOpen.Runtime.Definitions
     /// This class represents a BindOpen extension dico.
     /// </summary>
     /// <typeparam name="T">The class of extension item definition to consider.</typeparam>
-    public class TBdoExtensionDictionaryDto<T> : StoredDataItemDto
+    public class TBdoExtensionDictionaryDto<T> : IDto
         where T : ExtensionDefinitionDto
     {
         // ------------------------------------------
@@ -18,6 +18,22 @@ namespace BindOpen.Runtime.Definitions
         // ------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// Creation date of this instance.
+        /// </summary>
+        [JsonPropertyName("creationDate")]
+        [XmlElement("creationDate")]
+        [DefaultValue("")]
+        public string CreationDate { get; set; }
+
+        /// <summary>
+        /// Last modification date of this instance.
+        /// </summary>
+        [JsonPropertyName("lastModificationDate")]
+        [XmlElement("lastModificationDate")]
+        [DefaultValue("")]
+        public string LastModificationDate { get; set; }
 
         /// <summary>
         /// ID of the library of this instance.

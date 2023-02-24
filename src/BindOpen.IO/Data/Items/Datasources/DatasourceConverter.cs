@@ -21,7 +21,6 @@ namespace BindOpen.Data.Items
             DatasourceDto dto = new()
             {
                 Configurations = poco?.Select(q => q?.ToDto()).ToList(),
-                Id = poco.Id,
                 InstanceName = poco.InstanceName,
                 Kind = poco.Kind,
                 ModuleName = poco.ModuleName,
@@ -42,10 +41,10 @@ namespace BindOpen.Data.Items
             var poco = BdoData.NewDatasource(
                 dto.Name,
                 dto.Kind,
-                dto.Configurations?.Select(q => q.ToPoco()).ToArray())
+                dto.Configurations?.Count == 0 ? null : dto.Configurations?.Select(q => q.ToPoco()).ToArray())
                 .WithInstanceName(dto.InstanceName)
                 .WithModuleName(dto.ModuleName)
-                .WithId(dto.Id).WithName(dto.Name);
+                .WithName(dto.Name);
 
             return poco;
         }

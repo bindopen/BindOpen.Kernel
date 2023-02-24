@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Helpers;
 using BindOpen.Extensions;
 using BindOpen.Extensions.Scripting;
 using System;
@@ -42,7 +41,7 @@ namespace BindOpen.Tests.Runtime
             CreationDate = "2022-06-24")]
         public static object Fun_Func1(IBdoScriptwordDomain domain)
         {
-            return domain?.Scriptword.Get<string>(0);
+            return domain?.Scriptword.GetData<string>(0);
         }
 
         /// <summary>
@@ -58,8 +57,8 @@ namespace BindOpen.Tests.Runtime
             Parameter2Name = "value2", Parameter2ValueType = DataValueTypes.Text)]
         public static object Fun_Func2(IBdoScriptwordDomain domain)
         {
-            string value1 = domain?.Scriptword.Get<string>(0);
-            string value2 = domain?.Scriptword.Get<string>(1);
+            string value1 = domain?.Scriptword.GetData<string>(0);
+            string value2 = domain?.Scriptword.GetData<string>(1);
 
             return value1.Equals(value2, StringComparison.OrdinalIgnoreCase);
         }
@@ -87,8 +86,8 @@ namespace BindOpen.Tests.Runtime
         [BdoScriptword]
         public static object Fun_Func4(IBdoScriptwordDomain domain)
         {
-            string value = domain?.Scriptword.Get<string>(0);
-            string parentValue = domain?.Scriptword?.Parent.Get<string>();
+            string value = domain?.Scriptword.GetData<string>(0);
+            string parentValue = domain?.Scriptword?.Parent.GetData<string>();
 
             return parentValue + ":" + value;
         }
@@ -102,7 +101,7 @@ namespace BindOpen.Tests.Runtime
             object value1,
             params string[] values)
         {
-            string parentValueText = domain?.Scriptword?.Parent?.Get<string>();
+            string parentValueText = domain?.Scriptword?.Parent?.GetData<string>();
             string valueText = value1?.ToString();
             string valuesText = string.Join('-', values);
 

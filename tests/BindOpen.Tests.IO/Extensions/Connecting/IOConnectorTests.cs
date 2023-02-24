@@ -1,8 +1,8 @@
 ﻿using BindOpen.Data.Configuration;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Meta.Reflection;
 using BindOpen.Dtos.Json;
 using BindOpen.Dtos.Xml;
-using BindOpen.Extensions.Connecting;
 using BindOpen.Runtime.Scopes;
 using BindOpen.Tests.Extensions;
 using BindOpen.Tests.Runtime;
@@ -34,7 +34,7 @@ namespace BindOpen.Tests.IO.Extensions
                 _connector = BdoConnectorTests.CreateConnector(_testData);
             }
 
-            var isSaved = _connector.ToConfig().ToDto().SaveXml(BdoConnectorFaker.XmlFilePath);
+            var isSaved = _connector.ToMetaData().ToDto().SaveXml(BdoConnectorFaker.XmlFilePath);
 
             Assert.That(isSaved, "Connector saving failed");
         }
@@ -63,7 +63,7 @@ namespace BindOpen.Tests.IO.Extensions
                 _connector = BdoConnectorTests.CreateConnector(_testData);
             }
 
-            var isSaved = _connector.ToConfig().ToDto().SaveJson(BdoConnectorFaker.JsonFilePath);
+            var isSaved = _connector.ToMetaData().ToDto().SaveJson(BdoConnectorFaker.JsonFilePath);
 
             Assert.That(isSaved, "Connector saving failed");
         }

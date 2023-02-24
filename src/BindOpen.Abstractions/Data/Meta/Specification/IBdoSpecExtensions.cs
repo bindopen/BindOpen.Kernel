@@ -16,7 +16,7 @@ namespace BindOpen.Data.Meta
         /// <param key="modes"></param>
         public static T WithValueModes<T>(
             this T metaSpec,
-            params DataValueMode[] modes)
+            params DataMode[] modes)
             where T : IBdoSpec
         {
             if (metaSpec != null)
@@ -190,7 +190,7 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         /// <param key="number"></param>
-        public static T WithValueType<T>(
+        public static T WithDataValueType<T>(
             this T spec,
             DataValueTypes valueType)
             where T : IBdoSpec

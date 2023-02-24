@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BindOpen.Data.Meta.Reflection
 {
@@ -14,19 +15,10 @@ namespace BindOpen.Data.Meta.Reflection
         /// <param key="items">The items to consider.</param>
         public static IBdoMetaData ToMetaData(
             this object obj,
-            string name)
-            => obj.ToMetaData(false, name);
-
-        /// <summary>
-        /// Creates a meta data of the specified object.
-        /// </summary>
-        /// <param key="name">The name to consider.</param>
-        /// <param key="items">The items to consider.</param>
-        public static IBdoMetaData ToMetaData(
-            this object obj,
+            string name = null,
             bool onlyMetaAttributes = false,
-            string name = null)
-            => BdoMeta.New(name, obj)
+            Type type = null)
+            => BdoMeta.New(name, type, obj)
                 .UpdateTree(onlyMetaAttributes);
 
         /// <summary>
@@ -36,21 +28,10 @@ namespace BindOpen.Data.Meta.Reflection
         /// <param key="items">The items to consider.</param>
         public static T ToMetaData<T>(
             this object obj,
-            string name)
+            string name = null,
+            bool onlyMetaAttributes = false)
             where T : class, IBdoMetaData
-            => obj.ToMetaData<T>(false, name);
-
-        /// <summary>
-        /// Creates a meta data of the specified object.
-        /// </summary>
-        /// <param key="name">The name to consider.</param>
-        /// <param key="items">The items to consider.</param>
-        public static T ToMetaData<T>(
-            this object obj,
-            bool onlyMetaAttributes = false,
-            string name = null)
-            where T : class, IBdoMetaData
-            => obj.ToMetaData(onlyMetaAttributes, name) as T;
+            => obj.ToMetaData(name, onlyMetaAttributes, typeof(T)) as T;
 
         /// <summary>
         /// Creates a meta data of the specified object.
@@ -76,9 +57,9 @@ namespace BindOpen.Data.Meta.Reflection
         public static List<IBdoMetaData> ToList(
             this IBdoMetaData meta)
         {
-            if (meta is IBdoMetaSet metaList)
+            if (meta is IBdoMetaSet metaSet)
             {
-                return metaList.ToList();
+                return metaSet.ToList();
             }
 
             return null;

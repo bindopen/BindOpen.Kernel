@@ -32,7 +32,7 @@ namespace BindOpen.Data.Meta.Reflection
 
             foreach (var propInfo in obj.GetType().GetProperties())
             {
-                var bdoAttribute = propInfo.GetCustomAttribute(typeof(BdoDataAttribute)) as BdoDataAttribute;
+                var bdoAttribute = propInfo.GetCustomAttribute(typeof(BdoPropertyAttribute)) as BdoPropertyAttribute;
                 if (bdoAttribute != null || !onlyMetaAttributes)
                 {
                     string name = bdoAttribute?.Name;

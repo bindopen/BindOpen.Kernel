@@ -1,5 +1,6 @@
 ﻿using Bogus;
 using NUnit.Framework;
+using System.Dynamic;
 
 namespace BindOpen.Tests
 {
@@ -11,12 +12,11 @@ namespace BindOpen.Tests
         public static dynamic Fake()
         {
             var f = new Faker();
-            return new
-            {
-                host = f.Internet.IpAddress().ToString(),
-                port = f.Random.Int(800),
-                isSslEnabled = f.Random.Bool()
-            };
+            dynamic b = new ExpandoObject();
+            b.host = f.Internet.IpAddress().ToString();
+            b.port = f.Random.Int(800);
+            b.isSslEnabled = f.Random.Bool();
+            return b;
         }
 
         public static void AssertFake(ConnectorFake connector, dynamic reference)

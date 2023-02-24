@@ -80,9 +80,9 @@ namespace BindOpen.Tests.Data
             elSetA.Add(null);
             elSetB
                 .Add(null)
-                .Add(BdoMeta.New("name1", typeof(string)))
+                .Add(("name1", typeof(string)))
                 .Add(BdoMeta.New("name3", typeof(int)))
-                .Add(BdoMeta.New("name4", typeof(double)))
+                .Add(("name4", typeof(double)))
                 .Add(BdoMeta.New("name5", DataValueTypes.Text));
             elSetA
                 .Add(BdoMeta.New("name1", typeof(string)))

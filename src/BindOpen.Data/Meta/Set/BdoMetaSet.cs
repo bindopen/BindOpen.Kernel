@@ -33,9 +33,9 @@ namespace BindOpen.Data.Meta
         /// Converts from data element array.
         /// </summary>
         /// <param key="elems">The elems to consider.</param>
-        public static explicit operator IBdoMetaData[](BdoMetaSet metaList)
+        public static explicit operator IBdoMetaData[](BdoMetaSet metaSet)
         {
-            return metaList?.ToArray();
+            return metaSet?.ToArray();
         }
 
         #endregion
@@ -51,7 +51,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         public BdoMetaSet() : base()
         {
-            ValueMode = DataValueMode.Value;
+            DataMode = DataMode.Value;
             DataValueType = DataValueTypes.Any;
         }
 
@@ -151,7 +151,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The itemization mode of this instance.
         /// </summary>
-        public DataValueMode ValueMode { get; set; }
+        public DataMode DataMode { get; set; }
 
         /// <summary>
         /// The script of this instance.
@@ -222,7 +222,7 @@ namespace BindOpen.Data.Meta
             IBdoLog log = null)
         {
             var list = GetDataList(scope, varSet, log);
-            return list?.FirstOrDefault();
+            return list;
         }
 
         /// <summary>
@@ -237,13 +237,13 @@ namespace BindOpen.Data.Meta
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            var list = GetDataList<Q>(scope, varSet, log);
+            var list = GetDataList(scope, varSet, log);
             if (list == null)
             {
                 return default;
             }
 
-            return list.FirstOrDefault();
+            return list.As<Q>();
         }
 
         /// <summary>

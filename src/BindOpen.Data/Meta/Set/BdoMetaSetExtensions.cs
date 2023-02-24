@@ -15,7 +15,7 @@ namespace BindOpen.Data
         /// Adds a new value to this instance.
         /// </summary>
         /// <param key="pairs">The value to add.</param>
-        public static T AddData<T>(
+        public static T InsertData<T>(
             this T list,
             object obj)
             where T : IBdoMetaSet

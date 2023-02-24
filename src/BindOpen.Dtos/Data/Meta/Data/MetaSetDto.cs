@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BindOpen.Extensions.Scripting;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -8,8 +9,8 @@ namespace BindOpen.Data.Meta
     /// This class represents a data element set.
     /// </summary>
     [XmlType("MetaSet", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "list", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class MetaSetDto : MetaDataDto, IIdentified
+    [XmlRoot(ElementName = "set", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    public class MetaSetDto : MetaDataDto
     {
         // ------------------------------------------
         // PROPERTIES
@@ -21,17 +22,18 @@ namespace BindOpen.Data.Meta
         /// The elements of this instance.
         /// </summary>
         [JsonPropertyName("items")]
-        [XmlElement("list", Type = typeof(MetaSetDto))]
+        [XmlElement("set", Type = typeof(MetaSetDto))]
         [XmlElement("object", Type = typeof(MetaObjectDto))]
         [XmlElement("scalar", Type = typeof(MetaScalarDto))]
-        public List<MetaDataDto> Items { get; set; }
+        [XmlElement("scriptword", Type = typeof(ScriptwordDto))]
+        public List<MetaDataDto> MetaItems { get; set; }
 
         /// <summary>
         /// Indicates whether the entities property must be ignored.
         /// </summary>
         [JsonIgnore]
         [XmlIgnore]
-        public bool ElementsSpecified => Items?.Count > 0;
+        public bool MetaItemsSpecified => MetaItems?.Count > 0;
 
         #endregion
 
@@ -42,7 +44,7 @@ namespace BindOpen.Data.Meta
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BdoElementSetDto class.
+        /// Instantiates a new instance of the MetaSetDto class.
         /// </summary>
         public MetaSetDto()
         {

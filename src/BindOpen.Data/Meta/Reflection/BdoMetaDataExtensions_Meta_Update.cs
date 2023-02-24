@@ -32,11 +32,11 @@ namespace BindOpen.Data.Meta.Reflection
                     list = new();
 
                     if (!type.IsScalar() && !type.IsList()
-                        && !type.IsAssignableFrom(typeof(IBdoHandledItem)))
+                        && !type.IsAssignableFrom(typeof(IBdoNotMetableItem)))
                     {
                         foreach (var propInfo in type.GetProperties())
                         {
-                            var bdoAttribute = propInfo.GetCustomAttribute(typeof(BdoDataAttribute)) as BdoDataAttribute;
+                            var bdoAttribute = propInfo.GetCustomAttribute(typeof(BdoPropertyAttribute)) as BdoPropertyAttribute;
                             if (bdoAttribute != null || !onlyMetaAttributes)
                             {
                                 string propName = propInfo.Name;
@@ -51,7 +51,7 @@ namespace BindOpen.Data.Meta.Reflection
                                 if (metaObject?.Has(propName) == true)
                                 {
                                     subMeta = metaObject[propName];
-                                    if (subMeta.ValueMode == DataValueMode.Value)
+                                    if (subMeta.DataMode == DataMode.Value)
                                     {
                                         if (subMeta is IBdoMetaScalar subMetaScalar)
                                         {
@@ -71,7 +71,7 @@ namespace BindOpen.Data.Meta.Reflection
                                 }
                                 else
                                 {
-                                    subMeta = propValue.ToMetaData(onlyMetaAttributes, propName);
+                                    subMeta = propValue.ToMetaData(propName, onlyMetaAttributes, propInfo.PropertyType);
                                 }
 
                                 list.Add(subMeta);
@@ -81,19 +81,19 @@ namespace BindOpen.Data.Meta.Reflection
 
                     metaObject.With(list?.ToArray());
                 }
-                else if (type.IsList() && meta is IBdoMetaObject metaList)
+                else if (type.IsList() && meta is IBdoMetaSet metaSet)
                 {
                     list = new();
 
                     var objList = obj.ToObjectList();
                     foreach (var subObj in objList)
                     {
-                        var subMeta = subObj.ToMetaData(onlyMetaAttributes);
+                        var subMeta = subObj.ToMetaData(null, onlyMetaAttributes);
 
                         list.Add(subMeta);
                     }
 
-                    metaList.With(list?.ToArray());
+                    metaSet.With(list?.ToArray());
                 }
             }
 

@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Items;
+using BindOpen.Extensions.Scripting;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml;
@@ -13,9 +14,11 @@ namespace BindOpen.Data.Meta
     [XmlInclude(typeof(MetaSetDto))]
     [XmlInclude(typeof(MetaObjectDto))]
     [XmlInclude(typeof(MetaScalarDto))]
-    [JsonDerivedType(typeof(MetaSetDto), "list")]
+    [XmlInclude(typeof(ScriptwordDto))]
+    [JsonDerivedType(typeof(MetaSetDto), "set")]
     [JsonDerivedType(typeof(MetaObjectDto), "object")]
     [JsonDerivedType(typeof(MetaScalarDto), "scalar")]
+    [JsonDerivedType(typeof(ScriptwordDto), "scripword")]
     public class MetaDataDto : IDto
     {
         // --------------------------------------------------
@@ -23,13 +26,6 @@ namespace BindOpen.Data.Meta
         // --------------------------------------------------
 
         #region Properties
-
-        /// <summary>
-        /// ID of this instance.
-        /// </summary>
-        [JsonPropertyName("id")]
-        [XmlAttribute("id")]
-        public string Id { get; set; }
 
         /// <summary>
         /// Name of this instance.
@@ -60,10 +56,10 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The itemization mode of this instance.
         /// </summary>
-        [JsonPropertyName("valueMode")]
-        [XmlElement("valueMode")]
-        [DefaultValue(DataValueMode.Value)]
-        public DataValueMode ValueMode = DataValueMode.Value;
+        [JsonPropertyName("dataMode")]
+        [XmlElement("dataMode")]
+        [DefaultValue(DataMode.Value)]
+        public DataMode DataMode = DataMode.Value;
 
         /// <summary>
         /// The expression of this instance.
@@ -78,7 +74,16 @@ namespace BindOpen.Data.Meta
         [JsonPropertyName("valueType")]
         [XmlAttribute("valueType")]
         [DefaultValue(DataValueTypes.Any)]
-        public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
+        public DataValueTypes DataValueType { get; set; } = DataValueTypes.Any;
+
+        /// <summary>
+        /// Indicates whether the entities property must be ignored.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public bool DataValueTypeSpecified =>
+            !((this is MetaObjectDto && DataValueType == DataValueTypes.Object)
+            || (this is ScriptwordDto && DataValueType == DataValueTypes.Scriptword));
 
         #endregion
 

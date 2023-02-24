@@ -24,7 +24,7 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// The library folder path of this instance.
         /// </summary>
-        [BdoData(Name = "library.folderPath")]
+        [BdoProperty(Name = "library.folderPath")]
         [JsonPropertyName("library.folderPath")]
         public string LibraryFolderPath { get; internal set; } = (@".\" + BdoDefaultHostPaths.__DefaultLibraryFolderPath).ToPath();
 

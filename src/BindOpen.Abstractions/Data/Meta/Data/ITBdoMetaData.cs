@@ -1,6 +1,5 @@
 ﻿using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
-using System.Collections.Generic;
 
 namespace BindOpen.Data.Meta
 {
@@ -13,11 +12,6 @@ namespace BindOpen.Data.Meta
         where TSpec : IBdoSpec
         where TItem : class
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        new List<TSpec> Specs { get; set; }
-
         /// <summary>
         /// 
         /// </summary>

@@ -91,7 +91,7 @@ namespace BindOpen.Tests.Data
 
             var valueStar = _dico[StringHelper.__Star];
             var value1 = _dico["value1"];
-            var value2 = _dico["value2"];
+            var value2 = _dico["hgh", "value2"];
             var value3 = _dico["value3"];
             var value4 = _dico["value4"];
             var value5 = _dico["value5", StringHelper.__Star];

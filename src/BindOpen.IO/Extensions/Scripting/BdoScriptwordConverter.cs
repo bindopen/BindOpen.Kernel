@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using BindOpen.Data.Configuration;
+using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
 using System.Linq;
 
@@ -20,9 +23,12 @@ namespace BindOpen.Extensions.Scripting
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<IBdoScriptword, ScriptwordDto>()
-                    .ForMember(q => q.it, opt => opt.MapFrom(q => q.Select(p => q.ToDto()).ToList()))
+                    .ForMember(q => q.MetaItems, opt => opt.MapFrom(q => q.Select(q => q.ToDto()).ToList()))
+                    .ForMember(q => q.Item, opt => opt.Ignore())
                     .ForMember(q => q.Child, opt => opt.MapFrom(q => q.Child.ToDto()))
-                    .ForMember(q => q.Kind, opt => opt.MapFrom(q => q.Kind))
+                    .ForMember(q => q.SubDataSet, opt => opt.Ignore())
+                    .ForMember(q => q.DataExpression, opt => opt.Ignore())
+                    .ForMember(q => q.Specification, opt => opt.Ignore())
                 );
 
             var mapper = new Mapper(config);
@@ -41,15 +47,22 @@ namespace BindOpen.Extensions.Scripting
         {
             if (dto == null) return null;
 
-            //var config = new MapperConfiguration(
-            //       cfg => cfg.CreateMap<ScriptwordDto, BdoScriptword>()
-            //           .ForMember(q => q.ite, opt => opt.MapFrom(q => q.MetaItems == null ? null : q.MetaItems.Select(q => q.ToPoco()).ToList()))
-            //           .ForMember(q => q.Child, opt => opt.MapFrom(q => q.Child.ToPoco()))
-            //           .ForMember(q => q.Kind, opt => opt.MapFrom(q => q.Kind))
-            //       );
+            var config = new MapperConfiguration(
+                   cfg => cfg.CreateMap<ScriptwordDto, BdoScriptword>()
+                       .ForMember(q => q.Child, opt => opt.Ignore())
+                       .ForMember(q => q.DataExpression, opt => opt.Ignore())
+                       .ForMember(q => q.Items, opt => opt.Ignore())
+                       .ForMember(q => q.Parent, opt => opt.Ignore())
+                       .ForMember(q => q.Specs, opt => opt.Ignore())
+                       .ForMember(q => q.ClassReference, opt => opt.Ignore())
+                   );
 
-            //var mapper = new Mapper(config);
-            //var poco = mapper.Map<BdoScriptword>(dto);
+            var mapper = new Mapper(config);
+            var poco = new BdoScriptword()
+            {
+                Child = dto.Child.ToPoco()
+            };
+            poco.With(dto.MetaItems.Select(q => q.ToPoco()).ToArray());
 
             return poco;
         }

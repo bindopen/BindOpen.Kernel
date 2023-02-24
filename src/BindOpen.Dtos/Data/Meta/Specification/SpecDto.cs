@@ -78,7 +78,7 @@ namespace BindOpen.Data.Meta
         [JsonPropertyName("availableValueModes")]
         [XmlArray("availableValueModes")]
         [XmlArrayItem("add.mode")]
-        public List<DataValueMode> AvailableValueModes { get; set; }
+        public List<DataMode> AvailableValueModes { get; set; }
 
         /// <summary>
         /// Minimum item number of this instance.

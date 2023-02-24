@@ -25,7 +25,7 @@ namespace BindOpen.Data.Configuration
                     .ForMember(q => q.CreationDate, opt => opt.MapFrom(q => StringHelper.ToString(q.CreationDate)))
                     .ForMember(q => q.DataExpression, opt => opt.MapFrom(q => q.DataExpression.ToDto()))
                     .ForMember(q => q.Description, opt => opt.MapFrom(q => q.Description.ToDto()))
-                    .ForMember(q => q.Items, opt => opt.MapFrom(q => q.Items == null ? null : q.Items.Select(q => q.ToDto()).ToList()))
+                    .ForMember(q => q.MetaItems, opt => opt.MapFrom(q => q.Items == null ? null : q.Items.Select(q => q.ToDto()).ToList()))
                     .ForMember(q => q.LastModificationDate, opt => opt.MapFrom(q => StringHelper.ToString(q.CreationDate)))
                     .ForMember(q => q.Title, opt => opt.MapFrom(q => q.Title.ToDto()))
                     .ForMember(q => q.UsedItemIds, opt => opt.MapFrom(q => q.UsedItemIds == null ? null : q.UsedItemIds.Select(q => q).ToList()))
@@ -51,15 +51,21 @@ namespace BindOpen.Data.Configuration
                 cfg => cfg.CreateMap<ConfigurationDto, BdoConfiguration>()
                     .ForMember(q => q.CreationDate, opt => opt.MapFrom(q => q.CreationDate.ToDateTime(null)))
                     .ForMember(q => q.DataExpression, opt => opt.MapFrom(q => q.DataExpression == null ? null : q.DataExpression.ToPoco()))
-                    .ForMember(q => q.Description, opt => opt.MapFrom(q => q.Description.ToPoco()))
-                    .ForMember(q => q.Items, opt => opt.MapFrom(q => q.Items == null ? null : q.Items.Select(q => q.ToPoco()).ToList()))
+                    .ForMember(q => q.Description, opt => opt.Ignore())
+                    .ForMember(q => q.Items, opt => opt.Ignore())
                     .ForMember(q => q.LastModificationDate, opt => opt.MapFrom(q => q.CreationDate.ToDateTime(null)))
-                    .ForMember(q => q.Title, opt => opt.MapFrom(q => q.Title.ToPoco()))
+                    .ForMember(q => q.Parent, opt => opt.Ignore())
+                    .ForMember(q => q.Specs, opt => opt.Ignore())
+                    .ForMember(q => q.Title, opt => opt.Ignore())
                     .ForMember(q => q.UsedItemIds, opt => opt.MapFrom(q => q.UsedItemIds == null ? null : q.UsedItemIds.Select(q => q).ToList()))
             );
 
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoConfiguration>(dto);
+            poco
+                .WithTitle(dto.Title.ToPoco())
+                .WithDescription(dto.Description.ToPoco())
+                .With(dto.MetaItems.Select(q => q.ToPoco()).ToArray());
 
             return poco;
         }

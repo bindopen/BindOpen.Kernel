@@ -33,14 +33,14 @@ namespace BindOpen.Extensions.Connecting
         /// <summary>
         /// The connection string of this instance.
         /// </summary>
-        [BdoData("connectionString")]
+        [BdoProperty("connectionString")]
         public string ConnectionString { get; set; }
 
 
         /// <summary>
         /// The connection string of this instance.
         /// </summary>
-        [BdoData("connectionTimeOut")]
+        [BdoProperty("connectionTimeOut")]
         public int ConnectionTimeOut { get; set; }
 
         /// <summary>
