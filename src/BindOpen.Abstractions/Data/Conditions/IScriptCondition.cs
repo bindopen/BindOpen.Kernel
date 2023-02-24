@@ -15,7 +15,7 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param key="expression"></param>
         IScriptCondition WithExpression(IBdoExpression expression);
     }
 }

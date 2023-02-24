@@ -10,7 +10,7 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="poco">The poco to consider.</param>
+        /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static ScriptConditionDto ToDto(this IScriptCondition poco)
         {
@@ -28,9 +28,10 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Converts to POCO.
         /// </summary>
-        /// <param name="dto">The dto to consider.</param>
+        /// <param key="dto">The dto to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static IScriptCondition ToPoco(this ScriptConditionDto dto)
+        public static IScriptCondition ToPoco(
+            this ScriptConditionDto dto)
         {
             if (dto == null) return null;
 

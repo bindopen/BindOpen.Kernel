@@ -10,9 +10,9 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="areas"></param>
-        /// <param name="updateModes"></param>
-        /// <param name="log"></param>
+        /// <param key="areas"></param>
+        /// <param key="updateModes"></param>
+        /// <param key="log"></param>
         /// <returns></returns>
         void Update(string[] areas = null, UpdateModes[] updateModes = null, IBdoLog log = null);
 
@@ -20,10 +20,10 @@ namespace BindOpen.Data
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="item"></param>
-        /// <param name="areas"></param>
-        /// <param name="updateModes"></param>
-        /// <param name="log"></param>
+        /// <param key="item"></param>
+        /// <param key="areas"></param>
+        /// <param key="updateModes"></param>
+        /// <param key="log"></param>
         /// <returns></returns>
         void Update<T>(T item = default, string[] areas = null, UpdateModes[] updateModes = null, IBdoLog log = null);
     }

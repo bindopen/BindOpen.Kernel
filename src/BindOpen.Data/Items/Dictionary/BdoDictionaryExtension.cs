@@ -13,8 +13,8 @@ namespace BindOpen.Data
         /// Instantiates a new instance of the DictionaryDataItem class
         /// from an object.
         /// </summary>
-        /// <param name="obj">The object to consider.</param>
-        /// <param name="mappings">The mappings to consider.</param>
+        /// <param key="obj">The object to consider.</param>
+        /// <param key="mappings">The mappings to consider.</param>
         public static BdoDictionary AsDictionary(
             this object obj,
             (string from, string to)[] mappings)

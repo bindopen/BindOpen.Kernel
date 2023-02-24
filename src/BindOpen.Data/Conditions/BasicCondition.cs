@@ -47,7 +47,7 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Instantiates a new instance of the BasicCondition class.
         /// </summary>
-        /// <param name="trueValue">The value that expresses that the condition is satisfied.</param>
+        /// <param key="trueValue">The value that expresses that the condition is satisfied.</param>
         public BasicCondition(
             bool trueValue) : base(trueValue)
         {
@@ -56,9 +56,9 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Instantiates a new instance of the BasicCondition class.
         /// </summary>
-        /// <param name="arg1">The argument 1 to consider.</param>
-        /// <param name="ope">The operator to consider.</param>
-        /// <param name="arg2">The argument 2 to consider.</param>
+        /// <param key="arg1">The argument 1 to consider.</param>
+        /// <param key="ope">The operator to consider.</param>
+        /// <param key="arg2">The argument 2 to consider.</param>
         public BasicCondition(string arg1, ConditionOperator ope, string arg2 = null)
         {
             Argument1 = arg1;
@@ -69,10 +69,10 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Instantiates a new instance of the BasicCondition class.
         /// </summary>
-        /// <param name="trueValue">The value that expresses that the condition is satisfied.</param>
-        /// <param name="arg1">The argument 1 to consider.</param>
-        /// <param name="ope">The operator to consider.</param>
-        /// <param name="arg2">The argument 2 to consider.</param>
+        /// <param key="trueValue">The value that expresses that the condition is satisfied.</param>
+        /// <param key="arg1">The argument 1 to consider.</param>
+        /// <param key="ope">The operator to consider.</param>
+        /// <param key="arg2">The argument 2 to consider.</param>
         public BasicCondition(
             bool trueValue,
             string arg1,

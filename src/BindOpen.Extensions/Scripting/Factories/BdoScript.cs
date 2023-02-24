@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Logging;
+using BindOpen.Runtime.Definitions;
 using BindOpen.Runtime.Scopes;
 
 namespace BindOpen.Extensions.Scripting
@@ -14,7 +15,7 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// Creates a data element with specified items.
         /// </summary>
-        /// <param name="definitions">The definitions to consider.</param>
+        /// <param key="definitions">The definitions to consider.</param>
         public static BdoScriptInterpreter CreateInterpreter(
             params IBdoScriptwordDefinition[] definitions)
         {
@@ -24,35 +25,41 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// Creates a data element with specified items.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
+        /// <param key="scope">The scope to consider.</param>
         public static BdoScriptInterpreter CreateInterpreter(
             this IBdoScope scope)
         {
             return new BdoScriptInterpreter(scope);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="script"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        public static BdoScriptword CreateWord(
+        // Word
+
+        public static BdoScriptword NewWord(
+            ScriptItemKinds kind,
+            string name = null)
+            => new BdoScriptword()
+                .WithName(name)
+                .WithKind(kind);
+
+        public static BdoScriptword NewWordFromScript(
             string script,
             IBdoLog log = null)
         {
             var interpreter = CreateInterpreter();
-            return interpreter.FindNextScriptword(script, log) as BdoScriptword;
+            var word = interpreter.FindNextWord(script, log) as BdoScriptword;
+            return word;
         }
+
+        // Variable
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
+        /// <param key="name"></param>
         /// <returns></returns>
         public static BdoScriptword Variable(string name)
         {
-            var scriptword = new BdoScriptword(ScriptItemKinds.Variable);
+            var scriptword = NewWord(ScriptItemKinds.Variable);
             scriptword.WithName(name);
 
             return scriptword;
@@ -61,23 +68,25 @@ namespace BindOpen.Extensions.Scripting
         public static BdoScriptword Var(string name)
             => Variable(name);
 
+        // Function
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="parameters"></param>
+        /// <param key="name"></param>
+        /// <param key="parameters"></param>
         /// <returns></returns>
         public static BdoScriptword Function(
             string name,
             params object[] parameters)
         {
-            var scriptword = new BdoScriptword(ScriptItemKinds.Function);
+            var scriptword = NewWord(ScriptItemKinds.Function);
             scriptword.WithName(name);
 
             var index = 0;
             foreach (var param in parameters)
             {
-                scriptword.AddParameter(param);
+                scriptword.InsertData(param);
                 index++;
             }
 
@@ -92,9 +101,9 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="word"></param>
-        /// <param name="name"></param>
-        /// <param name="parameters"></param>
+        /// <param key="word"></param>
+        /// <param key="name"></param>
+        /// <param key="parameters"></param>
         /// <returns></returns>
         public static BdoScriptword Function(
             this BdoScriptword word,
@@ -104,7 +113,7 @@ namespace BindOpen.Extensions.Scripting
             if (word != null)
             {
                 var subWord = Function(name, parameters);
-                word.WithSubScriptword(subWord);
+                word.WithChild(subWord);
             }
 
             return word;

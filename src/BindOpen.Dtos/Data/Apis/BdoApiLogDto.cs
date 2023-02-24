@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Items;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -11,13 +10,21 @@ namespace BindOpen.Data.Apis
     /// </summary>
     [XmlType("ApiLogDto", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot(ElementName = "log", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class BdoApiLogDto : NamedDataItemDto
+    public class BdoApiLogDto : IDto
     {
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// Name of this instance.
+        /// </summary>
+        [JsonPropertyName("name")]
+        [XmlAttribute("name")]
+        [DefaultValue(null)]
+        public string Name { get; set; }
 
         /// <summary>
         /// The display name of this instance.

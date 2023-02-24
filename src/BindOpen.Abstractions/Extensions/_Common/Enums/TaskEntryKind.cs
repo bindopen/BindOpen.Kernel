@@ -49,7 +49,7 @@ namespace BindOpen.Extensions
         /// <summary>
         /// Returns the title of the specified entry kind.
         /// </summary>
-        /// <param name="taskEntryKind">The entry kind to consider.</param>
+        /// <param key="taskEntryKind">The entry kind to consider.</param>
         /// <returns>The result object.</returns>
         public static string GetTitle(this TaskEntryKind taskEntryKind)
         {

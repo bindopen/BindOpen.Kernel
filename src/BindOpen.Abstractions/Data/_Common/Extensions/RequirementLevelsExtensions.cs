@@ -9,7 +9,7 @@
         /// <summary>
         /// Indicates whether the specified requirement level means that it is possible.
         /// </summary>
-        /// <param name="requirementLevel">The requirement level to consider.</param>
+        /// <param key="requirementLevel">The requirement level to consider.</param>
         /// <returns>The result object.</returns>
         public static bool IsPossible(this RequirementLevels requirementLevel)
         {

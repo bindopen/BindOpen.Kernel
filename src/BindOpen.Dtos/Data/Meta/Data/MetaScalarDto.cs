@@ -33,12 +33,26 @@ namespace BindOpen.Data.Meta
         public List<string> Items { get; set; }
 
         /// <summary>
+        /// Indicates whether the entities property must be ignored.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public bool ItemsSpecified => Items?.Count > 0;
+
+        /// <summary>
         /// The specification of this instance.
         /// </summary>
         [JsonPropertyName("specs")]
         [XmlArray("specs")]
         [XmlArrayItem("spec")]
         public List<ScalarSpecDto> Specs { get; set; }
+
+        /// <summary>
+        /// Indicates whether the entities property must be ignored.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public bool SpecsSpecified => Specs?.Count > 0;
 
         #endregion
 
@@ -49,7 +63,7 @@ namespace BindOpen.Data.Meta
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the ScalarElementDto class.
+        /// Initializes a new instance of the MetaScalarDto class.
         /// </summary>
         public MetaScalarDto()
         {

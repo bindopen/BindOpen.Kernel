@@ -8,7 +8,7 @@
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="poco">The poco to consider.</param>
+        /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static SpecDto ToDto(this IBdoSpec poco)
         {
@@ -16,9 +16,9 @@
 
             SpecDto dto = null;
 
-            if (poco is IBdoObjectSpec objSpec)
+            if (poco is IBdoObjectSpec objectSpec)
             {
-                return objSpec.ToDto();
+                return objectSpec.ToDto();
             }
             else if (poco is IBdoScalarSpec scalarSpec)
             {
@@ -31,9 +31,10 @@
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="dto">The DTO to consider.</param>
+        /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoSpec ToPoco(this SpecDto dto)
+        public static IBdoSpec ToPoco(
+            this SpecDto dto)
         {
             if (dto == null) return null;
 

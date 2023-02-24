@@ -5,7 +5,7 @@ namespace BindOpen.Data.Conditions
     /// <summary>
     /// 
     /// </summary>
-    public interface ICondition : IBdoItem
+    public interface ICondition : IBdoNotMetableItem
     {
         /// <summary>
         /// 
@@ -15,7 +15,7 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="value"></param>
+        /// <param key="value"></param>
         /// <returns></returns>
         ICondition AsTrue(bool value)
         {

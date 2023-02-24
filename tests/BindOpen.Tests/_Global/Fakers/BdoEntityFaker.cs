@@ -6,8 +6,8 @@ namespace BindOpen.Tests
 {
     public static class BdoEntityFaker
     {
-        public static readonly string XmlFilePath = GlobalVariables.WorkingFolder + "Entity.xml";
-        public static readonly string JsonFilePath = GlobalVariables.WorkingFolder + "Entity.json";
+        public static readonly string XmlFilePath = Tests.WorkingFolder + "Entity.xml";
+        public static readonly string JsonFilePath = Tests.WorkingFolder + "Entity.json";
 
         public static dynamic Fake()
         {

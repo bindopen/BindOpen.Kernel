@@ -12,7 +12,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Get the key values from the specified string.
         /// </summary>
-        /// <param name="st">The string to consider.</param>
+        /// <param key="st">The string to consider.</param>
         /// <returns>Returns the added string items.</returns>
         public static List<KeyValuePair<string, string>> ToKeyValues(this string st)
         {
@@ -34,9 +34,9 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="namePreffix"></param>
-        /// <param name="asClone"></param>
+        /// <param key="name"></param>
+        /// <param key="namePreffix"></param>
+        /// <param key="asClone"></param>
         /// <returns></returns>
         public static string NewName(
             string name,

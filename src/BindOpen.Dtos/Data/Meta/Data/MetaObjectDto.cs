@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using BindOpen.Data.Items;
+using BindOpen.Extensions.Scripting;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml;
@@ -26,7 +28,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         [JsonPropertyName("subDataSet")]
         [XmlElement("subDataSet")]
-        public MetaListDto SubDataSet { get; set; }
+        public MetaSetDto SubDataSet { get; set; }
 
         /// <summary>
         /// The class full name of this instance.
@@ -42,18 +44,29 @@ namespace BindOpen.Data.Meta
         [JsonPropertyName("definition")]
         [XmlAttribute("definition")]
         [DefaultValue("")]
-        public string DefinitionUniqueId { get; set; }
+        public string DefinitionUniqueName { get; set; }
 
         // --------------------------------------------------
 
         /// <summary>
+        /// The value of this instance.
+        /// </summary>
+        [JsonPropertyName("item")]
+        [XmlElement("item.datasource", Type = typeof(DatasourceDto))]
+        [XmlElement("item.dictionary", Type = typeof(DictionaryDto))]
+        [XmlElement("item.expression", Type = typeof(ExpressionDto))]
+        [XmlElement("item.filter", Type = typeof(StringFilterDto))]
+        public BdoItemDto Item { get; set; }
+
+        /// <summary>
         /// The elements of this instance.
         /// </summary>
-        [JsonPropertyName("elements")]
-        [XmlArray("elements")]
-        [XmlArrayItem("object", Type = typeof(MetaObjectDto))]
-        [XmlArrayItem("scalar", Type = typeof(MetaScalarDto))]
-        public List<MetaDataDto> Elements { get; set; }
+        [JsonPropertyName("items")]
+        [XmlElement("set", Type = typeof(MetaSetDto))]
+        [XmlElement("object", Type = typeof(MetaObjectDto))]
+        [XmlElement("scalar", Type = typeof(MetaScalarDto))]
+        [XmlElement("scriptword", Type = typeof(ScriptwordDto))]
+        public List<MetaDataDto> MetaItems { get; set; }
 
         // Specification -----------------------
 
@@ -73,7 +86,7 @@ namespace BindOpen.Data.Meta
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the CollectionElementDto class.
+        /// Initializes a new instance of the MetaObjectDto class.
         /// </summary>
         public MetaObjectDto()
         {

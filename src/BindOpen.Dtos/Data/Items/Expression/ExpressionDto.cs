@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Configuration;
+﻿using BindOpen.Extensions.Scripting;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -9,7 +9,7 @@ namespace BindOpen.Data.Items
     /// </summary>
     [XmlType("Expression", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot(ElementName = "expression", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class ExpressionDto
+    public class ExpressionDto : BdoItemDto
     {
         // ------------------------------------------
         // PROPERTIES
@@ -28,7 +28,7 @@ namespace BindOpen.Data.Items
         /// The kind of this instance.
         /// </summary>
         [JsonPropertyName("kind")]
-        [XmlElement("kind")]
+        [XmlAttribute("kind")]
         public BdoExpressionKind Kind { get; set; } = BdoExpressionKind.Auto;
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace BindOpen.Data.Items
         /// </summary>
         [JsonPropertyName("word")]
         [XmlElement("word")]
-        public ConfigurationDto Word { get; set; }
+        public ScriptwordDto Word { get; set; }
 
         #endregion
 

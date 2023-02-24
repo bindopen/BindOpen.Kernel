@@ -8,14 +8,14 @@
             <summary>
             
             </summary>
-            <param name="data"></param>
+            <param key="data"></param>
             <returns></returns>
         </member>
         <member name="M:BindOpen.Tests.Extensions.BdoConnectorTests.CreateConnector(System.Object)">
             <summary>
             
             </summary>
-            <param name="data"></param>
+            <param key="data"></param>
             <returns></returns>
         </member>
         <member name="T:BindOpen.Tests.Extensions.ConnectionFake">
@@ -27,7 +27,7 @@
             <summary>
             Instantiates a new instance of the ConnectionFake class.
             </summary>
-            <param name="connector">The connector to consider.</param>
+            <param key="connector">The connector to consider.</param>
         </member>
         <member name="M:BindOpen.Tests.Extensions.ConnectionFake.Connect(BindOpen.Logging.IBdoLog)">
             <summary>
@@ -70,7 +70,7 @@
             <summary>
             Creates a new connection.
             </summary>
-            <param name="log">The log to consider.</param>
+            <param key="log">The log to consider.</param>
         </member>
         <member name="T:BindOpen.Tests.Extensions.EntityFake">
             <summary>
@@ -111,14 +111,14 @@
             <summary>
             Instantiates a new instance of the EntityFake class.
             </summary>
-            <param name="path">The path of the instance.</param>
+            <param key="path">The path of the instance.</param>
         </member>
         <member name="M:BindOpen.Tests.Extensions.EntityFake.#ctor(System.String,System.String)">
             <summary>
             Instantiates a new instance of the TestEntity class.
             </summary>
-            <param name="fileName">The file name of the instance.</param>
-            <param name="folderPath">The folder path of the instance.</param>
+            <param key="fileName">The file name of the instance.</param>
+            <param key="folderPath">The folder path of the instance.</param>
         </member>
         <member name="M:BindOpen.Tests.Extensions.EntityFake.ToString">
             <summary>

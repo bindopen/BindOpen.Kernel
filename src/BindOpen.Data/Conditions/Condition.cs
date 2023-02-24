@@ -36,7 +36,7 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Instantiates a new instance of the Condition class.
         /// </summary>
-        /// <param name="trueValue">The true value to consider.</param>
+        /// <param key="trueValue">The true value to consider.</param>
         protected Condition(bool trueValue) : base()
         {
             this.TrueValue = trueValue;

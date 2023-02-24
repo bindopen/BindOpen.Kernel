@@ -1,17 +1,20 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Items;
+using BindOpen.Dtos.Json;
+using BindOpen.Dtos.Xml;
+using BindOpen.Extensions.Scripting;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Tests.IO.Meta
+namespace BindOpen.Tests.IO.Data
 {
     [TestFixture, Order(210)]
     public class ExpressionIOTests
     {
-        private readonly string _filePath_xml = GlobalVariables.WorkingFolder + "DataExpression.xml";
-        private readonly string _filePath_json = GlobalVariables.WorkingFolder + "DataExpression.json";
+        private readonly string _filePath_xml = Tests.WorkingFolder + "DataExpression.xml";
+        private readonly string _filePath_json = Tests.WorkingFolder + "DataExpression.json";
         dynamic _valueSet;
         private IBdoExpression _exp = null;
 
@@ -42,7 +45,8 @@ namespace BindOpen.Tests.IO.Meta
         {
             _exp = BdoData.NewExpression(
                 _valueSet.Literal as string,
-                _valueSet.ExpressionKind as BdoExpressionKind? ?? BdoExpressionKind.Auto);
+                _valueSet.ExpressionKind as BdoExpressionKind? ?? BdoExpressionKind.Auto)
+                .WithWord(BdoScript.Func("Fun1").Func("Fun2", BdoScript.Var("var1")));
         }
 
         // Xml
@@ -56,7 +60,7 @@ namespace BindOpen.Tests.IO.Meta
             }
 
             var isSaved = _exp.ToDto().SaveXml(_filePath_xml);
-            Assert.That(isSaved, "Element set saving failed");
+            Assert.That(isSaved, "Expression saving failed");
         }
 
         [Test, Order(4)]
@@ -82,7 +86,7 @@ namespace BindOpen.Tests.IO.Meta
             }
 
             var isSaved = _exp.ToDto().SaveJson(_filePath_json);
-            Assert.That(isSaved, "Element set saving failed");
+            Assert.That(isSaved, "Expression saving failed");
         }
 
         [Test, Order(6)]

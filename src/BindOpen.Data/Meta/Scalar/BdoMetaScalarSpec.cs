@@ -6,7 +6,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a scalar element specification.
     /// </summary>
-    public class BdoMetaScalarSpec : BdoSpec, IBdoScalarSpec
+    public class BdoScalarSpec : BdoSpec, IBdoScalarSpec
     {
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -17,7 +17,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Initializes a new instance of the ScalarElementSpec class.
         /// </summary>
-        public BdoMetaScalarSpec() : base()
+        public BdoScalarSpec() : base()
         {
         }
 
@@ -35,7 +35,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone(params string[] areas)
         {
-            var spec = base.Clone(areas) as BdoMetaScalarSpec;
+            var spec = base.Clone(areas) as BdoScalarSpec;
             return spec;
         }
 

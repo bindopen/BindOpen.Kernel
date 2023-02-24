@@ -17,7 +17,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaList Detail { get; set; }
+        IBdoMetaSet Detail { get; set; }
 
         /// <summary>
         /// 
@@ -72,7 +72,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="status"></param>
+        /// <param key="status"></param>
         void End(ProcessExecutionStatus status = ProcessExecutionStatus.Completed);
 
         /// <summary>

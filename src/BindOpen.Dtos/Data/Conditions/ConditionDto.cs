@@ -44,7 +44,7 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Instantiates a new instance of the BusinessCondition class.
         /// </summary>
-        /// <param name="trueValue">The true value to consider.</param>
+        /// <param key="trueValue">The true value to consider.</param>
         protected ConditionDto(bool trueValue) : base()
         {
             this.TrueValue = trueValue;

@@ -10,7 +10,7 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="assemblyFileName"></param>
+        /// <param key="assemblyFileName"></param>
         public static T WithFileName<T>(
             this T obj,
             string assemblyFileName)
@@ -26,15 +26,15 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="definitionUniqueId"></param>
-        public static T WithDefinitionUniqueId<T>(
+        /// <param key="definitionUniqueName"></param>
+        public static T WithDefinitionUniqueName<T>(
             this T obj,
-            string definitionUniqueId)
+            string definitionUniqueName)
             where T : IBdoAssemblyReference
         {
             if (obj != null)
             {
-                obj.DefinitionUniqueId = definitionUniqueId;
+                obj.DefinitionUniqueName = definitionUniqueName;
             }
             return obj;
         }

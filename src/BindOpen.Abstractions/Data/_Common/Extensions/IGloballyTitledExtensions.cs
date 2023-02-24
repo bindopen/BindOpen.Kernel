@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Items;
 
 namespace BindOpen.Data
 {
@@ -10,7 +11,7 @@ namespace BindOpen.Data
         public static T WithTitle<T>(
             this T obj,
             IBdoDictionary dictionary)
-            where T : IGloballyTitled
+            where T : IBdoTitled
         {
             if (obj != null)
             {
@@ -24,15 +25,15 @@ namespace BindOpen.Data
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="obj"></param>
-        /// <param name="key"></param>
-        /// <param name="defaultKey"></param>
+        /// <param key="obj"></param>
+        /// <param key="key"></param>
+        /// <param key="defaultKey"></param>
         /// <returns></returns>
         public static string GetTitleText<T>(
             this T obj,
             string key = StringHelper.__Star,
             string defaultKey = StringHelper.__Star)
-            where T : IGloballyTitled
+            where T : IBdoTitled
         {
             return obj?.Title?[key, defaultKey];
         }

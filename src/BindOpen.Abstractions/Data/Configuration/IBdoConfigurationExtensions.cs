@@ -11,7 +11,7 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ids"></param>
+        /// <param key="ids"></param>
         /// <returns></returns>
         public static T Using<T>(
             this T obj,
@@ -28,15 +28,15 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="detail"></param>
-        public static T WithDefinitionUniqueId<T>(
+        /// <param key="detail"></param>
+        public static T WithDefinitionUniqueName<T>(
             this T obj,
-            string definitionUniqueId)
+            string definitionUniqueName)
             where T : IBdoConfiguration
         {
             if (obj != null)
             {
-                obj.DefinitionUniqueId = definitionUniqueId;
+                obj.DefinitionUniqueName = definitionUniqueName;
             }
             return obj;
         }

@@ -1,4 +1,5 @@
-﻿using BindOpen.Logging;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Linq;
 namespace BindOpen.Data.Meta
 {
     /// <summary>
-    /// This class represents a scalar element that is an element whose items are scalars.
+    /// This class represents a scalar meta that is an meta whose items are scalars.
     /// </summary>
     public class BdoMetaScalar :
         TBdoMetaData<IBdoMetaScalar, IBdoScalarSpec, object>,
@@ -23,17 +24,39 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Converts from string.
         /// </summary>
-        /// <param name="st">The string to consider.</param>
+        /// <param key="st">The string to consider.</param>
         public static explicit operator BdoMetaScalar(string st)
-            => BdoMeta.NewScalar(DataValueTypes.Any, st) as BdoMetaScalar;
+            => BdoMeta.NewScalar(DataValueTypes.Any, st);
 
         /// <summary>
         /// Converts to string.
         /// </summary>
-        /// <param name="element">The element to consider.</param>
-        public static explicit operator string(BdoMetaScalar element)
+        /// <param key="meta">The meta to consider.</param>
+        public static explicit operator string(BdoMetaScalar meta)
         {
-            return element?.ToString();
+            return meta?.ToString();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="items"></param>
+        public static implicit operator BdoMetaScalar((string Name, object Value) item)
+        {
+            var meta = BdoMeta.NewScalar(item.Name, item.Value);
+
+            return meta;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="items"></param>
+        public static implicit operator BdoMetaScalar((string Name, DataValueTypes ValueType, object Value) item)
+        {
+            var meta = BdoMeta.NewScalar(item.Name, item.ValueType, item.Value);
+
+            return meta;
         }
 
         #endregion
@@ -54,8 +77,8 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Initializes a new instance of the ScalarElement class.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="id">The ID to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="id">The ID to consider.</param>
         public BdoMetaScalar(string name = null, string id = null)
             : base(name, "scalar_", id)
         {
@@ -82,7 +105,7 @@ namespace BindOpen.Data.Meta
         /// <returns></returns>
         public override string ToString()
         {
-            return _data.ToString(ValueType);
+            return _data.ToString(DataValueType);
         }
 
         // Data ----------------------------
@@ -90,12 +113,12 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Sets the item of this instance.
         /// </summary>
-        /// <param name="item">The string item of this instance.</param>
+        /// <param key="item">The string item of this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         /// <returns>Returns True if the specified has been well added.</returns>
         public IBdoMetaScalar WithData(object obj)
         {
-            _data = obj.ToBdoData(GetSpec());
+            _data = obj.ToBdoData();
 
             return this;
         }
@@ -103,12 +126,12 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Sets the item of this instance.
         /// </summary>
-        /// <param name="item">The string item of this instance.</param>
+        /// <param key="item">The string item of this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         /// <returns>Returns True if the specified has been well added.</returns>
         public IBdoMetaScalar WithDataList(params object[] objs)
         {
-            _data = objs.ToBdoData(GetSpec()).ToObjectList();
+            _data = objs.ToBdoData().ToObjectList();
 
             return this;
         }
@@ -116,13 +139,13 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Returns the item object of this instance.
         /// </summary>
-        /// <param name="log">The log to populate.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
+        /// <param key="log">The log to populate.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         public override object GetData(
             IBdoScope scope = null,
-            IBdoMetaList varSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             var list = GetDataList(scope, varSet, log);
@@ -132,16 +155,16 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Returns the item object of this instance.
         /// </summary>
-        /// <param name="log">The log to populate.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
+        /// <param key="log">The log to populate.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public override Q GetData<Q>(
+        public override T GetData<T>(
             IBdoScope scope = null,
-            IBdoMetaList varSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            var list = GetDataList<Q>(scope, varSet, log);
+            var list = GetDataList<T>(scope, varSet, log);
             if (list == null)
             {
                 return default;
@@ -153,14 +176,14 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Returns the item object of this instance.
         /// </summary>
-        /// <param name="log">The log to populate.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
+        /// <param key="log">The log to populate.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         public object GetData(
             int index,
             IBdoScope scope = null,
-            IBdoMetaList varSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             var obj = GetData<object>(index, scope, varSet, log); ;
@@ -170,14 +193,14 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Returns the item object of this instance.
         /// </summary>
-        /// <param name="log">The log to populate.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
+        /// <param key="log">The log to populate.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         public Q GetData<Q>(
             int index,
             IBdoScope scope = null,
-            IBdoMetaList varSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             var list = GetDataList<Q>(scope, varSet, log); ;
@@ -188,13 +211,13 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Returns the item object of this instance.
         /// </summary>
-        /// <param name="log">The log to populate.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
+        /// <param key="log">The log to populate.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         public List<object> GetDataList(
             IBdoScope scope = null,
-            IBdoMetaList varSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             var obj = DataObject(scope, varSet, log);
@@ -206,13 +229,13 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Returns the item object of this instance.
         /// </summary>
-        /// <param name="log">The log to populate.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
+        /// <param key="log">The log to populate.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         public List<Q> GetDataList<Q>(
             IBdoScope scope = null,
-            IBdoMetaList varSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             var list = GetDataList(scope, varSet, log);

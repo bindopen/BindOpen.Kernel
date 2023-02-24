@@ -21,16 +21,16 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="dataSource"></param>
-        /// <param name="log"></param>
+        /// <param key="dataSource"></param>
+        /// <param key="log"></param>
         /// <returns></returns>
         IBdoConfiguration DetectFormat(IBdoDatasource dataSource, ref IBdoLog log);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="documentDataItem"></param>
-        /// <param name="relativePath"></param>
+        /// <param key="documentDataItem"></param>
+        /// <param key="relativePath"></param>
         /// <returns></returns>
         IBdoLog Update(IBdoDocument documentDataItem, string relativePath = "");
     }

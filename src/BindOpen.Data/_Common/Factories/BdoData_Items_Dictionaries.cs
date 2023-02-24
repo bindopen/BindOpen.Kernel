@@ -21,7 +21,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Instantiates a new instance of the DictionaryDataItem class specifying the values.
         /// </summary>
-        /// <param name="values">The values to consider.</param>
+        /// <param key="values">The values to consider.</param>
         public static BdoDictionary NewDictionary(params KeyValuePair<string, string>[] pairs)
         {
             var dico = new BdoDictionary();
@@ -33,7 +33,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Instantiates a new instance of the DictionaryDataItem class specifying the values.
         /// </summary>
-        /// <param name="values">The values to consider.</param>
+        /// <param key="values">The values to consider.</param>
         public static BdoDictionary NewDictionary(params (string Key, string Value)[] pairs)
         {
             var dico = new BdoDictionary();
@@ -48,7 +48,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Instantiates a new instance of the DictionaryDataItem class specifying the values.
         /// </summary>
-        /// <param name="values">The values to consider.</param>
+        /// <param key="values">The values to consider.</param>
         public static BdoDictionary NewDictionary(string text)
         {
             var dico = new BdoDictionary();
@@ -60,7 +60,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Instantiates a new instance of the DictionaryDataItem class specifying the values.
         /// </summary>
-        /// <param name="values">The values to consider.</param>
+        /// <param key="values">The values to consider.</param>
         public static KeyValuePair<string, string> NewKeyPair(string name, string value)
         {
             var pair = new KeyValuePair<string, string>(name, value);

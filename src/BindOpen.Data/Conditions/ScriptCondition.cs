@@ -23,8 +23,8 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Instantiates a new instance of the ScriptCondition class.
         /// </summary>
-        /// <param name="trueValue">The true value to consider.</param>
-        /// <param name="exp">The exp to consider.</param>
+        /// <param key="trueValue">The true value to consider.</param>
+        /// <param key="exp">The exp to consider.</param>
         public ScriptCondition(bool trueValue, IBdoExpression exp) : base(trueValue)
         {
             Expression = exp;
@@ -67,7 +67,7 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="exp"></param>
+        /// <param key="exp"></param>
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
         public IScriptCondition WithExpression(IBdoExpression exp)

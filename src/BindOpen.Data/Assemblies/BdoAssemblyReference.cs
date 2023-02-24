@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Items;
 
 namespace BindOpen.Data.Assemblies
 {
@@ -24,8 +25,8 @@ namespace BindOpen.Data.Assemblies
         /// <summary>
         /// Instantiates a new instance of the BdoAssemblyReference class.
         /// </summary>
-        /// <param name="name">The library name to consider.</param>
-        /// <param name="version">The library version to consider.</param>
+        /// <param key="name">The library name to consider.</param>
+        /// <param key="version">The library version to consider.</param>
         public BdoAssemblyReference(
             string name,
             string version = null) : this()
@@ -45,7 +46,7 @@ namespace BindOpen.Data.Assemblies
         /// <summary>
         /// The library name of this instance.
         /// </summary>
-        public string DefinitionUniqueId { get; set; }
+        public string DefinitionUniqueName { get; set; }
 
         /// <summary>
         /// The library name of this instance.

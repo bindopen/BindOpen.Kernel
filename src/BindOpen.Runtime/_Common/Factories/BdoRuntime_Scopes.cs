@@ -11,7 +11,7 @@ namespace BindOpen.Runtime
         /// <summary>
         /// Creates a new scope.
         /// </summary>
-        /// <param name="appDomain">The application domain to consider.</param>
+        /// <param key="appDomain">The application domain to consider.</param>
         /// <returns>The log of check log.</returns>
         public static IBdoScope NewScope(AppDomain appDomain = null)
         {

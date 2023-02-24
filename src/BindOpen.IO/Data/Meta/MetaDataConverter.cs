@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
-using BindOpen.Data.References;
+using BindOpen.Extensions.Scripting;
 
 namespace BindOpen.Data.Meta
 {
@@ -12,7 +12,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="poco">The poco to consider.</param>
+        /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static MetaDataDto ToDto(
             this IBdoMetaData poco)
@@ -21,7 +21,11 @@ namespace BindOpen.Data.Meta
 
             MetaDataDto dto = null;
 
-            if (poco is IBdoMetaObject obj)
+            if (poco is IBdoScriptword script)
+            {
+                dto = BdoScriptwordConverter.ToDto(script);
+            }
+            else if (poco is IBdoMetaObject obj)
             {
                 dto = obj.ToDto();
             }
@@ -29,15 +33,14 @@ namespace BindOpen.Data.Meta
             {
                 dto = scalar.ToDto();
             }
-            else if (poco is IBdoMetaList set)
+            else if (poco is IBdoMetaSet set)
             {
                 dto = set.ToDto();
             }
 
             if (dto != null)
             {
-                dto.DataExpression = poco.Expression?.ToDto();
-                dto.DataReference = poco.Reference?.ToDto();
+                dto.DataExpression = poco.DataExpression?.ToDto();
             }
 
             return dto;
@@ -46,15 +49,20 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="dto">The DTO to consider.</param>
+        /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoMetaData ToPoco(this MetaDataDto dto)
+        public static IBdoMetaData ToPoco(
+            this MetaDataDto dto)
         {
             if (dto == null) return null;
 
             BdoMetaData poco = null;
 
-            if (dto is MetaObjectDto obj)
+            if (dto is ScriptwordDto script)
+            {
+                return script.ToPoco();
+            }
+            else if (dto is MetaObjectDto obj)
             {
                 return obj.ToPoco();
             }
@@ -62,9 +70,9 @@ namespace BindOpen.Data.Meta
             {
                 return scalar.ToPoco();
             }
-            else if (dto is MetaListDto set)
+            else if (dto is MetaSetDto list)
             {
-                return set.ToPoco();
+                return list.ToPoco();
             }
 
             return poco;

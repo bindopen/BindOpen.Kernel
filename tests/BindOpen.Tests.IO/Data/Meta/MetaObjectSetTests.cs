@@ -1,5 +1,8 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Meta.Reflection;
+using BindOpen.Dtos.Json;
+using BindOpen.Dtos.Xml;
 using BindOpen.Extensions.Modeling;
 using DeepEqual.Syntax;
 using NUnit.Framework;
@@ -10,10 +13,10 @@ namespace BindOpen.Tests.IO.Data
     [TestFixture, Order(201)]
     public class MetaObjectSetTests
     {
-        private readonly string _filePath_xml = GlobalVariables.WorkingFolder + "EntityElementSet.xml";
-        private readonly string _filePath_json = GlobalVariables.WorkingFolder + "EntityElementSet.json";
+        private readonly string _filePath_xml = Tests.WorkingFolder + "MetaObjectSet.xml";
+        private readonly string _filePath_json = Tests.WorkingFolder + "MetaObjectSet.json";
 
-        private BdoMetaList _metaSet;
+        private BdoMetaSet _metaSet;
 
         private object _obj1 = null;
         private object _obj2 = null;
@@ -27,7 +30,7 @@ namespace BindOpen.Tests.IO.Data
             _obj3 = ClassObjectFaker.Fake();
         }
 
-        private void Test(IBdoMetaList metaSet)
+        private void Test(IBdoMetaSet metaSet)
         {
             var obj1 = metaSet.GetData("object1");
             var obj2 = metaSet.GetData("object2");
@@ -49,7 +52,7 @@ namespace BindOpen.Tests.IO.Data
             //    BdoMeta.NewScalar("path", _testData.path1)));
 
             //        var metaEntity2 = BdoMeta.NewEntity("entity2", "tests.core$testEntity")
-            //            .With(new { path = _testData.path2 }).ToMetaList<BdoConfiguration>());
+            //            .With(new { path = _testData.path2 }).ToMetaSet<BdoConfiguration>());
             //        var metaEntity3 = new EntityFake(_testData.path3, _testData.folderPath3)?.ToMeta();
 
             //        var metaEntity4 = BdoExt.NewEntity<EntityFake>(
@@ -60,7 +63,7 @@ namespace BindOpen.Tests.IO.Data
             var meta2 = BdoMeta.NewObject("object2", _obj2);
             var meta3 = BdoMeta.NewObject("object3", _obj3);
 
-            _metaSet = BdoMeta.NewList(meta1, meta2, meta3);
+            _metaSet = BdoMeta.NewSet(meta1, meta2, meta3);
 
             Test(_metaSet);
         }
@@ -75,8 +78,8 @@ namespace BindOpen.Tests.IO.Data
                 CreateTest();
             }
 
-            var isSaved = _metaSet.ToDto().SaveXml(_filePath_xml);
-            Assert.That(isSaved, "Element set saving failed. ");
+            var isSaved = _metaSet.UpdateTree().ToDto().SaveXml(_filePath_xml);
+            Assert.That(isSaved, "Meta list saving failed. ");
         }
 
         [Test, Order(6)]
@@ -87,7 +90,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveXmlTest();
             }
 
-            var metaSet = XmlHelper.LoadXml<MetaListDto>(_filePath_xml).ToPoco();
+            var metaSet = XmlHelper.LoadXml<MetaSetDto>(_filePath_xml).ToPoco();
             Equals(metaSet, _metaSet);
         }
 
@@ -102,7 +105,7 @@ namespace BindOpen.Tests.IO.Data
             }
 
             var isSaved = _metaSet.ToDto().SaveJson(_filePath_json);
-            Assert.That(isSaved, "Element set saving failed. ");
+            Assert.That(isSaved, "Meta list saving failed. ");
         }
 
         [Test, Order(8)]
@@ -113,7 +116,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveJsonTest();
             }
 
-            var metaSet = JsonHelper.LoadJson<MetaListDto>(_filePath_json).ToPoco();
+            var metaSet = JsonHelper.LoadJson<MetaSetDto>(_filePath_json).ToPoco();
             Equals(metaSet, _metaSet);
         }
     }

@@ -17,21 +17,26 @@ namespace BindOpen.Data
         /// <summary>
         /// Indicates whether the specified update mode list contains the specified update mode.
         /// </summary>
-        /// <param name="updateModes">The specified update mode list to consider.</param>
-        /// <param name="updateMode">The specified update mode to consider.</param>
+        /// <param key="updateModes">The specified update mode list to consider.</param>
+        /// <param key="updateMode">The specified update mode to consider.</param>
         /// <returns></returns>
         public static bool Has(
             this UpdateModes[] updateModes,
-            UpdateModes updateMode)
+            params UpdateModes[] modes)
         {
-            return (updateModes.Aggregate((current, value) => current | value) & updateMode) == updateMode;
+            var b = modes?.Length > 0;
+            foreach (var mode in modes)
+            {
+                b &= (updateModes.Aggregate((current, value) => current | value) & mode) == mode;
+            }
+            return b;
         }
 
         /// <summary>
         /// Gets the specified list excluding the second specified list.
         /// </summary>
-        /// <param name="updateModes">The update modes to consider.</param>
-        /// <param name="excludingUpdateModes">The excluding update modes to consider.</param>
+        /// <param key="updateModes">The update modes to consider.</param>
+        /// <param key="excludingUpdateModes">The excluding update modes to consider.</param>
         /// <returns></returns>
         public static UpdateModes[] Excluding(
             this UpdateModes[] updateModes,
@@ -45,8 +50,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Gets the specified list excluding the secong specified list.
         /// </summary>
-        /// <param name="updateMode">The update mode to consider.</param>
-        /// <param name="excludingUpdateModes">The excluding update modes to consider.</param>
+        /// <param key="updateMode">The update mode to consider.</param>
+        /// <param key="excludingUpdateModes">The excluding update modes to consider.</param>
         /// <returns></returns>
         public static UpdateModes[] Excluding(
             this UpdateModes updateMode,

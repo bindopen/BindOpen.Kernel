@@ -1,5 +1,5 @@
 ﻿using BindOpen.Data.Items;
-using BindOpen.Data.References;
+using BindOpen.Extensions.Scripting;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml;
@@ -11,12 +11,14 @@ namespace BindOpen.Data.Meta
     /// This class represents a data element.
     /// </summary>
     [XmlType("MetaData", Namespace = "https://xsd.bindopen.org")]
-    [XmlInclude(typeof(MetaListDto))]
+    [XmlInclude(typeof(MetaSetDto))]
     [XmlInclude(typeof(MetaObjectDto))]
     [XmlInclude(typeof(MetaScalarDto))]
-    [JsonDerivedType(typeof(MetaListDto), "set")]
+    [XmlInclude(typeof(ScriptwordDto))]
+    [JsonDerivedType(typeof(MetaSetDto), "set")]
     [JsonDerivedType(typeof(MetaObjectDto), "object")]
     [JsonDerivedType(typeof(MetaScalarDto), "scalar")]
+    [JsonDerivedType(typeof(ScriptwordDto), "scripword")]
     public class MetaDataDto : IDto
     {
         // --------------------------------------------------
@@ -24,13 +26,6 @@ namespace BindOpen.Data.Meta
         // --------------------------------------------------
 
         #region Properties
-
-        /// <summary>
-        /// ID of this instance.
-        /// </summary>
-        [JsonPropertyName("id")]
-        [XmlAttribute("id")]
-        public string Id { get; set; }
 
         /// <summary>
         /// Name of this instance.
@@ -61,23 +56,16 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The itemization mode of this instance.
         /// </summary>
-        [JsonPropertyName("itemizationMode")]
-        [XmlElement("itemizationMode")]
-        [DefaultValue(DataItemizationMode.Value)]
-        public DataItemizationMode ItemizationMode = DataItemizationMode.Value;
+        [JsonPropertyName("dataMode")]
+        [XmlElement("dataMode")]
+        [DefaultValue(DataMode.Value)]
+        public DataMode DataMode = DataMode.Value;
 
         /// <summary>
-        /// Item reference of this instance.
+        /// The expression of this instance.
         /// </summary>
-        [JsonPropertyName("dataReference")]
-        [XmlElement("dataReference")]
-        public DataReferenceDto DataReference { get; set; }
-
-        /// <summary>
-        /// The script of this instance.
-        /// </summary>
-        [JsonPropertyName("dataExp")]
-        [XmlAttribute("dataExp")]
+        [JsonPropertyName("expression")]
+        [XmlElement("expression")]
         public ExpressionDto DataExpression { get; set; }
 
         /// <summary>
@@ -85,17 +73,17 @@ namespace BindOpen.Data.Meta
         /// </summary>
         [JsonPropertyName("valueType")]
         [XmlAttribute("valueType")]
-        [DefaultValue(DataValueTypes.Text)]
-        public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
-
-        // Properties -------------------------------
+        [DefaultValue(DataValueTypes.Any)]
+        public DataValueTypes DataValueType { get; set; } = DataValueTypes.Any;
 
         /// <summary>
-        /// Property detail of this instance.
+        /// Indicates whether the entities property must be ignored.
         /// </summary>
-        [JsonPropertyName("propertySet")]
-        [XmlElement("propertySet")]
-        public MetaListDto PropertySet { get; set; }
+        [JsonIgnore]
+        [XmlIgnore]
+        public bool DataValueTypeSpecified =>
+            !((this is MetaObjectDto && DataValueType == DataValueTypes.Object)
+            || (this is ScriptwordDto && DataValueType == DataValueTypes.Scriptword));
 
         #endregion
 

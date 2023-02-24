@@ -31,7 +31,7 @@ namespace BindOpen.Tests.Extensions
         public void InterpreteScriptNullTest()
         {
             BdoExpression exp = null;
-            var resultScript = GlobalVariables.ScriptInterpreter.Evaluate<bool?>(exp)?.ToString();
+            var resultScript = Tests.ScriptInterpreter.Evaluate<bool?>(exp)?.ToString();
 
             Assert.That(resultScript == null, "Bad script interpretation");
         }
@@ -39,7 +39,7 @@ namespace BindOpen.Tests.Extensions
         [Test, Order(2)]
         public void CreateVariableSetTest()
         {
-            var varSet = BdoMeta.NewList(
+            var varSet = BdoMeta.NewSet(
                 ("var1", "sample1"),
                 ("var2", 4.55));
 
@@ -61,12 +61,12 @@ namespace BindOpen.Tests.Extensions
         [Test, Order(4)]
         public void CreateWordFromScriptTest()
         {
-            var scriptword = BdoScript.CreateWord(_script1);
+            var scriptword = BdoScript.NewWordFromScript(_script1);
             Assert.That(
                 _scriptword1.Name.Equals(scriptword.Name, StringComparison.OrdinalIgnoreCase)
-                && _scriptword1.Parameters.Count == scriptword.Parameters.Count
-                && (_scriptword1.Parameters[1] as BdoScriptword)?.Name.Equals((scriptword.Parameters[1] as BdoScriptword)?.Name, StringComparison.OrdinalIgnoreCase) == true
-                && (_scriptword1.Parameters[1] as BdoScriptword)?.Parameters.Count == (scriptword.Parameters[1] as BdoScriptword)?.Parameters.Count,
+                && _scriptword1.Count == scriptword.Count
+                && (_scriptword1[1] as BdoScriptword)?.Name.Equals((scriptword[1] as BdoScriptword)?.Name, StringComparison.OrdinalIgnoreCase) == true
+                && (_scriptword1[1] as BdoScriptword)?.Count == (scriptword[1] as BdoScriptword)?.Count,
                 "Bad script interpretation");
         }
 

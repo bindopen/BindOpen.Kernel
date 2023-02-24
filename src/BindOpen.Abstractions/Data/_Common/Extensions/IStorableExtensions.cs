@@ -10,7 +10,7 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="date"></param>
+        /// <param key="date"></param>
         /// <returns></returns>
         public static T WithCreationDate<T>(
             this T obj,
@@ -28,7 +28,7 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="date"></param>
+        /// <param key="date"></param>
         /// <returns></returns>
         public static T WithLastModificationDate<T>(
             this T obj,

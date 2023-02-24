@@ -16,13 +16,13 @@
         /// <summary>
         /// Locks this instance.
         /// </summary>
-        /// <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
+        /// <param key="isRecursive">Indicates whether the protection is applied to sub objects.</param>
         ILockable Lock(bool isRecursive = true);
 
         /// <summary>
         /// Unlocks this instance.
         /// </summary>
-        /// <param name="isRecursive">Indicates whether the protection is applied to sub objects.</param>
+        /// <param key="isRecursive">Indicates whether the protection is applied to sub objects.</param>
         ILockable Unlock(bool isRecursive = true);
     }
 }

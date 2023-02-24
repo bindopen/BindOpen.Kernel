@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace BindOpen.Data
+namespace BindOpen.Data.Helpers
 {
 
     /// <summary>
@@ -12,8 +12,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Clones the specified data row into the specified data table.
         /// </summary>
-        /// <param name="dataRow">The data row to clone.</param>
-        /// <param name="dataTable">The data table that receives the cloned datatable.</param>
+        /// <param key="dataRow">The data row to clone.</param>
+        /// <param key="dataTable">The data table that receives the cloned datatable.</param>
         /// <returns>The cloned data row.</returns>
         public static DataRow CloneDataRow(DataRow dataRow, DataTable dataTable)
         {

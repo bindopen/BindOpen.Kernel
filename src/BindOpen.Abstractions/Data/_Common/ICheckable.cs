@@ -10,9 +10,9 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="isExistenceChecked"></param>
-        /// <param name="areas"></param>
-        /// <param name="log"></param>
+        /// <param key="isExistenceChecked"></param>
+        /// <param key="areas"></param>
+        /// <param key="log"></param>
         /// <returns></returns>
         void Check(bool isExistenceChecked = true, string[] areas = null, IBdoLog log = null);
 
@@ -20,10 +20,10 @@ namespace BindOpen.Data
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="isExistenceChecked"></param>
-        /// <param name="item"></param>
-        /// <param name="areas"></param>
-        /// <param name="log"></param>
+        /// <param key="isExistenceChecked"></param>
+        /// <param key="item"></param>
+        /// <param key="areas"></param>
+        /// <param key="log"></param>
         /// <returns></returns>
         void Check<T>(bool isExistenceChecked = true, T item = default, string[] areas = null, IBdoLog log = null);
     }

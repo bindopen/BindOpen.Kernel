@@ -60,7 +60,7 @@ namespace BindOpen.Extensions
         /// <summary>
         /// Indicates whether the specified element kind is a script word kind.
         /// </summary>
-        /// <param name="scriptItemKind">The kind to consider.</param>
+        /// <param key="scriptItemKind">The kind to consider.</param>
         /// <returns>Returns true if the specified element is a script word kind.</returns>
         public static bool IsFunctionOrVariable(this ScriptItemKinds scriptItemKind)
         {

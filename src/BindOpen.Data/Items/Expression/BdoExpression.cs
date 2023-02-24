@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Extensions.Scripting;
+﻿using BindOpen.Extensions.Scripting;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data.Items
@@ -18,25 +17,26 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// The value of this instance.
         /// </summary>
-        [BdoMeta]
+        [BdoProperty]
         [XmlElement("text")]
         public string Text { get; set; }
 
         /// <summary>
         /// The kind of this instance.
         /// </summary>
-        [BdoMeta]
+        [BdoProperty]
         [XmlElement("kind")]
         public BdoExpressionKind Kind { get; set; } = BdoExpressionKind.Auto;
 
         /// <summary>
         /// The script word of this instance.
         /// </summary>
-        [BdoMeta]
+        [BdoProperty]
         [XmlElement("word")]
         public IBdoScriptword Word { get; set; }
 
         #endregion
+
 
         // ------------------------------------------
         // CONSTRUCTORS
@@ -63,7 +63,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Converts from string.
         /// </summary>
-        /// <param name="st">The string to consider.</param>
+        /// <param key="st">The string to consider.</param>
         public static explicit operator string(BdoExpression exp)
         {
             return exp?.ToString();
@@ -71,32 +71,6 @@ namespace BindOpen.Data.Items
 
         #endregion
 
-
-        // ------------------------------------------
-        // MUTATORS
-        // ------------------------------------------
-
-        #region Mutators
-
-        public IBdoExpression AsScript()
-        {
-            Kind = BdoExpressionKind.Script;
-            return this;
-        }
-
-        public IBdoExpression AsLiteral()
-        {
-            Kind = BdoExpressionKind.Literal;
-            return this;
-        }
-
-        public IBdoExpression AsAuto()
-        {
-            Kind = BdoExpressionKind.Auto;
-            return this;
-        }
-
-        #endregion
 
         // ------------------------------------------
         // ACCCESSORS

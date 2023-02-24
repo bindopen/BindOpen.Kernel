@@ -13,7 +13,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Add a datasource depot into the specified data store executing the specified action.
         /// </summary>
-        /// <param name="dataStore">The data store to consider.</param>
+        /// <param key="dataStore">The data store to consider.</param>
         /// <returns>Returns the data store to update.</returns>
         public static IBdoDataStore RegisterDatasources(
             this IBdoDataStore dataStore) =>
@@ -22,8 +22,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Add a datasource depot into the specified data store executing the specified action.
         /// </summary>
-        /// <param name="dataStore">The data store to consider.</param>
-        /// <param name="action">The action to execute on the created depot.</param>
+        /// <param key="dataStore">The data store to consider.</param>
+        /// <param key="action">The action to execute on the created depot.</param>
         /// <returns>Returns the data store to update.</returns>
         public static IBdoDataStore RegisterDatasources(
             this IBdoDataStore dataStore,
@@ -33,8 +33,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Add a data source depot into the specified data store using the specified options.
         /// </summary>
-        /// <param name="dataStore">The data store to consider.</param>
-        /// <param name="action">The action to execute on the created depot.</param>
+        /// <param key="dataStore">The data store to consider.</param>
+        /// <param key="action">The action to execute on the created depot.</param>
         /// <returns>Returns the data store to update.</returns>
         public static IBdoDataStore RegisterDatasources(
             this IBdoDataStore dataStore,
@@ -71,7 +71,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Gets the datasource depot of the specified data store.
         /// </summary>
-        /// <param name="dataStore">The data store to consider.</param>
+        /// <param key="dataStore">The data store to consider.</param>
         /// <returns>Returns the datasource depot of the specified data store.</returns>
         public static IBdoSourceDepot GetDatasourceDepot(this IBdoDataStore dataStore)
         {
@@ -81,7 +81,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Gets the datasource depot of the specified scope.
         /// </summary>
-        /// <param name="scope">The data store to consider.</param>
+        /// <param key="scope">The data store to consider.</param>
         /// <returns>Returns the datasource depot of the specified scope.</returns>
         public static IBdoSourceDepot GetDatasourceDepot(this IBdoScope scope)
         {

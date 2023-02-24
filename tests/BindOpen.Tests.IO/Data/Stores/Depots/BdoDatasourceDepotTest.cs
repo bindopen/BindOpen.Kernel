@@ -1,18 +1,21 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Configuration;
 using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Stores;
+using BindOpen.Dtos.Json;
+using BindOpen.Dtos.Xml;
 using Bogus;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Tests.IO.Meta
+namespace BindOpen.Tests.IO.Data
 {
     [TestFixture, Order(101)]
     public class DatasourceDepotTests
     {
-        private readonly string _filePath_xml = GlobalVariables.WorkingFolder + "DatasourceDepot.xml";
-        private readonly string _filePath_json = GlobalVariables.WorkingFolder + "DatasourceDepot.json";
+        private readonly string _filePath_xml = Tests.WorkingFolder + "DatasourceDepot.xml";
+        private readonly string _filePath_json = Tests.WorkingFolder + "DatasourceDepot.json";
 
         private IBdoSourceDepot _datasourceDepot = null;
 
@@ -37,14 +40,14 @@ namespace BindOpen.Tests.IO.Meta
         private void TestBdoDatasourceDepot(IBdoSourceDepot depot)
         {
             Assert.That(depot.Has("smtp_default"), "Error with item existence check");
-            Assert.That(depot.Get("smtp_default")?.ConfigList?.Count == 1, "Bad config count");
-            Assert.That(depot.Get("smtp_default")?.Config()?.GetData<string>("host") == _testData.host, "Bad string");
-            Assert.That(depot.Get("smtp_default")?.Config()?.GetData<int>("port") == _testData.port, "Bad integer");
-            Assert.That(depot.Get("smtp_default")?.Config()?.GetData<bool>("isDefaultCredentialsUsed") == _testData.isDefaultCredentialsUsed, "Bad boolean");
-            Assert.That(depot.Get("smtp_default")?.Config()?.GetData<bool>("isSslEnabled") == _testData.isSslEnabled, "Bad boolean");
-            Assert.That(depot.Get("smtp_default")?.Config()?.GetData<int>("timeout") == _testData.timeout, "Bad integer");
-            Assert.That(depot.Get("smtp_default")?.Config()?.GetData<string>("login") == _testData.login, "Bad string");
-            Assert.That(depot.Get("smtp_default")?.Config()?.GetData<string>("password") == _testData.password, "Bad string");
+            Assert.That(depot.Get("smtp_default")?.Count == 1, "Bad config count");
+            Assert.That(depot.Get("smtp_default")?.Get()?.GetData<string>("host") == _testData.host, "Bad string");
+            Assert.That(depot["smtp_default"]?.Descendant<IBdoMetaData>(null, "port")?.GetData<int>() == _testData.port, "Bad integer");
+            Assert.That(depot.Descendant<IBdoConfiguration>("smtp_default", null)?.GetData<bool>("isDefaultCredentialsUsed") == _testData.isDefaultCredentialsUsed, "Bad boolean");
+            Assert.That(depot.Get("smtp_default")?.Get()?.GetData<bool>("isSslEnabled") == _testData.isSslEnabled, "Bad boolean");
+            Assert.That(depot.Descendant<IBdoMetaData>("smtp_default", null, "timeout")?.GetData<int>() == _testData.timeout, "Bad integer");
+            Assert.That(depot.Get("smtp_default")?.Get()?.GetData<string>("login") == _testData.login, "Bad string");
+            Assert.That(depot.Get("smtp_default")?.Get()?.GetData<string>("password") == _testData.password, "Bad string");
         }
 
         [Test, Order(1)]
@@ -78,7 +81,7 @@ namespace BindOpen.Tests.IO.Meta
             }
 
             var isSaved = _datasourceDepot.ToDto().SaveXml(_filePath_xml);
-            Assert.That(isSaved, "Element set saving failed");
+            Assert.That(isSaved, "Meta list saving failed");
 
             TestBdoDatasourceDepot(_datasourceDepot);
         }
@@ -107,7 +110,7 @@ namespace BindOpen.Tests.IO.Meta
             }
 
             var isSaved = _datasourceDepot.ToDto().SaveJson(_filePath_json);
-            Assert.That(isSaved, "Element set saving failed");
+            Assert.That(isSaved, "Meta list saving failed");
 
             TestBdoDatasourceDepot(_datasourceDepot);
         }

@@ -1,5 +1,5 @@
 ﻿using BindOpen.Data;
-using BindOpen.Runtime.Definition;
+using BindOpen.Runtime.Definitions;
 
 namespace BindOpen.Runtime
 {
@@ -13,10 +13,10 @@ namespace BindOpen.Runtime
         /// <summary>
         /// Creates the instance of the specified definition.
         /// </summary>
-        /// <param name="extensionDefinition">The extension definition DTO to consider.</param>
-        /// <param name="name">The name of the definition DTO to consider.</param>
+        /// <param key="extensionDefinition">The extension definition DTO to consider.</param>
+        /// <param key="name">The name of the definition DTO to consider.</param>
         public static BdoEntityDefinition NewEntityDefinition(
-            this IBdoExtensionDefinition extensionDefinition,
+            this IBdoPackageDefinition extensionDefinition,
             string name = null)
         {
             var definition = new BdoEntityDefinition(name, extensionDefinition);
@@ -30,10 +30,10 @@ namespace BindOpen.Runtime
         /// <summary>
         /// Creates the instance of the specified definition DTO.
         /// </summary>
-        /// <param name="extensionDefinition">The extension definition DTO to consider.</param>
-        /// <param name="name">The name of the definition DTO to consider.</param>
+        /// <param key="extensionDefinition">The extension definition DTO to consider.</param>
+        /// <param key="name">The name of the definition DTO to consider.</param>
         public static BdoConnectorDefinition NewConnectorDefinition(
-            this IBdoExtensionDefinition extensionDefinition,
+            this IBdoPackageDefinition extensionDefinition,
             string name = null)
         {
             var definition = new BdoConnectorDefinition(name, extensionDefinition);
@@ -47,10 +47,10 @@ namespace BindOpen.Runtime
         /// <summary>
         /// Creates the instance of the specified definition.
         /// </summary>
-        /// <param name="extensionDefinition">The extension definition DTO to consider.</param>
-        /// <param name="name">The name of the definition DTO to consider.</param>
+        /// <param key="extensionDefinition">The extension definition DTO to consider.</param>
+        /// <param key="name">The name of the definition DTO to consider.</param>
         public static BdoTaskDefinition NewTaskDefinition(
-            this IBdoExtensionDefinition extensionDefinition,
+            this IBdoPackageDefinition extensionDefinition,
             string name = null)
         {
             var definition = new BdoTaskDefinition(name, extensionDefinition);

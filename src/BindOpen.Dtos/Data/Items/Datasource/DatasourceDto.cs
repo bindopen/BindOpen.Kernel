@@ -11,7 +11,7 @@ namespace BindOpen.Data.Items
     /// </summary>
     [XmlType("Datasource", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot(ElementName = "datasource", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class DatasourceDto : IdentifiedNamedDataItemDto
+    public class DatasourceDto : BdoItemDto
     {
         // -----------------------------------------------
         // PROPERTIES
@@ -20,12 +20,27 @@ namespace BindOpen.Data.Items
         #region Properties
 
         /// <summary>
+        /// Name of this instance.
+        /// </summary>
+        [JsonPropertyName("name")]
+        [XmlAttribute("name")]
+        [DefaultValue(null)]
+        public string Name { get; set; }
+
+        /// <summary>
         /// The config items for this instance.
         /// </summary>
         [JsonPropertyName("config")]
         [XmlArray("config")]
         [XmlArrayItem("add")]
         public List<ConfigurationDto> Configurations { get; set; }
+
+        /// <summary>
+        /// Indicates whether the entities property must be ignored.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public bool ConfigurationsSpecified => Configurations?.Count > 0;
 
         /// <summary>
         /// Kind of the data module of this instance. 

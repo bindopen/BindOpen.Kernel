@@ -8,6 +8,6 @@
         /// <summary>
         /// Unique name of this instance.
         /// </summary>
-        string UniqueId { get; set; }
+        string UniqueName { get; set; }
     }
 }

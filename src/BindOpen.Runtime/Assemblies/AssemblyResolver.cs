@@ -17,7 +17,7 @@ namespace BindOpen.Runtime.Assemblies
         /// <summary>
         /// Resolves the domain i.e. initializes the assembly resolving routines.
         /// </summary>
-        /// <param name="appDomain">The domain to consider.</param>
+        /// <param key="appDomain">The domain to consider.</param>
         static public ResolveEventHandler Resolve(
             AppDomain appDomain)
         {

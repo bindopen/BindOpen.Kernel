@@ -11,7 +11,7 @@ namespace BindOpen.Data.Items
     /// <seealso cref="KeyValuePairDto"/>
     [XmlType("Dictionary", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot(ElementName = "dictionary", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class DictionaryDto : IDto
+    public class DictionaryDto : BdoItemDto
     {
         // --------------------------------------------------
         // PROPERTIES

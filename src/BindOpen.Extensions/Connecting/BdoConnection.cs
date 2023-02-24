@@ -1,5 +1,5 @@
-﻿using BindOpen.Logging;
-using BindOpen.Data.Items;
+﻿using BindOpen.Data.Items;
+using BindOpen.Logging;
 using System.Data;
 
 namespace BindOpen.Extensions.Connecting
@@ -58,7 +58,7 @@ namespace BindOpen.Extensions.Connecting
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
-        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
+        /// <param key="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
             if (_isDisposed)

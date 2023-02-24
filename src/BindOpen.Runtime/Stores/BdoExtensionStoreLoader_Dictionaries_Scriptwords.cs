@@ -1,11 +1,11 @@
-﻿using BindOpen.Extensions.Scripting;
-using BindOpen.Data.Items;
-using BindOpen.Runtime.Definition;
+﻿using BindOpen.Data.Items;
+using BindOpen.Extensions.Scripting;
+using BindOpen.Logging;
+using BindOpen.Runtime.Definitions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using BindOpen.Logging;
 
 namespace BindOpen.Runtime.Stores
 {
@@ -17,13 +17,13 @@ namespace BindOpen.Runtime.Stores
         /// <summary>
         /// Loads the script word dico from the specified assembly.
         /// </summary>
-        /// <param name="assembly">The assembly to consider.</param>
-        /// <param name="extensionDefinition">The extension definition to consider.</param>
-        /// <param name="log">The log to consider.</param>
+        /// <param key="assembly">The assembly to consider.</param>
+        /// <param key="extensionDefinition">The extension definition to consider.</param>
+        /// <param key="log">The log to consider.</param>
         /// <returns></returns>
         private int LoadScripwordDictionaryFromAssembly(
             Assembly assembly,
-            IBdoExtensionDefinition extensionDefinition,
+            IBdoPackageDefinition extensionDefinition,
             IBdoLog log = null)
         {
             if (assembly == null)
@@ -47,7 +47,7 @@ namespace BindOpen.Runtime.Stores
             {
                 var scriptwordDefinitions = new List<BdoScriptwordDefinition>();
 
-                var types = assembly.GetTypes().Where(p => p.GetCustomAttributes(typeof(BdoScriptwordDefinitionAttribute)).Any());
+                var types = assembly.GetTypes().Where(p => p.GetCustomAttributes(typeof(BdoScriptwordAttribute)).Any());
                 foreach (Type type in types)
                 {
                     // we feach methods

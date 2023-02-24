@@ -10,11 +10,11 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="detail"></param>
+        /// <param key="detail"></param>
         public static T WithDetail<T>(
             this T obj,
-            IBdoMetaList detail)
-            where T : IDetailed
+            IBdoMetaSet detail)
+            where T : IBdoDetailed
         {
             if (obj != null)
             {

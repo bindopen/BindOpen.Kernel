@@ -11,8 +11,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Creates the exp.
         /// </summary>
-        /// <param name="kind">The kind of exp to consider.</param>
-        /// <param name="text">The text to consider.</param>
+        /// <param key="kind">The kind of exp to consider.</param>
+        /// <param key="text">The text to consider.</param>
         /// <returns>Returns the created exp.</returns>
         public static BdoExpression NewExpression(
             string text,
@@ -26,7 +26,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Creates the exp.
         /// </summary>
-        /// <param name="word">The word of exp to consider.</param>
+        /// <param key="word">The word of exp to consider.</param>
         /// <returns>Returns the created exp.</returns>
         public static BdoExpression NewExpression(
             IBdoScriptword word)
@@ -41,8 +41,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Creates the exp.
         /// </summary>
-        /// <param name="kind">The kind of exp to consider.</param>
-        /// <param name="text">The text to consider.</param>
+        /// <param key="kind">The kind of exp to consider.</param>
+        /// <param key="text">The text to consider.</param>
         /// <returns>Returns the created exp.</returns>
         public static BdoExpression NewExp(
             string text,
@@ -52,7 +52,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Creates the exp.
         /// </summary>
-        /// <param name="word">The word of exp to consider.</param>
+        /// <param key="word">The word of exp to consider.</param>
         /// <returns>Returns the created exp.</returns>
         public static BdoExpression NewExp(
             IBdoScriptword word)

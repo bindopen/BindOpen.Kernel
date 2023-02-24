@@ -8,7 +8,7 @@
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="poco">The poco to consider.</param>
+        /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static ConditionDto ToDto(this ICondition poco)
         {
@@ -31,9 +31,10 @@
         /// <summary>
         /// Converts to POCO.
         /// </summary>
-        /// <param name="dto">The dto to consider.</param>
+        /// <param key="dto">The dto to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static ICondition ToPoco(this ConditionDto dto)
+        public static ICondition ToPoco(
+            this ConditionDto dto)
         {
             if (dto is AdvancedConditionDto advancedConditionDto)
             {

@@ -32,7 +32,7 @@ namespace BindOpen.Data.Items
         #endregion
 
         // --------------------------------------------------
-        // ACCESSORS
+        // IClonable Implementation
         // --------------------------------------------------
 
         #region Accessors
@@ -40,7 +40,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Clones this instance.
         /// </summary>
-        /// <param name="areas">The areas to consider.</param>
+        /// <param key="areas">The areas to consider.</param>
         /// <returns>Returns a cloned instance.</returns>
         public virtual object Clone(params string[] areas)
         {
@@ -50,7 +50,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Clones this instance.
         /// </summary>
-        /// <param name="areas">The areas to consider.</param>
+        /// <param key="areas">The areas to consider.</param>
         /// <returns>Returns a cloned instance.</returns>
         public T Clone<T>(params string[] areas) where T : class
         {
@@ -79,7 +79,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Disposes specifying whether this instance is disposing.
         /// </summary>
-        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
+        /// <param key="isDisposing">Indicates whether this instance is disposing</param>
         protected virtual void Dispose(bool isDisposing)
         {
             if (_isDisposed)
