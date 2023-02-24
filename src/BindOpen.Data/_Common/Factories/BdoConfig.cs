@@ -95,24 +95,15 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static IBdoConfiguration NewFrom<T>(
-            string name,
-            T obj)
-            where T : IBdoExtension, new()
+        public static IBdoConfiguration NewFrom(
+            IBdoExtension extension,
+            string name = null)
         {
-            var config = new BdoConfiguration()
-                .WithDefinitionUniqueName(name);
-            //.UpdateFrom(obj);
+            var config = New(name)
+                .WithDefinitionUniqueName(extension?.DefinitionUniqueName);
+            config.WithData(extension);
 
             return config;
         }
-
-        /// <summary>
-        /// Instantiates a new instance of the BdoBaseConfiguration class.
-        /// </summary>
-        /// <param key="items">The items to consider.</param>
-        public static IBdoConfiguration NewFrom<T>(T obj)
-            where T : IBdoExtension, new()
-            => NewFrom<T>(null, obj);
     }
 }

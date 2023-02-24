@@ -18,7 +18,9 @@ namespace BindOpen.Data
             where Q : class, ITBdoSet<T>, new()
             where T : IReferenced
         {
-            return (new Q()).With(items) as Q;
+            var q = new Q();
+            q.With(items);
+            return q;
         }
 
         /// <summary>

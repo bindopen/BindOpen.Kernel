@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BindOpen.Data.Meta;
 using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
 using System.Linq;

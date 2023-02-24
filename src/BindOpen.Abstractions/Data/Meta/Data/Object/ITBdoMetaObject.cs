@@ -8,8 +8,8 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoMetaObject :
-        ITBdoMetaData<IBdoMetaObject, IBdoObjectSpec, object>,
+    public interface ITBdoMetaObject<TItem> :
+        ITBdoMetaData<TItem, IBdoObjectSpec>,
         IBdoMetaSet
     {
         new void Clear();
@@ -18,7 +18,7 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         /// <param key="objs"></param>
-        IBdoMetaObject WithData(object obj);
+        ITBdoMetaObject<TItem> WithData(TItem obj);
 
         /// <summary>
         /// 
@@ -28,7 +28,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaObject WithClassReference(
+        ITBdoMetaObject<TItem> WithClassReference(
             IBdoClassReference reference);
 
         /// <summary>
