@@ -1,7 +1,7 @@
-﻿using System.ComponentModel;
+﻿using BindOpen.Data.Helpers;
+using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
-using BindOpen.Data;
 
 namespace BindOpen.Data.Items
 {
@@ -31,7 +31,7 @@ namespace BindOpen.Data.Items
         /// </summary>
         [JsonPropertyName("value")]
         [XmlText]
-        public string Content { get; set; }
+        public string Value { get; set; }
 
         #endregion
 

@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Configuration;
 using BindOpen.Data.Items;
 using NUnit.Framework;
 
@@ -18,7 +19,7 @@ namespace BindOpen.Tests.Data
         public void CreateDatasourceTest()
         {
             _datasource = BdoData.NewDatasource("name", DatasourceKind.Database)
-                .WithConfig(
+                .With(
                     BdoConfig.New("tests.core$test")
                         .WithConnectionString("connectionString"));
 
@@ -29,10 +30,10 @@ namespace BindOpen.Tests.Data
         public static void Test(IBdoDatasource source)
         {
             Assert.That(
-                source.GetConfig("tests.core$test") != null, "Datasource - Configuration not found");
+                source.Get("tests.core$test") != null, "Datasource - Configuration not found");
 
             Assert.That(
-                source.GetConfig("tests.core$test").GetConnectionString() == "connectionString", "Datasource - Configuration not found");
+                source.Get("tests.core$test").GetConnectionString() == "connectionString", "Datasource - Configuration not found");
         }
     }
 }

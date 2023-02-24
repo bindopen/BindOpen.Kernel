@@ -11,7 +11,7 @@ namespace BindOpen.Runtime.Scopes
     /// <summary>
     /// This interface defines an application scope.
     /// </summary>
-    public interface IBdoScope : IDisposable
+    public partial interface IBdoScope : IDisposable
     {
         /// <summary>
         /// The application domain.
@@ -34,15 +34,14 @@ namespace BindOpen.Runtime.Scopes
         IBdoDataContext Context { get; }
 
         /// <summary>
-        /// Creates a new script interpreter.
+        /// The data context.
         /// </summary>
-        /// <returns>Returns the new script interpreter.</returns>
-        IBdoScriptInterpreter NewScriptInterpreter();
+        IBdoScriptInterpreter Interpreter { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="reference"></param>
+        /// <param key="reference"></param>
         /// <returns></returns>
         Type CreateType(
             IBdoClassReference reference);
@@ -50,8 +49,8 @@ namespace BindOpen.Runtime.Scopes
         /// <summary>
         /// Loads the specified extensions.
         /// </summary>
-        /// <param name="references">The extension references to consider.</param>
-        /// <param name="log"></param>
+        /// <param key="references">The extension references to consider.</param>
+        /// <param key="log"></param>
         bool LoadExtensions(
             IBdoAssemblyReference[] references,
             IBdoLog log = null);
@@ -59,16 +58,16 @@ namespace BindOpen.Runtime.Scopes
         /// <summary>
         /// Loads the specified extensions.
         /// </summary>
-        /// <param name="references">The extension references to consider.</param>
+        /// <param key="references">The extension references to consider.</param>
         bool LoadExtensions(
             params IBdoAssemblyReference[] references);
 
         /// <summary>
         /// Loads the specified extensions.
         /// </summary>
-        /// <param name="loadOptionsAction">The load options action to consider.</param>
-        /// <param name="references">The extension references to consider.</param>
-        /// <param name="log"></param>
+        /// <param key="loadOptionsAction">The load options action to consider.</param>
+        /// <param key="references">The extension references to consider.</param>
+        /// <param key="log"></param>
         bool LoadExtensions(
             Func<IExtensionLoadOptions, bool> loadOptionsAction,
             IBdoAssemblyReference[] references,
@@ -77,8 +76,8 @@ namespace BindOpen.Runtime.Scopes
         /// <summary>
         /// Loads the specified extensions.
         /// </summary>
-        /// <param name="loadOptionsAction">The load options action to consider.</param>
-        /// <param name="references">The extension references to consider.</param>
+        /// <param key="loadOptionsAction">The load options action to consider.</param>
+        /// <param key="references">The extension references to consider.</param>
         bool LoadExtensions(
             Func<IExtensionLoadOptions, bool> loadOptionsAction,
             params IBdoAssemblyReference[] references);

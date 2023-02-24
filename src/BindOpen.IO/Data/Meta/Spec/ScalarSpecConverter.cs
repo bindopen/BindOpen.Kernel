@@ -13,7 +13,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="poco">The poco to consider.</param>
+        /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static ScalarSpecDto ToDto(this IBdoScalarSpec poco)
         {
@@ -23,7 +23,7 @@ namespace BindOpen.Data.Meta
             {
                 AccessibilityLevel = poco.AccessibilityLevel,
                 Aliases = poco.Aliases?.ToList(),
-                AvailableItemizationModes = poco.ItemizationModes?.ToList(),
+                AvailableValueModes = poco.ValueModes?.ToList(),
                 ConstraintStatement = poco.ConstraintStatement?.ToDto(),
                 InheritanceLevel = poco.InheritanceLevel,
                 IsAllocatable = poco.IsAllocatable,
@@ -43,18 +43,19 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="dto">The DTO to consider.</param>
+        /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoScalarSpec ToPoco(this ScalarSpecDto dto)
+        public static IBdoScalarSpec ToPoco(
+            this ScalarSpecDto dto)
         {
             if (dto == null) return null;
 
-            BdoMetaScalarSpec poco = new()
+            BdoScalarSpec poco = new()
             {
                 //AccessibilityLevel = dto.AccessibilityLevel,
                 //Aliases = dto.Aliases?.ToList(),
                 //AreaSpecifications = dto.AreaSpecifications.Select(q => q.ToPoco()).ToList(),
-                //AvailableItemizationModes = dto.AvailableItemizationModes?.ToList(),
+                //AvailableValueModes = dto.AvailableValueModes?.ToList(),
                 //ConstraintStatement = dto.ConstraintStatement?.ToPoco(),
                 //GroupId = dto.GroupId,
                 //InheritanceLevel = dto.InheritanceLevel,

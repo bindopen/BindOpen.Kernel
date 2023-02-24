@@ -10,11 +10,11 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
+        /// <param key="name"></param>
         public static T WithConfig<T>(
             this T obj,
             IBdoConfiguration config)
-            where T : IConfigurable
+            where T : IBdoConfigurable
         {
             if (obj != null)
             {

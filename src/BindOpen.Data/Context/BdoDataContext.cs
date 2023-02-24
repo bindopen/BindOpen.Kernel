@@ -58,7 +58,7 @@ namespace BindOpen.Data.Context
         /// <summary>
         /// Merges this instance with the specified data context.
         /// </summary>
-        /// <param name="dataContext">The data context to consider.</param>
+        /// <param key="dataContext">The data context to consider.</param>
         public IBdoDataContext Merge(IBdoDataContext dataContext)
         {
             if (dataContext != null)
@@ -108,10 +108,10 @@ namespace BindOpen.Data.Context
         /// <summary>
         /// Adds a new item to this instance.
         /// </summary>
-        /// <param name="name">Name of the item to add.</param>
-        /// <param name="item">Item to add.</param>
-        /// <param name="contextSectionName">Name of the context section to consider.</param>
-        /// <param name="persistenceLevel">Persistence level of the item to add.</param>
+        /// <param key="name">Name of the item to add.</param>
+        /// <param key="item">Item to add.</param>
+        /// <param key="contextSectionName">Name of the context section to consider.</param>
+        /// <param key="persistenceLevel">Persistence level of the item to add.</param>
         public IBdoDataContext AddItem(
             string name,
             object item,
@@ -137,8 +137,8 @@ namespace BindOpen.Data.Context
         /// <summary>
         /// Adds a new system item to this instance.
         /// </summary>
-        /// <param name="name">Name of the item to add.</param>
-        /// <param name="item">The item to consider.</param>
+        /// <param key="name">Name of the item to add.</param>
+        /// <param key="item">The item to consider.</param>
         public IBdoDataContext AddSystemItem(
             string name,
             object item)
@@ -151,9 +151,9 @@ namespace BindOpen.Data.Context
         /// <summary>
         /// Adds a new singleton item to this instance.
         /// </summary>
-        /// <param name="name">Name of the item to add.</param>
-        /// <param name="item">The item to consider.</param>
-        /// <param name="contextSectionName">Name of the context section to consider.</param>
+        /// <param key="name">Name of the item to add.</param>
+        /// <param key="item">The item to consider.</param>
+        /// <param key="contextSectionName">Name of the context section to consider.</param>
         public IBdoDataContext AddSingletonItem(
             string name,
             object item,
@@ -170,9 +170,9 @@ namespace BindOpen.Data.Context
         /// <summary>
         /// Adds a new scoped item to this instance.
         /// </summary>
-        /// <param name="name">Name of the item to add.</param>
-        /// <param name="item">The item to consider.</param>
-        /// <param name="contextSectionName">Name of the context section to consider.</param>
+        /// <param key="name">Name of the item to add.</param>
+        /// <param key="item">The item to consider.</param>
+        /// <param key="contextSectionName">Name of the context section to consider.</param>
         public IBdoDataContext AddScopedItem(
             string name,
             object item,
@@ -189,9 +189,9 @@ namespace BindOpen.Data.Context
         /// <summary>
         /// Adds a new transient item to this instance.
         /// </summary>
-        /// <param name="name">Name of the item to add.</param>
-        /// <param name="item">The item to consider.</param>
-        /// <param name="contextSectionName">Name of the context section to consider.</param>
+        /// <param key="name">Name of the item to add.</param>
+        /// <param key="item">The item to consider.</param>
+        /// <param key="contextSectionName">Name of the context section to consider.</param>
         public IBdoDataContext AddTransientItem(
             string name,
             object item,
@@ -208,7 +208,7 @@ namespace BindOpen.Data.Context
         /// <summary>
         /// Clears the specified items of this instance.
         /// </summary>
-        /// <param name="persistenceLevel">Persistence level of the item to add.</param>
+        /// <param key="persistenceLevel">Persistence level of the item to add.</param>
         public IBdoDataContext ClearItems(PersistenceLevels persistenceLevel = PersistenceLevels.Singleton)
         {
             switch (persistenceLevel)
@@ -235,8 +235,8 @@ namespace BindOpen.Data.Context
         /// <summary>
         /// Removes the singleton items of a specific type.
         /// </summary>
-        /// <param name="contextSectionName">Name of the context section to consider.</param>
-        /// <param name="persistenceLevel">The persistence level to consider.</param>
+        /// <param key="contextSectionName">Name of the context section to consider.</param>
+        /// <param key="persistenceLevel">The persistence level to consider.</param>
         public IBdoDataContext RemoveItems(
             string contextSectionName = null,
             PersistenceLevels persistenceLevel = PersistenceLevels.Singleton)
@@ -289,7 +289,7 @@ namespace BindOpen.Data.Context
         /// <summary>
         /// Returns a specific system item.
         /// </summary>
-        /// <param name="name">Name of the dynamic item to return.</param>
+        /// <param key="name">Name of the dynamic item to return.</param>
         /// <returns>The dynamic item with specified name and type.</returns>
         public object GetSystemItem(string name)
         {
@@ -299,8 +299,8 @@ namespace BindOpen.Data.Context
         /// <summary>
         /// Returns a specific singleton item.
         /// </summary>
-        /// <param name="name">Name of the dynamic item to return.</param>
-        /// <param name="contextSectionName">Name of the context section to consider.</param>
+        /// <param key="name">Name of the dynamic item to return.</param>
+        /// <param key="contextSectionName">Name of the context section to consider.</param>
         /// <returns>The dynamic item with specified name and type.</returns>
         public object GetSingletonItem(string name, string contextSectionName = null)
         {
@@ -311,8 +311,8 @@ namespace BindOpen.Data.Context
         /// <summary>
         /// Returns a specific scoped item.
         /// </summary>
-        /// <param name="name">Name of the dynamic item to return.</param>
-        /// <param name="contextSectionName">Name of the context section to consider.</param>
+        /// <param key="name">Name of the dynamic item to return.</param>
+        /// <param key="contextSectionName">Name of the context section to consider.</param>
         /// <returns>The dynamic item with specified name and type.</returns>
         public object GetScopedItem(string name, string contextSectionName = null)
         {
@@ -323,8 +323,8 @@ namespace BindOpen.Data.Context
         /// <summary>
         /// Returns a specific transient item.
         /// </summary>
-        /// <param name="name">Name of the dynamic item to return.</param>
-        /// <param name="contextSectionName">Name of the context section to consider.</param>
+        /// <param key="name">Name of the dynamic item to return.</param>
+        /// <param key="contextSectionName">Name of the context section to consider.</param>
         /// <returns>The dynamic item with specified name and type.</returns>
         public object GetTransientItem(string name, string contextSectionName = null)
         {
@@ -335,9 +335,9 @@ namespace BindOpen.Data.Context
         /// <summary>
         /// Returns a specific item.
         /// </summary>
-        /// <param name="name">Name of the dynamic item to return.</param>
-        /// <param name="contextSectionName">Name of the context section to consider.</param>
-        /// <param name="persistenceLevel">The persistence level to consider.</param>
+        /// <param key="name">Name of the dynamic item to return.</param>
+        /// <param key="contextSectionName">Name of the context section to consider.</param>
+        /// <param key="persistenceLevel">The persistence level to consider.</param>
         /// <returns>The dynamic item with specified name and type.</returns>
         public object GetItem(string name,
             string contextSectionName = null,

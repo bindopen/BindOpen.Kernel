@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Configuration;
-using System.Collections.Generic;
+using BindOpen.Data.Helpers;
+using BindOpen.Data.Meta;
 using System.Linq;
 
 namespace BindOpen.Extensions.Scripting
@@ -8,9 +8,7 @@ namespace BindOpen.Extensions.Scripting
     /// <summary>
     /// This class represents a script word.
     /// </summary>
-    public class BdoScriptword :
-        TBdoExtensionItem<IBdoScriptword, IBdoScriptwordDefinition>,
-        IBdoScriptword
+    public class BdoScriptword : BdoMetaObject, IBdoScriptword
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -23,15 +21,7 @@ namespace BindOpen.Extensions.Scripting
         /// </summary>
         public BdoScriptword() : base()
         {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the Scriptword class.
-        /// </summary>
-        /// <param name="kind"></param>
-        public BdoScriptword(ScriptItemKinds kind) : base()
-        {
-            Kind = kind;
+            this.WithDataValueType(DataValueTypes.Scriptword);
         }
 
         #endregion
@@ -45,7 +35,7 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// Converts from word.
         /// </summary>
-        /// <param name="word">The word to consider.</param>
+        /// <param key="word">The word to consider.</param>
         public static explicit operator string(BdoScriptword word)
         {
             return word?.ToString();
@@ -54,8 +44,8 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="st"></param>
-        /// <param name="word"></param>
+        /// <param key="st"></param>
+        /// <param key="word"></param>
         /// <returns></returns>
         public static string operator +(string st, BdoScriptword word)
             => st + "{{" + word?.ToString() + "}}";
@@ -63,8 +53,8 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="st"></param>
-        /// <param name="word"></param>
+        /// <param key="st"></param>
+        /// <param key="word"></param>
         /// <returns></returns>
         public static string operator +(BdoScriptword word, string st)
             => "{{" + word?.ToString() + "}}" + st;
@@ -81,101 +71,36 @@ namespace BindOpen.Extensions.Scripting
         /// Kind of this instance.
         /// </summary>
         /// <example>Script word, syntax, text...</example>
+        public string DefinitionUniqueName { get; set; }
+
+        /// <summary>
+        /// Kind of this instance.
+        /// </summary>
+        /// <example>Script word, syntax, text...</example>
         public ScriptItemKinds Kind { get; set; } = ScriptItemKinds.None;
 
         // Tree ----------------------------------
 
         /// <summary>
-        /// Parent of this instance.
-        /// </summary>
-        public IBdoScriptword Parent { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="scriptword"></param>
-        /// <returns></returns>
-        public IBdoScriptword WithParent(IBdoScriptword scriptword)
-        {
-            Parent = scriptword;
-            return this;
-        }
-
-        /// <summary>
         /// Sub script words of this instance.
         /// </summary>
-        public IBdoScriptword SubScriptword { get; set; }
-
-        public IBdoScriptword WithSubScriptword(IBdoScriptword scriptword)
-        {
-            SubScriptword = scriptword;
-
-            return this;
-        }
-
-        // Item ----------------------------------
-
-        /// <summary>
-        /// The item of this instance that is the result of interpretation.
-        /// </summary>
-        public object Item { get; set; }
-
-        public IBdoScriptword WithItem(object item)
-        {
-            Item = item;
-
-            return this;
-        }
+        public IBdoScriptword Child { get; set; }
 
         // Parameters ----------------------------------
 
         /// <summary>
-        /// Parameters of this instance.
+        /// Returns a string that represents this instance.
         /// </summary>
-        public List<object> Parameters { get; set; } = new List<object>();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public IBdoScriptword AddParameter(object value)
-        {
-            if (Parameters == null) Parameters = new List<object>();
-            Parameters.Add(value);
-
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="objects"></param>
-        /// <returns></returns>
-        public IBdoScriptword WithParameters(
-            params object[] objects)
-        {
-            Parameters = objects.ToList();
-
-            return this;
-        }
+        /// <returns>Retuns the string that represents this instance.</returns>
+        public override string Key() => Id;
 
         /// <summary>
         /// Get the root script word of this instance.
         /// </summary>
         /// <returns>The root script word of this instance.</returns>
-        public IBdoScriptword Root()
+        public IBdoScriptword Last(int levelMax = 50)
         {
-            return Parent == null ? this : Parent.Root();
-        }
-
-        /// <summary>
-        /// Gets the last target of this instance.
-        /// </summary>
-        /// <returns>Returns the last target of this instance.</returns>
-        public IBdoScriptword Last()
-        {
-            return SubScriptword == null ? this : SubScriptword.Last();
+            return levelMax > 0 ? (Child == null ? this : Child.Last(levelMax--)) : null;
         }
 
         /// <summary>
@@ -195,10 +120,10 @@ namespace BindOpen.Extensions.Scripting
             switch (Kind)
             {
                 case ScriptItemKinds.Function:
-                    script = string.Join(", ", Parameters?.Select(p => p.ToString(DataValueTypes.Any, true)).ToArray());
+                    script = string.Join(", ", this.Select(p => p.ToString(DataValueTypes.Any, true)).ToArray());
                     script = (showSymbol ? BdoScriptHelper.Symbol_Fun : "")
                         + Name + "(" + script + ")";
-                    if (SubScriptword is BdoScriptword subFunScriptWord)
+                    if (Child is BdoScriptword subFunScriptWord)
                     {
                         script += "." + subFunScriptWord?.ToString(false);
                     }
@@ -206,7 +131,7 @@ namespace BindOpen.Extensions.Scripting
                 case ScriptItemKinds.Variable:
                     script = (showSymbol ? BdoScriptHelper.Symbol_Fun : "")
                         + "('" + Name?.Replace("'", "''") + "')";
-                    if (SubScriptword is BdoScriptword subVarScriptWord)
+                    if (Child is BdoScriptword subVarScriptWord)
                     {
                         script += "." + subVarScriptWord?.ToString(false);
                     }
@@ -224,52 +149,47 @@ namespace BindOpen.Extensions.Scripting
 
         #endregion
 
-        // ------------------------------------------
-        // IDataItem Implementation
-        // ------------------------------------------
+        // --------------------------------------------------
+        // IClonable Implementation
+        // --------------------------------------------------
 
-        #region IDataItem Implementation
+        #region Accessors
 
         /// <summary>
         /// Clones this instance.
         /// </summary>
-        /// <returns>Returns a clone of this instance.</returns>
+        /// <param key="areas">The areas to consider.</param>
+        /// <returns>Returns a cloned instance.</returns>
         public override object Clone(params string[] areas)
         {
-            IBdoScriptword scriptWord = base.Clone(areas) as BdoScriptword;
-
-            scriptWord.WithDefinition(Definition);
-            scriptWord.WithConfig(Config?.Clone<BdoConfiguration>());
-
-            if (Parameters != null)
-            {
-                foreach (var paramValue in Parameters)
-                {
-                    scriptWord.AddParameter(paramValue);
-                }
-            }
-
-            scriptWord.WithParent(Parent);
-            scriptWord.WithSubScriptword(SubScriptword?.Clone<BdoScriptword>());
-            scriptWord.WithItem(Item);
-
-            return scriptWord;
+            return MemberwiseClone();
         }
 
-
         #endregion
 
-        // ------------------------------------------
-        // INamed Implementation
-        // ------------------------------------------
+        // --------------------------------------------------
+        // IDisposable Implementation
+        // --------------------------------------------------
 
-        #region INamed Implementation
+        #region IDisposable Implementation
+
+        private bool _isDisposed = false;
 
         /// <summary>
-        /// Name of this instance.
+        /// Disposes specifying whether this instance is disposing.
         /// </summary>
-        public string Name { get; set; }
+        /// <param key="isDisposing">Indicates whether this instance is disposing</param>
+        protected override void Dispose(bool isDisposing)
+        {
+            if (_isDisposed)
+            {
+                return;
+            }
+
+            _isDisposed = true;
+        }
 
         #endregion
+
     }
 }

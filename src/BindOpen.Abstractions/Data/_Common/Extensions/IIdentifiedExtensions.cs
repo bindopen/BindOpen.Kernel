@@ -8,7 +8,7 @@
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param key="id"></param>
         public static T WithId<T>(
             this T obj,
             string id)

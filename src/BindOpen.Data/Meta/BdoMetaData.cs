@@ -1,4 +1,6 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Items;
+using BindOpen.Extensions.Scripting;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;
@@ -19,7 +21,6 @@ namespace BindOpen.Data.Meta
         #region Variables
 
         private string _namePreffix;
-        private DataItemizationMode _itemizationMode = DataItemizationMode.Any;
 
         /// <summary>
         /// The item of this instance.
@@ -44,9 +45,9 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Initializes a new data element.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="namePreffix">The name preffix to consider.</param>
-        /// <param name="id">The ID to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="namePreffix">The name preffix to consider.</param>
+        /// <param key="id">The ID to consider.</param>
         protected BdoMetaData(
             string name = null,
             string namePreffix = null,
@@ -54,7 +55,7 @@ namespace BindOpen.Data.Meta
         {
             _namePreffix = namePreffix ?? "element_";
             this.WithName(name);
-            Id = id;
+            Id = id ?? StringHelper.NewGuid();
         }
 
         #endregion
@@ -83,7 +84,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public BdoMetaDataKind Kind
+        public BdoMetaDataKind MetaDataKind
         {
             get
             {
@@ -93,7 +94,7 @@ namespace BindOpen.Data.Meta
                     return BdoMetaDataKind.Object;
                 else if (this is IBdoMetaScalar)
                     return BdoMetaDataKind.Scalar;
-                else if (this is IBdoMetaList)
+                else if (this is IBdoMetaSet)
                     return BdoMetaDataKind.Set;
                 return BdoMetaDataKind.None;
             }
@@ -105,38 +106,28 @@ namespace BindOpen.Data.Meta
         public IBdoMetaData Parent { get; set; }
 
         /// <summary>
+        /// Get the root script word of this instance.
+        /// </summary>
+        /// <returns>The root script word of this instance.</returns>
+        public IBdoMetaData Root(int levelMax = 50)
+        {
+            return levelMax > 0 ? (Parent == null ? this : Parent.Root(levelMax--)) : null;
+        }
+
+        /// <summary>
         /// The value type of this instance.
         /// </summary>
-        public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
+        public DataValueTypes DataValueType { get; set; } = DataValueTypes.Any;
 
         /// <summary>
         /// The itemization mode of this instance.
         /// </summary>
-        public DataItemizationMode ItemizationMode
-        {
-            get
-            {
-                if (_itemizationMode != DataItemizationMode.Any)
-                    return _itemizationMode;
-                else if (Expression != null)
-                    return DataItemizationMode.Expression;
-                else if (Reference != null)
-                    return DataItemizationMode.Reference;
-
-                return DataItemizationMode.Value;
-            }
-            set { _itemizationMode = value; }
-        }
-
-        /// <summary>
-        /// Item reference of this instance.
-        /// </summary>
-        public IBdoReference Reference { get; set; }
+        public DataMode DataMode { get; set; } = DataMode.Value;
 
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        public IBdoExpression Expression { get; set; }
+        public IBdoExpression DataExpression { get; set; }
 
         // Specification -------------------------------
 
@@ -159,7 +150,7 @@ namespace BindOpen.Data.Meta
             }
             else if (this is IBdoMetaScalar)
             {
-                return BdoMeta.NewSpec<BdoMetaScalarSpec>();
+                return BdoMeta.NewSpec<BdoScalarSpec>();
             }
 
             return null;
@@ -168,43 +159,35 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Returns the item object of this instance.
         /// </summary>
-        /// <param name="log">The log to populate.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
+        /// <param key="log">The log to populate.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         protected object DataObject(
             IBdoScope scope = null,
-            IBdoMetaList varSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             object obj = default;
 
-            switch (ItemizationMode)
+            switch (DataMode)
             {
-                case DataItemizationMode.Value:
+                case DataMode.Value:
                     obj = _data;
                     break;
-                case DataItemizationMode.Reference:
-                    if (Reference == null)
-                    {
-                        log?.AddWarning(title: "Reference missing");
-                    }
-                    obj = Reference.Get(scope, varSet, log);
-                    break;
-                case DataItemizationMode.Expression:
+                case DataMode.Expression:
                     if (scope == null)
                     {
                         log?.AddWarning(title: "Application scope missing");
                     }
                     else
                     {
-                        if (Expression == null)
+                        if (DataExpression == null)
                         {
                             log?.AddWarning(title: "Script missing");
                         }
 
-                        var interpreter = scope.NewScriptInterpreter();
-                        obj = interpreter.Evaluate<object>(Expression, varSet, log);
+                        obj = scope.Interpreter.Evaluate<object>(DataExpression, varSet, log);
                     }
                     break;
             }
@@ -217,7 +200,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
+        /// <param key="name"></param>
         /// <returns></returns>
         public IBdoSpec GetSpec(string name = null)
         {
@@ -248,15 +231,28 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Returns the item object of this instance.
         /// </summary>
-        /// <param name="log">The log to populate.</param>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element set to use.</param>
+        /// <param key="log">The log to populate.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         public object GetData(
             IBdoScope scope = null,
-            IBdoMetaList varSet = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
             => DataObject(scope, varSet, log);
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param key="log">The log to populate.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public virtual T GetData<T>(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+            => DataObject(scope, varSet, log).As<T>();
 
         // Accessors --------------------------
 
@@ -290,7 +286,7 @@ namespace BindOpen.Data.Meta
 
             var el = base.Clone<BdoMetaData>(areas);
 
-            el.Reference = Reference?.Clone<BdoReference>();
+            el.DataExpression = DataExpression?.Clone<BdoExpression>();
             el.Specs = Specs?.Select(q => q?.Clone<BdoSpec>())
                 .Cast<IBdoSpec>().ToList();
 
@@ -321,7 +317,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public string Key() => Name;
+        public virtual string Key() => Name;
 
         #endregion
 
@@ -349,7 +345,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
-        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
+        /// <param key="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
             if (_isDisposed)

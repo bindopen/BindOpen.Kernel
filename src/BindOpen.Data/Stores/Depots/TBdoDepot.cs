@@ -8,7 +8,7 @@ namespace BindOpen.Data.Stores
     /// <summary>
     /// This class represents a depot.
     /// </summary>
-    public abstract class TBdoDepot<T> : TBdoList<T>, ITBdoDepot<T>
+    public abstract class TBdoDepot<T> : TBdoSet<T>, ITBdoDepot<T>
         where T : IReferenced
     {
         // ------------------------------------------
@@ -59,7 +59,7 @@ namespace BindOpen.Data.Stores
         /// <summary>
         /// Add the items from all the assemblies.
         /// </summary>
-        /// <param name="log">The log to append.</param>
+        /// <param key="log">The log to append.</param>
         public IBdoDepot AddFromAllAssemblies(IBdoLog log = null)
         {
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
@@ -73,21 +73,21 @@ namespace BindOpen.Data.Stores
         /// <summary>
         /// Add the items from the specified assembly.
         /// </summary>
-        /// <param name="assemblyName">The name of the assembly.</param>
-        /// <param name="log">The log to append.</param>
+        /// <param key="assemblyName">The name of the assembly.</param>
+        /// <param key="log">The log to append.</param>
         public virtual IBdoDepot AddFromAssembly(string assemblyName, IBdoLog log = null) => this;
 
         /// <summary>
         /// Add the items from the assembly of the specified type.
         /// </summary>
-        /// <param name="log">The log to append.</param>
+        /// <param key="log">The log to append.</param>
         public IBdoDepot AddFromAssembly<T1>(IBdoLog log = null) where T1 : class
             => AddFromAssembly(typeof(T1).Assembly.FullName, log);
 
         /// <summary>
         /// Loads this instance.
         /// </summary>
-        /// <param name="log">The log to append.</param>
+        /// <param key="log">The log to append.</param>
         public void LoadLazy(IBdoLog log)
         {
             LazyLoadFunction?.Invoke(this, log);

@@ -11,7 +11,7 @@ namespace BindOpen.Data.Meta
     public interface IBdoSpec :
         IBdoItem, IReferenced,
         IIdentified, INamed,
-        IGloballyTitled, IGloballyDescribed,
+        IBdoTitled, IBdoDescribed,
         IIndexed
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="item"></param>
+        /// <param key="item"></param>
         /// <returns></returns>
         bool IsCompatibleWithData(object item);
 
@@ -69,14 +69,14 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
+        /// <param key="name"></param>
         /// <returns></returns>
         IBdoSpec GetSubSpec(string name);
 
         /// <summary>
         /// 
         /// </summary>
-        List<DataItemizationMode> ItemizationModes { get; set; }
+        List<DataMode> ValueModes { get; set; }
 
         /// <summary>
         /// 

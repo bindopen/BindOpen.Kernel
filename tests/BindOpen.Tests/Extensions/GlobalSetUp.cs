@@ -17,9 +17,9 @@ namespace BindOpen.Tests.Extensions
         {
             // we delete the working folder
 
-            if (Directory.Exists(GlobalVariables.WorkingFolder))
+            if (Directory.Exists(Tests.WorkingFolder))
             {
-                Directory.Delete(GlobalVariables.WorkingFolder, true);
+                Directory.Delete(Tests.WorkingFolder, true);
             }
         }
     }

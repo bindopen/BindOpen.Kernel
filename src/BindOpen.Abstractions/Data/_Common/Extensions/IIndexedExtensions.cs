@@ -8,7 +8,7 @@
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="index"></param>
+        /// <param key="index"></param>
         public static T WithIndex<T>(
             this T obj,
             int? index)

@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using BindOpen.Extensions.Connecting;
 using BindOpen.Logging;
 
@@ -13,19 +14,19 @@ namespace BindOpen.Tests
         /// <summary>
         /// The host of this instance.
         /// </summary>
-        [BdoMeta(Name = "host")]
+        [BdoProperty(Name = "host")]
         public string Host { get; set; }
 
         /// <summary>
         /// Indicates whether this instance enables SSL.
         /// </summary>
-        [BdoMeta(Name = "isSslEnabled")]
-        public bool? IsSslEnabled { get; set; }
+        [BdoProperty(Name = "isSslEnabled")]
+        public IBdoMetaData IsSslEnabled { get; set; }
 
         /// <summary>
         /// The port of this instance.
         /// </summary>
-        [BdoMeta(Name = "port")]
+        [BdoProperty(Name = "port")]
         public int? Port { get; set; }
 
         // ------------------------------------------
@@ -52,7 +53,7 @@ namespace BindOpen.Tests
         /// <summary>
         /// Creates a new connection.
         /// </summary>
-        /// <param name="log">The log to consider.</param>
+        /// <param key="log">The log to consider.</param>
         public override ConnectionFake NewConnection(IBdoLog log = null)
         {
             return new ConnectionFake(this);

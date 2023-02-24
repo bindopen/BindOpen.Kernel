@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://xsd.bindopen.org" elementFormDefault="qualified" targetNamespace="https://xsd.bindopen.org" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="https://xsd.bindopen.org/BdoExtensionItemDefinition.xsd" />
+  <xs:include schemaLocation="https://xsd.bindopen.org/BdoExtensionDefinition.xsd" />
   
   <xs:complexType name="MetricsDefinition">
     <xs:complexContent mixed="false">
-      <xs:extension base="BdoExtensionItemDefinition">
+      <xs:extension base="BdoExtensionDefinition">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="itemClass" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="unitCode" type="xs:string" />

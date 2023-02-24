@@ -1,9 +1,11 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Configuration;
+﻿using BindOpen.Data.Configuration;
 using BindOpen.Data.Meta;
-using BindOpen.Extensions;
-using BindOpen.Extensions.Connecting;
+using BindOpen.Data.Meta.Reflection;
+using BindOpen.Dtos.Json;
+using BindOpen.Dtos.Xml;
+using BindOpen.Runtime.Scopes;
 using BindOpen.Tests.Extensions;
+using BindOpen.Tests.Runtime;
 using NUnit.Framework;
 using System.IO;
 
@@ -32,7 +34,7 @@ namespace BindOpen.Tests.IO.Extensions
                 _connector = BdoConnectorTests.CreateConnector(_testData);
             }
 
-            var isSaved = _connector.ToDto().SaveXml(BdoConnectorFaker.XmlFilePath);
+            var isSaved = _connector.ToMetaData().ToDto().SaveXml(BdoConnectorFaker.XmlFilePath);
 
             Assert.That(isSaved, "Connector saving failed");
         }
@@ -46,7 +48,7 @@ namespace BindOpen.Tests.IO.Extensions
             }
 
             var config = XmlHelper.LoadXml<ConfigurationDto>(BdoConnectorFaker.XmlFilePath).ToPoco();
-            ConnectorFake connector = Bdo.NewConnector<ConnectorFake>(config);
+            ConnectorFake connector = RuntimeTests.Scope.CreateConnector<ConnectorFake>(config);
 
             BdoConnectorFaker.AssertFake(connector, _testData);
         }
@@ -61,7 +63,7 @@ namespace BindOpen.Tests.IO.Extensions
                 _connector = BdoConnectorTests.CreateConnector(_testData);
             }
 
-            var isSaved = _connector.ToDto().SaveJson(BdoConnectorFaker.JsonFilePath);
+            var isSaved = _connector.ToMetaData().ToDto().SaveJson(BdoConnectorFaker.JsonFilePath);
 
             Assert.That(isSaved, "Connector saving failed");
         }
@@ -75,7 +77,7 @@ namespace BindOpen.Tests.IO.Extensions
             }
 
             var config = JsonHelper.LoadJson<ConfigurationDto>(BdoConnectorFaker.JsonFilePath).ToPoco();
-            ConnectorFake connector = Bdo.NewConnector<ConnectorFake>(config);
+            ConnectorFake connector = RuntimeTests.Scope.CreateConnector<ConnectorFake>(config);
 
             BdoConnectorFaker.AssertFake(connector, _testData);
         }

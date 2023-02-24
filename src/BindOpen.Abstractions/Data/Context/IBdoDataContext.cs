@@ -31,41 +31,41 @@ namespace BindOpen.Data.Context
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="item"></param>
-        /// <param name="contextSectionName"></param>
-        /// <param name="persistenceLevel"></param>
+        /// <param key="name"></param>
+        /// <param key="item"></param>
+        /// <param key="contextSectionName"></param>
+        /// <param key="persistenceLevel"></param>
         IBdoDataContext AddItem(string name, object item, string contextSectionName = null, PersistenceLevels persistenceLevel = PersistenceLevels.Singleton);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="item"></param>
-        /// <param name="contextSectionName"></param>
+        /// <param key="name"></param>
+        /// <param key="item"></param>
+        /// <param key="contextSectionName"></param>
         IBdoDataContext AddScopedItem(string name, object item, string contextSectionName = null);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="item"></param>
-        /// <param name="contextSectionName"></param>
+        /// <param key="name"></param>
+        /// <param key="item"></param>
+        /// <param key="contextSectionName"></param>
         IBdoDataContext AddSingletonItem(string name, object item, string contextSectionName = null);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="item"></param>
+        /// <param key="name"></param>
+        /// <param key="item"></param>
         IBdoDataContext AddSystemItem(string name, object item);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="item"></param>
-        /// <param name="contextSectionName"></param>
+        /// <param key="name"></param>
+        /// <param key="item"></param>
+        /// <param key="contextSectionName"></param>
         IBdoDataContext AddTransientItem(string name, object item, string contextSectionName = null);
 
         /// <summary>
@@ -76,60 +76,60 @@ namespace BindOpen.Data.Context
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="persistenceLevel"></param>
+        /// <param key="persistenceLevel"></param>
         IBdoDataContext ClearItems(PersistenceLevels persistenceLevel = PersistenceLevels.Singleton);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="contextSectionName"></param>
-        /// <param name="persistenceLevel"></param>
+        /// <param key="name"></param>
+        /// <param key="contextSectionName"></param>
+        /// <param key="persistenceLevel"></param>
         /// <returns></returns>
         object GetItem(string name, string contextSectionName = null, PersistenceLevels persistenceLevel = PersistenceLevels.Any);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="contextSectionName"></param>
+        /// <param key="name"></param>
+        /// <param key="contextSectionName"></param>
         /// <returns></returns>
         object GetScopedItem(string name, string contextSectionName = null);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="contextSectionName"></param>
+        /// <param key="name"></param>
+        /// <param key="contextSectionName"></param>
         /// <returns></returns>
         object GetSingletonItem(string name, string contextSectionName = null);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
+        /// <param key="name"></param>
         /// <returns></returns>
         object GetSystemItem(string name);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="contextSectionName"></param>
+        /// <param key="name"></param>
+        /// <param key="contextSectionName"></param>
         /// <returns></returns>
         object GetTransientItem(string name, string contextSectionName = null);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="dataContext"></param>
+        /// <param key="dataContext"></param>
         IBdoDataContext Merge(IBdoDataContext dataContext);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="contextSectionName"></param>
-        /// <param name="persistenceLevel"></param>
+        /// <param key="contextSectionName"></param>
+        /// <param key="persistenceLevel"></param>
         IBdoDataContext RemoveItems(string contextSectionName = null, PersistenceLevels persistenceLevel = PersistenceLevels.Singleton);
     }
 }

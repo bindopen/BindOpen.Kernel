@@ -1,12 +1,9 @@
-﻿using BindOpen.Runtime.Definition;
-
-namespace BindOpen.Extensions.Modeling
+﻿namespace BindOpen.Extensions.Modeling
 {
     /// <summary>
     /// This class represents a entity.
     /// </summary>
-    public abstract class BdoEntity :
-        TBdoExtensionItem<IBdoEntity, IBdoEntityDefinition>,
+    public abstract class BdoEntity : BdoExtension,
         IBdoEntity
     {
         // ------------------------------------------

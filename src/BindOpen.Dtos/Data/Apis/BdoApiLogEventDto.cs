@@ -11,13 +11,21 @@ namespace BindOpen.Data.Apis
     /// </summary>
     [XmlType("ApiLogEventDto", Namespace = "https://xsd.bindopen.org")]
     [XmlRoot(ElementName = "event", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class BdoApiLogEventDto : NamedDataItemDto, IDisplayNamed, IDescribed
+    public class BdoApiLogEventDto : IDto, IDisplayNamed, IDescribed
     {
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// Name of this instance.
+        /// </summary>
+        [JsonPropertyName("name")]
+        [XmlAttribute("name")]
+        [DefaultValue(null)]
+        public string Name { get; set; }
 
         /// <summary>
         /// Kind of this instance.
@@ -92,7 +100,7 @@ namespace BindOpen.Data.Apis
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="displayName"></param>
+        /// <param key="displayName"></param>
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
         public IDisplayNamed WithDisplayName(string displayName)

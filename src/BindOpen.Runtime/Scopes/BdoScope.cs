@@ -5,7 +5,7 @@ using BindOpen.Data.Items;
 using BindOpen.Data.Stores;
 using BindOpen.Extensions.Scripting;
 using BindOpen.Logging;
-using BindOpen.Runtime.Definition;
+using BindOpen.Runtime.Definitions;
 using BindOpen.Runtime.Stores;
 using System;
 using System.Linq;
@@ -15,7 +15,7 @@ namespace BindOpen.Runtime.Scopes
     /// <summary>
     /// This class represents an application scope.
     /// </summary>
-    public class BdoScope : BdoItem, IBdoScope
+    public partial class BdoScope : BdoItem, IBdoScope
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -26,7 +26,7 @@ namespace BindOpen.Runtime.Scopes
         /// <summary>
         /// Instantiates a new instance of the BdoScope class.
         /// </summary>
-        /// <param name="appDomain">The application domain to instance.</param>
+        /// <param key="appDomain">The application domain to instance.</param>
         public BdoScope(AppDomain appDomain = null) : base()
         {
             AppDomain = appDomain ?? AppDomain.CurrentDomain;
@@ -34,6 +34,8 @@ namespace BindOpen.Runtime.Scopes
             ExtensionStore = new BdoExtensionStore();
 
             Context = new BdoDataContext();
+
+            _scriptInterpreter = BdoScript.CreateInterpreter(this);
         }
 
         #endregion
@@ -64,17 +66,24 @@ namespace BindOpen.Runtime.Scopes
         /// </summary>
         public IBdoDataStore DataStore { get; set; }
 
+        private IBdoScriptInterpreter _scriptInterpreter;
+
+        /// <summary>
+        /// The script interpreter of this instance.
+        /// </summary>
+        public IBdoScriptInterpreter Interpreter => _scriptInterpreter;
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="reference"></param>
+        /// <param key="reference"></param>
         public Type CreateType(
             IBdoClassReference reference)
         {
-            if (!string.IsNullOrEmpty(reference?.DefinitionUniqueId))
+            if (!string.IsNullOrEmpty(reference?.DefinitionUniqueName))
             {
-                var definition = ExtensionStore?.GetItemDefinitionWithUniqueId<IBdoEntityDefinition>(
-                    reference.DefinitionUniqueId);
+                var definition = ExtensionStore?.GetDefinition<IBdoEntityDefinition>(
+                    reference.DefinitionUniqueName);
 
                 return definition?.RuntimeType;
             }
@@ -93,18 +102,13 @@ namespace BindOpen.Runtime.Scopes
             }
         }
 
-        /// <summary>
-        /// Creates a new script interpreter.
-        /// </summary>
-        /// <returns>Returns the new script interpreter.</returns>
-        public IBdoScriptInterpreter NewScriptInterpreter()
-            => BdoScript.CreateInterpreter(this);
+        // Load extensions
 
         /// <summary>
         /// Loads the specified extensions.
         /// </summary>
-        /// <param name="loadOptionsAction">The load options action to consider.</param>
-        /// <param name="references">The extension references to consider.</param>
+        /// <param key="loadOptionsAction">The load options action to consider.</param>
+        /// <param key="references">The extension references to consider.</param>
         public bool LoadExtensions(
             Func<IExtensionLoadOptions, bool> loadOptionsAction,
             IBdoAssemblyReference[] references,
@@ -127,8 +131,8 @@ namespace BindOpen.Runtime.Scopes
         /// <summary>
         /// Loads the specified extensions.
         /// </summary>
-        /// <param name="loadOptionsAction">The load options action to consider.</param>
-        /// <param name="references">The extension references to consider.</param>
+        /// <param key="loadOptionsAction">The load options action to consider.</param>
+        /// <param key="references">The extension references to consider.</param>
         public bool LoadExtensions(
             Func<IExtensionLoadOptions, bool> loadOptionsAction,
             params IBdoAssemblyReference[] references)
@@ -137,7 +141,7 @@ namespace BindOpen.Runtime.Scopes
         /// <summary>
         /// Loads the specified extensions.
         /// </summary>
-        /// <param name="references">The extension references to consider.</param>
+        /// <param key="references">The extension references to consider.</param>
         public bool LoadExtensions(
             IBdoAssemblyReference[] references,
             IBdoLog log = null)
@@ -146,11 +150,11 @@ namespace BindOpen.Runtime.Scopes
         /// <summary>
         /// Loads the specified extensions.
         /// </summary>
-        /// <param name="loadOptionsAction">The load options action to consider.</param>
-        /// <param name="references">The extension references to consider.</param>
+        /// <param key="loadOptionsAction">The load options action to consider.</param>
+        /// <param key="references">The extension references to consider.</param>
         public bool LoadExtensions(
             params IBdoAssemblyReference[] references)
-            => LoadExtensions(references, null);
+            => LoadExtensions(null, references, null);
 
         /// <summary>
         /// Clears this instance.

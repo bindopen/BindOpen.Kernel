@@ -22,7 +22,7 @@ namespace BindOpen.Extensions.Processing
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param key="id"></param>
         IResourceAllocation WithAllocatedResourceId(string id);
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace BindOpen.Extensions.Processing
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param key="id"></param>
         IResourceAllocation WithOwnerId(string id);
 
         #endregion

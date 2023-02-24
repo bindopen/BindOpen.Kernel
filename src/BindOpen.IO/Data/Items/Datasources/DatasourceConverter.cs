@@ -12,7 +12,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="poco">The poco to consider.</param>
+        /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static DatasourceDto ToDto(this IBdoDatasource poco)
         {
@@ -20,10 +20,8 @@ namespace BindOpen.Data.Items
 
             DatasourceDto dto = new()
             {
-                Configurations = poco.ConfigList?.Select(q => q?.ToDto()).ToList(),
-                Id = poco.Id,
+                Configurations = poco?.Select(q => q?.ToDto()).ToList(),
                 InstanceName = poco.InstanceName,
-                IsDefault = poco.IsDefault,
                 Kind = poco.Kind,
                 ModuleName = poco.ModuleName,
                 Name = poco.Name
@@ -35,18 +33,18 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="dto">The DTO to consider.</param>
+        /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoDatasource ToPoco(this DatasourceDto dto)
+        public static IBdoDatasource ToPoco(
+            this DatasourceDto dto)
         {
             var poco = BdoData.NewDatasource(
                 dto.Name,
                 dto.Kind,
-                dto.Configurations?.Select(q => q?.ToPoco()).ToArray())
+                dto.Configurations?.Count == 0 ? null : dto.Configurations?.Select(q => q.ToPoco()).ToArray())
                 .WithInstanceName(dto.InstanceName)
-                .AsDefault(dto.IsDefault)
                 .WithModuleName(dto.ModuleName)
-                .WithId(dto.Id).WithName(dto.Name);
+                .WithName(dto.Name);
 
             return poco;
         }

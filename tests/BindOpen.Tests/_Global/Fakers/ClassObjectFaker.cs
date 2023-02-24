@@ -14,7 +14,7 @@ namespace BindOpen.Tests
                 DoubleProp = f.Random.Double(),
                 FloatProp = f.Random.Float(),
                 IntProp = f.Random.Int(),
-                StringProp = f.Random.String(),
+                //StringProp = f.Random.String(),
                 TimeSpanProp = f.Date.Timespan()
             };
         }

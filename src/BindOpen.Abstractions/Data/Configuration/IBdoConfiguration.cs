@@ -7,15 +7,11 @@ namespace BindOpen.Data.Configuration
     /// This interface defines a configuration.
     /// </summary>
     public interface IBdoConfiguration :
-        IBdoMetaList,
-        INamed, IReferenced,
-        IGloballyTitled, IGloballyDescribed,
+        IBdoMetaSet,
+        IBdoTitled, IBdoDescribed,
         IStorable
     {
-        /// <summary>
-        /// The unique ID of the definition.
-        /// </summary>
-        string DefinitionUniqueId { get; set; }
+        string DefinitionUniqueName { get; set; }
 
         /// <summary>
         /// 
@@ -25,7 +21,7 @@ namespace BindOpen.Data.Configuration
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="items"></param>
+        /// <param key="items"></param>
         /// <returns></returns>
         new IBdoConfiguration Add(
             params IBdoMetaData[] items);
@@ -33,7 +29,7 @@ namespace BindOpen.Data.Configuration
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="items"></param>
+        /// <param key="items"></param>
         /// <returns></returns>
         new IBdoConfiguration With(
             params IBdoMetaData[] items);

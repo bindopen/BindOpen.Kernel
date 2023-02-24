@@ -16,7 +16,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Indicates whether the specified value type corresponds to a scalar.
         /// </summary>
-        /// <param name="valueType">The object to consider.</param>
+        /// <param key="valueType">The object to consider.</param>
         /// <returns>The result object.</returns>
         public static bool IsScalar(this DataValueTypes valueType)
         {
@@ -42,7 +42,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Indicates whether the specified value type corresponds to a scalar.
         /// </summary>
-        /// <param name="obj">The object to consider.</param>
+        /// <param key="obj">The object to consider.</param>
         /// <returns>The result object.</returns>
         public static bool IsScalar(this object obj)
         {
@@ -58,8 +58,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Returns the value type of the specified object.
         /// </summary>
-        /// <param name="valueType">The value type to consider.</param>
-        /// <param name="refValueType">The value type to consider.</param>
+        /// <param key="valueType">The value type to consider.</param>
+        /// <param key="refValueType">The value type to consider.</param>
         /// <returns>The result object.</returns>
         public static bool IsCompatibleWith(this DataValueTypes valueType, DataValueTypes refValueType)
         {
@@ -80,7 +80,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Returns the value type of the specified object.
         /// </summary>
-        /// <param name="type">The type to consider.</param>
+        /// <param key="type">The type to consider.</param>
         /// <returns>The result object.</returns>
         public static DataValueTypes GetValueType(this Type type)
         {
@@ -126,8 +126,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Returns the value type of the specified object.
         /// </summary>
-        /// <param name="obj">The object to consider.</param>
-        /// <param name="guessRowCount">The number of items used to guess the object's value type if it is a list.</param>
+        /// <param key="obj">The object to consider.</param>
+        /// <param key="guessRowCount">The number of items used to guess the object's value type if it is a list.</param>
         /// <returns>The result object.</returns>
         public static DataValueTypes GetValueType(
             this object obj,

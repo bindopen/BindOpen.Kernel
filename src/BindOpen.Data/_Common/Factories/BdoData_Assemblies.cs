@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Creates a assembly reference from the specified extension one.
         /// </summary>
-        /// <param name="assemblyName">The name to consider.</param>
-        /// <param name="assemblyVersion">The version to consider.</param>
+        /// <param key="assemblyName">The name to consider.</param>
+        /// <param key="assemblyVersion">The version to consider.</param>
         /// <returns>Returns the itemized list of the specified library list.</returns>
         public static IBdoAssemblyReference Assembly(
             string assemblyName,
@@ -60,7 +61,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Gets the distinct list of the specified library reference list.
         /// </summary>
-        /// <param name="references">The references to consider.</param>
+        /// <param key="references">The references to consider.</param>
         /// <returns>Returns the itemized list of the specified library list.</returns>
         public static List<BdoAssemblyReference> GetDistinctReferences(
             this IEnumerable<BdoAssemblyReference> references)
@@ -90,10 +91,10 @@ namespace BindOpen.Data
         /// </summary>
         /// <returns>Returns the itemized list of the spcefied type</returns>
         public static IBdoClassReference ClassFromEntity(
-            string definitionUniqueId)
+            string definitionUniqueName)
         {
             return new BdoClassReference()
-                .WithDefinitionUniqueId(definitionUniqueId);
+                .WithDefinitionUniqueName(definitionUniqueName);
         }
 
         /// <summary>

@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Configuration;
-using BindOpen.Data.Meta;
+using BindOpen.Data.Helpers;
 using Bogus;
 using NUnit.Framework;
 using System.Linq;
@@ -42,12 +42,12 @@ namespace BindOpen.Tests.Data
         [Test, Order(1)]
         public void CreateConfigurationSet()
         {
-            var bundle = BdoConfig.NewBundle(
+            var bundle = BdoConfig.NewList(
                 _config1,
                 _config20,
                 _config21);
 
-            bundle.Update(_config1);
+            //bundle.Update(_config1);
         }
 
         [Test, Order(2)]

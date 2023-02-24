@@ -1,10 +1,11 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Assemblies;
+using BindOpen.Data.Helpers;
 using BindOpen.Data.Items;
 using BindOpen.Extensions;
 using BindOpen.Logging;
 using BindOpen.Runtime.Assemblies;
-using BindOpen.Runtime.Definition;
+using BindOpen.Runtime.Definitions;
 using BindOpen.Runtime.Scopes;
 using System;
 using System.IO;
@@ -25,9 +26,9 @@ namespace BindOpen.Runtime.Stores
         /// <summary>
         /// Initializes a new instance of BdoExtensionStoreLoader the class.
         /// </summary>
-        /// <param name="appDomain">The application domain to consider.</param>
-        /// <param name="store">The extension store to consider.</param>
-        /// <param name="loadOptions">The load options to consider.</param>
+        /// <param key="appDomain">The application domain to consider.</param>
+        /// <param key="store">The extension store to consider.</param>
+        /// <param key="loadOptions">The load options to consider.</param>
         public BdoExtensionStoreLoader(AppDomain appDomain, IBdoExtensionStore store, IExtensionLoadOptions loadOptions)
         {
             _appDomain = appDomain;
@@ -44,8 +45,8 @@ namespace BindOpen.Runtime.Stores
         /// <summary>
         /// Loads the specified extensions into the specified scope.
         /// </summary>
-        /// <param name="references">The library references to consider.</param>
-        /// <param name="log">The log to consider.</param>
+        /// <param key="references">The library references to consider.</param>
+        /// <param key="log">The log to consider.</param>
         public bool LoadExtensionsInStore(
             IBdoAssemblyReference[] references,
             IBdoLog log = null)
@@ -63,7 +64,7 @@ namespace BindOpen.Runtime.Stores
                 references = _appDomain.GetAssemblies().Select(q => BdoData.Assembly(q)).ToArray();
             }
 
-            foreach (IBdoAssemblyReference reference in references)
+            foreach (var reference in references)
             {
                 if (reference != null)
                 {
@@ -86,8 +87,8 @@ namespace BindOpen.Runtime.Stores
         /// <summary>
         /// Loads the specified library.
         /// </summary>
-        /// <param name="libraryReference">The library reference to consider.</param>
-        /// <param name="log">The log to consider.</param>
+        /// <param key="libraryReference">The library reference to consider.</param>
+        /// <param key="log">The log to consider.</param>
         /// <returns>Returns the loaded library.</returns>
         private bool LoadLibrary(IBdoAssemblyReference libraryReference, IBdoLog log = null)
         {
@@ -115,8 +116,7 @@ namespace BindOpen.Runtime.Stores
                             case DatasourceKind.Memory:
                                 if (!string.IsNullOrEmpty(libraryReference.AssemblyName))
                                 {
-                                    assembly = AppDomainPool.LoadAssembly(
-                                        _appDomain,
+                                    assembly = _appDomain.LoadAssembly(
                                         libraryReference.AssemblyName,
                                         subLog);
                                 }
@@ -140,7 +140,7 @@ namespace BindOpen.Runtime.Stores
                                 }
                                 else
                                 {
-                                    assembly = AppDomainPool.LoadAssemblyFromFile(_appDomain, filePath, subLog);
+                                    assembly = _appDomain.LoadAssemblyFromFile(filePath, subLog);
 
                                     if (assembly == null)
                                     {
@@ -179,49 +179,41 @@ namespace BindOpen.Runtime.Stores
 
                         // we get the extension definition
 
-                        IBdoExtensionDefinition extensionDefinition = ExtractExtensionDefinition(assembly, null, log);
+                        IBdoPackageDefinition extensionDefinition = ExtractPackageDefinition(assembly, null, log);
 
                         // we load the using assemblies
 
                         if (extensionDefinition?.UsingAssemblyFileNames != null)
                         {
-                            foreach (var st in extensionDefinition.UsingAssemblyFileNames)
+                            foreach (var dependency in assembly.GetReferencedAssemblies())
                             {
-                                var fileName = st;
-                                if (!fileName.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
-                                {
-                                    fileName += ".dll";
-                                }
-                                IBdoAssemblyReference reference = BdoData.Assembly(st)
-                                    .WithFileName(fileName);
+                                var reference = BdoData.Assembly(dependency.Name);
 
                                 IBdoLog subSubLog = log?.NewLog()
-                                    .WithDisplayName("Loading using extensions...") as IBdoLog;
+                                    .WithDisplayName("Loading using extensions...");
                                 loaded &= LoadExtensionsInStore(new[] { reference }, subSubLog);
                             }
                         }
 
                         // we load the item definition specifiying the extension definition
 
-                        foreach (BdoExtensionItemKind kind in new[] {
-                                BdoExtensionItemKind.Entity,
-                                BdoExtensionItemKind.Connector,
-                                BdoExtensionItemKind.Entity,
-                                BdoExtensionItemKind.Handler,
-                                BdoExtensionItemKind.Metrics,
-                                BdoExtensionItemKind.Routine,
-                                BdoExtensionItemKind.Scriptword,
-                                BdoExtensionItemKind.Task })
+                        foreach (BdoExtensionKind kind in new[] {
+                                BdoExtensionKind.Entity,
+                                BdoExtensionKind.Connector,
+                                BdoExtensionKind.Entity,
+                                BdoExtensionKind.Metrics,
+                                BdoExtensionKind.Routine,
+                                BdoExtensionKind.Scriptword,
+                                BdoExtensionKind.Task })
                         {
                             var subSubLog = log?.NewLog();
                             int count = LoadDictionary(assembly, kind, extensionDefinition, subSubLog);
 
-                            if (subSubLog.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning))
+                            if (subSubLog?.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning) == true)
                             {
                                 log?.AddSubLog(
                                     subSubLog,
                                     title: "Dictionary '" + kind.ToString() + "' not loaded correctly (" + count.ToString() + " items added)");
-                                loaded = false;
                             }
                             else
                             {
@@ -251,7 +243,7 @@ namespace BindOpen.Runtime.Stores
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
-        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
+        /// <param key="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
             if (_isDisposed)

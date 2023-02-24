@@ -17,8 +17,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Indicates whether the specified specification level list contains the specified specification level.
         /// </summary>
-        /// <param name="specificationLevels">The specified specification level list to consider.</param>
-        /// <param name="specificationLevel">The specified specification level to consider.</param>
+        /// <param key="specificationLevels">The specified specification level list to consider.</param>
+        /// <param key="specificationLevel">The specified specification level to consider.</param>
         /// <returns></returns>
         public static bool Has(
             this SpecificationLevels[] specificationLevels,
@@ -30,8 +30,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Indicates whether the specified specification level list contains the specified specification level.
         /// </summary>
-        /// <param name="specificationLevels">The specified specification level list to consider.</param>
-        /// <param name="referenceSpecificationLevels">The specified reference specification levels to consider.</param>
+        /// <param key="specificationLevels">The specified specification level list to consider.</param>
+        /// <param key="referenceSpecificationLevels">The specified reference specification levels to consider.</param>
         /// <returns></returns>
         public static bool Has(
             this SpecificationLevels[] specificationLevels,
@@ -43,8 +43,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Gets the specified list excluding the second specified list.
         /// </summary>
-        /// <param name="specificationLevels">The specification levels to consider.</param>
-        /// <param name="excludingSpecificationLevels">The excluding specification levels to consider.</param>
+        /// <param key="specificationLevels">The specification levels to consider.</param>
+        /// <param key="excludingSpecificationLevels">The excluding specification levels to consider.</param>
         /// <returns></returns>
         public static SpecificationLevels[] Excluding(
             this SpecificationLevels[] specificationLevels,
@@ -58,8 +58,8 @@ namespace BindOpen.Data
         /// <summary>
         /// Gets the specified list excluding the secong specified list.
         /// </summary>
-        /// <param name="specificationLevel">The specification level to consider.</param>
-        /// <param name="excludingSpecificationLevels">The excluding specification levels to consider.</param>
+        /// <param key="specificationLevel">The specification level to consider.</param>
+        /// <param key="excludingSpecificationLevels">The excluding specification levels to consider.</param>
         /// <returns></returns>
         public static SpecificationLevels[] Excluding(
             this SpecificationLevels specificationLevel,

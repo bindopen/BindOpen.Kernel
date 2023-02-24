@@ -10,7 +10,7 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="poco">The poco to consider.</param>
+        /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static AdvancedConditionDto ToDto(this IAdvancedCondition poco)
         {
@@ -18,7 +18,7 @@ namespace BindOpen.Data.Conditions
 
             AdvancedConditionDto dto = new()
             {
-                Conditions= poco.Conditions?.Select(q=> q.ToDto()).ToList(),
+                Conditions = poco.Conditions?.Select(q => q.ToDto()).ToList(),
                 Kind = poco.Kind,
                 TrueValue = poco.TrueValue
             };
@@ -29,9 +29,10 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Converts to POCO.
         /// </summary>
-        /// <param name="dto">The DTO to consider.</param>
+        /// <param key="dto">The DTO to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static IAdvancedCondition ToPoco(this AdvancedConditionDto dto)
+        public static IAdvancedCondition ToPoco(
+            this AdvancedConditionDto dto)
         {
             if (dto == null) return null;
 

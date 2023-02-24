@@ -16,7 +16,7 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// The variable element set of this instance.
         /// </summary>
-        public IBdoMetaList ScriptVariableSet { get; private set; }
+        public IBdoMetaSet ScriptVariableSet { get; private set; }
 
         /// <summary>
         /// The script word of this instance.
@@ -26,12 +26,12 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// Initializes a new instance of the BdoScriptwordArea class.
         /// </summary>
-        /// <param name="scope">The scope to consider.</param>
-        /// <param name="varSet">The variable element set to consider.</param>
-        /// <param name="scriptword">The script word to consider.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable element set to consider.</param>
+        /// <param key="scriptword">The script word to consider.</param>
         public BdoScriptwordDomain(
             IBdoScope scope,
-            IBdoMetaList varSet,
+            IBdoMetaSet varSet,
             IBdoScriptword scriptword)
         {
             Scope = scope;
@@ -42,7 +42,7 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="scope"></param>
+        /// <param key="scope"></param>
         /// <returns></returns>
         public IBdoScriptwordDomain WithScope(IBdoScope scope)
         {
@@ -53,9 +53,9 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="variableSet"></param>
+        /// <param key="variableSet"></param>
         /// <returns></returns>
-        public IBdoScriptwordDomain WithScriptVariableSet(IBdoMetaList variableSet)
+        public IBdoScriptwordDomain WithScriptVariableSet(IBdoMetaSet variableSet)
         {
             ScriptVariableSet = variableSet;
             return this;
@@ -64,7 +64,7 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="word"></param>
+        /// <param key="word"></param>
         /// <returns></returns>
         public IBdoScriptwordDomain WithScriptword(
             IBdoScriptword word)

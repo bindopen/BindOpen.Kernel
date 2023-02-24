@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Items;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data.Stores
@@ -8,8 +9,8 @@ namespace BindOpen.Data.Stores
     /// This class represents a datasource depot.
     /// </summary>
     [XmlType("DatasourceDepot", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "datasourceDepot", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class BdoDatasourceDepotDto : IDto
+    [XmlRoot(ElementName = "datasource.depot", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    public class BdoDatasourceDepotDto : IDto, IIdentified
     {
         // ------------------------------------------
         // PROPERTIES
@@ -18,13 +19,17 @@ namespace BindOpen.Data.Stores
         #region Properties
 
         /// <summary>
-        /// The sources of this instance.
+        /// ID of this instance.
         /// </summary>
+        [JsonPropertyName("id")]
+        [XmlAttribute("id")]
         public string Id { get; set; }
 
         /// <summary>
         /// The sources of this instance.
         /// </summary>
+        [JsonPropertyName("sources")]
+        [XmlElement("source")]
         public List<DatasourceDto> Sources { get; set; }
 
         #endregion

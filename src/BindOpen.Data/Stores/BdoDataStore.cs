@@ -48,8 +48,8 @@ namespace BindOpen.Data.Stores
         /// <summary>
         /// Adds the specified depot executing the specified action.
         /// </summary>
-        /// <param name="depot">The depot to consider.</param>
-        /// <param name="action">The action to execute on the newly created depot.</param>
+        /// <param key="depot">The depot to consider.</param>
+        /// <param key="action">The action to execute on the newly created depot.</param>
         /// <typeparam name="T">The depot class to consider.</typeparam>
         public IBdoDataStore Add<T>(T depot, Action<T> action = null) where T : IBdoDepot
         {
@@ -83,8 +83,8 @@ namespace BindOpen.Data.Stores
         /// <summary>
         /// Executes the lazy functions of all the depots of this instance.
         /// </summary>
-        /// <param name="scope">The scope to append.</param>
-        /// <param name="log"></param>
+        /// <param key="scope">The scope to append.</param>
+        /// <param key="log"></param>
         public void LoadLazy(IBdoScope scope, IBdoLog log = null)
         {
             foreach (var depotEntry in Depots)

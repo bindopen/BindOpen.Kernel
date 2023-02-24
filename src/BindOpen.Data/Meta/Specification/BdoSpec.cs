@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Conditions;
 using BindOpen.Data.Configuration;
+using BindOpen.Data.Helpers;
 using BindOpen.Data.Items;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace BindOpen.Data.Meta
 
         #region Variables
 
-        private List<DataItemizationMode> _availableItemizationModes = null;
+        private List<DataMode> _availableValueModes = null;
 
         #endregion
 
@@ -71,7 +72,7 @@ namespace BindOpen.Data.Meta
             var dataElementSpec = base.Clone<BdoSpec>(areas);
 
             dataElementSpec.WithAliases(Aliases?.ToArray());
-            dataElementSpec.WithItemizationModes(ItemizationModes?.ToArray());
+            dataElementSpec.WithValueModes(ValueModes?.ToArray());
             dataElementSpec.WithConstraintStatement(ConstraintStatement.Clone<BdoConfigurationSet>());
             dataElementSpec.WithSpecificationLevels(SpecificationLevels?.ToArray());
             dataElementSpec.WithSubSpecs(SubSpecs?.ToArray());
@@ -206,7 +207,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Indicates whether this instance is compatible with the specified data item.
         /// </summary>
-        /// <param name="item">The data item to consider.</param>
+        /// <param key="item">The data item to consider.</param>
         /// <returns>True if this instance is compatible with the specified data item.</returns>
         public virtual bool IsCompatibleWithData(
             object item)
@@ -225,7 +226,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="condition"></param>
+        /// <param key="condition"></param>
         /// <returns></returns>
         public IBdoSpec WithCondition(ICondition condition)
         {
@@ -246,7 +247,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="isAllocatable"></param>
+        /// <param key="isAllocatable"></param>
         /// <returns></returns>
         public IBdoSpec AsAllocatable(bool isAllocatable = true)
         {
@@ -263,15 +264,15 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The available itemization modes of this instance.
         /// </summary>
-        public List<DataItemizationMode> ItemizationModes
+        public List<DataMode> ValueModes
         {
-            get => _availableItemizationModes;
+            get => _availableValueModes;
             set
             {
-                if (value == null || value.Count == 0 || value.Contains(DataItemizationMode.Any))
-                    _availableItemizationModes = new List<DataItemizationMode>() { DataItemizationMode.Any };
+                if (value == null || value.Count == 0 || value.Contains(DataMode.Any))
+                    _availableValueModes = new List<DataMode>() { DataMode.Any };
                 else
-                    _availableItemizationModes = value;
+                    _availableValueModes = value;
             }
         }
 
@@ -339,7 +340,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
+        /// <param key="name"></param>
         /// <returns></returns>
         public IBdoSpec GetSubSpec(string name)
         {
@@ -359,7 +360,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Disposes this instance. 
         /// </summary>
-        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
+        /// <param key="isDisposing">Indicates whether this instance is disposing</param>
         protected override void Dispose(bool isDisposing)
         {
             if (_isDisposed)

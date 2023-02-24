@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
 using BindOpen.Extensions.Modeling;
 using BindOpen.Extensions.Scripting;
@@ -37,39 +38,39 @@ namespace BindOpen.Tests
         /// <summary>
         /// The boolean value of this instance.
         /// </summary>
-        [BdoMeta(Name = "boolValue")]
-        public bool BoolValue { get; set; }
+        [BdoProperty(Name = "boolValue")]
+        public IBdoMetaData BoolValue { get; set; }
 
         /// <summary>
         /// The string value of this instance.
         /// </summary>
-        [BdoMeta(Name = "stringValue")]
-        public string StringValue { get; set; }
+        [BdoProperty(Name = "stringValue")]
+        public IBdoMetaData StringValue { get; set; }
 
         /// <summary>
         /// The integer value of this instance.
         /// </summary>
-        [BdoMeta(Name = "intValue")]
+        [BdoProperty(Name = "intValue")]
         public int IntValue { get; set; }
 
         /// <summary>
         /// Enumeration value of this instance.
         /// </summary>
-        [BdoMeta(Name = "enumValue")]
+        [BdoProperty(Name = "enumValue")]
         public ActionPriorities EnumValue { get; set; }
 
         /// <summary>
         /// Enumeration value of this instance.
         /// </summary>
-        [BdoMeta(Name = "inputs")]
+        [BdoProperty(Name = "inputs")]
         [BdoScriptword(Name = "input")]
-        public BdoMetaList Inputs { get; set; }
+        public BdoMetaSet Inputs { get; set; }
 
 
         /// <summary>
         /// The sub entity of this instance.
         /// </summary>
-        [BdoMeta(Name = "subEntity")]
+        [BdoProperty(Name = "subEntity")]
         public EntityFake SubEntity { get; set; }
 
         // Path --------------------------
@@ -77,7 +78,7 @@ namespace BindOpen.Tests
         /// <summary>
         /// Path of this instance.
         /// </summary>
-        [BdoMeta("path")]
+        [BdoProperty("path")]
         public string Path { get; set; }
 
         /// <summary>
@@ -97,8 +98,8 @@ namespace BindOpen.Tests
         /// <summary>
         /// Sets the path of this instance.
         /// </summary>
-        /// <param name="path">The new path to consider. Null to update the existing one.</param>
-        /// <param name="relativePath">The new relative path to consider. Null to keep the existing one.</param>
+        /// <param key="path">The new path to consider. Null to update the existing one.</param>
+        /// <param key="relativePath">The new relative path to consider. Null to keep the existing one.</param>
         /// <returns>Returns True if this instance exists. False otherwise.</returns>
         public virtual IBdoEntity WithPath(string path = null, string relativePath = null)
         {
@@ -129,19 +130,19 @@ namespace BindOpen.Tests
         /// <summary>
         /// The creation date of this instance.
         /// </summary>
-        [BdoMeta("creationDate")]
+        [BdoProperty("creationDate")]
         public DateTime? CreationDate { get; set; }
 
         /// <summary>
         /// The information flag of this instance.
         /// </summary>
-        [BdoMeta("flag")]
+        [BdoProperty("flag")]
         public string Flag { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="flag"></param>
+        /// <param key="flag"></param>
         /// <returns></returns>
         public IBdoEntity WithFlag(string flag)
         {
@@ -153,14 +154,14 @@ namespace BindOpen.Tests
         /// <summary>
         /// Indicates whether this instance is read only.
         /// </summary>
-        [BdoMeta("isReadOnly")]
+        [BdoProperty("isReadOnly")]
         [DefaultValue(false)]
         public bool IsReadonly { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="readOnly"></param>
+        /// <param key="readOnly"></param>
         /// <returns></returns>
         public IBdoEntity AsReadonly(bool readOnly = false)
         {
@@ -172,13 +173,13 @@ namespace BindOpen.Tests
         /// <summary>
         /// The date of last access of this instance.
         /// </summary>
-        [BdoMeta("lastAccessDate")]
+        [BdoProperty("lastAccessDate")]
         public DateTime? LastAccessDate { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="date"></param>
+        /// <param key="date"></param>
         /// <returns></returns>
         public IBdoEntity WithLastAccessDate(DateTime? date)
         {
@@ -190,13 +191,13 @@ namespace BindOpen.Tests
         /// <summary>
         /// The parent path of this instance.
         /// </summary>
-        [BdoMeta("parentPath")]
+        [BdoProperty("parentPath")]
         public string ParentPath { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="path"></param>
+        /// <param key="path"></param>
         /// <returns></returns>
         public IBdoEntity WithParentPath(string path)
         {
@@ -208,7 +209,7 @@ namespace BindOpen.Tests
         /// <summary>
         /// The date of last write of this instance.
         /// </summary>
-        [BdoMeta("lastWriteDate")]
+        [BdoProperty("lastWriteDate")]
         public DateTime? LastWriteDate { get; set; }
 
         public IBdoEntity WithLastWriteDate(DateTime? date)
@@ -236,7 +237,7 @@ namespace BindOpen.Tests
         /// <summary>
         /// Instantiates a new instance of the EntityFake class.
         /// </summary>
-        /// <param name="path">The path of the instance.</param>
+        /// <param key="path">The path of the instance.</param>
         public EntityFake(string path) : base()
         {
             WithPath(path);
@@ -245,8 +246,8 @@ namespace BindOpen.Tests
         /// <summary>
         /// Instantiates a new instance of the TestEntity class.
         /// </summary>
-        /// <param name="fileName">The file name of the instance.</param>
-        /// <param name="folderPath">The folder path of the instance.</param>
+        /// <param key="fileName">The file name of the instance.</param>
+        /// <param key="folderPath">The folder path of the instance.</param>
         public EntityFake(
             string fileName,
             string folderPath,

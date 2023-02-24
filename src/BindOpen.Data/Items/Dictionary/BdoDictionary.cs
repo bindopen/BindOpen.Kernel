@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BindOpen.Data.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -22,13 +23,13 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="items"></param>
+        /// <param key="items"></param>
         public static implicit operator BdoDictionary((string Key, string Value)[] items)
         {
             var dico = BdoData.NewDictionary();
-            foreach (var item in items)
+            foreach (var (Key, Value) in items)
             {
-                dico.Add(item.Key, item.Value);
+                dico.Add(Key, Value);
             }
 
             return dico;
@@ -37,7 +38,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="items"></param>
+        /// <param key="items"></param>
         public static implicit operator BdoDictionary(string text)
         {
             var dico = BdoData.NewDictionary();
@@ -85,7 +86,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Text of the specified key.
         /// </summary>
-        /// <param name="key">The key to consider.</param>
+        /// <param key="key">The key to consider.</param>
         /// <returns>Returns the specified text.</returns>
         public new string this[string key]
         {
@@ -96,8 +97,8 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Text of the specified key.
         /// </summary>
-        /// <param name="key">The key to consider.</param>
-        /// <param name="defaultKey">The default key to consider.</param>
+        /// <param key="key">The key to consider.</param>
+        /// <param key="defaultKey">The default key to consider.</param>
         /// <returns>Returns the specified text.</returns>
         public string this[string key, string defaultKey]
         {
@@ -109,7 +110,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Adds a new value to this instance.
         /// </summary>
-        /// <param name="pairs">The value to add.</param>
+        /// <param key="pairs">The value to add.</param>
         public IBdoDictionary Add(params KeyValuePair<string, string>[] pairs)
         {
             foreach (var value in pairs)
@@ -123,7 +124,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Adds a new value to this instance with the specified key and text.
         /// </summary>
-        /// <param name="text">The text to consider.</param>
+        /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
         public IBdoDictionary Add(string text)
         {
@@ -133,9 +134,9 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Adds a new value to this instance with the specified key and text.
         /// </summary>
-        /// <param name="key">The key to consider.</param>
-        /// <param name="text">The text to consider.</param>
-        /// <param name="availableKeys">The available keys to consider.</param>
+        /// <param key="key">The key to consider.</param>
+        /// <param key="text">The text to consider.</param>
+        /// <param key="availableKeys">The available keys to consider.</param>
         /// <returns>Returns the added data key value.</returns>
         public IBdoDictionary Add(string key, string text, List<string> availableKeys = null)
         {
@@ -153,7 +154,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Adds a new value to this instance.
         /// </summary>
-        /// <param name="pairs">The value to add.</param>
+        /// <param key="pairs">The value to add.</param>
         public IBdoDictionary Set(params KeyValuePair<string, string>[] pairs)
         {
             Clear();
@@ -165,7 +166,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Sets the text of the default value.
         /// </summary>
-        /// <param name="text">The text of the value to add.</param>
+        /// <param key="text">The text of the value to add.</param>
         public IBdoDictionary Set(string text)
         {
             Set(StringHelper.__Star, text);
@@ -176,8 +177,8 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Sets the text of the default value.
         /// </summary>
-        /// <param name="key">The key of the value to add.</param>
-        /// <param name="text">The text of the value to add.</param>
+        /// <param key="key">The key of the value to add.</param>
+        /// <param key="text">The text of the value to add.</param>
         public IBdoDictionary Set(string key, string text)
         {
             Clear();
@@ -189,8 +190,8 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="key"></param>
-        /// <param name="alternateKey"></param>
+        /// <param key="key"></param>
+        /// <param key="alternateKey"></param>
         /// <returns></returns>
         public string Get(string key = StringHelper.__Star, string alternateKey = null)
         {
@@ -204,7 +205,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Removes the value with the specified key.
         /// </summary>
-        /// <param name="key">The key to consider.</param>
+        /// <param key="key">The key to consider.</param>
         public IBdoDictionary Remove(params string[] keys)
         {
             foreach (var key in keys)
@@ -218,7 +219,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Indicates whether this intance equals the specified dico.
         /// </summary>
-        /// <param name="dico">The dictionar to consider.</param>
+        /// <param key="dico">The dictionar to consider.</param>
         /// <returns>Returns true if this instance equals the specified dico. False otherwise.</returns>
         public bool Equals(IBdoDictionary dico)
         {
@@ -252,8 +253,8 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Returns the content corresponding to the specified key.
         /// </summary>
-        /// <param name="key">The key to consider.</param>
-        /// <param name="alternateKey">The alternate key to used if the key is not found.</param>
+        /// <param key="key">The key to consider.</param>
+        /// <param key="alternateKey">The alternate key to used if the key is not found.</param>
         /// <returns>Returns the text corresponding to the specified user interface language ID.
         /// Returns empty if there is none.</returns>
         private string GetValue(string key = StringHelper.__Star, string alternateKey = null)
@@ -291,7 +292,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Clones this instance.
         /// </summary>
-        /// <param name="areas">The areas to consider.</param>
+        /// <param key="areas">The areas to consider.</param>
         /// <returns>Returns a cloned instance.</returns>
         public T Clone<T>(params string[] areas) where T : class
         {
@@ -320,7 +321,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Disposes specifying whether this instance is disposing.
         /// </summary>
-        /// <param name="isDisposing">Indicates whether this instance is disposing</param>
+        /// <param key="isDisposing">Indicates whether this instance is disposing</param>
         protected virtual void Dispose(bool isDisposing)
         {
             if (_isDisposed)

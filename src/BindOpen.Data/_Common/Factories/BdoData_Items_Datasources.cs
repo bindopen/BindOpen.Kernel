@@ -13,9 +13,9 @@ namespace BindOpen.Data
         /// <summary>
         /// Instantiates a new instance of the Datasource class.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="kind">The kind of the data source to consider.</param>
-        /// <param name="configs">The config items to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="kind">The kind of the data source to consider.</param>
+        /// <param key="configs">The config items to consider.</param>
         public static BdoDatasource NewDatasource(
             DatasourceKind kind = DatasourceKind.Any,
             params IBdoConfiguration[] configs)
@@ -23,7 +23,7 @@ namespace BindOpen.Data
             var datasource = new BdoDatasource();
             datasource
                 .WithKind(kind)
-                .WithConfig(configs);
+                .With(configs);
 
             return datasource;
         }
@@ -31,9 +31,9 @@ namespace BindOpen.Data
         /// <summary>
         /// Instantiates a new instance of the Datasource class.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="kind">The kind of the data source to consider.</param>
-        /// <param name="configs">The config items to consider.</param>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="kind">The kind of the data source to consider.</param>
+        /// <param key="configs">The config items to consider.</param>
         public static BdoDatasource NewDatasource(
             string name,
             DatasourceKind kind,
@@ -42,7 +42,7 @@ namespace BindOpen.Data
             var datasource = new BdoDatasource(name);
             datasource
                 .WithKind(kind)
-                .WithConfig(configs);
+                .With(configs);
 
             return datasource;
         }
@@ -50,9 +50,10 @@ namespace BindOpen.Data
         /// <summary>
         /// Instantiates a new instance of the Datasource class.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
-        /// <param name="kind">The kind of the data source to consider.</param>
-        public static IBdoSourceDepot NewDatasourceDepot(params IBdoDatasource[] datasources)
-            => BdoData.NewList<BdoDatasourceDepot, IBdoDatasource>(datasources);
+        /// <param key="name">The name to consider.</param>
+        /// <param key="kind">The kind of the data source to consider.</param>
+        public static IBdoSourceDepot NewDatasourceDepot(
+            params IBdoDatasource[] datasources)
+            => BdoData.NewSet<BdoDatasourceDepot, IBdoDatasource>(datasources);
     }
 }

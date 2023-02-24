@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Configuration;
-using System.Collections.Generic;
 
 namespace BindOpen.Data.Items
 {
@@ -7,7 +6,8 @@ namespace BindOpen.Data.Items
     /// 
     /// </summary>
     public interface IBdoDatasource :
-        IIdentified, INamed, IReferenced
+        IBdoConfigurationSet,
+        IBdoNotMetableItem, IIdentified, INamed, IReferenced
     {
         /// <summary>
         /// 
@@ -17,18 +17,8 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Sets the specified module name of this instance. 
         /// </summary>
-        /// <param name="instanceName">The instance name to consider.</param>
+        /// <param key="instanceName">The instance name to consider.</param>
         IBdoDatasource WithInstanceName(string instanceName);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        bool IsDefault { get; set; }
-
-        /// <summary>
-        /// Specifies that this instance is the default. 
-        /// </summary>
-        IBdoDatasource AsDefault(bool isDefault = true);
 
         /// <summary>
         /// 
@@ -38,7 +28,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Sets the specified kind of this instance. 
         /// </summary>
-        /// <param name="kind">The kind to consider.</param>
+        /// <param key="kind">The kind to consider.</param>
         IBdoDatasource WithKind(DatasourceKind kind);
 
         /// <summary>
@@ -49,49 +39,14 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Sets the specified module name of this instance. 
         /// </summary>
-        /// <param name="moduleName">The module name to consider.</param>
+        /// <param key="moduleName">The module name to consider.</param>
         IBdoDatasource WithModuleName(string moduleName);
 
         /// <summary>
-        /// 
+        /// Sets the specified single item of this instance.
         /// </summary>
-        IBdoConfiguration Config();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        List<IBdoConfiguration> ConfigList { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        IBdoConfiguration GetConfig(string name = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        bool HasConfig(string name = null);
-
-        /// <summary>
-        /// Removes the specified connector config.
-        /// </summary>
-        /// <param name="name">The name of the connector config to consider.</param>
-        IBdoDatasource RemoveConfig(string name);
-
-        /// <summary>
-        /// Sets the specified configs.
-        /// </summary>
-        /// <param name="configs">The configs to consider.</param>
-        IBdoDatasource WithConfig(params IBdoConfiguration[] configs);
-
-        /// <summary>
-        /// Adds the specified connector config.
-        /// </summary>
-        /// <param name="config">The connector to add.</param>
-        IBdoDatasource AddConfig(IBdoConfiguration config);
+        /// <param key="items">The items to apply to this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
+        new IBdoDatasource With(params IBdoConfiguration[] items);
     }
 }

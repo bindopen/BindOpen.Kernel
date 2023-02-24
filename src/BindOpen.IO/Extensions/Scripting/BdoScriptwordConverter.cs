@@ -1,5 +1,9 @@
-﻿using BindOpen.Data;
+﻿using AutoMapper;
 using BindOpen.Data.Configuration;
+using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
+using BindOpen.Data.Meta.Reflection;
+using System.Linq;
 
 namespace BindOpen.Extensions.Scripting
 {
@@ -11,14 +15,24 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="poco">The poco to consider.</param>
+        /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static ConfigurationDto ToDto(this IBdoScriptword poco)
+        public static ScriptwordDto ToDto(this IBdoScriptword poco)
         {
             if (poco == null) return null;
 
-            var dto = poco.Config.ToDto();
-            dto.Update(dto);
+            var config = new MapperConfiguration(
+                cfg => cfg.CreateMap<IBdoScriptword, ScriptwordDto>()
+                    .ForMember(q => q.MetaItems, opt => opt.MapFrom(q => q.Select(q => q.ToDto()).ToList()))
+                    .ForMember(q => q.Item, opt => opt.Ignore())
+                    .ForMember(q => q.Child, opt => opt.MapFrom(q => q.Child.ToDto()))
+                    .ForMember(q => q.SubDataSet, opt => opt.Ignore())
+                    .ForMember(q => q.DataExpression, opt => opt.Ignore())
+                    .ForMember(q => q.Specification, opt => opt.Ignore())
+                );
+
+            var mapper = new Mapper(config);
+            var dto = mapper.Map<ScriptwordDto>(poco);
 
             return dto;
         }
@@ -26,15 +40,29 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="dto">The DTO to consider.</param>
+        /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static T ToPoco<T>(this ConfigurationDto dto) where T : class, IBdoScriptword, new()
+        public static IBdoScriptword ToPoco(
+            this ScriptwordDto dto)
         {
             if (dto == null) return null;
 
-            T poco = new();
-            poco
-                .WithConfig(dto.ToPoco());
+            var config = new MapperConfiguration(
+                   cfg => cfg.CreateMap<ScriptwordDto, BdoScriptword>()
+                       .ForMember(q => q.Child, opt => opt.Ignore())
+                       .ForMember(q => q.DataExpression, opt => opt.Ignore())
+                       .ForMember(q => q.Items, opt => opt.Ignore())
+                       .ForMember(q => q.Parent, opt => opt.Ignore())
+                       .ForMember(q => q.Specs, opt => opt.Ignore())
+                       .ForMember(q => q.ClassReference, opt => opt.Ignore())
+                   );
+
+            var mapper = new Mapper(config);
+            var poco = new BdoScriptword()
+            {
+                Child = dto.Child.ToPoco()
+            };
+            poco.With(dto.MetaItems.Select(q => q.ToPoco()).ToArray());
 
             return poco;
         }

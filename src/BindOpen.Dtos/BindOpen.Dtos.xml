@@ -73,7 +73,7 @@
             <summary>
             
             </summary>
-            <param name="displayName"></param>
+            <param key="displayName"></param>
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
@@ -101,8 +101,8 @@
             <summary>
             Initializes a new instance of the ResultItemDto class.
             </summary>
-            <param name="key">The key to consider.</param>
-            <param name="status">The status to consider.</param>
+            <param key="key">The key to consider.</param>
+            <param key="status">The status to consider.</param>
         </member>
         <member name="T:BindOpen.Data.Conditions.AdvancedConditionDto">
             <summary>
@@ -153,24 +153,24 @@
             <summary>
             Instantiates a new instance of the BasicBusinessCondition class.
             </summary>
-            <param name="trueValue">The value that expresses that the condition is satisfied.</param>
+            <param key="trueValue">The value that expresses that the condition is satisfied.</param>
         </member>
         <member name="M:BindOpen.Data.Conditions.BasicConditionDto.#ctor(System.String,BindOpen.Data.Conditions.ConditionOperator,System.String)">
             <summary>
             Instantiates a new instance of the BasicBusinessCondition class.
             </summary>
-            <param name="arg1">The argument 1 to consider.</param>
-            <param name="ope">The operator to consider.</param>
-            <param name="arg2">The argument 2 to consider.</param>
+            <param key="arg1">The argument 1 to consider.</param>
+            <param key="ope">The operator to consider.</param>
+            <param key="arg2">The argument 2 to consider.</param>
         </member>
         <member name="M:BindOpen.Data.Conditions.BasicConditionDto.#ctor(System.Boolean,System.String,BindOpen.Data.Conditions.ConditionOperator,System.String)">
             <summary>
             Instantiates a new instance of the BasicBusinessCondition class.
             </summary>
-            <param name="trueValue">The value that expresses that the condition is satisfied.</param>
-            <param name="arg1">The argument 1 to consider.</param>
-            <param name="ope">The operator to consider.</param>
-            <param name="arg2">The argument 2 to consider.</param>
+            <param key="trueValue">The value that expresses that the condition is satisfied.</param>
+            <param key="arg1">The argument 1 to consider.</param>
+            <param key="ope">The operator to consider.</param>
+            <param key="arg2">The argument 2 to consider.</param>
         </member>
         <member name="T:BindOpen.Data.Conditions.ConditionDto">
             <summary>
@@ -191,7 +191,7 @@
             <summary>
             Instantiates a new instance of the BusinessCondition class.
             </summary>
-            <param name="trueValue">The true value to consider.</param>
+            <param key="trueValue">The true value to consider.</param>
         </member>
         <member name="T:BindOpen.Data.Conditions.ScriptConditionDto">
             <summary>
@@ -213,7 +213,7 @@
             This class represents a entity element.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.EntityElementDto.DefinitionUniqueId">
+        <member name="P:BindOpen.Data.Elements.EntityElementDto.DefinitionUniqueName">
             <summary>
             The definition unique ID of this instance.
             </summary>
@@ -378,7 +378,7 @@
             This class represents a data element.
             </summary>
         </member>
-        <member name="F:BindOpen.Data.Elements.BdoElementDto.ItemizationMode">
+        <member name="F:BindOpen.Data.Elements.BdoElementDto.ValueMode">
             <summary>
             The itemization mode of this instance.
             </summary>
@@ -448,7 +448,7 @@
             The script of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecDto.AvailableItemizationModes">
+        <member name="P:BindOpen.Data.Elements.BdoElementSpecDto.AvailableValueModes">
             <summary>
             The available itemization modes of this instance.
             </summary>
@@ -488,7 +488,7 @@
             The class full name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.ObjectElementDto.DefinitionUniqueId">
+        <member name="P:BindOpen.Data.Elements.ObjectElementDto.DefinitionUniqueName">
             <summary>
             The definition unique ID of this instance.
             </summary>
@@ -674,7 +674,7 @@
             </summary>
             <remarks>A data source element can only have one item maximum.</remarks>
         </member>
-        <member name="P:BindOpen.Data.Elements.SourceElementDto.DefinitionUniqueId">
+        <member name="P:BindOpen.Data.Elements.SourceElementDto.DefinitionUniqueName">
             <summary>
             The definition unique ID of this instance.
             </summary>
@@ -1092,26 +1092,26 @@
             <summary>
             Saves the JSON string of this instance.
             </summary>
-            <param name="dto">The DTO to save.</param>
-            <param name="log">The saving log to consider.</param>
+            <param key="dto">The DTO to save.</param>
+            <param key="log">The saving log to consider.</param>
             <returns>The Json string of this instance.</returns>
         </member>
         <member name="M:BindOpen.Data.JsonHelper.SaveJson``1(``0,System.String,BindOpen.Logging.IBdoLog)">
             <summary>
             Saves this instance to the specified file path.
             </summary>
-            <param name="dto">The DTO to save.</param>
-            <param name="filePath">Path of the file to save.</param>
-            <param name="log">The log to consider.</param>
+            <param key="dto">The DTO to save.</param>
+            <param key="filePath">Path of the file to save.</param>
+            <param key="log">The log to consider.</param>
             <returns>True if the saving operation has been done. False otherwise.</returns>
         </member>
         <member name="M:BindOpen.Data.JsonHelper.LoadJson``1(System.String,BindOpen.Logging.IBdoLog,System.Boolean)">
             <summary>
             Loads a data item from the specified file path.
             </summary>
-            <param name="filePath">The path of the Json file to load.</param>
-            <param name="log">The output log of the method.</param>
-            <param name="mustFileExist">Indicates whether the file must exist.</param>
+            <param key="filePath">The path of the Json file to load.</param>
+            <param key="log">The output log of the method.</param>
+            <param key="mustFileExist">Indicates whether the file must exist.</param>
             <returns>The loaded log.</returns>
             <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         </member>
@@ -1120,8 +1120,8 @@
             Loads the data item from the specified file path.
             </summary>
             <typeparam name="T">The data item class to consider.</typeparam>
-            <param name="jsonString">The Json string to load.</param>
-            <param name="log">The output log of the load method.</param>
+            <param key="jsonString">The Json string to load.</param>
+            <param key="log">The output log of the load method.</param>
             <returns>The loaded log.</returns>
             <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         </member>
@@ -1129,27 +1129,27 @@
             <summary>
             Saves the XML string of this instance.
             </summary>
-            <param name="dto">The DTO to save.</param>
-            <param name="log">The saving log to consider.</param>
+            <param key="dto">The DTO to save.</param>
+            <param key="log">The saving log to consider.</param>
             <returns>The Xml string of this instance.</returns>
         </member>
         <member name="M:BindOpen.Data.XmlHelper.SaveXml(BindOpen.Data.IDto,System.String,BindOpen.Logging.IBdoLog)">
             <summary>
             Saves this instance to the specified XML file path.
             </summary>
-            <param name="dto">The DTO to save.</param>
-            <param name="filePath">Path of the file to save.</param>
-            <param name="log">The log to consider.</param>
+            <param key="dto">The DTO to save.</param>
+            <param key="filePath">Path of the file to save.</param>
+            <param key="log">The log to consider.</param>
             <returns>True if the saving operation has been done. False otherwise.</returns>
         </member>
         <member name="M:BindOpen.Data.XmlHelper.LoadXml``1(System.String,BindOpen.Logging.IBdoLog,System.Xml.Schema.XmlSchemaSet,System.Boolean)">
             <summary>
             Loads a data item from the specified XML file path.
             </summary>
-            <param name="filePath">The path of the file to load.</param>
-            <param name="log">The output log of the method.</param>
-            <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
-            <param name="mustFileExist">Indicates whether the file must exist.</param>
+            <param key="filePath">The path of the file to load.</param>
+            <param key="log">The output log of the method.</param>
+            <param key="xmlSchemaSet">The XML schema set to consider for checking.</param>
+            <param key="mustFileExist">Indicates whether the file must exist.</param>
             <returns>The loaded log.</returns>
             <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         </member>
@@ -1158,9 +1158,9 @@
             Loads the data item from the specified XML file path.
             </summary>
             <typeparam name="T">The data item class to consider.</typeparam>
-            <param name="xmlString">The XML string to load.</param>
-            <param name="log">The output log of the load method.</param>
-            <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
+            <param key="xmlString">The XML string to load.</param>
+            <param key="log">The output log of the load method.</param>
+            <param key="xmlSchemaSet">The XML schema set to consider for checking.</param>
             <returns>The loaded log.</returns>
             <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         </member>
@@ -1168,9 +1168,9 @@
             <summary>
             Loads the specified XML schema set.
             </summary>
-            <param name="xmlSchemaSet">The XML schema set to consider.</param>
-            <param name="assembly">The assembly to consider.</param>
-            <param name="xsdResources">The XSD resources to consider.</param>
+            <param key="xmlSchemaSet">The XML schema set to consider.</param>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="xsdResources">The XSD resources to consider.</param>
             <returns>The XML schema set.</returns>
         </member>
         <member name="T:BindOpen.Runtime.Dtos.MetaData.Elements.Configuration.ConfigurationExtensions">
@@ -1182,68 +1182,68 @@
             <summary>
             Instantiates a new instance of Configuration class from a xml file.
             </summary>
-            <param name="filePath">The file path to consider.</param>
-            <param name="scope">The scope to consider.</param>
-            <param name="varSet">The set of script variables to consider.</param>
-            <param name="log">The log to consider.</param>
-            <param name="xmlSchemaSet">The XML schema set to consider for checking.</param>
-            <param name="mustFileExist">Indicates whether the file must exist.</param>
-            <param name="isRuntimeUpdated">Indicates whether the runtime is updated.</param>
+            <param key="filePath">The file path to consider.</param>
+            <param key="scope">The scope to consider.</param>
+            <param key="varSet">The set of script variables to consider.</param>
+            <param key="log">The log to consider.</param>
+            <param key="xmlSchemaSet">The XML schema set to consider for checking.</param>
+            <param key="mustFileExist">Indicates whether the file must exist.</param>
+            <param key="isRuntimeUpdated">Indicates whether the runtime is updated.</param>
             <returns>The Xml operation project defined in the Xml file.</returns>
         </member>
-        <member name="T:BindOpen.Extensions.TBdoExtensionItemConfigurationDto`1">
+        <member name="T:BindOpen.Extensions.TBdoExtensionConfigurationDto`1">
             <summary>
             This class represents a BindOpen extension item config.
             </summary>
         </member>
-        <member name="P:BindOpen.Extensions.TBdoExtensionItemConfigurationDto`1.Kind">
+        <member name="P:BindOpen.Extensions.TBdoExtensionConfigurationDto`1.Kind">
             <summary>
             The kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Extensions.TBdoExtensionItemConfigurationDto`1.DefinitionUniqueId">
+        <member name="P:BindOpen.Extensions.TBdoExtensionConfigurationDto`1.DefinitionUniqueName">
             <summary>
             Definition unique ID of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Extensions.TBdoExtensionItemConfigurationDto`1.GroupId">
+        <member name="P:BindOpen.Extensions.TBdoExtensionConfigurationDto`1.GroupId">
             <summary>
             The group of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.TBdoExtensionItemConfigurationDto`1.#ctor">
+        <member name="M:BindOpen.Extensions.TBdoExtensionConfigurationDto`1.#ctor">
             <summary>
-            Instantiates a new instance of the TBdoExtensionItemConfigurationDto class.
+            Instantiates a new instance of the TBdoExtensionConfigurationDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Extensions.TBdoExtensionItemConfigurationDto`1">
+        <member name="T:BindOpen.Extensions.TBdoExtensionConfigurationDto`1">
             <summary>
             This class represents a BindOpen extension titled item config.
             </summary>
         </member>
-        <member name="P:BindOpen.Extensions.TBdoExtensionItemConfigurationDto`1.Title">
+        <member name="P:BindOpen.Extensions.TBdoExtensionConfigurationDto`1.Title">
             <summary>
             Title of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.TBdoExtensionItemConfigurationDto`1.#ctor">
+        <member name="M:BindOpen.Extensions.TBdoExtensionConfigurationDto`1.#ctor">
             <summary>
-            Instantiates a new instance of the TBdoExtensionItemConfiguration class.
+            Instantiates a new instance of the TBdoExtensionConfiguration class.
             </summary>
         </member>
-        <member name="T:BindOpen.Runtime.Definition.BdoExtensionItemGroupDto">
+        <member name="T:BindOpen.Runtime.Definition.BdoExtensionGroupDto">
             <summary>
             This class represents the group of BindOpen extension items.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemGroupDto.SubGroups">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionGroupDto.SubGroups">
             <summary>
             Sub groups of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemGroupDto.#ctor">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionGroupDto.#ctor">
             <summary>
-            Instantiates a new instance of the BdoExtensionItemGroupDto class.
+            Instantiates a new instance of the BdoExtensionGroupDto class.
             </summary>
         </member>
         <member name="T:BindOpen.Runtime.Definition.BdoEntityDictionaryDto">
@@ -1397,69 +1397,69 @@
             Instantiates a new instance of the TBdoExtensionDictionaryDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Runtime.Definition.BdoExtensionDefinitionDto">
+        <member name="T:BindOpen.Runtime.Definition.BdoPackageDefinitionDto">
             <summary>
             This class represents the definition of a library.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinitionDto.GroupName">
+        <member name="P:BindOpen.Runtime.Definition.BdoPackageDefinitionDto.GroupName">
             <summary>
             Name of the group of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinitionDto.AssemblyName">
+        <member name="P:BindOpen.Runtime.Definition.BdoPackageDefinitionDto.AssemblyName">
             <summary>
             Name of the assembly where the library can be loaded.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinitionDto.RootNamespace">
+        <member name="P:BindOpen.Runtime.Definition.BdoPackageDefinitionDto.RootNamespace">
             <summary>
             Root name space of this intance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinitionDto.FileName">
+        <member name="P:BindOpen.Runtime.Definition.BdoPackageDefinitionDto.FileName">
             <summary>
             File name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinitionDto.UsingAssemblyFileNames">
+        <member name="P:BindOpen.Runtime.Definition.BdoPackageDefinitionDto.UsingAssemblyFileNames">
             <summary>
             Names of the using assembly files of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinitionDto.ItemIndexFullNameDictionary">
+        <member name="P:BindOpen.Runtime.Definition.BdoPackageDefinitionDto.ItemIndexFullNameDictionary">
             <summary>
             Dictionary full names of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinitionDto.#ctor">
+        <member name="M:BindOpen.Runtime.Definition.BdoPackageDefinitionDto.#ctor">
             <summary>
-            Instantiates a new instance of BdoExtensionDefinitionDto class.
+            Instantiates a new instance of BdoPackageDefinitionDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Runtime.Definition.BdoExtensionItemDefinitionDto">
+        <member name="T:BindOpen.Runtime.Definition.BdoExtensionDefinitionDto">
             <summary>
             This class represents the definition of BindOpen extension item.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemDefinitionDto.ImageUri">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinitionDto.ImageUri">
             <summary>
             Uri of the image representing this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemDefinitionDto.IsEditable">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinitionDto.IsEditable">
             <summary>
             Indicates whether this instance is editable.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoExtensionItemDefinitionDto.IsIndexed">
+        <member name="P:BindOpen.Runtime.Definition.BdoExtensionDefinitionDto.IsIndexed">
             <summary>
             Indicates whether this instance is indexed.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoExtensionItemDefinitionDto.#ctor">
+        <member name="M:BindOpen.Runtime.Definition.BdoExtensionDefinitionDto.#ctor">
             <summary>
-            Instantiates a new instance of the BdoExtensionItemDefinitionDto class.
+            Instantiates a new instance of the BdoExtensionDefinitionDto class.
             </summary>
         </member>
         <member name="T:BindOpen.Runtime.Definition.BdoEntityDefinitionDto">
@@ -1921,7 +1921,7 @@
             <summary>
             
             </summary>
-            <param name="elementName"></param>
+            <param key="elementName"></param>
         </member>
         <member name="P:System.Xml.Serialization.XmlArrayElementAttribute.ElementName">
             <summary>

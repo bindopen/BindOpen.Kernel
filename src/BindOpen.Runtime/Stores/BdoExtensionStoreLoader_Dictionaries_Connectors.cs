@@ -1,9 +1,8 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Items;
-using BindOpen.Data.Meta;
 using BindOpen.Extensions.Connecting;
 using BindOpen.Logging;
-using BindOpen.Runtime.Definition;
+using BindOpen.Runtime.Definitions;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -18,13 +17,13 @@ namespace BindOpen.Runtime.Stores
         /// <summary>
         /// Loads the connector dico from the specified assembly.
         /// </summary>
-        /// <param name="assembly">The assembly to consider.</param>
-        /// <param name="extensionDefinition">The extension definition to consider.</param>
-        /// <param name="log">The log to consider.</param>
+        /// <param key="assembly">The assembly to consider.</param>
+        /// <param key="extensionDefinition">The extension definition to consider.</param>
+        /// <param key="log">The log to consider.</param>
         /// <returns></returns>
         private int LoadConnectorDictionaryFromAssembly(
             Assembly assembly,
-            IBdoExtensionDefinition extensionDefinition,
+            IBdoPackageDefinition extensionDefinition,
             IBdoLog log = null)
         {
             if (assembly == null)
@@ -58,7 +57,7 @@ namespace BindOpen.Runtime.Stores
 
                 // we create the detail specification from detail property attributes
 
-                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoMetaAttribute)).Any()))
+                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any()))
                 {
                     definition.DatasourceDetailSpec.Add(
                         BdoMeta.NewSpec(property.Name, property.PropertyType));

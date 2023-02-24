@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Items;
 
 namespace BindOpen.Data
 {
@@ -10,7 +11,7 @@ namespace BindOpen.Data
         public static T WithDescription<T>(
             this T obj,
             IBdoDictionary dictionary)
-            where T : IGloballyDescribed
+            where T : IBdoDescribed
         {
             if (obj != null)
             {
@@ -24,15 +25,15 @@ namespace BindOpen.Data
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="obj"></param>
-        /// <param name="key"></param>
-        /// <param name="defaultKey"></param>
+        /// <param key="obj"></param>
+        /// <param key="key"></param>
+        /// <param key="defaultKey"></param>
         /// <returns></returns>
         public static string GetDescriptionText<T>(
             this T obj,
             string key = StringHelper.__Star,
             string defaultKey = StringHelper.__Star)
-            where T : IGloballyDescribed
+            where T : IBdoDescribed
         {
             return obj?.Description?[key, defaultKey];
         }

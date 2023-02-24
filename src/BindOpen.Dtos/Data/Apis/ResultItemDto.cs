@@ -49,8 +49,8 @@ namespace BindOpen.Data.Apis
         /// <summary>
         /// Initializes a new instance of the ResultItemDto class.
         /// </summary>
-        /// <param name="key">The key to consider.</param>
-        /// <param name="status">The status to consider.</param>
+        /// <param key="key">The key to consider.</param>
+        /// <param key="status">The status to consider.</param>
         public ResultItemDto(string key, ResourceStatus status = ResourceStatus.None)
         {
             Key = key;

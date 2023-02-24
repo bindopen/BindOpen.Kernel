@@ -5,7 +5,7 @@ namespace BindOpen.Data.Items
     /// <summary>
     /// This interface defines a data expression.
     /// </summary>
-    public interface IBdoExpression : IBdoItem
+    public interface IBdoExpression : IBdoNotMetableItem
     {
         /// <summary>
         /// The kind.
@@ -18,31 +18,8 @@ namespace BindOpen.Data.Items
         string Text { get; set; }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="text"></param>
-        /// <returns></returns>
-        IBdoExpression WithText(string text)
-        {
-            Text = text;
-            return this;
-        }
-
-        /// <summary>
         /// The script word.
         /// </summary>
         IBdoScriptword Word { get; set; }
-
-        IBdoExpression WithWord(IBdoScriptword word)
-        {
-            Word = word;
-            return this;
-        }
-
-        IBdoExpression AsScript();
-
-        IBdoExpression AsLiteral();
-
-        IBdoExpression AsAuto();
     }
 }

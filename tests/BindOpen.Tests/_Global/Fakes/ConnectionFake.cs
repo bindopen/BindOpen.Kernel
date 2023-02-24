@@ -17,7 +17,7 @@ namespace BindOpen.Tests
         /// <summary>
         /// Instantiates a new instance of the ConnectionFake class.
         /// </summary>
-        /// <param name="connector">The connector to consider.</param>
+        /// <param key="connector">The connector to consider.</param>
         public ConnectionFake(ConnectorFake connector)
         {
             Connector = connector;

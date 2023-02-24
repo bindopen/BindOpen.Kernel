@@ -23,8 +23,8 @@ namespace BindOpen.Extensions.Processing
         /// <summary>
         /// Instantiates a new instance of ResourceAllocation class.
         /// </summary>
-        /// <param name="allocatedResourceId">Allocated resource ID to consider.</param>
-        /// <param name="ownerId">The owner ID to consider.</param>
+        /// <param key="allocatedResourceId">Allocated resource ID to consider.</param>
+        /// <param key="ownerId">The owner ID to consider.</param>
         public ResourceAllocation(
             string allocatedResourceId,
             string ownerId = null)
@@ -50,7 +50,7 @@ namespace BindOpen.Extensions.Processing
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param key="id"></param>
         /// <returns></returns>
         public IResourceAllocation WithAllocatedResourceId(string id)
         {
@@ -66,7 +66,7 @@ namespace BindOpen.Extensions.Processing
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param key="id"></param>
         /// <returns></returns>
         public IResourceAllocation WithOwnerId(string id)
         {

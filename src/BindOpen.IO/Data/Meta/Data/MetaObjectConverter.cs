@@ -1,6 +1,7 @@
-﻿using BindOpen.Data.Items;
+﻿using AutoMapper;
+using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
-using BindOpen.Data.References;
+using System.Linq;
 
 namespace BindOpen.Data.Meta
 {
@@ -12,23 +13,24 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="poco">The poco to consider.</param>
+        /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static MetaObjectDto ToDto(this IBdoMetaObject poco)
         {
             if (poco == null) return null;
 
-            MetaObjectDto dto = new()
-            {
-                //Elements = poco.Elements?.Select(q => q.ToDto()).ToList(),
-                //Index = poco.Index,
-                ItemizationMode = poco.ItemizationMode,
-                DataReference = poco.Reference.ToDto(),
-                DataExpression = poco.Expression.ToDto(),
-                PropertySet = poco.PropertySet.ToDto(),
-                ValueType = poco.ValueType
-            };
-            //dto.Specifications = poco.Specifications.Select(q => q.ToDto()).ToList(),
+            var config = new MapperConfiguration(
+                cfg => cfg.CreateMap<BdoMetaObject, MetaObjectDto>()
+                    .ForMember(q => q.DataExpression, opt => opt.MapFrom(q => q.DataExpression.ToDto()))
+                    .ForMember(q => q.MetaItems, opt => opt.Ignore())
+                    .ForMember(q => q.Item, opt => opt.Ignore())
+                    .ForMember(q => q.SubDataSet, opt => opt.Ignore())
+            );
+
+            var mapper = new Mapper(config);
+            var dto = mapper.Map<MetaObjectDto>(poco);
+
+            dto.MetaItems = poco.Items?.Select(q => q.ToDto()).ToList();
 
             return dto;
         }
@@ -36,15 +38,25 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Converts to DTO.
         /// </summary>
-        /// <param name="dto">The DTO to consider.</param>
+        /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoMetaObject ToPoco(this MetaObjectDto dto)
+        public static IBdoMetaObject ToPoco(
+            this MetaObjectDto dto)
         {
             if (dto == null) return null;
 
-            BdoMetaObject poco = new()
-            {
-            };
+            var config = new MapperConfiguration(
+                cfg => cfg.CreateMap<MetaObjectDto, BdoMetaObject>()
+                    .ForMember(q => q.DataExpression, opt => opt.Ignore())
+                    .ForMember(q => q.Specs, opt => opt.Ignore())
+                );
+
+            var mapper = new Mapper(config);
+            var poco = mapper.Map<BdoMetaObject>(dto);
+
+            poco.DataExpression = dto.DataExpression.ToPoco();
+            //poco.Specs = dto.Specs?.Count == 0 ? null : dto.Specs?.Select(q => q.ToPoco()).Cast<IBdoSpec>().ToList();
+            poco.With(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
 
             return poco;
         }

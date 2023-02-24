@@ -25,9 +25,9 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// Instantiates a new instance of the ScriptItem class.
         /// </summary>
-        /// <param name="kind">The kind of the instance.</param>
-        /// <param name="name">The name of the instance.</param>
-        /// <param name="index">The index of the instance.</param>
+        /// <param key="kind">The kind of the instance.</param>
+        /// <param key="name">The name of the instance.</param>
+        /// <param key="index">The index of the instance.</param>
         public ScriptItem(
             ScriptItemKinds kind,
             String name,
@@ -74,7 +74,7 @@ namespace BindOpen.Extensions.Scripting
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
+        /// <param key="name"></param>
         /// <returns></returns>
         public IScriptItem WithName(string name)
         {

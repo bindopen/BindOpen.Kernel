@@ -12,14 +12,14 @@ namespace BindOpen.Data
         /// <summary>
         /// Evaluate this instance.
         /// </summary>
-        /// <param name="condition">The condition to consider.</param>
-        /// <param name="scriptInterpreter">Script interpreter.</param>
-        /// <param name="varSet">The variable element set used to evaluate.</param>
+        /// <param key="condition">The condition to consider.</param>
+        /// <param key="scriptInterpreter">Script interpreter.</param>
+        /// <param key="varSet">The variable element set used to evaluate.</param>
         /// <returns>True if this instance is true.</returns>
         public static bool Evaluate(
             this ICondition condition,
             IBdoScriptInterpreter scriptInterpreter,
-            IBdoMetaList varSet)
+            IBdoMetaSet varSet)
         {
             if (condition is IAdvancedCondition advancedCondition)
             {
@@ -40,14 +40,14 @@ namespace BindOpen.Data
         /// <summary>
         /// Evaluate this instance.
         /// </summary>
-        /// <param name="condition">The condition to consider.</param>
-        /// <param name="scriptInterpreter">Script interpreter.</param>
-        /// <param name="varSet">The variable element set used to evaluate.</param>
+        /// <param key="condition">The condition to consider.</param>
+        /// <param key="scriptInterpreter">Script interpreter.</param>
+        /// <param key="varSet">The variable element set used to evaluate.</param>
         /// <returns>True if this instance is true.</returns>
         private static bool Evaluate(
             this IAdvancedCondition condition,
             IBdoScriptInterpreter scriptInterpreter,
-            IBdoMetaList varSet)
+            IBdoMetaSet varSet)
         {
             if (condition == null) return false;
 
@@ -73,9 +73,9 @@ namespace BindOpen.Data
         /// <summary>
         /// Evaluate this instance.
         /// </summary>
-        /// <param name="condition">The condition to consider.</param>
-        /// <param name="scriptInterpreter">Script interpreter.</param>
-        /// <param name="varSet">The variable element set used to evaluate.</param>
+        /// <param key="condition">The condition to consider.</param>
+        /// <param key="scriptInterpreter">Script interpreter.</param>
+        /// <param key="varSet">The variable element set used to evaluate.</param>
         /// <returns>True if this instance is true.</returns>
         private static bool Evaluate(this IBasicCondition condition)
         {
@@ -107,14 +107,14 @@ namespace BindOpen.Data
         /// <summary>
         /// Evaluate this instance.
         /// </summary>
-        /// <param name="condition">The condition to consider.</param>
-        /// <param name="scriptInterpreter">Script interpreter.</param>
-        /// <param name="varSet">The variable element set used to evaluate.</param>
+        /// <param key="condition">The condition to consider.</param>
+        /// <param key="scriptInterpreter">Script interpreter.</param>
+        /// <param key="varSet">The variable element set used to evaluate.</param>
         /// <returns>True if the business script value is the true value.</returns>
         private static bool Evaluate(
             this IScriptCondition condition,
             IBdoScriptInterpreter scriptInterpreter,
-            IBdoMetaList varSet)
+            IBdoMetaSet varSet)
         {
             if (condition == null) return false;
 

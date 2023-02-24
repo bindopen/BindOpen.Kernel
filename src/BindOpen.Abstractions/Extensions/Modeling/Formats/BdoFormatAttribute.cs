@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Items;
-using System;
+﻿using System;
 
 namespace BindOpen.Extensions.Modeling
 {
@@ -7,7 +6,7 @@ namespace BindOpen.Extensions.Modeling
     /// This class represents an attribute of formats.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public class BdoFormatAttribute : TitledDescribedDataItemAttribute
+    public class BdoFormatAttribute : MetaExtensionAttribute
     {
         // ------------------------------------------
         // CONSTRUCTORS

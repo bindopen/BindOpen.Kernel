@@ -10,18 +10,65 @@ namespace BindOpen.Extensions
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="name"></param>
-        public static T WithDefinition<T>(
-            this T obj,
-            IBdoScriptwordDefinition def)
+        /// <param key="name"></param>
+        public static T WithKind<T>(
+            this T word,
+            ScriptItemKinds kind)
             where T : IBdoScriptword
         {
-            if (obj != null)
+            if (word != null)
             {
-                obj.Definition = def;
+                word.Kind = kind;
             }
 
-            return obj;
+            return word;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithChild<T>(
+            this T word, IBdoScriptword scriptword)
+            where T : IBdoScriptword
+        {
+            if (word != null)
+            {
+                word.Child = scriptword;
+            }
+
+            return word;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithParent<T>(
+            this T word, IBdoScriptword scriptword)
+            where T : IBdoScriptword
+        {
+            if (word != null)
+            {
+                word.Parent = scriptword;
+            }
+
+            return word;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="name"></param>
+        public static T WithDefinitionUniqueName<T>(
+            this T word,
+            string uniqueName)
+            where T : IBdoScriptword
+        {
+            if (word != null)
+            {
+                word.DefinitionUniqueName = uniqueName;
+            }
+
+            return word;
         }
     }
 }

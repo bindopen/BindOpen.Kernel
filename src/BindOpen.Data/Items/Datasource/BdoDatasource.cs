@@ -1,13 +1,11 @@
 ﻿using BindOpen.Data.Configuration;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BindOpen.Data.Items
 {
     /// <summary>
     /// This class represents a data source.
     /// </summary>
-    public class BdoDatasource : BdoItem, IBdoDatasource
+    public class BdoDatasource : BdoConfigurationSet, IBdoDatasource
     {
         // -----------------------------------------------
         // CONSTRUCTORS
@@ -25,14 +23,13 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// This instantiates a new instance of the Datasource class.
         /// </summary>
-        /// <param name="name">The name to consider.</param>
+        /// <param key="name">The name to consider.</param>
         public BdoDatasource(string name) : base()
         {
             this.WithName(name);
         }
 
         #endregion
-
 
         // ------------------------------------------
         // CLONING
@@ -47,8 +44,6 @@ namespace BindOpen.Data.Items
         public override object Clone(params string[] areas)
         {
             var dataSource = base.Clone<BdoDatasource>(areas);
-
-            dataSource.ConfigList = ConfigList?.Select(p => p.Clone<IBdoConfiguration>()).ToList();
 
             return dataSource;
         }
@@ -69,7 +64,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Sets the specified kind of this instance. 
         /// </summary>
-        /// <param name="kind">The kind to consider.</param>
+        /// <param key="kind">The kind to consider.</param>
         public IBdoDatasource WithKind(DatasourceKind kind)
         {
             Kind = kind;
@@ -84,7 +79,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Sets the specified module name of this instance. 
         /// </summary>
-        /// <param name="moduleName">The module name to consider.</param>
+        /// <param key="moduleName">The module name to consider.</param>
         public IBdoDatasource WithModuleName(string moduleName)
         {
             ModuleName = moduleName;
@@ -99,7 +94,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Specifies that this instance is the default. 
         /// </summary>
-        /// <param name="isDefault"></param>
+        /// <param key="isDefault"></param>
         public IBdoDatasource AsDefault(bool isDefault = true)
         {
             IsDefault = isDefault;
@@ -114,7 +109,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// Sets the specified module name of this instance. 
         /// </summary>
-        /// <param name="instanceName">The instance name to consider.</param>
+        /// <param key="instanceName">The instance name to consider.</param>
         public IBdoDatasource WithInstanceName(string instanceName)
         {
             InstanceName = instanceName;
@@ -122,74 +117,15 @@ namespace BindOpen.Data.Items
         }
 
         /// <summary>
-        /// Description of this instance.
+        /// Sets the specified single item of this instance.
         /// </summary>
-        public IBdoConfiguration Config() => ConfigList.FirstOrDefault();
-
-        /// <summary>
-        /// Description of this instance.
-        /// </summary>
-        public List<IBdoConfiguration> ConfigList { get; set; }
-
-        /// <summary>
-        /// Adds the specified connector config.
-        /// </summary>
-        /// <param name="config">The connector to add.</param>
-        public IBdoDatasource AddConfig(IBdoConfiguration config)
+        /// <param key="items">The items to apply to this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
+        public new IBdoDatasource With(params IBdoConfiguration[] items)
         {
-            if (config != null)
-            {
-                ConfigList ??= new List<IBdoConfiguration>();
-                ConfigList.Add(config);
-            }
+            base.With(items);
 
             return this;
-        }
-
-        /// <summary>
-        /// Removes the specified connector config.
-        /// </summary>
-        /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
-        public IBdoDatasource RemoveConfig(string definitionName)
-        {
-            ConfigList ??= new List<IBdoConfiguration>();
-            ConfigList?.RemoveAll(p => p.DefinitionUniqueId.BdoKeyEquals(definitionName));
-
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the specified configs.
-        /// </summary>
-        /// <param name="configs">The configs to consider.</param>
-        public IBdoDatasource WithConfig(params IBdoConfiguration[] configs)
-        {
-            foreach (var config in configs)
-            {
-                AddConfig(config);
-            }
-
-            return this;
-        }
-
-        /// <summary>
-        /// Gets the specified connector config.
-        /// </summary>
-        /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
-        /// <returns>The specified connector.</returns>
-        public IBdoConfiguration GetConfig(string definitionName = null)
-        {
-            return ConfigList?.FirstOrDefault(p => definitionName == null || p.DefinitionUniqueId.BdoKeyEquals(definitionName));
-        }
-
-        /// <summary>
-        /// Indicates whether this instance has the specified connector config.
-        /// </summary>
-        /// <param name="definitionName">The unique ID of the connector definition to consider.</param>
-        /// <returns>The data source with the specified data module name.</returns>
-        public bool HasConfig(string definitionName = null)
-        {
-            return ConfigList?.Any(p => definitionName == null || p.DefinitionUniqueId.BdoKeyEquals(definitionName)) == true;
         }
 
         #endregion
@@ -203,20 +139,7 @@ namespace BindOpen.Data.Items
         /// <summary>
         /// 
         /// </summary>
-        public string Key() => Name;
-
-        #endregion
-
-        // ------------------------------------------
-        // IIdentified Implementation
-        // ------------------------------------------
-
-        #region IIdentified
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Id { get; set; }
+        public override string Key() => Name;
 
         #endregion
 

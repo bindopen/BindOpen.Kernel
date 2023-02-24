@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Data.Assemblies
+﻿using BindOpen.Data.Helpers;
+
+namespace BindOpen.Data.Assemblies
 {
     /// <summary>
     /// This structure represents an class reference.
@@ -19,9 +21,9 @@
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="assemblyName"></param>
-        /// <param name="assemblyVersion"></param>
-        /// <param name="className"></param>
+        /// <param key="assemblyName"></param>
+        /// <param key="assemblyVersion"></param>
+        /// <param key="className"></param>
         public BdoClassReference(
             string assemblyName,
             string assemblyVersion,
