@@ -15,13 +15,19 @@ namespace BindOpen.Data.Meta
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the BdoMetaSpecList class.
+        /// Initializes a new instance of the BdoMetaSpecSet class.
         /// </summary>
         public BdoSpecSet() : base()
         {
         }
 
         #endregion
+
+        // --------------------------------------------------
+        // IBdoSpecSet Implementation
+        // --------------------------------------------------
+
+        #region IBdoSpecSet
 
         /// <summary>
         /// Adds the specified item.
@@ -50,6 +56,18 @@ namespace BindOpen.Data.Meta
 
             return this;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="set"></param>
+        /// <returns></returns>
+        public bool IsCompatibleWith(IBdoMetaSet set)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        #endregion
 
         // --------------------------------------------------
         // CLONING

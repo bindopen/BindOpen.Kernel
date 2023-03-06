@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Data.Conditions;
+﻿using BindOpen.Data.Conditions;
 using BindOpen.Data.Configuration;
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Items;
@@ -11,7 +10,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    public abstract class BdoSpec : BdoItem, IBdoSpec
+    public class BdoSpec : BdoItem, IBdoSpec
     {
         // --------------------------------------------------
         // CONSTANTS
@@ -52,7 +51,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Initializes a new instance of the BdoSpec class.
         /// </summary>
-        protected BdoSpec() : base()
+        public BdoSpec() : base()
         {
         }
 

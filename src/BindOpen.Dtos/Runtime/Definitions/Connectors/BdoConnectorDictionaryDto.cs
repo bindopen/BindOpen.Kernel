@@ -7,8 +7,8 @@ namespace BindOpen.Runtime.Definitions
     /// <summary>
     /// This class represents a DTO connector dico.
     /// </summary>
-    [XmlType("ConnectorDictionary", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "connectors.dico", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("ConnectorDictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "connectors.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class BdoConnectorDictionaryDto
         : TBdoExtensionDictionaryDto<BdoConnectorDefinitionDto>
     {

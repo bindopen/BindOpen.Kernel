@@ -5,7 +5,7 @@ namespace BindOpen.Runtime
     /// <summary>
     /// This enumeration represents the possible kinds of library item viewers.
     /// </summary>
-    [XmlType("BdoExtensionViewerKind", Namespace = "https://xsd.bindopen.org")]
+    [XmlType("BdoExtensionViewerKind", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     public enum BdoExtensionViewerKind
     {
         /// <summary>
@@ -24,9 +24,9 @@ namespace BindOpen.Runtime
         Connector,
 
         /// <summary>
-        /// Metrics.
+        /// Function.
         /// </summary>
-        Metrics,
+        Function,
 
         /// <summary>
         /// Script word.

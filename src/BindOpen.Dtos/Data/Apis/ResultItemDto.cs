@@ -7,8 +7,8 @@ namespace BindOpen.Data.Apis
     /// <summary>
     /// This class represents a DTO item result.
     /// </summary>
-    [XmlType("ResultItemDto", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot("resultItemDto", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("ResultItemDto", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot("resultItemDto", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class ResultItemDto
     {
         // -------------------------------------------------------

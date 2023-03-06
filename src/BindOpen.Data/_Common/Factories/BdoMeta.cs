@@ -99,7 +99,8 @@ namespace BindOpen.Data
                 }
                 else
                 {
-                    if (valueType == DataValueTypes.MetaData)
+                    if (valueType == DataValueTypes.MetaData
+                        || valueType == DataValueTypes.Scriptword)
                     {
                         var meta = data as IBdoMetaData;
                         if (meta != null) meta.Name ??= name;

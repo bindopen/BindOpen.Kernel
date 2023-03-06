@@ -7,7 +7,7 @@ namespace BindOpen.Logging
     /// This enumeration lists the possible event kinds.
     /// </summary>
     [Flags()]
-    [XmlType("EventKinds", Namespace = "https://xsd.bindopen.org")]
+    [XmlType("EventKinds", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     public enum EventKinds
     {
         /// <summary>

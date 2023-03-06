@@ -1,6 +1,4 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Data.Meta;
-using BindOpen.Data.Items;
+﻿using BindOpen.Data.Items;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
 using System.Collections.Generic;

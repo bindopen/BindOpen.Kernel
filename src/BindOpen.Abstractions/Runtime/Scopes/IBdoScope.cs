@@ -49,38 +49,12 @@ namespace BindOpen.Runtime.Scopes
         /// <summary>
         /// Loads the specified extensions.
         /// </summary>
-        /// <param key="references">The extension references to consider.</param>
-        /// <param key="log"></param>
-        bool LoadExtensions(
-            IBdoAssemblyReference[] references,
-            IBdoLog log = null);
-
-        /// <summary>
-        /// Loads the specified extensions.
-        /// </summary>
-        /// <param key="references">The extension references to consider.</param>
-        bool LoadExtensions(
-            params IBdoAssemblyReference[] references);
-
-        /// <summary>
-        /// Loads the specified extensions.
-        /// </summary>
         /// <param key="loadOptionsAction">The load options action to consider.</param>
         /// <param key="references">The extension references to consider.</param>
         /// <param key="log"></param>
         bool LoadExtensions(
-            Func<IExtensionLoadOptions, bool> loadOptionsAction,
-            IBdoAssemblyReference[] references,
+            Action<IExtensionLoadOptions> loadOptionsAction,
             IBdoLog log = null);
-
-        /// <summary>
-        /// Loads the specified extensions.
-        /// </summary>
-        /// <param key="loadOptionsAction">The load options action to consider.</param>
-        /// <param key="references">The extension references to consider.</param>
-        bool LoadExtensions(
-            Func<IExtensionLoadOptions, bool> loadOptionsAction,
-            params IBdoAssemblyReference[] references);
 
         /// <summary>
         /// Clears this instance.

@@ -11,13 +11,13 @@ namespace BindOpen.Runtime.Stores
     internal partial class BdoExtensionStoreLoader : BdoItem, IBdoExtensionStoreLoader
     {
         /// <summary>
-        /// Loads the metrics dico from the specified assembly.
+        /// Loads the function dico from the specified assembly.
         /// </summary>
         /// <param key="assembly">The assembly to consider.</param>
         /// <param key="extensionDefinition">The extension definition to consider.</param>
         /// <param key="log">The log to consider.</param>
         /// <returns></returns>
-        private int LoadMetricsDictionaryFromAssembly(
+        private int LoadFunctionDictionaryFromAssembly(
             Assembly assembly,
             IBdoPackageDefinition extensionDefinition,
             IBdoLog log = null)
@@ -27,7 +27,7 @@ namespace BindOpen.Runtime.Stores
                 return -1;
             }
 
-            // we feach metrics classes
+            // we feach function classes
 
             int count = 0;
 

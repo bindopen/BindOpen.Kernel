@@ -114,6 +114,11 @@ namespace BindOpen.Data.Meta
         // Items --------------------------------------------
 
         /// <summary>
+        /// Indicates whether this instance is repeated in a set.
+        /// </summary>
+        public bool IsRepeated { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         public BdoMetaDataKind MetaDataKind
@@ -163,7 +168,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Specification of this instance.
         /// </summary>
-        public List<IBdoSpec> Specs { get; set; }
+        public IBdoSpecSet SpecSet { get; set; }
 
         // Specification ---------------------
 
@@ -185,18 +190,8 @@ namespace BindOpen.Data.Meta
         /// <returns></returns>
         public IBdoSpec GetSpec(string name = null)
         {
-            return Specs?.FirstOrDefault(
+            return SpecSet?.FirstOrDefault(
                 q => (name == null && q.Name == null) || q.Name.BdoKeyEquals(name));
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IBdoMetaData WithSpecs(params IBdoSpec[] specs)
-        {
-            Specs = specs?.ToList();
-
-            return this;
         }
 
         // Data

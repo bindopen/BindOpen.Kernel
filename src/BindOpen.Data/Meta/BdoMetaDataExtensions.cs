@@ -43,5 +43,21 @@ namespace BindOpen.Data
 
             return meta;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="modes"></param>
+        public static T WithSpecs<T>(
+            this T meta,
+            params IBdoSpec[] specs)
+            where T : IBdoMetaData
+        {
+            if (meta != null)
+            {
+                meta.SpecSet = BdoMeta.NewSpecSet(specs);
+            }
+            return meta;
+        }
     }
 }

@@ -8,8 +8,8 @@ namespace BindOpen.Data.Apis
     /// <summary>
     /// This class represents a Api log DTO.
     /// </summary>
-    [XmlType("ApiLogDto", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "log", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("ApiLogDto", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "log", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class BdoApiLogDto : IDto
     {
         // ------------------------------------------

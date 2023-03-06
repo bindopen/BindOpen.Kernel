@@ -8,8 +8,8 @@ namespace BindOpen.Data.Items
     /// <summary>
     /// This class represents a data key value.
     /// </summary>
-    [XmlType("KeyValuePair", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "add.value", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("KeyValuePair", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "add.value", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class KeyValuePairDto
     {
         // --------------------------------------------------

@@ -41,12 +41,8 @@ namespace BindOpen.Runtime.Stores
                     return LoadConnectorDictionaryFromAssembly(assembly, extensionDefinition, log);
                 case BdoExtensionKind.Entity:
                     return LoadEntityDictionaryFromAssembly(assembly, extensionDefinition, log);
-                case BdoExtensionKind.Format:
-                    return LoadFormatDictionaryFromAssembly(assembly, extensionDefinition, log);
-                case BdoExtensionKind.Metrics:
-                    return LoadMetricsDictionaryFromAssembly(assembly, extensionDefinition, log);
-                case BdoExtensionKind.Routine:
-                    return LoadRoutineDictionaryFromAssembly(assembly, extensionDefinition, log);
+                case BdoExtensionKind.Function:
+                    return LoadFunctionDictionaryFromAssembly(assembly, extensionDefinition, log);
                 case BdoExtensionKind.Scriptword:
                     return LoadScripwordDictionaryFromAssembly(assembly, extensionDefinition, log);
                 case BdoExtensionKind.Task:
@@ -125,9 +121,7 @@ namespace BindOpen.Runtime.Stores
             {
                 BdoExtensionKind.Connector => "BindOpen.Connectors",
                 BdoExtensionKind.Entity => "BindOpen.Entities",
-                BdoExtensionKind.Format => "BindOpen.Formats",
-                BdoExtensionKind.Metrics => "BindOpen.Metrics",
-                BdoExtensionKind.Routine => "BindOpen.Routines",
+                BdoExtensionKind.Function => "BindOpen.Functions",
                 BdoExtensionKind.Scriptword => "BindOpen.Scriptwords",
                 BdoExtensionKind.Task => "BindOpen.Tasks",
                 _ => null,
@@ -145,10 +139,8 @@ namespace BindOpen.Runtime.Stores
             return itemKind switch
             {
                 BdoExtensionKind.Connector => typeof(BdoConnectorDictionary),
-                BdoExtensionKind.Format => null,
                 BdoExtensionKind.Entity => typeof(BdoEntityDictionary),
-                BdoExtensionKind.Metrics => typeof(BdoMetricsDictionary),
-                BdoExtensionKind.Routine => typeof(BdoRoutineDictionary),
+                BdoExtensionKind.Function => typeof(BdoFunctionDictionary),
                 BdoExtensionKind.Scriptword => typeof(BdoScriptwordDictionary),
                 BdoExtensionKind.Task => typeof(BdoTaskDictionary),
                 _ => null,

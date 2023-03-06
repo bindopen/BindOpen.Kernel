@@ -11,8 +11,8 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a catalog element that is an element whose elements are carriers.
     /// </summary>
-    [XmlType("MetaObject", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "object", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("MetaObject", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "object", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class MetaObjectDto : MetaDataDto
     {
         // --------------------------------------------------
@@ -26,9 +26,9 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The sub  mode of this instance.
         /// </summary>
-        [JsonPropertyName("subDataSet")]
-        [XmlElement("subDataSet")]
-        public MetaSetDto SubDataSet { get; set; }
+        [JsonPropertyName("subSet")]
+        [XmlElement("subSet")]
+        public MetaSetDto SubSet { get; set; }
 
         /// <summary>
         /// The class full name of this instance.
@@ -67,15 +67,6 @@ namespace BindOpen.Data.Meta
         [XmlElement("scalar", Type = typeof(MetaScalarDto))]
         [XmlElement("scriptword", Type = typeof(ScriptwordDto))]
         public List<MetaDataDto> MetaItems { get; set; }
-
-        // Specification -----------------------
-
-        /// <summary>
-        /// The specification of this instance.
-        /// </summary>
-        [JsonPropertyName("specification")]
-        [XmlElement("specification")]
-        public ObjectSpecDto Specification { get; set; }
 
         #endregion
 

@@ -7,8 +7,8 @@ namespace BindOpen.Runtime.Definitions
     /// <summary>
     /// This class represents a DTO task dico.
     /// </summary>
-    [XmlType("TaskDictionary", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "tasks.dico", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("TaskDictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "tasks.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class BdoTaskDictionaryDto : TBdoExtensionDictionaryDto<BdoTaskDefinitionDto>
     {
         // ------------------------------------------

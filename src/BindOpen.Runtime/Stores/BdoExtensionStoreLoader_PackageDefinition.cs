@@ -1,6 +1,9 @@
-﻿using BindOpen.Logging;
+﻿using BindOpen.Data;
+using BindOpen.Data.Helpers;
+using BindOpen.Logging;
 using BindOpen.Runtime.Definitions;
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
 
@@ -32,11 +35,8 @@ namespace BindOpen.Runtime.Stores
 
             if (assembly != null)
             {
-                if (resourceFullName == null)
-                {
-                    resourceFullName = Array.Find(
+                resourceFullName ??= Array.Find(
                        assembly.GetManifestResourceNames(), p => p.EndsWith(__DefaultResourceFileName, StringComparison.OrdinalIgnoreCase));
-                }
 
                 if (resourceFullName == null)
                 {
@@ -58,6 +58,38 @@ namespace BindOpen.Runtime.Stores
                         log?.AddException(ex);
                     }
                 }
+
+                definition ??= new BdoPackageDefinition();
+                definition.AssemblyName ??= assembly.GetName().Name;
+
+                if (string.IsNullOrEmpty(definition.Description?.Get()))
+                {
+                    var descriptionAttribute = assembly
+                         .GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false)
+                         .OfType<AssemblyDescriptionAttribute>()
+                         .FirstOrDefault();
+                    if (descriptionAttribute != null)
+                    {
+                        definition.Description ??= BdoData.NewDictionary();
+                        definition.Description.Set(descriptionAttribute.Description);
+                    }
+                }
+
+                definition.FileName ??= definition.AssemblyName + ".dll";
+                definition.Id ??= StringHelper.NewGuid();
+                definition.Name = resourceFullName;
+                definition.RootNamespace = resourceFullName ?? definition.AssemblyName;
+
+                if (string.IsNullOrEmpty(definition.Title?.Get()))
+                {
+                    definition.Title ??= BdoData.NewDictionary();
+                    definition.Title.Set(
+                        string.Format(
+                            "Extension library 'BindOpen.Runtime.Tests'",
+                            definition.AssemblyName));
+                }
+
+                definition.UsingAssemblyReferences ??= assembly.GetReferencedAssemblies().Select(q => BdoData.Assembly(q.Name)).ToList();
             }
 
             return definition;

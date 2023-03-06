@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Assemblies;
-using BindOpen.Data.Items;
+﻿using BindOpen.Data.Items;
 using BindOpen.Data.Stores;
 using BindOpen.Runtime.Scopes;
 using Microsoft.Extensions.Logging;
@@ -45,24 +44,9 @@ namespace BindOpen.Hosting.Hosts
         // Extensions ----------------------
 
         /// <summary>
-        /// The extension to load.
-        /// </summary>
-        IBdoAssemblyReferenceCollection ExtensionReferences { get; }
-
-        /// <summary>
         /// The extension load options.
         /// </summary>
         IExtensionLoadOptions ExtensionLoadOptions { get; }
-
-        // -------
-
-        /// <summary>
-        /// Adds the extensions.
-        /// </summary>
-        /// <param key="action">The action for adding extensions.</param>
-        /// <param key="loadOptionsAction">The action for loading options.</param>
-        /// <returns>Returns the host option.</returns>
-        IBdoHostOptions AddExtensions(Action<IBdoAssemblyReferenceCollection> action = null, Action<IExtensionLoadOptions> loadOptionsAction = null);
 
         // Depots ----------------------
 

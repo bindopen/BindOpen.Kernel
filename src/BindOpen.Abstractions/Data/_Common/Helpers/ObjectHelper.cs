@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using BindOpen.Extensions.Scripting;
 using System;
 using System.Collections;
@@ -202,7 +203,7 @@ namespace BindOpen.Data.Helpers
             this Type objectType,
             string propertyName,
             Type[] attributeTypes,
-            out BdoPropertyAttribute attribute)
+            out BdoParameterAttribute attribute)
         {
             attribute = null;
             PropertyInfo propertyInfo = null;
@@ -214,7 +215,7 @@ namespace BindOpen.Data.Helpers
                 {
                     foreach (Type attributeType in attributeTypes)
                     {
-                        if (propertyInfo.GetCustomAttribute(attributeType) is BdoPropertyAttribute elementAttribute)
+                        if (propertyInfo.GetCustomAttribute(attributeType) is BdoParameterAttribute elementAttribute)
                         {
                             attribute = elementAttribute;
                             break;

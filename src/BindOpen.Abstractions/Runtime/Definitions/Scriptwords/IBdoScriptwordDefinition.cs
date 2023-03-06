@@ -1,7 +1,4 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Data;
-using BindOpen.Data.Helpers;
-using BindOpen.Data.Items;
+﻿using BindOpen.Data;
 using BindOpen.Extensions;
 using BindOpen.Extensions.Scripting;
 
@@ -10,17 +7,17 @@ namespace BindOpen.Runtime.Definitions
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoScriptwordDefinition : IBdoExtensionDefinition
+    public interface IBdoScriptwordDefinition : IBdoFunctionDefinition
     {
         /// <summary>
         /// 
         /// </summary>
-        DataValueTypes InputValueType { get; set; }
+        ScriptItemKinds Kind { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        DataValueTypes OutputValueType { get; set; }
+        DataValueTypes ParentValueType { get; set; }
 
         /// <summary>
         /// 
@@ -31,70 +28,5 @@ namespace BindOpen.Runtime.Definitions
         /// 
         /// </summary>
         BdoScriptwordDelegate RuntimeBasicFunction { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        ScriptItemKinds Kind { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        bool IsRepeatedParameters { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        int MaxParameterNumber { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        int MinParameterNumber { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoSpecSet ParameterSpecification { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoDictionary RepeatedParameterDescription { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        string RepeatedParameterName { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        DataValueTypes RepeatedParameterValueType { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        string CallingClass { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        string RuntimeFunctionName { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        string GetDefaultRuntimeFunctionName();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="key"></param>
-        /// <param key="defaultKey"></param>
-        /// <returns></returns>
-        string GetRepeatedParameterDescriptionText(string key = StringHelper.__Star, string defaultKey = StringHelper.__Star);
-
     }
 }

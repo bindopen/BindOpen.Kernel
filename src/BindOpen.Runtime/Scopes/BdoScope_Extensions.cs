@@ -3,6 +3,7 @@ using BindOpen.Data.Helpers;
 using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
+using BindOpen.Extensions;
 using BindOpen.Extensions.Connecting;
 using BindOpen.Extensions.Modeling;
 using BindOpen.Extensions.Processing;
@@ -17,6 +18,38 @@ namespace BindOpen.Runtime.Scopes
     /// </summary>
     public partial class BdoScope : BdoItem, IBdoScope
     {
+        // Functions ------------------------------------------------
+
+        public object CallFunction(
+            IBdoConfiguration config = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var objs = config.GetDataList(this, varSet, log)?.ToArray();
+            return CallFunction(config.DefinitionUniqueName, objs, varSet, log);
+        }
+
+        public object CallFunction(
+            string functionUniqueName,
+            object[] objs,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var def = ExtensionStore?.GetDefinition(
+                BdoExtensionKind.Function,
+                functionUniqueName);
+
+            if (def is not IBdoFunctionDefinition funcDef)
+            {
+                log?.AddError(string.Format("Function ('{0}') not found", functionUniqueName));
+                return null;
+            }
+
+            var result = funcDef.RuntimeFunction.DynamicInvoke(objs);
+
+            return result;
+        }
+
         // Entities ------------------------------------------------
 
         /// <summary>
@@ -138,8 +171,8 @@ namespace BindOpen.Runtime.Scopes
                         {
                             task.UpdateFromMeta(config, true, this, varSet);
                         }
-                        //task.UpdateFromMetaSet<BdoTaskInputAttribute>(config, scope, varSet);
-                        //task.UpdateFromMetaSet<BdoTaskOutputAttribute>(config, scope, varSet);
+                        //task.UpdateFromMetaSet<BdoInputAttribute>(config, scope, varSet);
+                        //task.UpdateFromMetaSet<BdoOutputAttribute>(config, scope, varSet);
                     }
                 }
             }

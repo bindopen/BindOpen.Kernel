@@ -7,8 +7,8 @@ namespace BindOpen.Data.Conditions
     /// <summary>
     /// This class represents an advanced condition DTO.
     /// </summary>
-    [XmlType("AdvancedCondition", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "advanced.condition", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("AdvancedCondition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "advanced.condition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class AdvancedConditionDto : ConditionDto
     {
         // ------------------------------------------

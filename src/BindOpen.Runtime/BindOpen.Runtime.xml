@@ -307,14 +307,14 @@
             Instantiates a new instance of the BdoHandlerDictionary class.
             </summary>
         </member>
-        <member name="T:BindOpen.Runtime.Definition.BdoMetricsDictionary">
+        <member name="T:BindOpen.Runtime.Definition.BdoFunctionDictionary">
             <summary>
-            This class represents a DTO metrics dico.
+            This class represents a DTO function dico.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoMetricsDictionary.#ctor">
+        <member name="M:BindOpen.Runtime.Definition.BdoFunctionDictionary.#ctor">
             <summary>
-            Instantiates a new instance of the BdoMetricsDictionary class.
+            Instantiates a new instance of the BdoFunctionDictionary class.
             </summary>
         </member>
         <member name="T:BindOpen.Runtime.Definition.BdoRoutineDictionary">
@@ -869,34 +869,34 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Runtime.Definition.BdoMetricsDefinition">
+        <member name="T:BindOpen.Runtime.Definition.BdoFunctionDefinition">
             <summary>
-            This class represents a metrics definition.
+            This class represents a function definition.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoMetricsDefinition.ItemClass">
+        <member name="P:BindOpen.Runtime.Definition.BdoFunctionDefinition.ItemClass">
             <summary>
             Item class of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoMetricsDefinition.RuntimeType">
+        <member name="P:BindOpen.Runtime.Definition.BdoFunctionDefinition.RuntimeType">
             <summary>
             The runtime type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoMetricsDefinition.UniqueName">
+        <member name="P:BindOpen.Runtime.Definition.BdoFunctionDefinition.UniqueName">
             <summary>
             The unique ID of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoMetricsDefinition.UnitCode">
+        <member name="P:BindOpen.Runtime.Definition.BdoFunctionDefinition.UnitCode">
             <summary>
             Unit code of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoMetricsDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoPackageDefinition)">
+        <member name="M:BindOpen.Runtime.Definition.BdoFunctionDefinition.#ctor(System.String,BindOpen.Runtime.Definition.IBdoPackageDefinition)">
             <summary>
-            Instantiates a new instance of the MetricsDefinition class. 
+            Instantiates a new instance of the FunctionDefinition class. 
             </summary>
             <param key="name">The name to consider.</param>
             <param key="extensionDefinition">The extensition definition to consider.</param>
@@ -1809,9 +1809,9 @@
             <param key="log">The log to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadMetricsDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Runtime.Stores.BdoExtensionStoreLoader.LoadFunctionDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Runtime.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
             <summary>
-            Loads the metrics dico from the specified assembly.
+            Loads the function dico from the specified assembly.
             </summary>
             <param key="assembly">The assembly to consider.</param>
             <param key="extensionDefinition">The extension definition to consider.</param>

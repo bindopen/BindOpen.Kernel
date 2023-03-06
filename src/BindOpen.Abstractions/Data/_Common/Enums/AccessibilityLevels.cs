@@ -7,7 +7,7 @@ namespace BindOpen.Data
     /// This enumerates the possible levels of accesibility.
     /// </summary>
     [Flags]
-    [XmlType("AccessibilityLevels", Namespace = "https://xsd.bindopen.org")]
+    [XmlType("AccessibilityLevels", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     public enum AccessibilityLevels
     {
         /// <summary>

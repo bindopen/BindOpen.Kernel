@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using BindOpen.Data;
 using BindOpen.Data.Configuration;
 using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
@@ -27,9 +26,9 @@ namespace BindOpen.Extensions.Scripting
                     .ForMember(q => q.MetaItems, opt => opt.MapFrom(q => q.Select(q => q.ToDto()).ToList()))
                     .ForMember(q => q.Item, opt => opt.Ignore())
                     .ForMember(q => q.Child, opt => opt.MapFrom(q => q.Child.ToDto()))
-                    .ForMember(q => q.SubDataSet, opt => opt.Ignore())
+                    .ForMember(q => q.SubSet, opt => opt.Ignore())
                     .ForMember(q => q.DataExpression, opt => opt.Ignore())
-                    .ForMember(q => q.Specification, opt => opt.Ignore())
+                    .ForMember(q => q.SpecSet, opt => opt.Ignore())
                 );
 
             var mapper = new Mapper(config);
@@ -54,7 +53,7 @@ namespace BindOpen.Extensions.Scripting
                        .ForMember(q => q.DataExpression, opt => opt.Ignore())
                        .ForMember(q => q.Items, opt => opt.Ignore())
                        .ForMember(q => q.Parent, opt => opt.Ignore())
-                       .ForMember(q => q.Specs, opt => opt.Ignore())
+                       .ForMember(q => q.SpecSet, opt => opt.Ignore())
                        .ForMember(q => q.ClassReference, opt => opt.Ignore())
                    );
 

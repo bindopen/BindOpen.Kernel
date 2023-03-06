@@ -13,7 +13,7 @@ namespace BindOpen.Data
     /// This enumeration represents the data sorting modes.
     /// </summary>
     [Flags]
-    [XmlType("DataSortingModes", Namespace = "https://xsd.bindopen.org")]
+    [XmlType("DataSortingModes", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     public enum DataSortingModes
     {
         /// <summary>

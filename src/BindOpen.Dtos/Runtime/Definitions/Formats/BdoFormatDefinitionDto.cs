@@ -7,8 +7,8 @@ namespace BindOpen.Runtime.Definitions
     /// <summary>
     /// This class represents the format definition.
     /// </summary>
-    [XmlType("FormatDefinition", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "format.definition", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("FormatDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "format.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class BdoFormatDefinitionDto : ExtensionDefinitionDto
     {
         // --------------------------------------------------

@@ -12,7 +12,7 @@ namespace BindOpen.Data
     /// <summary>
     /// This enumeration represents the possible levels of requirement.
     /// </summary>
-    [XmlType("RequirementLevels", Namespace = "https://xsd.bindopen.org")]
+    [XmlType("RequirementLevels", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [Flags]
     public enum RequirementLevels
     {

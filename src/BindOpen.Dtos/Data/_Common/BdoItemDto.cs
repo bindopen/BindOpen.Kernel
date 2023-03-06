@@ -7,7 +7,7 @@ namespace BindOpen.Data
     /// <summary>
     /// This class represents a catalog element that is an element whose elements are carriers.
     /// </summary>
-    [XmlType("BdoItem", Namespace = "https://xsd.bindopen.org")]
+    [XmlType("BdoItem", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlInclude(typeof(DatasourceDto))]
     [XmlInclude(typeof(DictionaryDto))]
     [XmlInclude(typeof(ExpressionDto))]

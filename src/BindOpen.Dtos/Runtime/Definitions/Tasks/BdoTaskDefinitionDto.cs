@@ -9,8 +9,8 @@ namespace BindOpen.Runtime.Definitions
     /// This class represents a task definition.
     /// </summary>
     /// <seealso cref="BdoConfig"/>
-    [XmlType("TaskDefinition", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "task.definition", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("TaskDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "task.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class BdoTaskDefinitionDto : ExtensionDefinitionDto
     {
         // ------------------------------------------
@@ -56,7 +56,7 @@ namespace BindOpen.Runtime.Definitions
         /// <seealso cref="OutputSpecification"/>
         [JsonPropertyName("input.specification")]
         [XmlElement("input.specification")]
-        public SpecListDto InputSpecification { get; set; }
+        public SpecSetDto InputSpecification { get; set; }
 
         /// <summary>
         /// Output specification of this instance.
@@ -64,7 +64,7 @@ namespace BindOpen.Runtime.Definitions
         /// <seealso cref="InputSpecification"/>
         [JsonPropertyName("output.specification")]
         [XmlElement("output.specification")]
-        public SpecListDto OutputSpecification { get; set; }
+        public SpecSetDto OutputSpecification { get; set; }
 
         #endregion
 

@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data;
+using BindOpen.Data.Items;
 using BindOpen.Extensions.Scripting;
 using BindOpen.Logging;
 using BindOpen.Runtime.Definitions;
@@ -72,7 +73,7 @@ namespace BindOpen.Runtime.Stores
                                 }
                                 else
                                 {
-                                    definition.CallingClass = type.FullName;
+                                    definition.ClassReference = BdoData.Class(type);
                                     definition.LibraryId = extensionDefinition?.Id;
 
                                     // we create the runtime definition
@@ -100,7 +101,8 @@ namespace BindOpen.Runtime.Stores
                                     {
                                         log?.AddError(
                                                 title: "Incompatible function ('" + methodInfo.Name + "')",
-                                                description: "Function '" + definition.RuntimeFunctionName + "' in class '" + definition.CallingClass + "' has inexpected parameters.");
+                                                description: "Function '" + definition.RuntimeFunctionName + "' in class '"
+                                                + definition.ClassReference?.ClassName + "' has inexpected parameters.");
                                     }
                                 }
                             }
@@ -110,9 +112,9 @@ namespace BindOpen.Runtime.Stores
 
                 // we recursively retrieve the sub script words
 
-                foreach (IBdoScriptwordDefinition definition in dico.Definitions)
+                foreach (var definition in dico)
                 {
-                    _store.Add<IBdoScriptwordDefinition>(definition);
+                    _store.Add(definition);
                 }
             }
 

@@ -27,40 +27,29 @@ namespace BindOpen.Runtime.Definitions
         /// <param key="type">The type to consider.</param>
         public static BdoExtensionKind GetExtensionKind(this Type type)
         {
-            if (typeof(IBdoTaskDefinition).IsAssignableFrom(type)
-                || typeof(IBdoTask).IsAssignableFrom(type))
-            {
-                return BdoExtensionKind.Task;
-            }
-            else if (typeof(IBdoEntityDefinition).IsAssignableFrom(type)
-                || typeof(IBdoEntity).IsAssignableFrom(type))
-            {
-                return BdoExtensionKind.Entity;
-            }
-            else if (typeof(IBdoConnectorDefinition).IsAssignableFrom(type)
+            if (typeof(IBdoConnectorDefinition).IsAssignableFrom(type)
                 || typeof(IBdoConnector).IsAssignableFrom(type))
             {
                 return BdoExtensionKind.Connector;
             }
-            else if (typeof(IBdoRoutineDefinition).IsAssignableFrom(type)
-                || typeof(IResourceAllocation).IsAssignableFrom(type))
-            {
-                return BdoExtensionKind.Routine;
-            }
             else if (typeof(IBdoEntityDefinition).IsAssignableFrom(type)
                 || typeof(IBdoEntity).IsAssignableFrom(type))
             {
                 return BdoExtensionKind.Entity;
             }
-            else if (typeof(IBdoFormatDefinition).IsAssignableFrom(type)
-                || typeof(IBdoFormat).IsAssignableFrom(type))
+            else if (typeof(IBdoFunctionDefinition).IsAssignableFrom(type))
             {
-                return BdoExtensionKind.Format;
+                return BdoExtensionKind.Function;
             }
             else if (typeof(IBdoScriptwordDefinition).IsAssignableFrom(type)
                 || typeof(IBdoScriptword).IsAssignableFrom(type))
             {
                 return BdoExtensionKind.Scriptword;
+            }
+            else if (typeof(IBdoTaskDefinition).IsAssignableFrom(type)
+                || typeof(IBdoTask).IsAssignableFrom(type))
+            {
+                return BdoExtensionKind.Task;
             }
 
             return BdoExtensionKind.None;

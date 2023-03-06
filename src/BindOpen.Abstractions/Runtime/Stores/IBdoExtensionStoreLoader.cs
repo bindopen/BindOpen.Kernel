@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Assemblies;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
 
 namespace BindOpen.Runtime.Stores
 {
@@ -13,6 +12,6 @@ namespace BindOpen.Runtime.Stores
         /// </summary>
         /// <param key="references">The library references to consider.</param>
         /// <param key="log">The log to populate.</param>
-        bool LoadExtensionsInStore(IBdoAssemblyReference[] references, IBdoLog log = null);
+        bool LoadPackages(IBdoLog log = null);
     }
 }

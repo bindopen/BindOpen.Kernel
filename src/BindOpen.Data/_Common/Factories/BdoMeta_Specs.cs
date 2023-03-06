@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Data.Configuration;
+﻿using BindOpen.Data.Configuration;
 using BindOpen.Data.Meta;
 using System;
 
@@ -19,22 +18,9 @@ namespace BindOpen.Data
             string name = null,
             DataValueTypes valueType = DataValueTypes.Any)
         {
-            if (valueType.IsScalar())
-            {
-                var scalarSpec = NewSpec<BdoScalarSpec>(name);
-                scalarSpec.WithDataValueType(valueType);
-                return scalarSpec;
-            }
-            else
-            {
-                switch (valueType)
-                {
-                    case DataValueTypes.Object:
-                        return NewSpec<BdoObjectSpec>(name);
-                }
-            }
-
-            return null;
+            var spec = NewSpec<BdoSpec>(name);
+            spec.WithDataValueType(valueType);
+            return spec;
         }
 
         /// <summary>
@@ -137,19 +123,6 @@ namespace BindOpen.Data
                     //        BdoElement.CreateScalar(DataValueTypes.Text, type.GetEnumFields())));
                 }
             }
-            return spec;
-        }
-
-        /// <summary>
-        /// Creates a data element of the specified kind.
-        /// </summary>
-        /// <param key="name">The name to consider.</param>
-        /// <param key="valueType">The value type to consider.</param>
-        public static T NewScalarSpec<T>(
-            string name = null)
-            where T : BdoScalarSpec, new()
-        {
-            var spec = NewSpec<T>(name);
             return spec;
         }
     }

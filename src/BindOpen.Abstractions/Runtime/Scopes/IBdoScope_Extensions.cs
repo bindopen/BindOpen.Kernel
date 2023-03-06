@@ -29,6 +29,25 @@ namespace BindOpen.Runtime.Scopes
             IBdoMetaSet varSet = null,
             IBdoLog log = null);
 
+        /// <summary>
+        /// Creates the instance of the specified definition.
+        /// </summary>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="config">The config to consider.</param>
+        /// <param key="log">The log to consider.</param>
+        /// <param key="varSet">The variable element set to use.</param>
+        /// <returns>Returns the created task.</returns>
+        object CallFunction(
+            IBdoConfiguration config = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null);
+
+        object CallFunction(
+            string functionUniqueName,
+            object[] objs,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null);
+
         // Connecting ------------------------------------------------
 
         /// <summary>

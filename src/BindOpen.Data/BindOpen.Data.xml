@@ -1312,7 +1312,7 @@
             <returns>Log of the operation.</returns>
             <remarks>Put reference sets as null if you do not want to repair this instance.</remarks>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElementSetExtension.Update(BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.Elements.IBdoMetaSpecList,BindOpen.Data.UpdateModes[],System.String[],BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElementSetExtension.Update(BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.Elements.IBdoMetaSpecSet,BindOpen.Data.UpdateModes[],System.String[],BindOpen.Logging.IBdoLog)">
             <summary>
             Updates this instance.
             </summary>
@@ -1340,17 +1340,17 @@
             <param key="updateModes">The update modes to consider.</param>
             <returns>Log of the operation.</returns>
         </member>
-        <member name="T:BindOpen.Data.Elements.BdoDataSpecList">
+        <member name="T:BindOpen.Data.Elements.BdoDataSpecSet">
             <summary>
             This class represents a set of data element specifications.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataSpecList.#ctor">
+        <member name="M:BindOpen.Data.Elements.BdoDataSpecSet.#ctor">
             <summary>
-            Initializes a new instance of the BdoMetaSpecList class.
+            Initializes a new instance of the BdoMetaSpecSet class.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataSpecList.Clone(System.String[])">
+        <member name="M:BindOpen.Data.Elements.BdoDataSpecSet.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
@@ -1709,13 +1709,13 @@
             <param key="name">The name to consider.</param>
             <param key="valueType">The value type to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewSpecList(BindOpen.Data.Elements.IBdoDataElementSpec[])">
+        <member name="M:BindOpen.Data.BdoData.NewSpecSet(BindOpen.Data.Elements.IBdoDataElementSpec[])">
             <summary>
             Instantiates a new instance of the BdoElementSet class.
             </summary>
             <param key="specs">The elems to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewSpecList``1(BindOpen.Data.Elements.IBdoDataElementSpec[])">
+        <member name="M:BindOpen.Data.BdoData.NewSpecSet``1(BindOpen.Data.Elements.IBdoDataElementSpec[])">
             <summary>
             Instantiates a new instance of the BdoElementSet class.
             </summary>

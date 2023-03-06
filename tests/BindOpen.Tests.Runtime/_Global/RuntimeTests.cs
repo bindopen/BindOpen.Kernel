@@ -18,7 +18,8 @@ namespace BindOpen.Tests.Runtime
                 if (_appScope == null)
                 {
                     _appScope = BdoRuntime.NewScope();
-                    _appScope.LoadExtensions(new[] { BdoData.AssemblyAsAll() });
+                    _appScope.LoadExtensions(
+                        q => q.AddAllAssemblies());
                 }
 
                 return _appScope;

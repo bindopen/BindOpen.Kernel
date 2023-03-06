@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using BindOpen.Extensions.Modeling;
 using BindOpen.Logging;
 using BindOpen.Runtime.Definitions;
@@ -44,7 +45,7 @@ namespace BindOpen.Runtime.Stores
             {
                 var definition = new BdoEntityDefinition(null, extensionDefinition)
                 {
-                    ItemClass = type.FullName,
+                    ClassReference = BdoData.Class(type),
                     LibraryId = extensionDefinition?.Id,
                     RuntimeType = type
                 };
@@ -56,7 +57,7 @@ namespace BindOpen.Runtime.Stores
 
                 foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any()))
                 {
-                    definition.DetailSpec.Add(BdoMeta.NewSpec(property.Name, property.PropertyType));
+                    definition.SpecDetail.Add(BdoMeta.NewSpec(property.Name, property.PropertyType));
                 }
 
                 // we build the runtime definition
@@ -68,7 +69,7 @@ namespace BindOpen.Runtime.Stores
                     // update definition with index
                 }
 
-                _store.Add<IBdoEntityDefinition>(definition);
+                _store.Add(definition);
 
                 count++;
             }

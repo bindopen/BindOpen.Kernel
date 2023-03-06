@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns="https://xsd.bindopen.org" elementFormDefault="qualified" targetNamespace="https://xsd.bindopen.org" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="https://xsd.bindopen.org/BdoElementSet.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/DataItem.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/entities/EntityDefinition.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/BdoExtensionGroup.xsd" />
+<xs:schema xmlns="https://storage.bindopen.org/xsd/bindopen" elementFormDefault="qualified" targetNamespace="https://storage.bindopen.org/xsd/bindopen" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoElementSet.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/DataItem.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/entities/EntityDefinition.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoExtensionGroup.xsd" />
 
   <xs:element name="entities.dico" type="BdoEntityDictionary" />
 

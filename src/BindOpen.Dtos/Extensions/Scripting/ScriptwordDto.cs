@@ -7,8 +7,8 @@ namespace BindOpen.Extensions.Scripting
     /// <summary>
     /// This class represents a script word configuration.
     /// </summary>
-    [XmlType("Scriptword", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "scriptword", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("Scriptword", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "scriptword", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class ScriptwordDto : MetaObjectDto
     {
         // ------------------------------------------

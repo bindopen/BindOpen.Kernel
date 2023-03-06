@@ -1,15 +1,10 @@
 BindOpen __Publication.Version__ Update - __Publication.Date__
-====
 
 # New features
 
 - [ ] None
 
-<<<<<<< HEAD
-## BindOpen.Runtime.NetCore
-=======
 ## BindOpen.Framework.Runtime.NetCore
->>>>>>> 65ed24278291462fbe2fc4197b223c65acf326fa
 
 - [x] BindOpen host service starts automatically when registering it.
 
@@ -33,15 +28,9 @@ BindOpen __Publication.Version__ Update - __Publication.Date__
 
 | Packages                 |                                Nuget command                            |
 |--------------------------|:-----------------------------------------------------------------------:|
-<<<<<<< HEAD
-| BindOpen.Runtime            | Install-Package BindOpen.Runtime -Version __Publication.Version__              |
-| BindOpen.Runtime         | Install-Package BindOpen.Runtime -Version __Publication.Version__           |
-| BindOpen.Runtime.NetCore | Install-Package BindOpen.Runtime.NetCore -Version __Publication.Version__   |
-=======
 | BindOpen.Core            | Install-Package BindOpen.Core -Version __Publication.Version__              |
 | BindOpen.Framework.Runtime         | Install-Package BindOpen.Framework.Runtime -Version __Publication.Version__           |
 | BindOpen.Framework.Runtime.NetCore | Install-Package BindOpen.Framework.Runtime.NetCore -Version __Publication.Version__   |
->>>>>>> 65ed24278291462fbe2fc4197b223c65acf326fa
 
 ## Directly
 

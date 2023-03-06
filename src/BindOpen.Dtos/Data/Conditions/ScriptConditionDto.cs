@@ -7,8 +7,8 @@ namespace BindOpen.Data.Conditions
     /// <summary>
     /// This class represents a script condition DTO.
     /// </summary>
-    [XmlType("ScriptCondition", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "script.condition", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("ScriptCondition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "script.condition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class ScriptConditionDto : ConditionDto
     {
         // ------------------------------------------

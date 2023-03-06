@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Configuration;
+using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
 using BindOpen.Extensions.Connecting;
 using BindOpen.Extensions.Modeling;
@@ -12,6 +13,29 @@ namespace BindOpen.Runtime.Scopes
     /// </summary>
     public static partial class BdoScopeExtensions
     {
+        // Functions ------------------------------------------------
+
+        public static T CallFunction<T>(
+            this IBdoScope scope,
+            IBdoConfiguration config = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var obj = scope?.CallFunction(config, varSet, log);
+            return obj.As<T>();
+        }
+
+        public static T CallFunction<T>(
+            this IBdoScope scope,
+            string functionUniqueName,
+            object[] objs,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var obj = scope?.CallFunction(functionUniqueName, objs, varSet, log);
+            return obj.As<T>();
+        }
+
         // Entities ------------------------------------------------
 
         /// <summary>

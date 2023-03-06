@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using BindOpen.Data.Meta;
 using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
 using System.Linq;
@@ -25,7 +24,7 @@ namespace BindOpen.Data.Meta
                     .ForMember(q => q.DataExpression, opt => opt.MapFrom(q => q.DataExpression.ToDto()))
                     .ForMember(q => q.MetaItems, opt => opt.Ignore())
                     .ForMember(q => q.Item, opt => opt.Ignore())
-                    .ForMember(q => q.SubDataSet, opt => opt.Ignore())
+                    .ForMember(q => q.SubSet, opt => opt.Ignore())
             );
 
             var mapper = new Mapper(config);
@@ -49,7 +48,7 @@ namespace BindOpen.Data.Meta
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<MetaObjectDto, BdoMetaObject>()
                     .ForMember(q => q.DataExpression, opt => opt.Ignore())
-                    .ForMember(q => q.Specs, opt => opt.Ignore())
+                    .ForMember(q => q.SpecSet, opt => opt.Ignore())
                 );
 
             var mapper = new Mapper(config);

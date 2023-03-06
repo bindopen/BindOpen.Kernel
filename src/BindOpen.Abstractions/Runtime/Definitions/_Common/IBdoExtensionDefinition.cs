@@ -21,6 +21,11 @@ namespace BindOpen.Runtime.Definitions
         string UniqueName { get; }
 
         /// <summary>
+        /// Name of the group of this instance.
+        /// </summary>
+        string GroupId { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         string ImageUri { get; set; }

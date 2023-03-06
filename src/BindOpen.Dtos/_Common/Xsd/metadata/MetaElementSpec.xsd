@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns="https://xsd.bindopen.org" elementFormDefault="qualified" targetNamespace="https://xsd.bindopen.org" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="https://xsd.bindopen.org/DataSpecification.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/DataValueType.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/DataValueMode.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/RequirementLevel.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/Arrays.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/BdoConfigurationSet.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/BdoElementDesignStatement.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/BdoSpecList.xsd" />
+<xs:schema xmlns="https://storage.bindopen.org/xsd/bindopen" elementFormDefault="qualified" targetNamespace="https://storage.bindopen.org/xsd/bindopen" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/DataSpecification.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/DataValueType.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/DataValueMode.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/RequirementLevel.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/Arrays.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoConfigurationSet.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoElementDesignStatement.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoSpecSet.xsd" />
 
   <xs:complexType name="BdoElementSpec" abstract="true">
     <xs:complexContent mixed="false">
@@ -37,7 +37,7 @@
 
           <xs:element minOccurs="0" maxOccurs="1" name="constraint.statement" type="BdoConfigurationSet" />
           <xs:element minOccurs="0" maxOccurs="1" name="design.statement" type="BdoElementDesignStatement" />
-          <xs:element minOccurs="0" maxOccurs="1" name="detail.spec" type="BdoSpecList" />
+          <xs:element minOccurs="0" maxOccurs="1" name="detail.spec" type="BdoSpecSet" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

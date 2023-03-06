@@ -7,8 +7,8 @@ namespace BindOpen.Runtime.Definitions
     /// <summary>
     /// This class represents a DTO routine dico.
     /// </summary>
-    [XmlType("RoutineDictionary", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "routines.dico", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("RoutineDictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "routines.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class BdoRoutineDictionaryDto
         : TBdoExtensionDictionaryDto<BdoRoutineDefinitionDto>
     {

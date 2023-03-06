@@ -384,19 +384,19 @@
             <param key="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Elements.BdoSpecListConverter">
+        <member name="T:BindOpen.Data.Elements.BdoSpecSetConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoSpecListConverter.ToDto(BindOpen.Data.Elements.IBdoSpecList)">
+        <member name="M:BindOpen.Data.Elements.BdoSpecSetConverter.ToDto(BindOpen.Data.Elements.IBdoSpecSet)">
             <summary>
             Converts to DTO.
             </summary>
             <param key="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoSpecListConverter.ToPoco(BindOpen.Data.Elements.MetaSpecSetDto)">
+        <member name="M:BindOpen.Data.Elements.BdoSpecSetConverter.ToPoco(BindOpen.Data.Elements.MetaSpecSetDto)">
             <summary>
             Converts to DTO.
             </summary>

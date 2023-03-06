@@ -19,7 +19,6 @@
         /// <returns></returns>
         IBdoScriptwordDefinition GetDefinition(
             string definitionName,
-            string methodName,
-            IBdoScriptwordDefinition parent = null);
+            string methodName);
     }
 }

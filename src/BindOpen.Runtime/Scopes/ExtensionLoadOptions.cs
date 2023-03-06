@@ -1,7 +1,8 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
 using BindOpen.Data.Items;
+using BindOpen.Extensions;
 using System.Collections.Generic;
-using System.Linq;
 using System.Xml.Serialization;
 
 namespace BindOpen.Runtime.Scopes
@@ -9,7 +10,7 @@ namespace BindOpen.Runtime.Scopes
     /// <summary>
     /// This class represents the extension loading options.
     /// </summary>
-    [XmlType("ExtensionLoadOptions", Namespace = "https://xsd.bindopen.org")]
+    [XmlType("ExtensionLoadOptions", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     public class ExtensionLoadOptions : BdoItem, IExtensionLoadOptions
     {
         // --------------------------------------------------
@@ -19,19 +20,19 @@ namespace BindOpen.Runtime.Scopes
         #region Properties
 
         /// <summary>
-        /// The path of the library folder of this instance.
-        /// </summary>
-        public string LibraryFolderPath { get; private set; }
-
-        /// <summary>
-        /// The URI of the remote server of this instance.
-        /// </summary>
-        public string RemoteServerUri { get; private set; }
-
-        /// <summary>
         /// The source kinds of this instance.
         /// </summary>
-        public List<DatasourceKind> SourceKinds { get; private set; }
+        public List<(DatasourceKind Kind, string Uri)> Sources { get; set; }
+
+        /// <summary>
+        /// The extension kinds of this instance.
+        /// </summary>
+        public List<BdoExtensionKind> ExtensionKinds { get; set; }
+
+        /// <summary>
+        /// The assmbly references of this instance.
+        /// </summary>
+        public List<IBdoAssemblyReference> References { get; set; }
 
         #endregion
 
@@ -46,64 +47,6 @@ namespace BindOpen.Runtime.Scopes
         /// </summary>
         public ExtensionLoadOptions() : base()
         {
-        }
-
-        #endregion
-
-        // --------------------------------------------------
-        // MUTATORS
-        // --------------------------------------------------
-
-        #region Mutators
-
-        /// <summary>
-        /// Sets the path of the library folder of this instance.
-        /// </summary>
-        /// <param key="folderPath"></param>
-        /// <returns>Returns this instance.</returns>
-        public IExtensionLoadOptions WithLibraryFolderPath(string folderPath)
-        {
-            LibraryFolderPath = folderPath;
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the URI of the remote server of this instance.
-        /// </summary>
-        /// <param key="uri">The URI of the remote server.</param>
-        /// <returns>Returns this instance.</returns>
-        public IExtensionLoadOptions WithRemoteServerUri(string uri)
-        {
-            RemoteServerUri = uri;
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the source kinds of this instance.
-        /// </summary>
-        /// <param key="sourceKinds">The source kinds to consider.</param>
-        /// <returns>Returns this instance.</returns>
-        public IExtensionLoadOptions WithSourceKinds(
-            params DatasourceKind[] sourceKinds)
-        {
-            SourceKinds = sourceKinds?.ToList();
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param key="item"></param>
-        /// <returns></returns>
-        public void Update<T>(T item = default)
-        {
-            if (item is ExtensionLoadOptions options)
-            {
-                WithLibraryFolderPath(options.LibraryFolderPath);
-                WithRemoteServerUri(options.RemoteServerUri);
-                WithSourceKinds(options.SourceKinds?.ToArray());
-            }
         }
 
         #endregion

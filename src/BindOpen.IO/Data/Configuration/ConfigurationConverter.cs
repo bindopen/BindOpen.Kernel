@@ -55,7 +55,7 @@ namespace BindOpen.Data.Configuration
                     .ForMember(q => q.Items, opt => opt.Ignore())
                     .ForMember(q => q.LastModificationDate, opt => opt.MapFrom(q => q.CreationDate.ToDateTime(null)))
                     .ForMember(q => q.Parent, opt => opt.Ignore())
-                    .ForMember(q => q.Specs, opt => opt.Ignore())
+                    .ForMember(q => q.SpecSet, opt => opt.Ignore())
                     .ForMember(q => q.Title, opt => opt.Ignore())
                     .ForMember(q => q.UsedItemIds, opt => opt.MapFrom(q => q.UsedItemIds == null ? null : q.UsedItemIds.Select(q => q).ToList()))
             );

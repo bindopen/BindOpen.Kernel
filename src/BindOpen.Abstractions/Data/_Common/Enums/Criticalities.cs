@@ -5,7 +5,7 @@ namespace BindOpen.Data
     /// <summary>
     /// This enumeration lists the possible event criticalities.
     /// </summary>
-    [XmlType("Criticalities", Namespace = "https://xsd.bindopen.org")]
+    [XmlType("Criticalities", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     public enum Criticalities
     {
         /// <summary>

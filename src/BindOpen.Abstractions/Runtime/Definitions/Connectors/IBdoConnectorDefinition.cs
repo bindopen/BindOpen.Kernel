@@ -1,32 +1,15 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Data;
-using System;
+﻿using BindOpen.Data;
 
 namespace BindOpen.Runtime.Definitions
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoConnectorDefinition : IBdoExtensionDefinition
+    public interface IBdoConnectorDefinition : IBdoEntityDefinition
     {
         /// <summary>
-        /// 
-        /// </summary>
-        Type RuntimeType { get; set; }
-
-        /// <summary>
-        /// 
+        /// Data source kind of this instance.
         /// </summary>
         DatasourceKind DatasourceKind { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoSpecSet DatasourceDetailSpec { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        string ItemClass { get; set; }
     }
 }

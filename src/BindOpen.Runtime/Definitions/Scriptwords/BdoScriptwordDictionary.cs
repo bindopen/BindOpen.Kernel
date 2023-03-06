@@ -5,7 +5,8 @@ namespace BindOpen.Runtime.Definitions
     /// <summary>
     /// This class represents a DTO script word dico.
     /// </summary>
-    public class BdoScriptwordDictionary : TBdoExtensionDictionary<IBdoScriptwordDefinition>, IBdoScriptwordDictionary
+    public class BdoScriptwordDictionary : TBdoExtensionDictionary<IBdoScriptwordDefinition>,
+        IBdoScriptwordDictionary
     {
         // ------------------------------------------
         // PROPERTIES
@@ -50,26 +51,14 @@ namespace BindOpen.Runtime.Definitions
         /// <returns></returns>
         public IBdoScriptwordDefinition GetDefinition(
             string definitionName,
-            string methodName,
-            IBdoScriptwordDefinition parent = null)
+            string methodName)
         {
-            if (Definitions != null)
+            foreach (var childDefinition in this)
             {
-                foreach (var childDefinition in Definitions)
+                if (!string.IsNullOrEmpty(definitionName) && childDefinition.Name.BdoKeyEquals(definitionName)
+                    || string.IsNullOrEmpty(definitionName) && childDefinition.RuntimeFunctionName.BdoKeyEquals(methodName))
                 {
-                    if (!string.IsNullOrEmpty(definitionName) && childDefinition.Name.BdoKeyEquals(definitionName)
-                        || string.IsNullOrEmpty(definitionName) && childDefinition.RuntimeFunctionName.BdoKeyEquals(methodName))
-                    {
-                        return childDefinition;
-                    }
-                    else
-                    {
-                        IBdoScriptwordDefinition definition;
-                        if ((definition = GetDefinition(definitionName, methodName, childDefinition)) != null)
-                        {
-                            return definition;
-                        }
-                    }
+                    return childDefinition;
                 }
             }
 

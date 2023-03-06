@@ -1,9 +1,9 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using BindOpen.Extensions.Connecting;
 using BindOpen.Logging;
 using BindOpen.Runtime.Definitions;
-using System;
 using System.Linq;
 using System.Reflection;
 
@@ -31,50 +31,58 @@ namespace BindOpen.Runtime.Stores
                 return -1;
             }
 
-            // we load the entity dico from the assembly
-
-            var dico = ExtractDictionaryFromAssembly<IBdoConnectorDefinition>(assembly, log);
-
             // we feach connector classes
 
             var types = assembly.GetTypes().Where(p => typeof(IBdoConnector).IsAssignableFrom(p) && !p.IsAbstract);
+
             int count = 0;
-            foreach (Type type in types)
+
+            if (types?.Count() > 0)
             {
-                var definition = new BdoConnectorDefinition(null, extensionDefinition)
-                {
-                    ItemClass = type.FullName,
-                    LibraryId = extensionDefinition?.Id,
-                    RuntimeType = type
-                };
+                // we load the entity dico from the assembly
 
-                // we update definition from connector attribute
+                var dico = ExtractDictionaryFromAssembly<IBdoConnectorDefinition>(assembly, log);
 
-                if (type.GetCustomAttribute(typeof(BdoConnectorAttribute)) is BdoConnectorAttribute connectorAttribute)
+                foreach (var type in types)
                 {
-                    UpdateDictionary(definition, connectorAttribute);
+                    var definition = new BdoConnectorDefinition(null, extensionDefinition)
+                    {
+                        ClassReference = BdoData.Class(type),
+                        LibraryId = extensionDefinition?.Id,
+                        RuntimeType = type
+                    };
+
+                    // we update definition from connector attribute
+
+                    foreach (var attribute in type.GetCustomAttributes(typeof(BdoConnectorAttribute)))
+                    {
+                        var connectorAttribute = attribute as BdoConnectorAttribute;
+                        UpdateDictionary(definition, connectorAttribute);
+                    }
+
+                    // we create the detail specification from detail property attributes
+
+                    foreach (var property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any()))
+                    {
+                        definition.SpecDetail.Add(
+                            BdoMeta.NewSpec(property.Name, property.PropertyType));
+                    }
+
+                    // we build the runtime definition
+
+                    if (dico != null)
+                    {
+                        // retrieve the definition index
+
+                        //dico.WithDefinitions
+
+                        // update definition with index
+                    }
+
+                    _store.Add(definition);
+
+                    count++;
                 }
-
-                // we create the detail specification from detail property attributes
-
-                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any()))
-                {
-                    definition.DatasourceDetailSpec.Add(
-                        BdoMeta.NewSpec(property.Name, property.PropertyType));
-                }
-
-                // we build the runtime definition
-
-                if (dico != null)
-                {
-                    // retrieve the definition index
-
-                    // update definition with index
-                }
-
-                _store.Add<IBdoConnectorDefinition>(definition);
-
-                count++;
             }
 
             return count;

@@ -7,8 +7,8 @@ namespace BindOpen.Data.Configuration
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    [XmlType("ConfigurationSet", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "config.set", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("ConfigurationSet", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "config.set", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class ConfigurationSetDto : IDto
     {
         // ------------------------------------------

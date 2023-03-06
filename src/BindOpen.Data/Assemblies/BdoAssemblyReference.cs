@@ -94,6 +94,11 @@ namespace BindOpen.Data.Assemblies
             return !(left == right);
         }
 
+        public override string ToString()
+        {
+            return Key();
+        }
+
         #endregion
     }
 }

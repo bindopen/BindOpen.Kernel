@@ -5,12 +5,12 @@ using System.Xml.Serialization;
 namespace BindOpen.Runtime.Definitions
 {
     /// <summary>
-    /// This class represents a DTO metrics dico.
+    /// This class represents a DTO function dico.
     /// </summary>
-    [XmlType("MetricsDictionary", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "metrics.dico", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class BdoMetricsDictionaryDto
-        : TBdoExtensionDictionaryDto<BdoMetricsDefinitionDto>
+    [XmlType("FunctionDictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "function.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    public class BdoFunctionDictionaryDto
+        : TBdoExtensionDictionaryDto<BdoFunctionDefinitionDto>
     {
         // ------------------------------------------
         // PROPERTIES
@@ -24,7 +24,7 @@ namespace BindOpen.Runtime.Definitions
         [JsonPropertyName("definitions")]
         [XmlArray("definitions")]
         [XmlArrayItem("add.definition")]
-        public List<BdoMetricsDefinitionDto> Definitions { get; set; }
+        public List<BdoFunctionDefinitionDto> Definitions { get; set; }
 
         #endregion
 
@@ -35,9 +35,9 @@ namespace BindOpen.Runtime.Definitions
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BdoMetricsDictionaryDto class.
+        /// Instantiates a new instance of the BdoFunctionDictionaryDto class.
         /// </summary>
-        public BdoMetricsDictionaryDto()
+        public BdoFunctionDictionaryDto()
         {
         }
 

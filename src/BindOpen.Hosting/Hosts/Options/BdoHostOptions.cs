@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Assemblies;
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Items;
 using BindOpen.Data.Stores;
@@ -60,11 +59,6 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// The extension loading options.
         /// </summary>
-        public IBdoAssemblyReferenceCollection ExtensionReferences { get; internal set; } = new BdoAssemblyReferenceCollection();
-
-        /// <summary>
-        /// The extension loading options.
-        /// </summary>
         public IExtensionLoadOptions ExtensionLoadOptions { get; internal set; }
 
         // Loggers -------------------------
@@ -117,8 +111,8 @@ namespace BindOpen.Hosting.Hosts
         public BdoHostOptions() : base()
         {
             ExtensionLoadOptions = new ExtensionLoadOptions()
-                .WithLibraryFolderPath((@".\" + BdoDefaultHostPaths.__DefaultLibraryFolderPath).ToPath())
-                .WithSourceKinds(DatasourceKind.Memory, DatasourceKind.Repository);
+                .AddSource(DatasourceKind.Memory)
+                .AddSource(DatasourceKind.Repository, (@".\" + BdoDefaultHostPaths.__DefaultLibraryFolderPath).ToPath());
         }
 
         #endregion
@@ -162,7 +156,7 @@ namespace BindOpen.Hosting.Hosts
                 //Settings?.Update(null, null, log);
                 Settings?.WithLibraryFolder(Settings?.LibraryFolderPath.GetConcatenatedPath(RootFolderPath).EndingWith(@"\").ToPath());
 
-                ExtensionLoadOptions?.WithLibraryFolderPath(Settings?.LibraryFolderPath);
+                ExtensionLoadOptions?.AddSource(DatasourceKind.Repository, Settings?.LibraryFolderPath);
             }
         }
 
@@ -194,28 +188,6 @@ namespace BindOpen.Hosting.Hosts
             return this;
         }
 
-        // Extensions -------------------------------------------
-
-        /// <summary>
-        /// Adds the extensions.
-        /// </summary>
-        /// <param key="action">The action for adding extensions.</param>
-        /// <param key="loadOptionsAction">The action for loading options.</param>
-        /// <returns>Returns the host option.</returns>
-        public IBdoHostOptions AddExtensions(Action<IBdoAssemblyReferenceCollection> action = null, Action<IExtensionLoadOptions> loadOptionsAction = null)
-        {
-            if (action != null)
-            {
-                action?.Invoke(ExtensionReferences);
-            }
-            else
-            {
-                ExtensionReferences.AddAllAssemblies();
-            }
-            loadOptionsAction?.Invoke(ExtensionLoadOptions);
-
-            return this;
-        }
 
         // Settings -------------------------------------------
 

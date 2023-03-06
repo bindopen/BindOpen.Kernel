@@ -101,9 +101,8 @@ namespace BindOpen.Data
         /// Creates a class reference of the spcefied type.
         /// </summary>
         /// <returns>Returns the itemized list of the spcefied type</returns>
-        public static IBdoClassReference Class<T>()
+        public static IBdoClassReference Class(Type type)
         {
-            var type = typeof(T);
             var assemblyReference = Assembly(
                 type.Assembly.GetName().FullName,
                 type.Assembly.GetName().Version.ToString());
@@ -111,6 +110,16 @@ namespace BindOpen.Data
             return Class(
                 assemblyReference,
                 className);
+        }
+
+        /// <summary>
+        /// Creates a class reference of the spcefied type.
+        /// </summary>
+        /// <returns>Returns the itemized list of the spcefied type</returns>
+        public static IBdoClassReference Class<T>()
+        {
+            var type = typeof(T);
+            return Class(type);
         }
     }
 }

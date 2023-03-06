@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns="https://xsd.bindopen.org" elementFormDefault="qualified" targetNamespace="https://xsd.bindopen.org" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="https://xsd.bindopen.org/StoredDataItem.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/DatasourceKind.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/BdoElementSet.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/Arrays.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/ConnectorConfiguration.xsd" />
+<xs:schema xmlns="https://storage.bindopen.org/xsd/bindopen" elementFormDefault="qualified" targetNamespace="https://storage.bindopen.org/xsd/bindopen" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/StoredDataItem.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/DatasourceKind.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoElementSet.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/Arrays.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/ConnectorConfiguration.xsd" />
 
   <xs:complexType name="Datasource">
     <xs:complexContent mixed="false">

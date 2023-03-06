@@ -56,9 +56,14 @@ namespace BindOpen.Runtime.Definitions
         public IBdoPackageDefinition PackageDefinition { get; private set; }
 
         /// <summary>
-        /// The unique identifier of this instance.
+        /// The unique ID of this instance.
         /// </summary>
-        public string UniqueName { get; set; }
+        public string UniqueName { get => PackageDefinition?.Name + "$" + Name; }
+
+        /// <summary>
+        /// The identifier of the group of this instance.
+        /// </summary>
+        public string GroupId { get; set; }
 
         /// <summary>
         /// Uri of the image representing this instance.

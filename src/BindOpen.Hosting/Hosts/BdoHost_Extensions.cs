@@ -14,6 +14,21 @@ namespace BindOpen.Hosting.Hosts
     /// </summary>
     public partial class BdoHost : BdoJob, IBdoHost
     {
+        // Functions ------------------------------------------------
+
+        public object CallFunction(
+            IBdoConfiguration config = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+            => Scope?.CallFunction(config, varSet, log);
+
+        public object CallFunction(
+            string functionUniqueName,
+            object[] objs,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+            => Scope?.CallFunction(functionUniqueName, objs, varSet, log);
+
         // Entities ------------------------------------------------
 
         /// <summary>
@@ -25,10 +40,10 @@ namespace BindOpen.Hosting.Hosts
         /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the created entity.</returns>
         public IBdoEntity CreateEntity(
-            IBdoConfiguration meta,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-            => Scope?.CreateEntity(meta, varSet, log);
+        IBdoConfiguration meta,
+        IBdoMetaSet varSet = null,
+        IBdoLog log = null)
+        => Scope?.CreateEntity(meta, varSet, log);
 
         // Connectors ------------------------------------------------
 

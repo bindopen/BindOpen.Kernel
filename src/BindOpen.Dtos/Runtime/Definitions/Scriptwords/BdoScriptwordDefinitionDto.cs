@@ -11,8 +11,8 @@ namespace BindOpen.Runtime.Definitions
     /// <summary>
     /// This class represents a script word definition.
     /// </summary>
-    [XmlType("ScriptwordDefinition", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "scriptWord.definition", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("ScriptwordDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "scriptWord.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class BdoScriptwordDefinitionDto : ExtensionDefinitionDto
     {
         // ------------------------------------------
@@ -113,7 +113,7 @@ namespace BindOpen.Runtime.Definitions
         /// </summary>
         [JsonPropertyName("parameter.specification")]
         [XmlElement("parameter.specification")]
-        public SpecListDto ParameterSpecification { get; set; }
+        public SpecSetDto ParameterSpecification { get; set; }
 
         /// <summary>
         /// Description of parameters of this instance when parameters are repeated.

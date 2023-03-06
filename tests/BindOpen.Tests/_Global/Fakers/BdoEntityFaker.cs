@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data;
 using Bogus;
 using NUnit.Framework;
+using System.Dynamic;
 
 namespace BindOpen.Tests
 {
@@ -12,13 +13,12 @@ namespace BindOpen.Tests
         public static dynamic Fake()
         {
             var f = new Faker();
-            return new
-            {
-                boolValue = f.Random.Bool(),
-                intValue = f.Random.Int(800),
-                enumValue = ActionPriorities.High,
-                stringValue = f.Lorem.Word()
-            };
+            dynamic b = new ExpandoObject();
+            b.boolValue = f.Random.Bool();
+            b.intValue = f.Random.Int(800);
+            b.enumValue = ActionPriorities.High;
+            b.stringValue = f.Lorem.Word();
+            return b;
         }
 
         public static void AssertFake(EntityFake entity, dynamic reference)

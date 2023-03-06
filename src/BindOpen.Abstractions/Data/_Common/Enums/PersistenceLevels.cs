@@ -6,7 +6,7 @@ namespace BindOpen.Data
     /// <summary>
     /// This enumeration represents the possible persistence levels.
     /// </summary>
-    [XmlType("PersistenceLevels", Namespace = "https://xsd.bindopen.org")]
+    [XmlType("PersistenceLevels", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [Flags]
     public enum PersistenceLevels
     {

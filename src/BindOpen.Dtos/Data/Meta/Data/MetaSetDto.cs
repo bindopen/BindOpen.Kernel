@@ -8,8 +8,8 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    [XmlType("MetaSet", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "set", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("MetaSet", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "set", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class MetaSetDto : MetaDataDto
     {
         // ------------------------------------------

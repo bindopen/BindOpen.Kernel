@@ -45,7 +45,7 @@ namespace BindOpen.Data.Meta
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<MetaSetDto, BdoMetaSet>()
                     .ForMember(q => q.DataExpression, opt => opt.Ignore())
-                    .ForMember(q => q.Specs, opt => opt.Ignore())
+                    .ForMember(q => q.SpecSet, opt => opt.Ignore())
                 );
 
             var mapper = new Mapper(config);

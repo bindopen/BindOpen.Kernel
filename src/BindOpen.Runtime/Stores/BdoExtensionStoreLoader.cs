@@ -5,9 +5,9 @@ using BindOpen.Data.Items;
 using BindOpen.Extensions;
 using BindOpen.Logging;
 using BindOpen.Runtime.Assemblies;
-using BindOpen.Runtime.Definitions;
 using BindOpen.Runtime.Scopes;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -29,16 +29,16 @@ namespace BindOpen.Runtime.Stores
         /// <param key="appDomain">The application domain to consider.</param>
         /// <param key="store">The extension store to consider.</param>
         /// <param key="loadOptions">The load options to consider.</param>
-        public BdoExtensionStoreLoader(AppDomain appDomain, IBdoExtensionStore store, IExtensionLoadOptions loadOptions)
+        public BdoExtensionStoreLoader(
+            AppDomain appDomain,
+            IBdoExtensionStore store,
+            IExtensionLoadOptions loadOptions)
         {
             _appDomain = appDomain;
             _store = store;
 
-            if (loadOptions == null)
-            {
-                loadOptions = new ExtensionLoadOptions().WithSourceKinds(
-                    DatasourceKind.Memory);
-            }
+            loadOptions ??= new ExtensionLoadOptions();
+
             _loadOptions = loadOptions;
         }
 
@@ -47,8 +47,7 @@ namespace BindOpen.Runtime.Stores
         /// </summary>
         /// <param key="references">The library references to consider.</param>
         /// <param key="log">The log to consider.</param>
-        public bool LoadExtensionsInStore(
-            IBdoAssemblyReference[] references,
+        public bool LoadPackages(
             IBdoLog log = null)
         {
             if (_store == null) return false;
@@ -59,24 +58,40 @@ namespace BindOpen.Runtime.Stores
 
             var loaded = true;
 
-            if (references?.Any(q => q.BdoKeyEquals(StringHelper.__Star)) == true)
+            _loadOptions.Sources ??= new();
+            if (_loadOptions.Sources.Count == 0)
             {
-                references = _appDomain.GetAssemblies().Select(q => BdoData.Assembly(q)).ToArray();
+                _loadOptions.AddSource(DatasourceKind.Memory);
             }
 
-            foreach (var reference in references)
+            _loadOptions.References ??= new() { BdoData.AssemblyAsAll() };
+            if (_loadOptions.References?.Any(q => q.BdoKeyEquals(StringHelper.__Star)) == true)
             {
-                if (reference != null)
-                {
-                    loaded &= LoadLibrary(reference, subLog);
+                _loadOptions.References = _appDomain.GetAssemblies().Select(q => BdoData.Assembly(q)).ToList();
+            }
 
-                    if (log?.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning) == true)
+            if (!(_loadOptions.References.Count > 0))
+            {
+                subLog?.AddMessage("No extensions found");
+            }
+            else
+            {
+                var loadedAssemblyNames = new List<string>();
+
+                foreach (var reference in _loadOptions.References)
+                {
+                    if (reference != null)
                     {
-                        log?.AddSubLog(subLog, title: "Loading extension '" + (reference?.AssemblyName ?? "?") + "'");
-                    }
-                    else
-                    {
-                        log?.AddMessage("Extension '" + (reference?.AssemblyName ?? "?") + "' loaded");
+                        loaded &= LoadPackage(reference, loadedAssemblyNames, subLog);
+
+                        if (log?.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning) == true)
+                        {
+                            log?.AddSubLog(subLog, title: "Loading extension '" + (reference?.AssemblyName ?? "?") + "'");
+                        }
+                        else
+                        {
+                            log?.AddMessage("Extension '" + (reference?.AssemblyName ?? "?") + "' loaded");
+                        }
                     }
                 }
             }
@@ -90,142 +105,157 @@ namespace BindOpen.Runtime.Stores
         /// <param key="libraryReference">The library reference to consider.</param>
         /// <param key="log">The log to consider.</param>
         /// <returns>Returns the loaded library.</returns>
-        private bool LoadLibrary(IBdoAssemblyReference libraryReference, IBdoLog log = null)
+        private bool LoadPackage(
+            IBdoAssemblyReference reference,
+            List<string> loadedAssemblyNames,
+            IBdoLog log = null)
         {
             var loaded = true;
 
-            if (libraryReference != null && _loadOptions?.SourceKinds != null)
+            if (reference != null && _loadOptions?.Sources != null)
             {
-                try
+                var referenceUniqueName = reference.Key();
+
+                if (!loadedAssemblyNames.Any(q => referenceUniqueName.BdoKeyEquals(q)))
                 {
-                    Assembly assembly = null;
+
+                    // we update the list of loaded assemblies
+
+                    loadedAssemblyNames.Add(referenceUniqueName);
 
                     // first we load the assembly
 
                     IBdoLog newLog = log?.NewLog()
-                        .WithDisplayName("Loading library '" + libraryReference.AssemblyName + "'");
+                        .WithDisplayName("Loading package '" + reference.AssemblyName + "'");
 
-                    foreach (DatasourceKind dataSourceKind in _loadOptions?.SourceKinds)
+                    try
                     {
-                        IBdoLog subLog = newLog?.AddSubLog(
-                            title: "Loading assembly from '" + dataSourceKind.ToString() + "'",
-                            eventKind: EventKinds.Message);
+                        Assembly assembly = null;
 
-                        switch (dataSourceKind)
+                        foreach (var source in _loadOptions?.Sources)
                         {
-                            case DatasourceKind.Memory:
-                                if (!string.IsNullOrEmpty(libraryReference.AssemblyName))
-                                {
-                                    assembly = _appDomain.LoadAssembly(
-                                        libraryReference.AssemblyName,
-                                        subLog);
-                                }
-                                else
-                                {
-                                    subLog?.AddWarning("File name missing");
-                                }
-                                break;
-                            case DatasourceKind.Repository:
-                                string fileName = libraryReference.AssemblyFileName;
-                                if (string.IsNullOrEmpty(fileName))
-                                {
-                                    fileName = libraryReference.AssemblyName + ".dll";
-                                }
+                            IBdoLog subLog = newLog?.AddSubLog(
+                                title: "Loading assembly from '" + source.Kind.ToString() + "'",
+                                eventKind: EventKinds.Message);
 
-                                string filePath = _loadOptions.LibraryFolderPath.EndingWith(@"\").ToPath() + fileName;
-                                if (!File.Exists(filePath))
-                                {
-                                    subLog?.AddError("Could not find the assembly file path '" + filePath + "'");
-                                    loaded = false;
-                                }
-                                else
-                                {
-                                    assembly = _appDomain.LoadAssemblyFromFile(filePath, subLog);
-
-                                    if (assembly == null)
+                            switch (source.Kind)
+                            {
+                                case DatasourceKind.Memory:
+                                    if (!string.IsNullOrEmpty(reference.AssemblyName))
                                     {
-                                        subLog?.AddError("Could not load assembly '" + filePath + "'");
+                                        assembly = _appDomain.LoadAssembly(
+                                            reference.AssemblyName,
+                                            subLog);
+                                    }
+                                    else
+                                    {
+                                        subLog?.AddWarning("File name missing");
+                                    }
+                                    break;
+                                case DatasourceKind.Repository:
+                                    string fileName = reference.AssemblyFileName;
+                                    if (string.IsNullOrEmpty(fileName))
+                                    {
+                                        fileName = reference.AssemblyName + ".dll";
+                                    }
+
+                                    string filePath = source.Uri.EndingWith(@"\").ToPath() + fileName;
+                                    if (!File.Exists(filePath))
+                                    {
+                                        subLog?.AddError("Could not find the assembly file path '" + filePath + "'");
                                         loaded = false;
                                     }
                                     else
                                     {
-                                        subLog?.AddCheckpoint("Loading assembly from file '" + filePath + "'");
-                                        assembly = Assembly.LoadFrom(filePath);
+                                        assembly = _appDomain.LoadAssemblyFromFile(filePath, subLog);
+
+                                        if (assembly == null)
+                                        {
+                                            subLog?.AddError("Could not load assembly '" + filePath + "'");
+                                            loaded = false;
+                                        }
+                                        else
+                                        {
+                                            subLog?.AddCheckpoint("Loading assembly from file '" + filePath + "'");
+                                            assembly = Assembly.LoadFrom(filePath);
+                                        }
                                     }
-                                }
-                                break;
-                            case DatasourceKind.RestApi:
-                                break;
-                        }
+                                    break;
+                                case DatasourceKind.RestApi:
+                                    break;
+                            }
 
-                        if (assembly != null)
-                        {
-                            subLog?.AddMessage("Assembly loaded");
-                            break;
-                        }
-                    }
-
-                    // if we have an assembly then we index library items
-
-                    if (assembly == null)
-                    {
-                        log?.AddSubLog(newLog, p => p.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning));
-                        loaded = false;
-                    }
-                    else
-                    {
-                        //firstLog.GetEvents(true, EventKinds.Error, EventKinds.Exception).ForEach(p => p.WithKind(EventKinds.Warning));
-                        //log?.AddSubLog(firstLog);
-
-                        // we get the extension definition
-
-                        IBdoPackageDefinition extensionDefinition = ExtractPackageDefinition(assembly, null, log);
-
-                        // we load the using assemblies
-
-                        if (extensionDefinition?.UsingAssemblyFileNames != null)
-                        {
-                            foreach (var dependency in assembly.GetReferencedAssemblies())
+                            if (assembly != null)
                             {
-                                var reference = BdoData.Assembly(dependency.Name);
-
-                                IBdoLog subSubLog = log?.NewLog()
-                                    .WithDisplayName("Loading using extensions...");
-                                loaded &= LoadExtensionsInStore(new[] { reference }, subSubLog);
+                                subLog?.AddMessage("Assembly loaded");
+                                break;
                             }
                         }
 
-                        // we load the item definition specifiying the extension definition
+                        // if we have an assembly then we index library items
 
-                        foreach (BdoExtensionKind kind in new[] {
-                                BdoExtensionKind.Entity,
+                        if (assembly == null)
+                        {
+                            log?.AddSubLog(newLog, p => p.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning));
+                            loaded = false;
+                        }
+                        else
+                        {
+                            // we get the extension definition
+
+                            var packageDefinition = ExtractPackageDefinition(assembly, null, log);
+
+                            // we load the using assemblies
+
+                            if (packageDefinition?.UsingAssemblyReferences?.Count > 0)
+                            {
+                                foreach (var usingReference in packageDefinition?.UsingAssemblyReferences)
+                                {
+                                    IBdoLog subSubLog = log?.NewLog()
+                                        .WithDisplayName("Loading using extensions...");
+                                    loaded &= LoadPackage(usingReference, loadedAssemblyNames, subSubLog);
+                                }
+                            }
+
+                            // we load the item definition specifiying the extension definition
+
+                            var extensionKinds = _loadOptions.ExtensionKinds?.ToArray()
+                                ?? new[]
+                                {
                                 BdoExtensionKind.Connector,
                                 BdoExtensionKind.Entity,
-                                BdoExtensionKind.Metrics,
-                                BdoExtensionKind.Routine,
+                                BdoExtensionKind.Function,
                                 BdoExtensionKind.Scriptword,
-                                BdoExtensionKind.Task })
-                        {
-                            var subSubLog = log?.NewLog();
-                            int count = LoadDictionary(assembly, kind, extensionDefinition, subSubLog);
+                                BdoExtensionKind.Task
+                                };
 
-                            if (subSubLog?.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning) == true)
+                            foreach (var extensionKind in extensionKinds)
                             {
-                                log?.AddSubLog(
-                                    subSubLog,
-                                    title: "Dictionary '" + kind.ToString() + "' not loaded correctly (" + count.ToString() + " items added)");
-                            }
-                            else
-                            {
-                                log?.AddMessage("Dictionary '" + kind.ToString() + "' loaded (" + count.ToString() + " items added)");
+                                var subSubLog = log?.NewLog();
+
+                                int count = LoadDictionary(assembly, extensionKind, packageDefinition, subSubLog);
+
+                                if (subSubLog?.HasEvent(
+                                    EventKinds.Error,
+                                    EventKinds.Exception,
+                                    EventKinds.Warning) == true)
+                                {
+                                    log?.AddSubLog(
+                                        subSubLog,
+                                        title: "Dictionary '" + extensionKind.ToString() + "' not loaded correctly (" + count.ToString() + " items added)");
+                                }
+                                else
+                                {
+                                    log?.AddMessage("Dictionary '" + extensionKind.ToString() + "' loaded (" + count.ToString() + " items added)");
+                                }
                             }
                         }
                     }
-                }
-                catch (Exception exception)
-                {
-                    log?.AddException(exception);
-                    loaded = false;
+                    catch (Exception exception)
+                    {
+                        log?.AddException(exception);
+                        loaded = false;
+                    }
                 }
             }
 

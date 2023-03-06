@@ -109,10 +109,10 @@ namespace BindOpen.Hosting.Settings
                 {
                     _ = GetType().GetPropertyInfo(
                         propertyName,
-                        new Type[] { typeof(BdoPropertyAttribute) },
-                        out BdoPropertyAttribute attribute);
+                        new Type[] { typeof(BdoParameterAttribute) },
+                        out BdoParameterAttribute attribute);
 
-                    if (attribute is BdoPropertyAttribute)
+                    if (attribute is BdoParameterAttribute)
                     {
                         object value = Configuration.GetData(attribute.Name, Scope);
                         if (value is T t)
@@ -145,10 +145,10 @@ namespace BindOpen.Hosting.Settings
                 {
                     _ = GetType().GetPropertyInfo(
                         propertyName,
-                        new Type[] { typeof(BdoPropertyAttribute) },
-                        out BdoPropertyAttribute attribute);
+                        new Type[] { typeof(BdoParameterAttribute) },
+                        out BdoParameterAttribute attribute);
 
-                    if (attribute is BdoPropertyAttribute)
+                    if (attribute is BdoParameterAttribute)
                         return (Configuration.GetData(attribute.Name, Scope) as string)?.ToEnum<T>(defaultValue) ?? default;
                 }
             }
@@ -167,10 +167,10 @@ namespace BindOpen.Hosting.Settings
             {
                 PropertyInfo propertyInfo = GetType().GetPropertyInfo(
                     propertyName,
-                    new Type[] { typeof(BdoPropertyAttribute) },
-                    out BdoPropertyAttribute attribute);
+                    new Type[] { typeof(BdoParameterAttribute) },
+                    out BdoParameterAttribute attribute);
 
-                if (attribute is BdoPropertyAttribute)
+                if (attribute is BdoParameterAttribute)
                 {
                     Configuration.Add(
                         BdoMeta.NewScalar(

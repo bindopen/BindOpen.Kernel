@@ -601,11 +601,11 @@
             <param key="log">The log to populate.</param>
             <param key="taskEntryKinds">The kind end entries to consider.</param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTask.IsCompatibleWithBindOpen.Data.Elements.IBdoSpecList,BindOpen.Runtime.Definition.TaskEntryKind)">
+        <member name="M:BindOpen.Extensions.Processing.BdoTask.IsCompatibleWithBindOpen.Data.Elements.IBdoSpecSet,BindOpen.Runtime.Definition.TaskEntryKind)">
             <summary>
             Indicates whether this instance has compatible entries with the specified element set.
             </summary>
-            <param key="dataSpecList">The set of element specifications to consider.</param>
+            <param key="dataSpecSet">The set of element specifications to consider.</param>
             <param key="taskEntryKind">The task entry kind to consider.</param>
             <returns>True if this instance is compatible with the specified element set.</returns>
         </member>
@@ -711,7 +711,7 @@
             <summary>
             Clones this instance.
             </summary>
-            <returns>Returns the cloned metrics definition.</returns>
+            <returns>Returns the cloned function definition.</returns>
         </member>
         <member name="M:BindOpen.Extensions.Processing.BdoConfig.Dispose(System.Boolean)">
             <summary>
@@ -1406,7 +1406,7 @@
             <summary>
             Clones this instance.
             </summary>
-            <returns>Returns the cloned metrics definition.</returns>
+            <returns>Returns the cloned function definition.</returns>
         </member>
         <member name="T:BindOpen.Extensions.TBdoExtensionConfiguration`1">
             <summary>
@@ -1429,7 +1429,7 @@
             <summary>
             Clones this instance.
             </summary>
-            <returns>Returns the cloned metrics definition.</returns>
+            <returns>Returns the cloned function definition.</returns>
         </member>
         <member name="P:BindOpen.Extensions.TBdoExtensionConfiguration`1.Title">
             <summary>

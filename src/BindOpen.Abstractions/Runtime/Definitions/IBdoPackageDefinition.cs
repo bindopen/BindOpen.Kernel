@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
 using BindOpen.Data.Items;
 using System.Collections.Generic;
 
@@ -48,13 +49,8 @@ namespace BindOpen.Runtime.Definitions
         string RootNamespace { get; set; }
 
         /// <summary>
-        /// The unique ID of this instance.
-        /// </summary> 
-        string UniqueName { get; }
-
-        /// <summary>
         /// 
         /// </summary>
-        List<string> UsingAssemblyFileNames { get; set; }
+        List<IBdoAssemblyReference> UsingAssemblyReferences { get; set; }
     }
 }

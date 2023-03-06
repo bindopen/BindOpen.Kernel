@@ -1,12 +1,8 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Data;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
 using BindOpen.Data.Items;
-using BindOpen.Extensions;
-using BindOpen.Logging;
+using BindOpen.Data.Meta;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BindOpen.Runtime.Definitions
 {
@@ -23,24 +19,19 @@ namespace BindOpen.Runtime.Definitions
         #region Properties
 
         /// <summary>
-        /// Name of the group of this instance.
+        /// 
         /// </summary>
-        public string GroupName { get; set; }
+        public IBdoClassReference ClassReference { get; set; }
 
         /// <summary>
         /// Input specification of this instance.
         /// </summary>
-        public IBdoSpecSet InputSpecification { get; set; }
+        public IBdoSpecSet InputSpecDetail { get; set; }
 
         /// <summary>
         /// Indicates whether this instance is executable.
         /// </summary>
         public bool IsExecutable { get; set; } = true;
-
-        /// <summary>
-        /// Item class of this instance.
-        /// </summary>
-        public string ItemClass { get; set; }
 
         /// <summary>
         /// Maximum index of this instance.
@@ -50,17 +41,12 @@ namespace BindOpen.Runtime.Definitions
         /// <summary>
         /// Output specification of this instance.
         /// </summary>
-        public IBdoSpecSet OutputSpecification { get; set; }
+        public IBdoSpecSet OutputSpecDetail { get; set; }
 
         /// <summary>
         /// The runtime type of this instance.
         /// </summary>
         public Type RuntimeType { get; set; }
-
-        /// <summary>
-        /// The unique ID of this instance.
-        /// </summary>
-        public new string UniqueName { get => PackageDefinition?.UniqueName + "$" + Name; }
 
         #endregion
 
@@ -96,59 +82,6 @@ namespace BindOpen.Runtime.Definitions
         public override string Key()
         {
             return UniqueName;
-        }
-
-        // Entries --------------------------------
-
-        /// <summary>
-        /// Gets the specified entries.
-        /// </summary>
-        /// <param key="taskEntryKinds">The kind end entries to consider.</param>
-        /// <returns>True if this instance is configurable.</returns>
-        public List<IBdoSpec> GetEntries(params TaskEntryKind[] taskEntryKinds)
-        {
-            if (taskEntryKinds.Length == 0)
-                taskEntryKinds = new TaskEntryKind[1] { TaskEntryKind.Any };
-
-            var dataElements = new List<IBdoSpec>();
-
-            if (taskEntryKinds.Contains(TaskEntryKind.Any) || taskEntryKinds.Contains(TaskEntryKind.Input))
-                dataElements.AddRange(InputSpecification.Items);
-            if (taskEntryKinds.Contains(TaskEntryKind.Any) || taskEntryKinds.Contains(TaskEntryKind.Output))
-                dataElements.AddRange(OutputSpecification.Items);
-            if (taskEntryKinds.Contains(TaskEntryKind.Any) || taskEntryKinds.Contains(TaskEntryKind.ScalarOutput))
-                dataElements.AddRange(OutputSpecification.Items.Where(p => p.ValueType.IsScalar()));
-            if (taskEntryKinds.Contains(TaskEntryKind.Any) || taskEntryKinds.Contains(TaskEntryKind.ScalarOutput))
-                dataElements.AddRange(OutputSpecification.Items.Where(p => p.ValueType.IsScalar()));
-
-            return dataElements;
-        }
-
-        /// <summary>
-        /// Returns the entry of the specified kind with the specified unique name.
-        /// </summary>
-        /// <param key="key">The key to consider.</param>
-        /// <param key="taskEntryKinds">The kind end entries to consider.</param>
-        /// <returns>Returns the input with the specified name.</returns>
-        public IBdoSpec GetEntryWithName(string key, params TaskEntryKind[] taskEntryKinds)
-        {
-            return GetEntries(taskEntryKinds).Find(p => p.BdoKeyEquals(key));
-        }
-
-        /// <summary>
-        /// Gets the value of the specified entry.
-        /// </summary>
-        /// <param key="name">The name of the entry to consider.</param>
-        /// <param key="log">The log to populate.</param>
-        /// <param key="taskEntryKinds">The kind end entries to consider.</param>
-        public object GetEntryDefaultItemWithName(
-            string name,
-            IBdoLog log = null,
-            params TaskEntryKind[] taskEntryKinds)
-        {
-            IBdoSpec entry = GetEntryWithName(name, taskEntryKinds);
-
-            return entry?.DefaultItem;
         }
 
         #endregion
@@ -201,8 +134,8 @@ namespace BindOpen.Runtime.Definitions
                 return;
             }
 
-            InputSpecification?.Dispose();
-            OutputSpecification?.Dispose();
+            InputSpecDetail?.Dispose();
+            OutputSpecDetail?.Dispose();
 
             _isDisposed = true;
 

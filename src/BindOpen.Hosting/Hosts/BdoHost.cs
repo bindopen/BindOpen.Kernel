@@ -304,30 +304,10 @@ namespace BindOpen.Hosting.Hosts
 
                     subLog = log?.InsertSubLog(title: "Loading extensions...", eventKind: EventKinds.Message);
 
-                    if (Options?.ExtensionReferences.Count == 0)
-                    {
-                        subLog?.AddMessage("No extensions found");
-                    }
-                    else
-                    {
-                        Options.ExtensionLoadOptions?.WithLibraryFolderPath(GetKnownPath(BdoHostPathKind.LibraryFolder));
-                        foreach (var reference in Options?.ExtensionReferences)
-                        {
-                            _isLoaded &= Scope.LoadExtensions(
-                                p =>
-                                {
-                                    //p.Update(Options?.ExtensionLoadOptions);
-                                    return true;
-                                },
-                                new[] { reference },
-                                subLog);
-                        }
-
-                        if (subLog?.HasEvent(EventKinds.Error, EventKinds.Exception) != true)
-                        {
-                            subLog?.AddMessage("Extensions loaded");
-                        }
-                    }
+                    _isLoaded &= Scope.LoadExtensions(
+                        q => q = Options.ExtensionLoadOptions
+                            .AddSource(DatasourceKind.Repository, GetKnownPath(BdoHostPathKind.LibraryFolder)),
+                        subLog);
 
                     if (_isLoaded)
                     {
@@ -405,33 +385,13 @@ namespace BindOpen.Hosting.Hosts
         /// <summary>
         /// Loads the specified extensions.
         /// </summary>
-        /// <param key="references">The extension references to consider.</param>
-        /// <param key="log">The log to consider.</param>
-        public bool LoadExtensions(
-            IBdoAssemblyReference[] references,
-            IBdoLog log = null)
-            => Scope?.LoadExtensions(references, log) ?? false;
-
-        public bool LoadExtensions(
-            params IBdoAssemblyReference[] references)
-            => LoadExtensions(references, null);
-
-        /// <summary>
-        /// Loads the specified extensions.
-        /// </summary>
         /// <param key="loadOptionsAction">The load options action to consider.</param>
         /// <param key="references">The extension references to consider.</param>
         /// <param key="log">The log to consider.</param>
         public bool LoadExtensions(
-            Func<IExtensionLoadOptions, bool> loadOptionsAction,
-            IBdoAssemblyReference[] references,
+            Action<IExtensionLoadOptions> loadOptionsAction,
             IBdoLog log = null)
-            => Scope?.LoadExtensions(loadOptionsAction, references, log) ?? false;
-
-        public bool LoadExtensions(
-            Func<IExtensionLoadOptions, bool> loadOptionsAction,
-            params IBdoAssemblyReference[] references)
-            => LoadExtensions(loadOptionsAction, references, null);
+            => Scope?.LoadExtensions(loadOptionsAction, log) ?? false;
 
         /// <summary>
         /// Clears this instance.

@@ -1,5 +1,5 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Extensions;
+﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Meta;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -9,8 +9,8 @@ namespace BindOpen.Runtime.Definitions
     /// <summary>
     /// This class represents the entity definition.
     /// </summary>
-    [XmlType("EntityDefinition", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "entity.definition", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("EntityDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "entity.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class BdoEntityDefinitionDto : ExtensionDefinitionDto
     {
         // --------------------------------------------------
@@ -24,14 +24,7 @@ namespace BindOpen.Runtime.Definitions
         /// </summary>
         [JsonPropertyName("itemClass")]
         [XmlElement("itemClass")]
-        public string ItemClass { get; set; }
-
-        /// <summary>
-        /// The kind of this instance. 
-        /// </summary>
-        [JsonPropertyName("kind")]
-        [XmlElement("kind")]
-        public BdoEntityKind Kind { get; set; } = BdoEntityKind.Any;
+        public ClassReferenceDto ItemClass { get; set; }
 
         /// <summary>
         /// Viewer class of this instance.
@@ -47,7 +40,7 @@ namespace BindOpen.Runtime.Definitions
         /// </summary>
         [JsonPropertyName("detail.spec")]
         [XmlElement("detail.spec")]
-        public SpecListDto DetailSpec { get; set; }
+        public SpecSetDto DetailSpec { get; set; }
 
         /// <summary>
         /// Formats of this instance.

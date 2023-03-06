@@ -9,8 +9,8 @@ namespace BindOpen.Runtime.Definitions
     /// <summary>
     /// This class represents the group of BindOpen extension items.
     /// </summary>
-    [XmlType("ExtensionGroup", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "extension.item.group", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("ExtensionGroup", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "extension.item.group", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class ExtensionGroupDto : IDto
     {
         // ------------------------------------------

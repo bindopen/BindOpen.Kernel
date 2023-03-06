@@ -1,5 +1,5 @@
-﻿using BindOpen.Data;
-using BindOpen.Runtime;
+﻿using BindOpen.Runtime;
+using BindOpen.Runtime.Scopes;
 using NUnit.Framework;
 
 namespace BindOpen.Tests.Runtime
@@ -17,7 +17,7 @@ namespace BindOpen.Tests.Runtime
         {
             var scope = BdoRuntime.NewScope();
             scope.LoadExtensions(
-                BdoData.AssemblyFrom<GlobalSetUp>());
+                q => q.AddAssemblyFrom<GlobalSetUp>());
         }
     }
 

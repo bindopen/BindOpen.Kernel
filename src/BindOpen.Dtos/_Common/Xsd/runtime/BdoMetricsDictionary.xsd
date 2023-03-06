@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns="https://xsd.bindopen.org" elementFormDefault="qualified" targetNamespace="https://xsd.bindopen.org" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns="https://storage.bindopen.org/xsd/bindopen" elementFormDefault="qualified" targetNamespace="https://storage.bindopen.org/xsd/bindopen" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="https://xsd.bindopen.org/DataItem.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/metrics/BdoMetricsDefinition.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/BdoExtensionGroup.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/DataItem.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/function/BdoFunctionDefinition.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoExtensionGroup.xsd" />
 
-  <xs:element name="metrics.dico" type="BdoMetricsDictionaryDto" />
+  <xs:element name="function.dico" type="BdoFunctionDictionaryDto" />
 
-  <xs:complexType name="BdoMetricsDictionaryDto">
+  <xs:complexType name="BdoFunctionDictionaryDto">
     <xs:complexContent mixed="false">
-      <xs:extension base="TBdoExtensionDictionary_Metrics" />
+      <xs:extension base="TBdoExtensionDictionary_Function" />
     </xs:complexContent>
   </xs:complexType>
-  <xs:complexType name="TBdoExtensionDictionary_Metrics">
+  <xs:complexType name="TBdoExtensionDictionary_Function">
     <xs:complexContent mixed="false">
       <xs:extension base="StoredDataItem">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="definitions" type="ArrayOfMetricsDefinition" />
+          <xs:element minOccurs="0" maxOccurs="1" name="definitions" type="ArrayOfFunctionDefinition" />
           <xs:element minOccurs="0" maxOccurs="1" name="groups" type="ArrayOfBdoExtensionGroup" />
         </xs:sequence>
         <xs:attribute name="libraryId" type="xs:string" />
@@ -25,9 +25,9 @@
     </xs:complexContent>
   </xs:complexType>
 
-  <xs:complexType name="ArrayOfMetricsDefinition">
+  <xs:complexType name="ArrayOfFunctionDefinition">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="MetricsDefinition" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="FunctionDefinition" />
     </xs:sequence>
   </xs:complexType>
 

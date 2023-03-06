@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Items;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Meta;
 using BindOpen.Extensions.Connecting;
 using BindOpen.Logging;
 
@@ -9,6 +8,7 @@ namespace BindOpen.Tests
     /// This class represents a test connector.
     /// </summary>
     [BdoConnector(Name = "tests.core$testConnector")]
+    [BdoConnector(CreationDate = "2023-02-25")]
     public class ConnectorFake : BdoConnector
     {
         /// <summary>

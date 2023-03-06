@@ -3,6 +3,7 @@ using BindOpen.Data.Meta;
 using BindOpen.Extensions.Connecting;
 using BindOpen.Extensions.Modeling;
 using BindOpen.Extensions.Processing;
+using BindOpen.Extensions.Scripting;
 using System;
 using System.Collections;
 
@@ -105,6 +106,8 @@ namespace BindOpen.Data
                 return DataValueTypes.Time;
             else if (type == typeof(string))
                 return DataValueTypes.Text;
+            else if (typeof(IBdoScriptword).IsAssignableFrom(type))
+                return DataValueTypes.Scriptword;
             else if (typeof(IBdoMetaData).IsAssignableFrom(type))
                 return DataValueTypes.MetaData;
             else if (typeof(IBdoDocument).IsAssignableFrom(type))

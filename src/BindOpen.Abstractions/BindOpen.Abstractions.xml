@@ -574,22 +574,22 @@
             Instantiates a new instance of the TaskAttribute class.
             </summary>
         </member>
-        <member name="T:BindOpen.Extensions.Processing.BdoTaskInputAttribute">
+        <member name="T:BindOpen.Extensions.Processing.BdoInputAttribute">
             <summary>
             This class represents a input property attribute.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTaskInputAttribute.#ctor">
+        <member name="M:BindOpen.Extensions.Processing.BdoInputAttribute.#ctor">
             <summary>
             Instantiates a new instance of the TaskInputAttribute class.
             </summary>
         </member>
-        <member name="T:BindOpen.Extensions.Processing.BdoTaskOutputAttribute">
+        <member name="T:BindOpen.Extensions.Processing.BdoOutputAttribute">
             <summary>
             This class represents a output property attribute.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTaskOutputAttribute.#ctor">
+        <member name="M:BindOpen.Extensions.Processing.BdoOutputAttribute.#ctor">
             <summary>
             Instantiates a new instance of the TaskOutputAttribute class.
             </summary>
@@ -610,11 +610,11 @@
             <param key="taskEntryKinds"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoTask.IsCompatibleWithBindOpen.Data.Elements.IBdoMetaSpecList,BindOpen.Runtime.Definition.TaskEntryKind)">
+        <member name="M:BindOpen.Extensions.Processing.IBdoTask.IsCompatibleWithBindOpen.Data.Elements.IBdoMetaSpecSet,BindOpen.Runtime.Definition.TaskEntryKind)">
             <summary>
             
             </summary>
-            <param key="dataSpecList"></param>
+            <param key="dataSpecSet"></param>
             <param key="taskEntryKind"></param>
             <returns></returns>
         </member>
@@ -1265,14 +1265,14 @@
             Instantiates a new instance of the HandlerAttribute class.
             </summary>
         </member>
-        <member name="T:BindOpen.Extensions.BdoMetricsAttribute">
+        <member name="T:BindOpen.Extensions.BdoFunctionAttribute">
             <summary>
-            This class represents an attribute of metrics.
+            This class represents an attribute of function.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.BdoMetricsAttribute.#ctor">
+        <member name="M:BindOpen.Extensions.BdoFunctionAttribute.#ctor">
             <summary>
-            Instantiates a new instance of the MetricsAttribute class.
+            Instantiates a new instance of the FunctionAttribute class.
             </summary>
         </member>
         <member name="T:BindOpen.Extensions.IBdoExtension">
@@ -2767,7 +2767,7 @@
             <param key="log"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Data.Elements.IBdoMetaSpecList">
+        <member name="T:BindOpen.Data.Elements.IBdoMetaSpecSet">
             <summary>
             
             </summary>
@@ -5512,7 +5512,7 @@
             Name of library.
             </summary>
         </member>
-        <member name="T:BindOpen.Runtime.Definition.IBdoMetricsDictionary">
+        <member name="T:BindOpen.Runtime.Definition.IBdoFunctionDictionary">
             <summary>
             
             </summary>
@@ -5642,9 +5642,9 @@
             Handler.
             </summary>
         </member>
-        <member name="F:BindOpen.Runtime.Definition.BdoExtensionKind.Metrics">
+        <member name="F:BindOpen.Runtime.Definition.BdoExtensionKind.Function">
             <summary>
-            Metrics.
+            Function.
             </summary>
         </member>
         <member name="F:BindOpen.Runtime.Definition.BdoExtensionKind.Routine">
@@ -5677,9 +5677,9 @@
             Connector.
             </summary>
         </member>
-        <member name="F:BindOpen.Runtime.Definition.BdoExtensionViewerKind.Metrics">
+        <member name="F:BindOpen.Runtime.Definition.BdoExtensionViewerKind.Function">
             <summary>
-            Metrics.
+            Function.
             </summary>
         </member>
         <member name="F:BindOpen.Runtime.Definition.BdoExtensionViewerKind.Scriptword">
@@ -5975,22 +5975,22 @@
             
             </summary>
         </member>
-        <member name="T:BindOpen.Runtime.Definition.IBdoMetricsDefinition">
+        <member name="T:BindOpen.Runtime.Definition.IBdoFunctionDefinition">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.IBdoMetricsDefinition.RuntimeType">
+        <member name="P:BindOpen.Runtime.Definition.IBdoFunctionDefinition.RuntimeType">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.IBdoMetricsDefinition.ItemClass">
+        <member name="P:BindOpen.Runtime.Definition.IBdoFunctionDefinition.ItemClass">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.IBdoMetricsDefinition.UnitCode">
+        <member name="P:BindOpen.Runtime.Definition.IBdoFunctionDefinition.UnitCode">
             <summary>
             
             </summary>

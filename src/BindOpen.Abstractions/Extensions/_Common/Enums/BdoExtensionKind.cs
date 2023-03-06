@@ -5,7 +5,7 @@ namespace BindOpen.Extensions
     /// <summary>
     /// This enumeration represents the possible kinds of library items.
     /// </summary>
-    [XmlType("BdoExtensionKind", Namespace = "https://xsd.bindopen.org")]
+    [XmlType("BdoExtensionKind", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     public enum BdoExtensionKind
     {
         /// <summary>
@@ -29,28 +29,18 @@ namespace BindOpen.Extensions
         Entity,
 
         /// <summary>
-        /// Task.
+        /// Function.
         /// </summary>
-        Task,
-
-        /// <summary>
-        /// Format.
-        /// </summary>
-        Format,
-
-        /// <summary>
-        /// Metrics.
-        /// </summary>
-        Metrics,
-
-        /// <summary>
-        /// RoutineConfiguration.
-        /// </summary>
-        Routine,
+        Function,
 
         /// <summary>
         /// Script word.
         /// </summary>
         Scriptword,
+
+        /// <summary>
+        /// Task.
+        /// </summary>
+        Task
     }
 }

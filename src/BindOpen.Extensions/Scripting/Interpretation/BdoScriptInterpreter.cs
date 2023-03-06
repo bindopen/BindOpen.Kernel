@@ -567,8 +567,8 @@ namespace BindOpen.Extensions.Scripting
                     {
                         if (definition.RuntimeScopedFunction != null)
                         {
-                            var variable = new BdoScriptwordDomain(_scope, varSet, scriptword);
-                            return definition.RuntimeScopedFunction(variable);
+                            var domain = new BdoScriptwordDomain(_scope, varSet, scriptword);
+                            return definition.RuntimeScopedFunction(domain);
                         }
                         else if (definition.RuntimeBasicFunction != null)
                         {
@@ -608,47 +608,7 @@ namespace BindOpen.Extensions.Scripting
         {
             if (definition == null) return false;
 
-            // we check the number of parameters
-            if (!definition.IsRepeatedParameters && scriptword.Count == 0 && definition.ParameterSpecification != null |
-                definition.ParameterSpecification == null && scriptword.Count > 0)
-            {
-                return false;
-            }
-
-            if (scriptword.Count == 0 && (!definition.IsRepeatedParameters || definition.ParameterSpecification == null))
-                return true;
-            if (!definition.IsRepeatedParameters && scriptword.Count != definition.ParameterSpecification?.Count)
-                return false;
-
-            if (!definition.IsRepeatedParameters && definition.MaxParameterNumber != -1 && scriptword.Count > definition.MaxParameterNumber)
-                return false;
-            if (!definition.IsRepeatedParameters && definition.MinParameterNumber != -1 && scriptword.Count < definition.MinParameterNumber)
-                return false;
-
-            // we search the defined script word parameters
-
-            if (definition?.ParameterSpecification?.Items != null)
-            {
-                var index = 0;
-                foreach (var param in scriptword)
-                {
-                    var paramSpec = definition.ParameterSpecification.Items[index];
-
-                    // we check that the value type of the current script word parameter corresponds to the defined one (considering the en-US culture info)
-
-                    if (definition.IsRepeatedParameters && definition.RepeatedParameterValueType != DataValueTypes.Any)
-                    {
-                        return definition.RepeatedParameterValueType.IsCompatibleWith(param.GetValueType());
-                    }
-                    else if (paramSpec.ValueType != DataValueTypes.Any)
-                    {
-                        return paramSpec.IsCompatibleWithData(param);
-                    }
-                    index++;
-                }
-            }
-
-            return true;
+            return definition?.SpecDetail.IsCompatibleWith(scriptword) ?? false;
         }
 
         #endregion

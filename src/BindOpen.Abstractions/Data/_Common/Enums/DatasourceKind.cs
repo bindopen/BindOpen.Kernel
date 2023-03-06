@@ -5,7 +5,7 @@ namespace BindOpen.Data
     /// <summary>
     /// This enumeration represents the data source kinds.
     /// </summary>
-    [XmlType("DatasourceKind", Namespace = "https://xsd.bindopen.org")]
+    [XmlType("DatasourceKind", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     public enum DatasourceKind
     {
         /// <summary>

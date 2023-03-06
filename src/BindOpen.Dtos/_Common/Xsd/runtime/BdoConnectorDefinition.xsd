@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema
-  xmlns:bdo="https://xsd.bindopen.org"
-  elementFormDefault="qualified" targetNamespace="https://xsd.bindopen.org" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  xmlns:bdo="https://storage.bindopen.org/xsd/bindopen"
+  elementFormDefault="qualified" targetNamespace="https://storage.bindopen.org/xsd/bindopen" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:include schemaLocation="https://xsd.bindopen.org/BdoExtensionDefinition.xsd" />
-  <xs:include schemaLocation="https://xsd.bindopen.org/SourceElementSpec.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoExtensionDefinition.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/SourceElementSpec.xsd" />
 
   <xs:complexType name="BdoConnectorDefinition">
     <xs:complexContent mixed="false">

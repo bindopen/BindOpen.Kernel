@@ -7,8 +7,8 @@ namespace BindOpen.Runtime.Definitions
     /// <summary>
     /// This class represents a routine definition.
     /// </summary>
-    [XmlType("RoutineDefinition", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "routine.definition", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("RoutineDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "routine.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class BdoRoutineDefinitionDto : ExtensionDefinitionDto
     {
         // --------------------------------------------------

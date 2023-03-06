@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace BindOpen.Data.Meta
+﻿namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a data element.
@@ -45,32 +43,12 @@ namespace BindOpen.Data.Meta
         #region ITBdoElement
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="name"></param>
-        /// <returns></returns>
-        public new TSpec GetSpec(string name = null)
-        {
-            return (TSpec)base.GetSpec(name);
-        }
-
-        /// <summary>
         /// Gets a new specification.
         /// </summary>
         /// <returns>Returns the new specifcation.</returns>
         public new TSpec NewSpec()
         {
             return (TSpec)base.NewSpec();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="spec"></param>
-        /// <returns></returns>
-        public ITBdoMetaData<TItem, TSpec> WithSpecs(params TSpec[] specs)
-        {
-            return (ITBdoMetaData<TItem, TSpec>)base.WithSpecs(specs.Cast<IBdoSpec>().ToArray());
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Helpers;
 using BindOpen.Data.Items;
 using System.Collections.Generic;
 
@@ -31,11 +32,6 @@ namespace BindOpen.Runtime.Definitions
         #region IBdoPackageDefinition
 
         /// <summary>
-        /// The unique ID of this instance.
-        /// </summary> 
-        public string UniqueName { get => Name; }
-
-        /// <summary>
         /// Name of the group of this instance.
         /// </summary>
         public string GroupName { get; set; }
@@ -60,7 +56,7 @@ namespace BindOpen.Runtime.Definitions
         /// <summary>
         /// Names of the using assembly files of this instance.
         /// </summary>
-        public List<string> UsingAssemblyFileNames { get; set; }
+        public List<IBdoAssemblyReference> UsingAssemblyReferences { get; set; }
 
         // Dictionary full names -------------------------------------
 

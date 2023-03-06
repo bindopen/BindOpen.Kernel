@@ -192,7 +192,7 @@ namespace BindOpen.Dtos.Xml
             foreach (string currentXsdResource in xsdResources)
             {
                 var stream = assembly.GetManifestResourceStream(currentXsdResource);
-                xmlSchemaSet.Add("https://xsd.bindopen.org", XmlReader.Create(new StreamReader(stream)));
+                xmlSchemaSet.Add("https://storage.bindopen.org/xsd/bindopen", XmlReader.Create(new StreamReader(stream)));
             }
 
             return xmlSchemaSet;

@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using BindOpen.Data.Meta;
-using BindOpen.Data.Meta;
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
@@ -25,7 +23,7 @@ namespace BindOpen.Data.Meta
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<BdoMetaScalar, MetaScalarDto>()
                     .ForMember(q => q.DataExpression, opt => opt.MapFrom(q => q.DataExpression.ToDto()))
-                    .ForMember(q => q.Specs, opt => opt.Ignore())
+                    .ForMember(q => q.SpecSet, opt => opt.MapFrom(q => q.SpecSet.ToDto()))
             );
 
             var mapper = new Mapper(config);
@@ -60,14 +58,14 @@ namespace BindOpen.Data.Meta
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<MetaScalarDto, BdoMetaScalar>()
                     .ForMember(q => q.DataExpression, opt => opt.Ignore())
-                    .ForMember(q => q.Specs, opt => opt.Ignore())
+                    .ForMember(q => q.SpecSet, opt => opt.Ignore())
                 );
 
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoMetaScalar>(dto);
 
             poco.DataExpression = dto.DataExpression.ToPoco();
-            poco.Specs = dto.Specs?.Count == 0 ? null : dto.Specs?.Select(q => q.ToPoco()).Cast<IBdoSpec>().ToList();
+            poco.SpecSet = dto.SpecSet.ToPoco();
 
             if (!string.IsNullOrEmpty(dto.Item))
             {

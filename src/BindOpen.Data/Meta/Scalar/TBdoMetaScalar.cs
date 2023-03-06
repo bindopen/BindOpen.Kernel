@@ -1,7 +1,6 @@
 ﻿using BindOpen.Data.Helpers;
 using BindOpen.Logging;
 using BindOpen.Runtime.Scopes;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BindOpen.Data.Meta
@@ -164,46 +163,6 @@ namespace BindOpen.Data.Meta
             var list = GetDataList<Q>(scope, varSet, log); ;
             var obj = list.GetAt(index);
             return obj;
-        }
-
-        /// <summary>
-        /// Returns the item TItem of this instance.
-        /// </summary>
-        /// <param key="log">The log to populate.</param>
-        /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable meta set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public List<object> GetDataList(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            var obj = DataObject(scope, varSet, log);
-
-            var list = obj?.ToObjectList();
-            return list;
-        }
-
-        /// <summary>
-        /// Returns the item TItem of this instance.
-        /// </summary>
-        /// <param key="log">The log to populate.</param>
-        /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable meta set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public List<Q> GetDataList<Q>(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            var list = GetDataList(scope, varSet, log);
-            return list?.Select(q =>
-            {
-                if (q is Q q_Q)
-                    return q_Q;
-
-                return default;
-            }).ToList();
         }
 
         #endregion

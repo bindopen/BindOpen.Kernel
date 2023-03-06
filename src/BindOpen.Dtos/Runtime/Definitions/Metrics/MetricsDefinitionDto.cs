@@ -4,11 +4,11 @@ using System.Xml.Serialization;
 namespace BindOpen.Runtime.Definitions
 {
     /// <summary>
-    /// This class represents a metrics definition.
+    /// This class represents a function definition.
     /// </summary>
-    [XmlType("MetricsDefinition", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "metrics.definition", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
-    public class BdoMetricsDefinitionDto : ExtensionDefinitionDto
+    [XmlType("FunctionDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "function.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    public class BdoFunctionDefinitionDto : ExtensionDefinitionDto
     {
         // ------------------------------------------
         // PROPERTIES
@@ -39,9 +39,9 @@ namespace BindOpen.Runtime.Definitions
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BdoMetricsDefinitionDto class. 
+        /// Instantiates a new instance of the BdoFunctionDefinitionDto class. 
         /// </summary>
-        public BdoMetricsDefinitionDto()
+        public BdoFunctionDefinitionDto()
         {
         }
 

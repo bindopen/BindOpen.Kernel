@@ -1306,19 +1306,19 @@
             Instantiates a new instance of the BdoHandlerDictionaryDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Runtime.Definition.BdoMetricsDictionaryDto">
+        <member name="T:BindOpen.Runtime.Definition.BdoFunctionDictionaryDto">
             <summary>
-            This class represents a DTO metrics dico.
+            This class represents a DTO function dico.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoMetricsDictionaryDto.Definitions">
+        <member name="P:BindOpen.Runtime.Definition.BdoFunctionDictionaryDto.Definitions">
             <summary>
             Definitions of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoMetricsDictionaryDto.#ctor">
+        <member name="M:BindOpen.Runtime.Definition.BdoFunctionDictionaryDto.#ctor">
             <summary>
-            Instantiates a new instance of the BdoMetricsDictionaryDto class.
+            Instantiates a new instance of the BdoFunctionDictionaryDto class.
             </summary>
         </member>
         <member name="T:BindOpen.Runtime.Definition.BdoRoutineDictionaryDto">
@@ -1643,24 +1643,24 @@
             Instantiates a new instance of the BdoHandlerDefinitionDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.Runtime.Definition.BdoMetricsDefinitionDto">
+        <member name="T:BindOpen.Runtime.Definition.BdoFunctionDefinitionDto">
             <summary>
-            This class represents a metrics definition.
+            This class represents a function definition.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoMetricsDefinitionDto.ItemClass">
+        <member name="P:BindOpen.Runtime.Definition.BdoFunctionDefinitionDto.ItemClass">
             <summary>
             Item class of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Runtime.Definition.BdoMetricsDefinitionDto.UnitCode">
+        <member name="P:BindOpen.Runtime.Definition.BdoFunctionDefinitionDto.UnitCode">
             <summary>
             Unit code of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Definition.BdoMetricsDefinitionDto.#ctor">
+        <member name="M:BindOpen.Runtime.Definition.BdoFunctionDefinitionDto.#ctor">
             <summary>
-            Instantiates a new instance of the BdoMetricsDefinitionDto class. 
+            Instantiates a new instance of the BdoFunctionDefinitionDto class. 
             </summary>
         </member>
         <member name="T:BindOpen.Runtime.Definition.BdoRoutineDefinitionDto">

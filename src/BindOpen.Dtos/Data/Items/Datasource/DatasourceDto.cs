@@ -9,8 +9,8 @@ namespace BindOpen.Data.Items
     /// <summary>
     /// This class represents a data source.
     /// </summary>
-    [XmlType("Datasource", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "datasource", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("Datasource", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "datasource", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class DatasourceDto : BdoItemDto
     {
         // -----------------------------------------------
@@ -31,8 +31,7 @@ namespace BindOpen.Data.Items
         /// The config items for this instance.
         /// </summary>
         [JsonPropertyName("config")]
-        [XmlArray("config")]
-        [XmlArrayItem("add")]
+        [XmlElement("config")]
         public List<ConfigurationDto> Configurations { get; set; }
 
         /// <summary>

@@ -17,8 +17,10 @@ namespace BindOpen.Runtime.Scopes
             this IBdoScope scope)
             where T : IBdoScoped, new()
         {
-            var service = new T();
-            service.Scope = scope;
+            var service = new T
+            {
+                Scope = scope
+            };
 
             return service;
         }

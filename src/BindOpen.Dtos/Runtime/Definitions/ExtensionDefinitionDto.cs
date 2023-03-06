@@ -8,7 +8,7 @@ namespace BindOpen.Runtime.Definitions
     /// <summary>
     /// This class represents the definition of BindOpen extension item.
     /// </summary>
-    [XmlType("ExtensionDefinition", Namespace = "https://xsd.bindopen.org")]
+    [XmlType("ExtensionDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     public abstract class ExtensionDefinitionDto : IDto
     {
         // --------------------------------------------------

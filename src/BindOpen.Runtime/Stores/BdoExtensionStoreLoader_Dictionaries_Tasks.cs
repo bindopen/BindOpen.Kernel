@@ -1,9 +1,9 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using BindOpen.Extensions.Processing;
 using BindOpen.Logging;
 using BindOpen.Runtime.Definitions;
-using System;
 using System.Linq;
 using System.Reflection;
 
@@ -40,11 +40,11 @@ namespace BindOpen.Runtime.Stores
             int count = 0;
 
             var types = assembly.GetTypes().Where(p => typeof(IBdoTask).IsAssignableFrom(p));
-            foreach (Type type in types)
+            foreach (var type in types)
             {
                 var definition = new BdoTaskDefinition(null, extensionDefinition)
                 {
-                    ItemClass = type.FullName,
+                    ClassReference = BdoData.Class(type),
                     LibraryId = extensionDefinition?.Id,
                     RuntimeType = type
                 };
@@ -54,14 +54,16 @@ namespace BindOpen.Runtime.Stores
                     UpdateDictionary(definition, taskAttribute);
                 }
 
-                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoTaskInputAttribute)).Any()))
+                foreach (var property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoInputAttribute)).Any()))
                 {
-                    definition.InputSpecification.Add(BdoMeta.NewSpec(property.Name, property.PropertyType));
+                    definition.InputSpecDetail ??= BdoMeta.NewSpecSet();
+                    definition.InputSpecDetail.Add(BdoMeta.NewSpec(property.Name, property.PropertyType));
                 }
 
-                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoTaskOutputAttribute)).Any()))
+                foreach (var property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoOutputAttribute)).Any()))
                 {
-                    definition.OutputSpecification.Add(BdoMeta.NewSpec(property.Name, property.PropertyType));
+                    definition.OutputSpecDetail ??= BdoMeta.NewSpecSet();
+                    definition.OutputSpecDetail.Add(BdoMeta.NewSpec(property.Name, property.PropertyType));
                 }
 
                 // we build the runtime definition
@@ -73,7 +75,7 @@ namespace BindOpen.Runtime.Stores
                     // update definition with index
                 }
 
-                _store.Add<IBdoTaskDefinition>(definition);
+                _store.Add(definition);
 
                 count++;
             }

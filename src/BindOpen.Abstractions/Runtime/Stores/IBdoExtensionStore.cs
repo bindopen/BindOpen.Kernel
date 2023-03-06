@@ -15,7 +15,7 @@ namespace BindOpen.Runtime.Stores
         /// </summary>
         /// <typeparam name="T">The BindOpen extension item definition class to consider.</typeparam>
         /// <param key="definition">The definition to add.</param>
-        IBdoExtensionStore Add<T>(T definition) where T : IBdoExtensionDefinition;
+        IBdoExtensionStore Add(IBdoExtensionDefinition definition);
 
         /// <summary>
         /// 

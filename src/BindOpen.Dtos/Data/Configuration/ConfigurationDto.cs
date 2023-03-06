@@ -9,8 +9,8 @@ namespace BindOpen.Data.Configuration
     /// <summary>
     /// This class represents a config DTO.
     /// </summary>
-    [XmlType("Configuration", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot("config", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("Configuration", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot("config", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class ConfigurationDto : MetaSetDto
     {
         // -------------------------------------------------------
@@ -68,6 +68,13 @@ namespace BindOpen.Data.Configuration
         [JsonIgnore()]
         [XmlIgnore()]
         public bool UsedItemIdsSpecified => UsedItemIds?.Count > 0;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonIgnore()]
+        [XmlIgnore()]
+        public bool ShouldUsedItemIds => UsedItemIds?.Count > 0;
 
         #endregion
 

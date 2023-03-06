@@ -9,8 +9,8 @@ namespace BindOpen.Runtime.Definitions
     /// <summary>
     /// This class represents the definition of a library.
     /// </summary>
-    [XmlType("PackageDefinition", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "extension", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("PackageDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "extension", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class PackageDefinitionDto : IDto
     {
         // ------------------------------------------
