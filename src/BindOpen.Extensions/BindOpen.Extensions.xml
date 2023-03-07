@@ -601,7 +601,7 @@
             <param key="log">The log to populate.</param>
             <param key="taskEntryKinds">The kind end entries to consider.</param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTask.IsCompatibleWithBindOpen.Data.Elements.IBdoSpecSet,BindOpen.Runtime.Definition.TaskEntryKind)">
+        <member name="M:BindOpen.Extensions.Processing.BdoTask.IsCompatibleWithBindOpen.Data.Elements.ITBdoSet<IBdoSpec>,BindOpen.Runtime.Definition.TaskEntryKind)">
             <summary>
             Indicates whether this instance has compatible entries with the specified element set.
             </summary>

@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Data.Conditions
+﻿using BindOpen.Abstractions.Data._Core.Enums;
+
+namespace BindOpen.Data.Conditions
 {
     /// <summary>
     /// 

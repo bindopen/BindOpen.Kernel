@@ -117,5 +117,10 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         object DefaultItem { get; set; }
+
+        /// <summary>
+        /// Indicates whether this instance is repeated in a set.
+        /// </summary>
+        bool IsRepeated { get; set; }
     }
 }

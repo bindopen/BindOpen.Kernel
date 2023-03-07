@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -35,12 +36,18 @@ namespace BindOpen.Runtime.Definitions
         // DTO
 
         /// <summary>
-        /// The data source detail specification of this instance.
+        /// The elements of this instance.
         /// </summary>
-        [JsonPropertyName("dataSource.specification")]
-        [XmlElement("dataSource.specification")]
-        public SpecSetDto DatasourceDetailSpec { get; set; }
+        [JsonPropertyName("specs")]
+        [XmlElement("spec")]
+        public List<SpecDto> Specs { get; set; }
 
+        /// <summary>
+        /// Indicates whether the entities property must be ignored.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public bool SpecsSpecified => Specs?.Count > 0;
         #endregion
 
         // --------------------------------------------------

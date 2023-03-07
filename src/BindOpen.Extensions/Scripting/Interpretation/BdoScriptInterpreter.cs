@@ -608,7 +608,7 @@ namespace BindOpen.Extensions.Scripting
         {
             if (definition == null) return false;
 
-            return definition?.SpecDetail.IsCompatibleWith(scriptword) ?? false;
+            return definition?.SpecDetail?.IsCompatibleWith(scriptword) ?? false;
         }
 
         #endregion

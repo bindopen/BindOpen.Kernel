@@ -118,6 +118,11 @@ namespace BindOpen.Data.Meta
         /// </summary>
         public AccessibilityLevels AccessibilityLevel { get; set; } = AccessibilityLevels.Public;
 
+        /// <summary>
+        /// Indicates whether this instance is repeated in a set.
+        /// </summary>
+        public bool IsRepeated { get; set; }
+
         #endregion
 
         // ------------------------------------------

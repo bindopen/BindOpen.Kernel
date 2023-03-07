@@ -109,11 +109,18 @@ namespace BindOpen.Runtime.Definitions
         public List<BdoScriptwordDefinitionDto> Children { get; set; }
 
         /// <summary>
-        /// Parameter specification of this instance.
+        /// The elements of this instance.
         /// </summary>
-        [JsonPropertyName("parameter.specification")]
-        [XmlElement("parameter.specification")]
-        public SpecSetDto ParameterSpecification { get; set; }
+        [JsonPropertyName("parameters")]
+        [XmlElement("parameter")]
+        public List<MetaDataDto> ParameterSpecification { get; set; }
+
+        /// <summary>
+        /// Indicates whether the entities property must be ignored.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public bool ParameterSpecificationSpecified => ParameterSpecification?.Count > 0;
 
         /// <summary>
         /// Description of parameters of this instance when parameters are repeated.

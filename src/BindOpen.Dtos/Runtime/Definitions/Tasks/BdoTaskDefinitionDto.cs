@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Meta;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -51,20 +52,32 @@ namespace BindOpen.Runtime.Definitions
         // DTO
 
         /// <summary>
-        /// Input specification of this instance.
+        /// The elements of this instance.
         /// </summary>
-        /// <seealso cref="OutputSpecification"/>
-        [JsonPropertyName("input.specification")]
-        [XmlElement("input.specification")]
-        public SpecSetDto InputSpecification { get; set; }
+        [JsonPropertyName("inputs")]
+        [XmlElement("input")]
+        public List<MetaDataDto> InputSpecification { get; set; }
 
         /// <summary>
-        /// Output specification of this instance.
+        /// Indicates whether the entities property must be ignored.
         /// </summary>
-        /// <seealso cref="InputSpecification"/>
-        [JsonPropertyName("output.specification")]
-        [XmlElement("output.specification")]
-        public SpecSetDto OutputSpecification { get; set; }
+        [JsonIgnore]
+        [XmlIgnore]
+        public bool InputSpecificationSpecified => InputSpecification?.Count > 0;
+
+        /// <summary>
+        /// The elements of this instance.
+        /// </summary>
+        [JsonPropertyName("outputs")]
+        [XmlElement("output")]
+        public List<MetaDataDto> OutputSpecification { get; set; }
+
+        /// <summary>
+        /// Indicates whether the entities property must be ignored.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public bool OutputSpecificationSpecified => OutputSpecification?.Count > 0;
 
         #endregion
 

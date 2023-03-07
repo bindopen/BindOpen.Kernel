@@ -26,7 +26,7 @@ namespace BindOpen.Runtime.Definitions
         /// <summary>
         /// Input specification of this instance.
         /// </summary>
-        public IBdoSpecSet InputSpecDetail { get; set; }
+        public ITBdoSet<IBdoSpec> InputSpecDetail { get; set; }
 
         /// <summary>
         /// Indicates whether this instance is executable.
@@ -41,7 +41,7 @@ namespace BindOpen.Runtime.Definitions
         /// <summary>
         /// Output specification of this instance.
         /// </summary>
-        public IBdoSpecSet OutputSpecDetail { get; set; }
+        public ITBdoSet<IBdoSpec> OutputSpecDetail { get; set; }
 
         /// <summary>
         /// The runtime type of this instance.

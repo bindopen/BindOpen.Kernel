@@ -55,7 +55,7 @@ namespace BindOpen.Data
         {
             if (meta != null)
             {
-                meta.SpecSet = BdoMeta.NewSpecSet(specs);
+                meta.Specs = BdoMeta.NewSpecSet(specs);
             }
             return meta;
         }

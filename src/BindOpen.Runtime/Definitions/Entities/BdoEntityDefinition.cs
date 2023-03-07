@@ -25,7 +25,7 @@ namespace BindOpen.Runtime.Definitions
         /// <summary>
         /// The set of detail specifications of this instance.
         /// </summary>
-        public IBdoSpecSet SpecDetail { get; set; } = new BdoSpecSet();
+        public ITBdoSet<IBdoSpec> SpecDetail { get; set; } = new TBdoSet<IBdoSpec>();
 
         /// <summary>
         /// The runtime type of this instance.

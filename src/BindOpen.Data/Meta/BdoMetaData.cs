@@ -129,17 +129,12 @@ namespace BindOpen.Data.Meta
         /// </summary>
         public IBdoExpression DataExpression { get; set; }
 
-        /// <summary>
-        /// Indicates whether this instance is repeated in a set.
-        /// </summary>
-        public bool IsRepeated { get; set; }
-
         // Specification -------------------------------
 
         /// <summary>
         /// Specification of this instance.
         /// </summary>
-        public IBdoSpecSet SpecSet { get; set; }
+        public ITBdoSet<IBdoSpec> Specs { get; set; }
 
         // Specification ---------------------
 
@@ -300,7 +295,7 @@ namespace BindOpen.Data.Meta
             var el = base.Clone<BdoMetaData>(areas);
 
             el.DataExpression = DataExpression?.Clone<BdoExpression>();
-            el.SpecSet = SpecSet?.Clone<BdoSpecSet>();
+            el.Specs = Specs?.Clone<TBdoSet<IBdoSpec>>();
 
             return el;
         }

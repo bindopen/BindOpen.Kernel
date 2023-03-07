@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Items;
 using BindOpen.Extensions.Scripting;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml;
@@ -86,18 +87,18 @@ namespace BindOpen.Data.Meta
             || (this is ScriptwordDto && DataValueType == DataValueTypes.Scriptword));
 
         /// <summary>
-        /// The specification of this instance.
+        /// The elements of this instance.
         /// </summary>
-        [JsonPropertyName("specSet")]
-        [XmlElement("specSet")]
-        public SpecSetDto SpecSet { get; set; }
+        [JsonPropertyName("specs")]
+        [XmlElement("spec")]
+        public List<SpecDto> Specs { get; set; }
 
         /// <summary>
         /// Indicates whether the entities property must be ignored.
         /// </summary>
         [JsonIgnore]
         [XmlIgnore]
-        public bool SpecSetSpecified => SpecSet?.SpecsSpecified ?? false;
+        public bool SpecsSpecified => Specs?.Count > 0;
 
         #endregion
 

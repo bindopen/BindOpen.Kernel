@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
 using System;
 
@@ -17,12 +18,12 @@ namespace BindOpen.Runtime.Definitions
         /// <summary>
         /// 
         /// </summary>
-        IBdoSpecSet InputSpecDetail { get; set; }
+        ITBdoSet<IBdoSpec> InputSpecDetail { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoSpecSet OutputSpecDetail { get; set; }
+        ITBdoSet<IBdoSpec> OutputSpecDetail { get; set; }
 
         /// <summary>
         /// 

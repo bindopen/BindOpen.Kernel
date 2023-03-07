@@ -18,7 +18,7 @@ namespace BindOpen.Runtime.Definitions
         /// <summary>
         /// 
         /// </summary>
-        IBdoSpecSet SpecDetail { get; set; }
+        ITBdoSet<IBdoSpec> SpecDetail { get; set; }
 
         /// <summary>
         /// 

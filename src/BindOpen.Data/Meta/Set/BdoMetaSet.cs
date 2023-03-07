@@ -168,7 +168,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Specification of this instance.
         /// </summary>
-        public IBdoSpecSet SpecSet { get; set; }
+        public ITBdoSet<IBdoSpec> Specs { get; set; }
 
         // Specification ---------------------
 
@@ -190,7 +190,7 @@ namespace BindOpen.Data.Meta
         /// <returns></returns>
         public IBdoSpec GetSpec(string name = null)
         {
-            return SpecSet?.FirstOrDefault(
+            return Specs?.FirstOrDefault(
                 q => (name == null && q.Name == null) || q.Name.BdoKeyEquals(name));
         }
 

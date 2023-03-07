@@ -7,7 +7,7 @@
   <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/Arrays.xsd" />
   <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoConfigurationSet.xsd" />
   <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoElementDesignStatement.xsd" />
-  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoSpecSet.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/TBdoSet<IBdoSpec>.xsd" />
 
   <xs:complexType name="BdoElementSpec" abstract="true">
     <xs:complexContent mixed="false">
@@ -37,7 +37,7 @@
 
           <xs:element minOccurs="0" maxOccurs="1" name="constraint.statement" type="BdoConfigurationSet" />
           <xs:element minOccurs="0" maxOccurs="1" name="design.statement" type="BdoElementDesignStatement" />
-          <xs:element minOccurs="0" maxOccurs="1" name="detail.spec" type="BdoSpecSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="detail.spec" type="TBdoSet<IBdoSpec>" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

@@ -21,7 +21,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        IBdoSpecSet SpecSet { get; set; }
+        ITBdoSet<IBdoSpec> Specs { get; set; }
 
         /// <summary>
         /// 
@@ -45,11 +45,6 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         IBdoExpression DataExpression { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        bool IsRepeated { get; set; }
 
         /// <summary>
         /// 

@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using System.Xml.Serialization;
+using BindOpen.Abstractions.Data._Core.Enums;
 
 namespace BindOpen.Data.Conditions
 {

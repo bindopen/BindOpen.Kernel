@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Data.Conditions
+﻿namespace BindOpen.Abstractions.Data._Core.Enums
 {
     /// <summary>
     /// This enumeration lists all the possible operators of conditions.

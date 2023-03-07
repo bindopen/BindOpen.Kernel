@@ -36,19 +36,18 @@ namespace BindOpen.Runtime.Definitions
         // DTO
 
         /// <summary>
-        /// The set of detail specifications of this instance.
+        /// The elements of this instance.
         /// </summary>
-        [JsonPropertyName("detail.spec")]
-        [XmlElement("detail.spec")]
-        public SpecSetDto DetailSpec { get; set; }
+        [JsonPropertyName("outputs")]
+        [XmlElement("output")]
+        public List<MetaDataDto> OutputSpecification { get; set; }
 
         /// <summary>
-        /// Formats of this instance.
+        /// Indicates whether the entities property must be ignored.
         /// </summary>
-        [JsonPropertyName("formats")]
-        [XmlArray("formats")]
-        [XmlArrayItem("format")]
-        public List<BdoFormatDefinitionDto> FormatDefinitions { get; set; }
+        [JsonIgnore]
+        [XmlIgnore]
+        public bool OutputSpecificationSpecified => OutputSpecification?.Count > 0;
 
         #endregion
 

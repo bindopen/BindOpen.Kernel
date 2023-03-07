@@ -14,7 +14,7 @@
           <xs:element minOccurs="0" maxOccurs="1" name="viewerClass" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="formats" type="ArrayOfFormatDefinition" />
           <xs:element minOccurs="0" maxOccurs="1" name="schemas" type="ArrayOfDataSchema1" />
-          <xs:element minOccurs="0" maxOccurs="1" name="detail.spec" type="BdoSpecSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="detail.spec" type="TBdoSet<IBdoSpec>" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
