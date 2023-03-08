@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BindOpen.Data.Items;
+using BindOpen.Data;
 using System.Linq;
 
 namespace BindOpen.Data.Meta

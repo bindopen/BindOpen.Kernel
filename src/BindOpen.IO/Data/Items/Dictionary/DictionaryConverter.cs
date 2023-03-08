@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace BindOpen.Data.Items
+namespace BindOpen.Data
 {
     /// <summary>
     /// This class represents a Xml helper.

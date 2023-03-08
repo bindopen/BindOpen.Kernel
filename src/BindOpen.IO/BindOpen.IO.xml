@@ -4,76 +4,76 @@
         <name>BindOpen.IO</name>
     </assembly>
     <members>
-        <member name="T:BindOpen.Extensions.Connecting.BdoConfigurationConverter">
+        <member name="T:BindOpen.Extensions.Connectors.BdoConfigurationConverter">
             <summary>
             This class represents a connector config converter.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.BdoConfigurationConverter.ToDto(BindOpen.Extensions.Connecting.IBdoConfiguration)">
+        <member name="M:BindOpen.Extensions.Connectors.BdoConfigurationConverter.ToDto(BindOpen.Extensions.Connectors.IBdoConfiguration)">
             <summary>
             Converts to DTO.
             </summary>
             <param key="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.BdoConfigurationConverter.ToPoco(BindOpen.Extensions.Connecting.BdoConfigurationDto)">
+        <member name="M:BindOpen.Extensions.Connectors.BdoConfigurationConverter.ToPoco(BindOpen.Extensions.Connectors.BdoConfigurationDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param key="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Extensions.Connecting.BdoConnectorConverter">
+        <member name="T:BindOpen.Extensions.Connectors.BdoConnectorConverter">
             <summary>
             This class represents a connector converter.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.BdoConnectorConverter.ToDto(BindOpen.Extensions.Connecting.IBdoConnector)">
+        <member name="M:BindOpen.Extensions.Connectors.BdoConnectorConverter.ToDto(BindOpen.Extensions.Connectors.IBdoConnector)">
             <summary>
             Converts to DTO.
             </summary>
             <param key="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Connecting.BdoConnectorConverter.ToPoco``1(BindOpen.Extensions.Connecting.BdoConfigurationDto)">
+        <member name="M:BindOpen.Extensions.Connectors.BdoConnectorConverter.ToPoco``1(BindOpen.Extensions.Connectors.BdoConfigurationDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param key="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Extensions.Modeling.BdoConfigurationConverter">
+        <member name="T:BindOpen.Extensions.Entities.BdoConfigurationConverter">
             <summary>
             This class represents a entity config converter.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoConfigurationConverter.ToDto(BindOpen.Extensions.Modeling.IBdoConfiguration)">
+        <member name="M:BindOpen.Extensions.Entities.BdoConfigurationConverter.ToDto(BindOpen.Extensions.Entities.IBdoConfiguration)">
             <summary>
             Converts to DTO.
             </summary>
             <param key="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoConfigurationConverter.ToPoco(BindOpen.Extensions.Modeling.BdoConfigurationDto)">
+        <member name="M:BindOpen.Extensions.Entities.BdoConfigurationConverter.ToPoco(BindOpen.Extensions.Entities.BdoConfigurationDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param key="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Extensions.Modeling.BdoEntityConverter">
+        <member name="T:BindOpen.Extensions.Entities.BdoEntityConverter">
             <summary>
             This class represents a entity converter.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoEntityConverter.ToDto(BindOpen.Extensions.Modeling.IBdoEntity)">
+        <member name="M:BindOpen.Extensions.Entities.BdoEntityConverter.ToDto(BindOpen.Extensions.Entities.IBdoEntity)">
             <summary>
             Converts to DTO.
             </summary>
             <param key="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Extensions.Modeling.BdoEntityConverter.ToPoco``1(BindOpen.Extensions.Modeling.BdoConfigurationDto)">
+        <member name="M:BindOpen.Extensions.Entities.BdoEntityConverter.ToPoco``1(BindOpen.Extensions.Entities.BdoConfigurationDto)">
             <summary>
             Converts to DTO.
             </summary>
@@ -441,76 +441,76 @@
             <param key="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Items.DatasourceConverter">
+        <member name="T:BindOpen.Data.DatasourceConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.DatasourceConverter.ToDto(BindOpen.Data.Items.IBdoDataSource)">
+        <member name="M:BindOpen.Data.DatasourceConverter.ToDto(BindOpen.Data.IBdoDataSource)">
             <summary>
             Converts to DTO.
             </summary>
             <param key="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.DatasourceConverter.ToPoco(BindOpen.Data.Items.DatasourceDto)">
+        <member name="M:BindOpen.Data.DatasourceConverter.ToPoco(BindOpen.Data.DatasourceDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param key="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Items.KeyValuePairConverter">
+        <member name="T:BindOpen.Data.KeyValuePairConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.KeyValuePairConverter.ToDto(System.Collections.Generic.KeyValuePair{System.String,System.String})">
+        <member name="M:BindOpen.Data.KeyValuePairConverter.ToDto(System.Collections.Generic.KeyValuePair{System.String,System.String})">
             <summary>
             Converts to DTO.
             </summary>
             <param key="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.KeyValuePairConverter.ToPoco(BindOpen.Data.Items.DataKeyValueDto)">
+        <member name="M:BindOpen.Data.KeyValuePairConverter.ToPoco(BindOpen.Data.DataKeyValueDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param key="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Items.DictionaryDataItemConverter">
+        <member name="T:BindOpen.Data.DictionaryDataItemConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.DictionaryDataItemConverter.ToDto(BindOpen.Data.Items.IBdoDictionary)">
+        <member name="M:BindOpen.Data.DictionaryDataItemConverter.ToDto(BindOpen.Data.IBdoDictionary)">
             <summary>
             Converts to DTO.
             </summary>
             <param key="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.DictionaryDataItemConverter.ToPoco(BindOpen.Data.Items.DictionaryDataItemDto)">
+        <member name="M:BindOpen.Data.DictionaryDataItemConverter.ToPoco(BindOpen.Data.DictionaryDataItemDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param key="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Items.DataExpressionConverter">
+        <member name="T:BindOpen.Data.DataExpressionConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Items.DataExpressionConverter.ToDto(BindOpen.Data.Items.IBdoExpression)">
+        <member name="M:BindOpen.Data.DataExpressionConverter.ToDto(BindOpen.Data.IBdoExpression)">
             <summary>
             Converts to DTO.
             </summary>
             <param key="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Items.DataExpressionConverter.ToPoco(BindOpen.Data.Items.DataExpressionDto)">
+        <member name="M:BindOpen.Data.DataExpressionConverter.ToPoco(BindOpen.Data.DataExpressionDto)">
             <summary>
             Converts to DTO.
             </summary>
@@ -522,7 +522,7 @@
             This static class represents a data reference converter.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.References.DataReferenceConverter.ToDto(BindOpen.Data.Items.IBdoExpression)">
+        <member name="M:BindOpen.Data.References.DataReferenceConverter.ToDto(BindOpen.Data.IBdoExpression)">
             <summary>
             Converts to DTO.
             </summary>

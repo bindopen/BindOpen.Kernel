@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Data.Configuration
+﻿using BindOpen.Data.Meta;
+
+namespace BindOpen.Data.Configuration
 {
     /// <summary>
     /// This class represents a Xml helper.

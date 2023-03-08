@@ -1,6 +1,4 @@
-﻿using BindOpen.Data.Assemblies;
-
-namespace BindOpen.Data
+﻿namespace BindOpen.Data.Assemblies
 {
     /// <summary>
     /// This class represents a data element set.

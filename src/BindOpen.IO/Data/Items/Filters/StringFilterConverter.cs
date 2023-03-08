@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BindOpen.Data.Items
+namespace BindOpen.Data
 {
     /// <summary>
     /// This static class represents a data reference converter.

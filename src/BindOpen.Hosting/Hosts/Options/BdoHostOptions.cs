@@ -1,11 +1,11 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Helpers;
-using BindOpen.Data.Items;
+using BindOpen.Data;
 using BindOpen.Data.Stores;
 using BindOpen.Hosting.Exceptions;
 using BindOpen.Hosting.Services;
 using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
+using BindOpen.Scoping.Scopes;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;

@@ -3,7 +3,7 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace BindOpen.Dtos.Json
+namespace BindOpen.Data
 {
     public static class JsonHelper
     {

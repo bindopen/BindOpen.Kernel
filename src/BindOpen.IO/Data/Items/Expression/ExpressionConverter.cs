@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
-using BindOpen.Extensions.Scripting;
+using BindOpen.Data.Meta;
+using BindOpen.Scripting;
 
-namespace BindOpen.Data.Items
+namespace BindOpen.Data
 {
     /// <summary>
     /// This class represents a Xml helper.

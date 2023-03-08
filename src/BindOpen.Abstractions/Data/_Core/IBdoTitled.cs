@@ -1,6 +1,4 @@
-﻿using BindOpen.Data.Items;
-
-namespace BindOpen.Data
+﻿namespace BindOpen.Data
 {
     /// <summary>
     /// This interface represents a globally titled data.

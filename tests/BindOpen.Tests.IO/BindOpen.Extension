@@ -9,12 +9,12 @@
     <add.value key="en">BindOpen Core Test</add.value>
   </title>
   <description>
-    <add.value key="en">Extension library 'BindOpen.Runtime.Tests'.</add.value>
+    <add.value key="en">Extension library 'BindOpen.Scoping.Tests'.</add.value>
   </description>
-  <assembly>BindOpen.Runtime.Tests</assembly>
-  <fileName>BindOpen.Runtime.Tests.dll</fileName>
-  <rootNamespace>BindOpen.Runtime.Tests.Extensions</rootNamespace>
+  <assembly>BindOpen.Scoping.Tests</assembly>
+  <fileName>BindOpen.Scoping.Tests.dll</fileName>
+  <rootNamespace>BindOpen.Scoping.Tests.Extensions</rootNamespace>
   <indexes>
-    <add.value key="scriptWord">BindOpen.Runtime.Tests.Fakers.BindOpen.Scriptwords</add.value>    
+    <add.value key="scriptWord">BindOpen.Scoping.Tests.Fakers.BindOpen.Scriptwords</add.value>    
   </indexes>
 </extension>

@@ -1,8 +1,5 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Items;
-using BindOpen.Dtos.Json;
-using BindOpen.Dtos.Xml;
-using BindOpen.Extensions.Scripting;
+using BindOpen.Scripting;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
@@ -13,8 +10,8 @@ namespace BindOpen.Tests.IO.Data
     [TestFixture, Order(210)]
     public class ExpressionIOTests
     {
-        private readonly string _filePath_xml = Tests.WorkingFolder + "DataExpression.xml";
-        private readonly string _filePath_json = Tests.WorkingFolder + "DataExpression.json";
+        private readonly string _filePath_xml = Kernel.Tests.WorkingFolder + "DataExpression.xml";
+        private readonly string _filePath_json = Kernel.Tests.WorkingFolder + "DataExpression.json";
         dynamic _valueSet;
         private IBdoExpression _exp = null;
 

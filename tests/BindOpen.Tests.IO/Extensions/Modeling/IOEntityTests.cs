@@ -1,11 +1,10 @@
-﻿using BindOpen.Data.Configuration;
+﻿using BindOpen.Data;
+using BindOpen.Data.Configuration;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
-using BindOpen.Dtos.Json;
-using BindOpen.Dtos.Xml;
-using BindOpen.Runtime.Scopes;
-using BindOpen.Tests.Extensions;
-using BindOpen.Tests.Runtime;
+using BindOpen.Extensions.Entities;
+using BindOpen.Tests.Kernel;
+using BindOpen.Tests.Kernel.Extensions;
 using NUnit.Framework;
 using System.IO;
 
@@ -16,7 +15,7 @@ namespace BindOpen.Tests.IO.Extensions
     {
         private EntityFake _entity = null;
 
-        private readonly string _filePath = Tests.WorkingFolder + "Entity.xml";
+        private readonly string _filePath = Kernel.Tests.WorkingFolder + "Entity.xml";
 
         private dynamic _testData;
 
@@ -62,7 +61,7 @@ namespace BindOpen.Tests.IO.Extensions
             }
 
             var config = XmlHelper.LoadXml<ConfigurationDto>(_filePath).ToPoco();
-            var entity = RuntimeTests.Scope.CreateEntity<EntityFake>(config);
+            var entity = ScopingTests.Scope.CreateEntity<EntityFake>(config);
 
             Assert.That(entity != null, "Entity loading failed");
 
@@ -93,7 +92,7 @@ namespace BindOpen.Tests.IO.Extensions
             }
 
             var config = JsonHelper.LoadJson<ConfigurationDto>(_filePath).ToPoco();
-            var entity = RuntimeTests.Scope.CreateEntity<EntityFake>(config);
+            var entity = ScopingTests.Scope.CreateEntity<EntityFake>(config);
 
             Assert.That(entity != null, "Entity loading failed");
 

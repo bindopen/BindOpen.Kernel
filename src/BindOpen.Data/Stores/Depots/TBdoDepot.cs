@@ -1,6 +1,5 @@
-﻿using BindOpen.Data.Items;
-using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
+﻿using BindOpen.Logging;
+using BindOpen.Scoping.Scopes;
 using System;
 
 namespace BindOpen.Data.Stores

@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://storage.bindopen.org/xsd/bindopen" elementFormDefault="qualified" targetNamespace="https://storage.bindopen.org/xsd/bindopen" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/DataItem.xsd" />
-  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/scriptwords/ScriptwordDefinition.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/scriptwords/FunctionDefinition.xsd" />
   <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoExtensionGroup.xsd" />
 
-  <xs:element name="scriptwords.dico" type="BdoScriptwordDictionaryDto" />
+  <xs:element name="scriptwords.dico" type="BdoFunctionDictionaryDto" />
 
-  <xs:complexType name="BdoScriptwordDictionaryDto">
+  <xs:complexType name="BdoFunctionDictionaryDto">
     <xs:complexContent mixed="false">
       <xs:extension base="TBdoExtensionDictionary_Script">
         <xs:sequence>
@@ -19,7 +19,7 @@
     <xs:complexContent mixed="false">
       <xs:extension base="StoredDataItem">
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="definitions" type="ArrayOfScriptwordDefinition1" />
+          <xs:element minOccurs="0" maxOccurs="1" name="definitions" type="ArrayOfFunctionDefinition1" />
           <xs:element minOccurs="0" maxOccurs="1" name="groups" type="ArrayOfBdoExtensionGroup" />
         </xs:sequence>
         <xs:attribute name="libraryId" type="xs:string" />
@@ -28,9 +28,9 @@
     </xs:complexContent>
   </xs:complexType>
 
-  <xs:complexType name="ArrayOfScriptwordDefinition1">
+  <xs:complexType name="ArrayOfFunctionDefinition1">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="BdoScriptwordDefinition" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="BdoFunctionDefinition" />
     </xs:sequence>
   </xs:complexType>
 

@@ -4,12 +4,12 @@
         <name>BindOpen.Hosting</name>
     </assembly>
     <members>
-        <member name="T:BindOpen.Runtime.Configuration.BdoHostConfiguration">
+        <member name="T:BindOpen.Scoping.Configuration.BdoHostConfiguration">
             <summary>
             This class represents a BindOpen host config.
             </summary>
         </member>
-        <member name="M:BindOpen.Runtime.Configuration.BdoHostConfiguration.#ctor">
+        <member name="M:BindOpen.Scoping.Configuration.BdoHostConfiguration.#ctor">
             <summary>
             Instantiates a new instance of the BdoHostConfiguration class.
             </summary>
@@ -155,14 +155,14 @@
             The context of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Hosting.Hosts.BdoHost.LoadExtensions(BindOpen.Runtime.References.IBdoAssemblyReference[],BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Hosting.Hosts.BdoHost.LoadExtensions(BindOpen.Scoping.References.IBdoAssemblyReference[],BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the specified extensions.
             </summary>
             <param key="references">The extension references to consider.</param>
             <param key="log">The log to consider.</param>
         </member>
-        <member name="M:BindOpen.Hosting.Hosts.BdoHost.LoadExtensions(System.Func{BindOpen.Runtime.Scopes.IExtensionLoadOptions,System.Boolean},BindOpen.Runtime.References.IBdoAssemblyReference[],BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Hosting.Hosts.BdoHost.LoadExtensions(System.Func{BindOpen.Scoping.Scopes.IExtensionLoadOptions,System.Boolean},BindOpen.Scoping.References.IBdoAssemblyReference[],BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the specified extensions.
             </summary>
@@ -282,7 +282,7 @@
             <param key="path">The path to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Hosting.Hosts.BdoHostOptions.AddExtensions(System.Action{BindOpen.Runtime.References.IBdoAssemblyReferenceCollection},System.Action{BindOpen.Runtime.Scopes.IExtensionLoadOptions})">
+        <member name="M:BindOpen.Hosting.Hosts.BdoHostOptions.AddExtensions(System.Action{BindOpen.Scoping.References.IBdoAssemblyReferenceCollection},System.Action{BindOpen.Scoping.Scopes.IExtensionLoadOptions})">
             <summary>
             Adds the extensions.
             </summary>
@@ -403,7 +403,7 @@
             Instantiates a new instance of the BdoHostSettings class.
             </summary>
         </member>
-        <member name="M:BindOpen.Hosting.Hosts.BdoHostSettings.#ctor(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Abstractions.Meta.Configuration.IBdoConfiguration)">
+        <member name="M:BindOpen.Hosting.Hosts.BdoHostSettings.#ctor(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Abstractions.Meta.Configuration.IBdoConfiguration)">
             <summary>
             Instantiates a new instance of the BdoHostSettings class.
             </summary>
@@ -547,7 +547,7 @@
             Instantiates a new instance of the TBdoSettings class.
             </summary>
         </member>
-        <member name="M:BindOpen.Hosting.Settings.BdoSettings.#ctor(BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Abstractions.Meta.Configuration.IBdoConfiguration)">
+        <member name="M:BindOpen.Hosting.Settings.BdoSettings.#ctor(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Abstractions.Meta.Configuration.IBdoConfiguration)">
             <summary>
             Instantiates a new instance of the TBdoSettings class.
             </summary>
@@ -624,12 +624,12 @@
             <param key="config">The config to consider.</param>
             <param key="keyName">The key name to consider.</param>
         </member>
-        <member name="T:BindOpen.Data.Stores.BdoRuntimeDatasourceExtensions">
+        <member name="T:BindOpen.Data.Stores.BdoScopingDatasourceExtensions">
             <summary>
             This class represents a runtime data source extensions.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Stores.BdoRuntimeDatasourceExtensions.AddDatasource(BindOpen.Data.Stores.IBdoSourceDepot,BindOpen.Data.Items.BdoDatasource)">
+        <member name="M:BindOpen.Data.Stores.BdoScopingDatasourceExtensions.AddDatasource(BindOpen.Data.Stores.IBdoSourceDepot,BindOpen.Data.BdoDatasource)">
             <summary>
             Adds the specified source.
             </summary>
@@ -740,7 +740,7 @@
             This static class extends .Net core config.
             </summary>
         </member>
-        <member name="M:Microsoft.Extensions.Configuration.ConfigurationExtension.GetBdoValue``1(Microsoft.Extensions.Configuration.IConfiguration,System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:Microsoft.Extensions.Configuration.ConfigurationExtension.GetBdoValue``1(Microsoft.Extensions.Configuration.IConfiguration,System.String,BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -752,7 +752,7 @@
             <param key="log"></param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.Configuration.ConfigurationExtension.GetBdoValue``1(Microsoft.Extensions.Configuration.IConfiguration,System.String,System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:Microsoft.Extensions.Configuration.ConfigurationExtension.GetBdoValue``1(Microsoft.Extensions.Configuration.IConfiguration,System.String,System.String,BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -774,7 +774,7 @@
             <param key="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.Configuration.ConfigurationExtension.GetBdoValue(Microsoft.Extensions.Configuration.IConfiguration,System.Type,System.String,System.String,BindOpen.Runtime.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:Microsoft.Extensions.Configuration.ConfigurationExtension.GetBdoValue(Microsoft.Extensions.Configuration.IConfiguration,System.Type,System.String,System.String,BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>

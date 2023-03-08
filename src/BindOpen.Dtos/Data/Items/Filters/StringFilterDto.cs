@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Data.Items
+namespace BindOpen.Data
 {
     /// <summary>
     /// This class specifies the data value filter.

@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Helpers;
-using BindOpen.Data.Items;
 
 namespace BindOpen.Data.Assemblies
 {

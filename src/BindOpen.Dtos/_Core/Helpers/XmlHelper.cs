@@ -9,7 +9,7 @@ using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
-namespace BindOpen.Dtos.Xml
+namespace BindOpen.Data
 {
     public static class XmlHelper
     {

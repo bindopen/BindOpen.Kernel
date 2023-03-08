@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>BindOpen.Dtos</AssemblyName>
     <PackageId>BindOpen.Dtos</PackageId>
-    <Product>BindOpen.Runtime</Product>
+    <Product>BindOpen.Scoping</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
     <Description>The classes of data transfer objects for BindOpen Runtime.</Description>

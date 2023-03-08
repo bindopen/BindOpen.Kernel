@@ -1,6 +1,5 @@
-﻿using BindOpen.Data.Items;
-using BindOpen.Data.Meta;
-using BindOpen.Extensions.Scripting;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Scripting;
 using System;
 using System.Collections;
 using System.Collections.Generic;

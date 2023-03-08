@@ -34,11 +34,6 @@ namespace BindOpen.Extensions
         Function,
 
         /// <summary>
-        /// Script word.
-        /// </summary>
-        Scriptword,
-
-        /// <summary>
         /// Task.
         /// </summary>
         Task

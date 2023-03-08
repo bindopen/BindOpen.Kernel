@@ -1,0 +1,1868 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BindOpen.Scoping</name>
+    </assembly>
+    <members>
+        <member name="T:BindOpen.Scoping.Application.AppDomainPool">
+            <summary>
+            This class represents an assembly pool.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Application.AppDomainPool.#ctor">
+            <summary>
+            Instantiates a new instance of AppDomainPool class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Application.AppDomainPool.GetAppDomain(System.String)">
+            <summary>
+            Gets the specified application domain.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Application.AppDomainPool.LoadAssemblyFromFile(System.AppDomain,System.String,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Gets the assembly of this instance from file.
+            </summary>
+            <param key="appDomain">Application domain to consider.</param>
+            <param key="filePath">Path of the file to use.</param>
+            <param key="log">The loading log to consider.</param>
+            <returns>The assembly of this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Application.AppDomainPool.LoadAssembly(System.AppDomain,System.String,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Gets the assembly of this instance from embed resource.
+            </summary>
+            <param key="appDomain">Application domain to consider.</param>
+            <param key="assemblyName">The assembly name to use.</param>
+            <param key="log">The loading log to consider.</param>
+            <returns>The assembly of this instance.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Application.AssemblyResolver">
+            <summary>
+            This class represents an assembly resolver.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Application.AssemblyResolver.Resolve(System.AppDomain)">
+            <summary>
+            Resolves the domain i.e. initializes the assembly resolving routines.
+            </summary>
+            <param key="appDomain">The domain to consider.</param>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoPackageDefinition">
+            <summary>
+            This class represents the definition of a library.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoPackageDefinition.#ctor">
+            <summary>
+            Instantiates a new instance of BdoPackageDefinition class.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoPackageDefinition.UniqueName">
+            <summary>
+            The unique ID of this instance.
+            </summary> 
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoPackageDefinition.GroupName">
+            <summary>
+            Name of the group of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoPackageDefinition.AssemblyName">
+            <summary>
+            Name of the assembly where the library can be loaded.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoPackageDefinition.RootNamespace">
+            <summary>
+            Root name space of this intance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoPackageDefinition.FileName">
+            <summary>
+            File name of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoPackageDefinition.UsingAssemblyFileNames">
+            <summary>
+            Names of the using assembly files of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoPackageDefinition.ItemIndexFullNameDictionary">
+            <summary>
+            Dictionary full names of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoPackageDefinition.GetRootNamespace">
+            <summary>
+            Gets the root namespace.
+            </summary>
+            <returns>Returns the root namspace.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoPackageDefinition.Initialize">
+            <summary>
+            Initializes this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoPackageDefinition.Dispose(System.Boolean)">
+            <summary>
+            Disposes this instance. 
+            </summary>
+            <param key="isDisposing">Indicates whether this instance is disposing</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoPackageDefinition.Key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoPackageDefinition.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoPackageDefinition.WithId(System.String)">
+            <summary>
+            
+            </summary>
+            <param key="id"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoPackageDefinition.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoPackageDefinition.WithName(System.String)">
+            <summary>
+            
+            </summary>
+            <param key="name"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoPackageDefinition.Title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoPackageDefinition.WithTitle(BindOpen.Data.IBdoDictionary)">
+            <summary>
+            
+            </summary>
+            <param key="dico"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoPackageDefinition.GetTitleText(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param key="key"></param>
+            <param key="defaultKey"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoPackageDefinition.Description">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoExtensionGroup">
+            <summary>
+            This class represents the group of BindOpen extension items.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionGroup.#ctor">
+            <summary>
+            Instantiates a new instance of the BdoExtensionGroup class.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionGroup.SubGroups">
+            <summary>
+            Area specifications of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionGroup.GetGroupWithName(System.String)">
+            <summary>
+            Returns the group with the specified name.
+            </summary>
+            <param key="name">The name of the sub group to return.</param>
+            <returns>Returns the sub group with the specified name.</returns>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionGroup.CreationDate">
+            <summary>
+            Creation date of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionGroup.WithCreationDate(System.Nullable{System.DateTime})">
+            <summary>
+            Creation date of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionGroup.LastModificationDate">
+            <summary>
+            Last modification date of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionGroup.WithLastModificationDate(System.Nullable{System.DateTime})">
+            <summary>
+            Creation date of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionGroup.Key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionGroup.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionGroup.WithId(System.String)">
+            <summary>
+            
+            </summary>
+            <param key="id"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionGroup.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionGroup.WithName(System.String)">
+            <summary>
+            
+            </summary>
+            <param key="name"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionGroup.Title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionGroup.AddTitle(System.Collections.Generic.KeyValuePair{System.String,System.String})">
+            <summary>
+            
+            </summary>
+            <param key="item"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionGroup.Description">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionGroup.AddDescription(System.Collections.Generic.KeyValuePair{System.String,System.String})">
+            <summary>
+            
+            </summary>
+            <param key="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionGroup.GetDescriptionText(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param key="key"></param>
+            <param key="defaultKey"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoEntityDictionary">
+            <summary>
+            This class represents a DTO entity dico.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoEntityDictionary.#ctor">
+            <summary>
+            Instantiates a new instance of the BdoEntityDictionary class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoConnectorDictionary">
+            <summary>
+            This class represents a DTO connector dico.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoConnectorDictionary.#ctor">
+            <summary>
+            Instantiates a new instance of the BdoConnectorDictionary class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoEntityDictionary">
+            <summary>
+            This class represents a DTO entity dico.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoEntityDictionary.#ctor">
+            <summary>
+            Instantiates a new instance of the BdoEntityDictionary class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoHandlerDictionary">
+            <summary>
+            This class represents a handler index.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoHandlerDictionary.#ctor">
+            <summary>
+            Instantiates a new instance of the BdoHandlerDictionary class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoFunctionDictionary">
+            <summary>
+            This class represents a DTO function dico.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoFunctionDictionary.#ctor">
+            <summary>
+            Instantiates a new instance of the BdoFunctionDictionary class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoRoutineDictionary">
+            <summary>
+            This class represents a DTO routine dico.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoRoutineDictionary.#ctor">
+            <summary>
+            Instantiates a new instance of the BdoRoutineDictionary class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoFunctionDictionary">
+            <summary>
+            This class represents a DTO script word dico.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDictionary.DefinitionClass">
+            <summary>
+            The definition class of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoFunctionDictionary.#ctor">
+            <summary>
+            Instantiates a new instance of the BdoFunctionDictionary class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoFunctionDictionary.GetDefinition(System.String,System.String,BindOpen.Extensions.Scripting.IBdoFunctionDefinition)">
+            <summary>
+            Gets the specified definition.
+            </summary>
+            <param key="definitionName">The defintion name to consider.</param>
+            <param key="methodName">The name of the method to consider.</param>
+            <param key="parent">The parent to consider.</param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoTaskDictionary">
+            <summary>
+            This class represents a DTO task dico.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoTaskDictionary.#ctor">
+            <summary>
+            Instantiates a new instance of the BdoTaskDictionary class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.TBdoExtensionDictionary`1">
+            <summary>
+            This class represents a BindOpen extension dico.
+            </summary>
+            <typeparam name="T">The class of extension item definition to consider.</typeparam>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.TBdoExtensionDictionary`1.#ctor">
+            <summary>
+            Instantiates a new instance of the TBdoExtensionDictionary class.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.TBdoExtensionDictionary`1.LibraryId">
+            <summary>
+            ID of the library of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.TBdoExtensionDictionary`1.LibraryName">
+            <summary>
+            Name of the library of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.TBdoExtensionDictionary`1.WithLibraryName(System.String)">
+            <summary>
+            
+            </summary>
+            <param key="libraryName"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.TBdoExtensionDictionary`1.Definitions">
+            <summary>
+            Definitions of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.TBdoExtensionDictionary`1.Groups">
+            <summary>
+            Groups of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.TBdoExtensionDictionary`1.CreationDate">
+            <summary>
+            Creation date of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.TBdoExtensionDictionary`1.WithCreationDate(System.Nullable{System.DateTime})">
+            <summary>
+            Creation date of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.TBdoExtensionDictionary`1.LastModificationDate">
+            <summary>
+            Last modification date of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.TBdoExtensionDictionary`1.WithLastModificationDate(System.Nullable{System.DateTime})">
+            <summary>
+            Creation date of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.TBdoExtensionDictionary`1.Key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.TBdoExtensionDictionary`1.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.TBdoExtensionDictionary`1.WithId(System.String)">
+            <summary>
+            
+            </summary>
+            <param key="id"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.TBdoExtensionDictionary`1.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.TBdoExtensionDictionary`1.WithName(System.String)">
+            <summary>
+            
+            </summary>
+            <param key="name"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.TBdoExtensionDictionary`1.Title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.TBdoExtensionDictionary`1.Description">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoExtensionDefinition">
+            <summary>
+            This class represents the definition of BindOpen extension item.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionDefinition.#ctor(System.String,System.String,BindOpen.Scoping.Definition.IBdoPackageDefinition)">
+            <summary>
+            Instantiates a new instance of the BdoExtensionDefinition class.
+            </summary>
+            <param key="name">The name to consider.</param>
+            <param key="preffix">The preffix to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionDefinition.PackageDefinition">
+            <summary>
+            The library of this instance.
+            </summary>        
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionDefinition.UniqueName">
+            <summary>
+            The unique identifier of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionDefinition.ImageUri">
+            <summary>
+            Uri of the image representing this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionDefinition.IsEditable">
+            <summary>
+            Indicates whether this instance is editable.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionDefinition.IsIndexed">
+            <summary>
+            Indicates whether this instance is indexed.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionDefinition.LibraryId">
+            <summary>
+            Business library ID of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionDefinition.CreationDate">
+            <summary>
+            Creation date of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionDefinition.WithCreationDate(System.Nullable{System.DateTime})">
+            <summary>
+            Creation date of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionDefinition.LastModificationDate">
+            <summary>
+            Last modification date of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionDefinition.WithLastModificationDate(System.Nullable{System.DateTime})">
+            <summary>
+            Creation date of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionDefinition.Index">
+            <summary>
+            The index of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionDefinition.WithIndex(System.Nullable{System.Int32})">
+            <summary>
+            
+            </summary>
+            <param key="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionDefinition.Key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionDefinition.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionDefinition.WithId(System.String)">
+            <summary>
+            
+            </summary>
+            <param key="id"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionDefinition.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionDefinition.WithName(System.String)">
+            <summary>
+            
+            </summary>
+            <param key="name"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionDefinition.Title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionDefinition.GetTitleText(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param key="key"></param>
+            <param key="defaultKey"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoExtensionDefinition.Description">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoExtensionKindExtension">
+            <summary>
+            This class represents an extension item kind extension.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionKindExtension.GetExtensionKind(BindOpen.Scoping.Definition.IBdoExtensionDefinition)">
+            <summary>
+            Gets the extension item kind corresponding to the specified object.
+            </summary>
+            <param key="extensionDefinition">The BindOpen extension item to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoExtensionKindExtension.GetExtensionKind(System.Type)">
+            <summary>
+            Gets the extension item kind corresponding to the specified type.
+            </summary>
+            <param key="type">The type to consider.</param>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoEntityDefinition">
+            <summary>
+            This class represents a DTO entity definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoEntityDefinition.DatasourceKind">
+            <summary>
+            The data source kind of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoEntityDefinition.DetailSpec">
+            <summary>
+            Data constraint statement of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoEntityDefinition.ItemClass">
+            <summary>
+            The item class of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoEntityDefinition.RuntimeType">
+            <summary>
+            The runtime type of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoEntityDefinition.UniqueName">
+            <summary>
+            The unique ID of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoEntityDefinition.#ctor(System.String,BindOpen.Scoping.Definition.IBdoPackageDefinition)">
+            <summary>
+            Instantiates a new instance of the EntityDefinition class.
+            </summary>
+            <param key="name">The name to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoEntityDefinition.Key">
+            <summary>
+            Returns the key of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoConnectorDefinition">
+            <summary>
+            This class represents a DTO connector definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoConnectorDefinition.DatasourceKind">
+            <summary>
+            Data source kind of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoConnectorDefinition.DatasourceDetailSpec">
+            <summary>
+            Data constraint statement of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoConnectorDefinition.ItemClass">
+            <summary>
+            Item class of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoConnectorDefinition.RuntimeType">
+            <summary>
+            The runtime type of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoConnectorDefinition.UniqueName">
+            <summary>
+            The unique ID of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoConnectorDefinition.#ctor(System.String,BindOpen.Scoping.Definition.IBdoPackageDefinition)">
+            <summary>
+            Instantiates a new instance of the ConnectorDefinition class.
+            </summary>
+            <param key="name">The name to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoConnectorDefinition.Key">
+            <summary>
+            Returns the key of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoEntityDefinition">
+            <summary>
+            This class represents the entity definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoEntityDefinition.DetailSpec">
+            <summary>
+            The set of detail specifications of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoEntityDefinition.FormatDefinitions">
+            <summary>
+            Formats of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoEntityDefinition.ItemClass">
+            <summary>
+            Item class of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoEntityDefinition.Kind">
+            <summary>
+            The kind of this instance. 
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoEntityDefinition.PossibleMetaSchemas">
+            <summary>
+            The possible meta schemas of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoEntityDefinition.RuntimeType">
+            <summary>
+            The runtime type of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoEntityDefinition.UniqueName">
+            <summary>
+            The unique ID of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoEntityDefinition.ViewerClass">
+            <summary>
+            Viewer class of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoEntityDefinition.#ctor(System.String,BindOpen.Scoping.Definition.IBdoPackageDefinition)">
+            <summary>
+            Instantiates a new instance of the EntityDefinition class.
+            </summary>
+            <param key="name">The name to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoEntityDefinition.Key">
+            <summary>
+            Returns the key of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoEntityDefinition.GetFormatWithUniqueName(System.String)">
+            <summary>
+            Gets the format with the specified unique name.
+            </summary>
+            <param key="uniqueName">Unique name of the application module.</param>
+            <returns>The current visitor application module.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoEntityDefinition.GetFormatWithName(System.String)">
+            <summary>
+            Gets the format with the specified name.
+            </summary>
+            <param key="name">Name of the application module.</param>
+            <returns>The current visitor application module.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoEntityDefinition.GetFormatWithId(System.String)">
+            <summary>
+            Gets the format with the specified ID.
+            </summary>
+            <param ID="id">Id of the application module.</param>
+            <returns>The current visitor application module.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoFormatDefinition">
+            <summary>
+            This class represents the format definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFormatDefinition.DatasourceKind">
+            <summary>
+            Data source kind of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFormatDefinition.ItemClass">
+            <summary>
+            Item class of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFormatDefinition.RuntimeType">
+            <summary>
+            The runtime type of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFormatDefinition.ViewerClass">
+            <summary>
+            Viewer class of this instance.
+            </summary>
+            <remarks>Class using the following format: winForm=xxx.xxx.xxx;webForm=xxx.xxx.xxx</remarks>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFormatDefinition.UniqueName">
+            <summary>
+            The unique ID of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoFormatDefinition.#ctor(System.String,BindOpen.Scoping.Definition.IBdoPackageDefinition)">
+            <summary>
+            Instantiates a new instance of the FormatDefinition class.
+            </summary>
+            <param key="name">The name to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoFormatDefinition.Key">
+            <summary>
+            Returns the key of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoHandlerDefinition">
+            <summary>
+            This class represents a handler definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoHandlerDefinition.CallingClass">
+            <summary>
+            The calling class of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoHandlerDefinition.GetFunctionName">
+            <summary>
+            Name of the GET function.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoHandlerDefinition.ParameterSpecification">
+            <summary>
+            The parameter specification of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoHandlerDefinition.PostFunctionName">
+            <summary>
+            Name of the POST function.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoHandlerDefinition.RuntimeFunctionGet">
+            <summary>
+            Runtime GET function of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoHandlerDefinition.RuntimeFunctionPost">
+            <summary>
+            Runtime POST function of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoHandlerDefinition.SourceSpecification">
+            <summary>
+            The parameter specification of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoHandlerDefinition.TargetSpecification">
+            <summary>
+            The target specification of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoHandlerDefinition.UniqueName">
+            <summary>
+            The unique ID of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoHandlerDefinition.#ctor(System.String,BindOpen.Scoping.Definition.IBdoPackageDefinition)">
+            <summary>
+            Instantiates a new instance of the HandlerDefinition class.
+            </summary>
+            <param key="name">The name to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoHandlerDefinition.Key">
+            <summary>
+            Returns the key of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoFunctionDefinition">
+            <summary>
+            This class represents a function definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.ItemClass">
+            <summary>
+            Item class of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.RuntimeType">
+            <summary>
+            The runtime type of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.UniqueName">
+            <summary>
+            The unique ID of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.UnitCode">
+            <summary>
+            Unit code of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoFunctionDefinition.#ctor(System.String,BindOpen.Scoping.Definition.IBdoPackageDefinition)">
+            <summary>
+            Instantiates a new instance of the FunctionDefinition class. 
+            </summary>
+            <param key="name">The name to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoRoutineDefinition">
+            <summary>
+            This class represents a routine definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoRoutineDefinition.ItemClass">
+            <summary>
+            The item class of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoRoutineDefinition.OutputResultCodes">
+            <summary>
+            The output result codes of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoRoutineDefinition.ParameterStatement">
+            <summary>
+            The parameter statement of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoRoutineDefinition.RuntimeType">
+            <summary>
+            The runtime type of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoRoutineDefinition.UniqueName">
+            <summary>
+            The unique ID of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoRoutineDefinition.#ctor(System.String,BindOpen.Scoping.Definition.IBdoPackageDefinition)">
+            <summary>
+            Initializes a new instance of the RoutineDefinition class.
+            </summary>
+            <param key="name">The name to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoRoutineDefinition.Key">
+            <summary>
+            Returns the key of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoFunctionDefinition">
+            <summary>
+            This class represents a script word definition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.CallingClass">
+            <summary>
+            The calling class of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.InputValueType">
+            <summary>
+            The input value type of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.IsRepeatedParameters">
+            <summary>
+            Indicates whether this instance has unlimited parameters. If true, parameters have 
+            the same value type.
+            </summary>
+            <seealso cref="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.RepeatedParameterValueType"/>
+            <seealso cref="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.RepeatedParameterName"/>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.Kind">
+            <summary>
+            Kind of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.MaxParameterNumber">
+            <summary>
+            Maximum number of parameters of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.MinParameterNumber">
+            <summary>
+            Minimum number of parameters of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.ParameterSpecification">
+            <summary>
+            Parameter specification of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.RepeatedParameterDescription">
+            <summary>
+            Description of parameters of this instance when parameters are repeated.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.RepeatedParameterName">
+            <summary>
+            Name of parameters of this instance when parameters are repeated.
+            </summary>
+            <seealso cref="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.IsRepeatedParameters"/>
+            <seealso cref="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.RepeatedParameterValueType"/>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.RepeatedParameterValueType">
+            <summary>
+            Value type of parameters of this instance when parameters are repeated.
+            </summary>
+            <seealso cref="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.IsRepeatedParameters"/>
+            <seealso cref="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.RepeatedParameterName"/>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.OutputValueType">
+            <summary>
+            The output value type of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.RuntimeBasicFunction">
+            <summary>
+            The runtime basic function of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.RuntimeFunctionName">
+            <summary>
+            Name of the runtime function.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.RuntimeScopedFunction">
+            <summary>
+            The runtime scoped function of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.RuntimeType">
+            <summary>
+            The runtime type of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoFunctionDefinition.UniqueName">
+            <summary>
+            The unique ID of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoFunctionDefinition.#ctor(System.String,BindOpen.Scoping.Definition.IBdoPackageDefinition)">
+            <summary>
+            Instantiates a new instance of the FunctionDefinition class.
+            </summary>
+            <param key="name">The name to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoFunctionDefinition.Key">
+            <summary>
+            Returns the key of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoFunctionDefinition.GetDefaultRuntimeFunctionName">
+            <summary>
+            Returns the default runtime function name.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoFunctionDefinition.GetRepeatedParameterDescriptionText(System.String,System.String)">
+            <summary>
+            Returns the repeated parameter description text.
+            </summary>
+            <param key="key">The key to consider.</param>
+            <param key="defaultKey">The default variant name to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoFunctionDefinition.Dispose(System.Boolean)">
+            <summary>
+            Disposes this instance. 
+            </summary>
+            <param key="isDisposing">Indicates whether this instance is disposing</param>
+        </member>
+        <member name="T:BindOpen.Scoping.Definition.BdoTaskDefinition">
+            <summary>
+            This class represents a task definition.
+            </summary>
+            <seealso cref="!:BdoConfig"/>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoTaskDefinition.GroupName">
+            <summary>
+            Name of the group of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoTaskDefinition.InputSpecification">
+            <summary>
+            Input specification of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoTaskDefinition.IsExecutable">
+            <summary>
+            Indicates whether this instance is executable.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoTaskDefinition.ItemClass">
+            <summary>
+            Item class of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoTaskDefinition.MaximumIndex">
+            <summary>
+            Maximum index of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoTaskDefinition.OutputSpecification">
+            <summary>
+            Output specification of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoTaskDefinition.RuntimeType">
+            <summary>
+            The runtime type of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Definition.BdoTaskDefinition.UniqueName">
+            <summary>
+            The unique ID of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoTaskDefinition.#ctor(System.String,BindOpen.Scoping.Definition.IBdoPackageDefinition)">
+            <summary>
+            Instantiates a new instance of the TaskDefinition class. 
+            </summary>
+            <param key="name">The name to consider.</param>
+            <param key="extensionDefinition">The extensition definition to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoTaskDefinition.Key">
+            <summary>
+            Returns the key of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoTaskDefinition.GetEntries(BindOpen.Scoping.Definition.TaskEntryKind[])">
+            <summary>
+            Gets the specified entries.
+            </summary>
+            <param key="taskEntryKinds">The kind end entries to consider.</param>
+            <returns>True if this instance is configurable.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoTaskDefinition.GetEntryWithName(System.String,BindOpen.Scoping.Definition.TaskEntryKind[])">
+            <summary>
+            Returns the entry of the specified kind with the specified unique name.
+            </summary>
+            <param key="key">The key to consider.</param>
+            <param key="taskEntryKinds">The kind end entries to consider.</param>
+            <returns>Returns the input with the specified name.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoTaskDefinition.GetEntryDefaultItemWithName(System.String,BindOpen.Logging.IBdoLog,BindOpen.Scoping.Definition.TaskEntryKind[])">
+            <summary>
+            Gets the value of the specified entry.
+            </summary>
+            <param key="name">The name of the entry to consider.</param>
+            <param key="log">The log to populate.</param>
+            <param key="taskEntryKinds">The kind end entries to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoTaskDefinition.Repair(BindOpen.Scoping.Definition.IBdoTaskDefinition)">
+            <summary>
+            Repairs this instance basing on the specified definition task.
+            </summary>
+            <param key="taskDefinition">The definition task to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Definition.BdoTaskDefinition.Dispose(System.Boolean)">
+            <summary>
+            Disposes this instance. 
+            </summary>
+            <param key="isDisposing">Indicates whether this instance is disposing</param>
+        </member>
+        <member name="T:BindOpen.Scoping.BdoRtm">
+            <summary>
+            This class represents an application scope factory.
+            </summary>
+            <summary>
+            This static class provides methods to create objects.
+            </summary>
+            <summary>
+            This static class provides methods to create objects.
+            </summary>
+            <summary>
+            This class represents an scope factory.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoRtm.Assembly(System.String,System.String)">
+            <summary>
+            Creates a assembly reference from the specified extension one.
+            </summary>
+            <param key="name">The name to consider.</param>
+            <param key="version">The version to consider.</param>
+            <returns>Returns the itemized list of the specified library list.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoRtm.AssemblyFrom``1">
+            <summary>
+            Creates a assembly reference of the spcefied type.
+            </summary>
+            <returns>Returns the itemized list of the spcefied type</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoRtm.AssemblyAsAll">
+            <summary>
+            Creates a assembly reference that represents all the references.
+            </summary>
+            <returns>Returns a assembly reference that represents all the references.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoRtm.GetDistinctReferences(System.Collections.Generic.IEnumerable{BindOpen.Scoping.References.BdoAssemblyReference})">
+            <summary>
+            Gets the distinct list of the specified library reference list.
+            </summary>
+            <param key="references">The references to consider.</param>
+            <returns>Returns the itemized list of the specified library list.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoRtm.NewEntityConfiguration(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
+            <summary>
+            Creates the instance of the specified config.
+            </summary>
+            <param key="definitionUniqueName">The unique ID of the definition to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoRtm.NewConnectorConfiguration(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
+            <summary>
+            Creates the instance of the specified config.
+            </summary>
+            <param key="definitionUniqueName">The unique ID of the definition to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoRtm.NewTaskConfiguration(System.String,BindOpen.Data.Elements.IBdoDataElement[])">
+            <summary>
+            Creates the instance of the specified config.
+            </summary>
+            <param key="definitionUniqueName">The unique ID of the definition to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoRtm.NewEntityDefinition(BindOpen.Scoping.Definition.IBdoPackageDefinition,System.String)">
+            <summary>
+            Creates the instance of the specified definition.
+            </summary>
+            <param key="extensionDefinition">The extension definition DTO to consider.</param>
+            <param key="name">The name of the definition DTO to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoRtm.NewConnectorDefinition(BindOpen.Scoping.Definition.IBdoPackageDefinition,System.String)">
+            <summary>
+            Creates the instance of the specified definition DTO.
+            </summary>
+            <param key="extensionDefinition">The extension definition DTO to consider.</param>
+            <param key="name">The name of the definition DTO to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoRtm.NewEntityDefinition(BindOpen.Scoping.Definition.IBdoPackageDefinition,System.String)">
+            <summary>
+            Creates the instance of the specified definition DTO.
+            </summary>
+            <param key="extensionDefinition">The extension definition DTO to consider.</param>
+            <param key="name">The name of the definition DTO to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoRtm.NewTaskDefinition(BindOpen.Scoping.Definition.IBdoPackageDefinition,System.String)">
+            <summary>
+            Creates the instance of the specified definition.
+            </summary>
+            <param key="extensionDefinition">The extension definition DTO to consider.</param>
+            <param key="name">The name of the definition DTO to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoRtm.NewScope(System.AppDomain)">
+            <summary>
+            Creates a new scope.
+            </summary>
+            <param key="appDomain">The application domain to consider.</param>
+            <returns>The log of check log.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.References.BdoAssemblyReference">
+            <summary>
+            This class represents the BindOpen library reference.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.References.BdoAssemblyReference.Name">
+            <summary>
+            The library name of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.References.BdoAssemblyReference.Version">
+            <summary>
+            The library version of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.References.BdoAssemblyReference.FileName">
+            <summary>
+            The file name of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.References.BdoAssemblyReference.#ctor">
+            <summary>
+            Instantiates a new instance of the BdoAssemblyReference class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.References.BdoAssemblyReference.#ctor(System.String,System.String)">
+            <summary>
+            Instantiates a new instance of the BdoAssemblyReference class.
+            </summary>
+            <param key="name">The library name to consider.</param>
+            <param key="version">The library version to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.References.BdoAssemblyReference.WithFileName(System.String)">
+            <summary>
+            Adds the specified file name.
+            </summary>
+            <param key="fileName">The file name to consider.</param>
+        </member>
+        <member name="T:BindOpen.Scoping.References.BdoAssemblyReferenceCollection">
+            <summary>
+            This class represents a data reference.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.References.BdoAssemblyReferenceCollection.#ctor(System.Collections.Generic.IEnumerable{BindOpen.Scoping.References.IBdoAssemblyReference})">
+            <summary>
+            Instantiates a new instance of the BdoAssemblyReferenceCollection class.
+            </summary>
+            <param key="references">The references to consider.</param>
+        </member>
+        <member name="T:BindOpen.Scoping.References.BdoAssemblyReferenceExtension">
+            <summary>
+            This class represents an extension reference extension.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.References.BdoAssemblyReferenceExtension.AddAssembly(BindOpen.Scoping.References.IBdoAssemblyReferenceCollection,System.String,System.String)">
+            <summary>
+            Creates a assembly reference from the specified extension one.
+            </summary>
+            <param key="references">The reference set to consider.</param>
+            <param key="name">The name to consider.</param>
+            <param key="version">The version to consider.</param>
+            <returns>Returns the itemized list of the specified library list.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.References.BdoAssemblyReferenceExtension.AddAssembly``1(BindOpen.Scoping.References.IBdoAssemblyReferenceCollection)">
+            <summary>
+            Creates a assembly reference of the spcefied type.
+            </summary>
+            <param key="references">The reference set to consider.</param>
+            <returns>Returns the itemized list of the spcefied type</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.References.BdoAssemblyReferenceExtension.AddAllAssemblies(BindOpen.Scoping.References.IBdoAssemblyReferenceCollection)">
+            <summary>
+            Creates a assembly reference that represents all the references.
+            </summary>
+            <param key="references">The reference set to consider.</param>
+            <returns>Returns a assembly reference that represents all the references.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.References.ClassReference">
+            <summary>
+            This structure represents an class reference.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Scoping.References.ClassReference.AssemblyName">
+            <summary>
+            Library name.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Scoping.References.ClassReference.ClassName">
+            <summary>
+            Class name.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Scopes.BdoScope">
+            <summary>
+            This class represents an application scope.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Scopes.BdoScope.AppDomain">
+            <summary>
+            The application domain.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Scopes.BdoScope.ExtensionStore">
+            <summary>
+            The BindOpen extension store of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Scopes.BdoScope.Context">
+            <summary>
+            The data context of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Scopes.BdoScope.DataStore">
+            <summary>
+            The data store of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.BdoScope.#ctor(System.AppDomain)">
+            <summary>
+            Instantiates a new instance of the BdoScope class.
+            </summary>
+            <param key="appDomain">The application domain to instance.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.BdoScope.NewScriptInterpreter">
+            <summary>
+            Creates a new script interpreter.
+            </summary>
+            <returns>Returns the new script interpreter.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.BdoScope.LoadExtensions(System.Func{BindOpen.Scoping.Scopes.IExtensionLoadOptions,System.Boolean},BindOpen.Scoping.References.IBdoAssemblyReference[],BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads the specified extensions.
+            </summary>
+            <param key="loadOptionsAction">The load options action to consider.</param>
+            <param key="references">The extension references to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.BdoScope.LoadExtensions(System.Func{BindOpen.Scoping.Scopes.IExtensionLoadOptions,System.Boolean},BindOpen.Scoping.References.IBdoAssemblyReference[])">
+            <summary>
+            Loads the specified extensions.
+            </summary>
+            <param key="loadOptionsAction">The load options action to consider.</param>
+            <param key="references">The extension references to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.BdoScope.LoadExtensions(BindOpen.Scoping.References.IBdoAssemblyReference[],BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads the specified extensions.
+            </summary>
+            <param key="references">The extension references to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.BdoScope.LoadExtensions(BindOpen.Scoping.References.IBdoAssemblyReference[])">
+            <summary>
+            Loads the specified extensions.
+            </summary>
+            <param key="loadOptionsAction">The load options action to consider.</param>
+            <param key="references">The extension references to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.BdoScope.Clear">
+            <summary>
+            Clears this instance.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Scopes.BdoScopeExtension">
+            <summary>
+            This static class provides methods to create extension items.
+            </summary>
+            <summary>
+            This class represents a connection service.
+            </summary>
+            <summary>
+            This static class provides methods to create extension items.
+            </summary>
+            <summary>
+            This static class provides methods to create extension items.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.BdoScopeExtension.Check(BindOpen.Scoping.Scopes.IBdoScope,System.Boolean,System.Boolean,System.Boolean,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Check the specified item.
+            </summary>
+            <param key="checkExtensionStore">Indicates whether the extension item definition store extistence is chekced.</param>
+            <param key="checkDataContext">Indicates whether the data context extistence is chekced.</param>
+            <param key="checkDataStore">Indicates whether the data store extistence is chekced.</param>
+            <returns>The log of check log.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.BdoScopeExtension.Open``1(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.IBdoDataSource,System.String,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Creates a connector.
+            </summary>
+            <param key="scope">The scope to consider.</param>
+            <param key="dataSource">The data source to consider.</param>
+            <param key="connectorDefinitionUniqueName">The connector definition name to consider.</param>
+            <param key="log">The log of execution to consider.</param>
+            <returns>Returns True if the connector has been opened. False otherwise.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.BdoScopeExtension.Open``1(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Extensions.Connectors.IBdoConfiguration,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Creates a connector using the specified data module and connector unique name.
+            </summary>
+            <param key="scope">The scope to consider.</param>
+            <param key="config">The connector config to consider.</param>
+            <param key="log">The log of execution to consider.</param>
+            <returns>Returns True if the connector has been opened. False otherwise.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.BdoScopeExtension.NewEntity``1(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Extensions.Entities.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Creates the instance of the specified definition.
+            </summary>
+            <param key="scope">The scope to consider.</param>
+            <param key="config">The config to consider.</param>
+            <param key="log">The log to consider.</param>
+            <param key="varSet">The variable element set to use.</param>
+            <typeparam name="T">The entity class to return.</typeparam>
+            <returns>Returns the created entity.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.BdoScopeExtension.NewEntity(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Extensions.Entities.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Creates the instance of the specified definition.
+            </summary>
+            <param key="scope">The scope to consider.</param>
+            <param key="config">The config to consider.</param>
+            <param key="log">The log to consider.</param>
+            <param key="varSet">The variable element set to use.</param>
+            <returns>Returns the created entity.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.BdoScopeExtension.NewConnector``1(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Extensions.Connectors.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Creates the instance of the specified definition.
+            </summary>
+            <param key="scope">The scope to consider.</param>
+            <param key="config">The config to consider.</param>
+            <param key="log">The log to consider.</param>
+            <param key="varSet">The variable element set to use.</param>
+            <typeparam name="T">The connector class to return.</typeparam>
+            <returns>Returns the created connector.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.BdoScopeExtension.NewConnector(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Extensions.Connectors.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Creates the instance of the specified definition.
+            </summary>
+            <param key="scope">The scope to consider.</param>
+            <param key="config">The config to consider.</param>
+            <param key="log">The log to consider.</param>
+            <param key="varSet">The variable element set to use.</param>
+            <returns>Returns the created connector.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.BdoScopeExtension.NewTask``1(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Extensions.Processing.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Creates the instance of the specified definition.
+            </summary>
+            <param key="scope">The scope to consider.</param>
+            <param key="config">The config to consider.</param>
+            <param key="log">The log to consider.</param>
+            <param key="varSet">The variable element set to use.</param>
+            <typeparam name="T">The entity class to return.</typeparam>
+            <returns>Returns the created entity.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.BdoScopeExtension.NewTask(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Extensions.Processing.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Creates the instance of the specified definition.
+            </summary>
+            <param key="scope">The scope to consider.</param>
+            <param key="config">The config to consider.</param>
+            <param key="log">The log to consider.</param>
+            <param key="varSet">The variable element set to use.</param>
+            <returns>Returns the created task.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.BdoScopeExtension.CreateScoped``1(BindOpen.Scoping.Scopes.IBdoScope)">
+            <summary>
+            Creates a new service.
+            </summary>
+            <param key="scope"></param>
+            <typeparam name="T"></typeparam>
+            <returns>Returns the log of the operation.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.BdoScopeExtension.CreateConnected``1(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Extensions.Connectors.IBdoConnector)">
+            <summary>
+            Creates a new connected service.
+            </summary>
+            <param key="scope"></param>
+            <param key="connector"></param>
+            <typeparam name="T"></typeparam>
+            <returns>Returns the log of the operation.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Scopes.ExtensionLoadOptions">
+            <summary>
+            This class represents the extension loading options.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Scopes.ExtensionLoadOptions.LibraryFolderPath">
+            <summary>
+            The path of the library folder of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Scopes.ExtensionLoadOptions.RemoteServerUri">
+            <summary>
+            The URI of the remote server of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Scopes.ExtensionLoadOptions.SourceKinds">
+            <summary>
+            The source kinds of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.ExtensionLoadOptions.#ctor">
+            <summary>
+            Instantiates a new instance of the ExtensionLoadOptions class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.ExtensionLoadOptions.WithLibraryFolderPath(System.String)">
+            <summary>
+            Sets the path of the library folder of this instance.
+            </summary>
+            <param key="folderPath"></param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.ExtensionLoadOptions.WithRemoteServerUri(System.String)">
+            <summary>
+            Sets the URI of the remote server of this instance.
+            </summary>
+            <param key="uri">The URI of the remote server.</param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.ExtensionLoadOptions.WithSourceKinds(BindOpen.Data.DatasourceKind[])">
+            <summary>
+            Sets the source kinds of this instance.
+            </summary>
+            <param key="sourceKinds">The source kinds to consider.</param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Scopes.ExtensionLoadOptions.Update``1(``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param key="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Stores.BdoExtensionStore">
+            <summary>
+            This class represents a BindOpen extension item store.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStore.#ctor">
+            <summary>
+            Instantiates a new instance of the BdoExtensionStore class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStore.GetItemDefinitionEnumerables``1">
+            <summary>
+            Returns the item definitions of this instance.
+            </summary>
+            <returns>The item words of specified library names.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStore.GetItemDefinitions``1">
+            <summary>
+            Returns the item definitions of this instance.
+            </summary>
+            <returns>The item words of specified library names.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStore.GetItemDefinitionWithUniqueName``1(System.String)">
+            <summary>
+            Returns the item definition with the specified unique name.
+            </summary>
+            <param key="uniqueName">The unique ID of item to return.</param>
+            <returns>The item with the specified unique name.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStore.GetFunctionDefinitionWithUniqueName(System.String,BindOpen.Extensions.Scripting.IBdoFunctionDefinition)">
+            <summary>
+            Returns the script word definition with the specified unique name.
+            </summary>
+            <param key="uniqueName">The unique ID of script word to return.</param>
+            <param key="parentDefinition"></param>
+            <returns>The script word with the specified unique name.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStore.Clear">
+            <summary>
+            Clears this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStore.Add``1(``0)">
+            <summary>
+            Adds the specified definition.
+            </summary>
+            <typeparam name="T">The BindOpen extension item definition class to consider.</typeparam>
+            <param key="definition">The definition to add.</param>
+        </member>
+        <member name="P:BindOpen.Scoping.Stores.BdoExtensionStore.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStore.WithId(System.String)">
+            <summary>
+            
+            </summary>
+            <param key="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Stores.BdoExtensionStoreLoader">
+            <summary>
+            This class represents a extension scope loader.
+            </summary>
+            <summary>
+            This class represents a extension scope loader.
+            </summary>
+            <summary>
+            This class represents a extension scope loader.
+            </summary>
+            <summary>
+            This class represents a extension scope loader.
+            </summary>
+            <summary>
+            This class represents a extension scope loader.
+            </summary>
+            <summary>
+            This class represents a extension scope loader.
+            </summary>
+            <summary>
+            This class represents a extension scope loader.
+            </summary>
+            <summary>
+            This class represents a extension scope loader.
+            </summary>
+            <summary>
+            This class represents a extension scope loader.
+            </summary>
+            <summary>
+            This class represents a extension scope loader.
+            </summary>
+            <summary>
+            This class represents a extension scope loader.
+            </summary>
+            <summary>
+            This class represents a extension scope loader.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.#ctor(System.AppDomain,BindOpen.Scoping.Stores.IBdoExtensionStore,BindOpen.Scoping.Scopes.IExtensionLoadOptions)">
+            <summary>
+            Initializes a new instance of BdoExtensionStoreLoader the class.
+            </summary>
+            <param key="appDomain">The application domain to consider.</param>
+            <param key="store">The extension store to consider.</param>
+            <param key="loadOptions">The load options to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.LoadExtensionsInStore(BindOpen.Scoping.References.IBdoAssemblyReference[],BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads the specified extensions into the specified scope.
+            </summary>
+            <param key="references">The library references to consider.</param>
+            <param key="log">The log to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.LoadLibrary(BindOpen.Scoping.References.IBdoAssemblyReference,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads the specified library.
+            </summary>
+            <param key="libraryReference">The library reference to consider.</param>
+            <param key="log">The log to consider.</param>
+            <returns>Returns the loaded library.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.Dispose(System.Boolean)">
+            <summary>
+            Disposes this instance. 
+            </summary>
+            <param key="isDisposing">Indicates whether this instance is disposing</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.LoadDictionary(System.Reflection.Assembly,BindOpen.Scoping.Definition.BdoExtensionKind,BindOpen.Scoping.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads the extension dico of the specified kind from the specified assembly.
+            </summary>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="kind">The kind of item to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.ExtractDictionaryFromAssembly``1(System.Reflection.Assembly,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads the specified BindOpen extension dico.
+            </summary>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="log">The log to consider.</param>
+            <returns>The created library.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.GetDictionaryResourceName``1">
+            <summary>
+            Gets the dico resource name.
+            </summary>
+            <returns>Returns the class of the specified dico.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.GetDictionaryType``1">
+            <summary>
+            Gets the item definition file name of the TO specified extension item definition class.
+            </summary>
+            <returns>Returns the class of the specified dico.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.UpdateDictionary(BindOpen.Scoping.Definition.IBdoExtensionDefinition,BindOpen.Data.DescribedDataItemAttribute)">
+            <summary>
+            Updates this instance with the specified attribute information.
+            </summary>
+            <param key="definition">The definition to consider.</param>
+            <param key="attribute">The attribute to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.UpdateDictionary(BindOpen.Scoping.Definition.IBdoExtensionDefinition,BindOpen.Data.TitledDescribedDataItemAttribute)">
+            <summary>
+            Updates this instance with the specified attribute information.
+            </summary>
+            <param key="definition">The definition to consider.</param>
+            <param key="attribute">The attribute to consider.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.LoadEntityDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Scoping.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads the entity dico from the specified assembly.
+            </summary>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.LoadConnectorDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Scoping.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads the connector dico from the specified assembly.
+            </summary>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.LoadEntityDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Scoping.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads the entity dico from the specified assembly.
+            </summary>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.LoadFormatDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Scoping.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads the format dico from the specified assembly.
+            </summary>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.LoadHandlerDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Scoping.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads the handler dico from the specified assembly.
+            </summary>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.LoadFunctionDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Scoping.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads the function dico from the specified assembly.
+            </summary>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.LoadRoutineDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Scoping.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads the routine dico from the specified assembly.
+            </summary>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.LoadScripwordDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Scoping.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads the script word dico from the specified assembly.
+            </summary>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.LoadTaskDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Scoping.Definition.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads the task dico from the specified assembly.
+            </summary>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="extensionDefinition">The extension definition to consider.</param>
+            <param key="log">The log to consider.</param>
+            <returns></returns>
+        </member>
+        <member name="F:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.__DefaultResourceFileName">
+            <summary>
+            The default resource file name for library definition.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Stores.BdoExtensionStoreLoader.ExtractPackageDefinition(System.Reflection.Assembly,System.String,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Extract extension definition from the specified assembly.
+            </summary>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="resourceFullName">The full name of the resouce to consider.</param>
+            <param key="log">The log to consider.</param>
+            <returns>The created library.</returns>
+        </member>
+        <member name="T:BindOpen.Data.Specification.BdoElementChecker">
+            <summary>
+            This static class provides methods to check data elements.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -3,11 +3,11 @@ using BindOpen.Data.Assemblies;
 using BindOpen.Data.Context;
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Stores;
-using BindOpen.Extensions.Scripting;
 using BindOpen.Hosting.Services;
 using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
-using BindOpen.Runtime.Stores;
+using BindOpen.Scoping.Scopes;
+using BindOpen.Scoping.Stores;
+using BindOpen.Scripting;
 using System;
 using System.IO;
 using System.Linq;
@@ -381,6 +381,17 @@ namespace BindOpen.Hosting.Hosts
         /// The script interpreter of this instance.
         /// </summary>
         public IBdoScriptInterpreter Interpreter => Scope?.Interpreter;
+
+        public bool Check(
+            bool checkExtensionStore = false,
+            bool checkDataContext = false,
+            bool checkDataStore = false,
+            IBdoLog log = null)
+            => Scope?.Check(
+                checkExtensionStore,
+                checkDataContext,
+                checkDataStore,
+                log) ?? false;
 
         /// <summary>
         /// Loads the specified extensions.

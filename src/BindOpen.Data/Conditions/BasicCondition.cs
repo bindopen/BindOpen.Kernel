@@ -1,7 +1,4 @@
-﻿using System.Xml.Serialization;
-using BindOpen.Abstractions.Data._Core.Enums;
-
-namespace BindOpen.Data.Conditions
+﻿namespace BindOpen.Data.Conditions
 {
 
     /// <summary>

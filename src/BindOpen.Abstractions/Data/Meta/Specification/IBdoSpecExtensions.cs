@@ -1,6 +1,4 @@
 ﻿using BindOpen.Data.Conditions;
-using BindOpen.Data.Configuration;
-using BindOpen.Data.Items;
 using System.Linq;
 
 namespace BindOpen.Data.Meta

@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Abstractions.Data._Core.Enums
+﻿namespace BindOpen.Data
 {
     /// <summary>
     /// This enumeration lists the possible view advanced condition kinds.

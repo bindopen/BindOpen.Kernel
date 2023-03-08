@@ -1,9 +1,8 @@
-﻿using BindOpen.Data.Items;
-using BindOpen.Data.Meta;
-using BindOpen.Extensions.Connecting;
-using BindOpen.Extensions.Modeling;
-using BindOpen.Extensions.Processing;
-using BindOpen.Extensions.Scripting;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Extensions.Connectors;
+using BindOpen.Extensions.Entities;
+using BindOpen.Extensions.Tasks;
+using BindOpen.Scripting;
 using System;
 using System.Collections;
 

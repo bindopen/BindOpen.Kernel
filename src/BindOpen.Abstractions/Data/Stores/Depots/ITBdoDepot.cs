@@ -1,6 +1,4 @@
-﻿using BindOpen.Data.Items;
-
-namespace BindOpen.Data.Stores
+﻿namespace BindOpen.Data.Stores
 {
     /// <summary>
     /// 

@@ -1,5 +1,5 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Configuration;
+using BindOpen.Data.Meta;
 using System;
 using System.Collections.Generic;
 

@@ -1,10 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Configuration;
-using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Stores;
-using BindOpen.Dtos.Json;
-using BindOpen.Dtos.Xml;
 using Bogus;
 using NUnit.Framework;
 using System.IO;
@@ -14,8 +11,8 @@ namespace BindOpen.Tests.IO.Data
     [TestFixture, Order(101)]
     public class DatasourceDepotTests
     {
-        private readonly string _filePath_xml = Tests.WorkingFolder + "DatasourceDepot.xml";
-        private readonly string _filePath_json = Tests.WorkingFolder + "DatasourceDepot.json";
+        private readonly string _filePath_xml = Kernel.Tests.WorkingFolder + "DatasourceDepot.xml";
+        private readonly string _filePath_json = Kernel.Tests.WorkingFolder + "DatasourceDepot.json";
 
         private IBdoSourceDepot _datasourceDepot = null;
 

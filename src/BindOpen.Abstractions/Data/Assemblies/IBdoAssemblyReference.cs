@@ -1,6 +1,4 @@
-﻿using BindOpen.Data.Items;
-
-namespace BindOpen.Data.Assemblies
+﻿namespace BindOpen.Data.Assemblies
 {
     /// <summary>
     /// 

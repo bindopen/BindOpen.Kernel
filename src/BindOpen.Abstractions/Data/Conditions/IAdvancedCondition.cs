@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using BindOpen.Abstractions.Data._Core.Enums;
 
 namespace BindOpen.Data.Conditions
 {

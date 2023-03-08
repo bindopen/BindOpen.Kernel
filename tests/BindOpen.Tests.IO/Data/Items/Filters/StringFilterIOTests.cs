@@ -1,7 +1,4 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Items;
-using BindOpen.Dtos.Json;
-using BindOpen.Dtos.Xml;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
@@ -13,8 +10,8 @@ namespace BindOpen.Tests.IO.Data
     [TestFixture, Order(210)]
     public class StringFilterIOTests
     {
-        private readonly string _filePath_xml = Tests.WorkingFolder + "StringFilter.xml";
-        private readonly string _filePath_json = Tests.WorkingFolder + "StringFilter.json";
+        private readonly string _filePath_xml = Kernel.Tests.WorkingFolder + "StringFilter.xml";
+        private readonly string _filePath_json = Kernel.Tests.WorkingFolder + "StringFilter.json";
         dynamic _valueSet;
         private IBdoStringFilter _filter = null;
 

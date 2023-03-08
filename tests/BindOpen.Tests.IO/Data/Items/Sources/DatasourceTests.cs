@@ -1,10 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Configuration;
-using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
-using BindOpen.Dtos.Json;
-using BindOpen.Dtos.Xml;
-using BindOpen.Extensions.Connecting;
+using BindOpen.Extensions.Connectors;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
@@ -15,8 +12,8 @@ namespace BindOpen.Tests.IO.Data
     public class DatasourceTests
     {
         private IBdoDatasource _datasource;
-        private readonly string _filePath_xml = Tests.WorkingFolder + "Datasource.xml";
-        private readonly string _filePath_json = Tests.WorkingFolder + "Datasource.json";
+        private readonly string _filePath_xml = Kernel.Tests.WorkingFolder + "Datasource.xml";
+        private readonly string _filePath_json = Kernel.Tests.WorkingFolder + "Datasource.json";
 
         [OneTimeSetUp]
         public void OneTimeSetUp()

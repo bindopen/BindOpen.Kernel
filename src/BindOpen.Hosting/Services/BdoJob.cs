@@ -1,9 +1,9 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Items;
+using BindOpen.Data;
 using BindOpen.Logging;
-using BindOpen.Runtime;
-using BindOpen.Runtime.Assemblies;
-using BindOpen.Runtime.Scopes;
+using BindOpen.Scoping;
+using BindOpen.Scoping.Application;
+using BindOpen.Scoping.Scopes;
 using Microsoft.Extensions.Logging;
 
 namespace BindOpen.Hosting.Services
@@ -228,7 +228,7 @@ namespace BindOpen.Hosting.Services
         {
             // we initialize the application scope
 
-            Scope = BdoRuntime.NewScope();
+            Scope = BdoScoping.NewScope();
             Scope.Context.AddSystemItem("bdoHost", this);
 
             _isLoaded = true;

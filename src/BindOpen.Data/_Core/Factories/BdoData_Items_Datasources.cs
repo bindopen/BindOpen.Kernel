@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Configuration;
-using BindOpen.Data.Items;
+﻿using BindOpen.Data.Meta;
 using BindOpen.Data.Stores;
 
 namespace BindOpen.Data

@@ -1,7 +1,6 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Extensions.Scripting;
+﻿using BindOpen.Scripting;
 
-namespace BindOpen.Data
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a meta data.

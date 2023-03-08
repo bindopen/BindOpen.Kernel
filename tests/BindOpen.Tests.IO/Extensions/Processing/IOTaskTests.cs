@@ -2,11 +2,9 @@
 using BindOpen.Data.Configuration;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
-using BindOpen.Dtos.Json;
-using BindOpen.Dtos.Xml;
-using BindOpen.Runtime.Scopes;
-using BindOpen.Tests.Extensions;
-using BindOpen.Tests.Runtime;
+using BindOpen.Extensions.Tasks;
+using BindOpen.Tests.Kernel;
+using BindOpen.Tests.Kernel.Extensions;
 using Bogus;
 using NUnit.Framework;
 using System.IO;
@@ -18,7 +16,7 @@ namespace BindOpen.Tests.IO.Extensions
     {
         private TaskFake _task = null;
 
-        private readonly string _filePath = Tests.WorkingFolder + "Task.xml";
+        private readonly string _filePath = Kernel.Tests.WorkingFolder + "Task.xml";
 
         private dynamic _testData;
 
@@ -71,7 +69,7 @@ namespace BindOpen.Tests.IO.Extensions
             }
 
             var config = XmlHelper.LoadXml<ConfigurationDto>(_filePath).ToPoco();
-            var task = RuntimeTests.Scope.CreateTask<TaskFake>(config);
+            var task = ScopingTests.Scope.CreateTask<TaskFake>(config);
 
             Assert.That(task != null, "Task loading failed");
 
@@ -102,7 +100,7 @@ namespace BindOpen.Tests.IO.Extensions
             }
 
             var config = JsonHelper.LoadJson<ConfigurationDto>(_filePath).ToPoco();
-            var task = RuntimeTests.Scope.CreateTask<TaskFake>(config);
+            var task = ScopingTests.Scope.CreateTask<TaskFake>(config);
 
             Assert.That(task != null, "Task loading failed");
 

@@ -1,5 +1,5 @@
 ﻿using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
+using BindOpen.Scoping.Scopes;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
