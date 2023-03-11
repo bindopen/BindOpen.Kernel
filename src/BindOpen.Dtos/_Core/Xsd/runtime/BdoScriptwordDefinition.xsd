@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://storage.bindopen.org/xsd/bindopen" elementFormDefault="qualified" targetNamespace="https://storage.bindopen.org/xsd/bindopen" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoExtensionDefinition.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/ScriptItemKind.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/TBdoSet<IBdoSpec>.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/DataValueType.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/DictionaryDataItem.xsd" />
+
+  <xs:complexType name="BdoFunctionDefinition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="BdoExtensionDefinition">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="callingClass" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="kind" type="ScriptItemKind" />
+          <xs:element minOccurs="0" maxOccurs="1" name="functionName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="parameter.specification" type="TBdoSet<IBdoSpec>" />
+          <xs:element minOccurs="0" maxOccurs="1" name="returnValueType" type="DataValueType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="isRepeatedParameters" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="repeatedParameterValueType" type="DataValueType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="repeatedParameterDescription" type="DictionaryDataItem" />
+          <xs:element minOccurs="0" maxOccurs="1" name="repeatedParameterName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="maxParameterNumber" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="minParameterNumber" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="children" type="ArrayOfFunctionDefinition" />
+        </xs:sequence>
+        <xs:attribute name="referenceUniqueName" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfFunctionDefinition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="BdoFunctionDefinition" />
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

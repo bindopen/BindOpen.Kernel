@@ -1,6 +1,4 @@
-﻿using BindOpen.Data.Meta;
-
-namespace BindOpen.Data.Meta
+﻿namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a Xml helper.
@@ -16,16 +14,8 @@ namespace BindOpen.Data.Meta
         {
             if (poco == null) return null;
 
-            SpecDto dto = null;
+            SpecDto dto = new SpecDto();
 
-            if (poco is IBdoObjectSpec objectSpec)
-            {
-                return objectSpec.ToDto();
-            }
-            else if (poco is IBdoScalarSpec scalarSpec)
-            {
-                return scalarSpec.ToDto();
-            }
 
             return dto;
         }
@@ -42,14 +32,6 @@ namespace BindOpen.Data.Meta
 
             BdoSpec poco = null;
 
-            if (dto is ObjectSpecDto objSpec)
-            {
-                return objSpec.ToPoco();
-            }
-            else if (dto is ScalarSpecDto scalarSpec)
-            {
-                return scalarSpec.ToPoco();
-            }
 
             return poco;
         }

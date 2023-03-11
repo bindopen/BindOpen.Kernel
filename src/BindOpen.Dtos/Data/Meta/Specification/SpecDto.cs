@@ -1,6 +1,4 @@
-﻿using BindOpen.Data.Configuration;
-using BindOpen.Data.Items;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -10,10 +8,9 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    [XmlType("Spec", Namespace = "https://xsd.bindopen.org")]
-    [XmlInclude(typeof(ObjectSpecDto))]
-    [XmlInclude(typeof(ScalarSpecDto))]
-    public abstract class SpecDto : IDto
+    [XmlType("Spec", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "spec", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    public class SpecDto : IDto
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -38,6 +35,14 @@ namespace BindOpen.Data.Meta
         [XmlElement("groupId")]
         [DefaultValue("")]
         public string GroupId { get; set; }
+
+        /// <summary>
+        /// Default items of this instance.
+        /// </summary>
+        [JsonPropertyName("default.items")]
+        [XmlArray("default.items")]
+        [XmlArrayItem("add")]
+        public List<string> DefaultItems { get; set; }
 
         /// <summary>
         /// The aliases of the entry.
@@ -161,9 +166,9 @@ namespace BindOpen.Data.Meta
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the BdoElementSpecDto class.
+        /// Initializes a new instance of the SpecDto class.
         /// </summary>
-        protected SpecDto()
+        public SpecDto()
         {
         }
 

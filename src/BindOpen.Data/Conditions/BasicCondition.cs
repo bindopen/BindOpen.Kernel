@@ -1,6 +1,4 @@
-﻿using System.Xml.Serialization;
-
-namespace BindOpen.Data.Conditions
+﻿namespace BindOpen.Data.Conditions
 {
 
     /// <summary>

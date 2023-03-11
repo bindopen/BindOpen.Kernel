@@ -1,9 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
-using BindOpen.Dtos.Json;
-using BindOpen.Dtos.Xml;
-using BindOpen.Extensions.Modeling;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;

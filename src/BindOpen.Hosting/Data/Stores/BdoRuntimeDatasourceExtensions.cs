@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Items;
+﻿using BindOpen.Data;
 using BindOpen.Data.Stores;
 
 namespace BindOpen.Data.Stores
@@ -6,7 +6,7 @@ namespace BindOpen.Data.Stores
     /// <summary>
     /// This class represents a runtime data source extensions.
     /// </summary>
-    public static class BdoRuntimeDatasourceExtensions
+    public static class BdoScopingDatasourceExtensions
     {
         /// <summary>
         /// Adds the specified source.

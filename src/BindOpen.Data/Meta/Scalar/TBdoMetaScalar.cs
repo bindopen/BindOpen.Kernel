@@ -1,7 +1,6 @@
 ﻿using BindOpen.Data.Helpers;
 using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
-using System.Collections.Generic;
+using BindOpen.Scopes.Scopes;
 using System.Linq;
 
 namespace BindOpen.Data.Meta
@@ -10,7 +9,7 @@ namespace BindOpen.Data.Meta
     /// This class represents a scalar meta that is an meta whose items are scalars.
     /// </summary>
     public class TBdoMetaScalar<TItem> :
-        TBdoMetaData<TItem, IBdoScalarSpec>,
+        TBdoMetaData<TItem>,
         ITBdoMetaScalar<TItem>
     {
         // --------------------------------------------------
@@ -68,23 +67,9 @@ namespace BindOpen.Data.Meta
         /// <param key="item">The string item of this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         /// <returns>Returns True if the specified has been well added.</returns>
-        public ITBdoMetaScalar<TItem> WithData(TItem obj)
+        public ITBdoMetaScalar<TItem> WithData(object obj)
         {
             _data = obj.ToBdoData();
-
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the item of this instance.
-        /// </summary>
-        /// <param key="item">The string item of this instance.</param>
-        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
-        /// <returns>Returns True if the specified has been well added.</returns>
-        public ITBdoMetaScalar<TItem> WithDataList(params TItem[] objs)
-        {
-            _data = objs.ToBdoData().ToObjectList();
-
             return this;
         }
 
@@ -164,46 +149,6 @@ namespace BindOpen.Data.Meta
             var list = GetDataList<Q>(scope, varSet, log); ;
             var obj = list.GetAt(index);
             return obj;
-        }
-
-        /// <summary>
-        /// Returns the item TItem of this instance.
-        /// </summary>
-        /// <param key="log">The log to populate.</param>
-        /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable meta set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public List<object> GetDataList(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            var obj = DataObject(scope, varSet, log);
-
-            var list = obj?.ToObjectList();
-            return list;
-        }
-
-        /// <summary>
-        /// Returns the item TItem of this instance.
-        /// </summary>
-        /// <param key="log">The log to populate.</param>
-        /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable meta set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public List<Q> GetDataList<Q>(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            var list = GetDataList(scope, varSet, log);
-            return list?.Select(q =>
-            {
-                if (q is Q q_Q)
-                    return q_Q;
-
-                return default;
-            }).ToList();
         }
 
         #endregion

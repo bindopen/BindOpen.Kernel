@@ -3,11 +3,12 @@ using BindOpen.Data.Assemblies;
 using BindOpen.Data.Context;
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Stores;
-using BindOpen.Extensions.Scripting;
 using BindOpen.Hosting.Services;
 using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
-using BindOpen.Runtime.Stores;
+using BindOpen.Scopes;
+using BindOpen.Scopes.Scopes;
+using BindOpen.Scopes.Stores;
+using BindOpen.Script;
 using System;
 using System.IO;
 using System.Linq;
@@ -304,30 +305,10 @@ namespace BindOpen.Hosting.Hosts
 
                     subLog = log?.InsertSubLog(title: "Loading extensions...", eventKind: EventKinds.Message);
 
-                    if (Options?.ExtensionReferences.Count == 0)
-                    {
-                        subLog?.AddMessage("No extensions found");
-                    }
-                    else
-                    {
-                        Options.ExtensionLoadOptions?.WithLibraryFolderPath(GetKnownPath(BdoHostPathKind.LibraryFolder));
-                        foreach (var reference in Options?.ExtensionReferences)
-                        {
-                            _isLoaded &= Scope.LoadExtensions(
-                                p =>
-                                {
-                                    //p.Update(Options?.ExtensionLoadOptions);
-                                    return true;
-                                },
-                                new[] { reference },
-                                subLog);
-                        }
-
-                        if (subLog?.HasEvent(EventKinds.Error, EventKinds.Exception) != true)
-                        {
-                            subLog?.AddMessage("Extensions loaded");
-                        }
-                    }
+                    _isLoaded &= Scope.LoadExtensions(
+                        q => q = Options.ExtensionLoadOptions
+                            .AddSource(DatasourceKind.Repository, GetKnownPath(BdoHostPathKind.LibraryFolder)),
+                        subLog);
 
                     if (_isLoaded)
                     {
@@ -402,19 +383,16 @@ namespace BindOpen.Hosting.Hosts
         /// </summary>
         public IBdoScriptInterpreter Interpreter => Scope?.Interpreter;
 
-        /// <summary>
-        /// Loads the specified extensions.
-        /// </summary>
-        /// <param key="references">The extension references to consider.</param>
-        /// <param key="log">The log to consider.</param>
-        public bool LoadExtensions(
-            IBdoAssemblyReference[] references,
+        public bool Check(
+            bool checkExtensionStore = false,
+            bool checkDataContext = false,
+            bool checkDataStore = false,
             IBdoLog log = null)
-            => Scope?.LoadExtensions(references, log) ?? false;
-
-        public bool LoadExtensions(
-            params IBdoAssemblyReference[] references)
-            => LoadExtensions(references, null);
+            => Scope?.Check(
+                checkExtensionStore,
+                checkDataContext,
+                checkDataStore,
+                log) ?? false;
 
         /// <summary>
         /// Loads the specified extensions.
@@ -423,15 +401,9 @@ namespace BindOpen.Hosting.Hosts
         /// <param key="references">The extension references to consider.</param>
         /// <param key="log">The log to consider.</param>
         public bool LoadExtensions(
-            Func<IExtensionLoadOptions, bool> loadOptionsAction,
-            IBdoAssemblyReference[] references,
+            Action<IExtensionLoadOptions> loadOptionsAction,
             IBdoLog log = null)
-            => Scope?.LoadExtensions(loadOptionsAction, references, log) ?? false;
-
-        public bool LoadExtensions(
-            Func<IExtensionLoadOptions, bool> loadOptionsAction,
-            params IBdoAssemblyReference[] references)
-            => LoadExtensions(loadOptionsAction, references, null);
+            => Scope?.LoadExtensions(loadOptionsAction, log) ?? false;
 
         /// <summary>
         /// Clears this instance.

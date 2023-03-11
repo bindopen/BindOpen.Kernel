@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>BindOpen.Tests.IO</AssemblyName>
     <PackageId>BindOpen.Tests.IO</PackageId>
-    <Product>BindOpen.Runtime</Product>
+    <Product>BindOpen.Scopes</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This package conducts unit tests on Core libraries.</Description>
@@ -40,11 +40,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\BindOpen.IO\IO.csproj" />
-    <ProjectReference Include="..\BindOpen.Tests.Runtime\Tests.Runtime.csproj" />
+    <ProjectReference Include="..\BindOpen.Tests.Kernel\Tests.Kernel.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://storage.bindopen.org/xsd/bindopen" elementFormDefault="qualified" targetNamespace="https://storage.bindopen.org/xsd/bindopen" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoExtensionDefinition.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoElementSet.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/Arrays.xsd" />
+
+  <xs:complexType name="BdoRoutineDefinition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="BdoExtensionDefinition">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="itemClass" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="parameterStatement" type="BdoElementSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="commands" type="ArrayOfCommand" />
+          <xs:element minOccurs="0" maxOccurs="1" name="outputResultCodes" type="ArrayOfDescribedDataItem" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Helpers;
-using BindOpen.Data.Items;
 
 namespace BindOpen.Data.Assemblies
 {
@@ -92,6 +91,11 @@ namespace BindOpen.Data.Assemblies
         public static bool operator !=(BdoAssemblyReference left, BdoAssemblyReference right)
         {
             return !(left == right);
+        }
+
+        public override string ToString()
+        {
+            return Key();
         }
 
         #endregion

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://storage.bindopen.org/xsd/bindopen" elementFormDefault="qualified" targetNamespace="https://storage.bindopen.org/xsd/bindopen" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/IndexedDataItem.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/DataValueMode.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/DataReferenceDto.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/Arrays.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoElementSpec.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoElementSet.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/EventKind.xsd" />
+
+  <xs:complexType name="BdoElement" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="IndexedDataItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="itemReference" type="DataReference" />
+          <xs:element minOccurs="0" maxOccurs="1" name="items" type="ArrayOfString" />
+          <xs:element minOccurs="0" maxOccurs="1" name="propertyDetail" type="BdoElementSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="eventKind" type="EventKind" />
+        </xs:sequence>
+        <xs:attribute use="optional" name="valueMode" type="DataValueMode" />
+        <xs:attribute use="optional" name="script" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

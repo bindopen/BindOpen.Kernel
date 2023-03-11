@@ -1,5 +1,5 @@
-﻿using BindOpen.Data.Items;
-using BindOpen.Extensions.Scripting;
+﻿using BindOpen.Script;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml;
@@ -10,7 +10,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element.
     /// </summary>
-    [XmlType("MetaData", Namespace = "https://xsd.bindopen.org")]
+    [XmlType("MetaData", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlInclude(typeof(MetaSetDto))]
     [XmlInclude(typeof(MetaObjectDto))]
     [XmlInclude(typeof(MetaScalarDto))]
@@ -84,6 +84,20 @@ namespace BindOpen.Data.Meta
         public bool DataValueTypeSpecified =>
             !((this is MetaObjectDto && DataValueType == DataValueTypes.Object)
             || (this is ScriptwordDto && DataValueType == DataValueTypes.Scriptword));
+
+        /// <summary>
+        /// The elements of this instance.
+        /// </summary>
+        [JsonPropertyName("specs")]
+        [XmlElement("spec")]
+        public List<SpecDto> Specs { get; set; }
+
+        /// <summary>
+        /// Indicates whether the entities property must be ignored.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public bool SpecsSpecified => Specs?.Count > 0;
 
         #endregion
 

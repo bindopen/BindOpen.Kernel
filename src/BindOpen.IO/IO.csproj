@@ -4,10 +4,10 @@
     <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>BindOpen.IO</AssemblyName>
     <PackageId>BindOpen.IO</PackageId>
-    <Product>BindOpen.Runtime</Product>
+    <Product>BindOpen.Scopes</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
-    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package provides core classes of the BindOpen.Runtime.</Description>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package provides core classes of the BindOpen.Scopes.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.IO</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen</PackageProjectUrl>
@@ -25,13 +25,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Extensions\NewFolder\**" />
-    <EmbeddedResource Remove="Extensions\NewFolder\**" />
-    <None Remove="Extensions\NewFolder\**" />
+    <Compile Remove="Script\NewFolder\**" />
+    <EmbeddedResource Remove="Script\NewFolder\**" />
+    <None Remove="Script\NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Data\Items\Expression\h0dlkciq.gml~" />
+    <None Remove="Data\_Core\Items\Expression\h0dlkciq.gml~" />
   </ItemGroup>
 
   <ItemGroup>
@@ -56,5 +56,6 @@
   <ItemGroup>
     <ProjectReference Include="..\BindOpen.Dtos\Dtos.csproj" />
     <ProjectReference Include="..\BindOpen.Extensions\Extensions.csproj" />
+    <ProjectReference Include="..\BindOpen.Script\Script.csproj" />
   </ItemGroup>
 </Project>

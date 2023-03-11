@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://storage.bindopen.org/xsd/bindopen" elementFormDefault="qualified" targetNamespace="https://storage.bindopen.org/xsd/bindopen" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoElementSet.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/DataItem.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/tasks/TaskDefinition.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoExtensionGroup.xsd" />
+
+  <xs:element name="tasks.dico" type="BdoTaskDictionaryDto" />
+
+  <xs:complexType name="BdoTaskDictionaryDto">
+    <xs:complexContent mixed="false">
+      <xs:extension base="TBdoExtensionDictionary_Task" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TBdoExtensionDictionary_Task">
+    <xs:complexContent mixed="false">
+      <xs:extension base="StoredDataItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="definitions" type="ArrayOfTaskDefinition" />
+          <xs:element minOccurs="0" maxOccurs="1" name="groups" type="ArrayOfBdoExtensionGroup" />
+        </xs:sequence>
+        <xs:attribute name="libraryId" type="xs:string" />
+        <xs:attribute name="library" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfTaskDefinition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="BdoTaskDefinition" />
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

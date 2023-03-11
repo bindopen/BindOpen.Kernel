@@ -1,6 +1,4 @@
-﻿using BindOpen.Data.Items;
-
-namespace BindOpen.Data.Conditions
+﻿namespace BindOpen.Data.Conditions
 {
     /// <summary>
     /// This class represents a Xml helper.
