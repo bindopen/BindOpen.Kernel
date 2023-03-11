@@ -2,7 +2,7 @@
 using BindOpen.Extensions.Tasks;
 using NUnit.Framework;
 
-namespace BindOpen.Tests.Kernel.Extensions
+namespace BindOpen.Tests.Extensions
 {
     [TestFixture, Order(300)]
     public class BdoTaskTests

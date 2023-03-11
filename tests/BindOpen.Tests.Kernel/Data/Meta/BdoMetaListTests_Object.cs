@@ -4,7 +4,7 @@ using BindOpen.Data.Meta.Reflection;
 using Bogus;
 using NUnit.Framework;
 
-namespace BindOpen.Tests.Kernel.Data
+namespace BindOpen.Tests.Data
 {
     [TestFixture, Order(200)]
     public class BdoMetaSetTests_Object

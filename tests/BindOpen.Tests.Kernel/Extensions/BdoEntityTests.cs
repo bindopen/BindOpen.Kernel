@@ -1,8 +1,9 @@
-﻿using BindOpen.Data.Meta;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using BindOpen.Extensions.Entities;
 using NUnit.Framework;
 
-namespace BindOpen.Tests.Kernel.Extensions
+namespace BindOpen.Tests.Extensions
 {
     [TestFixture, Order(300)]
     public class BdoEntityTests
@@ -42,10 +43,10 @@ namespace BindOpen.Tests.Kernel.Extensions
         {
             _entity = new EntityFake
             {
-                BoolValue = _testData.boolValue,
-                EnumValue = _testData.enumValue,
-                IntValue = _testData.intValue,
-                StringValue = _testData.stringValue,
+                BoolValue = BdoMeta.NewScalar<bool?>(_testData.boolValue as bool?),
+                EnumValue = (ActionPriorities)_testData.enumValue,
+                IntValue = (int)_testData.intValue,
+                StringValue = _testData.stringValue as string,
             };
 
             BdoEntityFaker.AssertFake(_entity, _testData);

@@ -2,7 +2,7 @@
 using BindOpen.Extensions.Connectors;
 using BindOpen.Logging;
 
-namespace BindOpen.Tests.Kernel
+namespace BindOpen.Tests
 {
     /// <summary>
     /// This class represents a test connector.

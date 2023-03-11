@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BindOpen.Data.Helpers;
-using BindOpen.Data;
 using System.Linq;
 
 namespace BindOpen.Data.Meta
@@ -73,7 +72,7 @@ namespace BindOpen.Data.Meta
             else
             {
                 var objects = dto.Items?.Select(q => q.ToObject(poco.DataValueType)).ToList();
-                poco.WithDataList(objects);
+                poco.WithData(objects);
             }
 
             return poco;

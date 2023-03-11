@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>BindOpen.Dtos</AssemblyName>
     <PackageId>BindOpen.Dtos</PackageId>
-    <Product>BindOpen.Scoping</Product>
+    <Product>BindOpen.Scopes</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
     <Description>The classes of data transfer objects for BindOpen Runtime.</Description>
@@ -25,7 +25,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Data\Meta\Data\gt2z3lni.cmr~" />
+    <None Remove="Data\Meta\Object\gt2z3lni.cmr~" />
   </ItemGroup>
 
   <ItemGroup>

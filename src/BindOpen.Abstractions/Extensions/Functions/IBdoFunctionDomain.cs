@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data.Meta;
-using BindOpen.Scoping.Scopes;
-using BindOpen.Scripting;
+using BindOpen.Scopes.Scopes;
+using BindOpen.Script;
 
 namespace BindOpen.Extensions.Functions
 {

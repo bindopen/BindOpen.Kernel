@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data.Helpers;
 using BindOpen.Logging;
-using BindOpen.Scoping.Scopes;
+using BindOpen.Scopes.Scopes;
+using BindOpen.Script;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -74,6 +75,48 @@ namespace BindOpen.Data.Meta
         // --------------------------------------------------
 
         #region IBdoMetaSet
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param key="log">The log to populate.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        protected virtual object DataObject(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            switch (DataMode)
+            {
+                case DataMode.Value:
+                    var list = new List<object>();
+                    foreach (var item in Items)
+                    {
+                        list.Add(item?.GetData(scope, varSet, log));
+                    }
+                    return list;
+                case DataMode.Expression:
+                    if (scope == null)
+                    {
+                        log?.AddWarning(title: "Application scope missing");
+                    }
+                    else
+                    {
+                        if (DataExpression == null)
+                        {
+                            log?.AddWarning(title: "Script missing");
+                        }
+
+                        var obj = scope.Interpreter.Evaluate<object>(DataExpression, varSet, log);
+                        return obj;
+                    }
+                    break;
+            }
+
+            return default;
+        }
 
         /// <summary>
         /// Adds the specified item.

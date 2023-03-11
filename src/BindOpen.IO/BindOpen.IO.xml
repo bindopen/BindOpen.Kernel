@@ -593,38 +593,38 @@
             <param key="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Specification.StringFilterConverter">
+        <member name="T:BindOpen.Data.Specification.StringSetConverter">
             <summary>
             This static class represents a data reference converter.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.StringFilterConverter.ToDto(BindOpen.Data.Specification.IStringFilter)">
+        <member name="M:BindOpen.Data.Specification.StringSetConverter.ToDto(BindOpen.Data.Specification.IStringSet)">
             <summary>
             Converts to DTO.
             </summary>
             <param key="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Specification.StringFilterConverter.ToPoco(BindOpen.Data.Specification.StringFilterDto)">
+        <member name="M:BindOpen.Data.Specification.StringSetConverter.ToPoco(BindOpen.Data.Specification.StringSetDto)">
             <summary>
             Converts to DTO.
             </summary>
             <param key="dto">The DTO to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="T:BindOpen.Data.Specification.StringFilterStatementConverter">
+        <member name="T:BindOpen.Data.Specification.StringSetStatementConverter">
             <summary>
             This static class represents a data reference converter.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.StringFilterStatementConverter.ToDto(BindOpen.Data.Specification.IStringFilterStatement)">
+        <member name="M:BindOpen.Data.Specification.StringSetStatementConverter.ToDto(BindOpen.Data.Specification.IStringSetStatement)">
             <summary>
             Converts to DTO.
             </summary>
             <param key="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.Specification.StringFilterStatementConverter.ToPoco(BindOpen.Data.Specification.StringFilterDto)">
+        <member name="M:BindOpen.Data.Specification.StringSetStatementConverter.ToPoco(BindOpen.Data.Specification.StringSetDto)">
             <summary>
             Converts to DTO.
             </summary>

@@ -3,7 +3,7 @@ using BindOpen.Data.Meta;
 using NUnit.Framework;
 using System.Linq;
 
-namespace BindOpen.Tests.Kernel.Data
+namespace BindOpen.Tests.Data
 {
     [TestFixture, Order(202)]
     public class BdoMetaSetTests_Scalar
@@ -21,17 +21,17 @@ namespace BindOpen.Tests.Kernel.Data
         {
             double[] items = _testData.arrayNumber;
 
-            var el = BdoMeta.NewScalar("number1", DataValueTypes.Number, items);
-            var itemList = el.GetDataList<double>();
+            var el1 = BdoMeta.NewScalar("number1", DataValueTypes.Number, items);
+            var itemList = el1.GetDataList<double>();
             Assert.That(
                 itemList?.Intersect(items).Any() ?? false
-                && el.DataValueType == DataValueTypes.Number, "Bad scalar element - Number");
+                && el1.DataValueType == DataValueTypes.Number, "Bad scalar element - Number");
 
-            el = BdoMeta.NewScalar<double>("number1", items);
-            itemList = el.GetDataList<double>();
+            var el2 = BdoMeta.NewScalar<double>("number1", items);
+            itemList = el2.GetDataList<double>();
             Assert.That(
                 itemList?.Intersect(items).Any() ?? false
-                && el.DataValueType == DataValueTypes.Number, "Bad scalar element - Number");
+                && el2.DataValueType == DataValueTypes.Number, "Bad scalar element - Number");
         }
 
         [Test, Order(2)]
@@ -80,13 +80,13 @@ namespace BindOpen.Tests.Kernel.Data
         {
             int[] items_integer = _testData.arrayInteger;
             var el = BdoMeta.NewScalar()
-                .WithDataList(items_integer);
+                .WithData(items_integer);
             var st = el.ToString();
             Assert.That(st != null, "Bad scalar element - ToString");
 
             double[] items_number = _testData.arrayNumber;
             el = BdoMeta.NewScalar()
-                .WithDataList(items_number);
+                .WithData(items_number);
             st = el.ToString();
             Assert.That(st != null, "Bad scalar element - ToString");
         }

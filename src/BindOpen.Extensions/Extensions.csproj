@@ -4,10 +4,10 @@
     <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>BindOpen.Extensions</AssemblyName>
     <PackageId>BindOpen.Extensions</PackageId>
-    <Product>BindOpen.Scoping</Product>
+    <Product>BindOpen.Scopes</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
-    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package provides core classes of the BindOpen.Scoping.</Description>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package provides core classes of the BindOpen.Scopes.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Extensions</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen</PackageProjectUrl>

@@ -1,9 +1,9 @@
 ﻿using BindOpen.Data.Meta;
-using BindOpen.Scripting;
+using BindOpen.Script;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 
-namespace BindOpen.Tests.Kernel.Data
+namespace BindOpen.Tests.Data
 {
     [TestFixture, Order(201)]
     public class BdoMetaDataExpressionTests

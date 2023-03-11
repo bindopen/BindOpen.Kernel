@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data.Helpers;
 using BindOpen.Logging;
-using BindOpen.Scoping.Scopes;
+using BindOpen.Scopes.Scopes;
 using System.Linq;
 
 namespace BindOpen.Data.Meta
@@ -9,7 +9,7 @@ namespace BindOpen.Data.Meta
     /// This class represents a scalar meta that is an meta whose items are scalars.
     /// </summary>
     public class TBdoMetaScalar<TItem> :
-        TBdoMetaData<TItem, IBdoScalarSpec>,
+        TBdoMetaData<TItem>,
         ITBdoMetaScalar<TItem>
     {
         // --------------------------------------------------
@@ -67,23 +67,9 @@ namespace BindOpen.Data.Meta
         /// <param key="item">The string item of this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         /// <returns>Returns True if the specified has been well added.</returns>
-        public ITBdoMetaScalar<TItem> WithData(TItem obj)
+        public ITBdoMetaScalar<TItem> WithData(object obj)
         {
             _data = obj.ToBdoData();
-
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the item of this instance.
-        /// </summary>
-        /// <param key="item">The string item of this instance.</param>
-        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
-        /// <returns>Returns True if the specified has been well added.</returns>
-        public ITBdoMetaScalar<TItem> WithDataList(params TItem[] objs)
-        {
-            _data = objs.ToBdoData().ToObjectList();
-
             return this;
         }
 

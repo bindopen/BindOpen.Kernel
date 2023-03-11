@@ -1,7 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
-using BindOpen.Tests.Kernel;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
@@ -11,8 +10,8 @@ namespace BindOpen.Tests.IO.Data
     [TestFixture, Order(201)]
     public class MetaObjectSetTests
     {
-        private readonly string _filePath_xml = Kernel.Tests.WorkingFolder + "MetaObjectSet.xml";
-        private readonly string _filePath_json = Kernel.Tests.WorkingFolder + "MetaObjectSet.json";
+        private readonly string _filePath_xml = Tests.WorkingFolder + "MetaObjectSet.xml";
+        private readonly string _filePath_json = Tests.WorkingFolder + "MetaObjectSet.json";
 
         private BdoMetaSet _metaSet;
 

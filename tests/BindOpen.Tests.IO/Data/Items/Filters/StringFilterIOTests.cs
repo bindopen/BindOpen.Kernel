@@ -8,12 +8,12 @@ using System.Linq;
 namespace BindOpen.Tests.IO.Data
 {
     [TestFixture, Order(210)]
-    public class StringFilterIOTests
+    public class StringSetIOTests
     {
-        private readonly string _filePath_xml = Kernel.Tests.WorkingFolder + "StringFilter.xml";
-        private readonly string _filePath_json = Kernel.Tests.WorkingFolder + "StringFilter.json";
+        private readonly string _filePath_xml = Tests.WorkingFolder + "StringSet.xml";
+        private readonly string _filePath_json = Tests.WorkingFolder + "StringSet.json";
         dynamic _valueSet;
-        private IBdoStringFilter _filter = null;
+        private IBdoStringSet _filter = null;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -27,8 +27,8 @@ namespace BindOpen.Tests.IO.Data
         }
 
         public static bool Equals(
-            IBdoStringFilter filter1,
-            IBdoStringFilter filter2)
+            IBdoStringSet filter1,
+            IBdoStringSet filter2)
         {
             var b = filter1 != null && filter2 != null
                 && filter1.IsDeepEqual(filter2);
@@ -38,7 +38,7 @@ namespace BindOpen.Tests.IO.Data
         [Test, Order(1)]
         public void CreateTest()
         {
-            _filter = BdoData.NewStringFilter(
+            _filter = BdoData.NewStringSet(
                 (_valueSet.AddedValues as string[]).ToList(),
                 (_valueSet.RemovedValues as string[]).ToList());
         }
@@ -65,7 +65,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveXmlTest();
             }
 
-            var filter = XmlHelper.LoadXml<StringFilterDto>(_filePath_xml).ToPoco();
+            var filter = XmlHelper.LoadXml<StringSetDto>(_filePath_xml).ToPoco();
             Assert.That(Equals(filter, _filter), "Error while loading");
         }
 
@@ -91,7 +91,7 @@ namespace BindOpen.Tests.IO.Data
                 SaveJsonTest();
             }
 
-            var filter = JsonHelper.LoadJson<StringFilterDto>(_filePath_json).ToPoco();
+            var filter = JsonHelper.LoadJson<StringSetDto>(_filePath_json).ToPoco();
             Assert.That(Equals(filter, _filter), "Error while loading");
         }
     }

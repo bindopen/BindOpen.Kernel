@@ -461,7 +461,7 @@
             <param key="item">The item to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElement.GetItem(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElement.GetItem(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Returns the item object of this instance.
             </summary>
@@ -470,7 +470,7 @@
             <param key="varSet">The variable element set to use.</param>
             <returns>Returns the items of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElement.GetItem``1(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElement.GetItem``1(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -905,7 +905,7 @@
             The definition filter of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoEntitySpec.WithDefinitionFilter(BindOpen.Data.Specification.IStringFilter)">
+        <member name="M:BindOpen.Data.Elements.BdoEntitySpec.WithDefinitionFilter(BindOpen.Data.Specification.IStringSet)">
             <summary>
             
             </summary>
@@ -1044,7 +1044,7 @@
             The class filter of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataObjectSpec.WithClassFilter(BindOpen.Data.Specification.IStringFilter)">
+        <member name="M:BindOpen.Data.Elements.BdoDataObjectSpec.WithClassFilter(BindOpen.Data.Specification.IStringSet)">
             <summary>
             
             </summary>
@@ -1056,7 +1056,7 @@
             The definition filter of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataObjectSpec.WithDefinitionFilter(BindOpen.Data.Specification.IStringFilter)">
+        <member name="M:BindOpen.Data.Elements.BdoDataObjectSpec.WithDefinitionFilter(BindOpen.Data.Specification.IStringSet)">
             <summary>
             
             </summary>
@@ -1137,7 +1137,7 @@
             The class filter of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataObjectSpec.WithClassFilter(BindOpen.Data.Specification.IStringFilter)">
+        <member name="M:BindOpen.Data.Elements.BdoDataObjectSpec.WithClassFilter(BindOpen.Data.Specification.IStringSet)">
             <summary>
             
             </summary>
@@ -1149,7 +1149,7 @@
             The definition filter of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataObjectSpec.WithDefinitionFilter(BindOpen.Data.Specification.IStringFilter)">
+        <member name="M:BindOpen.Data.Elements.BdoDataObjectSpec.WithDefinitionFilter(BindOpen.Data.Specification.IStringSet)">
             <summary>
             
             </summary>
@@ -1238,7 +1238,7 @@
             </summary>
             <returns>Returns all the element group IDs.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetItem(System.String,BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetItem(System.String,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Returns the item object of this instance.
             </summary>
@@ -1248,7 +1248,7 @@
             <param key="log">The log to populate.</param>
             <returns>Returns the items of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetItem``1(System.String,BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetItem``1(System.String,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Returns the item object of this instance.
             </summary>
@@ -1258,7 +1258,7 @@
             <param key="varSet">The variable element set to use.</param>
             <returns>Returns the items of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetItemList(System.String,BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetItemList(System.String,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -1268,7 +1268,7 @@
             <param key="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetItemList``1(System.String,BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetItemList``1(System.String,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -1530,7 +1530,7 @@
             <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
             <returns>Returns True if the specified has been well added.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.GetItemList(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.GetItemList(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -1539,7 +1539,7 @@
             <param key="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.GetFirstItem(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.GetFirstItem(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -2563,7 +2563,7 @@
             </summary>
             <returns>Returns the initial data source of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.BdoExpression.Get(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.BdoExpression.Get(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Gets the items from the source of this instance and update the target items.
             </summary>
@@ -2910,43 +2910,43 @@
             
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Specification.StringFilter">
+        <member name="T:BindOpen.Data.Specification.StringSet">
             <summary>
             This class specifies the data value filter.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Specification.StringFilter.AddedValues">
+        <member name="P:BindOpen.Data.Specification.StringSet.AddedValues">
             <summary>
             The added values of this instance.
             </summary>
             <remarks>If empty then all the values are added.</remarks>
         </member>
-        <member name="P:BindOpen.Data.Specification.StringFilter.RemovedValues">
+        <member name="P:BindOpen.Data.Specification.StringSet.RemovedValues">
             <summary>
             The removed values of this instance.
             </summary>
             <remarks>If empty then no value is removed.</remarks>
         </member>
-        <member name="M:BindOpen.Data.Specification.StringFilter.#ctor">
+        <member name="M:BindOpen.Data.Specification.StringSet.#ctor">
             <summary>
-            Instantiates a new instance of the StringFilter class.
+            Instantiates a new instance of the StringSet class.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.StringFilter.#ctor(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.Data.Specification.StringSet.#ctor(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
             <summary>
-            Instantiates a new instance of the StringFilter class specifying the action kind.
+            Instantiates a new instance of the StringSet class specifying the action kind.
             </summary>
             <param key="addedValues">The allowed values to consider.</param>
             <param key="removedValues">The forbidden values to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.Specification.StringFilter.GetValues(System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.Data.Specification.StringSet.GetValues(System.Collections.Generic.List{System.String})">
             <summary>
             Gets the values allowed by this instance.
             </summary>
             <param key="allValues">All the values to consider.</param>
             <returns>Returns all the values allowed by this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Specification.StringFilter.IsValueAllowed(System.String,System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.Data.Specification.StringSet.IsValueAllowed(System.String,System.Collections.Generic.List{System.String})">
             <summary>
             Indicates whether the value is allowed by this instance.
             </summary>
@@ -2954,31 +2954,31 @@
             <param key="allValues">All the values to consider.</param>
             <returns>Returns True if the specified is validated by this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Specification.StringFilter.Repair(System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.Data.Specification.StringSet.Repair(System.Collections.Generic.List{System.String})">
             <summary>
             Repairs this instance.
             </summary>
             <param key="allValues">All the values to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.Specification.StringFilter.Clone(System.String[])">
+        <member name="M:BindOpen.Data.Specification.StringSet.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="T:BindOpen.Data.Specification.StringFilterStatement">
+        <member name="T:BindOpen.Data.Specification.StringSetStatement">
             <summary>
             This interface specifies the value filter statement.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Specification.StringFilterStatement.Filters">
+        <member name="P:BindOpen.Data.Specification.StringSetStatement.Filters">
             <summary>
             Output detail of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.StringFilterStatement.#ctor">
+        <member name="M:BindOpen.Data.Specification.StringSetStatement.#ctor">
             <summary>
-            Instantiates a new instance of the StringFilterStatement class.
+            Instantiates a new instance of the StringSetStatement class.
             </summary>
         </member>
         <member name="T:BindOpen.Data.Stores.BdoDataStore">
@@ -3014,7 +3014,7 @@
             Clears this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Stores.BdoDataStore.LoadLazy(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Stores.BdoDataStore.LoadLazy(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Logging.IBdoLog)">
             <summary>
             Executes the lazy functions of all the depots of this instance.
             </summary>
@@ -3056,7 +3056,7 @@
             <param key="dataStore">The data store to consider.</param>
             <returns>Returns the datasource depot of the specified data store.</returns>
         </member>
-        <member name="M:BindOpen.Data.Stores.BdoDataStoreExtensions.GetDatasourceDepot(BindOpen.Scoping.Scopes.IBdoScope)">
+        <member name="M:BindOpen.Data.Stores.BdoDataStoreExtensions.GetDatasourceDepot(BindOpen.Scopes.Scopes.IBdoScope)">
             <summary>
             Gets the datasource depot of the specified scope.
             </summary>

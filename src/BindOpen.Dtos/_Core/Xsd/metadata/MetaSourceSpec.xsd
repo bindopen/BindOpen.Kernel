@@ -2,7 +2,7 @@
 <xs:schema xmlns="https://storage.bindopen.org/xsd/bindopen" elementFormDefault="qualified" targetNamespace="https://storage.bindopen.org/xsd/bindopen" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/DatasourceKind.xsd" />
   <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoElementSpec.xsd" />
-  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/StringFilter.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/StringSet.xsd" />
   <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/RequirementLevel.xsd" />
   <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/Arrays.xsd" />
 
@@ -11,7 +11,7 @@
       <xs:extension base="BdoElementSpec">
         <xs:sequence>
           <xs:element minOccurs="1" maxOccurs="1" name="kind" type="DatasourceKind" />
-          <xs:element minOccurs="0" maxOccurs="1" name="connector.filter" type="StringFilter" />
+          <xs:element minOccurs="0" maxOccurs="1" name="connector.filter" type="StringSet" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

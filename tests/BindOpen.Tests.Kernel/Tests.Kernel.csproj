@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>BindOpen.Tests</AssemblyName>
     <PackageId>BindOpen.Tests</PackageId>
-    <Product>BindOpen.Scoping</Product>
+    <Product>BindOpen.Scopes</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This package conducts unit tests on Core libraries.</Description>
@@ -39,8 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="BindOpen.Scoping.Extension" />
-    <None Remove="Data\_Core\BdoSourceTests.cs~RF215e2658.TMP" />
+    <None Remove="BindOpen.Scopes.Extension" />
   </ItemGroup>
 
   <ItemGroup>
@@ -55,7 +54,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\BindOpen.Scoping\Scoping.csproj" />
+    <ProjectReference Include="..\..\src\BindOpen.Scopes\Scopes.csproj" />
   </ItemGroup>
 
 </Project>

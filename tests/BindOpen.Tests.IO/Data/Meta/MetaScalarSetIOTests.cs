@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
-using BindOpen.Scripting;
+using BindOpen.Script;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
@@ -13,8 +13,8 @@ namespace BindOpen.Tests.IO.Data
     [TestFixture, Order(202)]
     public class MetaScalarListIOTests
     {
-        private readonly string _filePath_xml = Kernel.Tests.WorkingFolder + "MetaScalarList.xml";
-        private readonly string _filePath_json = Kernel.Tests.WorkingFolder + "MetaScalarList.json";
+        private readonly string _filePath_xml = Tests.WorkingFolder + "MetaScalarList.xml";
+        private readonly string _filePath_json = Tests.WorkingFolder + "MetaScalarList.json";
 
         private dynamic _testData;
 

@@ -1,7 +1,7 @@
 ﻿using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
 using BindOpen.Hosting.Settings;
-using BindOpen.Scoping.Scopes;
+using BindOpen.Scopes.Scopes;
 using System.Text.Json.Serialization;
 
 namespace BindOpen.Hosting.Hosts

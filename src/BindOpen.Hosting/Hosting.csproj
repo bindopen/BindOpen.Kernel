@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>BindOpen.Hosting</AssemblyName>
     <PackageId>BindOpen.Hosting</PackageId>
-    <Product>BindOpen.Scoping</Product>
+    <Product>BindOpen.Scopes</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This package handles runtime.</Description>
@@ -45,7 +45,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BindOpen.Hosting.Abstractions\Hosting.Abstractions.csproj" />
-    <ProjectReference Include="..\BindOpen.Scoping\Scoping.csproj" />
+    <ProjectReference Include="..\BindOpen.Scopes\Scopes.csproj" />
   </ItemGroup>
 
 </Project>

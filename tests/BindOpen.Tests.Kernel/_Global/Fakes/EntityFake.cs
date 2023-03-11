@@ -5,7 +5,7 @@ using BindOpen.Extensions.Functions;
 using System;
 using System.ComponentModel;
 
-namespace BindOpen.Tests.Kernel
+namespace BindOpen.Tests
 {
     /// <summary>
     /// This class represents a database data field.
@@ -38,13 +38,13 @@ namespace BindOpen.Tests.Kernel
         /// The boolean value of this instance.
         /// </summary>
         [BdoProperty(Name = "boolValue")]
-        public IBdoMetaData BoolValue { get; set; }
+        public ITBdoMetaData<bool?> BoolValue { get; set; }
 
         /// <summary>
         /// The string value of this instance.
         /// </summary>
         [BdoProperty(Name = "stringValue")]
-        public IBdoMetaData StringValue { get; set; }
+        public string StringValue { get; set; }
 
         /// <summary>
         /// The integer value of this instance.

@@ -2,7 +2,7 @@
 using Bogus;
 using NUnit.Framework;
 
-namespace BindOpen.Tests.Kernel
+namespace BindOpen.Tests
 {
     public static class BdoTaskFaker
     {

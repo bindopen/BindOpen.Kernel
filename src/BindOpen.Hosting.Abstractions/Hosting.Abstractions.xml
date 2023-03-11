@@ -138,7 +138,7 @@
             The extension load options.
             </summary>
         </member>
-        <member name="M:BindOpen.Hosting.Hosts.IBdoHostOptions.AddExtensions(System.Action{BindOpen.Scoping.References.IBdoAssemblyReferenceCollection},System.Action{BindOpen.Scoping.Scopes.IExtensionLoadOptions})">
+        <member name="M:BindOpen.Hosting.Hosts.IBdoHostOptions.AddExtensions(System.Action{BindOpen.Scopes.References.IBdoAssemblyReferenceCollection},System.Action{BindOpen.Scopes.Scopes.IExtensionLoadOptions})">
             <summary>
             Adds the extensions.
             </summary>

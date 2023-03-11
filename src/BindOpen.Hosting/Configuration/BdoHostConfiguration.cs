@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data.Meta;
 
-namespace BindOpen.Scoping.Configuration
+namespace BindOpen.Scopes.Configuration
 {
     /// <summary>
     /// This class represents a BindOpen host config.

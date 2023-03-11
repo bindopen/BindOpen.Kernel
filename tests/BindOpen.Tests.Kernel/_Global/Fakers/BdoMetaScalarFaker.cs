@@ -3,7 +3,7 @@ using Bogus;
 using NUnit.Framework;
 using System.Linq;
 
-namespace BindOpen.Tests.Kernel
+namespace BindOpen.Tests
 {
     public static class BdoMetaScalarFaker
     {

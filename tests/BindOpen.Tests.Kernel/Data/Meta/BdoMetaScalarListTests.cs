@@ -4,7 +4,7 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 
-namespace BindOpen.Tests.Kernel.Data
+namespace BindOpen.Tests.Data
 {
     [TestFixture, Order(202)]
     public class BdoMetaScalarListTests

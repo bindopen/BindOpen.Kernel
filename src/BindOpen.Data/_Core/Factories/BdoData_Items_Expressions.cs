@@ -1,4 +1,4 @@
-﻿using BindOpen.Scripting;
+﻿using BindOpen.Script;
 
 namespace BindOpen.Data
 {

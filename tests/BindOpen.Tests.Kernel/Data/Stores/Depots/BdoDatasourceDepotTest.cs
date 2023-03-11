@@ -4,7 +4,7 @@ using BindOpen.Data.Stores;
 using Bogus;
 using NUnit.Framework;
 
-namespace BindOpen.Tests.Kernel.Data
+namespace BindOpen.Tests.Data
 {
     [TestFixture, Order(101)]
     public class BdoDatasourceDepotTest

@@ -1,6 +1,6 @@
 ﻿using BindOpen.Extensions.Functions;
 
-namespace BindOpen.Tests.Kernel
+namespace BindOpen.Tests
 {
     /// <summary>
     /// This class represents a database data field.

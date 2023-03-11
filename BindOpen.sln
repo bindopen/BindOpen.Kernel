@@ -28,7 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IO", "src\BindOpen.IO\IO.cs
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.IO", "tests\BindOpen.Tests.IO\Tests.IO.csproj", "{24DF112D-1243-46B9-A132-08F30F07C726}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scoping", "src\BindOpen.Scoping\Scoping.csproj", "{3446B2A6-E004-4F2A-895E-B20688D4C101}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scopes", "src\BindOpen.Scopes\Scopes.csproj", "{3446B2A6-E004-4F2A-895E-B20688D4C101}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Kernel", "tests\BindOpen.Tests.Kernel\Tests.Kernel.csproj", "{6421D71A-5BE6-448A-A71B-6069665F34FF}"
 EndProject
@@ -44,7 +44,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hosting.Abstractions", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Hosting", "tests\BindOpen.Tests.Hosting\Tests.Hosting.csproj", "{D1371285-A648-4E95-8C2C-16198AF30014}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scripting", "src\BindOpen.Scripting\Scripting.csproj", "{2619D4F2-E40B-47A0-892D-625AE926630B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Script", "src\BindOpen.Script\Script.csproj", "{2619D4F2-E40B-47A0-892D-625AE926630B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

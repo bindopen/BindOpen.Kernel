@@ -1,10 +1,8 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Configuration;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
 using BindOpen.Extensions.Connectors;
-using BindOpen.Tests.Kernel;
-using BindOpen.Tests.Kernel.Extensions;
+using BindOpen.Tests.Extensions;
 using NUnit.Framework;
 using System.IO;
 

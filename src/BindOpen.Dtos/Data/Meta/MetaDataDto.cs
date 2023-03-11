@@ -1,5 +1,4 @@
-﻿using BindOpen.Data;
-using BindOpen.Scripting;
+﻿using BindOpen.Script;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;

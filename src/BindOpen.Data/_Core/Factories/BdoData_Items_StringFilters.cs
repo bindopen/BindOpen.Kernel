@@ -14,9 +14,9 @@ namespace BindOpen.Data
         /// <param key="items">The items to consider.</param>
         /// <typeparam name="Q">The data item set type to consider.</typeparam>
         /// <typeparam name="T">The identified data item to consider.</typeparam>
-        public static BdoStringFilter NewStringFilter()
+        public static BdoStringSet NewStringSet()
         {
-            return new BdoStringFilter();
+            return new BdoStringSet();
         }
 
         /// <summary>
@@ -24,11 +24,11 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="items">The items to consider.</param>
         /// <typeparam name="T">The class of the named data items.</typeparam>
-        public static BdoStringFilter NewStringFilter(
+        public static BdoStringSet NewStringSet(
             List<string> addedValues = null,
             List<string> removedValues = null)
         {
-            var filter = NewStringFilter()
+            var filter = NewStringSet()
                 .Adding(addedValues?.ToArray())
                 .Removing(removedValues?.ToArray());
             return filter;

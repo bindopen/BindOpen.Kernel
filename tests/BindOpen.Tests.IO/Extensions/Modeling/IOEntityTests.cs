@@ -1,10 +1,8 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Configuration;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
 using BindOpen.Extensions.Entities;
-using BindOpen.Tests.Kernel;
-using BindOpen.Tests.Kernel.Extensions;
+using BindOpen.Tests.Extensions;
 using NUnit.Framework;
 using System.IO;
 
@@ -15,7 +13,7 @@ namespace BindOpen.Tests.IO.Extensions
     {
         private EntityFake _entity = null;
 
-        private readonly string _filePath = Kernel.Tests.WorkingFolder + "Entity.xml";
+        private readonly string _filePath = Tests.WorkingFolder + "Entity.xml";
 
         private dynamic _testData;
 

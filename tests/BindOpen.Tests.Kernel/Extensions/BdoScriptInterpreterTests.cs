@@ -1,10 +1,10 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
-using BindOpen.Scripting;
+using BindOpen.Script;
 using NUnit.Framework;
 using System;
 
-namespace BindOpen.Tests.Kernel.Scripting
+namespace BindOpen.Tests.Script
 {
     [TestFixture, Order(401)]
     public class BdoScriptInterpreterTests

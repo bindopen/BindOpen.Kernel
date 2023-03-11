@@ -2,7 +2,7 @@
 using BindOpen.Extensions.Connectors;
 using NUnit.Framework;
 
-namespace BindOpen.Tests.Kernel.Extensions
+namespace BindOpen.Tests.Extensions
 {
     [TestFixture, Order(301)]
     public class BdoConnectorTests

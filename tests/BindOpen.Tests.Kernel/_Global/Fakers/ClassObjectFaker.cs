@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using System;
 
-namespace BindOpen.Tests.Kernel
+namespace BindOpen.Tests
 {
     public static class ClassObjectFaker
     {

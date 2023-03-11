@@ -3,7 +3,7 @@ using Bogus;
 using NUnit.Framework;
 using System.Dynamic;
 
-namespace BindOpen.Tests.Kernel
+namespace BindOpen.Tests
 {
     public static class BdoEntityFaker
     {

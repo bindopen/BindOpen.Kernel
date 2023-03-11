@@ -1,5 +1,5 @@
 ﻿using BindOpen.Logging;
-using BindOpen.Scoping.Scopes;
+using BindOpen.Scopes.Scopes;
 
 namespace BindOpen.Data.Meta
 {
@@ -7,13 +7,13 @@ namespace BindOpen.Data.Meta
     /// 
     /// </summary>
     public interface ITBdoMetaScalar<TItem> :
-        ITBdoMetaData<TItem, IBdoScalarSpec>
+        ITBdoMetaData<TItem>
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param key="objs"></param>
-        ITBdoMetaScalar<TItem> WithData(TItem obj);
+        ITBdoMetaScalar<TItem> WithData(object obj);
 
         /// <summary>
         /// 

@@ -1,8 +1,8 @@
 ﻿using BindOpen.Data;
-using BindOpen.Scoping;
-using BindOpen.Scoping.Scopes;
+using BindOpen.Scopes;
+using BindOpen.Scopes.Scopes;
 
-namespace BindOpen.Tests.Kernel
+namespace BindOpen.Tests
 {
     public static class ScopingTests
     {

@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data.Conditions;
 using BindOpen.Data.Meta;
-using BindOpen.Scripting;
+using BindOpen.Script;
 
 namespace BindOpen.Data
 {

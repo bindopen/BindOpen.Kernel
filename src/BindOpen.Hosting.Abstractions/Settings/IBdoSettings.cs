@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
-using BindOpen.Scoping.Scopes;
+using BindOpen.Scopes.Scopes;
 using System;
 using System.Runtime.CompilerServices;
 

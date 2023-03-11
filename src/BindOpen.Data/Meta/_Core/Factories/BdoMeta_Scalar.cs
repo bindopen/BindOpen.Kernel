@@ -11,7 +11,7 @@
         /// <param key="items">The items to consider.</param>
         public static BdoMetaScalar NewScalar(
             params object[] items)
-            => NewScalar<BdoMetaScalar>(
+            => NewScalar(
                 (string)null,
                 DataValueTypes.Any,
                 items);
@@ -24,7 +24,7 @@
         public static BdoMetaScalar NewScalar(
             DataValueTypes valueType,
             params object[] items)
-            => NewScalar<BdoMetaScalar>(
+            => NewScalar(
                 (string)null,
                 valueType,
                 items);
@@ -37,9 +37,8 @@
         public static BdoMetaScalar NewScalar(
             string name,
             params object[] items)
-            => NewScalar<BdoMetaScalar>(
+            => NewScalar<object, BdoMetaScalar>(
                 (string)name,
-                DataValueTypes.Any,
                 items);
 
         /// <summary>
@@ -52,10 +51,14 @@
             string name,
             DataValueTypes valueType,
             params object[] items)
-            => NewScalar<BdoMetaScalar>(
+        {
+            var meta = NewScalar<object, BdoMetaScalar>(
                 (string)name,
-                valueType,
                 items);
+            meta.WithDataValueType(valueType);
+
+            return meta;
+        }
 
         // T creators -------------------------
 
@@ -63,23 +66,9 @@
         /// Creates a new instance of the ScalarElement class.
         /// </summary>
         /// <param key="items">The items to consider.</param>
-        public static BdoMetaScalar NewScalar<T>(
+        public static TBdoMetaScalar<TItem> NewScalar<TItem>(
             params object[] items)
-            => NewScalar<T>(null, items);
-
-        /// <summary>
-        /// Creates a new instance of the ScalarElement class.
-        /// </summary>
-        /// <param key="name">The name to consider.</param>
-        /// <param key="items">The items to consider.</param>
-        public static BdoMetaScalar NewScalar<T>(
-            string name,
-            params object[] items)
-        {
-            var valueType = typeof(T).GetValueType();
-            var el = NewScalar<BdoMetaScalar>(name, valueType, items);
-            return el;
-        }
+            => NewScalar<TItem, TBdoMetaScalar<TItem>>(items);
 
         /// <summary>
         /// Creates a new instance of the ScalarElement class.
@@ -87,34 +76,56 @@
         /// <param key="name">The name to consider.</param>
         /// <param key="valueType">The value type to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static T NewScalar<T>(
+        public static TBdoMetaScalar<TItem> NewScalar<TItem>(
             string name,
-            DataValueTypes valueType,
             params object[] items)
-            where T : class, IBdoMetaScalar, new()
+            => NewScalar<TItem, TBdoMetaScalar<TItem>>(null, items);
+
+        // TItem, TMeta creators -------------------------
+
+        /// <summary>
+        /// Creates a new instance of the ScalarElement class.
+        /// </summary>
+        /// <param key="items">The items to consider.</param>
+        public static TMeta NewScalar<TItem, TMeta>(
+            params object[] items)
+            where TMeta : class, ITBdoMetaScalar<TItem>, new()
+            => NewScalar<TItem, TMeta>(null, items);
+
+        /// <summary>
+        /// Creates a new instance of the ScalarElement class.
+        /// </summary>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="valueType">The value type to consider.</param>
+        /// <param key="items">The items to consider.</param>
+        public static TMeta NewScalar<TItem, TMeta>(
+            string name,
+            params object[] items)
+            where TMeta : class, ITBdoMetaScalar<TItem>, new()
         {
-            if (valueType == DataValueTypes.Any)
+            DataValueTypes valueType = DataValueTypes.Any;
+
+            if (typeof(TItem) == typeof(object)
+                && items?.Length > 0)
             {
-                if (items == null)
-                {
-                    valueType = DataValueTypes.None;
-                }
-                else
-                {
-                    valueType = items.GetValueType();
-                }
+                valueType = items[0]?.GetType().GetValueType()
+                    ?? DataValueTypes.Any;
+            }
+            else
+            {
+                valueType = typeof(TItem).GetValueType();
             }
 
-            var el = new T();
-            el.WithName(name);
-            el.WithDataValueType(valueType);
+            var meta = new TMeta();
+            meta.WithName(name);
+            meta.WithDataValueType(valueType);
 
             if (items != null)
             {
-                el.WithData(items);
+                meta.WithData(items);
             }
 
-            return el;
+            return meta;
         }
     }
 }

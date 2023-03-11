@@ -1,7 +1,7 @@
 ﻿using BindOpen.Data.Helpers;
-using BindOpen.Scripting;
+using BindOpen.Script;
 
-namespace BindOpen.Tests.Kernel
+namespace BindOpen.Tests
 {
     public static class Tests
     {

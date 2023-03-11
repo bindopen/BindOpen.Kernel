@@ -145,5 +145,17 @@ namespace BindOpen.Data.Meta
 
             return null;
         }
+
+        /// <summary>
+        /// Creates a data meta with specified items.
+        /// </summary>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="items">The items to consider.</param>
+        public static ITBdoMetaData<T> New<T>(
+            string name,
+            object data = null)
+        {
+            return (ITBdoMetaData<T>)New(name, typeof(T), DataValueTypes.Any, data);
+        }
     }
 }

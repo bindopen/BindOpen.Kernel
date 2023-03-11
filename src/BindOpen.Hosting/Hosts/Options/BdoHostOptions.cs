@@ -5,11 +5,12 @@ using BindOpen.Data.Stores;
 using BindOpen.Hosting.Exceptions;
 using BindOpen.Hosting.Services;
 using BindOpen.Logging;
-using BindOpen.Scoping.Scopes;
+using BindOpen.Scopes.Scopes;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BindOpen.Scopes;
 
 namespace BindOpen.Hosting.Hosts
 {

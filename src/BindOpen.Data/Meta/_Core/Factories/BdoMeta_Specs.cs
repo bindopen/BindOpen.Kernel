@@ -100,11 +100,11 @@ namespace BindOpen.Data.Meta
         {
             if (spec != null)
             {
-                if (spec.GetType().IsAssignableFrom(typeof(IBdoObjectSpec)))
-                {
-                    var objectSpec = spec as IBdoObjectSpec;
-                    objectSpec.ClassFilter.AddedValues.Add(spec.GetType().ToString());
-                }
+                //if (spec.GetType().IsAssignableFrom(typeof(IBdoObjectSpec)))
+                //{
+                //    var objectSpec = spec as IBdoObjectSpec;
+                //    objectSpec.ClassFilter.AddedValues.Add(spec.GetType().ToString());
+                //}
 
                 if (type.IsArray)
                 {

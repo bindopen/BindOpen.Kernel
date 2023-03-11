@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
+using System.IO;
 
-namespace BindOpen.Tests.Kernel
+namespace BindOpen.Tests
 {
     /// <summary>
     /// This class set the global setup.
@@ -17,6 +18,13 @@ namespace BindOpen.Tests.Kernel
             // Setup singleton variables for the first time
 
             var _ = ScopingTests.Scope;
+
+            // we delete the working folder
+
+            if (Directory.Exists(Tests.WorkingFolder))
+            {
+                Directory.Delete(Tests.WorkingFolder, true);
+            }
         }
     }
 }

@@ -435,7 +435,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Entities.IBdoConfiguration.WithSchema(BindOpen.Scoping.Definition.IDataSchema)">
+        <member name="M:BindOpen.Extensions.Entities.IBdoConfiguration.WithSchema(BindOpen.Scopes.Definition.IDataSchema)">
             <summary>
             
             </summary>
@@ -516,7 +516,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoRoutine.Execute(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,System.Object,BindOpen.Data.Elements.IBdoDataElement,BindOpen.Logging.IBdoLog,System.Object[])">
+        <member name="M:BindOpen.Extensions.Processing.IBdoRoutine.Execute(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,System.Object,BindOpen.Data.Elements.IBdoDataElement,BindOpen.Logging.IBdoLog,System.Object[])">
             <summary>
             
             </summary>
@@ -599,7 +599,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoTask.GetEntryObjectWithName(System.String,BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog,BindOpen.Scoping.Definition.TaskEntryKind[])">
+        <member name="M:BindOpen.Extensions.Processing.IBdoTask.GetEntryObjectWithName(System.String,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog,BindOpen.Scopes.Definition.TaskEntryKind[])">
             <summary>
             
             </summary>
@@ -610,7 +610,7 @@
             <param key="taskEntryKinds"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoTask.IsCompatibleWithBindOpen.Data.Elements.IBdoMetaSpecSet,BindOpen.Scoping.Definition.TaskEntryKind)">
+        <member name="M:BindOpen.Extensions.Processing.IBdoTask.IsCompatibleWithBindOpen.Data.Elements.IBdoMetaSpecSet,BindOpen.Scopes.Definition.TaskEntryKind)">
             <summary>
             
             </summary>
@@ -631,7 +631,7 @@
             </summary>
             <param key="relativePath"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoTask.Execute(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.RuntimeModes,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Extensions.Processing.IBdoTask.Execute(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.RuntimeModes,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -679,14 +679,14 @@
             </summary>
             <param key="items"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoConfiguration.GetEntries(BindOpen.Scoping.Definition.TaskEntryKind[])">
+        <member name="M:BindOpen.Extensions.Processing.IBdoConfiguration.GetEntries(BindOpen.Scopes.Definition.TaskEntryKind[])">
             <summary>
             
             </summary>
             <param key="taskEntryKinds"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.IBdoConfiguration.GetEntryWithName(System.String,BindOpen.Scoping.Definition.TaskEntryKind[])">
+        <member name="M:BindOpen.Extensions.Processing.IBdoConfiguration.GetEntryWithName(System.String,BindOpen.Scopes.Definition.TaskEntryKind[])">
             <summary>
             
             </summary>
@@ -717,7 +717,7 @@
             </summary>
             <param key="relativePath"></param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.ITBdoTask`1.Execute(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.RuntimeModes,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Extensions.Processing.ITBdoTask`1.Execute(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.RuntimeModes,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -831,7 +831,7 @@
             The scope of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.IBdoScriptwordDomain.WithScope(BindOpen.Scoping.Scopes.IBdoScope)">
+        <member name="M:BindOpen.Extensions.Scripting.IBdoScriptwordDomain.WithScope(BindOpen.Scopes.Scopes.IBdoScope)">
             <summary>
             Sets the scope of this instance.
             </summary>
@@ -2212,7 +2212,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoEntitySpec.WithDefinitionFilter(BindOpen.Data.Specification.IStringFilter)">
+        <member name="M:BindOpen.Data.Elements.IBdoEntitySpec.WithDefinitionFilter(BindOpen.Data.Specification.IStringSet)">
             <summary>
             
             </summary>
@@ -2234,7 +2234,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoDataObjectSpec.WithClassFilter(BindOpen.Data.Specification.IStringFilter)">
+        <member name="M:BindOpen.Data.Elements.IBdoDataObjectSpec.WithClassFilter(BindOpen.Data.Specification.IStringSet)">
             <summary>
             
             </summary>
@@ -2246,7 +2246,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoDataObjectSpec.WithDefinitionFilter(BindOpen.Data.Specification.IStringFilter)">
+        <member name="M:BindOpen.Data.Elements.IBdoDataObjectSpec.WithDefinitionFilter(BindOpen.Data.Specification.IStringSet)">
             <summary>
             
             </summary>
@@ -2353,7 +2353,7 @@
             </summary>
             <param key="objs"></param>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoDataElement.GetItem(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.IBdoDataElement.GetItem(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -2362,7 +2362,7 @@
             <param key="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoDataElement.GetItem``1(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.IBdoDataElement.GetItem``1(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -2377,7 +2377,7 @@
             This class represents an extension of the DataValueType enumeration.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoDataElementExtensions.GetItemList(BindOpen.Data.Elements.IBdoDataElement,BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.IBdoDataElementExtensions.GetItemList(BindOpen.Data.Elements.IBdoDataElement,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -2387,7 +2387,7 @@
             <param key="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoDataElementExtensions.GetItemList``1(BindOpen.Data.Elements.IBdoDataElement,BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.IBdoDataElementExtensions.GetItemList``1(BindOpen.Data.Elements.IBdoDataElement,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -2398,7 +2398,7 @@
             <param key="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoDataElementExtensions.GetFirstItem(BindOpen.Data.Elements.IBdoDataElement,BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.IBdoDataElementExtensions.GetFirstItem(BindOpen.Data.Elements.IBdoDataElement,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -2408,7 +2408,7 @@
             <param key="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoDataElementExtensions.GetFirstItem``1(BindOpen.Data.Elements.IBdoDataElement,BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.IBdoDataElementExtensions.GetFirstItem``1(BindOpen.Data.Elements.IBdoDataElement,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -2624,7 +2624,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.ITBdoDataElement`3.GetItemList(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.ITBdoDataElement`3.GetItemList(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -2633,7 +2633,7 @@
             <param key="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.ITBdoDataElement`3.GetFirstItem(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.ITBdoDataElement`3.GetFirstItem(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -2677,7 +2677,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoDataObjectSpec.WithClassFilter(BindOpen.Data.Specification.IStringFilter)">
+        <member name="M:BindOpen.Data.Elements.IBdoDataObjectSpec.WithClassFilter(BindOpen.Data.Specification.IStringSet)">
             <summary>
             
             </summary>
@@ -2689,7 +2689,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoDataObjectSpec.WithDefinitionFilter(BindOpen.Data.Specification.IStringFilter)">
+        <member name="M:BindOpen.Data.Elements.IBdoDataObjectSpec.WithDefinitionFilter(BindOpen.Data.Specification.IStringSet)">
             <summary>
             
             </summary>
@@ -2725,7 +2725,7 @@
             <param key="specId"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoElementSet.GetItem(System.String,BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.IBdoElementSet.GetItem(System.String,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -2735,7 +2735,7 @@
             <param key="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoElementSet.GetItem``1(System.String,BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.IBdoElementSet.GetItem``1(System.String,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -2746,7 +2746,7 @@
             <param key="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoElementSet.GetItemList(System.String,BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.IBdoElementSet.GetItemList(System.String,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -2756,7 +2756,7 @@
             <param key="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoElementSet.GetItemList``1(System.String,BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.IBdoElementSet.GetItemList``1(System.String,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -2809,7 +2809,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.IBdoDataSourceSpec.WithDefinitionFilter(BindOpen.Data.Specification.IStringFilter)">
+        <member name="M:BindOpen.Data.Elements.IBdoDataSourceSpec.WithDefinitionFilter(BindOpen.Data.Specification.IStringSet)">
             <summary>
             
             </summary>
@@ -2979,7 +2979,7 @@
             <param key="attributeTypes"></param>
             <param key="attribute">The attribute to return.</param>
         </member>
-        <member name="M:BindOpen.Data.ObjectHelper.UpdateFromElementSet(System.Object,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.ObjectHelper.UpdateFromElementSet(System.Object,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Sets information of the specified property.
             </summary>
@@ -2989,7 +2989,7 @@
             <param key="varSet">The variable element set to use.</param>
             <param key="log">The log to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.ObjectHelper.UpdateFromElementSet``1(System.Object,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.ObjectHelper.UpdateFromElementSet``1(System.Object,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Sets information of the specified property.
             </summary>
@@ -3831,7 +3831,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.IBdoExpression.Get(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.IBdoExpression.Get(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -4018,29 +4018,29 @@
             Property attribute.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Specification.IStringFilter">
+        <member name="T:BindOpen.Data.Specification.IStringSet">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Specification.IStringFilter.AddedValues">
+        <member name="P:BindOpen.Data.Specification.IStringSet.AddedValues">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Specification.IStringFilter.RemovedValues">
+        <member name="P:BindOpen.Data.Specification.IStringSet.RemovedValues">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Specification.IStringFilter.GetValues(System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.Data.Specification.IStringSet.GetValues(System.Collections.Generic.List{System.String})">
             <summary>
             
             </summary>
             <param key="allValues"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Specification.IStringFilter.IsValueAllowed(System.String,System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.Data.Specification.IStringSet.IsValueAllowed(System.String,System.Collections.Generic.List{System.String})">
             <summary>
             
             </summary>
@@ -4048,18 +4048,18 @@
             <param key="allValues"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Specification.IStringFilter.Repair(System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.Data.Specification.IStringSet.Repair(System.Collections.Generic.List{System.String})">
             <summary>
             
             </summary>
             <param key="allValues"></param>
         </member>
-        <member name="T:BindOpen.Data.Specification.IStringFilterStatement">
+        <member name="T:BindOpen.Data.Specification.IStringSetStatement">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Specification.IStringFilterStatement.Filters">
+        <member name="P:BindOpen.Data.Specification.IStringSetStatement.Filters">
             <summary>
             
             </summary>
@@ -4280,7 +4280,7 @@
             Clears this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Stores.IBdoDataStore.LoadLazy(BindOpen.Scoping.Scopes.IBdoScope,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Stores.IBdoDataStore.LoadLazy(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Logging.IBdoLog)">
             <summary>
             Executes the lazy functions of all the depots of this instance.
             </summary>
@@ -5449,90 +5449,90 @@
             
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Application.IAppDomainPool">
+        <member name="T:BindOpen.Scopes.Application.IAppDomainPool">
             <summary>
             This interface defines an assembly pool.
             </summary>
         </member>
-        <member name="M:BindOpen.Scoping.Application.IAppDomainPool.GetAppDomain(System.String)">
+        <member name="M:BindOpen.Scopes.Application.IAppDomainPool.GetAppDomain(System.String)">
             <summary>
             Gets the specified application domain.
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.IBdoEntityDictionary">
+        <member name="T:BindOpen.Scopes.Definition.IBdoEntityDictionary">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.IBdoEntityDictionary">
+        <member name="T:BindOpen.Scopes.Definition.IBdoEntityDictionary">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.IBdoHandlerDictionary">
+        <member name="T:BindOpen.Scopes.Definition.IBdoHandlerDictionary">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.IBdoExtensionDictionary">
+        <member name="T:BindOpen.Scopes.Definition.IBdoExtensionDictionary">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.ITBdoExtensionDictionary`1">
+        <member name="T:BindOpen.Scopes.Definition.ITBdoExtensionDictionary`1">
             <summary>
             
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.ITBdoExtensionDictionary`1.Definitions">
+        <member name="P:BindOpen.Scopes.Definition.ITBdoExtensionDictionary`1.Definitions">
             <summary>
             The definitions.
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.ITBdoExtensionDictionary`1.Groups">
+        <member name="P:BindOpen.Scopes.Definition.ITBdoExtensionDictionary`1.Groups">
             <summary>
             The groups.
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.ITBdoExtensionDictionary`1.LibraryId">
+        <member name="P:BindOpen.Scopes.Definition.ITBdoExtensionDictionary`1.LibraryId">
             <summary>
             ID of library.
             </summary>
         </member>
-        <member name="M:BindOpen.Scoping.Definition.ITBdoExtensionDictionary`1.WithLibraryId(System.String)">
+        <member name="M:BindOpen.Scopes.Definition.ITBdoExtensionDictionary`1.WithLibraryId(System.String)">
             <summary>
             
             </summary>
             <param key="libraryId"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.ITBdoExtensionDictionary`1.LibraryName">
+        <member name="P:BindOpen.Scopes.Definition.ITBdoExtensionDictionary`1.LibraryName">
             <summary>
             Name of library.
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.IBdoFunctionDictionary">
+        <member name="T:BindOpen.Scopes.Definition.IBdoFunctionDictionary">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.IBdoRoutineDictionary">
+        <member name="T:BindOpen.Scopes.Definition.IBdoRoutineDictionary">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.IBdoFunctionDictionary">
+        <member name="T:BindOpen.Scopes.Definition.IBdoFunctionDictionary">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoFunctionDictionary.DefinitionClass">
+        <member name="P:BindOpen.Scopes.Definition.IBdoFunctionDictionary.DefinitionClass">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Scoping.Definition.IBdoFunctionDictionary.GetDefinition(System.String,System.String,BindOpen.Extensions.Scripting.IBdoFunctionDefinition)">
+        <member name="M:BindOpen.Scopes.Definition.IBdoFunctionDictionary.GetDefinition(System.String,System.String,BindOpen.Extensions.Scripting.IBdoFunctionDefinition)">
             <summary>
             
             </summary>
@@ -5541,339 +5541,339 @@
             <param key="parent"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.IBdoTaskDictionary">
+        <member name="T:BindOpen.Scopes.Definition.IBdoTaskDictionary">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.IBdoPackageDefinition">
+        <member name="T:BindOpen.Scopes.Definition.IBdoPackageDefinition">
             <summary>
             This interface defines the extension definition.
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoPackageDefinition.AssemblyName">
+        <member name="P:BindOpen.Scopes.Definition.IBdoPackageDefinition.AssemblyName">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoPackageDefinition.FileName">
+        <member name="P:BindOpen.Scopes.Definition.IBdoPackageDefinition.FileName">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Scoping.Definition.IBdoPackageDefinition.GetRootNamespace">
+        <member name="M:BindOpen.Scopes.Definition.IBdoPackageDefinition.GetRootNamespace">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoPackageDefinition.GroupName">
+        <member name="P:BindOpen.Scopes.Definition.IBdoPackageDefinition.GroupName">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Scoping.Definition.IBdoPackageDefinition.Initialize">
+        <member name="M:BindOpen.Scopes.Definition.IBdoPackageDefinition.Initialize">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoPackageDefinition.ItemIndexFullNameDictionary">
+        <member name="P:BindOpen.Scopes.Definition.IBdoPackageDefinition.ItemIndexFullNameDictionary">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoPackageDefinition.RootNamespace">
+        <member name="P:BindOpen.Scopes.Definition.IBdoPackageDefinition.RootNamespace">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoPackageDefinition.UniqueName">
+        <member name="P:BindOpen.Scopes.Definition.IBdoPackageDefinition.UniqueName">
             <summary>
             The unique ID of this instance.
             </summary> 
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoPackageDefinition.UsingAssemblyFileNames">
+        <member name="P:BindOpen.Scopes.Definition.IBdoPackageDefinition.UsingAssemblyFileNames">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.BdoExtensionKind">
+        <member name="T:BindOpen.Scopes.Definition.BdoExtensionKind">
             <summary>
             This enumeration represents the possible kinds of library items.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionKind.Any">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionKind.Any">
             <summary>
             Any.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionKind.None">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionKind.None">
             <summary>
             None.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionKind.Task">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionKind.Task">
             <summary>
             Task.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionKind.Entity">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionKind.Entity">
             <summary>
             Entity.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionKind.Connector">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionKind.Connector">
             <summary>
             Connector.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionKind.Entity">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionKind.Entity">
             <summary>
             Entity.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionKind.Format">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionKind.Format">
             <summary>
             Format.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionKind.Handler">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionKind.Handler">
             <summary>
             Handler.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionKind.Function">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionKind.Function">
             <summary>
             Function.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionKind.Routine">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionKind.Routine">
             <summary>
             RoutineConfiguration.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionKind.Scriptword">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionKind.Scriptword">
             <summary>
             Script word.
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.BdoExtensionViewerKind">
+        <member name="T:BindOpen.Scopes.Definition.BdoExtensionViewerKind">
             <summary>
             This enumeration represents the possible kinds of library item viewers.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionViewerKind.Any">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionViewerKind.Any">
             <summary>
             Any.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionViewerKind.None">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionViewerKind.None">
             <summary>
             None.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionViewerKind.Connector">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionViewerKind.Connector">
             <summary>
             Connector.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionViewerKind.Function">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionViewerKind.Function">
             <summary>
             Function.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionViewerKind.Scriptword">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionViewerKind.Scriptword">
             <summary>
             Script word.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionViewerKind.Task">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionViewerKind.Task">
             <summary>
             Task.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionViewerKind.DataQuery">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionViewerKind.DataQuery">
             <summary>
             Data query.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionViewerKind.DataClass">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionViewerKind.DataClass">
             <summary>
             Data class.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoExtensionViewerKind.FormatConfiguration">
+        <member name="F:BindOpen.Scopes.Definition.BdoExtensionViewerKind.FormatConfiguration">
             <summary>
             Data format.
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.IBdoEntityDefinition">
+        <member name="T:BindOpen.Scopes.Definition.IBdoEntityDefinition">
             <summary>
             This interface defines the entity definition.
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoEntityDefinition.RuntimeType">
+        <member name="P:BindOpen.Scopes.Definition.IBdoEntityDefinition.RuntimeType">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoEntityDefinition.DatasourceKind">
+        <member name="P:BindOpen.Scopes.Definition.IBdoEntityDefinition.DatasourceKind">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoEntityDefinition.ItemClass">
+        <member name="P:BindOpen.Scopes.Definition.IBdoEntityDefinition.ItemClass">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoEntityDefinition.DetailSpec">
+        <member name="P:BindOpen.Scopes.Definition.IBdoEntityDefinition.DetailSpec">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.IBdoConnectorDefinition">
+        <member name="T:BindOpen.Scopes.Definition.IBdoConnectorDefinition">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoConnectorDefinition.RuntimeType">
+        <member name="P:BindOpen.Scopes.Definition.IBdoConnectorDefinition.RuntimeType">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoConnectorDefinition.DatasourceKind">
+        <member name="P:BindOpen.Scopes.Definition.IBdoConnectorDefinition.DatasourceKind">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoConnectorDefinition.DatasourceDetailSpec">
+        <member name="P:BindOpen.Scopes.Definition.IBdoConnectorDefinition.DatasourceDetailSpec">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoConnectorDefinition.ItemClass">
+        <member name="P:BindOpen.Scopes.Definition.IBdoConnectorDefinition.ItemClass">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.BdoEntityKind">
+        <member name="T:BindOpen.Scopes.Definition.BdoEntityKind">
             <summary>
             This enumeration lists all the possible kinds of carriers.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoEntityKind.None">
+        <member name="F:BindOpen.Scopes.Definition.BdoEntityKind.None">
             <summary>
             None.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoEntityKind.Any">
+        <member name="F:BindOpen.Scopes.Definition.BdoEntityKind.Any">
             <summary>
             Any.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoEntityKind.Entity">
+        <member name="F:BindOpen.Scopes.Definition.BdoEntityKind.Entity">
             <summary>
             Data entity.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoEntityKind.Zone">
+        <member name="F:BindOpen.Scopes.Definition.BdoEntityKind.Zone">
             <summary>
             Data zone.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.BdoEntityKind.SimpleItem">
+        <member name="F:BindOpen.Scopes.Definition.BdoEntityKind.SimpleItem">
             <summary>
             Simple item.
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.IBdoEntityDefinition">
+        <member name="T:BindOpen.Scopes.Definition.IBdoEntityDefinition">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoEntityDefinition.RuntimeType">
+        <member name="P:BindOpen.Scopes.Definition.IBdoEntityDefinition.RuntimeType">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoEntityDefinition.FormatDefinitions">
+        <member name="P:BindOpen.Scopes.Definition.IBdoEntityDefinition.FormatDefinitions">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoEntityDefinition.ItemClass">
+        <member name="P:BindOpen.Scopes.Definition.IBdoEntityDefinition.ItemClass">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoEntityDefinition.Kind">
+        <member name="P:BindOpen.Scopes.Definition.IBdoEntityDefinition.Kind">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoEntityDefinition.PossibleMetaSchemas">
+        <member name="P:BindOpen.Scopes.Definition.IBdoEntityDefinition.PossibleMetaSchemas">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoEntityDefinition.ViewerClass">
+        <member name="P:BindOpen.Scopes.Definition.IBdoEntityDefinition.ViewerClass">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoEntityDefinition.DetailSpec">
+        <member name="P:BindOpen.Scopes.Definition.IBdoEntityDefinition.DetailSpec">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Scoping.Definition.IBdoEntityDefinition.GetFormatWithId(System.String)">
+        <member name="M:BindOpen.Scopes.Definition.IBdoEntityDefinition.GetFormatWithId(System.String)">
             <summary>
             
             </summary>
             <param key="id"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Scoping.Definition.IBdoEntityDefinition.GetFormatWithName(System.String)">
+        <member name="M:BindOpen.Scopes.Definition.IBdoEntityDefinition.GetFormatWithName(System.String)">
             <summary>
             
             </summary>
             <param key="name"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Scoping.Definition.IBdoEntityDefinition.GetFormatWithUniqueName(System.String)">
+        <member name="M:BindOpen.Scopes.Definition.IBdoEntityDefinition.GetFormatWithUniqueName(System.String)">
             <summary>
             
             </summary>
             <param key="uniqueName"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.IBdoFormatDefinition">
+        <member name="T:BindOpen.Scopes.Definition.IBdoFormatDefinition">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoFormatDefinition.RuntimeType">
+        <member name="P:BindOpen.Scopes.Definition.IBdoFormatDefinition.RuntimeType">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoFormatDefinition.DatasourceKind">
+        <member name="P:BindOpen.Scopes.Definition.IBdoFormatDefinition.DatasourceKind">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoFormatDefinition.ItemClass">
+        <member name="P:BindOpen.Scopes.Definition.IBdoFormatDefinition.ItemClass">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoFormatDefinition.ViewerClass">
+        <member name="P:BindOpen.Scopes.Definition.IBdoFormatDefinition.ViewerClass">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.BdoHandlerGetFunction">
+        <member name="T:BindOpen.Scopes.Definition.BdoHandlerGetFunction">
             <summary>
             This delegate represents a handler GET function.
             </summary>
@@ -5884,7 +5884,7 @@
             <param key="alog">The log to consider.</param>
             <returns>Returns the target objects.</returns>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.BdoHandlerPostFunction">
+        <member name="T:BindOpen.Scopes.Definition.BdoHandlerPostFunction">
             <summary>
             This delegate represents a handler POST function.
             </summary>
@@ -5895,147 +5895,147 @@
             <param key="alog">The log to consider.</param>
             <returns>Returns the source object.</returns>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.IBdoHandlerDefinition">
+        <member name="T:BindOpen.Scopes.Definition.IBdoHandlerDefinition">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoHandlerDefinition.RuntimeFunctionGet">
+        <member name="P:BindOpen.Scopes.Definition.IBdoHandlerDefinition.RuntimeFunctionGet">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoHandlerDefinition.RuntimeFunctionPost">
+        <member name="P:BindOpen.Scopes.Definition.IBdoHandlerDefinition.RuntimeFunctionPost">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoHandlerDefinition.CallingClass">
+        <member name="P:BindOpen.Scopes.Definition.IBdoHandlerDefinition.CallingClass">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoHandlerDefinition.GetFunctionName">
+        <member name="P:BindOpen.Scopes.Definition.IBdoHandlerDefinition.GetFunctionName">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoHandlerDefinition.ParameterSpecification">
+        <member name="P:BindOpen.Scopes.Definition.IBdoHandlerDefinition.ParameterSpecification">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoHandlerDefinition.PostFunctionName">
+        <member name="P:BindOpen.Scopes.Definition.IBdoHandlerDefinition.PostFunctionName">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoHandlerDefinition.SourceSpecification">
+        <member name="P:BindOpen.Scopes.Definition.IBdoHandlerDefinition.SourceSpecification">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoHandlerDefinition.TargetSpecification">
+        <member name="P:BindOpen.Scopes.Definition.IBdoHandlerDefinition.TargetSpecification">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.IBdoExtensionDefinition">
+        <member name="T:BindOpen.Scopes.Definition.IBdoExtensionDefinition">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoExtensionDefinition.PackageDefinition">
+        <member name="P:BindOpen.Scopes.Definition.IBdoExtensionDefinition.PackageDefinition">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoExtensionDefinition.UniqueName">
+        <member name="P:BindOpen.Scopes.Definition.IBdoExtensionDefinition.UniqueName">
             <summary>
             The unique ID of this instance.
             </summary> 
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoExtensionDefinition.ImageUri">
+        <member name="P:BindOpen.Scopes.Definition.IBdoExtensionDefinition.ImageUri">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoExtensionDefinition.IsEditable">
+        <member name="P:BindOpen.Scopes.Definition.IBdoExtensionDefinition.IsEditable">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoExtensionDefinition.IsIndexed">
+        <member name="P:BindOpen.Scopes.Definition.IBdoExtensionDefinition.IsIndexed">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoExtensionDefinition.LibraryId">
+        <member name="P:BindOpen.Scopes.Definition.IBdoExtensionDefinition.LibraryId">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.IBdoFunctionDefinition">
+        <member name="T:BindOpen.Scopes.Definition.IBdoFunctionDefinition">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoFunctionDefinition.RuntimeType">
+        <member name="P:BindOpen.Scopes.Definition.IBdoFunctionDefinition.RuntimeType">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoFunctionDefinition.ItemClass">
+        <member name="P:BindOpen.Scopes.Definition.IBdoFunctionDefinition.ItemClass">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoFunctionDefinition.UnitCode">
+        <member name="P:BindOpen.Scopes.Definition.IBdoFunctionDefinition.UnitCode">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.IBdoRoutineDefinition">
+        <member name="T:BindOpen.Scopes.Definition.IBdoRoutineDefinition">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoRoutineDefinition.RuntimeType">
+        <member name="P:BindOpen.Scopes.Definition.IBdoRoutineDefinition.RuntimeType">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoRoutineDefinition.ItemClass">
+        <member name="P:BindOpen.Scopes.Definition.IBdoRoutineDefinition.ItemClass">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoRoutineDefinition.OutputResultCodes">
+        <member name="P:BindOpen.Scopes.Definition.IBdoRoutineDefinition.OutputResultCodes">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoRoutineDefinition.ParameterStatement">
+        <member name="P:BindOpen.Scopes.Definition.IBdoRoutineDefinition.ParameterStatement">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.IDataSchema">
+        <member name="T:BindOpen.Scopes.Definition.IDataSchema">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IDataSchema.MetaSchemaReference">
+        <member name="P:BindOpen.Scopes.Definition.IDataSchema.MetaSchemaReference">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IDataSchema.RootZone">
+        <member name="P:BindOpen.Scopes.Definition.IDataSchema.RootZone">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Scoping.Definition.IDataSchema.GetElementWithId(System.String,BindOpen.Data.Elements.Schema.IBdoDataSchema)">
+        <member name="M:BindOpen.Scopes.Definition.IDataSchema.GetElementWithId(System.String,BindOpen.Data.Elements.Schema.IBdoDataSchema)">
             <summary>
             
             </summary>
@@ -6043,54 +6043,54 @@
             <param key="parentMetobject1"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.IBdoTaskDefinition">
+        <member name="T:BindOpen.Scopes.Definition.IBdoTaskDefinition">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoTaskDefinition.RuntimeType">
+        <member name="P:BindOpen.Scopes.Definition.IBdoTaskDefinition.RuntimeType">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoTaskDefinition.ItemClass">
+        <member name="P:BindOpen.Scopes.Definition.IBdoTaskDefinition.ItemClass">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoTaskDefinition.GroupName">
+        <member name="P:BindOpen.Scopes.Definition.IBdoTaskDefinition.GroupName">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoTaskDefinition.InputSpecification">
+        <member name="P:BindOpen.Scopes.Definition.IBdoTaskDefinition.InputSpecification">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoTaskDefinition.OutputSpecification">
+        <member name="P:BindOpen.Scopes.Definition.IBdoTaskDefinition.OutputSpecification">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoTaskDefinition.MaximumIndex">
+        <member name="P:BindOpen.Scopes.Definition.IBdoTaskDefinition.MaximumIndex">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Definition.IBdoTaskDefinition.IsExecutable">
+        <member name="P:BindOpen.Scopes.Definition.IBdoTaskDefinition.IsExecutable">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Scoping.Definition.IBdoTaskDefinition.GetEntries(BindOpen.Scoping.Definition.TaskEntryKind[])">
+        <member name="M:BindOpen.Scopes.Definition.IBdoTaskDefinition.GetEntries(BindOpen.Scopes.Definition.TaskEntryKind[])">
             <summary>
             
             </summary>
             <param key="taskEntryKinds"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Scoping.Definition.IBdoTaskDefinition.GetEntryDefaultItemWithName(System.String,BindOpen.Logging.IBdoLog,BindOpen.Scoping.Definition.TaskEntryKind[])">
+        <member name="M:BindOpen.Scopes.Definition.IBdoTaskDefinition.GetEntryDefaultItemWithName(System.String,BindOpen.Logging.IBdoLog,BindOpen.Scopes.Definition.TaskEntryKind[])">
             <summary>
             
             </summary>
@@ -6099,7 +6099,7 @@
             <param key="taskEntryKinds"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Scoping.Definition.IBdoTaskDefinition.GetEntryWithName(System.String,BindOpen.Scoping.Definition.TaskEntryKind[])">
+        <member name="M:BindOpen.Scopes.Definition.IBdoTaskDefinition.GetEntryWithName(System.String,BindOpen.Scopes.Definition.TaskEntryKind[])">
             <summary>
             
             </summary>
@@ -6107,131 +6107,131 @@
             <param key="taskEntryKinds"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Scoping.Definition.IBdoTaskDefinition.Repair(BindOpen.Scoping.Definition.IBdoTaskDefinition)">
+        <member name="M:BindOpen.Scopes.Definition.IBdoTaskDefinition.Repair(BindOpen.Scopes.Definition.IBdoTaskDefinition)">
             <summary>
             
             </summary>
             <param key="taskDefinition"></param>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.TaskEntryKind">
+        <member name="T:BindOpen.Scopes.Definition.TaskEntryKind">
             <summary>
             This enumeration represents the possible task entry kinds.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.TaskEntryKind.Any">
+        <member name="F:BindOpen.Scopes.Definition.TaskEntryKind.Any">
             <summary>
             Any.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.TaskEntryKind.Input">
+        <member name="F:BindOpen.Scopes.Definition.TaskEntryKind.Input">
             <summary>
             Input.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.TaskEntryKind.Output">
+        <member name="F:BindOpen.Scopes.Definition.TaskEntryKind.Output">
             <summary>
             Output.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.TaskEntryKind.ScalarOutput">
+        <member name="F:BindOpen.Scopes.Definition.TaskEntryKind.ScalarOutput">
             <summary>
             Scalar output.
             </summary>
         </member>
-        <member name="F:BindOpen.Scoping.Definition.TaskEntryKind.NonScalarOutput">
+        <member name="F:BindOpen.Scopes.Definition.TaskEntryKind.NonScalarOutput">
             <summary>
             Non-scalar output.
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Definition.TaskEntryKindExtension">
+        <member name="T:BindOpen.Scopes.Definition.TaskEntryKindExtension">
             <summary>
             This class represents an extension of the TaskEntryKind enumeration.
             </summary>
         </member>
-        <member name="M:BindOpen.Scoping.Definition.TaskEntryKindExtension.GetTitle(BindOpen.Scoping.Definition.TaskEntryKind)">
+        <member name="M:BindOpen.Scopes.Definition.TaskEntryKindExtension.GetTitle(BindOpen.Scopes.Definition.TaskEntryKind)">
             <summary>
             Returns the title of the specified entry kind.
             </summary>
             <param key="taskEntryKind">The entry kind to consider.</param>
             <returns>The result object.</returns>
         </member>
-        <member name="T:BindOpen.Scoping.References.IBdoAssemblyReference">
+        <member name="T:BindOpen.Scopes.References.IBdoAssemblyReference">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.References.IBdoAssemblyReference.Name">
+        <member name="P:BindOpen.Scopes.References.IBdoAssemblyReference.Name">
             <summary>
             The library name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.References.IBdoAssemblyReference.Version">
+        <member name="P:BindOpen.Scopes.References.IBdoAssemblyReference.Version">
             <summary>
             The library version of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.References.IBdoAssemblyReference.FileName">
+        <member name="P:BindOpen.Scopes.References.IBdoAssemblyReference.FileName">
             <summary>
             The file name of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Scoping.References.IBdoAssemblyReference.WithFileName(System.String)">
+        <member name="M:BindOpen.Scopes.References.IBdoAssemblyReference.WithFileName(System.String)">
             <summary>
             Sets the file name of this instance.
             </summary>
             <param key="fileName"></param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="T:BindOpen.Scoping.References.IBdoAssemblyReferenceCollection">
+        <member name="T:BindOpen.Scopes.References.IBdoAssemblyReferenceCollection">
             <summary>
             This class represents a data reference.
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Scopes.IBdoScope">
+        <member name="T:BindOpen.Scopes.Scopes.IBdoScope">
             <summary>
             This interface defines an application scope.
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Scopes.IBdoScope.AppDomain">
+        <member name="P:BindOpen.Scopes.Scopes.IBdoScope.AppDomain">
             <summary>
             The application domain.
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Scopes.IBdoScope.ExtensionStore">
+        <member name="P:BindOpen.Scopes.Scopes.IBdoScope.ExtensionStore">
             <summary>
             The extension item definition store.
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Scopes.IBdoScope.DataStore">
+        <member name="P:BindOpen.Scopes.Scopes.IBdoScope.DataStore">
             <summary>
             The data store of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Scopes.IBdoScope.Context">
+        <member name="P:BindOpen.Scopes.Scopes.IBdoScope.Context">
             <summary>
             The data context.
             </summary>
         </member>
-        <member name="M:BindOpen.Scoping.Scopes.IBdoScope.NewScriptInterpreter">
+        <member name="M:BindOpen.Scopes.Scopes.IBdoScope.NewScriptInterpreter">
             <summary>
             Creates a new script interpreter.
             </summary>
             <returns>Returns the new script interpreter.</returns>
         </member>
-        <member name="M:BindOpen.Scoping.Scopes.IBdoScope.LoadExtensions(BindOpen.Scoping.References.IBdoAssemblyReference[],BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Scopes.Scopes.IBdoScope.LoadExtensions(BindOpen.Scopes.References.IBdoAssemblyReference[],BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the specified extensions.
             </summary>
             <param key="references">The extension references to consider.</param>
             <param key="log"></param>
         </member>
-        <member name="M:BindOpen.Scoping.Scopes.IBdoScope.LoadExtensions(BindOpen.Scoping.References.IBdoAssemblyReference[])">
+        <member name="M:BindOpen.Scopes.Scopes.IBdoScope.LoadExtensions(BindOpen.Scopes.References.IBdoAssemblyReference[])">
             <summary>
             Loads the specified extensions.
             </summary>
             <param key="references">The extension references to consider.</param>
         </member>
-        <member name="M:BindOpen.Scoping.Scopes.IBdoScope.LoadExtensions(System.Func{BindOpen.Scoping.Scopes.IExtensionLoadOptions,System.Boolean},BindOpen.Scoping.References.IBdoAssemblyReference[],BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Scopes.Scopes.IBdoScope.LoadExtensions(System.Func{BindOpen.Scopes.Scopes.IExtensionLoadOptions,System.Boolean},BindOpen.Scopes.References.IBdoAssemblyReference[],BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the specified extensions.
             </summary>
@@ -6239,107 +6239,107 @@
             <param key="references">The extension references to consider.</param>
             <param key="log"></param>
         </member>
-        <member name="M:BindOpen.Scoping.Scopes.IBdoScope.LoadExtensions(System.Func{BindOpen.Scoping.Scopes.IExtensionLoadOptions,System.Boolean},BindOpen.Scoping.References.IBdoAssemblyReference[])">
+        <member name="M:BindOpen.Scopes.Scopes.IBdoScope.LoadExtensions(System.Func{BindOpen.Scopes.Scopes.IExtensionLoadOptions,System.Boolean},BindOpen.Scopes.References.IBdoAssemblyReference[])">
             <summary>
             Loads the specified extensions.
             </summary>
             <param key="loadOptionsAction">The load options action to consider.</param>
             <param key="references">The extension references to consider.</param>
         </member>
-        <member name="M:BindOpen.Scoping.Scopes.IBdoScope.Clear">
+        <member name="M:BindOpen.Scopes.Scopes.IBdoScope.Clear">
             <summary>
             Clears this instance.
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Scopes.IBdoScoped">
+        <member name="T:BindOpen.Scopes.Scopes.IBdoScoped">
             <summary>
             This interfaces represents a scoped service.
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Scopes.IBdoScoped.Scope">
+        <member name="P:BindOpen.Scopes.Scopes.IBdoScoped.Scope">
             <summary>
             The scope of the service.
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Scopes.IExtensionLoadOptions">
+        <member name="T:BindOpen.Scopes.Scopes.IExtensionLoadOptions">
             <summary>
             This interface defines the extension loading options.
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Scopes.IExtensionLoadOptions.LibraryFolderPath">
+        <member name="P:BindOpen.Scopes.Scopes.IExtensionLoadOptions.LibraryFolderPath">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Scopes.IExtensionLoadOptions.RemoteServerUri">
+        <member name="P:BindOpen.Scopes.Scopes.IExtensionLoadOptions.RemoteServerUri">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.Scopes.IExtensionLoadOptions.SourceKinds">
+        <member name="P:BindOpen.Scopes.Scopes.IExtensionLoadOptions.SourceKinds">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Scoping.Scopes.IExtensionLoadOptions.WithLibraryFolderPath(System.String)">
+        <member name="M:BindOpen.Scopes.Scopes.IExtensionLoadOptions.WithLibraryFolderPath(System.String)">
             <summary>
             Sets the path of the library folder of this instance.
             </summary>
             <param key="folderPath"></param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Scoping.Scopes.IExtensionLoadOptions.WithRemoteServerUri(System.String)">
+        <member name="M:BindOpen.Scopes.Scopes.IExtensionLoadOptions.WithRemoteServerUri(System.String)">
             <summary>
             Sets the URI of the remote server of this instance.
             </summary>
             <param key="uri">The URI of the remote server.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Scoping.Scopes.IExtensionLoadOptions.WithSourceKinds(BindOpen.Data.DatasourceKind[])">
+        <member name="M:BindOpen.Scopes.Scopes.IExtensionLoadOptions.WithSourceKinds(BindOpen.Data.DatasourceKind[])">
             <summary>
             Sets the source kinds of this instance.
             </summary>
             <param key="sourceKinds">The source kinds to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="T:BindOpen.Scoping.Scopes.ITBdoScoped`1">
+        <member name="T:BindOpen.Scopes.Scopes.ITBdoScoped`1">
             <summary>
             This interfaces represents a scoped service.
             </summary>
         </member>
-        <member name="M:BindOpen.Scoping.Scopes.ITBdoScoped`1.WithScope(BindOpen.Scoping.Scopes.IBdoScope)">
+        <member name="M:BindOpen.Scopes.Scopes.ITBdoScoped`1.WithScope(BindOpen.Scopes.Scopes.IBdoScope)">
             <summary>
             Sets the specified scope.
             </summary>
             <param key="scope">The scope to consider.</param>
         </member>
-        <member name="T:BindOpen.Scoping.Stores.IBdoExtensionStore">
+        <member name="T:BindOpen.Scopes.Stores.IBdoExtensionStore">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Scoping.Stores.IBdoExtensionStore.Add``1(``0)">
+        <member name="M:BindOpen.Scopes.Stores.IBdoExtensionStore.Add``1(``0)">
             <summary>
             Adds the specified definition.
             </summary>
             <typeparam name="T">The BindOpen extension item definition class to consider.</typeparam>
             <param key="definition">The definition to add.</param>
         </member>
-        <member name="M:BindOpen.Scoping.Stores.IBdoExtensionStore.GetItemDefinitions``1">
+        <member name="M:BindOpen.Scopes.Stores.IBdoExtensionStore.GetItemDefinitions``1">
             <summary>
             
             </summary>
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Scoping.Stores.IBdoExtensionStore.GetItemDefinitionEnumerables``1">
+        <member name="M:BindOpen.Scopes.Stores.IBdoExtensionStore.GetItemDefinitionEnumerables``1">
             <summary>
             
             </summary>
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Scoping.Stores.IBdoExtensionStore.GetItemDefinitionWithUniqueName``1(System.String)">
+        <member name="M:BindOpen.Scopes.Stores.IBdoExtensionStore.GetItemDefinitionWithUniqueName``1(System.String)">
             <summary>
             
             </summary>
@@ -6347,7 +6347,7 @@
             <param key="uniqueName"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Scoping.Stores.IBdoExtensionStore.GetFunctionDefinitionWithUniqueName(System.String,BindOpen.Extensions.Scripting.IBdoFunctionDefinition)">
+        <member name="M:BindOpen.Scopes.Stores.IBdoExtensionStore.GetFunctionDefinitionWithUniqueName(System.String,BindOpen.Extensions.Scripting.IBdoFunctionDefinition)">
             <summary>
             
             </summary>
@@ -6355,34 +6355,34 @@
             <param key="parentDefinition"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Scoping.Stores.IBdoExtensionStore.Clear">
+        <member name="M:BindOpen.Scopes.Stores.IBdoExtensionStore.Clear">
             <summary>
             Clears this instance.
             </summary>
         </member>
-        <member name="T:BindOpen.Scoping.Stores.IBdoExtensionStoreLoader">
+        <member name="T:BindOpen.Scopes.Stores.IBdoExtensionStoreLoader">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Scoping.Stores.IBdoExtensionStoreLoader.LoadExtensionsInStore(BindOpen.Scoping.References.IBdoAssemblyReference[],BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Scopes.Stores.IBdoExtensionStoreLoader.LoadExtensionsInStore(BindOpen.Scopes.References.IBdoAssemblyReference[],BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the specified extensions into the specified scope.
             </summary>
             <param key="references">The library references to consider.</param>
             <param key="log">The log to populate.</param>
         </member>
-        <member name="T:BindOpen.Scoping.IBdoExtensionGroup">
+        <member name="T:BindOpen.Scopes.IBdoExtensionGroup">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Scoping.IBdoExtensionGroup.SubGroups">
+        <member name="P:BindOpen.Scopes.IBdoExtensionGroup.SubGroups">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Scoping.IBdoExtensionGroup.GetGroupWithName(System.String)">
+        <member name="M:BindOpen.Scopes.IBdoExtensionGroup.GetGroupWithName(System.String)">
             <summary>
             
             </summary>

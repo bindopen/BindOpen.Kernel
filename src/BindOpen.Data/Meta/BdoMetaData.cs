@@ -1,7 +1,7 @@
 ﻿using BindOpen.Data.Helpers;
 using BindOpen.Logging;
-using BindOpen.Scoping.Scopes;
-using BindOpen.Scripting;
+using BindOpen.Scopes.Scopes;
+using BindOpen.Script;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -153,7 +153,7 @@ namespace BindOpen.Data.Meta
         /// <param key="scope">The scope to consider.</param>
         /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        protected object DataObject(
+        protected virtual object DataObject(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
@@ -228,7 +228,7 @@ namespace BindOpen.Data.Meta
         /// <param key="scope">The scope to consider.</param>
         /// <param key="varSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public virtual List<object> GetDataList(
+        public List<object> GetDataList(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)

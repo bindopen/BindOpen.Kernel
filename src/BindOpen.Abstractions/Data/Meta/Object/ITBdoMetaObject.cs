@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Logging;
-using BindOpen.Scoping.Scopes;
+using BindOpen.Scopes.Scopes;
 using System;
 
 namespace BindOpen.Data.Meta
@@ -9,7 +9,7 @@ namespace BindOpen.Data.Meta
     /// 
     /// </summary>
     public interface ITBdoMetaObject<TItem> :
-        ITBdoMetaData<TItem, IBdoObjectSpec>,
+        ITBdoMetaData<TItem>,
         IBdoMetaSet
     {
         new void Clear();
@@ -18,7 +18,7 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         /// <param key="objs"></param>
-        ITBdoMetaObject<TItem> WithData(TItem obj);
+        ITBdoMetaObject<TItem> WithData(object obj);
 
         /// <summary>
         /// 
