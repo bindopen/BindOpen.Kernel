@@ -1,13 +1,8 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Configuration;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
-using BindOpen.Dtos.Json;
-using BindOpen.Dtos.Xml;
-using BindOpen.Runtime.Scopes;
+using BindOpen.Extensions.Entities;
 using BindOpen.Tests.Extensions;
-using BindOpen.Tests.Runtime;
-using Bogus;
 using NUnit.Framework;
 using System.IO;
 
@@ -25,14 +20,7 @@ namespace BindOpen.Tests.IO.Extensions
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            var f = new Faker();
-            _testData = new
-            {
-                boolValue = f.Random.Bool(),
-                intValue = f.Random.Int(800),
-                enumValue = ActionPriorities.High,
-                stringValue = f.Lorem.Word()
-            };
+            _testData = BdoEntityFaker.Fake();
         }
 
         private void Test(EntityFake entity)
@@ -71,7 +59,7 @@ namespace BindOpen.Tests.IO.Extensions
             }
 
             var config = XmlHelper.LoadXml<ConfigurationDto>(_filePath).ToPoco();
-            var entity = RuntimeTests.Scope.CreateEntity<EntityFake>(config);
+            var entity = ScopingTests.Scope.CreateEntity<EntityFake>(config);
 
             Assert.That(entity != null, "Entity loading failed");
 
@@ -102,7 +90,7 @@ namespace BindOpen.Tests.IO.Extensions
             }
 
             var config = JsonHelper.LoadJson<ConfigurationDto>(_filePath).ToPoco();
-            var entity = RuntimeTests.Scope.CreateEntity<EntityFake>(config);
+            var entity = ScopingTests.Scope.CreateEntity<EntityFake>(config);
 
             Assert.That(entity != null, "Entity loading failed");
 

@@ -1,8 +1,5 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Data.Conditions;
-using BindOpen.Data.Configuration;
+﻿using BindOpen.Data.Conditions;
 using BindOpen.Data.Helpers;
-using BindOpen.Data.Items;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,7 +8,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    public abstract class BdoSpec : BdoItem, IBdoSpec
+    public class BdoSpec : BdoItem, IBdoSpec
     {
         // --------------------------------------------------
         // CONSTANTS
@@ -52,7 +49,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Initializes a new instance of the BdoSpec class.
         /// </summary>
-        protected BdoSpec() : base()
+        public BdoSpec() : base()
         {
         }
 
@@ -118,6 +115,11 @@ namespace BindOpen.Data.Meta
         /// Level of accessibility of this instance.
         /// </summary>
         public AccessibilityLevels AccessibilityLevel { get; set; } = AccessibilityLevels.Public;
+
+        /// <summary>
+        /// Indicates whether this instance is repeated in a set.
+        /// </summary>
+        public bool IsRepeated { get; set; }
 
         #endregion
 

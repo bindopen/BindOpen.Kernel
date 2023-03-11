@@ -1,7 +1,4 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Items;
-using BindOpen.Dtos.Json;
-using BindOpen.Dtos.Xml;
 using Bogus;
 using NUnit.Framework;
 using System.IO;

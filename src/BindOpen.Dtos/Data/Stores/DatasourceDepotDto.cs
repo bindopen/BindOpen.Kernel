@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Items;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -8,8 +7,8 @@ namespace BindOpen.Data.Stores
     /// <summary>
     /// This class represents a datasource depot.
     /// </summary>
-    [XmlType("DatasourceDepot", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "datasource.depot", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("DatasourceDepot", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "datasource.depot", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class BdoDatasourceDepotDto : IDto, IIdentified
     {
         // ------------------------------------------

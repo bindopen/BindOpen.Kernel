@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://storage.bindopen.org/xsd/bindopen" elementFormDefault="qualified" targetNamespace="https://storage.bindopen.org/xsd/bindopen" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/DataItem.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/RoutineDefinition.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoExtensionGroup.xsd" />
+
+  <xs:element name="routines.dico" type="BdoRoutineDictionary" />
+
+  <xs:complexType name="BdoRoutineDictionary">
+    <xs:complexContent mixed="false">
+      <xs:extension base="TBdoExtensionDictionary_RoutineConfiguration" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TBdoExtensionDictionary_RoutineConfiguration">
+    <xs:complexContent mixed="false">
+      <xs:extension base="StoredDataItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="definitions" type="ArrayOfRoutineDefinition" />
+          <xs:element minOccurs="0" maxOccurs="1" name="groups" type="ArrayOfBdoExtensionGroup" />
+        </xs:sequence>
+        <xs:attribute name="libraryId" type="xs:string" />
+        <xs:attribute name="library" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayOfRoutineDefinition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add.definition" nillable="true" type="BdoRoutineDefinition" />
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

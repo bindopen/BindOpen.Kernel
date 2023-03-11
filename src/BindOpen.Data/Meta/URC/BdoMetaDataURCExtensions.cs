@@ -1,8 +1,6 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Data.Meta;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
 
-namespace BindOpen.Data
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// 

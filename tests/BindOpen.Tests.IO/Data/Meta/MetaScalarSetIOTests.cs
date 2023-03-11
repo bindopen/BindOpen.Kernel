@@ -1,9 +1,6 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
-using BindOpen.Dtos.Json;
-using BindOpen.Dtos.Xml;
-using BindOpen.Extensions.Scripting;
+using BindOpen.Script;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;

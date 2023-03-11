@@ -1,7 +1,7 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Configuration;
-using BindOpen.Data.Items;
+using BindOpen.Data.Meta;
 using BindOpen.Data.Stores;
+using BindOpen.Extensions.Connectors;
 using NUnit.Framework;
 using System.Linq;
 
@@ -60,7 +60,8 @@ namespace BindOpen.Hosting.Tests
             var datasourceA = datasourceDepot?["db.testA"];
             Assert.That(datasourceA?.Name == "db.testA", "Bad data source loading");
 
-            Assert.That(datasourceDepot?.Get("db.testA").FirstOrDefault().GetConnectionString() != null,
+            Assert.That(datasourceDepot?.Get("db.testA").FirstOrDefault()
+                .GetConnectionString() != null,
                 "Bad data source loading");
 
             Assert.That(datasourceDepot?.Get("db.testA").Get("database.mssqlserver$client").GetConnectionString() != null,

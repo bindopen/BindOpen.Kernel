@@ -1,7 +1,6 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Extensions.Scripting;
+﻿using BindOpen.Script;
 
-namespace BindOpen.Data
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a meta data.
@@ -41,6 +40,22 @@ namespace BindOpen.Data
                 meta.DataExpression = BdoData.NewExp(word);
             }
 
+            return meta;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="modes"></param>
+        public static T WithSpecs<T>(
+            this T meta,
+            params IBdoSpec[] specs)
+            where T : IBdoMetaData
+        {
+            if (meta != null)
+            {
+                meta.Specs = BdoMeta.NewSpecSet(specs);
+            }
             return meta;
         }
     }

@@ -1,5 +1,5 @@
 ﻿using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
+using BindOpen.Scopes.Scopes;
 
 namespace BindOpen.Data.Meta
 {

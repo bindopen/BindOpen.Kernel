@@ -1,4 +1,4 @@
-﻿using BindOpen.Runtime.Scopes;
+﻿using BindOpen.Scopes.Scopes;
 using BindOpen.Hosting.Hosts;
 using System;
 

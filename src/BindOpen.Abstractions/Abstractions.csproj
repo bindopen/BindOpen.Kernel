@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>BindOpen.Abstractions</AssemblyName>
     <PackageId>BindOpen.Abstractions</PackageId>
-    <Product>BindOpen.Runtime</Product>
+    <Product>BindOpen.Scopes</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
     <Description>The core abstractions of BindOpen.</Description>
@@ -25,7 +25,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Data\Items\Expression\beccl5ay.u0n~" />
+    <None Remove="Data\_Core\Items\Expression\beccl5ay.u0n~" />
   </ItemGroup>
 
   <ItemGroup>

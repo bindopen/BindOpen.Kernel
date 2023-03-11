@@ -1,5 +1,5 @@
 ﻿using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
+using BindOpen.Scopes.Scopes;
 using System;
 
 namespace BindOpen.Data.Stores

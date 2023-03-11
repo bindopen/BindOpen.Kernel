@@ -1,8 +1,7 @@
 ﻿using BindOpen.Data.Helpers;
-using BindOpen.Data.Items;
-using BindOpen.Extensions.Scripting;
 using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
+using BindOpen.Scopes.Scopes;
+using BindOpen.Script;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -134,7 +133,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Specification of this instance.
         /// </summary>
-        public List<IBdoSpec> Specs { get; set; }
+        public ITBdoSet<IBdoSpec> Specs { get; set; }
 
         // Specification ---------------------
 
@@ -144,16 +143,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns the new specifcation.</returns>
         public IBdoSpec NewSpec()
         {
-            if (this is IBdoMetaObject)
-            {
-                return BdoMeta.NewSpec<BdoObjectSpec>();
-            }
-            else if (this is IBdoMetaScalar)
-            {
-                return BdoMeta.NewSpec<BdoScalarSpec>();
-            }
-
-            return null;
+            return BdoMeta.NewSpec<BdoSpec>();
         }
 
         /// <summary>
@@ -163,7 +153,7 @@ namespace BindOpen.Data.Meta
         /// <param key="scope">The scope to consider.</param>
         /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        protected object DataObject(
+        protected virtual object DataObject(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
@@ -193,29 +183,6 @@ namespace BindOpen.Data.Meta
             }
 
             return obj;
-        }
-
-        // Specification
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="name"></param>
-        /// <returns></returns>
-        public IBdoSpec GetSpec(string name = null)
-        {
-            return Specs?.FirstOrDefault(
-                q => (name == null && q.Name == null) || q.Name.BdoKeyEquals(name));
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IBdoMetaData WithSpecs(params IBdoSpec[] specs)
-        {
-            Specs = specs?.ToList();
-
-            return this;
         }
 
         // Data
@@ -254,6 +221,46 @@ namespace BindOpen.Data.Meta
             IBdoLog log = null)
             => DataObject(scope, varSet, log).As<T>();
 
+        /// <summary>
+        /// Returns the item TItem of this instance.
+        /// </summary>
+        /// <param key="log">The log to populate.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable meta set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public List<object> GetDataList(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var obj = DataObject(scope, varSet, log);
+
+            var list = obj?.ToObjectList();
+            return list;
+        }
+
+        /// <summary>
+        /// Returns the item TItem of this instance.
+        /// </summary>
+        /// <param key="log">The log to populate.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable meta set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public virtual List<Q> GetDataList<Q>(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var list = GetDataList(scope, varSet, log);
+            return list?.Select(q =>
+            {
+                if (q is Q q_Q)
+                    return q_Q;
+
+                return default;
+            }).ToList();
+        }
+
         // Accessors --------------------------
 
         /// <summary>
@@ -287,8 +294,7 @@ namespace BindOpen.Data.Meta
             var el = base.Clone<BdoMetaData>(areas);
 
             el.DataExpression = DataExpression?.Clone<BdoExpression>();
-            el.Specs = Specs?.Select(q => q?.Clone<BdoSpec>())
-                .Cast<IBdoSpec>().ToList();
+            el.Specs = Specs?.Clone<TBdoSet<IBdoSpec>>();
 
             return el;
         }

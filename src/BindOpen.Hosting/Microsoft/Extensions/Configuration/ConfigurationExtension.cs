@@ -1,7 +1,8 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
 using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
+using BindOpen.Scopes.Scopes;
+using BindOpen.Script;
 using System;
 
 namespace Microsoft.Extensions.Configuration

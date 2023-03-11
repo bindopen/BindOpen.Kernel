@@ -1,5 +1,5 @@
 ﻿using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
+using BindOpen.Scopes.Scopes;
 using System.Collections.Generic;
 
 namespace BindOpen.Data.Meta
@@ -8,7 +8,7 @@ namespace BindOpen.Data.Meta
     /// This class represents a data element set.
     /// </summary>
     public partial class TBdoMetaObject<TItem> :
-        TBdoMetaData<TItem, IBdoObjectSpec>,
+        TBdoMetaData<TItem>,
         ITBdoMetaObject<TItem>
     {
         /// <summary>

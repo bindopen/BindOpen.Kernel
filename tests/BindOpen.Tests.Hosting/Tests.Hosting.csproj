@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>BindOpen.Tests.Hosting</AssemblyName>
     <PackageId>BindOpen.Tests.Hosting</PackageId>
-    <Product>BindOpen.Runtime</Product>
+    <Product>BindOpen.Scopes</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This package conducts unit tests on Runtime libraries.</Description>

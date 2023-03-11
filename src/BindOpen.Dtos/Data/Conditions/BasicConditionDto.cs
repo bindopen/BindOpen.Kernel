@@ -7,8 +7,8 @@ namespace BindOpen.Data.Conditions
     /// <summary>
     /// This class represents a basic condition DTO.
     /// </summary>
-    [XmlType("BasicCondition", Namespace = "https://xsd.bindopen.org")]
-    [XmlRoot(ElementName = "basic.condition", Namespace = "https://xsd.bindopen.org", IsNullable = false)]
+    [XmlType("BasicCondition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "basic.condition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class BasicConditionDto : ConditionDto
     {
         // ------------------------------------------

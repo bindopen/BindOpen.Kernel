@@ -1,10 +1,6 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Configuration;
-using BindOpen.Data.Items;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Stores;
-using BindOpen.Dtos.Json;
-using BindOpen.Dtos.Xml;
 using Bogus;
 using NUnit.Framework;
 using System.IO;

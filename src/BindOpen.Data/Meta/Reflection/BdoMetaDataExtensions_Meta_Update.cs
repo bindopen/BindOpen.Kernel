@@ -1,7 +1,4 @@
-﻿using BindOpen.Data.Meta;
-using BindOpen.Data.Meta;
-using BindOpen.Data.Helpers;
-using BindOpen.Data.Items;
+﻿using BindOpen.Data.Helpers;
 using System.Collections.Generic;
 using System.Reflection;
 

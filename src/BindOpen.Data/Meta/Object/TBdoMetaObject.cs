@@ -1,8 +1,7 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Helpers;
-using BindOpen.Data.Items;
 using BindOpen.Logging;
-using BindOpen.Runtime.Scopes;
+using BindOpen.Scopes.Scopes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +13,7 @@ namespace BindOpen.Data.Meta
     /// This class represents a catalog el that is an el whose els are carriers.
     /// </summary>
     public partial class TBdoMetaObject<TItem> :
-        TBdoMetaData<TItem, IBdoObjectSpec>,
+        TBdoMetaData<TItem>,
         ITBdoMetaObject<TItem>
     {
         // --------------------------------------------------
@@ -134,7 +133,7 @@ namespace BindOpen.Data.Meta
         /// <param key="item">The string item of this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
         /// <returns>Returns True if the specified has been well added.</returns>
-        public ITBdoMetaObject<TItem> WithData(TItem obj)
+        public ITBdoMetaObject<TItem> WithData(object obj)
         {
             _data = obj.ToBdoData();
 

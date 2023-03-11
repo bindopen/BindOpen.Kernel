@@ -3,14 +3,15 @@ Todo list for BindOpen
 
 ## Next tasks
 
+- [ ] Scope loading
+- [ ] Determine compatibility of data with meta data
 - [ ] Handle IO for MetaData classes
 - [ ] Handle IO for Extensions classes
 - [ ] Configuration bundle
 - [ ] Fix bug with repeated parameter script function
 - [ ] ToString() data elements
-- [ ] BdoElement/BdoElementSpec : Update/Repair/Check methods
-- [x] XSD location URI updated to docs.bindopen.org/xsd
-- [ ] Scope loadingDynamic extension loading
+- [ ] Meta/Spec : Update/Repair/Check methods
+- [ ] XSD location URI updated to docs.bindopen.org/xsd
 - [ ] Handle application option tree
 
 ## Stuff to check out later on
