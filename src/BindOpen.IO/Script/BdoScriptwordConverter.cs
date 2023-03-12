@@ -24,7 +24,7 @@ namespace BindOpen.Script
                     .ForMember(q => q.Item, opt => opt.Ignore())
                     .ForMember(q => q.Child, opt => opt.MapFrom(q => q.Child.ToDto()))
                     .ForMember(q => q.SubSet, opt => opt.Ignore())
-                    .ForMember(q => q.DataExpression, opt => opt.Ignore())
+                    .ForMember(q => q.DataReference, opt => opt.Ignore())
                     .ForMember(q => q.Specs, opt => opt.Ignore())
                 );
 
@@ -47,7 +47,7 @@ namespace BindOpen.Script
             var config = new MapperConfiguration(
                    cfg => cfg.CreateMap<ScriptwordDto, BdoScriptword>()
                        .ForMember(q => q.Child, opt => opt.Ignore())
-                       .ForMember(q => q.DataExpression, opt => opt.Ignore())
+                       .ForMember(q => q.Reference, opt => opt.Ignore())
                        .ForMember(q => q.Items, opt => opt.Ignore())
                        .ForMember(q => q.Parent, opt => opt.Ignore())
                        .ForMember(q => q.Specs, opt => opt.Ignore())

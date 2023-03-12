@@ -43,7 +43,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        IBdoExpression DataExpression { get; set; }
+        IBdoReference Reference { get; set; }
 
         /// <summary>
         /// 

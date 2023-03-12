@@ -71,7 +71,6 @@ namespace BindOpen.Data.Meta
 
             dataElementSpec.WithAliases(Aliases?.ToArray());
             dataElementSpec.WithValueModes(ValueModes?.ToArray());
-            dataElementSpec.WithConstraintStatement(ConstraintStatement.Clone<BdoConfigurationSet>());
             dataElementSpec.WithSpecificationLevels(SpecificationLevels?.ToArray());
             dataElementSpec.WithSubSpecs(SubSpecs?.ToArray());
 
@@ -262,7 +261,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        public IBdoExpression ItemExpression { get; set; }
+        public IBdoExpression DataReference { get; set; }
 
         /// <summary>
         /// The available itemization modes of this instance.
@@ -282,7 +281,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The default item of this instance.
         /// </summary>
-        public object DefaultItem { get; set; }
+        public object DefaultData { get; set; }
 
         /// <summary>
         /// Minimum item number of this instance.
@@ -302,7 +301,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The item requirement level of this instance.
         /// </summary>
-        public RequirementLevels ItemRequirementLevel
+        public RequirementLevels DataRequirementLevel
         {
             get
             {
@@ -328,12 +327,12 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Levels of specification of this instance.
         /// </summary>
-        public List<SpecificationLevels> ItemSpecificationLevels { get; set; }
+        public List<SpecificationLevels> DataSpecificationLevels { get; set; }
 
         /// <summary>
         /// Data constraint statement of this instance.
         /// </summary>
-        public IBdoConfigurationSet ConstraintStatement { get; set; }
+        public ITBdoSet<ICondition> ConditionSet { get; set; }
 
         /// <summary>
         /// 
@@ -371,7 +370,7 @@ namespace BindOpen.Data.Meta
                 return;
             }
 
-            ConstraintStatement?.Dispose();
+            ConditionSet?.Dispose();
 
             _isDisposed = true;
 

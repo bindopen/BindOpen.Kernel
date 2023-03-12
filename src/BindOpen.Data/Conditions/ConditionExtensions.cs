@@ -29,9 +29,9 @@ namespace BindOpen.Data
             {
                 return basicCondition.Evaluate();
             }
-            else if (condition is IScriptCondition scriptCondition)
+            else if (condition is IReferenceCondition referenceCondition)
             {
-                return scriptCondition.Evaluate(scriptInterpreter, varSet);
+                return referenceCondition.Evaluate(scriptInterpreter, varSet);
             }
 
             return false;
@@ -112,16 +112,16 @@ namespace BindOpen.Data
         /// <param key="varSet">The variable element set used to evaluate.</param>
         /// <returns>True if the business script value is the true value.</returns>
         private static bool Evaluate(
-            this IScriptCondition condition,
+            this IReferenceCondition condition,
             IBdoScriptInterpreter scriptInterpreter,
             IBdoMetaSet varSet)
         {
             if (condition == null) return false;
 
-            if (condition.Expression == null)
+            if (condition.Reference == null)
                 return false;
 
-            var b = scriptInterpreter.Evaluate<bool?>(condition.Expression, varSet);
+            var b = scriptInterpreter.Evaluate<bool?>(condition.Reference, varSet);
 
             return condition.TrueValue ? (b ?? false) : !(b ?? true);
         }

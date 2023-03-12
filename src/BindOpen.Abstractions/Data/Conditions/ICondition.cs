@@ -3,7 +3,8 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface ICondition : IBdoNotMetableItem
+    public interface ICondition :
+        INamed, IReferenced, IBdoNotMetableItem
     {
         /// <summary>
         /// 

@@ -6,9 +6,9 @@ namespace BindOpen.Data.Conditions
     /// <summary>
     /// This class represents a script condition DTO.
     /// </summary>
-    [XmlType("ScriptCondition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "script.condition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class ScriptConditionDto : ConditionDto
+    [XmlType("ReferenceCondition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "reference.condition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    public class ReferenceConditionDto : ConditionDto
     {
         // ------------------------------------------
         // PROPERTIES
@@ -19,9 +19,9 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Data exp DTO representing the condition.
         /// </summary>
-        [JsonPropertyName("exp")]
-        [XmlElement("exp")]
-        public ExpressionDto Expression { get; set; }
+        [JsonPropertyName("reference")]
+        [XmlElement("reference")]
+        public ReferenceDto Reference { get; set; }
 
         #endregion
 
@@ -32,9 +32,9 @@ namespace BindOpen.Data.Conditions
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the ScriptConditionDto class.
+        /// Instantiates a new instance of the ReferenceConditionDto class.
         /// </summary>
-        public ScriptConditionDto()
+        public ReferenceConditionDto()
         {
         }
 

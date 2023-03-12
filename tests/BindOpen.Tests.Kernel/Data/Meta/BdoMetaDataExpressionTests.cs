@@ -26,7 +26,7 @@ namespace BindOpen.Tests.Data
         public void NewTest()
         {
             var meta1 = BdoMeta.NewObject()
-                .WithDataExpression(
+                .WithDataReference(
                     BdoScript.Var("workflow").Func("input", "input1"));
         }
     }

@@ -1,9 +1,11 @@
-﻿namespace BindOpen.Data
+﻿using BindOpen.Script;
+
+namespace BindOpen.Data
 {
     /// <summary>
     /// This class represents a data exp that can contain a literal and script texts.
     /// </summary>
-    public class BdoExpression : BdoItem, IBdoExpression
+    public class BdoReference : BdoExpression, IBdoReference
     {
         // ------------------------------------------
         // PROPERTIES
@@ -12,14 +14,9 @@
         #region Properties
 
         /// <summary>
-        /// The value of this instance.
+        /// The script word of this instance.
         /// </summary>
-        public string Text { get; set; }
-
-        /// <summary>
-        /// The kind of this instance.
-        /// </summary>
-        public BdoExpressionKind Kind { get; set; } = BdoExpressionKind.Auto;
+        public IBdoScriptword Word { get; set; }
 
         #endregion
 
@@ -31,9 +28,9 @@
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of DataExpression class.
+        /// Instantiates a new instance of BdoReference class.
         /// </summary>
-        public BdoExpression()
+        public BdoReference()
         {
         }
 
@@ -50,9 +47,9 @@
         /// Converts from string.
         /// </summary>
         /// <param key="st">The string to consider.</param>
-        public static explicit operator string(BdoExpression exp)
+        public static explicit operator string(BdoReference reference)
         {
-            return exp?.ToString();
+            return reference?.ToString();
         }
 
         #endregion
@@ -70,7 +67,9 @@
         /// <returns></returns>
         public override string ToString()
         {
-            return Text;
+            if (Word != null) return Word.ToString();
+
+            return base.ToString();
         }
 
         #endregion

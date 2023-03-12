@@ -3,20 +3,20 @@
     /// <summary>
     /// This class represents a Xml helper.
     /// </summary>
-    public static class ScriptConditionConverter
+    public static class ReferenceConditionConverter
     {
         /// <summary>
         /// Converts to DTO.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static ScriptConditionDto ToDto(this IScriptCondition poco)
+        public static ReferenceConditionDto ToDto(this IReferenceCondition poco)
         {
             if (poco == null) return null;
 
-            ScriptConditionDto dto = new()
+            ReferenceConditionDto dto = new()
             {
-                Expression = poco.Expression.ToDto(),
+                Reference = poco.Reference.ToDto(),
                 TrueValue = poco.TrueValue
             };
 
@@ -28,14 +28,14 @@
         /// </summary>
         /// <param key="dto">The dto to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static IScriptCondition ToPoco(
-            this ScriptConditionDto dto)
+        public static IReferenceCondition ToPoco(
+            this ReferenceConditionDto dto)
         {
             if (dto == null) return null;
 
-            ScriptCondition poco = new()
+            ReferenceCondition poco = new()
             {
-                Expression = dto.Expression.ToPoco(),
+                Reference = dto.Reference.ToPoco(),
                 TrueValue = dto.TrueValue
             };
 

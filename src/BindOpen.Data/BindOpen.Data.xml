@@ -144,7 +144,7 @@
             <param key="varSet">The variable element set used to evaluate.</param>
             <returns>True if this instance is true.</returns>
         </member>
-        <member name="M:BindOpen.Data.Conditions.ConditionsExtensions.Evaluate(BindOpen.Data.Conditions.IScriptCondition,BindOpen.Extensions.Scripting.IBdoScriptInterpreter,BindOpen.Data.Elements.IBdoElementSet)">
+        <member name="M:BindOpen.Data.Conditions.ConditionsExtensions.Evaluate(BindOpen.Data.Conditions.IReferenceCondition,BindOpen.Extensions.Scripting.IBdoScriptInterpreter,BindOpen.Data.Elements.IBdoElementSet)">
             <summary>
             Evaluate this instance.
             </summary>
@@ -153,34 +153,34 @@
             <param key="varSet">The variable element set used to evaluate.</param>
             <returns>True if the business script value is the true value.</returns>
         </member>
-        <member name="T:BindOpen.Data.Conditions.ScriptCondition">
+        <member name="T:BindOpen.Data.Conditions.ReferenceCondition">
             <summary>
             This class represents a script condition.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Conditions.ScriptCondition.#ctor">
+        <member name="M:BindOpen.Data.Conditions.ReferenceCondition.#ctor">
             <summary>
-            Instantiates a new instance of the ScriptCondition class.
+            Instantiates a new instance of the ReferenceCondition class.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Conditions.ScriptCondition.#ctor(System.Boolean,BindOpen.Data.IBdoExpression)">
+        <member name="M:BindOpen.Data.Conditions.ReferenceCondition.#ctor(System.Boolean,BindOpen.Data.IBdoExpression)">
             <summary>
-            Instantiates a new instance of the ScriptCondition class.
+            Instantiates a new instance of the ReferenceCondition class.
             </summary>
             <param key="trueValue">The true value to consider.</param>
             <param key="exp">The exp to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.Conditions.ScriptCondition.Clone(System.String[])">
+        <member name="M:BindOpen.Data.Conditions.ReferenceCondition.Clone(System.String[])">
             <summary>
             Clones this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Conditions.ScriptCondition.Expression">
+        <member name="P:BindOpen.Data.Conditions.ReferenceCondition.Expression">
             <summary>
             Expression script representing the condition.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Conditions.ScriptCondition.WithExpression(BindOpen.Data.IBdoExpression)">
+        <member name="M:BindOpen.Data.Conditions.ReferenceCondition.WithExpression(BindOpen.Data.IBdoExpression)">
             <summary>
             
             </summary>

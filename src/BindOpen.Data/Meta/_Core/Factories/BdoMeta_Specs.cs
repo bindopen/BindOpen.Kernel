@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BindOpen.Data.Conditions;
+using System;
 
 namespace BindOpen.Data.Meta
 {
@@ -112,7 +113,7 @@ namespace BindOpen.Data.Meta
                 }
                 else if (type.IsEnum)
                 {
-                    spec.WithConstraintStatement(spec.ConstraintStatement ?? new BdoConfigurationSet());
+                    spec.ConditionSet ??= BdoData.NewSet<ICondition>();
                     //spec.ConstraintStatement.Add(
                     //    BdoMango.
                     //    null,

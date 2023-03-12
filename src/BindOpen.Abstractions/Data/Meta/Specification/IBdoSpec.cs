@@ -52,7 +52,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        ICondition Condition { get; set; }
+        ITBdoSet<ICondition> ConditionSet { get; set; }
 
         /// <summary>
         /// 
@@ -79,27 +79,22 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        IBdoConfigurationSet ConstraintStatement { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         bool IsAllocatable { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        RequirementLevels ItemRequirementLevel { get; }
+        RequirementLevels DataRequirementLevel { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoExpression ItemExpression { get; set; }
+        IBdoExpression DataReference { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        List<SpecificationLevels> ItemSpecificationLevels { get; set; }
+        List<SpecificationLevels> DataSpecificationLevels { get; set; }
 
         /// <summary>
         /// 
@@ -114,7 +109,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        object DefaultItem { get; set; }
+        object DefaultData { get; set; }
 
         /// <summary>
         /// Indicates whether this instance is repeated in a set.

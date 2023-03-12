@@ -41,7 +41,7 @@ namespace BindOpen.Tests.Data
         [Test, Order(1)]
         public void CreateConfigurationSet()
         {
-            var bundle = BdoConfig.NewList(
+            var bundle = BdoConfig.NewSet(
                 _config1,
                 _config20,
                 _config21);

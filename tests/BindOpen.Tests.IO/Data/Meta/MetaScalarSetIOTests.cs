@@ -53,7 +53,7 @@ namespace BindOpen.Tests.IO.Data
                 BdoMeta.NewScalar("byteArray4", DataValueTypes.ByteArray, _testData.arrayArrayByte4 as byte[][]),
                 BdoMeta.NewScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[0]),
                 BdoMeta.NewScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[1])
-                    .WithDataExpression(BdoScript.Var("klkl"))
+                    .WithDataReference(BdoScript.Var("klkl"))
                     //.WithSpecs(BdoMeta.NewSpec(), BdoMeta.NewSpec("spec1"))
             };
 
