@@ -8,6 +8,6 @@
         /// <summary>
         /// The display name of this instance.
         /// </summary>
-        string DisplayName { get; }
+        string DisplayName { get; set; }
     }
 }

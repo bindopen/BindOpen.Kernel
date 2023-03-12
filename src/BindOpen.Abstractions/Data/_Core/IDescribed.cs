@@ -8,6 +8,6 @@
         /// <summary>
         /// The description of this instance.
         /// </summary>
-        string Description { get; }
+        string Description { get; set; }
     }
 }

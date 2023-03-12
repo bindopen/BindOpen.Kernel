@@ -505,7 +505,7 @@ namespace BindOpen.Script
                 // we try to find the corresponding defined function
                 var functionDefinitions = GetDefinitionsWithName(scriptword?.Name, true);
 
-                if (functionDefinitions.Count == 0)
+                if (functionDefinitions?.Any() != true)
                 {
                     log?.AddError(
                         title: "Function named '" + scriptword?.Name + "' not defined",
