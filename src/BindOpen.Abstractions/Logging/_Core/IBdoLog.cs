@@ -16,13 +16,6 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        /// <param key="displayName"></param>
-        /// <returns></returns>
-        IBdoLog WithDisplayName(string displayName);
-
-        /// <summary>
-        /// 
-        /// </summary>
         int Level { get; }
 
         /// <summary>
