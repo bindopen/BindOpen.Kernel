@@ -23,12 +23,7 @@
         /// <summary>
         /// Script expression is considered as default.
         /// </summary>
-        Script,
-
-        /// <summary>
-        /// Script word is considered as default.
-        /// </summary>
-        Word
+        Script
     }
 
 }

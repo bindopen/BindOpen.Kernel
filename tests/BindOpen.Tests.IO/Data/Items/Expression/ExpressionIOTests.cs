@@ -42,8 +42,7 @@ namespace BindOpen.Tests.IO.Data
         {
             _exp = BdoData.NewExpression(
                 _valueSet.Literal as string,
-                _valueSet.ExpressionKind as BdoExpressionKind? ?? BdoExpressionKind.Auto)
-                .WithWord(BdoScript.Func("Fun1").Func("Fun2", BdoScript.Var("var1")));
+                _valueSet.ExpressionKind as BdoExpressionKind? ?? BdoExpressionKind.Auto);
         }
 
         // Xml

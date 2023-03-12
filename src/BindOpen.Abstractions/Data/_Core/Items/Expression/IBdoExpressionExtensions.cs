@@ -1,6 +1,4 @@
-﻿using BindOpen.Script;
-
-namespace BindOpen.Data
+﻿namespace BindOpen.Data
 {
     /// <summary>
     /// 
@@ -25,24 +23,6 @@ namespace BindOpen.Data
                 {
                     exp.Kind = kind;
                 }
-            }
-
-            return exp;
-        }
-
-        /// <summary>
-        /// Removes the item with the specified name.
-        /// </summary>
-        /// <param key="keys">The keys of the item to remove.</param>
-        public static T WithWord<T>(
-            this T exp,
-            IBdoScriptword word)
-            where T : IBdoExpression
-        {
-            if (exp != null)
-            {
-                exp.Word = word;
-                exp.AsWord();
             }
 
             return exp;
@@ -80,18 +60,6 @@ namespace BindOpen.Data
             if (exp != null)
             {
                 exp.Kind = BdoExpressionKind.Auto;
-            }
-
-            return exp;
-        }
-
-        public static T AsWord<T>(
-            this T exp)
-            where T : IBdoExpression
-        {
-            if (exp != null)
-            {
-                exp.Kind = BdoExpressionKind.Word;
             }
 
             return exp;

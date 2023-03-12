@@ -19,7 +19,7 @@ namespace BindOpen.Data.Meta
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<BdoMetaObject, MetaObjectDto>()
-                    .ForMember(q => q.DataExpression, opt => opt.MapFrom(q => q.DataExpression.ToDto()))
+                    .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.Reference.ToDto()))
                     .ForMember(q => q.MetaItems, opt => opt.Ignore())
                     .ForMember(q => q.Item, opt => opt.Ignore())
                     .ForMember(q => q.SubSet, opt => opt.Ignore())
@@ -45,14 +45,14 @@ namespace BindOpen.Data.Meta
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<MetaObjectDto, BdoMetaObject>()
-                    .ForMember(q => q.DataExpression, opt => opt.Ignore())
+                    .ForMember(q => q.Reference, opt => opt.Ignore())
                     .ForMember(q => q.Specs, opt => opt.Ignore())
                 );
 
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoMetaObject>(dto);
 
-            poco.DataExpression = dto.DataExpression.ToPoco();
+            poco.Reference = dto.DataReference.ToPoco();
             //poco.Specs = dto.Specs?.Count == 0 ? null : dto.Specs?.Select(q => q.ToPoco()).Cast<IBdoSpec>().ToList();
             poco.With(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
 

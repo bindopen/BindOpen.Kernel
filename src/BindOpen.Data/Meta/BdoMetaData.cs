@@ -126,7 +126,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        public IBdoExpression DataExpression { get; set; }
+        public IBdoReference Reference { get; set; }
 
         // Specification -------------------------------
 
@@ -165,19 +165,19 @@ namespace BindOpen.Data.Meta
                 case DataMode.Value:
                     obj = _data;
                     break;
-                case DataMode.Expression:
+                case DataMode.Reference:
                     if (scope == null)
                     {
                         log?.AddWarning(title: "Application scope missing");
                     }
                     else
                     {
-                        if (DataExpression == null)
+                        if (Reference == null)
                         {
                             log?.AddWarning(title: "Script missing");
                         }
 
-                        obj = scope.Interpreter.Evaluate<object>(DataExpression, varSet, log);
+                        obj = scope.Interpreter.Evaluate<object>(Reference, varSet, log);
                     }
                     break;
             }
@@ -293,7 +293,7 @@ namespace BindOpen.Data.Meta
 
             var el = base.Clone<BdoMetaData>(areas);
 
-            el.DataExpression = DataExpression?.Clone<BdoExpression>();
+            el.Reference = Reference?.Clone<BdoReference>();
             el.Specs = Specs?.Clone<TBdoSet<IBdoSpec>>();
 
             return el;

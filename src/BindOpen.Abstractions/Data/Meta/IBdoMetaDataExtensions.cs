@@ -40,14 +40,14 @@
         /// <summary>
         /// 
         /// </summary>
-        public static T WithDataExpression<T>(
+        public static T WithDataReference<T>(
             this T meta,
-            IBdoExpression expression)
+            IBdoReference reference)
             where T : IBdoMetaData
         {
             if (meta != null)
             {
-                meta.DataExpression = expression;
+                meta.Reference = reference;
             }
 
             return meta;

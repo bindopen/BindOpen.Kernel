@@ -3,17 +3,17 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IScriptCondition : ICondition
+    public interface IReferenceCondition : ICondition
     {
         /// <summary>
         /// 
         /// </summary>
-        IBdoExpression Expression { get; set; }
+        IBdoReference Reference { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param key="expression"></param>
-        IScriptCondition WithExpression(IBdoExpression expression);
+        IReferenceCondition WithReference(IBdoReference reference);
     }
 }

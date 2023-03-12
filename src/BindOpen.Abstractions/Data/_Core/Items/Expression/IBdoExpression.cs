@@ -1,6 +1,4 @@
-﻿using BindOpen.Script;
-
-namespace BindOpen.Data
+﻿namespace BindOpen.Data
 {
     /// <summary>
     /// This interface defines a data expression.
@@ -16,10 +14,5 @@ namespace BindOpen.Data
         /// The text.
         /// </summary>
         string Text { get; set; }
-
-        /// <summary>
-        /// The script word.
-        /// </summary>
-        IBdoScriptword Word { get; set; }
     }
 }

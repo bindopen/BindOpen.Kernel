@@ -10,7 +10,7 @@ namespace BindOpen.Data.Conditions
     [XmlRoot(ElementName = "condition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     [XmlInclude(typeof(AdvancedConditionDto))]
     [XmlInclude(typeof(BasicConditionDto))]
-    [XmlInclude(typeof(ScriptConditionDto))]
+    [XmlInclude(typeof(ReferenceConditionDto))]
     public abstract class ConditionDto : IDto
     {
         // ------------------------------------------

@@ -10,7 +10,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public static T WithDataExpression<T>(
+        public static T WithDataReference<T>(
             this T meta,
             string text,
             BdoExpressionKind kind = BdoExpressionKind.Auto)
@@ -18,8 +18,8 @@ namespace BindOpen.Data.Meta
         {
             if (meta != null)
             {
-                meta.WithDataMode(DataMode.Expression);
-                meta.DataExpression = BdoData.NewExp(text, kind);
+                meta.WithDataMode(DataMode.Reference);
+                meta.Reference = BdoData.NewRef(text, kind);
             }
 
             return meta;
@@ -29,15 +29,15 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public static T WithDataExpression<T>(
+        public static T WithDataReference<T>(
             this T meta,
             IBdoScriptword word)
             where T : IBdoMetaData
         {
             if (meta != null)
             {
-                meta.WithDataMode(DataMode.Expression);
-                meta.DataExpression = BdoData.NewExp(word);
+                meta.WithDataMode(DataMode.Reference);
+                meta.Reference = BdoData.NewRef(word);
             }
 
             return meta;

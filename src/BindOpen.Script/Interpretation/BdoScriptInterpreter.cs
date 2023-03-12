@@ -117,7 +117,7 @@ namespace BindOpen.Script
         // Expression
 
         /// <summary>
-        /// Evaluates the specified data exp.
+        /// Evaluates the specified data reference.
         /// </summary>
         /// <param key="exp">The data exp to consider.</param>
         /// <param key="varSet">The variable element set to consider.</param>
@@ -186,23 +186,37 @@ namespace BindOpen.Script
                         return result;
                     }
                     break;
-                case BdoExpressionKind.Word:
-                    if (exp.Word != null)
-                    {
-                        var cloned = BdoScript.NewWord(exp.Word.Kind, exp.Word.Name)
-                            .WithDefinitionUniqueName(exp.Word.DefinitionUniqueName);
+            }
 
-                        switch (exp.Word.Kind)
+            return exp?.Text;
+        }
+
+        public object Evaluate(
+            IBdoReference reference,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            switch (reference?.Kind)
+            {
+                case BdoExpressionKind.Any:
+                    if (reference.Word == null)
+                        return null;
+                    else
+                    {
+                        var cloned = BdoScript.NewWord(reference.Word.Kind, reference.Word.Name)
+                            .WithDefinitionUniqueName(reference.Word.DefinitionUniqueName);
+
+                        switch (reference.Word.Kind)
                         {
                             case ScriptItemKinds.Function:
-                                if (exp.Word.Count > 0)
+                                if (reference.Word.Count > 0)
                                 {
-                                    foreach (var paramValue in exp.Word)
+                                    foreach (var paramValue in reference.Word)
                                     {
                                         IBdoExpression expParam = null;
                                         if (paramValue is IBdoScriptword scriptwordParam)
                                         {
-                                            expParam = scriptwordParam.ToExpression();
+                                            expParam = scriptwordParam.ToReference();
                                         }
 
                                         if (expParam != default)
@@ -221,10 +235,9 @@ namespace BindOpen.Script
 
                         return EvaluateScriptword(cloned, varSet, log);
                     }
-                    break;
+                default:
+                    return Evaluate(reference as IBdoExpression, varSet, log);
             }
-
-            return exp?.Text;
         }
 
         #endregion

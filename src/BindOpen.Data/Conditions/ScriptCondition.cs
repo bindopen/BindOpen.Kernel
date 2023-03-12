@@ -3,7 +3,7 @@
     /// <summary>
     /// This class represents a script condition.
     /// </summary>
-    public class ScriptCondition : Condition, IScriptCondition
+    public class ReferenceCondition : Condition, IReferenceCondition
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -12,20 +12,20 @@
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the ScriptCondition class.
+        /// Instantiates a new instance of the ReferenceCondition class.
         /// </summary>
-        public ScriptCondition()
+        public ReferenceCondition()
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the ScriptCondition class.
+        /// Instantiates a new instance of the ReferenceCondition class.
         /// </summary>
         /// <param key="trueValue">The true value to consider.</param>
         /// <param key="exp">The exp to consider.</param>
-        public ScriptCondition(bool trueValue, IBdoExpression exp) : base(trueValue)
+        public ReferenceCondition(bool trueValue, IBdoReference exp) : base(trueValue)
         {
-            Expression = exp;
+            Reference = exp;
         }
 
         #endregion
@@ -41,9 +41,9 @@
         /// </summary>
         public override object Clone(params string[] areas)
         {
-            var condition = new ScriptCondition
+            var condition = new ReferenceCondition
             {
-                Expression = Expression.Clone<BdoExpression>()
+                Reference = Reference.Clone<BdoReference>()
             };
 
             return condition;
@@ -52,15 +52,15 @@
         #endregion
 
         // ------------------------------------------
-        // IScriptCondition Implementation
+        // IReferenceCondition Implementation
         // ------------------------------------------
 
-        #region IScriptCondition
+        #region IReferenceCondition
 
         /// <summary>
         /// Expression script representing the condition.
         /// </summary>
-        public IBdoExpression Expression { get; set; }
+        public IBdoReference Reference { get; set; }
 
         /// <summary>
         /// 
@@ -68,9 +68,9 @@
         /// <param key="exp"></param>
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public IScriptCondition WithExpression(IBdoExpression exp)
+        public IReferenceCondition WithReference(IBdoReference reference)
         {
-            Expression = exp;
+            Reference = reference;
             return this;
         }
 
