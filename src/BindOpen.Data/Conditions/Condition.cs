@@ -14,6 +14,11 @@
         /// <summary>
         /// The value that expresses that the condition is satisfied.
         /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// The value that expresses that the condition is satisfied.
+        /// </summary>
         public bool TrueValue { get; set; } = true;
 
         #endregion
@@ -39,6 +44,16 @@
         {
             this.TrueValue = trueValue;
         }
+
+        #endregion
+
+        // ------------------------------------------
+        // IReferenced Implementation
+        // ------------------------------------------
+
+        #region IReferenced
+
+        public string Key() => Name;
 
         #endregion
     }

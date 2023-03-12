@@ -64,9 +64,9 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The expression of this instance.
         /// </summary>
-        [JsonPropertyName("expression")]
-        [XmlElement("expression")]
-        public ExpressionDto DataExpression { get; set; }
+        [JsonPropertyName("reference")]
+        [XmlElement("reference")]
+        public ReferenceDto DataReference { get; set; }
 
         /// <summary>
         /// The value type of this instance.

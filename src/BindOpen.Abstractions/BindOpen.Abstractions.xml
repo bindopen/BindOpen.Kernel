@@ -1952,17 +1952,17 @@
             <param key="value"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.Data.Conditions.IScriptCondition">
+        <member name="T:BindOpen.Data.Conditions.IReferenceCondition">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Conditions.IScriptCondition.Expression">
+        <member name="P:BindOpen.Data.Conditions.IReferenceCondition.Expression">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Conditions.IScriptCondition.WithExpression(BindOpen.Data.IBdoExpression)">
+        <member name="M:BindOpen.Data.Conditions.IReferenceCondition.WithExpression(BindOpen.Data.IBdoExpression)">
             <summary>
             
             </summary>

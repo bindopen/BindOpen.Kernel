@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Conditions;
-using System.Linq;
+﻿using System.Linq;
 
 namespace BindOpen.Data.Meta
 {
@@ -13,31 +12,31 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="modes"></param>
         public static T WithValueModes<T>(
-            this T metaSpec,
+            this T spec,
             params DataMode[] modes)
             where T : IBdoSpec
         {
-            if (metaSpec != null)
+            if (spec != null)
             {
-                metaSpec.ValueModes = modes?.ToList();
+                spec.ValueModes = modes?.ToList();
             }
-            return metaSpec;
+            return spec;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param key="script"></param>
-        public static T WithItemExpression<T>(
-            this T metaSpec,
+        public static T WithDataReference<T>(
+            this T spec,
             IBdoExpression exp)
             where T : IBdoSpec
         {
-            if (metaSpec != null)
+            if (spec != null)
             {
-                metaSpec.ItemExpression = exp;
+                spec.DataReference = exp;
             }
-            return metaSpec;
+            return spec;
         }
 
         /// <summary>
@@ -45,31 +44,15 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="levels"></param>
         public static T WithItemSpecificationLevels<T>(
-            this T metaSpec,
+            this T spec,
             params SpecificationLevels[] levels)
             where T : IBdoSpec
         {
-            if (metaSpec != null)
+            if (spec != null)
             {
-                metaSpec.ItemSpecificationLevels = levels?.ToList();
+                spec.DataSpecificationLevels = levels?.ToList();
             }
-            return metaSpec;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="condition"></param>
-        public static T WithCondition<T>(
-            this T metaSpec,
-            ICondition condition)
-            where T : IBdoSpec
-        {
-            if (metaSpec != null)
-            {
-                metaSpec.Condition = condition;
-            }
-            return metaSpec;
+            return spec;
         }
 
         /// <summary>
@@ -77,15 +60,15 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="aliases"></param>
         public static T WithAliases<T>(
-            this T metaSpec,
+            this T spec,
             params string[] aliases)
             where T : IBdoSpec
         {
-            if (metaSpec != null)
+            if (spec != null)
             {
-                metaSpec.Aliases = aliases?.ToList();
+                spec.Aliases = aliases?.ToList();
             }
-            return metaSpec;
+            return spec;
         }
 
         /// <summary>
@@ -93,31 +76,15 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="specs"></param>
         public static T WithSubSpecs<T>(
-            this T metaSpec,
+            this T spec,
             params IBdoSpec[] specs)
             where T : IBdoSpec
         {
-            if (metaSpec != null)
+            if (spec != null)
             {
-                metaSpec.SubSpecs = specs?.ToList();
+                spec.SubSpecs = specs?.ToList();
             }
-            return metaSpec;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="statement"></param>
-        public static T WithConstraintStatement<T>(
-            this T metaSpec,
-            IBdoConfigurationSet statement)
-            where T : IBdoSpec
-        {
-            if (metaSpec != null)
-            {
-                metaSpec.ConstraintStatement = statement;
-            }
-            return metaSpec;
+            return spec;
         }
 
         /// <summary>
@@ -125,15 +92,15 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="isAllocatable"></param>
         public static T AsAllocatable<T>(
-            this T metaSpec,
+            this T spec,
             bool isAllocatable = true)
             where T : IBdoSpec
         {
-            if (metaSpec != null)
+            if (spec != null)
             {
-                metaSpec.IsAllocatable = isAllocatable;
+                spec.IsAllocatable = isAllocatable;
             }
-            return metaSpec;
+            return spec;
         }
 
         /// <summary>
@@ -141,15 +108,15 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="item"></param>
         public static T WithDefaultItem<T>(
-            this T metaSpec,
+            this T spec,
             object item)
             where T : IBdoSpec
         {
-            if (metaSpec != null)
+            if (spec != null)
             {
-                metaSpec.DefaultItem = item;
+                spec.DefaultData = item;
             }
-            return metaSpec;
+            return spec;
         }
 
         /// <summary>
@@ -157,15 +124,15 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="number"></param>
         public static T WithMaximumItemNumber<T>(
-            this T metaSpec,
+            this T spec,
             uint? number = null)
             where T : IBdoSpec
         {
-            if (metaSpec != null)
+            if (spec != null)
             {
-                metaSpec.MaximumItemNumber = number;
+                spec.MaximumItemNumber = number;
             }
-            return metaSpec;
+            return spec;
         }
 
         /// <summary>
@@ -173,15 +140,15 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="number"></param>
         public static T WithMinimumItemNumber<T>(
-            this T metaSpec,
+            this T spec,
             uint number)
             where T : IBdoSpec
         {
-            if (metaSpec != null)
+            if (spec != null)
             {
-                metaSpec.MinimumItemNumber = number;
+                spec.MinimumItemNumber = number;
             }
-            return metaSpec;
+            return spec;
         }
 
         /// <summary>

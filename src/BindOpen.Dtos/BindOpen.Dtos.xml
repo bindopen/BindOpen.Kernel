@@ -193,19 +193,19 @@
             </summary>
             <param key="trueValue">The true value to consider.</param>
         </member>
-        <member name="T:BindOpen.Data.Conditions.ScriptConditionDto">
+        <member name="T:BindOpen.Data.Conditions.ReferenceConditionDto">
             <summary>
             This class represents a script condition DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Conditions.ScriptConditionDto.Expression">
+        <member name="P:BindOpen.Data.Conditions.ReferenceConditionDto.Expression">
             <summary>
             Data exp DTO representing the condition.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Conditions.ScriptConditionDto.#ctor">
+        <member name="M:BindOpen.Data.Conditions.ReferenceConditionDto.#ctor">
             <summary>
-            Instantiates a new instance of the ScriptConditionDto class.
+            Instantiates a new instance of the ReferenceConditionDto class.
             </summary>
         </member>
         <member name="T:BindOpen.Data.Elements.EntityElementDto">

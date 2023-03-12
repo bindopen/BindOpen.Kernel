@@ -1,6 +1,4 @@
-﻿using BindOpen.Script;
-
-namespace BindOpen.Data
+﻿namespace BindOpen.Data
 {
     /// <summary>
     /// This class represents a data exp that can contain a literal and script texts.
@@ -17,18 +15,6 @@ namespace BindOpen.Data
             BdoExpressionKind kind = BdoExpressionKind.Auto)
         {
             var exp = BdoData.NewExpression(text, kind);
-            return exp;
-        }
-
-        /// <summary>
-        /// Creates a new word exp.
-        /// </summary>
-        /// <param key="scriptword">The script word to consider.</param>
-        /// <returns>Returns the script exp.</returns>
-        public static BdoExpression ToExpression(
-            this IBdoScriptword scriptword)
-        {
-            var exp = BdoData.NewExpression(scriptword);
             return exp;
         }
     }

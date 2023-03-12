@@ -97,19 +97,19 @@ namespace BindOpen.Data.Meta
                         list.Add(item?.GetData(scope, varSet, log));
                     }
                     return list;
-                case DataMode.Expression:
+                case DataMode.Reference:
                     if (scope == null)
                     {
                         log?.AddWarning(title: "Application scope missing");
                     }
                     else
                     {
-                        if (DataExpression == null)
+                        if (Reference == null)
                         {
                             log?.AddWarning(title: "Script missing");
                         }
 
-                        var obj = scope.Interpreter.Evaluate<object>(DataExpression, varSet, log);
+                        var obj = scope.Interpreter.Evaluate<object>(Reference, varSet, log);
                         return obj;
                     }
                     break;
@@ -203,7 +203,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        public IBdoExpression DataExpression { get; set; }
+        public IBdoReference Reference { get; set; }
 
         // Specification -------------------------------
 

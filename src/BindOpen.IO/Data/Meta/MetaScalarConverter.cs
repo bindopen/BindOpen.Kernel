@@ -20,7 +20,7 @@ namespace BindOpen.Data.Meta
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<BdoMetaScalar, MetaScalarDto>()
-                    .ForMember(q => q.DataExpression, opt => opt.MapFrom(q => q.DataExpression.ToDto()))
+                    .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.Reference.ToDto()))
                     .ForMember(q => q.Specs, opt => opt.MapFrom(q => q.Specs == null ? null : q.Specs.Select(q => q.ToDto()).ToList()))
             );
 
@@ -55,14 +55,14 @@ namespace BindOpen.Data.Meta
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<MetaScalarDto, BdoMetaScalar>()
-                    .ForMember(q => q.DataExpression, opt => opt.Ignore())
+                    .ForMember(q => q.Reference, opt => opt.Ignore())
                     .ForMember(q => q.Specs, opt => opt.Ignore())
                 );
 
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoMetaScalar>(dto);
 
-            poco.DataExpression = dto.DataExpression.ToPoco();
+            poco.Reference = dto.DataReference.ToPoco();
             poco.Specs = BdoMeta.NewSpecSet(dto.Specs.Select(q => q.ToPoco()).ToArray());
 
             if (!string.IsNullOrEmpty(dto.Item))

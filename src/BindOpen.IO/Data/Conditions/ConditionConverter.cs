@@ -20,9 +20,9 @@
             {
                 return basicCondition.ToDto();
             }
-            else if (poco is IScriptCondition scriptCondition)
+            else if (poco is IReferenceCondition referenceCondition)
             {
-                return scriptCondition.ToDto();
+                return referenceCondition.ToDto();
             }
 
             return null;
@@ -44,9 +44,9 @@
             {
                 return basicConditionDto.ToPoco();
             }
-            else if (dto is ScriptConditionDto scriptConditionDto)
+            else if (dto is ReferenceConditionDto referenceConditionDto)
             {
-                return scriptConditionDto.ToPoco();
+                return referenceConditionDto.ToPoco();
             }
 
             return null;
