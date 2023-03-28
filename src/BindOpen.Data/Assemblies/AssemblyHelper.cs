@@ -63,17 +63,34 @@ namespace BindOpen.Data.Assemblies
                 .Cast<IBdoAssemblyReference>().ToList();
         }
 
+        // Create instance
+
         /// <summary>
         /// Creates the instance of the specified extension object instance type.
         /// </summary>
         /// <param key="type">The type to consider.</param>
         /// <param key="obj">The object to consider.</param>
-        public static void CreateInstance(
-                Type type,
-                out object obj,
-                IBdoLog log = null)
+        public static object CreateInstance<T>(IBdoLog log = null)
         {
-            obj = null;
+            return CreateInstance(typeof(T), log);
+        }
+
+        /// <summary>
+        /// Creates the instance of the specified extension object instance type.
+        /// </summary>
+        /// <param key="type">The type to consider.</param>
+        /// <param key="obj">The object to consider.</param>
+        public static object CreateInstance(
+            this Type type,
+            IBdoLog log = null)
+        {
+            if (type == null)
+            {
+                log?.AddError("Unknown type");
+                return null;
+            }
+
+            object obj = null;
 
             try
             {
@@ -83,6 +100,8 @@ namespace BindOpen.Data.Assemblies
             {
                 log?.AddException(ex);
             }
+
+            return obj;
         }
 
         /// <summary>
@@ -100,14 +119,7 @@ namespace BindOpen.Data.Assemblies
             try
             {
                 Type type = Type.GetType(fullyQualifiedName);
-                if (type == null)
-                {
-                    log?.AddError("Unknown type '" + fullyQualifiedName + "'");
-                }
-                else
-                {
-                    obj = Activator.CreateInstance(type);
-                }
+                obj = type.CreateInstance();
             }
             catch (Exception ex)
             {

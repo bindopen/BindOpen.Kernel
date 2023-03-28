@@ -95,8 +95,10 @@ namespace BindOpen.Hosting.Hosts
         /// </summary>
         /// <param key="reference"></param>
         /// <returns></returns>
-        public Type CreateType(IBdoClassReference reference)
-            => Scope?.CreateType(reference);
+        public Type CreateType(
+            IBdoClassReference reference,
+            IBdoLog log = null)
+            => Scope?.CreateType(reference, log);
 
         /// <summary>
         /// Starts the application.

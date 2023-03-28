@@ -7,9 +7,8 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    public partial class TBdoMetaObject<TItem> :
-        TBdoMetaData<TItem>,
-        ITBdoMetaObject<TItem>
+    public partial class BdoMetaObject : BdoMetaData,
+        IBdoMetaObject
     {
         /// <summary>
         /// Returns the specified item of this instance.

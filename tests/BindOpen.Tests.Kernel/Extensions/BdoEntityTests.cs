@@ -32,7 +32,7 @@ namespace BindOpen.Tests.Extensions
                 .WithDefinition("bindopen.tests.kernel$testEntity")
                 .With(
                     BdoMeta.NewScalar("boolValue", data.boolValue as bool?),
-                    BdoMeta.NewScalar("enumValue", data.enumValue as string),
+                    BdoMeta.NewScalar("enumValue", data.enumValue as ActionPriorities?),
                     BdoMeta.NewScalar("intValue", data.intValue as int?),
                     BdoMeta.NewScalar("stringValue", data.stringValue as string));
 

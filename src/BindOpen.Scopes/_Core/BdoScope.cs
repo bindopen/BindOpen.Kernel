@@ -77,7 +77,8 @@ namespace BindOpen.Scopes
         /// </summary>
         /// <param key="reference"></param>
         public Type CreateType(
-            IBdoClassReference reference)
+            IBdoClassReference reference,
+            IBdoLog log = null)
         {
             if (!string.IsNullOrEmpty(reference?.DefinitionUniqueName))
             {

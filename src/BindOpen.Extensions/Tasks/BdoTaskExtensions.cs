@@ -42,7 +42,7 @@ namespace BindOpen.Extensions.Tasks
                 {
                     // we intantiate the task
 
-                    AssemblyHelper.CreateInstance(definition.RuntimeType, out object item, log);
+                    object item = definition.RuntimeType.CreateInstance(log);
 
                     if (log?.HasEvent(EventKinds.Error, EventKinds.Exception) != false)
                     {

@@ -3,8 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoMetaDocument :
-        ITBdoMetaData<IBdoMetaObject>
+    public interface IBdoMetaDocument : IBdoMetaObject
     {
     }
 }

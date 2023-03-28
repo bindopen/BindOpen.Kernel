@@ -41,7 +41,7 @@ namespace BindOpen.Tests
         [BdoProperty(RequirementLevels.Optional, @"$eq($this(""stringValue""), ""AA"")")]
         [BdoProperty(0, 1)]
         [BdoProperty(SpecificationLevels.Configuration, SpecificationLevels.Definition)]
-        public ITBdoMetaData<bool?> BoolValue { get; set; }
+        public ITBdoMetaScalar<bool?> BoolValue { get; set; }
 
         /// <summary>
         /// The string value of this instance.

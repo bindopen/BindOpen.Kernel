@@ -94,7 +94,7 @@
         /// <param key="items">The items to consider.</param>
         public static TMeta NewScalar<TItem, TMeta>(
             params object[] items)
-            where TMeta : TBdoMetaScalar<TItem>, new()
+            where TMeta : BdoMetaScalar, new()
             => NewScalar<TItem, TMeta>(
                 null,
                 DataValueTypes.Any,
@@ -110,7 +110,7 @@
             string name,
             DataValueTypes valueType,
             params object[] items)
-            where TMeta : TBdoMetaScalar<TItem>, new()
+            where TMeta : BdoMetaScalar, new()
         {
             if (valueType == DataValueTypes.Any)
             {

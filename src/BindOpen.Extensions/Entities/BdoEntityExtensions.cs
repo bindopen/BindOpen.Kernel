@@ -42,7 +42,7 @@ namespace BindOpen.Extensions.Entities
                 {
                     // we intantiate the entity
 
-                    AssemblyHelper.CreateInstance(definition.RuntimeType, out object item, log);
+                    object item = definition.RuntimeType.CreateInstance(log);
 
                     if ((entity = item as IBdoEntity) != null)
                     {

@@ -42,7 +42,7 @@ namespace BindOpen.Extensions.Connectors
                 else
                 {
                     // we intantiate the connector
-                    AssemblyHelper.CreateInstance(definition.RuntimeType, out object item, log);
+                    object item = definition.RuntimeType.CreateInstance(log);
 
                     if ((connector = item as IBdoConnector) != null)
                     {

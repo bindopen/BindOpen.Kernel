@@ -44,7 +44,8 @@ namespace BindOpen.Scopes
         /// <param key="reference"></param>
         /// <returns></returns>
         Type CreateType(
-            IBdoClassReference reference);
+            IBdoClassReference reference,
+            IBdoLog log = null);
 
         /// <summary>
         /// Clears this instance.

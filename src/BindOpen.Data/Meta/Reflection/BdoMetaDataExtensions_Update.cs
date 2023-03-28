@@ -1,4 +1,5 @@
-﻿using BindOpen.Logging;
+﻿using BindOpen.Data.Assemblies;
+using BindOpen.Logging;
 using BindOpen.Scopes;
 using System;
 using System.Collections.Generic;
@@ -74,7 +75,7 @@ namespace BindOpen.Data.Meta.Reflection
                                     {
                                         Type itemType = type.GetGenericArguments()[0];
 
-                                        var dictionary = Activator.CreateInstance(typeof(Dictionary<,>).MakeGenericType(typeof(string), itemType));
+                                        var dictionary = typeof(Dictionary<,>).MakeGenericType(typeof(string), itemType).CreateInstance();
                                         var method = dictionary.GetType().GetMethod("Add", new Type[] { typeof(string), itemType });
 
                                         foreach (var item in value as Dictionary<string, object>)

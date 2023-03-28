@@ -339,7 +339,7 @@ namespace BindOpen.Data.Meta
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            return Items
+            return Items?
                 .Select(q => q.GetData(scope, varSet, log))
                 .ToList();
         }
