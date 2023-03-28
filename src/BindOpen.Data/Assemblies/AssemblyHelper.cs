@@ -1,8 +1,11 @@
-﻿using BindOpen.Logging;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Logging;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
-namespace BindOpen.Data.Helpers
+namespace BindOpen.Data.Assemblies
 {
     /// <summary>
     /// This structure represents a string manager.
@@ -17,19 +20,47 @@ namespace BindOpen.Data.Helpers
         /// <param key="appDomain">The application domain to consider.</param>
         /// <param key="assemblyName">The name of the assembly to consider.</param>
         /// <returns></returns>
-        public static Assembly GetAsssembly(this AppDomain appDomain, string assemblyName)
+        public static Assembly GetAssembly(
+            this AppDomain appDomain,
+            IBdoAssemblyReference reference)
         {
             if (appDomain == null) return null;
 
             Assembly assembly = null;
-            int i = appDomain.GetAssemblies().Length;
-            if ((appDomain != null) && (assemblyName != null))
+
+            if (appDomain != null && reference.IsEmpty() == false)
             {
-                assemblyName = assemblyName.Trim();
-                assembly = Array.Find(appDomain.GetAssemblies(), p => p.FullName.Contains(assemblyName));
+                assembly = Array.Find(appDomain.GetAssemblies(),
+                    q => BdoData.Assembly(q) == (BdoAssemblyReference)reference);
             }
 
             return assembly;
+        }
+
+        public static List<IBdoAssemblyReference> GetAssemblyReferences(
+            this AppDomain appDomain,
+            List<IBdoAssemblyReference> references)
+        {
+            if (references?.Any(q => q.BdoKeyEquals(StringHelper.__Star)) == true)
+            {
+                return appDomain.GetAssemblies().ToReferences();
+            }
+
+            return references;
+        }
+
+        public static List<IBdoAssemblyReference> ToReferences(
+            this Assembly[] assemblies)
+        {
+            return assemblies?.Select(q => BdoData.Assembly(q))
+                .Cast<IBdoAssemblyReference>().ToList();
+        }
+
+        public static List<IBdoAssemblyReference> ToReferences(
+            this AssemblyName[] assemblies)
+        {
+            return assemblies?.Select(q => BdoData.Assembly(q.Name, q.Version.ToString()))
+                .Cast<IBdoAssemblyReference>().ToList();
         }
 
         /// <summary>
@@ -38,9 +69,9 @@ namespace BindOpen.Data.Helpers
         /// <param key="type">The type to consider.</param>
         /// <param key="obj">The object to consider.</param>
         public static void CreateInstance(
-            Type type,
-            out object obj,
-            IBdoLog log = null)
+                Type type,
+                out object obj,
+                IBdoLog log = null)
         {
             obj = null;
 
@@ -82,16 +113,6 @@ namespace BindOpen.Data.Helpers
             {
                 log?.AddException(ex);
             }
-        }
-
-        /// <summary>
-        /// Gets the root namespace.
-        /// </summary>
-        /// <param key="className">The class name to consider.</param>
-        /// <returns>Returns the root namspace.</returns>
-        public static string GetClassNameWithoutAssembly(this string className)
-        {
-            return className == null ? string.Empty : (className.Contains(',') ? className[..className.IndexOf(",")] : className);
         }
     }
 }

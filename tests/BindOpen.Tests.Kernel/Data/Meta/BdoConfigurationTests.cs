@@ -46,7 +46,7 @@ namespace BindOpen.Tests.Data
                 _config20,
                 _config21);
 
-            //bundle.Update(_config1);
+            bundle.Add(_config1);
         }
 
         [Test, Order(2)]

@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Conditions;
 using BindOpen.Data.Meta;
+using BindOpen.Scopes;
 using BindOpen.Script;
 
 namespace BindOpen.Data
@@ -18,8 +19,23 @@ namespace BindOpen.Data
         /// <returns>True if this instance is true.</returns>
         public static bool Evaluate(
             this ICondition condition,
-            IBdoScriptInterpreter scriptInterpreter,
+            IBdoScope scope,
             IBdoMetaSet varSet)
+        {
+            return condition.Evaluate(scope?.Interpreter, varSet);
+        }
+
+        /// <summary>
+        /// Evaluate this instance.
+        /// </summary>
+        /// <param key="condition">The condition to consider.</param>
+        /// <param key="scriptInterpreter">Script interpreter.</param>
+        /// <param key="varSet">The variable element set used to evaluate.</param>
+        /// <returns>True if this instance is true.</returns>
+        public static bool Evaluate(
+        this ICondition condition,
+        IBdoScriptInterpreter scriptInterpreter,
+        IBdoMetaSet varSet)
         {
             if (condition is IAdvancedCondition advancedCondition)
             {
@@ -67,7 +83,7 @@ namespace BindOpen.Data
                 }
             }
 
-            return b == condition.TrueValue;
+            return b;
         }
 
         /// <summary>
@@ -101,7 +117,7 @@ namespace BindOpen.Data
                     break;
             }
 
-            return b == condition.TrueValue;
+            return b;
         }
 
         /// <summary>
@@ -121,9 +137,9 @@ namespace BindOpen.Data
             if (condition.Reference == null)
                 return false;
 
-            var b = scriptInterpreter.Evaluate<bool?>(condition.Reference, varSet);
+            var b = scriptInterpreter?.Evaluate<bool?>(condition.Reference, varSet);
 
-            return condition.TrueValue ? (b ?? false) : !(b ?? true);
+            return b ?? false;
         }
     }
 }

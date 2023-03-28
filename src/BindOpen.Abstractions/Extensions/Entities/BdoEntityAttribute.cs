@@ -1,5 +1,4 @@
-﻿using BindOpen.Data;
-using System;
+﻿using System;
 
 namespace BindOpen.Extensions.Entities
 {
@@ -9,19 +8,6 @@ namespace BindOpen.Extensions.Entities
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class BdoEntityAttribute : MetaExtensionAttribute
     {
-        // ------------------------------------------
-        // PROPERTIES
-        // ------------------------------------------
-
-        #region Properties
-
-        /// <summary>
-        /// The data source kind of this instance.
-        /// </summary>
-        public DatasourceKind DatasourceKind { get; set; } = DatasourceKind.None;
-
-        #endregion
-
         // ------------------------------------------
         // CONSTRUCTORS
         // ------------------------------------------

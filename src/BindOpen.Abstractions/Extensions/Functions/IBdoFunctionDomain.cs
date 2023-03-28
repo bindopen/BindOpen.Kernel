@@ -1,5 +1,5 @@
 ﻿using BindOpen.Data.Meta;
-using BindOpen.Scopes.Scopes;
+using BindOpen.Scopes;
 using BindOpen.Script;
 
 namespace BindOpen.Extensions.Functions

@@ -67,9 +67,7 @@ namespace BindOpen.Tests.Data
             Assert.That(
                 newList.All(q => _list?.Contains(q) == true || _addList?.Contains(q) == true), "Error with string set");
             Assert.That(
-                _addList.All(q => newList?.Contains(q) == true), "Error with string set");
-            Assert.That(
-                _addList.All(q => newList?.Contains(q) == true || _removeList?.Contains(q) == true), "Error with string set");
+                _addList.All(q => newList?.Contains(q) == true && !_removeList?.Contains(q) == true), "Error with string set");
         }
     }
 }

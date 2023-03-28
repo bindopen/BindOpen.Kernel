@@ -23,7 +23,8 @@
         /// </summary>
         /// <param key="trueValue">The true value to consider.</param>
         /// <param key="exp">The exp to consider.</param>
-        public ReferenceCondition(bool trueValue, IBdoReference exp) : base(trueValue)
+        public ReferenceCondition(
+            IBdoReference exp) : base()
         {
             Reference = exp;
         }

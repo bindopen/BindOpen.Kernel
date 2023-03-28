@@ -42,9 +42,14 @@ namespace BindOpen.Data
         Required = 0x01 << 3,
 
         /// <summary>
+        /// Custom.
+        /// </summary>
+        Custom = 0x01 << 4,
+
+        /// <summary>
         /// Any the requirement level.
         /// </summary>
-        Any = Forbidden | Optional | Required
+        Any = Forbidden | Optional | Required | Custom
     }
 
     #endregion

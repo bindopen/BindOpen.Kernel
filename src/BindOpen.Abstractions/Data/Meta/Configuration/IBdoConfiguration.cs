@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace BindOpen.Data.Meta
+﻿namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This interface defines a configuration.
@@ -8,15 +6,8 @@ namespace BindOpen.Data.Meta
     public interface IBdoConfiguration :
         IBdoMetaSet,
         IBdoTitled, IBdoDescribed,
-        IStorable
+        IStorable, IBdoDefinable, IBdoUsing
     {
-        string DefinitionUniqueName { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        List<string> UsedItemIds { get; set; }
-
         /// <summary>
         /// 
         /// </summary>

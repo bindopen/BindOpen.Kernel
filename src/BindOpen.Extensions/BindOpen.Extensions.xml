@@ -90,7 +90,7 @@
             </summary>
             <param key="log">The log to consider.</param>
         </member>
-        <member name="M:BindOpen.Extensions.Connectors.BdoConnector.WithScope(BindOpen.Scopes.Scopes.IBdoScope)">
+        <member name="M:BindOpen.Extensions.Connectors.BdoConnector.WithScope(BindOpen.Scopes.IBdoScope)">
             <summary>
             Updates this instance considering the specified scope.
             </summary>
@@ -251,7 +251,7 @@
             </summary>
             <param key="log">The log to consider.</param>
         </member>
-        <member name="M:BindOpen.Extensions.Connectors.TBdoConnector`2.WithScope(BindOpen.Scopes.Scopes.IBdoScope)">
+        <member name="M:BindOpen.Extensions.Connectors.TBdoConnector`2.WithScope(BindOpen.Scopes.IBdoScope)">
             <summary>
             Updates this instance considering the specified scope.
             </summary>
@@ -591,7 +591,7 @@
             Instantiates a new instance of the BdoTask class.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTask.GetEntryObjectWithName(System.String,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog,BindOpen.Scopes.Definition.TaskEntryKind[])">
+        <member name="M:BindOpen.Extensions.Processing.BdoTask.GetEntryObjectWithName(System.String,BindOpen.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog,BindOpen.Scopes.Definition.TaskEntryKind[])">
             <summary>
             Gets the item object of the specified entry.
             </summary>
@@ -621,7 +621,7 @@
             </summary>
             <param key="relativePath">The relative path to consider.</param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.BdoTask.Execute(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.RuntimeModes,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Extensions.Processing.BdoTask.Execute(BindOpen.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.RuntimeModes,BindOpen.Logging.IBdoLog)">
             <summary>
             Executes this instance.
             </summary>
@@ -735,7 +735,7 @@
             </summary>
             <param key="relativePath">The relative path to consider.</param>
         </member>
-        <member name="M:BindOpen.Extensions.Processing.TBdoTask`1.Execute(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.RuntimeModes,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Extensions.Processing.TBdoTask`1.Execute(BindOpen.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Data.RuntimeModes,BindOpen.Logging.IBdoLog)">
             <summary>
             Executes this instance.
             </summary>
@@ -846,7 +846,7 @@
             </summary>
             <param key="definitions">The definitions to consider.</param>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptInterpreter.#ctor(BindOpen.Scopes.Scopes.IBdoScope)">
+        <member name="M:BindOpen.Extensions.Scripting.BdoScriptInterpreter.#ctor(BindOpen.Scopes.IBdoScope)">
             <summary>
             Instantiates a new instance of the BdoScriptInterpreter class.
             </summary>
@@ -1170,7 +1170,7 @@
             The script word of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptwordDomain.#ctor(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Extensions.Scripting.IBdoScriptword)">
+        <member name="M:BindOpen.Extensions.Scripting.BdoScriptwordDomain.#ctor(BindOpen.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Extensions.Scripting.IBdoScriptword)">
             <summary>
             Initializes a new instance of the BdoScriptwordArea class.
             </summary>
@@ -1178,7 +1178,7 @@
             <param key="varSet">The variable element set to consider.</param>
             <param key="scriptword">The script word to consider.</param>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScriptwordDomain.WithScope(BindOpen.Scopes.Scopes.IBdoScope)">
+        <member name="M:BindOpen.Extensions.Scripting.BdoScriptwordDomain.WithScope(BindOpen.Scopes.IBdoScope)">
             <summary>
             
             </summary>
@@ -1210,7 +1210,7 @@
             </summary>
             <param key="definitions">The definitions to consider.</param>
         </member>
-        <member name="M:BindOpen.Extensions.Scripting.BdoScript.CreateInterpreter(BindOpen.Scopes.Scopes.IBdoScope)">
+        <member name="M:BindOpen.Extensions.Scripting.BdoScript.CreateInterpreter(BindOpen.Scopes.IBdoScope)">
             <summary>
             Creates a data element with specified items.
             </summary>

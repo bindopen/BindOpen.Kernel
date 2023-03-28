@@ -4,7 +4,6 @@ using BindOpen.Data.Context;
 using BindOpen.Data.Stores;
 using BindOpen.Extensions.Entities;
 using BindOpen.Logging;
-using BindOpen.Scopes.Scopes;
 using BindOpen.Scopes.Stores;
 using BindOpen.Script;
 using System;
@@ -89,9 +88,7 @@ namespace BindOpen.Scopes
             }
             else
             {
-                var assembly = AppDomain.GetAssemblies()
-                    .FirstOrDefault(q =>
-                        BdoData.Assembly(q) == reference);
+                var assembly = AppDomain.GetAssembly(reference);
                 var type = assembly.GetTypes()
                     .FirstOrDefault(q =>
                         BdoData.Class(
@@ -100,31 +97,6 @@ namespace BindOpen.Scopes
 
                 return type;
             }
-        }
-
-        // Load extensions
-
-        /// <summary>
-        /// Loads the specified extensions.
-        /// </summary>
-        /// <param key="loadOptionsAction">The load options action to consider.</param>
-        /// <param key="references">The extension references to consider.</param>
-        public bool LoadExtensions(
-            Action<IExtensionLoadOptions> loadOptionsAction,
-            IBdoLog log = null)
-        {
-            var loaded = true;
-
-            IExtensionLoadOptions loadOptions = null;
-            if (loadOptionsAction != null)
-            {
-                loadOptions = new ExtensionLoadOptions();
-                loadOptionsAction?.Invoke(loadOptions);
-            }
-            var loader = new BdoExtensionStoreLoader(AppDomain, ExtensionStore, loadOptions);
-            loaded &= loader.LoadPackages(log);
-
-            return loaded;
         }
 
         /// <summary>

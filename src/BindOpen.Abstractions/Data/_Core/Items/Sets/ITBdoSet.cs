@@ -6,7 +6,8 @@ namespace BindOpen.Data
     /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface ITBdoSet<T> : IEnumerable<T>, IBdoSet
+    public interface ITBdoSet<T> :
+        IEnumerable<T>, IBdoSet, ITUpdatable<ITBdoSet<T>>
         where T : IReferenced
     {
         /// <summary>

@@ -6,7 +6,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// 
     /// </summary>
-    public static class BdoMetaSetExtensions
+    public static partial class BdoMetaSetExtensions
     {
         // Add
 

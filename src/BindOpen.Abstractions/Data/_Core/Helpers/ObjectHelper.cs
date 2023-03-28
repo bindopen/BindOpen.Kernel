@@ -113,7 +113,7 @@ namespace BindOpen.Data.Helpers
                     case DataValueTypes.Date:
                         if (obj is DateTime dateTime)
                         {
-                            stringValue = dateTime.ToString(StringHelper.__DateFormat);
+                            stringValue = dateTime.ToString(StringHelper.__DateTimeFormat);
 
                             if (isScriptMode)
                             {

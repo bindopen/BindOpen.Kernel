@@ -1,16 +1,18 @@
-﻿using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
 using BindOpen.Logging;
-using BindOpen.Scopes.Scopes;
+using BindOpen.Scopes;
 
 namespace BindOpen.Extensions.Tasks
 {
     /// <summary>
     /// This class represents an application 
     /// </summary>
-    public static class BdoScopeExtensions
+    public static class BdoTaskExtensions
     {
+        // Create
+
         /// <summary>
         /// Creates the instance of the specified definition.
         /// </summary>

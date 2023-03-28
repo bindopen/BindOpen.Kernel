@@ -12,7 +12,6 @@ namespace BindOpen.Tests
     /// </summary>
     [BdoEntity(
         Name = "testEntity",
-        DatasourceKind = DatasourceKind.Database,
         Description = "Database field.",
         CreationDate = "2016-09-14"
     )]
@@ -38,6 +37,10 @@ namespace BindOpen.Tests
         /// The boolean value of this instance.
         /// </summary>
         [BdoProperty(Name = "boolValue")]
+        [BdoProperty(Description = "This is a boolean property")]
+        [BdoProperty(RequirementLevels.Optional, @"$eq($this(""stringValue""), ""AA"")")]
+        [BdoProperty(0, 1)]
+        [BdoProperty(SpecificationLevels.Configuration, SpecificationLevels.Definition)]
         public ITBdoMetaData<bool?> BoolValue { get; set; }
 
         /// <summary>
@@ -64,7 +67,6 @@ namespace BindOpen.Tests
         [BdoProperty(Name = "inputs")]
         [BdoFunction(Name = "input")]
         public BdoMetaSet Inputs { get; set; }
-
 
         /// <summary>
         /// The sub entity of this instance.

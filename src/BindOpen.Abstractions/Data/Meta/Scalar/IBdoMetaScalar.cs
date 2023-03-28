@@ -3,7 +3,8 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoMetaScalar : ITBdoMetaScalar<object>
+    public interface IBdoMetaScalar :
+        ITBdoMetaScalar<object>
     {
     }
 }

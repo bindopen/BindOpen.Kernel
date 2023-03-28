@@ -3,13 +3,9 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoAssemblyReference : IBdoItem, IReferenced
+    public interface IBdoAssemblyReference :
+        IBdoItem, IReferenced, IBdoDefinable
     {
-        /// <summary>
-        /// The library name of this instance.
-        /// </summary>
-        string DefinitionUniqueName { get; set; }
-
         /// <summary>
         /// The library name of this instance.
         /// </summary>
@@ -24,5 +20,7 @@
         /// The file name of this instance.
         /// </summary>
         string AssemblyFileName { get; set; }
+
+        bool IsEmpty();
     }
 }

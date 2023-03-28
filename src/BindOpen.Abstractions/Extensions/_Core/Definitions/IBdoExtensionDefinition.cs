@@ -1,14 +1,11 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Data.Meta;
 
 namespace BindOpen.Extensions
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoExtensionDefinition :
-        IIdentified, INamed,
-        IBdoTitled, IBdoDescribed,
-        IIndexed, IStorable, IReferenced
+    public interface IBdoExtensionDefinition : IBdoDefinition
     {
         /// <summary>
         /// 

@@ -20,21 +20,5 @@
             }
             return obj;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="definitionUniqueName"></param>
-        public static T WithDefinitionUniqueName<T>(
-            this T obj,
-            string definitionUniqueName)
-            where T : IBdoAssemblyReference
-        {
-            if (obj != null)
-            {
-                obj.DefinitionUniqueName = definitionUniqueName;
-            }
-            return obj;
-        }
     }
 }

@@ -1347,76 +1347,76 @@
             Class name.
             </summary>
         </member>
-        <member name="T:BindOpen.Scopes.Scopes.BdoScope">
+        <member name="T:BindOpen.Scopes.BdoScope">
             <summary>
             This class represents an application scope.
             </summary>
         </member>
-        <member name="P:BindOpen.Scopes.Scopes.BdoScope.AppDomain">
+        <member name="P:BindOpen.Scopes.BdoScope.AppDomain">
             <summary>
             The application domain.
             </summary>
         </member>
-        <member name="P:BindOpen.Scopes.Scopes.BdoScope.ExtensionStore">
+        <member name="P:BindOpen.Scopes.BdoScope.ExtensionStore">
             <summary>
             The BindOpen extension store of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Scopes.Scopes.BdoScope.Context">
+        <member name="P:BindOpen.Scopes.BdoScope.Context">
             <summary>
             The data context of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Scopes.Scopes.BdoScope.DataStore">
+        <member name="P:BindOpen.Scopes.BdoScope.DataStore">
             <summary>
             The data store of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.BdoScope.#ctor(System.AppDomain)">
+        <member name="M:BindOpen.Scopes.BdoScope.#ctor(System.AppDomain)">
             <summary>
             Instantiates a new instance of the BdoScope class.
             </summary>
             <param key="appDomain">The application domain to instance.</param>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.BdoScope.NewScriptInterpreter">
+        <member name="M:BindOpen.Scopes.BdoScope.NewScriptInterpreter">
             <summary>
             Creates a new script interpreter.
             </summary>
             <returns>Returns the new script interpreter.</returns>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.BdoScope.LoadExtensions(System.Func{BindOpen.Scopes.Scopes.IExtensionLoadOptions,System.Boolean},BindOpen.Scopes.References.IBdoAssemblyReference[],BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Scopes.BdoScope.LoadExtensions(System.Func{BindOpen.Scopes.IExtensionLoadOptions,System.Boolean},BindOpen.Scopes.References.IBdoAssemblyReference[],BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the specified extensions.
             </summary>
             <param key="loadOptionsAction">The load options action to consider.</param>
             <param key="references">The extension references to consider.</param>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.BdoScope.LoadExtensions(System.Func{BindOpen.Scopes.Scopes.IExtensionLoadOptions,System.Boolean},BindOpen.Scopes.References.IBdoAssemblyReference[])">
+        <member name="M:BindOpen.Scopes.BdoScope.LoadExtensions(System.Func{BindOpen.Scopes.IExtensionLoadOptions,System.Boolean},BindOpen.Scopes.References.IBdoAssemblyReference[])">
             <summary>
             Loads the specified extensions.
             </summary>
             <param key="loadOptionsAction">The load options action to consider.</param>
             <param key="references">The extension references to consider.</param>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.BdoScope.LoadExtensions(BindOpen.Scopes.References.IBdoAssemblyReference[],BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Scopes.BdoScope.LoadExtensions(BindOpen.Scopes.References.IBdoAssemblyReference[],BindOpen.Logging.IBdoLog)">
             <summary>
             Loads the specified extensions.
             </summary>
             <param key="references">The extension references to consider.</param>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.BdoScope.LoadExtensions(BindOpen.Scopes.References.IBdoAssemblyReference[])">
+        <member name="M:BindOpen.Scopes.BdoScope.LoadExtensions(BindOpen.Scopes.References.IBdoAssemblyReference[])">
             <summary>
             Loads the specified extensions.
             </summary>
             <param key="loadOptionsAction">The load options action to consider.</param>
             <param key="references">The extension references to consider.</param>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.BdoScope.Clear">
+        <member name="M:BindOpen.Scopes.BdoScope.Clear">
             <summary>
             Clears this instance.
             </summary>
         </member>
-        <member name="T:BindOpen.Scopes.Scopes.BdoScopeExtension">
+        <member name="T:BindOpen.Scopes.BdoScopeExtension">
             <summary>
             This static class provides methods to create extension items.
             </summary>
@@ -1430,7 +1430,7 @@
             This static class provides methods to create extension items.
             </summary>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.BdoScopeExtension.Check(BindOpen.Scopes.Scopes.IBdoScope,System.Boolean,System.Boolean,System.Boolean,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Scopes.BdoScopeExtension.Check(BindOpen.Scopes.IBdoScope,System.Boolean,System.Boolean,System.Boolean,BindOpen.Logging.IBdoLog)">
             <summary>
             Check the specified item.
             </summary>
@@ -1439,7 +1439,7 @@
             <param key="checkDataStore">Indicates whether the data store extistence is chekced.</param>
             <returns>The log of check log.</returns>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.BdoScopeExtension.Open``1(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.IBdoDataSource,System.String,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Scopes.BdoScopeExtension.Open``1(BindOpen.Scopes.IBdoScope,BindOpen.Data.IBdoDataSource,System.String,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates a connector.
             </summary>
@@ -1449,7 +1449,7 @@
             <param key="log">The log of execution to consider.</param>
             <returns>Returns True if the connector has been opened. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.BdoScopeExtension.Open``1(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Extensions.Connectors.IBdoConfiguration,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Scopes.BdoScopeExtension.Open``1(BindOpen.Scopes.IBdoScope,BindOpen.Extensions.Connectors.IBdoConfiguration,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates a connector using the specified data module and connector unique name.
             </summary>
@@ -1458,7 +1458,7 @@
             <param key="log">The log of execution to consider.</param>
             <returns>Returns True if the connector has been opened. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.BdoScopeExtension.NewEntity``1(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Extensions.Entities.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Scopes.BdoScopeExtension.NewEntity``1(BindOpen.Scopes.IBdoScope,BindOpen.Extensions.Entities.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -1469,7 +1469,7 @@
             <typeparam name="T">The entity class to return.</typeparam>
             <returns>Returns the created entity.</returns>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.BdoScopeExtension.NewEntity(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Extensions.Entities.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Scopes.BdoScopeExtension.NewEntity(BindOpen.Scopes.IBdoScope,BindOpen.Extensions.Entities.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -1479,7 +1479,7 @@
             <param key="varSet">The variable element set to use.</param>
             <returns>Returns the created entity.</returns>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.BdoScopeExtension.NewConnector``1(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Extensions.Connectors.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Scopes.BdoScopeExtension.NewConnector``1(BindOpen.Scopes.IBdoScope,BindOpen.Extensions.Connectors.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -1490,7 +1490,7 @@
             <typeparam name="T">The connector class to return.</typeparam>
             <returns>Returns the created connector.</returns>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.BdoScopeExtension.NewConnector(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Extensions.Connectors.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Scopes.BdoScopeExtension.NewConnector(BindOpen.Scopes.IBdoScope,BindOpen.Extensions.Connectors.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -1500,7 +1500,7 @@
             <param key="varSet">The variable element set to use.</param>
             <returns>Returns the created connector.</returns>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.BdoScopeExtension.NewTask``1(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Extensions.Processing.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Scopes.BdoScopeExtension.NewTask``1(BindOpen.Scopes.IBdoScope,BindOpen.Extensions.Processing.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -1511,7 +1511,7 @@
             <typeparam name="T">The entity class to return.</typeparam>
             <returns>Returns the created entity.</returns>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.BdoScopeExtension.NewTask(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Extensions.Processing.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Scopes.BdoScopeExtension.NewTask(BindOpen.Scopes.IBdoScope,BindOpen.Extensions.Processing.IBdoConfiguration,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -1521,7 +1521,7 @@
             <param key="varSet">The variable element set to use.</param>
             <returns>Returns the created task.</returns>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.BdoScopeExtension.CreateScoped``1(BindOpen.Scopes.Scopes.IBdoScope)">
+        <member name="M:BindOpen.Scopes.BdoScopeExtension.CreateScoped``1(BindOpen.Scopes.IBdoScope)">
             <summary>
             Creates a new service.
             </summary>
@@ -1529,7 +1529,7 @@
             <typeparam name="T"></typeparam>
             <returns>Returns the log of the operation.</returns>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.BdoScopeExtension.CreateConnected``1(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Extensions.Connectors.IBdoConnector)">
+        <member name="M:BindOpen.Scopes.BdoScopeExtension.CreateConnected``1(BindOpen.Scopes.IBdoScope,BindOpen.Extensions.Connectors.IBdoConnector)">
             <summary>
             Creates a new connected service.
             </summary>
@@ -1538,53 +1538,53 @@
             <typeparam name="T"></typeparam>
             <returns>Returns the log of the operation.</returns>
         </member>
-        <member name="T:BindOpen.Scopes.Scopes.ExtensionLoadOptions">
+        <member name="T:BindOpen.Scopes.ExtensionLoadOptions">
             <summary>
             This class represents the extension loading options.
             </summary>
         </member>
-        <member name="P:BindOpen.Scopes.Scopes.ExtensionLoadOptions.LibraryFolderPath">
+        <member name="P:BindOpen.Scopes.ExtensionLoadOptions.LibraryFolderPath">
             <summary>
             The path of the library folder of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Scopes.Scopes.ExtensionLoadOptions.RemoteServerUri">
+        <member name="P:BindOpen.Scopes.ExtensionLoadOptions.RemoteServerUri">
             <summary>
             The URI of the remote server of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Scopes.Scopes.ExtensionLoadOptions.SourceKinds">
+        <member name="P:BindOpen.Scopes.ExtensionLoadOptions.SourceKinds">
             <summary>
             The source kinds of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.ExtensionLoadOptions.#ctor">
+        <member name="M:BindOpen.Scopes.ExtensionLoadOptions.#ctor">
             <summary>
             Instantiates a new instance of the ExtensionLoadOptions class.
             </summary>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.ExtensionLoadOptions.WithLibraryFolderPath(System.String)">
+        <member name="M:BindOpen.Scopes.ExtensionLoadOptions.WithLibraryFolderPath(System.String)">
             <summary>
             Sets the path of the library folder of this instance.
             </summary>
             <param key="folderPath"></param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.ExtensionLoadOptions.WithRemoteServerUri(System.String)">
+        <member name="M:BindOpen.Scopes.ExtensionLoadOptions.WithRemoteServerUri(System.String)">
             <summary>
             Sets the URI of the remote server of this instance.
             </summary>
             <param key="uri">The URI of the remote server.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.ExtensionLoadOptions.WithSourceKinds(BindOpen.Data.DatasourceKind[])">
+        <member name="M:BindOpen.Scopes.ExtensionLoadOptions.WithSourceKinds(BindOpen.Data.DatasourceKind[])">
             <summary>
             Sets the source kinds of this instance.
             </summary>
             <param key="sourceKinds">The source kinds to consider.</param>
             <returns>Returns this instance.</returns>
         </member>
-        <member name="M:BindOpen.Scopes.Scopes.ExtensionLoadOptions.Update``1(``0)">
+        <member name="M:BindOpen.Scopes.ExtensionLoadOptions.Update``1(``0)">
             <summary>
             
             </summary>
@@ -1691,7 +1691,7 @@
             This class represents a extension scope loader.
             </summary>
         </member>
-        <member name="M:BindOpen.Scopes.Stores.BdoExtensionStoreLoader.#ctor(System.AppDomain,BindOpen.Scopes.Stores.IBdoExtensionStore,BindOpen.Scopes.Scopes.IExtensionLoadOptions)">
+        <member name="M:BindOpen.Scopes.Stores.BdoExtensionStoreLoader.#ctor(System.AppDomain,BindOpen.Scopes.Stores.IBdoExtensionStore,BindOpen.Scopes.IExtensionLoadOptions)">
             <summary>
             Initializes a new instance of BdoExtensionStoreLoader the class.
             </summary>

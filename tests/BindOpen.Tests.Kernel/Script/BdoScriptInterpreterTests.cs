@@ -7,18 +7,18 @@ using System;
 namespace BindOpen.Tests.Script
 {
     [TestFixture, Order(401)]
-    public class BdoScriptInterpreterTests
+    public partial class BdoScriptInterpreterTests
     {
-        private readonly string _script1 = "$isEqual('MYTABLE', $text('MYTABLE'))";
+        private readonly string _scriptA = "$isEqual('MYTABLE', $text('MYTABLE'))";
 
-        private readonly BdoScriptword _scriptword1 =
+        private readonly BdoScriptword _scriptwordA =
             BdoScript.Function("isEqual", "MYTABLE", BdoScript.Function("text", "mytable"));
 
-        private readonly string _string1 = "totomax";
+        private readonly string _stringA = "totomax";
 
-        private readonly string _script2 = "$('workflow').input('input1')";
+        private readonly string _scriptB = "$('workflow').input('input1')";
 
-        private readonly BdoScriptword _scriptword2 =
+        private readonly BdoScriptword _scriptwordB =
             BdoScript.Variable("workflow")
             .Func("input", "input1");
 
@@ -51,42 +51,42 @@ namespace BindOpen.Tests.Script
         [Test, Order(3)]
         public void WordToStringTest()
         {
-            var script = _scriptword1?.ToString();
-            Assert.That(_script1.Equals(script, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
+            var script = _scriptwordA?.ToString();
+            Assert.That(_scriptA.Equals(script, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
 
-            script = (string)_scriptword1;
-            Assert.That(_script1.Equals(script, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
+            script = (string)_scriptwordA;
+            Assert.That(_scriptA.Equals(script, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
 
         [Test, Order(4)]
         public void CreateWordFromScriptTest()
         {
-            var scriptword = BdoScript.NewWordFromScript(_script1);
+            var scriptword = BdoScript.NewWordFromScript(_scriptA);
             Assert.That(
-                _scriptword1.Name.Equals(scriptword.Name, StringComparison.OrdinalIgnoreCase)
-                && _scriptword1.Count == scriptword.Count
-                && (_scriptword1[1] as BdoScriptword)?.Name.Equals((scriptword[1] as BdoScriptword)?.Name, StringComparison.OrdinalIgnoreCase) == true
-                && (_scriptword1[1] as BdoScriptword)?.Count == (scriptword[1] as BdoScriptword)?.Count,
+                _scriptwordA.Name.Equals(scriptword.Name, StringComparison.OrdinalIgnoreCase)
+                && _scriptwordA.Count == scriptword.Count
+                && (_scriptwordA[1] as BdoScriptword)?.Name.Equals((scriptword[1] as BdoScriptword)?.Name, StringComparison.OrdinalIgnoreCase) == true
+                && (_scriptwordA[1] as BdoScriptword)?.Count == (scriptword[1] as BdoScriptword)?.Count,
                 "Bad script interpretation");
         }
 
         [Test, Order(4)]
         public void CreateWordConcatenation()
         {
-            var st = _string1 + _scriptword1;
-            var script = _string1 + "{{" + _script1 + "}}";
+            var st = _stringA + _scriptwordA;
+            var script = _stringA + "{{" + _scriptA + "}}";
             Assert.That(st.Equals(script, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
 
-            st = _scriptword1 + _string1;
-            script = "{{" + _script1 + "}}" + _string1;
+            st = _scriptwordA + _stringA;
+            script = "{{" + _scriptA + "}}" + _stringA;
             Assert.That(st.Equals(script, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
 
         [Test, Order(4)]
         public void CreateSubword()
         {
-            var script = (string)_scriptword2;
-            Assert.That(_script2.Equals(script, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
+            var script = (string)_scriptwordB;
+            Assert.That(_scriptB.Equals(script, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
     }
 }

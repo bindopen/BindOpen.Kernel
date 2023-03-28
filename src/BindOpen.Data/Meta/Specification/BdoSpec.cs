@@ -8,7 +8,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    public class BdoSpec : BdoItem, IBdoSpec
+    public partial class BdoSpec : BdoItem, IBdoSpec
     {
         // --------------------------------------------------
         // CONSTANTS
@@ -71,7 +71,7 @@ namespace BindOpen.Data.Meta
 
             dataElementSpec.WithAliases(Aliases?.ToArray());
             dataElementSpec.WithValueModes(ValueModes?.ToArray());
-            dataElementSpec.WithSpecificationLevels(SpecificationLevels?.ToArray());
+            dataElementSpec.WithSpecLevels(SpecLevels?.ToArray());
             dataElementSpec.WithSubSpecs(SubSpecs?.ToArray());
 
             return dataElementSpec;
@@ -93,12 +93,12 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The requirement level of this instance.
         /// </summary>
-        public RequirementLevels RequirementLevel { get; set; } = RequirementLevels.None;
+        public RequirementLevels Requirement { get; set; } = RequirementLevels.None;
 
         /// <summary>
         /// The requirement script of this instance.
         /// </summary>
-        public IBdoExpression RequirementExpression { get; set; }
+        public string RequirementExp { get; set; }
 
         /// <summary>
         /// The level of inheritance of this instance.
@@ -108,17 +108,12 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Levels of specification of this instance.
         /// </summary>
-        public List<SpecificationLevels> SpecificationLevels { get; set; }
+        public List<SpecificationLevels> SpecLevels { get; set; }
 
         /// <summary>
         /// Level of accessibility of this instance.
         /// </summary>
         public AccessibilityLevels AccessibilityLevel { get; set; } = AccessibilityLevels.Public;
-
-        /// <summary>
-        /// Indicates whether this instance is repeated in a set.
-        /// </summary>
-        public bool IsRepeated { get; set; }
 
         #endregion
 
@@ -226,17 +221,6 @@ namespace BindOpen.Data.Meta
         public ICondition Condition { get; set; }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="condition"></param>
-        /// <returns></returns>
-        public IBdoSpec WithCondition(ICondition condition)
-        {
-            Condition = condition;
-            return this;
-        }
-
-        /// <summary>
         /// The aliases of the entry.
         /// </summary>
         public List<string> Aliases { get; set; }
@@ -245,18 +229,6 @@ namespace BindOpen.Data.Meta
         /// Indicates whether the instance can be allocated.
         /// </summary>
         public bool IsAllocatable { get; set; } = false;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="isAllocatable"></param>
-        /// <returns></returns>
-        public IBdoSpec AsAllocatable(bool isAllocatable = true)
-        {
-            IsAllocatable = isAllocatable;
-
-            return this;
-        }
 
         /// <summary>
         /// The script of this instance.
@@ -286,53 +258,32 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Minimum item number of this instance.
         /// </summary>
-        public uint MinimumItemNumber { get; set; } = 0;
+        public uint MinDataItemNumber { get; set; } = 0;
 
         /// <summary>
         /// Maximum item number of this instance.
         /// </summary>
-        public uint? MaximumItemNumber { get; set; }
+        public uint? MaxDataItemNumber { get; set; }
 
         /// <summary>
         /// Indicates whether the value of this instance is a list.
         /// </summary>
-        public bool IsValueList => MaximumItemNumber == null || MaximumItemNumber > 1;
+        public bool IsValueList => MaxDataItemNumber == null || MaxDataItemNumber > 1;
 
         /// <summary>
         /// The item requirement level of this instance.
         /// </summary>
-        public RequirementLevels DataRequirementLevel
-        {
-            get
-            {
-                if (MaximumItemNumber == 0)
-                {
-                    return RequirementLevels.Forbidden;
-                }
-                else if (MinimumItemNumber > 0)
-                {
-                    return RequirementLevels.Required;
-                }
-                else if (MinimumItemNumber == 0)
-                {
-                    return RequirementLevels.Optional;
-                }
-                else
-                {
-                    return RequirementLevels.None;
-                }
-            }
-        }
+        public RequirementLevels DataRequirement { get; set; }
+
+        /// <summary>
+        /// The requirement script of this instance.
+        /// </summary>
+        public string DataRequirementExp { get; set; }
 
         /// <summary>
         /// Levels of specification of this instance.
         /// </summary>
-        public List<SpecificationLevels> DataSpecificationLevels { get; set; }
-
-        /// <summary>
-        /// Data constraint statement of this instance.
-        /// </summary>
-        public ITBdoSet<ICondition> ConditionSet { get; set; }
+        public List<SpecificationLevels> DataSpecLevels { get; set; }
 
         /// <summary>
         /// 
@@ -370,7 +321,8 @@ namespace BindOpen.Data.Meta
                 return;
             }
 
-            ConditionSet?.Dispose();
+            Condition?.Dispose();
+            this.
 
             _isDisposed = true;
 

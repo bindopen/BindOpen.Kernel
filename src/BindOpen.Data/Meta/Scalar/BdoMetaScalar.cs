@@ -3,7 +3,7 @@
     /// <summary>
     /// This class represents a scalar meta that is an meta whose items are scalars.
     /// </summary>
-    public class BdoMetaScalar : TBdoMetaScalar<object>,
+    public partial class BdoMetaScalar : TBdoMetaScalar<object>,
         IBdoMetaScalar
     {
         // --------------------------------------------------

@@ -3,7 +3,7 @@ using BindOpen.Data.Assemblies;
 using BindOpen.Extensions;
 using System.Collections.Generic;
 
-namespace BindOpen.Scopes.Scopes
+namespace BindOpen.Scopes
 {
     /// <summary>
     /// This interface defines the extension loading options.

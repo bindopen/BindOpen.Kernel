@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Logging;
-using BindOpen.Scopes.Scopes;
+using BindOpen.Scopes;
 using System;
 
 namespace BindOpen.Data.Meta

@@ -1,16 +1,18 @@
-﻿using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
 using BindOpen.Logging;
-using BindOpen.Scopes.Scopes;
+using BindOpen.Scopes;
 
 namespace BindOpen.Extensions.Entities
 {
     /// <summary>
     /// This class represents an application 
     /// </summary>
-    public static class BdoScopeExtensions
+    public static class BdoEntityExtensions
     {
+        // Create
+
         /// <summary>
         /// Creates the instance of the specified definition.
         /// </summary>
@@ -27,7 +29,7 @@ namespace BindOpen.Extensions.Entities
         {
             IBdoEntity entity = null;
 
-            if (config != null && scope?.Check(true, log: log) == false)
+            if (config != null && scope?.Check(true, log: log) == true)
             {
                 // we get the entity class reference
 

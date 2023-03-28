@@ -16,11 +16,6 @@
         /// </summary>
         public string Name { get; set; }
 
-        /// <summary>
-        /// The value that expresses that the condition is satisfied.
-        /// </summary>
-        public bool TrueValue { get; set; } = true;
-
         #endregion
 
         // ------------------------------------------
@@ -34,15 +29,6 @@
         /// </summary>
         protected Condition() : base()
         {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the Condition class.
-        /// </summary>
-        /// <param key="trueValue">The true value to consider.</param>
-        protected Condition(bool trueValue) : base()
-        {
-            this.TrueValue = trueValue;
         }
 
         #endregion

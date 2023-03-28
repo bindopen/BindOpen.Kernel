@@ -1,7 +1,7 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Helpers;
 using BindOpen.Logging;
-using BindOpen.Scopes.Scopes;
+using BindOpen.Scopes;
 using System;
 using System.Collections;
 using System.Collections.Generic;

@@ -1,7 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Assemblies;
 using BindOpen.Extensions;
-using BindOpen.Scopes.Scopes;
+using BindOpen.Scopes;
 using System.Linq;
 
 namespace BindOpen.Scopes

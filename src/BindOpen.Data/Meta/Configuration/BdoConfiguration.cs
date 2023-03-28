@@ -6,7 +6,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a config.
     /// </summary>
-    public class BdoConfiguration : BdoMetaObject,
+    public partial class BdoConfiguration : BdoMetaObject,
         IBdoConfiguration
     {
         // -------------------------------------------------------------
@@ -28,7 +28,7 @@ namespace BindOpen.Data.Meta
         // IBdoConfiguration Implementation
         // -------------------------------------------------------
 
-        #region IBdoBaseConfiguration
+        #region IBdoConfiguration
 
         /// <summary>
         /// 
@@ -39,11 +39,6 @@ namespace BindOpen.Data.Meta
         /// The using file paths of this instance.
         /// </summary>
         public List<string> UsedItemIds { get; set; }
-
-        /// <summary>
-        /// The using config statement of this instance.
-        /// </summary>
-        private IBdoConfiguration UsingConfiguration { get; set; }
 
         /// <summary>
         /// Adds the specified item.

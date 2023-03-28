@@ -3,9 +3,8 @@ using BindOpen.Data.Assemblies;
 using BindOpen.Data.Helpers;
 using BindOpen.Extensions;
 using BindOpen.Logging;
-using BindOpen.Scopes;
 using BindOpen.Scopes.Application;
-using BindOpen.Scopes.Scopes;
+using BindOpen.Scopes;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -47,10 +46,10 @@ namespace BindOpen.Scopes.Stores
         /// </summary>
         /// <param key="references">The library references to consider.</param>
         /// <param key="log">The log to consider.</param>
-        public bool LoadPackages(
+        public IBdoExtensionStoreLoader LoadPackages(
             IBdoLog log = null)
         {
-            if (_store == null) return false;
+            if (_store == null) return this;
 
             var subLog = log?.NewLog();
 
@@ -65,10 +64,7 @@ namespace BindOpen.Scopes.Stores
             }
 
             _loadOptions.References ??= new() { BdoData.AssemblyAsAll() };
-            if (_loadOptions.References?.Any(q => q.BdoKeyEquals(StringHelper.__Star)) == true)
-            {
-                _loadOptions.References = _appDomain.GetAssemblies().Select(q => BdoData.Assembly(q)).ToList();
-            }
+            _loadOptions.References = _appDomain.GetAssemblyReferences(_loadOptions.References);
 
             if (!(_loadOptions.References.Count > 0))
             {
@@ -96,7 +92,7 @@ namespace BindOpen.Scopes.Stores
                 }
             }
 
-            return loaded;
+            return this;
         }
 
         /// <summary>
@@ -118,7 +114,6 @@ namespace BindOpen.Scopes.Stores
 
                 if (!loadedAssemblyNames.Any(q => referenceUniqueName.BdoKeyEquals(q)))
                 {
-
                     // we update the list of loaded assemblies
 
                     loadedAssemblyNames.Add(referenceUniqueName);
@@ -141,16 +136,7 @@ namespace BindOpen.Scopes.Stores
                             switch (source.Kind)
                             {
                                 case DatasourceKind.Memory:
-                                    if (!string.IsNullOrEmpty(reference.AssemblyName))
-                                    {
-                                        assembly = _appDomain.LoadAssembly(
-                                            reference.AssemblyName,
-                                            subLog);
-                                    }
-                                    else
-                                    {
-                                        subLog?.AddWarning("File name missing");
-                                    }
+                                    assembly = _appDomain.LoadAssembly(reference, subLog);
                                     break;
                                 case DatasourceKind.Repository:
                                     string fileName = reference.AssemblyFileName;
@@ -187,7 +173,7 @@ namespace BindOpen.Scopes.Stores
 
                             if (assembly != null)
                             {
-                                subLog?.AddMessage("Assembly loaded");
+                                subLog?.AddMessage("Assembly '" + reference.ToString() + " loaded");
                                 break;
                             }
                         }
@@ -222,10 +208,10 @@ namespace BindOpen.Scopes.Stores
                             var extensionKinds = _loadOptions.ExtensionKinds?.ToArray()
                                 ?? new[]
                                 {
-                                BdoExtensionKind.Connector,
-                                BdoExtensionKind.Entity,
-                                BdoExtensionKind.Function,
-                                BdoExtensionKind.Task
+                                    BdoExtensionKind.Connector,
+                                    BdoExtensionKind.Entity,
+                                    BdoExtensionKind.Function,
+                                    BdoExtensionKind.Task
                                 };
 
                             foreach (var extensionKind in extensionKinds)

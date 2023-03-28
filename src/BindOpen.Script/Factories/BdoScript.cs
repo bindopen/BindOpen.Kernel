@@ -2,7 +2,7 @@
 using BindOpen.Data.Meta;
 using BindOpen.Extensions.Functions;
 using BindOpen.Logging;
-using BindOpen.Scopes.Scopes;
+using BindOpen.Scopes;
 
 namespace BindOpen.Script
 {

@@ -1,7 +1,8 @@
 ﻿using BindOpen.Logging;
-using BindOpen.Scopes.Scopes;
+using BindOpen.Scopes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace BindOpen.Data.Meta.Reflection
@@ -31,46 +32,58 @@ namespace BindOpen.Data.Meta.Reflection
 
             foreach (var propInfo in obj.GetType().GetProperties())
             {
-                var bdoAttribute = propInfo.GetCustomAttribute(typeof(BdoPropertyAttribute)) as BdoPropertyAttribute;
-                if (bdoAttribute != null || !onlyMetaAttributes)
+                var hasMetaAttribute = propInfo.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any();
+                if (hasMetaAttribute || !onlyMetaAttributes)
                 {
-                    string name = bdoAttribute?.Name;
-                    if (string.IsNullOrEmpty(name))
-                    {
-                        name = propInfo.Name;
-                    }
+                    var spec = BdoMeta.NewSpec();
+                    spec.UpdateFrom<BdoPropertyAttribute>(propInfo);
+
+                    var name = spec.Name;
 
                     try
                     {
                         if (list.Has(name))
                         {
                             var type = propInfo.PropertyType;
-                            var value = list.GetData(name, scope, varSet, log);
-                            if (value != null)
+
+                            object value;
+
+                            if (typeof(IBdoMetaData).IsAssignableFrom(type))
                             {
-                                if (type.IsEnum)
+                                var meta = BdoMeta.New(name, type);
+                                meta.Update(list.Get(name));
+                                value = meta;
+                            }
+                            else
+                            {
+                                value = list.GetData(name, scope, varSet, log);
+
+                                if (value != null)
                                 {
-                                    if (!value.GetType().IsEnum && Enum.IsDefined(type, value))
+                                    if (type.IsEnum)
                                     {
-                                        value = Enum.Parse(type, value as string);
+                                        if (!value.GetType().IsEnum && Enum.IsDefined(type, value))
+                                        {
+                                            value = Enum.Parse(type, value as string);
+                                        }
+                                    }
+                                    else if (value.GetType() == typeof(Dictionary<string, object>)
+                                        && type.IsGenericType
+                                        && type.GetGenericTypeDefinition() == typeof(Dictionary<,>)
+                                        && type != typeof(Dictionary<string, object>))
+                                    {
+                                        Type itemType = type.GetGenericArguments()[0];
+
+                                        var dictionary = Activator.CreateInstance(typeof(Dictionary<,>).MakeGenericType(typeof(string), itemType));
+                                        var method = dictionary.GetType().GetMethod("Add", new Type[] { typeof(string), itemType });
+
+                                        foreach (var item in value as Dictionary<string, object>)
+                                        {
+                                            method.Invoke(dictionary, new object[] { item.Key, Convert.ChangeType(item.Value, itemType) });
+                                        }
+                                        value = dictionary;
                                     }
                                 }
-                            }
-                            else if (value?.GetType() == typeof(Dictionary<string, object>)
-                                && type.IsGenericType
-                                && type.GetGenericTypeDefinition() == typeof(Dictionary<,>)
-                                && type != typeof(Dictionary<string, object>))
-                            {
-                                Type itemType = type.GetGenericArguments()[0];
-
-                                var dictionary = Activator.CreateInstance(typeof(Dictionary<,>).MakeGenericType(typeof(string), itemType));
-                                var method = dictionary.GetType().GetMethod("Add", new Type[] { typeof(string), itemType });
-
-                                foreach (var item in value as Dictionary<string, object>)
-                                {
-                                    method.Invoke(dictionary, new object[] { item.Key, Convert.ChangeType(item.Value, itemType) });
-                                }
-                                value = dictionary;
                             }
 
                             propInfo.SetValue(obj, value);

@@ -17,7 +17,7 @@ namespace BindOpen.Data.Helpers
         /// <returns>Returns the date string of this instance.</returns>
         public static string ToString(this DateTime date)
         {
-            return date.ToString(__DateFormat);
+            return date.ToString(__DateTimeFormat);
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace BindOpen.Data.Helpers
         /// <returns>Returns the date string of this instance.</returns>
         public static string ToString(this DateTime? date)
         {
-            return date?.ToString(__DateFormat);
+            return date?.ToString(__DateTimeFormat);
         }
 
         /// <summary>
@@ -116,17 +116,20 @@ namespace BindOpen.Data.Helpers
                     }
                     return object1;
                 case DataValueTypes.Date:
-                    if (string.IsNullOrEmpty(textFormat)) textFormat = __DateFormat;
+                    if (string.IsNullOrEmpty(textFormat))
+                    {
+                        textFormat = st?.Trim().Length == 10 ? __DateTimeFormatShort : __DateTimeFormat;
+                    }
                     DateTime dateTime;
                     if (!DateTime.TryParseExact(st, textFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime))
                         return null;
                     return new DateTime?(dateTime);
                 case DataValueTypes.Time:
                     if (string.IsNullOrEmpty(textFormat)) textFormat = __TimeFormat;
-                    TimeSpan aTimeSpan;
-                    if (!TimeSpan.TryParseExact(st, textFormat, CultureInfo.InvariantCulture, TimeSpanStyles.None, out aTimeSpan))
+                    TimeSpan timeSpan;
+                    if (!TimeSpan.TryParseExact(st, textFormat, CultureInfo.InvariantCulture, TimeSpanStyles.None, out timeSpan))
                         return null;
-                    return new TimeSpan?(aTimeSpan);
+                    return new TimeSpan?(timeSpan);
                 case DataValueTypes.Boolean:
                     return st.Equals("true", StringComparison.OrdinalIgnoreCase);
                 case DataValueTypes.Number:

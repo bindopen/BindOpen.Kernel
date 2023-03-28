@@ -18,7 +18,7 @@ namespace BindOpen.Data
         /// <param key="assemblyName">The name to consider.</param>
         /// <param key="assemblyVersion">The version to consider.</param>
         /// <returns>Returns the itemized list of the specified library list.</returns>
-        public static IBdoAssemblyReference Assembly(
+        public static BdoAssemblyReference Assembly(
             string assemblyName,
             string assemblyVersion = null)
             => new BdoAssemblyReference(assemblyName, assemblyVersion);
@@ -27,7 +27,7 @@ namespace BindOpen.Data
         /// Creates a assembly reference of the spcefied type.
         /// </summary>
         /// <returns>Returns the itemized list of the spcefied type</returns>
-        public static IBdoAssemblyReference AssemblyFrom(Type type)
+        public static BdoAssemblyReference AssemblyFrom(Type type)
         {
             var assembly = type?.Assembly;
             return Assembly(assembly);
@@ -37,14 +37,14 @@ namespace BindOpen.Data
         /// Creates a assembly reference of the spcefied type.
         /// </summary>
         /// <returns>Returns the itemized list of the spcefied type</returns>
-        public static IBdoAssemblyReference AssemblyFrom<T>()
+        public static BdoAssemblyReference AssemblyFrom<T>()
             => AssemblyFrom(typeof(T));
 
         /// <summary>
         /// Creates a assembly reference of the spcefied type.
         /// </summary>
         /// <returns>Returns the itemized list of the spcefied type</returns>
-        public static IBdoAssemblyReference Assembly(Assembly assembly)
+        public static BdoAssemblyReference Assembly(Assembly assembly)
         {
             string assemblyName = assembly?.GetName().Name;
             string assemblyVersion = assembly?.GetName().Version.ToString();
@@ -55,7 +55,7 @@ namespace BindOpen.Data
         /// Creates a assembly reference that represents all the references.
         /// </summary>
         /// <returns>Returns a assembly reference that represents all the references.</returns>
-        public static IBdoAssemblyReference AssemblyAsAll()
+        public static BdoAssemblyReference AssemblyAsAll()
             => new BdoAssemblyReference(StringHelper.__Star);
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace BindOpen.Data
             string definitionUniqueName)
         {
             return new BdoClassReference()
-                .WithDefinitionUniqueName(definitionUniqueName);
+                .WithDefinition(definitionUniqueName);
         }
 
         /// <summary>

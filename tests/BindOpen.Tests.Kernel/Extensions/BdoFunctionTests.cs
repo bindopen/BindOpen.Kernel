@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Meta;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using BindOpen.Extensions.Functions;
 using NUnit.Framework;
 
@@ -21,7 +22,8 @@ namespace BindOpen.Tests.Extensions
         public void CreateFunctionFromScopeTest()
         {
             var config =
-                BdoConfig.New("tests.core$testFunction")
+                BdoConfig.New()
+                .WithDefinition("bindopen.tests.kernel$testFunction")
                 .With(
                     BdoMeta.NewScalar("boolValue", _testData.boolValue as bool?),
                     BdoMeta.NewScalar("enumValue", _testData.enumValue as string),
