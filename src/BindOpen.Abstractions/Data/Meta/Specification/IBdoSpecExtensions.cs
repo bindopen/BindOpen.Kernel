@@ -42,22 +42,6 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param key="levels"></param>
-        public static T WithItemSpecificationLevels<T>(
-            this T spec,
-            params SpecificationLevels[] levels)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.DataSpecificationLevels = levels?.ToList();
-            }
-            return spec;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param key="aliases"></param>
         public static T WithAliases<T>(
             this T spec,
@@ -107,7 +91,7 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         /// <param key="item"></param>
-        public static T WithDefaultItem<T>(
+        public static T WithDefaultData<T>(
             this T spec,
             object item)
             where T : IBdoSpec
@@ -123,14 +107,14 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         /// <param key="number"></param>
-        public static T WithMaximumItemNumber<T>(
+        public static T WithMaxDataItemNumber<T>(
             this T spec,
             uint? number = null)
             where T : IBdoSpec
         {
             if (spec != null)
             {
-                spec.MaximumItemNumber = number;
+                spec.MaxDataItemNumber = number;
             }
             return spec;
         }
@@ -139,14 +123,14 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         /// <param key="number"></param>
-        public static T WithMinimumItemNumber<T>(
+        public static T WithMinDataItemNumber<T>(
             this T spec,
             uint number)
             where T : IBdoSpec
         {
             if (spec != null)
             {
-                spec.MinimumItemNumber = number;
+                spec.MinDataItemNumber = number;
             }
             return spec;
         }
@@ -205,29 +189,12 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param key="level"></param>
-        public static T WithRequirementLevel<T>(
-            this T spec,
-            RequirementLevels level)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.RequirementLevel = level;
-            }
-
-            return spec;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <returns></returns>
         public static T TAsOptional<T>(
             this T spec)
             where T : IBdoSpec
         {
-            spec?.WithRequirementLevel(RequirementLevels.Optional);
+            spec?.WithRequirement(RequirementLevels.Optional);
 
             return spec;
         }
@@ -240,7 +207,7 @@ namespace BindOpen.Data.Meta
             this T spec)
             where T : IBdoSpec
         {
-            spec?.WithRequirementLevel(RequirementLevels.Required);
+            spec?.WithRequirement(RequirementLevels.Required);
 
             return spec;
         }
@@ -253,7 +220,24 @@ namespace BindOpen.Data.Meta
             this T spec)
             where T : IBdoSpec
         {
-            spec?.WithRequirementLevel(RequirementLevels.Forbidden);
+            spec?.WithRequirement(RequirementLevels.Forbidden);
+
+            return spec;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="level"></param>
+        public static T WithDataRequirement<T>(
+            this T spec,
+            RequirementLevels level)
+            where T : IBdoSpec
+        {
+            if (spec != null)
+            {
+                spec.DataRequirement = level;
+            }
 
             return spec;
         }
@@ -262,14 +246,48 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         /// <param key="script"></param>
-        public static T WithRequirementScript<T>(
+        public static T WithDataRequirementExp<T>(
             this T spec,
-            IBdoExpression exp)
+            string exp)
             where T : IBdoSpec
         {
             if (spec != null)
             {
-                spec.RequirementExpression = exp;
+                spec.DataRequirementExp = exp;
+            }
+
+            return spec;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="level"></param>
+        public static T WithRequirement<T>(
+            this T spec,
+            RequirementLevels level)
+            where T : IBdoSpec
+        {
+            if (spec != null)
+            {
+                spec.Requirement = level;
+            }
+
+            return spec;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="script"></param>
+        public static T WithRequirementExp<T>(
+            this T spec,
+            string exp)
+            where T : IBdoSpec
+        {
+            if (spec != null)
+            {
+                spec.RequirementExp = exp;
             }
 
             return spec;
@@ -279,17 +297,48 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         /// <param key="levels"></param>
-        public static T WithSpecificationLevels<T>(
+        public static T WithSpecLevels<T>(
             this T spec,
             params SpecificationLevels[] levels)
             where T : IBdoSpec
         {
             if (spec != null)
             {
-                spec.SpecificationLevels = levels?.ToList();
+                spec.SpecLevels = levels?.ToList();
             }
 
             return spec;
         }
+
+        /// <summary>
+        /// The item requirement level of this instance.
+        /// </summary>
+        public static RequirementLevels WhatDataRequirement<T>(
+            this T spec)
+            where T : IBdoSpec
+        {
+            if (spec != null)
+            {
+                if (!string.IsNullOrEmpty(spec.DataRequirementExp))
+                {
+                    return RequirementLevels.Custom;
+                }
+                else if (spec.MaxDataItemNumber == 0)
+                {
+                    return RequirementLevels.Forbidden;
+                }
+                else if (spec.MinDataItemNumber > 0)
+                {
+                    return RequirementLevels.Required;
+                }
+                else if (spec.MinDataItemNumber == 0)
+                {
+                    return RequirementLevels.Optional;
+                }
+            }
+
+            return RequirementLevels.None;
+        }
+
     }
 }

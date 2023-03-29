@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Helpers;
 using BindOpen.Extensions;
 using System;
 
@@ -76,10 +77,8 @@ namespace BindOpen.Data.Meta
             DataValueTypes valueType,
             object data = null)
         {
-            if (type == null)
-            {
-                type = data?.GetType();
-            }
+            type ??= data?.GetType();
+
             if (type != null)
             {
                 valueType = type.GetValueType();
@@ -89,73 +88,123 @@ namespace BindOpen.Data.Meta
                 valueType = data.GetValueType();
             }
 
-            if (type != null)
+            if (valueType.IsScalar() && type?.IsScalar() == true)
             {
-                if (type.IsScalar())
+                var metaScalar = NewScalar(name, valueType, data);
+                return metaScalar;
+            }
+            else if (valueType == DataValueTypes.Scriptword)
+            {
+                var script = data?.ToString();
+                return New(name)
+                    .WithDataReference(BdoData.NewRef(script));
+            }
+            else if (valueType == DataValueTypes.MetaData)
+            {
+                Type metaType;
+                Type itemType = null;
+
+                if (type.IsGenericType)
                 {
-                    var metaScalar = NewScalar(name, valueType, data);
-                    return metaScalar;
+                    metaType = type.GetGenericTypeDefinition();
+                    itemType = type.GenericTypeArguments.GetAt(0);
                 }
                 else
                 {
-                    if (valueType == DataValueTypes.MetaData
-                        || valueType == DataValueTypes.Scriptword)
-                    {
-                        var meta = data as IBdoMetaData;
-                        if (meta != null) meta.Name ??= name;
-                        return meta;
-                    }
-                    else if (
-                        typeof(IBdoExtension).IsAssignableFrom(type)
-                        || valueType == DataValueTypes.Connector
-                        || valueType == DataValueTypes.Entity
-                        || valueType == DataValueTypes.Task)
-                    {
-                        if (data is IBdoExtension extension)
-                        {
-                            var config = BdoConfig.NewFrom(extension, name);
-                            if (config != null)
-                            {
-                                config.DefinitionUniqueName = extension?.DefinitionUniqueName;
-                            }
-                            return config;
-                        }
-                    }
-                    else if (type.IsList())
-                    {
-                        var objList = data.ToObjectArray();
+                    metaType = type;
+                }
 
-                        var metaSet = NewSet(name);
-                        if (objList != null)
-                        {
-                            foreach (var obj in objList)
-                            {
-                                metaSet.InsertData(obj);
-                            }
-                        }
-                        return metaSet;
-                    }
-                    else
+                IBdoMetaData metaValue = null;
+                var meta = data as BdoMetaData;
+
+                if (typeof(ITBdoMetaScalar<>).IsAssignableFrom(metaType)
+                    && itemType?.IsScalar() == true)
+                {
+                    var scalar = meta as IBdoMetaScalar;
+                    metaValue = (typeof(TBdoMetaScalar<>).MakeGenericType(itemType).CreateInstance() as BdoMetaScalar)
+                        .WithName(name)
+                        .WithData(scalar?.GetData());
+                }
+                else if (typeof(IBdoMetaScalar).IsAssignableFrom(metaType))
+                {
+                    var scalar = meta as IBdoMetaScalar;
+                    metaValue = NewScalar(name, scalar?.DataValueType)
+                        .WithData(scalar?.GetData());
+                }
+                else if (typeof(IBdoConfiguration).IsAssignableFrom(metaType))
+                {
+                    var config = meta as IBdoConfiguration;
+                    metaValue = BdoConfig.New(name)
+                        .With(config.Items?.ToArray());
+                }
+                else if (typeof(IBdoMetaSet).IsAssignableFrom(metaType))
+                {
+                    var set = meta as IBdoMetaSet;
+                    metaValue = NewSet(name)
+                        .With(set?.Items?.ToArray());
+                }
+                else if (typeof(ITBdoMetaObject<>).IsAssignableFrom(metaType)
+                    && itemType != null)
+                {
+                    var obj = meta as IBdoMetaObject;
+                    metaValue = (typeof(TBdoMetaObject<>).MakeGenericType(itemType).CreateInstance() as BdoMetaObject)
+                        .WithName(name)
+                        .WithData(obj?.GetData());
+                }
+                else if (typeof(IBdoMetaObject).IsAssignableFrom(metaType))
+                {
+                    var obj = meta as IBdoMetaObject;
+                    metaValue = NewObject(name)
+                        .WithData(obj.GetData());
+                }
+
+                if (metaValue != null && meta != null)
+                {
+                    metaValue
+                        .WithSpecs(meta.Specs?.ToArray())
+                        .WithDataMode(meta.DataMode)
+                        .WithDataReference(meta.Reference);
+                }
+
+                return metaValue;
+            }
+            else if (
+                typeof(IBdoExtension).IsAssignableFrom(type)
+                || valueType == DataValueTypes.Connector
+                || valueType == DataValueTypes.Entity
+                || valueType == DataValueTypes.Task)
+            {
+                if (data is IBdoExtension extension)
+                {
+                    var config = BdoConfig.NewFrom(extension, name);
+                    if (config != null)
                     {
-                        var metaObj = NewObject(name, data);
-                        return metaObj;
+                        config.DefinitionUniqueName = extension?.DefinitionUniqueName;
+                    }
+                    return config;
+                }
+            }
+            else if (type.IsList())
+            {
+                var objList = data.ToObjectArray();
+
+                var metaSet = NewSet(name);
+                if (objList != null)
+                {
+                    foreach (var obj in objList)
+                    {
+                        metaSet.InsertData(obj);
                     }
                 }
+                return metaSet;
+            }
+            else
+            {
+                var metaObj = NewObject(name, data);
+                return metaObj;
             }
 
             return null;
-        }
-
-        /// <summary>
-        /// Creates a data meta with specified items.
-        /// </summary>
-        /// <param key="name">The name to consider.</param>
-        /// <param key="items">The items to consider.</param>
-        public static ITBdoMetaData<T> New<T>(
-            string name,
-            object data = null)
-        {
-            return (ITBdoMetaData<T>)New(name, typeof(T), DataValueTypes.Any, data);
         }
     }
 }

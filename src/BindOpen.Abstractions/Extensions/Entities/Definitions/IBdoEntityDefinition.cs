@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Assemblies;
-using BindOpen.Data.Meta;
 using System;
 
 namespace BindOpen.Extensions.Entities
@@ -14,11 +13,6 @@ namespace BindOpen.Extensions.Entities
         /// 
         /// </summary>
         IBdoClassReference ClassReference { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        ITBdoSet<IBdoSpec> SpecDetail { get; set; }
 
         /// <summary>
         /// 

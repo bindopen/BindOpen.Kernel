@@ -1,9 +1,9 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
 using BindOpen.Extensions;
+using BindOpen.Extensions.Connectors;
 using BindOpen.Extensions.Entities;
 using BindOpen.Logging;
-using System;
 using System.Linq;
 using System.Reflection;
 
@@ -18,12 +18,12 @@ namespace BindOpen.Scopes.Stores
         /// Loads the entity dico from the specified assembly.
         /// </summary>
         /// <param key="assembly">The assembly to consider.</param>
-        /// <param key="extensionDefinition">The extension definition to consider.</param>
+        /// <param key="packageDefinition">The extension definition to consider.</param>
         /// <param key="log">The log to consider.</param>
         /// <returns></returns>
         private int LoadEntityDictionaryFromAssembly(
             Assembly assembly,
-            IBdoPackageDefinition extensionDefinition,
+            IBdoPackageDefinition packageDefinition,
             IBdoLog log = null)
         {
             if (assembly == null)
@@ -35,37 +35,33 @@ namespace BindOpen.Scopes.Stores
 
             var dico = ExtractDictionaryFromAssembly<IBdoEntityDefinition>(assembly, log);
 
-
             // we feach entity classes
 
             var types = assembly.GetTypes().Where(p => typeof(IBdoEntity).IsAssignableFrom(p));
             int count = 0;
-            foreach (Type type in types)
+
+            foreach (var type in types)
             {
-                var definition = new BdoEntityDefinition(null, extensionDefinition)
+                var definition = new BdoEntityDefinition(null, packageDefinition)
                 {
-                    ClassReference = BdoData.Class(type),
-                    LibraryId = extensionDefinition?.Id,
-                    RuntimeType = type
+                    LibraryId = packageDefinition?.Id,
                 };
 
-                if (type.GetCustomAttributes(typeof(BdoEntityAttribute)).FirstOrDefault() is BdoEntityAttribute entityAttribute)
-                {
-                    UpdateDictionary(definition, entityAttribute);
-                }
+                definition.UpdateFrom(type);
 
-                foreach (PropertyInfo property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any()))
+                foreach (var prop in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any()))
                 {
-                    definition.SpecDetail.Add(BdoMeta.NewSpec(property.Name, property.PropertyType));
+                    var spec = BdoMeta.NewSpec();
+                    spec.UpdateFrom(prop, typeof(BdoPropertyAttribute));
+                    definition.Add(spec);
                 }
 
                 // we build the runtime definition
 
                 if (dico != null)
                 {
-                    // retrieve the definition index
-
-                    // update definition with index
+                    var indexDefinition = dico.Get(definition.Name);
+                    definition.Update(indexDefinition);
                 }
 
                 _store.Add(definition);

@@ -20,7 +20,7 @@ namespace BindOpen.Tests.Data
         {
             _datasource = BdoData.NewDatasource("name", DatasourceKind.Database)
                 .With(
-                    BdoConfig.New("tests.core$test")
+                    BdoConfig.New("bindopen.tests.kernel$test")
                         .WithConnectionString("connectionString"));
 
             Assert.That(
@@ -30,10 +30,10 @@ namespace BindOpen.Tests.Data
         public static void Test(IBdoDatasource source)
         {
             Assert.That(
-                source.Get("tests.core$test") != null, "Datasource - Configuration not found");
+                source.Get("bindopen.tests.kernel$test") != null, "Datasource - Configuration not found");
 
             Assert.That(
-                source.Get("tests.core$test").GetConnectionString() == "connectionString", "Datasource - Configuration not found");
+                source.Get("bindopen.tests.kernel$test").GetConnectionString() == "connectionString", "Datasource - Configuration not found");
         }
     }
 }

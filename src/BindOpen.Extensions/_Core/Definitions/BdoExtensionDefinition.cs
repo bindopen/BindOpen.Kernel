@@ -1,23 +1,13 @@
-﻿using BindOpen.Data;
-using System;
+﻿using BindOpen.Data.Meta;
 
 namespace BindOpen.Extensions
 {
     /// <summary>
     /// This class represents the definition of BindOpen extension item.
     /// </summary>
-    public abstract class BdoExtensionDefinition : BdoItem, IBdoExtensionDefinition
+    public abstract class BdoExtensionDefinition : BdoDefinition,
+        IBdoExtensionDefinition
     {
-        // --------------------------------------------------
-        // VARIABLES
-        // --------------------------------------------------
-
-        #region Varibales
-
-        string _preffix = "item_";
-
-        #endregion
-
         // --------------------------------------------------
         // CONSTRUCTORS
         // --------------------------------------------------
@@ -34,10 +24,8 @@ namespace BindOpen.Extensions
             string name,
             string preffix,
             IBdoPackageDefinition extensionDefinition)
-            : base()
+            : base(name, preffix)
         {
-            preffix = _preffix;
-            this.WithName(name);
             PackageDefinition = extensionDefinition;
         }
 
@@ -83,102 +71,6 @@ namespace BindOpen.Extensions
         /// Business library ID of this instance.
         /// </summary>
         public string LibraryId { get; set; }
-
-        #endregion
-
-        // ------------------------------------------
-        // IStorable Implementation
-        // ------------------------------------------
-
-        #region IStorable
-
-        /// <summary>
-        /// Creation date of this instance.
-        /// </summary>
-        public DateTime? CreationDate { get; set; }
-
-        /// <summary>
-        /// Last modification date of this instance.
-        /// </summary>
-        public DateTime? LastModificationDate { get; set; }
-
-        #endregion
-
-        // ------------------------------------------
-        // IIndexed Implementation
-        // ------------------------------------------
-
-        #region IIndexed
-
-        /// <summary>
-        /// The index of this instance.
-        /// </summary>
-        public int? Index { get; set; }
-
-        #endregion
-
-        // ------------------------------------------
-        // IReferenced Implementation
-        // ------------------------------------------
-
-        #region IReferenced
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual string Key() => Name;
-
-        #endregion
-
-        // ------------------------------------------
-        // IIdentified Implementation
-        // ------------------------------------------
-
-        #region IIdentified
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Id { get; set; }
-
-        #endregion
-
-        // ------------------------------------------
-        // INamed Implementation
-        // ------------------------------------------
-
-        #region INamed
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Name { get; set; }
-
-        #endregion
-
-        // ------------------------------------------
-        // IGloballyTitled Implementation
-        // ------------------------------------------
-
-        #region IGloballyTitled
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IBdoDictionary Title { get; set; }
-
-        #endregion
-
-        // ------------------------------------------
-        // IGloballyDescribed Implementation
-        // ------------------------------------------
-
-        #region IGloballyDescribed
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IBdoDictionary Description { get; set; }
 
         #endregion
     }

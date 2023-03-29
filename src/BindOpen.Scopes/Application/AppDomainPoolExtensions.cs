@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Assemblies;
 using BindOpen.Logging;
 using System;
 using System.IO;
@@ -29,7 +29,7 @@ namespace BindOpen.Scopes.Application
                 && (File.Exists(filePath)))
             {
                 string assemblyName = Path.GetFileNameWithoutExtension(filePath);
-                foreach (Assembly currentAssembly in appDomain.GetAssemblies())
+                foreach (var currentAssembly in appDomain.GetAssemblies())
                 {
                     if (!currentAssembly.IsDynamic)
                     {
@@ -71,27 +71,39 @@ namespace BindOpen.Scopes.Application
         /// <returns>The assembly of this instance.</returns>
         public static Assembly LoadAssembly(
             this AppDomain appDomain,
-            string assemblyName,
+            IBdoAssemblyReference reference,
             IBdoLog log = null)
         {
             Assembly assembly = null;
 
-            if ((appDomain != null) && (!string.IsNullOrEmpty(assemblyName)))
+            if (reference?.IsEmpty() != false)
             {
-                assembly = Array.Find(appDomain.GetAssemblies(), p => p.GetName().Name.BdoKeyEquals(assemblyName));
+                log?.AddWarning("Assembly name missing");
+                return null;
+            }
+
+            if (appDomain != null)
+            {
+                assembly = appDomain.GetAssembly(reference);
+
                 if (assembly == null)
                 {
                     try
                     {
+                        var assemblyName = new AssemblyName()
+                        {
+                            Name = reference.AssemblyName,
+                            Version = new Version(reference.AssemblyVersion)
+                        };
                         assembly = Assembly.Load(assemblyName);
                     }
                     catch (FileNotFoundException)
                     {
-                        log?.AddError("Could not find the assembly '" + assemblyName + "'");
+                        log?.AddError("Could not find the assembly '" + reference.ToString() + "'");
                     }
                     catch (Exception ex)
                     {
-                        log?.AddException("Error while attempting to load assembly '" + assemblyName + "'", description: ex.ToString());
+                        log?.AddException("Error while attempting to load assembly '" + reference.ToString() + "'", description: ex.ToString());
                     }
                 }
             }

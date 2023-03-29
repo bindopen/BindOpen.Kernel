@@ -3,7 +3,7 @@ using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
 using BindOpen.Extensions.Functions;
 using BindOpen.Logging;
-using BindOpen.Scopes.Scopes;
+using BindOpen.Scopes;
 using System;
 using System.Linq;
 
@@ -204,7 +204,7 @@ namespace BindOpen.Script
                     else
                     {
                         var cloned = BdoScript.NewWord(reference.Word.Kind, reference.Word.Name)
-                            .WithDefinitionUniqueName(reference.Word.DefinitionUniqueName);
+                            .WithDefinition(reference.Word.DefinitionUniqueName);
 
                         switch (reference.Word.Kind)
                         {
@@ -621,7 +621,7 @@ namespace BindOpen.Script
         {
             if (definition == null) return false;
 
-            return definition?.SpecDetail?.IsCompatibleWith(scriptword) ?? false;
+            return definition?.IsCompatibleWith(scriptword) ?? false;
         }
 
         #endregion

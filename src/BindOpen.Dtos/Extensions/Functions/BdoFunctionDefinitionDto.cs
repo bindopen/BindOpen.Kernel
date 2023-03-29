@@ -28,16 +28,6 @@ namespace BindOpen.Extensions.Functions
         public string CallingClass { get; set; }
 
         /// <summary>
-        /// Indicates whether this instance has unlimited parameters. If true, parameters have 
-        /// the same value type.
-        /// </summary>
-        /// <seealso cref="RepeatedParameterValueType"/>
-        /// <seealso cref="RepeatedParameterName"/>
-        [JsonPropertyName("isRepeatedParameters")]
-        [XmlElement("isRepeatedParameters")]
-        public bool IsRepeatedParameters { get; set; } = false;
-
-        /// <summary>
         /// Kind of this instance.
         /// </summary>
         [JsonPropertyName("kind")]

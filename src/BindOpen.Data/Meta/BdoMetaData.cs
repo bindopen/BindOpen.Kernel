@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data.Helpers;
 using BindOpen.Logging;
-using BindOpen.Scopes.Scopes;
+using BindOpen.Scopes;
 using BindOpen.Script;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element.
     /// </summary>
-    public abstract class BdoMetaData : BdoItem,
+    public abstract partial class BdoMetaData : BdoItem,
         IBdoMetaData
     {
         // --------------------------------------------------
@@ -135,7 +135,21 @@ namespace BindOpen.Data.Meta
         /// </summary>
         public ITBdoSet<IBdoSpec> Specs { get; set; }
 
-        // Specification ---------------------
+        /// <summary>
+        /// Gets a new specification.
+        /// </summary>
+        /// <returns>Returns the new specifcation.</returns>
+        public IBdoSpec GetSpec(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null)
+        {
+            if (scope == null)
+            {
+                return Specs?.FirstOrDefault(q => q.Condition == null);
+            }
+
+            return Specs?.FirstOrDefault(q => q.Condition.Evaluate(scope, varSet));
+        }
 
         /// <summary>
         /// Gets a new specification.

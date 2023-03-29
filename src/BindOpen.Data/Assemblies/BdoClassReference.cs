@@ -49,7 +49,7 @@ namespace BindOpen.Data.Assemblies
         public override string Key()
             => AssemblyName == StringHelper.__Star ?
             StringHelper.__Star :
-            AssemblyName + "$" + AssemblyVersion + "$" + ClassName;
+            AssemblyName + ";" + AssemblyVersion + ";" + ClassName;
 
         public override int GetHashCode()
         {
@@ -81,6 +81,12 @@ namespace BindOpen.Data.Assemblies
         public override string ToString()
         {
             return Key();
+        }
+
+        public override bool IsEmpty()
+        {
+            return base.IsEmpty()
+                || string.IsNullOrEmpty(ClassName);
         }
 
         #endregion

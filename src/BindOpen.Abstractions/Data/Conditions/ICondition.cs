@@ -4,22 +4,7 @@
     /// 
     /// </summary>
     public interface ICondition :
-        INamed, IReferenced, IBdoNotMetableItem
+        INamed, IReferenced, IBdoItemNotMetable
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        bool TrueValue { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="value"></param>
-        /// <returns></returns>
-        ICondition AsTrue(bool value)
-        {
-            TrueValue = value;
-            return this;
-        }
     }
 }

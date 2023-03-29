@@ -19,8 +19,7 @@ namespace BindOpen.Data.Conditions
             AdvancedConditionDto dto = new()
             {
                 Conditions = poco.Conditions?.Select(q => q.ToDto()).ToList(),
-                Kind = poco.Kind,
-                TrueValue = poco.TrueValue
+                Kind = poco.Kind
             };
 
             return dto;
@@ -39,8 +38,7 @@ namespace BindOpen.Data.Conditions
             AdvancedCondition poco = new()
             {
                 Conditions = dto.Conditions?.Select(q => q.ToPoco()).ToList(),
-                Kind = dto.Kind,
-                TrueValue = dto.TrueValue
+                Kind = dto.Kind
             };
 
             return poco;

@@ -1,19 +1,18 @@
 ﻿using BindOpen.Logging;
-using BindOpen.Scopes.Scopes;
+using BindOpen.Scopes;
 
 namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface ITBdoMetaScalar<TItem> :
-        ITBdoMetaData<TItem>
+    public interface ITBdoMetaScalar<TItem> : IBdoMetaScalar
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param key="objs"></param>
-        ITBdoMetaScalar<TItem> WithData(object obj);
+        ITBdoMetaScalar<TItem> WithData(TItem obj);
 
         /// <summary>
         /// 
@@ -22,8 +21,7 @@ namespace BindOpen.Data.Meta
         /// <param key="varSet"></param>
         /// <param key="log"></param>
         /// <returns></returns>
-        TItem GetData(
-            int index,
+        new TItem GetData(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null);
@@ -35,7 +33,7 @@ namespace BindOpen.Data.Meta
         /// <param key="varSet"></param>
         /// <param key="log"></param>
         /// <returns></returns>
-        Q GetData<Q>(
+        new TItem GetData(
             int index,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,

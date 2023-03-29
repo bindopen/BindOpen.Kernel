@@ -6,13 +6,9 @@ namespace BindOpen.Script
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoScriptword : IBdoMetaObject, IBdoNotMetableItem
+    public interface IBdoScriptword :
+        IBdoMetaObject, IBdoItemNotMetable, IBdoDefinable
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        string DefinitionUniqueName { get; set; }
-
         /// <summary>
         /// 
         /// </summary>

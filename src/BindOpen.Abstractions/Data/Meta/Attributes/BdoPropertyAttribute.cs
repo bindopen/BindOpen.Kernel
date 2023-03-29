@@ -15,11 +15,6 @@ namespace BindOpen.Data.Meta
         #region Properties
 
         /// <summary>
-        /// ID of the group of this instance.
-        /// </summary>
-        public string GroupId { get; set; }
-
-        /// <summary>
         /// The alias of the entry.
         /// </summary>
         public string Alias { get; set; }
@@ -27,17 +22,17 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The minimum item number of this instance.
         /// </summary>
-        public int? MinimumItemNumber { get; set; }
+        public uint? MinDataItemNumber { get; set; }
 
         /// <summary>
         /// The maximum item number of this instance.
         /// </summary>
-        public int? MaximumItemNumber { get; set; }
+        public uint? MaxDataItemNumber { get; set; }
 
         /// <summary>
         /// Levels of specification of this instance.
         /// </summary>
-        public SpecificationLevels SpecificationLevel { get; set; }
+        public SpecificationLevels[] SpecLevels { get; set; }
 
         #endregion
 
@@ -54,12 +49,31 @@ namespace BindOpen.Data.Meta
         {
         }
 
-        /// <summary>
-        /// Instantiates a new instance of the BdoPropertyAttribute class.
-        /// </summary>
-        public BdoPropertyAttribute(string name) : base()
+        public BdoPropertyAttribute(
+            string name,
+            DataValueTypes valueType = DataValueTypes.Any,
+            RequirementLevels requirement = RequirementLevels.Any)
+            : base(name, valueType, requirement)
         {
-            Name = name;
+        }
+
+        public BdoPropertyAttribute(
+            RequirementLevels dataRequirement,
+            string dataRequirementExp)
+            : base(dataRequirement, dataRequirementExp)
+        {
+        }
+
+        public BdoPropertyAttribute(uint min, uint max)
+        {
+            MinDataItemNumber = min;
+            MaxDataItemNumber = max;
+        }
+
+        public BdoPropertyAttribute(
+            params SpecificationLevels[] levels)
+        {
+            SpecLevels = levels;
         }
 
         #endregion

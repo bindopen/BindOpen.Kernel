@@ -98,7 +98,7 @@ namespace BindOpen.Data.Meta
             string name = null)
         {
             var config = New(name)
-                .WithDefinitionUniqueName(extension?.DefinitionUniqueName);
+                .WithDefinition(extension?.DefinitionUniqueName);
             config.WithData(extension);
 
             return config;

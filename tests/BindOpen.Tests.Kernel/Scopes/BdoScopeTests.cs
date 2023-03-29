@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace BindOpen.Tests.Scopes
 {
     [TestFixture, Order(300)]
-    public class ScopeTests
+    public class BdoScopeTests
     {
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -14,9 +14,9 @@ namespace BindOpen.Tests.Scopes
         [Test, Order(1)]
         public void CreateScopeNewObjectTest()
         {
-            var scope = BdoScoping.NewScope();
-            scope.LoadExtensions(
-                q => q.AddAssemblyFrom<GlobalSetUp>());
+            var scope = BdoScoping.NewScope()
+                .LoadExtensions(
+                    q => q.AddAssemblyFrom<GlobalSetUp>());
         }
     }
 

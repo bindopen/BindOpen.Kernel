@@ -1,42 +1,29 @@
-﻿using BindOpen.Data.Assemblies;
-using BindOpen.Logging;
-using BindOpen.Scopes.Scopes;
-using System;
+﻿using BindOpen.Logging;
+using BindOpen.Scopes;
 
 namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface ITBdoMetaObject<TItem> :
-        ITBdoMetaData<TItem>,
-        IBdoMetaSet
+    public interface ITBdoMetaObject<TItem> : IBdoMetaObject
     {
-        new void Clear();
-
         /// <summary>
         /// 
         /// </summary>
         /// <param key="objs"></param>
-        ITBdoMetaObject<TItem> WithData(object obj);
+        ITBdoMetaObject<TItem> WithData(TItem obj);
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoClassReference ClassReference { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        ITBdoMetaObject<TItem> WithClassReference(
-            IBdoClassReference reference);
-
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <param key="scope"></param>
+        /// <param key="varSet"></param>
+        /// <param key="log"></param>
         /// <returns></returns>
-        Type GetClassType(
+        new TItem GetData(
             IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null);
     }
 }

@@ -25,7 +25,7 @@ namespace BindOpen.Tests
         {
             Assert.That(entity != null, "Entity missing");
 
-            Assert.That(entity.BoolValue == reference.boolValue, "Bad entity - Boolean value");
+            Assert.That(entity.BoolValue?.GetData<bool?>() == reference.boolValue, "Bad entity - Boolean value");
             Assert.That(entity.EnumValue.ToString() == reference.enumValue.ToString(), "Bad entity - Enumeration value");
             Assert.That(entity.IntValue == reference.intValue, "Bad entity - Integer value");
             Assert.That(entity.StringValue == reference.stringValue, "Bad entity - String value");

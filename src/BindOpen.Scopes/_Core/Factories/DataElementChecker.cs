@@ -157,15 +157,15 @@
         //    {
         //        if (IsValueList)
         //        {
-        //            if (MinimumItemNumber > dataElement.Items.Count)
+        //            if (MinDataItemNumber > dataElement.Items.Count)
         //                log.AddError(
         //                    title: "Not enough items in element",
-        //                    description: "The element has " + dataElement.Items.Count + " items where as the minimum was specified at " + MinimumItemNumber + ".");
+        //                    description: "The element has " + dataElement.Items.Count + " items where as the minimum was specified at " + MinDataItemNumber + ".");
 
-        //            if (MaximumItemNumber > -1 && MaximumItemNumber < dataElement.Items.Count)
+        //            if (MaxDataItemNumber > -1 && MaxDataItemNumber < dataElement.Items.Count)
         //                log.AddError(
         //                    title: "Too many items in element",
-        //                    description: "The element has " + dataElement.Items.Count + " items where as the maximum was specified at " + MaximumItemNumber + ".");
+        //                    description: "The element has " + dataElement.Items.Count + " items where as the maximum was specified at " + MaxDataItemNumber + ".");
         //        }
 
         //        foreach (object item in dataElement.Items)

@@ -9,8 +9,7 @@ namespace BindOpen.Tests.Script
     /// <summary>
     /// 
     /// </summary>
-    [TestFixture, Order(401)]
-    public class ScriptInterpreterTests
+    public partial class BdoScriptInterpreterTests
     {
         private readonly IBdoScriptword _scriptword1 =
             BdoScript.Function("isEqual", "MYTABLE", BdoScript.Function("text", "mytable"));
@@ -39,11 +38,6 @@ namespace BindOpen.Tests.Script
         private readonly int _scriptVarValue82 = 5500;
         private readonly string _script8 = "{{$(var1)}}-{{$(var2)}}";
         private readonly string _interpretedScript8 = "const-5500";
-
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-        }
 
         [Test, Order(201)]
         public void InterpreteWord1Test()

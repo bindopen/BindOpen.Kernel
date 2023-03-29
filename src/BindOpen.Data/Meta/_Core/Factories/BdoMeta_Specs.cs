@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Conditions;
-using System;
+﻿using System;
 
 namespace BindOpen.Data.Meta
 {
@@ -94,7 +93,7 @@ namespace BindOpen.Data.Meta
             return spec;
         }
 
-        private static T AsType<T>(
+        public static T AsType<T>(
             this T spec,
             Type type)
             where T : IBdoSpec
@@ -109,11 +108,11 @@ namespace BindOpen.Data.Meta
 
                 if (type.IsArray)
                 {
-                    spec.WithMaximumItemNumber();
+                    spec.WithMaxDataItemNumber();
                 }
                 else if (type.IsEnum)
                 {
-                    spec.ConditionSet ??= BdoData.NewSet<ICondition>();
+                    spec.Condition ??= BdoData.NewCondition(null);
                     //spec.ConstraintStatement.Add(
                     //    BdoMango.
                     //    null,

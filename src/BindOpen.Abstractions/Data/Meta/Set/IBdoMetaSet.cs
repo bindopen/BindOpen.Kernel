@@ -1,5 +1,5 @@
 ﻿using BindOpen.Logging;
-using BindOpen.Scopes.Scopes;
+using BindOpen.Scopes;
 
 namespace BindOpen.Data.Meta
 {
@@ -7,8 +7,7 @@ namespace BindOpen.Data.Meta
     /// 
     /// </summary>
     public partial interface IBdoMetaSet :
-        ITBdoSet<IBdoMetaData>,
-        IBdoMetaData
+        ITBdoSet<IBdoMetaData>, IBdoMetaData
     {
         new void Clear();
 

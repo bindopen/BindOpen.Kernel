@@ -16,8 +16,7 @@
 
             ReferenceConditionDto dto = new()
             {
-                Reference = poco.Reference.ToDto(),
-                TrueValue = poco.TrueValue
+                Reference = poco.Reference.ToDto()
             };
 
             return dto;
@@ -35,8 +34,7 @@
 
             ReferenceCondition poco = new()
             {
-                Reference = dto.Reference.ToPoco(),
-                TrueValue = dto.TrueValue
+                Reference = dto.Reference.ToPoco()
             };
 
             return poco;

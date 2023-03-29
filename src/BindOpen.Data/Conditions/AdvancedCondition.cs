@@ -43,19 +43,10 @@ namespace BindOpen.Data.Conditions
         /// Instantiates a new instance of the AdvancedCondition class.
         /// </summary>
         /// <param key="conditions">The conditions to consider.</param>
-        public AdvancedCondition(params ICondition[] conditions)
+        public AdvancedCondition(
+            AdvancedConditionKind kind,
+            params ICondition[] conditions)
         {
-            Conditions = conditions?.ToList();
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the AdvancedCondition class.
-        /// </summary>
-        /// <param key="trueValue">The true value to consider.</param>
-        /// <param key="conditions">The conditions to consider.</param>
-        public AdvancedCondition(bool trueValue, params ICondition[] conditions)
-        {
-            TrueValue = trueValue;
             Conditions = conditions?.ToList();
         }
 

@@ -23,11 +23,6 @@ namespace BindOpen.Extensions.Tasks
         public IBdoClassReference ClassReference { get; set; }
 
         /// <summary>
-        /// Input specification of this instance.
-        /// </summary>
-        public ITBdoSet<IBdoSpec> InputSpecDetail { get; set; }
-
-        /// <summary>
         /// Indicates whether this instance is executable.
         /// </summary>
         public bool IsExecutable { get; set; } = true;
@@ -40,7 +35,7 @@ namespace BindOpen.Extensions.Tasks
         /// <summary>
         /// Output specification of this instance.
         /// </summary>
-        public ITBdoSet<IBdoSpec> OutputSpecDetail { get; set; }
+        public ITBdoSet<IBdoSpec> OutputSpecs { get; set; }
 
         /// <summary>
         /// The runtime type of this instance.
@@ -133,8 +128,7 @@ namespace BindOpen.Extensions.Tasks
                 return;
             }
 
-            InputSpecDetail?.Dispose();
-            OutputSpecDetail?.Dispose();
+            OutputSpecs?.Dispose();
 
             _isDisposed = true;
 

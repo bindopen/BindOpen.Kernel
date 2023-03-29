@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Meta;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using BindOpen.Extensions.Connectors;
 using NUnit.Framework;
 
@@ -25,10 +26,11 @@ namespace BindOpen.Tests.Extensions
         public static IBdoConnector CreateConnector(dynamic data)
         {
             var config =
-                BdoConfig.New("tests.core$testConnector")
+                BdoConfig.New()
+                .WithDefinition("bindopen.tests.kernel$testConnector")
                 .With(
                     BdoMeta.NewScalar("host", data.host as string),
-                    BdoMeta.NewScalar("port", data.port as string),
+                    BdoMeta.NewScalar("port", data.port as int?),
                     BdoMeta.NewScalar("isSslEnabled", data.isSslEnabled as bool?));
 
             return ScopingTests.Scope.CreateConnector<ConnectorFake>(config);

@@ -1,15 +1,13 @@
 ﻿using BindOpen.Data.Helpers;
 using BindOpen.Logging;
-using BindOpen.Scopes.Scopes;
-using System.Linq;
+using BindOpen.Scopes;
 
 namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a scalar meta that is an meta whose items are scalars.
     /// </summary>
-    public class TBdoMetaScalar<TItem> :
-        TBdoMetaData<TItem>,
+    public class TBdoMetaScalar<TItem> : BdoMetaScalar,
         ITBdoMetaScalar<TItem>
     {
         // --------------------------------------------------
@@ -31,7 +29,7 @@ namespace BindOpen.Data.Meta
         /// <param key="name">The name to consider.</param>
         /// <param key="id">The ID to consider.</param>
         public TBdoMetaScalar(string name = null, string id = null)
-            : base(name, "scalar_", id)
+            : base(name, id)
         {
         }
 
@@ -42,11 +40,6 @@ namespace BindOpen.Data.Meta
         // --------------------------------------------------
 
         #region IBdoMetaScalar
-
-        IBdoSpec IBdoMetaData.NewSpec()
-        {
-            return NewSpec();
-        }
 
         // Items ----------------------------
 
@@ -61,94 +54,27 @@ namespace BindOpen.Data.Meta
 
         // Data ----------------------------
 
-        /// <summary>
-        /// Sets the item of this instance.
-        /// </summary>
-        /// <param key="item">The string item of this instance.</param>
-        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
-        /// <returns>Returns True if the specified has been well added.</returns>
-        public ITBdoMetaScalar<TItem> WithData(object obj)
+        public ITBdoMetaScalar<TItem> WithData(TItem obj)
         {
-            _data = obj.ToBdoData();
+            base.WithData(obj);
             return this;
         }
 
-        /// <summary>
-        /// Returns the item TItem of this instance.
-        /// </summary>
-        /// <param key="log">The log to populate.</param>
-        /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable meta set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public override TItem GetData(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+        public new TItem GetData(
+            IBdoScope scope,
+            IBdoMetaSet varSet,
             IBdoLog log = null)
         {
-            var list = GetDataList<TItem>(scope, varSet, log);
-
-            if (list == null)
-            {
-                return default;
-            }
-
-            return list.FirstOrDefault();
+            return base.GetData<TItem>(scope, varSet, log);
         }
 
-        /// <summary>
-        /// Returns the item TItem of this instance.
-        /// </summary>
-        /// <param key="log">The log to populate.</param>
-        /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable meta set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public override Q GetData<Q>(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            var list = GetDataList<Q>(scope, varSet, log);
-            if (list == null)
-            {
-                return default;
-            }
-
-            return list.FirstOrDefault();
-        }
-
-        /// <summary>
-        /// Returns the item TItem of this instance.
-        /// </summary>
-        /// <param key="log">The log to populate.</param>
-        /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable meta set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public TItem GetData(
+        public new TItem GetData(
             int index,
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
+            IBdoScope scope,
+            IBdoMetaSet varSet,
             IBdoLog log = null)
         {
-            var obj = GetData<TItem>(index, scope, varSet, log); ;
-            return obj;
-        }
-
-        /// <summary>
-        /// Returns the item TItem of this instance.
-        /// </summary>
-        /// <param key="log">The log to populate.</param>
-        /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable meta set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public Q GetData<Q>(
-            int index,
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            var list = GetDataList<Q>(scope, varSet, log); ;
-            var obj = list.GetAt(index);
-            return obj;
+            return base.GetData<TItem>(index, scope, varSet, log);
         }
 
         #endregion

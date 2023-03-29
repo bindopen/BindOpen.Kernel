@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data.Helpers;
 using BindOpen.Logging;
-using BindOpen.Scopes.Scopes;
+using BindOpen.Scopes;
 using BindOpen.Script;
 using System.Collections.Generic;
 using System.Linq;
@@ -339,7 +339,7 @@ namespace BindOpen.Data.Meta
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            return Items
+            return Items?
                 .Select(q => q.GetData(scope, varSet, log))
                 .ToList();
         }
