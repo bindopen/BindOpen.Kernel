@@ -11,6 +11,31 @@ namespace BindOpen.Extensions.Tasks
     /// </summary>
     public static class BdoTaskExtensions
     {
+        public const string __Token_Input = "input";
+        public const string __Token_Output = "output";
+
+        public static IBdoMetaData AsInput(
+            this IBdoMetaData meta)
+        {
+            if (meta != null)
+            {
+                meta.GroupId = __Token_Input;
+            }
+
+            return meta;
+        }
+
+        public static IBdoMetaData AsOutput(
+            this IBdoMetaData meta)
+        {
+            if (meta != null)
+            {
+                meta.GroupId = __Token_Output;
+            }
+
+            return meta;
+        }
+
         // Create
 
         /// <summary>
@@ -22,10 +47,10 @@ namespace BindOpen.Extensions.Tasks
         /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the created task.</returns>
         public static IBdoTask CreateTask(
-            this IBdoScope scope,
-            IBdoConfiguration config = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+        this IBdoScope scope,
+        IBdoConfiguration config = null,
+        IBdoMetaSet varSet = null,
+        IBdoLog log = null)
         {
             IBdoTask task = null;
 
@@ -48,10 +73,10 @@ namespace BindOpen.Extensions.Tasks
                     {
                         if ((task = item as IBdoTask) != null)
                         {
-                            task.UpdateFromMeta(config, true, scope, varSet);
+                            task.UpdateFromMeta(config, true, null, scope: scope, varSet: varSet);
+                            task.UpdateFromMeta<BdoInputAttribute>(config, true, "input", scope: scope, varSet: varSet);
+                            task.UpdateFromMeta<BdoOutputAttribute>(config, true, "output", scope: scope, varSet: varSet);
                         }
-                        //task.UpdateFromMetaSet<BdoInputAttribute>(config, scope, varSet);
-                        //task.UpdateFromMetaSet<BdoOutputAttribute>(config, scope, varSet);
                     }
                 }
             }

@@ -24,8 +24,8 @@ namespace BindOpen.Tests
             Assert.That(connector != null, "Connector missing");
 
             Assert.That(connector.Host == reference.host, "Bad connector");
-            Assert.That(connector.Port == reference.port, "Bad connector");
-            Assert.That((connector.IsSslEnabled?.GetData<bool>() ?? false) == reference.isSslEnabled, "Bad connector");
+            Assert.That(connector.Port?.GetData<int?>() == reference.port, "Bad connector");
+            Assert.That((connector.IsSslEnabled ?? false) == reference.isSslEnabled, "Bad connector");
         }
     }
 }

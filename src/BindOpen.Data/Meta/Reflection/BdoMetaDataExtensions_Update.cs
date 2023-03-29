@@ -25,25 +25,47 @@ namespace BindOpen.Data.Meta.Reflection
             this object obj,
             IBdoMetaSet list,
             bool onlyMetaAttributes = false,
+            string groupId = null,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
+        {
+            obj.UpdateFromMeta<BdoPropertyAttribute>(
+                list, onlyMetaAttributes, groupId, scope, varSet, log);
+        }
+        /// <summary>
+        /// Sets information of the specified prop.
+        /// </summary>
+        /// <param key="obj">The object to update.</param>
+        /// <param key="list">The list of elements to return.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable element list to use.</param>
+        /// <param key="log">The log to consider.</param>
+        public static void UpdateFromMeta<T>(
+            this object obj,
+            IBdoMetaSet list,
+            bool onlyMetaAttributes = false,
+            string groupId = null,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+            where T : BdoPropertyAttribute
         {
             if (obj == null || !list.Has()) return;
 
             foreach (var propInfo in obj.GetType().GetProperties())
             {
-                var hasMetaAttribute = propInfo.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any();
+                var hasMetaAttribute = propInfo.GetCustomAttributes(typeof(T)).Any();
                 if (hasMetaAttribute || !onlyMetaAttributes)
                 {
                     var spec = BdoMeta.NewSpec();
-                    spec.UpdateFrom<BdoPropertyAttribute>(propInfo);
+                    spec.UpdateFrom<T>(propInfo);
 
                     var name = spec.Name;
 
                     try
                     {
-                        if (list.Has(name))
+                        if (list.Has(name, groupId))
                         {
                             var type = propInfo.PropertyType;
 
@@ -52,7 +74,7 @@ namespace BindOpen.Data.Meta.Reflection
                             if (typeof(IBdoMetaData).IsAssignableFrom(type))
                             {
                                 var meta = BdoMeta.New(name, type);
-                                meta.Update(list.Get(name));
+                                meta?.Update(list.GetFromGroup(name, groupId));
                                 value = meta;
                             }
                             else

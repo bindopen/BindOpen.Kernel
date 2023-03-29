@@ -29,7 +29,7 @@ namespace BindOpen.Tests
         /// <summary>
         /// The string value of this instance.
         /// </summary>
-        [BdoInput(Name = "stringValue")]
+        [BdoOutput(Name = "stringValue")]
         public string StringValue { get; set; }
 
         /// <summary>
@@ -47,9 +47,8 @@ namespace BindOpen.Tests
         /// <summary>
         /// Enumeration value of this instance.
         /// </summary>
-        [BdoOutput(Name = "inputs")]
-        public BdoMetaSet Inputs { get; set; }
-
+        [BdoOutput(Name = "output")]
+        public BdoMetaSet Outputs { get; set; }
 
         /// <summary>
         /// The sub task of this instance.

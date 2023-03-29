@@ -46,7 +46,7 @@ namespace BindOpen.Extensions.Connectors
 
                     if ((connector = item as IBdoConnector) != null)
                     {
-                        connector.UpdateFromMeta(config, true, scope, varSet);
+                        connector.UpdateFromMeta(config, true, scope: scope, varSet: varSet);
                     }
                 }
             }

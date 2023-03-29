@@ -46,7 +46,7 @@ namespace BindOpen.Extensions.Entities
 
                     if ((entity = item as IBdoEntity) != null)
                     {
-                        entity.UpdateFromMeta(config, true, scope, varSet);
+                        entity.UpdateFromMeta(config, true, scope: scope, varSet: varSet);
                     }
                 }
             }

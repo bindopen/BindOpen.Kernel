@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using BindOpen.Logging;
+using BindOpen.Scopes;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.Data.Meta
 {
@@ -340,5 +343,24 @@ namespace BindOpen.Data.Meta
             return RequirementLevels.None;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public static IEnumerable<IBdoSpec> GetSpecs(
+            this IBdoSpec spec,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            IEnumerable<IBdoSpec> specs = null;
+
+            if (spec != null)
+            {
+                specs = spec.SubSpecs?.Where(
+                    q => q?.Condition.Evaluate(scope, varSet, log) == true);
+            }
+
+            return specs ?? new List<IBdoSpec>();
+        }
     }
 }

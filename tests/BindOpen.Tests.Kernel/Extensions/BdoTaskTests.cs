@@ -32,12 +32,15 @@ namespace BindOpen.Tests.Extensions
 
             var config =
                 BdoConfig.New()
-                .WithDefinition("bindopen.tests.kernel$testTask")
+                .WithDefinition("bindopen.tests.kernel$taskFake")
                 .With(
                     BdoMeta.NewScalar("boolValue", data.boolValue as bool?),
-                    BdoMeta.NewScalar("enumValue", data.enumValue as string),
+                    BdoMeta.NewScalar("enumValue", data.enumValue as ActionPriorities?)
+                        .AsInput(),
                     BdoMeta.NewScalar("intValue", data.intValue as int?),
-                    BdoMeta.NewScalar("stringValue", data.stringValue as string));
+                    BdoMeta.NewScalar("stringValue", data.stringValue as string)
+                        .AsOutput()
+                );
 
             return ScopingTests.Scope.CreateTask<TaskFake>(config);
         }

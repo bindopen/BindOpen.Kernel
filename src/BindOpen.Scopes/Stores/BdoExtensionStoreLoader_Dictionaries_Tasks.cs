@@ -49,7 +49,16 @@ namespace BindOpen.Scopes.Stores
 
                 definition.UpdateFrom(type);
 
-                foreach (var prop in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoInputAttribute)).Any()))
+                foreach (var prop in type.GetProperties()
+                    .Where(p => p.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any()))
+                {
+                    var spec = BdoMeta.NewSpec();
+                    spec.UpdateFrom(prop, typeof(BdoPropertyAttribute));
+                    definition.Add(spec);
+                }
+
+                foreach (var prop in type.GetProperties()
+                    .Where(p => p.GetCustomAttributes(typeof(BdoInputAttribute)).Any()))
                 {
                     var spec = BdoMeta.NewSpec();
                     spec.UpdateFrom(prop, typeof(BdoInputAttribute));
@@ -57,7 +66,8 @@ namespace BindOpen.Scopes.Stores
                 }
 
                 definition.OutputSpecs ??= BdoMeta.NewSpecSet();
-                foreach (var prop in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoOutputAttribute)).Any()))
+                foreach (var prop in type.GetProperties()
+                    .Where(p => p.GetCustomAttributes(typeof(BdoOutputAttribute)).Any()))
                 {
                     var spec = BdoMeta.NewSpec();
                     spec.UpdateFrom(prop, typeof(BdoOutputAttribute));

@@ -1,4 +1,8 @@
-﻿namespace BindOpen.Data.Meta
+﻿using BindOpen.Logging;
+using BindOpen.Scopes;
+using System.Linq;
+
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a data element set.
@@ -56,17 +60,21 @@
         /// <summary>
         /// 
         /// </summary>
-        public static T WithParent<T>(
-            this T meta,
-            IBdoMetaData parent)
-            where T : IBdoMetaData
+        public static IBdoSpec GetSpec(
+            this IBdoMetaData meta,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
         {
+            IBdoSpec spec = null;
+
             if (meta != null)
             {
-                meta.Parent = parent;
+                spec = meta.Specs?.FirstOrDefault(
+                    q => q?.Condition.Evaluate(scope, varSet, log) == true);
             }
 
-            return meta;
+            return spec;
         }
     }
 }

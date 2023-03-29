@@ -18,6 +18,11 @@ namespace BindOpen.Data.Meta
         BdoMetaDataKind MetaDataKind { get; }
 
         /// <summary>
+        /// The identifier of the group of this instance.
+        /// </summary>
+        string GroupId { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         ITBdoSet<IBdoSpec> Specs { get; set; }

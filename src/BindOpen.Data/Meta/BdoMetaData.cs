@@ -128,6 +128,11 @@ namespace BindOpen.Data.Meta
         /// </summary>
         public IBdoReference Reference { get; set; }
 
+        /// <summary>
+        /// The identifier of the group of this instance.
+        /// </summary>
+        public string GroupId { get; set; }
+
         // Specification -------------------------------
 
         /// <summary>
