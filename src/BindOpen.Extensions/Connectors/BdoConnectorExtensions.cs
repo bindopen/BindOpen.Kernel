@@ -1,17 +1,18 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Helpers;
+using BindOpen.Data.Assemblies;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
 using BindOpen.Logging;
-using BindOpen.Scopes.Scopes;
+using BindOpen.Scopes;
 
 namespace BindOpen.Extensions.Connectors
 {
     /// <summary>
     /// This class represents a connection service.
     /// </summary>
-    public static partial class BdoScopeExtensions
+    public static partial class BdoConnectorExtensions
     {
+        // Create
 
         /// <summary>
         /// Creates the instance of the specified definition.
@@ -41,7 +42,7 @@ namespace BindOpen.Extensions.Connectors
                 else
                 {
                     // we intantiate the connector
-                    AssemblyHelper.CreateInstance(definition.RuntimeType, out object item, log);
+                    object item = definition.RuntimeType.CreateInstance(log);
 
                     if ((connector = item as IBdoConnector) != null)
                     {
@@ -50,7 +51,7 @@ namespace BindOpen.Extensions.Connectors
                 }
             }
 
-            return null;
+            return connector;
         }
 
         /// <summary>

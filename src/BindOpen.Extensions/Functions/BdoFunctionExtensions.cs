@@ -1,15 +1,16 @@
 ﻿using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
 using BindOpen.Logging;
-using BindOpen.Scopes.Scopes;
+using BindOpen.Scopes;
 
 namespace BindOpen.Extensions.Functions
 {
     /// <summary>
     /// This class represents an application 
     /// </summary>
-    public static class BdoScopeExtensions
+    public static class BdoFunctionExtensions
     {
+        // Create
 
         public static object CallFunction(
             this IBdoScope scope,

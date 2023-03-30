@@ -1,5 +1,6 @@
-﻿using BindOpen.Logging;
-using BindOpen.Scopes.Scopes;
+﻿using BindOpen.Data.Assemblies;
+using BindOpen.Logging;
+using BindOpen.Scopes;
 using System;
 
 namespace BindOpen.Data.Stores
@@ -63,7 +64,7 @@ namespace BindOpen.Data.Stores
         {
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
-                AddFromAssembly(assembly.FullName, log);
+                AddFromAssembly(BdoData.Assembly(assembly), log);
             }
 
             return this;
@@ -74,14 +75,16 @@ namespace BindOpen.Data.Stores
         /// </summary>
         /// <param key="assemblyName">The name of the assembly.</param>
         /// <param key="log">The log to append.</param>
-        public virtual IBdoDepot AddFromAssembly(string assemblyName, IBdoLog log = null) => this;
+        public virtual IBdoDepot AddFromAssembly(
+            IBdoAssemblyReference reference,
+            IBdoLog log = null) => this;
 
         /// <summary>
         /// Add the items from the assembly of the specified type.
         /// </summary>
         /// <param key="log">The log to append.</param>
         public IBdoDepot AddFromAssembly<T1>(IBdoLog log = null) where T1 : class
-            => AddFromAssembly(typeof(T1).Assembly.FullName, log);
+            => AddFromAssembly(BdoData.AssemblyFrom<T1>(), log);
 
         /// <summary>
         /// Loads this instance.

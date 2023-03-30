@@ -6,7 +6,10 @@ namespace BindOpen.Data
     /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IBdoSet : IBdoItem, IIdentified, IReferenced, IEnumerable
+    public interface IBdoSet :
+        IBdoItem,
+        IIdentified, IReferenced,
+        IEnumerable
     {
         /// <summary>
         /// 

@@ -453,12 +453,12 @@
             The available itemization modes of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecDto.MinimumItemNumber">
+        <member name="P:BindOpen.Data.Elements.BdoElementSpecDto.MinDataItemNumber">
             <summary>
             Minimum item number of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoElementSpecDto.MaximumItemNumber">
+        <member name="P:BindOpen.Data.Elements.BdoElementSpecDto.MaxDataItemNumber">
             <summary>
             Maximum item number of this instance.
             </summary>
@@ -1178,7 +1178,7 @@
             This static class provides methods to handle configs.
             </summary>
         </member>
-        <member name="M:BindOpen.Scopes.Dtos.MetaData.Elements.Configuration.ConfigurationExtensions.LoadXml``1(System.String,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog,System.Xml.Schema.XmlSchemaSet,System.Boolean)">
+        <member name="M:BindOpen.Scopes.Dtos.MetaData.Elements.Configuration.ConfigurationExtensions.LoadXml``1(System.String,BindOpen.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog,System.Xml.Schema.XmlSchemaSet,System.Boolean)">
             <summary>
             Instantiates a new instance of Configuration class from a xml file.
             </summary>

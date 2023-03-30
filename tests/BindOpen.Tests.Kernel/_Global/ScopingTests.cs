@@ -1,6 +1,4 @@
-﻿using BindOpen.Data;
-using BindOpen.Scopes;
-using BindOpen.Scopes.Scopes;
+﻿using BindOpen.Scopes;
 
 namespace BindOpen.Tests
 {
@@ -15,12 +13,9 @@ namespace BindOpen.Tests
         {
             get
             {
-                if (_appScope == null)
-                {
-                    _appScope = BdoScoping.NewScope();
-                    _appScope.LoadExtensions(
-                        q => q.AddAllAssemblies());
-                }
+                _appScope ??= BdoScoping.NewScope()
+                    .LoadExtensions(
+                        q => q.AddAssemblyFrom<GlobalSetUp>());
 
                 return _appScope;
             }

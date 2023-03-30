@@ -7,7 +7,7 @@ namespace BindOpen.Tests
     /// <summary>
     /// This class represents a test connector.
     /// </summary>
-    [BdoConnector(Name = "tests.core$testConnector")]
+    [BdoConnector(Name = "bindopen.tests.kernel$testConnector")]
     [BdoConnector(CreationDate = "2023-02-25")]
     public class ConnectorFake : BdoConnector
     {

@@ -65,7 +65,7 @@ namespace BindOpen.Data.Assemblies
         public virtual string Key()
             => AssemblyName == StringHelper.__Star ?
             StringHelper.__Star :
-            AssemblyName + "$" + AssemblyVersion;
+            AssemblyName + ";" + AssemblyVersion;
 
         public override bool Equals(object obj)
         {
@@ -96,6 +96,11 @@ namespace BindOpen.Data.Assemblies
         public override string ToString()
         {
             return Key();
+        }
+
+        public virtual bool IsEmpty()
+        {
+            return string.IsNullOrEmpty(AssemblyName);
         }
 
         #endregion

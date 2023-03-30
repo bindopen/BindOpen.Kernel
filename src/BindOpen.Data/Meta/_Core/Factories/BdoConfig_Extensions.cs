@@ -1,4 +1,5 @@
-﻿namespace BindOpen.Data.Meta
+﻿
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This static class provides methods to handle configs.
@@ -70,7 +71,7 @@
             where T : BdoConfiguration, new()
         {
             var config = New<T>(definitionUniqueName, items);
-            config.WithDefinitionUniqueName(definitionUniqueName);
+            config.WithDefinition(definitionUniqueName);
             config.Using(usingIds);
             return config;
         }

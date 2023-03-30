@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Helpers;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace BindOpen.Data.Meta.Reflection
@@ -31,46 +32,40 @@ namespace BindOpen.Data.Meta.Reflection
                     list = new();
 
                     if (!type.IsScalar() && !type.IsList()
-                        && !type.IsAssignableFrom(typeof(IBdoNotMetableItem)))
+                        && !type.IsAssignableFrom(typeof(IBdoItemNotMetable)))
                     {
                         foreach (var propInfo in type.GetProperties())
                         {
-                            var bdoAttribute = propInfo.GetCustomAttribute(typeof(BdoPropertyAttribute)) as BdoPropertyAttribute;
-                            if (bdoAttribute != null || !onlyMetaAttributes)
+                            var hasMetaAttribute = propInfo.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any();
+                            if (hasMetaAttribute || !onlyMetaAttributes)
                             {
-                                string propName = propInfo.Name;
+                                var spec = BdoMeta.NewSpec();
+                                spec.UpdateFrom<BdoPropertyAttribute>(propInfo);
+
+                                var propName = spec.Name;
                                 object propValue = propInfo.GetValue(obj);
 
-                                if (!string.IsNullOrEmpty(bdoAttribute?.Name))
+                                IBdoMetaData subMeta = metaObject[propName];
+                                if (subMeta != null)
                                 {
-                                    propName = bdoAttribute.Name;
-                                }
-
-                                IBdoMetaData subMeta;
-                                if (metaObject?.Has(propName) == true)
-                                {
-                                    subMeta = metaObject[propName];
                                     if (subMeta.DataMode == DataMode.Value)
                                     {
                                         if (subMeta is IBdoMetaScalar subMetaScalar)
                                         {
-                                            subMetaScalar.WithData(propValue)
-                                                .UpdateTree();
+                                            subMetaScalar.WithData(propValue);
                                         }
                                         else if (subMeta is IBdoMetaObject subMetaObject)
                                         {
-                                            subMetaObject.WithData(propValue)
-                                                .UpdateTree();
+                                            subMetaObject.WithData(propValue);
                                         }
-                                        else if (subMeta is IBdoMetaSet subMetaSet)
-                                        {
-                                            subMetaSet.UpdateTree();
-                                        }
+
+                                        subMeta.UpdateTree();
                                     }
                                 }
                                 else
                                 {
                                     subMeta = propValue.ToMetaData(propName, onlyMetaAttributes, propInfo.PropertyType);
+                                    subMeta.WithSpecs(spec);
                                 }
 
                                 list.Add(subMeta);

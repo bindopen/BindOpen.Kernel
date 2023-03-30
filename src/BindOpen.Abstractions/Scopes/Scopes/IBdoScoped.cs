@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Scopes.Scopes
+﻿namespace BindOpen.Scopes
 {
     /// <summary>
     /// This interfaces represents a scoped service.

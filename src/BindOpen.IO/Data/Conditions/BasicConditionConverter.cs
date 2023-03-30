@@ -18,8 +18,7 @@
             {
                 Argument1 = poco.Argument1,
                 Argument2 = poco.Argument2,
-                Operator = poco.Operator,
-                TrueValue = poco.TrueValue
+                Operator = poco.Operator
             };
 
             return dto;
@@ -39,8 +38,7 @@
             {
                 Argument1 = dto.Argument1,
                 Argument2 = dto.Argument2,
-                Operator = dto.Operator,
-                TrueValue = dto.TrueValue
+                Operator = dto.Operator
             };
 
             return poco;

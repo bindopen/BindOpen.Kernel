@@ -23,13 +23,13 @@ namespace BindOpen.Scopes.Stores
         /// </summary>
         /// <param key="assembly">The assembly to consider.</param>
         /// <param key="kind">The kind of item to consider.</param>
-        /// <param key="extensionDefinition">The extension definition to consider.</param>
+        /// <param key="packageDefinition">The extension definition to consider.</param>
         /// <param key="log">The log to consider.</param>
         /// <returns></returns>
         private int LoadDictionary(
             Assembly assembly,
             BdoExtensionKind kind,
-            IBdoPackageDefinition extensionDefinition = null,
+            IBdoPackageDefinition packageDefinition = null,
             IBdoLog log = null)
         {
             if (assembly == null)
@@ -40,15 +40,14 @@ namespace BindOpen.Scopes.Stores
             switch (kind)
             {
                 case BdoExtensionKind.Connector:
-                    return LoadConnectorDictionaryFromAssembly(assembly, extensionDefinition, log);
+                    return LoadConnectorDictionaryFromAssembly(assembly, packageDefinition, log);
                 case BdoExtensionKind.Entity:
-                    return LoadEntityDictionaryFromAssembly(assembly, extensionDefinition, log);
+                    return LoadEntityDictionaryFromAssembly(assembly, packageDefinition, log);
                 case BdoExtensionKind.Function:
-                    return LoadFunctionDictionaryFromAssembly(assembly, extensionDefinition, log);
+                    return LoadFunctionDictionaryFromAssembly(assembly, packageDefinition, log);
                 case BdoExtensionKind.Task:
-                    return LoadTaskDictionaryFromAssembly(assembly, extensionDefinition, log);
-                case BdoExtensionKind.Any:
-                case BdoExtensionKind.None:
+                    return LoadTaskDictionaryFromAssembly(assembly, packageDefinition, log);
+                default:
                     break;
             }
             return -1;
@@ -92,7 +91,6 @@ namespace BindOpen.Scopes.Stores
                             Type type = GetDictionaryType<T>();
                             XmlSerializer serializer = new(type);
                             dico = (TBdoExtensionDictionary<T>)serializer.Deserialize(stream);
-                            //dico.UpdateRuntimeInfo(log: log);
                         }
                     }
                     catch (Exception ex)
@@ -144,35 +142,5 @@ namespace BindOpen.Scopes.Stores
                 _ => null,
             };
         }
-
-        /// <summary>
-        /// Updates this instance with the specified attribute information.
-        /// </summary>
-        /// <param key="definition">The definition to consider.</param>
-        /// <param key="attribute">The attribute to consider.</param>
-        public static void UpdateDictionary(
-            IBdoExtensionDefinition definition,
-            MetaExtensionAttribute attribute)
-        {
-            definition.WithName(attribute.Name?.IndexOf("$") > 0 ?
-                attribute.Name[(attribute.Name.IndexOf("$") + 1)..] : attribute.Name);
-
-            definition.WithDescription(BdoData.NewDictionary(attribute.Description));
-            //definition.WithCreationDate(attribute.CreationDate.ToDateTime());
-            //definition.WithLastModificationDate(attribute.LastModificationDate.ToDateTime());
-        }
-
-        ///// <summary>
-        ///// Updates this instance with the specified attribute information.
-        ///// </summary>
-        ///// <param key="definition">The definition to consider.</param>
-        ///// <param key="attribute">The attribute to consider.</param>
-        //public static void UpdateDictionary(
-        //    IBdoExtensionDefinition definition,
-        //    MetaExtensionAttribute attribute)
-        //{
-        //    //UpdateDictionary(definition, attribute as MetaExtensionAttribute);
-        //    //definition.WithTitle(BdoData.NewDictionary(attribute.Title));
-        //}
     }
 }

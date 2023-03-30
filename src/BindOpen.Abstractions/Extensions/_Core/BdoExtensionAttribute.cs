@@ -8,7 +8,7 @@ namespace BindOpen.Extensions
     /// </summary>
     [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
     public abstract class MetaExtensionAttribute : Attribute,
-        IIdentified, INamed,
+        INamed,
         ITitled, IDescribed
     {
         // ------------------------------------------
@@ -16,11 +16,6 @@ namespace BindOpen.Extensions
         // ------------------------------------------
 
         #region Properties
-
-        /// <summary>
-        /// The ID of this instance.
-        /// </summary>
-        public string Id { get; set; }
 
         /// <summary>
         /// The name of this instance.

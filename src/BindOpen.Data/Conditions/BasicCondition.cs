@@ -45,37 +45,13 @@
         /// <summary>
         /// Instantiates a new instance of the BasicCondition class.
         /// </summary>
-        /// <param key="trueValue">The value that expresses that the condition is satisfied.</param>
-        public BasicCondition(
-            bool trueValue) : base(trueValue)
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the BasicCondition class.
-        /// </summary>
-        /// <param key="arg1">The argument 1 to consider.</param>
-        /// <param key="ope">The operator to consider.</param>
-        /// <param key="arg2">The argument 2 to consider.</param>
-        public BasicCondition(string arg1, ConditionOperator ope, string arg2 = null)
-        {
-            Argument1 = arg1;
-            Argument2 = arg2;
-            Operator = ope;
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the BasicCondition class.
-        /// </summary>
-        /// <param key="trueValue">The value that expresses that the condition is satisfied.</param>
         /// <param key="arg1">The argument 1 to consider.</param>
         /// <param key="ope">The operator to consider.</param>
         /// <param key="arg2">The argument 2 to consider.</param>
         public BasicCondition(
-            bool trueValue,
-            string arg1,
+            object arg1,
             ConditionOperator ope,
-            string arg2 = null) : base(trueValue)
+            object arg2 = null)
         {
             Argument1 = arg1;
             Argument2 = arg2;

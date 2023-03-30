@@ -12,6 +12,6 @@ namespace BindOpen.Scopes.Stores
         /// </summary>
         /// <param key="references">The library references to consider.</param>
         /// <param key="log">The log to populate.</param>
-        bool LoadPackages(IBdoLog log = null);
+        IBdoExtensionStoreLoader LoadPackages(IBdoLog log = null);
     }
 }

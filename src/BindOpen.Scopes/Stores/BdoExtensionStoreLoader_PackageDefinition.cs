@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
 using BindOpen.Data.Helpers;
 using BindOpen.Extensions;
 using BindOpen.Logging;
@@ -77,8 +78,8 @@ namespace BindOpen.Scopes.Stores
 
                 definition.FileName ??= definition.AssemblyName + ".dll";
                 definition.Id ??= StringHelper.NewGuid();
-                definition.Name = resourceFullName;
-                definition.RootNamespace = resourceFullName ?? definition.AssemblyName;
+                definition.Name ??= resourceFullName ?? definition.AssemblyName;
+                definition.RootNamespace ??= resourceFullName ?? definition.AssemblyName;
 
                 if (string.IsNullOrEmpty(definition.Title?.Get()))
                 {
@@ -89,7 +90,7 @@ namespace BindOpen.Scopes.Stores
                             definition.AssemblyName));
                 }
 
-                definition.UsingAssemblyReferences ??= assembly.GetReferencedAssemblies().Select(q => BdoData.Assembly(q.Name)).ToList();
+                definition.UsingAssemblyReferences ??= assembly.GetReferencedAssemblies().ToReferences();
             }
 
             return definition;

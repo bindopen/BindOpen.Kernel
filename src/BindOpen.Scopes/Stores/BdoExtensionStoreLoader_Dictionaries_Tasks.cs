@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
 using BindOpen.Extensions;
+using BindOpen.Extensions.Entities;
 using BindOpen.Extensions.Tasks;
 using BindOpen.Logging;
 using System.Linq;
@@ -17,12 +18,12 @@ namespace BindOpen.Scopes.Stores
         /// Loads the task dico from the specified assembly.
         /// </summary>
         /// <param key="assembly">The assembly to consider.</param>
-        /// <param key="extensionDefinition">The extension definition to consider.</param>
+        /// <param key="packageDefinition">The extension definition to consider.</param>
         /// <param key="log">The log to consider.</param>
         /// <returns></returns>
         private int LoadTaskDictionaryFromAssembly(
             Assembly assembly,
-            IBdoPackageDefinition extensionDefinition,
+            IBdoPackageDefinition packageDefinition,
             IBdoLog log = null)
         {
             if (assembly == null)
@@ -41,37 +42,34 @@ namespace BindOpen.Scopes.Stores
             var types = assembly.GetTypes().Where(p => typeof(IBdoTask).IsAssignableFrom(p));
             foreach (var type in types)
             {
-                var definition = new BdoTaskDefinition(null, extensionDefinition)
+                var definition = new BdoTaskDefinition(null, packageDefinition)
                 {
-                    ClassReference = BdoData.Class(type),
-                    LibraryId = extensionDefinition?.Id,
-                    RuntimeType = type
+                    LibraryId = packageDefinition?.Id,
                 };
 
-                if (type.GetCustomAttributes(typeof(BdoTaskAttribute)).FirstOrDefault() is BdoTaskAttribute taskAttribute)
+                definition.UpdateFrom(type);
+
+                foreach (var prop in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoInputAttribute)).Any()))
                 {
-                    UpdateDictionary(definition, taskAttribute);
+                    var spec = BdoMeta.NewSpec();
+                    spec.UpdateFrom(prop, typeof(BdoInputAttribute));
+                    definition.Add(spec);
                 }
 
-                foreach (var property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoInputAttribute)).Any()))
+                definition.OutputSpecs ??= BdoMeta.NewSpecSet();
+                foreach (var prop in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoOutputAttribute)).Any()))
                 {
-                    definition.InputSpecDetail ??= BdoMeta.NewSpecSet();
-                    definition.InputSpecDetail.Add(BdoMeta.NewSpec(property.Name, property.PropertyType));
-                }
-
-                foreach (var property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoOutputAttribute)).Any()))
-                {
-                    definition.OutputSpecDetail ??= BdoMeta.NewSpecSet();
-                    definition.OutputSpecDetail.Add(BdoMeta.NewSpec(property.Name, property.PropertyType));
+                    var spec = BdoMeta.NewSpec();
+                    spec.UpdateFrom(prop, typeof(BdoOutputAttribute));
+                    definition.OutputSpecs.Add(spec);
                 }
 
                 // we build the runtime definition
 
                 if (dico != null)
                 {
-                    // retrieve the definition index
-
-                    // update definition with index
+                    var indexDefinition = dico.Get(definition.Name);
+                    definition.Update(indexDefinition);
                 }
 
                 _store.Add(definition);

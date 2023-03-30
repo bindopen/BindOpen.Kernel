@@ -91,7 +91,7 @@ namespace BindOpen.Data.Meta
         [JsonPropertyName("minimumItemNumber")]
         [XmlElement("minimumItemNumber")]
         [DefaultValue(1)]
-        public uint MinimumItemNumber { get; set; } = 1;
+        public uint MinDataItemNumber { get; set; } = 1;
 
         /// <summary>
         /// Maximum item number of this instance.
@@ -99,7 +99,7 @@ namespace BindOpen.Data.Meta
         [JsonPropertyName("maximumItemNumber")]
         [XmlElement("maximumItemNumber")]
         [DefaultValue(null)]
-        public uint? MaximumItemNumber { get; set; }
+        public uint? MaxDataItemNumber { get; set; }
 
         /// <summary>
         /// Levels of specification of this instance.
@@ -147,7 +147,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         [JsonPropertyName("requirementExp")]
         [XmlElement("requirementExp")]
-        public ExpressionDto RequirementExpression { get; set; }
+        public ExpressionDto RequirementExp { get; set; }
 
         /// <summary>
         /// Levels of specification of this instance.

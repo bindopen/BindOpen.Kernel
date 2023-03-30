@@ -1,5 +1,6 @@
-﻿using BindOpen.Logging;
-using BindOpen.Scopes.Scopes;
+﻿using BindOpen.Data.Assemblies;
+using BindOpen.Logging;
+using BindOpen.Scopes;
 using System;
 
 namespace BindOpen.Data.Stores
@@ -21,7 +22,7 @@ namespace BindOpen.Data.Stores
         /// </summary>
         /// <param key="assemblyName">The name of the assembly.</param>
         /// <param key="log">The log to append.</param>
-        IBdoDepot AddFromAssembly(string assemblyName, IBdoLog log = null);
+        IBdoDepot AddFromAssembly(IBdoAssemblyReference reference, IBdoLog log = null);
 
         /// <summary>
         /// Add the items from the assembly of the specified type.

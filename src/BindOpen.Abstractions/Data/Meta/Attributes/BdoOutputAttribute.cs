@@ -26,7 +26,6 @@ namespace BindOpen.Data.Meta
         /// </summary>
         public BdoOutputAttribute(string name) : base(name)
         {
-            GroupId = "input";
         }
 
         #endregion

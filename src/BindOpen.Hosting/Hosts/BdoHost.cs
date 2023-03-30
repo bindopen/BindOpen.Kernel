@@ -6,7 +6,6 @@ using BindOpen.Data.Stores;
 using BindOpen.Hosting.Services;
 using BindOpen.Logging;
 using BindOpen.Scopes;
-using BindOpen.Scopes.Scopes;
 using BindOpen.Scopes.Stores;
 using BindOpen.Script;
 using System;
@@ -96,8 +95,10 @@ namespace BindOpen.Hosting.Hosts
         /// </summary>
         /// <param key="reference"></param>
         /// <returns></returns>
-        public Type CreateType(IBdoClassReference reference)
-            => Scope?.CreateType(reference);
+        public Type CreateType(
+            IBdoClassReference reference,
+            IBdoLog log = null)
+            => Scope?.CreateType(reference, log);
 
         /// <summary>
         /// Starts the application.
@@ -305,10 +306,11 @@ namespace BindOpen.Hosting.Hosts
 
                     subLog = log?.InsertSubLog(title: "Loading extensions...", eventKind: EventKinds.Message);
 
-                    _isLoaded &= Scope.LoadExtensions(
+                    Scope.LoadExtensions(
                         q => q = Options.ExtensionLoadOptions
                             .AddSource(DatasourceKind.Repository, GetKnownPath(BdoHostPathKind.LibraryFolder)),
                         subLog);
+                    _isLoaded = !subLog.HasEvent(EventKinds.Exception, EventKinds.Error);
 
                     if (_isLoaded)
                     {
@@ -393,17 +395,6 @@ namespace BindOpen.Hosting.Hosts
                 checkDataContext,
                 checkDataStore,
                 log) ?? false;
-
-        /// <summary>
-        /// Loads the specified extensions.
-        /// </summary>
-        /// <param key="loadOptionsAction">The load options action to consider.</param>
-        /// <param key="references">The extension references to consider.</param>
-        /// <param key="log">The log to consider.</param>
-        public bool LoadExtensions(
-            Action<IExtensionLoadOptions> loadOptionsAction,
-            IBdoLog log = null)
-            => Scope?.LoadExtensions(loadOptionsAction, log) ?? false;
 
         /// <summary>
         /// Clears this instance.

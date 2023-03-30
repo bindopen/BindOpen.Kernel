@@ -1,5 +1,5 @@
 ﻿using BindOpen.Logging;
-using BindOpen.Scopes.Scopes;
+using BindOpen.Scopes;
 using System.Collections.Generic;
 
 namespace BindOpen.Data.Meta
@@ -8,9 +8,9 @@ namespace BindOpen.Data.Meta
     /// 
     /// </summary>
     public interface IBdoMetaData :
-        IBdoNotMetableItem,
-        INamed, IReferenced,
-        IIndexed
+        IBdoItemNotMetable,
+        INamed, IReferenced, IIndexed,
+        ITUpdatable<IBdoMetaData>
     {
         /// <summary>
         /// The kind of meta data of this instance.

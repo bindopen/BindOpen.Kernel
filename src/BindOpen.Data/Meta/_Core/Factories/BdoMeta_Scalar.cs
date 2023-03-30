@@ -39,6 +39,7 @@
             params object[] items)
             => NewScalar<object, BdoMetaScalar>(
                 (string)name,
+                DataValueTypes.Any,
                 items);
 
         /// <summary>
@@ -54,6 +55,7 @@
         {
             var meta = NewScalar<object, BdoMetaScalar>(
                 (string)name,
+                DataValueTypes.Any,
                 items);
             meta.WithDataValueType(valueType);
 
@@ -79,7 +81,10 @@
         public static TBdoMetaScalar<TItem> NewScalar<TItem>(
             string name,
             params object[] items)
-            => NewScalar<TItem, TBdoMetaScalar<TItem>>(null, items);
+            => NewScalar<TItem, TBdoMetaScalar<TItem>>(
+                null,
+                DataValueTypes.Any,
+                items);
 
         // TItem, TMeta creators -------------------------
 
@@ -89,8 +94,11 @@
         /// <param key="items">The items to consider.</param>
         public static TMeta NewScalar<TItem, TMeta>(
             params object[] items)
-            where TMeta : class, ITBdoMetaScalar<TItem>, new()
-            => NewScalar<TItem, TMeta>(null, items);
+            where TMeta : BdoMetaScalar, new()
+            => NewScalar<TItem, TMeta>(
+                null,
+                DataValueTypes.Any,
+                items);
 
         /// <summary>
         /// Creates a new instance of the ScalarElement class.
@@ -100,20 +108,22 @@
         /// <param key="items">The items to consider.</param>
         public static TMeta NewScalar<TItem, TMeta>(
             string name,
+            DataValueTypes valueType,
             params object[] items)
-            where TMeta : class, ITBdoMetaScalar<TItem>, new()
+            where TMeta : BdoMetaScalar, new()
         {
-            DataValueTypes valueType = DataValueTypes.Any;
-
-            if (typeof(TItem) == typeof(object)
+            if (valueType == DataValueTypes.Any)
+            {
+                if (typeof(TItem) == typeof(object)
                 && items?.Length > 0)
-            {
-                valueType = items[0]?.GetType().GetValueType()
-                    ?? DataValueTypes.Any;
-            }
-            else
-            {
-                valueType = typeof(TItem).GetValueType();
+                {
+                    valueType = items[0]?.GetType().GetValueType()
+                        ?? DataValueTypes.Any;
+                }
+                else
+                {
+                    valueType = typeof(TItem).GetValueType();
+                }
             }
 
             var meta = new TMeta();

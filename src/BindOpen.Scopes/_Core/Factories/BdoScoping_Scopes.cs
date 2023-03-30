@@ -1,4 +1,4 @@
-﻿using BindOpen.Scopes.Scopes;
+﻿using BindOpen.Scopes;
 using System;
 
 namespace BindOpen.Scopes

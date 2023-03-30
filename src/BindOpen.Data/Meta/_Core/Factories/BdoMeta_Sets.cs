@@ -36,7 +36,8 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="metas">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static BdoMetaSet NewSet(params IBdoMetaData[] metas)
+        public static BdoMetaSet NewSet(
+            params IBdoMetaData[] metas)
             => NewSet<BdoMetaSet>(metas);
 
         /// <summary>

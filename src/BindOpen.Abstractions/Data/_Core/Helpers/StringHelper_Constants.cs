@@ -23,7 +23,12 @@
         /// <summary>
         /// The string that is returned when the instance is not found.
         /// </summary>
-        public static readonly string __DateFormat = "s";
+        public static readonly string __DateTimeFormat = @"d";
+
+        /// <summary>
+        /// The string that is returned when the instance is not found.
+        /// </summary>
+        public static readonly string __DateTimeFormatShort = @"yyyy-MM-dd";
 
         /// <summary>
         /// The string that is returned when the instance is not found.

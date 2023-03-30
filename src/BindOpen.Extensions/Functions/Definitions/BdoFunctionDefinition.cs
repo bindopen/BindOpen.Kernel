@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Assemblies;
-using BindOpen.Data.Meta;
 using System;
 
 namespace BindOpen.Extensions.Functions
@@ -25,11 +24,6 @@ namespace BindOpen.Extensions.Functions
         /// 
         /// </summary>
         public IBdoClassReference ClassReference { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ITBdoSet<IBdoSpec> SpecDetail { get; set; }
 
         /// <summary>
         /// 

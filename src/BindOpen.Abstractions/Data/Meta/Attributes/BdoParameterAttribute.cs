@@ -20,19 +20,39 @@ namespace BindOpen.Data.Meta
         public string Name { get; set; }
 
         /// <summary>
-        /// Indicates whether this instance can be repeated in set.
+        /// The title of this instance.
         /// </summary>
-        public bool IsRepeated { get; set; }
+        public string Title { get; set; }
 
         /// <summary>
-        /// The item requirement level of this instance.
+        /// The description of this instance.
         /// </summary>
-        public RequirementLevels RequirementLevel { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
-        /// The item requirement level of this instance.
+        /// 
         /// </summary>
-        public RequirementLevels ItemRequirementLevel { get; set; }
+        public RequirementLevels DataRequirement { get; set; } = RequirementLevels.Any;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string DataRequirementExp { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public RequirementLevels Requirement { get; set; } = RequirementLevels.Any;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string RequirementExp { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
 
         #endregion
 
@@ -49,12 +69,22 @@ namespace BindOpen.Data.Meta
         {
         }
 
-        /// <summary>
-        /// Instantiates a new instance of the BdoParameterAttribute class.
-        /// </summary>
-        public BdoParameterAttribute(string name) : base()
+        public BdoParameterAttribute(
+            string name,
+            DataValueTypes valueType = DataValueTypes.Any,
+            RequirementLevels requirement = RequirementLevels.Any)
         {
             Name = name;
+            ValueType = valueType;
+            Requirement = requirement;
+        }
+
+        public BdoParameterAttribute(
+            RequirementLevels dataRequirement,
+            string dataRequirementExp)
+        {
+            DataRequirement = dataRequirement;
+            DataRequirementExp = dataRequirementExp;
         }
 
         #endregion

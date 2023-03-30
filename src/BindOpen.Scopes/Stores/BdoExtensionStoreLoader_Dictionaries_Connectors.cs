@@ -17,12 +17,12 @@ namespace BindOpen.Scopes.Stores
         /// Loads the connector dico from the specified assembly.
         /// </summary>
         /// <param key="assembly">The assembly to consider.</param>
-        /// <param key="extensionDefinition">The extension definition to consider.</param>
+        /// <param key="packageDefinition">The extension definition to consider.</param>
         /// <param key="log">The log to consider.</param>
         /// <returns></returns>
         private int LoadConnectorDictionaryFromAssembly(
             Assembly assembly,
-            IBdoPackageDefinition extensionDefinition,
+            IBdoPackageDefinition packageDefinition,
             IBdoLog log = null)
         {
             if (assembly == null)
@@ -44,38 +44,28 @@ namespace BindOpen.Scopes.Stores
 
                 foreach (var type in types)
                 {
-                    var definition = new BdoConnectorDefinition(null, extensionDefinition)
+                    var definition = new BdoConnectorDefinition(null, packageDefinition)
                     {
-                        ClassReference = BdoData.Class(type),
-                        LibraryId = extensionDefinition?.Id,
-                        RuntimeType = type
+                        LibraryId = packageDefinition?.Id,
                     };
 
-                    // we update definition from connector attribute
-
-                    foreach (var attribute in type.GetCustomAttributes(typeof(BdoConnectorAttribute)))
-                    {
-                        var connectorAttribute = attribute as BdoConnectorAttribute;
-                        UpdateDictionary(definition, connectorAttribute);
-                    }
+                    definition.UpdateFrom(type);
 
                     // we create the detail specification from detail property attributes
 
-                    foreach (var property in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any()))
+                    foreach (var prop in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any()))
                     {
-                        definition.SpecDetail.Add(
-                            BdoMeta.NewSpec(property.Name, property.PropertyType));
+                        var spec = BdoMeta.NewSpec();
+                        spec.UpdateFrom(prop, typeof(BdoPropertyAttribute));
+                        definition.Add(spec);
                     }
 
                     // we build the runtime definition
 
                     if (dico != null)
                     {
-                        // retrieve the definition index
-
-                        //dico.WithDefinitions
-
-                        // update definition with index
+                        var indexDefinition = dico.Get(definition.Name);
+                        definition.Update(indexDefinition);
                     }
 
                     _store.Add(definition);

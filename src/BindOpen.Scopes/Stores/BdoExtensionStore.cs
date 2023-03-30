@@ -147,14 +147,7 @@ namespace BindOpen.Scopes.Stores
         {
             var uniqueName = definition?.UniqueName?.ToUpper();
 
-            if (definition is IBdoEntityDefinition carier)
-            {
-                if (!_entityDictionary.ContainsKey(uniqueName))
-                {
-                    _entityDictionary.Add(uniqueName, carier);
-                }
-            }
-            else if (definition is IBdoConnectorDefinition connector)
+            if (definition is IBdoConnectorDefinition connector)
             {
                 if (!_connectorDictionary.ContainsKey(uniqueName))
                 {

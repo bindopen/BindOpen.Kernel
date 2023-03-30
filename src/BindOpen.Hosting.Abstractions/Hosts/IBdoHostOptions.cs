@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Stores;
-using BindOpen.Scopes.Scopes;
+using BindOpen.Scopes;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;

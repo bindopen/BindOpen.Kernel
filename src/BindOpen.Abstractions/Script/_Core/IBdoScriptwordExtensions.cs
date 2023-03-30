@@ -51,22 +51,5 @@
 
             return word;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="name"></param>
-        public static T WithDefinitionUniqueName<T>(
-            this T word,
-            string uniqueName)
-            where T : IBdoScriptword
-        {
-            if (word != null)
-            {
-                word.DefinitionUniqueName = uniqueName;
-            }
-
-            return word;
-        }
     }
 }

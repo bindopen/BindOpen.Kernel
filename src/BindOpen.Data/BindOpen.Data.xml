@@ -461,7 +461,7 @@
             <param key="item">The item to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElement.GetItem(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElement.GetItem(BindOpen.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Returns the item object of this instance.
             </summary>
@@ -470,7 +470,7 @@
             <param key="varSet">The variable element set to use.</param>
             <returns>Returns the items of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElement.GetItem``1(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElement.GetItem``1(BindOpen.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -731,24 +731,24 @@
             The default item of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoDataElementSpec.MinimumItemNumber">
+        <member name="P:BindOpen.Data.Elements.BdoDataElementSpec.MinDataItemNumber">
             <summary>
             Minimum item number of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElementSpec.WithMaximumItemNumber(System.Int32)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElementSpec.WithMaxDataItemNumber(System.Int32)">
             <summary>
             
             </summary>
             <param key="number"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoDataElementSpec.MaximumItemNumber">
+        <member name="P:BindOpen.Data.Elements.BdoDataElementSpec.MaxDataItemNumber">
             <summary>
             Maximum item number of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElementSpec.WithMinimumItemNumber(System.Int32)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElementSpec.WithMinDataItemNumber(System.Int32)">
             <summary>
             
             </summary>
@@ -760,7 +760,7 @@
             Indicates whether the value of this instance is a list.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Elements.BdoDataElementSpec.ItemRequirementLevel">
+        <member name="P:BindOpen.Data.Elements.BdoDataElementSpec.DataRequirementLevel">
             <summary>
             The item requirement level of this instance.
             </summary>
@@ -1238,7 +1238,7 @@
             </summary>
             <returns>Returns all the element group IDs.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetItem(System.String,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetItem(System.String,BindOpen.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Returns the item object of this instance.
             </summary>
@@ -1248,7 +1248,7 @@
             <param key="log">The log to populate.</param>
             <returns>Returns the items of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetItem``1(System.String,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetItem``1(System.String,BindOpen.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Returns the item object of this instance.
             </summary>
@@ -1258,7 +1258,7 @@
             <param key="varSet">The variable element set to use.</param>
             <returns>Returns the items of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetItemList(System.String,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetItemList(System.String,BindOpen.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -1268,7 +1268,7 @@
             <param key="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetItemList``1(System.String,BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.BdoDataElementSet.GetItemList``1(System.String,BindOpen.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -1530,7 +1530,7 @@
             <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the items will be the default ones..</remarks>
             <returns>Returns True if the specified has been well added.</returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.GetItemList(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.GetItemList(BindOpen.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -1539,7 +1539,7 @@
             <param key="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.GetFirstItem(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Elements.TBdoDataElement`3.GetFirstItem(BindOpen.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -2563,7 +2563,7 @@
             </summary>
             <returns>Returns the initial data source of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Data.BdoExpression.Get(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.BdoExpression.Get(BindOpen.Scopes.IBdoScope,BindOpen.Data.Elements.IBdoElementSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Gets the items from the source of this instance and update the target items.
             </summary>
@@ -3014,7 +3014,7 @@
             Clears this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Stores.BdoDataStore.LoadLazy(BindOpen.Scopes.Scopes.IBdoScope,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Data.Stores.BdoDataStore.LoadLazy(BindOpen.Scopes.IBdoScope,BindOpen.Logging.IBdoLog)">
             <summary>
             Executes the lazy functions of all the depots of this instance.
             </summary>
@@ -3056,7 +3056,7 @@
             <param key="dataStore">The data store to consider.</param>
             <returns>Returns the datasource depot of the specified data store.</returns>
         </member>
-        <member name="M:BindOpen.Data.Stores.BdoDataStoreExtensions.GetDatasourceDepot(BindOpen.Scopes.Scopes.IBdoScope)">
+        <member name="M:BindOpen.Data.Stores.BdoDataStoreExtensions.GetDatasourceDepot(BindOpen.Scopes.IBdoScope)">
             <summary>
             Gets the datasource depot of the specified scope.
             </summary>

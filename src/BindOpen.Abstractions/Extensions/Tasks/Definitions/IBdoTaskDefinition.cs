@@ -18,12 +18,7 @@ namespace BindOpen.Extensions.Tasks
         /// <summary>
         /// 
         /// </summary>
-        ITBdoSet<IBdoSpec> InputSpecDetail { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        ITBdoSet<IBdoSpec> OutputSpecDetail { get; set; }
+        ITBdoSet<IBdoSpec> OutputSpecs { get; set; }
 
         /// <summary>
         /// 

@@ -6,7 +6,7 @@ using BindOpen.Scopes.Stores;
 using BindOpen.Script;
 using System;
 
-namespace BindOpen.Scopes.Scopes
+namespace BindOpen.Scopes
 {
     /// <summary>
     /// This interface defines an application scope.
@@ -44,16 +44,7 @@ namespace BindOpen.Scopes.Scopes
         /// <param key="reference"></param>
         /// <returns></returns>
         Type CreateType(
-            IBdoClassReference reference);
-
-        /// <summary>
-        /// Loads the specified extensions.
-        /// </summary>
-        /// <param key="loadOptionsAction">The load options action to consider.</param>
-        /// <param key="references">The extension references to consider.</param>
-        /// <param key="log"></param>
-        bool LoadExtensions(
-            Action<IExtensionLoadOptions> loadOptionsAction,
+            IBdoClassReference reference,
             IBdoLog log = null);
 
         /// <summary>

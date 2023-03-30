@@ -53,23 +53,45 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static BdoMetaObject NewObject<T>(
+        public static TBdoMetaObject<T> NewObject<T>(
             string name,
             T item)
-            where T : class, new()
+            where T : class
         {
-            var classRef = BdoData.Class<T>();
-            var el = NewObject(name, classRef, item);
-            return el;
+            return NewObject<T, TBdoMetaObject<T>>(name, item);
         }
 
         /// <summary>
         /// Initializes a new object el.
         /// </summary>
         /// <param key="item">The items to consider.</param>
-        public static BdoMetaObject NewObject<T>(
+        public static TBdoMetaObject<T> NewObject<T>(
             T item)
-            where T : class, new()
-            => NewObject<T>(null, item);
+            where T : class
+            => NewObject<T, TBdoMetaObject<T>>(null, item);
+
+        /// <summary>
+        /// Creates a new instance of the ScalarElement class.
+        /// </summary>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="valueType">The value type to consider.</param>
+        /// <param key="items">The items to consider.</param>
+        public static TMeta NewObject<TItem, TMeta>(
+            string name,
+            TItem item)
+            where TItem : class
+            where TMeta : TBdoMetaObject<TItem>, new()
+        {
+            var el = new TMeta();
+
+            var reference = BdoData.Class<TItem>();
+
+            el
+                .WithName(name)
+                .WithClassReference(reference)
+                .WithData(item);
+
+            return el;
+        }
     }
 }

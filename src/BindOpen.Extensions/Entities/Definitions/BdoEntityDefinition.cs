@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Assemblies;
-using BindOpen.Data.Meta;
 using System;
 
 namespace BindOpen.Extensions.Entities
@@ -21,11 +20,6 @@ namespace BindOpen.Extensions.Entities
         /// 
         /// </summary>
         public IBdoClassReference ClassReference { get; set; }
-
-        /// <summary>
-        /// The set of detail specifications of this instance.
-        /// </summary>
-        public ITBdoSet<IBdoSpec> SpecDetail { get; set; } = new TBdoSet<IBdoSpec>();
 
         /// <summary>
         /// The runtime type of this instance.

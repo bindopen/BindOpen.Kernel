@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Meta;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using BindOpen.Extensions.Tasks;
 using NUnit.Framework;
 
@@ -30,7 +31,8 @@ namespace BindOpen.Tests.Extensions
                 .With(BdoMeta.NewScalar());
 
             var config =
-                BdoConfig.New("tests.core$testTask")
+                BdoConfig.New()
+                .WithDefinition("bindopen.tests.kernel$testTask")
                 .With(
                     BdoMeta.NewScalar("boolValue", data.boolValue as bool?),
                     BdoMeta.NewScalar("enumValue", data.enumValue as string),

@@ -69,7 +69,7 @@ namespace BindOpen.Tests.Data
                 .With(
                     BdoMeta.NewScalar("path", _testData.path1 as string));
 
-            var metaObj2 = BdoMeta.NewObject("object2", "tests.core$testEntity")
+            var metaObj2 = BdoMeta.NewObject("object2", "bindopen.tests.kernel$testEntity")
                 .WithData(new EntityFake()
                 {
                     Path = _testData.path2 as string
@@ -88,7 +88,7 @@ namespace BindOpen.Tests.Data
             var metaObj5 = BdoMeta.NewObject("object1")
                 .AddRange(
                     BdoConfig.NewExtension(
-                        "tests.core$testEntity",
+                        "bindopen.tests.kernel$testEntity",
                         BdoMeta.NewScalar("path", _testData.path1 as string)));
 
             _metaObjSet = BdoMeta.NewSet(
