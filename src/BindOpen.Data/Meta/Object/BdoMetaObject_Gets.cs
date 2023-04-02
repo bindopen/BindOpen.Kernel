@@ -1,5 +1,5 @@
-﻿using BindOpen.Logging;
-using BindOpen.Scopes;
+﻿using BindOpen.Scopes;
+using BindOpen.Logging;
 using System.Collections.Generic;
 
 namespace BindOpen.Data.Meta

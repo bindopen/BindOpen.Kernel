@@ -1,10 +1,13 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
+using BindOpen.Data.Helpers;
 using BindOpen.Extensions;
 using BindOpen.Extensions.Connectors;
 using BindOpen.Extensions.Entities;
 using BindOpen.Extensions.Functions;
 using BindOpen.Extensions.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.Scopes.Stores
 {
@@ -54,14 +57,14 @@ namespace BindOpen.Scopes.Stores
         /// Returns the item definitions of this instance.
         /// </summary>
         /// <returns>The item words of specified library names.</returns>
-        public ITBdoSet<T> GetDefinitions<T>() where T : IBdoExtensionDefinition
+        public IEnumerable<T> GetDefinitions<T>() where T : IBdoExtensionDefinition
         {
             return (typeof(T).GetExtensionKind()) switch
             {
-                BdoExtensionKind.Connector => _connectorDictionary as ITBdoSet<T>,
-                BdoExtensionKind.Entity => _entityDictionary as ITBdoSet<T>,
-                BdoExtensionKind.Function => _functionDictionary as ITBdoSet<T>,
-                BdoExtensionKind.Task => _taskDictionary as ITBdoSet<T>,
+                BdoExtensionKind.Connector => _connectorDictionary.Select(q => (T)q.Value),
+                BdoExtensionKind.Entity => _entityDictionary.Select(q => (T)q.Value),
+                BdoExtensionKind.Function => _functionDictionary.Select(q => (T)q.Value),
+                BdoExtensionKind.Task => _taskDictionary.Select(q => (T)q.Value),
                 _ => new TBdoSet<T>(),
             };
         }
@@ -177,6 +180,30 @@ namespace BindOpen.Scopes.Stores
             }
 
             return this;
+        }
+
+        public T GetDefinitionFromType<T>(IBdoClassReference reference) where T : IBdoExtensionDefinition
+        {
+            return GetDefinitionFromType(typeof(T).GetExtensionKind(), reference).As<T>();
+        }
+
+        public IBdoExtensionDefinition GetDefinitionFromType(
+            BdoExtensionKind kind,
+            IBdoClassReference reference)
+        {
+            return kind switch
+            {
+                BdoExtensionKind.Connector =>
+                    _connectorDictionary.FirstOrDefault(q =>
+                        BdoData.Class(q.Value?.RuntimeType).Equals(reference)).Value,
+                BdoExtensionKind.Entity =>
+                    _entityDictionary.FirstOrDefault(q =>
+                        BdoData.Class(q.Value?.RuntimeType).Equals(reference)).Value,
+                BdoExtensionKind.Task =>
+                    _taskDictionary.FirstOrDefault(q =>
+                        BdoData.Class(q.Value?.RuntimeType).Equals(reference)).Value,
+                _ => null,
+            };
         }
 
         #endregion

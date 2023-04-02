@@ -16,6 +16,7 @@ namespace BindOpen.Extensions.Tasks
         {
             if (definition != null && type != null)
             {
+                definition.Name = type.Name;
                 definition.ClassReference = BdoData.Class(type);
                 definition.RuntimeType = type;
 

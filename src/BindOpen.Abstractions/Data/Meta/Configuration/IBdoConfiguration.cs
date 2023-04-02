@@ -4,7 +4,7 @@
     /// This interface defines a configuration.
     /// </summary>
     public interface IBdoConfiguration :
-        IBdoMetaSet,
+        IBdoMetaObject,
         IBdoTitled, IBdoDescribed,
         IStorable, IBdoDefinable, IBdoUsing
     {

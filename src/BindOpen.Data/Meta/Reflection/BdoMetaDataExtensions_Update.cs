@@ -1,6 +1,6 @@
-﻿using BindOpen.Data.Assemblies;
+﻿using BindOpen.Scopes;
+using BindOpen.Data.Assemblies;
 using BindOpen.Logging;
-using BindOpen.Scopes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +23,7 @@ namespace BindOpen.Data.Meta.Reflection
         /// <param key="log">The log to consider.</param>
         public static void UpdateFromMeta(
             this object obj,
-            IBdoMetaSet list,
+            IBdoMetaSet set,
             bool onlyMetaAttributes = false,
             string groupId = null,
             IBdoScope scope = null,
@@ -31,7 +31,7 @@ namespace BindOpen.Data.Meta.Reflection
             IBdoLog log = null)
         {
             obj.UpdateFromMeta<BdoPropertyAttribute>(
-                list, onlyMetaAttributes, groupId, scope, varSet, log);
+                set, onlyMetaAttributes, groupId, scope, varSet, log);
         }
         /// <summary>
         /// Sets information of the specified prop.
@@ -74,7 +74,7 @@ namespace BindOpen.Data.Meta.Reflection
                             if (typeof(IBdoMetaData).IsAssignableFrom(type))
                             {
                                 var meta = BdoMeta.New(name, type);
-                                meta?.Update(list.GetFromGroup(name, groupId));
+                                meta?.Update(list.GetOfGroup(name, groupId));
                                 value = meta;
                             }
                             else

@@ -1,7 +1,7 @@
-﻿using BindOpen.Data.Conditions;
+﻿using BindOpen.Scopes;
+using BindOpen.Data.Conditions;
 using BindOpen.Data.Meta;
 using BindOpen.Logging;
-using BindOpen.Scopes;
 using BindOpen.Script;
 
 namespace BindOpen.Data

@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Assemblies;
+﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
 using BindOpen.Logging;
@@ -11,15 +12,12 @@ namespace BindOpen.Extensions.Tasks
     /// </summary>
     public static class BdoTaskExtensions
     {
-        public const string __Token_Input = "input";
-        public const string __Token_Output = "output";
-
         public static IBdoMetaData AsInput(
             this IBdoMetaData meta)
         {
             if (meta != null)
             {
-                meta.GroupId = __Token_Input;
+                meta.GroupId = IBdoTaskExtensions.__Token_Input;
             }
 
             return meta;
@@ -30,13 +28,15 @@ namespace BindOpen.Extensions.Tasks
         {
             if (meta != null)
             {
-                meta.GroupId = __Token_Output;
+                meta.GroupId = IBdoTaskExtensions.__Token_Output;
             }
 
             return meta;
         }
 
         // Create
+
+
 
         /// <summary>
         /// Creates the instance of the specified definition.
@@ -47,10 +47,10 @@ namespace BindOpen.Extensions.Tasks
         /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the created task.</returns>
         public static IBdoTask CreateTask(
-        this IBdoScope scope,
-        IBdoConfiguration config = null,
-        IBdoMetaSet varSet = null,
-        IBdoLog log = null)
+            this IBdoScope scope,
+            IBdoConfiguration config = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
         {
             IBdoTask task = null;
 
@@ -73,6 +73,8 @@ namespace BindOpen.Extensions.Tasks
                     {
                         if ((task = item as IBdoTask) != null)
                         {
+                            task.DefinitionUniqueName = definition.UniqueName;
+
                             task.UpdateFromMeta(config, true, null, scope: scope, varSet: varSet);
                             task.UpdateFromMeta<BdoInputAttribute>(config, true, "input", scope: scope, varSet: varSet);
                             task.UpdateFromMeta<BdoOutputAttribute>(config, true, "output", scope: scope, varSet: varSet);
@@ -100,6 +102,16 @@ namespace BindOpen.Extensions.Tasks
             IBdoLog log = null) where T : BdoTask
         {
             return scope.CreateTask(config, varSet, log) as T;
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the BdoBaseConfiguration class.
+        /// </summary>
+        /// <param key="items">The items to consider.</param>
+        public static BdoTaskConfiguration NewTaskConfig(string name = null)
+        {
+            return new BdoTaskConfiguration()
+                .WithName(name);
         }
     }
 }

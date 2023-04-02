@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
+using BindOpen.Extensions;
 using BindOpen.Extensions.Tasks;
 using NUnit.Framework;
 
@@ -8,8 +9,6 @@ namespace BindOpen.Tests.Extensions
     [TestFixture, Order(300)]
     public class BdoTaskTests
     {
-        private TaskFake _task = null;
-
         private readonly string _filePath = Tests.WorkingFolder + "Task.xml";
 
         private dynamic _testData;
@@ -25,47 +24,52 @@ namespace BindOpen.Tests.Extensions
         /// </summary>
         /// <param key="data"></param>
         /// <returns></returns>
-        public static IBdoTask CreateTask(dynamic data)
+        public static IBdoTaskConfiguration CreateTaskConfig(dynamic data)
         {
-            BdoConfig.New()
-                .With(BdoMeta.NewScalar());
-
             var config =
-                BdoConfig.New()
+                BdoTaskExtensions.NewTaskConfig()
                 .WithDefinition("bindopen.tests.kernel$taskFake")
                 .With(
                     BdoMeta.NewScalar("boolValue", data.boolValue as bool?),
-                    BdoMeta.NewScalar("enumValue", data.enumValue as ActionPriorities?)
-                        .AsInput(),
-                    BdoMeta.NewScalar("intValue", data.intValue as int?),
-                    BdoMeta.NewScalar("stringValue", data.stringValue as string)
-                        .AsOutput()
-                );
+                    BdoMeta.NewScalar("intValue", data.intValue as int?))
+                .WithInputs(
+                    BdoMeta.NewScalar("enumValue", data.enumValue as ActionPriorities?))
+                .WithOutputs(
+                    BdoMeta.NewScalar("stringValue", data.stringValue as string));
 
-            return ScopingTests.Scope.CreateTask<TaskFake>(config);
+            return config;
+        }
+
+        public static IBdoTask CreateTask(dynamic data)
+        {
+            var task = new TaskFake
+            {
+                BoolValue = data.boolValue,
+                EnumValue = data.enumValue,
+                IntValue = data.intValue,
+                StringValue = data.stringValue,
+            };
+
+            return task;
         }
 
         [Test, Order(1)]
-        public void CreateTaskNewObjectTest()
+        public void CreateTaskToConfig()
         {
-            _task = new TaskFake
-            {
-                BoolValue = _testData.boolValue,
-                EnumValue = _testData.enumValue,
-                IntValue = _testData.intValue,
-                StringValue = _testData.stringValue,
-            };
+            IBdoTask task = CreateTask(_testData);
+            var config = ScopingTests.Scope.CreateConfigFrom(task, "testConfig");
+            var task2 = ScopingTests.Scope.CreateTask<TaskFake>(config);
 
-            BdoTaskFaker.AssertFake(_task, _testData);
+            BdoTaskFaker.AssertFake(task2, _testData);
         }
 
-
-        [Test, Order(2)]
+        [Test, Order(3)]
         public void CreateTaskFromScopeTest()
         {
-            _task = CreateTask(_testData);
+            IBdoTaskConfiguration config = CreateTaskConfig(_testData);
+            var task = ScopingTests.Scope.CreateTask<TaskFake>(config);
 
-            BdoTaskFaker.AssertFake(_task, _testData);
+            BdoTaskFaker.AssertFake(task, _testData);
         }
     }
 

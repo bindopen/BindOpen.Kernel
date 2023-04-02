@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BindOpen.Extensions.Tasks;
+using System;
 
 namespace BindOpen.Data.Meta
 {
@@ -26,6 +27,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         public BdoInputAttribute(string name) : base(name)
         {
+            GroupId = IBdoTaskExtensions.__Token_Input;
         }
 
         #endregion

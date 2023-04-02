@@ -1,6 +1,4 @@
-﻿using BindOpen.Extensions;
-
-namespace BindOpen.Data.Meta
+﻿namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This static class provides methods to handle configs.
@@ -83,24 +81,6 @@ namespace BindOpen.Data.Meta
             var config = BdoMeta.NewSet<T>(items)
                 .WithName(name)
                 .Using(usingIds);
-            return config;
-        }
-
-        // NewFrom<T>
-
-        /// <summary>
-        /// Instantiates a new instance of the BdoBaseConfiguration class.
-        /// </summary>
-        /// <param key="name">The name to consider.</param>
-        /// <param key="items">The items to consider.</param>
-        public static IBdoConfiguration NewFrom(
-            IBdoExtension extension,
-            string name = null)
-        {
-            var config = New(name)
-                .WithDefinition(extension?.DefinitionUniqueName);
-            config.WithData(extension);
-
             return config;
         }
     }

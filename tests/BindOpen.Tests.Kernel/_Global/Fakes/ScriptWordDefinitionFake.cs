@@ -39,7 +39,7 @@ namespace BindOpen.Tests
             Kind = ScriptItemKinds.Function,
             Description = "Test function 1.",
             CreationDate = "2022-06-24")]
-        public static object Fun_Func1(IBdoFunctionDomain domain)
+        public static object Fun_Func1(IBdoScriptDomain domain)
         {
             return domain?.Scriptword.GetData<string>(0);
         }
@@ -55,7 +55,7 @@ namespace BindOpen.Tests
             CreationDate = "2022-06-24",
             Parameter1Name = "value1", Parameter1ValueType = DataValueTypes.Text,
             Parameter2Name = "value2", Parameter2ValueType = DataValueTypes.Text)]
-        public static object Fun_Func2(IBdoFunctionDomain domain)
+        public static object Fun_Func2(IBdoScriptDomain domain)
         {
             string value1 = domain?.Scriptword.GetData<string>(0);
             string value2 = domain?.Scriptword.GetData<string>(1);
@@ -84,7 +84,7 @@ namespace BindOpen.Tests
         /// </summary>
         /// <returns>The interpreted string value.</returns>
         [BdoFunction]
-        public static object Fun_Func4(IBdoFunctionDomain domain)
+        public static object Fun_Func4(IBdoScriptDomain domain)
         {
             string value = domain?.Scriptword.GetData<string>(0);
             string parentValue = domain?.Scriptword?.Parent.GetData<string>();
@@ -97,7 +97,7 @@ namespace BindOpen.Tests
         /// </summary>
         /// <returns>The interpreted string value.</returns>
         public static object Fun_Func5(
-            IBdoFunctionDomain domain,
+            IBdoScriptDomain domain,
             object value1,
             params string[] values)
         {

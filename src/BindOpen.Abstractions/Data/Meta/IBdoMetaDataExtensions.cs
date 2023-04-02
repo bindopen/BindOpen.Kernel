@@ -1,5 +1,6 @@
-﻿using BindOpen.Logging;
-using BindOpen.Scopes;
+﻿using BindOpen.Scopes;
+using BindOpen.Data.Helpers;
+using BindOpen.Logging;
 using System.Linq;
 
 namespace BindOpen.Data.Meta
@@ -57,6 +58,19 @@ namespace BindOpen.Data.Meta
             return meta;
         }
 
+        public static T WithGroupId<T>(
+            this T meta,
+            string groupId)
+            where T : IBdoMetaData
+        {
+            if (meta != null)
+            {
+                meta.GroupId = groupId;
+            }
+
+            return meta;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -75,6 +89,17 @@ namespace BindOpen.Data.Meta
             }
 
             return spec;
+        }
+
+        public static bool OfGroup(
+            this IBdoMetaData meta,
+            string groupId)
+        {
+            return
+                meta != null &&
+                (groupId == meta.GroupId
+                    || groupId == StringHelper.__Star
+                    || groupId.BdoKeyEquals(meta.GroupId));
         }
     }
 }

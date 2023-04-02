@@ -1,5 +1,5 @@
-﻿using BindOpen.Logging;
-using BindOpen.Scopes;
+﻿using BindOpen.Scopes;
+using BindOpen.Logging;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -39,6 +39,18 @@ namespace BindOpen.Data.Meta
             {
                 spec.DataReference = exp;
             }
+            return spec;
+        }
+        public static T WithGroupId<T>(
+            this T spec,
+            string groupId)
+            where T : IBdoSpec
+        {
+            if (spec != null)
+            {
+                spec.GroupId = groupId;
+            }
+
             return spec;
         }
 

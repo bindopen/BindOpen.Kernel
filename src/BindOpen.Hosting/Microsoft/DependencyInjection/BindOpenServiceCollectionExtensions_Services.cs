@@ -1,6 +1,6 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Hosting.Hosts;
+﻿using BindOpen.Hosting.Hosts;
 using System;
+using BindOpen.Scopes;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

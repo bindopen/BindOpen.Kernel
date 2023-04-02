@@ -4,7 +4,6 @@ using BindOpen.Data.Meta;
 using BindOpen.Extensions.Functions;
 using BindOpen.Logging;
 using BindOpen.Scopes;
-using System;
 using System.Linq;
 
 namespace BindOpen.Script
@@ -23,8 +22,6 @@ namespace BindOpen.Script
 
         private readonly IBdoScope _scope;
 
-        private readonly ITBdoSet<IBdoFunctionDefinition> _definitions;
-
         #endregion
 
         // ------------------------------------------
@@ -40,21 +37,6 @@ namespace BindOpen.Script
         {
         }
 
-        /// <summary>
-        /// Instantiates a new instance of the BdoScriptInterpreter class.
-        /// </summary>
-        /// <param key="definitions">The definitions to consider.</param>
-        public BdoScriptInterpreter(params IBdoFunctionDefinition[] definitions)
-        {
-            _definitions = new TBdoSet<IBdoFunctionDefinition>();
-            foreach (var definition in definitions)
-            {
-                if (definition != null)
-                {
-                    _definitions.Add(definition);
-                }
-            }
-        }
 
         /// <summary>
         /// Instantiates a new instance of the BdoScriptInterpreter class.
@@ -63,50 +45,10 @@ namespace BindOpen.Script
         public BdoScriptInterpreter(IBdoScope scope)
         {
             _scope = scope;
-            _definitions = _scope?.ExtensionStore?.GetDefinitions<IBdoFunctionDefinition>();
         }
 
         #endregion
 
-        // ------------------------------------------
-        // ACCESSORS
-        // ------------------------------------------
-
-        #region Accessors
-
-        /// <summary>
-        /// Returns the word definitions with the specified name.
-        /// </summary>
-        /// <param key="name">The name of the script words to return.</param>
-        /// <param key="parentDefinition">The parent definition.</param>
-        /// <returns>The script words with the specified name.</returns>
-        public ITBdoSet<IBdoFunctionDefinition> GetDefinitionsWithName(
-            string name,
-            bool isExact = false)
-        {
-            var definitions = new TBdoSet<IBdoFunctionDefinition>();
-
-            if (_definitions != null && !string.IsNullOrEmpty(name))
-            {
-                if (isExact)
-                    definitions = BdoData.NewSet(_definitions.Where(p => p?.Name.BdoKeyEquals(name) == true).ToArray());
-                else
-                    definitions = BdoData.NewSet(_definitions.Where(p => p?.Name.IndexOf(name, StringComparison.OrdinalIgnoreCase) > 0).ToArray());
-            }
-
-            return _definitions;
-        }
-
-        /// <summary>
-        /// Returns the word definitions with the specified name.
-        /// </summary>
-        /// <param key="name">The name of the script words to return.</param>
-        /// <param key="parentDefinition">The parent definition.</param>
-        /// <returns>The script words with the specified name.</returns>
-        public ITBdoSet<IBdoFunctionDefinition> GetDefinitions()
-            => _definitions;
-
-        #endregion
 
         // ------------------------------------------
         // EVALUATION
@@ -236,7 +178,7 @@ namespace BindOpen.Script
                         return EvaluateScriptword(cloned, varSet, log);
                     }
                 default:
-                    return Evaluate(reference as IBdoExpression, varSet, log);
+                    return Evaluate((IBdoExpression)reference, varSet, log);
             }
         }
 
@@ -277,8 +219,7 @@ namespace BindOpen.Script
                     // if the script word has been found
                     if (scriptword != null)
                     {
-                        var obj = EvaluateScriptword(
-                            scriptword, varSet, log, index + offsetIndex);
+                        var obj = EvaluateScriptword(scriptword, varSet, log);
 
                         // we replace the script word by its value
                         return scriptword.WithData(obj);
@@ -494,114 +435,18 @@ namespace BindOpen.Script
             return scriptword;
         }
 
-        private IBdoFunctionDefinition GetFunctionDefinition(
-            IBdoScriptword scriptword,
-            IBdoLog log = null,
-            int index = 0,
-            int offsetIndex = 0)
-        {
-            if (scriptword != null)
-            {
-                // we try to find the corresponding defined function
-                var functionDefinitions = GetDefinitionsWithName(scriptword?.Name, true);
-
-                if (functionDefinitions?.Any() != true)
-                {
-                    log?.AddError(
-                        title: "Function named '" + scriptword?.Name + "' not defined",
-                        description: "Syntax error: Function named '" + scriptword?.Name + "' not defined" +
-                            (scriptword.Parent == null ? string.Empty : " for parent function '" + scriptword.Parent?.Name + "'") +
-                            ". Position " + (index + offsetIndex),
-                        resultCode: "SCRIPT_NOTEXISTINGWORD")
-                        .WithDetail(
-                            BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
-                }
-                else
-                {
-                    IBdoFunctionDefinition functionDefinition = null;
-                    foreach (var definition in functionDefinitions)
-                    {
-                        if (IsWordMatchingFunction(scriptword, definition))
-                        {
-                            functionDefinition = definition;
-                            break;
-                        }
-                    }
-
-                    // if no defined script word match then
-                    if (functionDefinition == null)
-                    {
-                        log?.AddError(
-                            title: "Invalid arguments: Function called '" + scriptword?.Name + "' has invalid parameters. Either the number of parameters does not match or their value types. Position " + (index + offsetIndex),
-                            resultCode: "SCRIPT_INVALIDARGUMENT"
-                            )
-                            .WithDetail(
-                                BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
-                    }
-                    else
-                    {
-                        // else we affect the correct method name and is unlimited properties
-                        if (functionDefinition.RuntimeBasicFunction == null
-                            && functionDefinition.RuntimeScopedFunction == null
-                            && functionDefinition.RuntimeFunction == null)
-                        {
-                            log?.AddError(
-                                title: "Invalid definition: Method not defined for function called '" + functionDefinition.Name + "'. Position " + (index + offsetIndex),
-                                resultCode: "SCRIPT_DEFINITION")
-                                .WithDetail(
-                                    BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
-                        }
-
-                        return functionDefinition;
-                    }
-                }
-            }
-
-            return null;
-        }
-
         // Returns the result of the script word scriptword with the specified parameter values
         private object EvaluateScriptword(
             IBdoScriptword scriptword,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null,
-            int offsetIndex = 0)
+            IBdoLog log = null)
         {
-            if (_scope == null) return null;
-
-            var definition = GetFunctionDefinition(scriptword);
-
-            if (definition == null) return null;
+            if (_scope == null || scriptword == null) return null;
 
             switch (scriptword.Kind)
             {
                 case ScriptItemKinds.Function:
-                    try
-                    {
-                        if (definition.RuntimeScopedFunction != null)
-                        {
-                            var domain = new BdoScriptwordDomain(_scope, varSet, scriptword);
-                            return definition.RuntimeScopedFunction(domain);
-                        }
-                        else if (definition.RuntimeBasicFunction != null)
-                        {
-                            return definition.RuntimeBasicFunction();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        log?.AddError(
-                            "Raised the following exception: " + ex.ToString(),
-                            Criticalities.High,
-                            string.Empty,
-                            "Evaluation Error: Error when tempting to evaluate function " +
-                            "(Name='" + definition.Name + "';BusinessLibraryName='" + definition.LibraryId + "')" +
-                            ". Position " + offsetIndex + ".",
-                            "SCRIPT_EVALUATION"
-                            )
-                            .WithDetail(
-                                BdoMeta.NewScalar("Position", offsetIndex.ToString()));
-                    }
+                    _scope.CallFunction(scriptword, varSet);
                     break;
                 case ScriptItemKinds.Variable:
                     var name = scriptword?.FirstOrDefault()?.ToString();
@@ -609,19 +454,6 @@ namespace BindOpen.Script
             }
 
             return null;
-        }
-
-        /// <summary>
-        /// Determines whether the specified script word corresponds to the specified definition.
-        /// </summary>
-        /// <param key="scriptword">The script word to consider.</param>
-        /// <param key="definition">The script word definition to consider.</param>
-        /// <returns></returns>
-        public bool IsWordMatchingFunction(IBdoScriptword scriptword, IBdoFunctionDefinition definition)
-        {
-            if (definition == null) return false;
-
-            return definition?.IsCompatibleWith(scriptword) ?? false;
         }
 
         #endregion

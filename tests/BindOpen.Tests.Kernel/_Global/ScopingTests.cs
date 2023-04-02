@@ -1,4 +1,5 @@
 ﻿using BindOpen.Scopes;
+using BindOpen.Scopes;
 
 namespace BindOpen.Tests
 {

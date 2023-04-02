@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Assemblies;
 using BindOpen.Data.Context;
+using BindOpen.Data.Meta;
 using BindOpen.Data.Stores;
 using BindOpen.Extensions.Entities;
 using BindOpen.Logging;
@@ -34,7 +35,7 @@ namespace BindOpen.Scopes
 
             Context = new BdoDataContext();
 
-            _scriptInterpreter = this.CreateInterpreter();
+            Interpreter = new BdoScriptInterpreter(this);
         }
 
         #endregion
@@ -65,12 +66,7 @@ namespace BindOpen.Scopes
         /// </summary>
         public IBdoDataStore DataStore { get; set; }
 
-        private IBdoScriptInterpreter _scriptInterpreter;
-
-        /// <summary>
-        /// The script interpreter of this instance.
-        /// </summary>
-        public IBdoScriptInterpreter Interpreter => _scriptInterpreter;
+        public IBdoScriptInterpreter Interpreter { get; }
 
         /// <summary>
         /// 
@@ -94,7 +90,7 @@ namespace BindOpen.Scopes
                     .FirstOrDefault(q =>
                         BdoData.Class(
                             BdoData.Assembly(assembly),
-                            reference.ClassName) == reference);
+                            reference.ClassName) == (BdoClassReference)reference);
 
                 return type;
             }
@@ -140,6 +136,13 @@ namespace BindOpen.Scopes
             }
 
             return true;
+        }
+
+        public IBdoScriptDomain NewScriptDomain(
+            IBdoMetaSet varSet,
+            IBdoScriptword scriptword = null)
+        {
+            return new BdoScriptDomain(this, varSet, scriptword);
         }
 
         #endregion

@@ -40,7 +40,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BindOpen.Extensions\Extensions.csproj" />
     <ProjectReference Include="..\BindOpen.Script\Script.csproj" />
   </ItemGroup>
 

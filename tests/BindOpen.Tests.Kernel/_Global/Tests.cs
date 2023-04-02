@@ -30,7 +30,7 @@ namespace BindOpen.Tests
             {
                 if (_scriptInterpreter == null)
                 {
-                    _scriptInterpreter = BdoScript.CreateInterpreter(); ;
+                    _scriptInterpreter = ScopingTests.Scope.Interpreter; ;
                 }
 
                 return _scriptInterpreter;

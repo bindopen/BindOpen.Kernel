@@ -38,8 +38,8 @@ namespace BindOpen.Scopes.Stores
             // we feach task classes
 
             int count = 0;
-
             var types = assembly.GetTypes().Where(p => typeof(IBdoTask).IsAssignableFrom(p));
+
             foreach (var type in types)
             {
                 var definition = new BdoTaskDefinition(null, packageDefinition)

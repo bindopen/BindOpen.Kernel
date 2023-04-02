@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using BindOpen.Data;
-using System;
 using System.Reflection;
 
 namespace BindOpen.Extensions.Functions
@@ -12,19 +10,21 @@ namespace BindOpen.Extensions.Functions
     {
         public static void UpdateFrom(
             this IBdoFunctionDefinition definition,
-            Type type)
+            MemberInfo info)
         {
-            if (definition != null && type != null)
+            if (definition != null && info != null)
             {
-                definition.ClassReference = BdoData.Class(type);
+                definition.RuntimeFunctionName = info.Name;
 
                 // we update definition from function attribute
 
-                foreach (var attribute in type.GetCustomAttributes(typeof(BdoFunctionAttribute)))
+                foreach (var attribute in info.GetCustomAttributes(typeof(BdoFunctionAttribute)))
                 {
                     var functionAttribute = attribute as BdoFunctionAttribute;
                     definition.UpdateFrom(functionAttribute);
                 }
+
+                definition.Name ??= info.Name;
             }
         }
 

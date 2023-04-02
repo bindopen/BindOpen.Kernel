@@ -1,7 +1,7 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Scopes;
+using BindOpen.Data;
 using BindOpen.Data.Meta;
 using BindOpen.Logging;
-using BindOpen.Scopes;
 
 namespace BindOpen.Extensions.Tasks
 {
