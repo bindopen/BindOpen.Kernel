@@ -1,5 +1,8 @@
-﻿using System;
+﻿using BindOpen.Scopes;
+using BindOpen.Logging;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.Data.Meta
 {
@@ -20,6 +23,32 @@ namespace BindOpen.Data.Meta
         /// </summary>
         public BdoConfiguration() : base()
         {
+        }
+
+        #endregion
+
+
+        // -------------------------------------------------------------
+        // IBdoMetaData Implementation
+        // -------------------------------------------------------------
+
+        #region IBdoMetaData
+
+        /// <summary>
+        /// Returns the item TItem of this instance.
+        /// </summary>
+        /// <param key="log">The log to populate.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable meta set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        public override List<object> GetDataList(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            return Items?
+                .Select(q => q.GetData(scope, varSet, log))
+                .ToList();
         }
 
         #endregion

@@ -4,12 +4,12 @@ using BindOpen.Data.Helpers;
 using BindOpen.Extensions;
 using BindOpen.Logging;
 using BindOpen.Scopes.Application;
-using BindOpen.Scopes;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using BindOpen.Scopes;
 
 namespace BindOpen.Scopes.Stores
 {

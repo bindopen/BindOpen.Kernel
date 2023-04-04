@@ -1,8 +1,8 @@
-﻿using BindOpen.Data.Assemblies;
+﻿using BindOpen.Scopes;
+using BindOpen.Data.Assemblies;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
 using BindOpen.Logging;
-using BindOpen.Scopes;
 
 namespace BindOpen.Extensions.Entities
 {
@@ -46,7 +46,8 @@ namespace BindOpen.Extensions.Entities
 
                     if ((entity = item as IBdoEntity) != null)
                     {
-                        entity.UpdateFromMeta(config, true, scope, varSet);
+                        entity.DefinitionUniqueName = definition.UniqueName;
+                        entity.UpdateFromMeta(config, true, scope: scope, varSet: varSet);
                     }
                 }
             }

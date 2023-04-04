@@ -1,27 +1,35 @@
 ﻿namespace BindOpen.Data
 {
     /// <summary>
-    /// This class represents a data element set.
+    /// 
     /// </summary>
-    public static partial class IBdoSetExtensions
+    public static class IBdoSetExtensions
     {
         /// <summary>
         /// 
         /// </summary>
         public static T Descendant<T>(
             this IBdoSet list,
-            params string[] names)
+            params object[] tokens)
             where T : class, IReferenced
         {
             if (list != null)
             {
                 IReferenced current = list;
-                foreach (string name in names)
+                foreach (object token in tokens)
                 {
                     if (current is IBdoSet currentList)
                     {
-                        current = currentList[name];
-                        if (current == null) break;
+                        if (token is string key)
+                        {
+                            current = currentList[key];
+                            if (current == null) break;
+                        }
+                        else if (token is int index)
+                        {
+                            current = currentList[index];
+                            if (current == null) break;
+                        }
                     }
                 }
 

@@ -1,30 +1,41 @@
-﻿using BindOpen.Extensions.Connectors;
+﻿using BindOpen.Extensions;
+using BindOpen.Extensions.Connectors;
 using BindOpen.Extensions.Entities;
 using BindOpen.Extensions.Functions;
 using BindOpen.Extensions.Tasks;
 using System;
 
-namespace BindOpen.Extensions
+namespace BindOpen.Data
 {
     /// <summary>
-    /// This class represents an extension item kind extension.
+    /// This class represents an extension of the DataValueType enumeration.
     /// </summary>
-    public static class BdoExtensionKindExtension
+    public static class BdoExtensionKindExtensions
     {
         /// <summary>
         /// Gets the extension item kind corresponding to the specified object.
         /// </summary>
-        /// <param key="extensionDefinition">The BindOpen extension item to consider.</param>
-        public static BdoExtensionKind GetExtensionKind(this IBdoExtensionDefinition extensionDefinition)
+        public static BdoExtensionKind GetExtensionKind(
+            this IBdoExtensionDefinition extensionDefinition)
         {
             return (extensionDefinition?.GetType()).GetExtensionKind();
+        }
+
+        /// <summary>
+        /// Gets the extension item kind corresponding to the specified object.
+        /// </summary>
+        public static BdoExtensionKind GetExtensionKind(
+            this IBdoExtension extension)
+        {
+            return (extension?.GetType()).GetExtensionKind();
         }
 
         /// <summary>
         /// Gets the extension item kind corresponding to the specified type.
         /// </summary>
         /// <param key="type">The type to consider.</param>
-        public static BdoExtensionKind GetExtensionKind(this Type type)
+        public static BdoExtensionKind GetExtensionKind(
+            this Type type)
         {
             if (typeof(IBdoConnectorDefinition).IsAssignableFrom(type)
                 || typeof(IBdoConnector).IsAssignableFrom(type))
@@ -47,6 +58,24 @@ namespace BindOpen.Extensions
             }
 
             return BdoExtensionKind.None;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="valueType"></param>
+        /// <returns></returns>
+        public static BdoExtensionKind GetExtensionKind(
+            this DataValueTypes valueType)
+        {
+            return valueType
+                switch
+            {
+                DataValueTypes.Connector => BdoExtensionKind.Connector,
+                DataValueTypes.Entity => BdoExtensionKind.Entity,
+                DataValueTypes.Task => BdoExtensionKind.Task,
+                _ => BdoExtensionKind.None
+            };
         }
     }
 }

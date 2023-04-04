@@ -1,6 +1,6 @@
-﻿using BindOpen.Extensions.Connectors;
+﻿using BindOpen.Scopes;
+using BindOpen.Extensions.Connectors;
 using BindOpen.Logging;
-using BindOpen.Scopes;
 using BindOpen.Scopes.Stores;
 using System;
 

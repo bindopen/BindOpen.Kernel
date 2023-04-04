@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
-using BindOpen.Extensions.Functions;
 using BindOpen.Logging;
 
 namespace BindOpen.Script
@@ -48,23 +47,5 @@ namespace BindOpen.Script
         IBdoScriptword FindNextWord(
             string script,
             IBdoLog log = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="name"></param>
-        /// <returns></returns>
-        ITBdoSet<IBdoFunctionDefinition> GetDefinitions();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="name"></param>
-        /// <returns></returns>
-        ITBdoSet<IBdoFunctionDefinition> GetDefinitionsWithName(
-            string name,
-            bool isExact = false);
-
-        bool IsWordMatchingFunction(IBdoScriptword scriptword, IBdoFunctionDefinition functionDefinition);
     }
 }

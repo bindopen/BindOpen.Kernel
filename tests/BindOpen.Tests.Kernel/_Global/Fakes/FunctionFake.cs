@@ -1,4 +1,5 @@
-﻿using BindOpen.Extensions.Functions;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Extensions.Functions;
 
 namespace BindOpen.Tests
 {
@@ -10,10 +11,12 @@ namespace BindOpen.Tests
         /// <summary>
         /// The boolean value of this instance.
         /// </summary>
-        [BdoFunction(Name = "equal")]
+        [BdoFunction(Name = "testEqual")]
         public static bool GetTest(
-            this string st,
-            int int1 = 10)
-            => st == int1.ToString();
+            [BdoParameter(Title = "String value")]
+            this string stringValue,
+            [BdoParameter(Title = "Integer value")]
+            int intValue = 10)
+            => stringValue == intValue.ToString();
     }
 }

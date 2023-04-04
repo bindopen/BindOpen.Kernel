@@ -1,6 +1,6 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Scopes;
+using BindOpen.Data;
 using BindOpen.Logging;
-using BindOpen.Scopes;
 using Microsoft.Extensions.Logging;
 
 namespace BindOpen.Hosting.Services

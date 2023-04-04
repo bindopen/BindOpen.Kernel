@@ -1,5 +1,7 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
 using BindOpen.Extensions;
+using System.Collections.Generic;
 
 namespace BindOpen.Scopes.Stores
 {
@@ -20,7 +22,7 @@ namespace BindOpen.Scopes.Stores
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        ITBdoSet<T> GetDefinitions<T>() where T : IBdoExtensionDefinition;
+        IEnumerable<T> GetDefinitions<T>() where T : IBdoExtensionDefinition;
 
         /// <summary>
         /// 
@@ -38,6 +40,23 @@ namespace BindOpen.Scopes.Stores
         IBdoExtensionDefinition GetDefinition(
             BdoExtensionKind kind,
             string uniqueName);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param key="uniqueName"></param>
+        /// <returns></returns>
+        T GetDefinitionFromType<T>(IBdoClassReference reference) where T : IBdoExtensionDefinition;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="uniqueName"></param>
+        /// <returns></returns>
+        IBdoExtensionDefinition GetDefinitionFromType(
+            BdoExtensionKind kind,
+            IBdoClassReference reference);
 
         /// <summary>
         /// Clears this instance.

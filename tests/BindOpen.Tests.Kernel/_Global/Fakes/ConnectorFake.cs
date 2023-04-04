@@ -21,13 +21,13 @@ namespace BindOpen.Tests
         /// Indicates whether this instance enables SSL.
         /// </summary>
         [BdoProperty(Name = "isSslEnabled")]
-        public IBdoMetaData IsSslEnabled { get; set; }
+        public bool? IsSslEnabled { get; set; }
 
         /// <summary>
         /// The port of this instance.
         /// </summary>
         [BdoProperty(Name = "port")]
-        public int? Port { get; set; }
+        public ITBdoMetaScalar<int?> Port { get; set; }
 
         // ------------------------------------------
         // CONSTRUCTORS

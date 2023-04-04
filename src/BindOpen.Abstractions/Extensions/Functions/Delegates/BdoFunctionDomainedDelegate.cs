@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Extensions.Functions
+﻿using BindOpen.Script;
+
+namespace BindOpen.Extensions.Functions
 {
     // --------------------------------------------------
     // DELEGATES
@@ -9,7 +11,7 @@
     /// <summary>
     /// This delegate represents a script word domained delegate.
     /// </summary>
-    public delegate object BdoFunctionDomainedDelegate(IBdoFunctionDomain domain);
+    public delegate object BdoFunctionDomainedDelegate(IBdoScriptDomain domain);
 
     #endregion
 }

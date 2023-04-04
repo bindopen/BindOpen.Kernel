@@ -11,6 +11,11 @@
         Any,
 
         /// <summary>
+        /// None. Such as script word.
+        /// </summary>
+        None,
+
+        /// <summary>
         /// Literal expression that can be script if it begins by "=".
         /// </summary>
         Auto,

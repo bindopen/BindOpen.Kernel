@@ -1,5 +1,5 @@
-﻿using BindOpen.Extensions.Connectors;
-using BindOpen.Scopes;
+﻿using BindOpen.Scopes;
+using BindOpen.Extensions.Connectors;
 
 namespace BindOpen.Extensions.Connectors
 {

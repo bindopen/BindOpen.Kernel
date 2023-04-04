@@ -31,6 +31,7 @@ namespace BindOpen.Data
             IBdoScriptword word)
             => new()
             {
+                Kind = BdoExpressionKind.None,
                 Word = word
             };
 

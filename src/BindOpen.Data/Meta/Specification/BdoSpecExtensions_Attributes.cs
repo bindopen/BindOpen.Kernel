@@ -15,8 +15,6 @@ namespace BindOpen.Data.Meta
         {
             if (spec != null && att != null)
             {
-                spec.UpdateFrom((BdoParameterAttribute)att);
-
                 if (!string.IsNullOrEmpty(att.Alias))
                 {
                     spec.Aliases = att.Alias?.Split(",").Select(q => q.Trim()).ToList();
@@ -31,15 +29,7 @@ namespace BindOpen.Data.Meta
                 {
                     spec.MaxDataItemNumber = att.MaxDataItemNumber.Value;
                 }
-            }
-        }
 
-        public static void UpdateFrom(
-            this IBdoSpec spec,
-            BdoParameterAttribute att)
-        {
-            if (spec != null && att != null)
-            {
                 if (!string.IsNullOrEmpty(att.Description))
                 {
                     spec.Description = BdoData.NewDictionary(att.Description);
@@ -58,6 +48,11 @@ namespace BindOpen.Data.Meta
                 if (att.Name != null)
                 {
                     spec.Name = att.Name;
+                }
+
+                if (att.GroupId != null)
+                {
+                    spec.GroupId = att.GroupId;
                 }
 
                 if (att.Requirement != RequirementLevels.Any)
@@ -99,24 +94,40 @@ namespace BindOpen.Data.Meta
             {
                 spec.Name = info.Name;
 
+                if (attributeType != null)
+                {
+                    foreach (var att in info.GetCustomAttributes(attributeType))
+                    {
+                        spec.UpdateFrom((BdoPropertyAttribute)att);
+                    }
+                }
+
                 var type = info.PropertyType;
-                spec.ValueType = type.GetValueType();
+                spec.ValueType = spec.ValueType == DataValueTypes.Any ? type.GetValueType() : DataValueTypes.None;
                 spec.AsType(type);
+            }
+        }
+
+        public static void UpdateFrom(
+            this IBdoSpec spec,
+            ParameterInfo info,
+            Type attributeType)
+        {
+            if (spec != null && info != null)
+            {
+                spec.Name = info.Name;
 
                 if (attributeType != null)
                 {
                     foreach (var att in info.GetCustomAttributes(attributeType))
                     {
-                        if (att is BdoPropertyAttribute propAtt)
-                        {
-                            spec.UpdateFrom(propAtt);
-                        }
-                        else if (att is BdoParameterAttribute paramAtt)
-                        {
-                            spec.UpdateFrom(paramAtt);
-                        }
+                        spec.UpdateFrom((BdoPropertyAttribute)att);
                     }
                 }
+
+                var type = info.ParameterType;
+                spec.ValueType = spec.ValueType == DataValueTypes.Any ? type.GetValueType() : DataValueTypes.None;
+                spec.AsType(type);
             }
         }
     }

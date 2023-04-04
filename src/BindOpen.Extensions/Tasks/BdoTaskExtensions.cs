@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Assemblies;
+﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
 using BindOpen.Logging;
@@ -11,7 +12,31 @@ namespace BindOpen.Extensions.Tasks
     /// </summary>
     public static class BdoTaskExtensions
     {
+        public static IBdoMetaData AsInput(
+            this IBdoMetaData meta)
+        {
+            if (meta != null)
+            {
+                meta.GroupId = IBdoTaskExtensions.__Token_Input;
+            }
+
+            return meta;
+        }
+
+        public static IBdoMetaData AsOutput(
+            this IBdoMetaData meta)
+        {
+            if (meta != null)
+            {
+                meta.GroupId = IBdoTaskExtensions.__Token_Output;
+            }
+
+            return meta;
+        }
+
         // Create
+
+
 
         /// <summary>
         /// Creates the instance of the specified definition.
@@ -48,10 +73,12 @@ namespace BindOpen.Extensions.Tasks
                     {
                         if ((task = item as IBdoTask) != null)
                         {
-                            task.UpdateFromMeta(config, true, scope, varSet);
+                            task.DefinitionUniqueName = definition.UniqueName;
+
+                            task.UpdateFromMeta(config, true, null, scope: scope, varSet: varSet);
+                            task.UpdateFromMeta<BdoInputAttribute>(config, true, "input", scope: scope, varSet: varSet);
+                            task.UpdateFromMeta<BdoOutputAttribute>(config, true, "output", scope: scope, varSet: varSet);
                         }
-                        //task.UpdateFromMetaSet<BdoInputAttribute>(config, scope, varSet);
-                        //task.UpdateFromMetaSet<BdoOutputAttribute>(config, scope, varSet);
                     }
                 }
             }
@@ -75,6 +102,16 @@ namespace BindOpen.Extensions.Tasks
             IBdoLog log = null) where T : BdoTask
         {
             return scope.CreateTask(config, varSet, log) as T;
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the BdoBaseConfiguration class.
+        /// </summary>
+        /// <param key="items">The items to consider.</param>
+        public static BdoTaskConfiguration NewTaskConfig(string name = null)
+        {
+            return new BdoTaskConfiguration()
+                .WithName(name);
         }
     }
 }

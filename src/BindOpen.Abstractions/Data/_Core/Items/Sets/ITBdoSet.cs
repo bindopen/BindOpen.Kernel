@@ -28,7 +28,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="index"></param>
         /// <returns></returns>
-        T this[int index] { get; }
+        new T this[int index] { get; }
 
         /// <summary>
         /// 
@@ -50,28 +50,42 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        T Get(string key = null, string alternateKey = null);
-
-        /// <summary>
-        /// Returns the specified item of this instance.
-        /// </summary>
-        /// <param key="index">The index to consider.</param>
-        /// <returns>Returns the item of this instance.</returns>
-        T Get(int index);
+        T Get(string key);
 
         /// <summary>
         /// Returns the specified item of this instance.
         /// </summary>
         /// <param key="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        Q Get<Q>(string key = null, string alternateKey = null) where Q : T;
+        T Get(string key, string alternateKey = null);
 
         /// <summary>
         /// Returns the specified item of this instance.
         /// </summary>
         /// <param key="index">The index to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        Q Get<Q>(int index) where Q : T;
+        T Get(int index = 0);
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param key="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        Q Get<Q>(string key) where Q : T;
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param key="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        Q Get<Q>(string key, string alternateKey = null) where Q : T;
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param key="index">The index to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        Q Get<Q>(int index = 0) where Q : T;
 
         /// <summary>
         /// 

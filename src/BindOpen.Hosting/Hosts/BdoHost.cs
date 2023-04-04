@@ -2,6 +2,7 @@
 using BindOpen.Data.Assemblies;
 using BindOpen.Data.Context;
 using BindOpen.Data.Helpers;
+using BindOpen.Data.Meta;
 using BindOpen.Data.Stores;
 using BindOpen.Hosting.Services;
 using BindOpen.Logging;
@@ -401,6 +402,9 @@ namespace BindOpen.Hosting.Hosts
         /// </summary>
         public void Clear()
             => Scope?.Clear();
+
+        public IBdoScriptDomain NewScriptDomain(IBdoMetaSet varSet, IBdoScriptword scriptword = null)
+            => Scope?.NewScriptDomain(varSet, scriptword);
 
         #endregion
     }

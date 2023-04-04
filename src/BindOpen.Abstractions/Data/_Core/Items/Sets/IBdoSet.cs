@@ -17,5 +17,12 @@ namespace BindOpen.Data
         /// <param key="key"></param>
         /// <returns></returns>
         IReferenced this[string key] { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="key"></param>
+        /// <returns></returns>
+        IReferenced this[int index] { get; }
     }
 }

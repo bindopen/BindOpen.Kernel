@@ -1,8 +1,5 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
-using BindOpen.Extensions.Functions;
-using BindOpen.Logging;
-using BindOpen.Scopes;
 
 namespace BindOpen.Script
 {
@@ -11,28 +8,6 @@ namespace BindOpen.Script
     /// </summary>
     public static partial class BdoScript
     {
-        // Interpreters -------------------------
-
-        /// <summary>
-        /// Creates a data element with specified items.
-        /// </summary>
-        /// <param key="definitions">The definitions to consider.</param>
-        public static BdoScriptInterpreter CreateInterpreter(
-            params IBdoFunctionDefinition[] definitions)
-        {
-            return new BdoScriptInterpreter(definitions);
-        }
-
-        /// <summary>
-        /// Creates a data element with specified items.
-        /// </summary>
-        /// <param key="scope">The scope to consider.</param>
-        public static BdoScriptInterpreter CreateInterpreter(
-            this IBdoScope scope)
-        {
-            return new BdoScriptInterpreter(scope);
-        }
-
         // Word
 
         public static BdoScriptword NewWord(
@@ -42,12 +17,14 @@ namespace BindOpen.Script
                 .WithName(name)
                 .WithKind(kind);
 
-        public static BdoScriptword NewWordFromScript(
-            string script,
-            IBdoLog log = null)
+        public static BdoScriptword NewWord(
+            IBdoConfiguration config)
         {
-            var interpreter = CreateInterpreter();
-            var word = interpreter.FindNextWord(script, log) as BdoScriptword;
+            var word = new BdoScriptword();
+            word
+                .WithDefinition(config.DefinitionUniqueName)
+                .With(config.Items?.ToArray());
+
             return word;
         }
 
@@ -125,6 +102,5 @@ namespace BindOpen.Script
             string name,
             params object[] parameters)
             => word.Function(name, parameters);
-
     }
 }

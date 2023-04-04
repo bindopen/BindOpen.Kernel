@@ -1,6 +1,6 @@
-﻿using BindOpen.Data.Helpers;
+﻿using BindOpen.Scopes;
+using BindOpen.Data.Helpers;
 using BindOpen.Logging;
-using BindOpen.Scopes;
 using BindOpen.Script;
 using System.Collections.Generic;
 using System.Linq;
@@ -204,6 +204,11 @@ namespace BindOpen.Data.Meta
         /// The script of this instance.
         /// </summary>
         public IBdoReference Reference { get; set; }
+
+        /// <summary>
+        /// The identifier of the group of this instance.
+        /// </summary>
+        public string GroupId { get; set; }
 
         // Specification -------------------------------
 

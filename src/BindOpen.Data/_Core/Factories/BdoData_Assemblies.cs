@@ -21,7 +21,7 @@ namespace BindOpen.Data
         public static BdoAssemblyReference Assembly(
             string assemblyName,
             string assemblyVersion = null)
-            => new BdoAssemblyReference(assemblyName, assemblyVersion);
+            => new(assemblyName, assemblyVersion);
 
         /// <summary>
         /// Creates a assembly reference of the spcefied type.
@@ -46,9 +46,11 @@ namespace BindOpen.Data
         /// <returns>Returns the itemized list of the spcefied type</returns>
         public static BdoAssemblyReference Assembly(Assembly assembly)
         {
+            if (assembly == null) return null;
+
             string assemblyName = assembly?.GetName().Name;
             string assemblyVersion = assembly?.GetName().Version.ToString();
-            return new BdoAssemblyReference(assemblyName, assemblyVersion);
+            return new(assemblyName, assemblyVersion);
         }
 
         /// <summary>
@@ -56,7 +58,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <returns>Returns a assembly reference that represents all the references.</returns>
         public static BdoAssemblyReference AssemblyAsAll()
-            => new BdoAssemblyReference(StringHelper.__Star);
+            => new(StringHelper.__Star);
 
         /// <summary>
         /// Gets the distinct list of the specified library reference list.
@@ -77,20 +79,20 @@ namespace BindOpen.Data
         /// Creates a class reference of the spcefied type.
         /// </summary>
         /// <returns>Returns the itemized list of the spcefied type</returns>
-        public static IBdoClassReference Class(
+        public static BdoClassReference Class(
             IBdoAssemblyReference assemblyReference,
             string className)
         {
             string assemblyName = assemblyReference?.AssemblyName;
             string assemblyVersion = assemblyReference?.AssemblyVersion;
-            return new BdoClassReference(assemblyName, assemblyVersion, className);
+            return new(assemblyName, assemblyVersion, className);
         }
 
         /// <summary>
         /// Creates a class reference of the spcefied type.
         /// </summary>
         /// <returns>Returns the itemized list of the spcefied type</returns>
-        public static IBdoClassReference ClassFromEntity(
+        public static BdoClassReference ClassFromEntity(
             string definitionUniqueName)
         {
             return new BdoClassReference()
@@ -101,12 +103,15 @@ namespace BindOpen.Data
         /// Creates a class reference of the spcefied type.
         /// </summary>
         /// <returns>Returns the itemized list of the spcefied type</returns>
-        public static IBdoClassReference Class(Type type)
+        public static BdoClassReference Class(Type type)
         {
+            if (type == null) return null;
+
             var assemblyReference = Assembly(
-                type.Assembly.GetName().FullName,
+                type.Assembly.GetName().Name,
                 type.Assembly.GetName().Version.ToString());
             var className = type.FullName;
+
             return Class(
                 assemblyReference,
                 className);
@@ -116,7 +121,7 @@ namespace BindOpen.Data
         /// Creates a class reference of the spcefied type.
         /// </summary>
         /// <returns>Returns the itemized list of the spcefied type</returns>
-        public static IBdoClassReference Class<T>()
+        public static BdoClassReference Class<T>()
         {
             var type = typeof(T);
             return Class(type);

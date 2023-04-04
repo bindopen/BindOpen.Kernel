@@ -58,17 +58,6 @@ namespace BindOpen.Tests.Script
             Assert.That(_scriptA.Equals(script, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
 
-        [Test, Order(4)]
-        public void CreateWordFromScriptTest()
-        {
-            var scriptword = BdoScript.NewWordFromScript(_scriptA);
-            Assert.That(
-                _scriptwordA.Name.Equals(scriptword.Name, StringComparison.OrdinalIgnoreCase)
-                && _scriptwordA.Count == scriptword.Count
-                && (_scriptwordA[1] as BdoScriptword)?.Name.Equals((scriptword[1] as BdoScriptword)?.Name, StringComparison.OrdinalIgnoreCase) == true
-                && (_scriptwordA[1] as BdoScriptword)?.Count == (scriptword[1] as BdoScriptword)?.Count,
-                "Bad script interpretation");
-        }
 
         [Test, Order(4)]
         public void CreateWordConcatenation()

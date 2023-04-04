@@ -43,6 +43,15 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
+        /// <param key="metas">The parameters to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static BdoMetaSet NewSet(
+            params object[] objs)
+            => NewSet<BdoMetaSet>(objs);
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
         /// <param key="pairs">The pairs to consider.</param>
         /// <returns>Return this instance.</returns>
         public static BdoMetaSet NewSet(
@@ -127,6 +136,16 @@ namespace BindOpen.Data.Meta
             params IBdoMetaData[] metas)
             where T : class, IBdoMetaSet, new()
             => NewSet<T>(null, metas);
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="metas">The parameters to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static T NewSet<T>(
+            params object[] objs)
+            where T : class, IBdoMetaSet, new()
+            => NewSet<T>(null, objs.Select(q => BdoMeta.New(q)).ToArray());
 
         /// <summary>
         /// Defines the parameters of this instance.

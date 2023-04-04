@@ -21,7 +21,8 @@ namespace BindOpen.Data.Meta.Reflection
         {
             List<IBdoMetaData> list;
 
-            var obj = meta?.GetData();
+            var obj = meta?.DataMode == DataMode.Value ?
+                meta.GetData() : null;
 
             if (obj != null)
             {
@@ -64,7 +65,12 @@ namespace BindOpen.Data.Meta.Reflection
                                 }
                                 else
                                 {
-                                    subMeta = propValue.ToMetaData(propName, onlyMetaAttributes, propInfo.PropertyType);
+                                    subMeta = ToMetaData(propInfo.PropertyType, propValue, propName, onlyMetaAttributes);
+                                    subMeta.WithGroupId(spec.GroupId);
+                                    if (spec.ValueType == DataValueTypes.Any)
+                                    {
+                                        subMeta.WithDataValueType(spec.ValueType);
+                                    }
                                     subMeta.WithSpecs(spec);
                                 }
 

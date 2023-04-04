@@ -1,6 +1,6 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Scopes;
+using BindOpen.Data;
 using BindOpen.Hosting.Services;
-using BindOpen.Scopes;
 using System;
 
 namespace BindOpen.Hosting.Hosts

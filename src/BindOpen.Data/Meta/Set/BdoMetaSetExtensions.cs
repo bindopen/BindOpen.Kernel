@@ -19,7 +19,8 @@ namespace BindOpen.Data.Meta
             object obj)
             where T : IBdoMetaSet
         {
-            list?.Add(BdoMeta.New(obj));
+            IBdoMetaData meta = obj is IBdoMetaData data ? data : BdoMeta.New(obj);
+            list?.Add(meta);
 
             return list;
         }
