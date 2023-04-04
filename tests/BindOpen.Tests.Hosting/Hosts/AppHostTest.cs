@@ -70,7 +70,7 @@ namespace BindOpen.Hosting.Tests
             var datasourceB = datasourceDepot?["db.testB"];
             Assert.That(datasourceB?.Name == "db.testB", "Bad data source loading from .NET Core config");
 
-            Assert.That(datasourceDepot.Descendant<IBdoConfiguration>("db.testB", null).GetConnectionString() != null,
+            Assert.That(datasourceDepot.Descendant<IBdoConfiguration>("db.testB", 0).GetConnectionString() != null,
                 "Bad data source loading from .NET Core config");
 
             Assert.That(datasourceDepot.Get()?.Name == "db.testA", "Bad data source loading");

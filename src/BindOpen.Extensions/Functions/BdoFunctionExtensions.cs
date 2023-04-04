@@ -16,16 +16,30 @@ namespace BindOpen.Extensions.Functions
     /// </summary>
     public static class BdoFunctionExtensions
     {
-        // Create
+        // Call function
 
         public static object CallFunction(
             this IBdoScope scope,
             string functionName,
             IBdoMetaSet paramSet = null,
-            IBdoMetaSet varSet = null)
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
         {
             var definition = scope?.ExtensionStore?.GetFunctionDefinition(functionName, paramSet);
-            var result = scope.CallFunction(definition, paramSet, varSet);
+
+            object result = null;
+
+            if (definition == null)
+            {
+                log?.AddError(
+                    title: "Function named '" + functionName + "' not defined",
+                    description: "Syntax error: Function named '" + functionName + "' not defined",
+                    resultCode: "SCRIPT_NOTEXISTINGWORD");
+            }
+            else
+            {
+                result = scope.CallFunction(definition, paramSet, varSet);
+            }
 
             return result;
         }
@@ -43,7 +57,8 @@ namespace BindOpen.Extensions.Functions
         public static object CallFunction(
             this IBdoScope scope,
             IBdoScriptword word,
-            IBdoMetaSet varSet = null)
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
         {
             IBdoFunctionDefinition definition;
             if (!string.IsNullOrEmpty(word?.DefinitionUniqueName))
@@ -55,7 +70,28 @@ namespace BindOpen.Extensions.Functions
                 definition = scope?.ExtensionStore?.GetFunctionDefinition(word?.Name, word);
             }
 
-            var result = scope.CallFunction(definition, word, varSet);
+            object result = null;
+
+            if (definition == null)
+            {
+                var functionName = word?.DefinitionUniqueName ?? word?.Name;
+
+                log?.AddError(
+                    title: "Function named '" + functionName + "' not defined",
+                    description: "Syntax error: Function named '" + functionName + "' not defined",
+                    resultCode: "SCRIPT_NOTEXISTINGWORD");
+            }
+            else
+            {
+
+                if (word.Count == definition.Count - 1 && word.Parent != null)
+                {
+                    // HERE: Handle first parameter (this var equivalent)
+                    word.Items?.Insert(0, word.Parent);
+                }
+
+                result = scope.CallFunction(definition, word, varSet, log);
+            }
 
             return result;
         }
@@ -63,9 +99,10 @@ namespace BindOpen.Extensions.Functions
         public static T CallFunction<T>(
             this IBdoScope scope,
             IBdoScriptword word,
-            IBdoMetaSet varSet = null)
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
         {
-            var result = scope?.CallFunction(word, varSet);
+            var result = scope?.CallFunction(word, varSet, log);
             return result.As<T>();
         }
 
@@ -73,29 +110,40 @@ namespace BindOpen.Extensions.Functions
             this IBdoScope scope,
             IBdoFunctionDefinition definition,
             IBdoMetaSet paramSet = null,
-            IBdoMetaSet varSet = null)
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
         {
             object result = null;
 
             if (definition != null)
             {
-                if (definition.RuntimeBasicFunction != null)
+                try
                 {
-                    result = definition.RuntimeBasicFunction.DynamicInvoke();
-                }
-                else if (definition.RuntimeScopedFunction != null)
-                {
-                    IBdoScriptDomain domain = null;
-                    if (paramSet is IBdoScriptword word)
+                    if (definition.RuntimeBasicFunction != null)
                     {
-                        domain = scope.NewScriptDomain(varSet, word);
+                        result = definition.RuntimeBasicFunction.DynamicInvoke();
                     }
-                    result = definition.RuntimeScopedFunction.DynamicInvoke(domain);
+                    else if (definition.RuntimeScopedFunction != null)
+                    {
+                        IBdoScriptDomain domain = null;
+                        if (paramSet is IBdoScriptword word)
+                        {
+                            domain = scope.NewScriptDomain(varSet, word);
+                        }
+                        result = definition.RuntimeScopedFunction.DynamicInvoke(domain);
+                    }
+                    else
+                    {
+                        var objs = paramSet?.Select(q => q.GetData()).ToArray();
+                        result = definition.RuntimeFunction.DynamicInvoke(objs);
+                    }
                 }
-                else
+                catch (ArgumentException ex)
                 {
-                    var objs = paramSet?.Select(q => q.GetData()).ToArray();
-                    result = definition.RuntimeFunction.DynamicInvoke(objs);
+                    log?.AddError(
+                        title: "Bad argument",
+                        description: ex.ToString(),
+                        resultCode: "SCRIPT_NOTEXISTINGWORD");
                 }
             }
 
@@ -113,36 +161,19 @@ namespace BindOpen.Extensions.Functions
                 // we try to find the corresponding defined function
                 var functionDefinitions = store.GetFunctionDefinitionsWithName(functionName, true);
 
-                if (functionDefinitions?.Any() != true)
-                {
-                    log?.AddError(
-                        title: "Function named '" + functionName + "' not defined",
-                        description: "Syntax error: Function named '" + functionName + "' not defined",
-                        resultCode: "SCRIPT_NOTEXISTINGWORD");
-                }
-                else
+                if (functionDefinitions?.Any() == true)
                 {
                     IBdoFunctionDefinition functionDefinition = null;
                     foreach (var definition in functionDefinitions)
                     {
-                        if (definition?.IsCompatibleWith(paramSet) ?? false)
+                        if (definition?.IsCompatibleWith(paramSet, log: log) ?? false)
                         {
                             functionDefinition = definition;
                             break;
                         }
                     }
 
-                    // if no defined script word match then
-                    if (functionDefinition == null)
-                    {
-                        log?.AddError(
-                            title: "Invalid arguments: Function called '" + functionName + "' has invalid parameters. Either the number of parameters does not match or their value types.",
-                            resultCode: nameof(ArgumentException));
-                    }
-                    else
-                    {
-                        return functionDefinition;
-                    }
+                    return functionDefinition;
                 }
             }
 

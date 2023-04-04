@@ -14,9 +14,9 @@ namespace BindOpen.Data.Meta
         /// </summary>
         public static IBdoMetaData Descendant(
             this IBdoMetaSet set,
-            params string[] names)
+            params object[] tokens)
         {
-            return set?.Descendant<IBdoMetaData>(names);
+            return set?.Descendant<IBdoMetaData>(tokens);
         }
 
         public static IBdoMetaData GetOfGroup(

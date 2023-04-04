@@ -214,10 +214,7 @@ namespace BindOpen.Data.Meta
         public virtual bool IsCompatibleWithData(
             object item)
         {
-            if (item != null)
-                return true;
-
-            return false;
+            return true;
         }
 
         /// <summary>

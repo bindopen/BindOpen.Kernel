@@ -96,7 +96,7 @@ namespace BindOpen.Data.Meta
             {
                 var script = data?.ToString();
                 return New(name)
-                    .WithDataReference(BdoData.NewRef(script));
+               .WithDataReference(BdoData.NewRef(script));
             }
             else if (valueType == DataValueTypes.MetaData)
             {

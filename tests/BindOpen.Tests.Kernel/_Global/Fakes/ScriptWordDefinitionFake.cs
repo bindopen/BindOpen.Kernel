@@ -1,4 +1,4 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Data.Meta;
 using BindOpen.Extensions.Functions;
 using BindOpen.Script;
 using System;
@@ -21,14 +21,24 @@ namespace BindOpen.Tests
         /// </summary>
         /// <returns>The interpreted string value.</returns>
         [BdoFunction(
-            Name = "CONSTANT",
-            Kind = ScriptItemKinds.Variable,
+            Name = "text",
             Description = "Returns the test constant.",
             CreationDate = "2016-09-14")]
-        public static object Var_Constant()
+        public static string Var_Text(object st)
         {
-            return "const";
+            return st?.ToString();
         }
+
+        /// <summary>
+        /// The boolean value of this instance.
+        /// </summary>
+        [BdoFunction(Name = "eq")]
+        public static bool GetTest(
+            [BdoParameter(Title = "String value")]
+            this object obj1,
+            [BdoParameter(Title = "Integer value")]
+            object obj2)
+            => obj1?.ToString().Equals(obj2?.ToString(), StringComparison.OrdinalIgnoreCase) == true;
 
         /// <summary>
         /// Evaluates the script word $TEXT.
@@ -36,7 +46,6 @@ namespace BindOpen.Tests
         /// <returns>The interpreted string value.</returns>
         [BdoFunction(
             Name = "Func1",
-            Kind = ScriptItemKinds.Function,
             Description = "Test function 1.",
             CreationDate = "2022-06-24")]
         public static object Fun_Func1(IBdoScriptDomain domain)
@@ -50,12 +59,25 @@ namespace BindOpen.Tests
         /// <returns>The interpreted string value.</returns>
         [BdoFunction(
             Name = "Func2",
-            Kind = ScriptItemKinds.Function,
             Description = "Test function 2.",
-            CreationDate = "2022-06-24",
-            Parameter1Name = "value1", Parameter1ValueType = DataValueTypes.Text,
-            Parameter2Name = "value2", Parameter2ValueType = DataValueTypes.Text)]
-        public static object Fun_Func2(IBdoScriptDomain domain)
+            CreationDate = "2022-06-24")]
+        public static object Fun_Func2a(IBdoScriptDomain domain)
+        {
+            string value1 = domain?.Scriptword.GetData<string>(0);
+            string value2 = domain?.Scriptword.GetData<string>(1);
+
+            return value1.Equals(value2, StringComparison.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
+        /// Evaluates the script word $ISEQUAL.
+        /// </summary>
+        /// <returns>The interpreted string value.</returns>
+        [BdoFunction(
+            Name = "Func2",
+            Description = "Test function 2.",
+            CreationDate = "2022-06-24")]
+        public static object Fun_Func2b(IBdoScriptDomain domain)
         {
             string value1 = domain?.Scriptword.GetData<string>(0);
             string value2 = domain?.Scriptword.GetData<string>(1);
@@ -69,12 +91,10 @@ namespace BindOpen.Tests
         /// <returns>The interpreted string value.</returns>
         [BdoFunction(
             Name = "Func3",
-            Kind = ScriptItemKinds.Function,
-            Description = "Test function 3.",
-            CreationDate = "2022-06-24",
-            Parameter1Name = "value1", Parameter1ValueType = DataValueTypes.Object,
-            Parameter2Name = "value2", Parameter2ValueType = DataValueTypes.Object)]
-        public static object Fun_Func3(object value1, object value2)
+            CreationDate = "2022-06-24")]
+        public static object Fun_Func3(
+            [BdoParameter(Name = "Value1")] object value1,
+            [BdoParameter(Name = "Value2")] object value2)
         {
             return value1?.ToString() == value2?.ToString();
         }
@@ -96,7 +116,7 @@ namespace BindOpen.Tests
         /// Evaluates the script word $Func5.
         /// </summary>
         /// <returns>The interpreted string value.</returns>
-        public static object Fun_Func5(
+        public static object Concat(
             IBdoScriptDomain domain,
             object value1,
             params string[] values)

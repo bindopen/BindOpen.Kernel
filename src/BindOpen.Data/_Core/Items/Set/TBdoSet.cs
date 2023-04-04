@@ -87,6 +87,11 @@ namespace BindOpen.Data
         public T this[int index] => Get(index);
 
         /// <summary>
+        /// Returns the element with the specified name.
+        /// </summary>
+        IReferenced IBdoSet.this[int index] => Get(index);
+
+        /// <summary>
         /// Returns the item of the specified name.
         /// </summary>
         /// <param key="name">The name to consider.</param>
@@ -202,15 +207,30 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public virtual T Get(string name = null, string alternateKey = null)
+        public virtual T Get(string name)
         {
             if (_items == null)
                 return default;
 
-            if (name == null && alternateKey == null)
-                return _items.FirstOrDefault();
+            return _items.FirstOrDefault(p => p.BdoKeyEquals(name));
+        }
 
-            var newKey = alternateKey == null || Has(name) ? name : alternateKey;
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param key="name">The name to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param key="name">The name to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public T Get(string name, string alternateKey = null)
+        {
+            if (_items == null)
+                return default;
+
+            var newKey = Has(name) ? name : alternateKey;
 
             return _items.FirstOrDefault(p => p.BdoKeyEquals(newKey));
         }
@@ -220,7 +240,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="index">The name to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public virtual T Get(int index)
+        public virtual T Get(int index = 0)
         {
             if (_items != null)
             {
@@ -235,11 +255,22 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public virtual Q Get<Q>(string name = null, string alternateKey = null)
+        public virtual Q Get<Q>(string name)
             where Q : T
         {
-            var newKey = alternateKey == null || Has(name) ? name : alternateKey;
-            return Get(newKey).As<Q>();
+            return Get(name).As<Q>();
+        }
+
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param key="name">The name to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public Q Get<Q>(string name, string alternateKey = null)
+            where Q : T
+        {
+            return Get(name, alternateKey).As<Q>();
         }
 
         /// <summary>
@@ -247,7 +278,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="index">The index to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public virtual Q Get<Q>(int index) where Q : T
+        public virtual Q Get<Q>(int index = 0) where Q : T
         {
             var obj = this[index];
             if (obj is Q obj_Q)

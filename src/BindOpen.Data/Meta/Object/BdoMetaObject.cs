@@ -126,6 +126,11 @@ namespace BindOpen.Data.Meta
             => _propertySet?.Get(index);
 
         /// <summary>
+        /// Returns the element with the specified name.
+        /// </summary>
+        IReferenced IBdoSet.this[int index] => Get(index);
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param key="key"></param>
@@ -196,7 +201,15 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public virtual IBdoMetaData Get(string key = null, string alternateKey = null)
+        public virtual IBdoMetaData Get(string key)
+            => _propertySet?.Get(key);
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param key="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public virtual IBdoMetaData Get(string key, string alternateKey = null)
             => _propertySet?.Get(key, alternateKey);
 
         /// <summary>
@@ -204,7 +217,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public IBdoMetaData Get(int index)
+        public IBdoMetaData Get(int index = 0)
             => _propertySet?.Get(index);
 
         /// <summary>
@@ -212,7 +225,23 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public virtual Q Get<Q>(string key = null, string alternateKey = null)
+        public virtual Q Get<Q>(string key)
+            where Q : IBdoMetaData
+        {
+            if (_propertySet != null)
+            {
+                return _propertySet.Get<Q>(key);
+            }
+
+            return default;
+        }
+
+        /// <summary>
+        /// Returns the specified item of this instance.
+        /// </summary>
+        /// <param key="key">The key to consider.</param>
+        /// <returns>Returns the item of this instance.</returns>
+        public virtual Q Get<Q>(string key, string alternateKey = null)
             where Q : IBdoMetaData
         {
             if (_propertySet != null)
@@ -228,7 +257,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="index">The index to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public virtual Q Get<Q>(int index)
+        public virtual Q Get<Q>(int index = 0)
             where Q : IBdoMetaData
         {
             if (_propertySet != null)

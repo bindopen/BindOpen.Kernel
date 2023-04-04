@@ -11,13 +11,13 @@
         public static IBdoMetaData Descendant(
             this IBdoConfigurationSet list,
             string configName,
-            params string[] names)
+            params object[] tokens)
         {
             IBdoMetaData currentMeta = list?[configName];
 
             if (currentMeta is IBdoMetaSet currentMetaSet)
             {
-                return currentMetaSet.Descendant<IBdoMetaData>(names);
+                return currentMetaSet.Descendant<IBdoMetaData>(tokens);
             }
 
             return null;

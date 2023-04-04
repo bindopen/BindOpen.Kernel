@@ -4,7 +4,6 @@ using BindOpen.Data.Meta;
 using BindOpen.Extensions.Functions;
 using BindOpen.Logging;
 using BindOpen.Scopes;
-using System.Linq;
 
 namespace BindOpen.Script
 {
@@ -81,22 +80,27 @@ namespace BindOpen.Script
                     {
                         var resultScript = script;
 
-                        scriptwordBeginIndex = script.IndexOf("{{");
-                        while (scriptwordBeginIndex > -1)
+                        scriptwordBeginIndex = resultScript.IndexOf("{{");
+                        while (scriptwordBeginIndex > -1 && scriptwordBeginIndex < resultScript.Length)
                         {
-                            index = script.IndexOfNextString("}}", scriptwordBeginIndex + 1);
+                            index = resultScript.IndexOfNextString("}}", scriptwordBeginIndex + 2);
 
-                            if (scriptwordBeginIndex > -1 && index > -1)
+                            if (scriptwordBeginIndex > -1 && index > -1 && index < resultScript.Length)
                             {
-                                var subScript = script[2..][0..^2];
+                                var subScript = resultScript[(scriptwordBeginIndex + 2)..(index + 2)];
                                 subScript = Evaluate(
                                     subScript.ToExpression(BdoExpressionKind.Script),
                                     varSet,
                                     log)?.ToString();
 
-                                resultScript = resultScript.Replace(
-                                    resultScript.ToSubstring(scriptwordBeginIndex, index + 1), subScript);
-                                scriptwordBeginIndex = script.IndexOf("{{", index + 1);
+                                resultScript = resultScript[..scriptwordBeginIndex]
+                                    + subScript
+                                    + resultScript[(index + 2)..^0];
+                                scriptwordBeginIndex += subScript.Length + 1;
+                            }
+                            else
+                            {
+                                scriptwordBeginIndex = index;
                             }
                         }
 
@@ -140,10 +144,8 @@ namespace BindOpen.Script
         {
             switch (reference?.Kind)
             {
-                case BdoExpressionKind.Any:
-                    if (reference.Word == null)
-                        return null;
-                    else
+                case BdoExpressionKind.None:
+                    if (reference.Word != null)
                     {
                         var cloned = BdoScript.NewWord(reference.Word.Kind, reference.Word.Name)
                             .WithDefinition(reference.Word.DefinitionUniqueName);
@@ -155,16 +157,12 @@ namespace BindOpen.Script
                                 {
                                     foreach (var paramValue in reference.Word)
                                     {
-                                        IBdoExpression expParam = null;
                                         if (paramValue is IBdoScriptword scriptwordParam)
                                         {
-                                            expParam = scriptwordParam.ToReference();
-                                        }
+                                            var expParam = BdoData.NewRef(scriptwordParam);
+                                            var obj = Evaluate(expParam, varSet, log);
 
-                                        if (expParam != default)
-                                        {
-                                            var paramObject = Evaluate(expParam, varSet, log);
-                                            cloned.InsertData(paramObject);
+                                            cloned.InsertData(obj);
                                         }
                                         else
                                         {
@@ -177,9 +175,12 @@ namespace BindOpen.Script
 
                         return EvaluateScriptword(cloned, varSet, log);
                     }
+                    break;
                 default:
                     return Evaluate((IBdoExpression)reference, varSet, log);
             }
+
+            return null;
         }
 
         #endregion
@@ -222,7 +223,7 @@ namespace BindOpen.Script
                         var obj = EvaluateScriptword(scriptword, varSet, log);
 
                         // we replace the script word by its value
-                        return scriptword.WithData(obj);
+                        return obj;
                     }
                     else
                     {
@@ -376,14 +377,24 @@ namespace BindOpen.Script
                                 if (!string.IsNullOrEmpty(subScript))
                                 {
                                     int subIndex = 0;
-                                    object parameterValue = Evaluate(
-                                        subScript,
-                                        ref subIndex,
-                                        offsetIndex + index + 1,
-                                        varSet,
-                                        log);
+                                    var word = FindNextWord(
+                                        subScript, scriptword,
+                                        ref subIndex, offsetIndex + index + 1,
+                                        varSet, log);
 
-                                    scriptword.InsertData(parameterValue);
+                                    if (word != null)
+                                    {
+                                        var obj = Evaluate(word.ToReference(), varSet, log);
+                                        word.WithData(obj);
+
+                                        scriptword.InsertData(word);
+                                    }
+                                    else
+                                    {
+                                        subScript = subScript.ToUnquoted();
+                                        scriptword.InsertData(subScript);
+                                    }
+
                                     scriptwordParameterCount++;
                                 }
                                 index = nextIndex;
@@ -392,7 +403,7 @@ namespace BindOpen.Script
                         break;
                     case ScriptItemKinds.Variable:
                         // we look for the next ")" character.
-                        nextIndex = script.IndexOfFromScript(")", index + 2);
+                        nextIndex = script.IndexOfFromScript(")", index);
                         if (nextIndex >= script.Length)
                         {
                             log?.AddError(
@@ -404,10 +415,12 @@ namespace BindOpen.Script
                             return null;
                         }
 
+                        var name = script.ToSubstring(index, nextIndex - 1).Trim()?.ToUnquoted();
+
                         // we instantiate the script word
                         scriptword = BdoScript.NewWord(
                             ScriptItemKinds.Variable,
-                            script.ToSubstring(index, nextIndex - 1).Trim());
+                            name);
                         index = nextIndex;
                         break;
                 }
@@ -446,11 +459,9 @@ namespace BindOpen.Script
             switch (scriptword.Kind)
             {
                 case ScriptItemKinds.Function:
-                    _scope.CallFunction(scriptword, varSet);
-                    break;
+                    return _scope.CallFunction(scriptword, varSet, log);
                 case ScriptItemKinds.Variable:
-                    var name = scriptword?.FirstOrDefault()?.ToString();
-                    return varSet.GetData(name, _scope, varSet, log);
+                    return varSet?.GetData(scriptword?.Name, _scope, varSet, log);
             }
 
             return null;
