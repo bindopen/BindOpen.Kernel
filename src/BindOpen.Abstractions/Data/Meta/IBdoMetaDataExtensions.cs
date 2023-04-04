@@ -1,4 +1,9 @@
-﻿namespace BindOpen.Data.Meta
+﻿using BindOpen.Scopes;
+using BindOpen.Data.Helpers;
+using BindOpen.Logging;
+using System.Linq;
+
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a data element set.
@@ -53,20 +58,48 @@
             return meta;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T WithParent<T>(
+        public static T WithGroupId<T>(
             this T meta,
-            IBdoMetaData parent)
+            string groupId)
             where T : IBdoMetaData
         {
             if (meta != null)
             {
-                meta.Parent = parent;
+                meta.GroupId = groupId;
             }
 
             return meta;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static IBdoSpec GetSpec(
+            this IBdoMetaData meta,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            IBdoSpec spec = null;
+
+            if (meta != null)
+            {
+                spec = meta.Specs?.FirstOrDefault(
+                    q => q?.Condition.Evaluate(scope, varSet, log) == true);
+            }
+
+            return spec;
+        }
+
+        public static bool OfGroup(
+            this IBdoMetaData meta,
+            string groupId)
+        {
+            return
+                meta != null &&
+                (groupId == meta.GroupId
+                    || groupId == StringHelper.__Star
+                    || groupId.BdoKeyEquals(meta.GroupId));
         }
     }
 }

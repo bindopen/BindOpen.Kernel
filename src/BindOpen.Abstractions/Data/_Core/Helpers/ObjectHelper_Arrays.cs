@@ -62,7 +62,7 @@ namespace BindOpen.Data.Helpers
             int index = 0,
             Func<object, T> converter = null)
         {
-            var obj = objects != null && objects.Count > index && objects[index] != null ?
+            var obj = objects != null && index >= 0 && objects.Count > index && objects[index] != null ?
                 objects[index] : default;
 
             if (converter != null)

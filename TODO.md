@@ -4,6 +4,7 @@ Todo list for BindOpen
 ## Next tasks
 
 - [ ] Scope loading
+- [ ] Loading functions in scope
 - [ ] Determine compatibility of data with meta data
 - [ ] Handle IO for MetaData classes
 - [ ] Handle IO for Extensions classes

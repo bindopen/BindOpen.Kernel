@@ -10,22 +10,6 @@ namespace BindOpen.Script
     /// </summary>
     public static partial class IBdoScriptInterpreterExtension
     {
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param key="script"></param>
-        ///// <param key="log"></param>
-        ///// <returns></returns>
-        //public static IBdoScriptword CreateWordFromScript(
-        //    this IBdoScriptInterpreter interpreter,
-        //    string script,
-        //    IBdoMetaSet varSet = null,
-        //    IBdoLog log = null)
-        //{
-        //    int index = 0;
-        //    return interpreter?.FindNextWord(script, null, ref index, 0, varSet, log);
-        //}
-
         /// <summary>
         /// Evaluates the specified script word using the defined script words of this instance
         /// of the specified libraries.
@@ -40,9 +24,29 @@ namespace BindOpen.Script
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            interpreter?.Evaluate(exp, varSet, log).As<T>();
+            object obj = interpreter?.Evaluate(exp, varSet, log);
 
-            return default;
+            return obj.As<T>();
+        }
+
+
+        /// <summary>
+        /// Evaluates the specified script word using the defined script words of this instance
+        /// of the specified libraries.
+        /// </summary>
+        /// <param key="scriptword">The script word to consider.</param>
+        /// <param key="varSet">The variable element set to use.</param>
+        /// <param key="log">The log to consider.</param>
+        /// <returns>The log of the interpretation task.</returns>
+        public static T Evaluate<T>(
+            this IBdoScriptInterpreter interpreter,
+            IBdoReference reference,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            object obj = interpreter?.Evaluate(reference, varSet, log);
+
+            return obj.As<T>();
         }
     }
 }

@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <None Remove="Data\_Core\Items\Expression\beccl5ay.u0n~" />
+    <None Remove="Data\_Core\Items\Sets\ITBdoSet.cs~RF5c598ce0.TMP" />
   </ItemGroup>
 
   <ItemGroup>

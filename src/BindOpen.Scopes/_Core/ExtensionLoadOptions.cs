@@ -1,7 +1,7 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Scopes;
+using BindOpen.Data;
 using BindOpen.Data.Assemblies;
 using BindOpen.Extensions;
-using BindOpen.Scopes;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 

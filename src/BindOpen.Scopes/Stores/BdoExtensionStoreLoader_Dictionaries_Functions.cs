@@ -1,10 +1,13 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using BindOpen.Extensions;
+using BindOpen.Extensions.Entities;
 using BindOpen.Extensions.Functions;
 using BindOpen.Logging;
+using BindOpen.Script;
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 
 namespace BindOpen.Scopes.Stores
@@ -33,92 +36,108 @@ namespace BindOpen.Scopes.Stores
 
             // we load the entity dico from the assembly
 
-            var dico = ExtractDictionaryFromAssembly<IBdoFunctionDefinition>(assembly, log) as BdoFunctionDictionary;
+            var dico = ExtractDictionaryFromAssembly<IBdoEntityDefinition>(assembly, log);
 
-            // we define definitions
+            // we feach entity classes
 
+            var types = assembly.GetTypes();
             int count = 0;
 
-            if (dico == null)
+            foreach (var type in types)
             {
-                log?.AddWarning(title: "No function dico was found");
-            }
-            else
-            {
-                var functionDefinitions = new List<BdoFunctionDefinition>();
-
-                var types = assembly.GetTypes().Where(p => p.GetCustomAttributes(typeof(BdoFunctionAttribute)).Any());
-                foreach (var type in types)
+                var methodInfos = type.GetMethods(BindingFlags.Public | BindingFlags.Static);
+                foreach (var methodInfo in methodInfos.Where(p => p.GetCustomAttributes(typeof(BdoFunctionAttribute)).Any()))
                 {
-                    // we feach methods
-
-                    var methodInfos = type.GetMethods(BindingFlags.Public | BindingFlags.Static);
-                    foreach (var methodInfo in methodInfos)
+                    var definition = new BdoFunctionDefinition(null, packageDefinition)
                     {
-                        if (methodInfo.GetCustomAttribute(typeof(BdoFunctionAttribute)) is BdoFunctionAttribute functionWordAttribute)
+                        ClassReference = BdoData.Class(type),
+                        LibraryId = packageDefinition?.Id
+                    };
+
+                    definition.UpdateFrom(methodInfo);
+
+                    var paramInfos = methodInfo.GetParameters();
+
+                    try
+                    {
+                        if (paramInfos.Length == 0)
                         {
-                            // we determine the name of the definition
-
-                            string definitionName = functionWordAttribute.Name;
-
-                            // we update the definition with the dico if there is one
-
-                            if (dico != null)
-                            {
-                                var definition = dico.GetDefinition(definitionName, methodInfo.Name);
-
-                                if (definition == null)
-                                {
-                                    log?.AddError(title: "Function '" + methodInfo.Name + "' not found in dico");
-                                }
-                                else
-                                {
-                                    definition.ClassReference = BdoData.Class(type);
-                                    definition.LibraryId = packageDefinition?.Id;
-
-                                    // we create the runtime definition
-
-                                    var itemDefinition = new BdoFunctionDefinition(null, packageDefinition);
-
-                                    try
-                                    {
-                                        if (methodInfo.GetParameters().Length == 0)
-                                        {
-                                            itemDefinition.RuntimeBasicFunction += methodInfo.CreateDelegate(
-                                                typeof(BdoFunctionDelegate)) as BdoFunctionDelegate;
-                                        }
-                                        else
-                                        {
-                                            itemDefinition.RuntimeScopedFunction += methodInfo.CreateDelegate(
-                                                typeof(BdoFunctionDomainedDelegate)) as BdoFunctionDomainedDelegate;
-                                        }
-
-                                        functionDefinitions.Add(itemDefinition);
-
-                                        count++;
-                                    }
-                                    catch (ArgumentException)
-                                    {
-                                        log?.AddError(
-                                                title: "Incompatible function ('" + methodInfo.Name + "')",
-                                                description: "Function '" + definition.RuntimeFunctionName + "' in class '"
-                                                + definition.ClassReference?.ClassName + "' has inexpected parameters.");
-                                    }
-                                }
-                            }
+                            definition.RuntimeBasicFunction = methodInfo.CreateDelegate(
+                                typeof(BdoFunctionDelegate)) as BdoFunctionDelegate;
                         }
+                        else if (paramInfos.Length == 1
+                            && typeof(IBdoScriptDomain).IsAssignableFrom(paramInfos[0].ParameterType))
+                        {
+                            definition.RuntimeScopedFunction = methodInfo.CreateDelegate(
+                                typeof(BdoFunctionDomainedDelegate)) as BdoFunctionDomainedDelegate;
+                        }
+                        else
+                            definition.RuntimeFunction = CreateDelegate(methodInfo);
                     }
-                }
+                    catch (ArgumentException)
+                    {
+                        log?.AddError(
+                                title: "Incompatible function ('" + methodInfo.Name + "')",
+                                description: "Function '" + definition.RuntimeFunctionName + "' in class '"
+                                + definition.ClassReference?.ClassName + "' has inexpected parameters.");
+                    }
 
-                // we recursively retrieve the sub function words
+                    if (definition.RuntimeBasicFunction == null
+                        && definition.RuntimeScopedFunction == null
+                        && definition.RuntimeFunction == null)
+                    {
+                        log?.AddError(
+                            title: "Invalid function: Method not defined for function called '" + definition.UniqueName + "'",
+                            resultCode: "SCRIPT_DEFINITION");
+                    }
 
-                foreach (var definition in dico)
-                {
+                    // we build parameter specs
+
+                    foreach (var paramInfo in paramInfos)
+                    {
+                        var spec = BdoMeta.NewSpec();
+                        spec.UpdateFrom(paramInfo, typeof(BdoParameterAttribute));
+                        definition.Add(spec);
+                    }
+
+                    // we build the runtime definition
+
+                    if (dico != null)
+                    {
+                        var indexDefinition = dico.Get(definition.Name);
+                        definition.Update(indexDefinition);
+                    }
+
                     _store.Add(definition);
+
+                    count++;
                 }
             }
 
             return count;
+        }
+
+        static Delegate CreateDelegate(MethodInfo info)
+        {
+            if (info != null)
+            {
+                if (!info.IsStatic)
+                {
+                    throw new ArgumentException("The provided method must be static.", "method");
+                }
+
+                if (info.IsGenericMethod)
+                {
+                    throw new ArgumentException("The provided method must not be generic.", "method");
+                }
+
+                return info.CreateDelegate(Expression.GetDelegateType(
+                    (from parameter in info.GetParameters() select parameter.ParameterType)
+                    .Concat(new[] { info.ReturnType })
+                    .ToArray()));
+            }
+
+            return null;
         }
     }
 }

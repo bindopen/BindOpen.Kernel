@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
 using BindOpen.Extensions.Functions;
+using BindOpen.Script;
 using NUnit.Framework;
 
 namespace BindOpen.Tests.Extensions
@@ -19,20 +20,32 @@ namespace BindOpen.Tests.Extensions
         }
 
         [Test, Order(1)]
-        public void CreateFunctionFromScopeTest()
+        public void NewWordFromConfigTest()
         {
             var config =
                 BdoConfig.New()
-                .WithDefinition("bindopen.tests.kernel$testFunction")
+                .WithDefinition("bindopen.tests.kernel$testEqual")
                 .With(
-                    BdoMeta.NewScalar("boolValue", _testData.boolValue as bool?),
-                    BdoMeta.NewScalar("enumValue", _testData.enumValue as string),
-                    BdoMeta.NewScalar("intValue", _testData.intValue as int?),
-                    BdoMeta.NewScalar("stringValue", _testData.stringValue as string));
+                    BdoMeta.NewScalar("stringValue", _testData.stringValue as string),
+                    BdoMeta.NewScalar("intValue", _testData.intValue as int?));
 
-            var result = ScopingTests.Scope?.CallFunction<bool?>(config);
+            var word = BdoScript.NewWord(config);
 
-            Assert.That(result == true, "Bad function result");
+            var result = ScopingTests.Scope?.CallFunction<bool?>(word);
+
+            Assert.That(result == false, "Bad function result");
+        }
+
+        [Test, Order(2)]
+        public void NewFunTest()
+        {
+            var word = BdoScript.Func("testEqual",
+                    _testData.stringValue as string,
+                    _testData.intValue as int?);
+
+            var result = ScopingTests.Scope?.CallFunction<bool?>(word);
+
+            Assert.That(result == false, "Bad function result");
         }
     }
 

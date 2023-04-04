@@ -20,23 +20,20 @@ namespace BindOpen.Data
         /// <returns>The result object.</returns>
         public static bool IsScalar(this DataValueTypes valueType)
         {
-            switch (valueType)
+            return valueType switch
             {
-                case DataValueTypes.Boolean:
-                case DataValueTypes.Date:
-                case DataValueTypes.Integer:
-                case DataValueTypes.Number:
-                case DataValueTypes.Text:
-                case DataValueTypes.ByteArray:
-                case DataValueTypes.Time:
-                case DataValueTypes.Long:
-                case DataValueTypes.ULong:
-                    return true;
-                default:
-                    break;
-            }
+                DataValueTypes.Boolean or DataValueTypes.Date or DataValueTypes.Integer or DataValueTypes.Number or DataValueTypes.Text or DataValueTypes.ByteArray or DataValueTypes.Time or DataValueTypes.Long or DataValueTypes.ULong => true,
+                _ => false,
+            };
+        }
 
-            return false;
+        public static bool IsExtension(this DataValueTypes valueType)
+        {
+            return valueType switch
+            {
+                DataValueTypes.Connector or DataValueTypes.Entity or DataValueTypes.Task => true,
+                _ => false,
+            };
         }
 
         /// <summary>

@@ -1,9 +1,9 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Scopes;
+using BindOpen.Data;
 using BindOpen.Data.Assemblies;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
 using BindOpen.Logging;
-using BindOpen.Scopes;
 
 namespace BindOpen.Extensions.Connectors
 {
@@ -46,7 +46,8 @@ namespace BindOpen.Extensions.Connectors
 
                     if ((connector = item as IBdoConnector) != null)
                     {
-                        connector.UpdateFromMeta(config, true, scope, varSet);
+                        connector.DefinitionUniqueName = definition.UniqueName;
+                        connector.UpdateFromMeta(config, true, scope: scope, varSet: varSet);
                     }
                 }
             }

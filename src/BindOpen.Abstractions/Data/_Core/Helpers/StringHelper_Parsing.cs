@@ -202,23 +202,23 @@ namespace BindOpen.Data.Helpers
             int stv_l = stv.Length;
             while (index < st_l && index > -1 && !b)
             {
-                if (st.Substring(index, 1) == "\"" && stv != "\"")
+                if (st[index] == '\\' && stv != "\"")
                 {
                     index = st.IndexOfNextString("\"", index + 1) + 1;
                 }
-                else if (st.Substring(index, 1) == "'" && stv == "'")
+                else if (st[index] == '\'' && stv == "'")
                 {
                     index = st.IndexOfNextString("'", index + 1) + 1;
                 }
-                else if (st.Substring(index, 1) == "(" && stv == ")")
+                else if (st[index] == '(' && stv == ")")
                 {
                     index = st.IndexOfNextString(")", index + 1) + 1;
                 }
-                else if (st.ToSubstring(index, index + 1) == "{{" && stv == "}}")
+                else if (stv == "}}" && index < stv_l - 1 && st[index..(index + 2)] == "{{")
                 {
                     index = st.IndexOfNextString("}}", index + 1) + 2;
                 }
-                else if (st.Substring(index, 1) == "{" && stv == "}")
+                else if (stv == "}" && st[index] == '{')
                 {
                     index = st.IndexOfNextString("}", index + 1) + 1;
                 }

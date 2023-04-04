@@ -2,7 +2,6 @@
 using BindOpen.Data.Meta;
 using BindOpen.Logging;
 using BindOpen.Scopes;
-using BindOpen.Script;
 using System;
 
 namespace Microsoft.Extensions.Configuration
@@ -96,9 +95,7 @@ namespace Microsoft.Extensions.Configuration
 
             if (scope != null)
             {
-                var interpreter = scope.CreateInterpreter();
-
-                return Convert.ChangeType(interpreter?.Evaluate(
+                return Convert.ChangeType(scope.Interpreter?.Evaluate(
                     BdoData.NewExp(value, BdoExpressionKind.Script), varSet, log), type);
             }
             else if (type == typeof(string))

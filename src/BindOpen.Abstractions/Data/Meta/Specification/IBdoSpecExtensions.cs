@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using BindOpen.Scopes;
+using BindOpen.Logging;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.Data.Meta
 {
@@ -36,6 +39,18 @@ namespace BindOpen.Data.Meta
             {
                 spec.DataReference = exp;
             }
+            return spec;
+        }
+        public static T WithGroupId<T>(
+            this T spec,
+            string groupId)
+            where T : IBdoSpec
+        {
+            if (spec != null)
+            {
+                spec.GroupId = groupId;
+            }
+
             return spec;
         }
 
@@ -340,5 +355,24 @@ namespace BindOpen.Data.Meta
             return RequirementLevels.None;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public static IEnumerable<IBdoSpec> GetSpecs(
+            this IBdoSpec spec,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            IEnumerable<IBdoSpec> specs = null;
+
+            if (spec != null)
+            {
+                specs = spec.SubSpecs?.Where(
+                    q => q?.Condition.Evaluate(scope, varSet, log) == true);
+            }
+
+            return specs ?? new List<IBdoSpec>();
+        }
     }
 }

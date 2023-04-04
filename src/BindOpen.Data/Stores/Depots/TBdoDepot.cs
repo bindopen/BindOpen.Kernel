@@ -1,6 +1,6 @@
-﻿using BindOpen.Data.Assemblies;
+﻿using BindOpen.Scopes;
+using BindOpen.Data.Assemblies;
 using BindOpen.Logging;
-using BindOpen.Scopes;
 using System;
 
 namespace BindOpen.Data.Stores

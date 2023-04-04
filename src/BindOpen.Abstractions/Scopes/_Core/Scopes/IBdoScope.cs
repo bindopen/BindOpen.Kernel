@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Context;
+using BindOpen.Data.Meta;
 using BindOpen.Data.Stores;
 using BindOpen.Logging;
 using BindOpen.Scopes.Stores;
@@ -37,6 +38,10 @@ namespace BindOpen.Scopes
         /// The data context.
         /// </summary>
         IBdoScriptInterpreter Interpreter { get; }
+
+        IBdoScriptDomain NewScriptDomain(
+            IBdoMetaSet varSet,
+            IBdoScriptword scriptword = null);
 
         /// <summary>
         /// 

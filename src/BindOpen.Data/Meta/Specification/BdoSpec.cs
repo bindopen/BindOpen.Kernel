@@ -91,6 +91,11 @@ namespace BindOpen.Data.Meta
         public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
 
         /// <summary>
+        /// The identifier of the group of this instance.
+        /// </summary>
+        public string GroupId { get; set; }
+
+        /// <summary>
         /// The requirement level of this instance.
         /// </summary>
         public RequirementLevels Requirement { get; set; } = RequirementLevels.None;
@@ -209,10 +214,7 @@ namespace BindOpen.Data.Meta
         public virtual bool IsCompatibleWithData(
             object item)
         {
-            if (item == null)
-                return true;
-
-            return false;
+            return true;
         }
 
         /// <summary>

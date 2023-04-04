@@ -1,10 +1,10 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Scopes;
+using BindOpen.Data;
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Stores;
 using BindOpen.Hosting.Exceptions;
 using BindOpen.Hosting.Services;
 using BindOpen.Logging;
-using BindOpen.Scopes;
 using BindOpen.Scopes;
 using Microsoft.Extensions.Logging;
 using System;

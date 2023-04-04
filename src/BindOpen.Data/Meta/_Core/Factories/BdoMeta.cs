@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Helpers;
-using BindOpen.Extensions;
 using System;
 
 namespace BindOpen.Data.Meta
@@ -97,7 +96,7 @@ namespace BindOpen.Data.Meta
             {
                 var script = data?.ToString();
                 return New(name)
-                    .WithDataReference(BdoData.NewRef(script));
+               .WithDataReference(BdoData.NewRef(script));
             }
             else if (valueType == DataValueTypes.MetaData)
             {
@@ -168,22 +167,6 @@ namespace BindOpen.Data.Meta
 
                 return metaValue;
             }
-            else if (
-                typeof(IBdoExtension).IsAssignableFrom(type)
-                || valueType == DataValueTypes.Connector
-                || valueType == DataValueTypes.Entity
-                || valueType == DataValueTypes.Task)
-            {
-                if (data is IBdoExtension extension)
-                {
-                    var config = BdoConfig.NewFrom(extension, name);
-                    if (config != null)
-                    {
-                        config.DefinitionUniqueName = extension?.DefinitionUniqueName;
-                    }
-                    return config;
-                }
-            }
             else if (type.IsList())
             {
                 var objList = data.ToObjectArray();
@@ -203,8 +186,6 @@ namespace BindOpen.Data.Meta
                 var metaObj = NewObject(name, data);
                 return metaObj;
             }
-
-            return null;
         }
     }
 }
