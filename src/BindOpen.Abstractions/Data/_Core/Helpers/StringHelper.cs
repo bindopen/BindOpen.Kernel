@@ -54,10 +54,12 @@ namespace BindOpen.Data.Helpers
 
                 switch (format)
                 {
-                    case NameFormats.NameThenValue:
-                        return name + " " + __PatternStar;
-                    case NameFormats.NameWithValue:
+                    case NameFormats.NameColonValue:
+                        return name + ":" + __PatternStar;
+                    case NameFormats.NameEqualsValue:
                         return name + "=" + __PatternStar;
+                    case NameFormats.NameSpaceValue:
+                        return name + " " + __PatternStar;
                     case NameFormats.OnlyValue:
                         return __PatternStar;
                 }

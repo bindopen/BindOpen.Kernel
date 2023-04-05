@@ -3,6 +3,7 @@ Todo list for BindOpen
 
 ## Next tasks
 
+- [ ] Extension store : adding packages
 - [ ] Using Xml dictionaries for extensions
 - [ ] Script: Handle cascade case (func1.func2)
 - [ ] Script: Handle returned type

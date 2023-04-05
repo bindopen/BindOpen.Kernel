@@ -21,14 +21,19 @@ namespace BindOpen.Data
         OnlyName,
 
         /// <summary>
-        /// Name with value.
+        /// Name=value.
         /// </summary>
-        NameWithValue,
+        NameEqualsValue,
 
         /// <summary>
-        /// Name then value.
+        /// Name:value.
         /// </summary>
-        NameThenValue,
+        NameColonValue,
+
+        /// <summary>
+        /// Name value.
+        /// </summary>
+        NameSpaceValue,
 
         /// <summary>
         /// Only value.

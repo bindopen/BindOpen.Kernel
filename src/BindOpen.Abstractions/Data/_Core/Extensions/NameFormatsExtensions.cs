@@ -12,7 +12,10 @@
         /// <returns>Returns true or false.</returns>
         public static bool HasName(this NameFormats format)
         {
-            return format == NameFormats.NameThenValue || format == NameFormats.NameWithValue || format == NameFormats.OnlyName;
+            return format is NameFormats.NameColonValue
+                or NameFormats.NameEqualsValue
+                or NameFormats.NameSpaceValue
+                or NameFormats.OnlyName;
         }
 
         /// <summary>
@@ -22,7 +25,10 @@
         /// <returns>Returns true or false.</returns>
         public static bool HasValue(this NameFormats format)
         {
-            return format == NameFormats.NameThenValue || format == NameFormats.NameWithValue || format == NameFormats.OnlyValue;
+            return format is NameFormats.NameColonValue
+                or NameFormats.NameEqualsValue
+                or NameFormats.NameSpaceValue
+                or NameFormats.OnlyValue;
         }
 
     }
