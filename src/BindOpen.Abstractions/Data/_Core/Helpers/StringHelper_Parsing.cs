@@ -231,7 +231,7 @@ namespace BindOpen.Data.Helpers
                     index++;
                 }
             }
-            return index;
+            return index >= st_l ? -1 : index;
         }
     }
 }
