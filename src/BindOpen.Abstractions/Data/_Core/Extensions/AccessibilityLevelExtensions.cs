@@ -5,7 +5,7 @@ namespace BindOpen.Data
     /// <summary>
     /// This class represents an accessibility level extension.
     /// </summary>
-    public static class AccessibilityLevelExtension
+    public static class AccessibilityLevelExtensions
     {
         /// <summary>
         /// Gets the accessibility level corresponding to the specified string.
