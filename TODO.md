@@ -3,19 +3,22 @@ Todo list for BindOpen
 
 ## Next tasks
 
-- [ ] Scope loading
-- [ ] Loading functions in scope
-- [ ] Determine compatibility of data with meta data
-- [ ] Handle IO for MetaData classes
-- [ ] Handle IO for Extensions classes
-- [ ] Configuration bundle
-- [ ] Fix bug with repeated parameter script function
-- [ ] ToString() data elements
-- [ ] Meta/Spec : Update/Repair/Check methods
+- [ ] Using Xml dictionaries for extensions
+- [ ] Script: Handle cascade case (func1.func2)
+- [ ] Script: Handle returned type
+- [ ] Script: Handle repeated parameters
+- [ ] Checking value of meta specs
+- [ ] Handle IO for all the classes
 - [ ] XSD location URI updated to docs.bindopen.org/xsd
-- [ ] Handle application option tree
+- [ ] Implementing Hosting layer
 
 ## Stuff to check out later on
+
+### v.1.3
+* Loading connectors, entities, functions, tasks
+
+### v.1.2
+* Integrate .net core logging/config
 
 ### v.1.1
 
@@ -38,6 +41,4 @@ Todo list for BindOpen
 * ToApiDto: Use standard Result class
 * SetConfiguration Extension
 
-### v.1.2
-* Integrate .net core logging/config
 

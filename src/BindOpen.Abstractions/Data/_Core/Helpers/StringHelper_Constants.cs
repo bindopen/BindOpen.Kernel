@@ -13,7 +13,7 @@
         /// <summary>
         /// The pattern empty value.
         /// </summary>
-        public static readonly string __PatternEmptyValue = "{{*}}";
+        public static readonly string __PatternStar = "{{*}}";
 
         /// <summary>
         /// The string that is returned when the instance is not found.
