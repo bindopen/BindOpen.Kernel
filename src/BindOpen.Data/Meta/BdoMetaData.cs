@@ -1,6 +1,6 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
 using BindOpen.Logging;
+using BindOpen.Scopes;
 using BindOpen.Script;
 using System.Collections.Generic;
 using System.Linq;
@@ -117,6 +117,11 @@ namespace BindOpen.Data.Meta
         /// The value type of this instance.
         /// </summary>
         public DataValueTypes DataValueType { get; set; } = DataValueTypes.Any;
+
+        /// <summary>
+        /// The label of this instance.
+        /// </summary>
+        public string Label { get; set; }
 
         /// <summary>
         /// The itemization mode of this instance.

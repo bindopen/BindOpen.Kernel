@@ -1,11 +1,12 @@
-﻿using BindOpen.Script;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Script;
 
 namespace BindOpen.Data
 {
     /// <summary>
     /// This class represents a data exp that can contain a literal and script texts.
     /// </summary>
-    public class BdoReference : BdoExpression, IBdoReference
+    public class BdoReference : BdoItem, IBdoReference
     {
         // ------------------------------------------
         // PROPERTIES
@@ -13,10 +14,24 @@ namespace BindOpen.Data
 
         #region Properties
 
+        public BdoReferenceKind Kind { get; set; }
+
+        /// <summary>
+        /// The script word of this instance.
+        /// </summary>
+        public IBdoExpression Expression { get; set; }
+
         /// <summary>
         /// The script word of this instance.
         /// </summary>
         public IBdoScriptword Word { get; set; }
+
+        /// <summary>
+        /// The script word of this instance.
+        /// </summary>
+        public string Identifier { get; set; }
+
+        public IBdoMetaData MetaData { get; set; }
 
         #endregion
 
@@ -49,7 +64,14 @@ namespace BindOpen.Data
         /// <param key="st">The string to consider.</param>
         public static explicit operator string(BdoReference reference)
         {
-            return reference?.ToString();
+            return reference.Kind switch
+            {
+                BdoReferenceKind.Expression => reference.Expression?.ToString(),
+                BdoReferenceKind.Identifier => reference.Identifier,
+                BdoReferenceKind.MetaData => reference.MetaData?.ToString(),
+                BdoReferenceKind.Word => reference.Word?.ToString(),
+                _ => null
+            };
         }
 
         #endregion

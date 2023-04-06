@@ -128,15 +128,25 @@ namespace BindOpen.Data
         {
             _items ??= new List<T>();
 
-            if (item is IReferenced referencedDataItem)
-            {
-                var key = referencedDataItem?.Key();
-                this.Remove(key);
-            }
-
+            var key = item?.Key();
+            Remove(key);
             _items.Add(item);
 
             return item;
+        }
+
+        /// <summary>
+        /// Removes the item with the specified name.
+        /// </summary>
+        /// <param key="keys">The keys of the item to remove.</param>
+        public int Remove(params string[] keys)
+        {
+            if (_items != null && keys != null)
+            {
+                return _items.RemoveAll(p => keys.Any(q => p.BdoKeyEquals(q)));
+            }
+
+            return 0;
         }
 
         /// <summary>
@@ -191,10 +201,10 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="name">The name of the item to check.</param>
         /// <returns>Returns true if the instance has an item with the specified name.</returns>
-        public bool Has(string name = null)
+        public bool Has(string key = null)
         {
-            if (name == null) return _items?.Count > 0;
-            return _items?.Any(p => p.BdoKeyEquals(name)) == true;
+            if (key == null) return _items?.Any() == true;
+            return _items?.Any(p => p.BdoKeyEquals(key)) == true;
         }
 
         /// <summary>
@@ -207,12 +217,12 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public virtual T Get(string name)
+        public virtual T Get(string key)
         {
             if (_items == null)
                 return default;
 
-            return _items.FirstOrDefault(p => p.BdoKeyEquals(name));
+            return _items.FirstOrDefault(p => p.BdoKeyEquals(key));
         }
 
         /// <summary>
@@ -225,12 +235,12 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public T Get(string name, string alternateKey = null)
+        public T Get(string key, string alternateKey = null)
         {
             if (_items == null)
                 return default;
 
-            var newKey = Has(name) ? name : alternateKey;
+            var newKey = Has(key) ? key : alternateKey;
 
             return _items.FirstOrDefault(p => p.BdoKeyEquals(newKey));
         }
@@ -244,7 +254,7 @@ namespace BindOpen.Data
         {
             if (_items != null)
             {
-                return _items.ToObjectList().Get<T>(index);
+                return Items.ToObjectList().Get<T>(index);
             }
 
             return default;
@@ -267,10 +277,10 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public Q Get<Q>(string name, string alternateKey = null)
+        public Q Get<Q>(string key, string alternateKey = null)
             where Q : T
         {
-            return Get(name, alternateKey).As<Q>();
+            return Get(key, alternateKey).As<Q>();
         }
 
         /// <summary>
@@ -293,7 +303,7 @@ namespace BindOpen.Data
         /// <returns></returns>
         public T[] ToArray()
         {
-            return _items?.ToArray();
+            return Items?.ToArray();
         }
 
         /// <summary>
@@ -302,7 +312,7 @@ namespace BindOpen.Data
         /// <returns></returns>
         public List<T> ToList()
         {
-            return _items?.ToList();
+            return Items?.ToList();
         }
 
         #endregion
@@ -318,14 +328,14 @@ namespace BindOpen.Data
         /// </summary>
         /// <returns>Returns the enumerator of this instance.</returns>
         public IEnumerator<T> GetEnumerator()
-            => _items?.GetEnumerator() ?? Enumerable.Empty<T>().GetEnumerator();
+            => Items?.GetEnumerator() ?? Enumerable.Empty<T>().GetEnumerator();
 
         /// <summary>
         /// Indicates the enumerator of this instance.
         /// </summary>
         /// <returns>Returns the enumerator of this instance.</returns>
         IEnumerator IEnumerable.GetEnumerator()
-            => _items?.GetEnumerator() ?? Enumerable.Empty<T>().GetEnumerator();
+            => Items?.GetEnumerator() ?? Enumerable.Empty<T>().GetEnumerator();
 
         #endregion
 

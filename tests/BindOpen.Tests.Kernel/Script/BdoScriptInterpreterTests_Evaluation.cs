@@ -43,7 +43,7 @@ namespace BindOpen.Tests.Script
         public void InterpreteWord1Test()
         {
             var interpreter = ScopingTests.Scope.Interpreter;
-            var resultScript = interpreter.Evaluate<bool?>(_scriptword1.ToReference())?.ToString();
+            var resultScript = interpreter.Evaluate<bool?>(_scriptword1)?.ToString();
 
             Assert.That(_interpretedScript1.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
@@ -104,7 +104,7 @@ namespace BindOpen.Tests.Script
         public void InterpreteScript6Test()
         {
             var interpreter = ScopingTests.Scope.Interpreter;
-            var resultScript = interpreter.Evaluate<bool?>(_scriptword6.ToReference())?.ToString();
+            var resultScript = interpreter.Evaluate<bool?>(_scriptword6)?.ToString();
 
             Assert.That(_interpretedScript6.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }

@@ -50,7 +50,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Returns the element with the specified name.
         /// </summary>
-        IReferenced IBdoSet.this[string name] => Get(name);
+        IReferenced IBdoSet.this[string key] => Get(key);
 
         /// <summary>
         /// The items of this instance.
@@ -179,6 +179,15 @@ namespace BindOpen.Data.Meta
         {
             _propertySet ??= BdoMeta.NewSet();
             return _propertySet.With(items);
+        }
+
+        /// <summary>
+        /// Removes the item with the specified name.
+        /// </summary>
+        /// <param key="keys">The keys of the item to remove.</param>
+        public int Remove(params string[] keys)
+        {
+            return _propertySet?.Remove(keys) ?? 0;
         }
 
         public IBdoMetaData Insert(IBdoMetaData item)

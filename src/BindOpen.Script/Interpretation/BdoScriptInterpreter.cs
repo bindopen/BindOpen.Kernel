@@ -1,9 +1,11 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Meta.Reflection;
 using BindOpen.Extensions.Functions;
 using BindOpen.Logging;
 using BindOpen.Scopes;
+using System;
 
 namespace BindOpen.Script
 {
@@ -87,7 +89,7 @@ namespace BindOpen.Script
 
                             if (scriptwordBeginIndex > -1 && index > -1 && index < resultScript.Length)
                             {
-                                var subScript = resultScript[(scriptwordBeginIndex + 2)..(index + 2)];
+                                var subScript = resultScript[(scriptwordBeginIndex + 2)..index];
                                 subScript = Evaluate(
                                     subScript.ToExpression(BdoExpressionKind.Script),
                                     varSet,
@@ -96,7 +98,7 @@ namespace BindOpen.Script
                                 resultScript = resultScript[..scriptwordBeginIndex]
                                     + subScript
                                     + resultScript[(index + 2)..^0];
-                                scriptwordBeginIndex += subScript.Length + 1;
+                                scriptwordBeginIndex += (subScript?.Length ?? 0) + 1;
                             }
                             else
                             {
@@ -138,46 +140,59 @@ namespace BindOpen.Script
         }
 
         public object Evaluate(
+            IBdoScriptword word,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            if (word != null)
+            {
+                var cloned = BdoScript.NewWord(word.Kind, word.Name)
+                    .WithDefinition(word.DefinitionUniqueName);
+
+                switch (word.Kind)
+                {
+                    case ScriptItemKinds.Function:
+                        if (word.Count > 0)
+                        {
+                            foreach (var paramValue in word)
+                            {
+                                if (paramValue is IBdoScriptword scriptwordParam)
+                                {
+                                    var expParam = BdoData.NewRef(scriptwordParam);
+                                    var obj = Evaluate(expParam, varSet, log);
+
+                                    cloned.InsertData(obj);
+                                }
+                                else
+                                {
+                                    cloned.InsertData(paramValue);
+                                }
+                            }
+                        }
+                        break;
+                }
+
+                return EvaluateScriptword(cloned, varSet, log);
+            }
+
+            return null;
+        }
+
+        public object Evaluate(
             IBdoReference reference,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             switch (reference?.Kind)
             {
-                case BdoExpressionKind.None:
-                    if (reference.Word != null)
-                    {
-                        var cloned = BdoScript.NewWord(reference.Word.Kind, reference.Word.Name)
-                            .WithDefinition(reference.Word.DefinitionUniqueName);
-
-                        switch (reference.Word.Kind)
-                        {
-                            case ScriptItemKinds.Function:
-                                if (reference.Word.Count > 0)
-                                {
-                                    foreach (var paramValue in reference.Word)
-                                    {
-                                        if (paramValue is IBdoScriptword scriptwordParam)
-                                        {
-                                            var expParam = BdoData.NewRef(scriptwordParam);
-                                            var obj = Evaluate(expParam, varSet, log);
-
-                                            cloned.InsertData(obj);
-                                        }
-                                        else
-                                        {
-                                            cloned.InsertData(paramValue);
-                                        }
-                                    }
-                                }
-                                break;
-                        }
-
-                        return EvaluateScriptword(cloned, varSet, log);
-                    }
-                    break;
-                default:
-                    return Evaluate((IBdoExpression)reference, varSet, log);
+                case BdoReferenceKind.Expression:
+                    return Evaluate(reference?.Expression, varSet, log);
+                case BdoReferenceKind.Identifier:
+                    return varSet?[reference?.Identifier];
+                case BdoReferenceKind.MetaData:
+                    return reference?.MetaData;
+                case BdoReferenceKind.Word:
+                    return Evaluate(reference?.Word, varSet, log);
             }
 
             return null;
@@ -301,7 +316,7 @@ namespace BindOpen.Script
             else if (parentScriptword != null && script.ToSubstring(index, index) == ".")
             {
                 index++;
-                scriptItemKind = ScriptItemKinds.Function;
+                scriptItemKind = ScriptItemKinds.Property;
             }
             else
             {
@@ -384,7 +399,7 @@ namespace BindOpen.Script
 
                                     if (word != null)
                                     {
-                                        var obj = Evaluate(word.ToReference(), varSet, log);
+                                        var obj = Evaluate(word, varSet, log);
                                         word.WithData(obj);
 
                                         scriptword.InsertData(word);
@@ -415,12 +430,38 @@ namespace BindOpen.Script
                             return null;
                         }
 
-                        var name = script.ToSubstring(index, nextIndex - 1).Trim()?.ToUnquoted();
+                        var varName = script.ToSubstring(index, nextIndex - 1).Trim();
+                        if (varName.Equals("this", StringComparison.OrdinalIgnoreCase))
+                        {
+                            varName = "$this";
+                        }
+                        else
+                        {
+                            varName = varName.ToUnquoted();
+                        }
 
                         // we instantiate the script word
-                        scriptword = BdoScript.NewWord(
-                            ScriptItemKinds.Variable,
-                            name);
+                        scriptword = BdoScript.NewWord(ScriptItemKinds.Variable, varName);
+                        index = nextIndex;
+                        break;
+                    case ScriptItemKinds.Property:
+                        // we look for the next ")" character.
+                        nextIndex = script.IndexOfFromScript("(", index);
+                        if (nextIndex >= script.Length - 1 || script[nextIndex + 1] != ')')
+                        {
+                            log?.AddError(
+                                title: "Syntax Error: Character ')' needed for function has not been found. Position " + (index + offsetIndex),
+                                resultCode: "SCRIPT_SYNTAXERROR")
+                                .WithDetail(
+                                    BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
+
+                            return null;
+                        }
+
+                        var propName = script.ToSubstring(index, nextIndex - 1).Trim().ToUnquoted();
+
+                        // we instantiate the script word
+                        scriptword = BdoScript.NewWord(ScriptItemKinds.Property, propName);
                         index = nextIndex;
                         break;
                 }
@@ -462,6 +503,10 @@ namespace BindOpen.Script
                     return _scope.CallFunction(scriptword, varSet, log);
                 case ScriptItemKinds.Variable:
                     return varSet?.GetData(scriptword?.Name, _scope, varSet, log);
+                case ScriptItemKinds.Property:
+                    var parentObj = EvaluateScriptword(scriptword?.Parent as IBdoScriptword, varSet, log);
+                    var propName = scriptword?.Name;
+                    return parentObj?.GetPropertyValue(propName, typeof(BdoPropertyAttribute));
             }
 
             return null;

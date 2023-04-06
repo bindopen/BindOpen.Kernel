@@ -1,4 +1,6 @@
-﻿using BindOpen.Script;
+﻿using BindOpen.Logging;
+using BindOpen.Scopes;
+using BindOpen.Script;
 
 namespace BindOpen.Data.Meta
 {
@@ -10,21 +12,34 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public static T WithDataReference<T>(
-            this T meta,
-            string text,
-            BdoExpressionKind kind = BdoExpressionKind.Auto)
-            where T : IBdoMetaData
+        public static string GetLabel(
+            this IBdoMetaData meta,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
         {
             if (meta != null)
             {
-                meta.WithDataMode(DataMode.Reference);
-                meta.Reference = BdoData.NewRef(text, kind);
+                varSet ??= BdoMeta.NewSet();
+                varSet.Add((BdoData.__This, meta));
+
+                var label = scope?.Interpreter?.Evaluate<string>(meta.Label.ToExpression(), varSet, log);
+                return label;
             }
 
-            return meta;
+            return null;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithDataReference<T>(
+            this T meta,
+            IBdoExpression exp)
+            where T : IBdoMetaData
+        {
+            return meta.WithDataReference(BdoData.NewRef(exp));
+        }
 
         /// <summary>
         /// 
@@ -34,13 +49,29 @@ namespace BindOpen.Data.Meta
             IBdoScriptword word)
             where T : IBdoMetaData
         {
-            if (meta != null)
-            {
-                meta.WithDataMode(DataMode.Reference);
-                meta.Reference = BdoData.NewRef(word);
-            }
+            return meta.WithDataReference(BdoData.NewRef(word));
+        }
 
-            return meta;
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithDataReference<T>(
+            this T meta,
+            string identifier)
+            where T : IBdoMetaData
+        {
+            return meta.WithDataReference(BdoData.NewRef(identifier));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithDataReference<T>(
+            this T meta,
+            IBdoMetaData target)
+            where T : IBdoMetaData
+        {
+            return meta.WithDataReference(BdoData.NewRef(target));
         }
 
         /// <summary>

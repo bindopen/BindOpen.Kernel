@@ -41,7 +41,9 @@ namespace BindOpen.Data
             var poco = new BdoReference()
             {
                 Kind = dto.Kind,
-                Text = dto.Text,
+                Expression = dto.Expression.ToPoco(),
+                Identifier = dto.Identifier,
+                //MetaData = dto.MetaData.ToPoco(),
                 Word = dto.Word.ToPoco()
             };
 

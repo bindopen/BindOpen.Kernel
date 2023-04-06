@@ -1,5 +1,5 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
+using BindOpen.Scopes;
 using System.Collections.Generic;
 
 namespace BindOpen.Data.Meta
@@ -16,6 +16,11 @@ namespace BindOpen.Data.Meta
         /// The kind of meta data of this instance.
         /// </summary>
         BdoMetaDataKind MetaDataKind { get; }
+
+        /// <summary>
+        /// The label of this instance.
+        /// </summary>
+        string Label { get; set; }
 
         /// <summary>
         /// The identifier of the group of this instance.

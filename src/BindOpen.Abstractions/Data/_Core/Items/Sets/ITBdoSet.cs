@@ -35,7 +35,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="key"></param>
         /// <returns></returns>
-        new T this[string name] { get; }
+        new T this[string key] { get; }
 
         /// <summary>
         /// Returns the item of the specified key.
@@ -119,6 +119,8 @@ namespace BindOpen.Data
         /// 
         /// </summary>
         void Clear();
+
+        int Remove(params string[] keys);
 
         /// <summary>
         /// 

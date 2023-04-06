@@ -7,8 +7,8 @@ namespace BindOpen.Data
     /// This enumeration lists all the possible name formats.
     /// </summary>
     [Flags]
-    [XmlType("NameFormats", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    public enum NameFormats
+    [XmlType("LabelFormats", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    public enum LabelFormats
     {
         /// <summary>
         /// Any.

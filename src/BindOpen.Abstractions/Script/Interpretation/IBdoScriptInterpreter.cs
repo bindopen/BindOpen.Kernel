@@ -29,6 +29,18 @@ namespace BindOpen.Script
         /// <param key="log"></param>
         /// <returns></returns>
         object Evaluate(
+            IBdoScriptword word,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="exp"></param>
+        /// <param key="varSet">The variable element set to consider.</param>
+        /// <param key="log"></param>
+        /// <returns></returns>
+        object Evaluate(
             IBdoReference reference,
             IBdoMetaSet varSet = null,
             IBdoLog log = null);

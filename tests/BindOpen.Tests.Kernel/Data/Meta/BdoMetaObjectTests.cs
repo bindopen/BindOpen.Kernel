@@ -1,5 +1,4 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
 using DeepEqual.Syntax;
 using NUnit.Framework;
@@ -30,7 +29,7 @@ namespace BindOpen.Tests.Data
             Test(meta);
         }
 
-        [Test, Order(1)]
+        [Test, Order(2)]
         public void NewTest()
         {
             var meta1 = BdoMeta.NewObject(_obj);

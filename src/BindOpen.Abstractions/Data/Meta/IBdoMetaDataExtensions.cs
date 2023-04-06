@@ -1,6 +1,6 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
 using BindOpen.Logging;
+using BindOpen.Scopes;
 using System.Linq;
 
 namespace BindOpen.Data.Meta
@@ -45,6 +45,38 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
+        public static T WithLabel<T>(
+            this T meta,
+            string label)
+            where T : IBdoMetaData
+        {
+            if (meta != null)
+            {
+                meta.Label = label;
+            }
+
+            return meta;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithLabel<T>(
+            this T meta,
+            LabelFormats label)
+            where T : IBdoMetaData
+        {
+            if (meta != null)
+            {
+                meta.Label = label.GetScript();
+            }
+
+            return meta;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static T WithDataReference<T>(
             this T meta,
             IBdoReference reference)
@@ -52,6 +84,7 @@ namespace BindOpen.Data.Meta
         {
             if (meta != null)
             {
+                meta.WithDataMode(DataMode.Reference);
                 meta.Reference = reference;
             }
 

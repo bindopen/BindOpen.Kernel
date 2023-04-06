@@ -1,6 +1,6 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
 using BindOpen.Logging;
+using BindOpen.Scopes;
 using BindOpen.Script;
 using System.Collections.Generic;
 using System.Linq;
@@ -159,6 +159,11 @@ namespace BindOpen.Data.Meta
         /// Indicates whether this instance is repeated in a set.
         /// </summary>
         public bool IsRepeated { get; set; }
+
+        /// <summary>
+        /// The label of this instance.
+        /// </summary>
+        public string Label { get; set; }
 
         /// <summary>
         /// 
