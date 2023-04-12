@@ -21,7 +21,7 @@ namespace BindOpen.Script
         /// </summary>
         public BdoScriptword() : base()
         {
-            this.WithDataValueType(DataValueTypes.Scriptword);
+            this.WithDataType(DataValueTypes.Scriptword);
         }
 
         #endregion

@@ -6,7 +6,7 @@ namespace BindOpen.Data
     /// <summary>
     /// This class represents a data exp that can contain a literal and script texts.
     /// </summary>
-    public class BdoReference : BdoItem, IBdoReference
+    public class BdoReference : BdoObject, IBdoReference
     {
         // ------------------------------------------
         // PROPERTIES
@@ -29,7 +29,7 @@ namespace BindOpen.Data
         /// <summary>
         /// The script word of this instance.
         /// </summary>
-        public string Identifier { get; set; }
+        public string VariableName { get; set; }
 
         public IBdoMetaData MetaData { get; set; }
 
@@ -67,7 +67,7 @@ namespace BindOpen.Data
             return reference.Kind switch
             {
                 BdoReferenceKind.Expression => reference.Expression?.ToString(),
-                BdoReferenceKind.Identifier => reference.Identifier,
+                BdoReferenceKind.Variable => reference.VariableName,
                 BdoReferenceKind.MetaData => reference.MetaData?.ToString(),
                 BdoReferenceKind.Word => reference.Word?.ToString(),
                 _ => null

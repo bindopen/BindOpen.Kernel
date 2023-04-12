@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Assemblies;
+using System;
 
 namespace BindOpen.Data
 {
@@ -14,7 +15,10 @@ namespace BindOpen.Data
         /// <param key="name">The name to consider.</param>
         /// <param key="version">The version to consider.</param>
         /// <returns>Returns the itemized list of the specified library list.</returns>
-        public static IBdoAssemblyReference AddAssembly(this IBdoAssemblyReferenceCollection references, string name, string version = null)
+        public static IBdoAssemblyReference AddAssembly(
+            this IBdoAssemblyReferenceCollection references,
+            string name,
+            Version version = null)
         {
             var reference = BdoData.Assembly(name, version);
             references.Add(reference);

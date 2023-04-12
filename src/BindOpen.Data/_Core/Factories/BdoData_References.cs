@@ -20,7 +20,7 @@ namespace BindOpen.Data
         /// <returns>Returns the itemized list of the specified library list.</returns>
         public static BdoAssemblyReference Assembly(
             string assemblyName,
-            string assemblyVersion = null)
+            Version assemblyVersion = null)
             => new(assemblyName, assemblyVersion);
 
         /// <summary>
@@ -48,8 +48,8 @@ namespace BindOpen.Data
         {
             if (assembly == null) return null;
 
-            string assemblyName = assembly?.GetName().Name;
-            string assemblyVersion = assembly?.GetName().Version.ToString();
+            var assemblyName = assembly?.GetName().Name;
+            var assemblyVersion = assembly?.GetName().Version;
             return new(assemblyName, assemblyVersion);
         }
 
@@ -83,8 +83,8 @@ namespace BindOpen.Data
             IBdoAssemblyReference assemblyReference,
             string className)
         {
-            string assemblyName = assemblyReference?.AssemblyName;
-            string assemblyVersion = assemblyReference?.AssemblyVersion;
+            var assemblyName = assemblyReference?.AssemblyName;
+            var assemblyVersion = assemblyReference?.AssemblyVersion;
             return new(assemblyName, assemblyVersion, className);
         }
 
@@ -107,9 +107,7 @@ namespace BindOpen.Data
         {
             if (type == null) return null;
 
-            var assemblyReference = Assembly(
-                type.Assembly.GetName().Name,
-                type.Assembly.GetName().Version.ToString());
+            var assemblyReference = Assembly(type.Assembly.GetName().Name, type.Assembly.GetName().Version);
             var className = type.FullName;
 
             return Class(
@@ -125,6 +123,27 @@ namespace BindOpen.Data
         {
             var type = typeof(T);
             return Class(type);
+        }
+
+        /// <summary>
+        /// Creates a class reference of the spcefied type.
+        /// </summary>
+        /// <returns>Returns the itemized list of the spcefied type</returns>
+        public static BdoDataType NewDataType(
+            DataValueTypes valueType,
+            Type type = null)
+        {
+            return new BdoDataType()
+                .WithValueType(valueType)
+                .WithClassType(type);
+        }
+
+        public static BdoDataType NewDataType(
+            Type type)
+        {
+            return new BdoDataType()
+                .WithValueType(type.GetValueType())
+                .WithClassType(type);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace BindOpen.Data
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoItem : IDisposable, IClonable
+    public interface IBdoObject : IDisposable, IClonable
     {
     }
 }

@@ -95,13 +95,13 @@ namespace BindOpen.Data.Meta
             else if (valueType == DataValueTypes.Scriptword)
             {
                 var word = data as IBdoScriptword;
-                return New(name)
+                return New(name, null)
                     .WithDataReference(word);
             }
             else if (valueType == DataValueTypes.MetaData)
             {
                 var meta = data as IBdoMetaData;
-                return New(name)
+                return New(name, null)
                     .WithDataReference(meta);
                 //Type metaType;
                 //Type itemType = null;

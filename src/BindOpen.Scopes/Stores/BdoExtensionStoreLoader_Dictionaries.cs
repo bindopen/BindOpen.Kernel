@@ -16,7 +16,7 @@ namespace BindOpen.Scopes.Stores
     /// This class represents a extension scope loader.
     /// </summary>
     internal partial class BdoExtensionStoreLoader :
-        BdoItem, IBdoExtensionStoreLoader
+        BdoObject, IBdoExtensionStoreLoader
     {
         /// <summary>
         /// Loads the extension dico of the specified kind from the specified assembly.

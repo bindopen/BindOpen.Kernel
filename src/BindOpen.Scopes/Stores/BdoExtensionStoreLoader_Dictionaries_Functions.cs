@@ -9,13 +9,14 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace BindOpen.Scopes.Stores
 {
     /// <summary>
     /// This class represents a extension scope loader.
     /// </summary>
-    internal partial class BdoExtensionStoreLoader : BdoItem, IBdoExtensionStoreLoader
+    internal partial class BdoExtensionStoreLoader : BdoObject, IBdoExtensionStoreLoader
     {
         /// <summary>
         /// Loads the function dico from the specified assembly.
@@ -36,7 +37,7 @@ namespace BindOpen.Scopes.Stores
 
             // we load the entity dico from the assembly
 
-            var dico = ExtractDictionaryFromAssembly<IBdoEntityDefinition>(assembly, log);
+            var dico = ExtractDictionaryFromAssembly<IBdoFunctionDefinition>(assembly, log);
 
             // we feach entity classes
 
@@ -45,13 +46,16 @@ namespace BindOpen.Scopes.Stores
 
             foreach (var type in types)
             {
-                var methodInfos = type.GetMethods(BindingFlags.Public | BindingFlags.Static);
+                var methodInfos = type.GetMethods(BindingFlags.Public | BindingFlags.Static).ToList();
+                methodInfos.AddRange(type.GetMethods(BindingFlags.Public));
+
                 foreach (var methodInfo in methodInfos.Where(p => p.GetCustomAttributes(typeof(BdoFunctionAttribute)).Any()))
                 {
                     var definition = new BdoFunctionDefinition(null, packageDefinition)
                     {
-                        ClassReference = BdoData.Class(type),
-                        LibraryId = packageDefinition?.Id
+                        RuntimeClassType = type,
+                        LibraryId = packageDefinition?.Id,
+                        IsRuntimeFunctionStatic = methodInfo.IsStatic
                     };
 
                     definition.UpdateFrom(methodInfo);
@@ -72,14 +76,14 @@ namespace BindOpen.Scopes.Stores
                                 typeof(BdoFunctionDomainedDelegate)) as BdoFunctionDomainedDelegate;
                         }
                         else
+                        {
                             definition.RuntimeFunction = CreateDelegate(methodInfo);
+                        }
                     }
                     catch (ArgumentException)
                     {
                         log?.AddError(
-                                title: "Incompatible function ('" + methodInfo.Name + "')",
-                                description: "Function '" + definition.RuntimeFunctionName + "' in class '"
-                                + definition.ClassReference?.ClassName + "' has inexpected parameters.");
+                                title: "Function ('" + definition.Name + "') with unexpected parameters");
                     }
 
                     if (definition.RuntimeBasicFunction == null
@@ -93,12 +97,56 @@ namespace BindOpen.Scopes.Stores
 
                     // we build parameter specs
 
+                    int i = 0;
                     foreach (var paramInfo in paramInfos)
                     {
                         var spec = BdoMeta.NewSpec();
                         spec.UpdateFrom(paramInfo, typeof(BdoParameterAttribute));
-                        definition.Add(spec);
+                        spec.Index = i;
+
+                        if (spec.DataType.IsScope() || spec.DataType.IsScriptDomain())
+                        {
+                            definition.AdditionalSpecs ??= BdoData.NewSet<IBdoSpec>();
+                            definition.AdditionalSpecs.Add(spec);
+                        }
+                        else
+                        {
+                            definition.Add(spec);
+                        }
+
+                        i++;
                     }
+
+                    // if the method is an extension
+
+                    definition.IsRuntimeFunctionStatic = true;
+
+                    var isExtensionMethod = methodInfo.IsDefined(typeof(ExtensionAttribute), false);
+                    if (isExtensionMethod && definition.Count > 0)
+                    {
+                        var type1 = methodInfo.GetParameters()[0].ParameterType;
+                        definition.ParentDataType = BdoData.NewDataType(type1);
+
+                        var spec = definition.FirstOrDefault();
+                        if (definition.AdditionalSpecs?[0]?.Index != 0)
+                        {
+                            definition.Remove(spec?.Key());
+                        }
+                        definition.AdditionalSpecs ??= BdoData.NewSet<IBdoSpec>();
+                        definition.AdditionalSpecs.Add(spec);
+                    }
+                    // else if the method is not in a static class
+                    else if (!methodInfo.IsStatic
+                        && !type.IsAbstract
+                        && type.IsPublic
+                        && type.GetConstructor(Type.EmptyTypes) != null)
+                    {
+                        definition.IsRuntimeFunctionStatic = false;
+
+                        definition.ParentDataType = BdoData.NewDataType(type);
+                    }
+
+                    definition.OutputDataType = BdoData.NewDataType(methodInfo.ReturnType);
 
                     // we build the runtime definition
 

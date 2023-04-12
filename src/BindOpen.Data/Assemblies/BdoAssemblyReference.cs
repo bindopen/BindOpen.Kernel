@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Helpers;
+using System;
 
 namespace BindOpen.Data.Assemblies
 {
@@ -6,7 +7,7 @@ namespace BindOpen.Data.Assemblies
     /// This class represents the BindOpen library reference.
     /// </summary>
     public class BdoAssemblyReference :
-        BdoItem, IBdoAssemblyReference
+        BdoObject, IBdoAssemblyReference
     {
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -28,7 +29,7 @@ namespace BindOpen.Data.Assemblies
         /// <param key="version">The library version to consider.</param>
         public BdoAssemblyReference(
             string name,
-            string version = null) : this()
+            Version version = null) : this()
         {
             AssemblyName = name;
             AssemblyVersion = version;
@@ -55,7 +56,7 @@ namespace BindOpen.Data.Assemblies
         /// <summary>
         /// The library version of this instance.
         /// </summary>
-        public string AssemblyVersion { get; private set; }
+        public Version AssemblyVersion { get; private set; }
 
         /// <summary>
         /// The file name of this instance.
@@ -69,28 +70,54 @@ namespace BindOpen.Data.Assemblies
 
         public override bool Equals(object obj)
         {
-            if (obj is BdoAssemblyReference reference)
+            if (obj is IBdoAssemblyReference reference)
             {
-                return AssemblyName.Equals(reference.AssemblyName)
-                    && AssemblyVersion.Equals(reference.AssemblyVersion);
+                return this == reference;
             }
 
             return false;
         }
+
+        public bool IsCompatibleWith(IBdoAssemblyReference reference)
+        {
+            return this >= reference;
+        }
+
 
         public override int GetHashCode()
         {
             return Key()?.GetHashCode() ?? 0;
         }
 
-        public static bool operator ==(BdoAssemblyReference left, BdoAssemblyReference right)
+        public static bool operator ==(BdoAssemblyReference left, IBdoAssemblyReference right)
         {
-            return left.Equals(right);
+            return left?.AssemblyName.Equals(right?.AssemblyName, StringComparison.OrdinalIgnoreCase) == true
+                && left?.AssemblyVersion.Equals(right?.AssemblyVersion) == true;
         }
 
-        public static bool operator !=(BdoAssemblyReference left, BdoAssemblyReference right)
+        public static bool operator !=(BdoAssemblyReference left, IBdoAssemblyReference right)
         {
-            return !(left == right);
+            return !left.Equals(right);
+        }
+
+        public static bool operator >=(BdoAssemblyReference left, IBdoAssemblyReference right)
+        {
+            return left?.AssemblyName.Equals(right?.AssemblyName, StringComparison.OrdinalIgnoreCase) == true
+                && (
+                    left?.AssemblyVersion == null
+                    || right?.AssemblyVersion == null
+                    || left?.AssemblyVersion >= right?.AssemblyVersion
+                );
+        }
+
+        public static bool operator <=(BdoAssemblyReference left, IBdoAssemblyReference right)
+        {
+            return left?.AssemblyName.Equals(right?.AssemblyName, StringComparison.OrdinalIgnoreCase) == true
+                && (
+                    left?.AssemblyVersion == null
+                    || right?.AssemblyVersion == null
+                    || left?.AssemblyVersion <= right?.AssemblyVersion
+                );
         }
 
         public override string ToString()

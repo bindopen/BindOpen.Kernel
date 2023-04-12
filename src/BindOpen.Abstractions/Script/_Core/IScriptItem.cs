@@ -5,7 +5,7 @@ namespace BindOpen.Script
     /// <summary>
     /// 
     /// </summary>
-    public interface IScriptItem : IBdoItem, INamed
+    public interface IScriptItem : IBdoObject, INamed
     {
         /// <summary>
         /// The kind.

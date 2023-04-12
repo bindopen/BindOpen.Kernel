@@ -7,7 +7,7 @@ namespace BindOpen.Script
     /// 
     /// </summary>
     public interface IBdoScriptword :
-        IBdoMetaObject, IBdoItemNotMetable, IBdoDefinable
+        IBdoMetaObject, IBdoObjectNotMetable, IBdoDefinable
     {
         /// <summary>
         /// 

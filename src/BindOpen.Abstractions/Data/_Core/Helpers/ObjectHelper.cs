@@ -182,7 +182,7 @@ namespace BindOpen.Data.Helpers
         /// <param key="item">The item to use.</param>
         /// <param key="action">The action to execute.</param>
         public static void Using<T>(this T item, Action<T> action)
-            where T : IBdoItem
+            where T : IBdoObject
         {
             if (item != null)
                 using (item)

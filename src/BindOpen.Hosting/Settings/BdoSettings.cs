@@ -11,7 +11,7 @@ namespace BindOpen.Hosting.Settings
     /// <summary>
     /// This class represents a config.
     /// </summary>
-    public class BdoSettings : BdoItem, IBdoSettings
+    public class BdoSettings : BdoObject, IBdoSettings
     {
         // ------------------------------------------
         // CONSTRUCTORS

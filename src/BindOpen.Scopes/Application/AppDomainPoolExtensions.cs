@@ -93,7 +93,7 @@ namespace BindOpen.Scopes.Application
                         var assemblyName = new AssemblyName()
                         {
                             Name = reference.AssemblyName,
-                            Version = new Version(reference.AssemblyVersion)
+                            Version = reference.AssemblyVersion
                         };
                         assembly = Assembly.Load(assemblyName);
                     }

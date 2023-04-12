@@ -3,7 +3,7 @@
     /// <summary>
     /// This class represents an resource allocation.
     /// </summary>
-    public class ResourceAllocation : BdoItem, IResourceAllocation
+    public class ResourceAllocation : BdoObject, IResourceAllocation
     {
         // ------------------------------------------
         // CONSTRUCTORS

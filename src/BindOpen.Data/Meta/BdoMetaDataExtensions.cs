@@ -1,6 +1,7 @@
 ﻿using BindOpen.Logging;
 using BindOpen.Scopes;
 using BindOpen.Script;
+using System;
 
 namespace BindOpen.Data.Meta
 {
@@ -9,6 +10,38 @@ namespace BindOpen.Data.Meta
     /// </summary>
     public static partial class BdoMetaDataExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithGroupId<T>(
+            this T meta,
+            string groupId)
+            where T : IBdoMetaData
+        {
+            if (meta != null)
+            {
+                meta.GetOrAddSpec()
+                    .WithGroupId(groupId);
+            }
+
+            return meta;
+        }
+
+        public static T WithDataType<T>(
+            this T meta,
+            DataValueTypes valueType,
+            Type type = null)
+            where T : IBdoMetaData
+        {
+            if (meta != null)
+            {
+                meta.GetOrAddSpec()
+                    .WithDataType(valueType, type);
+            }
+
+            return meta;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -28,6 +61,19 @@ namespace BindOpen.Data.Meta
             }
 
             return null;
+        }
+
+        public static IBdoSpec GetOrAddSpec(this IBdoMetaData meta)
+        {
+            var spec = meta.GetSpec();
+            if (meta != null && spec == null)
+            {
+                meta.Specs ??= BdoMeta.NewSpecSet();
+                spec = BdoMeta.NewSpec();
+                meta.Specs.Add(spec);
+            }
+
+            return spec;
         }
 
         /// <summary>

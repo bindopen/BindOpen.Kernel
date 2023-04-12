@@ -17,7 +17,7 @@ namespace BindOpen.Extensions.Tasks
         {
             if (meta != null)
             {
-                meta.GroupId = IBdoTaskExtensions.__Token_Input;
+                meta.WithGroupId(IBdoTaskExtensions.__Token_Input);
             }
 
             return meta;
@@ -28,7 +28,7 @@ namespace BindOpen.Extensions.Tasks
         {
             if (meta != null)
             {
-                meta.GroupId = IBdoTaskExtensions.__Token_Output;
+                meta.WithGroupId(IBdoTaskExtensions.__Token_Output);
             }
 
             return meta;

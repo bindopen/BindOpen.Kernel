@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Assemblies;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +35,9 @@ namespace BindOpen.Data.Meta
             string id = null)
             : base(name, namePreffix, id)
         {
-            this.WithDataValueType(DataValueTypes.Object);
+            Specs = BdoMeta.NewSpecSet(
+                BdoMeta.NewSpec()
+                    .WithDataType(DataValueTypes.Object));
         }
 
         #endregion
@@ -56,11 +57,6 @@ namespace BindOpen.Data.Meta
         /// The items of this instance.
         /// </summary>
         protected IBdoMetaSet _propertySet;
-
-        /// <summary>
-        /// The class full name of this instance.
-        /// </summary>
-        public IBdoClassReference ClassReference { get; set; }
 
         public IBdoMetaObject WithData(object obj)
         {

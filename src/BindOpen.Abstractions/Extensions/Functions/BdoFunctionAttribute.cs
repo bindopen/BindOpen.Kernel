@@ -21,6 +21,10 @@ namespace BindOpen.Extensions.Functions
         {
         }
 
+        public BdoFunctionAttribute(string name) : base(name)
+        {
+        }
+
         #endregion
     }
 }

@@ -7,7 +7,7 @@ namespace BindOpen.Extensions.Connectors
     /// <summary>
     /// This class represents a connection.
     /// </summary>
-    public abstract class BdoConnection : BdoItem, IBdoConnection
+    public abstract class BdoConnection : BdoObject, IBdoConnection
     {
         // -----------------------------------------------
         // IBdoConnection Implementation

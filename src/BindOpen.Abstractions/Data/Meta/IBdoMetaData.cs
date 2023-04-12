@@ -8,7 +8,7 @@ namespace BindOpen.Data.Meta
     /// 
     /// </summary>
     public interface IBdoMetaData :
-        IBdoItemNotMetable,
+        IBdoObjectNotMetable,
         INamed, IReferenced, IIndexed,
         ITUpdatable<IBdoMetaData>
     {
@@ -23,20 +23,9 @@ namespace BindOpen.Data.Meta
         string Label { get; set; }
 
         /// <summary>
-        /// The identifier of the group of this instance.
-        /// </summary>
-        string GroupId { get; set; }
-
-        /// <summary>
         /// 
         /// </summary>
         ITBdoSet<IBdoSpec> Specs { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        IBdoSpec NewSpec();
 
         // Data
 
@@ -44,11 +33,6 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         DataMode DataMode { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        DataValueTypes DataValueType { get; set; }
 
         /// <summary>
         /// 

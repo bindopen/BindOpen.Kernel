@@ -44,8 +44,8 @@ namespace BindOpen.Data
             string identifier)
             => new()
             {
-                Kind = BdoReferenceKind.Identifier,
-                Identifier = identifier
+                Kind = BdoReferenceKind.Variable,
+                VariableName = identifier
             };
 
         /// <summary>

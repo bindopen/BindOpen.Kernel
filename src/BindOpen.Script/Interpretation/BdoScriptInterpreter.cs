@@ -1,7 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
-using BindOpen.Data.Meta.Reflection;
 using BindOpen.Extensions.Functions;
 using BindOpen.Logging;
 using BindOpen.Scopes;
@@ -13,7 +12,7 @@ namespace BindOpen.Script
     /// This class represents a script interpreter. A script interpreter allows to interpret a script
     /// using script dictionnaries and data context, providing a log for the interpretation task.
     /// </summary>
-    public class BdoScriptInterpreter : BdoItem, IBdoScriptInterpreter
+    public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
     {
         // ------------------------------------------
         // VARIABLES
@@ -187,8 +186,8 @@ namespace BindOpen.Script
             {
                 case BdoReferenceKind.Expression:
                     return Evaluate(reference?.Expression, varSet, log);
-                case BdoReferenceKind.Identifier:
-                    return varSet?[reference?.Identifier];
+                case BdoReferenceKind.Variable:
+                    return varSet?[reference?.VariableName];
                 case BdoReferenceKind.MetaData:
                     return reference?.MetaData;
                 case BdoReferenceKind.Word:
@@ -316,7 +315,7 @@ namespace BindOpen.Script
             else if (parentScriptword != null && script.ToSubstring(index, index) == ".")
             {
                 index++;
-                scriptItemKind = ScriptItemKinds.Property;
+                scriptItemKind = ScriptItemKinds.Function;
             }
             else
             {
@@ -444,26 +443,6 @@ namespace BindOpen.Script
                         scriptword = BdoScript.NewWord(ScriptItemKinds.Variable, varName);
                         index = nextIndex;
                         break;
-                    case ScriptItemKinds.Property:
-                        // we look for the next ")" character.
-                        nextIndex = script.IndexOfFromScript("(", index);
-                        if (nextIndex >= script.Length - 1 || script[nextIndex + 1] != ')')
-                        {
-                            log?.AddError(
-                                title: "Syntax Error: Character ')' needed for function has not been found. Position " + (index + offsetIndex),
-                                resultCode: "SCRIPT_SYNTAXERROR")
-                                .WithDetail(
-                                    BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
-
-                            return null;
-                        }
-
-                        var propName = script.ToSubstring(index, nextIndex - 1).Trim().ToUnquoted();
-
-                        // we instantiate the script word
-                        scriptword = BdoScript.NewWord(ScriptItemKinds.Property, propName);
-                        index = nextIndex;
-                        break;
                 }
 
                 if (scriptword != null)
@@ -473,6 +452,9 @@ namespace BindOpen.Script
                     // if the script word is a variable then we retrieve the sub script word
                     if (script.ToSubstring(nextIndex + 1, nextIndex + 1) == ".")
                     {
+                        var obj = Evaluate(scriptword, varSet, log);
+                        scriptword.WithData(obj);
+
                         nextIndex++;
                         scriptword = FindNextWord(
                             script,
@@ -503,10 +485,6 @@ namespace BindOpen.Script
                     return _scope.CallFunction(scriptword, varSet, log);
                 case ScriptItemKinds.Variable:
                     return varSet?.GetData(scriptword?.Name, _scope, varSet, log);
-                case ScriptItemKinds.Property:
-                    var parentObj = EvaluateScriptword(scriptword?.Parent as IBdoScriptword, varSet, log);
-                    var propName = scriptword?.Name;
-                    return parentObj?.GetPropertyValue(propName, typeof(BdoPropertyAttribute));
             }
 
             return null;

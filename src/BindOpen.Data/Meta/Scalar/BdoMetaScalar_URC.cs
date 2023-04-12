@@ -27,7 +27,7 @@ namespace BindOpen.Data.Meta
                     this.WithDataMode(metaScalar.DataMode);
                     WithData(metaScalar.GetData());
                     this.WithDataReference(metaScalar.Reference);
-                    this.WithDataValueType(metaScalar.DataValueType);
+                    //this.WithDataValueType(metaScalar.DataValueType);
                     //this.WithIndex(metaObj.Index);
                     //this.WithName(metaObj.Name);
                     //this.WithSpecs(metaObj.Specs?.ToArray());

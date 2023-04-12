@@ -7,7 +7,7 @@ namespace BindOpen.Script
     /// <summary>
     /// This interface defines the script interpreter.
     /// </summary>
-    public interface IBdoScriptInterpreter : IBdoItem
+    public interface IBdoScriptInterpreter : IBdoObject
     {
         /// <summary>
         /// 

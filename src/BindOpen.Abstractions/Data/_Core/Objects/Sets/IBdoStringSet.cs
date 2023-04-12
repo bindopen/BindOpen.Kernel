@@ -5,7 +5,7 @@ namespace BindOpen.Data
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoStringSet : IBdoItemNotMetable
+    public interface IBdoStringSet : IBdoObjectNotMetable
     {
         /// <summary>
         /// 

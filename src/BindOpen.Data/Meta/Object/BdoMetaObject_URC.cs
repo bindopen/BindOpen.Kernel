@@ -33,11 +33,11 @@ namespace BindOpen.Data.Meta
             {
                 if (updateModes.Has(UpdateModes.Incremental_UpdateCommon))
                 {
-                    this.WithClassReference(metaObj.ClassReference);
+                    //this.WithClassReference(metaObj.ClassReference);
                     this.WithDataMode(metaObj.DataMode);
                     WithData(metaObj.GetData());
                     this.WithDataReference(metaObj.Reference);
-                    this.WithDataValueType(metaObj.DataValueType);
+                    //this.WithDataValueType(metaObj.DataValueType);
                     //this.WithIndex(metaObj.Index);
                     //this.WithName(metaObj.Name);
                     //this.WithSpecs(metaObj.Specs?.ToArray());

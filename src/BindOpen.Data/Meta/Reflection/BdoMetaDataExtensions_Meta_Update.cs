@@ -33,7 +33,7 @@ namespace BindOpen.Data.Meta.Reflection
                     list = new();
 
                     if (!type.IsScalar() && !type.IsList()
-                        && !type.IsAssignableFrom(typeof(IBdoItemNotMetable)))
+                        && !type.IsAssignableFrom(typeof(IBdoObjectNotMetable)))
                     {
                         foreach (var propInfo in type.GetProperties())
                         {
@@ -66,11 +66,6 @@ namespace BindOpen.Data.Meta.Reflection
                                 else
                                 {
                                     subMeta = ToMetaData(propInfo.PropertyType, propValue, propName, onlyMetaAttributes);
-                                    subMeta.WithGroupId(spec.GroupId);
-                                    if (spec.ValueType == DataValueTypes.Any)
-                                    {
-                                        subMeta.WithDataValueType(spec.ValueType);
-                                    }
                                     subMeta.WithSpecs(spec);
                                 }
 

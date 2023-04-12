@@ -34,13 +34,12 @@ namespace BindOpen.Tests.Data
         [Test, Order(2)]
         public void LabelTest()
         {
-            var meta1 = BdoMeta.NewScalar("toto");
+            var meta1 = BdoMeta.NewScalar("toto", 23);
             meta1.WithLabel(LabelFormats.NameColonValue);
-            Assert.That(meta1.Label == "{{$(this).name()}}:{{$(this).value()}}", "Bad meta data label");
+            Assert.That(meta1.Label == "{{$(this).prop('name')}}:{{$(this).value()}}", "Bad meta data label");
 
             var label = meta1.GetLabel(ScopingTests.Scope);
-
-            Test(meta1);
+            Assert.That(label == "toto:23", "Bad meta data label");
         }
     }
 }

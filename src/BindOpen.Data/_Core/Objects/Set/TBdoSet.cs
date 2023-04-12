@@ -9,7 +9,7 @@ namespace BindOpen.Data
     /// This class represents a data item set.
     /// </summary>
     /// <typeparam name="T">The class of the named data items.</typeparam>
-    public partial class TBdoSet<T> : BdoItem, ITBdoSet<T>
+    public partial class TBdoSet<T> : BdoObject, ITBdoSet<T>
         where T : IReferenced
     {
         // ------------------------------------------

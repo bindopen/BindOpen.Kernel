@@ -1,12 +1,12 @@
 ﻿using BindOpen.Data.Helpers;
+using System;
 
 namespace BindOpen.Data.Assemblies
 {
     /// <summary>
     /// This structure represents an class reference.
     /// </summary>
-    public class BdoClassReference : BdoAssemblyReference,
-        IBdoClassReference
+    public class BdoClassReference : BdoAssemblyReference, IBdoClassReference
     {
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -26,7 +26,7 @@ namespace BindOpen.Data.Assemblies
         /// <param key="className"></param>
         public BdoClassReference(
             string assemblyName,
-            string assemblyVersion,
+            Version assemblyVersion,
             string className)
             : base(assemblyName, assemblyVersion)
         {
@@ -58,22 +58,60 @@ namespace BindOpen.Data.Assemblies
 
         public override bool Equals(object obj)
         {
-            if (obj is BdoClassReference reference)
+            if (obj is IBdoClassReference reference)
             {
-                return AssemblyName.Equals(reference.AssemblyName)
-                    && AssemblyVersion.Equals(reference.AssemblyVersion)
-                    && ClassName.Equals(reference.ClassName);
+                return this == reference;
             }
 
             return false;
         }
 
-        public static bool operator ==(BdoClassReference left, BdoClassReference right)
+        public bool IsCompatibleWith(IBdoClassReference reference)
         {
-            return left.Equals(right);
+            return this >= reference;
         }
 
-        public static bool operator !=(BdoClassReference left, BdoClassReference right)
+        public static bool operator ==(BdoClassReference left, IBdoClassReference right)
+        {
+            return (BdoAssemblyReference)left == (IBdoAssemblyReference)right
+                && left?.ClassName.Equals(right?.ClassName, StringComparison.OrdinalIgnoreCase) == true;
+        }
+
+        public static bool operator !=(BdoClassReference left, IBdoClassReference right)
+        {
+            return !(left == right);
+        }
+
+        public static bool operator >=(BdoClassReference left, IBdoClassReference right)
+        {
+            return (BdoAssemblyReference)left >= (IBdoAssemblyReference)right
+                && left?.ClassName.Equals(right?.ClassName) == true;
+        }
+
+        public static bool operator <=(BdoClassReference left, IBdoClassReference right)
+        {
+            return (BdoAssemblyReference)left <= (IBdoAssemblyReference)right
+                && left?.ClassName.Equals(right?.ClassName) == true;
+        }
+
+        public static bool operator ==(BdoClassReference left, BdoDataType right)
+        {
+            return right.ValueType == DataValueTypes.Any
+                || (right.ValueType == DataValueTypes.Object
+                && left == right.ClassType);
+        }
+
+        public static bool operator !=(BdoClassReference left, BdoDataType right)
+        {
+            return !(left == right);
+        }
+
+        public static bool operator ==(BdoClassReference left, Type right)
+        {
+            return left == BdoData.Class(right);
+        }
+
+        public static bool operator !=(BdoClassReference left, Type right)
         {
             return !(left == right);
         }

@@ -6,7 +6,7 @@ namespace BindOpen.Data
     /// This class represents a data item.
     /// </summary>
     /// <remarks>The data item has only an ID, a creation and a last-modification dates.</remarks>
-    public abstract class BdoItem : IBdoItem, IClonable
+    public abstract class BdoObject : IBdoObject, IClonable
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -17,14 +17,14 @@ namespace BindOpen.Data
         /// <summary>
         /// Instantiates a new instance of the DataItem class.
         /// </summary>
-        protected BdoItem()
+        protected BdoObject()
         {
         }
 
         /// <summary>
         /// Disposes this instance.
         /// </summary>
-        ~BdoItem()
+        ~BdoObject()
         {
             Dispose(false);
         }
@@ -35,7 +35,7 @@ namespace BindOpen.Data
         // IClonable Implementation
         // --------------------------------------------------
 
-        #region Accessors
+        #region IClonable
 
         /// <summary>
         /// Clones this instance.

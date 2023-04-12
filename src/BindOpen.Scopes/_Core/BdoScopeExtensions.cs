@@ -1,5 +1,4 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Extensions.Connectors;
+﻿using BindOpen.Extensions.Connectors;
 using BindOpen.Logging;
 using BindOpen.Scopes.Stores;
 using System;
@@ -77,5 +76,6 @@ namespace BindOpen.Scopes
 
             return scope;
         }
+
     }
 }

@@ -1,5 +1,6 @@
-﻿using BindOpen.Scopes;
+﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
+using BindOpen.Scopes;
 
 namespace BindOpen.Script
 {
@@ -54,6 +55,15 @@ namespace BindOpen.Script
             }
 
             return function;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="assemblyFileName"></param>
+        public static bool IsScriptDomain(this BdoDataType dataType)
+        {
+            return dataType >= typeof(IBdoScriptDomain);
         }
     }
 }

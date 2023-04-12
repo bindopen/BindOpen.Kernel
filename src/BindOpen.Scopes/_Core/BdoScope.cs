@@ -15,7 +15,7 @@ namespace BindOpen.Scopes
     /// <summary>
     /// This class represents an application scope.
     /// </summary>
-    public partial class BdoScope : BdoItem, IBdoScope
+    public partial class BdoScope : BdoObject, IBdoScope
     {
         // ------------------------------------------
         // CONSTRUCTORS

@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Assemblies;
+﻿using System;
 
 namespace BindOpen.Data.Meta
 {
@@ -33,14 +33,14 @@ namespace BindOpen.Data.Meta
         /// <param key="items">The items to consider.</param>
         public static BdoMetaObject NewObject(
             string name,
-            IBdoClassReference reference,
+            Type type,
             object item)
         {
             var el = new BdoMetaObject();
 
             el
                 .WithName(name)
-                .WithClassReference(reference)
+                .WithDataType(DataValueTypes.Object, type)
                 .WithData(item);
 
             return el;
@@ -84,11 +84,9 @@ namespace BindOpen.Data.Meta
         {
             var el = new TMeta();
 
-            var reference = BdoData.Class<TItem>();
-
             el
                 .WithName(name)
-                .WithClassReference(reference)
+                .WithDataType(DataValueTypes.Object, typeof(TItem))
                 .WithData(item);
 
             return el;

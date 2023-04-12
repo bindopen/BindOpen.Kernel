@@ -4,7 +4,7 @@
     /// 
     /// </summary>
     public interface ICondition :
-        INamed, IReferenced, IBdoItemNotMetable
+        INamed, IReferenced, IBdoObjectNotMetable
     {
     }
 }

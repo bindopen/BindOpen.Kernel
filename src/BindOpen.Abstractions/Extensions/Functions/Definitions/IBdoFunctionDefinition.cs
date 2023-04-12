@@ -1,5 +1,5 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Assemblies;
+using BindOpen.Data.Meta;
 using System;
 
 namespace BindOpen.Extensions.Functions
@@ -12,24 +12,28 @@ namespace BindOpen.Extensions.Functions
         /// <summary>
         /// 
         /// </summary>
-        DataValueTypes OutputValueType { get; set; }
+        ITBdoSet<IBdoSpec> AdditionalSpecs { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoClassReference ClassReference { get; set; }
+        BdoDataType ParentDataType { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        string RuntimeFunctionName { get; set; }
+        BdoDataType OutputDataType { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        Type RuntimeClassType { get; set; }
+
+
+        bool IsRuntimeFunctionStatic { get; set; }
+
 
         Delegate RuntimeFunction { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        DataValueTypes ParentValueType { get; set; }
 
         /// <summary>
         /// 

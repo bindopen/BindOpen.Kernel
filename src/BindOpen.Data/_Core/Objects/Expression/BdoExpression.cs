@@ -3,7 +3,7 @@
     /// <summary>
     /// This class represents a data exp that can contain a literal and script texts.
     /// </summary>
-    public class BdoExpression : BdoItem, IBdoExpression
+    public class BdoExpression : BdoObject, IBdoExpression
     {
         // ------------------------------------------
         // PROPERTIES

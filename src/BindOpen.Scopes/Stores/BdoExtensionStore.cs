@@ -14,7 +14,7 @@ namespace BindOpen.Scopes.Stores
     /// <summary>
     /// This class represents a BindOpen extension item store.
     /// </summary>
-    public class BdoExtensionStore : BdoItem,
+    public class BdoExtensionStore : BdoObject,
         IBdoExtensionStore
     {
         // ------------------------------------------

@@ -10,7 +10,7 @@ namespace BindOpen.Hosting.Hosts
     /// <summary>
     /// The interface defines the base BDO host options.
     /// </summary>
-    public interface IBdoHostOptions : IBdoItem
+    public interface IBdoHostOptions : IBdoObject
     {
         // Paths ----------------------
 

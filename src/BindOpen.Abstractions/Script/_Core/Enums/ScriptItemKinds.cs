@@ -24,24 +24,19 @@ namespace BindOpen.Script
         Variable = 1 << 1,
 
         /// <summary>
-        /// Property.
-        /// </summary>
-        Property = 1 << 2,
-
-        /// <summary>
         /// Text.
         /// </summary>
-        Text = 1 << 3,
+        Text = 1 << 2,
 
         /// <summary>
         /// Syntax.
         /// </summary>
-        Syntax = 1 << 4,
+        Syntax = 1 << 3,
 
         /// <summary>
         /// Literal.
         /// </summary>
-        Literal = 1 << 5,
+        Literal = 1 << 4,
 
         /// <summary>
         /// Any.

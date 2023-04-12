@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoItemNotMetable : IBdoItem
+    public interface IBdoObjectNotMetable : IBdoObject
     {
     }
 }

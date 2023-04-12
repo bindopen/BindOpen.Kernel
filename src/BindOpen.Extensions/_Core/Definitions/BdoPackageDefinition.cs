@@ -8,7 +8,7 @@ namespace BindOpen.Extensions
     /// <summary>
     /// This class represents the definition of a library.
     /// </summary>
-    public class BdoPackageDefinition : BdoItem, IBdoPackageDefinition
+    public class BdoPackageDefinition : BdoObject, IBdoPackageDefinition
     {
         // ------------------------------------------
         // CONSTRUCTORS

@@ -42,7 +42,7 @@ namespace BindOpen.Data
             {
                 Kind = dto.Kind,
                 Expression = dto.Expression.ToPoco(),
-                Identifier = dto.Identifier,
+                VariableName = dto.Identifier,
                 //MetaData = dto.MetaData.ToPoco(),
                 Word = dto.Word.ToPoco()
             };

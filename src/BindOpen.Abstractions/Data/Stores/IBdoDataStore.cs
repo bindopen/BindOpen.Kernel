@@ -8,7 +8,7 @@ namespace BindOpen.Data.Stores
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoDataStore : IBdoItem
+    public interface IBdoDataStore : IBdoObject
     {
         /// <summary>
         /// The depots of this instance.

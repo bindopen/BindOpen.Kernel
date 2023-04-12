@@ -7,7 +7,7 @@ namespace BindOpen.Data
     /// <summary>
     /// This class specifies the data value filter.
     /// </summary>
-    public class BdoStringSet : BdoItem, IBdoStringSet
+    public class BdoStringSet : BdoObject, IBdoStringSet
     {
         // --------------------------------------------------
         // CONSTRUCTORS

@@ -6,7 +6,7 @@ namespace BindOpen.Data
     /// <summary>
     /// This interface defines a data expression.
     /// </summary>
-    public interface IBdoReference : IBdoItem
+    public interface IBdoReference : IBdoObject
     {
         /// <summary>
         /// The kind.
@@ -20,7 +20,7 @@ namespace BindOpen.Data
         /// </summary>
         IBdoScriptword Word { get; set; }
 
-        string Identifier { get; set; }
+        string VariableName { get; set; }
 
         IBdoMetaData MetaData { get; set; }
     }

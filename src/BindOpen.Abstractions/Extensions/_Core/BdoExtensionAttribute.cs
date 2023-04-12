@@ -57,6 +57,14 @@ namespace BindOpen.Extensions
         {
         }
 
+        /// <summary>
+        /// Instantiates a new instance of the MetaExtensionAttribute class.
+        /// </summary>
+        protected MetaExtensionAttribute(string name) : base()
+        {
+            Name = name;
+        }
+
         #endregion
     }
 }

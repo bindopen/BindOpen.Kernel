@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Helpers;
+using BindOpen.Extensions.Functions;
 using BindOpen.Logging;
 using BindOpen.Scopes;
 using BindOpen.Script;
@@ -10,7 +11,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element.
     /// </summary>
-    public abstract partial class BdoMetaData : BdoItem,
+    public abstract partial class BdoMetaData : BdoObject,
         IBdoMetaData
     {
         // --------------------------------------------------
@@ -114,11 +115,6 @@ namespace BindOpen.Data.Meta
         }
 
         /// <summary>
-        /// The value type of this instance.
-        /// </summary>
-        public DataValueTypes DataValueType { get; set; } = DataValueTypes.Any;
-
-        /// <summary>
         /// The label of this instance.
         /// </summary>
         public string Label { get; set; }
@@ -144,31 +140,6 @@ namespace BindOpen.Data.Meta
         /// Specification of this instance.
         /// </summary>
         public ITBdoSet<IBdoSpec> Specs { get; set; }
-
-        /// <summary>
-        /// Gets a new specification.
-        /// </summary>
-        /// <returns>Returns the new specifcation.</returns>
-        public IBdoSpec GetSpec(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null)
-        {
-            if (scope == null)
-            {
-                return Specs?.FirstOrDefault(q => q.Condition == null);
-            }
-
-            return Specs?.FirstOrDefault(q => q.Condition.Evaluate(scope, varSet));
-        }
-
-        /// <summary>
-        /// Gets a new specification.
-        /// </summary>
-        /// <returns>Returns the new specifcation.</returns>
-        public IBdoSpec NewSpec()
-        {
-            return BdoMeta.NewSpec<BdoSpec>();
-        }
 
         /// <summary>
         /// Returns the item object of this instance.
@@ -270,6 +241,23 @@ namespace BindOpen.Data.Meta
         /// <param key="scope">The scope to consider.</param>
         /// <param key="varSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
+        [BdoFunction("value")]
+        public static List<object> Value(
+            IBdoMetaData data,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            return data?.GetDataList(scope, varSet, log);
+        }
+
+        /// <summary>
+        /// Returns the item TItem of this instance.
+        /// </summary>
+        /// <param key="log">The log to populate.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable meta set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
         public virtual List<Q> GetDataList<Q>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
@@ -360,6 +348,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
+        [BdoProperty("name")]
         public string Name { get; set; }
 
         #endregion

@@ -5,7 +5,7 @@ namespace BindOpen.Script
     /// <summary>
     /// This class represents a script item.
     /// </summary>
-    public class ScriptItem : BdoItem, IScriptItem
+    public class ScriptItem : BdoObject, IScriptItem
     {
         // ------------------------------------------
         // CONSTRUCTORS
