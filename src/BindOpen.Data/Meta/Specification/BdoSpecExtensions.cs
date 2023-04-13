@@ -12,6 +12,22 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
+        /// <param key="specs"></param>
+        public static T WithSubSpecs<T>(
+            this T spec,
+            params IBdoSpec[] specs)
+            where T : IBdoSpec
+        {
+            if (spec != null)
+            {
+                spec.SubSpecs = BdoData.NewSet(specs);
+            }
+            return spec;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param key="condition"></param>
         public static T WithConditions<T>(
             this T spec,

@@ -35,7 +35,7 @@ namespace BindOpen.Tests
         [BdoFunction(Name = "eq")]
         public static bool GetTest(
             [BdoParameter(Title = "String value")]
-            this object obj1,
+            object obj1,
             [BdoParameter(Title = "Integer value")]
             object obj2)
             => obj1?.ToString().Equals(obj2?.ToString(), StringComparison.OrdinalIgnoreCase) == true;
@@ -61,7 +61,9 @@ namespace BindOpen.Tests
             Name = "Func2",
             Description = "Test function 2.",
             CreationDate = "2022-06-24")]
-        public static object Fun_Func2a(IBdoScriptDomain domain)
+        public static object Fun_Func2a(
+            this object obj1,
+            IBdoScriptDomain domain)
         {
             string value1 = domain?.Scriptword.GetData<string>(0);
             string value2 = domain?.Scriptword.GetData<string>(1);

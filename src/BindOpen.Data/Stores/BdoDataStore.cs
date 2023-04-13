@@ -8,7 +8,7 @@ namespace BindOpen.Data.Stores
     /// <summary>
     /// This class represents a set of depots.
     /// </summary>
-    public class BdoDataStore : BdoItem, IBdoDataStore
+    public class BdoDataStore : BdoObject, IBdoDataStore
     {
         // ------------------------------------------
         // PROPERTIES

@@ -51,7 +51,6 @@ namespace BindOpen.Script
                        .ForMember(q => q.Items, opt => opt.Ignore())
                        .ForMember(q => q.Parent, opt => opt.Ignore())
                        .ForMember(q => q.Specs, opt => opt.Ignore())
-                       .ForMember(q => q.ClassReference, opt => opt.Ignore())
                    );
 
             var mapper = new Mapper(config);

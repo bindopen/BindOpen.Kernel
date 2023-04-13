@@ -1,4 +1,5 @@
-﻿using BindOpen.Script;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Script;
 
 namespace BindOpen.Data
 {
@@ -14,12 +15,11 @@ namespace BindOpen.Data
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the created exp.</returns>
         public static BdoReference NewReference(
-            string text,
-            BdoExpressionKind kind = BdoExpressionKind.Auto)
+            IBdoExpression exp)
             => new()
             {
-                Kind = kind,
-                Text = text
+                Kind = BdoReferenceKind.Expression,
+                Expression = exp
             };
 
         /// <summary>
@@ -31,8 +31,34 @@ namespace BindOpen.Data
             IBdoScriptword word)
             => new()
             {
-                Kind = BdoExpressionKind.None,
+                Kind = BdoReferenceKind.Word,
                 Word = word
+            };
+
+        /// <summary>
+        /// Creates the exp.
+        /// </summary>
+        /// <param key="word">The word of exp to consider.</param>
+        /// <returns>Returns the created exp.</returns>
+        public static BdoReference NewReference(
+            string identifier)
+            => new()
+            {
+                Kind = BdoReferenceKind.Variable,
+                VariableName = identifier
+            };
+
+        /// <summary>
+        /// Creates the exp.
+        /// </summary>
+        /// <param key="word">The word of exp to consider.</param>
+        /// <returns>Returns the created exp.</returns>
+        public static BdoReference NewReference(
+            IBdoMetaData meta)
+            => new()
+            {
+                Kind = BdoReferenceKind.MetaData,
+                MetaData = meta
             };
 
         // Alias
@@ -44,9 +70,8 @@ namespace BindOpen.Data
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the created exp.</returns>
         public static BdoReference NewRef(
-            string text,
-            BdoExpressionKind kind = BdoExpressionKind.Auto)
-            => NewReference(text, kind);
+            IBdoExpression exp)
+            => NewReference(exp);
 
         /// <summary>
         /// Creates the exp.
@@ -56,5 +81,23 @@ namespace BindOpen.Data
         public static BdoReference NewRef(
             IBdoScriptword word)
             => NewReference(word);
+
+        /// <summary>
+        /// Creates the exp.
+        /// </summary>
+        /// <param key="word">The word of exp to consider.</param>
+        /// <returns>Returns the created exp.</returns>
+        public static BdoReference NewRef(
+            string identifier)
+            => NewReference(identifier);
+
+        /// <summary>
+        /// Creates the exp.
+        /// </summary>
+        /// <param key="word">The word of exp to consider.</param>
+        /// <returns>Returns the created exp.</returns>
+        public static BdoReference NewRef(
+            IBdoMetaData meta)
+            => NewReference(meta);
     }
 }

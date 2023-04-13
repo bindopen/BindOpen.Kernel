@@ -20,8 +20,6 @@
                 Text = text
             };
 
-        // Alias
-
         /// <summary>
         /// Creates the exp.
         /// </summary>

@@ -21,6 +21,10 @@ namespace BindOpen.Extensions.Connectors
         {
         }
 
+        public BdoConnectorAttribute(string name) : base(name)
+        {
+        }
+
         #endregion
     }
 }

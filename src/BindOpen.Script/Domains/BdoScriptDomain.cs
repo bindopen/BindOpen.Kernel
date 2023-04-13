@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Meta;
+using BindOpen.Logging;
 using BindOpen.Scopes;
 
 namespace BindOpen.Script
@@ -25,6 +26,11 @@ namespace BindOpen.Script
         public IBdoMetaSet VariableSet { get; set; }
 
         /// <summary>
+        /// The log of this instance.
+        /// </summary>
+        public IBdoLog Log { get; set; }
+
+        /// <summary>
         /// The script word of this instance.
         /// </summary>
         public IBdoScriptword Scriptword { get; set; }
@@ -47,11 +53,13 @@ namespace BindOpen.Script
         public BdoScriptDomain(
             IBdoScope scope,
             IBdoMetaSet varSet,
-            IBdoScriptword scriptword)
+            IBdoScriptword scriptword,
+            IBdoLog log = null)
         {
             Scope = scope;
             VariableSet = varSet;
             Scriptword = scriptword;
+            Log = log;
         }
 
         #endregion

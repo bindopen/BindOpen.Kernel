@@ -33,7 +33,7 @@ namespace BindOpen.Data.Meta.Reflection
                     list = new();
 
                     if (!type.IsScalar() && !type.IsList()
-                        && !type.IsAssignableFrom(typeof(IBdoItemNotMetable)))
+                        && !type.IsAssignableFrom(typeof(IBdoObjectNotMetable)))
                     {
                         foreach (var propInfo in type.GetProperties())
                         {
@@ -51,26 +51,13 @@ namespace BindOpen.Data.Meta.Reflection
                                 {
                                     if (subMeta.DataMode == DataMode.Value)
                                     {
-                                        if (subMeta is IBdoMetaScalar subMetaScalar)
-                                        {
-                                            subMetaScalar.WithData(propValue);
-                                        }
-                                        else if (subMeta is IBdoMetaObject subMetaObject)
-                                        {
-                                            subMetaObject.WithData(propValue);
-                                        }
-
+                                        subMeta.WithData(propValue);
                                         subMeta.UpdateTree();
                                     }
                                 }
                                 else
                                 {
                                     subMeta = ToMetaData(propInfo.PropertyType, propValue, propName, onlyMetaAttributes);
-                                    subMeta.WithGroupId(spec.GroupId);
-                                    if (spec.ValueType == DataValueTypes.Any)
-                                    {
-                                        subMeta.WithDataValueType(spec.ValueType);
-                                    }
                                     subMeta.WithSpecs(spec);
                                 }
 

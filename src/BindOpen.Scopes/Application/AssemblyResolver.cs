@@ -8,7 +8,7 @@ namespace BindOpen.Scopes.Application
     /// <summary>
     /// This class represents an assembly resolver.
     /// </summary>
-    public class AssemblyResolver : BdoItem
+    public class AssemblyResolver : BdoObject
     {
         // NOTE: This class includes temporary comments due to the fact
         // that we are expecting .net core to provide more appdomain apis

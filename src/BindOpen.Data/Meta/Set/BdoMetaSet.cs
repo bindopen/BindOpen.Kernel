@@ -1,6 +1,6 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
 using BindOpen.Logging;
+using BindOpen.Scopes;
 using BindOpen.Script;
 using System.Collections.Generic;
 using System.Linq;
@@ -161,6 +161,11 @@ namespace BindOpen.Data.Meta
         public bool IsRepeated { get; set; }
 
         /// <summary>
+        /// The label of this instance.
+        /// </summary>
+        public string Label { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         public BdoMetaDataKind MetaDataKind
@@ -249,6 +254,10 @@ namespace BindOpen.Data.Meta
         public override void Clear()
         {
             base.Clear();
+        }
+
+        public virtual void SetData(object obj)
+        {
         }
 
         /// <summary>

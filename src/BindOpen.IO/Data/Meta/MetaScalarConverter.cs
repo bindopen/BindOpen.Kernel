@@ -29,7 +29,7 @@ namespace BindOpen.Data.Meta
 
             if (poco.DataMode == DataMode.Value)
             {
-                var dataList = poco.GetDataList<object>()?.Select(q => q.ToString(poco.DataValueType)).ToList();
+                var dataList = poco.GetDataList<object>()?.Select(q => q.ToString()).ToList();
                 if (dataList?.Count > 1)
                 {
                     dto.Items = dataList;
@@ -67,11 +67,11 @@ namespace BindOpen.Data.Meta
 
             if (!string.IsNullOrEmpty(dto.Item))
             {
-                poco.WithData(dto.Item.ToObject(poco.DataValueType));
+                poco.WithData(dto.Item.ToObject(poco.GetSpec()?.DataType.ValueType ?? DataValueTypes.None));
             }
             else
             {
-                var objects = dto.Items?.Select(q => q.ToObject(poco.DataValueType)).ToList();
+                var objects = dto.Items?.Select(q => q.ToObject(poco.GetSpec()?.DataType.ValueType ?? DataValueTypes.None)).ToList();
                 poco.WithData(objects);
             }
 

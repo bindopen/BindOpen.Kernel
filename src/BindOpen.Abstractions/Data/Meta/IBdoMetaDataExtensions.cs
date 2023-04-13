@@ -1,6 +1,6 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
 using BindOpen.Logging;
+using BindOpen.Scopes;
 using System.Linq;
 
 namespace BindOpen.Data.Meta
@@ -29,14 +29,30 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public static T WithDataValueType<T>(
+        public static T WithLabel<T>(
             this T meta,
-            DataValueTypes valueType)
+            string label)
             where T : IBdoMetaData
         {
             if (meta != null)
             {
-                meta.DataValueType = valueType;
+                meta.Label = label;
+            }
+
+            return meta;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithLabel<T>(
+            this T meta,
+            LabelFormats label)
+            where T : IBdoMetaData
+        {
+            if (meta != null)
+            {
+                meta.Label = label.GetScript();
             }
 
             return meta;
@@ -52,21 +68,22 @@ namespace BindOpen.Data.Meta
         {
             if (meta != null)
             {
+                meta.WithDataMode(DataMode.Reference);
                 meta.Reference = reference;
             }
 
             return meta;
         }
 
-        public static T WithGroupId<T>(
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithData<T>(
             this T meta,
-            string groupId)
+            object obj)
             where T : IBdoMetaData
         {
-            if (meta != null)
-            {
-                meta.GroupId = groupId;
-            }
+            meta?.SetData(obj);
 
             return meta;
         }
@@ -86,6 +103,8 @@ namespace BindOpen.Data.Meta
             {
                 spec = meta.Specs?.FirstOrDefault(
                     q => q?.Condition.Evaluate(scope, varSet, log) == true);
+
+                spec ??= meta.Specs?.FirstOrDefault(q => q?.Condition == null);
             }
 
             return spec;
@@ -95,11 +114,12 @@ namespace BindOpen.Data.Meta
             this IBdoMetaData meta,
             string groupId)
         {
+            var spec = meta?.GetSpec();
             return
                 meta != null &&
-                (groupId == meta.GroupId
+                (groupId == spec?.GroupId
                     || groupId == StringHelper.__Star
-                    || groupId.BdoKeyEquals(meta.GroupId));
+                    || groupId.BdoKeyEquals(spec?.GroupId));
         }
     }
 }

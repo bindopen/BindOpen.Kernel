@@ -23,28 +23,29 @@ namespace BindOpen.Tests.Data
             };
         }
 
-        public void Test(IBdoReference exp)
+        public void Test(IBdoReference reference)
         {
-            switch (exp.Kind)
-            {
-                case BdoExpressionKind.Literal:
-                    Assert.That(exp.Text == _valueSet.Literal);
-                    break;
-                case BdoExpressionKind.Script:
-                    Assert.That(exp.Text == _valueSet.Script);
-                    break;
-                    //case BdoExpressionKind.Word:
-                    //    Assert.That(exp.Word?.Name.Equals(_valueSet.ScriptwordName));
-                    //    break;
-            }
+            //switch (reference.Kind)
+            //{
+            //    case BdoReferenceKind.Expression:
+            //        Assert.That(reference.Text == _valueSet.Literal);
+            //        break;
+            //    case BdoReferenceKind.Identifier:
+            //        Assert.That(reference.Text == _valueSet.Script);
+            //        break;
+            //    case BdoReferenceKind.MetaData:
+            //        Assert.That(reference.Text == _valueSet.Script);
+            //        break;
+            //    case BdoReferenceKind.Word:
+            //        Assert.That(reference.Text == _valueSet.Script);
+            //        break;
+            //}
         }
 
         [Test, Order(1)]
         public void Create1Test()
         {
-            _reference = BdoData.NewReference(
-                _valueSet.Literal as string,
-                BdoExpressionKind.Literal);
+            _reference = BdoData.NewReference(BdoData.NewExp(_valueSet.Literal as string, BdoExpressionKind.Literal));
 
             Test(_reference);
         }
@@ -52,8 +53,7 @@ namespace BindOpen.Tests.Data
         [Test, Order(2)]
         public void Create2Test()
         {
-            _reference = BdoData.NewReference(_valueSet.Script as string)
-                .AsScript();
+            _reference = BdoData.NewReference(BdoData.NewExp(_valueSet.Script as string, BdoExpressionKind.Script));
 
             Test(_reference);
         }

@@ -1,6 +1,7 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Extensions.Functions;
 using BindOpen.Logging;
+using BindOpen.Scopes;
 using BindOpen.Script;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element.
     /// </summary>
-    public abstract partial class BdoMetaData : BdoItem,
+    public abstract partial class BdoMetaData : BdoObject,
         IBdoMetaData
     {
         // --------------------------------------------------
@@ -114,9 +115,9 @@ namespace BindOpen.Data.Meta
         }
 
         /// <summary>
-        /// The value type of this instance.
+        /// The label of this instance.
         /// </summary>
-        public DataValueTypes DataValueType { get; set; } = DataValueTypes.Any;
+        public string Label { get; set; }
 
         /// <summary>
         /// The itemization mode of this instance.
@@ -139,31 +140,6 @@ namespace BindOpen.Data.Meta
         /// Specification of this instance.
         /// </summary>
         public ITBdoSet<IBdoSpec> Specs { get; set; }
-
-        /// <summary>
-        /// Gets a new specification.
-        /// </summary>
-        /// <returns>Returns the new specifcation.</returns>
-        public IBdoSpec GetSpec(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null)
-        {
-            if (scope == null)
-            {
-                return Specs?.FirstOrDefault(q => q.Condition == null);
-            }
-
-            return Specs?.FirstOrDefault(q => q.Condition.Evaluate(scope, varSet));
-        }
-
-        /// <summary>
-        /// Gets a new specification.
-        /// </summary>
-        /// <returns>Returns the new specifcation.</returns>
-        public IBdoSpec NewSpec()
-        {
-            return BdoMeta.NewSpec<BdoSpec>();
-        }
 
         /// <summary>
         /// Returns the item object of this instance.
@@ -214,6 +190,11 @@ namespace BindOpen.Data.Meta
             _data = null;
         }
 
+        public virtual void SetData(object obj)
+        {
+            _data = obj.ToBdoData();
+        }
+
         /// <summary>
         /// Returns the item object of this instance.
         /// </summary>
@@ -256,6 +237,21 @@ namespace BindOpen.Data.Meta
 
             var list = obj?.ToObjectList();
             return list;
+        }
+
+        /// <summary>
+        /// Returns the item TItem of this instance.
+        /// </summary>
+        /// <param key="log">The log to populate.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable meta set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        [BdoFunction("value")]
+        public static object Value(
+            [BdoThis] IBdoMetaData data,
+            IBdoScriptDomain scriptDomain = null)
+        {
+            return data?.GetData(scriptDomain?.Scope, scriptDomain?.VariableSet, scriptDomain?.Log);
         }
 
         /// <summary>
@@ -355,6 +351,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
+        [BdoProperty("name")]
         public string Name { get; set; }
 
         #endregion

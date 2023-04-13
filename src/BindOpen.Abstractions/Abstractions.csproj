@@ -25,8 +25,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Data\_Core\Items\Expression\beccl5ay.u0n~" />
-    <None Remove="Data\_Core\Items\Sets\ITBdoSet.cs~RF5c598ce0.TMP" />
+    <None Remove="Data\_Core\Objects\Expression\beccl5ay.u0n~" />
+    <None Remove="Data\_Core\Objects\Sets\ITBdoSet.cs~RF5c598ce0.TMP" />
   </ItemGroup>
 
   <ItemGroup>

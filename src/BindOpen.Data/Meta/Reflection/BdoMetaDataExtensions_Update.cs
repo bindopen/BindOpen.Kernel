@@ -1,6 +1,7 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Data.Assemblies;
+﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Helpers;
 using BindOpen.Logging;
+using BindOpen.Scopes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,6 +64,8 @@ namespace BindOpen.Data.Meta.Reflection
 
                     var name = spec.Name;
 
+                    Type itemType = null;
+
                     try
                     {
                         if (list.Has(name, groupId))
@@ -71,11 +74,61 @@ namespace BindOpen.Data.Meta.Reflection
 
                             object value;
 
+                            Type metaType;
+
+                            if (type.IsGenericType)
+                            {
+                                metaType = type.GetGenericTypeDefinition();
+                                itemType = type.GenericTypeArguments.GetAt(0);
+                            }
+                            else
+                            {
+                                metaType = type;
+                            }
+
+                            IBdoMetaData metaValue = null;
+
                             if (typeof(IBdoMetaData).IsAssignableFrom(type))
                             {
-                                var meta = BdoMeta.New(name, type);
-                                meta?.Update(list.GetOfGroup(name, groupId));
-                                value = meta;
+                                // if current is meta
+
+                                var meta = list.GetOfGroup(name, groupId);
+
+                                if (typeof(ITBdoMetaScalar<>).IsAssignableFrom(metaType)
+                                    && itemType?.IsScalar() == true)
+                                {
+                                    metaValue = (typeof(TBdoMetaScalar<>).MakeGenericType(itemType).CreateInstance() as BdoMetaScalar)
+                                        .WithName(name);
+                                }
+                                else if (typeof(IBdoMetaScalar).IsAssignableFrom(metaType))
+                                {
+                                    metaValue = BdoMeta.NewScalar(name, meta?.GetSpec().DataValueType);
+                                }
+                                else if (typeof(IBdoConfiguration).IsAssignableFrom(metaType))
+                                {
+                                    var config = meta as IBdoConfiguration;
+                                    metaValue = BdoConfig.New(name)
+                                        .With(config.Items?.ToArray());
+                                }
+                                else if (typeof(IBdoMetaSet).IsAssignableFrom(metaType))
+                                {
+                                    var set = meta as IBdoMetaSet;
+                                    metaValue = BdoMeta.NewSet(name)
+                                        .With(set?.Items?.ToArray());
+                                }
+                                else if (typeof(ITBdoMetaObject<>).IsAssignableFrom(metaType)
+                                    && itemType != null)
+                                {
+                                    metaValue = (typeof(TBdoMetaObject<>).MakeGenericType(itemType).CreateInstance() as BdoMetaObject)
+                                        .WithName(name);
+                                }
+                                else if (typeof(IBdoMetaObject).IsAssignableFrom(type))
+                                {
+                                    metaValue = BdoMeta.NewObject(name);
+                                }
+
+                                metaValue?.Update(meta);
+                                value = metaValue;
                             }
                             else
                             {
@@ -95,7 +148,7 @@ namespace BindOpen.Data.Meta.Reflection
                                         && type.GetGenericTypeDefinition() == typeof(Dictionary<,>)
                                         && type != typeof(Dictionary<string, object>))
                                     {
-                                        Type itemType = type.GetGenericArguments()[0];
+                                        itemType = type.GetGenericArguments()[0];
 
                                         var dictionary = typeof(Dictionary<,>).MakeGenericType(typeof(string), itemType).CreateInstance();
                                         var method = dictionary.GetType().GetMethod("Add", new Type[] { typeof(string), itemType });

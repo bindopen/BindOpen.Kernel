@@ -1,7 +1,7 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Data;
+﻿using BindOpen.Data;
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
+using BindOpen.Scopes;
 using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -11,7 +11,7 @@ namespace BindOpen.Hosting.Settings
     /// <summary>
     /// This class represents a config.
     /// </summary>
-    public class BdoSettings : BdoItem, IBdoSettings
+    public class BdoSettings : BdoObject, IBdoSettings
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -107,10 +107,10 @@ namespace BindOpen.Hosting.Settings
                 {
                     _ = GetType().GetPropertyInfo(
                         propertyName,
-                        new Type[] { typeof(BdoParameterAttribute) },
-                        out BdoParameterAttribute attribute);
+                        new Type[] { typeof(BdoPropertyAttribute) },
+                        out BdoPropertyAttribute attribute);
 
-                    if (attribute is BdoParameterAttribute)
+                    if (attribute is BdoPropertyAttribute)
                     {
                         object value = Configuration.GetData(attribute.Name, Scope);
                         if (value is T t)
@@ -143,8 +143,8 @@ namespace BindOpen.Hosting.Settings
                 {
                     _ = GetType().GetPropertyInfo(
                         propertyName,
-                        new Type[] { typeof(BdoParameterAttribute) },
-                        out BdoParameterAttribute attribute);
+                        new Type[] { typeof(BdoPropertyAttribute) },
+                        out BdoPropertyAttribute attribute);
 
                     if (attribute is BdoParameterAttribute)
                         return (Configuration.GetData(attribute.Name, Scope) as string)?.ToEnum<T>(defaultValue) ?? default;
@@ -165,10 +165,10 @@ namespace BindOpen.Hosting.Settings
             {
                 PropertyInfo propertyInfo = GetType().GetPropertyInfo(
                     propertyName,
-                    new Type[] { typeof(BdoParameterAttribute) },
-                    out BdoParameterAttribute attribute);
+                    new Type[] { typeof(BdoPropertyAttribute) },
+                    out BdoPropertyAttribute attribute);
 
-                if (attribute is BdoParameterAttribute)
+                if (attribute is BdoPropertyAttribute)
                 {
                     Configuration.Add(
                         BdoMeta.NewScalar(

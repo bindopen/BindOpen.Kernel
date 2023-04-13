@@ -15,7 +15,7 @@ namespace BindOpen.Scopes
     /// <summary>
     /// This class represents an application scope.
     /// </summary>
-    public partial class BdoScope : BdoItem, IBdoScope
+    public partial class BdoScope : BdoObject, IBdoScope
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -140,9 +140,10 @@ namespace BindOpen.Scopes
 
         public IBdoScriptDomain NewScriptDomain(
             IBdoMetaSet varSet,
-            IBdoScriptword scriptword = null)
+            IBdoScriptword scriptword = null,
+            IBdoLog log = null)
         {
-            return new BdoScriptDomain(this, varSet, scriptword);
+            return new BdoScriptDomain(this, varSet, scriptword, log);
         }
 
         #endregion

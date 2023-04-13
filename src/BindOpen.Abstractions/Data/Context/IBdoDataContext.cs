@@ -5,7 +5,7 @@ namespace BindOpen.Data.Context
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoDataContext : IBdoItem
+    public interface IBdoDataContext : IBdoObject
     {
         /// <summary>
         /// 

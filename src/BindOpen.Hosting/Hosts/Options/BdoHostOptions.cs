@@ -16,7 +16,7 @@ namespace BindOpen.Hosting.Hosts
     /// <summary>
     /// This class represents a host options.
     /// </summary>
-    public class BdoHostOptions : BdoItem, IBdoHostOptions
+    public class BdoHostOptions : BdoObject, IBdoHostOptions
     {
         // ------------------------------------------
         // PROPERTIES

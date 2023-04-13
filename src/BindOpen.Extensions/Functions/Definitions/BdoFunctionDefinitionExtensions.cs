@@ -14,8 +14,6 @@ namespace BindOpen.Extensions.Functions
         {
             if (definition != null && info != null)
             {
-                definition.RuntimeFunctionName = info.Name;
-
                 // we update definition from function attribute
 
                 foreach (var attribute in info.GetCustomAttributes(typeof(BdoFunctionAttribute)))

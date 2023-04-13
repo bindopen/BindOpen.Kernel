@@ -21,6 +21,10 @@ namespace BindOpen.Extensions.Entities
         {
         }
 
+        public BdoEntityAttribute(string name) : base(name)
+        {
+        }
+
         #endregion
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Script
+﻿using BindOpen.Data;
+
+namespace BindOpen.Script
 {
     /// <summary>
     /// This interface represents an named data item.
@@ -50,6 +52,15 @@
             }
 
             return word;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="assemblyFileName"></param>
+        public static bool IsScriptword(this BdoDataType dataType)
+        {
+            return dataType >= typeof(IBdoScriptword);
         }
     }
 }

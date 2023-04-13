@@ -1,6 +1,4 @@
-﻿using BindOpen.Data.Assemblies;
-using BindOpen.Data.Helpers;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -36,7 +34,9 @@ namespace BindOpen.Data.Meta
             string id = null)
             : base(name, namePreffix, id)
         {
-            this.WithDataValueType(DataValueTypes.Object);
+            Specs = BdoMeta.NewSpecSet(
+                BdoMeta.NewSpec()
+                    .WithDataType(DataValueTypes.Object));
         }
 
         #endregion
@@ -50,23 +50,12 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Returns the element with the specified name.
         /// </summary>
-        IReferenced IBdoSet.this[string name] => Get(name);
+        IReferenced IBdoSet.this[string key] => Get(key);
 
         /// <summary>
         /// The items of this instance.
         /// </summary>
         protected IBdoMetaSet _propertySet;
-
-        /// <summary>
-        /// The class full name of this instance.
-        /// </summary>
-        public IBdoClassReference ClassReference { get; set; }
-
-        public IBdoMetaObject WithData(object obj)
-        {
-            _data = obj.ToBdoData();
-            return this;
-        }
 
         #endregion
 
@@ -179,6 +168,15 @@ namespace BindOpen.Data.Meta
         {
             _propertySet ??= BdoMeta.NewSet();
             return _propertySet.With(items);
+        }
+
+        /// <summary>
+        /// Removes the item with the specified name.
+        /// </summary>
+        /// <param key="keys">The keys of the item to remove.</param>
+        public int Remove(params string[] keys)
+        {
+            return _propertySet?.Remove(keys) ?? 0;
         }
 
         public IBdoMetaData Insert(IBdoMetaData item)

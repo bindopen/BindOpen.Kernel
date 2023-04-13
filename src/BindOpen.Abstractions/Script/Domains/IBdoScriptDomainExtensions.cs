@@ -1,5 +1,7 @@
-﻿using BindOpen.Scopes;
+﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
+using BindOpen.Logging;
+using BindOpen.Scopes;
 
 namespace BindOpen.Script
 {
@@ -43,6 +45,22 @@ namespace BindOpen.Script
         /// <summary>
         /// 
         /// </summary>
+        public static T WithLog<T>(
+            this T function,
+            IBdoLog log)
+            where T : IBdoScriptDomain
+        {
+            if (function != null)
+            {
+                function.Log = log;
+            }
+
+            return function;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static T WithScriptword<T>(
             this T function,
             IBdoScriptword word)
@@ -54,6 +72,15 @@ namespace BindOpen.Script
             }
 
             return function;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="assemblyFileName"></param>
+        public static bool IsScriptDomain(this BdoDataType dataType)
+        {
+            return dataType >= typeof(IBdoScriptDomain);
         }
     }
 }

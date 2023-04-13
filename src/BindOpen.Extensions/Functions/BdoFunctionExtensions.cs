@@ -67,7 +67,8 @@ namespace BindOpen.Extensions.Functions
             }
             else
             {
-                definition = scope?.ExtensionStore?.GetFunctionDefinition(word?.Name, word);
+                var parentDataType = BdoData.NewDataType(word?.Parent?.GetData()?.GetType());
+                definition = scope?.ExtensionStore?.GetFunctionDefinition(word?.Name, word, parentDataType, log);
             }
 
             object result = null;
@@ -83,13 +84,6 @@ namespace BindOpen.Extensions.Functions
             }
             else
             {
-
-                if (word.Count == definition.Count - 1 && word.Parent != null)
-                {
-                    // HERE: Handle first parameter (this var equivalent)
-                    word.Items?.Insert(0, word.Parent);
-                }
-
                 result = scope.CallFunction(definition, word, varSet, log);
             }
 
@@ -115,7 +109,7 @@ namespace BindOpen.Extensions.Functions
         {
             object result = null;
 
-            if (definition != null)
+            if (scope != null && definition != null)
             {
                 try
                 {
@@ -125,20 +119,41 @@ namespace BindOpen.Extensions.Functions
                     }
                     else if (definition.RuntimeScopedFunction != null)
                     {
-                        IBdoScriptDomain domain = null;
+                        IBdoScriptDomain domain = scope.NewScriptDomain(varSet, log: log);
                         if (paramSet is IBdoScriptword word)
                         {
-                            domain = scope.NewScriptDomain(varSet, word);
+                            domain.Scriptword = word;
                         }
                         result = definition.RuntimeScopedFunction.DynamicInvoke(domain);
                     }
                     else
                     {
-                        var objs = paramSet?.Select(q => q.GetData()).ToArray();
-                        result = definition.RuntimeFunction.DynamicInvoke(objs);
+                        var objs = paramSet?.Select(q => q.GetData()).ToList();
+
+                        // if function is static
+
+                        if (definition.AdditionalSpecs != null)
+                        {
+                            foreach (var spec in definition.AdditionalSpecs)
+                            {
+                                object obj = null;
+                                if (spec.DataType.IsScope())
+                                    obj = scope;
+                                else if (spec.DataType.IsScriptDomain())
+                                    obj = scope.NewScriptDomain(varSet, paramSet as IBdoScriptword, log);
+                                else if (spec.DataType.IsScriptword())
+                                    obj = paramSet as IBdoScriptword;
+                                else
+                                    obj = (paramSet as IBdoScriptword)?.Parent?.GetData();
+
+                                objs.Insert(spec.Index ?? 0, obj);
+                            }
+                        }
+
+                        result = definition.RuntimeFunction.DynamicInvoke(objs.ToArray());
                     }
                 }
-                catch (ArgumentException ex)
+                catch (ApplicationException ex)
                 {
                     log?.AddError(
                         title: "Bad argument",
@@ -154,6 +169,7 @@ namespace BindOpen.Extensions.Functions
             this IBdoExtensionStore store,
             string functionName,
             IBdoMetaSet paramSet,
+            BdoDataType parentDataType = default,
             IBdoLog log = null)
         {
             if (store != null)
@@ -166,7 +182,8 @@ namespace BindOpen.Extensions.Functions
                     IBdoFunctionDefinition functionDefinition = null;
                     foreach (var definition in functionDefinitions)
                     {
-                        if (definition?.IsCompatibleWith(paramSet, log: log) ?? false)
+                        if ((parentDataType == DataValueTypes.None || parentDataType == DataValueTypes.Any || definition?.ParentDataType <= parentDataType)
+                            && (definition.RuntimeFunction != null || (definition?.IsCompatibleWith(paramSet, log: log) ?? false)))
                         {
                             functionDefinition = definition;
                             break;

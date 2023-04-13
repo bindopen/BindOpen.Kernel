@@ -100,8 +100,8 @@ namespace BindOpen.Data.Meta
         {
             if (list != null)
             {
-                var items = pairs.Select(q => BdoMeta.New(q.Key, q.Value)).ToArray();
-                list.With(items);
+                list.Clear();
+                list.Add(pairs);
             }
 
             return list;
@@ -119,8 +119,8 @@ namespace BindOpen.Data.Meta
         {
             if (list != null)
             {
-                var items = pairs.Select(q => BdoMeta.New(q.Name, q.Value)).ToArray();
-                list.With(items);
+                list.Clear();
+                list.Add(pairs);
             }
 
             return list;

@@ -29,6 +29,24 @@ namespace BindOpen.Script
             return obj.As<T>();
         }
 
+        /// <summary>
+        /// Evaluates the specified script word using the defined script words of this instance
+        /// of the specified libraries.
+        /// </summary>
+        /// <param key="scriptword">The script word to consider.</param>
+        /// <param key="varSet">The variable element set to use.</param>
+        /// <param key="log">The log to consider.</param>
+        /// <returns>The log of the interpretation task.</returns>
+        public static T Evaluate<T>(
+            this IBdoScriptInterpreter interpreter,
+            IBdoScriptword word,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            object obj = interpreter?.Evaluate(word, varSet, log);
+
+            return obj.As<T>();
+        }
 
         /// <summary>
         /// Evaluates the specified script word using the defined script words of this instance

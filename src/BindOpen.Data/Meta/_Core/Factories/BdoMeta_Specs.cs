@@ -17,7 +17,7 @@ namespace BindOpen.Data.Meta
             DataValueTypes valueType = DataValueTypes.Any)
         {
             var spec = NewSpec<BdoSpec>(name);
-            spec.WithDataValueType(valueType);
+            spec.WithDataType(valueType);
             return spec;
         }
 
@@ -87,7 +87,7 @@ namespace BindOpen.Data.Meta
             if (type == null) return default;
 
             var spec = NewSpec<T>(name)
-                .WithDataValueType(type.GetValueType())
+                .WithDataType(type.GetValueType())
                 .AsType(type);
 
             return spec;
