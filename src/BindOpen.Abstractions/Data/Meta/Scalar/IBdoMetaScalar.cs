@@ -1,5 +1,5 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
+using BindOpen.Scopes;
 
 namespace BindOpen.Data.Meta
 {
@@ -8,12 +8,6 @@ namespace BindOpen.Data.Meta
     /// </summary>
     public interface IBdoMetaScalar : IBdoMetaData
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="objs"></param>
-        IBdoMetaScalar WithData(object obj);
-
         /// <summary>
         /// 
         /// </summary>

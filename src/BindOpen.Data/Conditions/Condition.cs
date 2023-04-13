@@ -3,7 +3,7 @@
     /// <summary>
     /// This class represents a condition.
     /// </summary>
-    public abstract class Condition : BdoItem, ICondition
+    public abstract class Condition : BdoObject, ICondition
     {
         // ------------------------------------------
         // PROPERTIES

@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Conditions;
+using System;
 using System.Collections.Generic;
 
 namespace BindOpen.Data.Meta
@@ -7,16 +8,11 @@ namespace BindOpen.Data.Meta
     /// 
     /// </summary>
     public interface IBdoSpec :
-        IBdoItem, IReferenced,
+        IBdoObject, IReferenced,
         IIdentified, INamed, IIndexed,
-        IBdoTitled, IBdoDescribed,
+        IBdoTitled, IBdoDescribed, IBdoDetailed,
         ITUpdatable<IBdoSpec>
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        DataValueTypes ValueType { get; set; }
-
         /// <summary>
         /// The identifier of the group of this instance.
         /// </summary>
@@ -67,7 +63,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        List<IBdoSpec> SubSpecs { get; set; }
+        ITBdoSet<IBdoSpec> SubSpecs { get; set; }
 
         /// <summary>
         /// 
@@ -101,17 +97,32 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
+        BdoDataType DataType { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        DataValueTypes DataValueType { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        Type DataClassType { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        bool IsStatic { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         RequirementLevels DataRequirement { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         string DataRequirementExp { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoExpression DataReference { get; set; }
 
         /// <summary>
         /// 

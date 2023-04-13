@@ -403,8 +403,11 @@ namespace BindOpen.Hosting.Hosts
         public void Clear()
             => Scope?.Clear();
 
-        public IBdoScriptDomain NewScriptDomain(IBdoMetaSet varSet, IBdoScriptword scriptword = null)
-            => Scope?.NewScriptDomain(varSet, scriptword);
+        public IBdoScriptDomain NewScriptDomain(
+            IBdoMetaSet varSet,
+            IBdoScriptword scriptword = null,
+            IBdoLog log = null)
+            => Scope?.NewScriptDomain(varSet, scriptword, log);
 
         #endregion
     }

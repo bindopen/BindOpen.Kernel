@@ -5,7 +5,7 @@ namespace BindOpen.Extensions
     /// <summary>
     /// This class represents a BindOpen extension item config.
     /// </summary>
-    public abstract class BdoExtension : BdoItem, IBdoExtension
+    public abstract class BdoExtension : BdoObject, IBdoExtension
     {
         // ------------------------------------------
         // CONSTRUCTORS

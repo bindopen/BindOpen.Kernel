@@ -6,7 +6,7 @@ namespace BindOpen.Data.Context
     /// <summary>
     /// This class represents a data context. A data context contains all the data related to a user session.
     /// </summary>
-    public class BdoDataContext : BdoItem, IBdoDataContext
+    public class BdoDataContext : BdoObject, IBdoDataContext
     {
         // ------------------------------------------
         // CONSTRUCTORS

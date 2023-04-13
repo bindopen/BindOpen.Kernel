@@ -8,7 +8,7 @@ namespace BindOpen.Scopes
     /// <summary>
     /// This interface defines the extension loading options.
     /// </summary>
-    public interface IExtensionLoadOptions : IBdoItem
+    public interface IExtensionLoadOptions : IBdoObject
     {
         /// <summary>
         /// 

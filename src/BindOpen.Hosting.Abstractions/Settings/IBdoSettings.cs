@@ -9,7 +9,7 @@ namespace BindOpen.Hosting.Settings
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoSettings : IBdoItem, IReferenced, IBdoScoped
+    public interface IBdoSettings : IBdoObject, IReferenced, IBdoScoped
     {
         /// <summary>
         /// 

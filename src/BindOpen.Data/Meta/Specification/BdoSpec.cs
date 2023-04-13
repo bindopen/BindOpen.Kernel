@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Conditions;
 using BindOpen.Data.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,7 +9,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    public partial class BdoSpec : BdoItem, IBdoSpec
+    public partial class BdoSpec : BdoObject, IBdoSpec
     {
         // --------------------------------------------------
         // CONSTANTS
@@ -86,14 +87,14 @@ namespace BindOpen.Data.Meta
         #region IBdoSpec
 
         /// <summary>
-        /// The value type of this instance.
+        /// The identifier of the group of this instance.
         /// </summary>
-        public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
+        public string GroupId { get; set; }
 
         /// <summary>
         /// The identifier of the group of this instance.
         /// </summary>
-        public string GroupId { get; set; }
+        public bool IsStatic { get; set; }
 
         /// <summary>
         /// The requirement level of this instance.
@@ -200,6 +201,19 @@ namespace BindOpen.Data.Meta
 
         #endregion
 
+        // ------------------------------------------
+        // IGloballyDescribed Implementation
+        // ------------------------------------------
+
+        #region IGloballyDescribed
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IBdoMetaSet Detail { get; set; }
+
+        #endregion
+
         // --------------------------------------------------
         // IBdoSpec Implementation
         // --------------------------------------------------
@@ -235,7 +249,11 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        public IBdoExpression DataReference { get; set; }
+        public BdoDataType DataType { get; set; }
+
+        public DataValueTypes DataValueType => DataType.ValueType;
+
+        public Type DataClassType => DataType.ClassType;
 
         /// <summary>
         /// The available itemization modes of this instance.
@@ -290,7 +308,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public List<IBdoSpec> SubSpecs { get; set; }
+        public ITBdoSet<IBdoSpec> SubSpecs { get; set; }
 
         /// <summary>
         /// 

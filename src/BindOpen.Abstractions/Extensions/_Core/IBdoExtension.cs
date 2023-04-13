@@ -6,7 +6,7 @@ namespace BindOpen.Extensions
     /// This class represents a BindOpen extension runtime item.
     /// </summary>
     public interface IBdoExtension :
-        IBdoItem, IIdentified, IBdoDefinable
+        IBdoObject, IIdentified, IBdoDefinable
     {
     }
 }

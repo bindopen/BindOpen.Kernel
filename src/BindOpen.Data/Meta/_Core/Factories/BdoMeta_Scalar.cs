@@ -53,11 +53,8 @@
             DataValueTypes valueType,
             params object[] items)
         {
-            var meta = NewScalar<object, BdoMetaScalar>(
-                (string)name,
-                DataValueTypes.Any,
-                items);
-            meta.WithDataValueType(valueType);
+            var meta = NewScalar<object, BdoMetaScalar>((string)name, DataValueTypes.Any, items)
+                .WithDataType(valueType);
 
             return meta;
         }
@@ -126,9 +123,9 @@
                 }
             }
 
-            var meta = new TMeta();
-            meta.WithName(name);
-            meta.WithDataValueType(valueType);
+            var meta = new TMeta()
+                .WithName(name)
+                .WithDataType(valueType);
 
             if (items != null)
             {

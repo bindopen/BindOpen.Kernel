@@ -7,7 +7,7 @@ namespace BindOpen.Extensions
     /// <summary>
     /// This class represents the group of BindOpen extension items.
     /// </summary>
-    public class BdoExtensionGroup : BdoItem, IBdoExtensionGroup
+    public class BdoExtensionGroup : BdoObject, IBdoExtensionGroup
     {
         // ------------------------------------------
         // CONSTRUCTORS

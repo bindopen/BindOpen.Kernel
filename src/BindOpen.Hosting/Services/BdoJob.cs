@@ -10,7 +10,7 @@ namespace BindOpen.Hosting.Services
     /// <summary>
     /// This class represents an bot.
     /// </summary>
-    public abstract class BdoJob : BdoItem, IBdoJob
+    public abstract class BdoJob : BdoObject, IBdoJob
     {
         // ------------------------------------------
         // CONSTRUCTORS

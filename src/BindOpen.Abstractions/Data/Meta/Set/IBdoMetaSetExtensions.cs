@@ -54,9 +54,7 @@ namespace BindOpen.Data.Meta
             this IBdoMetaSet set,
             string groupId = null)
         {
-            return set?.Any(p =>
-                groupId == null && p.GroupId != null
-                || groupId != null && p.OfGroup(groupId)) == true;
+            return set?.Any(p => p.OfGroup(groupId)) == true;
         }
 
         public static bool Has(

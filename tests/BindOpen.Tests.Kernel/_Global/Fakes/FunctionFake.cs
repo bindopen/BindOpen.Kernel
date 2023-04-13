@@ -14,7 +14,7 @@ namespace BindOpen.Tests
         [BdoFunction(Name = "testEqual")]
         public static bool GetTest(
             [BdoParameter(Title = "String value")]
-            this string stringValue,
+            string stringValue,
             [BdoParameter(Title = "Integer value")]
             int intValue = 10)
             => stringValue == intValue.ToString();

@@ -1,5 +1,5 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
+using BindOpen.Scopes;
 
 namespace BindOpen.Data.Meta
 {
@@ -44,10 +44,9 @@ namespace BindOpen.Data.Meta
 
         #region TBdoMetaObject
 
-        public ITBdoMetaObject<TItem> WithData(TItem obj)
+        public void SetData(TItem obj)
         {
-            base.WithData(obj);
-            return this;
+            base.SetData(obj);
         }
 
         public new TItem GetData(

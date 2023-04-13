@@ -59,7 +59,7 @@ namespace BindOpen.Data.Assemblies
         public static List<IBdoAssemblyReference> ToReferences(
             this AssemblyName[] assemblies)
         {
-            return assemblies?.Select(q => BdoData.Assembly(q.Name, q.Version.ToString()))
+            return assemblies?.Select(q => BdoData.Assembly(q.Name, q.Version))
                 .Cast<IBdoAssemblyReference>().ToList();
         }
 

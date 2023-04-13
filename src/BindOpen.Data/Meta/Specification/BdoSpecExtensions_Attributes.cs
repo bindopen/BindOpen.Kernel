@@ -72,7 +72,7 @@ namespace BindOpen.Data.Meta
 
                 if (att.ValueType != DataValueTypes.Any)
                 {
-                    spec.ValueType = att.ValueType;
+                    spec.WithDataType(att.ValueType);
                 }
             }
         }
@@ -103,7 +103,7 @@ namespace BindOpen.Data.Meta
                 }
 
                 var type = info.PropertyType;
-                spec.ValueType = spec.ValueType == DataValueTypes.Any ? type.GetValueType() : DataValueTypes.None;
+                spec.WithDataType(spec.DataType.ValueType == DataValueTypes.Any ? type.GetValueType() : DataValueTypes.None);
                 spec.AsType(type);
             }
         }
@@ -123,11 +123,14 @@ namespace BindOpen.Data.Meta
                     {
                         spec.UpdateFrom((BdoPropertyAttribute)att);
                     }
+
+                    spec.IsStatic = info.GetCustomAttributes(typeof(BdoThisAttribute)).Any();
                 }
 
                 var type = info.ParameterType;
-                spec.ValueType = spec.ValueType == DataValueTypes.Any ? type.GetValueType() : DataValueTypes.None;
-                spec.AsType(type);
+                spec.WithDataType(
+                    spec.DataType.ValueType == DataValueTypes.Any ? type.GetValueType() : DataValueTypes.None,
+                    type);
             }
         }
     }

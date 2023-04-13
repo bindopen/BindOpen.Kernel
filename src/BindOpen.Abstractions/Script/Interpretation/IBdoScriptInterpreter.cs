@@ -7,7 +7,7 @@ namespace BindOpen.Script
     /// <summary>
     /// This interface defines the script interpreter.
     /// </summary>
-    public interface IBdoScriptInterpreter : IBdoItem
+    public interface IBdoScriptInterpreter : IBdoObject
     {
         /// <summary>
         /// 
@@ -18,6 +18,18 @@ namespace BindOpen.Script
         /// <returns></returns>
         object Evaluate(
             IBdoExpression exp,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="exp"></param>
+        /// <param key="varSet">The variable element set to consider.</param>
+        /// <param key="log"></param>
+        /// <returns></returns>
+        object Evaluate(
+            IBdoScriptword word,
             IBdoMetaSet varSet = null,
             IBdoLog log = null);
 

@@ -5,7 +5,7 @@ Todo list for BindOpen
 
 - [ ] Extension store : adding packages
 - [ ] Using Xml dictionaries for extensions
-- [ ] Script: Handle cascade case (func1.func2)
+- [ ] Script: Handle properties (func1.func2)
 - [ ] Script: Handle returned type
 - [ ] Script: Handle repeated parameters
 - [ ] Checking value of meta specs

@@ -1,5 +1,6 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
+using BindOpen.Scopes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,21 +27,6 @@ namespace BindOpen.Data.Meta
             return spec;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="script"></param>
-        public static T WithDataReference<T>(
-            this T spec,
-            IBdoExpression exp)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.DataReference = exp;
-            }
-            return spec;
-        }
         public static T WithGroupId<T>(
             this T spec,
             string groupId)
@@ -73,22 +59,6 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param key="specs"></param>
-        public static T WithSubSpecs<T>(
-            this T spec,
-            params IBdoSpec[] specs)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.SubSpecs = specs?.ToList();
-            }
-            return spec;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param key="isAllocatable"></param>
         public static T AsAllocatable<T>(
             this T spec,
@@ -98,6 +68,22 @@ namespace BindOpen.Data.Meta
             if (spec != null)
             {
                 spec.IsAllocatable = isAllocatable;
+            }
+            return spec;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="isAllocatable"></param>
+        public static T AsStatic<T>(
+            this T spec,
+            bool isStatic = true)
+            where T : IBdoSpec
+        {
+            if (spec != null)
+            {
+                spec.IsStatic = isStatic;
             }
             return spec;
         }
@@ -147,23 +133,6 @@ namespace BindOpen.Data.Meta
             {
                 spec.MinDataItemNumber = number;
             }
-            return spec;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="number"></param>
-        public static T WithDataValueType<T>(
-            this T spec,
-            DataValueTypes valueType)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.ValueType = valueType;
-            }
-
             return spec;
         }
 
@@ -373,6 +342,43 @@ namespace BindOpen.Data.Meta
             }
 
             return specs ?? new List<IBdoSpec>();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithDataType<T>(
+            this T spec,
+            BdoDataType dataType)
+            where T : IBdoSpec
+        {
+            if (spec != null)
+            {
+                spec.DataType = dataType;
+            }
+
+            return spec;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithDataType<T>(
+            this T spec,
+            DataValueTypes valueType,
+            Type type = null)
+            where T : IBdoSpec
+        {
+            if (spec != null)
+            {
+                spec.DataType = new BdoDataType()
+                {
+                    ClassType = type,
+                    ValueType = type != null ? DataValueTypes.Object : valueType
+                };
+            }
+
+            return spec;
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using BindOpen.Data.Assemblies;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Script;
 using System;
 
 namespace BindOpen.Data.Meta
@@ -94,78 +94,81 @@ namespace BindOpen.Data.Meta
             }
             else if (valueType == DataValueTypes.Scriptword)
             {
-                var script = data?.ToString();
-                return New(name)
-               .WithDataReference(BdoData.NewRef(script));
+                var word = data as IBdoScriptword;
+                return New(name, null)
+                    .WithDataReference(word);
             }
             else if (valueType == DataValueTypes.MetaData)
             {
-                Type metaType;
-                Type itemType = null;
+                var meta = data as IBdoMetaData;
+                return New(name, null)
+                    .WithDataReference(meta);
+                //Type metaType;
+                //Type itemType = null;
 
-                if (type.IsGenericType)
-                {
-                    metaType = type.GetGenericTypeDefinition();
-                    itemType = type.GenericTypeArguments.GetAt(0);
-                }
-                else
-                {
-                    metaType = type;
-                }
+                //if (type.IsGenericType)
+                //{
+                //    metaType = type.GetGenericTypeDefinition();
+                //    itemType = type.GenericTypeArguments.GetAt(0);
+                //}
+                //else
+                //{
+                //    metaType = type;
+                //}
 
-                IBdoMetaData metaValue = null;
-                var meta = data as BdoMetaData;
+                //IBdoMetaData metaValue = null;
+                //var meta = data as BdoMetaData;
 
-                if (typeof(ITBdoMetaScalar<>).IsAssignableFrom(metaType)
-                    && itemType?.IsScalar() == true)
-                {
-                    var scalar = meta as IBdoMetaScalar;
-                    metaValue = (typeof(TBdoMetaScalar<>).MakeGenericType(itemType).CreateInstance() as BdoMetaScalar)
-                        .WithName(name)
-                        .WithData(scalar?.GetData());
-                }
-                else if (typeof(IBdoMetaScalar).IsAssignableFrom(metaType))
-                {
-                    var scalar = meta as IBdoMetaScalar;
-                    metaValue = NewScalar(name, scalar?.DataValueType)
-                        .WithData(scalar?.GetData());
-                }
-                else if (typeof(IBdoConfiguration).IsAssignableFrom(metaType))
-                {
-                    var config = meta as IBdoConfiguration;
-                    metaValue = BdoConfig.New(name)
-                        .With(config.Items?.ToArray());
-                }
-                else if (typeof(IBdoMetaSet).IsAssignableFrom(metaType))
-                {
-                    var set = meta as IBdoMetaSet;
-                    metaValue = NewSet(name)
-                        .With(set?.Items?.ToArray());
-                }
-                else if (typeof(ITBdoMetaObject<>).IsAssignableFrom(metaType)
-                    && itemType != null)
-                {
-                    var obj = meta as IBdoMetaObject;
-                    metaValue = (typeof(TBdoMetaObject<>).MakeGenericType(itemType).CreateInstance() as BdoMetaObject)
-                        .WithName(name)
-                        .WithData(obj?.GetData());
-                }
-                else if (typeof(IBdoMetaObject).IsAssignableFrom(metaType))
-                {
-                    var obj = meta as IBdoMetaObject;
-                    metaValue = NewObject(name)
-                        .WithData(obj.GetData());
-                }
+                //if (typeof(ITBdoMetaScalar<>).IsAssignableFrom(metaType)
+                //    && itemType?.IsScalar() == true)
+                //{
+                //    var scalar = meta as IBdoMetaScalar;
+                //    metaValue = (typeof(TBdoMetaScalar<>).MakeGenericType(itemType).CreateInstance() as BdoMetaScalar)
+                //        .WithName(name)
+                //        .WithData(scalar?.GetData());
+                //}
+                //else if (typeof(IBdoMetaScalar).IsAssignableFrom(metaType))
+                //{
+                //    var scalar = meta as IBdoMetaScalar;
+                //    metaValue = NewScalar(name, scalar?.DataValueType)
+                //        .WithData(scalar?.GetData());
+                //}
+                //else if (typeof(IBdoConfiguration).IsAssignableFrom(metaType))
+                //{
+                //    var config = meta as IBdoConfiguration;
+                //    metaValue = BdoConfig.New(name)
+                //        .With(config.Items?.ToArray());
+                //}
+                //else if (typeof(IBdoMetaSet).IsAssignableFrom(metaType))
+                //{
+                //    var set = meta as IBdoMetaSet;
+                //    metaValue = NewSet(name)
+                //        .With(set?.Items?.ToArray());
+                //}
+                //else if (typeof(ITBdoMetaObject<>).IsAssignableFrom(metaType)
+                //    && itemType != null)
+                //{
+                //    var obj = meta as IBdoMetaObject;
+                //    metaValue = (typeof(TBdoMetaObject<>).MakeGenericType(itemType).CreateInstance() as BdoMetaObject)
+                //        .WithName(name)
+                //        .WithData(obj?.GetData());
+                //}
+                //else if (typeof(IBdoMetaObject).IsAssignableFrom(metaType))
+                //{
+                //    var obj = meta as IBdoMetaObject;
+                //    metaValue = NewObject(name)
+                //        .WithData(obj.GetData());
+                //}
 
-                if (metaValue != null && meta != null)
-                {
-                    metaValue
-                        .WithSpecs(meta.Specs?.ToArray())
-                        .WithDataMode(meta.DataMode)
-                        .WithDataReference(meta.Reference);
-                }
+                //if (metaValue != null && meta != null)
+                //{
+                //    metaValue
+                //        .WithSpecs(meta.Specs?.ToArray())
+                //        .WithDataMode(meta.DataMode)
+                //        .WithDataReference(meta.Reference);
+                //}
 
-                return metaValue;
+                //return metaValue;
             }
             else if (type.IsList())
             {

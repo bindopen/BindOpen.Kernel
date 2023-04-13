@@ -1,5 +1,5 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
+using BindOpen.Scopes;
 using System.Collections.Generic;
 
 namespace BindOpen.Data.Meta
@@ -8,7 +8,7 @@ namespace BindOpen.Data.Meta
     /// 
     /// </summary>
     public interface IBdoMetaData :
-        IBdoItemNotMetable,
+        IBdoObjectNotMetable,
         INamed, IReferenced, IIndexed,
         ITUpdatable<IBdoMetaData>
     {
@@ -18,20 +18,14 @@ namespace BindOpen.Data.Meta
         BdoMetaDataKind MetaDataKind { get; }
 
         /// <summary>
-        /// The identifier of the group of this instance.
+        /// The label of this instance.
         /// </summary>
-        string GroupId { get; set; }
+        string Label { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         ITBdoSet<IBdoSpec> Specs { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        IBdoSpec NewSpec();
 
         // Data
 
@@ -39,11 +33,6 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         DataMode DataMode { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        DataValueTypes DataValueType { get; set; }
 
         /// <summary>
         /// 
@@ -114,5 +103,11 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <returns></returns>
         IBdoMetaData Root(int levelMax = 50);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="objs"></param>
+        void SetData(object obj);
     }
 }

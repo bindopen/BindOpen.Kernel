@@ -182,7 +182,7 @@ namespace BindOpen.Data.Helpers
         /// <param key="item">The item to use.</param>
         /// <param key="action">The action to execute.</param>
         public static void Using<T>(this T item, Action<T> action)
-            where T : IBdoItem
+            where T : IBdoObject
         {
             if (item != null)
                 using (item)
@@ -202,7 +202,7 @@ namespace BindOpen.Data.Helpers
             this Type objectType,
             string propertyName,
             Type[] attributeTypes,
-            out BdoParameterAttribute attribute)
+            out BdoPropertyAttribute attribute)
         {
             attribute = null;
             PropertyInfo propertyInfo = null;
@@ -214,7 +214,7 @@ namespace BindOpen.Data.Helpers
                 {
                     foreach (Type attributeType in attributeTypes)
                     {
-                        if (propertyInfo.GetCustomAttribute(attributeType) is BdoParameterAttribute elementAttribute)
+                        if (propertyInfo.GetCustomAttribute(attributeType) is BdoPropertyAttribute elementAttribute)
                         {
                             attribute = elementAttribute;
                             break;
@@ -232,7 +232,7 @@ namespace BindOpen.Data.Helpers
         /// <typeparam name="T">The class to consider.</typeparam>
         /// <param key="property">The property expression to consider.</param>
         /// <returns>Returns the property information.</returns>
-        public static PropertyInfo GetProperty<T>(this Expression<Func<T, object>> property)
+        public static PropertyInfo GetPropertyInfo<T>(this Expression<Func<T, object>> property)
         {
             LambdaExpression lambda = property;
             MemberExpression memberExpression;

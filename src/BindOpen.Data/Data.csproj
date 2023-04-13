@@ -25,6 +25,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Meta\BdoMetaDataExtensions.cs~RF1af9a110.TMP" />
     <None Remove="_Core\Factories\BdoConfig_Extensions.cs~RF14a74429.TMP" />
   </ItemGroup>
 

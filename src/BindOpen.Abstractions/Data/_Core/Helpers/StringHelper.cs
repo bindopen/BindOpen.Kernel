@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -39,43 +38,6 @@ namespace BindOpen.Data.Helpers
                 count++;
             }
             return count;
-        }
-
-        /// <summary>
-        /// Sanitizes the specified string.
-        /// </summary>
-        /// <param key="st">The string to consider.</param>
-        /// <returns>The formated string.</returns>
-        public static string Format(this string name, NameFormats format = NameFormats.OnlyName)
-        {
-            if (name != null)
-            {
-                name = name.Trim();
-
-                switch (format)
-                {
-                    case NameFormats.NameColonValue:
-                        return name + ":" + __PatternStar;
-                    case NameFormats.NameEqualsValue:
-                        return name + "=" + __PatternStar;
-                    case NameFormats.NameSpaceValue:
-                        return name + " " + __PatternStar;
-                    case NameFormats.OnlyValue:
-                        return __PatternStar;
-                }
-            }
-
-            return name;
-        }
-
-        /// <summary>
-        /// Sanitizes the specified string.
-        /// </summary>
-        /// <param key="st">The string to consider.</param>
-        /// <returns>The formated string.</returns>
-        public static string[] Format(this string[] names, NameFormats format = NameFormats.OnlyName)
-        {
-            return names?.Select(q => q.Format(format)).ToArray();
         }
 
         /// <summary>

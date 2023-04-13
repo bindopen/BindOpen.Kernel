@@ -9,5 +9,7 @@
         /// The library name of this instance.
         /// </summary>
         string ClassName { get; }
+
+        bool IsCompatibleWith(IBdoClassReference reference);
     }
 }

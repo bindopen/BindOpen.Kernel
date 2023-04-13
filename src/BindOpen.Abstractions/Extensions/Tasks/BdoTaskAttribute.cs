@@ -21,6 +21,10 @@ namespace BindOpen.Extensions.Tasks
         {
         }
 
+        public BdoTaskAttribute(string name) : base(name)
+        {
+        }
+
         #endregion
     }
 }

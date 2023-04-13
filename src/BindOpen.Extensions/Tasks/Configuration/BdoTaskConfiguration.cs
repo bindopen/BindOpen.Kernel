@@ -30,7 +30,7 @@ namespace BindOpen.Extensions.Tasks
         public new IBdoTaskConfiguration With(params IBdoMetaData[] items)
         {
             Items?.RemoveAll(q => q.OfGroup(null));
-            Array.ForEach(items, q => { q.GroupId = null; });
+            Array.ForEach(items, q => { q.WithGroupId(null); });
             base.Add(items);
             return this;
         }
@@ -53,7 +53,7 @@ namespace BindOpen.Extensions.Tasks
 
         public new IBdoTaskConfiguration Add(params IBdoMetaData[] items)
         {
-            Array.ForEach(items, q => { q.GroupId = null; });
+            Array.ForEach(items, q => { q.WithGroupId(null); });
             base.Add(items);
             return this;
         }
