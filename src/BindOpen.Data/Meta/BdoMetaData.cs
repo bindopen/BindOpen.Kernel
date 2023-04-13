@@ -190,6 +190,11 @@ namespace BindOpen.Data.Meta
             _data = null;
         }
 
+        public virtual void SetData(object obj)
+        {
+            _data = obj.ToBdoData();
+        }
+
         /// <summary>
         /// Returns the item object of this instance.
         /// </summary>
@@ -242,13 +247,11 @@ namespace BindOpen.Data.Meta
         /// <param key="varSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         [BdoFunction("value")]
-        public static List<object> Value(
-            IBdoMetaData data,
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+        public static object Value(
+            [BdoThis] IBdoMetaData data,
+            IBdoScriptDomain scriptDomain = null)
         {
-            return data?.GetDataList(scope, varSet, log);
+            return data?.GetData(scriptDomain?.Scope, scriptDomain?.VariableSet, scriptDomain?.Log);
         }
 
         /// <summary>

@@ -41,7 +41,8 @@ namespace BindOpen.Scopes
 
         IBdoScriptDomain NewScriptDomain(
             IBdoMetaSet varSet,
-            IBdoScriptword scriptword = null);
+            IBdoScriptword scriptword = null,
+            IBdoLog log = null);
 
         /// <summary>
         /// 

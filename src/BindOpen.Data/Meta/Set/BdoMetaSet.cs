@@ -256,6 +256,10 @@ namespace BindOpen.Data.Meta
             base.Clear();
         }
 
+        public virtual void SetData(object obj)
+        {
+        }
+
         /// <summary>
         /// Returns the item object of this instance.
         /// </summary>

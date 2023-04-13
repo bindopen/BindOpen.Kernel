@@ -112,6 +112,11 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
+        bool IsStatic { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         RequirementLevels DataRequirement { get; set; }
 
         /// <summary>

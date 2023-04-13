@@ -140,9 +140,10 @@ namespace BindOpen.Scopes
 
         public IBdoScriptDomain NewScriptDomain(
             IBdoMetaSet varSet,
-            IBdoScriptword scriptword = null)
+            IBdoScriptword scriptword = null,
+            IBdoLog log = null)
         {
-            return new BdoScriptDomain(this, varSet, scriptword);
+            return new BdoScriptDomain(this, varSet, scriptword, log);
         }
 
         #endregion

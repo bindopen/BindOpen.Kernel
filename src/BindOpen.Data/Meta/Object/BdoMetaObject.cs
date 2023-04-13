@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Helpers;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -57,12 +56,6 @@ namespace BindOpen.Data.Meta
         /// The items of this instance.
         /// </summary>
         protected IBdoMetaSet _propertySet;
-
-        public IBdoMetaObject WithData(object obj)
-        {
-            _data = obj.ToBdoData();
-            return this;
-        }
 
         #endregion
 

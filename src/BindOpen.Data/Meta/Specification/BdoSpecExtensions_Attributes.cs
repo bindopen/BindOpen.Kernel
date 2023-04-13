@@ -123,6 +123,8 @@ namespace BindOpen.Data.Meta
                     {
                         spec.UpdateFrom((BdoPropertyAttribute)att);
                     }
+
+                    spec.IsStatic = info.GetCustomAttributes(typeof(BdoThisAttribute)).Any();
                 }
 
                 var type = info.ParameterType;

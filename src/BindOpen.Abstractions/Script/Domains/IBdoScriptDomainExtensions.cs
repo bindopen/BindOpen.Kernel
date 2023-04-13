@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
+using BindOpen.Logging;
 using BindOpen.Scopes;
 
 namespace BindOpen.Script
@@ -36,6 +37,22 @@ namespace BindOpen.Script
             if (function != null)
             {
                 function.VariableSet = variableSet;
+            }
+
+            return function;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithLog<T>(
+            this T function,
+            IBdoLog log)
+            where T : IBdoScriptDomain
+        {
+            if (function != null)
+            {
+                function.Log = log;
             }
 
             return function;

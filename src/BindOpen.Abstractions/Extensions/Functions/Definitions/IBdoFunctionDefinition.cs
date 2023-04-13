@@ -30,9 +30,6 @@ namespace BindOpen.Extensions.Functions
         Type RuntimeClassType { get; set; }
 
 
-        bool IsRuntimeFunctionStatic { get; set; }
-
-
         Delegate RuntimeFunction { get; set; }
 
         /// <summary>

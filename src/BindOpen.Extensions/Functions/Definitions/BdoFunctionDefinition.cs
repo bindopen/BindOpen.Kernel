@@ -35,11 +35,6 @@ namespace BindOpen.Extensions.Functions
         /// <summary>
         /// 
         /// </summary>
-        public bool IsRuntimeFunctionStatic { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public Delegate RuntimeFunction { get; set; }
 
         /// <summary>

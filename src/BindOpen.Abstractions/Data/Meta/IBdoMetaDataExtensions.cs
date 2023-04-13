@@ -78,6 +78,19 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
+        public static T WithData<T>(
+            this T meta,
+            object obj)
+            where T : IBdoMetaData
+        {
+            meta?.SetData(obj);
+
+            return meta;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static IBdoSpec GetSpec(
             this IBdoMetaData meta,
             IBdoScope scope = null,

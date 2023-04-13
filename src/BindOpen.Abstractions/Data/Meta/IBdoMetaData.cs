@@ -103,5 +103,11 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <returns></returns>
         IBdoMetaData Root(int levelMax = 50);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="objs"></param>
+        void SetData(object obj);
     }
 }

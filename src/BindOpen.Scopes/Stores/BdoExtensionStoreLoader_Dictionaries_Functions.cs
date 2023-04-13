@@ -54,8 +54,7 @@ namespace BindOpen.Scopes.Stores
                     var definition = new BdoFunctionDefinition(null, packageDefinition)
                     {
                         RuntimeClassType = type,
-                        LibraryId = packageDefinition?.Id,
-                        IsRuntimeFunctionStatic = methodInfo.IsStatic
+                        LibraryId = packageDefinition?.Id
                     };
 
                     definition.UpdateFrom(methodInfo);
@@ -104,7 +103,13 @@ namespace BindOpen.Scopes.Stores
                         spec.UpdateFrom(paramInfo, typeof(BdoParameterAttribute));
                         spec.Index = i;
 
-                        if (spec.DataType.IsScope() || spec.DataType.IsScriptDomain())
+                        if (spec.IsStatic)
+                        {
+                            var type1 = paramInfo.ParameterType;
+                            definition.ParentDataType = BdoData.NewDataType(type1);
+                        }
+
+                        if (spec.IsStatic || spec.DataType.IsScope() || spec.DataType.IsScriptDomain())
                         {
                             definition.AdditionalSpecs ??= BdoData.NewSet<IBdoSpec>();
                             definition.AdditionalSpecs.Add(spec);
@@ -119,31 +124,19 @@ namespace BindOpen.Scopes.Stores
 
                     // if the method is an extension
 
-                    definition.IsRuntimeFunctionStatic = true;
-
                     var isExtensionMethod = methodInfo.IsDefined(typeof(ExtensionAttribute), false);
                     if (isExtensionMethod && definition.Count > 0)
                     {
                         var type1 = methodInfo.GetParameters()[0].ParameterType;
                         definition.ParentDataType = BdoData.NewDataType(type1);
 
-                        var spec = definition.FirstOrDefault();
+                        var spec = definition.FirstOrDefault().AsStatic();
                         if (definition.AdditionalSpecs?[0]?.Index != 0)
                         {
                             definition.Remove(spec?.Key());
                         }
                         definition.AdditionalSpecs ??= BdoData.NewSet<IBdoSpec>();
                         definition.AdditionalSpecs.Add(spec);
-                    }
-                    // else if the method is not in a static class
-                    else if (!methodInfo.IsStatic
-                        && !type.IsAbstract
-                        && type.IsPublic
-                        && type.GetConstructor(Type.EmptyTypes) != null)
-                    {
-                        definition.IsRuntimeFunctionStatic = false;
-
-                        definition.ParentDataType = BdoData.NewDataType(type);
                     }
 
                     definition.OutputDataType = BdoData.NewDataType(methodInfo.ReturnType);

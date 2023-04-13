@@ -92,6 +92,11 @@ namespace BindOpen.Data.Meta
         public string GroupId { get; set; }
 
         /// <summary>
+        /// The identifier of the group of this instance.
+        /// </summary>
+        public bool IsStatic { get; set; }
+
+        /// <summary>
         /// The requirement level of this instance.
         /// </summary>
         public RequirementLevels Requirement { get; set; } = RequirementLevels.None;

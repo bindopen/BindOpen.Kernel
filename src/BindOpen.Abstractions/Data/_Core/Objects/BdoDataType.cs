@@ -108,13 +108,17 @@ namespace BindOpen.Data
             return type1.ValueType == DataValueTypes.Any
                 || (type1.ValueType != DataValueTypes.Entity && type1.ValueType != DataValueTypes.Object && type1.ValueType == type2.ValueType)
                 || ((type1.ValueType == DataValueTypes.Entity || type1.ValueType == DataValueTypes.Object) &&
-                    (!type2.IsScalar()
-                    || (type1.ValueType == type2.ValueType && type1.ClassType.IsAssignableFrom(type2.ClassType))));
+                    (type2.ClassType == null
+                    || (!type2.ValueType.IsScalar() && type1.ClassType?.IsAssignableFrom(type2.ClassType) == true)));
         }
 
         public static bool operator >=(BdoDataType type1, BdoDataType type2)
         {
-            return !(type1 <= type2);
+            return type1.ValueType == DataValueTypes.Any
+                || (type1.ValueType != DataValueTypes.Entity && type1.ValueType != DataValueTypes.Object && type1.ValueType == type2.ValueType)
+                || ((type1.ValueType == DataValueTypes.Entity || type1.ValueType == DataValueTypes.Object) &&
+                    (type2.ClassType == null
+                    || (!type2.ValueType.IsScalar() && type2.ClassType?.IsAssignableFrom(type1.ClassType) == true)));
         }
 
         public static bool operator <=(BdoDataType type1, Type type2)
@@ -124,7 +128,7 @@ namespace BindOpen.Data
 
         public static bool operator >=(BdoDataType type1, Type type2)
         {
-            return !(type1 <= type2);
+            return type1 >= new BdoDataType() { ValueType = type2.GetValueType(), ClassType = type2 };
         }
 
         public bool IsCompatibleWith(BdoDataType dataType)

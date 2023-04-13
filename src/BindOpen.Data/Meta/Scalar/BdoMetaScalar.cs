@@ -124,12 +124,6 @@ namespace BindOpen.Data.Meta
             return list.FirstOrDefault();
         }
 
-        public IBdoMetaScalar WithData(object obj)
-        {
-            _data = obj.ToBdoData();
-            return this;
-        }
-
         public object GetData(
             int index,
             IBdoScope scope = null,

@@ -12,7 +12,7 @@ namespace BindOpen.Tests.Script
     public partial class BdoScriptInterpreterTests
     {
         private readonly IBdoScriptword _scriptword1 =
-            BdoScript.Function("eq", "MYTABLE", BdoScript.Function("text", "mytable"));
+            BdoScript.Function("eq", "MYTABLE", BdoScript.Function("text", "MYTABLE"));
         private readonly string _interpretedScript1 = "true";
 
         private readonly string _script2 = "$eq('MYTABLE', $text('MYTABLE'))";

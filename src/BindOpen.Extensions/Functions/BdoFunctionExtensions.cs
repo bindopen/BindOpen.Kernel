@@ -119,7 +119,7 @@ namespace BindOpen.Extensions.Functions
                     }
                     else if (definition.RuntimeScopedFunction != null)
                     {
-                        IBdoScriptDomain domain = scope.NewScriptDomain(varSet);
+                        IBdoScriptDomain domain = scope.NewScriptDomain(varSet, log: log);
                         if (paramSet is IBdoScriptword word)
                         {
                             domain.Scriptword = word;
@@ -140,7 +140,7 @@ namespace BindOpen.Extensions.Functions
                                 if (spec.DataType.IsScope())
                                     obj = scope;
                                 else if (spec.DataType.IsScriptDomain())
-                                    obj = scope.NewScriptDomain(varSet);
+                                    obj = scope.NewScriptDomain(varSet, paramSet as IBdoScriptword, log);
                                 else if (spec.DataType.IsScriptword())
                                     obj = paramSet as IBdoScriptword;
                                 else
@@ -182,7 +182,7 @@ namespace BindOpen.Extensions.Functions
                     IBdoFunctionDefinition functionDefinition = null;
                     foreach (var definition in functionDefinitions)
                     {
-                        if ((parentDataType == DataValueTypes.Any || definition?.ParentDataType <= parentDataType)
+                        if ((parentDataType == DataValueTypes.None || parentDataType == DataValueTypes.Any || definition?.ParentDataType <= parentDataType)
                             && (definition.RuntimeFunction != null || (definition?.IsCompatibleWith(paramSet, log: log) ?? false)))
                         {
                             functionDefinition = definition;

@@ -26,6 +26,19 @@ namespace BindOpen.Data.Meta
 
             return meta;
         }
+        public static T WithDataType<T>(
+            this T meta,
+            BdoDataType dataType)
+            where T : IBdoMetaData
+        {
+            if (meta != null)
+            {
+                meta.GetOrAddSpec()
+                    .WithDataType(dataType);
+            }
+
+            return meta;
+        }
 
         public static T WithDataType<T>(
             this T meta,
@@ -33,13 +46,7 @@ namespace BindOpen.Data.Meta
             Type type = null)
             where T : IBdoMetaData
         {
-            if (meta != null)
-            {
-                meta.GetOrAddSpec()
-                    .WithDataType(valueType, type);
-            }
-
-            return meta;
+            return WithDataType<T>(meta, BdoData.NewDataType(valueType, type));
         }
 
         /// <summary>

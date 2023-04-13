@@ -54,10 +54,9 @@ namespace BindOpen.Data.Meta
 
         // Data ----------------------------
 
-        public ITBdoMetaScalar<TItem> WithData(TItem obj)
+        public void SetData(TItem obj)
         {
-            base.WithData(obj);
-            return this;
+            base.SetData(obj);
         }
 
         public new TItem GetData(

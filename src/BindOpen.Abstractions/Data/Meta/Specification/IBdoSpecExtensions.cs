@@ -75,6 +75,22 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
+        /// <param key="isAllocatable"></param>
+        public static T AsStatic<T>(
+            this T spec,
+            bool isStatic = true)
+            where T : IBdoSpec
+        {
+            if (spec != null)
+            {
+                spec.IsStatic = isStatic;
+            }
+            return spec;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param key="item"></param>
         public static T WithDefaultData<T>(
             this T spec,
@@ -326,6 +342,22 @@ namespace BindOpen.Data.Meta
             }
 
             return specs ?? new List<IBdoSpec>();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithDataType<T>(
+            this T spec,
+            BdoDataType dataType)
+            where T : IBdoSpec
+        {
+            if (spec != null)
+            {
+                spec.DataType = dataType;
+            }
+
+            return spec;
         }
 
         /// <summary>
