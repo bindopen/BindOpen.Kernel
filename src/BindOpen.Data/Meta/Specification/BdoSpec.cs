@@ -97,6 +97,11 @@ namespace BindOpen.Data.Meta
         public bool IsStatic { get; set; }
 
         /// <summary>
+        /// The label of this instance.
+        /// </summary>
+        public string Label { get; set; }
+
+        /// <summary>
         /// The requirement level of this instance.
         /// </summary>
         public RequirementLevels Requirement { get; set; } = RequirementLevels.None;

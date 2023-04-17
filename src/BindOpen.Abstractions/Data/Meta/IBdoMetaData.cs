@@ -18,11 +18,6 @@ namespace BindOpen.Data.Meta
         BdoMetaDataKind MetaDataKind { get; }
 
         /// <summary>
-        /// The label of this instance.
-        /// </summary>
-        string Label { get; set; }
-
-        /// <summary>
         /// 
         /// </summary>
         ITBdoSet<IBdoSpec> Specs { get; set; }

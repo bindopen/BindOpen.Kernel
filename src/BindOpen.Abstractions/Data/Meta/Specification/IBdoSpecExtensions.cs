@@ -380,5 +380,38 @@ namespace BindOpen.Data.Meta
 
             return spec;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithLabel<T>(
+            this T spec,
+            string label)
+            where T : IBdoSpec
+        {
+            if (spec != null)
+            {
+                spec.Label = label;
+            }
+
+            return spec;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithLabel<T>(
+            this T spec,
+            LabelFormats label)
+            where T : IBdoSpec
+        {
+            if (spec != null)
+            {
+                spec.Label = label.GetScript();
+            }
+
+            return spec;
+        }
+
     }
 }

@@ -115,11 +115,6 @@ namespace BindOpen.Data.Meta
         }
 
         /// <summary>
-        /// The label of this instance.
-        /// </summary>
-        public string Label { get; set; }
-
-        /// <summary>
         /// The itemization mode of this instance.
         /// </summary>
         public DataMode DataMode { get; set; } = DataMode.Value;
