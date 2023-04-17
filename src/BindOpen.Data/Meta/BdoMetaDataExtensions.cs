@@ -31,11 +31,8 @@ namespace BindOpen.Data.Meta
             BdoDataType dataType)
             where T : IBdoMetaData
         {
-            if (meta != null)
-            {
-                meta.GetOrAddSpec()
+            meta?.GetOrAddSpec()
                     .WithDataType(dataType);
-            }
 
             return meta;
         }
@@ -47,27 +44,6 @@ namespace BindOpen.Data.Meta
             where T : IBdoMetaData
         {
             return WithDataType<T>(meta, BdoData.NewDataType(valueType, type));
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static string GetLabel(
-            this IBdoMetaData meta,
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            if (meta != null)
-            {
-                varSet ??= BdoMeta.NewSet();
-                varSet.Add((BdoData.__This, meta));
-
-                var label = scope?.Interpreter?.Evaluate<string>(meta.Label.ToExpression(), varSet, log);
-                return label;
-            }
-
-            return null;
         }
 
         public static IBdoSpec GetOrAddSpec(this IBdoMetaData meta)
@@ -141,6 +117,60 @@ namespace BindOpen.Data.Meta
                 meta.Specs = BdoMeta.NewSpecSet(specs);
             }
             return meta;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithLabel<T>(
+            this T meta,
+            string label)
+            where T : IBdoMetaData
+        {
+            if (meta != null)
+            {
+                meta.GetOrAddSpec().Label = label;
+            }
+
+            return meta;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithLabel<T>(
+            this T meta,
+            LabelFormats label)
+            where T : IBdoMetaData
+        {
+            if (meta != null)
+            {
+                meta.GetOrAddSpec().Label = label.GetScript();
+            }
+
+            return meta;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static string GetLabel(
+            this IBdoMetaData meta,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            if (meta != null)
+            {
+                varSet ??= BdoMeta.NewSet();
+                varSet.Add((BdoData.__This, meta));
+
+                var exp = meta.GetOrAddSpec().Label.ToExpression();
+                var label = scope?.Interpreter?.Evaluate<string>(exp, varSet, log);
+                return label;
+            }
+
+            return null;
         }
     }
 }
