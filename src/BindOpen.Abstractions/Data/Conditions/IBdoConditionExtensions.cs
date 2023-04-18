@@ -1,7 +1,7 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Data.Conditions;
+﻿using BindOpen.Data.Conditions;
 using BindOpen.Data.Meta;
 using BindOpen.Logging;
+using BindOpen.Scopes;
 using BindOpen.Script;
 
 namespace BindOpen.Data
@@ -9,7 +9,7 @@ namespace BindOpen.Data
     /// <summary>
     /// This static class provides methods to handle conditions.
     /// </summary>
-    public static class IConditionExtensions
+    public static class IBdoConditionExtensions
     {
         /// <summary>
         /// Evaluate this instance.
@@ -19,7 +19,7 @@ namespace BindOpen.Data
         /// <param key="varSet">The variable element set used to evaluate.</param>
         /// <returns>True if this instance is true.</returns>
         public static bool Evaluate(
-            this ICondition condition,
+            this IBdoCondition condition,
             IBdoScope scope,
             IBdoMetaSet varSet,
             IBdoLog log = null)
@@ -36,20 +36,20 @@ namespace BindOpen.Data
         /// <param key="varSet">The variable element set used to evaluate.</param>
         /// <returns>True if this instance is true.</returns>
         public static bool Evaluate(
-            this ICondition condition,
+            this IBdoCondition condition,
             IBdoScriptInterpreter scriptInterpreter,
             IBdoMetaSet varSet,
             IBdoLog log = null)
         {
-            if (condition is IAdvancedCondition advancedCondition)
+            if (condition is IBdoAdvancedCondition advancedCondition)
             {
                 return advancedCondition.Evaluate(scriptInterpreter, varSet, log);
             }
-            else if (condition is IBasicCondition basicCondition)
+            else if (condition is IBdoBasicCondition basicCondition)
             {
                 return basicCondition.Evaluate();
             }
-            else if (condition is IReferenceCondition referenceCondition)
+            else if (condition is IBdoReferenceCondition referenceCondition)
             {
                 return referenceCondition.Evaluate(scriptInterpreter, varSet, log);
             }
@@ -65,7 +65,7 @@ namespace BindOpen.Data
         /// <param key="varSet">The variable element set used to evaluate.</param>
         /// <returns>True if this instance is true.</returns>
         private static bool Evaluate(
-            this IAdvancedCondition condition,
+            this IBdoAdvancedCondition condition,
             IBdoScriptInterpreter scriptInterpreter,
             IBdoMetaSet varSet,
             IBdoLog log = null)
@@ -98,7 +98,7 @@ namespace BindOpen.Data
         /// <param key="scriptInterpreter">Script interpreter.</param>
         /// <param key="varSet">The variable element set used to evaluate.</param>
         /// <returns>True if this instance is true.</returns>
-        private static bool Evaluate(this IBasicCondition condition)
+        private static bool Evaluate(this IBdoBasicCondition condition)
         {
             if (condition == null) return false;
 
@@ -133,7 +133,7 @@ namespace BindOpen.Data
         /// <param key="varSet">The variable element set used to evaluate.</param>
         /// <returns>True if the business script value is the true value.</returns>
         private static bool Evaluate(
-            this IReferenceCondition condition,
+            this IBdoReferenceCondition condition,
             IBdoScriptInterpreter scriptInterpreter,
             IBdoMetaSet varSet,
             IBdoLog log = null)

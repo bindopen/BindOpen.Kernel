@@ -10,7 +10,7 @@
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static ReferenceConditionDto ToDto(this IReferenceCondition poco)
+        public static ReferenceConditionDto ToDto(this IBdoReferenceCondition poco)
         {
             if (poco == null) return null;
 
@@ -27,12 +27,12 @@
         /// </summary>
         /// <param key="dto">The dto to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static IReferenceCondition ToPoco(
+        public static IBdoReferenceCondition ToPoco(
             this ReferenceConditionDto dto)
         {
             if (dto == null) return null;
 
-            ReferenceCondition poco = new()
+            BdoReferenceCondition poco = new()
             {
                 Reference = dto.Reference.ToPoco()
             };

@@ -3,7 +3,7 @@
     /// <summary>
     /// This class represents a script condition.
     /// </summary>
-    public class ReferenceCondition : Condition, IReferenceCondition
+    public class BdoReferenceCondition : BdoCondition, IBdoReferenceCondition
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -14,7 +14,7 @@
         /// <summary>
         /// Instantiates a new instance of the ReferenceCondition class.
         /// </summary>
-        public ReferenceCondition()
+        public BdoReferenceCondition()
         {
         }
 
@@ -23,7 +23,7 @@
         /// </summary>
         /// <param key="trueValue">The true value to consider.</param>
         /// <param key="exp">The exp to consider.</param>
-        public ReferenceCondition(
+        public BdoReferenceCondition(
             IBdoReference exp) : base()
         {
             Reference = exp;
@@ -42,7 +42,7 @@
         /// </summary>
         public override object Clone(params string[] areas)
         {
-            var condition = new ReferenceCondition
+            var condition = new BdoReferenceCondition
             {
                 Reference = Reference.Clone<BdoReference>()
             };
@@ -69,7 +69,7 @@
         /// <param key="exp"></param>
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public IReferenceCondition WithReference(IBdoReference reference)
+        public IBdoReferenceCondition WithReference(IBdoReference reference)
         {
             Reference = reference;
             return this;

@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IReferenceCondition : ICondition
+    public interface IBdoReferenceCondition : IBdoCondition
     {
         /// <summary>
         /// 
@@ -14,6 +14,6 @@
         /// 
         /// </summary>
         /// <param key="expression"></param>
-        IReferenceCondition WithReference(IBdoReference reference);
+        IBdoReferenceCondition WithReference(IBdoReference reference);
     }
 }

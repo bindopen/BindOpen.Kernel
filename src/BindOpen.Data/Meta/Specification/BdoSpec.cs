@@ -239,7 +239,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public ICondition Condition { get; set; }
+        public IBdoCondition Condition { get; set; }
 
         /// <summary>
         /// The aliases of the entry.
