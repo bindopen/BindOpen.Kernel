@@ -13,18 +13,18 @@ namespace BindOpen.Data
         /// <param key="kind">The kind of exp to consider.</param>
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the created exp.</returns>
-        public static AdvancedCondition NewCondition(
+        public static BdoAdvancedCondition NewCondition(
             AdvancedConditionKind kind,
-            params ICondition[] conditions)
+            params IBdoCondition[] conditions)
             => new(kind, conditions);
 
-        public static BasicCondition NewCondition(
+        public static BdoBasicCondition NewCondition(
             object arg1,
             ConditionOperator ope,
             object arg2 = null)
             => new(arg1, ope, arg2);
 
-        public static ReferenceCondition NewCondition(
+        public static BdoReferenceCondition NewCondition(
             IBdoReference exp)
             => new(exp);
     }

@@ -10,17 +10,17 @@
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static ConditionDto ToDto(this ICondition poco)
+        public static ConditionDto ToDto(this IBdoCondition poco)
         {
-            if (poco is IAdvancedCondition advancedCondition)
+            if (poco is IBdoAdvancedCondition advancedCondition)
             {
                 return advancedCondition.ToDto();
             }
-            else if (poco is IBasicCondition basicCondition)
+            else if (poco is IBdoBasicCondition basicCondition)
             {
                 return basicCondition.ToDto();
             }
-            else if (poco is IReferenceCondition referenceCondition)
+            else if (poco is IBdoReferenceCondition referenceCondition)
             {
                 return referenceCondition.ToDto();
             }
@@ -33,7 +33,7 @@
         /// </summary>
         /// <param key="dto">The dto to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static ICondition ToPoco(
+        public static IBdoCondition ToPoco(
             this ConditionDto dto)
         {
             if (dto is AdvancedConditionDto advancedConditionDto)
