@@ -12,7 +12,7 @@ For any additional information, please visit the BindOpen website at https://www
 
 The solution layers are structured as followed:
 
-![BindOpen architecture](https://github.com/bindopen/BindOpen.Docs/raw/master/docs/img/bindopen/bindopen_architecture.png)
+![BindOpen architecture](https://github.com/bindopen/BindOpen/raw/master/docs/img/bindopen_architecture.png)
 
 Each layer is a different solution project.
 
