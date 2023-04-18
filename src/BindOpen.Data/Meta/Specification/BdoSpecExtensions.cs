@@ -31,7 +31,7 @@ namespace BindOpen.Data.Meta
         /// <param key="condition"></param>
         public static T WithConditions<T>(
             this T spec,
-            ICondition condition)
+            IBdoCondition condition)
             where T : IBdoSpec
         {
             if (spec != null)

@@ -3,7 +3,7 @@
     /// <summary>
     /// This class represents a condition.
     /// </summary>
-    public abstract class Condition : BdoObject, ICondition
+    public abstract class BdoCondition : BdoObject, IBdoCondition
     {
         // ------------------------------------------
         // PROPERTIES
@@ -27,7 +27,7 @@
         /// <summary>
         /// Instantiates a new instance of the Condition class.
         /// </summary>
-        protected Condition() : base()
+        protected BdoCondition() : base()
         {
         }
 

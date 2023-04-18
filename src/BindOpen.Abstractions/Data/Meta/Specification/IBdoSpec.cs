@@ -8,7 +8,7 @@ namespace BindOpen.Data.Meta
     /// 
     /// </summary>
     public interface IBdoSpec :
-        IBdoObject, IReferenced,
+        IBdoObject, IReferenced, IBdoConditional,
         IIdentified, INamed, IIndexed,
         IBdoTitled, IBdoDescribed, IBdoDetailed,
         ITUpdatable<IBdoSpec>
@@ -49,11 +49,6 @@ namespace BindOpen.Data.Meta
         /// <param key="item"></param>
         /// <returns></returns>
         bool IsCompatibleWithData(object item);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        ICondition Condition { get; set; }
 
         /// <summary>
         /// 

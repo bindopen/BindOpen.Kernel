@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface ICondition :
+    public interface IBdoCondition :
         INamed, IReferenced, IBdoObjectNotMetable
     {
     }

@@ -6,7 +6,7 @@ namespace BindOpen.Data.Conditions
     /// <summary>
     /// This class represents an advanced condition.
     /// </summary>
-    public class AdvancedCondition : Condition, IAdvancedCondition
+    public class BdoAdvancedCondition : BdoCondition, IBdoAdvancedCondition
     {
         // ------------------------------------------
         // PROPERTIES
@@ -22,7 +22,7 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Conditions of this instance.
         /// </summary>
-        public List<ICondition> Conditions { get; set; }
+        public List<IBdoCondition> Conditions { get; set; }
 
         #endregion
 
@@ -35,7 +35,7 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Instantiates a new instance of the AdvancedCondition class.
         /// </summary>
-        public AdvancedCondition()
+        public BdoAdvancedCondition()
         {
         }
 
@@ -43,9 +43,9 @@ namespace BindOpen.Data.Conditions
         /// Instantiates a new instance of the AdvancedCondition class.
         /// </summary>
         /// <param key="conditions">The conditions to consider.</param>
-        public AdvancedCondition(
+        public BdoAdvancedCondition(
             AdvancedConditionKind kind,
-            params ICondition[] conditions)
+            params IBdoCondition[] conditions)
         {
             Conditions = conditions?.ToList();
         }
@@ -64,8 +64,8 @@ namespace BindOpen.Data.Conditions
         /// <param key="areas">The areas to consider.</param>
         public override object Clone(params string[] areas)
         {
-            var condition = new AdvancedCondition();
-            condition.Conditions.AddRange(Conditions.Select(p => p.Clone() as Condition));
+            var condition = new BdoAdvancedCondition();
+            condition.Conditions.AddRange(Conditions.Select(p => p.Clone() as BdoCondition));
 
             return condition;
         }

@@ -1,8 +1,6 @@
 ﻿using BindOpen.Data.Helpers;
 using BindOpen.Hosting.Hosts;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using Serilog;
 using System;
 
 namespace BindOpen.Hosting.Tests
@@ -33,17 +31,6 @@ namespace BindOpen.Hosting.Tests
             {
                 return _appHost ??= BdoHosting.NewHost(
                     options => options
-                        .SetLogger(p =>
-                        {
-                            Log.Logger = new LoggerConfiguration()
-                                .Enrich.FromLogContext()
-                                .WriteTo.Console()
-                                .CreateLogger();
-
-                            var loggerFactory = new LoggerFactory();
-                            loggerFactory.AddSerilog(Log.Logger);
-                            return loggerFactory.CreateLogger<IBdoHost>();
-                        })
                         .ThrowExceptionOnStartFailure());
             }
         }
