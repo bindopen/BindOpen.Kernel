@@ -29,38 +29,6 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public static T WithLabel<T>(
-            this T meta,
-            string label)
-            where T : IBdoMetaData
-        {
-            if (meta != null)
-            {
-                meta.Label = label;
-            }
-
-            return meta;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T WithLabel<T>(
-            this T meta,
-            LabelFormats label)
-            where T : IBdoMetaData
-        {
-            if (meta != null)
-            {
-                meta.Label = label.GetScript();
-            }
-
-            return meta;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public static T WithDataReference<T>(
             this T meta,
             IBdoReference reference)
