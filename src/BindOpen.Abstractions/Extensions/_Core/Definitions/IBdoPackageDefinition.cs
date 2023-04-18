@@ -50,6 +50,6 @@ namespace BindOpen.Extensions
         /// <summary>
         /// 
         /// </summary>
-        List<IBdoAssemblyReference> UsingAssemblyReferences { get; set; }
+        IList<IBdoAssemblyReference> UsingAssemblyReferences { get; set; }
     }
 }

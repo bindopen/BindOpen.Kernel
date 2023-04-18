@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.Data
 {
@@ -25,8 +26,8 @@ namespace BindOpen.Data
         /// <param key="items">The items to consider.</param>
         /// <typeparam name="T">The class of the named data items.</typeparam>
         public static BdoStringSet NewStringSet(
-            List<string> addedValues = null,
-            List<string> removedValues = null)
+            IEnumerable<string> addedValues = null,
+            IEnumerable<string> removedValues = null)
         {
             var filter = NewStringSet()
                 .Adding(addedValues?.ToArray())

@@ -1,5 +1,5 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
+using BindOpen.Scopes;
 using System.Collections.Generic;
 
 namespace BindOpen.Data.Meta
@@ -75,7 +75,7 @@ namespace BindOpen.Data.Meta
         /// <param key="varSet"></param>
         /// <param key="log"></param>
         /// <returns></returns>
-        public List<object> GetDataList(
+        public IList<object> GetDataList(
             string key,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
@@ -97,7 +97,7 @@ namespace BindOpen.Data.Meta
         /// <param key="varSet"></param>
         /// <param key="log"></param>
         /// <returns></returns>
-        public List<Q> GetDataList<Q>(
+        public IList<Q> GetDataList<Q>(
             string key,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,

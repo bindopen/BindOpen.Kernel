@@ -333,15 +333,13 @@ namespace BindOpen.Data.Meta
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            IEnumerable<IBdoSpec> specs = null;
-
             if (spec != null)
             {
-                specs = spec.SubSpecs?.Where(
+                return spec.SubSpecs?.Where(
                     q => q?.Condition.Evaluate(scope, varSet, log) == true);
             }
 
-            return specs ?? new List<IBdoSpec>();
+            return Enumerable.Empty<IBdoSpec>();
         }
 
         /// <summary>

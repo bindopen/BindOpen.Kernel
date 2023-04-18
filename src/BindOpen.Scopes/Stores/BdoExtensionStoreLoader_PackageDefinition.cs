@@ -90,7 +90,7 @@ namespace BindOpen.Scopes.Stores
                             definition.AssemblyName));
                 }
 
-                definition.UsingAssemblyReferences ??= assembly.GetReferencedAssemblies().ToReferences();
+                definition.UsingAssemblyReferences ??= assembly.GetReferencedAssemblies().ToReferences().ToArray();
             }
 
             return definition;

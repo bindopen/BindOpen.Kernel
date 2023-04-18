@@ -22,7 +22,7 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// Conditions of this instance.
         /// </summary>
-        public List<IBdoCondition> Conditions { get; set; }
+        public IList<IBdoCondition> Conditions { get; set; }
 
         #endregion
 
@@ -65,7 +65,7 @@ namespace BindOpen.Data.Conditions
         public override object Clone(params string[] areas)
         {
             var condition = new BdoAdvancedCondition();
-            condition.Conditions.AddRange(Conditions.Select(p => p.Clone() as BdoCondition));
+            //condition.Conditions.AddRange(Conditions.Select(p => p.Clone() as BdoCondition));
 
             return condition;
         }

@@ -35,7 +35,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        List<IBdoLog> SubLogs { get; }
+        IList<IBdoLog> SubLogs { get; }
 
         /// <summary>
         /// 

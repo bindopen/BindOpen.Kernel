@@ -348,7 +348,7 @@ namespace BindOpen.Data.Meta
         /// <param key="scope">The scope to consider.</param>
         /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public List<object> GetDataList(
+        public IList<object> GetDataList(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
@@ -365,7 +365,7 @@ namespace BindOpen.Data.Meta
         /// <param key="scope">The scope to consider.</param>
         /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public List<Q> GetDataList<Q>(
+        public IList<Q> GetDataList<Q>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)

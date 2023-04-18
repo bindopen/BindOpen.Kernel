@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using BindOpen.Scopes;
 
 namespace BindOpen.Scopes.Stores
 {
@@ -57,16 +56,15 @@ namespace BindOpen.Scopes.Stores
 
             var loaded = true;
 
-            _loadOptions.Sources ??= new();
-            if (_loadOptions.Sources.Count == 0)
+            _loadOptions.Sources ??= new List<(DatasourceKind Kind, string Uri)>();
+            if (_loadOptions.Sources.Any() != true)
             {
                 _loadOptions.AddSource(DatasourceKind.Memory);
             }
 
-            _loadOptions.References ??= new() { BdoData.AssemblyAsAll() };
-            _loadOptions.References = _appDomain.GetAssemblyReferences(_loadOptions.References);
+            _loadOptions.References = _appDomain.GetAssemblyReferences(_loadOptions.References?.ToArray())?.ToArray();
 
-            if (!(_loadOptions.References.Count > 0))
+            if (_loadOptions.References.Any() != true)
             {
                 subLog?.AddMessage("No extensions found");
             }
@@ -193,7 +191,7 @@ namespace BindOpen.Scopes.Stores
 
                             // we load the using assemblies
 
-                            if (packageDefinition?.UsingAssemblyReferences?.Count > 0)
+                            if (packageDefinition?.UsingAssemblyReferences?.Any() == true)
                             {
                                 foreach (var usingReference in packageDefinition?.UsingAssemblyReferences)
                                 {
