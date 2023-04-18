@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IBasicCondition : ICondition
+    public interface IBdoBasicCondition : IBdoCondition
     {
         /// <summary>
         /// 

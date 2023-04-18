@@ -53,7 +53,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        ICondition Condition { get; set; }
+        IBdoCondition Condition { get; set; }
 
         /// <summary>
         /// 

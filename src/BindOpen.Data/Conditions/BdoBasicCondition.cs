@@ -4,7 +4,7 @@
     /// <summary>
     /// This class represents an basic condition.
     /// </summary>
-    public class BasicCondition : Condition, IBasicCondition
+    public class BdoBasicCondition : BdoCondition, IBdoBasicCondition
     {
         // ------------------------------------------
         // PROPERTIES
@@ -38,7 +38,7 @@
         /// <summary>
         /// Instantiates a new instance of the BasicCondition class.
         /// </summary>
-        public BasicCondition()
+        public BdoBasicCondition()
         {
         }
 
@@ -48,7 +48,7 @@
         /// <param key="arg1">The argument 1 to consider.</param>
         /// <param key="ope">The operator to consider.</param>
         /// <param key="arg2">The argument 2 to consider.</param>
-        public BasicCondition(
+        public BdoBasicCondition(
             object arg1,
             ConditionOperator ope,
             object arg2 = null)

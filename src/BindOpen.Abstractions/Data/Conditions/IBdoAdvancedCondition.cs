@@ -5,7 +5,7 @@ namespace BindOpen.Data.Conditions
     /// <summary>
     /// 
     /// </summary>
-    public interface IAdvancedCondition : ICondition
+    public interface IBdoAdvancedCondition : IBdoCondition
     {
         /// <summary>
         /// 
@@ -15,6 +15,6 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// 
         /// </summary>
-        List<ICondition> Conditions { get; set; }
+        List<IBdoCondition> Conditions { get; set; }
     }
 }
