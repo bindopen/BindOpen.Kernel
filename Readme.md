@@ -12,7 +12,7 @@ For any additional information, please visit the BindOpen website at https://www
 
 The solution layers are structured as followed:
 
-![BindOpen architecture](https://github.com/bindopen/BindOpen.Docs/raw/master/docs/images/bindopen/bindopen_architecture.png)
+![BindOpen architecture](https://github.com/bindopen/BindOpen.Docs/raw/master/docs/img/bindopen/bindopen_architecture.png)
 
 Each layer is a different solution project.
 
@@ -38,13 +38,16 @@ The BindOpen Blog is where we announce new features, write engineering blog post
 
 [BindOpen](https://github.com/bindopen/BindOpen) contains the base BindOpen framework packages.
 
-[BindOpen.Commands](https://github.com/bindopen/BindOpen.Commands) allows you to manage arguments of command lines.
-
-[BindOpen.Metabases](https://github.com/bindopen/BindOpen.Metabases) allows you to fluently build your SQL queries whatever the kind of databases you deal with.
-
 [BindOpen.Forms](https://github.com/bindopen/BindOpen.Forms) allows you to manage forms.
 
+[BindOpen.Bpm](https://github.com/bindopen/BindOpen.Bpm) allows you to manage business processes.
+
 [BindOpen.Logging](https://github.com/bindopen/BindOpen.Logging) allows you to track your processes from basic methods to advanced workflows.
+
+[BindOpen.Databases](https://github.com/bindopen/BindOpen.Databases) allows you to fluently build your SQL queries whatever the kind of databases you deal with.
+
+[BindOpen.Commands](https://github.com/bindopen/BindOpen.Commands) allows you to manage arguments of command lines.
+
 
 A [full list of all the repos](https://github.com/bindopen?tab=repositories) is available as well.
 
