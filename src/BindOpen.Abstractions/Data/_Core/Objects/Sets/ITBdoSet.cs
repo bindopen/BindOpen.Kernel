@@ -21,7 +21,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="key"></param>
         /// <returns></returns>
-        List<T> Items { get; }
+        IList<T> Items { get; }
 
         /// <summary>
         /// 
@@ -130,6 +130,6 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        List<T> ToList();
+        IList<T> ToList();
     }
 }

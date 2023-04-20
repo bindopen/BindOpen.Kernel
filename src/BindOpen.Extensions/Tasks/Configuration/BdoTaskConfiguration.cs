@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Meta;
 using System;
+using System.Linq;
 
 namespace BindOpen.Extensions.Tasks
 {
@@ -29,7 +30,7 @@ namespace BindOpen.Extensions.Tasks
 
         public new IBdoTaskConfiguration With(params IBdoMetaData[] items)
         {
-            Items?.RemoveAll(q => q.OfGroup(null));
+            With(Items?.Where(q => !q.OfGroup(null)).ToArray());
             Array.ForEach(items, q => { q.WithGroupId(null); });
             base.Add(items);
             return this;
@@ -37,7 +38,7 @@ namespace BindOpen.Extensions.Tasks
 
         public IBdoTaskConfiguration WithInputs(params IBdoMetaData[] inputs)
         {
-            Items?.RemoveAll(q => q.OfGroup(IBdoTaskExtensions.__Token_Input));
+            With(Items?.Where(q => !q.OfGroup(IBdoTaskExtensions.__Token_Input)).ToArray());
             Array.ForEach(inputs, q => { q.AsInput(); });
             base.Add(inputs);
             return this;
@@ -45,7 +46,7 @@ namespace BindOpen.Extensions.Tasks
 
         public IBdoTaskConfiguration WithOutputs(params IBdoMetaData[] outputs)
         {
-            Items?.RemoveAll(q => q.OfGroup(IBdoTaskExtensions.__Token_Output));
+            With(Items?.Where(q => !q.OfGroup(IBdoTaskExtensions.__Token_Output)).ToArray());
             Array.ForEach(outputs, q => { q.AsOutput(); });
             base.Add(outputs);
             return this;

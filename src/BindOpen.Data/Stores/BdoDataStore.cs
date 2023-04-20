@@ -1,5 +1,5 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
+using BindOpen.Scopes;
 using System;
 using System.Collections.Generic;
 
@@ -92,12 +92,12 @@ namespace BindOpen.Data.Stores
                 if (depot != null)
                 {
                     depot.WithScope(scope);
-                    var subLog = log?.AddSubLog(title: "Loading depot '" + depot.Id + "'...", eventKind: EventKinds.Message);
-                    depot.LoadLazy(subLog);
+                    var childLog = log?.InsertChild(EventKinds.Message, "Loading depot '" + depot.Id + "'...");
+                    depot.LoadLazy(childLog);
 
-                    if (subLog?.HasEvent(EventKinds.Error, EventKinds.Exception) == true)
+                    if (childLog?.HasEvent(EventKinds.Error, EventKinds.Exception) == true)
                     {
-                        subLog.AddMessage("Could not load depot");
+                        childLog.AddEvent(EventKinds.Message, "Could not load depot");
                     }
                 }
             }

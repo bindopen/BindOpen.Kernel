@@ -1,5 +1,5 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
+using BindOpen.Scopes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +41,7 @@ namespace BindOpen.Data.Meta
         /// <param key="scope">The scope to consider.</param>
         /// <param key="varSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public override List<object> GetDataList(
+        public override IList<object> GetDataList(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
@@ -67,7 +67,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The using file paths of this instance.
         /// </summary>
-        public List<string> UsedItemIds { get; set; }
+        public IList<string> UsedItemIds { get; set; }
 
         /// <summary>
         /// Adds the specified item.

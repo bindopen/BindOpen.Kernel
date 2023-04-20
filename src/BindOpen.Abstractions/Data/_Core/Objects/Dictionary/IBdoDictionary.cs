@@ -37,7 +37,7 @@ namespace BindOpen.Data
         /// <param key="key"></param>
         /// <param key="text"></param>
         /// <returns></returns>
-        IBdoDictionary Add(string key, string text, List<string> availableKeys = null);
+        IBdoDictionary Add(string key, string text, IEnumerable<string> availableKeys = null);
 
         /// <summary>
         /// 

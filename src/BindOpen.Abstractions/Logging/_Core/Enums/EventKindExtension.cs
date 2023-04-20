@@ -15,7 +15,7 @@ namespace BindOpen.Logging
         /// </summary>
         /// <param key="eventKinds">The event kinds to consider.</param>
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
-        public static EventKinds Max(this List<EventKinds> eventKinds)
+        public static EventKinds Max(this IEnumerable<EventKinds> eventKinds)
         {
             EventKinds eventKind = EventKinds.None;
             if (eventKinds != null)

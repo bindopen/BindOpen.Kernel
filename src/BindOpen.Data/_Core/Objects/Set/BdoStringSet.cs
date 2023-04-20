@@ -34,22 +34,22 @@ namespace BindOpen.Data
         /// The added values of this instance.
         /// </summary>
         /// <remarks>If empty then all the values are added.</remarks>
-        public List<string> AddedValues { get; set; }
+        public IList<string> AddedValues { get; set; }
 
         /// <summary>
         /// The removed values of this instance.
         /// </summary>
         /// <remarks>If empty then no value is removed.</remarks>
-        public List<string> RemovedValues { get; set; }
+        public IList<string> RemovedValues { get; set; }
 
         /// <summary>
         /// Gets the values allowed by this instance.
         /// </summary>
         /// <param key="allValues">All the values to consider.</param>
         /// <returns>Returns all the values allowed by this instance.</returns>
-        public List<string> ToList()
+        public IList<string> ToList()
         {
-            return new List<string>().Merge(this);
+            return new List<string>().Merge(this)?.ToList();
         }
 
         /// <summary>
@@ -79,11 +79,9 @@ namespace BindOpen.Data
         /// <param key="allValues">All the values to consider.</param>
         public void UpdateFromAll(List<string> allValues = null)
         {
-            AddedValues?.RemoveAll(p => allValues.Any(q => p.BdoKeyEquals(q)));
-            AddedValues = AddedValues?.Distinct().ToList();
+            AddedValues = AddedValues?.Where(p => !allValues.Any(q => p.BdoKeyEquals(q)))?.Distinct().ToList();
 
-            RemovedValues?.RemoveAll(p => allValues.Any(q => p.BdoKeyEquals(q)));
-            RemovedValues = RemovedValues?.Distinct().ToList();
+            RemovedValues = RemovedValues?.Where(p => !allValues.Any(q => p.BdoKeyEquals(q)))?.Distinct().ToList();
         }
 
         #endregion

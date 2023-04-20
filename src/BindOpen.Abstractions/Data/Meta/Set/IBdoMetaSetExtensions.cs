@@ -40,14 +40,12 @@ namespace BindOpen.Data.Meta
             this IBdoMetaSet set,
             string groupId)
         {
-            IEnumerable<IBdoMetaData> metas = new List<IBdoMetaData>();
-
             if (set != null)
             {
-                metas = set.Where(p => p.OfGroup(groupId));
+                return set.Where(p => p.OfGroup(groupId));
             }
 
-            return metas;
+            return Enumerable.Empty<IBdoMetaData>();
         }
 
         public static bool HasGroup(

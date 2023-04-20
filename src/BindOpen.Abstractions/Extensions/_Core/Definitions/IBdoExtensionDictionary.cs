@@ -15,7 +15,7 @@ namespace BindOpen.Extensions
         /// <summary>
         /// The groups.
         /// </summary>
-        List<IBdoExtensionGroup> Groups { get; set; }
+        IList<IBdoExtensionGroup> Groups { get; set; }
 
         /// <summary>
         /// ID of library.

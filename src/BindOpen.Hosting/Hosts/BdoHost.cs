@@ -109,18 +109,18 @@ namespace BindOpen.Hosting.Hosts
         {
             Process();
 
-            Log?.AddMessage("Host starting...");
+            Log?.AddEvent(EventKinds.Message, "Host starting...");
 
             Initialize();
 
             if (IsLoaded)
             {
-                Log?.AddMessage("Host started successfully");
+                Log?.AddEvent(EventKinds.Message, "Host started successfully");
                 StartSucceeds();
             }
             else
             {
-                Log?.AddMessage("Host loaded with errors");
+                Log?.AddEvent(EventKinds.Message, "Host loaded with errors");
                 End();
                 StartFails();
             }
@@ -147,7 +147,7 @@ namespace BindOpen.Hosting.Hosts
             _isLoaded = false;
             Clear();
 
-            Log?.AddMessage("Host ended");
+            Log?.AddEvent(EventKinds.Message, "Host ended");
             return base.End(executionStatus) as IBdoHost;
         }
 
@@ -259,9 +259,9 @@ namespace BindOpen.Hosting.Hosts
             //Log.WithLogger(Options.LoggerInit?.Invoke(this));
 
             // we launch the standard initialization of service
-            var log = Log?.InsertSubLog(title: "Initializing host...", eventKind: EventKinds.Message);
+            var log = Log?.InsertChild(EventKinds.Message, "Initializing host...");
 
-            IBdoLog subLog = null;
+            IBdoLog childLog = null;
 
             base.Initialize();
 
@@ -290,28 +290,28 @@ namespace BindOpen.Hosting.Hosts
                     }
                     else
                     {
-                        subLog = log?.InsertSubLog(title: "Loading host config...", eventKind: EventKinds.Message);
+                        childLog = log?.InsertChild(EventKinds.Message, "Loading host config...");
                         //Options.Settings.UpdateFromFile(
                         //        hostConfigFilePath,
                         //        new SpecificationLevels[] { SpecificationLevels.Definition, SpecificationLevels.Configuration },
                         //        null, _scope, null).AddEventsTo(log);
-                        if (subLog?.HasEvent(EventKinds.Error, EventKinds.Exception) != true)
+                        if (childLog?.HasEvent(EventKinds.Error, EventKinds.Exception) != true)
                         {
-                            subLog?.AddMessage("Host config loaded");
+                            childLog?.AddEvent(EventKinds.Message, "Host config loaded");
                         }
                     }
 
-                    //Options.Update().AddEventsTo(subLog);
+                    //Options.Update().AddEventsTo(childLog);
 
                     // we load extensions
 
-                    subLog = log?.InsertSubLog(title: "Loading extensions...", eventKind: EventKinds.Message);
+                    childLog = log?.InsertChild(EventKinds.Message, "Loading extensions...");
 
                     Scope.LoadExtensions(
                         q => q = Options.ExtensionLoadOptions
                             .AddSource(DatasourceKind.Repository, GetKnownPath(BdoHostPathKind.LibraryFolder)),
-                        subLog);
-                    _isLoaded = !subLog.HasEvent(EventKinds.Exception, EventKinds.Error);
+                        childLog);
+                    _isLoaded = !childLog.HasEvent(EventKinds.Exception, EventKinds.Error);
 
                     if (_isLoaded)
                     {
@@ -327,18 +327,18 @@ namespace BindOpen.Hosting.Hosts
                             }
                         }
 
-                        subLog = log?.InsertSubLog(title: "Loading data store...", eventKind: EventKinds.Message);
+                        childLog = log?.InsertChild(EventKinds.Message, "Loading data store...");
                         if (Scope.DataStore == null)
                         {
-                            subLog?.AddMessage(title: "No data store registered");
+                            childLog?.AddEvent(EventKinds.Message, title: "No data store registered");
                         }
                         else
                         {
-                            Scope.DataStore.LoadLazy(this, subLog);
+                            Scope.DataStore.LoadLazy(this, childLog);
 
-                            if (subLog?.HasEvent(EventKinds.Error, EventKinds.Exception) != true)
+                            if (childLog?.HasEvent(EventKinds.Error, EventKinds.Exception) != true)
                             {
-                                subLog?.AddMessage("Data store loaded (" + Scope.DataStore.Depots.Count + " depots added)");
+                                childLog?.AddEvent(EventKinds.Message, "Data store loaded (" + Scope.DataStore.Depots.Count + " depots added)");
                             }
                         }
                     }

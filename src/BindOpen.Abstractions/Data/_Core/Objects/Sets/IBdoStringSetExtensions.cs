@@ -13,8 +13,8 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="all">All the values to consider.</param>
         /// <returns>Returns all the values allowed by this instance.</returns>
-        public static List<string> Merge(
-            this List<string> values,
+        public static IList<string> Merge(
+            this IList<string> values,
             IBdoStringSet set)
         {
             var all = new List<string>();
@@ -44,7 +44,7 @@ namespace BindOpen.Data
         /// <param key="all">All the values to consider.</param>
         /// <returns>Returns True if the specified is validated by this instance.</returns>
         public static bool Contains(
-            this List<string> values,
+            this IList<string> values,
             string value,
             IBdoStringSet set)
         {

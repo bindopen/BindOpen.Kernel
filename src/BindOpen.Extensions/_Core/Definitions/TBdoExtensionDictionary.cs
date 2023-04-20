@@ -46,7 +46,7 @@ namespace BindOpen.Extensions
         /// <summary>
         /// Groups of this instance.
         /// </summary>
-        public List<IBdoExtensionGroup> Groups { get; set; }
+        public IList<IBdoExtensionGroup> Groups { get; set; }
 
         #endregion
 

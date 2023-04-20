@@ -65,7 +65,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="references">The references to consider.</param>
         /// <returns>Returns the itemized list of the specified library list.</returns>
-        public static List<BdoAssemblyReference> GetDistinctReferences(
+        public static IEnumerable<BdoAssemblyReference> GetDistinctReferences(
             this IEnumerable<BdoAssemblyReference> references)
         {
             return references.GroupBy(

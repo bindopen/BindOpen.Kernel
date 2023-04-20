@@ -1,7 +1,7 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Data;
+﻿using BindOpen.Data;
 using BindOpen.Data.Assemblies;
 using BindOpen.Extensions;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BindOpen.Scopes
@@ -24,7 +24,7 @@ namespace BindOpen.Scopes
         {
             if (obj != null)
             {
-                obj.Sources ??= new();
+                obj.Sources ??= new List<(DatasourceKind Kind, string Uri)>();
                 obj.Sources.Add((kind, uri));
             }
             return obj;
@@ -54,8 +54,11 @@ namespace BindOpen.Scopes
         {
             if (obj != null)
             {
-                obj.References ??= new();
-                obj.References.AddRange(references?.ToList());
+                obj.References ??= new List<IBdoAssemblyReference>();
+                foreach (var reference in references)
+                {
+                    obj.References.Add(reference);
+                }
             }
             return obj;
         }
@@ -65,7 +68,7 @@ namespace BindOpen.Scopes
         {
             if (obj != null)
             {
-                obj.References ??= new();
+                obj.References ??= new List<IBdoAssemblyReference>();
                 obj.References.Add(BdoData.AssemblyFrom<Q>());
             }
             return obj;
@@ -77,7 +80,7 @@ namespace BindOpen.Scopes
         {
             if (obj != null)
             {
-                obj.References = new() { BdoData.AssemblyAsAll() };
+                obj.References = new List<IBdoAssemblyReference>() { BdoData.AssemblyAsAll() };
             }
             return obj;
         }

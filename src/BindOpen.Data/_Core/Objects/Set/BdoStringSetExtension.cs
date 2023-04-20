@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace BindOpen.Data
 {
@@ -18,8 +17,15 @@ namespace BindOpen.Data
             params string[] values)
             where T : IBdoStringSet
         {
-            filter.AddedValues ??= new List<string>();
-            filter.AddedValues.AddRange(values?.ToList());
+            if (filter != null)
+            {
+                filter.AddedValues ??= new List<string>();
+                foreach (var value in values)
+                {
+                    filter.AddedValues.Add(value);
+                }
+            }
+
             return filter;
         }
 
@@ -33,8 +39,15 @@ namespace BindOpen.Data
             params string[] values)
             where T : IBdoStringSet
         {
-            filter.RemovedValues ??= new List<string>();
-            filter.RemovedValues.AddRange(values?.ToList());
+            if (filter != null)
+            {
+                filter.RemovedValues ??= new List<string>();
+                foreach (var value in values)
+                {
+                    filter.RemovedValues.Add(value);
+                }
+            }
+
             return filter;
         }
     }
