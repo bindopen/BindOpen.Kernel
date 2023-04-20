@@ -39,7 +39,7 @@ namespace BindOpen.Logging
             return log;
         }
 
-        public static T WithTaskConfig<T>(
+        public static T WithTask<T>(
             this T log,
             IBdoConfiguration config)
             where T : IBdoBaseLog
@@ -60,7 +60,7 @@ namespace BindOpen.Logging
             params IBdoBaseLog[] childLogs)
             where T : IBdoBaseLog
         {
-            log?.ClearEvents();
+            log?.Clear();
 
             return log;
         }
