@@ -51,7 +51,8 @@ namespace BindOpen.Logging
             EventKinds kind,
             string title,
             string description = null,
-            DateTime? date = null);
+            DateTime? date = null,
+            string resultCode = null);
 
         /// <summary>
         /// 
@@ -72,16 +73,7 @@ namespace BindOpen.Logging
             string title = null,
             string description = null,
             DateTime? date = null,
-            string resultCode = null,
-            Predicate<IBdoLog> filter = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="id"></param>
-        /// <param key="isRecursive"></param>
-        /// <returns></returns>
-        void RemoveChild(Predicate<IBdoLog> filter, bool isRecursive = true);
+            string resultCode = null);
 
         // Events
 
@@ -141,20 +133,6 @@ namespace BindOpen.Logging
         /// </summary>
         /// <returns></returns>
         void Sanitize();
-
-        // Clone
-
-        /// <summary>
-        /// Clones this instance considering the parent log.
-        /// </summary>
-        /// <param key="parent"></param>
-        IBdoLog Clone(IBdoLog parent, params string[] areas);
-
-        /// <summary>
-        /// Clones this instance considering the parent log.
-        /// </summary>
-        /// <param key="parent"></param>
-        T Clone<T>(IBdoLog parent, params string[] areas) where T : class;
 
         // Execution
 
