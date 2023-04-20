@@ -180,7 +180,11 @@ namespace BindOpen.Scopes.Stores
 
                         if (assembly == null)
                         {
-                            log?.AddChild(newLog, filter: p => p.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning));
+                            if (log.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning))
+                            {
+                                log?.AddChild(newLog);
+                            }
+
                             loaded = false;
                         }
                         else
