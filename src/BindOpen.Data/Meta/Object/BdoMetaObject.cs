@@ -105,7 +105,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Returns the number of items.
         /// </summary>
-        public List<IBdoMetaData> Items
+        public IList<IBdoMetaData> Items
             => _propertySet?.Items;
 
         /// <summary>
@@ -277,7 +277,7 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<IBdoMetaData> ToList()
+        public IList<IBdoMetaData> ToList()
             => _propertySet?.ToList();
 
         #endregion

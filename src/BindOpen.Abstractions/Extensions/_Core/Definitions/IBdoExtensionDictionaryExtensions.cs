@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.Extensions
 {
@@ -30,8 +31,7 @@ namespace BindOpen.Extensions
         {
             if (obj != null)
             {
-                obj.Groups ??= new();
-                obj.Groups.AddRange(groups?.ToList());
+                obj.Groups ??= new List<IBdoExtensionGroup>(groups);
             }
             return obj;
         }

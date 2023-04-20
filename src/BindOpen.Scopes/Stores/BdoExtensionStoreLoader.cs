@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using BindOpen.Scopes;
 
 namespace BindOpen.Scopes.Stores
 {
@@ -51,24 +50,23 @@ namespace BindOpen.Scopes.Stores
         {
             if (_store == null) return this;
 
-            var subLog = log?.NewLog();
+            var childLog = log?.NewLog();
 
             // we load libraries
 
             var loaded = true;
 
-            _loadOptions.Sources ??= new();
-            if (_loadOptions.Sources.Count == 0)
+            _loadOptions.Sources ??= new List<(DatasourceKind Kind, string Uri)>();
+            if (_loadOptions.Sources.Any() != true)
             {
                 _loadOptions.AddSource(DatasourceKind.Memory);
             }
 
-            _loadOptions.References ??= new() { BdoData.AssemblyAsAll() };
-            _loadOptions.References = _appDomain.GetAssemblyReferences(_loadOptions.References);
+            _loadOptions.References = _appDomain.GetAssemblyReferences(_loadOptions.References?.ToArray())?.ToArray();
 
-            if (!(_loadOptions.References.Count > 0))
+            if (_loadOptions.References.Any() != true)
             {
-                subLog?.AddMessage("No extensions found");
+                childLog?.AddEvent(EventKinds.Message, "No extensions found");
             }
             else
             {
@@ -78,15 +76,15 @@ namespace BindOpen.Scopes.Stores
                 {
                     if (reference != null)
                     {
-                        loaded &= LoadPackage(reference, loadedAssemblyNames, subLog);
+                        loaded &= LoadPackage(reference, loadedAssemblyNames, childLog);
 
                         if (log?.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning) == true)
                         {
-                            log?.AddSubLog(subLog, title: "Loading extension '" + (reference?.AssemblyName ?? "?") + "'");
+                            log?.AddChild(childLog, title: "Loading extension '" + (reference?.AssemblyName ?? "?") + "'");
                         }
                         else
                         {
-                            log?.AddMessage("Extension '" + (reference?.AssemblyName ?? "?") + "' loaded");
+                            log?.AddEvent(EventKinds.Message, "Extension '" + (reference?.AssemblyName ?? "?") + "' loaded");
                         }
                     }
                 }
@@ -129,14 +127,14 @@ namespace BindOpen.Scopes.Stores
 
                         foreach (var source in _loadOptions?.Sources)
                         {
-                            IBdoLog subLog = newLog?.AddSubLog(
-                                title: "Loading assembly from '" + source.Kind.ToString() + "'",
-                                eventKind: EventKinds.Message);
+                            IBdoLog childLog = newLog?.InsertChild(
+                                EventKinds.Message,
+                                title: "Loading assembly from '" + source.Kind.ToString() + "'");
 
                             switch (source.Kind)
                             {
                                 case DatasourceKind.Memory:
-                                    assembly = _appDomain.LoadAssembly(reference, subLog);
+                                    assembly = _appDomain.LoadAssembly(reference, childLog);
                                     break;
                                 case DatasourceKind.Repository:
                                     string fileName = reference.AssemblyFileName;
@@ -148,21 +146,21 @@ namespace BindOpen.Scopes.Stores
                                     string filePath = source.Uri.EndingWith(@"\").ToPath() + fileName;
                                     if (!File.Exists(filePath))
                                     {
-                                        subLog?.AddError("Could not find the assembly file path '" + filePath + "'");
+                                        childLog?.AddError("Could not find the assembly file path '" + filePath + "'");
                                         loaded = false;
                                     }
                                     else
                                     {
-                                        assembly = _appDomain.LoadAssemblyFromFile(filePath, subLog);
+                                        assembly = _appDomain.LoadAssemblyFromFile(filePath, childLog);
 
                                         if (assembly == null)
                                         {
-                                            subLog?.AddError("Could not load assembly '" + filePath + "'");
+                                            childLog?.AddError("Could not load assembly '" + filePath + "'");
                                             loaded = false;
                                         }
                                         else
                                         {
-                                            subLog?.AddCheckpoint("Loading assembly from file '" + filePath + "'");
+                                            childLog?.AddCheckpoint("Loading assembly from file '" + filePath + "'");
                                             assembly = Assembly.LoadFrom(filePath);
                                         }
                                     }
@@ -173,7 +171,7 @@ namespace BindOpen.Scopes.Stores
 
                             if (assembly != null)
                             {
-                                subLog?.AddMessage("Assembly '" + reference.ToString() + " loaded");
+                                childLog?.AddEvent(EventKinds.Message, "Assembly '" + reference.ToString() + " loaded");
                                 break;
                             }
                         }
@@ -182,7 +180,7 @@ namespace BindOpen.Scopes.Stores
 
                         if (assembly == null)
                         {
-                            log?.AddSubLog(newLog, p => p.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning));
+                            log?.AddChild(newLog, filter: p => p.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning));
                             loaded = false;
                         }
                         else
@@ -193,13 +191,13 @@ namespace BindOpen.Scopes.Stores
 
                             // we load the using assemblies
 
-                            if (packageDefinition?.UsingAssemblyReferences?.Count > 0)
+                            if (packageDefinition?.UsingAssemblyReferences?.Any() == true)
                             {
                                 foreach (var usingReference in packageDefinition?.UsingAssemblyReferences)
                                 {
-                                    IBdoLog subSubLog = log?.NewLog()
+                                    IBdoLog subChildLog = log?.NewLog()
                                         .WithDisplayName("Loading using extensions...");
-                                    loaded &= LoadPackage(usingReference, loadedAssemblyNames, subSubLog);
+                                    loaded &= LoadPackage(usingReference, loadedAssemblyNames, subChildLog);
                                 }
                             }
 
@@ -216,22 +214,22 @@ namespace BindOpen.Scopes.Stores
 
                             foreach (var extensionKind in extensionKinds)
                             {
-                                var subSubLog = log?.NewLog();
+                                var subChildLog = log?.NewLog();
 
-                                int count = LoadDictionary(assembly, extensionKind, packageDefinition, subSubLog);
+                                int count = LoadDictionary(assembly, extensionKind, packageDefinition, subChildLog);
 
-                                if (subSubLog?.HasEvent(
+                                if (subChildLog?.HasEvent(
                                     EventKinds.Error,
                                     EventKinds.Exception,
                                     EventKinds.Warning) == true)
                                 {
-                                    log?.AddSubLog(
-                                        subSubLog,
+                                    log?.AddChild(
+                                        subChildLog,
                                         title: "Dictionary '" + extensionKind.ToString() + "' not loaded correctly (" + count.ToString() + " items added)");
                                 }
                                 else
                                 {
-                                    log?.AddMessage("Dictionary '" + extensionKind.ToString() + "' loaded (" + count.ToString() + " items added)");
+                                    log?.AddEvent(EventKinds.Message, "Dictionary '" + extensionKind.ToString() + "' loaded (" + count.ToString() + " items added)");
                                 }
                             }
                         }

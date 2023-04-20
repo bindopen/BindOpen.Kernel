@@ -14,7 +14,7 @@ namespace BindOpen.Extensions
         /// <summary>
         /// 
         /// </summary>
-        List<IBdoExtensionGroup> SubGroups { get; }
+        IList<IBdoExtensionGroup> SubGroups { get; }
 
         /// <summary>
         /// 

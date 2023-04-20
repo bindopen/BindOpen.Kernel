@@ -37,7 +37,7 @@ namespace BindOpen.Data.Meta
 
         #region Variables
 
-        private List<DataMode> _availableValueModes = null;
+        private IList<DataMode> _availableValueModes = null;
 
         #endregion
 
@@ -119,7 +119,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Levels of specification of this instance.
         /// </summary>
-        public List<SpecificationLevels> SpecLevels { get; set; }
+        public IList<SpecificationLevels> SpecLevels { get; set; }
 
         /// <summary>
         /// Level of accessibility of this instance.
@@ -244,7 +244,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The aliases of the entry.
         /// </summary>
-        public List<string> Aliases { get; set; }
+        public IList<string> Aliases { get; set; }
 
         /// <summary>
         /// Indicates whether the instance can be allocated.
@@ -263,12 +263,12 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The available itemization modes of this instance.
         /// </summary>
-        public List<DataMode> ValueModes
+        public IList<DataMode> ValueModes
         {
             get => _availableValueModes;
             set
             {
-                if (value == null || value.Count == 0 || value.Contains(DataMode.Any))
+                if (value?.Any() != true || value.Contains(DataMode.Any))
                     _availableValueModes = new List<DataMode>() { DataMode.Any };
                 else
                     _availableValueModes = value;
@@ -308,7 +308,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Levels of specification of this instance.
         /// </summary>
-        public List<SpecificationLevels> DataSpecLevels { get; set; }
+        public IList<SpecificationLevels> DataSpecLevels { get; set; }
 
         /// <summary>
         /// 

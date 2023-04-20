@@ -1454,12 +1454,12 @@
             <param key="task"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.Logging.IBdoLog.SubLogs">
+        <member name="P:BindOpen.Logging.IBdoLog.ChildLogs">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Logging.IBdoLog.HasSubLog">
+        <member name="M:BindOpen.Logging.IBdoLog.HasChildLog">
             <summary>
             
             </summary>
@@ -1482,7 +1482,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Logging.IBdoLog.InsertSubLog(System.Predicate{BindOpen.Logging.IBdoLog},BindOpen.Logging.EventKinds,System.String,BindOpen.Data.Criticalities,System.String,System.String,System.String,System.Nullable{System.DateTime})">
+        <member name="M:BindOpen.Logging.IBdoLog.InsertChildLog(System.Predicate{BindOpen.Logging.IBdoLog},BindOpen.Logging.EventKinds,System.String,BindOpen.Data.Criticalities,System.String,System.String,System.String,System.Nullable{System.DateTime})">
             <summary>
             
             </summary>
@@ -1496,7 +1496,7 @@
             <param key="date"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Logging.IBdoLog.AddSubLog(System.Predicate{BindOpen.Logging.IBdoLog},BindOpen.Logging.EventKinds,System.String,BindOpen.Data.Criticalities,System.String,System.String,System.String,System.Nullable{System.DateTime})">
+        <member name="M:BindOpen.Logging.IBdoLog.AddChildLog(System.Predicate{BindOpen.Logging.IBdoLog},BindOpen.Logging.EventKinds,System.String,BindOpen.Data.Criticalities,System.String,System.String,System.String,System.Nullable{System.DateTime})">
             <summary>
             
             </summary>
@@ -1510,7 +1510,7 @@
             <param key="date"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Logging.IBdoLog.AddSubLog(BindOpen.Logging.IBdoLog,System.Predicate{BindOpen.Logging.IBdoLog},BindOpen.Logging.EventKinds,System.String,BindOpen.Data.Criticalities,System.String,System.String,System.String,System.Nullable{System.DateTime})">
+        <member name="M:BindOpen.Logging.IBdoLog.AddChildLog(BindOpen.Logging.IBdoLog,System.Predicate{BindOpen.Logging.IBdoLog},BindOpen.Logging.EventKinds,System.String,BindOpen.Data.Criticalities,System.String,System.String,System.String,System.Nullable{System.DateTime})">
             <summary>
             
             </summary>
@@ -1579,7 +1579,7 @@
             <param key="logFinder"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Logging.IBdoLog.AddMessage(System.String,BindOpen.Data.Criticalities,System.String,System.String,System.String,System.Nullable{System.DateTime},BindOpen.Logging.IBdoLog,System.Predicate{BindOpen.Logging.IBdoLog})">
+        <member name="M:BindOpen.Logging.IBdoLog.AddEvent(EventKinds.Message, System.String,BindOpen.Data.Criticalities,System.String,System.String,System.String,System.Nullable{System.DateTime},BindOpen.Logging.IBdoLog,System.Predicate{BindOpen.Logging.IBdoLog})">
             <summary>
             
             </summary>
@@ -1694,7 +1694,7 @@
             <param key="kinds"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Logging.IBdoLog.GetSubLogWithId(System.String,System.Boolean)">
+        <member name="M:BindOpen.Logging.IBdoLog.GetChildLogWithId(System.String,System.Boolean)">
             <summary>
             
             </summary>
@@ -1708,7 +1708,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Logging.IBdoLog.RemoveSubLog(BindOpen.Logging.IBdoLog,System.Boolean)">
+        <member name="M:BindOpen.Logging.IBdoLog.RemoveChildLog(BindOpen.Logging.IBdoLog,System.Boolean)">
             <summary>
             
             </summary>
@@ -1716,7 +1716,7 @@
             <param key="isRecursive"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Logging.IBdoLog.RemoveSubLog(System.String,System.Boolean)">
+        <member name="M:BindOpen.Logging.IBdoLog.RemoveChildLog(System.String,System.Boolean)">
             <summary>
             
             </summary>

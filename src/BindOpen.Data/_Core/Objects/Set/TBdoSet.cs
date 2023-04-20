@@ -68,7 +68,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="name"></param>
         /// <returns></returns>
-        public List<T> Items => _items;
+        public IList<T> Items => _items;
 
         /// <summary>
         /// Returns the number of items.
@@ -310,7 +310,7 @@ namespace BindOpen.Data
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<T> ToList()
+        public IList<T> ToList()
         {
             return Items?.ToList();
         }

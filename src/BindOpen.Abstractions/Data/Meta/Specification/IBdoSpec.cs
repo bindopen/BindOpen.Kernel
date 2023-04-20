@@ -21,7 +21,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        List<SpecificationLevels> SpecLevels { get; set; }
+        IList<SpecificationLevels> SpecLevels { get; set; }
 
         /// <summary>
         /// 
@@ -53,7 +53,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        List<string> Aliases { get; set; }
+        IList<string> Aliases { get; set; }
 
         /// <summary>
         /// 
@@ -70,7 +70,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        List<DataMode> ValueModes { get; set; }
+        IList<DataMode> ValueModes { get; set; }
 
         /// <summary>
         /// 

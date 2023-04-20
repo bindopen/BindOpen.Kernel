@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace BindOpen.Data
+﻿namespace BindOpen.Data
 {
     /// <summary>
     /// 
@@ -18,7 +16,7 @@ namespace BindOpen.Data
         {
             if (obj != null)
             {
-                obj.UsedItemIds = usedItemIds?.ToList();
+                obj.UsedItemIds = usedItemIds;
             }
             return obj;
         }

@@ -138,12 +138,12 @@ namespace BindOpen.Data
         /// <param key="text">The text to consider.</param>
         /// <param key="availableKeys">The available keys to consider.</param>
         /// <returns>Returns the added data key value.</returns>
-        public IBdoDictionary Add(string key, string text, List<string> availableKeys = null)
+        public IBdoDictionary Add(string key, string text, IEnumerable<string> availableKeys = null)
         {
             if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(text)) return null;
 
             Remove(key);
-            if (availableKeys == null || availableKeys.Count == 0 || availableKeys.Contains(key.ToLower()))
+            if (availableKeys?.Any() != false || availableKeys.Contains(key.ToLower()))
             {
                 base.Add(key, text);
             }
@@ -243,7 +243,7 @@ namespace BindOpen.Data
         /// Returns the culture information sets.
         /// </summary>
         /// <returns>Returns information about all the UI cultures.</returns>
-        public static List<CultureInfo> GetCultureInfoItems()
+        public static IEnumerable<CultureInfo> GetCultureInfoItems()
         {
             return CultureInfo.GetCultures(CultureTypes.AllCultures).ToList();
         }

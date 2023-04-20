@@ -33,7 +33,7 @@ namespace BindOpen.Extensions
         /// <summary>
         /// Area specifications of this instance.
         /// </summary>
-        public List<IBdoExtensionGroup> SubGroups { get; set; }
+        public IList<IBdoExtensionGroup> SubGroups { get; set; }
 
         /// <summary>
         /// Returns the group with the specified name.

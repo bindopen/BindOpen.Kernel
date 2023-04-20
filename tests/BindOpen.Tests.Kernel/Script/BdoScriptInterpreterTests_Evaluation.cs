@@ -31,7 +31,9 @@ namespace BindOpen.Tests.Script
             BdoScript.Function("eq", "mypath", BdoScript.Function("text", new EntityFake("mypath")));
         private readonly string _interpretedScript6 = "true";
 
-        private readonly string _script7 = "{{concat($eq($(var1), 'const'), $eq($(var1), 'const'), 'toto', 'titi')}}";
+        private readonly string _script7 = "{{concat($eq($(var1), 'const'), $eq($(var2), 5500), 'toto', 'titi')}}";
+        private readonly string _scriptVarValue71 = "const";
+        private readonly int _scriptVarValue72 = 5500;
         private readonly string _interpretedScript7 = "true-true-toto-titi";
 
         private readonly string _scriptVarValue81 = "const";
@@ -112,8 +114,12 @@ namespace BindOpen.Tests.Script
         [Test, Order(207)]
         public void InterpreteScript7Test()
         {
+            var varSet = BdoMeta.NewSet(
+                ((string Name, object Value))("var1", _scriptVarValue71),
+                ((string Name, object Value))("var2", _scriptVarValue72));
+
             var interpreter = ScopingTests.Scope.Interpreter;
-            var resultScript = interpreter.Evaluate<string>(_script7.ToExpression());
+            var resultScript = interpreter.Evaluate<string>(_script7.ToExpression(), varSet: varSet);
 
             Assert.That(_interpretedScript7.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }

@@ -268,7 +268,7 @@ namespace BindOpen.Data.Helpers
         public static string[] GetEnumFields(
             this Type type)
         {
-            List<string> fieldNames = new();
+            var fieldNames = new List<string>();
             foreach (var field in Enum.GetValues(type))
             {
                 fieldNames.Add(field?.ToString());

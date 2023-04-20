@@ -37,9 +37,9 @@ namespace BindOpen.Data.Assemblies
             return assembly;
         }
 
-        public static List<IBdoAssemblyReference> GetAssemblyReferences(
+        public static IEnumerable<IBdoAssemblyReference> GetAssemblyReferences(
             this AppDomain appDomain,
-            List<IBdoAssemblyReference> references)
+            params IBdoAssemblyReference[] references)
         {
             if (references?.Any(q => q.BdoKeyEquals(StringHelper.__Star)) == true)
             {
@@ -49,18 +49,18 @@ namespace BindOpen.Data.Assemblies
             return references;
         }
 
-        public static List<IBdoAssemblyReference> ToReferences(
+        public static IEnumerable<IBdoAssemblyReference> ToReferences(
             this Assembly[] assemblies)
         {
             return assemblies?.Select(q => BdoData.Assembly(q))
-                .Cast<IBdoAssemblyReference>().ToList();
+                .Cast<IBdoAssemblyReference>();
         }
 
-        public static List<IBdoAssemblyReference> ToReferences(
+        public static IEnumerable<IBdoAssemblyReference> ToReferences(
             this AssemblyName[] assemblies)
         {
             return assemblies?.Select(q => BdoData.Assembly(q.Name, q.Version))
-                .Cast<IBdoAssemblyReference>().ToList();
+                .Cast<IBdoAssemblyReference>();
         }
 
         // Create instance
