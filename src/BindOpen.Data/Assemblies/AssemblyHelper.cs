@@ -70,7 +70,7 @@ namespace BindOpen.Data.Assemblies
         /// </summary>
         /// <param key="type">The type to consider.</param>
         /// <param key="obj">The object to consider.</param>
-        public static object CreateInstance<T>(IBdoLog log = null)
+        public static object CreateInstance<T>(IBdoBaseLog log = null)
         {
             return CreateInstance(typeof(T), log);
         }
@@ -82,11 +82,11 @@ namespace BindOpen.Data.Assemblies
         /// <param key="obj">The object to consider.</param>
         public static object CreateInstance(
             this Type type,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             if (type == null)
             {
-                log?.AddError("Unknown type");
+                log?.AddEvent(EventKinds.Error, "Unknown type");
                 return null;
             }
 
@@ -112,7 +112,7 @@ namespace BindOpen.Data.Assemblies
         public static void CreateInstance(
             string fullyQualifiedName,
             out object obj,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             obj = null;
 

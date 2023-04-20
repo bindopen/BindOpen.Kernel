@@ -44,7 +44,7 @@ namespace BindOpen.Data.Meta
         public override IList<object> GetDataList(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             return Items?
                 .Select(q => q.GetData(scope, varSet, log))

@@ -42,7 +42,7 @@ namespace BindOpen.Scopes
         IBdoScriptDomain NewScriptDomain(
             IBdoMetaSet varSet,
             IBdoScriptword scriptword = null,
-            IBdoLog log = null);
+            IBdoBaseLog log = null);
 
         /// <summary>
         /// 
@@ -51,7 +51,7 @@ namespace BindOpen.Scopes
         /// <returns></returns>
         Type CreateType(
             IBdoClassReference reference,
-            IBdoLog log = null);
+            IBdoBaseLog log = null);
 
         /// <summary>
         /// Clears this instance.
@@ -70,6 +70,6 @@ namespace BindOpen.Scopes
             bool checkExtensionStore = false,
             bool checkDataContext = false,
             bool checkDataStore = false,
-            IBdoLog log = null);
+            IBdoBaseLog log = null);
     }
 }

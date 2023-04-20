@@ -15,7 +15,7 @@ namespace BindOpen.Hosting
         /// <param key="setupAction">The setup action to consider.</param>
         /// <returns></returns>
         public static BdoHost NewHost(
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             BdoHost host = NewHost(null, log);
             return host;
@@ -28,7 +28,7 @@ namespace BindOpen.Hosting
         /// <returns></returns>
         public static BdoHost NewHost(
             Action<IBdoHostOptions> setupAction,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             BdoHost host = new(log);
             host.Configure(setupAction);

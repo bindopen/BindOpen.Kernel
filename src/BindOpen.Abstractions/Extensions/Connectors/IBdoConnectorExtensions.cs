@@ -51,7 +51,7 @@ namespace BindOpen.Extensions.Connectors
             this T connector,
             Action<IBdoConnection> action,
             bool isAutoConnected = true,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
             where T : IBdoConnector
             => connector.UsingConnection((c, l) => action?.Invoke(c), isAutoConnected, log);
 
@@ -64,9 +64,9 @@ namespace BindOpen.Extensions.Connectors
         /// <returns></returns>
         public static T UsingConnection<T>(
             this T connector,
-            Action<IBdoConnection, IBdoLog> action,
+            Action<IBdoConnection, IBdoBaseLog> action,
             bool isAutoConnected = true,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
             where T : IBdoConnector
         {
             using var connection = connector?.NewConnection(log);
@@ -80,8 +80,9 @@ namespace BindOpen.Extensions.Connectors
                     }
                     catch (ExternalException ex)
                     {
-                        log?.AddException("An exception occured while trying to open connection",
-                            description: ex.ToString());
+                        log?.AddEvent(EventKinds.Exception,
+                            "An exception occured while trying to open connection",
+                            ex.ToString());
                     }
                 }
 

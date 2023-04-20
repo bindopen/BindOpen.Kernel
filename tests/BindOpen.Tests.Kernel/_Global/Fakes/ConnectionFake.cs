@@ -35,7 +35,7 @@ namespace BindOpen.Tests
         /// Connects this instance.
         /// </summary>
         /// <returns>Returns the log of process.</returns>
-        public override IBdoConnection Connect(IBdoLog log = null)
+        public override IBdoConnection Connect(IBdoBaseLog log = null)
         {
             return this;
         }
@@ -44,7 +44,7 @@ namespace BindOpen.Tests
         /// Disconnects this instance.
         /// </summary>
         /// <returns>Returns the log of process.</returns>
-        public override IBdoConnection Disconnect(IBdoLog log = null)
+        public override IBdoConnection Disconnect(IBdoBaseLog log = null)
         {
             return this;
         }

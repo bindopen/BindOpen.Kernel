@@ -30,7 +30,7 @@ namespace BindOpen.Scopes.Stores
         private IBdoPackageDefinition ExtractPackageDefinition(
             Assembly assembly,
             string resourceFullName = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             IBdoPackageDefinition definition = null;
 
@@ -41,7 +41,8 @@ namespace BindOpen.Scopes.Stores
 
                 if (resourceFullName == null)
                 {
-                    log?.AddWarning("Could not find any library definition in assembly (default named '" + __DefaultResourceFileName.ToLower() + "')");
+                    log?.AddEvent(EventKinds.Warning,
+                        "Could not find any library definition in assembly (default named '" + __DefaultResourceFileName.ToLower() + "')");
                 }
                 else
                 {

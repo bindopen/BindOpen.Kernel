@@ -23,7 +23,7 @@ namespace BindOpen.Scopes.Stores
         private int LoadConnectorDictionaryFromAssembly(
             Assembly assembly,
             IBdoPackageDefinition packageDefinition,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             if (assembly == null)
             {

@@ -135,7 +135,7 @@ namespace BindOpen.Hosting.Hosts
             T item = default,
             string[] specificationAreas = null,
             UpdateModes[] updateModes = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             if (specificationAreas == null || specificationAreas.Contains(BdoHostPathKind.RootFolder.ToString()))
             {

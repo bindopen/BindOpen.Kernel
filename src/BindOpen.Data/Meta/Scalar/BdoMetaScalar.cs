@@ -113,7 +113,7 @@ namespace BindOpen.Data.Meta
         public override Q GetData<Q>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             var list = GetDataList<Q>(scope, varSet, log);
             if (list == null)
@@ -128,7 +128,7 @@ namespace BindOpen.Data.Meta
             int index,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             var obj = GetData<object>(index, scope, varSet, log); ;
             return obj;
@@ -138,7 +138,7 @@ namespace BindOpen.Data.Meta
             int index,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             var list = GetDataList<Q>(scope, varSet, log); ;
             var obj = list.GetAt(index);

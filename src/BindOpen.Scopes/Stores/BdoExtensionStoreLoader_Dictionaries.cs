@@ -30,7 +30,7 @@ namespace BindOpen.Scopes.Stores
             Assembly assembly,
             BdoExtensionKind kind,
             IBdoPackageDefinition packageDefinition = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             if (assembly == null)
             {
@@ -61,7 +61,7 @@ namespace BindOpen.Scopes.Stores
         /// <returns>The created library.</returns>
         private static ITBdoExtensionDictionary<T> ExtractDictionaryFromAssembly<T>(
             Assembly assembly,
-            IBdoLog log = null) where T : IBdoExtensionDefinition
+            IBdoBaseLog log = null) where T : IBdoExtensionDefinition
         {
             ITBdoExtensionDictionary<T> dico = default;
 
@@ -75,7 +75,7 @@ namespace BindOpen.Scopes.Stores
                 Stream stream = null;
                 if (resourceFullName == null)
                 {
-                    log?.AddWarning("No dictionary named '" + resourceFileName + "' found in assembly");
+                    log?.AddEvent(EventKinds.Warning, "No dictionary named '" + resourceFileName + "' found in assembly");
                 }
                 else
                 {
@@ -84,7 +84,8 @@ namespace BindOpen.Scopes.Stores
                         stream = assembly.GetManifestResourceStream(resourceFullName);
                         if (stream == null)
                         {
-                            log?.AddError("Could not open the item dictionary named '" + resourceFullName + "' in assembly");
+                            log?.AddEvent(EventKinds.Error,
+                                "Could not open the item dictionary named '" + resourceFullName + "' in assembly");
                         }
                         else
                         {
