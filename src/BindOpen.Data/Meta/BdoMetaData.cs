@@ -158,13 +158,13 @@ namespace BindOpen.Data.Meta
                 case DataMode.Reference:
                     if (scope == null)
                     {
-                        log?.AddWarning(title: "Application scope missing");
+                        log?.AddEvent(EventKinds.Warning, "Application scope missing");
                     }
                     else
                     {
                         if (Reference == null)
                         {
-                            log?.AddWarning(title: "Script missing");
+                            log?.AddEvent(EventKinds.Warning, "Script missing");
                         }
 
                         obj = scope.Interpreter.Evaluate<object>(Reference, varSet, log);
@@ -223,7 +223,7 @@ namespace BindOpen.Data.Meta
         /// <param key="scope">The scope to consider.</param>
         /// <param key="varSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public virtual List<object> GetDataList(
+        public virtual IList<object> GetDataList(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
@@ -256,7 +256,7 @@ namespace BindOpen.Data.Meta
         /// <param key="scope">The scope to consider.</param>
         /// <param key="varSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public virtual List<Q> GetDataList<Q>(
+        public virtual IList<Q> GetDataList<Q>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)

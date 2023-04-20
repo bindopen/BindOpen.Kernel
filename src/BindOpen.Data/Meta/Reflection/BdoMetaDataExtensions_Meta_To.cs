@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.Data.Meta.Reflection
 {
@@ -71,7 +72,7 @@ namespace BindOpen.Data.Meta.Reflection
         /// Creates a data element list from a dynamic object.
         /// </summary>
         /// <param key="obj">The objet to consider.</param>
-        public static List<IBdoMetaData> ToList(
+        public static IList<IBdoMetaData> ToList(
             this IBdoMetaData meta)
         {
             if (meta is IBdoMetaSet metaSet)

@@ -106,9 +106,9 @@ namespace BindOpen.Data.Helpers
         /// </summary>
         /// <param key="type"></param>
         /// <returns></returns>
-        public static List<object> ToObjectList(this object obj)
+        public static IList<object> ToObjectList(this object obj)
         {
-            List<object> objList;
+            IList<object> objList;
             if (obj?.GetType().IsList() == true)
             {
                 objList = (obj as IEnumerable).Cast<object>().ToList();

@@ -47,7 +47,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The using file paths of this instance.
         /// </summary>
-        public List<string> UsedItemIds { get; set; }
+        public IList<string> UsedItemIds { get; set; }
 
         /// <summary>
         /// Adds the specified item.

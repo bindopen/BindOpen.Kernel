@@ -15,6 +15,6 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// 
         /// </summary>
-        List<IBdoCondition> Conditions { get; set; }
+        IList<IBdoCondition> Conditions { get; set; }
     }
 }

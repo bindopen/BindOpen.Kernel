@@ -10,18 +10,18 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        List<string> AddedValues { get; set; }
+        IList<string> AddedValues { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        List<string> RemovedValues { get; set; }
+        IList<string> RemovedValues { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        List<string> ToList();
+        IList<string> ToList();
 
         /// <summary>
         /// 

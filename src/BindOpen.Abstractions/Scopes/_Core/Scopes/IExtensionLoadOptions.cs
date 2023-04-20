@@ -13,14 +13,14 @@ namespace BindOpen.Scopes
         /// <summary>
         /// 
         /// </summary>
-        List<(DatasourceKind Kind, string Uri)> Sources { get; set; }
+        IList<(DatasourceKind Kind, string Uri)> Sources { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        List<BdoExtensionKind> ExtensionKinds { get; set; }
+        IList<BdoExtensionKind> ExtensionKinds { get; set; }
 
 
-        List<IBdoAssemblyReference> References { get; set; }
+        IList<IBdoAssemblyReference> References { get; set; }
     }
 }

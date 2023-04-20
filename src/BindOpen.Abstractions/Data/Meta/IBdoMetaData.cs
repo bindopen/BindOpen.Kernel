@@ -71,7 +71,7 @@ namespace BindOpen.Data.Meta
         /// <param key="varSet"></param>
         /// <param key="log"></param>
         /// <returns></returns>
-        List<object> GetDataList(
+        IList<object> GetDataList(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null);
@@ -83,7 +83,7 @@ namespace BindOpen.Data.Meta
         /// <param key="varSet"></param>
         /// <param key="log"></param>
         /// <returns></returns>
-        List<T> GetDataList<T>(
+        IList<T> GetDataList<T>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null);

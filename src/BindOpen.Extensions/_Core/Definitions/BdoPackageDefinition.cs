@@ -56,7 +56,7 @@ namespace BindOpen.Extensions
         /// <summary>
         /// Names of the using assembly files of this instance.
         /// </summary>
-        public List<IBdoAssemblyReference> UsingAssemblyReferences { get; set; }
+        public IList<IBdoAssemblyReference> UsingAssemblyReferences { get; set; }
 
         // Dictionary full names -------------------------------------
 

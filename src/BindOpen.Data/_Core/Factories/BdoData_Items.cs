@@ -14,9 +14,9 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="st">The string to consider.</param>
         /// <returns>Returns the added string items.</returns>
-        public static List<KeyValuePair<string, string>> ToKeyValues(this string st)
+        public static IEnumerable<KeyValuePair<string, string>> ToKeyValues(this string st)
         {
-            List<KeyValuePair<string, string>> pairs = new();
+            var pairs = new List<KeyValuePair<string, string>>();
             foreach (var subSt in st.Split('|'))
             {
                 if (subSt.Contains('='))

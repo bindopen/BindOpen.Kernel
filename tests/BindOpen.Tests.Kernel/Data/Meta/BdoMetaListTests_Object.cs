@@ -1,5 +1,4 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
 using Bogus;
 using NUnit.Framework;
@@ -84,12 +83,6 @@ namespace BindOpen.Tests.Data
 
             var obj4 = new EntityFake(_testData.path4 as string);
             var metaObj4 = obj4?.ToMetaData("object4");
-
-            var metaObj5 = BdoMeta.NewObject("object1")
-                .AddRange(
-                    BdoConfig.NewExtension(
-                        "bindopen.tests.kernel$testEntity",
-                        BdoMeta.NewScalar("path", _testData.path1 as string)));
 
             _metaObjSet = BdoMeta.NewSet(
                 metaObj1,

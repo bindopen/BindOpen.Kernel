@@ -10,6 +10,6 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        List<string> UsedItemIds { get; set; }
+        IList<string> UsedItemIds { get; set; }
     }
 }

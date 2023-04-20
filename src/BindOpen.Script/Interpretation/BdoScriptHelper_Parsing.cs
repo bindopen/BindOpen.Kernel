@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.Script
 {
@@ -408,7 +409,7 @@ namespace BindOpen.Script
                 }
             }
             // else if it is a syntax item
-            else if ((new List<string>(SyntaxItems)).Contains(name))
+            else if (SyntaxItems.Contains(name))
             {
                 scriptItem.Index = index;
                 scriptItem.Kind = ScriptItemKinds.Syntax;

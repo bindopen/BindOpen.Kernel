@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Conditions;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
 using BindOpen.Scopes;
 
 namespace BindOpen.Data.Meta
@@ -21,22 +20,6 @@ namespace BindOpen.Data.Meta
             if (spec != null)
             {
                 spec.SubSpecs = BdoData.NewSet(specs);
-            }
-            return spec;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="condition"></param>
-        public static T WithConditions<T>(
-            this T spec,
-            IBdoCondition condition)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.Condition = condition;
             }
             return spec;
         }
