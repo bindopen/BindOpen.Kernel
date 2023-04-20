@@ -43,7 +43,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        IList<IBdoBaseLog> Children();
+        IEnumerable<IBdoBaseLog> Children();
 
         bool HasChild();
 
@@ -118,23 +118,7 @@ namespace BindOpen.Logging
         /// </summary>
         /// <param key="isRecursive"></param>
         /// <param key="kinds"></param>
-        void ClearEvents(bool isRecursive = true, params EventKinds[] kinds);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="isRecursive"></param>
-        /// <param key="kinds"></param>
-        /// <returns></returns>
-        int GetEventCount(bool isRecursive = false, params EventKinds[] kinds);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="isRecursive"></param>
-        /// <param key="kinds"></param>
-        /// <returns></returns>
-        EventKinds GetMaxEventKind(bool isRecursive = true, params EventKinds[] kinds);
+        void Clear(bool isRecursive = true, params EventKinds[] kinds);
 
         // Logs
 
@@ -144,7 +128,7 @@ namespace BindOpen.Logging
         /// <param key="id"></param>
         /// <param key="isRecursive"></param>
         /// <returns></returns>
-        IBdoBaseLog GetChildLogWithId(string id, bool isRecursive = false);
+        IBdoBaseLog GetChild(string id, bool isRecursive = false);
 
         /// <summary>
         /// Creates a new instance of IBdoLog.
