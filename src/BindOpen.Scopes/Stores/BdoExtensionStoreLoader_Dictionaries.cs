@@ -30,7 +30,7 @@ namespace BindOpen.Scopes.Stores
             Assembly assembly,
             BdoExtensionKind kind,
             IBdoPackageDefinition packageDefinition = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             if (assembly == null)
             {
@@ -61,7 +61,7 @@ namespace BindOpen.Scopes.Stores
         /// <returns>The created library.</returns>
         private static ITBdoExtensionDictionary<T> ExtractDictionaryFromAssembly<T>(
             Assembly assembly,
-            IBdoBaseLog log = null) where T : IBdoExtensionDefinition
+            IBdoLog log = null) where T : IBdoExtensionDefinition
         {
             ITBdoExtensionDictionary<T> dico = default;
 

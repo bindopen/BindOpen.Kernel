@@ -38,12 +38,12 @@ namespace BindOpen.Extensions.Connectors
         /// <summary>
         /// Connects this instance.
         /// </summary>
-        public abstract IBdoConnection Connect(IBdoBaseLog log = null);
+        public abstract IBdoConnection Connect(IBdoLog log = null);
 
         /// <summary>
         /// Disconnects this instance.
         /// </summary>
-        public abstract IBdoConnection Disconnect(IBdoBaseLog log = null);
+        public abstract IBdoConnection Disconnect(IBdoLog log = null);
 
         #endregion
 

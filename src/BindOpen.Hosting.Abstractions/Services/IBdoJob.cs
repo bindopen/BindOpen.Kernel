@@ -27,14 +27,14 @@ namespace BindOpen.Hosting.Services
         /// <summary>
         /// The log.
         /// </summary>
-        IBdoBaseLog Log { get; }
+        IBdoLog Log { get; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param key="log"></param>
         /// <returns></returns>
-        IBdoJob WithLog(IBdoBaseLog log);
+        IBdoJob WithLog(IBdoLog log);
 
         // Trigger actions --------------------------------------
 

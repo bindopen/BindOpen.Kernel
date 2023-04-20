@@ -1,7 +1,7 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Data;
+﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
 using BindOpen.Logging;
+using BindOpen.Scopes;
 
 namespace BindOpen.Extensions.Tasks
 {
@@ -44,7 +44,7 @@ namespace BindOpen.Extensions.Tasks
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             RuntimeModes runtimeMode = RuntimeModes.Normal,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             return this;
         }

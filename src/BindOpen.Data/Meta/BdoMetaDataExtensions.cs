@@ -158,7 +158,7 @@ namespace BindOpen.Data.Meta
             this IBdoMetaData meta,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             if (meta != null)
             {

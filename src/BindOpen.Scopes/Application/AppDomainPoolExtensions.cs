@@ -21,7 +21,7 @@ namespace BindOpen.Scopes.Application
         public static Assembly LoadAssemblyFromFile(
             this AppDomain appDomain,
             string filePath,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             Assembly assembly = null;
 
@@ -72,7 +72,7 @@ namespace BindOpen.Scopes.Application
         public static Assembly LoadAssembly(
             this AppDomain appDomain,
             IBdoAssemblyReference reference,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             Assembly assembly = null;
 

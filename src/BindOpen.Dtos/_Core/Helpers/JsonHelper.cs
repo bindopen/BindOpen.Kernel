@@ -13,7 +13,7 @@ namespace BindOpen.Data
         /// <param key="dto">The DTO to save.</param>
         /// <param key="log">The saving log to consider.</param>
         /// <returns>The Json string of this instance.</returns>
-        public static string ToJson<T>(this T dto, IBdoBaseLog log = null) where T : class
+        public static string ToJson<T>(this T dto, IBdoLog log = null) where T : class
         {
             if (dto == null) return null;
 
@@ -46,7 +46,7 @@ namespace BindOpen.Data
         /// <param key="filePath">Path of the file to save.</param>
         /// <param key="log">The log to consider.</param>
         /// <returns>True if the saving operation has been done. False otherwise.</returns>
-        public static bool SaveJson<T>(this T dto, string filePath, IBdoBaseLog log = null) where T : class
+        public static bool SaveJson<T>(this T dto, string filePath, IBdoLog log = null) where T : class
         {
             if (dto == null) return false;
 
@@ -95,7 +95,7 @@ namespace BindOpen.Data
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T LoadJson<T>(
             string filePath,
-            IBdoBaseLog log = null,
+            IBdoLog log = null,
             bool mustFileExist = true) where T : class
         {
             T dto = default;
@@ -141,7 +141,7 @@ namespace BindOpen.Data
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T LoadJsonFromString<T>(
             string jsonString,
-            IBdoBaseLog log = null) where T : class
+            IBdoLog log = null) where T : class
         {
             T dto = default;
 

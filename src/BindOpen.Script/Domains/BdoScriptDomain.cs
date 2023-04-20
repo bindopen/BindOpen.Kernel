@@ -28,7 +28,7 @@ namespace BindOpen.Script
         /// <summary>
         /// The log of this instance.
         /// </summary>
-        public IBdoBaseLog Log { get; set; }
+        public IBdoLog Log { get; set; }
 
         /// <summary>
         /// The script word of this instance.
@@ -54,7 +54,7 @@ namespace BindOpen.Script
             IBdoScope scope,
             IBdoMetaSet varSet,
             IBdoScriptword scriptword,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             Scope = scope;
             VariableSet = varSet;

@@ -74,7 +74,7 @@ namespace BindOpen.Scopes
         /// <param key="reference"></param>
         public Type CreateType(
             IBdoClassReference reference,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             if (!string.IsNullOrEmpty(reference?.DefinitionUniqueName))
             {
@@ -117,7 +117,7 @@ namespace BindOpen.Scopes
             bool checkExtensionStore = false,
             bool checkDataContext = false,
             bool checkDataStore = false,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             if (checkExtensionStore && ExtensionStore == null)
             {
@@ -144,7 +144,7 @@ namespace BindOpen.Scopes
         public IBdoScriptDomain NewScriptDomain(
             IBdoMetaSet varSet,
             IBdoScriptword scriptword = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             return new BdoScriptDomain(this, varSet, scriptword, log);
         }

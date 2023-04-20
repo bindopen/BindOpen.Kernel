@@ -22,7 +22,7 @@ namespace BindOpen.Script
         /// <summary>
         /// The variable element set of this instance.
         /// </summary>
-        IBdoBaseLog Log { get; set; }
+        IBdoLog Log { get; set; }
 
         /// <summary>
         /// The script word of this instance.

@@ -50,7 +50,7 @@ namespace BindOpen.Data.Meta
         object GetData(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null);
+            IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -62,7 +62,7 @@ namespace BindOpen.Data.Meta
         T GetData<T>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null);
+            IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -74,7 +74,7 @@ namespace BindOpen.Data.Meta
         IList<object> GetDataList(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null);
+            IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -86,7 +86,7 @@ namespace BindOpen.Data.Meta
         IList<T> GetDataList<T>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null);
+            IBdoLog log = null);
 
         /// <summary>
         /// 

@@ -26,7 +26,7 @@ namespace BindOpen.Extensions.Connectors
             this IBdoScope scope,
             IBdoConfiguration config,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             IBdoConnector connector = null;
 
@@ -69,7 +69,7 @@ namespace BindOpen.Extensions.Connectors
             this IBdoScope scope,
             IBdoConfiguration config,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null) where T : class, IBdoConnector, new()
+            IBdoLog log = null) where T : class, IBdoConnector, new()
         {
             return scope.CreateConnector(config, varSet, log) as T;
         }
@@ -86,7 +86,7 @@ namespace BindOpen.Extensions.Connectors
             this IBdoScope scope,
             IBdoDatasource dataSource,
             string connectorDefinitionUniqueName,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
             where T : class, IBdoConnection
         {
             if (dataSource == null)
@@ -112,7 +112,7 @@ namespace BindOpen.Extensions.Connectors
         public static T Open<T>(
             this IBdoScope scope,
             IBdoConfiguration config,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
             where T : class, IBdoConnection
         {
             if (config == null)

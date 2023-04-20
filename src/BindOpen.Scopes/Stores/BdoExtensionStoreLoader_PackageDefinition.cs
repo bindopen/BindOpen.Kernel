@@ -30,7 +30,7 @@ namespace BindOpen.Scopes.Stores
         private IBdoPackageDefinition ExtractPackageDefinition(
             Assembly assembly,
             string resourceFullName = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             IBdoPackageDefinition definition = null;
 
