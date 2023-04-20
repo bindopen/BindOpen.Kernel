@@ -116,18 +116,17 @@ namespace BindOpen.Script
                         scriptwordBeginIndex = index;
 
                         // we get the next function or variable
-                        var subLog = log?.NewLog();
-                        var result = Evaluate(script, ref index, 0, varSet, subLog);
+                        var childLog = log?.NewLog();
+                        var result = Evaluate(script, ref index, 0, varSet, childLog);
 
-                        if (subLog?.HasEvent(EventKinds.Error, EventKinds.Exception) == true)
+                        if (childLog?.HasEvent(EventKinds.Error, EventKinds.Exception) == true)
                         {
-                            log?.AddError(
+                            log?.AddChild(
+                                childLog,
                                 title: "Error occured while interpreting script",
                                 description: "Error while interpreting the script '" + script + "'. " +
                                     "The result is '" + result?.ToString() + "'.",
-                                resultCode: "SCRIPTINTERPRETATIONERROR",
-                                childLog: subLog
-                                );
+                                resultCode: "SCRIPTINTERPRETATIONERROR");
                         }
 
                         return result;

@@ -100,13 +100,13 @@ namespace BindOpen.Data.Meta
                 case DataMode.Reference:
                     if (scope == null)
                     {
-                        log?.AddWarning(title: "Application scope missing");
+                        log?.AddEvent(EventKinds.Warning, "Application scope missing");
                     }
                     else
                     {
                         if (Reference == null)
                         {
-                            log?.AddWarning(title: "Script missing");
+                            log?.AddEvent(EventKinds.Warning, "Script missing");
                         }
 
                         var obj = scope.Interpreter.Evaluate<object>(Reference, varSet, log);

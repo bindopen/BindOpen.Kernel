@@ -22,7 +22,7 @@ namespace BindOpen.Data.Meta
         {
             if (spec != null)
             {
-                spec.ValueModes = modes?.ToList();
+                spec.ValueModes = modes;
             }
             return spec;
         }
@@ -51,7 +51,7 @@ namespace BindOpen.Data.Meta
         {
             if (spec != null)
             {
-                spec.Aliases = aliases?.ToList();
+                spec.Aliases = aliases;
             }
             return spec;
         }
@@ -288,7 +288,7 @@ namespace BindOpen.Data.Meta
         {
             if (spec != null)
             {
-                spec.SpecLevels = levels?.ToList();
+                spec.SpecLevels = levels;
             }
 
             return spec;

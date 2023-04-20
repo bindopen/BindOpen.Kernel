@@ -1,5 +1,5 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
+using BindOpen.Scopes;
 using System;
 
 namespace BindOpen.Data.Stores
@@ -53,7 +53,7 @@ namespace BindOpen.Data.Stores
 
                         if (log?.HasEvent(EventKinds.Error, EventKinds.Exception) == false)
                         {
-                            log.AddMessage("Depot loaded (" + number + " data sources added)");
+                            log.AddEvent(EventKinds.Message, "Depot loaded (" + number + " data sources added)");
                         }
                     }
 
