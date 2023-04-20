@@ -50,7 +50,7 @@ namespace BindOpen.Extensions.Tasks
             this IBdoScope scope,
             IBdoConfiguration config = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             IBdoTask task = null;
 
@@ -61,7 +61,7 @@ namespace BindOpen.Extensions.Tasks
                 IBdoTaskDefinition definition = scope.ExtensionStore.GetDefinition<IBdoTaskDefinition>(config?.DefinitionUniqueName);
                 if (definition == null)
                 {
-                    log?.AddError("Could not retrieve the extension task '" + config.DefinitionUniqueName + "' definition in scope");
+                    log?.AddEvent(EventKinds.Error, "Could not retrieve the extension task '" + config.DefinitionUniqueName + "' definition in scope");
                 }
                 else
                 {
@@ -99,7 +99,7 @@ namespace BindOpen.Extensions.Tasks
             this IBdoScope scope,
             IBdoConfiguration config = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null) where T : BdoTask
+            IBdoBaseLog log = null) where T : BdoTask
         {
             return scope.CreateTask(config, varSet, log) as T;
         }

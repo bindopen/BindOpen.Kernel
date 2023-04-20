@@ -1,8 +1,8 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Data.Assemblies;
+﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
 using BindOpen.Logging;
+using BindOpen.Scopes;
 
 namespace BindOpen.Extensions.Entities
 {
@@ -25,7 +25,7 @@ namespace BindOpen.Extensions.Entities
             this IBdoScope scope,
             IBdoConfiguration config,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             IBdoEntity entity = null;
 
@@ -36,7 +36,7 @@ namespace BindOpen.Extensions.Entities
                 IBdoEntityDefinition definition = scope.ExtensionStore.GetDefinition<IBdoEntityDefinition>(config.DefinitionUniqueName);
                 if (definition == null)
                 {
-                    log?.AddError("Could not retrieve the extension entity '" + config.DefinitionUniqueName + "' definition in scope");
+                    log?.AddEvent(EventKinds.Error, "Could not retrieve the extension entity '" + config.DefinitionUniqueName + "' definition in scope");
                 }
                 else
                 {
@@ -68,7 +68,7 @@ namespace BindOpen.Extensions.Entities
             this IBdoScope scope,
             IBdoConfiguration config = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null) where T : BdoEntity
+            IBdoBaseLog log = null) where T : BdoEntity
         {
             return scope.CreateEntity(config, varSet, log) as T;
         }

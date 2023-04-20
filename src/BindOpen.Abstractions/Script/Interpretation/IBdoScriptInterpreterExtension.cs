@@ -22,7 +22,7 @@ namespace BindOpen.Script
             this IBdoScriptInterpreter interpreter,
             IBdoExpression exp,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             object obj = interpreter?.Evaluate(exp, varSet, log);
 
@@ -41,7 +41,7 @@ namespace BindOpen.Script
             this IBdoScriptInterpreter interpreter,
             IBdoScriptword word,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             object obj = interpreter?.Evaluate(word, varSet, log);
 
@@ -60,7 +60,7 @@ namespace BindOpen.Script
             this IBdoScriptInterpreter interpreter,
             IBdoReference reference,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             object obj = interpreter?.Evaluate(reference, varSet, log);
 

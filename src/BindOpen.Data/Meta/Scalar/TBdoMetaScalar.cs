@@ -62,7 +62,7 @@ namespace BindOpen.Data.Meta
         public new TItem GetData(
             IBdoScope scope,
             IBdoMetaSet varSet,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             return base.GetData<TItem>(scope, varSet, log);
         }
@@ -71,7 +71,7 @@ namespace BindOpen.Data.Meta
             int index,
             IBdoScope scope,
             IBdoMetaSet varSet,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             return base.GetData<TItem>(index, scope, varSet, log);
         }

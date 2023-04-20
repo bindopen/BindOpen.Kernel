@@ -74,7 +74,7 @@ namespace BindOpen.Scopes
         /// <param key="reference"></param>
         public Type CreateType(
             IBdoClassReference reference,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             if (!string.IsNullOrEmpty(reference?.DefinitionUniqueName))
             {
@@ -117,21 +117,24 @@ namespace BindOpen.Scopes
             bool checkExtensionStore = false,
             bool checkDataContext = false,
             bool checkDataStore = false,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             if (checkExtensionStore && ExtensionStore == null)
             {
-                log?.AddError(title: "Application extension missing", description: "No extension item definition store specified.");
+                log?.AddEvent(EventKinds.Error,
+                    "Application extension missing", description: "No extension item definition store specified.");
                 return false;
             }
             if (checkDataContext && Context == null)
             {
-                log?.AddError(title: "Data context missing", description: "No data context specified.");
+                log?.AddEvent(EventKinds.Error,
+                    "Data context missing", description: "No data context specified.");
                 return false;
             }
             if (checkDataStore && DataStore == null)
             {
-                log?.AddError(title: "Depot set missing", description: "No depot set specified.");
+                log?.AddEvent(EventKinds.Error,
+                    "Depot set missing", description: "No depot set specified.");
                 return false;
             }
 
@@ -141,7 +144,7 @@ namespace BindOpen.Scopes
         public IBdoScriptDomain NewScriptDomain(
             IBdoMetaSet varSet,
             IBdoScriptword scriptword = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             return new BdoScriptDomain(this, varSet, scriptword, log);
         }

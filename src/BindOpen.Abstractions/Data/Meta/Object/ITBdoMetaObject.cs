@@ -24,6 +24,6 @@ namespace BindOpen.Data.Meta
         new TItem GetData(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null);
+            IBdoBaseLog log = null);
     }
 }

@@ -1,9 +1,9 @@
-﻿using BindOpen.Scopes;
-using BindOpen.Data;
+﻿using BindOpen.Data;
 using BindOpen.Data.Assemblies;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
 using BindOpen.Logging;
+using BindOpen.Scopes;
 
 namespace BindOpen.Extensions.Connectors
 {
@@ -26,7 +26,7 @@ namespace BindOpen.Extensions.Connectors
             this IBdoScope scope,
             IBdoConfiguration config,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             IBdoConnector connector = null;
 
@@ -37,7 +37,8 @@ namespace BindOpen.Extensions.Connectors
                 IBdoConnectorDefinition definition = scope.ExtensionStore.GetDefinition<IBdoConnectorDefinition>(config?.DefinitionUniqueName);
                 if (definition == null)
                 {
-                    log?.AddError("Could not retrieve the extension connector '" + config.DefinitionUniqueName + "' definitio in scope");
+                    log?.AddEvent(EventKinds.Error,
+                        "Could not retrieve the extension connector '" + config.DefinitionUniqueName + "' definitio in scope");
                 }
                 else
                 {
@@ -68,7 +69,7 @@ namespace BindOpen.Extensions.Connectors
             this IBdoScope scope,
             IBdoConfiguration config,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null) where T : class, IBdoConnector, new()
+            IBdoBaseLog log = null) where T : class, IBdoConnector, new()
         {
             return scope.CreateConnector(config, varSet, log) as T;
         }
@@ -85,13 +86,14 @@ namespace BindOpen.Extensions.Connectors
             this IBdoScope scope,
             IBdoDatasource dataSource,
             string connectorDefinitionUniqueName,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
             where T : class, IBdoConnection
         {
             if (dataSource == null)
-                log?.AddError("Data source missing");
+                log?.AddEvent(EventKinds.Error, "Data source missing");
             else if (!string.IsNullOrEmpty(connectorDefinitionUniqueName) && dataSource.Has(connectorDefinitionUniqueName))
-                log?.AddError("Connection not defined in data source", description: "No connector is defined in the specified data source.");
+                log?.AddEvent(EventKinds.Error,
+                    "Connection not defined in data source", description: "No connector is defined in the specified data source.");
             else if (!string.IsNullOrEmpty(connectorDefinitionUniqueName))
                 return scope.Open<T>(dataSource.Get(connectorDefinitionUniqueName), log);
             else if (dataSource.Count > 0)
@@ -110,12 +112,12 @@ namespace BindOpen.Extensions.Connectors
         public static T Open<T>(
             this IBdoScope scope,
             IBdoConfiguration config,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
             where T : class, IBdoConnection
         {
             if (config == null)
             {
-                log?.AddError("Connection missing");
+                log?.AddEvent(EventKinds.Error, "Connection missing");
             }
             else if (scope?.Check(true, log: log) == true)
             {

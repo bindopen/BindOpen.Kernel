@@ -46,7 +46,7 @@ namespace BindOpen.Scopes.Stores
         /// <param key="references">The library references to consider.</param>
         /// <param key="log">The log to consider.</param>
         public IBdoExtensionStoreLoader LoadPackages(
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             if (_store == null) return this;
 
@@ -102,7 +102,7 @@ namespace BindOpen.Scopes.Stores
         private bool LoadPackage(
             IBdoAssemblyReference reference,
             List<string> loadedAssemblyNames,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             var loaded = true;
 
@@ -118,7 +118,7 @@ namespace BindOpen.Scopes.Stores
 
                     // first we load the assembly
 
-                    IBdoLog newLog = log?.NewLog()
+                    IBdoBaseLog newLog = log?.NewLog()
                         .WithDisplayName("Loading package '" + reference.AssemblyName + "'");
 
                     try
@@ -127,7 +127,7 @@ namespace BindOpen.Scopes.Stores
 
                         foreach (var source in _loadOptions?.Sources)
                         {
-                            IBdoLog childLog = newLog?.InsertChild(
+                            IBdoBaseLog childLog = newLog?.InsertChild(
                                 EventKinds.Message,
                                 title: "Loading assembly from '" + source.Kind.ToString() + "'");
 
@@ -146,7 +146,7 @@ namespace BindOpen.Scopes.Stores
                                     string filePath = source.Uri.EndingWith(@"\").ToPath() + fileName;
                                     if (!File.Exists(filePath))
                                     {
-                                        childLog?.AddError("Could not find the assembly file path '" + filePath + "'");
+                                        childLog?.AddEvent(EventKinds.Error, "Could not find the assembly file path '" + filePath + "'");
                                         loaded = false;
                                     }
                                     else
@@ -155,12 +155,12 @@ namespace BindOpen.Scopes.Stores
 
                                         if (assembly == null)
                                         {
-                                            childLog?.AddError("Could not load assembly '" + filePath + "'");
+                                            childLog?.AddEvent(EventKinds.Error, "Could not load assembly '" + filePath + "'");
                                             loaded = false;
                                         }
                                         else
                                         {
-                                            childLog?.AddCheckpoint("Loading assembly from file '" + filePath + "'");
+                                            childLog?.AddEvent(EventKinds.Checkpoint, "Loading assembly from file '" + filePath + "'");
                                             assembly = Assembly.LoadFrom(filePath);
                                         }
                                     }
@@ -195,7 +195,7 @@ namespace BindOpen.Scopes.Stores
                             {
                                 foreach (var usingReference in packageDefinition?.UsingAssemblyReferences)
                                 {
-                                    IBdoLog subChildLog = log?.NewLog()
+                                    IBdoBaseLog subChildLog = log?.NewLog()
                                         .WithDisplayName("Loading using extensions...");
                                     loaded &= LoadPackage(usingReference, loadedAssemblyNames, subChildLog);
                                 }

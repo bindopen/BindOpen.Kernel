@@ -23,7 +23,7 @@ namespace BindOpen.Extensions.Functions
             string functionName,
             IBdoMetaSet paramSet = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             var definition = scope?.ExtensionStore?.GetFunctionDefinition(functionName, paramSet);
 
@@ -31,9 +31,9 @@ namespace BindOpen.Extensions.Functions
 
             if (definition == null)
             {
-                log?.AddError(
-                    title: "Function named '" + functionName + "' not defined",
-                    description: "Syntax error: Function named '" + functionName + "' not defined",
+                log?.AddEvent(EventKinds.Error,
+                    "Function named '" + functionName + "' not defined",
+                    "Syntax error: Function named '" + functionName + "' not defined",
                     resultCode: "SCRIPT_NOTEXISTINGWORD");
             }
             else
@@ -58,7 +58,7 @@ namespace BindOpen.Extensions.Functions
             this IBdoScope scope,
             IBdoScriptword word,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             IBdoFunctionDefinition definition;
             if (!string.IsNullOrEmpty(word?.DefinitionUniqueName))
@@ -77,9 +77,9 @@ namespace BindOpen.Extensions.Functions
             {
                 var functionName = word?.DefinitionUniqueName ?? word?.Name;
 
-                log?.AddError(
-                    title: "Function named '" + functionName + "' not defined",
-                    description: "Syntax error: Function named '" + functionName + "' not defined",
+                log?.AddEvent(EventKinds.Error,
+                    "Function named '" + functionName + "' not defined",
+                    "Syntax error: Function named '" + functionName + "' not defined",
                     resultCode: "SCRIPT_NOTEXISTINGWORD");
             }
             else
@@ -94,7 +94,7 @@ namespace BindOpen.Extensions.Functions
             this IBdoScope scope,
             IBdoScriptword word,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             var result = scope?.CallFunction(word, varSet, log);
             return result.As<T>();
@@ -105,7 +105,7 @@ namespace BindOpen.Extensions.Functions
             IBdoFunctionDefinition definition,
             IBdoMetaSet paramSet = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             object result = null;
 
@@ -155,9 +155,9 @@ namespace BindOpen.Extensions.Functions
                 }
                 catch (ApplicationException ex)
                 {
-                    log?.AddError(
-                        title: "Bad argument",
-                        description: ex.ToString(),
+                    log?.AddEvent(EventKinds.Error,
+                        "Bad argument",
+                        ex.ToString(),
                         resultCode: "SCRIPT_NOTEXISTINGWORD");
                 }
             }
@@ -170,7 +170,7 @@ namespace BindOpen.Extensions.Functions
             string functionName,
             IBdoMetaSet paramSet,
             BdoDataType parentDataType = default,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             if (store != null)
             {

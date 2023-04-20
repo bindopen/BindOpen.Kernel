@@ -60,7 +60,7 @@ namespace BindOpen.Data
             ITBdoSet<T> refSet = default,
             UpdateModes[] updateModes = null,
             string[] areas = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
             where T : IReferenced
         {
             areas ??= new[] { nameof(DataAreaKind.Any) };

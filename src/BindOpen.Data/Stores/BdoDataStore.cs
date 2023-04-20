@@ -84,7 +84,7 @@ namespace BindOpen.Data.Stores
         /// </summary>
         /// <param key="scope">The scope to append.</param>
         /// <param key="log"></param>
-        public void LoadLazy(IBdoScope scope, IBdoLog log = null)
+        public void LoadLazy(IBdoScope scope, IBdoBaseLog log = null)
         {
             foreach (var depotEntry in Depots)
             {

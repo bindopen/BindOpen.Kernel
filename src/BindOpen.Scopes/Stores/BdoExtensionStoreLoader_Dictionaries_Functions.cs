@@ -28,7 +28,7 @@ namespace BindOpen.Scopes.Stores
         private int LoadFunctionDictionaryFromAssembly(
             Assembly assembly,
             IBdoPackageDefinition packageDefinition,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             if (assembly == null)
             {
@@ -81,16 +81,16 @@ namespace BindOpen.Scopes.Stores
                     }
                     catch (ArgumentException)
                     {
-                        log?.AddError(
-                                title: "Function ('" + definition.Name + "') with unexpected parameters");
+                        log?.AddEvent(EventKinds.Error,
+                            "Function ('" + definition.Name + "') with unexpected parameters");
                     }
 
                     if (definition.RuntimeBasicFunction == null
                         && definition.RuntimeScopedFunction == null
                         && definition.RuntimeFunction == null)
                     {
-                        log?.AddError(
-                            title: "Invalid function: Method not defined for function called '" + definition.UniqueName + "'",
+                        log?.AddEvent(EventKinds.Error,
+                            "Invalid function: Method not defined for function called '" + definition.UniqueName + "'",
                             resultCode: "SCRIPT_DEFINITION");
                     }
 

@@ -25,7 +25,7 @@ namespace Microsoft.Extensions.Configuration
             this IConfiguration config,
             string key, IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
             where T : class
         {
             return config?.GetBdoValue<T>(key, default, scope, varSet, log);
@@ -48,7 +48,7 @@ namespace Microsoft.Extensions.Configuration
             string defaultValue,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
             where T : class
         {
             return config?.GetBdoValue(typeof(T), key, defaultValue, scope, varSet, log) as T;
@@ -88,7 +88,7 @@ namespace Microsoft.Extensions.Configuration
             string defaultValue,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             if (config == default) return default;
             var value = config.GetValue<string>(key, defaultValue);

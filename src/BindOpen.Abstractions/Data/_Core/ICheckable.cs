@@ -14,6 +14,6 @@ namespace BindOpen.Data
         /// <param key="areas"></param>
         /// <param key="log"></param>
         /// <returns></returns>
-        void Check(bool isExistenceChecked = true, string[] areas = null, IBdoLog log = null);
+        void Check(bool isExistenceChecked = true, string[] areas = null, IBdoBaseLog log = null);
     }
 }

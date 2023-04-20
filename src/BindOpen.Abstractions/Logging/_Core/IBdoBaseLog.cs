@@ -8,7 +8,7 @@ namespace BindOpen.Logging
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoLog :
+    public interface IBdoBaseLog :
         IIdentified, INamed,
         IDisplayNamed, IDescribed,
         IBdoDetailed, IDisposable
@@ -26,12 +26,12 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        IBdoLog Root { get; }
+        IBdoBaseLog Root { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        IBdoLog Parent { get; set; }
+        IBdoBaseLog Parent { get; set; }
 
         /// <summary>
         /// 
@@ -43,11 +43,11 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        IList<IBdoLog> Children();
+        IList<IBdoBaseLog> Children();
 
         bool HasChild();
 
-        IBdoLog InsertChild(
+        IBdoBaseLog InsertChild(
             EventKinds kind,
             string title,
             string description = null,
@@ -66,14 +66,14 @@ namespace BindOpen.Logging
         /// <param key="source"></param>
         /// <param key="date"></param>
         /// <returns></returns>
-        IBdoLog AddChild(
-            IBdoLog childLog,
+        IBdoBaseLog AddChild(
+            IBdoBaseLog childLog,
             EventKinds kind = EventKinds.Any,
             string title = null,
             string description = null,
             DateTime? date = null,
             string resultCode = null,
-            Predicate<IBdoLog> filter = null);
+            Predicate<IBdoBaseLog> filter = null);
 
         /// <summary>
         /// 
@@ -81,7 +81,7 @@ namespace BindOpen.Logging
         /// <param key="id"></param>
         /// <param key="isRecursive"></param>
         /// <returns></returns>
-        void RemoveChild(Predicate<IBdoLog> filter, bool isRecursive = true);
+        void RemoveChild(Predicate<IBdoBaseLog> filter, bool isRecursive = true);
 
         // Events
 
@@ -98,13 +98,13 @@ namespace BindOpen.Logging
         /// <param key="childLog"></param>
         /// <param key="logFinder"></param>
         /// <returns></returns>
-        IBdoLog AddEvent(
+        IBdoBaseLog AddEvent(
             EventKinds kind,
             string title,
             string description = null,
             DateTime? date = null,
             string resultCode = null,
-            IBdoLog childLog = null);
+            IBdoBaseLog childLog = null);
 
         /// <summary>
         /// 
@@ -145,13 +145,13 @@ namespace BindOpen.Logging
         /// <param key="id"></param>
         /// <param key="isRecursive"></param>
         /// <returns></returns>
-        IBdoLog GetChildLogWithId(string id, bool isRecursive = false);
+        IBdoBaseLog GetChildLogWithId(string id, bool isRecursive = false);
 
         /// <summary>
         /// Creates a new instance of IBdoLog.
         /// </summary>
         /// <returns></returns>
-        IBdoLog NewLog();
+        IBdoBaseLog NewLog();
 
         // Clone
 
@@ -159,13 +159,13 @@ namespace BindOpen.Logging
         /// Clones this instance considering the parent log.
         /// </summary>
         /// <param key="parent"></param>
-        IBdoLog Clone(IBdoLog parent, params string[] areas);
+        IBdoBaseLog Clone(IBdoBaseLog parent, params string[] areas);
 
         /// <summary>
         /// Clones this instance considering the parent log.
         /// </summary>
         /// <param key="parent"></param>
-        T Clone<T>(IBdoLog parent, params string[] areas) where T : class;
+        T Clone<T>(IBdoBaseLog parent, params string[] areas) where T : class;
 
         // Execution
 

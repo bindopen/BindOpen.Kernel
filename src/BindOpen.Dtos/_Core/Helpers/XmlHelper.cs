@@ -19,7 +19,7 @@ namespace BindOpen.Data
         /// <param key="dto">The DTO to save.</param>
         /// <param key="log">The saving log to consider.</param>
         /// <returns>The Xml string of this instance.</returns>
-        public static string ToXml(this object dto, IBdoLog log = null)
+        public static string ToXml(this object dto, IBdoBaseLog log = null)
         {
             if (dto == null) return null;
             XmlSerializer serializer = new(dto.GetType());
@@ -33,9 +33,9 @@ namespace BindOpen.Data
             }
             catch (JsonException ex)
             {
-                log?.AddException(
+                log?.AddEvent(EventKinds.Exception,
                     "Exception occured while serializing object",
-                    description: ex.ToString());
+                    ex.ToString());
             }
 
             return st;
@@ -48,7 +48,7 @@ namespace BindOpen.Data
         /// <param key="filePath">Path of the file to save.</param>
         /// <param key="log">The log to consider.</param>
         /// <returns>True if the saving operation has been done. False otherwise.</returns>
-        public static bool SaveXml(this object dto, string filePath, IBdoLog log = null)
+        public static bool SaveXml(this object dto, string filePath, IBdoBaseLog log = null)
         {
             if (dto == null) return false;
 
@@ -67,9 +67,9 @@ namespace BindOpen.Data
                 }
                 catch (JsonException ex)
                 {
-                    log?.AddException(
+                    log?.AddEvent(EventKinds.Exception,
                         "Exception occured while serializing object",
-                        description: ex.ToString());
+                        ex.ToString());
                 }
 
                 return true;
@@ -91,7 +91,7 @@ namespace BindOpen.Data
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T LoadXml<T>(
             string filePath,
-            IBdoLog log = null,
+            IBdoBaseLog log = null,
             XmlSchemaSet xmlSchemaSet = null,
             bool mustFileExist = true) where T : class
         {
@@ -101,7 +101,7 @@ namespace BindOpen.Data
             {
                 if (mustFileExist)
                 {
-                    log?.AddError("File not found");
+                    log?.AddEvent(EventKinds.Error, "File not found");
                 }
             }
             else
@@ -109,7 +109,7 @@ namespace BindOpen.Data
                 if (xmlSchemaSet != null)
                 {
                     XDocument document = XDocument.Load(filePath);
-                    document?.Validate(xmlSchemaSet, (o, e) => log?.AddError("Invalid file"));
+                    document?.Validate(xmlSchemaSet, (o, e) => log?.AddEvent(EventKinds.Error, "Invalid file"));
                 }
 
                 try
@@ -120,9 +120,9 @@ namespace BindOpen.Data
                 }
                 catch (JsonException ex)
                 {
-                    log?.AddException(
+                    log?.AddEvent(EventKinds.Exception,
                         "Exception occured while deserializing file",
-                        description: ex.ToString());
+                        ex.ToString());
                 }
             }
 
@@ -140,7 +140,7 @@ namespace BindOpen.Data
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T LoadXmlFromString<T>(
             string xmlString,
-            IBdoLog log = null,
+            IBdoBaseLog log = null,
             XmlSchemaSet xmlSchemaSet = null) where T : class
         {
             T dto = default;
@@ -152,9 +152,9 @@ namespace BindOpen.Data
                     XDocument document = XDocument.Parse(xmlString);
                     document.Validate(xmlSchemaSet, (o, e) =>
                     {
-                        log?.AddError(
-                            title: "Invalid Xml string",
-                            description: e.Message);
+                        log?.AddEvent(EventKinds.Error,
+                            "Invalid Xml string",
+                            e.Message);
                     });
                 }
 
@@ -166,9 +166,9 @@ namespace BindOpen.Data
                 }
                 catch (JsonException ex)
                 {
-                    log?.AddException(
+                    log?.AddEvent(EventKinds.Exception,
                         "Exception occured while deserializing string",
-                        description: ex.ToString());
+                        ex.ToString());
                 }
             }
 

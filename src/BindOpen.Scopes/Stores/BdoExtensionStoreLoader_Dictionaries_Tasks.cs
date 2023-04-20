@@ -24,7 +24,7 @@ namespace BindOpen.Scopes.Stores
         private int LoadTaskDictionaryFromAssembly(
             Assembly assembly,
             IBdoPackageDefinition packageDefinition,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             if (assembly == null)
             {
