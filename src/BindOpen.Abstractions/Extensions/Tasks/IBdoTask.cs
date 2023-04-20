@@ -21,6 +21,6 @@ namespace BindOpen.Extensions.Tasks
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             RuntimeModes runtimeMode = RuntimeModes.Normal,
-            IBdoBaseLog log = null);
+            IBdoLog log = null);
     }
 }

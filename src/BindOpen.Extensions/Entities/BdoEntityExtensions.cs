@@ -25,7 +25,7 @@ namespace BindOpen.Extensions.Entities
             this IBdoScope scope,
             IBdoConfiguration config,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             IBdoEntity entity = null;
 
@@ -68,7 +68,7 @@ namespace BindOpen.Extensions.Entities
             this IBdoScope scope,
             IBdoConfiguration config = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null) where T : BdoEntity
+            IBdoLog log = null) where T : BdoEntity
         {
             return scope.CreateEntity(config, varSet, log) as T;
         }

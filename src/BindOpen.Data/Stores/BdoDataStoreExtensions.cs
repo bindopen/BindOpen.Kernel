@@ -37,11 +37,11 @@ namespace BindOpen.Data.Stores
         /// <returns>Returns the data store to update.</returns>
         public static IBdoDataStore RegisterDatasources(
             this IBdoDataStore dataStore,
-            Action<IBdoSourceDepot, IBdoBaseLog> action)
+            Action<IBdoSourceDepot, IBdoLog> action)
         {
             var depot = new BdoDatasourceDepot()
             {
-                LazyLoadFunction = (IBdoDepot d, IBdoBaseLog log) =>
+                LazyLoadFunction = (IBdoDepot d, IBdoLog log) =>
                 {
                     var number = 0;
 

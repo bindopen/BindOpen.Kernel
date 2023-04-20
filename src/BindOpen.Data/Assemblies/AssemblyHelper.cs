@@ -70,7 +70,7 @@ namespace BindOpen.Data.Assemblies
         /// </summary>
         /// <param key="type">The type to consider.</param>
         /// <param key="obj">The object to consider.</param>
-        public static object CreateInstance<T>(IBdoBaseLog log = null)
+        public static object CreateInstance<T>(IBdoLog log = null)
         {
             return CreateInstance(typeof(T), log);
         }
@@ -82,7 +82,7 @@ namespace BindOpen.Data.Assemblies
         /// <param key="obj">The object to consider.</param>
         public static object CreateInstance(
             this Type type,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             if (type == null)
             {
@@ -112,7 +112,7 @@ namespace BindOpen.Data.Assemblies
         public static void CreateInstance(
             string fullyQualifiedName,
             out object obj,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             obj = null;
 

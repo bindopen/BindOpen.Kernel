@@ -54,13 +54,13 @@ namespace BindOpen.Data.Stores
         /// <summary>
         /// The initialization function of this instance.
         /// </summary>
-        public Func<IBdoDepot, IBdoBaseLog, int> LazyLoadFunction { get; set; }
+        public Func<IBdoDepot, IBdoLog, int> LazyLoadFunction { get; set; }
 
         /// <summary>
         /// Add the items from all the assemblies.
         /// </summary>
         /// <param key="log">The log to append.</param>
-        public IBdoDepot AddFromAllAssemblies(IBdoBaseLog log = null)
+        public IBdoDepot AddFromAllAssemblies(IBdoLog log = null)
         {
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
@@ -77,20 +77,20 @@ namespace BindOpen.Data.Stores
         /// <param key="log">The log to append.</param>
         public virtual IBdoDepot AddFromAssembly(
             IBdoAssemblyReference reference,
-            IBdoBaseLog log = null) => this;
+            IBdoLog log = null) => this;
 
         /// <summary>
         /// Add the items from the assembly of the specified type.
         /// </summary>
         /// <param key="log">The log to append.</param>
-        public IBdoDepot AddFromAssembly<T1>(IBdoBaseLog log = null) where T1 : class
+        public IBdoDepot AddFromAssembly<T1>(IBdoLog log = null) where T1 : class
             => AddFromAssembly(BdoData.AssemblyFrom<T1>(), log);
 
         /// <summary>
         /// Loads this instance.
         /// </summary>
         /// <param key="log">The log to append.</param>
-        public void LoadLazy(IBdoBaseLog log)
+        public void LoadLazy(IBdoLog log)
         {
             LazyLoadFunction?.Invoke(this, log);
         }

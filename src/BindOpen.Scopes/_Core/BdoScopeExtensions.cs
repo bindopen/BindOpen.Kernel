@@ -57,7 +57,7 @@ namespace BindOpen.Scopes
         public static T LoadExtensions<T>(
             this T scope,
             Action<IExtensionLoadOptions> loadOptionsAction,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
             where T : IBdoScope
         {
             IExtensionLoadOptions loadOptions = null;

@@ -23,7 +23,7 @@ namespace BindOpen.Extensions.Functions
             string functionName,
             IBdoMetaSet paramSet = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             var definition = scope?.ExtensionStore?.GetFunctionDefinition(functionName, paramSet);
 
@@ -58,7 +58,7 @@ namespace BindOpen.Extensions.Functions
             this IBdoScope scope,
             IBdoScriptword word,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             IBdoFunctionDefinition definition;
             if (!string.IsNullOrEmpty(word?.DefinitionUniqueName))
@@ -94,7 +94,7 @@ namespace BindOpen.Extensions.Functions
             this IBdoScope scope,
             IBdoScriptword word,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             var result = scope?.CallFunction(word, varSet, log);
             return result.As<T>();
@@ -105,7 +105,7 @@ namespace BindOpen.Extensions.Functions
             IBdoFunctionDefinition definition,
             IBdoMetaSet paramSet = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             object result = null;
 
@@ -170,7 +170,7 @@ namespace BindOpen.Extensions.Functions
             string functionName,
             IBdoMetaSet paramSet,
             BdoDataType parentDataType = default,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             if (store != null)
             {

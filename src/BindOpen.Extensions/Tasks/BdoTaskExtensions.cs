@@ -50,7 +50,7 @@ namespace BindOpen.Extensions.Tasks
             this IBdoScope scope,
             IBdoConfiguration config = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             IBdoTask task = null;
 
@@ -99,7 +99,7 @@ namespace BindOpen.Extensions.Tasks
             this IBdoScope scope,
             IBdoConfiguration config = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null) where T : BdoTask
+            IBdoLog log = null) where T : BdoTask
         {
             return scope.CreateTask(config, varSet, log) as T;
         }

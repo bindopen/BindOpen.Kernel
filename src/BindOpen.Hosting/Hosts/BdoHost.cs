@@ -30,7 +30,7 @@ namespace BindOpen.Hosting.Hosts
         /// Instantiates a new instance of the BdoHost class.
         /// </summary>
         /// <param key="log"></param>
-        public BdoHost(IBdoBaseLog log) : base(log)
+        public BdoHost(IBdoLog log) : base(log)
         {
         }
 
@@ -98,7 +98,7 @@ namespace BindOpen.Hosting.Hosts
         /// <returns></returns>
         public Type CreateType(
             IBdoClassReference reference,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
             => Scope?.CreateType(reference, log);
 
         /// <summary>
@@ -261,7 +261,7 @@ namespace BindOpen.Hosting.Hosts
             // we launch the standard initialization of service
             var log = Log?.InsertChild(EventKinds.Message, "Initializing host...");
 
-            IBdoBaseLog childLog = null;
+            IBdoLog childLog = null;
 
             base.Initialize();
 
@@ -390,7 +390,7 @@ namespace BindOpen.Hosting.Hosts
             bool checkExtensionStore = false,
             bool checkDataContext = false,
             bool checkDataStore = false,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
             => Scope?.Check(
                 checkExtensionStore,
                 checkDataContext,
@@ -406,7 +406,7 @@ namespace BindOpen.Hosting.Hosts
         public IBdoScriptDomain NewScriptDomain(
             IBdoMetaSet varSet,
             IBdoScriptword scriptword = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
             => Scope?.NewScriptDomain(varSet, scriptword, log);
 
         #endregion

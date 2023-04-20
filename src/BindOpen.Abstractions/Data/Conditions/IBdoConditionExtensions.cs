@@ -22,7 +22,7 @@ namespace BindOpen.Data
             this IBdoCondition condition,
             IBdoScope scope,
             IBdoMetaSet varSet,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             return condition.Evaluate(
                 scope?.Interpreter, varSet, log);
@@ -39,7 +39,7 @@ namespace BindOpen.Data
             this IBdoCondition condition,
             IBdoScriptInterpreter scriptInterpreter,
             IBdoMetaSet varSet,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             if (condition is IBdoAdvancedCondition advancedCondition)
             {
@@ -68,7 +68,7 @@ namespace BindOpen.Data
             this IBdoAdvancedCondition condition,
             IBdoScriptInterpreter scriptInterpreter,
             IBdoMetaSet varSet,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             if (condition == null) return false;
 
@@ -136,7 +136,7 @@ namespace BindOpen.Data
             this IBdoReferenceCondition condition,
             IBdoScriptInterpreter scriptInterpreter,
             IBdoMetaSet varSet,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             if (condition == null) return false;
 

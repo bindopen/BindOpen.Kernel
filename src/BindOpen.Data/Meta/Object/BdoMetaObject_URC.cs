@@ -12,7 +12,7 @@ namespace BindOpen.Data.Meta
             ITBdoSet<IBdoMetaData> refSet,
             string[] areas = null,
             UpdateModes[] updateModes = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             TBdoSetExtensions.Update(this, refSet, updateModes, areas, log);
         }

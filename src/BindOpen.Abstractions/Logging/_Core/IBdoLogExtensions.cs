@@ -13,10 +13,31 @@ namespace BindOpen.Logging
         /// </summary>
         /// <param name="execution"></param>
         /// <returns></returns>
+        public static T AddChildren<T>(
+            this T log,
+            params IBdoLog[] children)
+            where T : IBdoLog
+        {
+            if (log != null)
+            {
+                foreach (var child in children)
+                {
+                    log.AddChild(child);
+                }
+            }
+
+            return log;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="execution"></param>
+        /// <returns></returns>
         public static T WithExecution<T>(
             this T log,
             IProcessExecution execution)
-            where T : IBdoBaseLog
+            where T : IBdoLog
         {
             if (log != null)
             {
@@ -28,8 +49,8 @@ namespace BindOpen.Logging
 
         public static T WithParent<T>(
             this T log,
-            IBdoBaseLog parent)
-            where T : IBdoBaseLog
+            IBdoLog parent)
+            where T : IBdoLog
         {
             if (log != null)
             {
@@ -42,7 +63,7 @@ namespace BindOpen.Logging
         public static T WithTask<T>(
             this T log,
             IBdoConfiguration config)
-            where T : IBdoBaseLog
+            where T : IBdoLog
         {
             if (log != null)
             {
@@ -55,23 +76,10 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        public static T Sanitize<T>(
-            this T log,
-            params IBdoBaseLog[] childLogs)
-            where T : IBdoBaseLog
-        {
-            log?.Clear();
-
-            return log;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public static bool HasEvent<T>(
             this T log,
             params EventKinds[] kinds)
-            where T : IBdoBaseLog
+            where T : IBdoLog
         {
             return log?.HasEvent(true, kinds) ?? false;
         }
@@ -81,7 +89,7 @@ namespace BindOpen.Logging
             Exception exception,
             DateTime? date = null,
             string resultCode = null)
-            where T : IBdoBaseLog
+            where T : IBdoLog
         {
             log?.AddEvent(EventKinds.Exception, exception?.Message, exception?.ToString(), date, resultCode);
 

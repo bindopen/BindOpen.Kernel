@@ -19,7 +19,7 @@ namespace BindOpen.Script
         object Evaluate(
             IBdoExpression exp,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null);
+            IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -31,7 +31,7 @@ namespace BindOpen.Script
         object Evaluate(
             IBdoScriptword word,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null);
+            IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -43,7 +43,7 @@ namespace BindOpen.Script
         object Evaluate(
             IBdoReference reference,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null);
+            IBdoLog log = null);
 
         /// <summary>
         /// 
@@ -58,6 +58,6 @@ namespace BindOpen.Script
         /// <returns></returns>
         IBdoScriptword FindNextWord(
             string script,
-            IBdoBaseLog log = null);
+            IBdoLog log = null);
     }
 }

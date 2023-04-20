@@ -46,7 +46,7 @@ namespace BindOpen.Scopes.Stores
         /// <param key="references">The library references to consider.</param>
         /// <param key="log">The log to consider.</param>
         public IBdoExtensionStoreLoader LoadPackages(
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             if (_store == null) return this;
 
@@ -102,7 +102,7 @@ namespace BindOpen.Scopes.Stores
         private bool LoadPackage(
             IBdoAssemblyReference reference,
             List<string> loadedAssemblyNames,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             var loaded = true;
 
@@ -118,7 +118,7 @@ namespace BindOpen.Scopes.Stores
 
                     // first we load the assembly
 
-                    IBdoBaseLog newLog = log?.NewLog()
+                    IBdoLog newLog = log?.NewLog()
                         .WithDisplayName("Loading package '" + reference.AssemblyName + "'");
 
                     try
@@ -127,7 +127,7 @@ namespace BindOpen.Scopes.Stores
 
                         foreach (var source in _loadOptions?.Sources)
                         {
-                            IBdoBaseLog childLog = newLog?.InsertChild(
+                            IBdoLog childLog = newLog?.InsertChild(
                                 EventKinds.Message,
                                 title: "Loading assembly from '" + source.Kind.ToString() + "'");
 
@@ -195,7 +195,7 @@ namespace BindOpen.Scopes.Stores
                             {
                                 foreach (var usingReference in packageDefinition?.UsingAssemblyReferences)
                                 {
-                                    IBdoBaseLog subChildLog = log?.NewLog()
+                                    IBdoLog subChildLog = log?.NewLog()
                                         .WithDisplayName("Loading using extensions...");
                                     loaded &= LoadPackage(usingReference, loadedAssemblyNames, subChildLog);
                                 }

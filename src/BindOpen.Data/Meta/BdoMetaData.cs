@@ -146,7 +146,7 @@ namespace BindOpen.Data.Meta
         protected virtual object DataObject(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             object obj = default;
 
@@ -200,7 +200,7 @@ namespace BindOpen.Data.Meta
         public object GetData(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
             => DataObject(scope, varSet, log);
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace BindOpen.Data.Meta
         public virtual T GetData<T>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
             => DataObject(scope, varSet, log).As<T>();
 
         /// <summary>
@@ -226,7 +226,7 @@ namespace BindOpen.Data.Meta
         public virtual IList<object> GetDataList(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             var obj = DataObject(scope, varSet, log);
 
@@ -259,7 +259,7 @@ namespace BindOpen.Data.Meta
         public virtual IList<Q> GetDataList<Q>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             var list = GetDataList(scope, varSet, log);
             return list?.Select(q =>
