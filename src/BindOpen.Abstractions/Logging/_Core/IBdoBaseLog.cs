@@ -103,8 +103,7 @@ namespace BindOpen.Logging
             string title,
             string description = null,
             DateTime? date = null,
-            string resultCode = null,
-            IBdoBaseLog childLog = null);
+            string resultCode = null);
 
         /// <summary>
         /// 
