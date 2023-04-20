@@ -47,7 +47,7 @@ namespace BindOpen.Script
         /// </summary>
         public static T WithLog<T>(
             this T function,
-            IBdoBaseLog log)
+            IBdoLog log)
             where T : IBdoScriptDomain
         {
             if (function != null)

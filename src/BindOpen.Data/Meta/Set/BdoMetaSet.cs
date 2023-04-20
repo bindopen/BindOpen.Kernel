@@ -86,7 +86,7 @@ namespace BindOpen.Data.Meta
         protected virtual object DataObject(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             switch (DataMode)
             {
@@ -270,7 +270,7 @@ namespace BindOpen.Data.Meta
         public object GetData(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             var list = GetDataList(scope, varSet, log);
             return list;
@@ -286,7 +286,7 @@ namespace BindOpen.Data.Meta
         public Q GetData<Q>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             var list = GetDataList(scope, varSet, log);
             if (list == null)
@@ -308,7 +308,7 @@ namespace BindOpen.Data.Meta
             int index,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             var obj = GetData<object>(index, scope, varSet, log); ;
             return obj;
@@ -325,7 +325,7 @@ namespace BindOpen.Data.Meta
             int index,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             var list = GetDataList(scope, varSet, log);
             var obj = list?.FirstOrDefault(q =>
@@ -351,7 +351,7 @@ namespace BindOpen.Data.Meta
         public IList<object> GetDataList(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             return Items?
                 .Select(q => q.GetData(scope, varSet, log))
@@ -368,7 +368,7 @@ namespace BindOpen.Data.Meta
         public IList<Q> GetDataList<Q>(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             var list = GetDataList(scope, varSet, log);
             return list?.Select(q =>

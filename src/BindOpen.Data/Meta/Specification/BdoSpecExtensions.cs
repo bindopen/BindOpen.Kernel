@@ -51,7 +51,7 @@ namespace BindOpen.Data.Meta
             ITBdoSet<IBdoMetaData> metas,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             if (specs == null || metas == null) return false;
 

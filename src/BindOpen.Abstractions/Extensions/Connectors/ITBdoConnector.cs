@@ -13,6 +13,6 @@ namespace BindOpen.Extensions.Connectors
         /// </summary>
         /// <returns></returns>
         /// <param key="log">The log to consider.</param>
-        new TConnection NewConnection(IBdoBaseLog log = null);
+        new TConnection NewConnection(IBdoLog log = null);
     }
 }

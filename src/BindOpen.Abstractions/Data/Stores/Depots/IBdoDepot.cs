@@ -15,30 +15,30 @@ namespace BindOpen.Data.Stores
         /// Add the items from all the assemblies.
         /// </summary>
         /// <param key="log">The log to append.</param>
-        IBdoDepot AddFromAllAssemblies(IBdoBaseLog log = null);
+        IBdoDepot AddFromAllAssemblies(IBdoLog log = null);
 
         /// <summary>
         /// Add the items from the specified assembly.
         /// </summary>
         /// <param key="assemblyName">The name of the assembly.</param>
         /// <param key="log">The log to append.</param>
-        IBdoDepot AddFromAssembly(IBdoAssemblyReference reference, IBdoBaseLog log = null);
+        IBdoDepot AddFromAssembly(IBdoAssemblyReference reference, IBdoLog log = null);
 
         /// <summary>
         /// Add the items from the assembly of the specified type.
         /// </summary>
         /// <param key="log">The log to append.</param>
-        IBdoDepot AddFromAssembly<T>(IBdoBaseLog log = null) where T : class;
+        IBdoDepot AddFromAssembly<T>(IBdoLog log = null) where T : class;
 
         /// <summary>
         /// Loads this instance.
         /// </summary>
         /// <param key="log">The log to append.</param>
-        void LoadLazy(IBdoBaseLog log);
+        void LoadLazy(IBdoLog log);
 
         /// <summary>
         /// The initialization function.
         /// </summary>
-        Func<IBdoDepot, IBdoBaseLog, int> LazyLoadFunction { get; set; }
+        Func<IBdoDepot, IBdoLog, int> LazyLoadFunction { get; set; }
     }
 }

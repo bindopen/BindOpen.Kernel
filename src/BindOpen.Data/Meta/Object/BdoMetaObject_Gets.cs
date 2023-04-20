@@ -79,7 +79,7 @@ namespace BindOpen.Data.Meta
             string key,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             var meta = this[key];
             if (meta is IBdoMetaScalar metaScalar)
@@ -101,7 +101,7 @@ namespace BindOpen.Data.Meta
             string key,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             var meta = this[key];
             if (meta is IBdoMetaScalar metaScalar)
@@ -122,7 +122,7 @@ namespace BindOpen.Data.Meta
             string key,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             var meta = this[key];
             if (meta is IBdoMetaObject metaObject)
@@ -147,7 +147,7 @@ namespace BindOpen.Data.Meta
             int index,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             var meta = this[index];
             if (meta is IBdoMetaObject metaObject)
@@ -172,7 +172,7 @@ namespace BindOpen.Data.Meta
             string key,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             var meta = this[key];
             if (meta is IBdoMetaObject metaObject)
@@ -195,7 +195,7 @@ namespace BindOpen.Data.Meta
             int index,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             var meta = this[index];
             if (meta is IBdoMetaObject metaObject)

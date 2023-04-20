@@ -23,7 +23,7 @@ namespace BindOpen.Data.Meta
         public static TPoco LoadXml<TPoco, TDto>(
             string filePath,
             IBdoScope scope = null,
-            IBdoBaseLog log = null,
+            IBdoLog log = null,
             XmlSchemaSet xmlSchemaSet = null,
             bool mustFileExist = true)
             where TPoco : BdoConfiguration, new()

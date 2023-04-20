@@ -51,7 +51,7 @@ namespace BindOpen.Extensions.Connectors
             this T connector,
             Action<IBdoConnection> action,
             bool isAutoConnected = true,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
             where T : IBdoConnector
             => connector.UsingConnection((c, l) => action?.Invoke(c), isAutoConnected, log);
 
@@ -64,9 +64,9 @@ namespace BindOpen.Extensions.Connectors
         /// <returns></returns>
         public static T UsingConnection<T>(
             this T connector,
-            Action<IBdoConnection, IBdoBaseLog> action,
+            Action<IBdoConnection, IBdoLog> action,
             bool isAutoConnected = true,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
             where T : IBdoConnector
         {
             using var connection = connector?.NewConnection(log);

@@ -68,7 +68,7 @@ namespace BindOpen.Script
         public object Evaluate(
             IBdoExpression exp,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             int index;
             int scriptwordBeginIndex;
@@ -140,7 +140,7 @@ namespace BindOpen.Script
         public object Evaluate(
             IBdoScriptword word,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             if (word != null)
             {
@@ -179,7 +179,7 @@ namespace BindOpen.Script
         public object Evaluate(
             IBdoReference reference,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             switch (reference?.Kind)
             {
@@ -210,7 +210,7 @@ namespace BindOpen.Script
             ref int index,
             int offsetIndex,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             if (!string.IsNullOrEmpty(script))
             {
@@ -265,7 +265,7 @@ namespace BindOpen.Script
         /// <returns></returns>
         public IBdoScriptword FindNextWord(
             string script,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             var index = 0;
             var offsetIndex = 0;
@@ -294,7 +294,7 @@ namespace BindOpen.Script
             ref int index,
             int offsetIndex,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             if (string.IsNullOrEmpty(script)) return null;
 
@@ -474,7 +474,7 @@ namespace BindOpen.Script
         private object EvaluateScriptword(
             IBdoScriptword scriptword,
             IBdoMetaSet varSet = null,
-            IBdoBaseLog log = null)
+            IBdoLog log = null)
         {
             if (_scope == null || scriptword == null) return null;
 

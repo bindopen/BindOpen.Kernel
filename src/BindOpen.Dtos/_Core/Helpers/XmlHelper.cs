@@ -19,7 +19,7 @@ namespace BindOpen.Data
         /// <param key="dto">The DTO to save.</param>
         /// <param key="log">The saving log to consider.</param>
         /// <returns>The Xml string of this instance.</returns>
-        public static string ToXml(this object dto, IBdoBaseLog log = null)
+        public static string ToXml(this object dto, IBdoLog log = null)
         {
             if (dto == null) return null;
             XmlSerializer serializer = new(dto.GetType());
@@ -48,7 +48,7 @@ namespace BindOpen.Data
         /// <param key="filePath">Path of the file to save.</param>
         /// <param key="log">The log to consider.</param>
         /// <returns>True if the saving operation has been done. False otherwise.</returns>
-        public static bool SaveXml(this object dto, string filePath, IBdoBaseLog log = null)
+        public static bool SaveXml(this object dto, string filePath, IBdoLog log = null)
         {
             if (dto == null) return false;
 
@@ -91,7 +91,7 @@ namespace BindOpen.Data
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T LoadXml<T>(
             string filePath,
-            IBdoBaseLog log = null,
+            IBdoLog log = null,
             XmlSchemaSet xmlSchemaSet = null,
             bool mustFileExist = true) where T : class
         {
@@ -140,7 +140,7 @@ namespace BindOpen.Data
         /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T LoadXmlFromString<T>(
             string xmlString,
-            IBdoBaseLog log = null,
+            IBdoLog log = null,
             XmlSchemaSet xmlSchemaSet = null) where T : class
         {
             T dto = default;

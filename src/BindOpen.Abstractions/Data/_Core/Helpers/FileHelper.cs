@@ -16,7 +16,7 @@ namespace BindOpen.Data.Helpers
         /// <param key="folderPath">The path of the file directory to consider.</param>
         /// <param key="log">The log to append.</param>
         /// <returns>Returns True whether the directory exists henceforth. False otherwise.</returns>
-        public static bool CreateDirectory(string folderPath, IBdoBaseLog log = null)
+        public static bool CreateDirectory(string folderPath, IBdoLog log = null)
         {
             var isExisting = false;
             try
