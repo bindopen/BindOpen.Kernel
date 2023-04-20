@@ -47,7 +47,7 @@ namespace BindOpen.Extensions.Connectors
         /// Creates a new connection.
         /// </summary>
         /// <param key="log">The log to consider.</param>
-        public abstract IBdoConnection NewConnection(IBdoLog log = null);
+        public abstract IBdoConnection NewConnection(IBdoBaseLog log = null);
 
         #endregion
     }

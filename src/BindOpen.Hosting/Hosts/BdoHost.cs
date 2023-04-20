@@ -30,7 +30,7 @@ namespace BindOpen.Hosting.Hosts
         /// Instantiates a new instance of the BdoHost class.
         /// </summary>
         /// <param key="log"></param>
-        public BdoHost(IBdoLog log) : base(log)
+        public BdoHost(IBdoBaseLog log) : base(log)
         {
         }
 
@@ -98,7 +98,7 @@ namespace BindOpen.Hosting.Hosts
         /// <returns></returns>
         public Type CreateType(
             IBdoClassReference reference,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
             => Scope?.CreateType(reference, log);
 
         /// <summary>
@@ -261,7 +261,7 @@ namespace BindOpen.Hosting.Hosts
             // we launch the standard initialization of service
             var log = Log?.InsertChild(EventKinds.Message, "Initializing host...");
 
-            IBdoLog childLog = null;
+            IBdoBaseLog childLog = null;
 
             base.Initialize();
 
@@ -280,12 +280,12 @@ namespace BindOpen.Hosting.Hosts
                         var message = "Host config file ('" + BdoDefaultHostPaths.__DefaultHostConfigFileName + "') not found";
                         if (Options.IsSettingsFileRequired == true)
                         {
-                            log?.AddError(message);
+                            log?.AddEvent(EventKinds.Error, message);
                             _isLoaded = false;
                         }
                         else if (Options.IsSettingsFileRequired == false)
                         {
-                            log?.AddWarning(message);
+                            log?.AddEvent(EventKinds.Warning, message);
                         }
                     }
                     else
@@ -390,7 +390,7 @@ namespace BindOpen.Hosting.Hosts
             bool checkExtensionStore = false,
             bool checkDataContext = false,
             bool checkDataStore = false,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
             => Scope?.Check(
                 checkExtensionStore,
                 checkDataContext,
@@ -406,7 +406,7 @@ namespace BindOpen.Hosting.Hosts
         public IBdoScriptDomain NewScriptDomain(
             IBdoMetaSet varSet,
             IBdoScriptword scriptword = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
             => Scope?.NewScriptDomain(varSet, scriptword, log);
 
         #endregion

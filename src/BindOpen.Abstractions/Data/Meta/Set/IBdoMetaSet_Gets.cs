@@ -74,7 +74,7 @@ namespace BindOpen.Data.Meta
             string key,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null);
+            IBdoBaseLog log = null);
 
         /// <summary>
         /// 
@@ -89,7 +89,7 @@ namespace BindOpen.Data.Meta
             string key,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null);
+            IBdoBaseLog log = null);
 
         /// <summary>
         /// 
@@ -103,7 +103,7 @@ namespace BindOpen.Data.Meta
             string key,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null);
+            IBdoBaseLog log = null);
 
         /// <summary>
         /// 
@@ -117,6 +117,6 @@ namespace BindOpen.Data.Meta
             string key,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null);
+            IBdoBaseLog log = null);
     }
 }

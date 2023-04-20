@@ -14,6 +14,6 @@ namespace BindOpen.Data
         /// <param key="updateModes"></param>
         /// <param key="log"></param>
         /// <returns></returns>
-        void Update(string[] areas = null, UpdateModes[] updateModes = null, IBdoLog log = null);
+        void Update(string[] areas = null, UpdateModes[] updateModes = null, IBdoBaseLog log = null);
     }
 }

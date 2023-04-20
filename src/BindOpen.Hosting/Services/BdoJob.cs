@@ -21,7 +21,7 @@ namespace BindOpen.Hosting.Services
         /// <summary>
         /// Instantiates a new instance of the BdoJob class.
         /// </summary>
-        protected BdoJob(IBdoLog log) : base()
+        protected BdoJob(IBdoBaseLog log) : base()
         {
             // we instantiate the loaded extension handler and the application script interperter
             AppDomainPool = new AppDomainPool();
@@ -80,7 +80,7 @@ namespace BindOpen.Hosting.Services
         /// </summary>
         public IBdoScope Scope { get; set; }
 
-        public IBdoJob WithLog(IBdoLog log)
+        public IBdoJob WithLog(IBdoBaseLog log)
         {
             Log = log;
 
@@ -130,7 +130,7 @@ namespace BindOpen.Hosting.Services
         /// <summary>
         /// ILog of this instance.
         /// </summary>
-        public IBdoLog Log { get; private set; }
+        public IBdoBaseLog Log { get; private set; }
 
         /// <summary>
         /// Starts the application.

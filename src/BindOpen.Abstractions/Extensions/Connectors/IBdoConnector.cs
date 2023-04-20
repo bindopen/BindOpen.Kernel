@@ -22,6 +22,6 @@ namespace BindOpen.Extensions.Connectors
         /// </summary>
         /// <returns></returns>
         /// <param key="log">The log to consider.</param>
-        IBdoConnection NewConnection(IBdoLog log = null);
+        IBdoConnection NewConnection(IBdoBaseLog log = null);
     }
 }

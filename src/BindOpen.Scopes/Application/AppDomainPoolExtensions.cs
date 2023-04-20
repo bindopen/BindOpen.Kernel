@@ -21,7 +21,7 @@ namespace BindOpen.Scopes.Application
         public static Assembly LoadAssemblyFromFile(
             this AppDomain appDomain,
             string filePath,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             Assembly assembly = null;
 
@@ -52,9 +52,9 @@ namespace BindOpen.Scopes.Application
                     }
                     catch (Exception ex)
                     {
-                        log?.AddException(
-                            title: "Error while attempting to load assembly from file '" + filePath + "'",
-                            description: ex.ToString());
+                        log?.AddEvent(EventKinds.Exception,
+                            "Error while attempting to load assembly from file '" + filePath + "'",
+                            ex.ToString());
                     }
                 }
             }
@@ -72,13 +72,13 @@ namespace BindOpen.Scopes.Application
         public static Assembly LoadAssembly(
             this AppDomain appDomain,
             IBdoAssemblyReference reference,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             Assembly assembly = null;
 
             if (reference?.IsEmpty() != false)
             {
-                log?.AddWarning("Assembly name missing");
+                log?.AddEvent(EventKinds.Warning, "Assembly name missing");
                 return null;
             }
 
@@ -99,11 +99,13 @@ namespace BindOpen.Scopes.Application
                     }
                     catch (FileNotFoundException)
                     {
-                        log?.AddError("Could not find the assembly '" + reference.ToString() + "'");
+                        log?.AddEvent(EventKinds.Error, "Could not find the assembly '" + reference.ToString() + "'");
                     }
                     catch (Exception ex)
                     {
-                        log?.AddException("Error while attempting to load assembly '" + reference.ToString() + "'", description: ex.ToString());
+                        log?.AddEvent(EventKinds.Exception,
+                            "Error while attempting to load assembly '" + reference.ToString() + "'",
+                            ex.ToString());
                     }
                 }
             }

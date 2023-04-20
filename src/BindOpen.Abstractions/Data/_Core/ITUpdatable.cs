@@ -18,6 +18,6 @@ namespace BindOpen.Data
             T refItem,
             string[] areas = null,
             UpdateModes[] updateModes = null,
-            IBdoLog log = null);
+            IBdoBaseLog log = null);
     }
 }

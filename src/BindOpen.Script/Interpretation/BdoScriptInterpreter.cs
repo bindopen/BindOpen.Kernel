@@ -68,7 +68,7 @@ namespace BindOpen.Script
         public object Evaluate(
             IBdoExpression exp,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             int index;
             int scriptwordBeginIndex;
@@ -140,7 +140,7 @@ namespace BindOpen.Script
         public object Evaluate(
             IBdoScriptword word,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             if (word != null)
             {
@@ -179,7 +179,7 @@ namespace BindOpen.Script
         public object Evaluate(
             IBdoReference reference,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             switch (reference?.Kind)
             {
@@ -210,7 +210,7 @@ namespace BindOpen.Script
             ref int index,
             int offsetIndex,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             if (!string.IsNullOrEmpty(script))
             {
@@ -265,7 +265,7 @@ namespace BindOpen.Script
         /// <returns></returns>
         public IBdoScriptword FindNextWord(
             string script,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             var index = 0;
             var offsetIndex = 0;
@@ -294,7 +294,7 @@ namespace BindOpen.Script
             ref int index,
             int offsetIndex,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             if (string.IsNullOrEmpty(script)) return null;
 
@@ -351,8 +351,8 @@ namespace BindOpen.Script
                         nextIndex = script.IndexOfFromScript("(", index);
                         if (nextIndex >= script.Length)
                         {
-                            log?.AddError(
-                                title: "Syntax Error: Required character '(' for functions missing. Position " + (index + offsetIndex),
+                            log?.AddEvent(EventKinds.Error,
+                                "Syntax Error: Required character '(' for functions missing. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR")
                                 .WithDetail(
                                     BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
@@ -375,8 +375,8 @@ namespace BindOpen.Script
                             // if the next index is out of range
                             if (nextIndex >= script.Length)
                             {
-                                log?.AddError(
-                                    title: "Syntax Error: Character ')' not found for function. Position " + (index + offsetIndex),
+                                log?.AddEvent(EventKinds.Error,
+                                    "Syntax Error: Character ')' not found for function. Position " + (index + offsetIndex),
                                     resultCode: "SCRIPT_SYNTAXERROR")
                                     .WithDetail(
                                         BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
@@ -419,8 +419,8 @@ namespace BindOpen.Script
                         nextIndex = script.IndexOfFromScript(")", index);
                         if (nextIndex >= script.Length)
                         {
-                            log?.AddError(
-                                title: "Syntax Error: Character ')' needed for function has not been found. Position " + (index + offsetIndex),
+                            log?.AddEvent(EventKinds.Error,
+                                "Syntax Error: Character ')' needed for function has not been found. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR")
                                 .WithDetail(
                                     BdoMeta.NewScalar("Position", (index + offsetIndex).ToString()));
@@ -474,7 +474,7 @@ namespace BindOpen.Script
         private object EvaluateScriptword(
             IBdoScriptword scriptword,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             if (_scope == null || scriptword == null) return null;
 

@@ -13,7 +13,7 @@ namespace BindOpen.Data
             ITBdoSet<T> refSet,
             string[] areas = null,
             UpdateModes[] updateModes = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             TBdoSetExtensions.Update(this, refSet, updateModes, areas, log);
         }

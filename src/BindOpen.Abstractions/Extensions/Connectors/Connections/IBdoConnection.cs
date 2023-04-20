@@ -45,11 +45,11 @@ namespace BindOpen.Extensions.Connectors
         /// <summary>
         /// Opens a connection.
         /// </summary>
-        IBdoConnection Connect(IBdoLog log = null);
+        IBdoConnection Connect(IBdoBaseLog log = null);
 
         /// <summary>
         /// Closes the existing connection.
         /// </summary>
-        IBdoConnection Disconnect(IBdoLog log = null);
+        IBdoConnection Disconnect(IBdoBaseLog log = null);
     }
 }

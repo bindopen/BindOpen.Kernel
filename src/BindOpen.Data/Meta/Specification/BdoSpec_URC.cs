@@ -11,7 +11,7 @@ namespace BindOpen.Data.Meta
             IBdoSpec refItem,
             string[] areas = null,
             UpdateModes[] updateModes = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
         }
     }

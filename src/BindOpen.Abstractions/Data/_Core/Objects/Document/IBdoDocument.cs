@@ -24,7 +24,7 @@ namespace BindOpen.Data
         /// <param key="dataSource"></param>
         /// <param key="log"></param>
         /// <returns></returns>
-        IBdoConfiguration DetectFormat(IBdoDatasource dataSource, ref IBdoLog log);
+        IBdoConfiguration DetectFormat(IBdoDatasource dataSource, ref IBdoBaseLog log);
 
         /// <summary>
         /// 
@@ -32,6 +32,6 @@ namespace BindOpen.Data
         /// <param key="documentDataItem"></param>
         /// <param key="relativePath"></param>
         /// <returns></returns>
-        IBdoLog Update(IBdoDocument documentDataItem, string relativePath = "");
+        IBdoBaseLog Update(IBdoDocument documentDataItem, string relativePath = "");
     }
 }

@@ -39,6 +39,6 @@ namespace BindOpen.Data.Stores
         /// </summary>
         /// <param key="scope">The scope to append.</param>
         /// <param key="log">The log to append.</param>
-        void LoadLazy(IBdoScope scope, IBdoLog log);
+        void LoadLazy(IBdoScope scope, IBdoBaseLog log);
     }
 }

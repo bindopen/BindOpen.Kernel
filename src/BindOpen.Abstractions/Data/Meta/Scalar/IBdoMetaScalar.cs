@@ -19,7 +19,7 @@ namespace BindOpen.Data.Meta
             int index,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null);
+            IBdoBaseLog log = null);
 
         /// <summary>
         /// 
@@ -32,6 +32,6 @@ namespace BindOpen.Data.Meta
             int index,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null);
+            IBdoBaseLog log = null);
     }
 }

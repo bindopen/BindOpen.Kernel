@@ -29,7 +29,7 @@ namespace BindOpen.Data.Meta.Reflection
             string groupId = null,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
         {
             obj.UpdateFromMeta<BdoPropertyAttribute>(
                 set, onlyMetaAttributes, groupId, scope, varSet, log);
@@ -49,7 +49,7 @@ namespace BindOpen.Data.Meta.Reflection
             string groupId = null,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoBaseLog log = null)
             where T : BdoPropertyAttribute
         {
             if (obj == null || !list.Has()) return;
