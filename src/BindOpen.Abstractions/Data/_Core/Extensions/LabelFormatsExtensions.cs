@@ -8,12 +8,12 @@
         /// <summary>
         /// The name of this meta data.
         /// </summary>
-        private static readonly string __Script_This_Name = "$(this).prop('name')";
+        public static readonly string __Script_This_Name = "$(this).prop('name')";
 
         /// <summary>
         /// The pattern empty value.
         /// </summary>
-        private static readonly string __Script_This_Value = "$(this).value()";
+        public static readonly string __Script_This_Value = "$(this).value()";
 
         /// <summary>
         /// Indicates whether the specified kind has name.
