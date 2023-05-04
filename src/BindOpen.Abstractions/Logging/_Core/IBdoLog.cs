@@ -139,7 +139,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        IProcessExecution Execution { get; set; }
+        IBdoProcessExecution Execution { get; set; }
 
         /// <summary>
         /// 

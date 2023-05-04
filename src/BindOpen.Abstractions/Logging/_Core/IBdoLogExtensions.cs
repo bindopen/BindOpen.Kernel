@@ -36,7 +36,7 @@ namespace BindOpen.Logging
         /// <returns></returns>
         public static T WithExecution<T>(
             this T log,
-            IProcessExecution execution)
+            IBdoProcessExecution execution)
             where T : IBdoLog
         {
             if (log != null)

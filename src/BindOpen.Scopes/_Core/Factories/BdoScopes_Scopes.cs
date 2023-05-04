@@ -6,7 +6,7 @@ namespace BindOpen.Scopes
     /// <summary>
     /// This class represents an scope factory.
     /// </summary>
-    public static partial class BdoScoping
+    public static partial class BdoScopes
     {
         /// <summary>
         /// Creates a new scope.
