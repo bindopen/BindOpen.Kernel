@@ -9,7 +9,7 @@ namespace BindOpen.Scopes
     /// <summary>
     /// This static class provides methods to create objects.
     /// </summary>
-    public static partial class BdoScoping
+    public static partial class BdoScopes
     {
         // Entities ------------------------------------------------
 

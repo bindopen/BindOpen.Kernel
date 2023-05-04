@@ -14,7 +14,7 @@ namespace BindOpen.Tests.Scopes
         [Test, Order(1)]
         public void CreateScopeNewObjectTest()
         {
-            var scope = BdoScoping.NewScope()
+            var scope = BdoScopes.NewScope()
                 .LoadExtensions(
                     q => q.AddAssemblyFrom<GlobalSetUp>());
         }

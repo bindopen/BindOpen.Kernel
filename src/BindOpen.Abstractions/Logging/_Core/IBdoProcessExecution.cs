@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Conditions;
 using BindOpen.Data.Meta;
 
 namespace BindOpen.Logging
@@ -6,7 +7,7 @@ namespace BindOpen.Logging
     /// <summary>
     /// 
     /// </summary>
-    public interface IProcessExecution : IBdoObject
+    public interface IBdoProcessExecution : IBdoObject, IIdentified, IReferenced, IBdoConditional
     {
         /// <summary>
         /// 

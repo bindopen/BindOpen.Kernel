@@ -4,6 +4,7 @@ using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
 using BindOpen.Logging;
 using BindOpen.Scopes;
+using System.Collections.Generic;
 
 namespace BindOpen.Extensions.Tasks
 {
@@ -35,8 +36,6 @@ namespace BindOpen.Extensions.Tasks
         }
 
         // Create
-
-
 
         /// <summary>
         /// Creates the instance of the specified definition.
