@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Data.Meta
+﻿using BindOpen.Data.Meta;
+
+namespace BindOpen.Extensions.Tasks
 {
     /// <summary>
     /// This interface defines a configuration.
