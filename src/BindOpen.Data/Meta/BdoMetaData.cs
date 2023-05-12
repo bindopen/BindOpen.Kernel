@@ -197,6 +197,7 @@ namespace BindOpen.Data.Meta
         /// <param key="scope">The scope to consider.</param>
         /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
+        [BdoFunction("data")]
         public object GetData(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,

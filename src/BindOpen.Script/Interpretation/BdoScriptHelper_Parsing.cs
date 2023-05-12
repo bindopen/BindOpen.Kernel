@@ -78,7 +78,7 @@ namespace BindOpen.Script
         /// <param key="stv">The string to look for.</param>
         /// <param key="indexDeb">The start index.</param>
         /// <returns>The position of the next stv into st from index position.</returns>
-        public static int IndexOfFromScript(this string st, string stv, int indexDeb)
+        public static int IndexOfScript(this string st, string stv, int indexDeb)
         {
             int index = indexDeb;
             bool b = false;
@@ -86,11 +86,11 @@ namespace BindOpen.Script
             {
                 if ((st.Substring(index, 1) == "'") && (stv != "'"))
                 {
-                    index = st.IndexOfFromScript("'", index + 1) + 1;
+                    index = st.IndexOfScript("'", index + 1) + 1;
                 }
                 else if ((st.Substring(index, 1) == "(") && (stv != "("))
                 {
-                    index = st.IndexOfFromScript(")", index + 1) + 1;
+                    index = st.IndexOfScript(")", index + 1) + 1;
                 }
                 else if (st.Substring(index, 1) == stv)
                 {
@@ -115,7 +115,7 @@ namespace BindOpen.Script
         /// <param key="stv">The string to look for.</param>
         /// <param key="indexDeb">The start index.</param>
         /// <returns>The position of the next stv into st from index position.</returns>
-        public static int LastIndexOfFromScript(this string st, string stv, int indexDeb)
+        public static int LastIndexOfScript(this string st, string stv, int indexDeb)
         {
             int index = indexDeb;
             bool b = false;
@@ -123,11 +123,11 @@ namespace BindOpen.Script
             {
                 if ((st.Substring(index, 1) == "'") && (stv != "'"))
                 {
-                    index = LastIndexOfFromScript(st, "'", index - 1) - 1;
+                    index = LastIndexOfScript(st, "'", index - 1) - 1;
                 }
                 else if ((st.Substring(index, 1) == ")") && (stv != ")"))
                 {
-                    index = LastIndexOfFromScript(st, "(", index - 1) - 1;
+                    index = LastIndexOfScript(st, "(", index - 1) - 1;
                 }
                 else if (st.Substring(index, 1) == stv)
                 {
@@ -192,7 +192,7 @@ namespace BindOpen.Script
                     }
 
                     // then we look for the next double quote
-                    nextIndex = script.IndexOfFromScript("'", index + 1);
+                    nextIndex = script.IndexOfScript("'", index + 1);
                     scriptItemName = script.Substring(index, nextIndex - index + 1);
                     scriptItem = scriptItemName.FindScriptItem(index);
                     if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == scriptItem.Kind))
@@ -211,7 +211,7 @@ namespace BindOpen.Script
                 else if (currentChar == Symbol_Fun)
                 {
                     // then we look for the next "(" (end of variable item)
-                    nextIndex = script.IndexOfFromScript("(", index);
+                    nextIndex = script.IndexOfScript("(", index);
                     string scriptItemName = script.Substring(index, nextIndex - index + 1);
                     scriptItem = scriptItemName.FindScriptItem(index);
                     if (scriptItem.Kind == ScriptItemKinds.Variable)
@@ -439,9 +439,9 @@ namespace BindOpen.Script
 
             while (!isEndFound)
             {
-                int prevSpaceIndex = script.LastIndexOfFromScript(" ", lastIndex);
-                int prevVarIndex = script.LastIndexOfFromScript(Symbol_Fun, lastIndex);
-                int prevFunIndex = (lastIndex == index ? script.LastIndexOfFromScript("#", lastIndex) : -1);
+                int prevSpaceIndex = script.LastIndexOfScript(" ", lastIndex);
+                int prevVarIndex = script.LastIndexOfScript(Symbol_Fun, lastIndex);
+                int prevFunIndex = (lastIndex == index ? script.LastIndexOfScript("#", lastIndex) : -1);
                 lastIndex = Math.Max(Math.Max(Math.Max(prevSpaceIndex, prevVarIndex), prevFunIndex), 0);
                 if ((lastIndex >= ("." + Symbol_Fun).Length)
                     && (script.Substring(lastIndex - 3, (")." + Symbol_Fun).Length) == ")." + Symbol_Fun))

@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,6 +10,25 @@ namespace BindOpen.Data.Meta
     /// </summary>
     public static class IBdoMetaSetExtensions
     {
+        public static void Map(
+            this IBdoMetaSet set,
+            params (string Key, Action<IBdoMetaData> Action)[] pairs)
+        {
+            if (set != null)
+            {
+                foreach (var pair in pairs)
+                {
+                    var key = pair.Key;
+                    var meta = set?[key];
+
+                    if (meta != null)
+                    {
+                        pair.Action?.Invoke(meta);
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>

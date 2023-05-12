@@ -150,6 +150,20 @@ namespace BindOpen.Extensions.Functions
                             }
                         }
 
+                        var method = definition.RuntimeFunction.Method;
+                        var lastParam = method.GetParameters().LastOrDefault();
+                        if (lastParam?.GetCustomAttributes(typeof(ParamArrayAttribute), false).Any() == true)
+                        {
+                            var parameters = method.GetParameters();
+                            var i = Array.IndexOf(parameters, lastParam);
+                            if (i > -1 && objs.Count > i + 1)
+                            {
+                                var list = objs.GetRange(i, objs.Count - 1);
+                                objs.RemoveRange(i, objs.Count - 1);
+                                objs.Add(list?.ToArray());
+                            }
+                        }
+
                         result = definition.RuntimeFunction.DynamicInvoke(objs.ToArray());
                     }
                 }

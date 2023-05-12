@@ -9,14 +9,16 @@ namespace BindOpen.Tests.Script
     [TestFixture, Order(401)]
     public partial class BdoScriptInterpreterTests
     {
-        private readonly string _scriptA = "$isEqual('MYTABLE', $text('MYTABLE'))";
+        private readonly string _scriptA = "$eq('MYTABLE', $text('MYTABLE'))";
 
         private readonly BdoScriptword _scriptwordA =
-            BdoScript.Function("isEqual", "MYTABLE", BdoScript.Function("text", "mytable"));
+            BdoScript.Function("eq", "MYTABLE", BdoScript.Function("text", "mytable"));
 
         private readonly string _stringA = "totomax";
 
         private readonly string _scriptB = "$('workflow').input('input1')";
+
+        private readonly string _scriptC = "$eq('i,np)ut''', 'i,np)ut'''))";
 
         private readonly BdoScriptword _scriptwordB =
             BdoScript.Variable("workflow")
@@ -76,6 +78,15 @@ namespace BindOpen.Tests.Script
         {
             var script = (string)_scriptwordB;
             Assert.That(_scriptB.Equals(script, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
+        }
+
+        [Test, Order(5)]
+        public void Create5()
+        {
+            var script = BdoData.NewExp(_scriptC, BdoExpressionKind.Script);
+            var result = Tests.ScriptInterpreter.Evaluate<bool?>(script);
+
+            Assert.That(result == true, "Bad script interpretation");
         }
     }
 }
