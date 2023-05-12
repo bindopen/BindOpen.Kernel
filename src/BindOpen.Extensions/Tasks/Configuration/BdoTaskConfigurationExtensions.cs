@@ -1,9 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 
 namespace BindOpen.Extensions.Tasks
 {
@@ -100,7 +98,7 @@ namespace BindOpen.Extensions.Tasks
             params (string Name, object Value)[] pairs)
             where T : IBdoTaskConfiguration
         {
-            list.WithInputs(pairs?.Select(q => BdoMeta.New(q.Name, q.Value)).ToArray());
+            list?.WithInputs(pairs?.Select(q => BdoMeta.New(q.Name, q.Value)).ToArray());
 
             return list;
         }
@@ -115,7 +113,7 @@ namespace BindOpen.Extensions.Tasks
             params (string Name, DataValueTypes ValueType, object Value)[] pairs)
             where T : IBdoTaskConfiguration
         {
-            list.WithInputs(pairs?.Select(q=> BdoMeta.New(q.Name, q.ValueType, q.Value)).ToArray());
+            list?.WithInputs(pairs?.Select(q => BdoMeta.New(q.Name, q.ValueType, q.Value)).ToArray());
 
             return list;
         }
@@ -208,7 +206,7 @@ namespace BindOpen.Extensions.Tasks
             params (string Name, object Value)[] pairs)
             where T : IBdoTaskConfiguration
         {
-            list.WithOutputs(pairs?.Select(q => BdoMeta.New(q.Name, q.Value)).ToArray());
+            list?.WithOutputs(pairs?.Select(q => BdoMeta.New(q.Name, q.Value)).ToArray());
 
             return list;
         }
@@ -223,7 +221,7 @@ namespace BindOpen.Extensions.Tasks
             params (string Name, DataValueTypes ValueType, object Value)[] pairs)
             where T : IBdoTaskConfiguration
         {
-            list.WithOutputs(pairs?.Select(q => BdoMeta.New(q.Name, q.ValueType, q.Value)).ToArray());
+            list?.WithOutputs(pairs?.Select(q => BdoMeta.New(q.Name, q.ValueType, q.Value)).ToArray());
 
             return list;
         }

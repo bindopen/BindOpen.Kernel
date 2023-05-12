@@ -81,7 +81,7 @@ namespace BindOpen.Script
                     {
                         var resultScript = script;
 
-                        scriptwordBeginIndex = resultScript.IndexOf("{{");
+                        scriptwordBeginIndex = resultScript.IndexOfNextString("{{");
                         while (scriptwordBeginIndex > -1 && scriptwordBeginIndex < resultScript.Length)
                         {
                             index = resultScript.IndexOfNextString("}}", scriptwordBeginIndex + 2);
@@ -348,7 +348,7 @@ namespace BindOpen.Script
                 {
                     case ScriptItemKinds.Function:
                         // we look for the next "(" character.
-                        nextIndex = script.IndexOfFromScript("(", index);
+                        nextIndex = script.IndexOfScript("(", index);
                         if (nextIndex >= script.Length)
                         {
                             log?.AddEvent(EventKinds.Error,
@@ -370,7 +370,7 @@ namespace BindOpen.Script
                         int scriptwordParameterCount = 0;
                         while (nextIndex < script.Length && script.Substring(nextIndex, 1) != ")")
                         {
-                            nextIndex = script.IndexOfFromScript(",", nextIndex + 1);
+                            nextIndex = script.IndexOfScript(",", nextIndex + 1);
 
                             // if the next index is out of range
                             if (nextIndex >= script.Length)
@@ -416,7 +416,7 @@ namespace BindOpen.Script
                         break;
                     case ScriptItemKinds.Variable:
                         // we look for the next ")" character.
-                        nextIndex = script.IndexOfFromScript(")", index);
+                        nextIndex = script.IndexOfScript(")", index);
                         if (nextIndex >= script.Length)
                         {
                             log?.AddEvent(EventKinds.Error,

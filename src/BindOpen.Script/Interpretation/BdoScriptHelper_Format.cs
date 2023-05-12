@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Meta;
+using System;
 
 namespace BindOpen.Script
 {
@@ -8,11 +10,57 @@ namespace BindOpen.Script
     /// </summary>
     public static partial class BdoScriptHelper
     {
-        // ------------------------------------------
-        // FORMAT
-        // ------------------------------------------
+        /// <summary>
+        /// Gets the quoted string.
+        /// </summary>
+        /// <param key="st">The string to normalize.</param>
+        /// <returns>Returns the quoted string.</returns>
+        public static IBdoMetaSet ExtractTokens(this string st, string pattern, char quote = '\'')
+        {
+            var set = BdoMeta.NewSet();
 
-        #region Fomat
+            if (!string.IsNullOrEmpty(st))
+            {
+                int i = 0;
+                int ii = -1;
+                int ji = 0;
+                string tokenName = null;
+
+                while (i > -1)
+                {
+                    i = pattern.IndexOfNextString("{{", i);
+
+                    if (ii == -1)
+                    {
+                        ji = i;
+                    }
+
+                    if (ii > -1)
+                    {
+                        var word = pattern.ToSubstring(ii, i == -1 ? pattern.Length - 1 : i - 1);
+                        var wordst = word.ToUnquoted(quote);
+                        var jj = string.IsNullOrEmpty(wordst) ? st.Length : st.IndexOfNextString(wordst, ji, quote: quote);
+                        var tokenValue = st.ToSubstring(ji, jj - 1).ToUnquoted(quote);
+                        set.Add((tokenName, tokenValue));
+                        ji = jj + word.Length;
+                    }
+
+                    if (i > -1)
+                    {
+                        int j = pattern.IndexOfNextString("}}", i + 2);
+
+                        if (j > -1)
+                        {
+                            tokenName = pattern.ToSubstring(i + 2, j - 1);
+                            ii = j + 2;
+                        }
+                        i++;
+                    }
+                }
+            }
+
+            return set;
+        }
 
         /// <summary>
         /// Formats the specified script string considering the specified number of tabulations.
@@ -31,7 +79,7 @@ namespace BindOpen.Script
 
             while (index < alignedScript.Length)
             {
-                index = alignedScript.IndexOfFromScript("(", index + 1);
+                index = alignedScript.IndexOfScript("(", index + 1);
 
                 // if there is a "("
                 if (index < alignedScript.Length)
@@ -42,7 +90,7 @@ namespace BindOpen.Script
 
                     while ((nextIndex < alignedScript.Length) && (alignedScript.Substring(nextIndex, 1) != ")"))
                     {
-                        nextIndex = alignedScript.IndexOfFromScript(",", nextIndex);
+                        nextIndex = alignedScript.IndexOfScript(",", nextIndex);
 
                         // if the next index is not out of range
                         if (nextIndex < alignedScript.Length)
@@ -175,7 +223,5 @@ namespace BindOpen.Script
 
             return script;
         }
-
-        #endregion
     }
 }

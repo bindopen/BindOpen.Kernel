@@ -118,16 +118,15 @@ namespace BindOpen.Tests
         /// Evaluates the script word $Func5.
         /// </summary>
         /// <returns>The interpreted string value.</returns>
+        [BdoFunction(Name = "concat")]
         public static object Concat(
             IBdoScriptDomain domain,
-            object value1,
-            params string[] values)
+            params object[] values)
         {
             string parentValueText = domain?.Scriptword?.Parent?.GetData<string>();
-            string valueText = value1?.ToString();
             string valuesText = string.Join('-', values);
 
-            return parentValueText + ":" + valueText + ":" + valuesText;
+            return valuesText;
         }
 
         #endregion

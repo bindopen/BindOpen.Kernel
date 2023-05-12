@@ -31,7 +31,7 @@ namespace BindOpen.Tests.Script
             BdoScript.Function("eq", "mypath", BdoScript.Function("text", new EntityFake("mypath")));
         private readonly string _interpretedScript6 = "true";
 
-        private readonly string _script7 = "{{concat($eq($(var1), 'const'), $eq($(var2), 5500), 'toto', 'titi')}}";
+        private readonly string _script7 = "{{$concat($eq($(var1), 'const'), $eq($(var2), 5500), 'toto', 'titi')}}";
         private readonly string _scriptVarValue71 = "const";
         private readonly int _scriptVarValue72 = 5500;
         private readonly string _interpretedScript7 = "true-true-toto-titi";
@@ -45,9 +45,9 @@ namespace BindOpen.Tests.Script
         public void InterpreteWord1Test()
         {
             var interpreter = ScopingTests.Scope.Interpreter;
-            var resultScript = interpreter.Evaluate<bool?>(_scriptword1)?.ToString();
+            var result = interpreter.Evaluate<bool?>(_scriptword1)?.ToString();
 
-            Assert.That(_interpretedScript1.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
+            Assert.That(_interpretedScript1.Equals(result, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
 
         [Test, Order(202)]
@@ -57,9 +57,9 @@ namespace BindOpen.Tests.Script
             var exp = BdoData.NewExp(_script2, BdoExpressionKind.Script);
 
             var interpreter = ScopingTests.Scope.Interpreter;
-            var resultScript = interpreter.Evaluate<bool?>(exp, varSet)?.ToString();
+            var result = interpreter.Evaluate<bool?>(exp, varSet)?.ToString();
 
-            Assert.That(_interpretedScript2.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
+            Assert.That(_interpretedScript2.Equals(result, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
 
         [Test, Order(203)]
@@ -69,9 +69,9 @@ namespace BindOpen.Tests.Script
             var exp = BdoData.NewExp(_script3, BdoExpressionKind.Script);
 
             var interpreter = ScopingTests.Scope.Interpreter;
-            var resultScript = interpreter.Evaluate<string>(exp, varSet);
+            var result = interpreter.Evaluate<string>(exp, varSet);
 
-            Assert.That(_interpretedScript3.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
+            Assert.That(_interpretedScript3.Equals(result, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
 
         [Test, Order(204)]
@@ -83,9 +83,9 @@ namespace BindOpen.Tests.Script
             var exp = BdoData.NewExp(_script4, BdoExpressionKind.Script);
 
             var interpreter = ScopingTests.Scope.Interpreter;
-            var resultScript = interpreter.Evaluate<bool?>(exp, varSet)?.ToString();
+            var result = interpreter.Evaluate<bool?>(exp, varSet)?.ToString();
 
-            Assert.That(_interpretedScript4.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
+            Assert.That(_interpretedScript4.Equals(result, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
 
         [Test, Order(205)]
@@ -97,18 +97,18 @@ namespace BindOpen.Tests.Script
             var exp = BdoData.NewExp(_script5, BdoExpressionKind.Auto);
 
             var interpreter = ScopingTests.Scope.Interpreter;
-            var resultScript = interpreter.Evaluate<string>(exp, varSet);
+            var result = interpreter.Evaluate<string>(exp, varSet);
 
-            Assert.That(_interpretedScript5.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
+            Assert.That(_interpretedScript5.Equals(result, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
 
         [Test, Order(206)]
         public void InterpreteScript6Test()
         {
             var interpreter = ScopingTests.Scope.Interpreter;
-            var resultScript = interpreter.Evaluate<bool?>(_scriptword6)?.ToString();
+            var result = interpreter.Evaluate<bool?>(_scriptword6)?.ToString();
 
-            Assert.That(_interpretedScript6.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
+            Assert.That(_interpretedScript6.Equals(result, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
 
         [Test, Order(207)]
@@ -119,9 +119,9 @@ namespace BindOpen.Tests.Script
                 ((string Name, object Value))("var2", _scriptVarValue72));
 
             var interpreter = ScopingTests.Scope.Interpreter;
-            var resultScript = interpreter.Evaluate<string>(_script7.ToExpression(), varSet: varSet);
+            var result = interpreter.Evaluate<string>(_script7.ToExpression(), varSet: varSet);
 
-            Assert.That(_interpretedScript7.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
+            Assert.That(_interpretedScript7.Equals(result, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
 
         [Test, Order(208)]
@@ -132,10 +132,10 @@ namespace BindOpen.Tests.Script
                 ((string Name, object Value))("var2", _scriptVarValue82));
 
             var interpreter = ScopingTests.Scope.Interpreter;
-            var resultScript = interpreter.Evaluate<string>(
+            var result = interpreter.Evaluate<string>(
                 _script8.ToExpression(), varSet: varSet);
 
-            Assert.That(_interpretedScript8.Equals(resultScript, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
+            Assert.That(_interpretedScript8.Equals(result, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
 
         [Test, Order(4)]

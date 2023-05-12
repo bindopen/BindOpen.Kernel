@@ -7,15 +7,15 @@ namespace BindOpen.Data.Helpers
     /// </summary>
     public static partial class StringHelper
     {
-
         /// <summary>
         /// Gets the quoted string.
         /// </summary>
         /// <param key="st">The string to normalize.</param>
         /// <returns>Returns the quoted string.</returns>
-        public static string ToQuoted(this string st)
+        public static string ToQuoted(this string st, char quote = '\'')
         {
-            return "'" + (st ?? string.Empty).Replace("'", "''") + "'";
+            string quotes = string.Concat(quote, quote);
+            return quote + (st ?? string.Empty).Replace(quote.ToString(), quotes) + quote;
         }
 
         /// <summary>
@@ -24,12 +24,15 @@ namespace BindOpen.Data.Helpers
         /// <param key="st">The string to normalize.</param>
         /// <param key="quoteChar">The quote character to consider.</param>
         /// <returns>Returns the quoted string.</returns>
-        public static string ToUnquoted(this string st, char quoteChar = '\'')
+        public static string ToUnquoted(this string st, char quote = '\'')
         {
             if (st == null) return null;
 
-            if (st.Length > 2 && st.StartsWith(quoteChar) && st.EndsWith(quoteChar))
-                st = st[1..^1];
+            if (st.Length > 2 && st.StartsWith(quote) && st.EndsWith(quote))
+            {
+                string quotes = string.Concat(quote, quote);
+                st = st[1..^1].Replace(quotes, quote.ToString());
+            }
             return st;
         }
 
@@ -189,9 +192,14 @@ namespace BindOpen.Data.Helpers
         /// <param key="startIndex">The start index to consider.</param>
         /// <param key="stringComparison">The string comparison to consider.</param>
         /// <returns>The formated string.</returns>
-        public static int IndexOfNextString(this string st, string stv, int startIndex = 0, StringComparison stringComparison = StringComparison.OrdinalIgnoreCase)
+        public static int IndexOfNextString(
+            this string st,
+            string stv,
+            int startIndex = 0,
+            StringComparison stringComparison = StringComparison.OrdinalIgnoreCase,
+            char quote = '\0')
         {
-            if (st == null || stv == null)
+            if (string.IsNullOrEmpty(st) || string.IsNullOrEmpty(stv))
             {
                 return -1;
             }
@@ -202,25 +210,37 @@ namespace BindOpen.Data.Helpers
             int stv_l = stv.Length;
             while (index < st_l && index > -1 && !b)
             {
-                if (st[index] == '\\' && stv != "\"")
+                //if (st[index] == '"' && (stv == "\"" || st[index] == quote))
+                //{
+                //    index = st.IndexOfNextString("\"", index + 1, quote: quote) + 1;
+                //}
+                //else 
+                if (st[index] == quote && (stv[0] != quote && st[index] == quote))
                 {
-                    index = st.IndexOfNextString("\"", index + 1) + 1;
-                }
-                else if (st[index] == '\'' && stv == "'")
-                {
-                    index = st.IndexOfNextString("'", index + 1) + 1;
+                    if (index < stv_l - 1 && st[index..(index + 2)] == string.Concat(quote, quote))
+                    {
+                        index += 2;
+                    }
+                    else
+                    {
+                        index = st.IndexOfNextString(quote.ToString(), index + 1);
+                        index = index == -1 ? -1 : (index + 1);
+                    }
                 }
                 else if (st[index] == '(' && stv == ")")
                 {
-                    index = st.IndexOfNextString(")", index + 1) + 1;
+                    index = st.IndexOfNextString(")", index + 1, quote: quote);
+                    index = index == -1 ? -1 : (index + 1);
                 }
                 else if (stv == "}}" && index < stv_l - 1 && st[index..(index + 2)] == "{{")
                 {
-                    index = st.IndexOfNextString("}}", index + 1) + 2;
+                    index = st.IndexOfNextString("}}", index + 2, quote: quote);
+                    index = index == -1 ? -1 : (index + 2);
                 }
                 else if (stv == "}" && st[index] == '{')
                 {
-                    index = st.IndexOfNextString("}", index + 1) + 1;
+                    index = st.IndexOfNextString("}", index + 1, quote: quote);
+                    index = index == -1 ? -1 : (index + 1);
                 }
                 else if (index <= st_l - stv_l && string.Equals(st.Substring(index, stv_l), stv, stringComparison))
                 {
