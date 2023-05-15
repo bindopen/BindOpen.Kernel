@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace BindOpen.Data
+namespace BindOpen.Bpm.Processing
 {
 
     /// <summary>

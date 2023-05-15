@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace BindOpen.Data
 {
     /// <summary>
-    /// This enumeration lists the possible priorities of actions.
+    /// This enumeration lists the possible actions of priorities.
     /// </summary>
     [Flags]
     [XmlType("ActionPriorities", Namespace = "https://storage.bindopen.org/xsd/bindopen")]

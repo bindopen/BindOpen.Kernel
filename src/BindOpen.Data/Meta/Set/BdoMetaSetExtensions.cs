@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BindOpen.Data.Helpers;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BindOpen.Data.Meta
@@ -143,6 +144,58 @@ namespace BindOpen.Data.Meta
             }
 
             return list;
+        }
+
+        /// <summary>
+        /// Gets the quoted string.
+        /// </summary>
+        /// <param key="st">The string to normalize.</param>
+        /// <returns>Returns the quoted string.</returns>
+        public static IBdoMetaSet ExtractTokens(this string st, string pattern, char quote = '\'')
+        {
+            var set = BdoMeta.NewSet();
+
+            if (!string.IsNullOrEmpty(st))
+            {
+                int i = 0;
+                int ii = -1;
+                int ji = 0;
+                string tokenName = null;
+
+                while (i > -1)
+                {
+                    i = pattern.IndexOfNextString("{{", i);
+
+                    if (ii == -1)
+                    {
+                        ji = i;
+                    }
+
+                    if (ii > -1)
+                    {
+                        var word = pattern.ToSubstring(ii, i == -1 ? pattern.Length - 1 : i - 1);
+                        var wordst = word.ToUnquoted(quote);
+                        var jj = string.IsNullOrEmpty(wordst) ? st.Length : st.IndexOfNextString(wordst, ji, quote: quote);
+                        var tokenValue = st.ToSubstring(ji, jj - 1).ToUnquoted(quote);
+                        set.Add((tokenName, tokenValue));
+                        ji = jj + word.Length;
+                    }
+
+                    if (i > -1)
+                    {
+                        int j = pattern.IndexOfNextString("}}", i + 2);
+
+                        if (j > -1)
+                        {
+                            tokenName = pattern.ToSubstring(i + 2, j - 1);
+                            ii = j + 2;
+                        }
+                        i++;
+                    }
+                }
+            }
+
+            return set;
         }
     }
 }

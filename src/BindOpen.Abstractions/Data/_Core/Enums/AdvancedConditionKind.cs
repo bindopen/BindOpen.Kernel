@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Data
 {
     /// <summary>
-    /// This enumeration lists the possible view advanced condition kinds.
+    /// This enumeration lists the possible kinds of advanced conditions.
     /// </summary>
     public enum AdvancedConditionKind
     {
