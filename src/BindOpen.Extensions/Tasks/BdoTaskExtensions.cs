@@ -4,7 +4,6 @@ using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
 using BindOpen.Logging;
 using BindOpen.Scopes;
-using System.Collections.Generic;
 
 namespace BindOpen.Extensions.Tasks
 {

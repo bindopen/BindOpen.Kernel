@@ -1,4 +1,5 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Bpm.Processing;
+using BindOpen.Data;
 using BindOpen.Data.Meta;
 using System;
 using System.Collections.Generic;
@@ -140,16 +141,5 @@ namespace BindOpen.Logging
         /// 
         /// </summary>
         IBdoProcessExecution Execution { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        void Start();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="status"></param>
-        void End(ProcessExecutionStatus status = ProcessExecutionStatus.Completed);
     }
 }

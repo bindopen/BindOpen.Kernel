@@ -5,7 +5,7 @@ namespace BindOpen.Logging
     /// <summary>
     /// This class represents a event kind extension.
     /// </summary>
-    public static class EventKindExtension
+    public static class EventKindExtensions
     {
 
         // Gets -------------------------

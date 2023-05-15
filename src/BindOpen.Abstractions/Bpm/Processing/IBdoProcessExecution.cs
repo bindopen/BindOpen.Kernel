@@ -1,13 +1,13 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Conditions;
-using BindOpen.Data.Meta;
+using System;
 
-namespace BindOpen.Logging
+namespace BindOpen.Bpm.Processing
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoProcessExecution : IBdoObject, IIdentified, IReferenced, IBdoConditional
+    public interface IBdoProcessExecution : IBdoObject, IIdentified, IReferenced, IBdoConditional, IBdoDetailed
     {
         /// <summary>
         /// 
@@ -17,17 +17,12 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        IBdoMetaSet Detail { get; set; }
+        TimeSpan? Duration { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        string Duration { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        string EndDate { get; set; }
+        DateTime? EndDate { get; set; }
 
         /// <summary>
         /// 
@@ -47,7 +42,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        string RestartDate { get; set; }
+        DateTime? RestartDate { get; set; }
 
         /// <summary>
         /// 
@@ -57,7 +52,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        string StartDate { get; set; }
+        DateTime? StartDate { get; set; }
 
         /// <summary>
         /// 
@@ -68,26 +63,5 @@ namespace BindOpen.Logging
         /// 
         /// </summary>
         ProcessExecutionStatus Status { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="status"></param>
-        void End(ProcessExecutionStatus status = ProcessExecutionStatus.Completed);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        void Restart();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        void Resume();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        void Start();
     }
 }
