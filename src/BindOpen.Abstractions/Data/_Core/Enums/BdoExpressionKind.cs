@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Data
 {
     /// <summary>
-    /// This enumeration represents the possible kinds for data expression.
+    /// This enumeration represents the possible kinds of expressions.
     /// </summary>
     public enum BdoExpressionKind
     {
@@ -16,7 +16,7 @@
         None,
 
         /// <summary>
-        /// Literal expression that can be script if it begins by "=".
+        /// Literal expression that can include scripts embedded in braces.
         /// </summary>
         Auto,
 

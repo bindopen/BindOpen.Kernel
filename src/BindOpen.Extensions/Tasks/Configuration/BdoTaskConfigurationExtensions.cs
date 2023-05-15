@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,6 +12,80 @@ namespace BindOpen.Extensions.Tasks
     public static class BdoTaskConfigurationExtensions
     {
         // Inputs
+
+        public static T WithInputs<T>(
+            this T list,
+            params IBdoMetaData[] inputs)
+            where T : IBdoTaskConfiguration
+        {
+            if (list != null)
+            {
+                list.With(list.Items?.Where(q => !q.OfGroup(IBdoTaskExtensions.__Token_Input)).ToArray());
+                Array.ForEach(inputs, q => { q.AsInput(); });
+                ((IBdoConfiguration)list).Add(inputs);
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// Adds a new value to this instance.
+        /// </summary>
+        /// <param key="pairs">The value to add.</param>
+        public static T WithInputs<T>(
+            this T list,
+            params KeyValuePair<string, object>[] pairs)
+            where T : IBdoTaskConfiguration
+        {
+            list?.WithInputs(pairs?.Select(q => BdoMeta.New(q.Key, q.Value)).ToArray());
+
+            return list;
+        }
+
+        /// <summary>
+        /// Adds a new value to this instance with the specified key and text.
+        /// </summary>
+        /// <param key="text">The text to consider.</param>
+        /// <returns>Returns the added data key value.</returns>
+        public static T WithInputs<T>(
+            this T list,
+            params (string Name, object Value)[] pairs)
+            where T : IBdoTaskConfiguration
+        {
+            list?.WithInputs(pairs?.Select(q => BdoMeta.New(q.Name, q.Value)).ToArray());
+
+            return list;
+        }
+
+        /// <summary>
+        /// Adds a new value to this instance with the specified key and text.
+        /// </summary>
+        /// <param key="text">The text to consider.</param>
+        /// <returns>Returns the added data key value.</returns>
+        public static T WithInputs<T>(
+            this T list,
+            params (string Name, DataValueTypes ValueType, object Value)[] pairs)
+            where T : IBdoTaskConfiguration
+        {
+            list?.WithInputs(pairs?.Select(q => BdoMeta.New(q.Name, q.ValueType, q.Value)).ToArray());
+
+            return list;
+        }
+
+        public static T AddInputs<T>(
+            this T list,
+            params IBdoMetaData[] inputs)
+            where T : IBdoTaskConfiguration
+        {
+            if (list != null)
+            {
+
+                Array.ForEach(inputs, q => { q.AsInput(); });
+                ((IBdoConfiguration)list).Add(inputs);
+            }
+
+            return list;
+        }
 
         /// <summary>
         /// Adds a new value to this instance.
@@ -74,16 +149,33 @@ namespace BindOpen.Extensions.Tasks
             return list;
         }
 
+        // Outputs
+
+        public static T WithOutputs<T>(
+            this T list,
+            params IBdoMetaData[] outputs)
+            where T : IBdoTaskConfiguration
+        {
+            if (list != null)
+            {
+                list.With(list.Items?.Where(q => !q.OfGroup(IBdoTaskExtensions.__Token_Output)).ToArray());
+                Array.ForEach(outputs, q => { q.AsOutput(); });
+                ((IBdoConfiguration)list).Add(outputs);
+            }
+
+            return list;
+        }
+
         /// <summary>
         /// Adds a new value to this instance.
         /// </summary>
         /// <param key="pairs">The value to add.</param>
-        public static T WithInputs<T>(
+        public static T WithOutputs<T>(
             this T list,
             params KeyValuePair<string, object>[] pairs)
             where T : IBdoTaskConfiguration
         {
-            list?.WithInputs(pairs?.Select(q => BdoMeta.New(q.Key, q.Value)).ToArray());
+            list?.WithOutputs(pairs?.Select(q => BdoMeta.New(q.Key, q.Value)).ToArray());
 
             return list;
         }
@@ -93,12 +185,12 @@ namespace BindOpen.Extensions.Tasks
         /// </summary>
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
-        public static T WithInputs<T>(
+        public static T WithOutputs<T>(
             this T list,
             params (string Name, object Value)[] pairs)
             where T : IBdoTaskConfiguration
         {
-            list?.WithInputs(pairs?.Select(q => BdoMeta.New(q.Name, q.Value)).ToArray());
+            list?.WithOutputs(pairs?.Select(q => BdoMeta.New(q.Name, q.Value)).ToArray());
 
             return list;
         }
@@ -108,17 +200,29 @@ namespace BindOpen.Extensions.Tasks
         /// </summary>
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
-        public static T WithInputs<T>(
+        public static T WithOutputs<T>(
             this T list,
             params (string Name, DataValueTypes ValueType, object Value)[] pairs)
             where T : IBdoTaskConfiguration
         {
-            list?.WithInputs(pairs?.Select(q => BdoMeta.New(q.Name, q.ValueType, q.Value)).ToArray());
+            list?.WithOutputs(pairs?.Select(q => BdoMeta.New(q.Name, q.ValueType, q.Value)).ToArray());
 
             return list;
         }
 
-        // Outputs
+        public static T AddOutputs<T>(
+            this T list,
+            params IBdoMetaData[] outputs)
+            where T : IBdoTaskConfiguration
+        {
+            if (list != null)
+            {
+                Array.ForEach(outputs, q => { q.AsOutput(); });
+                ((IBdoConfiguration)list).Add(outputs);
+            }
+
+            return list;
+        }
 
         /// <summary>
         /// Adds a new value to this instance.
@@ -178,50 +282,6 @@ namespace BindOpen.Extensions.Tasks
                     list.AddOutputs(BdoMeta.New(Name, ValueType, Value));
                 }
             }
-
-            return list;
-        }
-
-        /// <summary>
-        /// Adds a new value to this instance.
-        /// </summary>
-        /// <param key="pairs">The value to add.</param>
-        public static T WithOutputs<T>(
-            this T list,
-            params KeyValuePair<string, object>[] pairs)
-            where T : IBdoTaskConfiguration
-        {
-            list?.WithOutputs(pairs?.Select(q => BdoMeta.New(q.Key, q.Value)).ToArray());
-
-            return list;
-        }
-
-        /// <summary>
-        /// Adds a new value to this instance with the specified key and text.
-        /// </summary>
-        /// <param key="text">The text to consider.</param>
-        /// <returns>Returns the added data key value.</returns>
-        public static T WithOutputs<T>(
-            this T list,
-            params (string Name, object Value)[] pairs)
-            where T : IBdoTaskConfiguration
-        {
-            list?.WithOutputs(pairs?.Select(q => BdoMeta.New(q.Name, q.Value)).ToArray());
-
-            return list;
-        }
-
-        /// <summary>
-        /// Adds a new value to this instance with the specified key and text.
-        /// </summary>
-        /// <param key="text">The text to consider.</param>
-        /// <returns>Returns the added data key value.</returns>
-        public static T WithOutputs<T>(
-            this T list,
-            params (string Name, DataValueTypes ValueType, object Value)[] pairs)
-            where T : IBdoTaskConfiguration
-        {
-            list?.WithOutputs(pairs?.Select(q => BdoMeta.New(q.Name, q.ValueType, q.Value)).ToArray());
 
             return list;
         }
