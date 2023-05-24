@@ -1,11 +1,16 @@
 ﻿using BindOpen.Data.Meta;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BindOpen.Extensions.Tasks
 {
     public class BdoTaskConfiguration : BdoConfiguration, IBdoTaskConfiguration
     {
+        public new IBdoTaskConfiguration Parent { get => base.Parent as IBdoTaskConfiguration; set { base.Parent = value; } }
+
+        public IList<IBdoTaskConfiguration> Children { get; set; }
+
         // ------------------------------------------
         // CONSTRUCTORS
         // ------------------------------------------

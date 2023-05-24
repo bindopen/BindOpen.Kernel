@@ -12,7 +12,7 @@ namespace BindOpen.Bpm.Processing
         /// Get the process execution state.
         /// </summary>
         /// <param name="st">The execution state string.</param>
-        public static ProcessExecutionState GetState(string st)
+        public static ProcessExecutionState ToState(this string st)
         {
             if (!Enum.TryParse(st, true, out ProcessExecutionState state))
             {
@@ -26,7 +26,7 @@ namespace BindOpen.Bpm.Processing
         /// Get the process execution statuse corresponding to the specified state.
         /// </summary>
         /// <param name="status">The status to consider.</param>
-        public static ProcessExecutionState GetState(ProcessExecutionStatus status)
+        public static ProcessExecutionState ToState(this ProcessExecutionStatus status)
         {
             switch (status)
             {
