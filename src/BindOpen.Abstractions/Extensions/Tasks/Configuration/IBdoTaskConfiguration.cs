@@ -1,11 +1,12 @@
-﻿using BindOpen.Data.Meta;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 
 namespace BindOpen.Extensions.Tasks
 {
     /// <summary>
     /// This interface defines a configuration.
     /// </summary>
-    public interface IBdoTaskConfiguration : IBdoConfiguration
+    public interface IBdoTaskConfiguration : ITreeNode<IBdoTaskConfiguration>, IBdoConfiguration
     {
         /// <summary>
         /// 
