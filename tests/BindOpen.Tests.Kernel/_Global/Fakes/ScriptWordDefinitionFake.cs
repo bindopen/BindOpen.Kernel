@@ -58,17 +58,15 @@ namespace BindOpen.Tests
         /// </summary>
         /// <returns>The interpreted string value.</returns>
         [BdoFunction(
-            Name = "Func2",
+            Name = "subFun",
             Description = "Test function 2.",
             CreationDate = "2022-06-24")]
         public static object Fun_Func2a(
             this object obj1,
+            string st,
             IBdoScriptDomain domain)
         {
-            string value1 = domain?.Scriptword.GetData<string>(0);
-            string value2 = domain?.Scriptword.GetData<string>(1);
-
-            return value1.Equals(value2, StringComparison.OrdinalIgnoreCase);
+            return Concat(domain, obj1, st);
         }
 
         /// <summary>

@@ -8,7 +8,7 @@
         /// <summary>
         /// The name of this meta data.
         /// </summary>
-        public static readonly string __Script_This_Name = "$(this).name";
+        public static readonly string __Script_This_Name = "$(this).(name)";
 
         /// <summary>
         /// The pattern empty value.

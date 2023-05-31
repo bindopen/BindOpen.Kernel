@@ -9,6 +9,15 @@ namespace BindOpen.Data
     /// <example>Titles, Descriptions.</example>
     public static partial class BdoData
     {
+        public static T New<T>(Action<T> updater = null) where T : IBdoObject, new()
+        {
+            T obj = new T();
+
+            updater?.Invoke(obj);
+
+            return obj;
+        }
+
         /// <summary>
         /// Get the key values from the specified string.
         /// </summary>

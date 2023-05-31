@@ -2,7 +2,6 @@
 using BindOpen.Data;
 using BindOpen.Data.Meta;
 using System;
-using System.Collections.Generic;
 
 namespace BindOpen.Logging
 {
@@ -12,6 +11,7 @@ namespace BindOpen.Logging
     public interface IBdoLog :
         IIdentified, INamed,
         IDisplayNamed, IDescribed,
+        ITTreeNode<IBdoLog>,
         IBdoDetailed, IDisposable
     {
         /// <summary>
@@ -24,29 +24,17 @@ namespace BindOpen.Logging
         /// </summary>
         string ResultCode { get; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoLog Root { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoLog Parent { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         IBdoConfiguration TaskConfig { get; set; }
 
-        // Logs
-
         /// <summary>
-        /// 
+        /// Creates a new instance of IBdoLog.
         /// </summary>
-        IEnumerable<IBdoLog> Children();
-
-        bool HasChild();
+        /// <returns></returns>
+        IBdoLog NewLog();
 
         IBdoLog InsertChild(
             EventKinds kind,
@@ -111,23 +99,9 @@ namespace BindOpen.Logging
         /// </summary>
         /// <param key="isRecursive"></param>
         /// <param key="kinds"></param>
-        void RemoveEvents(bool isRecursive = true, params EventKinds[] kinds);
+        int RemoveEvents(bool isRecursive = true, params EventKinds[] kinds);
 
         // Logs
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="id"></param>
-        /// <param key="isRecursive"></param>
-        /// <returns></returns>
-        IBdoLog GetChild(string id, bool isRecursive = false);
-
-        /// <summary>
-        /// Creates a new instance of IBdoLog.
-        /// </summary>
-        /// <returns></returns>
-        IBdoLog NewLog();
 
         /// <summary>
         /// Creates a new instance of IBdoLog.

@@ -177,15 +177,6 @@ namespace BindOpen.Data.Meta
         public IBdoMetaData Parent { get; set; }
 
         /// <summary>
-        /// Get the root script word of this instance.
-        /// </summary>
-        /// <returns>The root script word of this instance.</returns>
-        public IBdoMetaData Root(int levelMax = 50)
-        {
-            return levelMax > 0 ? (Parent == null ? this : Parent.Root(levelMax--)) : null;
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         public string Name { get; set; }
