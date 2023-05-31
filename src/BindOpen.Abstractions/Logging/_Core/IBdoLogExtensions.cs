@@ -14,27 +14,6 @@ namespace BindOpen.Logging
         /// </summary>
         /// <param name="execution"></param>
         /// <returns></returns>
-        public static T AddChildren<T>(
-            this T log,
-            params IBdoLog[] children)
-            where T : IBdoLog
-        {
-            if (log != null)
-            {
-                foreach (var child in children)
-                {
-                    log.AddChild(child);
-                }
-            }
-
-            return log;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="execution"></param>
-        /// <returns></returns>
         public static T WithExecution<T>(
             this T log,
             IBdoProcessExecution execution)

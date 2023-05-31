@@ -10,6 +10,7 @@ namespace BindOpen.Data.Meta
     public interface IBdoMetaData :
         IBdoObjectNotMetable,
         INamed, IReferenced, IIndexed,
+        ITChild<IBdoMetaData>,
         ITUpdatable<IBdoMetaData>
     {
         /// <summary>
@@ -87,17 +88,6 @@ namespace BindOpen.Data.Meta
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoMetaData Parent { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        IBdoMetaData Root(int levelMax = 50);
 
         /// <summary>
         /// 
