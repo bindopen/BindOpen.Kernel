@@ -20,7 +20,7 @@ namespace BindOpen.Extensions.Tasks
         {
             if (list != null)
             {
-                list.With(list.Items?.Where(q => !q.OfGroup(IBdoTaskExtensions.__Token_Input)).ToArray());
+                list.Remove(q => q.OfGroup(IBdoTaskExtensions.__Token_Input));
                 Array.ForEach(inputs, q => { q.AsInput(); });
                 ((IBdoConfiguration)list).Add(inputs);
             }
@@ -158,7 +158,7 @@ namespace BindOpen.Extensions.Tasks
         {
             if (list != null)
             {
-                list.With(list.Items?.Where(q => !q.OfGroup(IBdoTaskExtensions.__Token_Output)).ToArray());
+                list.Remove(q => q.OfGroup(IBdoTaskExtensions.__Token_Output));
                 Array.ForEach(outputs, q => { q.AsOutput(); });
                 ((IBdoConfiguration)list).Add(outputs);
             }

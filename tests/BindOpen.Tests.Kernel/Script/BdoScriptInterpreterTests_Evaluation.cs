@@ -18,8 +18,8 @@ namespace BindOpen.Tests.Script
         private readonly string _script2 = "$eq('MYTABLE', $text('MYTABLE'))";
         private readonly string _interpretedScript2 = "true";
 
-        private readonly string _script3 = "$func1('abc', 'efg').func2('ijk')";
-        private readonly string _interpretedScript3 = "false:ijk";
+        private readonly string _script3 = "$eq('abc', 'efg').subFun('ijk')";
+        private readonly string _interpretedScript3 = "false-ijk";
 
         private readonly string _script4 = "$eq($('var1'), 'const')";
         private readonly string _interpretedScript4 = "true";

@@ -146,7 +146,7 @@ namespace BindOpen.Extensions.Functions
                                 else
                                     obj = (paramSet as IBdoScriptword)?.Parent?.GetData();
 
-                                objs.Insert(spec.Index ?? 0, obj);
+                                objs.Insert(int.Min(objs.Count, spec.Index ?? 0), obj);
                             }
                         }
 
@@ -172,7 +172,14 @@ namespace BindOpen.Extensions.Functions
                     log?.AddEvent(EventKinds.Error,
                         "Bad argument",
                         ex.ToString(),
-                        resultCode: "SCRIPT_NOTEXISTINGWORD");
+                        resultCode: "SCRIPT_BADARGUMENT");
+                }
+                catch (ArgumentException ex)
+                {
+                    log?.AddEvent(EventKinds.Error,
+                        "Bad argument",
+                        ex.ToString(),
+                        resultCode: "SCRIPT_BADARGUMENT");
                 }
             }
 
@@ -196,7 +203,10 @@ namespace BindOpen.Extensions.Functions
                     IBdoFunctionDefinition functionDefinition = null;
                     foreach (var definition in functionDefinitions)
                     {
-                        if ((parentDataType == DataValueTypes.None || parentDataType == DataValueTypes.Any || definition?.ParentDataType <= parentDataType)
+                        if ((parentDataType == DataValueTypes.None
+                                || parentDataType == DataValueTypes.Any
+                                || definition?.ParentDataType.ValueType == DataValueTypes.Object
+                                 || definition?.ParentDataType <= parentDataType)
                             && (definition.RuntimeFunction != null || (definition?.IsCompatibleWith(paramSet, log: log) ?? false)))
                         {
                             functionDefinition = definition;

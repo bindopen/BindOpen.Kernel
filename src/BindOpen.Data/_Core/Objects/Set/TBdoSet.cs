@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Helpers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -144,6 +145,16 @@ namespace BindOpen.Data
             if (_items != null && keys != null)
             {
                 return _items.RemoveAll(p => keys.Any(q => p.BdoKeyEquals(q)));
+            }
+
+            return 0;
+        }
+
+        public int Remove(Predicate<T> filter)
+        {
+            if (_items != null && filter != null)
+            {
+                return _items.RemoveAll(p => filter(p));
             }
 
             return 0;

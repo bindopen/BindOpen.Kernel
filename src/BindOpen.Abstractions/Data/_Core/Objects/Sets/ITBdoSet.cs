@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BindOpen.Data
 {
@@ -121,6 +122,8 @@ namespace BindOpen.Data
         void Clear();
 
         int Remove(params string[] keys);
+
+        int Remove(Predicate<T> filter);
 
         /// <summary>
         /// 

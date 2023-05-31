@@ -36,7 +36,7 @@ namespace BindOpen.Extensions.Tasks
 
         public new IBdoTaskConfiguration With(params IBdoMetaData[] items)
         {
-            With(Items?.Where(q => !q.OfGroup(null)).ToArray());
+            Remove(q => q.OfGroup(null));
             Array.ForEach(items, q => { q.WithGroupId(null); });
             base.Add(items);
             return this;
