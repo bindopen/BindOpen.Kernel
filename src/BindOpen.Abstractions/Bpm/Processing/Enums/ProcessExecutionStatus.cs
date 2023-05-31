@@ -30,6 +30,11 @@ namespace BindOpen.Bpm.Processing
         Waiting,
 
         /// <summary>
+        /// Paused.
+        /// </summary>
+        Paused,
+
+        /// <summary>
         /// Queueing.
         /// </summary>
         Queueing,

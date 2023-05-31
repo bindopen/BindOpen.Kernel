@@ -13,16 +13,16 @@ namespace BindOpen.Bpm.Processing
         /// <param name="execution"></param>
         /// <returns></returns>
         public static T WithCustomStatus<T>(
-            this T log,
+            this T execution,
             string status)
             where T : IBdoProcessExecution
         {
-            if (log != null)
+            if (execution != null)
             {
-                log.CustomStatus = status;
+                execution.CustomStatus = status;
             }
 
-            return log;
+            return execution;
         }
 
         /// <summary>
@@ -31,16 +31,16 @@ namespace BindOpen.Bpm.Processing
         /// <param name="execution"></param>
         /// <returns></returns>
         public static T WithEndDate<T>(
-            this T log,
+            this T execution,
             DateTime? endDate)
             where T : IBdoProcessExecution
         {
-            if (log != null)
+            if (execution != null)
             {
-                log.EndDate = endDate;
+                execution.EndDate = endDate;
             }
 
-            return log;
+            return execution;
         }
 
         /// <summary>
@@ -49,16 +49,16 @@ namespace BindOpen.Bpm.Processing
         /// <param name="execution"></param>
         /// <returns></returns>
         public static T WithLocation<T>(
-            this T log,
+            this T execution,
             string location)
             where T : IBdoProcessExecution
         {
-            if (log != null)
+            if (execution != null)
             {
-                log.Location = location;
+                execution.Location = location;
             }
 
-            return log;
+            return execution;
         }
 
         /// <summary>
@@ -67,16 +67,16 @@ namespace BindOpen.Bpm.Processing
         /// <param name="execution"></param>
         /// <returns></returns>
         public static T WithProgressIndex<T>(
-            this T log,
+            this T execution,
             float index)
             where T : IBdoProcessExecution
         {
-            if (log != null)
+            if (execution != null)
             {
-                log.ProgressIndex = index;
+                execution.ProgressIndex = index;
             }
 
-            return log;
+            return execution;
         }
 
         /// <summary>
@@ -85,16 +85,16 @@ namespace BindOpen.Bpm.Processing
         /// <param name="execution"></param>
         /// <returns></returns>
         public static T WithProgressMax<T>(
-            this T log,
+            this T execution,
             float max)
             where T : IBdoProcessExecution
         {
-            if (log != null)
+            if (execution != null)
             {
-                log.ProgressMax = max;
+                execution.ProgressMax = max;
             }
 
-            return log;
+            return execution;
         }
 
         /// <summary>
@@ -103,16 +103,16 @@ namespace BindOpen.Bpm.Processing
         /// <param name="execution"></param>
         /// <returns></returns>
         public static T WithRestartDate<T>(
-            this T log,
+            this T execution,
             DateTime? date)
             where T : IBdoProcessExecution
         {
-            if (log != null)
+            if (execution != null)
             {
-                log.RestartDate = date;
+                execution.RestartDate = date;
             }
 
-            return log;
+            return execution;
         }
 
         /// <summary>
@@ -121,16 +121,16 @@ namespace BindOpen.Bpm.Processing
         /// <param name="execution"></param>
         /// <returns></returns>
         public static T WithResultLevel<T>(
-            this T log,
+            this T execution,
             int level)
             where T : IBdoProcessExecution
         {
-            if (log != null)
+            if (execution != null)
             {
-                log.ResultLevel = level;
+                execution.ResultLevel = level;
             }
 
-            return log;
+            return execution;
         }
 
         /// <summary>
@@ -139,16 +139,16 @@ namespace BindOpen.Bpm.Processing
         /// <param name="execution"></param>
         /// <returns></returns>
         public static T WithStartDate<T>(
-            this T log,
+            this T execution,
             DateTime? date)
             where T : IBdoProcessExecution
         {
-            if (log != null)
+            if (execution != null)
             {
-                log.StartDate = date;
+                execution.StartDate = date;
             }
 
-            return log;
+            return execution;
         }
 
         /// <summary>
@@ -157,16 +157,16 @@ namespace BindOpen.Bpm.Processing
         /// <param name="execution"></param>
         /// <returns></returns>
         public static T WithState<T>(
-            this T log,
+            this T execution,
             ProcessExecutionState state)
             where T : IBdoProcessExecution
         {
-            if (log != null)
+            if (execution != null)
             {
-                log.State = state;
+                execution.State = state;
             }
 
-            return log;
+            return execution;
         }
 
         /// <summary>
@@ -175,16 +175,93 @@ namespace BindOpen.Bpm.Processing
         /// <param name="execution"></param>
         /// <returns></returns>
         public static T WithStatus<T>(
-            this T log,
+            this T execution,
             ProcessExecutionStatus status)
             where T : IBdoProcessExecution
         {
-            if (log != null)
+            if (execution != null)
             {
-                log.Status = status;
+                execution.Status = status;
             }
 
-            return log;
+            return execution;
+        }
+
+        // Actions
+
+        public static void SetAsStarted<T>(
+            this T execution)
+            where T : IBdoProcessExecution
+        {
+            execution
+                .WithStartDate(DateTime.Now)
+                .WithRestartDate(null)
+                .WithEndDate(null)
+                .WithState(ProcessExecutionState.Pending)
+                .WithStatus(ProcessExecutionStatus.Processing)
+                .WithProgressIndex(0);
+        }
+
+        /// <summary>
+        /// Restarts this instance.
+        /// </summary>
+        public static void SetAsRestarted<T>(
+            this T execution)
+            where T : IBdoProcessExecution
+        {
+            execution
+                .WithRestartDate(DateTime.Now)
+                .WithEndDate(null)
+                .WithState(ProcessExecutionState.Pending)
+                .WithStatus(ProcessExecutionStatus.Processing)
+                .WithProgressIndex(0);
+        }
+
+        /// <summary>
+        /// Resumes this instance.
+        /// </summary>
+        public static void SetAsResumed<T>(
+            this T execution)
+            where T : IBdoProcessExecution
+        {
+            if (!(execution?.State == ProcessExecutionState.Pending && execution?.Status == ProcessExecutionStatus.Paused)) return;
+
+            execution
+                .WithEndDate(null)
+                .WithState(ProcessExecutionState.Pending)
+                .WithStatus(ProcessExecutionStatus.Processing);
+        }
+
+        /// <summary>
+        /// Resumes this instance.
+        /// </summary>
+        public static void SetAsPaused<T>(
+            this T execution)
+            where T : IBdoProcessExecution
+        {
+            if (execution?.State != ProcessExecutionState.Pending) return;
+
+            execution
+                .WithEndDate(null)
+                .WithState(ProcessExecutionState.Pending)
+                .WithStatus(ProcessExecutionStatus.Paused);
+        }
+
+        /// <summary>
+        /// Ends this instance specifying the status.
+        /// </summary>
+        /// <param name="status">The new status to consider.</param>
+        public static void SetAsEnded<T>(
+            this T execution,
+            ProcessExecutionStatus status = ProcessExecutionStatus.Completed)
+            where T : IBdoProcessExecution
+        {
+            if (!ProcessExecutionState.Ended.ToStatuses().Contains(status)) return;
+
+            execution
+                .WithEndDate(DateTime.Now)
+                .WithState(ProcessExecutionState.Ended)
+                .WithStatus(status);
         }
     }
 }

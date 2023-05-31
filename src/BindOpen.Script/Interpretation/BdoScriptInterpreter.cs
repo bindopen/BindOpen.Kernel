@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Meta.Reflection;
 using BindOpen.Extensions.Functions;
 using BindOpen.Logging;
 using BindOpen.Scopes;
@@ -310,7 +311,14 @@ namespace BindOpen.Script
             {
                 index = script.Length;
             }
-            // else if the next word is a variable
+            // else if the next word is a sub variable
+            else if (parentScriptword != null && script.ToSubstring(index, index + 1) == ".(")
+            {
+                index += 2;
+
+                scriptItemKind = ScriptItemKinds.Variable;
+            }
+            // else if the next word is a sub function
             else if (parentScriptword != null && script.ToSubstring(index, index) == ".")
             {
                 index++;
@@ -483,7 +491,16 @@ namespace BindOpen.Script
                 case ScriptItemKinds.Function:
                     return _scope.CallFunction(scriptword, varSet, log);
                 case ScriptItemKinds.Variable:
-                    return varSet?.GetData(scriptword?.Name, _scope, varSet, log);
+                    if (scriptword.Parent == null)
+                    {
+                        return varSet?.GetData(scriptword?.Name, _scope, varSet, log);
+                    }
+                    else
+                    {
+                        var obj = scriptword.Parent.GetData(_scope, varSet, log);
+
+                        return obj?.GetPropertyValue(scriptword?.Name, typeof(BdoPropertyAttribute));
+                    }
             }
 
             return null;

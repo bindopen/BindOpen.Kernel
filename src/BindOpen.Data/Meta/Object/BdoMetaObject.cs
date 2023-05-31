@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -177,6 +178,11 @@ namespace BindOpen.Data.Meta
         public int Remove(params string[] keys)
         {
             return _propertySet?.Remove(keys) ?? 0;
+        }
+
+        public int Remove(Predicate<IBdoMetaData> filter)
+        {
+            return _propertySet?.Remove(filter) ?? 0;
         }
 
         public IBdoMetaData Insert(IBdoMetaData item)

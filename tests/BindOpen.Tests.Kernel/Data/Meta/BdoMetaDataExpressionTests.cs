@@ -36,7 +36,7 @@ namespace BindOpen.Tests.Data
         {
             var meta1 = BdoMeta.NewScalar("toto", 23);
             meta1.WithLabel(LabelFormats.NameColonValue);
-            Assert.That(meta1.GetOrAddSpec().Label == "{{$(this).prop('name')}}:{{$(this).value()}}", "Bad meta data label");
+            Assert.That(meta1.GetOrAddSpec().Label == "{{$(this).(name)}}:{{$(this).value()}}", "Bad meta data label");
 
             var label = meta1.GetLabel(ScopingTests.Scope);
             Assert.That(label == "toto:23", "Bad meta data label");

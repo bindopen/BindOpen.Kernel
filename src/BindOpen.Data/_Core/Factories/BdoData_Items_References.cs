@@ -15,6 +15,19 @@ namespace BindOpen.Data
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the created exp.</returns>
         public static BdoReference NewReference(
+            BdoReferenceKind kind)
+            => new()
+            {
+                Kind = kind
+            };
+
+        /// <summary>
+        /// Creates the exp.
+        /// </summary>
+        /// <param key="kind">The kind of exp to consider.</param>
+        /// <param key="text">The text to consider.</param>
+        /// <returns>Returns the created exp.</returns>
+        public static BdoReference NewReference(
             IBdoExpression exp)
             => new()
             {
@@ -99,5 +112,15 @@ namespace BindOpen.Data
         public static BdoReference NewRef(
             IBdoMetaData meta)
             => NewReference(meta);
+
+        /// <summary>
+        /// Creates the exp.
+        /// </summary>
+        /// <param key="kind">The kind of exp to consider.</param>
+        /// <param key="text">The text to consider.</param>
+        /// <returns>Returns the created exp.</returns>
+        public static BdoReference NewRef(
+            BdoReferenceKind kind)
+            => NewReference(kind);
     }
 }
