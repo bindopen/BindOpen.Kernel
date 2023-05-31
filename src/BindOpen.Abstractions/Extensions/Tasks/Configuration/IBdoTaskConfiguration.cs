@@ -6,7 +6,7 @@ namespace BindOpen.Extensions.Tasks
     /// <summary>
     /// This interface defines a configuration.
     /// </summary>
-    public interface IBdoTaskConfiguration : ITreeNode<IBdoTaskConfiguration>, IBdoConfiguration
+    public interface IBdoTaskConfiguration : ITTreeNode<IBdoTaskConfiguration>, IBdoConfiguration
     {
         /// <summary>
         /// 

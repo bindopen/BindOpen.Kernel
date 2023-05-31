@@ -20,12 +20,12 @@ namespace BindOpen.Data.Meta
 
         #region Variables
 
-        private string _namePreffix;
-
         /// <summary>
         /// The item of this instance.
         /// </summary>
         protected object _data;
+
+        protected readonly string _namePreffix;
 
         #endregion
 
@@ -104,15 +104,6 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         public IBdoMetaData Parent { get; set; }
-
-        /// <summary>
-        /// Get the root script word of this instance.
-        /// </summary>
-        /// <returns>The root script word of this instance.</returns>
-        public IBdoMetaData Root(int levelMax = 50)
-        {
-            return levelMax > 0 ? (Parent == null ? this : Parent.Root(levelMax--)) : null;
-        }
 
         /// <summary>
         /// The itemization mode of this instance.
