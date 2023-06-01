@@ -10,13 +10,13 @@
         /// </summary>
         /// <param key="areas">The areas to consider.</param>
         /// <returns>Returns a cloned instance.</returns>
-        object Clone(params string[] areas);
+        object Clone();
 
         /// <summary>
         /// Clones this instance.
         /// </summary>
         /// <param key="areas">The areas to consider.</param>
         /// <returns>Returns a cloned instance.</returns>
-        T Clone<T>(params string[] areas) where T : class;
+        T Clone<T>() where T : class;
     }
 }

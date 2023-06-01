@@ -66,9 +66,9 @@ namespace BindOpen.Data.Meta
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone(params string[] areas)
+        public override object Clone()
         {
-            var dataElementSpec = base.Clone<BdoSpec>(areas);
+            var dataElementSpec = base.Clone<BdoSpec>();
 
             dataElementSpec.WithAliases(Aliases?.ToArray());
             dataElementSpec.WithValueModes(ValueModes?.ToArray());

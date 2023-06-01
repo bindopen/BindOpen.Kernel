@@ -40,7 +40,7 @@
         /// <summary>
         /// Clones this instance.
         /// </summary>
-        public override object Clone(params string[] areas)
+        public override object Clone()
         {
             var condition = new BdoReferenceCondition
             {

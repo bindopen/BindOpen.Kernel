@@ -160,7 +160,7 @@ namespace BindOpen.Script
         /// </summary>
         /// <param key="areas">The areas to consider.</param>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone(params string[] areas)
+        public override object Clone()
         {
             return MemberwiseClone();
         }
