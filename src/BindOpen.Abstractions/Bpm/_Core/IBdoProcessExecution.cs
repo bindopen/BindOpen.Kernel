@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Conditions;
 using System;
 
 namespace BindOpen.Bpm
@@ -7,7 +6,7 @@ namespace BindOpen.Bpm
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoProcessExecution : IBdoObject, IIdentified, IReferenced, IBdoConditional, IBdoDetailed
+    public interface IBdoProcessExecution : IBdoObject, IBdoDetailed
     {
         /// <summary>
         /// 

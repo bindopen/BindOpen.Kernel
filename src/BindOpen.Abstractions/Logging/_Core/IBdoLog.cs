@@ -17,11 +17,6 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        int Level { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         string ResultCode { get; }
 
 
