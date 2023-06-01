@@ -8,6 +8,8 @@ namespace BindOpen.Extensions.Tasks
     /// </summary>
     public interface IBdoTaskConfiguration : ITTreeNode<IBdoTaskConfiguration>, IBdoConfiguration
     {
+        IBdoTaskConfiguration AddChild(IBdoTaskConfiguration child);
+
         /// <summary>
         /// 
         /// </summary>

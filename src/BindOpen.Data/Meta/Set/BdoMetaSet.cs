@@ -175,11 +175,6 @@ namespace BindOpen.Data.Meta
         public IBdoMetaData Parent { get; set; }
 
         /// <summary>
-        /// The level of this instance.
-        /// </summary>
-        public int Level() => Parent == null ? 0 : Parent.Level() + 1;
-
-        /// <summary>
         /// 
         /// </summary>
         public string Name { get; set; }

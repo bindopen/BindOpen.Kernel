@@ -1,5 +1,5 @@
 ﻿using BindOpen.Bpm;
-using BindOpen.Data.Meta;
+using BindOpen.Extensions.Tasks;
 using System;
 
 namespace BindOpen.Logging
@@ -42,7 +42,7 @@ namespace BindOpen.Logging
 
         public static T WithTask<T>(
             this T log,
-            IBdoConfiguration config)
+            IBdoTaskConfiguration config)
             where T : IBdoLog
         {
             if (log != null)
