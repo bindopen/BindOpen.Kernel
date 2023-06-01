@@ -22,6 +22,7 @@ namespace BindOpen.Data.Meta
                     .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.Reference.ToDto()))
                     .ForMember(q => q.MetaItems, opt => opt.Ignore())
                     .ForMember(q => q.Item, opt => opt.Ignore())
+                    .ForMember(q => q.Specs, opt => opt.Ignore())
                     .ForMember(q => q.SubSet, opt => opt.Ignore())
             );
 
@@ -29,6 +30,7 @@ namespace BindOpen.Data.Meta
             var dto = mapper.Map<MetaObjectDto>(poco);
 
             dto.MetaItems = poco.Items?.Select(q => q.ToDto()).ToList();
+            dto.Specs = poco.Specs?.Select(q => q.ToDto()).ToList();
 
             return dto;
         }
@@ -53,7 +55,9 @@ namespace BindOpen.Data.Meta
             var poco = mapper.Map<BdoMetaObject>(dto);
 
             poco.Reference = dto.DataReference.ToPoco();
-            //poco.Specs = dto.Specs?.Count == 0 ? null : dto.Specs?.Select(q => q.ToPoco()).Cast<IBdoSpec>().ToList();
+            var specs = dto.Specs?.Select(q => q.ToPoco())?.ToArray();
+            poco.Specs = specs?.Length == 0 ? null : BdoData.NewSet<IBdoSpec>(specs);
+
             poco.With(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
 
             return poco;

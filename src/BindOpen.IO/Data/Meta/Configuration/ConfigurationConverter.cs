@@ -26,11 +26,14 @@ namespace BindOpen.Data.Meta
                     .ForMember(q => q.MetaItems, opt => opt.MapFrom(q => q.Items == null ? null : q.Items.Select(q => q.ToDto()).ToList()))
                     .ForMember(q => q.LastModificationDate, opt => opt.MapFrom(q => StringHelper.ToString(q.CreationDate)))
                     .ForMember(q => q.Title, opt => opt.MapFrom(q => q.Title.ToDto()))
+                    .ForMember(q => q.Specs, opt => opt.Ignore())
                     .ForMember(q => q.UsedItemIds, opt => opt.MapFrom(q => q.UsedItemIds == null ? null : q.UsedItemIds.Select(q => q).ToList()))
             );
 
             var mapper = new Mapper(config);
             var dto = mapper.Map<ConfigurationDto>(poco);
+
+            dto.Specs = poco.Specs?.Select(q => q.ToDto()).ToList();
 
             return dto;
         }
@@ -64,6 +67,9 @@ namespace BindOpen.Data.Meta
                 .WithTitle(dto.Title.ToPoco())
                 .WithDescription(dto.Description.ToPoco())
                 .With(dto.MetaItems.Select(q => q.ToPoco()).ToArray());
+
+            var specs = dto.Specs?.Select(q => q.ToPoco())?.ToArray();
+            poco.Specs = specs?.Length == 0 ? null : BdoData.NewSet<IBdoSpec>(specs);
 
             return poco;
         }

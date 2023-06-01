@@ -106,6 +106,11 @@ namespace BindOpen.Data.Meta
         public IBdoMetaData Parent { get; set; }
 
         /// <summary>
+        /// The level of this instance.
+        /// </summary>
+        public int Level() => Parent == null ? 0 : Parent.Level() + 1;
+
+        /// <summary>
         /// The itemization mode of this instance.
         /// </summary>
         public DataMode DataMode { get; set; } = DataMode.Value;

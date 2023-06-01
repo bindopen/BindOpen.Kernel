@@ -10,9 +10,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a catalog el that is an el whose els are entities.
     /// </summary>
-    public partial class BdoMetaSet :
-        TBdoSet<IBdoMetaData>,
-        IBdoMetaSet
+    public partial class BdoMetaSet : TBdoSet<IBdoMetaData>, IBdoMetaSet
     {
         // ------------------------------------------
         // CONVERTERS
@@ -175,6 +173,11 @@ namespace BindOpen.Data.Meta
         /// 
         /// </summary>
         public IBdoMetaData Parent { get; set; }
+
+        /// <summary>
+        /// The level of this instance.
+        /// </summary>
+        public int Level() => Parent == null ? 0 : Parent.Level() + 1;
 
         /// <summary>
         /// 

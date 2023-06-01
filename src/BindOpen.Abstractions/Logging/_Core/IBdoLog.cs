@@ -1,4 +1,4 @@
-﻿using BindOpen.Bpm.Processing;
+﻿using BindOpen.Bpm;
 using BindOpen.Data;
 using BindOpen.Data.Meta;
 using System;
@@ -14,11 +14,6 @@ namespace BindOpen.Logging
         ITTreeNode<IBdoLog>,
         IBdoDetailed, IDisposable
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        int Level { get; }
-
         /// <summary>
         /// 
         /// </summary>
