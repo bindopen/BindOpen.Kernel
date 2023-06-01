@@ -1,4 +1,4 @@
-﻿using BindOpen.Bpm.Processing;
+﻿using BindOpen.Bpm;
 
 namespace BindOpen.Extensions.Tasks
 {

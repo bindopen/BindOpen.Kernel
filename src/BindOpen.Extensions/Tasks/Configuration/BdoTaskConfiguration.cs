@@ -50,7 +50,7 @@ namespace BindOpen.Extensions.Tasks
         }
 
         public IEnumerable<IBdoTaskConfiguration> Children(Predicate<IBdoTaskConfiguration> filter)
-            => _children?.Where(p => filter == null || filter(p)).ToList();
+            => filter == null ? _children : _children?.Where(p => filter(p)).ToList();
 
         public IBdoTaskConfiguration Child(Predicate<IBdoTaskConfiguration> filter = null, bool isRecursive = false)
         {
