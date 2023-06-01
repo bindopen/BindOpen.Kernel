@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace BindOpen.Bpm.Processing
+namespace BindOpen.Bpm
 {
     /// <summary>
     /// This enumeration represents the possible process execution states.

@@ -49,14 +49,14 @@ namespace BindOpen.Data.Meta
         /// </summary>
         [JsonPropertyName("aliases")]
         [XmlArray("aliases")]
-        [XmlArrayItem("alias")]
+        [XmlArrayItem("add")]
         public List<string> Aliases { get; set; }
 
         /// <summary>
         /// The area specifications for this instance.
         /// </summary>
-        [JsonPropertyName("areaSpecifications")]
-        [XmlArray("areaSpecifications")]
+        [JsonPropertyName("areaSpecs")]
+        [XmlArray("areaSpecs")]
         [XmlArrayItem("add")]
         public List<SpecDto> AreaSpecifications { get; set; }
 
@@ -80,82 +80,96 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The available itemization modes of this instance.
         /// </summary>
-        [JsonPropertyName("availableValueModes")]
-        [XmlArray("availableValueModes")]
-        [XmlArrayItem("add.mode")]
+        [JsonPropertyName("valueModes")]
+        [XmlArray("valueModes")]
+        [XmlArrayItem("add")]
         public List<DataMode> AvailableValueModes { get; set; }
 
         /// <summary>
         /// Minimum item number of this instance.
         /// </summary>
-        [JsonPropertyName("minimumItemNumber")]
-        [XmlElement("minimumItemNumber")]
-        [DefaultValue(1)]
-        public uint MinDataItemNumber { get; set; } = 1;
+        [JsonPropertyName("items.minNumber")]
+        [XmlElement("items.minNumber")]
+        [DefaultValue(null)]
+        public int? MinDataItemNumber { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonIgnore()]
+        [XmlIgnore()]
+        public bool MinDataItemNumberSpecified => MinDataItemNumber != null;
 
         /// <summary>
         /// Maximum item number of this instance.
         /// </summary>
-        [JsonPropertyName("maximumItemNumber")]
-        [XmlElement("maximumItemNumber")]
+        [JsonPropertyName("items.maxNumber")]
+        [XmlElement("items.maxNumber")]
         [DefaultValue(null)]
-        public uint? MaxDataItemNumber { get; set; }
+        public int? MaxDataItemNumber { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonIgnore()]
+        [XmlIgnore()]
+        public bool MaxDataItemNumberSpecified => MaxDataItemNumber != null;
 
         /// <summary>
         /// Levels of specification of this instance.
         /// </summary>
-        [JsonPropertyName("itemSpecificationLevels")]
-        [XmlArray("itemSpecificationLevels")]
-        [XmlArrayItem("itemSpecificationLevel")]
-        public List<SpecificationLevels> ItemSpecificationLevels { get; set; }
-
-        // Constraints ---------------------------
+        [JsonPropertyName("spec.levels")]
+        [XmlArray("spec.levels")]
+        [XmlArrayItem("add")]
+        public List<SpecificationLevels> SpecificationLevels { get; set; }
 
         /// <summary>
-        /// Constraint statement of this instance.
+        /// Levels of specification of this instance.
         /// </summary>
-        [JsonPropertyName("constraint.statement")]
-        [XmlElement("constraint.statement")]
-        public ConfigurationSetDto ConstraintStatement { get; set; }
+        [JsonPropertyName("itemSpec.levels")]
+        [XmlArray("itemSpec.levels")]
+        [XmlArrayItem("add")]
+        public List<SpecificationLevels> ItemSpecificationLevels { get; set; }
 
         /// <summary>
         /// Level of accessibility of this instance.
         /// </summary>
-        [JsonPropertyName("accessibilityLevel")]
-        [XmlElement("accessibilityLevel")]
+        [JsonPropertyName("accessibility.level")]
+        [XmlElement("accessibility.level")]
         [DefaultValue(AccessibilityLevels.Public)]
         public AccessibilityLevels AccessibilityLevel { get; set; } = AccessibilityLevels.Public;
 
         /// <summary>
         /// The level of inheritance of this instance.
         /// </summary>
-        [JsonPropertyName("inheritanceLevel")]
-        [XmlElement("inheritanceLevel")]
+        [JsonPropertyName("inheritance.level")]
+        [XmlElement("inheritance.level")]
         [DefaultValue(InheritanceLevels.None)]
         public InheritanceLevels InheritanceLevel { get; set; } = InheritanceLevels.None;
 
         /// <summary>
         /// The requirement level of this instance.
         /// </summary>
-        [JsonPropertyName("requirementLevel")]
-        [XmlAttribute("requirementLevel")]
+        [JsonPropertyName("requirement.level")]
+        [XmlAttribute("requirement.level")]
         [DefaultValue(RequirementLevels.None)]
         public RequirementLevels RequirementLevel { get; set; } = RequirementLevels.None;
 
         /// <summary>
         /// The requirement script of this instance.
         /// </summary>
-        [JsonPropertyName("requirementExp")]
-        [XmlElement("requirementExp")]
+        [JsonPropertyName("requirement.exp")]
+        [XmlElement("requirement.exp")]
         public ExpressionDto RequirementExp { get; set; }
 
+        // Constraints ---------------------------
+
         /// <summary>
-        /// Levels of specification of this instance.
+        /// Constraint statement of this instance.
         /// </summary>
-        [JsonPropertyName("specificationLevels")]
-        [XmlArray("specificationLevels")]
-        [XmlArrayItem("specificationLevel")]
-        public List<SpecificationLevels> SpecificationLevels { get; set; }
+        [JsonPropertyName("constraints")]
+        [XmlElement("constraints")]
+        public ConfigurationSetDto ConstraintStatement { get; set; }
 
         #endregion
 

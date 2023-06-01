@@ -50,7 +50,7 @@ namespace BindOpen.Extensions.Tasks
         }
 
         public IEnumerable<IBdoTaskConfiguration> Children(Predicate<IBdoTaskConfiguration> filter)
-            => _children?.Where(p => filter == null || filter(p)).ToList();
+            => filter == null ? _children : _children?.Where(p => filter(p)).ToList();
 
         public IBdoTaskConfiguration Child(Predicate<IBdoTaskConfiguration> filter = null, bool isRecursive = false)
         {
@@ -71,7 +71,7 @@ namespace BindOpen.Extensions.Tasks
         public bool HasChild(Predicate<IBdoTaskConfiguration> filter = null)
             => _children?.Any(p => filter == null || filter(p)) ?? false;
 
-        public IBdoTaskConfiguration InsertChild(IBdoTaskConfiguration child)
+        public IBdoTaskConfiguration AddChild(IBdoTaskConfiguration child)
         {
             _children ??= new List<IBdoTaskConfiguration>();
             _children.Add(child);
@@ -82,7 +82,10 @@ namespace BindOpen.Extensions.Tasks
         public IBdoTaskConfiguration InsertChild(Action<IBdoTaskConfiguration> updater)
         {
             var child = BdoData.New<BdoTaskConfiguration>(updater);
-            return InsertChild(child);
+
+            AddChild(child);
+
+            return child;
         }
 
         #endregion

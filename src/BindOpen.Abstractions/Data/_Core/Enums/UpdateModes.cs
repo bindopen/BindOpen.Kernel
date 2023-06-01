@@ -3,12 +3,6 @@ using System.Xml.Serialization;
 
 namespace BindOpen.Data
 {
-    // --------------------------------------------------
-    // ENUMERATIONS
-    // --------------------------------------------------
-
-    #region Enumerations
-
     /// <summary>
     /// This enumeration represents the possible update modes.
     /// </summary>
@@ -50,7 +44,4 @@ namespace BindOpen.Data
         /// <remarks>Used in full update.</remarks>
         Full = Incremental_AddMissingInTarget | Incremental_RemoveMissingInSource | Incremental_UpdateCommon
     }
-
-    #endregion
-
 }

@@ -11,19 +11,19 @@ namespace BindOpen.Data
     public enum AccessibilityLevels
     {
         /// <summary>
+        /// Anyone can access.
+        /// </summary>
+        Public = 0x0,
+
+        /// <summary>
         /// None.
         /// </summary>
-        None = 0x0,
+        None = 0x1 << 0,
 
         /// <summary>
         /// Inherited.
         /// </summary>
-        Inherited = 0x1 << 0,
-
-        /// <summary>
-        /// Anyone can access.
-        /// </summary>
-        Public = 0x1 << 1,
+        Inherited = 0x1 << 1,
 
         /// <summary>
         /// Only authentized people can access.
