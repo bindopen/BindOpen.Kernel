@@ -29,5 +29,40 @@ namespace BindOpen.Data
 
             return default;
         }
+
+        /// <summary>
+        /// The level of this instance.
+        /// </summary>
+        public static int Level<T>(this ITChild<T> child)
+            where T : IReferenced
+        {
+            if (child != null)
+            {
+                var parent = child.Parent;
+                if (parent is ITChild<T> parentChild)
+                {
+                    return parentChild.Level() + 1;
+                }
+            }
+
+            return 0;
+        }
+
+        /// <summary>
+        /// The level of this instance.
+        /// </summary>
+        public static Q WithParent<Q, T>(
+            this Q child,
+            T parent)
+            where Q : ITChild<T>
+            where T : IReferenced
+        {
+            if (child != null)
+            {
+                child.Parent = parent;
+            }
+
+            return child;
+        }
     }
 }

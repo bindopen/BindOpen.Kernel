@@ -5,7 +5,7 @@ using BindOpen.Scopes;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BindOpen.Bpm.Processing
+namespace BindOpen.Bpm
 {
     /// <summary>
     /// 

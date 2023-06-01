@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Bpm.Processing
+namespace BindOpen.Bpm
 {
     /// <summary>
     /// 
