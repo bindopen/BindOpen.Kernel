@@ -392,9 +392,9 @@ namespace BindOpen.Data.Meta
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone(params string[] areas)
+        public override object Clone()
         {
-            var el = base.Clone(areas) as BdoMetaSet;
+            var el = base.Clone<BdoMetaSet>();
             return el;
         }
 

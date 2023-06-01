@@ -47,22 +47,5 @@ namespace BindOpen.Data
 
             return 0;
         }
-
-        /// <summary>
-        /// The level of this instance.
-        /// </summary>
-        public static Q WithParent<Q, T>(
-            this Q child,
-            T parent)
-            where Q : ITChild<T>
-            where T : IReferenced
-        {
-            if (child != null)
-            {
-                child.Parent = parent;
-            }
-
-            return child;
-        }
     }
 }

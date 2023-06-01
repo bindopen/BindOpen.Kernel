@@ -286,14 +286,9 @@ namespace BindOpen.Data.Meta
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone(params string[] areas)
+        public override object Clone()
         {
-            if (areas == null)
-            {
-                areas = new[] { nameof(DataAreaKind.Any) };
-            }
-
-            var el = base.Clone<BdoMetaData>(areas);
+            var el = base.Clone<BdoMetaData>();
 
             el.Reference = Reference?.Clone<BdoReference>();
             el.Specs = Specs?.Clone<TBdoSet<IBdoSpec>>();
