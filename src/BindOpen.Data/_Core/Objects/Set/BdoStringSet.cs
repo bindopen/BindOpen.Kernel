@@ -96,7 +96,7 @@ namespace BindOpen.Data
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone(params string[] areas)
+        public override object Clone()
         {
             return new BdoStringSet()
             {

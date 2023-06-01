@@ -12,16 +12,14 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="execution"></param>
-        /// <returns></returns>
-        public static T WithExecution<T>(
+        public static T WithChildren<T>(
             this T log,
-            IBdoProcessExecution execution)
+            params IBdoLog[] children)
             where T : IBdoLog
         {
             if (log != null)
             {
-                log.Execution = execution;
+                log.Children = children;
             }
 
             return log;
@@ -35,6 +33,24 @@ namespace BindOpen.Logging
             if (log != null)
             {
                 log.Parent = parent;
+            }
+
+            return log;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="execution"></param>
+        /// <returns></returns>
+        public static T WithExecution<T>(
+            this T log,
+            IBdoProcessExecution execution)
+            where T : IBdoLog
+        {
+            if (log != null)
+            {
+                log.Execution = execution;
             }
 
             return log;

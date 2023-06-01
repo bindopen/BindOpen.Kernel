@@ -62,7 +62,7 @@ namespace BindOpen.Data.Conditions
         /// Clones this instance.
         /// </summary>
         /// <param key="areas">The areas to consider.</param>
-        public override object Clone(params string[] areas)
+        public override object Clone()
         {
             var condition = new BdoAdvancedCondition();
             //condition.Conditions.AddRange(Conditions.Select(p => p.Clone() as BdoCondition));

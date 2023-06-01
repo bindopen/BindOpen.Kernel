@@ -42,7 +42,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="areas">The areas to consider.</param>
         /// <returns>Returns a cloned instance.</returns>
-        public virtual object Clone(params string[] areas)
+        public virtual object Clone()
         {
             return MemberwiseClone();
         }
@@ -52,9 +52,9 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="areas">The areas to consider.</param>
         /// <returns>Returns a cloned instance.</returns>
-        public T Clone<T>(params string[] areas) where T : class
+        public T Clone<T>() where T : class
         {
-            return Clone(areas) as T;
+            return Clone() as T;
         }
 
         #endregion

@@ -10,6 +10,6 @@
         /// </summary>
         /// <param key="areas">The areas to consider.</param>
         /// <returns>Returns a cloned instance.</returns>
-        TChild Clone(TParent parent, params string[] areas);
+        TChild Clone(TParent parent);
     }
 }

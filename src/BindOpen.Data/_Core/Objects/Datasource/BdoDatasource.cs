@@ -41,9 +41,9 @@ namespace BindOpen.Data
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a clone of this instance.</returns>
-        public override object Clone(params string[] areas)
+        public override object Clone()
         {
-            var dataSource = Clone<BdoDatasource>(areas);
+            var dataSource = Clone<BdoDatasource>();
 
             return dataSource;
         }

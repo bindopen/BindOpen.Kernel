@@ -386,9 +386,9 @@ namespace BindOpen.Data
         /// Clones this instance.
         /// </summary>
         /// <returns>Returns a cloned instance.</returns>
-        public override object Clone(params string[] areas)
+        public override object Clone()
         {
-            var obj = Clone<TBdoSet<T>>(areas);
+            var obj = Clone<TBdoSet<T>>();
             obj.Id = StringHelper.NewGuid();
             obj._items = _items?.Select(p =>
             {

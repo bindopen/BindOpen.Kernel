@@ -8,8 +8,7 @@ namespace BindOpen.Extensions.Tasks
 {
     public class BdoTaskConfiguration : BdoConfiguration, IBdoTaskConfiguration
     {
-
-        private IList<IBdoTaskConfiguration> _children;
+        public IList<IBdoTaskConfiguration> Children { get; set; }
 
         public new IBdoTaskConfiguration Parent { get => base.Parent as IBdoTaskConfiguration; set { base.Parent = value; } }
 
@@ -49,16 +48,16 @@ namespace BindOpen.Extensions.Tasks
             return this;
         }
 
-        public IEnumerable<IBdoTaskConfiguration> Children(Predicate<IBdoTaskConfiguration> filter)
-            => filter == null ? _children : _children?.Where(p => filter(p)).ToList();
+        public IEnumerable<IBdoTaskConfiguration> GetChildren(Predicate<IBdoTaskConfiguration> filter)
+            => Children?.Where(p => filter(p)).ToList();
 
         public IBdoTaskConfiguration Child(Predicate<IBdoTaskConfiguration> filter = null, bool isRecursive = false)
         {
             if (filter == null || filter(this)) return this;
 
-            if (isRecursive && _children != null)
+            if (isRecursive && Children != null)
             {
-                foreach (var child in _children)
+                foreach (var child in Children)
                 {
                     var subChild = child.Child(filter, true);
                     if (subChild != null) return subChild;
@@ -69,12 +68,12 @@ namespace BindOpen.Extensions.Tasks
         }
 
         public bool HasChild(Predicate<IBdoTaskConfiguration> filter = null)
-            => _children?.Any(p => filter == null || filter(p)) ?? false;
+            => Children?.Any(p => filter == null || filter(p)) ?? false;
 
         public IBdoTaskConfiguration AddChild(IBdoTaskConfiguration child)
         {
-            _children ??= new List<IBdoTaskConfiguration>();
-            _children.Add(child);
+            Children ??= new List<IBdoTaskConfiguration>();
+            Children.Add(child);
 
             return this;
         }
