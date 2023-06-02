@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.Logging
 {
@@ -23,6 +24,17 @@ namespace BindOpen.Logging
                     eventKind = currentEventKind.Max(eventKind);
 
             return eventKind;
+        }
+
+        /// <summary>
+        /// Gets the maximum kind of events of the specified event kinds.
+        /// </summary>
+        /// <param key="eventKinds">The event kinds to consider.</param>
+        /// <returns>True if this instance has the specified events. False otherwise.</returns>
+        public static bool Has(this IEnumerable<EventKinds> eventKinds, EventKinds kind)
+        {
+            return kind == EventKinds.Any
+                || eventKinds.Any(q => q == EventKinds.Any || q == kind);
         }
 
         /// <summary>
