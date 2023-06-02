@@ -10,7 +10,7 @@ namespace BindOpen.Data
     {
         IList<T> _Children { get; set; }
 
-        IEnumerable<T> Children(Predicate<T> filter);
+        IEnumerable<T> Children(Predicate<T> filter = null);
 
         T Child(Predicate<T> filter = null, bool isRecursive = false);
 
