@@ -19,7 +19,7 @@ namespace BindOpen.Logging
         {
             if (log != null)
             {
-                log.Children = children;
+                log._Children = children;
             }
 
             return log;

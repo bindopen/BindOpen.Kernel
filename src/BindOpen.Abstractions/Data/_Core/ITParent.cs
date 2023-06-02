@@ -8,9 +8,9 @@ namespace BindOpen.Data
     /// </summary>
     public interface ITParent<T> where T : IReferenced
     {
-        IList<T> Children { get; set; }
+        IList<T> _Children { get; set; }
 
-        IEnumerable<T> GetChildren(Predicate<T> filter);
+        IEnumerable<T> Children(Predicate<T> filter);
 
         T Child(Predicate<T> filter = null, bool isRecursive = false);
 
