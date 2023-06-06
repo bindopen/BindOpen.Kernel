@@ -11,7 +11,7 @@ namespace BindOpen.Extensions.Entities
     /// </summary>
     [XmlType("EntityDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "entity.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class BdoEntityDefinitionDto : ExtensionDefinitionDto
+    public class EntityDefinitionDto : ExtensionDefinitionDto
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -60,7 +60,7 @@ namespace BindOpen.Extensions.Entities
         /// <summary>
         /// Instantiates a new instance of the EntityDefinition class.
         /// </summary>
-        public BdoEntityDefinitionDto()
+        public EntityDefinitionDto()
         {
         }
 

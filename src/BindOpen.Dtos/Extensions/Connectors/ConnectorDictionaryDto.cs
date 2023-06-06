@@ -2,15 +2,15 @@
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Extensions.Entities
+namespace BindOpen.Extensions.Connectors
 {
     /// <summary>
-    /// This class represents a DTO entity dico.
+    /// This class represents a DTO connector dico.
     /// </summary>
-    [XmlType("EntityDictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "carriers.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class BdoEntityDictionaryDto
-        : TBdoExtensionDictionaryDto<BdoEntityDefinitionDto>
+    [XmlType("ConnectorDictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "connectors.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    public class ConnectorDictionaryDto
+        : TBdoExtensionDictionaryDto<ConnectorDefinitionDto>
     {
         // ------------------------------------------
         // PROPERTIES
@@ -24,7 +24,7 @@ namespace BindOpen.Extensions.Entities
         [JsonPropertyName("definitions")]
         [XmlArray("definitions")]
         [XmlArrayItem("add.definition")]
-        public List<BdoEntityDefinitionDto> Definitions { get; set; }
+        public List<ConnectorDefinitionDto> Definitions { get; set; }
 
         #endregion
 
@@ -35,9 +35,9 @@ namespace BindOpen.Extensions.Entities
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BdoEntityDictionaryDto class.
+        /// Instantiates a new instance of the BdoConnectorDictionaryDto class.
         /// </summary>
-        public BdoEntityDictionaryDto()
+        public ConnectorDictionaryDto() : base()
         {
         }
 

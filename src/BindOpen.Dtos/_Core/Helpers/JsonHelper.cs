@@ -21,7 +21,7 @@ namespace BindOpen.Data
 
             var options = new JsonSerializerOptions()
             {
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
             };
             options.Converters.Add(new JsonStringEnumConverter());
 
@@ -59,7 +59,7 @@ namespace BindOpen.Data
 
                 var options = new JsonSerializerOptions()
                 {
-                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
                 };
                 options.Converters.Add(new JsonStringEnumConverter());
 
@@ -111,7 +111,7 @@ namespace BindOpen.Data
             {
                 var options = new JsonSerializerOptions()
                 {
-                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
                 };
                 options.Converters.Add(new JsonStringEnumConverter());
 

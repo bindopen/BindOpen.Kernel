@@ -12,7 +12,7 @@ namespace BindOpen.Extensions.Tasks
     /// <seealso cref="BdoConfig"/>
     [XmlType("TaskDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "task.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class BdoTaskDefinitionDto : ExtensionDefinitionDto
+    public class TaskDefinitionDto : ExtensionDefinitionDto
     {
         // ------------------------------------------
         // PROPERTIES
@@ -90,7 +90,7 @@ namespace BindOpen.Extensions.Tasks
         /// <summary>
         /// Instantiates a new instance of the TaskDefinition class. 
         /// </summary>
-        public BdoTaskDefinitionDto()
+        public TaskDefinitionDto()
         {
         }
 
