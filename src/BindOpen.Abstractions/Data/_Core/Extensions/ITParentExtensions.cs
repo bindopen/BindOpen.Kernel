@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using BindOpen.Data.Helpers;
 
 namespace BindOpen.Data
 {
@@ -8,31 +7,10 @@ namespace BindOpen.Data
     /// </summary>
     public static class ITParentExtensions
     {
-        public static IEnumerable<T> Last<T>(
+        public static T Child<T>(
             this ITParent<T> obj,
-            T parent = default)
+            string id, bool isRecursive = false)
             where T : IReferenced
-        {
-            var list = new List<T>();
-
-            if (obj != null)
-            {
-                var child = obj._Children == null ? default : obj._Children.LastOrDefault();
-
-                if (child is ITParent<T> childParent)
-                {
-                    foreach (var subChild in childParent._Children)
-                    {
-                        list.AddRange(childParent.Last(subChild));
-                    }
-                }
-                else
-                {
-                    list.Add(child);
-                }
-            }
-
-            return list;
-        }
+            => obj == null ? default : obj.Child(q => q.BdoKeyEquals(id), isRecursive);
     }
 }
