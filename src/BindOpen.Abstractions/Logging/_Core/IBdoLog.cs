@@ -1,6 +1,6 @@
 ﻿using BindOpen.Bpm;
 using BindOpen.Data;
-using BindOpen.Extensions.Tasks;
+using BindOpen.Data.Meta;
 using System;
 
 namespace BindOpen.Logging
@@ -23,7 +23,7 @@ namespace BindOpen.Logging
         /// <summary>
         /// 
         /// </summary>
-        IBdoTaskConfiguration TaskConfig { get; set; }
+        IBdoConfiguration TaskConfig { get; set; }
 
         /// <summary>
         /// Creates a new instance of IBdoLog.

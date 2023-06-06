@@ -28,7 +28,7 @@ namespace BindOpen.Tests.Extensions
         public static IBdoEntity CreateEntity(dynamic data)
         {
             var config =
-                BdoConfig.New()
+                BdoMeta.NewConfig()
                 .WithDefinition("bindopen.tests.kernel$testEntity")
                 .With(
                     BdoMeta.NewScalar("boolValue", data.boolValue as bool?),

@@ -24,12 +24,12 @@ namespace BindOpen.Tests.Extensions
         /// </summary>
         /// <param key="data"></param>
         /// <returns></returns>
-        public static IBdoTaskConfiguration CreateTaskConfig(dynamic data)
+        public static IBdoConfiguration CreateTaskConfig(dynamic data)
         {
             var config =
-                BdoTaskExtensions.NewTaskConfig()
+                BdoMeta.NewConfig()
                 .WithDefinition("bindopen.tests.kernel$taskFake")
-                .With(
+                .WithProperties(
                     BdoMeta.NewScalar("boolValue", data.boolValue as bool?),
                     BdoMeta.NewScalar("intValue", data.intValue as int?))
                 .WithInputs(
@@ -66,7 +66,7 @@ namespace BindOpen.Tests.Extensions
         [Test, Order(3)]
         public void CreateTaskFromScopeTest()
         {
-            IBdoTaskConfiguration config = CreateTaskConfig(_testData);
+            IBdoConfiguration config = CreateTaskConfig(_testData);
             var task = ScopingTests.Scope.CreateTask<TaskFake>(config);
 
             BdoTaskFaker.AssertFake(task, _testData);

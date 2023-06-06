@@ -107,7 +107,7 @@ namespace BindOpen.Data.Meta.Reflection
                                 else if (typeof(IBdoConfiguration).IsAssignableFrom(metaType))
                                 {
                                     var config = meta as IBdoConfiguration;
-                                    metaValue = BdoConfig.New(name)
+                                    metaValue = BdoMeta.NewConfig(name)
                                         .With(config.Items?.ToArray());
                                 }
                                 else if (typeof(IBdoMetaSet).IsAssignableFrom(metaType))
