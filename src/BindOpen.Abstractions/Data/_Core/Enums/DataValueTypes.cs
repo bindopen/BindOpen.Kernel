@@ -10,6 +10,13 @@ namespace BindOpen.Data
     [XmlType("DataValueTypes", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     public enum DataValueTypes
     {
+
+        /// <summary>
+        /// Any data value type.
+        /// </summary>
+        Any = Boolean | Entity | Entity | Date | Document | Integer | Long
+            | ULong | ByteArray | Number | Object | Text | Time | Scriptword,
+
         /// <summary>
         /// None.
         /// </summary>
@@ -99,11 +106,5 @@ namespace BindOpen.Data
         /// Script word.
         /// </summary>
         Scriptword = 0x01 << 16,
-
-        /// <summary>
-        /// Any data value type.
-        /// </summary>
-        Any = Boolean | Entity | Entity | Date | Document | Integer | Long
-            | ULong | ByteArray | Number | Object | Text | Time | Scriptword
     }
 }

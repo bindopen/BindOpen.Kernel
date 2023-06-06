@@ -24,16 +24,22 @@ namespace BindOpen.Data.Meta
         /// The value type of this instance.
         /// </summary>
         [JsonPropertyName("valueType")]
-        [XmlAttribute("valueType")]
-        [DefaultValue(DataValueTypes.Text)]
-        public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
+        [XmlElement("valueType")]
+        [DefaultValue(null)]
+        public DataValueTypes? DataValueType { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonIgnore()]
+        [XmlIgnore()]
+        public bool DataValueTypeSpecified => DataValueType != null;
 
         /// <summary>
         /// ID of the group of this instance.
         /// </summary>
         [JsonPropertyName("groupId")]
         [XmlElement("groupId")]
-        [DefaultValue("")]
         public string GroupId { get; set; }
 
         /// <summary>
@@ -66,7 +72,7 @@ namespace BindOpen.Data.Meta
         [JsonPropertyName("isAllocatable")]
         [XmlElement("isAllocatable")]
         [DefaultValue(false)]
-        public bool IsAllocatable { get; set; } = false;
+        public bool? IsAllocatable { get; set; }
 
         // Items ---------------------------------
 
@@ -137,7 +143,7 @@ namespace BindOpen.Data.Meta
         [JsonPropertyName("accessibility.level")]
         [XmlElement("accessibility.level")]
         [DefaultValue(AccessibilityLevels.Public)]
-        public AccessibilityLevels AccessibilityLevel { get; set; } = AccessibilityLevels.Public;
+        public AccessibilityLevels? AccessibilityLevel { get; set; }
 
         /// <summary>
         /// The level of inheritance of this instance.
@@ -145,15 +151,15 @@ namespace BindOpen.Data.Meta
         [JsonPropertyName("inheritance.level")]
         [XmlElement("inheritance.level")]
         [DefaultValue(InheritanceLevels.None)]
-        public InheritanceLevels InheritanceLevel { get; set; } = InheritanceLevels.None;
+        public InheritanceLevels? InheritanceLevel { get; set; }
 
         /// <summary>
         /// The requirement level of this instance.
         /// </summary>
         [JsonPropertyName("requirement.level")]
-        [XmlAttribute("requirement.level")]
+        [XmlElement("requirement.level")]
         [DefaultValue(RequirementLevels.None)]
-        public RequirementLevels RequirementLevel { get; set; } = RequirementLevels.None;
+        public RequirementLevels? RequirementLevel { get; set; }
 
         /// <summary>
         /// The requirement script of this instance.

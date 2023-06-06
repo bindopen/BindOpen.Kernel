@@ -48,10 +48,7 @@ namespace BindOpen.Tests.IO.Extensions
         [Test, Order(2)]
         public void SaveXmlTaskTest()
         {
-            if (_task == null)
-            {
-                _task = BdoTaskTests.CreateTask(_testData);
-            }
+            _task ??= BdoTaskTests.CreateTask(_testData);
 
             var isSaved = _task.ToMetaData().ToDto().SaveXml(_filePath);
 
@@ -79,10 +76,7 @@ namespace BindOpen.Tests.IO.Extensions
         [Test, Order(4)]
         public void SaveJsonTaskTest()
         {
-            if (_task == null)
-            {
-                _task = BdoTaskTests.CreateTask(_testData);
-            }
+            _task ??= BdoTaskTests.CreateTask(_testData);
 
             var isSaved = _task.ToMetaData().ToDto().SaveJson(_filePath);
 

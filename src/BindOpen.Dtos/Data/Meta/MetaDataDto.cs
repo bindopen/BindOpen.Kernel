@@ -69,23 +69,6 @@ namespace BindOpen.Data.Meta
         public ReferenceDto DataReference { get; set; }
 
         /// <summary>
-        /// The value type of this instance.
-        /// </summary>
-        [JsonPropertyName("valueType")]
-        [XmlAttribute("valueType")]
-        [DefaultValue(DataValueTypes.Any)]
-        public DataValueTypes DataValueType { get; set; } = DataValueTypes.Any;
-
-        /// <summary>
-        /// Indicates whether the entities property must be ignored.
-        /// </summary>
-        [JsonIgnore]
-        [XmlIgnore]
-        public bool DataValueTypeSpecified =>
-            !((this is MetaObjectDto && DataValueType == DataValueTypes.Object)
-            || (this is ScriptwordDto && DataValueType == DataValueTypes.Scriptword));
-
-        /// <summary>
         /// The elements of this instance.
         /// </summary>
         [JsonPropertyName("specs")]

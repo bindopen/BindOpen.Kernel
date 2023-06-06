@@ -9,8 +9,8 @@ namespace BindOpen.Extensions.Functions
     /// </summary>
     [XmlType("FunctionDictionaryDto", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "scriptwords.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class BdoFunctionDictionaryDto
-        : TBdoExtensionDictionaryDto<BdoFunctionDefinitionDto>
+    public class FunctionDictionaryDto
+        : TBdoExtensionDictionaryDto<FunctionDefinitionDto>
     {
         // ------------------------------------------
         // PROPERTIES
@@ -31,7 +31,7 @@ namespace BindOpen.Extensions.Functions
         [JsonPropertyName("definitions")]
         [XmlArray("definitions")]
         [XmlArrayItem("add.definition")]
-        public List<BdoFunctionDefinitionDto> Definitions { get; set; }
+        public List<FunctionDefinitionDto> Definitions { get; set; }
 
         #endregion
 
@@ -44,7 +44,7 @@ namespace BindOpen.Extensions.Functions
         /// <summary>
         /// Instantiates a new instance of the BdoFunctionDictionaryDto class.
         /// </summary>
-        public BdoFunctionDictionaryDto()
+        public FunctionDictionaryDto()
         {
         }
 

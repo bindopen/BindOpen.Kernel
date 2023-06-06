@@ -2,15 +2,14 @@
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Extensions.Connectors
+namespace BindOpen.Extensions.Tasks
 {
     /// <summary>
-    /// This class represents a DTO connector dico.
+    /// This class represents a DTO task dico.
     /// </summary>
-    [XmlType("ConnectorDictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "connectors.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class BdoConnectorDictionaryDto
-        : TBdoExtensionDictionaryDto<BdoConnectorDefinitionDto>
+    [XmlType("TaskDictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "tasks.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    public class TaskDictionaryDto : TBdoExtensionDictionaryDto<TaskDefinitionDto>
     {
         // ------------------------------------------
         // PROPERTIES
@@ -24,7 +23,7 @@ namespace BindOpen.Extensions.Connectors
         [JsonPropertyName("definitions")]
         [XmlArray("definitions")]
         [XmlArrayItem("add.definition")]
-        public List<BdoConnectorDefinitionDto> Definitions { get; set; }
+        public List<TaskDefinitionDto> Definitions { get; set; }
 
         #endregion
 
@@ -35,9 +34,9 @@ namespace BindOpen.Extensions.Connectors
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BdoConnectorDictionaryDto class.
+        /// Instantiates a new instance of the BdoTaskDictionaryDto class.
         /// </summary>
-        public BdoConnectorDictionaryDto() : base()
+        public TaskDictionaryDto()
         {
         }
 

@@ -2,14 +2,15 @@
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Extensions.Tasks
+namespace BindOpen.Extensions.Entities
 {
     /// <summary>
-    /// This class represents a DTO task dico.
+    /// This class represents a DTO entity dico.
     /// </summary>
-    [XmlType("TaskDictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "tasks.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class BdoTaskDictionaryDto : TBdoExtensionDictionaryDto<BdoTaskDefinitionDto>
+    [XmlType("EntityDictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "carriers.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    public class EntityDictionaryDto
+        : TBdoExtensionDictionaryDto<EntityDefinitionDto>
     {
         // ------------------------------------------
         // PROPERTIES
@@ -23,7 +24,7 @@ namespace BindOpen.Extensions.Tasks
         [JsonPropertyName("definitions")]
         [XmlArray("definitions")]
         [XmlArrayItem("add.definition")]
-        public List<BdoTaskDefinitionDto> Definitions { get; set; }
+        public List<EntityDefinitionDto> Definitions { get; set; }
 
         #endregion
 
@@ -34,9 +35,9 @@ namespace BindOpen.Extensions.Tasks
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BdoTaskDictionaryDto class.
+        /// Instantiates a new instance of the BdoEntityDictionaryDto class.
         /// </summary>
-        public BdoTaskDictionaryDto()
+        public EntityDictionaryDto()
         {
         }
 
