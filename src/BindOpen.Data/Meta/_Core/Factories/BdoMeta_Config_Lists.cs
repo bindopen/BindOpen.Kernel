@@ -3,13 +3,13 @@
     /// <summary>
     /// This static class provides methods to handle configs.
     /// </summary>
-    public partial class BdoConfig
+    public static partial class BdoMeta
     {
         /// <summary>
         /// Instantiates a new instance of the BdoConfigurationSet class.
         /// </summary>
         /// <param key="items">The items to consider.</param>
-        public static BdoConfigurationSet NewSet(
+        public static BdoConfigurationSet NewConfigSet(
             params IBdoConfiguration[] items)
         {
             var config = BdoData.NewSet<BdoConfigurationSet, IBdoConfiguration>(items);
@@ -21,7 +21,7 @@
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static T NewSet<T>(
+        public static T NewConfigSet<T>(
             params IBdoConfiguration[] items)
             where T : BdoConfigurationSet, new()
         {

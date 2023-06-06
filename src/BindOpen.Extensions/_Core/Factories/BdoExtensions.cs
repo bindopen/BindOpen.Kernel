@@ -1,7 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
-using BindOpen.Extensions.Tasks;
 using BindOpen.Scopes;
 
 namespace BindOpen.Extensions
@@ -20,9 +19,7 @@ namespace BindOpen.Extensions
 
             if (scope != null && extension != null)
             {
-                config = extension is IBdoTask ?
-                    BdoTaskExtensions.NewTaskConfig(name) :
-                    BdoConfig.New(name);
+                config = BdoMeta.NewConfig(name);
 
                 config
                     .WithData(extension)
@@ -31,10 +28,10 @@ namespace BindOpen.Extensions
                 // we get definition unique name
 
                 var extensionKind = extension.GetValueType().GetExtensionKind();
-                var extensionDefintion = scope.ExtensionStore.GetDefinitionFromType(
+                var extensionDefinition = scope.ExtensionStore.GetDefinitionFromType(
                     extensionKind,
                     BdoData.Class(extension.GetType()));
-                config.WithDefinition(extensionDefintion?.UniqueName);
+                config.WithDefinition(extensionDefinition?.UniqueName);
 
                 return config;
             }

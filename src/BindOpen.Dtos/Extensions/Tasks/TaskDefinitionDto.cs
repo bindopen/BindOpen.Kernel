@@ -9,7 +9,7 @@ namespace BindOpen.Extensions.Tasks
     /// <summary>
     /// This class represents a task definition.
     /// </summary>
-    /// <seealso cref="BdoConfig"/>
+    /// <seealso cref="BdoMeta_Config"/>
     [XmlType("TaskDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "task.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class TaskDefinitionDto : ExtensionDefinitionDto

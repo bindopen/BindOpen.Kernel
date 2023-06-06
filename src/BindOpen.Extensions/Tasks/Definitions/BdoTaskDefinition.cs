@@ -8,7 +8,7 @@ namespace BindOpen.Extensions.Tasks
     /// <summary>
     /// This class represents a task definition.
     /// </summary>
-    /// <seealso cref="BdoConfig"/>
+    /// <seealso cref="BdoMeta_Config"/>
     public class BdoTaskDefinition : BdoExtensionDefinition, IBdoTaskDefinition
     {
         // ------------------------------------------

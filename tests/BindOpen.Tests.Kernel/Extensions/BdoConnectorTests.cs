@@ -26,7 +26,7 @@ namespace BindOpen.Tests.Extensions
         public static IBdoConnector CreateConnector(dynamic data)
         {
             var config =
-                BdoConfig.New()
+                BdoMeta.NewConfig()
                 .WithDefinition("bindopen.tests.kernel$testConnector")
                 .With(
                     BdoMeta.NewScalar("host", data.host as string),

@@ -3,7 +3,7 @@
     /// <summary>
     /// This static class provides methods to handle configs.
     /// </summary>
-    public partial class BdoConfig
+    public static partial class BdoMeta
     {
         // New
 
@@ -11,10 +11,10 @@
         /// Instantiates a new instance of the BdoBaseConfiguration class.
         /// </summary>
         /// <param key="items">The items to consider.</param>
-        public static BdoConfiguration New(
+        public static BdoConfiguration NewConfig(
             params IBdoMetaData[] items)
         {
-            var config = New<BdoConfiguration>(items);
+            var config = NewConfig<BdoConfiguration>(items);
             return config;
         }
 
@@ -23,11 +23,11 @@
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static BdoConfiguration New(
+        public static BdoConfiguration NewConfig(
             string name,
             params IBdoMetaData[] items)
         {
-            var config = New<BdoConfiguration>(name, items);
+            var config = NewConfig<BdoConfiguration>(name, items);
             return config;
         }
 
@@ -36,12 +36,12 @@
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static BdoConfiguration New(
+        public static BdoConfiguration NewConfig(
             string name,
             string[] usingIds,
             params IBdoMetaData[] items)
         {
-            var config = New<BdoConfiguration>(name, usingIds, items);
+            var config = NewConfig<BdoConfiguration>(name, usingIds, items);
             return config;
         }
 
@@ -52,27 +52,27 @@
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static T New<T>(
+        public static T NewConfig<T>(
             string name,
             params IBdoMetaData[] items)
             where T : BdoConfiguration, new()
-            => New<T>(name, null as string[], items);
+            => NewConfig<T>(name, null as string[], items);
 
         /// <summary>
         /// Instantiates a new instance of the BdoBaseConfiguration class.
         /// </summary>
         /// <param key="items">The items to consider.</param>
-        public static T New<T>(
+        public static T NewConfig<T>(
             params IBdoMetaData[] items)
             where T : BdoConfiguration, new()
-            => New<T>(null as string, null as string[], items);
+            => NewConfig<T>(null as string, null as string[], items);
 
         /// <summary>
         /// Instantiates a new instance of the BdoBaseConfiguration class.
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static T New<T>(
+        public static T NewConfig<T>(
             string name,
             string[] usingIds,
             params IBdoMetaData[] items)

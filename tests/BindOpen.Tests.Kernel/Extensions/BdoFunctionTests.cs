@@ -23,7 +23,7 @@ namespace BindOpen.Tests.Extensions
         public void NewWordFromConfigTest()
         {
             var config =
-                BdoConfig.New()
+                BdoMeta.NewConfig()
                 .WithDefinition("bindopen.tests.kernel$testEqual")
                 .With(
                     BdoMeta.NewScalar("stringValue", _testData.stringValue as string),
