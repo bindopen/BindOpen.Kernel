@@ -12,7 +12,7 @@ namespace BindOpen.Extensions.Functions
     /// </summary>
     [XmlType("FunctionDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "scriptWord.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class BdoFunctionDefinitionDto : ExtensionDefinitionDto
+    public class FunctionDefinitionDto : ExtensionDefinitionDto
     {
         // ------------------------------------------
         // PROPERTIES
@@ -95,7 +95,7 @@ namespace BindOpen.Extensions.Functions
         [JsonPropertyName("children")]
         [XmlArray("children")]
         [XmlArrayItem("add.definition")]
-        public List<BdoFunctionDefinitionDto> Children { get; set; }
+        public List<FunctionDefinitionDto> Children { get; set; }
 
         /// <summary>
         /// The elements of this instance.
@@ -131,7 +131,7 @@ namespace BindOpen.Extensions.Functions
         /// <summary>
         /// Instantiates a new instance of the BdoFunctionDefinitionDto class.
         /// </summary>
-        public BdoFunctionDefinitionDto()
+        public FunctionDefinitionDto()
         {
         }
 

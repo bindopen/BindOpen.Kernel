@@ -53,6 +53,19 @@ namespace BindOpen.Data.Meta
         public DictionaryDto Title { get; set; }
 
         /// <summary>
+        /// The children of this instance.
+        /// </summary>
+        [JsonPropertyName("children")]
+        [XmlElement("children")]
+        public List<ConfigurationDto> Children { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonIgnore()]
+        [XmlIgnore()]
+        public bool ChildrenSpecficied => Children?.Count > 0;
+        /// <summary>
         /// The using item IDs of this instance.
         /// </summary>
         [JsonPropertyName("usedItemIds")]

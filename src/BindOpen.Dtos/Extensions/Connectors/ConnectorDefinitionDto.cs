@@ -11,7 +11,7 @@ namespace BindOpen.Extensions.Connectors
     /// </summary>
     [XmlType("ConnectorDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "connector.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class BdoConnectorDefinitionDto : ExtensionDefinitionDto
+    public class ConnectorDefinitionDto : ExtensionDefinitionDto
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -59,7 +59,7 @@ namespace BindOpen.Extensions.Connectors
         /// <summary>
         /// Instantiates a new instance of the ConnectorDefinition class.
         /// </summary>
-        public BdoConnectorDefinitionDto()
+        public ConnectorDefinitionDto()
         {
         }
 

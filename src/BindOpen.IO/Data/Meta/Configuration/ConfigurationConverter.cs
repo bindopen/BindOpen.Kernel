@@ -14,12 +14,20 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static ConfigurationDto ToDto(this IBdoConfiguration poco)
+        public static ConfigurationDto ToDto(this IBdoConfiguration poco) => poco.ToDto<ConfigurationDto>();
+
+        /// <summary>
+        /// Converts to DTO.
+        /// </summary>
+        /// <param key="poco">The poco to consider.</param>
+        /// <returns>The DTO object.</returns>
+        public static T ToDto<T>(this IBdoConfiguration poco)
+            where T : ConfigurationDto
         {
             if (poco == null) return null;
 
             var config = new MapperConfiguration(
-                cfg => cfg.CreateMap<BdoConfiguration, ConfigurationDto>()
+                cfg => cfg.CreateMap<IBdoConfiguration, T>()
                     .ForMember(q => q.CreationDate, opt => opt.MapFrom(q => StringHelper.ToString(q.CreationDate)))
                     .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.Reference.ToDto()))
                     .ForMember(q => q.Description, opt => opt.MapFrom(q => q.Description.ToDto()))
@@ -31,7 +39,7 @@ namespace BindOpen.Data.Meta
             );
 
             var mapper = new Mapper(config);
-            var dto = mapper.Map<ConfigurationDto>(poco);
+            var dto = mapper.Map<T>(poco);
 
             dto.Specs = poco.Specs?.Select(q => q.ToDto()).ToList();
 
@@ -39,17 +47,24 @@ namespace BindOpen.Data.Meta
         }
 
         /// <summary>
+        /// Converts to DTO.
+        /// </summary>
+        /// <param key="poco">The poco to consider.</param>
+        /// <returns>The DTO object.</returns>
+        public static IBdoConfiguration ToPoco(this ConfigurationDto dto) => dto.ToPoco<IBdoConfiguration>();
+
+        /// <summary>
         /// Converts to POCO.
         /// </summary>
         /// <param key="dto">The dto to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static IBdoConfiguration ToPoco(
-            this ConfigurationDto dto)
+        public static T ToPoco<T>(this ConfigurationDto dto)
+            where T : IBdoConfiguration
         {
-            if (dto == null) return null;
+            if (dto == null) return default;
 
             var config = new MapperConfiguration(
-                cfg => cfg.CreateMap<ConfigurationDto, BdoConfiguration>()
+                cfg => cfg.CreateMap<ConfigurationDto, T>()
                     .ForMember(q => q.CreationDate, opt => opt.MapFrom(q => q.CreationDate.ToDateTime(null)))
                     .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.DataReference == null ? null : q.DataReference.ToPoco()))
                     .ForMember(q => q.Description, opt => opt.Ignore())
@@ -62,7 +77,7 @@ namespace BindOpen.Data.Meta
             );
 
             var mapper = new Mapper(config);
-            var poco = mapper.Map<BdoConfiguration>(dto);
+            var poco = mapper.Map<T>(dto);
             poco
                 .WithTitle(dto.Title.ToPoco())
                 .WithDescription(dto.Description.ToPoco())
