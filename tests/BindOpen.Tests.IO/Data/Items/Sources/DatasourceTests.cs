@@ -36,7 +36,7 @@ namespace BindOpen.Tests.IO.Data
         {
             _datasource = BdoData.NewDatasource("name", DatasourceKind.Database)
                 .With(
-                    BdoConfig.New("bindopen.tests.kernel$test")
+                    BdoMeta.NewConfig("bindopen.tests.kernel$test")
                         .WithConnectionString("connectionString")
                         .With(
                             BdoMeta.New("name1", "value1")));

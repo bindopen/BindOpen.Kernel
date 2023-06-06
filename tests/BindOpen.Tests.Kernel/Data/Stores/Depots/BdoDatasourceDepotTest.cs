@@ -52,7 +52,7 @@ namespace BindOpen.Tests.Data
                 BdoData.NewDatasource(
                     "smtp_default",
                     DatasourceKind.EmailServer,
-                    BdoConfig.New(
+                    BdoMeta.NewConfig(
                         "messages$smtp",
                         BdoMeta.NewScalar("host", _testData.host),
                         BdoMeta.NewScalar("port", DataValueTypes.Integer, _testData.port),
