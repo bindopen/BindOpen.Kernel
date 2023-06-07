@@ -44,7 +44,7 @@ The BindOpen Blog is where we announce new features, write engineering blog post
 
 [BindOpen.Logging](https://github.com/bindopen/BindOpen.Logging) allows you to track your processes from basic methods to advanced workflows.
 
-[BindOpen.Databases](https://github.com/bindopen/BindOpen.Databases) allows you to fluently build your SQL queries whatever the kind of databases you deal with.
+[BindOpen.Scoping.Databases](https://github.com/bindopen/BindOpen.Scoping.Databases) allows you to fluently build your SQL queries whatever the kind of databases you deal with.
 
 [BindOpen.Commands](https://github.com/bindopen/BindOpen.Commands) allows you to manage arguments of command lines.
 
