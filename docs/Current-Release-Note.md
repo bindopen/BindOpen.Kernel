@@ -5,19 +5,19 @@ BindOpen __Publication.Version__ Update - __Publication.Date__
 
 - [ ] None
 
-## BindOpen.Data
+## BindOpen.Scoping.Data
 
 - [ ] None
 
-## BindOpen.Extensions
+## BindOpen.Scoping.Extensions
 
 - [ ] None
 
-## BindOpen.Scopes
+## BindOpen.Scoping.Scopes
 
 - [ ] None
 
-## BindOpen.Script
+## BindOpen.Scoping.Script
 
 - [ ] None
 
@@ -26,19 +26,19 @@ BindOpen __Publication.Version__ Update - __Publication.Date__
 
 - [ ] None
 
-## BindOpen.Data
+## BindOpen.Scoping.Data
 
 - [ ] None
 
-## BindOpen.Extensions
+## BindOpen.Scoping.Extensions
 
 - [ ] None
 
-## BindOpen.Scopes
+## BindOpen.Scoping.Scopes
 
 - [ ] None
 
-## BindOpen.Script
+## BindOpen.Scoping.Script
 
 - [ ] None
 
@@ -55,26 +55,26 @@ BindOpen __Publication.Version__ Update - __Publication.Date__
 
 | Packages                 |                                Nuget command                            |
 |--------------------------|:-----------------------------------------------------------------------:|
-| BindOpen.Data            | Install-Package BindOpen.Data -Version __Publication.Version__              |
-| BindOpen.Extensions         | Install-Package BindOpen.Extensions -Version __Publication.Version__           |
-| BindOpen.Script | Install-Package BindOpen.Script -Version __Publication.Version__   |
-| BindOpen.Scopes | Install-Package BindOpen.Scopes -Version __Publication.Version__   |
+| BindOpen.Scoping.Data            | Install-Package BindOpen.Scoping.Data -Version __Publication.Version__              |
+| BindOpen.Scoping.Extensions         | Install-Package BindOpen.Scoping.Extensions -Version __Publication.Version__           |
+| BindOpen.Scoping.Script | Install-Package BindOpen.Scoping.Script -Version __Publication.Version__   |
+| BindOpen.Scoping.Scopes | Install-Package BindOpen.Scoping.Scopes -Version __Publication.Version__   |
 
 ## Directly
 
 | Packages                 |                                      Command                            |
 |--------------------------|:-----------------------------------------------------------------------:|
-| BindOpen.Data            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.Data-__Publication.Version__.zip) |
-| BindOpen.Extensions         | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.extensions/BindOpen.Extensions-__Publication.Version__.zip) |
-| BindOpen.Script | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.script/BindOpen.Script-__Publication.Version__.zip) |
-| BindOpen.Scopes | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.scopes/BindOpen.Scopes-__Publication.Version__.zip) |
+| BindOpen.Scoping.Data            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.Scoping.Data-__Publication.Version__.zip) |
+| BindOpen.Scoping.Extensions         | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.extensions/BindOpen.Scoping.Extensions-__Publication.Version__.zip) |
+| BindOpen.Scoping.Script | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.script/BindOpen.Scoping.Script-__Publication.Version__.zip) |
+| BindOpen.Scoping.Scopes | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.scopes/BindOpen.Scoping.Scopes-__Publication.Version__.zip) |
 
 
 # Packages updated in this release
 
 | Packages                 |         Version       |
 |--------------------------|:---------------------:|
-| BindOpen.Data            | __Publication.Version__   |
-| BindOpen.Extensions         | __Publication.Version__   |
-| BindOpen.Script | __Publication.Version__   |
-| BindOpen.Scopes | __Publication.Version__   |
+| BindOpen.Scoping.Data            | __Publication.Version__   |
+| BindOpen.Scoping.Extensions         | __Publication.Version__   |
+| BindOpen.Scoping.Script | __Publication.Version__   |
+| BindOpen.Scoping.Scopes | __Publication.Version__   |
