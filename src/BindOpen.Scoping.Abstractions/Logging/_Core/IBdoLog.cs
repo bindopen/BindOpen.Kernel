@@ -52,7 +52,7 @@ namespace BindOpen.Logging
         /// <param key="date"></param>
         /// <returns></returns>
         IBdoLog AddChild(
-            IBdoLog childLog,
+            IBdoLog childLog = null,
             EventKinds kind = EventKinds.Any,
             string title = null,
             string description = null,
