@@ -1,7 +1,7 @@
 ﻿using BindOpen.System.Scoping.Script;
 using BindOpen.System.Scoping.Script;
 using BindOpen.System.Data.Helpers;
-using BindOpen.System.Diagnostics.Logging;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
 using BindOpen.System.Scoping.Functions;
 using System.Collections.Generic;

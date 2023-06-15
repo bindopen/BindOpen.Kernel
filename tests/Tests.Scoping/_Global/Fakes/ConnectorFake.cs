@@ -1,5 +1,5 @@
 ﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Diagnostics.Logging;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping.Connectors;
 
 namespace BindOpen.System.Tests.Scoping

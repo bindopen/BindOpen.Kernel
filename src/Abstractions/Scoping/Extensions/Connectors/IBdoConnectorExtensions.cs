@@ -1,4 +1,4 @@
-﻿using BindOpen.System.Diagnostics.Logging;
+﻿using BindOpen.System.Logging;
 using System;
 using System.Runtime.InteropServices;
 

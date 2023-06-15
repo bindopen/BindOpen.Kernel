@@ -1,6 +1,6 @@
 ﻿using BindOpen.System.Data;
-using BindOpen.System.Diagnostics.Logging;
 using BindOpen.System.Hosting.Hosts;
+using BindOpen.System.Logging;
 using System;
 
 namespace BindOpen.System.Hosting

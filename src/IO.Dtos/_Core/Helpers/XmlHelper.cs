@@ -1,4 +1,4 @@
-﻿using BindOpen.System.Diagnostics.Logging;
+﻿using BindOpen.System.Logging;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;

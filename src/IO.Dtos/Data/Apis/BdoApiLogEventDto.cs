@@ -1,4 +1,4 @@
-﻿using BindOpen.System.Diagnostics.Logging;
+﻿using BindOpen.System.Logging;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml;

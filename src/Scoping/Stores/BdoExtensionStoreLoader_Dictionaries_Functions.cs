@@ -8,8 +8,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using BindOpen.System.Diagnostics.Logging;
-using BindOpen.System.Diagnostics.Logging;
+using BindOpen.System.Logging;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping.Script;
 
 namespace BindOpen.System.Scoping.Stores

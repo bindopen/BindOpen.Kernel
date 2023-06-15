@@ -4,7 +4,7 @@ using BindOpen.System.Data;
 using BindOpen.System.Data.Helpers;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Meta.Reflection;
-using BindOpen.System.Diagnostics.Logging;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping.Functions;
 using System;
 

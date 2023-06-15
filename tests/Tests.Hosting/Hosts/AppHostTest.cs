@@ -1,9 +1,9 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Stores;
-using BindOpen.System.Diagnostics.Processing;
 using BindOpen.System.Hosting;
 using BindOpen.System.Hosting.Hosts;
+using BindOpen.System.Processing;
 using BindOpen.System.Scoping.Connectors;
 using NUnit.Framework;
 using System.Linq;
