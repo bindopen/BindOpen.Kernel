@@ -1,4 +1,4 @@
-﻿namespace BindOpen.System.Diagnostics.Logging
+﻿namespace BindOpen.System.Logging
 {
     /// <summary>
     /// 

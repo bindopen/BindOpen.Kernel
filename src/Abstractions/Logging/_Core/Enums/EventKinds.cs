@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.System.Diagnostics.Logging
+namespace BindOpen.System.Logging
 {
     /// <summary>
     /// This enumeration lists the possible event kinds.

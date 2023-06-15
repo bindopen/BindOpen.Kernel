@@ -1,4 +1,4 @@
-﻿using BindOpen.System.Diagnostics.Logging;
+﻿using BindOpen.System.Logging;
 using BindOpen.System.Hosting;
 using BindOpen.System.Hosting.Hosts;
 using System;

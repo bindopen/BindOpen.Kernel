@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.System.Diagnostics.Processing
+namespace BindOpen.System.Processing
 {
     /// <summary>
     /// 

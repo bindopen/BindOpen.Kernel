@@ -1,6 +1,6 @@
 ﻿using BindOpen.System.Data;
-using BindOpen.System.Diagnostics.Logging;
-using BindOpen.System.Diagnostics.Processing;
+using BindOpen.System.Logging;
+using BindOpen.System.Processing;
 using BindOpen.System.Scoping;
 using System;
 using System.IO;

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using BindOpen.System.Diagnostics.Processing;
+using BindOpen.System.Processing;
 
-namespace BindOpen.System.Diagnostics.Processing
+namespace BindOpen.System.Processing
 {
     /// <summary>
     /// This class represents a event kind extension.
