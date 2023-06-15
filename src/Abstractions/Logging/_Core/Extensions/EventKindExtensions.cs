@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.System.Diagnostics.Logging
+namespace BindOpen.System.Logging
 {
     /// <summary>
     /// This class represents a event kind extension.

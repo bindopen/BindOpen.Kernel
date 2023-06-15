@@ -1,4 +1,4 @@
-﻿using BindOpen.System.Diagnostics.Logging;
+﻿using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
 
 namespace BindOpen.System.Data.Meta

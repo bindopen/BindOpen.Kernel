@@ -7,8 +7,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using BindOpen.System.Diagnostics.Logging;
-using BindOpen.System.Diagnostics.Logging;
+using BindOpen.System.Logging;
+using BindOpen.System.Logging;
 
 namespace BindOpen.System.Scoping.Stores
 {

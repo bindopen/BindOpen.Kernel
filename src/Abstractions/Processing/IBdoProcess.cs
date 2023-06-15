@@ -1,11 +1,11 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
-using BindOpen.System.Diagnostics.Logging;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BindOpen.System.Diagnostics.Processing
+namespace BindOpen.System.Processing
 {
     /// <summary>
     /// 

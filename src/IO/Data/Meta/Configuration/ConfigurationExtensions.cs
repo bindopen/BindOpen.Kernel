@@ -1,6 +1,6 @@
 ﻿using BindOpen.System.Scoping;
 using System.Xml.Schema;
-using BindOpen.System.Diagnostics.Logging;
+using BindOpen.System.Logging;
 
 namespace BindOpen.System.Data.Meta
 {

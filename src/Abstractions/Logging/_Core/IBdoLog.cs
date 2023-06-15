@@ -1,9 +1,9 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
-using BindOpen.System.Diagnostics.Processing;
+using BindOpen.System.Processing;
 using System;
 
-namespace BindOpen.System.Diagnostics.Logging
+namespace BindOpen.System.Logging
 {
     /// <summary>
     /// 

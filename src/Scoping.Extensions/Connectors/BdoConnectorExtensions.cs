@@ -2,7 +2,7 @@
 using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Meta.Reflection;
-using BindOpen.System.Diagnostics.Logging;
+using BindOpen.System.Logging;
 
 namespace BindOpen.System.Scoping.Connectors
 {

@@ -1,4 +1,4 @@
-﻿using BindOpen.System.Diagnostics.Processing;
+﻿using BindOpen.System.Processing;
 using BindOpen.System.Scoping;
 
 namespace BindOpen.System.Scoping.Tasks
