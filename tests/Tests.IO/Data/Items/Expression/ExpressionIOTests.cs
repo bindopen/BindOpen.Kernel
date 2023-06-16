@@ -1,17 +1,16 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Scoping.Script;
+﻿using BindOpen.System.Tests;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.System.Tests.Scoping.IO.Data
+namespace BindOpen.System.Data
 {
     [TestFixture, Order(210)]
     public class ExpressionIOTests
     {
-        private readonly string _filePath_xml = Tests.WorkingFolder + "DataExpression.xml";
-        private readonly string _filePath_json = Tests.WorkingFolder + "DataExpression.json";
+        private readonly string _filePath_xml = SystemData.WorkingFolder + "DataExpression.xml";
+        private readonly string _filePath_json = SystemData.WorkingFolder + "DataExpression.json";
         dynamic _valueSet;
         private IBdoExpression _exp = null;
 

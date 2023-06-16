@@ -1,17 +1,16 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
-using BindOpen.System.Data.Stores;
+﻿using BindOpen.System.Data.Meta;
+using BindOpen.System.Tests;
 using Bogus;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.System.Tests.Scoping.IO.Data
+namespace BindOpen.System.Data.Stores
 {
     [TestFixture, Order(101)]
     public class DatasourceDepotTests
     {
-        private readonly string _filePath_xml = Tests.WorkingFolder + "DatasourceDepot.xml";
-        private readonly string _filePath_json = Tests.WorkingFolder + "DatasourceDepot.json";
+        private readonly string _filePath_xml = SystemData.WorkingFolder + "DatasourceDepot.xml";
+        private readonly string _filePath_json = SystemData.WorkingFolder + "DatasourceDepot.json";
 
         private IBdoSourceDepot _datasourceDepot = null;
 

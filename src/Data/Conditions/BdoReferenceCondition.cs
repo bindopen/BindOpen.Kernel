@@ -68,7 +68,6 @@
         /// </summary>
         /// <param key="exp"></param>
         /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
         public IBdoReferenceCondition WithReference(IBdoReference reference)
         {
             Reference = reference;

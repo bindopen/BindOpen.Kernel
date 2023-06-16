@@ -1,18 +1,13 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Assemblies;
-using BindOpen.System.Data.Context;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Stores;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping.Entities;
-using BindOpen.System.Scoping.Stores;
 using BindOpen.System.Scoping.Script;
+using BindOpen.System.Scoping.Stores;
 using System;
 using System.Linq;
-using BindOpen.System.Logging;
-using BindOpen.System.Logging;
-using BindOpen.System.Scoping.Script;
-using BindOpen.System.Scoping.Script;
-using BindOpen.System.Scoping.Script;
 
 namespace BindOpen.System.Scoping
 {
@@ -35,9 +30,7 @@ namespace BindOpen.System.Scoping
         {
             AppDomain = appDomain ?? AppDomain.CurrentDomain;
 
-            ExtensionStore = new BdoExtensionStore();
-
-            Context = new BdoDataContext();
+            ExtensionStore = BdoData.New<BdoExtensionStore>();
 
             Interpreter = new BdoScriptInterpreter(this);
         }
@@ -59,11 +52,6 @@ namespace BindOpen.System.Scoping
         /// The BindOpen extension store of this instance.
         /// </summary>
         public IBdoExtensionStore ExtensionStore { get; set; }
-
-        /// <summary>
-        /// The data context of this instance.
-        /// </summary>
-        public IBdoDataContext Context { get; set; }
 
         /// <summary>
         /// The data store of this instance.
@@ -105,7 +93,6 @@ namespace BindOpen.System.Scoping
         /// </summary>
         public void Clear()
         {
-            Context?.Clear();
             DataStore?.Clear();
             ExtensionStore?.Clear();
         }
@@ -119,7 +106,6 @@ namespace BindOpen.System.Scoping
         /// <returns>The log of check log.</returns>
         public bool Check(
             bool checkExtensionStore = false,
-            bool checkDataContext = false,
             bool checkDataStore = false,
             IBdoLog log = null)
         {
@@ -127,12 +113,6 @@ namespace BindOpen.System.Scoping
             {
                 log?.AddEvent(EventKinds.Error,
                     "Application extension missing", description: "No extension item definition store specified.");
-                return false;
-            }
-            if (checkDataContext && Context == null)
-            {
-                log?.AddEvent(EventKinds.Error,
-                    "Data context missing", description: "No data context specified.");
                 return false;
             }
             if (checkDataStore && DataStore == null)

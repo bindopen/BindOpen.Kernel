@@ -1,20 +1,19 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Meta.Reflection;
-using BindOpen.System.Scoping.Tasks;
-using BindOpen.System.Tests.Scoping.Tasks;
+using BindOpen.System.Tests;
 using Bogus;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.System.Tests.Scoping.IO.Extensions
+namespace BindOpen.System.Scoping.Tasks
 {
     [TestFixture, Order(300)]
     public class IOTaskTests
     {
         private TaskFake _task = null;
 
-        private readonly string _filePath = Tests.WorkingFolder + "Task.xml";
+        private readonly string _filePath = SystemData.WorkingFolder + "Task.xml";
 
         private dynamic _testData;
 
@@ -64,7 +63,7 @@ namespace BindOpen.System.Tests.Scoping.IO.Extensions
             }
 
             var config = XmlHelper.LoadXml<ConfigurationDto>(_filePath).ToPoco();
-            var task = ScopingTests.Scope.CreateTask<TaskFake>(config);
+            var task = SystemData.Scope.CreateTask<TaskFake>(config);
 
             Assert.That(task != null, "Task loading failed");
 
@@ -92,7 +91,7 @@ namespace BindOpen.System.Tests.Scoping.IO.Extensions
             }
 
             var config = JsonHelper.LoadJson<ConfigurationDto>(_filePath).ToPoco();
-            var task = ScopingTests.Scope.CreateTask<TaskFake>(config);
+            var task = SystemData.Scope.CreateTask<TaskFake>(config);
 
             Assert.That(task != null, "Task loading failed");
 
