@@ -1,17 +1,16 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
-using BindOpen.System.Data.Meta.Reflection;
+﻿using BindOpen.System.Data.Meta.Reflection;
+using BindOpen.System.Tests;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.System.Tests.Scoping.IO.Data
+namespace BindOpen.System.Data.Meta
 {
     [TestFixture, Order(201)]
     public class MetaObjectSetTests
     {
-        private readonly string _filePath_xml = Tests.WorkingFolder + "MetaObjectSet.xml";
-        private readonly string _filePath_json = Tests.WorkingFolder + "MetaObjectSet.json";
+        private readonly string _filePath_xml = SystemData.WorkingFolder + "MetaObjectSet.xml";
+        private readonly string _filePath_json = SystemData.WorkingFolder + "MetaObjectSet.json";
 
         private BdoMetaSet _metaSet;
 
@@ -45,15 +44,15 @@ namespace BindOpen.System.Tests.Scoping.IO.Data
             //        var metaEntity1 = BdoMeta.NewEntity(
             //"entity1",
             //        BdoConfig.New(
-            //    "bindopen.system.tests.scoping$testEntity",
+            //    "bindopen.system.tests$testEntity",
             //    BdoMeta.NewScalar("path", _testData.path1)));
 
-            //        var metaEntity2 = BdoMeta.NewEntity("entity2", "bindopen.system.tests.scoping$testEntity")
+            //        var metaEntity2 = BdoMeta.NewEntity("entity2", "bindopen.system.tests$testEntity")
             //            .With(new { path = _testData.path2 }).ToMetaSet<BdoConfiguration>());
             //        var metaEntity3 = new EntityFake(_testData.path3, _testData.folderPath3)?.ToMeta();
 
             //        var metaEntity4 = BdoExt.NewEntity<EntityFake>(
-            //        BdoConfig.New("bindopen.system.tests.scoping$testEntity")
+            //        BdoConfig.New("bindopen.system.tests$testEntity")
             //                .With(new { path = _testData.path4 }).ToMetaArray()))?.ToMeta();
 
             var meta1 = BdoMeta.NewObject("object1", _obj1);

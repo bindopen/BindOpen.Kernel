@@ -1,13 +1,10 @@
 ﻿using BindOpen.System.Data.Assemblies;
-using BindOpen.System.Data.Context;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Stores;
-using BindOpen.System.Scoping.Stores;
-using System;
 using BindOpen.System.Logging;
 using BindOpen.System.Scoping.Script;
-using BindOpen.System.Scoping.Script;
-using BindOpen.System.Scoping.Script;
+using BindOpen.System.Scoping.Stores;
+using System;
 
 namespace BindOpen.System.Scoping
 {
@@ -30,11 +27,6 @@ namespace BindOpen.System.Scoping
         /// The data store of this instance.
         /// </summary>
         IBdoDataStore DataStore { get; }
-
-        /// <summary>
-        /// The data context.
-        /// </summary>
-        IBdoDataContext Context { get; }
 
         /// <summary>
         /// The data context.
@@ -70,7 +62,6 @@ namespace BindOpen.System.Scoping
         /// <returns></returns>
         bool Check(
             bool checkExtensionStore = false,
-            bool checkDataContext = false,
             bool checkDataStore = false,
             IBdoLog log = null);
     }

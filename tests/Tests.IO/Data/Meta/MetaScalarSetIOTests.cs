@@ -1,7 +1,5 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
-using BindOpen.System.Scoping.Script;
-using BindOpen.System.Scoping.Script;
+﻿using BindOpen.System.Scoping.Script;
+using BindOpen.System.Tests;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
@@ -9,13 +7,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace BindOpen.System.Tests.Scoping.IO.Data
+namespace BindOpen.System.Data.Meta
 {
     [TestFixture, Order(202)]
     public class MetaScalarListIOTests
     {
-        private readonly string _filePath_xml = Tests.WorkingFolder + "MetaScalarList.xml";
-        private readonly string _filePath_json = Tests.WorkingFolder + "MetaScalarList.json";
+        private readonly string _filePath_xml = SystemData.WorkingFolder + "MetaScalarList.xml";
+        private readonly string _filePath_json = SystemData.WorkingFolder + "MetaScalarList.json";
 
         private dynamic _testData;
 

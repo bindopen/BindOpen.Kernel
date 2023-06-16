@@ -1,18 +1,18 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.System.Data.Meta;
 using BindOpen.System.Scoping.Connectors;
+using BindOpen.System.Tests;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.System.Tests.Scoping.IO.Data
+namespace BindOpen.System.Data
 {
     [TestFixture, Order(210)]
     public class DatasourceTests
     {
         private IBdoDatasource _datasource;
-        private readonly string _filePath_xml = Tests.WorkingFolder + "Datasource.xml";
-        private readonly string _filePath_json = Tests.WorkingFolder + "Datasource.json";
+        private readonly string _filePath_xml = SystemData.WorkingFolder + "Datasource.xml";
+        private readonly string _filePath_json = SystemData.WorkingFolder + "Datasource.json";
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -36,7 +36,7 @@ namespace BindOpen.System.Tests.Scoping.IO.Data
         {
             _datasource = BdoData.NewDatasource("name", DatasourceKind.Database)
                 .With(
-                    BdoMeta.NewConfig("bindopen.system.tests.scoping$test")
+                    BdoMeta.NewConfig("bindopen.system.tests$test")
                         .WithConnectionString("connectionString")
                         .With(
                             BdoMeta.New("name1", "value1")));

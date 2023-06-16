@@ -1,19 +1,18 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Meta.Reflection;
-using BindOpen.System.Scoping.Entities;
-using BindOpen.System.Tests.Scoping.Entities;
+using BindOpen.System.Tests;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.System.Tests.Scoping.IO.Extensions
+namespace BindOpen.System.Scoping.Entities
 {
     [TestFixture, Order(300)]
     public class IOEntityTests
     {
         private EntityFake _entity = null;
 
-        private readonly string _filePath = Tests.WorkingFolder + "Entity.xml";
+        private readonly string _filePath = SystemData.WorkingFolder + "Entity.xml";
 
         private dynamic _testData;
 
@@ -59,7 +58,7 @@ namespace BindOpen.System.Tests.Scoping.IO.Extensions
             }
 
             var config = XmlHelper.LoadXml<ConfigurationDto>(_filePath).ToPoco();
-            var entity = ScopingTests.Scope.CreateEntity<EntityFake>(config);
+            var entity = SystemData.Scope.CreateEntity<EntityFake>(config);
 
             Assert.That(entity != null, "Entity loading failed");
 
@@ -90,7 +89,7 @@ namespace BindOpen.System.Tests.Scoping.IO.Extensions
             }
 
             var config = JsonHelper.LoadJson<ConfigurationDto>(_filePath).ToPoco();
-            var entity = ScopingTests.Scope.CreateEntity<EntityFake>(config);
+            var entity = SystemData.Scope.CreateEntity<EntityFake>(config);
 
             Assert.That(entity != null, "Entity loading failed");
 

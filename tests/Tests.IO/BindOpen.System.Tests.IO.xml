@@ -4,12 +4,12 @@
         <name>BindOpen.System.Tests.IO</name>
     </assembly>
     <members>
-        <member name="T:BindOpen.System.Tests.Scoping.IO.Extensions.GlobalSetUp">
+        <member name="T:BindOpen.System.Scoping.GlobalSetUp">
             <summary>
             This class set the global setup.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Tests.Scoping.IO.Extensions.GlobalSetUp.OneTimeSetUp">
+        <member name="M:BindOpen.System.Scoping.GlobalSetUp.OneTimeSetUp">
             <summary>
             
             </summary>
