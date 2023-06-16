@@ -1,4 +1,5 @@
 ﻿using BindOpen.System.Data;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping.Connectors;
 using BindOpen.System.Scoping.Entities;
 using BindOpen.System.Scoping.Functions;
@@ -7,8 +8,6 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Xml.Serialization;
-using BindOpen.System.Logging;
-using BindOpen.System.Logging;
 
 namespace BindOpen.System.Scoping.Stores
 {

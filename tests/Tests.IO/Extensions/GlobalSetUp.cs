@@ -1,7 +1,8 @@
-﻿using NUnit.Framework;
+﻿using BindOpen.System.Tests;
+using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.System.Tests.Scoping.IO.Extensions
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class set the global setup.
@@ -17,9 +18,9 @@ namespace BindOpen.System.Tests.Scoping.IO.Extensions
         {
             // we delete the working folder
 
-            if (Directory.Exists(Tests.WorkingFolder))
+            if (Directory.Exists(SystemData.WorkingFolder))
             {
-                Directory.Delete(Tests.WorkingFolder, true);
+                Directory.Delete(SystemData.WorkingFolder, true);
             }
         }
     }

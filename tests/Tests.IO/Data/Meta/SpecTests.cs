@@ -1,16 +1,15 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.System.Tests;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.System.Tests.Scoping.IO.Data
+namespace BindOpen.System.Data.Meta
 {
     [TestFixture, Order(201)]
     public class SpecTests
     {
-        private readonly string _filePath_xml = Tests.WorkingFolder + "Spec.xml";
-        private readonly string _filePath_json = Tests.WorkingFolder + "Spec.json";
+        private readonly string _filePath_xml = SystemData.WorkingFolder + "Spec.xml";
+        private readonly string _filePath_json = SystemData.WorkingFolder + "Spec.json";
 
         private BdoSpec _spec;
 

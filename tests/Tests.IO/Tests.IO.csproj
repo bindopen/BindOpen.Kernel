@@ -45,7 +45,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\IO\IO.csproj" />
-    <ProjectReference Include="..\Tests.Scoping\Tests.Scoping.csproj" />
+    <ProjectReference Include="..\Tests\Tests.csproj" />
   </ItemGroup>
 
 </Project>

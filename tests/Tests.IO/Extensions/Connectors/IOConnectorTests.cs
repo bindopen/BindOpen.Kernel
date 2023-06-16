@@ -1,12 +1,11 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Meta.Reflection;
-using BindOpen.System.Scoping.Connectors;
-using BindOpen.System.Tests.Scoping.Connectors;
+using BindOpen.System.Tests;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.System.Tests.Scoping.IO.Extensions
+namespace BindOpen.System.Scoping.Connectors
 {
     [TestFixture, Order(301)]
     public class IOConnectorTests
@@ -45,7 +44,7 @@ namespace BindOpen.System.Tests.Scoping.IO.Extensions
             }
 
             var config = XmlHelper.LoadXml<ConfigurationDto>(BdoConnectorFaker.XmlFilePath).ToPoco();
-            ConnectorFake connector = ScopingTests.Scope.CreateConnector<ConnectorFake>(config);
+            ConnectorFake connector = SystemData.Scope.CreateConnector<ConnectorFake>(config);
 
             BdoConnectorFaker.AssertFake(connector, _testData);
         }
@@ -74,7 +73,7 @@ namespace BindOpen.System.Tests.Scoping.IO.Extensions
             }
 
             var config = JsonHelper.LoadJson<ConfigurationDto>(BdoConnectorFaker.JsonFilePath).ToPoco();
-            ConnectorFake connector = ScopingTests.Scope.CreateConnector<ConnectorFake>(config);
+            ConnectorFake connector = SystemData.Scope.CreateConnector<ConnectorFake>(config);
 
             BdoConnectorFaker.AssertFake(connector, _testData);
         }

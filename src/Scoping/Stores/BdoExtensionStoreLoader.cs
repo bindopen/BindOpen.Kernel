@@ -1,14 +1,13 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Data.Helpers;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping.Application;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using BindOpen.System.Logging;
-using BindOpen.System.Logging;
 
 namespace BindOpen.System.Scoping.Stores
 {

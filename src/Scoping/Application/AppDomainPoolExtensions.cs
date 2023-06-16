@@ -1,6 +1,5 @@
-﻿using BindOpen.System.Logging;
+﻿using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Logging;
-using BindOpen.System.Data.Assemblies;
 using System;
 using System.IO;
 using System.Reflection;

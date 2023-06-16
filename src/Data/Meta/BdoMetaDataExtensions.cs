@@ -1,7 +1,6 @@
-﻿using BindOpen.System.Scoping.Script;
-using BindOpen.System.Scoping.Script;
-using BindOpen.System.Logging;
+﻿using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
+using BindOpen.System.Scoping.Script;
 using System;
 
 namespace BindOpen.System.Data.Meta

@@ -1,16 +1,16 @@
-﻿using BindOpen.System.Data;
+﻿using BindOpen.System.Tests;
 using Bogus;
 using NUnit.Framework;
 using System.IO;
 using System.Linq;
 
-namespace BindOpen.System.Tests.Scoping.IO.Data
+namespace BindOpen.System.Data
 {
     [TestFixture, Order(210)]
     public class DictionaryIOTests
     {
-        private readonly string _filePath_xml = Tests.WorkingFolder + "Dictionary.xml";
-        private readonly string _filePath_json = Tests.WorkingFolder + "Dictionary.json";
+        private readonly string _filePath_xml = SystemData.WorkingFolder + "Dictionary.xml";
+        private readonly string _filePath_json = SystemData.WorkingFolder + "Dictionary.json";
         dynamic _valueSet;
         private IBdoDictionary _dico = null;
 
