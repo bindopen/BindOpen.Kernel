@@ -1,0 +1,367 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BindOpen.System.Tests</name>
+    </assembly>
+    <members>
+        <member name="M:BindOpen.System.Scoping.Connectors.BdoConnectorTests.CreateConnector(System.Object)">
+            <summary>
+            
+            </summary>
+            <param key="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.System.Scoping.Entities.BdoEntityTests.CreateEntity(System.Object)">
+            <summary>
+            
+            </summary>
+            <param key="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskTests.CreateTaskConfig(System.Object)">
+            <summary>
+            
+            </summary>
+            <param key="data"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.System.Scoping.Script.BdoScriptInterpreterTests">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.System.Tests.ClassFake">
+            <summary>
+            This class represents a fake class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.System.Tests.ConnectionFake">
+            <summary>
+            This class represents a database connection.
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.ConnectionFake.#ctor(BindOpen.System.Tests.ConnectorFake)">
+            <summary>
+            Instantiates a new instance of the ConnectionFake class.
+            </summary>
+            <param key="connector">The connector to consider.</param>
+        </member>
+        <member name="M:BindOpen.System.Tests.ConnectionFake.Connect(BindOpen.System.Logging.IBdoLog)">
+            <summary>
+            Connects this instance.
+            </summary>
+            <returns>Returns the log of process.</returns>
+        </member>
+        <member name="M:BindOpen.System.Tests.ConnectionFake.Disconnect(BindOpen.System.Logging.IBdoLog)">
+            <summary>
+            Disconnects this instance.
+            </summary>
+            <returns>Returns the log of process.</returns>
+        </member>
+        <member name="T:BindOpen.System.Tests.ConnectorFake">
+            <summary>
+            This class represents a test connector.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.ConnectorFake.Host">
+            <summary>
+            The host of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.ConnectorFake.IsSslEnabled">
+            <summary>
+            Indicates whether this instance enables SSL.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.ConnectorFake.Port">
+            <summary>
+            The port of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.ConnectorFake.#ctor">
+            <summary>
+            Instantiates a new instance of the ConnectorFake class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.ConnectorFake.NewConnection(BindOpen.System.Logging.IBdoLog)">
+            <summary>
+            Creates a new connection.
+            </summary>
+            <param key="log">The log to consider.</param>
+        </member>
+        <member name="T:BindOpen.System.Tests.EntityFake">
+            <summary>
+            This class represents a database data field.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.EntityFake.BoolValue">
+            <summary>
+            The boolean value of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.EntityFake.StringValue">
+            <summary>
+            The string value of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.EntityFake.IntValue">
+            <summary>
+            The integer value of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.EntityFake.EnumValue">
+            <summary>
+            Enumeration value of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.EntityFake.Inputs">
+            <summary>
+            Enumeration value of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.EntityFake.SubEntity">
+            <summary>
+            The sub entity of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.EntityFake.Path">
+            <summary>
+            Path of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.EntityFake.RelativePath">
+            <summary>
+            The relative path of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.EntityFake.WithPath(System.String,System.String)">
+            <summary>
+            Sets the path of this instance.
+            </summary>
+            <param key="path">The new path to consider. Null to update the existing one.</param>
+            <param key="relativePath">The new relative path to consider. Null to keep the existing one.</param>
+            <returns>Returns True if this instance exists. False otherwise.</returns>
+        </member>
+        <member name="P:BindOpen.System.Tests.EntityFake.CreationDate">
+            <summary>
+            The creation date of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.EntityFake.Flag">
+            <summary>
+            The information flag of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.EntityFake.WithFlag(System.String)">
+            <summary>
+            
+            </summary>
+            <param key="flag"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BindOpen.System.Tests.EntityFake.IsReadonly">
+            <summary>
+            Indicates whether this instance is read only.
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.EntityFake.AsReadonly(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param key="readOnly"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BindOpen.System.Tests.EntityFake.LastAccessDate">
+            <summary>
+            The date of last access of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.EntityFake.WithLastAccessDate(System.Nullable{System.DateTime})">
+            <summary>
+            
+            </summary>
+            <param key="date"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BindOpen.System.Tests.EntityFake.ParentPath">
+            <summary>
+            The parent path of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.EntityFake.WithParentPath(System.String)">
+            <summary>
+            
+            </summary>
+            <param key="path"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BindOpen.System.Tests.EntityFake.LastWriteDate">
+            <summary>
+            The date of last write of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.EntityFake.#ctor">
+            <summary>
+            Instantiates a new instance of the EntityFake class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.EntityFake.#ctor(System.String)">
+            <summary>
+            Instantiates a new instance of the EntityFake class.
+            </summary>
+            <param key="path">The path of the instance.</param>
+        </member>
+        <member name="M:BindOpen.System.Tests.EntityFake.#ctor(System.String,System.String,BindOpen.System.Tests.EntityFake)">
+            <summary>
+            Instantiates a new instance of the TestEntity class.
+            </summary>
+            <param key="fileName">The file name of the instance.</param>
+            <param key="folderPath">The folder path of the instance.</param>
+        </member>
+        <member name="M:BindOpen.System.Tests.EntityFake.ToString">
+            <summary>
+            Converts this instance to string.
+            </summary>
+            <returns>Returns this instance to string.</returns>
+        </member>
+        <member name="T:BindOpen.System.Tests.FunctionFake">
+            <summary>
+            This class represents a database data field.
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.FunctionFake.GetTest(System.String,System.Int32)">
+            <summary>
+            The boolean value of this instance.
+            </summary>
+        </member>
+        <member name="T:BindOpen.System.Tests.ScriptWordDefinitionFake">
+            <summary>
+            This class represents a script word definition fake.
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.ScriptWordDefinitionFake.Var_Text(System.Object)">
+            <summary>
+            Evaluates the script word $Constant.
+            </summary>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.System.Tests.ScriptWordDefinitionFake.GetTest(System.Object,System.Object)">
+            <summary>
+            The boolean value of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.ScriptWordDefinitionFake.Fun_Func1(BindOpen.System.Scoping.Script.IBdoScriptDomain)">
+            <summary>
+            Evaluates the script word $TEXT.
+            </summary>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.System.Tests.ScriptWordDefinitionFake.Fun_Func2a(System.Object,System.String,BindOpen.System.Scoping.Script.IBdoScriptDomain)">
+            <summary>
+            Evaluates the script word $ISEQUAL.
+            </summary>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.System.Tests.ScriptWordDefinitionFake.Fun_Func2b(BindOpen.System.Scoping.Script.IBdoScriptDomain)">
+            <summary>
+            Evaluates the script word $ISEQUAL.
+            </summary>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.System.Tests.ScriptWordDefinitionFake.Fun_Func3(System.Object,System.Object)">
+            <summary>
+            Evaluates the script word $Func1.
+            </summary>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.System.Tests.ScriptWordDefinitionFake.Fun_Func4(BindOpen.System.Scoping.Script.IBdoScriptDomain)">
+            <summary>
+            Evaluates the script word $Func2.
+            </summary>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="M:BindOpen.System.Tests.ScriptWordDefinitionFake.Concat(BindOpen.System.Scoping.Script.IBdoScriptDomain,System.Object[])">
+            <summary>
+            Evaluates the script word $Func5.
+            </summary>
+            <returns>The interpreted string value.</returns>
+        </member>
+        <member name="T:BindOpen.System.Tests.TaskFake">
+            <summary>
+            This class represents a database data field.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.TaskFake.BoolValue">
+            <summary>
+            The boolean value of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.TaskFake.StringValue">
+            <summary>
+            The string value of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.TaskFake.IntValue">
+            <summary>
+            The integer value of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.TaskFake.EnumValue">
+            <summary>
+            Enumeration value of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.TaskFake.Outputs">
+            <summary>
+            Enumeration value of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.TaskFake.SubTask">
+            <summary>
+            The sub task of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.TaskFake.Flag">
+            <summary>
+            The information flag of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.TaskFake.WithFlag(System.String)">
+            <summary>
+            
+            </summary>
+            <param key="flag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.System.Tests.TaskFake.#ctor">
+            <summary>
+            Instantiates a new instance of the TaskFake class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.System.Tests.TreeFake">
+            <summary>
+            This class represents a fake class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.System.Tests.GlobalSetUp">
+            <summary>
+            This class set the global setup.
+            </summary>
+        </member>
+        <member name="M:BindOpen.System.Tests.GlobalSetUp.OneTimeSetUp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.SystemData.Scope">
+            <summary>
+            The global scope.
+            </summary>
+        </member>
+        <member name="P:BindOpen.System.Tests.SystemData.WorkingFolder">
+            <summary>
+            The global working folder.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,5 +1,5 @@
-﻿using BindOpen.System.Scoping.Script;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.System.Data.Meta;
+using BindOpen.System.Scoping.Script;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -263,7 +263,6 @@ namespace BindOpen.System.Data.Helpers
         /// <summary>
         /// Gets the fields of the specified enumeration.
         /// </summary>
-        /// <typeparam name="type">The enumeration type to consider.</typeparam>
         /// <returns>Returns the string array.</returns>
         public static string[] GetEnumFields(
             this Type type)
@@ -311,23 +310,21 @@ namespace BindOpen.System.Data.Helpers
                 type = type.GetGenericArguments()[0];
             }
 
-            switch (Type.GetTypeCode(type))
+            return Type.GetTypeCode(type) switch
             {
-                case TypeCode.Byte:
-                case TypeCode.SByte:
-                case TypeCode.UInt16:
-                case TypeCode.UInt32:
-                case TypeCode.UInt64:
-                case TypeCode.Int16:
-                case TypeCode.Int32:
-                case TypeCode.Int64:
-                case TypeCode.Decimal:
-                case TypeCode.Double:
-                case TypeCode.Single:
-                    return true;
-                default:
-                    return false;
-            }
+                TypeCode.Byte
+                    or TypeCode.SByte
+                    or TypeCode.UInt16
+                    or TypeCode.UInt32
+                    or TypeCode.UInt64
+                    or TypeCode.Int16
+                    or TypeCode.Int32
+                    or TypeCode.Int64
+                    or TypeCode.Decimal
+                    or TypeCode.Double
+                    or TypeCode.Single => true,
+                _ => false,
+            };
         }
     }
 }

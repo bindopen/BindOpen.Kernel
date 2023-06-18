@@ -10,7 +10,6 @@ namespace BindOpen.System.Data
     /// This class represents a dico data item.
     /// </summary>
     /// <example>Titles, Descriptions.</example>
-    /// <seealso cref="KeyValuePair<string, string>"/>
     public class BdoDictionary : Dictionary<string, string>,
         IBdoDictionary
     {
