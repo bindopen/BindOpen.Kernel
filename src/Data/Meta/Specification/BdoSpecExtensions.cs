@@ -44,7 +44,6 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="set"></param>
         /// <returns></returns>
         public static bool IsCompatibleWith(
             this ITBdoSet<IBdoSpec> specs,

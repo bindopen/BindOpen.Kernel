@@ -5,7 +5,6 @@ namespace BindOpen.System.Data
     /// <summary>
     /// 
     /// </summary>
-    /// <typeparam name="T"></typeparam>
     public interface IBdoSet :
         IBdoObject,
         IIdentified, IReferenced,

@@ -56,7 +56,6 @@ namespace BindOpen.System.Scoping
         /// 
         /// </summary>
         /// <param name="checkExtensionStore"></param>
-        /// <param name="checkDataContext"></param>
         /// <param name="checkDataStore"></param>
         /// <param name="log"></param>
         /// <returns></returns>

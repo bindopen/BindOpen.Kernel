@@ -18,7 +18,6 @@
         /// <summary>
         /// Indicates whether the specified kind has name.
         /// </summary>
-        /// <param name="kind">The kind of the option name.</param>
         /// <returns>Returns true or false.</returns>
         public static bool HasName(this LabelFormats label)
         {
@@ -31,7 +30,6 @@
         /// <summary>
         /// Indicates whether the specified kind has value.
         /// </summary>
-        /// <param name="kind">The kind of the option name.</param>
         /// <returns>Returns true or false.</returns>
         public static bool HasValue(this LabelFormats label)
         {

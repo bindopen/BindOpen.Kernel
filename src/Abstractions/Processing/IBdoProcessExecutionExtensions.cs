@@ -247,10 +247,6 @@ namespace BindOpen.System.Processing
                 .WithStatus(ProcessExecutionStatus.Paused);
         }
 
-        /// <summary>
-        /// Ends this instance specifying the status.
-        /// </summary>
-        /// <param name="status">The new status to consider.</param>
         public static void SetAsEnded<T>(
             this T execution,
             ProcessExecutionStatus status = ProcessExecutionStatus.Completed)

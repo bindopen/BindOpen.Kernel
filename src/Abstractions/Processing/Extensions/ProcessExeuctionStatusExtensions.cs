@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using BindOpen.System.Processing;
 
 namespace BindOpen.System.Processing
 {
@@ -12,7 +11,7 @@ namespace BindOpen.System.Processing
         /// <summary>
         /// Get the process execution status.
         /// </summary>
-        /// <param name="aString">The execution status string.</param>
+        /// <param name="st">The execution status string.</param>
         public static ProcessExecutionStatus ToStatus(this string st)
         {
             if (!Enum.TryParse(st, true, out ProcessExecutionStatus status))
