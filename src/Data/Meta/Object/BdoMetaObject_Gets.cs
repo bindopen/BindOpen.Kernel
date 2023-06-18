@@ -69,7 +69,6 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="Q"></typeparam>
         /// <param key="elementSet"></param>
         /// <param key="scope"></param>
         /// <param key="varSet"></param>

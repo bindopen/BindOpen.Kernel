@@ -12,7 +12,6 @@ namespace BindOpen.System.Scoping.Stores
         /// <summary>
         /// Adds the specified definition.
         /// </summary>
-        /// <typeparam name="T">The BindOpen extension item definition class to consider.</typeparam>
         /// <param key="definition">The definition to add.</param>
         IBdoExtensionStore Add(IBdoExtensionDefinition definition);
 

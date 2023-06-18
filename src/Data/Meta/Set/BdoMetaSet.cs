@@ -1,7 +1,7 @@
-﻿using BindOpen.System.Scoping.Script;
-using BindOpen.System.Data.Helpers;
+﻿using BindOpen.System.Data.Helpers;
 using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
+using BindOpen.System.Scoping.Script;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,7 +18,7 @@ namespace BindOpen.System.Data.Meta
 
         #region Converters
 
-        /// <summary><<                    
+        /// <summary>
         /// Converts from data element array.
         /// </summary>
         /// <param key="elems">The elems to consider.</param>
@@ -27,7 +27,7 @@ namespace BindOpen.System.Data.Meta
             return BdoMeta.NewSet(elems);
         }
 
-        /// <summary><<                    
+        /// <summary>
         /// Converts from data element array.
         /// </summary>
         /// <param key="elems">The elems to consider.</param>

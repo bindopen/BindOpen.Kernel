@@ -16,11 +16,6 @@ namespace BindOpen.System.Scoping
             return dataType >= typeof(IBdoScope);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="execution"></param>
-        /// <returns></returns>
         public static T WithScope<T>(
             this T scoped,
             IBdoScope scope)
