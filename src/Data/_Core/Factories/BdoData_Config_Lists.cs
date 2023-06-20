@@ -1,9 +1,11 @@
-﻿namespace BindOpen.System.Data.Meta
+﻿using BindOpen.System.Data.Meta;
+
+namespace BindOpen.System.Data
 {
     /// <summary>
     /// This static class provides methods to handle configs.
     /// </summary>
-    public static partial class BdoMeta
+    public static partial class BdoData
     {
         /// <summary>
         /// Instantiates a new instance of the BdoConfigurationSet class.

@@ -51,8 +51,8 @@ namespace BindOpen.System.Data.Meta
             var spec = meta.GetSpec();
             if (meta != null && spec == null)
             {
-                meta.Specs ??= BdoMeta.NewSpecSet();
-                spec = BdoMeta.NewSpec();
+                meta.Specs ??= BdoData.NewSpecSet();
+                spec = BdoData.NewSpec();
                 meta.Specs.Add(spec);
             }
 
@@ -114,7 +114,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (meta != null)
             {
-                meta.Specs = BdoMeta.NewSpecSet(specs);
+                meta.Specs = BdoData.NewSpecSet(specs);
             }
             return meta;
         }
@@ -162,7 +162,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (meta != null)
             {
-                varSet ??= BdoMeta.NewSet();
+                varSet ??= BdoData.NewMetaSet();
                 varSet.Add((BdoData.__This, meta));
 
                 var exp = meta.GetOrAddSpec().Label.ToExpression();

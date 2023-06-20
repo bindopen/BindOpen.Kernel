@@ -25,6 +25,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Context\**" />
+    <Compile Remove="Data\Resources\**" />
+    <EmbeddedResource Remove="Data\Context\**" />
+    <EmbeddedResource Remove="Data\Resources\**" />
+    <None Remove="Data\Context\**" />
+    <None Remove="Data\Resources\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\..\docs\img\bindopen_icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>

@@ -1,13 +1,14 @@
-﻿using BindOpen.System.Scoping.Script;
-using BindOpen.System.Data.Helpers;
+﻿using BindOpen.System.Data.Helpers;
+using BindOpen.System.Data.Meta;
+using BindOpen.System.Scoping.Script;
 using System;
 
-namespace BindOpen.System.Data.Meta
+namespace BindOpen.System.Data
 {
     /// <summary>
     /// This static class provides methods to create data elems.
     /// </summary>
-    public static partial class BdoMeta
+    public static partial class BdoData
     {
         // New
 
@@ -16,10 +17,10 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static IBdoMetaData New(
+        public static IBdoMetaData NewMeta(
             object data)
         {
-            return New(null, data);
+            return NewMeta(null, data);
         }
 
         /// <summary>
@@ -27,14 +28,14 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static IBdoMetaData New(
+        public static IBdoMetaData NewMeta(
             string name,
             object data)
         {
-            if (data == null) return NewObject(name);
+            if (data == null) return NewMetaObject(name);
 
             var type = data.GetType();
-            var meta = New(name, type, DataValueTypes.Any, data);
+            var meta = NewMeta(name, type, DataValueTypes.Any, data);
 
             return meta;
         }
@@ -44,12 +45,12 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static IBdoMetaData New(
+        public static IBdoMetaData NewMeta(
             string name,
             DataValueTypes valueType,
             object data = null)
         {
-            return New(name, null, valueType, data);
+            return NewMeta(name, null, valueType, data);
         }
 
         /// <summary>
@@ -57,12 +58,12 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static IBdoMetaData New(
+        public static IBdoMetaData NewMeta(
             string name,
             Type type,
             object data = null)
         {
-            return New(name, type, DataValueTypes.Any, data);
+            return NewMeta(name, type, DataValueTypes.Any, data);
         }
 
         /// <summary>
@@ -70,7 +71,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        private static IBdoMetaData New(
+        private static IBdoMetaData NewMeta(
             string name,
             Type type,
             DataValueTypes valueType,
@@ -89,19 +90,25 @@ namespace BindOpen.System.Data.Meta
 
             if (valueType.IsScalar() && type?.IsScalar() == true)
             {
-                var metaScalar = NewScalar(name, valueType, data);
+                var metaScalar = NewMetaScalar(name, valueType, data);
                 return metaScalar;
+            }
+            else if (valueType == DataValueTypes.Reference)
+            {
+                var reference = data as IBdoReference;
+                return NewMeta(name, null)
+                    .WithDataReference(reference);
             }
             else if (valueType == DataValueTypes.Scriptword)
             {
                 var word = data as IBdoScriptword;
-                return New(name, null)
+                return NewMeta(name, null)
                     .WithDataReference(word);
             }
             else if (valueType == DataValueTypes.MetaData)
             {
                 var meta = data as IBdoMetaData;
-                return New(name, null)
+                return NewMeta(name, null)
                     .WithDataReference(meta);
                 //Type metaType;
                 //Type itemType = null;
@@ -174,7 +181,7 @@ namespace BindOpen.System.Data.Meta
             {
                 var objList = data.ToObjectArray();
 
-                var metaSet = NewSet(name);
+                var metaSet = NewMetaSet(name);
                 if (objList != null)
                 {
                     foreach (var obj in objList)
@@ -186,7 +193,7 @@ namespace BindOpen.System.Data.Meta
             }
             else
             {
-                var metaObj = NewObject(name, data);
+                var metaObj = NewMetaObject(name, data);
                 return metaObj;
             }
         }

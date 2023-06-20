@@ -26,15 +26,15 @@ namespace BindOpen.System.Scoping.Tasks
         public static IBdoConfiguration CreateTaskConfig(dynamic data)
         {
             var config =
-                BdoMeta.NewConfig()
+                BdoData.NewConfig()
                 .WithDefinition("bindopen.system.tests$taskFake")
                 .WithProperties(
-                    BdoMeta.NewScalar("boolValue", data.boolValue as bool?),
-                    BdoMeta.NewScalar("intValue", data.intValue as int?))
+                    BdoData.NewMetaScalar("boolValue", data.boolValue as bool?),
+                    BdoData.NewMetaScalar("intValue", data.intValue as int?))
                 .WithInputs(
-                    BdoMeta.NewScalar("enumValue", data.enumValue as ActionPriorities?))
+                    BdoData.NewMetaScalar("enumValue", data.enumValue as ActionPriorities?))
                 .WithOutputs(
-                    BdoMeta.NewScalar("stringValue", data.stringValue as string));
+                    BdoData.NewMetaScalar("stringValue", data.stringValue as string));
 
             return config;
         }

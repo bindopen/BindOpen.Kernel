@@ -19,7 +19,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (spec != null)
             {
-                spec.SubSpecs = BdoData.NewSet(specs);
+                spec.SubSpecs = BdoData.NewSpecSet(specs);
             }
             return spec;
         }

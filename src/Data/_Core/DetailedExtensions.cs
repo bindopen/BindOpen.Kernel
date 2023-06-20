@@ -18,7 +18,7 @@ namespace BindOpen.System.Data
         {
             if (obj != null)
             {
-                obj.Detail = BdoMeta.NewSet(elms);
+                obj.Detail = BdoData.NewMetaSet(elms);
             }
             return obj;
         }

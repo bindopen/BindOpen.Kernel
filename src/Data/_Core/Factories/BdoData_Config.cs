@@ -1,9 +1,11 @@
-﻿namespace BindOpen.System.Data.Meta
+﻿using BindOpen.System.Data.Meta;
+
+namespace BindOpen.System.Data
 {
     /// <summary>
     /// This static class provides methods to handle configs.
     /// </summary>
-    public static partial class BdoMeta
+    public static partial class BdoData
     {
         // New
 
@@ -78,7 +80,7 @@
             params IBdoMetaData[] items)
             where T : BdoConfiguration, new()
         {
-            var config = BdoMeta.NewSet<T>(items)
+            var config = BdoData.NewMetaSet<T>(items)
                 .WithName(name)
                 .Using(usingIds);
             return config;

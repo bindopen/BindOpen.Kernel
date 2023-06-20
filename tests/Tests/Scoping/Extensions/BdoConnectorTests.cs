@@ -26,12 +26,12 @@ namespace BindOpen.System.Scoping.Connectors
         public static IBdoConnector CreateConnector(dynamic data)
         {
             var config =
-                BdoMeta.NewConfig()
+                BdoData.NewConfig()
                 .WithDefinition("bindopen.system.tests$testConnector")
                 .With(
-                    BdoMeta.NewScalar("host", data.host as string),
-                    BdoMeta.NewScalar("port", data.port as int?),
-                    BdoMeta.NewScalar("isSslEnabled", data.isSslEnabled as bool?));
+                    BdoData.NewMetaScalar("host", data.host as string),
+                    BdoData.NewMetaScalar("port", data.port as int?),
+                    BdoData.NewMetaScalar("isSslEnabled", data.isSslEnabled as bool?));
 
             return SystemData.Scope.CreateConnector<ConnectorFake>(config);
         }

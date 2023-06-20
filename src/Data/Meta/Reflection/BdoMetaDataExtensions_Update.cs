@@ -59,7 +59,7 @@ namespace BindOpen.System.Data.Meta.Reflection
                 var hasMetaAttribute = propInfo.GetCustomAttributes(typeof(T)).Any();
                 if (hasMetaAttribute || !onlyMetaAttributes)
                 {
-                    var spec = BdoMeta.NewSpec();
+                    var spec = BdoData.NewSpec();
                     spec.UpdateFrom<T>(propInfo);
 
                     var name = spec.Name;
@@ -102,18 +102,18 @@ namespace BindOpen.System.Data.Meta.Reflection
                                 }
                                 else if (typeof(IBdoMetaScalar).IsAssignableFrom(metaType))
                                 {
-                                    metaValue = BdoMeta.NewScalar(name, meta?.GetSpec().DataValueType);
+                                    metaValue = BdoData.NewMetaScalar(name, meta?.GetSpec().DataValueType);
                                 }
                                 else if (typeof(IBdoConfiguration).IsAssignableFrom(metaType))
                                 {
                                     var config = meta as IBdoConfiguration;
-                                    metaValue = BdoMeta.NewConfig(name)
+                                    metaValue = BdoData.NewConfig(name)
                                         .With(config.Items?.ToArray());
                                 }
                                 else if (typeof(IBdoMetaSet).IsAssignableFrom(metaType))
                                 {
                                     var set = meta as IBdoMetaSet;
-                                    metaValue = BdoMeta.NewSet(name)
+                                    metaValue = BdoData.NewMetaSet(name)
                                         .With(set?.Items?.ToArray());
                                 }
                                 else if (typeof(ITBdoMetaObject<>).IsAssignableFrom(metaType)
@@ -124,7 +124,7 @@ namespace BindOpen.System.Data.Meta.Reflection
                                 }
                                 else if (typeof(IBdoMetaObject).IsAssignableFrom(type))
                                 {
-                                    metaValue = BdoMeta.NewObject(name);
+                                    metaValue = BdoData.NewMetaObject(name);
                                 }
 
                                 metaValue?.Update(meta);

@@ -18,7 +18,7 @@ namespace BindOpen.System.Scoping
 
             if (scope != null && extension != null)
             {
-                config = BdoMeta.NewConfig(name);
+                config = Data.BdoData.NewConfig(name);
 
                 config
                     .WithData(extension)
@@ -29,7 +29,7 @@ namespace BindOpen.System.Scoping
                 var extensionKind = extension.GetValueType().GetExtensionKind();
                 var extensionDefinition = scope.ExtensionStore.GetDefinitionFromType(
                     extensionKind,
-                    BdoData.Class(extension.GetType()));
+                    Data.BdoData.Class(extension.GetType()));
                 config.WithDefinition(extensionDefinition?.UniqueName);
 
                 return config;

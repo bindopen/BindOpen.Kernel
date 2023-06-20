@@ -1,5 +1,5 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Scoping.Script;
+﻿using BindOpen.System.Scoping.Script;
+using BindOpen.System.Tests;
 using Bogus;
 using NUnit.Framework;
 
@@ -65,6 +65,20 @@ namespace BindOpen.System.Data
                 BdoScript.Func(_valueSet.ScriptwordName as string));
 
             Test(_reference);
+        }
+
+        [Test, Order(4)]
+        public void NewReferenceTest()
+        {
+            var set = BdoData.NewMetaSet(
+                    BdoData.NewMeta(BdoData.NewReference(BdoScript.Func("eq", 1, 1))),
+                    BdoData.NewMeta(BdoScript.Func("eq", 1, 1))
+                );
+
+            var value1 = set[0].GetData<bool?>(SystemData.Scope);
+            var value2 = set[1].GetData<bool?>(SystemData.Scope);
+
+            Assert.That(value1 == true && value2 == true, "Error ");
         }
     }
 }
