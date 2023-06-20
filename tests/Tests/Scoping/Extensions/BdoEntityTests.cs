@@ -28,13 +28,13 @@ namespace BindOpen.System.Scoping.Entities
         public static IBdoEntity CreateEntity(dynamic data)
         {
             var config =
-                BdoMeta.NewConfig()
+                BdoData.NewConfig()
                 .WithDefinition("bindopen.system.tests$testEntity")
                 .With(
-                    BdoMeta.NewScalar("boolValue", data.boolValue as bool?),
-                    BdoMeta.NewScalar("enumValue", data.enumValue as ActionPriorities?),
-                    BdoMeta.NewScalar("intValue", data.intValue as int?),
-                    BdoMeta.NewScalar("stringValue", data.stringValue as string));
+                    BdoData.NewMetaScalar("boolValue", data.boolValue as bool?),
+                    BdoData.NewMetaScalar("enumValue", data.enumValue as ActionPriorities?),
+                    BdoData.NewMetaScalar("intValue", data.intValue as int?),
+                    BdoData.NewMetaScalar("stringValue", data.stringValue as string));
 
             return SystemData.Scope.CreateEntity<EntityFake>(config);
         }
@@ -44,7 +44,7 @@ namespace BindOpen.System.Scoping.Entities
         {
             _entity = new EntityFake
             {
-                BoolValue = BdoMeta.NewScalar<bool?>(_testData.boolValue as bool?),
+                BoolValue = Data.BdoData.NewMetaScalar<bool?>(_testData.boolValue as bool?),
                 EnumValue = (ActionPriorities)_testData.enumValue,
                 IntValue = (int)_testData.intValue,
                 StringValue = _testData.stringValue as string,

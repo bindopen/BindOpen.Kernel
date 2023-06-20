@@ -41,9 +41,9 @@ namespace BindOpen.System.Scoping.Script
         [Test, Order(2)]
         public void CreateVariableSetTest()
         {
-            var varSet = BdoMeta.NewSet(
-                ("var1", "sample1"),
-                ("var2", 4.55));
+            var varSet = Data.BdoData.NewMetaSet(
+                ((string Name, object Value))("var1", "sample1"),
+                ((string Name, object Value))("var2", 4.55));
 
             Assert.That(varSet.Count == 2, "Bad script interpretation");
             Assert.That(varSet.GetData<string>("var1") == "sample1", "Bad script interpretation");
@@ -83,7 +83,7 @@ namespace BindOpen.System.Scoping.Script
         [Test, Order(5)]
         public void Create5()
         {
-            var script = BdoData.NewExp(_scriptC, BdoExpressionKind.Script);
+            var script = Data.BdoData.NewExp(_scriptC, BdoExpressionKind.Script);
             var result = SystemData.ScriptInterpreter.Evaluate<bool?>(script);
 
             Assert.That(result == true, "Bad script interpretation");

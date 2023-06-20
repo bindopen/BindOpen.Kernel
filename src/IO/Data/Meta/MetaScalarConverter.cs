@@ -63,7 +63,7 @@ namespace BindOpen.System.Data.Meta
             var poco = mapper.Map<BdoMetaScalar>(dto);
 
             poco.Reference = dto.DataReference.ToPoco();
-            poco.Specs = BdoMeta.NewSpecSet(dto.Specs.Select(q => q.ToPoco()).ToArray());
+            poco.Specs = BdoData.NewSpecSet(dto.Specs.Select(q => q.ToPoco()).ToArray());
 
             if (!string.IsNullOrEmpty(dto.Item))
             {

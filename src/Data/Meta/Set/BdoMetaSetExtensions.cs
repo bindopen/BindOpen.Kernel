@@ -20,7 +20,7 @@ namespace BindOpen.System.Data.Meta
             object obj)
             where T : IBdoMetaSet
         {
-            IBdoMetaData meta = obj is IBdoMetaData data ? data : BdoMeta.New(obj);
+            IBdoMetaData meta = obj is IBdoMetaData data ? data : BdoData.NewMeta(obj);
             list?.Add(meta);
 
             return list;
@@ -39,7 +39,7 @@ namespace BindOpen.System.Data.Meta
             {
                 foreach (var pair in pairs)
                 {
-                    list.Add(BdoMeta.New(pair.Key, pair.Value));
+                    list.Add(BdoData.NewMeta(pair.Key, pair.Value));
                 }
             }
 
@@ -60,7 +60,7 @@ namespace BindOpen.System.Data.Meta
             {
                 foreach (var (Name, Value) in pairs)
                 {
-                    list.Add(BdoMeta.New(Name, Value));
+                    list.Add(BdoData.NewMeta(Name, Value));
                 }
             }
 
@@ -81,7 +81,7 @@ namespace BindOpen.System.Data.Meta
             {
                 foreach (var (Name, ValueType, Value) in pairs)
                 {
-                    list.Add(BdoMeta.New(Name, ValueType, Value));
+                    list.Add(BdoData.NewMeta(Name, ValueType, Value));
                 }
             }
 
@@ -139,7 +139,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (list != null)
             {
-                var items = pairs.Select(q => BdoMeta.New(q.Name, q.ValueType, q.Value)).ToArray();
+                var items = pairs.Select(q => BdoData.NewMeta(q.Name, q.ValueType, q.Value)).ToArray();
                 list.With(items);
             }
 
@@ -153,7 +153,7 @@ namespace BindOpen.System.Data.Meta
         /// <returns>Returns the quoted string.</returns>
         public static IBdoMetaSet ExtractTokens(this string st, string pattern, char quote = '\'')
         {
-            var set = BdoMeta.NewSet();
+            var set = BdoData.NewMetaSet();
 
             if (!string.IsNullOrEmpty(st))
             {

@@ -46,17 +46,17 @@ namespace BindOpen.System.Data.Meta
         {
             var metas = new List<IBdoMetaData>
             {
-                BdoMeta.NewScalar("float1", DataValueTypes.Number, _testData.arrayNumber1 as double[]),
-                BdoMeta.NewScalar("text2", DataValueTypes.Text, _testData.arrayString2 as string[]),
-                BdoMeta.NewScalar("integer3", DataValueTypes.Integer, _testData.arrayInteger3 as int[]),
-                BdoMeta.NewScalar("byteArray4", DataValueTypes.ByteArray, _testData.arrayArrayByte4 as byte[][]),
-                BdoMeta.NewScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[0]),
-                BdoMeta.NewScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[1])
+                BdoData.NewMetaScalar("float1", DataValueTypes.Number, _testData.arrayNumber1 as double[]),
+                BdoData.NewMetaScalar("text2", DataValueTypes.Text, _testData.arrayString2 as string[]),
+                BdoData.NewMetaScalar("integer3", DataValueTypes.Integer, _testData.arrayInteger3 as int[]),
+                BdoData.NewMetaScalar("byteArray4", DataValueTypes.ByteArray, _testData.arrayArrayByte4 as byte[][]),
+                BdoData.NewMetaScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[0]),
+                BdoData.NewMetaScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[1])
                     .WithDataReference(BdoScript.Var("klkl"))
                     //.WithSpecs(BdoMeta.NewSpec(), BdoMeta.NewSpec("spec1"))
             };
 
-            _metaSet = BdoMeta.NewSet(metas.ToArray());
+            _metaSet = BdoData.NewMetaSet(metas.ToArray());
         }
 
         // Xml

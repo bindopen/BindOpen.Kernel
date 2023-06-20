@@ -20,7 +20,7 @@ namespace BindOpen.System.Data
         [Test, Order(1)]
         public void NewTest_WithNull()
         {
-            var el1 = BdoMeta.NewScalar("null1", null);
+            var el1 = BdoData.NewMetaScalar("null1", null);
 
             Assert.That(
                 el1 != null, "Bad scalar el creation");
@@ -34,12 +34,12 @@ namespace BindOpen.System.Data
             int[] arrayInteger = _testData.arrayInteger;
             byte[][] arrayArrayByte = _testData.arrayArrayByte;
 
-            var el1 = BdoMeta.NewScalar("number1", arrayNumber);
-            var el2 = BdoMeta.NewScalar("text2", arrayString);
-            var el3 = BdoMeta.NewScalar("integer3", arrayInteger);
-            var el4 = BdoMeta.NewScalar("byteArray4", arrayArrayByte);
+            var el1 = BdoData.NewMetaScalar("number1", arrayNumber);
+            var el2 = BdoData.NewMetaScalar("text2", arrayString);
+            var el3 = BdoData.NewMetaScalar("integer3", arrayInteger);
+            var el4 = BdoData.NewMetaScalar("byteArray4", arrayArrayByte);
 
-            var elSet = BdoMeta.NewSet(el1, el2, el3, el4);
+            var elSet = BdoData.NewMetaSet(el1, el2, el3, el4);
 
             var itemList1 = elSet.GetDataList<double>("number1");
             Assert.That(
@@ -62,17 +62,17 @@ namespace BindOpen.System.Data
         [Test, Order(3)]
         public void UpdateCheckRepairTest()
         {
-            var elAA = BdoMeta.NewScalar("name1", null);
-            var elAB = BdoMeta.NewScalar("name1", "Test1");
+            var elAA = BdoData.NewMetaScalar("name1", null);
+            var elAB = BdoData.NewMetaScalar("name1", "Test1");
             elAA.Update(elAB);
 
-            var elSetA = BdoMeta.NewSet(elAA, elAB);
+            var elSetA = BdoData.NewMetaSet(elAA, elAB);
 
-            var elBA = BdoMeta.NewScalar("name1", "Test1");
-            var elBB = BdoMeta.NewScalar("name1", null);
+            var elBA = BdoData.NewMetaScalar("name1", "Test1");
+            var elBB = BdoData.NewMetaScalar("name1", null);
             elBA.Update(elBB);
 
-            var elSetB = BdoMeta.NewSet(elBA, elBB);
+            var elSetB = BdoData.NewMetaSet(elBA, elBB);
 
             elSetB.Add(elBB);
             elSetA.Add(elAB);
@@ -82,14 +82,14 @@ namespace BindOpen.System.Data
             elSetB
                 .Add(null)
                 .Add(("name1", typeof(string)))
-                .Add(BdoMeta.New("name3", typeof(int)))
+                .Add(BdoData.NewMeta("name3", typeof(int)))
                 .Add(("name4", typeof(double)))
-                .Add(BdoMeta.New("name5", DataValueTypes.Text));
+                .Add(BdoData.NewMeta("name5", DataValueTypes.Text));
             elSetA
-                .Add(BdoMeta.New("name1", typeof(string)))
-                .Add(BdoMeta.New("name2", null as EntityFake))
-                .Add(BdoMeta.NewScalar("name4", DataValueTypes.Text, null))
-                .Add(BdoMeta.New("name5", null as string));
+                .Add(BdoData.NewMeta("name1", typeof(string)))
+                .Add(BdoData.NewMeta("name2", null as EntityFake))
+                .Add(BdoData.NewMetaScalar("name4", DataValueTypes.Text, null))
+                .Add(BdoData.NewMeta("name5", null as string));
             elSetB.Update(elSetA);
         }
 
@@ -98,13 +98,13 @@ namespace BindOpen.System.Data
         {
             string[] arrayString = _testData.arrayString;
 
-            var el = BdoMeta.NewScalar(DataValueTypes.Text, arrayString[0]);
+            var el = BdoData.NewMetaScalar(DataValueTypes.Text, arrayString[0]);
             var st = el.ToString();
             Assert.That(st == arrayString[0], "Bad scalar el - ToString");
 
             int[] arrayInteger = _testData.arrayInteger;
 
-            el = BdoMeta.NewScalar(DataValueTypes.Text, _testData.arrayInteger[0]);
+            el = BdoData.NewMetaScalar(DataValueTypes.Text, _testData.arrayInteger[0]);
             st = el.ToString();
             Assert.That(st == arrayInteger[0].ToString(), "Bad scalar el - ToString");
         }

@@ -20,7 +20,7 @@ namespace BindOpen.System.Data.Meta.Reflection
             string name = null,
             bool onlyMetaAttributes = false)
         {
-            var meta = BdoMeta.New(name, type, obj)
+            var meta = BdoData.NewMeta(name, type, obj)
                 .UpdateTree(onlyMetaAttributes);
             return meta;
         }

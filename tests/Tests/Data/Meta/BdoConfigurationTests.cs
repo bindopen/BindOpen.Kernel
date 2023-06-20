@@ -22,26 +22,26 @@ namespace BindOpen.System.Data
         {
             var f = new Faker();
 
-            _config1 = BdoMeta.NewConfig(
+            _config1 = BdoData.NewConfig(
                 _configName1,
-                BdoMeta.NewScalar("float1", DataValueTypes.Number, f.Random.Float()))
+                BdoData.NewMetaScalar("float1", DataValueTypes.Number, f.Random.Float()))
                 .Using(_configName20, _configName21);
 
-            _config20 = BdoMeta.NewConfig(
+            _config20 = BdoData.NewConfig(
                 _configName20,
-                BdoMeta.NewScalar("text1", DataValueTypes.Text, f.Lorem.Words(10)),
-                BdoMeta.NewScalar("integer1", DataValueTypes.Integer, Enumerable.Range(0, 10).Select(p => f.Random.Int(5000))),
-                BdoMeta.NewScalar("byteArray1", DataValueTypes.ByteArray, Enumerable.Range(1, 2).Select(p => f.Random.Bytes(5000)).ToArray()));
+                BdoData.NewMetaScalar("text1", DataValueTypes.Text, f.Lorem.Words(10)),
+                BdoData.NewMetaScalar("integer1", DataValueTypes.Integer, Enumerable.Range(0, 10).Select(p => f.Random.Int(5000))),
+                BdoData.NewMetaScalar("byteArray1", DataValueTypes.ByteArray, Enumerable.Range(1, 2).Select(p => f.Random.Bytes(5000)).ToArray()));
 
-            _config21 = BdoMeta.NewConfig(
+            _config21 = BdoData.NewConfig(
                 _configName21,
-                BdoMeta.NewScalar("float2", DataValueTypes.Number, 1.1, 1.2, 1.3));
+                BdoData.NewMetaScalar("float2", DataValueTypes.Number, 1.1, 1.2, 1.3));
         }
 
         [Test, Order(1)]
         public void CreateConfigurationSet()
         {
-            var bundle = BdoMeta.NewConfigSet(
+            var bundle = BdoData.NewConfigSet(
                 _config1,
                 _config20,
                 _config21);
