@@ -24,7 +24,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="st">The string to consider.</param>
         public static explicit operator BdoMetaScalar(string st)
-            => BdoMeta.NewScalar(DataValueTypes.Any, st);
+            => BdoData.NewMetaScalar(DataValueTypes.Any, st);
 
         /// <summary>
         /// Converts to string.
@@ -41,7 +41,7 @@ namespace BindOpen.System.Data.Meta
         /// <param key="items"></param>
         public static implicit operator BdoMetaScalar((string Name, object Value) item)
         {
-            var meta = BdoMeta.NewScalar(item.Name, item.Value);
+            var meta = BdoData.NewMetaScalar(item.Name, item.Value);
 
             return meta;
         }
@@ -52,7 +52,7 @@ namespace BindOpen.System.Data.Meta
         /// <param key="items"></param>
         public static implicit operator BdoMetaScalar((string Name, DataValueTypes ValueType, object Value) item)
         {
-            var meta = BdoMeta.NewScalar(item.Name, item.ValueType, item.Value);
+            var meta = BdoData.NewMetaScalar(item.Name, item.ValueType, item.Value);
 
             return meta;
         }

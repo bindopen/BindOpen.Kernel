@@ -10,101 +10,99 @@ namespace BindOpen.System.Data
     [XmlType("DataValueTypes", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     public enum DataValueTypes
     {
-
-        /// <summary>
-        /// Any data value type.
-        /// </summary>
-        Any = Boolean | Entity | Entity | Date | Document | Integer | Long
-            | ULong | ByteArray | Number | Object | Text | Time | Scriptword,
-
         /// <summary>
         /// None.
         /// </summary>
         None = 0,
 
         /// <summary>
-        /// Undefined.
+        /// Any.
         /// </summary>
-        Undefined = 0x01 << 0,
-
-        /// <summary>
-        /// Boolean.
-        /// </summary>
-        Boolean = 0x01 << 1,
-
-        /// <summary>
-        /// Byte array.
-        /// </summary>
-        ByteArray = 0x01 << 2,
-
-        /// <summary>
-        /// Connector.
-        /// </summary>
-        Connector = 0x01 << 3,
-
-        /// <summary>
-        /// Date.
-        /// </summary>
-        Date = 0x01 << 4,
-
-        /// <summary>
-        /// Document.
-        /// </summary>
-        Document = 0x01 << 5,
-
-        /// <summary>
-        /// Data entity.
-        /// </summary>
-        Entity = 0x01 << 6,
-
-        /// <summary>
-        /// Integer.
-        /// </summary>
-        Integer = 0x01 << 7,
-
-        /// <summary>
-        /// Long.
-        /// </summary>
-        Long = 0x01 << 8,
-
-        /// <summary>
-        /// Ultra long.
-        /// </summary>
-        ULong = 0x01 << 9,
-
-        /// <summary>
-        /// Number value.
-        /// </summary>
-        Number = 0x01 << 10,
-
-        /// <summary>
-        /// Object.
-        /// </summary>
-        Object = 0x01 << 11,
+        Any = 1,
 
         /// <summary>
         /// Text.
         /// </summary>
-        Task = 0x01 << 12,
-
-        /// <summary>
-        /// Text.
-        /// </summary>
-        Text = 0x01 << 13,
-
-        /// <summary>
-        /// Time.
-        /// </summary>
-        Time = 0x01 << 14,
-
-        /// <summary>
-        /// Text.
-        /// </summary>
-        MetaData = 0x01 << 15,
+        MetaData = 2,
 
         /// <summary>
         /// Script word.
         /// </summary>
-        Scriptword = 0x01 << 16,
+        Scriptword = 3,
+
+        /// <summary>
+        /// Script word.
+        /// </summary>
+        Reference = 4,
+
+        /// <summary>
+        /// Boolean.
+        /// </summary>
+        Boolean = 5,
+
+        /// <summary>
+        /// Byte array.
+        /// </summary>
+        ByteArray = 6,
+
+        /// <summary>
+        /// Connector.
+        /// </summary>
+        Connector = 7,
+
+        /// <summary>
+        /// Date.
+        /// </summary>
+        Date = 8,
+
+        /// <summary>
+        /// Document.
+        /// </summary>
+        Document = 9,
+
+        /// <summary>
+        /// Data entity.
+        /// </summary>
+        Entity = 10,
+
+        /// <summary>
+        /// Integer.
+        /// </summary>
+        Integer = 11,
+
+        /// <summary>
+        /// Long.
+        /// </summary>
+        Long = 12,
+
+        /// <summary>
+        /// Ultra long.
+        /// </summary>
+        ULong = 13,
+
+        /// <summary>
+        /// Number value.
+        /// </summary>
+        Number = 14,
+
+        /// <summary>
+        /// Object.
+        /// </summary>
+        Object = 15,
+
+        /// <summary>
+        /// Text.
+        /// </summary>
+        Task = 16,
+
+        /// <summary>
+        /// Text.
+        /// </summary>
+        Text = 17,
+
+        /// <summary>
+        /// Time.
+        /// </summary>
+        Time = 18
     }
 }

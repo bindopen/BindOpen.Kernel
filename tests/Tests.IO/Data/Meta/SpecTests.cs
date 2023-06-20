@@ -16,7 +16,7 @@ namespace BindOpen.System.Data.Meta
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            _spec = BdoMeta.NewSpec("object1", DataValueTypes.Date);
+            _spec = BdoData.NewSpec("object1", DataValueTypes.Date);
         }
 
         private void Test(IBdoSpec spec)

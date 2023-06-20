@@ -20,7 +20,7 @@ namespace BindOpen.System.Data
         {
             _datasource = BdoData.NewDatasource("name", DatasourceKind.Database)
                 .With(
-                    BdoMeta.NewConfig("bindopen.system.tests$test")
+                    BdoData.NewConfig("bindopen.system.tests$test")
                         .WithConnectionString("connectionString"));
 
             Assert.That(

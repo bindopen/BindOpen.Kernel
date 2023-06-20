@@ -36,10 +36,10 @@ namespace BindOpen.System.Data
         {
             _datasource = BdoData.NewDatasource("name", DatasourceKind.Database)
                 .With(
-                    BdoMeta.NewConfig("bindopen.system.tests$test")
+                    BdoData.NewConfig("bindopen.system.tests$test")
                         .WithConnectionString("connectionString")
                         .With(
-                            BdoMeta.New("name1", "value1")));
+                            BdoData.NewMeta("name1", "value1")));
 
             Assert.That(
                 _datasource != null, "Bad data source creation");

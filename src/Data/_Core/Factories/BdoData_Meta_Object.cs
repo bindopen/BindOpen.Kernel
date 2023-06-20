@@ -1,29 +1,30 @@
-﻿using System;
+﻿using BindOpen.System.Data.Meta;
+using System;
 
-namespace BindOpen.System.Data.Meta
+namespace BindOpen.System.Data
 {
     /// <summary>
     /// This static class provides methods to create data els.
     /// </summary>
-    public static partial class BdoMeta
+    public static partial class BdoData
     {
         /// <summary>
         /// Initializes a new object el.
         /// </summary>
         /// <param key="items">The items to consider.</param>
-        public static BdoMetaObject NewObject(
+        public static BdoMetaObject NewMetaObject(
             string name = null)
-            => NewObject(name, null, null);
+            => NewMetaObject(name, null, null);
 
         /// <summary>
         /// Initializes a new object el.
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static BdoMetaObject NewObject(
+        public static BdoMetaObject NewMetaObject(
             string name,
             object item)
-            => NewObject(name, null, item);
+            => NewMetaObject(name, null, item);
 
         /// <summary>
         /// Initializes a new object el.
@@ -31,7 +32,7 @@ namespace BindOpen.System.Data.Meta
         /// <param key="name">The name to consider.</param>
         /// <param key="classFullName">The class full name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static BdoMetaObject NewObject(
+        public static BdoMetaObject NewMetaObject(
             string name,
             Type type,
             object item)
@@ -53,22 +54,22 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static TBdoMetaObject<T> NewObject<T>(
+        public static TBdoMetaObject<T> NewMetaObject<T>(
             string name,
             T item)
             where T : class
         {
-            return NewObject<T, TBdoMetaObject<T>>(name, item);
+            return NewMetaObject<T, TBdoMetaObject<T>>(name, item);
         }
 
         /// <summary>
         /// Initializes a new object el.
         /// </summary>
         /// <param key="item">The items to consider.</param>
-        public static TBdoMetaObject<T> NewObject<T>(
+        public static TBdoMetaObject<T> NewMetaObject<T>(
             T item)
             where T : class
-            => NewObject<T, TBdoMetaObject<T>>(null, item);
+            => NewMetaObject<T, TBdoMetaObject<T>>(null, item);
 
         /// <summary>
         /// Creates a new instance of the ScalarElement class.
@@ -76,7 +77,7 @@ namespace BindOpen.System.Data.Meta
         /// <param key="name">The name to consider.</param>
         /// <param key="valueType">The value type to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static TMeta NewObject<TItem, TMeta>(
+        public static TMeta NewMetaObject<TItem, TMeta>(
             string name,
             TItem item)
             where TItem : class

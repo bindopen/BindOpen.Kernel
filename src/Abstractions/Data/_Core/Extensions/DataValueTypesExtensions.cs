@@ -1,10 +1,10 @@
 ﻿using BindOpen.System.Data.Meta;
 using BindOpen.System.Scoping.Connectors;
 using BindOpen.System.Scoping.Entities;
+using BindOpen.System.Scoping.Script;
 using BindOpen.System.Scoping.Tasks;
 using System;
 using System.Collections;
-using BindOpen.System.Scoping.Script;
 
 namespace BindOpen.System.Data
 {
@@ -102,6 +102,8 @@ namespace BindOpen.System.Data
                 return DataValueTypes.Time;
             else if (type == typeof(string))
                 return DataValueTypes.Text;
+            else if (typeof(IBdoReference).IsAssignableFrom(type))
+                return DataValueTypes.Reference;
             else if (typeof(IBdoScriptword).IsAssignableFrom(type))
                 return DataValueTypes.Scriptword;
             else if (typeof(IBdoMetaData).IsAssignableFrom(type))

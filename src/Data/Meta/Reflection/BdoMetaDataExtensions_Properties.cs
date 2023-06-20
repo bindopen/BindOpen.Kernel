@@ -24,7 +24,7 @@ namespace BindOpen.System.Data.Meta.Reflection
             {
                 var propertyInfo = obj.GetType().GetProperties().FirstOrDefault(q =>
                 {
-                    var spec = BdoMeta.NewSpec();
+                    var spec = BdoData.NewSpec();
                     spec.UpdateFrom(q, attributeType);
 
                     return spec.Name.Equals(propertyName, StringComparison.OrdinalIgnoreCase);

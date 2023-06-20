@@ -35,8 +35,8 @@ namespace BindOpen.System.Data.Meta
             string id = null)
             : base(name, namePreffix, id)
         {
-            Specs = BdoMeta.NewSpecSet(
-                BdoMeta.NewSpec()
+            Specs = BdoData.NewSpecSet(
+                BdoData.NewSpec()
                     .WithDataType(DataValueTypes.Object));
         }
 
@@ -152,7 +152,7 @@ namespace BindOpen.System.Data.Meta
         ITBdoSet<IBdoMetaData> ITBdoSet<IBdoMetaData>.Add(
             params IBdoMetaData[] items)
         {
-            _propertySet ??= BdoMeta.NewSet();
+            _propertySet ??= BdoData.NewMetaSet();
             _propertySet.Add(items);
             return this;
         }
@@ -167,7 +167,7 @@ namespace BindOpen.System.Data.Meta
         ITBdoSet<IBdoMetaData> ITBdoSet<IBdoMetaData>.With(
             params IBdoMetaData[] items)
         {
-            _propertySet ??= BdoMeta.NewSet();
+            _propertySet ??= BdoData.NewMetaSet();
             return _propertySet.With(items);
         }
 
@@ -187,7 +187,7 @@ namespace BindOpen.System.Data.Meta
 
         public IBdoMetaData Insert(IBdoMetaData item)
         {
-            _propertySet ??= BdoMeta.NewSet();
+            _propertySet ??= BdoData.NewMetaSet();
             return _propertySet.Insert(item);
         }
 

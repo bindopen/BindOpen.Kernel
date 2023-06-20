@@ -38,7 +38,7 @@ namespace BindOpen.System.Scoping.Tasks
             params KeyValuePair<string, object>[] pairs)
             where T : IBdoConfiguration
         {
-            list?.WithProperties(pairs?.Select(q => BdoMeta.New(q.Key, q.Value)).ToArray());
+            list?.WithProperties(pairs?.Select(q => Data.BdoData.NewMeta(q.Key, q.Value)).ToArray());
 
             return list;
         }
@@ -53,7 +53,7 @@ namespace BindOpen.System.Scoping.Tasks
             params (string Name, object Value)[] pairs)
             where T : IBdoConfiguration
         {
-            list?.WithProperties(pairs?.Select(q => BdoMeta.New(q.Name, q.Value)).ToArray());
+            list?.WithProperties(pairs?.Select(q => Data.BdoData.NewMeta(q.Name, q.Value)).ToArray());
 
             return list;
         }
@@ -68,7 +68,7 @@ namespace BindOpen.System.Scoping.Tasks
             params (string Name, DataValueTypes ValueType, object Value)[] pairs)
             where T : IBdoConfiguration
         {
-            list?.WithProperties(pairs?.Select(q => BdoMeta.New(q.Name, q.ValueType, q.Value)).ToArray());
+            list?.WithProperties(pairs?.Select(q => Data.BdoData.NewMeta(q.Name, q.ValueType, q.Value)).ToArray());
 
             return list;
         }
@@ -101,7 +101,7 @@ namespace BindOpen.System.Scoping.Tasks
             {
                 foreach (var pair in pairs)
                 {
-                    list.AddProperties(BdoMeta.New(pair.Key, pair.Value));
+                    list.AddProperties(Data.BdoData.NewMeta(pair.Key, pair.Value));
                 }
             }
 
@@ -122,7 +122,7 @@ namespace BindOpen.System.Scoping.Tasks
             {
                 foreach (var (Name, Value) in pairs)
                 {
-                    list.AddProperties(BdoMeta.New(Name, Value));
+                    list.AddProperties(Data.BdoData.NewMeta(Name, Value));
                 }
             }
 
@@ -143,7 +143,7 @@ namespace BindOpen.System.Scoping.Tasks
             {
                 foreach (var (Name, ValueType, Value) in pairs)
                 {
-                    list.AddProperties(BdoMeta.New(Name, ValueType, Value));
+                    list.AddProperties(Data.BdoData.NewMeta(Name, ValueType, Value));
                 }
             }
 
@@ -176,7 +176,7 @@ namespace BindOpen.System.Scoping.Tasks
             params KeyValuePair<string, object>[] pairs)
             where T : IBdoConfiguration
         {
-            list?.WithInputs(pairs?.Select(q => BdoMeta.New(q.Key, q.Value)).ToArray());
+            list?.WithInputs(pairs?.Select(q => Data.BdoData.NewMeta(q.Key, q.Value)).ToArray());
 
             return list;
         }
@@ -191,7 +191,7 @@ namespace BindOpen.System.Scoping.Tasks
             params (string Name, object Value)[] pairs)
             where T : IBdoConfiguration
         {
-            list?.WithInputs(pairs?.Select(q => BdoMeta.New(q.Name, q.Value)).ToArray());
+            list?.WithInputs(pairs?.Select(q => Data.BdoData.NewMeta(q.Name, q.Value)).ToArray());
 
             return list;
         }
@@ -206,7 +206,7 @@ namespace BindOpen.System.Scoping.Tasks
             params (string Name, DataValueTypes ValueType, object Value)[] pairs)
             where T : IBdoConfiguration
         {
-            list?.WithInputs(pairs?.Select(q => BdoMeta.New(q.Name, q.ValueType, q.Value)).ToArray());
+            list?.WithInputs(pairs?.Select(q => Data.BdoData.NewMeta(q.Name, q.ValueType, q.Value)).ToArray());
 
             return list;
         }
@@ -239,7 +239,7 @@ namespace BindOpen.System.Scoping.Tasks
             {
                 foreach (var pair in pairs)
                 {
-                    list.AddInputs(BdoMeta.New(pair.Key, pair.Value));
+                    list.AddInputs(Data.BdoData.NewMeta(pair.Key, pair.Value));
                 }
             }
 
@@ -260,7 +260,7 @@ namespace BindOpen.System.Scoping.Tasks
             {
                 foreach (var (Name, Value) in pairs)
                 {
-                    list.AddInputs(BdoMeta.New(Name, Value));
+                    list.AddInputs(Data.BdoData.NewMeta(Name, Value));
                 }
             }
 
@@ -281,7 +281,7 @@ namespace BindOpen.System.Scoping.Tasks
             {
                 foreach (var (Name, ValueType, Value) in pairs)
                 {
-                    list.AddInputs(BdoMeta.New(Name, ValueType, Value));
+                    list.AddInputs(Data.BdoData.NewMeta(Name, ValueType, Value));
                 }
             }
 
@@ -314,7 +314,7 @@ namespace BindOpen.System.Scoping.Tasks
             params KeyValuePair<string, object>[] pairs)
             where T : IBdoConfiguration
         {
-            list?.WithOutputs(pairs?.Select(q => BdoMeta.New(q.Key, q.Value)).ToArray());
+            list?.WithOutputs(pairs?.Select(q => Data.BdoData.NewMeta(q.Key, q.Value)).ToArray());
 
             return list;
         }
@@ -329,7 +329,7 @@ namespace BindOpen.System.Scoping.Tasks
             params (string Name, object Value)[] pairs)
             where T : IBdoConfiguration
         {
-            list?.WithOutputs(pairs?.Select(q => BdoMeta.New(q.Name, q.Value)).ToArray());
+            list?.WithOutputs(pairs?.Select(q => Data.BdoData.NewMeta(q.Name, q.Value)).ToArray());
 
             return list;
         }
@@ -344,7 +344,7 @@ namespace BindOpen.System.Scoping.Tasks
             params (string Name, DataValueTypes ValueType, object Value)[] pairs)
             where T : IBdoConfiguration
         {
-            list?.WithOutputs(pairs?.Select(q => BdoMeta.New(q.Name, q.ValueType, q.Value)).ToArray());
+            list?.WithOutputs(pairs?.Select(q => Data.BdoData.NewMeta(q.Name, q.ValueType, q.Value)).ToArray());
 
             return list;
         }
@@ -376,7 +376,7 @@ namespace BindOpen.System.Scoping.Tasks
             {
                 foreach (var pair in pairs)
                 {
-                    list.AddOutputs(BdoMeta.New(pair.Key, pair.Value));
+                    list.AddOutputs(Data.BdoData.NewMeta(pair.Key, pair.Value));
                 }
             }
 
@@ -397,7 +397,7 @@ namespace BindOpen.System.Scoping.Tasks
             {
                 foreach (var (Name, Value) in pairs)
                 {
-                    list.AddOutputs(BdoMeta.New(Name, Value));
+                    list.AddOutputs(Data.BdoData.NewMeta(Name, Value));
                 }
             }
 
@@ -418,7 +418,7 @@ namespace BindOpen.System.Scoping.Tasks
             {
                 foreach (var (Name, ValueType, Value) in pairs)
                 {
-                    list.AddOutputs(BdoMeta.New(Name, ValueType, Value));
+                    list.AddOutputs(Data.BdoData.NewMeta(Name, ValueType, Value));
                 }
             }
 
