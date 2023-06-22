@@ -154,11 +154,12 @@ namespace BindOpen.System.Scoping.Functions
                         if (lastParam?.GetCustomAttributes(typeof(ParamArrayAttribute), false).Any() == true)
                         {
                             var parameters = method.GetParameters();
+
                             var i = Array.IndexOf(parameters, lastParam);
                             if (i > -1 && objs.Count > i + 1)
                             {
-                                var list = objs.GetRange(i, objs.Count - 1);
-                                objs.RemoveRange(i, objs.Count - 1);
+                                var list = objs.GetRange(i, objs.Count);
+                                objs.RemoveRange(i, objs.Count);
                                 objs.Add(list?.ToArray());
                             }
                         }

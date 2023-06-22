@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BindOpen.System.Scoping.Script;
+using System;
 
 namespace BindOpen.System.Scoping
 {
@@ -14,7 +15,9 @@ namespace BindOpen.System.Scoping
         /// <returns>The log of check log.</returns>
         public static IBdoScope NewScope(AppDomain appDomain = null)
         {
-            var scope = new BdoScope(appDomain);
+            var scope = new BdoScope(appDomain)
+                .LoadExtensions(
+                            q => q.AddAssemblyFrom<BdoScriptword>());
             return scope;
         }
     }

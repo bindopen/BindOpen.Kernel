@@ -1,5 +1,4 @@
-﻿using BindOpen.System.Scoping.Script;
-using BindOpen.System.Data;
+﻿using BindOpen.System.Data;
 
 namespace BindOpen.System.Scoping.Script
 {
@@ -37,6 +36,11 @@ namespace BindOpen.System.Scoping.Script
                 word.Child = scriptword;
             }
 
+            if (scriptword != null)
+            {
+                scriptword.Parent = word;
+            }
+
             return word;
         }
 
@@ -47,10 +51,7 @@ namespace BindOpen.System.Scoping.Script
             this T word, IBdoScriptword scriptword)
             where T : IBdoScriptword
         {
-            if (word != null)
-            {
-                word.Parent = scriptword;
-            }
+            scriptword.WithChild(word);
 
             return word;
         }

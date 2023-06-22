@@ -11,6 +11,24 @@ namespace BindOpen.System.Scoping.Script
     {
         // Word
 
+        public static TBdoScriptword<T> NewWord<T>(
+            ScriptItemKinds kind,
+            string name = null)
+            => new TBdoScriptword<T>()
+                .WithName(name)
+                .WithKind(kind);
+
+        public static TBdoScriptword<T> NewWord<T>(
+            IBdoConfiguration config)
+        {
+            var word = new TBdoScriptword<T>();
+            word
+                .WithDefinition(config.DefinitionUniqueName)
+                .With(config.Items?.ToArray());
+
+            return word;
+        }
+
         public static BdoScriptword NewWord(
             ScriptItemKinds kind,
             string name = null)
@@ -55,12 +73,29 @@ namespace BindOpen.System.Scoping.Script
         /// <param key="name"></param>
         /// <param key="parameters"></param>
         /// <returns></returns>
+        public static TBdoScriptword<T> Function<T>(
+            string name,
+            params object[] parameters)
+        {
+            var scriptword = NewWord<T>(ScriptItemKinds.Function)
+                .WithName(name);
+
+            var index = 0;
+            foreach (var param in parameters)
+            {
+                scriptword.InsertData(param);
+                index++;
+            }
+
+            return scriptword;
+        }
+
         public static BdoScriptword Function(
             string name,
             params object[] parameters)
         {
-            var scriptword = NewWord(ScriptItemKinds.Function);
-            scriptword.WithName(name);
+            var scriptword = NewWord(ScriptItemKinds.Function)
+                .WithName(name);
 
             var index = 0;
             foreach (var param in parameters)
@@ -77,6 +112,11 @@ namespace BindOpen.System.Scoping.Script
             params object[] parameters)
             => Function(name, parameters);
 
+        public static TBdoScriptword<T> Func<T>(
+            string name,
+            params object[] parameters)
+            => Function<T>(name, parameters);
+
         /// <summary>
         /// 
         /// </summary>
@@ -89,13 +129,7 @@ namespace BindOpen.System.Scoping.Script
             string name,
             params object[] parameters)
         {
-            if (word != null)
-            {
-                var subWord = Function(name, parameters);
-                word.WithChild(subWord);
-            }
-
-            return word;
+            return word.WithChild(Function(name, parameters));
         }
 
         public static BdoScriptword Func(
@@ -103,5 +137,26 @@ namespace BindOpen.System.Scoping.Script
             string name,
             params object[] parameters)
             => word.Function(name, parameters);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="word"></param>
+        /// <param key="name"></param>
+        /// <param key="parameters"></param>
+        /// <returns></returns>
+        public static TBdoScriptword<T> Function<T>(
+            this BdoScriptword word,
+            string name,
+            params object[] parameters)
+        {
+            return Function<T>(name, parameters).WithParent(word);
+        }
+
+        public static TBdoScriptword<T> Func<T>(
+            this BdoScriptword word,
+            string name,
+            params object[] parameters)
+            => word.Function<T>(name, parameters);
     }
 }
