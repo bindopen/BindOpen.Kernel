@@ -1,6 +1,6 @@
-﻿using BindOpen.System.Scoping.Script;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.System.Data.Meta;
 using BindOpen.System.Scoping.Functions;
+using BindOpen.System.Scoping.Script;
 using System;
 
 namespace BindOpen.System.Tests
@@ -15,30 +15,6 @@ namespace BindOpen.System.Tests
         // ------------------------------------------
 
         #region Variables
-
-        /// <summary>
-        /// Evaluates the script word $Constant.
-        /// </summary>
-        /// <returns>The interpreted string value.</returns>
-        [BdoFunction(
-            Name = "text",
-            Description = "Returns the test constant.",
-            CreationDate = "2016-09-14")]
-        public static string Var_Text(object st)
-        {
-            return st?.ToString();
-        }
-
-        /// <summary>
-        /// The boolean value of this instance.
-        /// </summary>
-        [BdoFunction(Name = "eq")]
-        public static bool GetTest(
-            [BdoParameter(Title = "String value")]
-            object obj1,
-            [BdoParameter(Title = "Integer value")]
-            object obj2)
-            => obj1?.ToString().Equals(obj2?.ToString(), StringComparison.OrdinalIgnoreCase) == true;
 
         /// <summary>
         /// Evaluates the script word $TEXT.
@@ -116,7 +92,7 @@ namespace BindOpen.System.Tests
         /// Evaluates the script word $Func5.
         /// </summary>
         /// <returns>The interpreted string value.</returns>
-        [BdoFunction(Name = "concat")]
+        [BdoFunction(Name = "concatTest")]
         public static object Concat(
             IBdoScriptDomain domain,
             params object[] values)

@@ -53,8 +53,4 @@
     <ProjectReference Include="..\..\src\Scoping\Scoping.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Scoping\" />
-  </ItemGroup>
-
 </Project>

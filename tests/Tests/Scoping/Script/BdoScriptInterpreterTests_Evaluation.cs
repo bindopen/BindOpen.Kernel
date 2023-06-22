@@ -1,5 +1,4 @@
 ﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
 using BindOpen.System.Tests;
 using NUnit.Framework;
 using System;
@@ -34,7 +33,7 @@ namespace BindOpen.System.Scoping.Script
         private readonly string _script7 = "{{$concat($eq($(var1), 'const'), $eq($(var2), 5500), 'toto', 'titi')}}";
         private readonly string _scriptVarValue71 = "const";
         private readonly int _scriptVarValue72 = 5500;
-        private readonly string _interpretedScript7 = "true-true-toto-titi";
+        private readonly string _interpretedScript7 = "truetruetototiti";
 
         private readonly string _scriptVarValue81 = "const";
         private readonly int _scriptVarValue82 = 5500;
