@@ -26,6 +26,11 @@
             object obj2)
             => Func<bool>("eq", obj1, obj2);
 
+        public static TBdoScriptword<bool> _Ne(
+            object obj1,
+            object obj2)
+            => Func<bool>("ne", obj1, obj2);
+
         public static TBdoScriptword<bool> _Gt(
             object obj1,
             object obj2)

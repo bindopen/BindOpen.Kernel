@@ -1,6 +1,7 @@
 ﻿using BindOpen.System.Data.Meta;
 using BindOpen.System.Scoping.Functions;
 using System;
+using System.Linq;
 
 namespace BindOpen.System.Scoping.Script
 {
@@ -34,11 +35,19 @@ namespace BindOpen.System.Scoping.Script
             => !obj1;
 
         [BdoFunction(Name = "eq")]
-        public static bool GetTest(
+        public static bool Eq(
             [BdoParameter(Title = "First object")]
             object obj1,
             [BdoParameter(Title = "Second object")]
             object obj2)
             => obj1?.ToString().Equals(obj2?.ToString(), StringComparison.OrdinalIgnoreCase) == true;
+
+        [BdoFunction(Name = "ne")]
+        public static bool Ne(
+            [BdoParameter(Title = "First object")]
+            object obj1,
+            [BdoParameter(Title = "Second object")]
+            object obj2)
+            => !obj1?.ToString().Equals(obj2?.ToString(), StringComparison.OrdinalIgnoreCase) == true;
     }
 }
