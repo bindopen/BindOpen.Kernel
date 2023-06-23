@@ -7,10 +7,10 @@ namespace BindOpen.System.Scoping.Script
     /// </summary>
     public static partial class BdoScript
     {
-        public static TBdoScriptword<bool> Name(this TBdoScriptword<IBdoMetaData> parent)
+        public static ITBdoScriptword<bool> Name(this ITBdoScriptword<IBdoMetaData> parent)
             => parent.Func<bool>("name");
 
-        public static TBdoScriptword<bool> Value(this TBdoScriptword<IBdoMetaData> parent)
+        public static ITBdoScriptword<bool> Value(this ITBdoScriptword<IBdoMetaData> parent)
             => parent.Func<bool>("value");
     }
 }
