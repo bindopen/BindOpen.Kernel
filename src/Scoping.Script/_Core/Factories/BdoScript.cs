@@ -125,15 +125,15 @@ namespace BindOpen.System.Scoping.Script
         /// <param key="parameters"></param>
         /// <returns></returns>
         public static BdoScriptword Function(
-            this BdoScriptword word,
+            this IBdoScriptword word,
             string name,
             params object[] parameters)
         {
-            return word.WithChild(Function(name, parameters));
+            return word.WithChild(Function(name, parameters)) as BdoScriptword;
         }
 
         public static BdoScriptword Func(
-            this BdoScriptword word,
+            this IBdoScriptword word,
             string name,
             params object[] parameters)
             => word.Function(name, parameters);
@@ -146,7 +146,7 @@ namespace BindOpen.System.Scoping.Script
         /// <param key="parameters"></param>
         /// <returns></returns>
         public static TBdoScriptword<T> Function<T>(
-            this BdoScriptword word,
+            this IBdoScriptword word,
             string name,
             params object[] parameters)
         {
@@ -154,7 +154,7 @@ namespace BindOpen.System.Scoping.Script
         }
 
         public static TBdoScriptword<T> Func<T>(
-            this BdoScriptword word,
+            this IBdoScriptword word,
             string name,
             params object[] parameters)
             => word.Function<T>(name, parameters);

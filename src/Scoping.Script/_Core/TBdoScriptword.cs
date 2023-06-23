@@ -3,7 +3,7 @@
     /// <summary>
     /// This class represents a script word.
     /// </summary>
-    public class TBdoScriptword<T> : BdoScriptword
+    public class TBdoScriptword<T> : BdoScriptword, ITBdoScriptword<T>
     {
         // ------------------------------------------
         // CONSTRUCTORS
