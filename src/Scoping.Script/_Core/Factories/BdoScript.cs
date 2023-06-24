@@ -9,6 +9,22 @@ namespace BindOpen.System.Scoping.Script
     /// </summary>
     public static partial class BdoScript
     {
+        public static T To<T>(IBdoScriptword word) where T : BdoScriptword, new()
+        {
+            var toWord = BdoData.New<T>()
+                .WithName(word?.Name)
+                .WithKind(word?.Kind ?? ScriptItemKinds.None)
+                .WithChild(word?.Child)
+                .WithParent(word?.Parent as IBdoScriptword);
+
+            foreach (var param in word)
+            {
+                toWord.Add(param);
+            }
+
+            return toWord;
+        }
+
         // Word
 
         public static TBdoScriptword<T> NewWord<T>(
@@ -56,14 +72,30 @@ namespace BindOpen.System.Scoping.Script
         /// <returns></returns>
         public static BdoScriptword Variable(string name)
         {
-            var scriptword = NewWord(ScriptItemKinds.Variable);
-            scriptword.WithName(name);
+            var scriptword = NewWord(ScriptItemKinds.Variable)
+                .WithName(name);
 
             return scriptword;
         }
 
         public static BdoScriptword Var(string name)
             => Variable(name);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="name"></param>
+        /// <returns></returns>
+        public static BdoScriptword Variable<T>(string name)
+        {
+            var scriptword = NewWord(ScriptItemKinds.Variable)
+                .WithName(name);
+
+            return scriptword;
+        }
+
+        public static BdoScriptword Var<T>(string name)
+            => Variable<T>(name);
 
         // Function
 
