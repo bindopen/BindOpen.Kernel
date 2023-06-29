@@ -84,7 +84,7 @@ namespace BindOpen.System.Data.Meta
                 .With(dto.MetaItems.Select(q => q.ToPoco()).ToArray());
 
             var specs = dto.Specs?.Select(q => q.ToPoco())?.ToArray();
-            poco.Specs = specs?.Length == 0 ? null : Data.BdoData.NewSet<IBdoSpec>(specs);
+            poco.Specs = specs?.Length == 0 ? null : BdoData.NewSet<IBdoSpec>(specs);
 
             return poco;
         }

@@ -1,4 +1,5 @@
-﻿using BindOpen.System.Data;
+﻿using BindOpen.System.Scoping.Entities;
+using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Tests;
 using NUnit.Framework;
@@ -44,7 +45,7 @@ namespace BindOpen.System.Scoping.Entities
         {
             _entity = new EntityFake
             {
-                BoolValue = Data.BdoData.NewMetaScalar<bool?>(_testData.boolValue as bool?),
+                BoolValue = BdoData.NewMetaScalar<bool?>(_testData.boolValue as bool?),
                 EnumValue = (ActionPriorities)_testData.enumValue,
                 IntValue = (int)_testData.intValue,
                 StringValue = _testData.stringValue as string,

@@ -62,29 +62,9 @@ namespace BindOpen.System.Data
         public DatasourceKind Kind { get; set; } = DatasourceKind.Any;
 
         /// <summary>
-        /// Sets the specified kind of this instance. 
-        /// </summary>
-        /// <param key="kind">The kind to consider.</param>
-        public IBdoDatasource WithKind(DatasourceKind kind)
-        {
-            Kind = kind;
-            return this;
-        }
-
-        /// <summary>
         /// The module name of this instance.
         /// </summary>
         public string ModuleName { get; set; }
-
-        /// <summary>
-        /// Sets the specified module name of this instance. 
-        /// </summary>
-        /// <param key="moduleName">The module name to consider.</param>
-        public IBdoDatasource WithModuleName(string moduleName)
-        {
-            ModuleName = moduleName;
-            return this;
-        }
 
         /// <summary>
         /// Indicates whether this instance is default.
@@ -92,41 +72,9 @@ namespace BindOpen.System.Data
         public bool IsDefault { get; set; } = false;
 
         /// <summary>
-        /// Specifies that this instance is the default. 
-        /// </summary>
-        /// <param key="isDefault"></param>
-        public IBdoDatasource AsDefault(bool isDefault = true)
-        {
-            IsDefault = isDefault;
-            return this;
-        }
-
-        /// <summary>
         /// The instance name of this instance.
         /// </summary>
         public string InstanceName { get; set; }
-
-        /// <summary>
-        /// Sets the specified module name of this instance. 
-        /// </summary>
-        /// <param key="instanceName">The instance name to consider.</param>
-        public IBdoDatasource WithInstanceName(string instanceName)
-        {
-            InstanceName = instanceName;
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the specified single item of this instance.
-        /// </summary>
-        /// <param key="items">The items to apply to this instance.</param>
-        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public new IBdoDatasource With(params IBdoConfiguration[] items)
-        {
-            base.With(items);
-
-            return this;
-        }
 
         #endregion
 

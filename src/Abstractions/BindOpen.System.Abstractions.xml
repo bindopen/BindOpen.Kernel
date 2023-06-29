@@ -50,17 +50,17 @@
             The library name of this instance.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.Conditions.IBdoAdvancedCondition">
+        <member name="T:BindOpen.System.Data.Conditions.IBdoCompositeCondition">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Conditions.IBdoAdvancedCondition.Kind">
+        <member name="P:BindOpen.System.Data.Conditions.IBdoCompositeCondition.Kind">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Conditions.IBdoAdvancedCondition.Conditions">
+        <member name="P:BindOpen.System.Data.Conditions.IBdoCompositeCondition.Conditions">
             <summary>
             
             </summary>
@@ -139,7 +139,7 @@
             <param key="varSet">The variable element set used to evaluate.</param>
             <returns>True if this instance is true.</returns>
         </member>
-        <member name="M:BindOpen.System.Data.IBdoConditionExtensions.Evaluate(BindOpen.System.Data.Conditions.IBdoAdvancedCondition,BindOpen.System.Scoping.Script.IBdoScriptInterpreter,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Data.IBdoConditionExtensions.Evaluate(BindOpen.System.Data.Conditions.IBdoCompositeCondition,BindOpen.System.Scoping.Script.IBdoScriptInterpreter,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Logging.IBdoLog)">
             <summary>
             Evaluate this instance.
             </summary>
@@ -893,7 +893,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Meta.IBdoSpecExtensions.WithDataType``1(``0,BindOpen.System.Data.BdoDataType)">
+        <member name="M:BindOpen.System.Data.Meta.IBdoSpecExtensions.WithDataType``1(``0,BindOpen.System.BdoDataType)">
             <summary>
             
             </summary>
@@ -1116,17 +1116,17 @@
             Any action priority.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.AdvancedConditionKind">
+        <member name="T:BindOpen.System.Data.CompositeConditionKind">
             <summary>
             This enumeration lists the possible kinds of advanced conditions.
             </summary>
         </member>
-        <member name="F:BindOpen.System.Data.AdvancedConditionKind.And">
+        <member name="F:BindOpen.System.Data.CompositeConditionKind.And">
             <summary>
             And.
             </summary>
         </member>
-        <member name="F:BindOpen.System.Data.AdvancedConditionKind.Or">
+        <member name="F:BindOpen.System.Data.CompositeConditionKind.Or">
             <summary>
             Or.
             </summary>
@@ -3148,34 +3148,34 @@
             <param key="log"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.System.Data.BdoDataType">
+        <member name="T:BindOpen.System.BdoDataType">
             <summary>
             This class represents a data element specification.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.BdoDataType.ValueType">
+        <member name="P:BindOpen.System.BdoDataType.ValueType">
             <summary>
             The value type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.BdoDataType.ClassType">
+        <member name="P:BindOpen.System.BdoDataType.ClassType">
             <summary>
             The value type of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.BdoDataType.op_Explicit(BindOpen.System.Data.BdoDataType)~BindOpen.System.Data.DataValueTypes">
+        <member name="M:BindOpen.System.BdoDataType.op_Explicit(BindOpen.System.BdoDataType)~BindOpen.System.Data.DataValueTypes">
             <summary>
             Converts to string.
             </summary>
             <param key="meta">The meta to consider.</param>
         </member>
-        <member name="M:BindOpen.System.Data.BdoDataType.WithValueType(BindOpen.System.Data.DataValueTypes)">
+        <member name="M:BindOpen.System.BdoDataType.WithValueType(BindOpen.System.Data.DataValueTypes)">
             <summary>
             
             </summary>
             <param key="number"></param>
         </member>
-        <member name="M:BindOpen.System.Data.BdoDataType.WithClassType(System.Type)">
+        <member name="M:BindOpen.System.BdoDataType.WithClassType(System.Type)">
             <summary>
             
             </summary>
@@ -4478,7 +4478,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.IBdoScriptDomainExtensions.IsScriptDomain(BindOpen.System.Data.BdoDataType)">
+        <member name="M:BindOpen.System.Scoping.Script.IBdoScriptDomainExtensions.IsScriptDomain(BindOpen.System.BdoDataType)">
             <summary>
             
             </summary>
@@ -4658,7 +4658,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.IBdoScriptwordExtensions.IsScriptword(BindOpen.System.Data.BdoDataType)">
+        <member name="M:BindOpen.System.Scoping.Script.IBdoScriptwordExtensions.IsScriptword(BindOpen.System.BdoDataType)">
             <summary>
             
             </summary>
@@ -5097,7 +5097,7 @@
             This static class provides methods to create extension items.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.IBdoScopeExtensions.IsScope(BindOpen.System.Data.BdoDataType)">
+        <member name="M:BindOpen.System.Scoping.IBdoScopeExtensions.IsScope(BindOpen.System.BdoDataType)">
             <summary>
             
             </summary>

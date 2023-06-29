@@ -1,6 +1,6 @@
-﻿using BindOpen.System.Data;
+﻿using BindOpen.System.Scoping.Entities;
+using BindOpen.System.Data;
 using BindOpen.System.Data.Assemblies;
-using BindOpen.System.Scoping.Entities;
 using System;
 
 namespace BindOpen.System.Scoping.Entities

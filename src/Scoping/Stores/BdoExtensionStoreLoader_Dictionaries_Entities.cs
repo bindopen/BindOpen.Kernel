@@ -1,10 +1,10 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping.Connectors;
 using BindOpen.System.Scoping.Entities;
 using System.Linq;
 using System.Reflection;
-using BindOpen.System.Logging;
 
 namespace BindOpen.System.Scoping.Stores
 {
@@ -50,7 +50,7 @@ namespace BindOpen.System.Scoping.Stores
 
                 foreach (var prop in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any()))
                 {
-                    var spec = Data.BdoData.NewSpec();
+                    var spec = BdoData.NewSpec();
                     spec.UpdateFrom(prop, typeof(BdoPropertyAttribute));
                     definition.Add(spec);
                 }

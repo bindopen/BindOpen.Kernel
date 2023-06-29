@@ -12,7 +12,7 @@
         /// <returns>The DTO object.</returns>
         public static ConditionDto ToDto(this IBdoCondition poco)
         {
-            if (poco is IBdoAdvancedCondition advancedCondition)
+            if (poco is IBdoCompositeCondition advancedCondition)
             {
                 return advancedCondition.ToDto();
             }
@@ -36,7 +36,7 @@
         public static IBdoCondition ToPoco(
             this ConditionDto dto)
         {
-            if (dto is AdvancedConditionDto advancedConditionDto)
+            if (dto is CompositeConditionDto advancedConditionDto)
             {
                 return advancedConditionDto.ToPoco();
             }

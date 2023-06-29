@@ -1,5 +1,5 @@
-﻿using BindOpen.System.Scoping.Script;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.System.Data.Meta;
+using BindOpen.System.Scoping.Script;
 
 namespace BindOpen.System.Data
 {
@@ -29,7 +29,7 @@ namespace BindOpen.System.Data
         /// <summary>
         /// The script word of this instance.
         /// </summary>
-        public string VariableName { get; set; }
+        public string Identifier { get; set; }
 
         public IBdoMetaData MetaData { get; set; }
 
@@ -67,7 +67,7 @@ namespace BindOpen.System.Data
             return reference.Kind switch
             {
                 BdoReferenceKind.Expression => reference.Expression?.ToString(),
-                BdoReferenceKind.Variable => reference.VariableName,
+                BdoReferenceKind.Identifier => reference.Identifier,
                 BdoReferenceKind.MetaData => reference.MetaData?.ToString(),
                 BdoReferenceKind.Word => reference.Word?.ToString(),
                 _ => null

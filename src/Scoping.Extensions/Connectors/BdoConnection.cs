@@ -1,5 +1,5 @@
-﻿using BindOpen.System.Logging;
-using BindOpen.System.Data;
+﻿using BindOpen.System.Data;
+using BindOpen.System.Logging;
 using System.Data;
 
 namespace BindOpen.System.Scoping.Connectors

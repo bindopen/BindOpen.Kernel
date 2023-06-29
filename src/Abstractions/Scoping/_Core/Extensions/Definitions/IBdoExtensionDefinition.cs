@@ -10,7 +10,7 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// 
         /// </summary>
-        IBdoPackageDefinition PackageDefinition { get; }
+        IBdoPackageDefinition PackageDefinition { get; set; }
 
         /// <summary>
         /// The unique ID of this instance.

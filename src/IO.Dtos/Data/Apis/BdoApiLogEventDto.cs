@@ -11,7 +11,7 @@ namespace BindOpen.System.Data.Apis
     /// </summary>
     [XmlType("ApiLogEventDto", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "event", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class BdoApiLogEventDto : IDto, IDisplayNamed, IDescribed
+    public class BdoApiLogEventDto : IBdoDto, IDisplayNamed, IDescribed
     {
         // ------------------------------------------
         // PROPERTIES

@@ -9,7 +9,7 @@ namespace BindOpen.System.Scoping.Script
     /// </summary>
     public static partial class BdoScript
     {
-        public static T To<T>(IBdoScriptword word) where T : BdoScriptword, new()
+        public static T To<T>(this IBdoScriptword word) where T : BdoScriptword, new()
         {
             var toWord = BdoData.New<T>()
                 .WithName(word?.Name)

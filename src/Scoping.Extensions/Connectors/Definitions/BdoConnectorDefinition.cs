@@ -1,5 +1,5 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Scoping.Connectors;
+﻿using BindOpen.System.Scoping.Connectors;
+using BindOpen.System.Data;
 using BindOpen.System.Scoping.Entities;
 
 namespace BindOpen.System.Scoping.Connectors

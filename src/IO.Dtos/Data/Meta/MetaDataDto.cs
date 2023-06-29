@@ -19,7 +19,7 @@ namespace BindOpen.System.Data.Meta
     [JsonDerivedType(typeof(MetaObjectDto), "object")]
     [JsonDerivedType(typeof(MetaScalarDto), "scalar")]
     [JsonDerivedType(typeof(ScriptwordDto), "scripword")]
-    public class MetaDataDto : IDto
+    public class MetaDataDto : IBdoDto
     {
         // --------------------------------------------------
         // PROPERTIES

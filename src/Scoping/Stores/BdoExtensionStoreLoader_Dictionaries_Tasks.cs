@@ -1,10 +1,10 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping.Entities;
 using BindOpen.System.Scoping.Tasks;
 using System.Linq;
 using System.Reflection;
-using BindOpen.System.Logging;
 
 namespace BindOpen.System.Scoping.Stores
 {
@@ -51,7 +51,7 @@ namespace BindOpen.System.Scoping.Stores
                 foreach (var prop in type.GetProperties()
                     .Where(p => p.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any()))
                 {
-                    var spec = Data.BdoData.NewSpec();
+                    var spec = BdoData.NewSpec();
                     spec.UpdateFrom(prop, typeof(BdoPropertyAttribute));
                     definition.Add(spec);
                 }
@@ -59,18 +59,18 @@ namespace BindOpen.System.Scoping.Stores
                 foreach (var prop in type.GetProperties()
                     .Where(p => p.GetCustomAttributes(typeof(BdoInputAttribute)).Any()))
                 {
-                    var spec = Data.BdoData.NewSpec();
+                    var spec = BdoData.NewSpec();
                     spec.UpdateFrom(prop, typeof(BdoInputAttribute));
                     definition.Add(spec);
                 }
 
-                definition.OutputSpecs ??= Data.BdoData.NewSpecSet();
+                definition.OutputSpecs ??= BdoData.NewSpecSet();
                 foreach (var prop in type.GetProperties()
                     .Where(p => p.GetCustomAttributes(typeof(BdoOutputAttribute)).Any()))
                 {
-                    var spec = Data.BdoData.NewSpec();
+                    var spec = BdoData.NewSpec();
                     spec.UpdateFrom(prop, typeof(BdoOutputAttribute));
-                    definition.OutputSpecs.Add(spec);
+                    definition.OutputSpecs.Add((IBdoSpec)spec);
                 }
 
                 // we build the runtime definition

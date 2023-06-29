@@ -5,6 +5,5 @@
     /// </summary>
     public interface IBdoMetaObject : IBdoMetaSet
     {
-        new void Clear();
     }
 }

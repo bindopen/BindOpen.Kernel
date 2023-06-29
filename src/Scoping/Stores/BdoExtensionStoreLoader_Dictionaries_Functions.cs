@@ -99,20 +99,20 @@ namespace BindOpen.System.Scoping.Stores
                     int i = 0;
                     foreach (var paramInfo in paramInfos)
                     {
-                        var spec = Data.BdoData.NewSpec();
+                        var spec = BdoData.NewSpec();
                         spec.UpdateFrom(paramInfo, typeof(BdoParameterAttribute));
                         spec.Index = i;
 
                         if (spec.IsStatic)
                         {
                             var type1 = paramInfo.ParameterType;
-                            definition.ParentDataType = Data.BdoData.NewDataType(type1);
+                            definition.ParentDataType = BdoData.NewDataType(type1);
                         }
 
                         if (spec.IsStatic || spec.DataType.IsScope() || spec.DataType.IsScriptDomain())
                         {
-                            definition.AdditionalSpecs ??= Data.BdoData.NewSet<IBdoSpec>();
-                            definition.AdditionalSpecs.Add(spec);
+                            definition.AdditionalSpecs ??= BdoData.NewSet<IBdoSpec>();
+                            definition.AdditionalSpecs.Add((IBdoSpec)spec);
                         }
                         else
                         {
@@ -128,18 +128,18 @@ namespace BindOpen.System.Scoping.Stores
                     if (isExtensionMethod && definition.Count > 0)
                     {
                         var type1 = methodInfo.GetParameters()[0].ParameterType;
-                        definition.ParentDataType = Data.BdoData.NewDataType(type1);
+                        definition.ParentDataType = BdoData.NewDataType(type1);
 
                         var spec = definition.FirstOrDefault().AsStatic();
                         if (definition.AdditionalSpecs?[0]?.Index != 0)
                         {
                             definition.Remove(spec?.Key());
                         }
-                        definition.AdditionalSpecs ??= Data.BdoData.NewSet<IBdoSpec>();
+                        definition.AdditionalSpecs ??= BdoData.NewSet<IBdoSpec>();
                         definition.AdditionalSpecs.Add(spec);
                     }
 
-                    definition.OutputDataType = Data.BdoData.NewDataType(methodInfo.ReturnType);
+                    definition.OutputDataType = BdoData.NewDataType(methodInfo.ReturnType);
 
                     // we build the runtime definition
 

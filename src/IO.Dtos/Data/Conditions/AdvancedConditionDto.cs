@@ -7,9 +7,9 @@ namespace BindOpen.System.Data.Conditions
     /// <summary>
     /// This class represents an advanced condition DTO.
     /// </summary>
-    [XmlType("AdvancedCondition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlType("CompositeCondition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "advanced.condition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class AdvancedConditionDto : ConditionDto
+    public class CompositeConditionDto : ConditionDto
     {
         // ------------------------------------------
         // PROPERTIES
@@ -22,7 +22,7 @@ namespace BindOpen.System.Data.Conditions
         /// </summary>
         [JsonPropertyName("kind")]
         [XmlElement("kind")]
-        public AdvancedConditionKind Kind { get; set; } = AdvancedConditionKind.And;
+        public CompositeConditionKind Kind { get; set; } = CompositeConditionKind.And;
 
         /// <summary>
         /// Conditions of this instance.
@@ -41,9 +41,9 @@ namespace BindOpen.System.Data.Conditions
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the AdvancedCondition class.
+        /// Instantiates a new instance of the CompositeCondition class.
         /// </summary>
-        public AdvancedConditionDto()
+        public CompositeConditionDto()
         {
         }
 

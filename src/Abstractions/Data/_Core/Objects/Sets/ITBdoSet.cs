@@ -98,20 +98,6 @@ namespace BindOpen.System.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param key="items"></param>
-        /// <returns></returns>
-        ITBdoSet<T> Add(params T[] items);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="items"></param>
-        /// <returns></returns>
-        ITBdoSet<T> With(params T[] items);
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param key="key"></param>
         /// <returns></returns>
         bool Has(string key = null);

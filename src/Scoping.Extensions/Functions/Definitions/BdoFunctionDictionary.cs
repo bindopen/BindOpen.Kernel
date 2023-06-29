@@ -1,6 +1,4 @@
-﻿using BindOpen.System.Scoping.Functions;
-
-namespace BindOpen.System.Scoping.Functions
+﻿namespace BindOpen.System.Scoping.Functions
 {
     /// <summary>
     /// This class represents a DTO function dico.

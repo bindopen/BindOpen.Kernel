@@ -41,7 +41,7 @@ namespace BindOpen.System.Data
             IBdoMetaSet varSet,
             IBdoLog log = null)
         {
-            if (condition is IBdoAdvancedCondition advancedCondition)
+            if (condition is IBdoCompositeCondition advancedCondition)
             {
                 return advancedCondition.Evaluate(scriptInterpreter, varSet, log);
             }
@@ -65,7 +65,7 @@ namespace BindOpen.System.Data
         /// <param key="varSet">The variable element set used to evaluate.</param>
         /// <returns>True if this instance is true.</returns>
         private static bool Evaluate(
-            this IBdoAdvancedCondition condition,
+            this IBdoCompositeCondition condition,
             IBdoScriptInterpreter scriptInterpreter,
             IBdoMetaSet varSet,
             IBdoLog log = null)
@@ -77,10 +77,10 @@ namespace BindOpen.System.Data
             {
                 switch (condition.Kind)
                 {
-                    case AdvancedConditionKind.And:
+                    case CompositeConditionKind.And:
                         b &= subCondition.Evaluate(scriptInterpreter, varSet, log);
                         break;
-                    case AdvancedConditionKind.Or:
+                    case CompositeConditionKind.Or:
                         b |= subCondition.Evaluate(scriptInterpreter, varSet, log);
                         break;
                     default:

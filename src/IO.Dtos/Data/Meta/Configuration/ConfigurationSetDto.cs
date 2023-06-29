@@ -9,7 +9,7 @@ namespace BindOpen.System.Data.Meta
     /// </summary>
     [XmlType("ConfigurationSet", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "config.set", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class ConfigurationSetDto : IDto
+    public class ConfigurationSetDto : IBdoDto
     {
         // ------------------------------------------
         // PROPERTIES
