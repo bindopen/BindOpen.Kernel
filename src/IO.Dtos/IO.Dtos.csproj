@@ -40,10 +40,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Data\Data.csproj" />
+    <ProjectReference Include="..\Abstractions\Abstractions.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Scoping\" />
+    <Folder Include="_Core\" />
   </ItemGroup>
 </Project>

@@ -3,7 +3,7 @@
     /// <summary>
     /// This enumeration lists the possible kinds of advanced conditions.
     /// </summary>
-    public enum AdvancedConditionKind
+    public enum CompositeConditionKind
     {
         /// <summary>
         /// And.

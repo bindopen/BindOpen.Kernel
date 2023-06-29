@@ -40,7 +40,7 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// The library of this instance.
         /// </summary>        
-        public IBdoPackageDefinition PackageDefinition { get; private set; }
+        public IBdoPackageDefinition PackageDefinition { get; set; }
 
         /// <summary>
         /// The unique ID of this instance.

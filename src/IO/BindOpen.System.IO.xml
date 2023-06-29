@@ -4,19 +4,19 @@
         <name>BindOpen.System.IO</name>
     </assembly>
     <members>
-        <member name="T:BindOpen.System.Data.Conditions.AdvancedConditionConverter">
+        <member name="T:BindOpen.System.Data.Conditions.CompositeConditionConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Conditions.AdvancedConditionConverter.ToDto(BindOpen.System.Data.Conditions.IBdoAdvancedCondition)">
+        <member name="M:BindOpen.System.Data.Conditions.CompositeConditionConverter.ToDto(BindOpen.System.Data.Conditions.IBdoCompositeCondition)">
             <summary>
             Converts to DTO.
             </summary>
             <param key="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.System.Data.Conditions.AdvancedConditionConverter.ToPoco(BindOpen.System.Data.Conditions.AdvancedConditionDto)">
+        <member name="M:BindOpen.System.Data.Conditions.CompositeConditionConverter.ToPoco(BindOpen.System.Data.Conditions.CompositeConditionDto)">
             <summary>
             Converts to POCO.
             </summary>

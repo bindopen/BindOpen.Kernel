@@ -1,4 +1,6 @@
-﻿namespace BindOpen.System.Scoping.Entities
+﻿using BindOpen.System.Scoping.Entities;
+
+namespace BindOpen.System.Scoping.Entities
 {
     /// <summary>
     /// This class represents a entity.

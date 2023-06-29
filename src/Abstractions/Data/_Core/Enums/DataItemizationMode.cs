@@ -1,31 +1,33 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 
 namespace BindOpen.System.Data
 {
     /// <summary>
     /// This enumeration represents the data element itemization modes.
     /// </summary>
+    [Flags]
     [XmlType("DataMode", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     public enum DataMode
     {
         /// <summary>
         /// None.
         /// </summary>
-        None,
+        None = 0,
 
         /// <summary>
         /// Any.
         /// </summary>
-        Any,
+        Any = Value | Reference,
 
         /// <summary>
         /// Value.
         /// </summary>
-        Value,
+        Value = 0x01 << 0,
 
         /// <summary>
         /// Reference.
         /// </summary>
-        Reference
+        Reference = 0x01 << 1
     }
 }

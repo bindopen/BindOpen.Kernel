@@ -1,5 +1,5 @@
-﻿using BindOpen.System.Scoping.Script;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.System.Data.Meta;
+using BindOpen.System.Scoping.Script;
 
 namespace BindOpen.System.Data
 {
@@ -66,15 +66,15 @@ namespace BindOpen.System.Data
         /// Removes the item with the specified name.
         /// </summary>
         /// <param key="keys">The keys of the item to remove.</param>
-        public static T WithVariableName<T>(
+        public static T WithIdentifier<T>(
             this T reference,
-            string variableName)
+            string identifier)
             where T : IBdoReference
         {
             if (reference != null)
             {
-                reference.Kind = BdoReferenceKind.Variable;
-                reference.VariableName = variableName;
+                reference.Kind = BdoReferenceKind.Identifier;
+                reference.Identifier = identifier;
             }
 
             return reference;

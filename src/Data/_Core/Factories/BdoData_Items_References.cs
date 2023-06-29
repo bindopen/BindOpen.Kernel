@@ -1,5 +1,5 @@
-﻿using BindOpen.System.Scoping.Script;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.System.Data.Meta;
+using BindOpen.System.Scoping.Script;
 
 namespace BindOpen.System.Data
 {
@@ -57,8 +57,8 @@ namespace BindOpen.System.Data
             string identifier)
             => new()
             {
-                Kind = BdoReferenceKind.Variable,
-                VariableName = identifier
+                Kind = BdoReferenceKind.Identifier,
+                Identifier = identifier
             };
 
         /// <summary>

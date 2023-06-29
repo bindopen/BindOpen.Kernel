@@ -9,20 +9,5 @@
         INamed,
         IIndexed, IStorable, IBdoUsing
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="items"></param>
-        /// <returns></returns>
-        new IBdoDefinition Add(
-            params IBdoSpec[] items);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="items"></param>
-        /// <returns></returns>
-        new IBdoDefinition With(
-            params IBdoSpec[] items);
     }
 }

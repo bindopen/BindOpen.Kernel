@@ -9,7 +9,7 @@ namespace BindOpen.System.Data.Stores
     /// </summary>
     [XmlType("DatasourceDepot", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "datasource.depot", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class BdoDatasourceDepotDto : IDto, IIdentified
+    public class BdoDatasourceDepotDto : IBdoDto, IIdentified
     {
         // ------------------------------------------
         // PROPERTIES

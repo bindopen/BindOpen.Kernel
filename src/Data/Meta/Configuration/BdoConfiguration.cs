@@ -69,34 +69,6 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         public IList<string> UsedItemIds { get; set; }
 
-        /// <summary>
-        /// Adds the specified item.
-        /// </summary>
-        /// <param key="items">The items of the item to add.</param>
-        /// <returns>Returns the new item that has been added.
-        /// Returns null if the new item is null or else its name is null.</returns>
-        /// <remarks>The new item must have a name.</remarks>
-        public new IBdoConfiguration Add(
-            params IBdoMetaData[] items)
-        {
-            base.Add(items);
-
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the specified single item of this instance.
-        /// </summary>
-        /// <param key="items">The items to apply to this instance.</param>
-        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public new IBdoConfiguration With(
-            params IBdoMetaData[] items)
-        {
-            base.With(items);
-
-            return this;
-        }
-
         #endregion
 
         // ------------------------------------------

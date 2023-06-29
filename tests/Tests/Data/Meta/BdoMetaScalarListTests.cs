@@ -78,9 +78,9 @@ namespace BindOpen.System.Data
             elSetA.Add(elAB);
             elSetB.Update(elSetA);
 
-            elSetA.Add(null);
+            elSetA.Add((IBdoMetaData)null);
             elSetB
-                .Add(null)
+                .Add((IBdoMetaData)null)
                 .Add(("name1", typeof(string)))
                 .Add(BdoData.NewMeta("name3", typeof(int)))
                 .Add(("name4", typeof(double)))

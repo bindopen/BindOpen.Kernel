@@ -8,7 +8,7 @@ namespace BindOpen.System.Data.Assemblies
     /// </summary>
     [XmlType("AssemblyReference", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "assembly", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class AssemblyReferenceDto : IDto
+    public class AssemblyReferenceDto : IBdoDto
     {
         // --------------------------------------------------
         // PROPERTIES

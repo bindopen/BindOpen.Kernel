@@ -158,24 +158,24 @@
             Instantiates a new instance of the ClassReferenceDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.Conditions.AdvancedConditionDto">
+        <member name="T:BindOpen.System.Data.Conditions.CompositeConditionDto">
             <summary>
             This class represents an advanced condition DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Conditions.AdvancedConditionDto.Kind">
+        <member name="P:BindOpen.System.Data.Conditions.CompositeConditionDto.Kind">
             <summary>
             Kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Conditions.AdvancedConditionDto.Conditions">
+        <member name="P:BindOpen.System.Data.Conditions.CompositeConditionDto.Conditions">
             <summary>
             Conditions of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Conditions.AdvancedConditionDto.#ctor">
+        <member name="M:BindOpen.System.Data.Conditions.CompositeConditionDto.#ctor">
             <summary>
-            Instantiates a new instance of the AdvancedCondition class.
+            Instantiates a new instance of the CompositeCondition class.
             </summary>
         </member>
         <member name="T:BindOpen.System.Data.Conditions.BasicConditionDto">
@@ -671,7 +671,7 @@
         </member>
         <member name="M:BindOpen.System.Data.DictionaryDto.#ctor">
             <summary>
-            Instantiates a new instance of the DictionaryDataItemDto class. 
+            Instantiates a new instance of the DictionaryDto class. 
             </summary>
         </member>
         <member name="T:BindOpen.System.Data.KeyValuePairDto">

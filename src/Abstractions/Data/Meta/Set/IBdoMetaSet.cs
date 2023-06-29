@@ -9,24 +9,6 @@ namespace BindOpen.System.Data.Meta
     public partial interface IBdoMetaSet :
         ITBdoSet<IBdoMetaData>, IBdoMetaData
     {
-        new void Clear();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="items"></param>
-        /// <returns></returns>
-        new IBdoMetaSet Add(
-            params IBdoMetaData[] items);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="items"></param>
-        /// <returns></returns>
-        new IBdoMetaSet With(
-            params IBdoMetaData[] items);
-
         /// <summary>
         /// 
         /// </summary>

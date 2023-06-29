@@ -1,5 +1,5 @@
-﻿using BindOpen.System.Scoping.Script;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.System.Data.Meta;
+using BindOpen.System.Scoping.Script;
 
 namespace BindOpen.System.Data
 {
@@ -20,7 +20,7 @@ namespace BindOpen.System.Data
         /// </summary>
         IBdoScriptword Word { get; set; }
 
-        string VariableName { get; set; }
+        string Identifier { get; set; }
 
         IBdoMetaData MetaData { get; set; }
     }
