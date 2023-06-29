@@ -10,7 +10,7 @@ namespace BindOpen.System.Data.Meta
     /// </summary>
     [XmlType("Spec", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "spec", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class SpecDto : IDto
+    public class SpecDto : IBdoDto
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -25,15 +25,8 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         [JsonPropertyName("valueType")]
         [XmlElement("valueType")]
-        [DefaultValue(null)]
-        public DataValueTypes? DataValueType { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonIgnore()]
-        [XmlIgnore()]
-        public bool DataValueTypeSpecified => DataValueType != null;
+        [DefaultValue(DataValueTypes.Any)]
+        public DataValueTypes DataValueType { get; set; } = DataValueTypes.Any;
 
         /// <summary>
         /// ID of the group of this instance.
@@ -73,6 +66,13 @@ namespace BindOpen.System.Data.Meta
         [XmlElement("isAllocatable")]
         [DefaultValue(false)]
         public bool? IsAllocatable { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonIgnore()]
+        [XmlIgnore()]
+        public bool IsAllocatableSpecified => IsAllocatable != null;
 
         // Items ---------------------------------
 
@@ -143,7 +143,7 @@ namespace BindOpen.System.Data.Meta
         [JsonPropertyName("accessibility.level")]
         [XmlElement("accessibility.level")]
         [DefaultValue(AccessibilityLevels.Public)]
-        public AccessibilityLevels? AccessibilityLevel { get; set; }
+        public AccessibilityLevels AccessibilityLevel { get; set; }
 
         /// <summary>
         /// The level of inheritance of this instance.
@@ -151,7 +151,7 @@ namespace BindOpen.System.Data.Meta
         [JsonPropertyName("inheritance.level")]
         [XmlElement("inheritance.level")]
         [DefaultValue(InheritanceLevels.None)]
-        public InheritanceLevels? InheritanceLevel { get; set; }
+        public InheritanceLevels InheritanceLevel { get; set; }
 
         /// <summary>
         /// The requirement level of this instance.
@@ -159,7 +159,7 @@ namespace BindOpen.System.Data.Meta
         [JsonPropertyName("requirement.level")]
         [XmlElement("requirement.level")]
         [DefaultValue(RequirementLevels.None)]
-        public RequirementLevels? RequirementLevel { get; set; }
+        public RequirementLevels RequirementLevel { get; set; }
 
         /// <summary>
         /// The requirement script of this instance.

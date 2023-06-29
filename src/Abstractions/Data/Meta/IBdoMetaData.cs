@@ -38,12 +38,6 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <returns></returns>
-        void Clear();
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param key="scope"></param>
         /// <param key="varSet"></param>
         /// <param key="log"></param>

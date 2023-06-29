@@ -10,7 +10,7 @@ namespace BindOpen.System.Data.Apis
     /// </summary>
     [XmlType("ApiLogDto", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "log", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class BdoApiLogDto : IDto
+    public class BdoApiLogDto : IBdoDto
     {
         // ------------------------------------------
         // PROPERTIES

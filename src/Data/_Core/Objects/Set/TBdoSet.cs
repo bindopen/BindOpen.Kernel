@@ -161,53 +161,6 @@ namespace BindOpen.System.Data
         }
 
         /// <summary>
-        /// Adds the specified item.
-        /// </summary>
-        /// <param key="items">The items of the item to add.</param>
-        /// <returns>Returns the new item that has been added.
-        /// Returns null if the new item is null or else its name is null.</returns>
-        /// <remarks>The new item must have a name.</remarks>
-        public ITBdoSet<T> Add(params T[] items)
-        {
-            if (items != null)
-            {
-                foreach (var item in items)
-                {
-                    Insert(item);
-                }
-            }
-
-            return this;
-        }
-
-        /// <summary>
-        /// Adds the specified item.
-        /// </summary>
-        /// <param key="items">The items of the item to add.</param>
-        /// <returns>Returns the new item that has been added.
-        /// Returns null if the new item is null or else its name is null.</returns>
-        /// <remarks>The new item must have a name.</remarks>
-        public ITBdoSet<T> AddRange(
-            ITBdoSet<T> list)
-        {
-            var items = list?.Items?.ToArray();
-            return Add(items);
-        }
-
-        /// <summary>
-        /// Sets the specified single item of this instance.
-        /// </summary>
-        /// <param key="items">The items to apply to this instance.</param>
-        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public ITBdoSet<T> With(params T[] items)
-        {
-            Clear();
-            Add(items);
-
-            return this;
-        }
-
-        /// <summary>
         /// Checks if this instance has an item with the specified name.
         /// </summary>
         /// <param key="name">The name of the item to check.</param>

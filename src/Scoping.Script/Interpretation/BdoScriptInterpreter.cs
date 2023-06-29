@@ -156,7 +156,7 @@ namespace BindOpen.System.Scoping.Script
                             {
                                 if (paramValue is IBdoScriptword scriptwordParam)
                                 {
-                                    var expParam = Data.BdoData.NewRef(scriptwordParam);
+                                    var expParam = BdoData.NewRef(scriptwordParam);
                                     var obj = Evaluate(expParam, varSet, log);
 
                                     cloned.InsertData(obj);
@@ -185,8 +185,8 @@ namespace BindOpen.System.Scoping.Script
             {
                 case BdoReferenceKind.Expression:
                     return Evaluate(reference?.Expression, varSet, log);
-                case BdoReferenceKind.Variable:
-                    return varSet?[reference?.VariableName];
+                case BdoReferenceKind.Identifier:
+                    return varSet?[reference?.Identifier];
                 case BdoReferenceKind.MetaData:
                     return reference?.MetaData;
                 case BdoReferenceKind.Word:
@@ -362,7 +362,7 @@ namespace BindOpen.System.Scoping.Script
                                 "Syntax Error: Required character '(' for functions missing. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR")
                                 .WithDetail(
-                                    Data.BdoData.NewMetaScalar("Position", (index + offsetIndex).ToString()));
+                                    BdoData.NewMetaScalar("Position", (index + offsetIndex).ToString()));
 
                             return null;
                         }
@@ -386,7 +386,7 @@ namespace BindOpen.System.Scoping.Script
                                     "Syntax Error: Character ')' not found for function. Position " + (index + offsetIndex),
                                     resultCode: "SCRIPT_SYNTAXERROR")
                                     .WithDetail(
-                                        Data.BdoData.NewMetaScalar("Position", (index + offsetIndex).ToString()));
+                                        BdoData.NewMetaScalar("Position", (index + offsetIndex).ToString()));
 
                                 return null;
                             }
@@ -430,7 +430,7 @@ namespace BindOpen.System.Scoping.Script
                                 "Syntax Error: Character ')' needed for function has not been found. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR")
                                 .WithDetail(
-                                    Data.BdoData.NewMetaScalar("Position", (index + offsetIndex).ToString()));
+                                    BdoData.NewMetaScalar("Position", (index + offsetIndex).ToString()));
 
                             return null;
                         }

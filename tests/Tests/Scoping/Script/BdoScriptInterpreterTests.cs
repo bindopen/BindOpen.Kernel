@@ -1,5 +1,4 @@
 ﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
 using BindOpen.System.Tests;
 using NUnit.Framework;
 using System;
@@ -41,7 +40,7 @@ namespace BindOpen.System.Scoping.Script
         [Test, Order(2)]
         public void CreateVariableSetTest()
         {
-            var varSet = Data.BdoData.NewMetaSet(
+            var varSet = BdoData.NewMetaSet(
                 ((string Name, object Value))("var1", "sample1"),
                 ((string Name, object Value))("var2", 4.55));
 
@@ -83,7 +82,7 @@ namespace BindOpen.System.Scoping.Script
         [Test, Order(5)]
         public void Create5()
         {
-            var script = Data.BdoData.NewExp(_scriptC, BdoExpressionKind.Script);
+            var script = BdoData.NewExp(_scriptC, BdoExpressionKind.Script);
             var result = SystemData.ScriptInterpreter.Evaluate<bool?>(script);
 
             Assert.That(result == true, "Bad script interpretation");

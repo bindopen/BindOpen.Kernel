@@ -142,33 +142,24 @@ namespace BindOpen.System.Data.Meta
         public int Count
             => _propertySet?.Count ?? 0;
 
+        public IBdoMetaData Insert(IBdoMetaData item)
+        {
+            _propertySet ??= BdoData.NewMetaSet();
+            return _propertySet.Insert(item);
+        }
+
+        public override void Clear()
+        {
+            //base.Clear();
+            _propertySet ??= BdoData.NewMetaSet();
+            _propertySet.Clear();
+        }
+
         public IBdoMetaSet Add(
             params IBdoMetaData[] items)
         {
             (this as ITBdoSet<IBdoMetaData>).Add(items);
             return this;
-        }
-
-        ITBdoSet<IBdoMetaData> ITBdoSet<IBdoMetaData>.Add(
-            params IBdoMetaData[] items)
-        {
-            _propertySet ??= BdoData.NewMetaSet();
-            _propertySet.Add(items);
-            return this;
-        }
-
-        public IBdoMetaSet With(
-            params IBdoMetaData[] items)
-        {
-            (this as ITBdoSet<IBdoMetaData>).With(items);
-            return this;
-        }
-
-        ITBdoSet<IBdoMetaData> ITBdoSet<IBdoMetaData>.With(
-            params IBdoMetaData[] items)
-        {
-            _propertySet ??= BdoData.NewMetaSet();
-            return _propertySet.With(items);
         }
 
         /// <summary>
@@ -183,18 +174,6 @@ namespace BindOpen.System.Data.Meta
         public int Remove(Predicate<IBdoMetaData> filter)
         {
             return _propertySet?.Remove(filter) ?? 0;
-        }
-
-        public IBdoMetaData Insert(IBdoMetaData item)
-        {
-            _propertySet ??= BdoData.NewMetaSet();
-            return _propertySet.Insert(item);
-        }
-
-        public override void Clear()
-        {
-            base.Clear();
-            _propertySet.Clear();
         }
 
         public bool Has(string key = null)

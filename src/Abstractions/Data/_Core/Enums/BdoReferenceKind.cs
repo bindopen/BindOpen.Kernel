@@ -28,7 +28,7 @@
         /// <summary>
         /// Target identifier.
         /// </summary>
-        Variable,
+        Identifier,
 
         /// <summary>
         /// Meta data.

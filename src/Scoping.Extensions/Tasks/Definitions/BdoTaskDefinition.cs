@@ -1,7 +1,7 @@
-﻿using BindOpen.System.Data;
+﻿using BindOpen.System.Scoping.Tasks;
+using BindOpen.System.Data;
 using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Data.Meta;
-using BindOpen.System.Scoping.Tasks;
 using System;
 
 namespace BindOpen.System.Scoping.Tasks

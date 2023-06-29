@@ -13,8 +13,8 @@ namespace BindOpen.System.Data
         /// <param key="kind">The kind of exp to consider.</param>
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the created exp.</returns>
-        public static BdoAdvancedCondition NewCondition(
-            AdvancedConditionKind kind,
+        public static BdoCompositeCondition NewCondition(
+            CompositeConditionKind kind,
             params IBdoCondition[] conditions)
             => new(kind, conditions);
 

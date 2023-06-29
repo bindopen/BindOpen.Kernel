@@ -46,26 +46,12 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param key="item"></param>
-        /// <returns></returns>
-        bool IsCompatibleWithData(object item);
-
-        /// <summary>
-        /// 
-        /// </summary>
         IList<string> Aliases { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         ITBdoSet<IBdoSpec> SubSpecs { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="name"></param>
-        /// <returns></returns>
-        IBdoSpec GetSubSpec(string name);
 
         /// <summary>
         /// 
@@ -128,5 +114,19 @@ namespace BindOpen.System.Data.Meta
         /// 
         /// </summary>
         object DefaultData { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="item"></param>
+        /// <returns></returns>
+        bool IsCompatibleWithData(object item);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="name"></param>
+        /// <returns></returns>
+        IBdoSpec GetSubSpec(string name);
     }
 }

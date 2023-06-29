@@ -1,10 +1,10 @@
-﻿using BindOpen.System.Scoping.Script;
-using BindOpen.System.Data;
+﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Helpers;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Logging;
+using BindOpen.System.Scoping.Script;
 
-namespace BindOpen.System.Scoping.Script
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This static class provides methods to create script elements.

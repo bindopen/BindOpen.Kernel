@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BindOpen.System.Data.Meta;
 using BindOpen.System.Scoping.Script;
 
 namespace BindOpen.System.Data
@@ -19,6 +20,8 @@ namespace BindOpen.System.Data
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<BdoReference, ReferenceDto>()
+                    .ForMember(q => q.Expression, opt => opt.MapFrom(q => q.Expression.ToDto()))
+                    .ForMember(q => q.MetaData, opt => opt.MapFrom(q => q.MetaData.ToDto()))
                     .ForMember(q => q.Word, opt => opt.MapFrom(q => q.Word.ToDto()))
             );
 
@@ -42,8 +45,8 @@ namespace BindOpen.System.Data
             {
                 Kind = dto.Kind,
                 Expression = dto.Expression.ToPoco(),
-                VariableName = dto.Identifier,
-                //MetaData = dto.MetaData.ToPoco(),
+                Identifier = dto.Identifier,
+                MetaData = dto.MetaData.ToPoco(),
                 Word = dto.Word.ToPoco()
             };
 

@@ -5,12 +5,12 @@ namespace BindOpen.System.Data.Conditions
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoAdvancedCondition : IBdoCondition
+    public interface IBdoCompositeCondition : IBdoCondition
     {
         /// <summary>
         /// 
         /// </summary>
-        AdvancedConditionKind Kind { get; set; }
+        CompositeConditionKind Kind { get; set; }
 
         /// <summary>
         /// 
