@@ -3,14 +3,12 @@
     /// <summary>
     /// This class represents the search form request DTO.
     /// </summary>
-    public interface IExportRequest
+    public interface IExportRequestDto
     {
-        #region Properties
-
         /// <summary>
         /// The export format of this instance.
         /// </summary>
-        ExportFormats ExportFormat { get; set; }
+        string ExportFormat { get; set; }
 
         /// <summary>
         /// The file name of this instance.
@@ -26,7 +24,5 @@
         /// The culture of this instance.
         /// </summary>
         string Culture { get; set; }
-
-        #endregion
     }
 }

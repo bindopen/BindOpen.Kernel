@@ -5,10 +5,8 @@ namespace Fidal.Framework.Data
     /// <summary>
     /// This class represents the search form request DTO.
     /// </summary>
-    public interface ISearchRequest
+    public interface ISearchRequestDto
     {
-        #region Properties
-
         /// <summary>
         /// The columns of this instance.
         /// </summary>
@@ -23,7 +21,5 @@ namespace Fidal.Framework.Data
         /// The order-by of this instance.
         /// </summary>
         string OrderBy { get; set; }
-
-        #endregion
     }
 }
