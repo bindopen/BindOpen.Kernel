@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace Fidal.MarkManager.Domain.Models.Enums
+namespace BindOpen.System.Data
 {
     /// <summary>
     /// This enumeration lists the possible modes of query result.
