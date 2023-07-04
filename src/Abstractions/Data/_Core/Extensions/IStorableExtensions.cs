@@ -15,7 +15,7 @@ namespace BindOpen.System.Data
         public static T WithCreationDate<T>(
             this T obj,
             DateTime? date)
-            where T : IStorable
+            where T : IDated
         {
             if (obj != null)
             {
@@ -33,7 +33,7 @@ namespace BindOpen.System.Data
         public static T WithLastModificationDate<T>(
             this T obj,
             DateTime? date)
-            where T : IStorable
+            where T : IDated
         {
             if (obj != null)
             {

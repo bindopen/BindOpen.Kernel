@@ -7,7 +7,7 @@
         ITBdoSet<IBdoSpec>,
         IBdoTitled, IBdoDescribed,
         INamed,
-        IIndexed, IStorable, IBdoUsing
+        IIndexed, IDated, IBdoUsing
     {
     }
 }

@@ -5,7 +5,7 @@ namespace BindOpen.System.Data
     /// <summary>
     /// This interface defines a storable data.
     /// </summary>
-    public interface IStorable
+    public interface IDated
     {
         /// <summary>
         /// Creation date of this instance.
