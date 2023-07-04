@@ -9,7 +9,7 @@ namespace BindOpen.System.Scoping
     public interface IBdoExtensionGroup :
         IIdentified, INamed,
         IBdoTitled, IBdoDescribed,
-        IStorable
+        IDated
     {
         /// <summary>
         /// 
