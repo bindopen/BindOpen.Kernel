@@ -1,5 +1,4 @@
-﻿using BindOpen.System.Data;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
 namespace BindOpen.System.Data.Apis

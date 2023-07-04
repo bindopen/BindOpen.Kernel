@@ -6,7 +6,7 @@
     public interface IBdoConfiguration :
         IBdoMetaObject,
         IBdoTitled, IBdoDescribed,
-        IStorable, IBdoDefinable, IBdoUsing
+        IDated, IBdoDefinable, IBdoUsing
     {
     }
 }
