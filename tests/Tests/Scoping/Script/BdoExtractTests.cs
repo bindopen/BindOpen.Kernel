@@ -10,7 +10,7 @@ namespace BindOpen.System.Scoping.Script
     public class BdoExtractTests
     {
         dynamic _valueSet;
-        public BdoDictionary _dico = null;
+        public BdoTextDictionary _dico = null;
 
 
         [OneTimeSetUp]

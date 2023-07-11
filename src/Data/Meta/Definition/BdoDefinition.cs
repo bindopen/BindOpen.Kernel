@@ -117,7 +117,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public IBdoDictionary Title { get; set; }
+        public IBdoTextDictionary Title { get; set; }
 
         #endregion
 
@@ -130,7 +130,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public IBdoDictionary Description { get; set; }
+        public IBdoTextDictionary Description { get; set; }
 
         #endregion
     }

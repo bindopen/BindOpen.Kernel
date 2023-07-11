@@ -39,7 +39,7 @@ namespace BindOpen.System.Data
         /// <summary>
         /// The items of this instance.
         /// </summary>
-        private List<T> _items;
+        private List<(string Key, T Value)> _items;
 
         #endregion
 
@@ -69,7 +69,7 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="name"></param>
         /// <returns></returns>
-        public IList<T> Items => _items;
+        public IList<T> Items => _items?.Select(q => q.Value).ToList();
 
         /// <summary>
         /// Returns the number of items.
@@ -118,6 +118,12 @@ namespace BindOpen.System.Data
             _items = null;
         }
 
+        private bool ItemKeyEquals((string Key, T Value) item, string key)
+        {
+            var itemKey = item.Key == null ? item.Value?.Key() : item.Key;
+            return itemKey.BdoKeyEquals(key);
+        }
+
         /// <summary>
         /// Adds the specified item.
         /// </summary>
@@ -125,13 +131,14 @@ namespace BindOpen.System.Data
         /// <returns>Returns the new item that has been added.
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
-        public virtual T Insert(T item)
+        public virtual T Insert(string key, T item)
         {
-            _items ??= new List<T>();
+            _items ??= new List<(string Key, T Value)>();
 
-            var key = item?.Key();
-            Remove(key);
-            _items.Add(item);
+            var currentKey = key ?? item?.Key();
+            Remove(currentKey);
+
+            _items.Add((key, item));
 
             return item;
         }
@@ -144,7 +151,7 @@ namespace BindOpen.System.Data
         {
             if (_items != null && keys != null)
             {
-                return _items.RemoveAll(p => keys.Any(q => p.BdoKeyEquals(q)));
+                return _items.RemoveAll(p => keys.Any(q => ItemKeyEquals(p, q)));
             }
 
             return 0;
@@ -154,7 +161,7 @@ namespace BindOpen.System.Data
         {
             if (_items != null && filter != null)
             {
-                return _items.RemoveAll(p => filter(p));
+                return _items.RemoveAll(p => filter(p.Value));
             }
 
             return 0;
@@ -168,7 +175,7 @@ namespace BindOpen.System.Data
         public bool Has(string key = null)
         {
             if (key == null) return _items?.Any() == true;
-            return _items?.Any(p => p.BdoKeyEquals(key)) == true;
+            return _items?.Any(p => ItemKeyEquals(p, key)) == true;
         }
 
         /// <summary>
@@ -186,7 +193,7 @@ namespace BindOpen.System.Data
             if (_items == null)
                 return default;
 
-            return _items.FirstOrDefault(p => p.BdoKeyEquals(key));
+            return _items.FirstOrDefault(p => ItemKeyEquals(p, key)).Value;
         }
 
         /// <summary>
@@ -206,7 +213,7 @@ namespace BindOpen.System.Data
 
             var newKey = Has(key) ? key : alternateKey;
 
-            return _items.FirstOrDefault(p => p.BdoKeyEquals(newKey));
+            return _items.FirstOrDefault(p => ItemKeyEquals(p, newKey)).Value;
         }
 
         /// <summary>
@@ -227,14 +234,13 @@ namespace BindOpen.System.Data
         /// <summary>
         /// Returns the specified item of this instance.
         /// </summary>
-        /// <param key="name">The name to consider.</param>
+        /// <param key="key">The name to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public virtual Q Get<Q>(string name)
+        public virtual Q Get<Q>(string key)
             where Q : T
         {
-            return Get(name).As<Q>();
+            return Get(key).As<Q>();
         }
-
 
         /// <summary>
         /// Returns the specified item of this instance.
@@ -347,11 +353,11 @@ namespace BindOpen.System.Data
             {
                 if (p is IClonable dataItem)
                 {
-                    return (T)dataItem.Clone();
+                    return (p.Key, (T)dataItem.Clone());
                 }
                 else
                 {
-                    return p;
+                    return (p.Key, p.Value);
                 }
             }).ToList();
 

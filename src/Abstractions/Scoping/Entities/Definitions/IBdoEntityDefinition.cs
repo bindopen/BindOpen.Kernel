@@ -23,6 +23,6 @@ namespace BindOpen.System.Scoping.Entities
         /// <summary>
         /// 
         /// </summary>
-        IBdoDictionary ViewerDictionary { get; set; }
+        IBdoTextDictionary ViewerDictionary { get; set; }
     }
 }

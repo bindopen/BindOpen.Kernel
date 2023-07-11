@@ -10,8 +10,7 @@ namespace BindOpen.System.Data
     /// This class represents a dico data item.
     /// </summary>
     /// <example>Titles, Descriptions.</example>
-    public class BdoDictionary : Dictionary<string, string>,
-        IBdoDictionary
+    public class BdoTextDictionary : Dictionary<string, string>, IBdoTextDictionary
     {
         // --------------------------------------------------
         // Converters
@@ -23,7 +22,7 @@ namespace BindOpen.System.Data
         /// 
         /// </summary>
         /// <param key="items"></param>
-        public static implicit operator BdoDictionary((string Key, string Value)[] items)
+        public static implicit operator BdoTextDictionary((string Key, string Value)[] items)
         {
             var dico = BdoData.NewDictionary();
             foreach (var (Key, Value) in items)
@@ -38,10 +37,10 @@ namespace BindOpen.System.Data
         /// 
         /// </summary>
         /// <param key="items"></param>
-        public static implicit operator BdoDictionary(string text)
+        public static implicit operator BdoTextDictionary(string text)
         {
             var dico = BdoData.NewDictionary();
-            dico.Set(StringHelper.__Star, text);
+            dico.With(StringHelper.__Star, text);
 
             return dico;
         }
@@ -57,7 +56,7 @@ namespace BindOpen.System.Data
         /// <summary>
         /// Instantiates a new instance of the DictionaryDataItem class. 
         /// </summary>
-        public BdoDictionary()
+        public BdoTextDictionary()
         {
         }
 
@@ -77,10 +76,10 @@ namespace BindOpen.System.Data
         #endregion
 
         // --------------------------------------------------
-        // IDictionaryDataItem Implementation
+        // IBdoDictionary Implementation
         // --------------------------------------------------
 
-        #region IDictionaryDataItem
+        #region IBdoDictionary
 
         /// <summary>
         /// Text of the specified key.
@@ -104,32 +103,6 @@ namespace BindOpen.System.Data
             get { return GetValue(key, defaultKey); }
         }
 
-        // Add -----------------------------
-
-        /// <summary>
-        /// Adds a new value to this instance.
-        /// </summary>
-        /// <param key="pairs">The value to add.</param>
-        public IBdoDictionary Add(params KeyValuePair<string, string>[] pairs)
-        {
-            foreach (var value in pairs)
-            {
-                Add(value.Key, value.Value);
-            }
-
-            return this;
-        }
-
-        /// <summary>
-        /// Adds a new value to this instance with the specified key and text.
-        /// </summary>
-        /// <param key="text">The text to consider.</param>
-        /// <returns>Returns the added data key value.</returns>
-        public IBdoDictionary Add(string text)
-        {
-            return Add(StringHelper.__Star, text);
-        }
-
         /// <summary>
         /// Adds a new value to this instance with the specified key and text.
         /// </summary>
@@ -137,53 +110,28 @@ namespace BindOpen.System.Data
         /// <param key="text">The text to consider.</param>
         /// <param key="availableKeys">The available keys to consider.</param>
         /// <returns>Returns the added data key value.</returns>
-        public IBdoDictionary Add(string key, string text, IEnumerable<string> availableKeys = null)
+        public new IBdoTextDictionary Add(string key, string text)
         {
-            if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(text)) return null;
+            if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(text)) return default;
 
             Remove(key);
-            if (availableKeys?.Any() != false || availableKeys.Contains(key.ToLower()))
+            base.Add(key, text);
+
+            return this;
+        }
+
+        // Remove -------------------------------
+
+        /// <summary>
+        /// Removes the value with the specified key.
+        /// </summary>
+        /// <param key="key">The key to consider.</param>
+        public void Remove(params string[] keys)
+        {
+            foreach (var key in keys)
             {
-                base.Add(key, text);
+                base.Remove(key);
             }
-
-            return this;
-        }
-
-        /// <summary>
-        /// Adds a new value to this instance.
-        /// </summary>
-        /// <param key="pairs">The value to add.</param>
-        public IBdoDictionary Set(params KeyValuePair<string, string>[] pairs)
-        {
-            Clear();
-            Add(pairs);
-
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the text of the default value.
-        /// </summary>
-        /// <param key="text">The text of the value to add.</param>
-        public IBdoDictionary Set(string text)
-        {
-            Set(StringHelper.__Star, text);
-
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the text of the default value.
-        /// </summary>
-        /// <param key="key">The key of the value to add.</param>
-        /// <param key="text">The text of the value to add.</param>
-        public IBdoDictionary Set(string key, string text)
-        {
-            Clear();
-            Add(text);
-
-            return this;
         }
 
         /// <summary>
@@ -199,28 +147,12 @@ namespace BindOpen.System.Data
             return this[key, alternateKey];
         }
 
-        // Remove -------------------------------
-
-        /// <summary>
-        /// Removes the value with the specified key.
-        /// </summary>
-        /// <param key="key">The key to consider.</param>
-        public IBdoDictionary Remove(params string[] keys)
-        {
-            foreach (var key in keys)
-            {
-                base.Remove(key);
-            }
-
-            return this;
-        }
-
         /// <summary>
         /// Indicates whether this intance equals the specified dico.
         /// </summary>
         /// <param key="dico">The dictionar to consider.</param>
         /// <returns>Returns true if this instance equals the specified dico. False otherwise.</returns>
-        public bool Equals(IBdoDictionary dico)
+        public bool Equals(IBdoTextDictionary dico)
         {
             if (dico == null || Values == null || dico.Values == null || Values.Count != dico.Values.Count)
             {

@@ -108,5 +108,22 @@ namespace BindOpen.System.Data
             st = el.ToString();
             Assert.That(st == arrayInteger[0].ToString(), "Bad scalar el - ToString");
         }
+
+        [Test, Order(5)]
+        public void AddMetaSetWithKeys()
+        {
+            var elAA = BdoData.NewMetaScalar("name1", null);
+            var elAB = BdoData.NewMetaScalar("name1", "Test1");
+            elAA.Update(elAB);
+
+            var elSetA = BdoData.NewMetaSet(("key1", elAA), (null, elAB));
+
+            Assert.That(elSetA.Count == 2, "Bad scalar el - ToString");
+
+            var eelAA = elSetA.Get("key1");
+            Assert.That(eelAA != null, "Bad scalar el - ToString");
+            var eelAB = elSetA.Get("name1");
+            Assert.That(eelAB != null, "Bad scalar el - ToString");
+        }
     }
 }

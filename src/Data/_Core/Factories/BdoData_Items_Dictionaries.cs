@@ -11,9 +11,9 @@ namespace BindOpen.System.Data
         /// <summary>
         /// Instantiates a new instance of the DictionaryDataItem class specifying the values.
         /// </summary>
-        public static BdoDictionary NewDictionary()
+        public static BdoTextDictionary NewDictionary()
         {
-            var dico = new BdoDictionary();
+            var dico = new BdoTextDictionary();
             return dico;
         }
 
@@ -21,10 +21,10 @@ namespace BindOpen.System.Data
         /// Instantiates a new instance of the DictionaryDataItem class specifying the values.
         /// </summary>
         /// <param key="values">The values to consider.</param>
-        public static BdoDictionary NewDictionary(params KeyValuePair<string, string>[] pairs)
+        public static BdoTextDictionary NewDictionary(params KeyValuePair<string, string>[] pairs)
         {
-            var dico = new BdoDictionary();
-            dico.Set(pairs);
+            var dico = new BdoTextDictionary();
+            dico.With(pairs);
 
             return dico;
         }
@@ -33,9 +33,9 @@ namespace BindOpen.System.Data
         /// Instantiates a new instance of the DictionaryDataItem class specifying the values.
         /// </summary>
         /// <param key="values">The values to consider.</param>
-        public static BdoDictionary NewDictionary(params (string Key, string Value)[] pairs)
+        public static BdoTextDictionary NewDictionary(params (string Key, string Value)[] pairs)
         {
-            var dico = new BdoDictionary();
+            var dico = new BdoTextDictionary();
             foreach (var pair in pairs)
             {
                 dico.Add(pair.Key, pair.Value);
@@ -48,10 +48,10 @@ namespace BindOpen.System.Data
         /// Instantiates a new instance of the DictionaryDataItem class specifying the values.
         /// </summary>
         /// <param key="values">The values to consider.</param>
-        public static BdoDictionary NewDictionary(string text)
+        public static BdoTextDictionary NewDictionary(string text)
         {
-            var dico = new BdoDictionary();
-            dico.Set(text);
+            var dico = new BdoTextDictionary();
+            dico.With(text);
 
             return dico;
         }

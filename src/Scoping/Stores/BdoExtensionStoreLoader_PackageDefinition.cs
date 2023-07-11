@@ -72,7 +72,7 @@ namespace BindOpen.System.Scoping.Stores
                     if (descriptionAttribute != null)
                     {
                         definition.Description ??= BdoData.NewDictionary();
-                        definition.Description.Set(descriptionAttribute.Description);
+                        definition.Description.With(descriptionAttribute.Description);
                     }
                 }
 
@@ -84,7 +84,7 @@ namespace BindOpen.System.Scoping.Stores
                 if (string.IsNullOrEmpty(definition.Title?.Get()))
                 {
                     definition.Title ??= BdoData.NewDictionary();
-                    definition.Title.Set(
+                    definition.Title.With(
                         string.Format(
                             "Extension library 'BindOpen.System.Scoping.Tests'",
                             definition.AssemblyName));

@@ -88,8 +88,8 @@ namespace BindOpen.System.Data
             _metaObjSet = BdoData.NewMetaSet(
                 metaObj1,
                 metaObj2,
-                metaObj3,
-                metaObj4);
+                metaObj3);
+            _metaObjSet.Add(metaObj4);
 
             Test(_metaObjSet);
         }
