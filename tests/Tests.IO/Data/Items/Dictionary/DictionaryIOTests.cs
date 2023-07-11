@@ -12,7 +12,7 @@ namespace BindOpen.System.Data
         private readonly string _filePath_xml = SystemData.WorkingFolder + "Dictionary.xml";
         private readonly string _filePath_json = SystemData.WorkingFolder + "Dictionary.json";
         dynamic _valueSet;
-        private IBdoDictionary _dico = null;
+        private IBdoTextDictionary _dico = null;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -28,8 +28,8 @@ namespace BindOpen.System.Data
         }
 
         public static bool Equals(
-            IBdoDictionary dico1,
-            IBdoDictionary dico2)
+            IBdoTextDictionary dico1,
+            IBdoTextDictionary dico2)
         {
             var b = dico1 != null && dico2 != null
                 && dico1.Count == dico2.Count

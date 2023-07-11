@@ -8,6 +8,6 @@
         /// <summary>
         /// The global description of this instance.
         /// </summary>
-        IBdoDictionary Description { get; set; }
+        IBdoTextDictionary Description { get; set; }
     }
 }

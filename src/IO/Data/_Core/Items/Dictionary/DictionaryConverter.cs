@@ -12,7 +12,7 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static DictionaryDto ToDto(this IBdoDictionary poco)
+        public static DictionaryDto ToDto(this IBdoTextDictionary poco)
         {
             if (poco == null) return null;
 
@@ -30,11 +30,11 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoDictionary ToPoco(this DictionaryDto dto)
+        public static IBdoTextDictionary ToPoco(this DictionaryDto dto)
         {
             if (dto == null) return null;
 
-            BdoDictionary poco = BdoData.NewDictionary(dto.Values?.Select(q => q.ToPoco()).ToArray());
+            BdoTextDictionary poco = BdoData.NewDictionary(dto.Values?.Select(q => q.ToPoco()).ToArray());
             poco.WithId(dto.Id);
 
             return poco;

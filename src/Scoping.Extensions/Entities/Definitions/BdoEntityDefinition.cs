@@ -30,7 +30,7 @@ namespace BindOpen.System.Scoping.Entities
         /// <summary>
         /// 
         /// </summary>
-        public IBdoDictionary ViewerDictionary { get; set; }
+        public IBdoTextDictionary ViewerDictionary { get; set; }
 
         #endregion
 

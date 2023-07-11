@@ -6,7 +6,7 @@ namespace BindOpen.System.Data
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoDictionary :
+    public interface IBdoTextDictionary :
         IBdoObjectNotMetable, IIdentified,
         IDictionary<string, string>
     {
@@ -21,48 +21,16 @@ namespace BindOpen.System.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param key="pair"></param>
-        IBdoDictionary Add(params KeyValuePair<string, string>[] pairs);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="text"></param>
-        /// <returns></returns>
-        IBdoDictionary Add(string text);
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param key="key"></param>
         /// <param key="text"></param>
         /// <returns></returns>
-        IBdoDictionary Add(string key, string text, IEnumerable<string> availableKeys = null);
+        new IBdoTextDictionary Add(string key, string text);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param key="keys"></param>
-        IBdoDictionary Remove(params string[] keys);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="pair"></param>
-        IBdoDictionary Set(params KeyValuePair<string, string>[] pairs);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="text"></param>
-        IBdoDictionary Set(string text);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="key"></param>
-        /// <param key="text"></param>
-        IBdoDictionary Set(string key, string text);
+        void Remove(params string[] keys);
 
         /// <summary>
         /// 
@@ -77,6 +45,6 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="dictionary"></param>
         /// <returns></returns>
-        bool Equals(IBdoDictionary dictionary);
+        bool Equals(IBdoTextDictionary dictionary);
     }
 }
