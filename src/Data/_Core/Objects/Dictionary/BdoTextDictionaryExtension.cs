@@ -6,7 +6,7 @@ namespace BindOpen.System.Data
     /// This class represents a dico data item extension.
     /// </summary>
     /// <example>Titles, Descriptions.</example>
-    public static class BdoDictionaryExtension
+    public static class BdoTextDictionaryExtension
     {
         /// <summary>
         /// Instantiates a new instance of the DictionaryDataItem class
@@ -14,11 +14,11 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="obj">The object to consider.</param>
         /// <param key="mappings">The mappings to consider.</param>
-        public static BdoDictionary AsDictionary(
+        public static BdoTextDictionary AsDictionary(
             this object obj,
             (string from, string to)[] mappings)
         {
-            var dico = new BdoDictionary();
+            var dico = new BdoTextDictionary();
             if (obj != null)
             {
                 foreach (PropertyInfo info in obj.GetType().GetProperties())

@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace BindOpen.System.Data
 {
     [TestFixture, Order(201)]
-    public class BdoMetaDataExpressionTests
+    public class BdoMetaDataTests
     {
         private object _obj = null;
 

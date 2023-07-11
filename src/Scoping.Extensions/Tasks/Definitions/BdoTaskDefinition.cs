@@ -96,9 +96,9 @@ namespace BindOpen.System.Scoping.Tasks
             if (taskDefinition != null)
             {
                 if (taskDefinition.Title != null)
-                    Title = taskDefinition.Title.Clone() as BdoDictionary;
+                    Title = taskDefinition.Title.Clone() as BdoTextDictionary;
                 if (taskDefinition.Description != null)
-                    Description = taskDefinition.Description.Clone() as BdoDictionary;
+                    Description = taskDefinition.Description.Clone() as BdoTextDictionary;
 
                 //InputSpecification.Repair(
                 //    taskDefinition.InputSpecification,

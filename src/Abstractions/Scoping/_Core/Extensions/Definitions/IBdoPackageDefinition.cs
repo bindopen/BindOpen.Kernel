@@ -40,7 +40,7 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// 
         /// </summary>
-        IBdoDictionary ItemIndexFullNameDictionary { get; set; }
+        IBdoTextDictionary ItemIndexFullNameDictionary { get; set; }
 
         /// <summary>
         /// 

@@ -103,7 +103,7 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// 
         /// </summary>
-        public IBdoDictionary Title { get; set; }
+        public IBdoTextDictionary Title { get; set; }
 
         #endregion
 
@@ -116,7 +116,7 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// 
         /// </summary>
-        public IBdoDictionary Description { get; set; }
+        public IBdoTextDictionary Description { get; set; }
 
         #endregion
     }
