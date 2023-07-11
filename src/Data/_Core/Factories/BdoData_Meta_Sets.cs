@@ -18,9 +18,20 @@ namespace BindOpen.System.Data
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
+        /// <param key="metas">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static BdoMetaSet NewMetaSet(string name)
+        public static BdoMetaSet NewMetaSet(
+            string name)
             => NewMetaSet<BdoMetaSet>(name);
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="metas">The parameters to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static BdoMetaSet NewMetaSet(
+            params IBdoMetaData[] metas)
+            => NewMetaSet<BdoMetaSet>(null, metas);
 
         /// <summary>
         /// Defines the parameters of this instance.
@@ -35,20 +46,21 @@ namespace BindOpen.System.Data
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
-        /// <param key="metas">The parameters to consider.</param>
+        /// <param key="items">The items to consider.</param>
         /// <returns>Return this instance.</returns>
         public static BdoMetaSet NewMetaSet(
-            params IBdoMetaData[] metas)
-            => NewMetaSet<BdoMetaSet>(metas);
+            string name,
+            params (string Key, IBdoMetaData Value)[] items)
+            => NewMetaSet<BdoMetaSet>(name, items);
 
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
-        /// <param key="metas">The parameters to consider.</param>
+        /// <param key="items">The items to consider.</param>
         /// <returns>Return this instance.</returns>
         public static BdoMetaSet NewMetaSet(
-            params object[] objs)
-            => NewMetaSet<BdoMetaSet>(objs);
+            params (string Key, IBdoMetaData Value)[] items)
+            => NewMetaSet<BdoMetaSet>(null, items);
 
         /// <summary>
         /// Defines the parameters of this instance.
@@ -96,19 +108,16 @@ namespace BindOpen.System.Data
         /// <returns>Return this instance.</returns>
         public static T NewMetaSet<T>()
             where T : class, IBdoMetaSet, new()
-        {
-            return BdoData.NewSet<T, IBdoMetaData>();
-        }
+            => NewSet<T, IBdoMetaData>();
 
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
+        /// <param key="items">The items to consider.</param>
         /// <returns>Return this instance.</returns>
         public static T NewMetaSet<T>(string name)
             where T : class, IBdoMetaSet, new()
-        {
-            return BdoData.NewSet<T, IBdoMetaData>().WithName(name);
-        }
+            => NewMetaSet<T>().WithName(name);
 
         /// <summary>
         /// Defines the parameters of this instance.
@@ -131,12 +140,30 @@ namespace BindOpen.System.Data
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
-        /// <param key="metas">The parameters to consider.</param>
+        /// <param key="items">The items to consider.</param>
         /// <returns>Return this instance.</returns>
         public static T NewMetaSet<T>(
-            params IBdoMetaData[] metas)
+            params (string Key, IBdoMetaData Value)[] items)
             where T : class, IBdoMetaSet, new()
-            => NewMetaSet<T>(null, metas);
+            => NewMetaSet<T>(null, items);
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="items">The items to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static T NewMetaSet<T>(
+            string name,
+            params (string Key, IBdoMetaData Value)[] items)
+            where T : class, IBdoMetaSet, new()
+        {
+            var list = NewMetaSet<T>();
+            list
+                .With(items)
+                .WithName(name);
+
+            return list;
+        }
 
         /// <summary>
         /// Defines the parameters of this instance.
@@ -144,9 +171,9 @@ namespace BindOpen.System.Data
         /// <param key="metas">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
         public static T NewMetaSet<T>(
-            params object[] objs)
+            params IBdoMetaData[] metas)
             where T : class, IBdoMetaSet, new()
-            => NewMetaSet<T>(null, objs.Select(q => BdoData.NewMeta(q)).ToArray());
+            => NewMetaSet<T>(null, metas);
 
         /// <summary>
         /// Defines the parameters of this instance.
