@@ -8,7 +8,7 @@ namespace BindOpen.System.Data.Stores
     /// <summary>
     /// This class represents a set of depots.
     /// </summary>
-    public class BdoDataStore : BdoObject, IBdoDataStore
+    public class BdoDepotStore : BdoObject, IBdoDepotStore
     {
         // ------------------------------------------
         // PROPERTIES
@@ -32,7 +32,7 @@ namespace BindOpen.System.Data.Stores
         /// <summary>
         /// Instantiates a new instance of the BdoDataStore class.
         /// </summary>
-        public BdoDataStore()
+        public BdoDepotStore()
         {
         }
 
@@ -50,7 +50,7 @@ namespace BindOpen.System.Data.Stores
         /// <param key="depot">The depot to consider.</param>
         /// <param key="action">The action to execute on the newly created depot.</param>
         /// <typeparam name="T">The depot class to consider.</typeparam>
-        public IBdoDataStore Add<T>(T depot, Action<T> action = null) where T : IBdoDepot
+        public IBdoDepotStore Add<T>(T depot, Action<T> action = null) where T : IBdoDepot
         {
             Depots.Add(typeof(T), depot);
             action?.Invoke(depot);

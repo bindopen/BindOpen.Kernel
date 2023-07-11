@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Scoping.Entities;
-using BindOpen.System.Data;
+﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Stores;
 using BindOpen.System.Logging;
+using BindOpen.System.Scoping.Entities;
 using BindOpen.System.Scoping.Script;
 using BindOpen.System.Scoping.Stores;
 using System;
@@ -56,7 +56,12 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// The data store of this instance.
         /// </summary>
-        public IBdoDataStore DataStore { get; set; }
+        public IBdoDepotStore DepotStore { get; set; }
+
+        /// <summary>
+        /// The data store of this instance.
+        /// </summary>
+        public IBdoMetaSet DataStore { get; }
 
         public IBdoScriptInterpreter Interpreter { get; }
 
@@ -93,7 +98,7 @@ namespace BindOpen.System.Scoping
         /// </summary>
         public void Clear()
         {
-            DataStore?.Clear();
+            DepotStore?.Clear();
             ExtensionStore?.Clear();
         }
 
@@ -115,7 +120,7 @@ namespace BindOpen.System.Scoping
                     "Application extension missing", description: "No extension item definition store specified.");
                 return false;
             }
-            if (checkDataStore && DataStore == null)
+            if (checkDataStore && DepotStore == null)
             {
                 log?.AddEvent(EventKinds.Error,
                     "Depot set missing", description: "No depot set specified.");

@@ -8,7 +8,7 @@ namespace BindOpen.System.Data.Stores
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoDataStore : IBdoObject
+    public interface IBdoDepotStore : IBdoObject
     {
         /// <summary>
         /// The depots of this instance.
@@ -21,7 +21,7 @@ namespace BindOpen.System.Data.Stores
         /// <param key="depot">The depot to consider.</param>
         /// <param key="action">The action to execute on the newly created depot.</param>
         /// <typeparam name="T">The depot class to consider.</typeparam>
-        IBdoDataStore Add<T>(T depot, Action<T> action = null) where T : IBdoDepot;
+        IBdoDepotStore Add<T>(T depot, Action<T> action = null) where T : IBdoDepot;
 
         /// <summary>
         /// Gets the depot of the specified class.

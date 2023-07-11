@@ -7,16 +7,17 @@ namespace BindOpen.System.Data.Stores
     /// <summary>
     /// This class represents an data source extensions.
     /// </summary>
-    public static class BdoDataStoreExtensions
+    public static class BdoDepotStoreExtensions
     {
         /// <summary>
         /// Add a datasource depot into the specified data store executing the specified action.
         /// </summary>
         /// <param key="dataStore">The data store to consider.</param>
         /// <returns>Returns the data store to update.</returns>
-        public static IBdoDataStore RegisterDatasources(
-            this IBdoDataStore dataStore) =>
-            RegisterDatasources(dataStore, (d, l) => { });
+        public static T RegisterDatasources<T>(
+            this T dataStore)
+            where T : IBdoDepotStore
+            => RegisterDatasources<T>(dataStore, (d, l) => { });
 
         /// <summary>
         /// Add a datasource depot into the specified data store executing the specified action.
@@ -24,10 +25,11 @@ namespace BindOpen.System.Data.Stores
         /// <param key="dataStore">The data store to consider.</param>
         /// <param key="action">The action to execute on the created depot.</param>
         /// <returns>Returns the data store to update.</returns>
-        public static IBdoDataStore RegisterDatasources(
-            this IBdoDataStore dataStore,
-            Action<IBdoSourceDepot> action) =>
-            RegisterDatasources(dataStore, (d, l) => action?.Invoke(d));
+        public static T RegisterDatasources<T>(
+            this T dataStore,
+            Action<IBdoSourceDepot> action)
+            where T : IBdoDepotStore
+            => RegisterDatasources<T>(dataStore, (d, l) => action?.Invoke(d));
 
         /// <summary>
         /// Add a data source depot into the specified data store using the specified options.
@@ -35,9 +37,10 @@ namespace BindOpen.System.Data.Stores
         /// <param key="dataStore">The data store to consider.</param>
         /// <param key="action">The action to execute on the created depot.</param>
         /// <returns>Returns the data store to update.</returns>
-        public static IBdoDataStore RegisterDatasources(
-            this IBdoDataStore dataStore,
+        public static T RegisterDatasources<T>(
+            this T dataStore,
             Action<IBdoSourceDepot, IBdoLog> action)
+            where T : IBdoDepotStore
         {
             var depot = new BdoDatasourceDepot()
             {
@@ -64,6 +67,7 @@ namespace BindOpen.System.Data.Stores
             // we populate the data source depot from settings
 
             dataStore?.Add<IBdoSourceDepot>(depot);
+
             return dataStore;
         }
 
@@ -72,7 +76,7 @@ namespace BindOpen.System.Data.Stores
         /// </summary>
         /// <param key="dataStore">The data store to consider.</param>
         /// <returns>Returns the datasource depot of the specified data store.</returns>
-        public static IBdoSourceDepot GetDatasourceDepot(this IBdoDataStore dataStore)
+        public static IBdoSourceDepot GetDatasourceDepot(this IBdoDepotStore dataStore)
         {
             return dataStore?.Get<IBdoSourceDepot>();
         }
@@ -84,7 +88,7 @@ namespace BindOpen.System.Data.Stores
         /// <returns>Returns the datasource depot of the specified scope.</returns>
         public static IBdoSourceDepot GetDatasourceDepot(this IBdoScope scope)
         {
-            return scope?.DataStore?.Get<IBdoSourceDepot>();
+            return scope?.DepotStore?.Get<IBdoSourceDepot>();
         }
     }
 }
