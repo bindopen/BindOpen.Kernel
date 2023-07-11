@@ -24,9 +24,14 @@ namespace BindOpen.System.Scoping
         IBdoExtensionStore ExtensionStore { get; }
 
         /// <summary>
+        /// The depot store of this instance.
+        /// </summary>
+        IBdoDepotStore DepotStore { get; }
+
+        /// <summary>
         /// The data store of this instance.
         /// </summary>
-        IBdoDataStore DataStore { get; }
+        IBdoMetaSet DataStore { get; }
 
         /// <summary>
         /// The data context.
