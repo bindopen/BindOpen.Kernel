@@ -27,6 +27,24 @@ namespace BindOpen.System.Data.Meta
         }
 
         /// <summary>
+        /// Adds the specified item.
+        /// </summary>
+        /// <param key="items">The items of the item to add.</param>
+        /// <returns>Returns the new item that has been added.
+        /// Returns null if the new item is null or else its name is null.</returns>
+        /// <remarks>The new item must have a name.</remarks>
+        public static T Add<T>(
+           this T set,
+           string key,
+           object value)
+           where T : IBdoMetaSet
+        {
+            set.Add<T>((key, value));
+
+            return set;
+        }
+
+        /// <summary>
         /// Adds a new value to this instance.
         /// </summary>
         /// <param key="pairs">The value to add.</param>

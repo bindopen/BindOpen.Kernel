@@ -7,7 +7,7 @@ using System.Linq;
 namespace BindOpen.System.Data
 {
     [TestFixture, Order(202)]
-    public class BdoMetaScalarListTests
+    public class BdoMetaScalarSetTests
     {
         private dynamic _testData;
 
@@ -116,14 +116,16 @@ namespace BindOpen.System.Data
             var elAB = BdoData.NewMetaScalar("name1", "Test1");
             elAA.Update(elAB);
 
-            var elSetA = BdoData.NewMetaSet(("key1", elAA), (null, elAB));
+            var elSetA = BdoData.NewMetaSet(("key1", elAA), (null, elAB), ("key2", this));
 
-            Assert.That(elSetA.Count == 2, "Bad scalar el - ToString");
+            Assert.That(elSetA.Count == 3, "Bad scalar el - ToString");
 
-            var eelAA = elSetA.Get("key1");
-            Assert.That(eelAA != null, "Bad scalar el - ToString");
-            var eelAB = elSetA.Get("name1");
-            Assert.That(eelAB != null, "Bad scalar el - ToString");
+            var el1 = elSetA.Get("key1");
+            Assert.That(el1 != null, "Bad scalar el - ToString");
+            var el2 = elSetA.Get("name1");
+            Assert.That(el2 != null, "Bad scalar el - ToString");
+            var el3 = elSetA.Get("key2");
+            Assert.That(el3 == this, "Bad scalar el - ToString");
         }
     }
 }

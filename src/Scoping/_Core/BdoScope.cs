@@ -33,6 +33,10 @@ namespace BindOpen.System.Scoping
             ExtensionStore = BdoData.New<BdoExtensionStore>();
 
             Interpreter = new BdoScriptInterpreter(this);
+
+            DepotStore = new BdoDepotStore();
+
+            DataStore = BdoData.NewMetaSet();
         }
 
         #endregion
