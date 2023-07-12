@@ -63,7 +63,7 @@ namespace BindOpen.System.Scoping.Stores
 
             _loadOptions.References = _appDomain.GetAssemblyReferences(_loadOptions.References?.ToArray())?.ToArray();
 
-            if (_loadOptions.References.Any() != true)
+            if (_loadOptions?.References?.Any() != true)
             {
                 childLog?.AddEvent(EventKinds.Message, "No extensions found");
             }
@@ -109,7 +109,7 @@ namespace BindOpen.System.Scoping.Stores
             {
                 var referenceUniqueName = reference.Key();
 
-                if (!loadedAssemblyNames.Any(q => referenceUniqueName.BdoKeyEquals(q)))
+                if (!loadedAssemblyNames?.Any(q => referenceUniqueName.BdoKeyEquals(q)) == true)
                 {
                     // we update the list of loaded assemblies
 
