@@ -13,21 +13,11 @@ namespace BindOpen.System.Data.Stores
         /// Add a datasource depot into the specified data store executing the specified action.
         /// </summary>
         /// <param key="dataStore">The data store to consider.</param>
-        /// <returns>Returns the data store to update.</returns>
-        public static T RegisterDatasources<T>(
-            this T dataStore)
-            where T : IBdoDepotStore
-            => RegisterDatasources<T>(dataStore, (d, l) => { });
-
-        /// <summary>
-        /// Add a datasource depot into the specified data store executing the specified action.
-        /// </summary>
-        /// <param key="dataStore">The data store to consider.</param>
         /// <param key="action">The action to execute on the created depot.</param>
         /// <returns>Returns the data store to update.</returns>
         public static T RegisterDatasources<T>(
             this T dataStore,
-            Action<IBdoSourceDepot> action)
+            Action<IBdoSourceDepot> action = null)
             where T : IBdoDepotStore
             => RegisterDatasources<T>(dataStore, (d, l) => action?.Invoke(d));
 
