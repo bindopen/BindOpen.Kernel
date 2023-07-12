@@ -64,5 +64,17 @@ namespace BindOpen.System.Data
 
             TestBdoDatasourceDepot(_datasourceDepot);
         }
+
+        [Test, Order(2)]
+        public void RegisterDatasources()
+        {
+            var store = BdoData.NewDepotStore(
+                q => q.RegisterDatasources()
+            );
+
+            var depot = store.GetDatasourceDepot();
+
+            Assert.IsNotNull(depot);
+        }
     }
 }

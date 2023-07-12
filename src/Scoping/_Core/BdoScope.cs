@@ -32,9 +32,9 @@ namespace BindOpen.System.Scoping
 
             ExtensionStore = BdoData.New<BdoExtensionStore>();
 
-            Interpreter = new BdoScriptInterpreter(this);
+            Interpreter = BdoScript.NewInterpreter(this);
 
-            DepotStore = new BdoDepotStore();
+            DepotStore = BdoData.NewDepotStore();
 
             DataStore = BdoData.NewMetaSet();
         }
