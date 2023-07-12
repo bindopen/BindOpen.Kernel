@@ -48,6 +48,18 @@ namespace BindOpen.System.Scoping
 
             Assert.That(
                 options.Sources?.Count == 3, "Error with string set");
+
+            if (_scope == null)
+            {
+                CreateScopeNewObjectTest();
+            }
+
+            _scope.LoadExtensions(
+                q => q = options
+                    .AddSource(DatasourceKind.Repository, @"\\lib\"));
+
+            Assert.That(
+                options.Sources?.Count == 4, "Error with string set");
         }
     }
 }
