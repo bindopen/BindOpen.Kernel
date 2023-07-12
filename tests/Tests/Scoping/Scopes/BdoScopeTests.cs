@@ -37,5 +37,17 @@ namespace BindOpen.System.Scoping
             Assert.That(
                 _scope.DataStore.Count == 1, "Error with string set");
         }
+
+        [Test, Order(2)]
+        public void CreateExtensionLoadOptions()
+        {
+            var options = new ExtensionLoadOptions();
+            options.AddSource(DatasourceKind.Database, "<database>");
+            options.AddSource(DatasourceKind.Repository, "<repository>");
+            options.AddSource(DatasourceKind.Repository, "<repository>");
+
+            Assert.That(
+                options.Sources?.Count == 3, "Error with string set");
+        }
     }
 }
