@@ -1,7 +1,7 @@
-﻿using BindOpen.System.Scoping;
-using BindOpen.System.Data.Assemblies;
-using System;
+﻿using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Logging;
+using BindOpen.System.Scoping;
+using System;
 
 namespace BindOpen.System.Data.Stores
 {
@@ -36,12 +36,6 @@ namespace BindOpen.System.Data.Stores
         /// The scope of this instance.
         /// </summary>
         public IBdoScope Scope { get; set; }
-
-        public TBdoDepot<T> WithScope(IBdoScope scope)
-        {
-            Scope = scope;
-            return this;
-        }
 
         #endregion
 
@@ -90,9 +84,9 @@ namespace BindOpen.System.Data.Stores
         /// Loads this instance.
         /// </summary>
         /// <param key="log">The log to append.</param>
-        public void LoadLazy(IBdoLog log)
+        public bool LoadLazy(IBdoLog log)
         {
-            LazyLoadFunction?.Invoke(this, log);
+            return LazyLoadFunction?.Invoke(this, log) > -1;
         }
 
         #endregion

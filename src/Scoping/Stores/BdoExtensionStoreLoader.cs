@@ -44,10 +44,9 @@ namespace BindOpen.System.Scoping.Stores
         /// </summary>
         /// <param key="references">The library references to consider.</param>
         /// <param key="log">The log to consider.</param>
-        public IBdoExtensionStoreLoader LoadPackages(
-            IBdoLog log = null)
+        public bool LoadPackages(IBdoLog log = null)
         {
-            if (_store == null) return this;
+            if (_store == null) return false;
 
             var childLog = log?.NewLog();
 
@@ -89,7 +88,7 @@ namespace BindOpen.System.Scoping.Stores
                 }
             }
 
-            return this;
+            return loaded;
         }
 
         /// <summary>
