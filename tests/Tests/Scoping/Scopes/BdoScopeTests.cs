@@ -18,9 +18,8 @@ namespace BindOpen.System.Scoping
         [Test, Order(1)]
         public void CreateScopeNewObjectTest()
         {
-            _scope = BdoScoping.NewScope()
-                .LoadExtensions(
-                    q => q.AddAssemblyFrom<GlobalSetUp>());
+            _scope = BdoScoping.NewScope();
+            _scope.LoadExtensions(q => q.AddAssemblyFrom<GlobalSetUp>());
         }
 
         [Test, Order(2)]
