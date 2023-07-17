@@ -84,8 +84,10 @@ namespace BindOpen.System.Data.Stores
         /// </summary>
         /// <param key="scope">The scope to append.</param>
         /// <param key="log"></param>
-        public void LoadLazy(IBdoScope scope, IBdoLog log = null)
+        public bool LoadLazy(IBdoScope scope, IBdoLog log = null)
         {
+            bool loaded = true;
+
             foreach (var depotEntry in Depots)
             {
                 var depot = depotEntry.Value;
@@ -93,7 +95,7 @@ namespace BindOpen.System.Data.Stores
                 {
                     depot.WithScope(scope);
                     var childLog = log?.InsertChild(EventKinds.Message, "Loading depot '" + depot.Id + "'...");
-                    depot.LoadLazy(childLog);
+                    loaded &= depot.LoadLazy(childLog);
 
                     if (childLog?.HasEvent(EventKinds.Error, EventKinds.Exception) == true)
                     {
@@ -101,6 +103,8 @@ namespace BindOpen.System.Data.Stores
                     }
                 }
             }
+
+            return loaded;
         }
 
         #endregion

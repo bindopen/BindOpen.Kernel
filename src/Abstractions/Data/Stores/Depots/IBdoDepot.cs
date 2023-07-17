@@ -1,5 +1,5 @@
-﻿using BindOpen.System.Logging;
-using BindOpen.System.Data.Assemblies;
+﻿using BindOpen.System.Data.Assemblies;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
 using System;
 
@@ -34,7 +34,7 @@ namespace BindOpen.System.Data.Stores
         /// Loads this instance.
         /// </summary>
         /// <param key="log">The log to append.</param>
-        void LoadLazy(IBdoLog log);
+        bool LoadLazy(IBdoLog log);
 
         /// <summary>
         /// The initialization function.

@@ -36,7 +36,7 @@ namespace BindOpen.System.Scoping
         /// </summary>
         /// <param key="loadOptionsAction">The load options action to consider.</param>
         /// <param key="references">The extension references to consider.</param>
-        public static T LoadExtensions<T>(
+        public static bool LoadExtensions<T>(
             this T scope,
             Action<IExtensionLoadOptions> loadOptionsAction,
             IBdoLog log = null)
@@ -50,13 +50,15 @@ namespace BindOpen.System.Scoping
                 loadOptionsAction?.Invoke(loadOptions);
             }
 
-            new BdoExtensionStoreLoader(
+            var loader = new BdoExtensionStoreLoader(
                 scope.AppDomain,
                 scope.ExtensionStore,
-                loadOptions)
-                .LoadPackages(log);
+                loadOptions);
 
-            return scope;
+
+            var result = loader.LoadPackages(log);
+
+            return result;
         }
 
     }
