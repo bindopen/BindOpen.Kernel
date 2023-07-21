@@ -39,7 +39,7 @@ namespace BindOpen.System.Data.Meta
            object value)
            where T : IBdoMetaSet
         {
-            set.Add<T>((key, value));
+            set.Add((key, value));
 
             return set;
         }
@@ -53,13 +53,7 @@ namespace BindOpen.System.Data.Meta
             params KeyValuePair<string, object>[] pairs)
             where T : IBdoMetaSet
         {
-            if (list != null)
-            {
-                foreach (var pair in pairs)
-                {
-                    list.Add(BdoData.NewMeta(pair.Key, pair.Value));
-                }
-            }
+            list.Add(pairs.Select(q => (q.Key, q.Value)).ToArray());
 
             return list;
         }
@@ -78,7 +72,14 @@ namespace BindOpen.System.Data.Meta
             {
                 foreach (var (Name, Value) in pairs)
                 {
-                    list.Add(BdoData.NewMeta(Name, Value));
+                    if (Value is IBdoMetaData metaValue)
+                    {
+                        list.Insert(Name, metaValue);
+                    }
+                    else
+                    {
+                        list.Add(BdoData.NewMeta(Name, Value));
+                    }
                 }
             }
 
