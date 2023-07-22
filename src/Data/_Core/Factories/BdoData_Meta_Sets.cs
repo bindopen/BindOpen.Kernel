@@ -79,7 +79,7 @@ namespace BindOpen.System.Data
         /// <returns>Return this instance.</returns>
         public static BdoMetaSet NewMetaSet(
             params (string Name, object Value)[] pairs)
-            => NewMetaSet<BdoMetaSet>(pairs);
+            => NewMetaSet<BdoMetaSet>(null, pairs);
 
         /// <summary>
         /// Defines the parameters of this instance.
@@ -185,8 +185,8 @@ namespace BindOpen.System.Data
             params (string Name, object Value)[] pairs)
             where T : class, IBdoMetaSet, new()
         {
-            var list = NewMetaSet<T>(
-                pairs.Select(q => NewMeta(q.Name, q.Value)).ToArray())
+            var list = NewMetaSet<T>()
+                .With(pairs)
                 .WithName(name);
 
             return list;

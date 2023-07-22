@@ -320,7 +320,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public virtual string Key() => Name;
+        public virtual string Key() => string.IsNullOrEmpty(Name) ? Reference?.MetaData?.Name : Name;
 
         #endregion
 

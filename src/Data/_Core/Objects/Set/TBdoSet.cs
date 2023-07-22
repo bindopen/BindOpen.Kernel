@@ -118,7 +118,7 @@ namespace BindOpen.System.Data
             _items = null;
         }
 
-        private bool ItemKeyEquals((string Key, T Value) item, string key)
+        private static bool ItemKeyEquals((string Key, T Value) item, string key)
         {
             var itemKey = item.Key == null ? item.Value?.Key() : item.Key;
             return itemKey.BdoKeyEquals(key);

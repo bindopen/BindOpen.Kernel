@@ -6,7 +6,7 @@ namespace BindOpen.System.Data
     /// <summary>
     /// This interface defines a data expression.
     /// </summary>
-    public interface IBdoReference : IBdoObject
+    public interface IBdoReference : IBdoObject, IReferenced
     {
         /// <summary>
         /// The kind.

@@ -51,7 +51,6 @@ namespace BindOpen.System.Data
 
         #endregion
 
-
         // -----------------------------------------------
         // Converters
         // -----------------------------------------------
@@ -76,6 +75,23 @@ namespace BindOpen.System.Data
 
         #endregion
 
+        // ------------------------------------------
+        // IReferenced Implementation
+        // ------------------------------------------
+
+        #region IReferenced
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual string Key() => Kind switch
+        {
+            BdoReferenceKind.Identifier => Identifier,
+            BdoReferenceKind.MetaData => MetaData?.Name,
+            _ => null
+        };
+
+        #endregion
 
         // ------------------------------------------
         // ACCCESSORS
