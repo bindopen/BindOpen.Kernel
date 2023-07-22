@@ -72,14 +72,7 @@ namespace BindOpen.System.Data.Meta
             {
                 foreach (var (Name, Value) in pairs)
                 {
-                    if (Value is IBdoMetaData metaValue)
-                    {
-                        list.Insert(Name, metaValue);
-                    }
-                    else
-                    {
-                        list.Add(BdoData.NewMeta(Name, Value));
-                    }
+                    list.Add(BdoData.NewMeta(Name, Value));
                 }
             }
 
