@@ -25,13 +25,13 @@ namespace BindOpen.System.Data
             var itemList = el1.GetDataList<double>();
             Assert.That(
                 itemList?.Intersect(items).Any() ?? false
-                && el1.GetSpec().DataType.ValueType == DataValueTypes.Number, "Bad scalar element - Number");
+                && el1.DataType.ValueType == DataValueTypes.Number, "Bad scalar element - Number");
 
             var el2 = BdoData.NewMetaScalar<double>("number1", items);
             itemList = el2.GetDataList<double>();
             Assert.That(
                 itemList?.Intersect(items).Any() ?? false
-                && el2.GetSpec().DataType.ValueType == DataValueTypes.Number, "Bad scalar element - Number");
+                && el2.DataType.ValueType == DataValueTypes.Number, "Bad scalar element - Number");
         }
 
         [Test, Order(2)]
@@ -44,7 +44,7 @@ namespace BindOpen.System.Data
 
             Assert.That(
                 itemList?.Intersect(items).Any() ?? false
-                && el.GetSpec().DataType.ValueType == DataValueTypes.Text, "Bad scalar element - Text");
+                && el.DataType.ValueType == DataValueTypes.Text, "Bad scalar element - Text");
         }
 
         [Test, Order(3)]
@@ -57,7 +57,7 @@ namespace BindOpen.System.Data
 
             Assert.That(
                 itemList?.Intersect(items).Any() ?? false
-                && el.GetSpec().DataType.ValueType == DataValueTypes.Integer, "Bad scalar element - Integer");
+                && el.DataType.ValueType == DataValueTypes.Integer, "Bad scalar element - Integer");
         }
 
         [Test, Order(3)]
@@ -71,7 +71,7 @@ namespace BindOpen.System.Data
             Assert.That(
                 itemList[0]?.SequenceEqual(items[0]) == true
                 && itemList[1]?.SequenceEqual(items[1]) == true
-                && el.GetSpec().DataType.ValueType == DataValueTypes.ByteArray
+                && el.DataType.ValueType == DataValueTypes.ByteArray
                 , "Bad scalar element - Byte array");
         }
 

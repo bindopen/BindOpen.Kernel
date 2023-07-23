@@ -67,11 +67,11 @@ namespace BindOpen.System.Data.Meta
 
             if (!string.IsNullOrEmpty(dto.Item))
             {
-                poco.WithData(dto.Item.ToObject(poco.GetSpec()?.DataType.ValueType ?? DataValueTypes.None));
+                poco.WithData(dto.Item.ToObject(poco.DataType.ValueType));
             }
             else
             {
-                var objects = dto.Items?.Select(q => q.ToObject(poco.GetSpec()?.DataType.ValueType ?? DataValueTypes.None)).ToList();
+                var objects = dto.Items?.Select(q => q.ToObject(poco.DataType.ValueType)).ToList();
                 poco.WithData(objects);
             }
 

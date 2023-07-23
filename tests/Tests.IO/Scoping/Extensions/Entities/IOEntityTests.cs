@@ -1,11 +1,11 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Meta.Reflection;
-using BindOpen.System.Scoping.Entities;
+using BindOpen.System.Tests;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.System.Tests.IO.Scoping.Extensions.Entities
+namespace BindOpen.System.Scoping.Entities
 {
     [TestFixture, Order(300)]
     public class IOEntityTests

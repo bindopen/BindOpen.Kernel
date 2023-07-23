@@ -3,6 +3,7 @@ using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
 using BindOpen.System.Scoping.Functions;
 using BindOpen.System.Scoping.Script;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -109,6 +110,15 @@ namespace BindOpen.System.Data.Meta
         /// The itemization mode of this instance.
         /// </summary>
         public DataMode DataMode { get; set; } = DataMode.Value;
+
+        /// <summary>
+        /// The script of this instance.
+        /// </summary>
+        public BdoDataType DataType { get; set; }
+
+        public DataValueTypes DataValueType => DataType.ValueType;
+
+        public Type DataClassType => DataType.ClassType;
 
         /// <summary>
         /// The script of this instance.

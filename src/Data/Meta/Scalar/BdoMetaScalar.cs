@@ -1,5 +1,5 @@
-﻿using BindOpen.System.Logging;
-using BindOpen.System.Data.Helpers;
+﻿using BindOpen.System.Data.Helpers;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
 using System.Linq;
 
@@ -98,7 +98,7 @@ namespace BindOpen.System.Data.Meta
         /// <returns></returns>
         public override string ToString()
         {
-            return _data.ToString(this.GetSpec()?.DataType.ValueType ?? DataValueTypes.Any);
+            return _data.ToString(DataType.ValueType);
         }
 
         // Data ----------------------------

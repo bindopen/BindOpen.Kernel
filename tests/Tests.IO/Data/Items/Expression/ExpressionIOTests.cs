@@ -9,8 +9,8 @@ namespace BindOpen.System.Data
     [TestFixture, Order(210)]
     public class ExpressionIOTests
     {
-        private readonly string _filePath_xml = SystemData.WorkingFolder + "DataExpression.xml";
-        private readonly string _filePath_json = SystemData.WorkingFolder + "DataExpression.json";
+        private readonly string _filePath_xml = SystemData.WorkingFolder + "Expression.xml";
+        private readonly string _filePath_json = SystemData.WorkingFolder + "Expression.json";
         dynamic _valueSet;
         private IBdoExpression _exp = null;
 

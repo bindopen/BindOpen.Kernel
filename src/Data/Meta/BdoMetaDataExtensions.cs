@@ -1,7 +1,6 @@
 ﻿using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
 using BindOpen.System.Scoping.Script;
-using System;
 
 namespace BindOpen.System.Data.Meta
 {
@@ -25,25 +24,6 @@ namespace BindOpen.System.Data.Meta
             }
 
             return meta;
-        }
-        public static T WithDataType<T>(
-            this T meta,
-            BdoDataType dataType)
-            where T : IBdoMetaData
-        {
-            meta?.GetOrAddSpec()
-                    .WithDataType(dataType);
-
-            return meta;
-        }
-
-        public static T WithDataType<T>(
-            this T meta,
-            DataValueTypes valueType,
-            Type type = null)
-            where T : IBdoMetaData
-        {
-            return WithDataType<T>(meta, BdoData.NewDataType(valueType, type));
         }
 
         public static IBdoSpec GetOrAddSpec(this IBdoMetaData meta)

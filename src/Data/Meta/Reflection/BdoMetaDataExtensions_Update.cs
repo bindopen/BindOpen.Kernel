@@ -1,6 +1,6 @@
-﻿using BindOpen.System.Logging;
-using BindOpen.System.Data.Assemblies;
+﻿using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Data.Helpers;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
 using System;
 using System.Collections.Generic;
@@ -102,7 +102,7 @@ namespace BindOpen.System.Data.Meta.Reflection
                                 }
                                 else if (typeof(IBdoMetaScalar).IsAssignableFrom(metaType))
                                 {
-                                    metaValue = BdoData.NewMetaScalar(name, meta?.GetSpec().DataValueType);
+                                    metaValue = BdoData.NewMetaScalar(name, meta?.DataType.ValueType);
                                 }
                                 else if (typeof(IBdoConfiguration).IsAssignableFrom(metaType))
                                 {
