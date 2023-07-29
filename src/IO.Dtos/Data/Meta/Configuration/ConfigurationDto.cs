@@ -43,14 +43,14 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         [JsonPropertyName("description")]
         [XmlElement("description")]
-        public DictionaryDto Description { get; set; }
+        public TextDictionaryDto Description { get; set; }
 
         /// <summary>
         /// The description DTO of this instance.
         /// </summary>
         [JsonPropertyName("title")]
         [XmlElement("title")]
-        public DictionaryDto Title { get; set; }
+        public TextDictionaryDto Title { get; set; }
 
         /// <summary>
         /// The children of this instance.

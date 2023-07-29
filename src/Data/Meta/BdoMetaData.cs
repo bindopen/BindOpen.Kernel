@@ -3,7 +3,6 @@ using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
 using BindOpen.System.Scoping.Functions;
 using BindOpen.System.Scoping.Script;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -56,7 +55,7 @@ namespace BindOpen.System.Data.Meta
         {
             _namePreffix = namePreffix ?? "element_";
             this.WithName(name);
-            Id = id ?? StringHelper.NewGuid();
+            Id = id;
         }
 
         #endregion
@@ -115,10 +114,6 @@ namespace BindOpen.System.Data.Meta
         /// The script of this instance.
         /// </summary>
         public BdoDataType DataType { get; set; }
-
-        public DataValueTypes DataValueType => DataType.ValueType;
-
-        public Type DataClassType => DataType.ClassType;
 
         /// <summary>
         /// The script of this instance.

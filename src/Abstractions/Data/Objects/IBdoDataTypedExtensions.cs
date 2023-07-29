@@ -11,37 +11,37 @@ namespace BindOpen.System.Data
         /// 
         /// </summary>
         public static T WithDataType<T>(
-            this T spec,
+            this T dataTyped,
             BdoDataType dataType)
             where T : IBdoDataTyped
         {
-            if (spec != null)
+            if (dataTyped != null)
             {
-                spec.DataType = dataType;
+                dataTyped.DataType = dataType;
             }
 
-            return spec;
+            return dataTyped;
         }
 
         /// <summary>
         /// 
         /// </summary>
         public static T WithDataType<T>(
-            this T spec,
+            this T dataTyped,
             DataValueTypes valueType,
             Type type = null)
             where T : IBdoDataTyped
         {
-            if (spec != null)
+            if (dataTyped != null)
             {
-                spec.DataType = new()
+                dataTyped.DataType = new()
                 {
                     ClassType = type,
                     ValueType = type != null ? DataValueTypes.Object : valueType
                 };
             }
 
-            return spec;
+            return dataTyped;
         }
     }
 }

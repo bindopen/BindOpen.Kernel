@@ -8,12 +8,12 @@ namespace BindOpen.System.Data
     /// </summary>
     [XmlType("item", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlInclude(typeof(DatasourceDto))]
-    [XmlInclude(typeof(DictionaryDto))]
+    [XmlInclude(typeof(TextDictionaryDto))]
     [XmlInclude(typeof(ExpressionDto))]
     [XmlInclude(typeof(StringSetDto))]
 
     [JsonDerivedType(typeof(DatasourceDto), "source")]
-    [JsonDerivedType(typeof(DictionaryDto), "dictonary")]
+    [JsonDerivedType(typeof(TextDictionaryDto), "dictonary")]
     [JsonDerivedType(typeof(ExpressionDto), "expression")]
     [JsonDerivedType(typeof(StringSetDto), "string.filter")]
 

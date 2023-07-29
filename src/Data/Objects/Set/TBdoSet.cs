@@ -348,7 +348,7 @@ namespace BindOpen.System.Data
         public override object Clone()
         {
             var obj = Clone<TBdoSet<T>>();
-            obj.Id = StringHelper.NewGuid();
+            obj.Id = Id != null ? StringHelper.NewGuid() : null;
             obj._items = _items?.Select(p =>
             {
                 if (p is IClonable dataItem)

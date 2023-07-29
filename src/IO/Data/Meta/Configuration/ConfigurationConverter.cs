@@ -29,7 +29,7 @@ namespace BindOpen.System.Data.Meta
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<IBdoConfiguration, T>()
                     .ForMember(q => q.CreationDate, opt => opt.MapFrom(q => StringHelper.ToString(q.CreationDate)))
-                    .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.Reference.ToDto()))
+                    .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDto()))
                     .ForMember(q => q.Description, opt => opt.MapFrom(q => q.Description.ToDto()))
                     .ForMember(q => q.MetaItems, opt => opt.MapFrom(q => q.Items == null ? null : q.Items.Select(q => q.ToDto()).ToList()))
                     .ForMember(q => q.LastModificationDate, opt => opt.MapFrom(q => StringHelper.ToString(q.CreationDate)))
@@ -66,7 +66,7 @@ namespace BindOpen.System.Data.Meta
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<ConfigurationDto, T>()
                     .ForMember(q => q.CreationDate, opt => opt.MapFrom(q => q.CreationDate.ToDateTime(null)))
-                    .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.DataReference == null ? null : q.DataReference.ToPoco()))
+                    .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference == null ? null : q.Reference.ToPoco()))
                     .ForMember(q => q.Description, opt => opt.Ignore())
                     .ForMember(q => q.Items, opt => opt.Ignore())
                     .ForMember(q => q.LastModificationDate, opt => opt.MapFrom(q => q.CreationDate.ToDateTime(null)))
@@ -84,8 +84,7 @@ namespace BindOpen.System.Data.Meta
                 .With(dto.MetaItems.Select(q => q.ToPoco()).ToArray());
 
             var specs = dto.Specs?.Select(q => q.ToPoco())?.ToArray();
-            poco.Specs = specs?.Length == 0 ? null : BdoData.NewSet<IBdoSpec>(specs);
-
+            poco.Specs = specs?.Length > 0 ? BdoData.NewSet<IBdoSpec>(specs) : null;
             return poco;
         }
     }

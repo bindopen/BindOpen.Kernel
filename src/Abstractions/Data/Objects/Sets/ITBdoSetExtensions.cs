@@ -143,7 +143,7 @@ namespace BindOpen.System.Data
            where Q : ITBdoSet<T>
            where T : IReferenced
         {
-            set.With(items.Select(q => ((string)null, q)).ToArray());
+            set.With(items?.Select(q => ((string)null, q)).ToArray());
 
             return set;
         }

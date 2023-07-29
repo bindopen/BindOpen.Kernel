@@ -41,14 +41,15 @@ namespace BindOpen.System.Data
         {
             if (dto == null) return null;
 
-            var poco = new BdoReference()
-            {
-                Kind = dto.Kind,
-                Expression = dto.Expression.ToPoco(),
-                Identifier = dto.Identifier,
-                MetaData = dto.MetaData.ToPoco(),
-                Word = dto.Word.ToPoco()
-            };
+            var config = new MapperConfiguration(
+                cfg => cfg.CreateMap<ReferenceDto, BdoReference>()
+                    .ForMember(q => q.Expression, opt => opt.MapFrom(q => q.Expression.ToPoco()))
+                    .ForMember(q => q.MetaData, opt => opt.MapFrom(q => q.MetaData.ToPoco()))
+                    .ForMember(q => q.Word, opt => opt.MapFrom(q => q.Word.ToPoco()))
+            );
+
+            var mapper = new Mapper(config);
+            var poco = mapper.Map<BdoReference>(dto);
 
             return poco;
         }

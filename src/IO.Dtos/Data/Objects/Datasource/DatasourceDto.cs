@@ -20,6 +20,14 @@ namespace BindOpen.System.Data
         #region Properties
 
         /// <summary>
+        /// Identifier of this instance.
+        /// </summary>
+        [JsonPropertyName("id")]
+        [XmlAttribute("id")]
+        [DefaultValue(null)]
+        public string Id { get; set; }
+
+        /// <summary>
         /// Name of this instance.
         /// </summary>
         [JsonPropertyName("name")]

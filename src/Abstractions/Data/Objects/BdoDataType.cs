@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BindOpen.System.Data.Assemblies;
+using System;
 
 namespace BindOpen.System.Data
 {
@@ -17,6 +18,11 @@ namespace BindOpen.System.Data
         /// The value type of this instance.
         /// </summary>
         public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IBdoClassReference ClassReference { get; set; }
 
         /// <summary>
         /// The value type of this instance.
@@ -166,6 +172,11 @@ namespace BindOpen.System.Data
 
         #endregion
 
+        // --------------------------------------------------
+        // Mutators
+        // --------------------------------------------------
+
+        #region Mutators
 
         /// <summary>
         /// 
@@ -182,11 +193,24 @@ namespace BindOpen.System.Data
         /// 
         /// </summary>
         /// <param key="number"></param>
+        public BdoDataType WithClassReference(IBdoClassReference reference)
+        {
+            ClassReference = reference;
+
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="number"></param>
         public BdoDataType WithClassType(Type type)
         {
             ClassType = type;
 
             return this;
         }
+
+        #endregion
     }
 }

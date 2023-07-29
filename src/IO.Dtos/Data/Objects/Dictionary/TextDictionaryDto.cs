@@ -11,7 +11,7 @@ namespace BindOpen.System.Data
     /// <seealso cref="KeyValuePairDto"/>
     [XmlType("Dictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "dictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class DictionaryDto : BdoItemDto
+    public class TextDictionaryDto : BdoItemDto, IIdentified
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -44,7 +44,7 @@ namespace BindOpen.System.Data
         /// <summary>
         /// Instantiates a new instance of the DictionaryDto class. 
         /// </summary>
-        public DictionaryDto()
+        public TextDictionaryDto()
         {
         }
 

@@ -66,7 +66,7 @@ namespace BindOpen.System.Data
                 SaveXmlTest();
             }
 
-            var dico = XmlHelper.LoadXml<DictionaryDto>(_filePath_xml).ToPoco();
+            var dico = XmlHelper.LoadXml<TextDictionaryDto>(_filePath_xml).ToPoco();
             Assert.That(Equals(dico, _dico), "Error while loading");
         }
 
@@ -92,7 +92,7 @@ namespace BindOpen.System.Data
                 SaveJsonTest();
             }
 
-            var dico = JsonHelper.LoadJson<DictionaryDto>(_filePath_json).ToPoco();
+            var dico = JsonHelper.LoadJson<TextDictionaryDto>(_filePath_json).ToPoco();
             Assert.That(Equals(dico, _dico), "Error while loading");
         }
     }

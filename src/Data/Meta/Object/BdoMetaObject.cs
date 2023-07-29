@@ -35,9 +35,7 @@ namespace BindOpen.System.Data.Meta
             string id = null)
             : base(name, namePreffix, id)
         {
-            Specs = BdoData.NewSpecSet(
-                BdoData.NewSpec()
-                    .WithDataType(DataValueTypes.Object));
+            this.WithDataType(DataValueTypes.Object);
         }
 
         #endregion
