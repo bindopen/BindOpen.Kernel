@@ -1,6 +1,6 @@
 ﻿using BindOpen.System.Data.Meta;
 
-namespace BindOpen.System.Scoping.Connectors
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class represents a data exp that can contain a literal and script texts.

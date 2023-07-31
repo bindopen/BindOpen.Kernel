@@ -1,7 +1,6 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Meta.Reflection;
-using BindOpen.System.Scoping.Tasks;
 using BindOpen.System.Tests;
 using Bogus;
 using NUnit.Framework;
@@ -50,7 +49,7 @@ namespace BindOpen.System.Scoping
         {
             _task ??= BdoTaskTests.CreateTask(_testData);
 
-            var isSaved = _task.ToMetaData().ToDto().SaveXml(_filePath);
+            var isSaved = _task.ToConfig().ToDto().SaveXml(_filePath);
 
             Assert.That(isSaved, "Task saving failed");
         }
@@ -78,7 +77,7 @@ namespace BindOpen.System.Scoping
         {
             _task ??= BdoTaskTests.CreateTask(_testData);
 
-            var isSaved = _task.ToMetaData().ToDto().SaveJson(_filePath);
+            var isSaved = _task.ToConfig().ToDto().SaveJson(_filePath);
 
             Assert.That(isSaved, "Task saving failed");
         }

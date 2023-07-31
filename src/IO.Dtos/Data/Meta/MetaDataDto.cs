@@ -94,7 +94,7 @@ namespace BindOpen.System.Data.Meta
         /// The value type of this instance.
         /// </summary>
         [JsonPropertyName("valueType")]
-        [XmlElement("valueType")]
+        [XmlAttribute("valueType")]
         [DefaultValue(DataValueTypes.Any)]
         public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
 

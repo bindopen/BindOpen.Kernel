@@ -22,7 +22,7 @@ namespace BindOpen.System.Data
         /// The kind of this instance.
         /// </summary>
         [JsonPropertyName("kind")]
-        [XmlElement("kind")]
+        [XmlAttribute("kind")]
         public BdoReferenceKind Kind { get; set; }
 
         /// <summary>

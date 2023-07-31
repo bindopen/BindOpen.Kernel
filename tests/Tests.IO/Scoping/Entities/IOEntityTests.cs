@@ -1,7 +1,6 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Meta.Reflection;
-using BindOpen.System.Scoping.Entities;
 using BindOpen.System.Tests;
 using NUnit.Framework;
 using System.IO;
@@ -45,7 +44,7 @@ namespace BindOpen.System.Scoping
                 _entity = BdoEntityTests.CreateEntity(_testData);
             }
 
-            var isSaved = _entity.ToMetaData().ToDto().SaveXml(_filePath);
+            var isSaved = _entity.ToConfig().ToDto().SaveXml(_filePath);
 
             Assert.That(isSaved, "Entity saving failed");
         }
@@ -76,7 +75,7 @@ namespace BindOpen.System.Scoping
                 _entity = BdoEntityTests.CreateEntity(_testData);
             }
 
-            var isSaved = _entity.ToMetaData().ToDto().SaveJson(_filePath);
+            var isSaved = _entity.ToConfig().ToDto().SaveJson(_filePath);
 
             Assert.That(isSaved, "Entity saving failed");
         }

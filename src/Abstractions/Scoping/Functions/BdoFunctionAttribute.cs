@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.System.Scoping.Functions
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class represents a script word attribute.

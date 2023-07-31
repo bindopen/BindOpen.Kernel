@@ -1,5 +1,5 @@
 ﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Scoping.Connectors;
+using BindOpen.System.Scoping;
 using BindOpen.System.Tests;
 using DeepEqual.Syntax;
 using NUnit.Framework;

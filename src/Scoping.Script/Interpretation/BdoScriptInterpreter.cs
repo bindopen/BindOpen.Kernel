@@ -3,7 +3,7 @@ using BindOpen.System.Data.Helpers;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Meta.Reflection;
 using BindOpen.System.Logging;
-using BindOpen.System.Scoping.Functions;
+using BindOpen.System.Scoping;
 using System;
 
 namespace BindOpen.System.Scoping.Script

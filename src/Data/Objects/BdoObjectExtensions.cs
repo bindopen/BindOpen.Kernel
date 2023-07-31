@@ -1,6 +1,6 @@
 ﻿using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Meta.Reflection;
-using BindOpen.System.Scoping.Functions;
+using BindOpen.System.Scoping;
 
 namespace BindOpen.System.Data
 {

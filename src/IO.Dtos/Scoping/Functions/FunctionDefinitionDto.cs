@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.System.Scoping.Functions
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class represents a script word definition.

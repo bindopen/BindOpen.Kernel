@@ -9,89 +9,90 @@ namespace BindOpen.System.Data.Meta
     /// </summary>
     public static partial class BdoSpecExtensions
     {
-        public static IBdoSpec UpdateFrom(
+        public static bool UpdateFrom(
             this IBdoSpec spec,
             BdoPropertyAttribute att)
         {
-            if (att != null)
+            var change = false;
+
+            if (spec != null && att != null)
             {
                 if (!string.IsNullOrEmpty(att.Alias))
                 {
-                    spec ??= BdoData.NewSpec();
+                    change = true;
                     spec.Aliases = att.Alias?.Split(",").Select(q => q.Trim()).ToList();
                 }
 
                 if (att.MinDataItemNumber != null)
                 {
-                    spec ??= BdoData.NewSpec();
+                    change = true;
                     spec.MinDataItemNumber = att.MinDataItemNumber.Value;
                 }
 
                 if (att.MaxDataItemNumber != null)
                 {
-                    spec ??= BdoData.NewSpec();
+                    change = true;
                     spec.MaxDataItemNumber = att.MaxDataItemNumber.Value;
                 }
 
                 if (!string.IsNullOrEmpty(att.Description))
                 {
-                    spec ??= BdoData.NewSpec();
+                    change = true;
                     spec.Description = BdoData.NewDictionary(att.Description);
                 }
 
                 if (att.DataRequirement != RequirementLevels.Any)
                 {
-                    spec ??= BdoData.NewSpec();
+                    change = true;
                     spec.DataRequirement = att.DataRequirement;
                 }
 
                 if (!string.IsNullOrEmpty(att.DataRequirementExp))
                 {
-                    spec ??= BdoData.NewSpec();
+                    change = true;
                     spec.DataRequirementExp = att.DataRequirementExp;
                 }
 
                 if (att.Name != null)
                 {
-                    spec ??= BdoData.NewSpec();
                     spec.Name = att.Name;
                 }
 
                 if (att.GroupId != null)
                 {
-                    spec ??= BdoData.NewSpec();
+                    change = true;
                     spec.GroupId = att.GroupId;
                 }
 
                 if (att.Requirement != RequirementLevels.Any)
                 {
-                    spec ??= BdoData.NewSpec();
+                    change = true;
                     spec.Requirement = att.Requirement;
                 }
 
                 if (!string.IsNullOrEmpty(att.RequirementExp))
                 {
-                    spec ??= BdoData.NewSpec();
+                    change = true;
                     spec.RequirementExp = att.RequirementExp;
                 }
 
                 if (!string.IsNullOrEmpty(att.Title))
                 {
-                    spec ??= BdoData.NewSpec();
+                    change = true;
                     spec.Title = BdoData.NewDictionary(att.Title);
                 }
 
                 if (att.ValueType != DataValueTypes.Any)
                 {
-                    spec ??= BdoData.NewSpec();
+                    change = true;
                     spec.WithDataType(att.ValueType);
                 }
             }
 
-            return spec;
+            return change;
         }
 
-        public static IBdoSpec UpdateFrom<TAtt>(
+        public static bool UpdateFrom<TAtt>(
             this IBdoSpec spec,
             PropertyInfo info)
             where TAtt : Attribute
@@ -99,32 +100,31 @@ namespace BindOpen.System.Data.Meta
             return UpdateFrom(spec, info, typeof(TAtt));
         }
 
-        public static IBdoSpec UpdateFrom(
+        public static bool UpdateFrom(
             this IBdoSpec spec,
             PropertyInfo info,
             Type attributeType)
         {
-            if (info != null)
+            var change = false;
+
+            if (spec != null && info != null)
             {
                 if (attributeType != null)
                 {
                     foreach (var att in info.GetCustomAttributes(attributeType))
                     {
-                        spec = spec.UpdateFrom((BdoPropertyAttribute)att);
+                        change |= spec.UpdateFrom((BdoPropertyAttribute)att);
                     }
                 }
 
-                if (spec != null)
-                {
-                    spec.Name = info.Name;
+                spec.Name ??= info.Name;
 
-                    var type = info.PropertyType;
-                    spec.WithDataType(spec.DataType.ValueType == DataValueTypes.Any ? type.GetValueType() : DataValueTypes.None);
-                    spec.AsType(type);
-                }
+                var type = info.PropertyType;
+                spec.WithDataType(spec.DataType.ValueType == DataValueTypes.Any ? type.GetValueType() : DataValueTypes.None);
+                spec.AsType(type);
             }
 
-            return spec;
+            return change;
         }
 
         public static IBdoSpec UpdateFrom(
@@ -132,27 +132,26 @@ namespace BindOpen.System.Data.Meta
             ParameterInfo info,
             Type attributeType)
         {
-            if (info != null)
+            var change = false;
+
+            if (spec != null && info != null)
             {
                 if (attributeType != null)
                 {
                     foreach (var att in info.GetCustomAttributes(attributeType))
                     {
-                        spec = spec.UpdateFrom((BdoPropertyAttribute)att);
+                        change |= spec.UpdateFrom((BdoPropertyAttribute)att);
                     }
 
                     spec.IsStatic = info.GetCustomAttributes(typeof(BdoThisAttribute)).Any();
                 }
 
-                if (spec != null)
-                {
-                    spec.Name = info.Name;
+                spec.Name ??= info.Name;
 
-                    var type = info.ParameterType;
-                    spec.WithDataType(
-                        spec.DataType.ValueType == DataValueTypes.Any ? type.GetValueType() : DataValueTypes.None,
-                        type);
-                }
+                var type = info.ParameterType;
+                spec.WithDataType(
+                    spec.DataType.ValueType == DataValueTypes.Any ? type.GetValueType() : DataValueTypes.None,
+                    type);
             }
 
             return spec;

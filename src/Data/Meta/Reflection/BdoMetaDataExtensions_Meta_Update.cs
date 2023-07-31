@@ -40,8 +40,8 @@ namespace BindOpen.System.Data.Meta.Reflection
                             var hasMetaAttribute = propInfo.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any();
                             if (hasMetaAttribute || !onlyMetaAttributes)
                             {
-                                IBdoSpec spec = null;
-                                spec = spec.UpdateFrom<BdoPropertyAttribute>(propInfo);
+                                IBdoSpec spec = BdoData.NewSpec();
+                                var change = spec.UpdateFrom<BdoPropertyAttribute>(propInfo);
 
                                 var propName = spec?.Name ?? propInfo.Name;
                                 object propValue = propInfo.GetValue(obj);
@@ -57,8 +57,11 @@ namespace BindOpen.System.Data.Meta.Reflection
                                 }
                                 else
                                 {
-                                    subMeta = ToMetaData(propInfo.PropertyType, propValue, propName, onlyMetaAttributes);
-                                    subMeta.WithSpecs(spec);
+                                    subMeta = propValue.ToMetaData(propInfo.PropertyType, propName, onlyMetaAttributes);
+                                    if (change)
+                                    {
+                                        subMeta.WithSpecs(spec);
+                                    }
                                 }
 
                                 list.Add(subMeta);

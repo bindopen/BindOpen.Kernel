@@ -1,6 +1,5 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
-using BindOpen.System.Scoping.Connectors;
 using BindOpen.System.Tests;
 using NUnit.Framework;
 

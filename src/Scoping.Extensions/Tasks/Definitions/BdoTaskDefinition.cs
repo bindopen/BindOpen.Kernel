@@ -1,10 +1,10 @@
-﻿using BindOpen.System.Scoping.Tasks;
+﻿using BindOpen.System.Scoping;
 using BindOpen.System.Data;
 using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Data.Meta;
 using System;
 
-namespace BindOpen.System.Scoping.Tasks
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class represents a task definition.

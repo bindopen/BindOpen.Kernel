@@ -3,7 +3,7 @@ using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Scoping;
 using System;
 
-namespace BindOpen.System.Scoping.Entities
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// 

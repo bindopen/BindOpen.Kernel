@@ -1,8 +1,8 @@
 ﻿using BindOpen.System.Data;
-using BindOpen.System.Scoping.Connectors;
-using BindOpen.System.Scoping.Entities;
-using BindOpen.System.Scoping.Functions;
-using BindOpen.System.Scoping.Tasks;
+using BindOpen.System.Scoping;
+using BindOpen.System.Scoping;
+using BindOpen.System.Scoping;
+using BindOpen.System.Scoping;
 using System;
 
 namespace BindOpen.System.Scoping

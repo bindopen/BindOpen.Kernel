@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.System.Scoping.Tasks
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class represents a task definition.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.System.Scoping.Connectors
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class represents an attribute of connectors.
