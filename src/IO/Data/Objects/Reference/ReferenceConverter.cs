@@ -45,11 +45,13 @@ namespace BindOpen.System.Data
                 cfg => cfg.CreateMap<ReferenceDto, BdoReference>()
                     .ForMember(q => q.Expression, opt => opt.MapFrom(q => q.Expression.ToPoco()))
                     .ForMember(q => q.MetaData, opt => opt.MapFrom(q => q.MetaData.ToPoco()))
-                    .ForMember(q => q.Word, opt => opt.MapFrom(q => q.Word.ToPoco()))
+                    .ForMember(q => q.Word, opt => opt.Ignore())
             );
 
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoReference>(dto);
+
+            poco.Word = dto.Word.ToPoco();
 
             return poco;
         }

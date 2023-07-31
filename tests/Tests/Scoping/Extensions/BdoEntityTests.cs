@@ -1,10 +1,10 @@
-﻿using BindOpen.System.Scoping.Entities;
-using BindOpen.System.Data;
+﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
+using BindOpen.System.Scoping.Entities;
 using BindOpen.System.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.System.Scoping.Entities
+namespace BindOpen.System.Scoping
 {
     [TestFixture, Order(300)]
     public class BdoEntityTests

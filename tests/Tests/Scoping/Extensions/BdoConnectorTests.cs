@@ -1,10 +1,10 @@
-﻿using BindOpen.System.Scoping.Connectors;
-using BindOpen.System.Data;
+﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
+using BindOpen.System.Scoping.Connectors;
 using BindOpen.System.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.System.Scoping.Connectors
+namespace BindOpen.System.Scoping
 {
     [TestFixture, Order(301)]
     public class BdoConnectorTests

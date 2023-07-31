@@ -1,5 +1,4 @@
 ﻿using System;
-using BindOpen.System.Scoping;
 
 namespace BindOpen.System.Scoping.Functions
 {

@@ -1,12 +1,13 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Meta.Reflection;
+using BindOpen.System.Scoping.Tasks;
 using BindOpen.System.Tests;
 using Bogus;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.System.Scoping.Tasks
+namespace BindOpen.System.Scoping
 {
     [TestFixture, Order(300)]
     public class IOTaskTests

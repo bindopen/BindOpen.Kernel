@@ -51,7 +51,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoConfiguration ToPoco(this ConfigurationDto dto) => dto.ToPoco<IBdoConfiguration>();
+        public static IBdoConfiguration ToPoco(this ConfigurationDto dto) => dto.ToPoco<BdoConfiguration>();
 
         /// <summary>
         /// Converts to POCO.

@@ -39,7 +39,7 @@ namespace BindOpen.System.Data
         /// <summary>
         /// The items of this instance.
         /// </summary>
-        private List<(string Key, T Value)> _items;
+        private List<T> _items;
 
         #endregion
 
@@ -69,7 +69,7 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="name"></param>
         /// <returns></returns>
-        public IList<T> Items => _items?.Select(q => q.Value).ToList();
+        public IList<T> Items => _items;
 
         /// <summary>
         /// Returns the number of items.
@@ -118,12 +118,6 @@ namespace BindOpen.System.Data
             _items = null;
         }
 
-        private static bool ItemKeyEquals((string Key, T Value) item, string key)
-        {
-            var itemKey = item.Key == null ? item.Value?.Key() : item.Key;
-            return itemKey.BdoKeyEquals(key);
-        }
-
         /// <summary>
         /// Adds the specified item.
         /// </summary>
@@ -131,14 +125,14 @@ namespace BindOpen.System.Data
         /// <returns>Returns the new item that has been added.
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
-        public virtual T Insert(string key, T item)
+        public virtual T Insert(T item)
         {
-            _items ??= new List<(string Key, T Value)>();
+            _items ??= new List<T>();
 
-            var currentKey = key ?? item?.Key();
-            Remove(currentKey);
+            var key = item?.Key();
+            Remove(key);
 
-            _items.Add((key, item));
+            _items.Add(item);
 
             return item;
         }
@@ -151,7 +145,7 @@ namespace BindOpen.System.Data
         {
             if (_items != null && keys != null)
             {
-                return _items.RemoveAll(p => keys.Any(q => ItemKeyEquals(p, q)));
+                return _items.RemoveAll(p => keys.Any(q => p.BdoKeyEquals(q)));
             }
 
             return 0;
@@ -161,7 +155,7 @@ namespace BindOpen.System.Data
         {
             if (_items != null && filter != null)
             {
-                return _items.RemoveAll(p => filter(p.Value));
+                return _items.RemoveAll(p => filter(p));
             }
 
             return 0;
@@ -175,7 +169,7 @@ namespace BindOpen.System.Data
         public bool Has(string key = null)
         {
             if (key == null) return _items?.Any() == true;
-            return _items?.Any(p => ItemKeyEquals(p, key)) == true;
+            return _items?.Any(p => p.BdoKeyEquals(key)) == true;
         }
 
         /// <summary>
@@ -193,7 +187,7 @@ namespace BindOpen.System.Data
             if (_items == null)
                 return default;
 
-            return _items.FirstOrDefault(p => ItemKeyEquals(p, key)).Value;
+            return _items.FirstOrDefault(p => p.BdoKeyEquals(key));
         }
 
         /// <summary>
@@ -213,7 +207,7 @@ namespace BindOpen.System.Data
 
             var newKey = Has(key) ? key : alternateKey;
 
-            return _items.FirstOrDefault(p => ItemKeyEquals(p, newKey)).Value;
+            return _items.FirstOrDefault(p => p.BdoKeyEquals(newKey));
         }
 
         /// <summary>
@@ -353,11 +347,11 @@ namespace BindOpen.System.Data
             {
                 if (p is IClonable dataItem)
                 {
-                    return (p.Key, (T)dataItem.Clone());
+                    return (T)dataItem.Clone();
                 }
                 else
                 {
-                    return (p.Key, p.Value);
+                    return p;
                 }
             }).ToList();
 

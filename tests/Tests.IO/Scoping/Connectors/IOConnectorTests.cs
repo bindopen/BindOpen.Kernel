@@ -1,11 +1,12 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Meta.Reflection;
+using BindOpen.System.Scoping.Connectors;
 using BindOpen.System.Tests;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.System.Scoping.Connectors
+namespace BindOpen.System.Scoping
 {
     [TestFixture, Order(301)]
     public class IOConnectorTests

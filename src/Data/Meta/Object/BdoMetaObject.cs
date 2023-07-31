@@ -140,10 +140,10 @@ namespace BindOpen.System.Data.Meta
         public int Count
             => _propertySet?.Count ?? 0;
 
-        public IBdoMetaData Insert(string key, IBdoMetaData item)
+        public IBdoMetaData Insert(IBdoMetaData item)
         {
             _propertySet ??= BdoData.NewMetaSet();
-            return _propertySet.Insert(key, item);
+            return _propertySet.Insert(item);
         }
 
         public override void Clear()

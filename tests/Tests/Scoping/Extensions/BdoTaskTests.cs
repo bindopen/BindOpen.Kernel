@@ -1,10 +1,10 @@
-﻿using BindOpen.System.Scoping.Tasks;
-using BindOpen.System.Data;
+﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
+using BindOpen.System.Scoping.Tasks;
 using BindOpen.System.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.System.Scoping.Tasks
+namespace BindOpen.System.Scoping
 {
     [TestFixture, Order(300)]
     public class BdoTaskTests

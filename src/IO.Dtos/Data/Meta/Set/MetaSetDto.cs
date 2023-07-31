@@ -26,7 +26,7 @@ namespace BindOpen.System.Data.Meta
         [XmlElement("object", Type = typeof(MetaObjectDto))]
         [XmlElement("scalar", Type = typeof(MetaScalarDto))]
         [XmlElement("scriptword", Type = typeof(ScriptwordDto))]
-        public List<(string, MetaDataDto)> MetaItems { get; set; }
+        public List<MetaDataDto> MetaItems { get; set; }
 
         /// <summary>
         /// Indicates whether the entities property must be ignored.

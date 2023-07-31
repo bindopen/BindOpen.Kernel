@@ -93,7 +93,7 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="item"></param>
         /// <returns></returns>
-        T Insert(string key, T item);
+        T Insert(T item);
 
         /// <summary>
         /// 
