@@ -28,9 +28,18 @@ namespace BindOpen.System.Data.Helpers
             else if (object1 is string x)
                 return x;
             else if (object1 is IReferenced referenced)
-                return referenced.Key() ?? string.Empty;
+            {
+                var key = referenced.Key();
+
+                if (key == null && object1 is IBdoMetaObject meta)
+                {
+                    key = (meta.GetData() as IReferenced)?.Key();
+                }
+
+                return key;
+            }
             else if (object1 is KeyValuePair<string, string> dataKeyValue)
-                return dataKeyValue.Key ?? string.Empty;
+                return dataKeyValue.Key;
             else
                 return object1.ToString();
         }
@@ -79,7 +88,7 @@ namespace BindOpen.System.Data.Helpers
             string stringValue = null;
             if (valueType == DataValueTypes.Any)
             {
-                valueType = obj.GetValueType();
+                valueType = obj?.GetValueType() ?? DataValueTypes.Any;
             }
 
             IEnumerable objEnum;
@@ -87,6 +96,10 @@ namespace BindOpen.System.Data.Helpers
             if (obj is IBdoScriptword scriptword)
             {
                 return scriptword.ToString();
+            }
+            else if (obj is IBdoMetaData && valueType != DataValueTypes.MetaData)
+            {
+                return "";
             }
 
             // if object is a singleton of scalar list

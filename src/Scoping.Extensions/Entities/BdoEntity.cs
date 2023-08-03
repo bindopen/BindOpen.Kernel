@@ -1,4 +1,4 @@
-﻿using BindOpen.System.Scoping;
+﻿using BindOpen.System.Data;
 
 namespace BindOpen.System.Scoping
 {
@@ -18,6 +18,7 @@ namespace BindOpen.System.Scoping
         /// </summary>
         protected BdoEntity() : base()
         {
+            this.WithDefinition(BdoExtensionKind.Entity);
         }
 
         #endregion

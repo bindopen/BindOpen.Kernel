@@ -25,7 +25,7 @@ namespace BindOpen.System.Scoping
         /// </summary>
         /// <param key="data"></param>
         /// <returns></returns>
-        public static IBdoEntity CreateEntity(dynamic data)
+        public static IBdoConfiguration CreateEntityConfig(dynamic data)
         {
             var config =
                 BdoData.NewConfig()
@@ -36,13 +36,31 @@ namespace BindOpen.System.Scoping
                     BdoData.NewMetaScalar("intValue", data.intValue as int?),
                     BdoData.NewMetaScalar("stringValue", data.stringValue as string));
 
-            return SystemData.Scope.CreateEntity<EntityFake>(config);
+            return config;
         }
 
         [Test, Order(1)]
-        public void CreateEntityNewObjectTest()
+        public void CreateEntityTest_FromMetaSet()
         {
-            _entity = new EntityFake
+            IBdoConfiguration config = CreateEntityConfig(_testData);
+            var connector = SystemData.Scope.CreateEntity<EntityFake>(config);
+
+            BdoEntityFaker.AssertFake(connector, _testData);
+        }
+
+        [Test, Order(2)]
+        public void CreateEntityTest_FromConfig()
+        {
+            IBdoConfiguration config = CreateEntityConfig(_testData);
+            var connector = SystemData.Scope.CreateEntity(config) as EntityFake;
+
+            BdoEntityFaker.AssertFake(connector, _testData);
+        }
+
+        [Test, Order(3)]
+        public void CreateEntityTest_FromObject()
+        {
+            var connector = new EntityFake
             {
                 BoolValue = BdoData.NewMetaScalar<bool?>(_testData.boolValue as bool?),
                 EnumValue = (ActionPriorities)_testData.enumValue,
@@ -50,16 +68,10 @@ namespace BindOpen.System.Scoping
                 StringValue = _testData.stringValue as string,
             };
 
-            BdoEntityFaker.AssertFake(_entity, _testData);
-        }
+            var config = connector.ToConfig(SystemData.Scope);
+            connector = SystemData.Scope.CreateEntity(config) as EntityFake;
 
-
-        [Test, Order(2)]
-        public void CreateEntityFromScopeTest()
-        {
-            _entity = CreateEntity(_testData);
-
-            BdoEntityFaker.AssertFake(_entity, _testData);
+            BdoEntityFaker.AssertFake(connector, _testData);
         }
     }
 

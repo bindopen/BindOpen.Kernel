@@ -1,5 +1,4 @@
-﻿using BindOpen.System.Scoping;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,8 +20,24 @@ namespace BindOpen.System.Data.Meta.Reflection
             string name = null,
             bool onlyMetaAttributes = false)
         {
-            var meta = BdoData.NewMeta(name, type, obj)
-                .UpdateTree(onlyMetaAttributes);
+            IBdoMetaData meta = null;
+
+            if (type != null && typeof(IBdoMetaData).IsAssignableFrom(type) == true)
+            {
+                meta = obj as IBdoMetaData;
+
+                if (meta != null)
+                {
+                    meta.Name = name;
+                }
+            }
+            else
+            {
+                meta = BdoData.NewMeta(name, type, obj);
+            }
+
+            meta?.UpdateTree(onlyMetaAttributes);
+
             return meta;
         }
 
@@ -82,29 +97,6 @@ namespace BindOpen.System.Data.Meta.Reflection
             }
 
             return null;
-        }
-
-        /// <summary>
-        /// Creates a meta data of the specified object.
-        /// </summary>
-        /// <param key="name">The name to consider.</param>
-        /// <param key="items">The items to consider.</param>
-        public static IBdoConfiguration ToConfig(
-            this IBdoExtension obj,
-            string name = null,
-            bool onlyMetaAttributes = false)
-        {
-            if (obj == null) return null;
-
-            var meta = obj.ToMetaData<BdoMetaObject>(name, onlyMetaAttributes);
-
-            var config = BdoData.NewConfig(name)
-                .WithDefinition(obj.DefinitionUniqueName)
-                .WithDataType(obj.GetValueType())
-                .WithData(obj)
-                .With(meta?.Items?.ToArray());
-
-            return config;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using BindOpen.System.Scoping;
-using BindOpen.System.Data;
+﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Logging;
 using System.Threading;
@@ -23,6 +22,7 @@ namespace BindOpen.System.Scoping
         /// </summary>
         protected BdoTask() : base()
         {
+            this.WithDefinition(BdoExtensionKind.Task);
         }
 
         #endregion

@@ -31,6 +31,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Data\Assemblies\AssemblyReferenceDto.cs~RF5fdedf9.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\..\docs\img\bindopen_icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>

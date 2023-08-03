@@ -11,6 +11,8 @@ namespace BindOpen.System.Tests
     [BdoConnector(CreationDate = "2023-02-25")]
     public class ConnectorFake : BdoConnector
     {
+        public static string __DefinitionUniqueName = "bindopen.system.tests$testConnector";
+
         /// <summary>
         /// The host of this instance.
         /// </summary>

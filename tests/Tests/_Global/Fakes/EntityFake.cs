@@ -1,7 +1,6 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Scoping;
-using BindOpen.System.Scoping;
 using System;
 using System.ComponentModel;
 
@@ -17,6 +16,8 @@ namespace BindOpen.System.Tests
     )]
     public class EntityFake : BdoEntity
     {
+        public static string __DefinitionUniqueName = "bindopen.system.tests$testEntity";
+
         // -----------------------------------------------
         // VARIABLES
         // -----------------------------------------------

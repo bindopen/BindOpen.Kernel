@@ -9,8 +9,7 @@ namespace BindOpen.System.Data.Meta
     /// <summary>
     /// This class represents a config.
     /// </summary>
-    public partial class BdoConfiguration : BdoMetaObject,
-        IBdoConfiguration
+    public partial class BdoConfiguration : BdoMetaObject, IBdoConfiguration
     {
         // -------------------------------------------------------------
         // CONSTRUCTORS
@@ -23,6 +22,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         public BdoConfiguration() : base()
         {
+            this.WithId();
         }
 
         #endregion
@@ -63,6 +63,11 @@ namespace BindOpen.System.Data.Meta
         /// 
         /// </summary>
         public string DefinitionUniqueName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public BdoExtensionKind DefinitionExtensionKind { get; set; }
 
         /// <summary>
         /// The using file paths of this instance.

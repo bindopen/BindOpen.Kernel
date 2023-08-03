@@ -1,10 +1,6 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Data.Helpers;
-using BindOpen.System.Scoping;
-using BindOpen.System.Scoping;
-using BindOpen.System.Scoping;
-using BindOpen.System.Scoping;
 using System.Collections.Generic;
 using System.Linq;
 

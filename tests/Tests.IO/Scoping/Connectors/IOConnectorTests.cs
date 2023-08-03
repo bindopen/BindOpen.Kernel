@@ -1,6 +1,5 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
-using BindOpen.System.Data.Meta.Reflection;
 using BindOpen.System.Tests;
 using NUnit.Framework;
 using System.IO;
@@ -27,10 +26,11 @@ namespace BindOpen.System.Scoping
         {
             if (_connector == null)
             {
-                _connector = BdoConnectorTests.CreateConnector(_testData);
+                IBdoConfiguration config = BdoConnectorTests.CreateConnectorConfig(_testData);
+                _connector = SystemData.Scope.CreateConnector<ConnectorFake>(config);
             }
 
-            var isSaved = _connector.ToConfig().ToDto().SaveXml(BdoConnectorFaker.XmlFilePath);
+            var isSaved = _connector.ToConfig(SystemData.Scope).ToDto().SaveXml(BdoConnectorFaker.XmlFilePath);
 
             Assert.That(isSaved, "Connector saving failed");
         }
@@ -56,10 +56,11 @@ namespace BindOpen.System.Scoping
         {
             if (_connector == null)
             {
-                _connector = BdoConnectorTests.CreateConnector(_testData);
+                IBdoConfiguration config = BdoConnectorTests.CreateConnectorConfig(_testData);
+                _connector = SystemData.Scope.CreateConnector<ConnectorFake>(config);
             }
 
-            var isSaved = _connector.ToConfig().ToDto().SaveJson(BdoConnectorFaker.JsonFilePath);
+            var isSaved = _connector.ToConfig(SystemData.Scope).ToDto().SaveJson(BdoConnectorFaker.JsonFilePath);
 
             Assert.That(isSaved, "Connector saving failed");
         }

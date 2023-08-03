@@ -1,8 +1,6 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
-using BindOpen.System.Data.Meta.Reflection;
 using BindOpen.System.Tests;
-using Bogus;
 using NUnit.Framework;
 using System.IO;
 
@@ -13,33 +11,12 @@ namespace BindOpen.System.Scoping
     {
         private TaskFake _task = null;
 
-        private readonly string _filePath = SystemData.WorkingFolder + "Task.xml";
-
         private dynamic _testData;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            var f = new Faker();
-            _testData = new
-            {
-                boolValue = f.Random.Bool(),
-                intValue = f.Random.Int(800),
-                enumValue = ActionPriorities.High,
-                stringValue = f.Lorem.Word()
-            };
-        }
-
-        private void Test(TaskFake task)
-        {
-            Assert.That(task != null, "Field missing");
-            if (task != null)
-            {
-                Assert.That(task.BoolValue == _testData.boolValue, "Bad carrier - Boolean value");
-                Assert.That(task.EnumValue.ToString() == _testData.enumValue.ToString(), "Bad carrier - Enumeration value");
-                Assert.That(task.IntValue == _testData.intValue, "Bad carrier - Integer value");
-                Assert.That(task.StringValue == _testData.stringValue, "Bad carrier - String value");
-            }
+            _testData = BdoTaskFaker.Fake();
         }
 
         // Xml
@@ -47,9 +24,13 @@ namespace BindOpen.System.Scoping
         [Test, Order(2)]
         public void SaveXmlTaskTest()
         {
-            _task ??= BdoTaskTests.CreateTask(_testData);
+            if (_task == null)
+            {
+                IBdoConfiguration config = BdoTaskTests.CreateTaskConfig(_testData);
+                _task = SystemData.Scope.CreateTask<TaskFake>(config);
+            }
 
-            var isSaved = _task.ToConfig().ToDto().SaveXml(_filePath);
+            var isSaved = _task.ToConfig(SystemData.Scope).ToDto().SaveXml(BdoTaskFaker.XmlFilePath);
 
             Assert.That(isSaved, "Task saving failed");
         }
@@ -57,17 +38,17 @@ namespace BindOpen.System.Scoping
         [Test, Order(3)]
         public void LoadXmlConfigurationTest()
         {
-            if (_task == null || !File.Exists(_filePath))
+            if (_task == null || !File.Exists(BdoTaskFaker.XmlFilePath))
             {
                 SaveXmlTaskTest();
             }
 
-            var config = XmlHelper.LoadXml<ConfigurationDto>(_filePath).ToPoco();
+            var config = XmlHelper.LoadXml<ConfigurationDto>(BdoTaskFaker.XmlFilePath).ToPoco();
             var task = SystemData.Scope.CreateTask<TaskFake>(config);
 
             Assert.That(task != null, "Task loading failed");
 
-            Test(task);
+            BdoTaskFaker.AssertFake(task, _testData);
         }
 
         // Json
@@ -75,9 +56,13 @@ namespace BindOpen.System.Scoping
         [Test, Order(4)]
         public void SaveJsonTaskTest()
         {
-            _task ??= BdoTaskTests.CreateTask(_testData);
+            if (_task == null)
+            {
+                IBdoConfiguration config = BdoTaskTests.CreateTaskConfig(_testData);
+                _task = SystemData.Scope.CreateTask<TaskFake>(config);
+            }
 
-            var isSaved = _task.ToConfig().ToDto().SaveJson(_filePath);
+            var isSaved = _task.ToConfig(SystemData.Scope).ToDto().SaveJson(BdoTaskFaker.JsonFilePath);
 
             Assert.That(isSaved, "Task saving failed");
         }
@@ -85,17 +70,17 @@ namespace BindOpen.System.Scoping
         [Test, Order(5)]
         public void LoadJsonConfigurationTest()
         {
-            if (_task == null || !File.Exists(_filePath))
+            if (_task == null || !File.Exists(BdoTaskFaker.JsonFilePath))
             {
                 SaveJsonTaskTest();
             }
 
-            var config = JsonHelper.LoadJson<ConfigurationDto>(_filePath).ToPoco();
+            var config = JsonHelper.LoadJson<ConfigurationDto>(BdoTaskFaker.JsonFilePath).ToPoco();
             var task = SystemData.Scope.CreateTask<TaskFake>(config);
 
             Assert.That(task != null, "Task loading failed");
 
-            Test(task);
+            BdoTaskFaker.AssertFake(task, _testData);
         }
     }
 

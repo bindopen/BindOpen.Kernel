@@ -1,7 +1,6 @@
 ﻿using BindOpen.System.Data.Helpers;
 using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
-using BindOpen.System.Scoping;
 using BindOpen.System.Scoping.Script;
 using System.Collections.Generic;
 using System.Linq;
@@ -184,6 +183,7 @@ namespace BindOpen.System.Data.Meta
         public virtual void SetData(object obj)
         {
             _data = obj.ToBdoData();
+            DataMode = DataMode.Value;
         }
 
         /// <summary>

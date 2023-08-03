@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BindOpen.System.Data.Assemblies;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -18,11 +19,11 @@ namespace BindOpen.System.Data.Meta
         #region Properties
 
         /// <summary>
-        /// Creation date of this instance.
+        /// The definition of this instance.
         /// </summary>
-        [JsonPropertyName("definitionUniqueName")]
-        [XmlElement("definitionUniqueName")]
-        public string DefinitionUniqueName { get; set; }
+        [JsonPropertyName("definition")]
+        [XmlElement("definition")]
+        public DefinitionReferenceDto Definition { get; set; }
 
         /// <summary>
         /// Creation date of this instance.
