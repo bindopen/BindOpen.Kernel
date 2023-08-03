@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.System.Scoping.Functions
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class represents a script word definition.
@@ -118,7 +118,7 @@ namespace BindOpen.System.Scoping.Functions
         /// <seealso cref="RepeatedParameterName"/>
         [JsonPropertyName("repeatedParameterDescription")]
         [XmlElement("repeatedParameterDescription")]
-        public DictionaryDto RepeatedParameterDescription { get; set; }
+        public TextDictionaryDto RepeatedParameterDescription { get; set; }
 
         #endregion
 

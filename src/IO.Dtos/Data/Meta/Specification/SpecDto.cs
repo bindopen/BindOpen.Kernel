@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BindOpen.System.Data.Assemblies;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -10,13 +11,20 @@ namespace BindOpen.System.Data.Meta
     /// </summary>
     [XmlType("Spec", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "spec", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class SpecDto : IBdoDto
+    public class SpecDto : IBdoDto, IIdentified
     {
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// ID of this instance.
+        /// </summary>
+        [JsonPropertyName("id")]
+        [XmlAttribute("id")]
+        public string Id { get; set; }
 
         // General ------------------------------------------
 
@@ -26,7 +34,14 @@ namespace BindOpen.System.Data.Meta
         [JsonPropertyName("valueType")]
         [XmlElement("valueType")]
         [DefaultValue(DataValueTypes.Any)]
-        public DataValueTypes DataValueType { get; set; } = DataValueTypes.Any;
+        public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
+
+        /// <summary>
+        /// The class reference of this instance.
+        /// </summary>
+        [JsonPropertyName("classRef")]
+        [XmlElement("classRef")]
+        public ClassReferenceDto ClassReference { get; set; }
 
         /// <summary>
         /// ID of the group of this instance.

@@ -1,6 +1,6 @@
 ﻿using BindOpen.System.Scoping;
 
-namespace BindOpen.System.Scoping.Tasks
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// 

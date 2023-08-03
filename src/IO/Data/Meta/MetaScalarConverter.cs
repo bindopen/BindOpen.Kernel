@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Data.Helpers;
 using System.Linq;
 
@@ -20,12 +21,17 @@ namespace BindOpen.System.Data.Meta
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<BdoMetaScalar, MetaScalarDto>()
-                    .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.Reference.ToDto()))
-                    .ForMember(q => q.Specs, opt => opt.MapFrom(q => q.Specs == null ? null : q.Specs.Select(q => q.ToDto()).ToList()))
+                    .ForMember(q => q.ClassReference, opt => opt.Ignore())
+                    .ForMember(q => q.Item, opt => opt.Ignore())
+                    .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDto()))
+                    .ForMember(q => q.Specs, opt => opt.Ignore())
             );
 
             var mapper = new Mapper(config);
             var dto = mapper.Map<MetaScalarDto>(poco);
+
+            dto.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;
+            dto.ClassReference = poco?.DataType.ClassReference?.ToDto();
 
             if (poco.DataMode == DataMode.Value)
             {
@@ -39,6 +45,7 @@ namespace BindOpen.System.Data.Meta
                     dto.Item = dataList?.FirstOrDefault();
                 }
             }
+            dto.Specs = poco.Specs?.Select(q => q.ToDto()).ToList();
 
             return dto;
         }
@@ -55,6 +62,8 @@ namespace BindOpen.System.Data.Meta
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<MetaScalarDto, BdoMetaScalar>()
+                    .ForMember(q => q.DataType, opt => opt.Ignore())
+                    .ForMember(q => q.Parent, opt => opt.Ignore())
                     .ForMember(q => q.Reference, opt => opt.Ignore())
                     .ForMember(q => q.Specs, opt => opt.Ignore())
                 );
@@ -62,16 +71,22 @@ namespace BindOpen.System.Data.Meta
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoMetaScalar>(dto);
 
-            poco.Reference = dto.DataReference.ToPoco();
-            poco.Specs = BdoData.NewSpecSet(dto.Specs.Select(q => q.ToPoco()).ToArray());
+            poco.DataType = new BdoDataType()
+            {
+                ClassReference = dto.ClassReference.ToPoco(),
+                ValueType = dto.ValueType
+            };
+            poco.Reference = dto.Reference.ToPoco();
+            var specs = dto.Specs?.Select(q => q.ToPoco())?.ToArray();
+            poco.Specs = specs?.Length > 0 ? BdoData.NewSet<IBdoSpec>(specs) : null;
 
             if (!string.IsNullOrEmpty(dto.Item))
             {
-                poco.WithData(dto.Item.ToObject(poco.GetSpec()?.DataType.ValueType ?? DataValueTypes.None));
+                poco.WithData(dto.Item.ToObject(poco.DataType.ValueType));
             }
             else
             {
-                var objects = dto.Items?.Select(q => q.ToObject(poco.GetSpec()?.DataType.ValueType ?? DataValueTypes.None)).ToList();
+                var objects = dto.Items?.Select(q => q.ToObject(poco.DataType.ValueType)).ToList();
                 poco.WithData(objects);
             }
 

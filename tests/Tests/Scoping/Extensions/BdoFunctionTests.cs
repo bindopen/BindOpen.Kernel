@@ -4,7 +4,7 @@ using BindOpen.System.Scoping.Script;
 using BindOpen.System.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.System.Scoping.Functions
+namespace BindOpen.System.Scoping
 {
     [TestFixture, Order(300)]
     public class BdoFunctionTests

@@ -1,6 +1,6 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
-using BindOpen.System.Scoping.Tasks;
+using BindOpen.System.Scoping;
 
 namespace BindOpen.System.Tests
 {
@@ -14,6 +14,8 @@ namespace BindOpen.System.Tests
     )]
     public class TaskFake : BdoTask
     {
+        public static string __DefinitionUniqueName = "bindopen.system.tests$taskFake";
+
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------

@@ -856,259 +856,259 @@
             <param key="xsdResources">The XSD resources to consider.</param>
             <returns>The XML schema set.</returns>
         </member>
-        <member name="T:BindOpen.System.Scoping.Connectors.ConnectorDefinitionDto">
+        <member name="T:BindOpen.System.Scoping.ConnectorDefinitionDto">
             <summary>
             This class represents a DTO connector definition.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.ConnectorDefinitionDto.DatasourceKind">
+        <member name="P:BindOpen.System.Scoping.ConnectorDefinitionDto.DatasourceKind">
             <summary>
             Data source kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.ConnectorDefinitionDto.ItemClass">
+        <member name="P:BindOpen.System.Scoping.ConnectorDefinitionDto.ItemClass">
             <summary>
             Item class of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.ConnectorDefinitionDto.Specs">
+        <member name="P:BindOpen.System.Scoping.ConnectorDefinitionDto.Specs">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.ConnectorDefinitionDto.SpecsSpecified">
+        <member name="P:BindOpen.System.Scoping.ConnectorDefinitionDto.SpecsSpecified">
             <summary>
             Indicates whether the entities property must be ignored.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.ConnectorDefinitionDto.#ctor">
+        <member name="M:BindOpen.System.Scoping.ConnectorDefinitionDto.#ctor">
             <summary>
             Instantiates a new instance of the ConnectorDefinition class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Connectors.ConnectorDictionaryDto">
+        <member name="T:BindOpen.System.Scoping.ConnectorDictionaryDto">
             <summary>
             This class represents a DTO connector dico.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.ConnectorDictionaryDto.Definitions">
+        <member name="P:BindOpen.System.Scoping.ConnectorDictionaryDto.Definitions">
             <summary>
             Definitions of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.ConnectorDictionaryDto.#ctor">
+        <member name="M:BindOpen.System.Scoping.ConnectorDictionaryDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoConnectorDictionaryDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Entities.EntityDefinitionDto">
+        <member name="T:BindOpen.System.Scoping.EntityDefinitionDto">
             <summary>
             This class represents the entity definition.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Entities.EntityDefinitionDto.ItemClass">
+        <member name="P:BindOpen.System.Scoping.EntityDefinitionDto.ItemClass">
             <summary>
             Item class of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Entities.EntityDefinitionDto.ViewerClass">
+        <member name="P:BindOpen.System.Scoping.EntityDefinitionDto.ViewerClass">
             <summary>
             Viewer class of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Entities.EntityDefinitionDto.OutputSpecification">
+        <member name="P:BindOpen.System.Scoping.EntityDefinitionDto.OutputSpecification">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Entities.EntityDefinitionDto.OutputSpecificationSpecified">
+        <member name="P:BindOpen.System.Scoping.EntityDefinitionDto.OutputSpecificationSpecified">
             <summary>
             Indicates whether the entities property must be ignored.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Entities.EntityDefinitionDto.#ctor">
+        <member name="M:BindOpen.System.Scoping.EntityDefinitionDto.#ctor">
             <summary>
             Instantiates a new instance of the EntityDefinition class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Entities.EntityDictionaryDto">
+        <member name="T:BindOpen.System.Scoping.EntityDictionaryDto">
             <summary>
             This class represents a DTO entity dico.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Entities.EntityDictionaryDto.Definitions">
+        <member name="P:BindOpen.System.Scoping.EntityDictionaryDto.Definitions">
             <summary>
             Definitions of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Entities.EntityDictionaryDto.#ctor">
+        <member name="M:BindOpen.System.Scoping.EntityDictionaryDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoEntityDictionaryDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Functions.FunctionDefinitionDto">
+        <member name="T:BindOpen.System.Scoping.FunctionDefinitionDto">
             <summary>
             This class represents a script word definition.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.FunctionDefinitionDto.CallingClass">
+        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.CallingClass">
             <summary>
             The calling class of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.FunctionDefinitionDto.Kind">
+        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.Kind">
             <summary>
             Kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.FunctionDefinitionDto.MaxParameterNumber">
+        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.MaxParameterNumber">
             <summary>
             Maximum number of parameters of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.FunctionDefinitionDto.MinParameterNumber">
+        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.MinParameterNumber">
             <summary>
             Minimum number of parameters of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.FunctionDefinitionDto.RepeatedParameterName">
+        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.RepeatedParameterName">
             <summary>
             Name of parameters of this instance when parameters are repeated.
             </summary>
             <seealso cref="!:IsRepeatedParameters"/>
-            <seealso cref="P:BindOpen.System.Scoping.Functions.FunctionDefinitionDto.RepeatedParameterValueType"/>
+            <seealso cref="P:BindOpen.System.Scoping.FunctionDefinitionDto.RepeatedParameterValueType"/>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.FunctionDefinitionDto.RepeatedParameterValueType">
+        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.RepeatedParameterValueType">
             <summary>
             Value type of parameters of this instance when parameters are repeated.
             </summary>
             <seealso cref="!:IsRepeatedParameters"/>
-            <seealso cref="P:BindOpen.System.Scoping.Functions.FunctionDefinitionDto.RepeatedParameterName"/>
+            <seealso cref="P:BindOpen.System.Scoping.FunctionDefinitionDto.RepeatedParameterName"/>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.FunctionDefinitionDto.ReferenceUniqueName">
+        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.ReferenceUniqueName">
             <summary>
             Reference unique ID of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.FunctionDefinitionDto.ReturnValueType">
+        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.ReturnValueType">
             <summary>
             The return value type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.FunctionDefinitionDto.RuntimeFunctionName">
+        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.RuntimeFunctionName">
             <summary>
             Name of the runtime function.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.FunctionDefinitionDto.Children">
+        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.Children">
             <summary>
             The definitions of the sub words of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.FunctionDefinitionDto.ParameterSpecification">
+        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.ParameterSpecification">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.FunctionDefinitionDto.ParameterSpecificationSpecified">
+        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.ParameterSpecificationSpecified">
             <summary>
             Indicates whether the entities property must be ignored.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.FunctionDefinitionDto.RepeatedParameterDescription">
+        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.RepeatedParameterDescription">
             <summary>
             Description of parameters of this instance when parameters are repeated.
             </summary>
             <seealso cref="!:IsRepeatedParameters"/>
-            <seealso cref="P:BindOpen.System.Scoping.Functions.FunctionDefinitionDto.RepeatedParameterName"/>
+            <seealso cref="P:BindOpen.System.Scoping.FunctionDefinitionDto.RepeatedParameterName"/>
         </member>
-        <member name="M:BindOpen.System.Scoping.Functions.FunctionDefinitionDto.#ctor">
+        <member name="M:BindOpen.System.Scoping.FunctionDefinitionDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoFunctionDefinitionDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Functions.FunctionDictionaryDto">
+        <member name="T:BindOpen.System.Scoping.FunctionDictionaryDto">
             <summary>
             This class represents a DTO script word dico.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.FunctionDictionaryDto.DefinitionClass">
+        <member name="P:BindOpen.System.Scoping.FunctionDictionaryDto.DefinitionClass">
             <summary>
             The definition class of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.FunctionDictionaryDto.Definitions">
+        <member name="P:BindOpen.System.Scoping.FunctionDictionaryDto.Definitions">
             <summary>
             Definitions of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Functions.FunctionDictionaryDto.#ctor">
+        <member name="M:BindOpen.System.Scoping.FunctionDictionaryDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoFunctionDictionaryDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Tasks.TaskDefinitionDto">
+        <member name="T:BindOpen.System.Scoping.TaskDefinitionDto">
             <summary>
             This class represents a task definition.
             </summary>
             <seealso cref="!:BdoMeta_Config"/>
         </member>
-        <member name="P:BindOpen.System.Scoping.Tasks.TaskDefinitionDto.GroupName">
+        <member name="P:BindOpen.System.Scoping.TaskDefinitionDto.GroupName">
             <summary>
             Name of the group of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Tasks.TaskDefinitionDto.IsExecutable">
+        <member name="P:BindOpen.System.Scoping.TaskDefinitionDto.IsExecutable">
             <summary>
             Indicates whether this instance is executable.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Tasks.TaskDefinitionDto.ItemClass">
+        <member name="P:BindOpen.System.Scoping.TaskDefinitionDto.ItemClass">
             <summary>
             Item class of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Tasks.TaskDefinitionDto.MaximumIndex">
+        <member name="P:BindOpen.System.Scoping.TaskDefinitionDto.MaximumIndex">
             <summary>
             Maximum index of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Tasks.TaskDefinitionDto.InputSpecification">
+        <member name="P:BindOpen.System.Scoping.TaskDefinitionDto.InputSpecification">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Tasks.TaskDefinitionDto.InputSpecificationSpecified">
+        <member name="P:BindOpen.System.Scoping.TaskDefinitionDto.InputSpecificationSpecified">
             <summary>
             Indicates whether the entities property must be ignored.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Tasks.TaskDefinitionDto.OutputSpecification">
+        <member name="P:BindOpen.System.Scoping.TaskDefinitionDto.OutputSpecification">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Tasks.TaskDefinitionDto.OutputSpecificationSpecified">
+        <member name="P:BindOpen.System.Scoping.TaskDefinitionDto.OutputSpecificationSpecified">
             <summary>
             Indicates whether the entities property must be ignored.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.TaskDefinitionDto.#ctor">
+        <member name="M:BindOpen.System.Scoping.TaskDefinitionDto.#ctor">
             <summary>
             Instantiates a new instance of the TaskDefinition class. 
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Tasks.TaskDictionaryDto">
+        <member name="T:BindOpen.System.Scoping.TaskDictionaryDto">
             <summary>
             This class represents a DTO task dico.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Tasks.TaskDictionaryDto.Definitions">
+        <member name="P:BindOpen.System.Scoping.TaskDictionaryDto.Definitions">
             <summary>
             Definitions of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.TaskDictionaryDto.#ctor">
+        <member name="M:BindOpen.System.Scoping.TaskDictionaryDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoTaskDictionaryDto class.
             </summary>

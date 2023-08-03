@@ -4,7 +4,7 @@ using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Meta.Reflection;
 using BindOpen.System.Logging;
 
-namespace BindOpen.System.Scoping.Connectors
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class represents a connection service.
@@ -21,23 +21,24 @@ namespace BindOpen.System.Scoping.Connectors
         /// <param key="log">The log to consider.</param>
         /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the created connector.</returns>
-        public static IBdoConnector CreateConnector(
+        private static IBdoConnector CreateConnector(
             this IBdoScope scope,
-            IBdoConfiguration config,
+            IBdoMetaSet metaSet = null,
+            string definitionUniqueName = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             IBdoConnector connector = null;
 
-            if (config != null && scope?.Check(true, log: log) == true)
+            if (metaSet != null && scope?.Check(true, log: log) == true)
             {
                 // we get the connector class reference
 
-                IBdoConnectorDefinition definition = scope.ExtensionStore.GetDefinition<IBdoConnectorDefinition>(config?.DefinitionUniqueName);
+                IBdoConnectorDefinition definition = scope.ExtensionStore.GetDefinition<IBdoConnectorDefinition>(definitionUniqueName);
                 if (definition == null)
                 {
                     log?.AddEvent(EventKinds.Error,
-                        "Could not retrieve the extension connector '" + config.DefinitionUniqueName + "' definitio in scope");
+                        "Could not retrieve the extension connector '" + definitionUniqueName + "' definitio in scope");
                 }
                 else
                 {
@@ -47,13 +48,20 @@ namespace BindOpen.System.Scoping.Connectors
                     if ((connector = item as IBdoConnector) != null)
                     {
                         connector.DefinitionUniqueName = definition.UniqueName;
-                        connector.UpdateFromMeta(config, true, scope: scope, varSet: varSet);
+                        connector.UpdateFromMeta(metaSet, true, scope: scope, varSet: varSet);
                     }
                 }
             }
 
             return connector;
         }
+
+        public static IBdoConnector CreateConnector(
+            this IBdoScope scope,
+            IBdoConfiguration config,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+            => scope.CreateConnector(config, config?.DefinitionUniqueName, varSet, log);
 
         /// <summary>
         /// Creates the instance of the specified definition.
@@ -66,11 +74,17 @@ namespace BindOpen.System.Scoping.Connectors
         /// <returns>Returns the created connector.</returns>
         public static T CreateConnector<T>(
             this IBdoScope scope,
-            IBdoConfiguration config,
+            IBdoMetaSet metaSet = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null) where T : class, IBdoConnector, new()
         {
-            return scope.CreateConnector(config, varSet, log) as T;
+            var extensionDefinition = scope.ExtensionStore?.GetDefinitionFromType(
+                BdoExtensionKind.Connector,
+                BdoData.Class(typeof(T)));
+
+            var connector = scope.CreateConnector(metaSet, extensionDefinition?.UniqueName, varSet, log) as T;
+
+            return connector;
         }
 
         /// <summary>

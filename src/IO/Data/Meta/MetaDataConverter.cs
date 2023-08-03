@@ -38,7 +38,7 @@ namespace BindOpen.System.Data.Meta
 
             if (dto != null)
             {
-                dto.DataReference = poco.Reference?.ToDto();
+                dto.Reference = poco.Reference?.ToDto();
             }
 
             return dto;

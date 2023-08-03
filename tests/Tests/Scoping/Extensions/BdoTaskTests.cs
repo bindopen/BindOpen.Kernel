@@ -1,10 +1,9 @@
-﻿using BindOpen.System.Scoping.Tasks;
-using BindOpen.System.Data;
+﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.System.Scoping.Tasks
+namespace BindOpen.System.Scoping
 {
     [TestFixture, Order(300)]
     public class BdoTaskTests
@@ -40,36 +39,39 @@ namespace BindOpen.System.Scoping.Tasks
             return config;
         }
 
-        public static IBdoTask CreateTask(dynamic data)
+        [Test, Order(1)]
+        public void CreateTaskTest_FromMetaSet()
         {
-            var task = new TaskFake
-            {
-                BoolValue = data.boolValue,
-                EnumValue = data.enumValue,
-                IntValue = data.intValue,
-                StringValue = data.stringValue,
-            };
+            IBdoConfiguration config = CreateTaskConfig(_testData);
+            var connector = SystemData.Scope.CreateTask<TaskFake>(config);
 
-            return task;
+            BdoTaskFaker.AssertFake(connector, _testData);
         }
 
-        [Test, Order(1)]
-        public void CreateTaskToConfig()
+        [Test, Order(2)]
+        public void CreateTaskTest_FromConfig()
         {
-            IBdoTask task = CreateTask(_testData);
-            var config = SystemData.Scope.CreateConfigFrom(task, "testConfig");
-            var task2 = SystemData.Scope.CreateTask<TaskFake>(config);
+            IBdoConfiguration config = CreateTaskConfig(_testData);
+            var connector = SystemData.Scope.CreateTask(config) as TaskFake;
 
-            BdoTaskFaker.AssertFake(task2, _testData);
+            BdoTaskFaker.AssertFake(connector, _testData);
         }
 
         [Test, Order(3)]
-        public void CreateTaskFromScopeTest()
+        public void CreateTaskTest_FromObject()
         {
-            IBdoConfiguration config = CreateTaskConfig(_testData);
-            var task = SystemData.Scope.CreateTask<TaskFake>(config);
+            var connector = new TaskFake
+            {
+                BoolValue = _testData.boolValue,
+                EnumValue = _testData.enumValue,
+                IntValue = _testData.intValue,
+                StringValue = _testData.stringValue,
+            };
 
-            BdoTaskFaker.AssertFake(task, _testData);
+            var config = connector.ToConfig(SystemData.Scope, "testConfig");
+            connector = SystemData.Scope.CreateTask(config) as TaskFake;
+
+            BdoTaskFaker.AssertFake(connector, _testData);
         }
     }
 

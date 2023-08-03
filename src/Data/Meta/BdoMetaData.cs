@@ -1,7 +1,6 @@
 ﻿using BindOpen.System.Data.Helpers;
 using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
-using BindOpen.System.Scoping.Functions;
 using BindOpen.System.Scoping.Script;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,7 +54,7 @@ namespace BindOpen.System.Data.Meta
         {
             _namePreffix = namePreffix ?? "element_";
             this.WithName(name);
-            Id = id ?? StringHelper.NewGuid();
+            Id = id;
         }
 
         #endregion
@@ -109,6 +108,11 @@ namespace BindOpen.System.Data.Meta
         /// The itemization mode of this instance.
         /// </summary>
         public DataMode DataMode { get; set; } = DataMode.Value;
+
+        /// <summary>
+        /// The script of this instance.
+        /// </summary>
+        public BdoDataType DataType { get; set; }
 
         /// <summary>
         /// The script of this instance.
@@ -179,6 +183,7 @@ namespace BindOpen.System.Data.Meta
         public virtual void SetData(object obj)
         {
             _data = obj.ToBdoData();
+            DataMode = DataMode.Value;
         }
 
         /// <summary>
@@ -320,7 +325,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public virtual string Key() => Name;
+        public virtual string Key() => string.IsNullOrEmpty(Name) ? Reference?.MetaData?.Name : Name;
 
         #endregion
 

@@ -17,11 +17,11 @@ namespace BindOpen.System.Data.Assemblies
         #region Properties
 
         /// <summary>
-        /// The library name of this instance.
+        /// The definition of this instance.
         /// </summary>
-        [JsonPropertyName("definitionUniqueName")]
-        [XmlAttribute("definitionUniqueName")]
-        public string DefinitionUniqueName { get; set; }
+        [JsonPropertyName("definition")]
+        [XmlElement("definition")]
+        public DefinitionReferenceDto Definition { get; set; }
 
         /// <summary>
         /// The library name of this instance.

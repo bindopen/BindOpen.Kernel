@@ -1,6 +1,7 @@
 ﻿using BindOpen.System.Data.Helpers;
 using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -49,7 +50,6 @@ namespace BindOpen.System.Data.Meta
         public BdoMetaSet() : base()
         {
             DataMode = DataMode.Value;
-            DataValueType = DataValueTypes.Any;
         }
 
         #endregion
@@ -63,7 +63,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public override string Key() => Name;
+        public override string Key() => string.IsNullOrEmpty(Name) ? Reference?.Key() : Name;
 
         #endregion
 
@@ -157,11 +157,6 @@ namespace BindOpen.System.Data.Meta
         public int? Index { get; set; }
 
         /// <summary>
-        /// The value type of this instance.
-        /// </summary>
-        public DataValueTypes DataValueType { get; set; } = DataValueTypes.Any;
-
-        /// <summary>
         /// The itemization mode of this instance.
         /// </summary>
         public DataMode DataMode { get; set; }
@@ -175,6 +170,15 @@ namespace BindOpen.System.Data.Meta
         /// The identifier of the group of this instance.
         /// </summary>
         public string GroupId { get; set; }
+
+        /// <summary>
+        /// The script of this instance.
+        /// </summary>
+        public BdoDataType DataType { get; set; }
+
+        public DataValueTypes DataValueType => DataType.ValueType;
+
+        public Type DataClassType => DataType.ClassType;
 
         // Specification -------------------------------
 
@@ -307,7 +311,7 @@ namespace BindOpen.System.Data.Meta
             IBdoLog log = null)
         {
             return Items?
-                .Select(q => q.GetData(scope, varSet, log))
+                .Select(q => q?.GetData(scope, varSet, log))
                 .ToList();
         }
 

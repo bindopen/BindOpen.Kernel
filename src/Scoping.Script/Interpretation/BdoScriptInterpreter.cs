@@ -3,7 +3,6 @@ using BindOpen.System.Data.Helpers;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Meta.Reflection;
 using BindOpen.System.Logging;
-using BindOpen.System.Scoping.Functions;
 using System;
 
 namespace BindOpen.System.Scoping.Script
@@ -188,7 +187,7 @@ namespace BindOpen.System.Scoping.Script
                 case BdoReferenceKind.Identifier:
                     return varSet?[reference?.Identifier];
                 case BdoReferenceKind.MetaData:
-                    return reference?.MetaData;
+                    return reference?.MetaData.GetData(_scope, varSet, log);
                 case BdoReferenceKind.Word:
                     return Evaluate(reference?.Word, varSet, log);
             }

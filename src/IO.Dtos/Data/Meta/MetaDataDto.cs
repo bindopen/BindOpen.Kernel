@@ -1,4 +1,5 @@
-﻿using BindOpen.System.Scoping.Script;
+﻿using BindOpen.System.Data.Assemblies;
+using BindOpen.System.Scoping.Script;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
@@ -19,13 +20,20 @@ namespace BindOpen.System.Data.Meta
     [JsonDerivedType(typeof(MetaObjectDto), "object")]
     [JsonDerivedType(typeof(MetaScalarDto), "scalar")]
     [JsonDerivedType(typeof(ScriptwordDto), "scripword")]
-    public class MetaDataDto : IBdoDto
+    public class MetaDataDto : IBdoDto, IIdentified
     {
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// ID of this instance.
+        /// </summary>
+        [JsonPropertyName("id")]
+        [XmlAttribute("id")]
+        public string Id { get; set; }
 
         /// <summary>
         /// Name of this instance.
@@ -56,17 +64,17 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The itemization mode of this instance.
         /// </summary>
-        [JsonPropertyName("dataMode")]
-        [XmlElement("dataMode")]
+        [JsonPropertyName("mode")]
+        [XmlAttribute("mode")]
         [DefaultValue(DataMode.Value)]
         public DataMode DataMode = DataMode.Value;
 
         /// <summary>
         /// The expression of this instance.
         /// </summary>
-        [JsonPropertyName("reference")]
-        [XmlElement("reference")]
-        public ReferenceDto DataReference { get; set; }
+        [JsonPropertyName("ref")]
+        [XmlElement("ref")]
+        public ReferenceDto Reference { get; set; }
 
         /// <summary>
         /// The elements of this instance.
@@ -81,6 +89,21 @@ namespace BindOpen.System.Data.Meta
         [JsonIgnore]
         [XmlIgnore]
         public bool SpecsSpecified => Specs?.Count > 0;
+
+        /// <summary>
+        /// The value type of this instance.
+        /// </summary>
+        [JsonPropertyName("valueType")]
+        [XmlAttribute("valueType")]
+        [DefaultValue(DataValueTypes.Any)]
+        public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
+
+        /// <summary>
+        /// The class reference of this instance.
+        /// </summary>
+        [JsonPropertyName("classRef")]
+        [XmlElement("classRef")]
+        public ClassReferenceDto ClassReference { get; set; }
 
         #endregion
 

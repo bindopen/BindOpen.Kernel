@@ -124,7 +124,7 @@ namespace BindOpen.System.Data
             Assert.That(el1 != null, "Bad scalar el - ToString");
             var el2 = elSetA.Get("name1");
             Assert.That(el2 != null, "Bad scalar el - ToString");
-            var el3 = elSetA.Get("key2");
+            var el3 = elSetA.GetData("key2");
             Assert.That(el3 == this, "Bad scalar el - ToString");
         }
     }

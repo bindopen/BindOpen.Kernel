@@ -3,7 +3,7 @@ using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Stores;
 using BindOpen.System.Logging;
-using BindOpen.System.Scoping.Entities;
+using BindOpen.System.Scoping;
 using BindOpen.System.Scoping.Script;
 using BindOpen.System.Scoping.Stores;
 using System;

@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using BindOpen.System.Data.Assemblies;
+using BindOpen.System.Data.Meta.Reflection;
 using System.Linq;
 
 namespace BindOpen.System.Data.Meta
@@ -17,16 +19,21 @@ namespace BindOpen.System.Data.Meta
         {
             if (poco == null) return null;
 
+            poco.UpdateTree();
+
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<BdoMetaSet, MetaSetDto>()
-                    .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.Reference.ToDto()))
-            //.ForMember(q => q.Specs, opt => opt.Ignore())
+                    .ForMember(q => q.ClassReference, opt => opt.Ignore())
+                    .ForMember(q => q.MetaItems, opt => opt.Ignore())
+                    .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDto()))
+                    .ForMember(q => q.Specs, opt => opt.Ignore())
             );
 
             var mapper = new Mapper(config);
             var dto = mapper.Map<MetaSetDto>(poco);
 
             dto.MetaItems = poco.Items?.Select(q => q.ToDto()).ToList();
+            dto.Specs = poco.Specs?.Select(q => q.ToDto()).ToList();
 
             return dto;
         }
@@ -43,6 +50,9 @@ namespace BindOpen.System.Data.Meta
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<MetaSetDto, BdoMetaSet>()
+                    .ForMember(q => q.DataType, opt => opt.Ignore())
+                    .ForMember(q => q.Items, opt => opt.Ignore())
+                    .ForMember(q => q.Parent, opt => opt.Ignore())
                     .ForMember(q => q.Reference, opt => opt.Ignore())
                     .ForMember(q => q.Specs, opt => opt.Ignore())
                 );
@@ -50,8 +60,15 @@ namespace BindOpen.System.Data.Meta
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoMetaSet>(dto);
 
-            poco.Reference = dto.DataReference.ToPoco();
-            //poco.Specs = dto.Specs?.Count == 0 ? null : dto.Specs?.Select(q => q.ToPoco()).Cast<IBdoSpec>().ToList();
+            poco.DataType = new BdoDataType()
+            {
+                ClassReference = dto.ClassReference.ToPoco(),
+                ValueType = dto.ValueType
+            };
+            poco.Reference = dto.Reference.ToPoco();
+            var specs = dto.Specs?.Select(q => q.ToPoco())?.ToArray();
+            poco.Specs = specs?.Length > 0 ? BdoData.NewSet<IBdoSpec>(specs) : null;
+
             poco.With(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
 
             return poco;
