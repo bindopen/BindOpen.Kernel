@@ -35,7 +35,7 @@ namespace BindOpen.System.Data.Meta
 
             if (poco.DataMode == DataMode.Value)
             {
-                var dataList = poco.GetDataList<object>()?.Select(q => q.ToString()).ToList();
+                var dataList = poco.GetDataList<object>()?.Select(q => q.ToString(dto.ValueType)).ToList();
                 if (dataList?.Count > 1)
                 {
                     dto.Items = dataList;

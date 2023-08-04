@@ -5,9 +5,13 @@ Todo list for BindOpen
 
 - [ ] Extension store : improve package loading
 - [ ] Apply cloning when needed (ie. in ToMetaData method)
-- [ ] Cloning objects
-- [ ] XSD location URI updated to docs.bindopen.org/xsd
-- [ ] Xml DTD files
+- [ ] Implementing Clone methods
+- [ ] Implementing XSD files
+- [ ] Updating ByteArray scalar to Binary object meta data
+- [ ] Fixing BdoStringSetTests 
+- [ ] Implementing IO of specs
+- [ ] Cleaning comments
+- [ ] Making meta data easier: Class vs Entity, Config vs Object
 
 ## Stuff to check out later on
 
