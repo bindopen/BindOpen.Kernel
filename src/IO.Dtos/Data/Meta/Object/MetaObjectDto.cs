@@ -26,9 +26,9 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         [JsonPropertyName("item")]
         [XmlElement("item.datasource", Type = typeof(DatasourceDto))]
-        [XmlElement("item.dictionary", Type = typeof(TextDictionaryDto))]
+        [XmlElement("item.dictionary", Type = typeof(DictionaryDto))]
         [XmlElement("item.expression", Type = typeof(ExpressionDto))]
-        [XmlElement("item.filter", Type = typeof(StringSetDto))]
+        [XmlElement("item.filter", Type = typeof(FilterDto))]
         public BdoItemDto Item { get; set; }
 
         /// <summary>

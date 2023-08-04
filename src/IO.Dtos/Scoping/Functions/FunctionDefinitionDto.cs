@@ -118,7 +118,7 @@ namespace BindOpen.System.Scoping
         /// <seealso cref="RepeatedParameterName"/>
         [JsonPropertyName("repeatedParameterDescription")]
         [XmlElement("repeatedParameterDescription")]
-        public TextDictionaryDto RepeatedParameterDescription { get; set; }
+        public DictionaryDto RepeatedParameterDescription { get; set; }
 
         #endregion
 

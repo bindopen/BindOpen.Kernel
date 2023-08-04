@@ -7,7 +7,7 @@ namespace BindOpen.System.Data
     /// This class represents a dico data item extension.
     /// </summary>
     /// <example>Titles, Descriptions.</example>
-    public static class IBdoTextDictionaryExtension
+    public static class ITBdoDictionaryExtension
     {
         // Add -----------------------------
 
@@ -15,10 +15,10 @@ namespace BindOpen.System.Data
         /// Adds a new value to this instance.
         /// </summary>
         /// <param key="pairs">The value to add.</param>
-        public static T Add<T>(
+        public static T Add<T, TItem>(
             this T dico,
-            params KeyValuePair<string, string>[] pairs)
-            where T : IBdoTextDictionary
+            params KeyValuePair<string, TItem>[] pairs)
+            where T : ITBdoDictionary<TItem>
         {
             if (dico != null)
             {
@@ -36,12 +36,12 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
-        public static T Add<T>(
+        public static T Add<T, TItem>(
             this T dico,
-            string text)
-            where T : IBdoTextDictionary
+            TItem item)
+            where T : ITBdoDictionary<TItem>
         {
-            dico.Add(StringHelper.__Star, text);
+            dico.Add(StringHelper.__Star, item);
 
             return dico;
         }
@@ -50,10 +50,10 @@ namespace BindOpen.System.Data
         /// Adds a new value to this instance.
         /// </summary>
         /// <param key="pairs">The value to add.</param>
-        public static T With<T>(
+        public static T With<T, TItem>(
             this T dico,
-            params KeyValuePair<string, string>[] pairs)
-            where T : IBdoTextDictionary
+            params KeyValuePair<string, TItem>[] pairs)
+            where T : ITBdoDictionary<TItem>
         {
             if (dico != null)
             {
@@ -68,12 +68,12 @@ namespace BindOpen.System.Data
         /// Sets the text of the default value.
         /// </summary>
         /// <param key="text">The text of the value to add.</param>
-        public static T With<T>(
+        public static T With<T, TItem>(
             this T dico,
-            string text)
-            where T : IBdoTextDictionary
+            TItem item)
+            where T : ITBdoDictionary<TItem>
         {
-            dico.With(StringHelper.__Star, text);
+            dico.With(StringHelper.__Star, item);
 
             return dico;
         }
@@ -83,16 +83,16 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="key">The key of the value to add.</param>
         /// <param key="text">The text of the value to add.</param>
-        public static T With<T>(
+        public static T With<T, TItem>(
             this T dico,
             string key,
-            string text)
-            where T : IBdoTextDictionary
+            TItem item)
+            where T : ITBdoDictionary<TItem>
         {
             if (dico != null)
             {
                 dico.Clear();
-                dico.Add(text);
+                dico.Add(item);
             }
 
             return dico;

@@ -1,5 +1,4 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Helpers;
+﻿using BindOpen.System.Data.Helpers;
 using Bogus;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -8,13 +7,13 @@ using System.Linq;
 namespace BindOpen.System.Data
 {
     [TestFixture, Order(210)]
-    public class BdoStringSetTests
+    public class BdoFilterTests
     {
         List<string> _addList = new();
         List<string> _removeList = new();
         List<string> _list = new();
 
-        public BdoStringSet _set = null;
+        public BdoFilter _set = null;
 
 
         [OneTimeSetUp]
@@ -30,7 +29,7 @@ namespace BindOpen.System.Data
         public void Create1Test()
         {
             var list = _list.Adding(_removeList?.ToArray());
-            var set = BdoData.NewStringSet(_addList, _removeList);
+            var set = BdoData.NewFilter(_addList, _removeList);
             var newList = list.Merge(set);
 
             Assert.That(
@@ -45,7 +44,7 @@ namespace BindOpen.System.Data
         public void Create2Test()
         {
             var list = _list.Adding(_removeList?.ToArray());
-            var set = BdoData.NewStringSet()
+            var set = BdoData.NewFilter()
                 .Removing(_removeList?.ToArray());
             var newList = list.Merge(set);
 
@@ -59,7 +58,7 @@ namespace BindOpen.System.Data
         public void Create3Test()
         {
             var list = _list.Adding(_removeList?.ToArray());
-            var set = BdoData.NewStringSet()
+            var set = BdoData.NewFilter()
                 .Adding(_addList?.ToArray())
                 .Removing(_removeList?.ToArray());
             var newList = list.Merge(set);

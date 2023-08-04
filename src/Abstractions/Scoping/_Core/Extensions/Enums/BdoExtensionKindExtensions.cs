@@ -1,8 +1,4 @@
 ﻿using BindOpen.System.Data;
-using BindOpen.System.Scoping;
-using BindOpen.System.Scoping;
-using BindOpen.System.Scoping;
-using BindOpen.System.Scoping;
 using System;
 
 namespace BindOpen.System.Scoping

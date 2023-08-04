@@ -5,18 +5,18 @@ namespace BindOpen.System.Data
     /// <summary>
     /// This static class represents a data reference converter.
     /// </summary>
-    public static class StringSetConverter
+    public static class FilterConverter
     {
         /// <summary>
         /// Converts to DTO.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static StringSetDto ToDto(this IBdoStringSet poco)
+        public static FilterDto ToDto(this IBdoFilter poco)
         {
             if (poco == null) return null;
 
-            StringSetDto dto = new()
+            FilterDto dto = new()
             {
                 AddedValues = new List<string>(poco?.AddedValues),
                 RemovedValues = new List<string>(poco?.RemovedValues)
@@ -30,9 +30,9 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoStringSet ToPoco(this StringSetDto dto)
+        public static IBdoFilter ToPoco(this FilterDto dto)
         {
-            BdoStringSet poco = new()
+            BdoFilter poco = new()
             {
                 AddedValues = new List<string>(dto?.AddedValues),
                 RemovedValues = new List<string>(dto?.RemovedValues)

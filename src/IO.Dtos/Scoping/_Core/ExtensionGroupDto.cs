@@ -23,7 +23,7 @@ namespace BindOpen.System.Scoping
         /// </summary>
         [JsonPropertyName("description")]
         [XmlElement("description")]
-        public TextDictionaryDto Description { get; set; }
+        public DictionaryDto Description { get; set; }
 
         /// <summary>
         /// Sub groups of this instance.

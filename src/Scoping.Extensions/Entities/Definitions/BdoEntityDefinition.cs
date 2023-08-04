@@ -1,5 +1,4 @@
-﻿using BindOpen.System.Scoping;
-using BindOpen.System.Data;
+﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Assemblies;
 using System;
 
@@ -30,7 +29,7 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// 
         /// </summary>
-        public IBdoTextDictionary ViewerDictionary { get; set; }
+        public ITBdoDictionary<string> ViewerDictionary { get; set; }
 
         #endregion
 

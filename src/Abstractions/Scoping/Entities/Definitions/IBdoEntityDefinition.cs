@@ -1,6 +1,5 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Assemblies;
-using BindOpen.System.Scoping;
 using System;
 
 namespace BindOpen.System.Scoping
@@ -23,6 +22,6 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// 
         /// </summary>
-        IBdoTextDictionary ViewerDictionary { get; set; }
+        ITBdoDictionary<string> ViewerDictionary { get; set; }
     }
 }

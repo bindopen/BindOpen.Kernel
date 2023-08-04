@@ -8,14 +8,14 @@ namespace BindOpen.System.Data
     /// </summary>
     [XmlType("item", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlInclude(typeof(DatasourceDto))]
-    [XmlInclude(typeof(TextDictionaryDto))]
+    [XmlInclude(typeof(DictionaryDto))]
     [XmlInclude(typeof(ExpressionDto))]
-    [XmlInclude(typeof(StringSetDto))]
+    [XmlInclude(typeof(FilterDto))]
 
     [JsonDerivedType(typeof(DatasourceDto), "source")]
-    [JsonDerivedType(typeof(TextDictionaryDto), "dictonary")]
+    [JsonDerivedType(typeof(DictionaryDto), "dictonary")]
     [JsonDerivedType(typeof(ExpressionDto), "expression")]
-    [JsonDerivedType(typeof(StringSetDto), "string.filter")]
+    [JsonDerivedType(typeof(FilterDto), "string.filter")]
 
     public class BdoItemDto : IBdoDto
     {

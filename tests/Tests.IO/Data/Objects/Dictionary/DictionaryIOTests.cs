@@ -12,7 +12,7 @@ namespace BindOpen.System.Data
         private readonly string _filePath_xml = SystemData.WorkingFolder + "Dictionary.xml";
         private readonly string _filePath_json = SystemData.WorkingFolder + "Dictionary.json";
         dynamic _valueSet;
-        private IBdoTextDictionary _dico = null;
+        private ITBdoDictionary<string> _dico = null;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -28,8 +28,8 @@ namespace BindOpen.System.Data
         }
 
         public static bool Equals(
-            IBdoTextDictionary dico1,
-            IBdoTextDictionary dico2)
+            ITBdoDictionary<string> dico1,
+            ITBdoDictionary<string> dico2)
         {
             var b = dico1 != null && dico2 != null
                 && dico1.Count == dico2.Count
@@ -39,7 +39,7 @@ namespace BindOpen.System.Data
 
         private void CreateTest()
         {
-            _dico = BdoData.NewDictionary(
+            _dico = BdoData.NewDictionary<string>(
                 ("value1", _valueSet.value1),
                 ("value2", _valueSet.value2));
         }
@@ -66,7 +66,7 @@ namespace BindOpen.System.Data
                 SaveXmlTest();
             }
 
-            var dico = XmlHelper.LoadXml<TextDictionaryDto>(_filePath_xml).ToPoco();
+            var dico = XmlHelper.LoadXml<DictionaryDto>(_filePath_xml).ToPoco<string>();
             Assert.That(Equals(dico, _dico), "Error while loading");
         }
 
@@ -92,7 +92,7 @@ namespace BindOpen.System.Data
                 SaveJsonTest();
             }
 
-            var dico = JsonHelper.LoadJson<TextDictionaryDto>(_filePath_json).ToPoco();
+            var dico = JsonHelper.LoadJson<DictionaryDto>(_filePath_json).ToPoco<string>();
             Assert.That(Equals(dico, _dico), "Error while loading");
         }
     }

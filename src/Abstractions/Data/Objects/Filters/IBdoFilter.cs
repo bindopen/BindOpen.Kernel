@@ -5,7 +5,7 @@ namespace BindOpen.System.Data
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoStringSet : IBdoObjectNotMetable
+    public interface IBdoFilter : IBdoObjectNotMetable
     {
         /// <summary>
         /// 

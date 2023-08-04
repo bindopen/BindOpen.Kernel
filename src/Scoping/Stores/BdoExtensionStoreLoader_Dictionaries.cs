@@ -1,9 +1,5 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Logging;
-using BindOpen.System.Scoping;
-using BindOpen.System.Scoping;
-using BindOpen.System.Scoping;
-using BindOpen.System.Scoping;
 using System;
 using System.IO;
 using System.Reflection;

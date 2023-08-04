@@ -9,7 +9,7 @@ namespace BindOpen.System.Data
     {
         public static T WithTitle<T>(
             this T obj,
-            IBdoTextDictionary dictionary)
+            ITBdoDictionary<string> dictionary)
             where T : IBdoTitled
         {
             if (obj != null)

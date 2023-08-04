@@ -10,7 +10,7 @@ namespace BindOpen.System.Data
     /// This class represents a dico data item.
     /// </summary>
     /// <example>Titles, Descriptions.</example>
-    public class BdoTextDictionary : Dictionary<string, string>, IBdoTextDictionary
+    public class TBdoDictionary<TItem> : Dictionary<string, TItem>, ITBdoDictionary<TItem>
     {
         // --------------------------------------------------
         // Converters
@@ -22,9 +22,9 @@ namespace BindOpen.System.Data
         /// 
         /// </summary>
         /// <param key="items"></param>
-        public static implicit operator BdoTextDictionary((string Key, string Value)[] items)
+        public static implicit operator TBdoDictionary<TItem>((string Key, TItem Value)[] items)
         {
-            var dico = BdoData.NewDictionary();
+            var dico = BdoData.NewDictionary<TItem>();
             foreach (var (Key, Value) in items)
             {
                 dico.Add(Key, Value);
@@ -37,10 +37,10 @@ namespace BindOpen.System.Data
         /// 
         /// </summary>
         /// <param key="items"></param>
-        public static implicit operator BdoTextDictionary(string text)
+        public static implicit operator TBdoDictionary<TItem>(TItem item)
         {
-            var dico = BdoData.NewDictionary();
-            dico.With(StringHelper.__Star, text);
+            var dico = BdoData.NewDictionary<TItem>();
+            dico.With(StringHelper.__Star, item);
 
             return dico;
         }
@@ -56,7 +56,7 @@ namespace BindOpen.System.Data
         /// <summary>
         /// Instantiates a new instance of the DictionaryDataItem class. 
         /// </summary>
-        public BdoTextDictionary()
+        public TBdoDictionary()
         {
         }
 
@@ -86,7 +86,7 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="key">The key to consider.</param>
         /// <returns>Returns the specified text.</returns>
-        public new string this[string key]
+        public new TItem this[string key]
         {
             get { return GetValue(key); }
             set { Add(key, value); }
@@ -98,7 +98,7 @@ namespace BindOpen.System.Data
         /// <param key="key">The key to consider.</param>
         /// <param key="defaultKey">The default key to consider.</param>
         /// <returns>Returns the specified text.</returns>
-        public string this[string key, string defaultKey]
+        public TItem this[string key, string defaultKey]
         {
             get { return GetValue(key, defaultKey); }
         }
@@ -110,12 +110,10 @@ namespace BindOpen.System.Data
         /// <param key="text">The text to consider.</param>
         /// <param key="availableKeys">The available keys to consider.</param>
         /// <returns>Returns the added data key value.</returns>
-        public new IBdoTextDictionary Add(string key, string text)
+        public new ITBdoDictionary<TItem> Add(string key, TItem item)
         {
-            if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(text)) return default;
-
             Remove(key);
-            base.Add(key, text);
+            base.Add(key, item);
 
             return this;
         }
@@ -140,7 +138,7 @@ namespace BindOpen.System.Data
         /// <param key="key"></param>
         /// <param key="alternateKey"></param>
         /// <returns></returns>
-        public string Get(string key = StringHelper.__Star, string alternateKey = null)
+        public TItem Get(string key = StringHelper.__Star, string alternateKey = null)
         {
             if (key == null) return default;
 
@@ -152,7 +150,7 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="dico">The dictionar to consider.</param>
         /// <returns>Returns true if this instance equals the specified dico. False otherwise.</returns>
-        public bool Equals(IBdoTextDictionary dico)
+        public bool Equals(ITBdoDictionary<TItem> dico)
         {
             if (dico == null || Values == null || dico.Values == null || Values.Count != dico.Values.Count)
             {
@@ -162,7 +160,7 @@ namespace BindOpen.System.Data
             var isEqual = true;
             foreach (var pair in this)
             {
-                isEqual &= pair.Value == dico[pair.Key];
+                isEqual &= pair.Value.Equals(dico[pair.Key]);
             }
 
             return isEqual;
@@ -188,19 +186,19 @@ namespace BindOpen.System.Data
         /// <param key="alternateKey">The alternate key to used if the key is not found.</param>
         /// <returns>Returns the text corresponding to the specified user interface language ID.
         /// Returns empty if there is none.</returns>
-        private string GetValue(string key = StringHelper.__Star, string alternateKey = null)
+        private TItem GetValue(string key = StringHelper.__Star, string alternateKey = null)
         {
-            TryGetValue(key, out string value);
-            if (value != null)
+            TryGetValue(key, out TItem item);
+            if (item != null)
             {
-                return value;
+                return item;
             }
             else if (alternateKey != null)
             {
                 return GetValue(alternateKey);
             }
 
-            return null;
+            return default;
         }
 
         #endregion

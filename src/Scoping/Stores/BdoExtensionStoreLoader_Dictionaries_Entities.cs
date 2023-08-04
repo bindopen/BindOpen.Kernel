@@ -2,7 +2,6 @@
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
-using BindOpen.System.Scoping;
 using System.Linq;
 using System.Reflection;
 

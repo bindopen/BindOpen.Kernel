@@ -5,7 +5,7 @@ namespace BindOpen.System.Data
     /// <summary>
     /// This class represents a data exp that can contain a literal and script texts.
     /// </summary>
-    public static class BdoStringSetExtension
+    public static class BdoFilterExtension
     {
         /// <summary>
         /// Adds the specified strings.
@@ -15,7 +15,7 @@ namespace BindOpen.System.Data
         public static T Adding<T>(
             this T filter,
             params string[] values)
-            where T : IBdoStringSet
+            where T : IBdoFilter
         {
             if (filter != null)
             {
@@ -37,7 +37,7 @@ namespace BindOpen.System.Data
         public static T Removing<T>(
             this T filter,
             params string[] values)
-            where T : IBdoStringSet
+            where T : IBdoFilter
         {
             if (filter != null)
             {

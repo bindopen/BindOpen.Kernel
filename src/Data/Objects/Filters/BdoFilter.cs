@@ -7,7 +7,7 @@ namespace BindOpen.System.Data
     /// <summary>
     /// This class specifies the data value filter.
     /// </summary>
-    public class BdoStringSet : BdoObject, IBdoStringSet
+    public class BdoFilter : BdoObject, IBdoFilter
     {
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -18,7 +18,7 @@ namespace BindOpen.System.Data
         /// <summary>
         /// Instantiates a new instance of the StringSet class.
         /// </summary>
-        public BdoStringSet()
+        public BdoFilter()
         {
         }
 
@@ -98,7 +98,7 @@ namespace BindOpen.System.Data
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            return new BdoStringSet()
+            return new BdoFilter()
             {
                 AddedValues = new List<string>(AddedValues),
                 RemovedValues = new List<string>(RemovedValues),

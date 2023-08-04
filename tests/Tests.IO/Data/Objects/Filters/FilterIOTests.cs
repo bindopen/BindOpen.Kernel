@@ -8,12 +8,12 @@ using System.Linq;
 namespace BindOpen.System.Data
 {
     [TestFixture, Order(210)]
-    public class StringSetIOTests
+    public class FilterIOTests
     {
-        private readonly string _filePath_xml = SystemData.WorkingFolder + "StringSet.xml";
-        private readonly string _filePath_json = SystemData.WorkingFolder + "StringSet.json";
+        private readonly string _filePath_xml = SystemData.WorkingFolder + "Filter.xml";
+        private readonly string _filePath_json = SystemData.WorkingFolder + "Filter.json";
         dynamic _valueSet;
-        private IBdoStringSet _filter = null;
+        private IBdoFilter _filter = null;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -27,8 +27,8 @@ namespace BindOpen.System.Data
         }
 
         public static bool Equals(
-            IBdoStringSet filter1,
-            IBdoStringSet filter2)
+            IBdoFilter filter1,
+            IBdoFilter filter2)
         {
             var b = filter1 != null && filter2 != null
                 && filter1.IsDeepEqual(filter2);
@@ -38,7 +38,7 @@ namespace BindOpen.System.Data
         [Test, Order(1)]
         public void CreateTest()
         {
-            _filter = BdoData.NewStringSet(
+            _filter = BdoData.NewFilter(
                 (_valueSet.AddedValues as string[]).ToList(),
                 (_valueSet.RemovedValues as string[]).ToList());
         }
@@ -65,7 +65,7 @@ namespace BindOpen.System.Data
                 SaveXmlTest();
             }
 
-            var filter = XmlHelper.LoadXml<StringSetDto>(_filePath_xml).ToPoco();
+            var filter = XmlHelper.LoadXml<FilterDto>(_filePath_xml).ToPoco();
             Assert.That(Equals(filter, _filter), "Error while loading");
         }
 
@@ -91,7 +91,7 @@ namespace BindOpen.System.Data
                 SaveJsonTest();
             }
 
-            var filter = JsonHelper.LoadJson<StringSetDto>(_filePath_json).ToPoco();
+            var filter = JsonHelper.LoadJson<FilterDto>(_filePath_json).ToPoco();
             Assert.That(Equals(filter, _filter), "Error while loading");
         }
     }

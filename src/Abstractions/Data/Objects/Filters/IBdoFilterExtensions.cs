@@ -6,7 +6,7 @@ namespace BindOpen.System.Data
     /// <summary>
     /// 
     /// </summary>
-    public static class IBdoStringSetExtensions
+    public static class IBdoFilterExtensions
     {
         /// <summary>
         /// Gets the values allowed by this instance.
@@ -15,7 +15,7 @@ namespace BindOpen.System.Data
         /// <returns>Returns all the values allowed by this instance.</returns>
         public static IList<string> Merge(
             this IList<string> values,
-            IBdoStringSet set)
+            IBdoFilter set)
         {
             var all = new List<string>();
 
@@ -46,7 +46,7 @@ namespace BindOpen.System.Data
         public static bool Contains(
             this IList<string> values,
             string value,
-            IBdoStringSet set)
+            IBdoFilter set)
         {
             return values?.Merge(set).Contains(value) ?? false;
         }

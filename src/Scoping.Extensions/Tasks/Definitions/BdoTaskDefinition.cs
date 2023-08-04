@@ -1,5 +1,4 @@
-﻿using BindOpen.System.Scoping;
-using BindOpen.System.Data;
+﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Data.Meta;
 using System;
@@ -96,9 +95,9 @@ namespace BindOpen.System.Scoping
             if (taskDefinition != null)
             {
                 if (taskDefinition.Title != null)
-                    Title = taskDefinition.Title.Clone() as BdoTextDictionary;
+                    Title = taskDefinition.Title.Clone() as TBdoDictionary<string>;
                 if (taskDefinition.Description != null)
-                    Description = taskDefinition.Description.Clone() as BdoTextDictionary;
+                    Description = taskDefinition.Description.Clone() as TBdoDictionary<string>;
 
                 //InputSpecification.Repair(
                 //    taskDefinition.InputSpecification,

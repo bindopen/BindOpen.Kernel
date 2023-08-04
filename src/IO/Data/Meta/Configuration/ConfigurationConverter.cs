@@ -87,8 +87,8 @@ namespace BindOpen.System.Data.Meta
             var mapper = new Mapper(config);
             var poco = mapper.Map<T>(dto);
             poco
-                .WithTitle(dto.Title.ToPoco())
-                .WithDescription(dto.Description.ToPoco())
+                .WithTitle(dto.Title.ToPoco<string>())
+                .WithDescription(dto.Description.ToPoco<string>())
                 .With(dto.MetaItems.Select(q => q.ToPoco()).ToArray());
 
             var specs = dto.Specs?.Select(q => q.ToPoco())?.ToArray();

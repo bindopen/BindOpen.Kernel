@@ -11,7 +11,7 @@ namespace BindOpen.System.Data
     /// <seealso cref="KeyValuePairDto"/>
     [XmlType("Dictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "dictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class TextDictionaryDto : BdoItemDto, IIdentified
+    public class DictionaryDto : BdoItemDto, IIdentified
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -30,7 +30,7 @@ namespace BindOpen.System.Data
         /// Values of this instance.
         /// </summary>
         [JsonPropertyName("values")]
-        [XmlElement("add.value")]
+        [XmlElement("add")]
         public List<KeyValuePairDto> Values { get; set; }
 
         #endregion
@@ -44,7 +44,7 @@ namespace BindOpen.System.Data
         /// <summary>
         /// Instantiates a new instance of the DictionaryDto class. 
         /// </summary>
-        public TextDictionaryDto()
+        public DictionaryDto()
         {
         }
 

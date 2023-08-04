@@ -13,20 +13,20 @@ namespace BindOpen.System.Data
         /// Instantiates a new instance of the DataList class.
         /// </summary>
         /// <param key="items">The items to consider.</param>
-        public static BdoStringSet NewStringSet()
+        public static BdoFilter NewFilter()
         {
-            return new BdoStringSet();
+            return new BdoFilter();
         }
 
         /// <summary>
         /// Instantiates a new instance of the DataList class.
         /// </summary>
         /// <param key="items">The items to consider.</param>
-        public static BdoStringSet NewStringSet(
+        public static BdoFilter NewFilter(
             IEnumerable<string> addedValues = null,
             IEnumerable<string> removedValues = null)
         {
-            var filter = NewStringSet()
+            var filter = NewFilter()
                 .Adding(addedValues?.ToArray())
                 .Removing(removedValues?.ToArray());
             return filter;

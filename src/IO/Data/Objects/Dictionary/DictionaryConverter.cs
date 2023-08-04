@@ -5,21 +5,21 @@ namespace BindOpen.System.Data
     /// <summary>
     /// This class represents a Xml helper.
     /// </summary>
-    public static class TextDictionaryConverter
+    public static class DictionaryConverter
     {
         /// <summary>
         /// Converts to DTO.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static TextDictionaryDto ToDto(this IBdoTextDictionary poco)
+        public static DictionaryDto ToDto<TItem>(this ITBdoDictionary<TItem> poco)
         {
             if (poco == null) return null;
 
-            TextDictionaryDto dto = new()
+            DictionaryDto dto = new()
             {
                 Id = poco.Id,
-                Values = poco?.Select(q => q.ToDto()).ToList()
+                Values = poco?.Select(q => q.ToDto<TItem>()).ToList()
             };
 
             return dto;
@@ -30,11 +30,11 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoTextDictionary ToPoco(this TextDictionaryDto dto)
+        public static ITBdoDictionary<TItem> ToPoco<TItem>(this DictionaryDto dto)
         {
             if (dto == null) return null;
 
-            BdoTextDictionary poco = BdoData.NewDictionary(dto.Values?.Select(q => q.ToPoco()).ToArray());
+            TBdoDictionary<TItem> poco = BdoData.NewDictionary<TItem>(dto.Values?.Select(q => q.ToPoco<TItem>()).ToArray());
             poco.WithId(dto.Id);
 
             return poco;
