@@ -9,7 +9,7 @@ namespace BindOpen.System.Data.Meta
     /// <summary>
     /// This class represents a config.
     /// </summary>
-    public partial class BdoConfiguration : BdoMetaObject, IBdoConfiguration
+    public partial class BdoConfiguration : BdoMetaSet, IBdoConfiguration
     {
         // -------------------------------------------------------------
         // CONSTRUCTORS
