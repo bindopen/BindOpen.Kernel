@@ -55,8 +55,7 @@ namespace BindOpen.System.Data
             DataValueTypes valueType,
             params object[] items)
         {
-            var meta = NewMetaScalar<object, BdoMetaScalar>((string)name, DataValueTypes.Any, items)
-                .WithDataType(valueType);
+            var meta = NewMetaScalar<object, BdoMetaScalar>((string)name, valueType, items);
 
             return meta;
         }

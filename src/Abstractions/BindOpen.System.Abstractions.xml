@@ -4125,131 +4125,131 @@
             Gets the specified application domain.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Connectors.BdoConnectorAttribute">
+        <member name="T:BindOpen.System.Scoping.BdoConnectorAttribute">
             <summary>
             This class represents an attribute of connectors.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.BdoConnectorAttribute.#ctor">
+        <member name="M:BindOpen.System.Scoping.BdoConnectorAttribute.#ctor">
             <summary>
             Instantiates a new instance of the ConnectorAttribute class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Connectors.IBdoConnected">
+        <member name="T:BindOpen.System.Scoping.IBdoConnected">
             <summary>
             This interfaces represents a connected service.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.IBdoConnected.Connector">
+        <member name="P:BindOpen.System.Scoping.IBdoConnected.Connector">
             <summary>
             The connector of the service.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Connectors.IBdoConnectedExtensions">
+        <member name="T:BindOpen.System.Scoping.IBdoConnectedExtensions">
             <summary>
             This interfaces represents a connected service.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.IBdoConnectedExtensions.WithConnector``1(``0,BindOpen.System.Scoping.Connectors.IBdoConnector)">
+        <member name="M:BindOpen.System.Scoping.IBdoConnectedExtensions.WithConnector``1(``0,BindOpen.System.Scoping.IBdoConnector)">
             <summary>
             
             </summary>
             <param key="name"></param>
         </member>
-        <member name="T:BindOpen.System.Scoping.Connectors.IBdoConnection">
+        <member name="T:BindOpen.System.Scoping.IBdoConnection">
             <summary>
             This interfaces represents a connection.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.IBdoConnection.Connector">
+        <member name="P:BindOpen.System.Scoping.IBdoConnection.Connector">
             <summary>
             Connector.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.IBdoConnection.WithConnector(BindOpen.System.Scoping.Connectors.IBdoConnector)">
+        <member name="M:BindOpen.System.Scoping.IBdoConnection.WithConnector(BindOpen.System.Scoping.IBdoConnector)">
             <summary>
             Sets the specified connector.
             </summary>
             <param key="connector">The connector to consider.</param>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.IBdoConnection.ConnectionString">
+        <member name="P:BindOpen.System.Scoping.IBdoConnection.ConnectionString">
             <summary>
             The connection string.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.IBdoConnection.ConnectionTimeout">
+        <member name="P:BindOpen.System.Scoping.IBdoConnection.ConnectionTimeout">
             <summary>
             The connection timeout.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.IBdoConnection.State">
+        <member name="P:BindOpen.System.Scoping.IBdoConnection.State">
             <summary>
             The state.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.IBdoConnection.Connect(BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Scoping.IBdoConnection.Connect(BindOpen.System.Logging.IBdoLog)">
             <summary>
             Opens a connection.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.IBdoConnection.Disconnect(BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Scoping.IBdoConnection.Disconnect(BindOpen.System.Logging.IBdoLog)">
             <summary>
             Closes the existing connection.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Connectors.IBdoConnectorDefinition">
+        <member name="T:BindOpen.System.Scoping.IBdoConnectorDefinition">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.IBdoConnectorDefinition.DatasourceKind">
+        <member name="P:BindOpen.System.Scoping.IBdoConnectorDefinition.DatasourceKind">
             <summary>
             Data source kind of this instance.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Connectors.IBdoConnectorDictionary">
+        <member name="T:BindOpen.System.Scoping.IBdoConnectorDictionary">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Connectors.IBdoConnector">
+        <member name="T:BindOpen.System.Scoping.IBdoConnector">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.IBdoConnector.ConnectionString">
+        <member name="P:BindOpen.System.Scoping.IBdoConnector.ConnectionString">
             <summary>
             The connection string of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.IBdoConnector.ConnectionTimeOut">
+        <member name="P:BindOpen.System.Scoping.IBdoConnector.ConnectionTimeOut">
             <summary>
             The connection timeout of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.IBdoConnector.NewConnection(BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Scoping.IBdoConnector.NewConnection(BindOpen.System.Logging.IBdoLog)">
             <summary>
             Creates a new connection.
             </summary>
             <returns></returns>
             <param key="log">The log to consider.</param>
         </member>
-        <member name="T:BindOpen.System.Scoping.Connectors.IBdoConnectorExtensions">
+        <member name="T:BindOpen.System.Scoping.IBdoConnectorExtensions">
             <summary>
             This interface represents an named data item.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.IBdoConnectorExtensions.WithConnectionString``1(``0,System.String)">
+        <member name="M:BindOpen.System.Scoping.IBdoConnectorExtensions.WithConnectionString``1(``0,System.String)">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.IBdoConnectorExtensions.WithConnectionTimeOut``1(``0,System.Int32)">
+        <member name="M:BindOpen.System.Scoping.IBdoConnectorExtensions.WithConnectionTimeOut``1(``0,System.Int32)">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.IBdoConnectorExtensions.UsingConnection``1(``0,System.Action{BindOpen.System.Scoping.Connectors.IBdoConnection},System.Boolean,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Scoping.IBdoConnectorExtensions.UsingConnection``1(``0,System.Action{BindOpen.System.Scoping.IBdoConnection},System.Boolean,BindOpen.System.Logging.IBdoLog)">
             <summary>
             Executes the specified function.
             </summary>
@@ -4257,7 +4257,7 @@
             <param key="isAutoConnected">Indicates whether the connection is automatically opened.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.IBdoConnectorExtensions.UsingConnection``1(``0,System.Action{BindOpen.System.Scoping.Connectors.IBdoConnection,BindOpen.System.Logging.IBdoLog},System.Boolean,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Scoping.IBdoConnectorExtensions.UsingConnection``1(``0,System.Action{BindOpen.System.Scoping.IBdoConnection,BindOpen.System.Logging.IBdoLog},System.Boolean,BindOpen.System.Logging.IBdoLog)">
             <summary>
             Executes the specified function.
             </summary>
@@ -4266,169 +4266,169 @@
             <param key="isAutoConnected">Indicates whether the connection is automatically opened.</param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.System.Scoping.Connectors.ITBdoConnector`1">
+        <member name="T:BindOpen.System.Scoping.ITBdoConnector`1">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.ITBdoConnector`1.NewConnection(BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Scoping.ITBdoConnector`1.NewConnection(BindOpen.System.Logging.IBdoLog)">
             <summary>
             Creates a new connection.
             </summary>
             <returns></returns>
             <param key="log">The log to consider.</param>
         </member>
-        <member name="T:BindOpen.System.Scoping.Entities.BdoEntityAttribute">
+        <member name="T:BindOpen.System.Scoping.BdoEntityAttribute">
             <summary>
             This class represents a entity attribute.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Entities.BdoEntityAttribute.#ctor">
+        <member name="M:BindOpen.System.Scoping.BdoEntityAttribute.#ctor">
             <summary>
             Instantiates a new instance of the EntityAttribute class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Entities.IBdoEntityDefinition">
+        <member name="T:BindOpen.System.Scoping.IBdoEntityDefinition">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Entities.IBdoEntityDefinition.ClassReference">
+        <member name="P:BindOpen.System.Scoping.IBdoEntityDefinition.ClassReference">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Entities.IBdoEntityDefinition.RuntimeType">
+        <member name="P:BindOpen.System.Scoping.IBdoEntityDefinition.RuntimeType">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Entities.IBdoEntityDefinition.ViewerDictionary">
+        <member name="P:BindOpen.System.Scoping.IBdoEntityDefinition.ViewerDictionary">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Entities.IBdoEntityDictionary">
+        <member name="T:BindOpen.System.Scoping.IBdoEntityDictionary">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Entities.IBdoEntity">
+        <member name="T:BindOpen.System.Scoping.IBdoEntity">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Functions.BdoFunctionAttribute">
+        <member name="T:BindOpen.System.Scoping.BdoFunctionAttribute">
             <summary>
             This class represents a script word attribute.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Functions.BdoFunctionAttribute.#ctor">
+        <member name="M:BindOpen.System.Scoping.BdoFunctionAttribute.#ctor">
             <summary>
             Instantiates a new instance of the BdoScriptwordAttribute class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Functions.IBdoFunctionDefinition">
+        <member name="T:BindOpen.System.Scoping.IBdoFunctionDefinition">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.IBdoFunctionDefinition.AdditionalSpecs">
+        <member name="P:BindOpen.System.Scoping.IBdoFunctionDefinition.AdditionalSpecs">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.IBdoFunctionDefinition.ParentDataType">
+        <member name="P:BindOpen.System.Scoping.IBdoFunctionDefinition.ParentDataType">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.IBdoFunctionDefinition.OutputDataType">
+        <member name="P:BindOpen.System.Scoping.IBdoFunctionDefinition.OutputDataType">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.IBdoFunctionDefinition.RuntimeClassType">
+        <member name="P:BindOpen.System.Scoping.IBdoFunctionDefinition.RuntimeClassType">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.IBdoFunctionDefinition.RuntimeScopedFunction">
+        <member name="P:BindOpen.System.Scoping.IBdoFunctionDefinition.RuntimeScopedFunction">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.IBdoFunctionDefinition.RuntimeBasicFunction">
+        <member name="P:BindOpen.System.Scoping.IBdoFunctionDefinition.RuntimeBasicFunction">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Functions.IBdoFunctionDictionary">
+        <member name="T:BindOpen.System.Scoping.IBdoFunctionDictionary">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Functions.BdoFunctionDelegate">
+        <member name="T:BindOpen.System.Scoping.BdoFunctionDelegate">
             <summary>
             This delegate represents a script word delegate.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Functions.BdoFunctionDomainedDelegate">
+        <member name="T:BindOpen.System.Scoping.BdoFunctionDomainedDelegate">
             <summary>
             This delegate represents a script word domained delegate.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Tasks.BdoTaskAttribute">
+        <member name="T:BindOpen.System.Scoping.BdoTaskAttribute">
             <summary>
             This class represents an attribute of tasks.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskAttribute.#ctor">
+        <member name="M:BindOpen.System.Scoping.BdoTaskAttribute.#ctor">
             <summary>
             Instantiates a new instance of the TaskAttribute class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Tasks.IBdoTaskDefinition">
+        <member name="T:BindOpen.System.Scoping.IBdoTaskDefinition">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Tasks.IBdoTaskDefinition.ClassReference">
+        <member name="P:BindOpen.System.Scoping.IBdoTaskDefinition.ClassReference">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Tasks.IBdoTaskDefinition.OutputSpecs">
+        <member name="P:BindOpen.System.Scoping.IBdoTaskDefinition.OutputSpecs">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Tasks.IBdoTaskDefinition.RuntimeType">
+        <member name="P:BindOpen.System.Scoping.IBdoTaskDefinition.RuntimeType">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Tasks.IBdoTaskDefinition.MaximumIndex">
+        <member name="P:BindOpen.System.Scoping.IBdoTaskDefinition.MaximumIndex">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Tasks.IBdoTaskDefinition.IsExecutable">
+        <member name="P:BindOpen.System.Scoping.IBdoTaskDefinition.IsExecutable">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Tasks.IBdoTaskDictionary">
+        <member name="T:BindOpen.System.Scoping.IBdoTaskDictionary">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Tasks.IBdoTask">
+        <member name="T:BindOpen.System.Scoping.IBdoTask">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Tasks.IBdoTaskExtensions">
+        <member name="T:BindOpen.System.Scoping.IBdoTaskExtensions">
             <summary>
             This class represents an application 
             </summary>

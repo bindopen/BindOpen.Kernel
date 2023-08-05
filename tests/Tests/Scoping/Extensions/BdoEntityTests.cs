@@ -1,18 +1,13 @@
-﻿using BindOpen.System.Scoping.Entities;
-using BindOpen.System.Data;
+﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.System.Scoping.Entities
+namespace BindOpen.System.Scoping
 {
     [TestFixture, Order(300)]
     public class BdoEntityTests
     {
-        private EntityFake _entity = null;
-
-        private readonly string _filePath = SystemData.WorkingFolder + "Entity.xml";
-
         private dynamic _testData;
 
         [OneTimeSetUp]
@@ -26,24 +21,42 @@ namespace BindOpen.System.Scoping.Entities
         /// </summary>
         /// <param key="data"></param>
         /// <returns></returns>
-        public static IBdoEntity CreateEntity(dynamic data)
+        public static IBdoMetaObject CreateMetaEntity(dynamic data)
         {
-            var config =
-                BdoData.NewConfig()
-                .WithDefinition("bindopen.system.tests$testEntity")
+            var meta =
+                BdoData.NewMetaObject()
+                .WithDataType(BdoExtensionKind.Entity, "bindopen.system.tests$testEntity")
                 .With(
                     BdoData.NewMetaScalar("boolValue", data.boolValue as bool?),
                     BdoData.NewMetaScalar("enumValue", data.enumValue as ActionPriorities?),
                     BdoData.NewMetaScalar("intValue", data.intValue as int?),
                     BdoData.NewMetaScalar("stringValue", data.stringValue as string));
 
-            return SystemData.Scope.CreateEntity<EntityFake>(config);
+            return meta;
         }
 
         [Test, Order(1)]
-        public void CreateEntityNewObjectTest()
+        public void CreateEntityTest_FromMetaSet()
         {
-            _entity = new EntityFake
+            IBdoMetaObject meta = CreateMetaEntity(_testData);
+            var connector = SystemData.Scope.CreateEntity<EntityFake>(meta);
+
+            BdoEntityFaker.AssertFake(connector, _testData);
+        }
+
+        [Test, Order(2)]
+        public void CreateEntityTest_FromConfig()
+        {
+            IBdoMetaObject meta = CreateMetaEntity(_testData);
+            var connector = SystemData.Scope.CreateEntity(meta) as EntityFake;
+
+            BdoEntityFaker.AssertFake(connector, _testData);
+        }
+
+        [Test, Order(3)]
+        public void CreateEntityTest_FromObject()
+        {
+            var connector = new EntityFake
             {
                 BoolValue = BdoData.NewMetaScalar<bool?>(_testData.boolValue as bool?),
                 EnumValue = (ActionPriorities)_testData.enumValue,
@@ -51,16 +64,10 @@ namespace BindOpen.System.Scoping.Entities
                 StringValue = _testData.stringValue as string,
             };
 
-            BdoEntityFaker.AssertFake(_entity, _testData);
-        }
+            var config = connector.ToMeta(SystemData.Scope);
+            connector = SystemData.Scope.CreateEntity(config) as EntityFake;
 
-
-        [Test, Order(2)]
-        public void CreateEntityFromScopeTest()
-        {
-            _entity = CreateEntity(_testData);
-
-            BdoEntityFaker.AssertFake(_entity, _testData);
+            BdoEntityFaker.AssertFake(connector, _testData);
         }
     }
 

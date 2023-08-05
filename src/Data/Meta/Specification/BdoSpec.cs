@@ -1,6 +1,5 @@
 ﻿using BindOpen.System.Data.Conditions;
 using BindOpen.System.Data.Helpers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -189,7 +188,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public IBdoTextDictionary Title { get; set; }
+        public ITBdoDictionary<string> Title { get; set; }
 
         #endregion
 
@@ -202,7 +201,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public IBdoTextDictionary Description { get; set; }
+        public ITBdoDictionary<string> Description { get; set; }
 
         #endregion
 
@@ -255,10 +254,6 @@ namespace BindOpen.System.Data.Meta
         /// The script of this instance.
         /// </summary>
         public BdoDataType DataType { get; set; }
-
-        public DataValueTypes DataValueType => DataType.ValueType;
-
-        public Type DataClassType => DataType.ClassType;
 
         /// <summary>
         /// The available itemization modes of this instance.

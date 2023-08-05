@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.System.Scoping.Functions
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class represents an application 
@@ -20,7 +20,7 @@ namespace BindOpen.System.Scoping.Functions
         public static object CallFunction(
             this IBdoScope scope,
             string functionName,
-            IBdoMetaSet paramSet = null,
+            IBdoMetaComposite paramSet = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
@@ -46,7 +46,7 @@ namespace BindOpen.System.Scoping.Functions
         public static T CallFunction<T>(
             this IBdoScope scope,
             string functionName,
-            IBdoMetaSet paramSet = null,
+            IBdoMetaComposite paramSet = null,
             IBdoMetaSet varSet = null)
         {
             var result = scope?.CallFunction(functionName, paramSet, varSet);
@@ -60,9 +60,12 @@ namespace BindOpen.System.Scoping.Functions
             IBdoLog log = null)
         {
             IBdoFunctionDefinition definition;
-            if (!string.IsNullOrEmpty(word?.DefinitionUniqueName))
+
+            var definitionUniqueName = word.DataType.ClassReference?.DefinitionUniqueName;
+
+            if (!string.IsNullOrEmpty(definitionUniqueName))
             {
-                definition = scope?.ExtensionStore?.GetDefinition<IBdoFunctionDefinition>(word?.DefinitionUniqueName);
+                definition = scope?.ExtensionStore?.GetDefinition<IBdoFunctionDefinition>(definitionUniqueName);
             }
             else
             {
@@ -74,7 +77,7 @@ namespace BindOpen.System.Scoping.Functions
 
             if (definition == null)
             {
-                var functionName = word?.DefinitionUniqueName ?? word?.Name;
+                var functionName = definitionUniqueName ?? word?.Name;
 
                 log?.AddEvent(EventKinds.Error,
                     "Function named '" + functionName + "' not defined",
@@ -102,7 +105,7 @@ namespace BindOpen.System.Scoping.Functions
         private static object CallFunction(
             this IBdoScope scope,
             IBdoFunctionDefinition definition,
-            IBdoMetaSet paramSet = null,
+            IBdoMetaComposite paramSet = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
@@ -189,7 +192,7 @@ namespace BindOpen.System.Scoping.Functions
         private static IBdoFunctionDefinition GetFunctionDefinition(
             this IBdoExtensionStore store,
             string functionName,
-            IBdoMetaSet paramSet,
+            IBdoMetaComposite paramSet,
             BdoDataType parentDataType = default,
             IBdoLog log = null)
         {

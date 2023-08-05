@@ -31,14 +31,14 @@ namespace BindOpen.System.Data.Meta
             {
                 dto = scalar.ToDto();
             }
-            else if (poco is IBdoMetaSet set)
+            else if (poco is IBdoMetaComposite set)
             {
                 dto = set.ToDto();
             }
 
             if (dto != null)
             {
-                dto.DataReference = poco.Reference?.ToDto();
+                dto.Reference = poco.Reference?.ToDto();
             }
 
             return dto;
@@ -68,7 +68,7 @@ namespace BindOpen.System.Data.Meta
             {
                 return scalar.ToPoco();
             }
-            else if (dto is MetaSetDto list)
+            else if (dto is MetaCompositeDto list)
             {
                 return list.ToPoco();
             }

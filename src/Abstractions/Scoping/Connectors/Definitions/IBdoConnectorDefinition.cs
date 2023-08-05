@@ -1,7 +1,7 @@
-﻿using BindOpen.System.Scoping.Entities;
+﻿using BindOpen.System.Scoping;
 using BindOpen.System.Data;
 
-namespace BindOpen.System.Scoping.Connectors
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// 

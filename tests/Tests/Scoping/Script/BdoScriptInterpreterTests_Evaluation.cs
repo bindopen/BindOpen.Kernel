@@ -52,7 +52,7 @@ namespace BindOpen.System.Scoping.Script
         [Test, Order(202)]
         public void InterpreteScript2Test()
         {
-            var varSet = BdoData.NewMetaSet();
+            var varSet = BdoData.NewMetaComposite();
             var exp = BdoData.NewExp(_script2, BdoExpressionKind.Script);
 
             var interpreter = SystemData.Scope.Interpreter;
@@ -64,7 +64,7 @@ namespace BindOpen.System.Scoping.Script
         [Test, Order(203)]
         public void InterpreteScript3Test()
         {
-            var varSet = BdoData.NewMetaSet();
+            var varSet = BdoData.NewMetaComposite();
             var exp = BdoData.NewExp(_script3, BdoExpressionKind.Script);
 
             var interpreter = SystemData.Scope.Interpreter;
@@ -76,8 +76,8 @@ namespace BindOpen.System.Scoping.Script
         [Test, Order(204)]
         public void InterpreteScript4Test()
         {
-            var varSet = BdoData.NewMetaSet(
-                ((string Name, object Value))("var1", "const"));
+            var varSet = BdoData.NewMetaComposite(
+                ("var1", "const"));
 
             var exp = BdoData.NewExp(_script4, BdoExpressionKind.Script);
 
@@ -90,8 +90,8 @@ namespace BindOpen.System.Scoping.Script
         [Test, Order(205)]
         public void InterpreteScript5Test()
         {
-            var varSet = BdoData.NewMetaSet(
-                ((string Name, object Value))("var1", "const"));
+            var varSet = BdoData.NewMetaComposite(
+                ("var1", "const"));
 
             var exp = BdoData.NewExp(_script5, BdoExpressionKind.Auto);
 
@@ -113,9 +113,9 @@ namespace BindOpen.System.Scoping.Script
         [Test, Order(207)]
         public void InterpreteScript7Test()
         {
-            var varSet = BdoData.NewMetaSet(
-                ((string Name, object Value))("var1", _scriptVarValue71),
-                ((string Name, object Value))("var2", _scriptVarValue72));
+            var varSet = BdoData.NewMetaComposite(
+                ("var1", _scriptVarValue71),
+                ("var2", _scriptVarValue72));
 
             var interpreter = SystemData.Scope.Interpreter;
             var result = interpreter.Evaluate<string>(_script7.ToExpression(), varSet: varSet);
@@ -126,9 +126,9 @@ namespace BindOpen.System.Scoping.Script
         [Test, Order(208)]
         public void VariableSetTest()
         {
-            var varSet = BdoData.NewMetaSet(
-                ((string Name, object Value))("var1", _scriptVarValue81),
-                ((string Name, object Value))("var2", _scriptVarValue82));
+            var varSet = BdoData.NewMetaComposite(
+                ("var1", _scriptVarValue81),
+                ("var2", _scriptVarValue82));
 
             var interpreter = SystemData.Scope.Interpreter;
             var result = interpreter.Evaluate<string>(

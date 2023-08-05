@@ -11,13 +11,20 @@ namespace BindOpen.System.Data.Conditions
     [XmlInclude(typeof(CompositeConditionDto))]
     [XmlInclude(typeof(BasicConditionDto))]
     [XmlInclude(typeof(ReferenceConditionDto))]
-    public abstract class ConditionDto : IBdoDto
+    public abstract class ConditionDto : IBdoDto, IIdentified
     {
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// ID of this instance.
+        /// </summary>
+        [JsonPropertyName("id")]
+        [XmlAttribute("id")]
+        public string Id { get; set; }
 
         /// <summary>
         /// The value that expresses that the condition is satisfied.

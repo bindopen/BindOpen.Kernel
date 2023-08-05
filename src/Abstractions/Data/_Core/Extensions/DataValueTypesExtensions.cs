@@ -1,7 +1,5 @@
-﻿using BindOpen.System.Scoping.Connectors;
-using BindOpen.System.Scoping.Entities;
-using BindOpen.System.Scoping.Tasks;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.System.Data.Meta;
+using BindOpen.System.Scoping;
 using BindOpen.System.Scoping.Script;
 using System;
 using System.Collections;

@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoMetaObject : IBdoMetaSet
+    public interface IBdoMetaObject : IBdoMetaComposite
     {
     }
 }

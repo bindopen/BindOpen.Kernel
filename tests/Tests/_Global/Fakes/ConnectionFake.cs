@@ -1,5 +1,5 @@
 ﻿using BindOpen.System.Logging;
-using BindOpen.System.Scoping.Connectors;
+using BindOpen.System.Scoping;
 
 namespace BindOpen.System.Tests
 {

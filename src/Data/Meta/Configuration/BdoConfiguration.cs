@@ -1,16 +1,12 @@
-﻿using BindOpen.System.Logging;
-using BindOpen.System.Scoping;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace BindOpen.System.Data.Meta
 {
     /// <summary>
     /// This class represents a config.
     /// </summary>
-    public partial class BdoConfiguration : BdoMetaObject,
-        IBdoConfiguration
+    public partial class BdoConfiguration : BdoMetaSet, IBdoConfiguration
     {
         // -------------------------------------------------------------
         // CONSTRUCTORS
@@ -23,32 +19,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         public BdoConfiguration() : base()
         {
-        }
-
-        #endregion
-
-
-        // -------------------------------------------------------------
-        // IBdoMetaData Implementation
-        // -------------------------------------------------------------
-
-        #region IBdoMetaData
-
-        /// <summary>
-        /// Returns the item TItem of this instance.
-        /// </summary>
-        /// <param key="log">The log to populate.</param>
-        /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable meta set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public override IList<object> GetDataList(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            return Items?
-                .Select(q => q.GetData(scope, varSet, log))
-                .ToList();
+            this.WithId();
         }
 
         #endregion
@@ -58,11 +29,6 @@ namespace BindOpen.System.Data.Meta
         // -------------------------------------------------------
 
         #region IBdoConfiguration
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string DefinitionUniqueName { get; set; }
 
         /// <summary>
         /// The using file paths of this instance.
@@ -98,7 +64,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public IBdoTextDictionary Title { get; set; }
+        public ITBdoDictionary<string> Title { get; set; }
 
         #endregion
 
@@ -111,7 +77,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public IBdoTextDictionary Description { get; set; }
+        public ITBdoDictionary<string> Description { get; set; }
 
         #endregion
     }

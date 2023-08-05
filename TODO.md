@@ -3,15 +3,16 @@ Todo list for BindOpen
 
 ## Next tasks
 
-- [ ] Extension store : adding packages
-- [ ] Using Xml dictionaries for extensions
-- [ ] Script: Handle properties (func1.func2)
-- [ ] Script: Handle returned type
-- [ ] Script: Handle repeated parameters
-- [ ] Checking value of meta specs
-- [ ] Handle IO for all the classes
-- [ ] XSD location URI updated to docs.bindopen.org/xsd
-- [ ] Implementing Hosting layer
+- [ ] Extension store : improve package loading
+- [ ] Apply cloning when needed (ie. in ToMetaData method)
+- [ ] Implementing Clone methods
+- [ ] Implementing XSD files
+- [ ] Updating ByteArray scalar to Binary object meta data
+- [ ] Fixing BdoStringSetTests 
+- [ ] Implementing IO of specs
+- [ ] Cleaning comments
+- [ ] Making meta data easier: Class vs Entity, Config vs Object
+- [X] Dictinaries are now generic
 
 ## Stuff to check out later on
 

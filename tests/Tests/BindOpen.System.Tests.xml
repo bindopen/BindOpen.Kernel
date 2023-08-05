@@ -4,21 +4,21 @@
         <name>BindOpen.System.Tests</name>
     </assembly>
     <members>
-        <member name="M:BindOpen.System.Scoping.Connectors.BdoConnectorTests.CreateConnector(System.Object)">
+        <member name="M:BindOpen.System.Scoping.BdoConnectorTests.CreateConnector(System.Object)">
             <summary>
             
             </summary>
             <param key="data"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Entities.BdoEntityTests.CreateEntity(System.Object)">
+        <member name="M:BindOpen.System.Scoping.BdoEntityTests.CreateEntity(System.Object)">
             <summary>
             
             </summary>
             <param key="data"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskTests.CreateTaskConfig(System.Object)">
+        <member name="M:BindOpen.System.Scoping.BdoTaskTests.CreateTaskConfig(System.Object)">
             <summary>
             
             </summary>

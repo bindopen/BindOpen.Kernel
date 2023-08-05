@@ -36,6 +36,11 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// Task.
         /// </summary>
-        Task
+        Task,
+
+        /// <summary>
+        /// Script word.
+        /// </summary>
+        Scriptword
     }
 }
