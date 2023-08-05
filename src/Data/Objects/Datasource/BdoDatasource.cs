@@ -5,7 +5,7 @@ namespace BindOpen.System.Data
     /// <summary>
     /// This class represents a data source.
     /// </summary>
-    public class BdoDatasource : BdoConfigurationSet, IBdoDatasource
+    public class BdoDatasource : TBdoSet<IBdoMetaObject>, IBdoDatasource
     {
         // -----------------------------------------------
         // CONSTRUCTORS

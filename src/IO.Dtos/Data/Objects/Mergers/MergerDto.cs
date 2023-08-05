@@ -7,9 +7,9 @@ namespace BindOpen.System.Data
     /// <summary>
     /// This class specifies the data value filter.
     /// </summary>
-    [XmlType("Filter", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "filter", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class FilterDto : BdoItemDto
+    [XmlType("Merger", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "merger", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    public class MergerDto : BdoItemDto
     {
         // ------------------------------------------
         // PROPERTIES
@@ -44,7 +44,7 @@ namespace BindOpen.System.Data
         /// <summary>
         /// Instantiates a new instance of the StringFilterDto class.
         /// </summary>
-        public FilterDto()
+        public MergerDto()
         {
         }
 

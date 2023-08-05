@@ -1,5 +1,4 @@
-﻿using BindOpen.System.Scoping;
-using BindOpen.System.Data;
+﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Meta.Reflection;
 using System;
@@ -16,18 +15,18 @@ namespace BindOpen.System.Scoping
         // Properties
 
         public static T WithProperties<T>(
-            this T list,
+            this T obj,
             params IBdoMetaData[] inputs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            if (list != null)
+            if (obj != null)
             {
-                list.Remove(q => q.OfGroup(null));
+                obj.Remove(q => q.OfGroup(null));
                 Array.ForEach(inputs, q => { q.AsProperty(); });
-                ((IBdoConfiguration)list).Add(inputs);
+                obj.Add(inputs);
             }
 
-            return list;
+            return obj;
         }
 
         /// <summary>
@@ -35,13 +34,13 @@ namespace BindOpen.System.Scoping
         /// </summary>
         /// <param key="pairs">The value to add.</param>
         public static T WithProperties<T>(
-            this T list,
+            this T obj,
             params KeyValuePair<string, object>[] pairs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            list?.WithProperties(pairs?.Select(q => BdoData.NewMeta(q.Key, q.Value)).ToArray());
+            obj?.WithProperties(pairs?.Select(q => BdoData.NewMeta(q.Key, q.Value)).ToArray());
 
-            return list;
+            return obj;
         }
 
         /// <summary>
@@ -50,13 +49,13 @@ namespace BindOpen.System.Scoping
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
         public static T WithProperties<T>(
-            this T list,
+            this T obj,
             params (string Name, object Value)[] pairs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            list?.WithProperties(pairs?.Select(q => BdoData.NewMeta(q.Name, q.Value)).ToArray());
+            obj?.WithProperties(pairs?.Select(q => BdoData.NewMeta(q.Name, q.Value)).ToArray());
 
-            return list;
+            return obj;
         }
 
         /// <summary>
@@ -65,28 +64,28 @@ namespace BindOpen.System.Scoping
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
         public static T WithProperties<T>(
-            this T list,
+            this T obj,
             params (string Name, DataValueTypes ValueType, object Value)[] pairs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            list?.WithProperties(pairs?.Select(q => BdoData.NewMeta(q.Name, q.ValueType, q.Value)).ToArray());
+            obj?.WithProperties(pairs?.Select(q => BdoData.NewMeta(q.Name, q.ValueType, q.Value)).ToArray());
 
-            return list;
+            return obj;
         }
 
         public static T AddProperties<T>(
-            this T list,
+            this T obj,
             params IBdoMetaData[] inputs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            if (list != null)
+            if (obj != null)
             {
 
                 Array.ForEach(inputs, q => { q.AsProperty(); });
-                ((IBdoConfiguration)list).Add(inputs);
+                obj.Add(inputs);
             }
 
-            return list;
+            return obj;
         }
 
         /// <summary>
@@ -94,19 +93,19 @@ namespace BindOpen.System.Scoping
         /// </summary>
         /// <param key="pairs">The value to add.</param>
         public static T AddProperties<T>(
-            this T list,
+            this T obj,
             params KeyValuePair<string, object>[] pairs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            if (list != null)
+            if (obj != null)
             {
                 foreach (var pair in pairs)
                 {
-                    list.AddProperties(BdoData.NewMeta(pair.Key, pair.Value));
+                    obj.AddProperties(BdoData.NewMeta(pair.Key, pair.Value));
                 }
             }
 
-            return list;
+            return obj;
         }
 
         /// <summary>
@@ -115,19 +114,19 @@ namespace BindOpen.System.Scoping
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
         public static T AddProperties<T>(
-            this T list,
+            this T obj,
             params (string Name, object Value)[] pairs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            if (list != null)
+            if (obj != null)
             {
                 foreach (var (Name, Value) in pairs)
                 {
-                    list.AddProperties(BdoData.NewMeta(Name, Value));
+                    obj.AddProperties(BdoData.NewMeta(Name, Value));
                 }
             }
 
-            return list;
+            return obj;
         }
 
         /// <summary>
@@ -136,36 +135,36 @@ namespace BindOpen.System.Scoping
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
         public static T AddProperties<T>(
-            this T list,
+            this T obj,
             params (string Name, DataValueTypes ValueType, object Value)[] pairs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            if (list != null)
+            if (obj != null)
             {
                 foreach (var (Name, ValueType, Value) in pairs)
                 {
-                    list.AddProperties(BdoData.NewMeta(Name, ValueType, Value));
+                    obj.AddProperties(BdoData.NewMeta(Name, ValueType, Value));
                 }
             }
 
-            return list;
+            return obj;
         }
 
         // Inputs
 
         public static T WithInputs<T>(
-            this T list,
+            this T obj,
             params IBdoMetaData[] inputs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            if (list != null)
+            if (obj != null)
             {
-                list.Remove(q => q.OfGroup(IBdoTaskExtensions.__Token_Input));
+                obj.Remove(q => q.OfGroup(IBdoTaskExtensions.__Token_Input));
                 Array.ForEach(inputs, q => { q.AsInput(); });
-                ((IBdoConfiguration)list).Add(inputs);
+                obj.Add(inputs);
             }
 
-            return list;
+            return obj;
         }
 
         /// <summary>
@@ -173,13 +172,13 @@ namespace BindOpen.System.Scoping
         /// </summary>
         /// <param key="pairs">The value to add.</param>
         public static T WithInputs<T>(
-            this T list,
+            this T obj,
             params KeyValuePair<string, object>[] pairs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            list?.WithInputs(pairs?.Select(q => BdoData.NewMeta(q.Key, q.Value)).ToArray());
+            obj?.WithInputs(pairs?.Select(q => BdoData.NewMeta(q.Key, q.Value)).ToArray());
 
-            return list;
+            return obj;
         }
 
         /// <summary>
@@ -188,13 +187,13 @@ namespace BindOpen.System.Scoping
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
         public static T WithInputs<T>(
-            this T list,
+            this T obj,
             params (string Name, object Value)[] pairs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            list?.WithInputs(pairs?.Select(q => BdoData.NewMeta(q.Name, q.Value)).ToArray());
+            obj?.WithInputs(pairs?.Select(q => BdoData.NewMeta(q.Name, q.Value)).ToArray());
 
-            return list;
+            return obj;
         }
 
         /// <summary>
@@ -203,28 +202,28 @@ namespace BindOpen.System.Scoping
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
         public static T WithInputs<T>(
-            this T list,
+            this T obj,
             params (string Name, DataValueTypes ValueType, object Value)[] pairs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            list?.WithInputs(pairs?.Select(q => BdoData.NewMeta(q.Name, q.ValueType, q.Value)).ToArray());
+            obj?.WithInputs(pairs?.Select(q => BdoData.NewMeta(q.Name, q.ValueType, q.Value)).ToArray());
 
-            return list;
+            return obj;
         }
 
         public static T AddInputs<T>(
-            this T list,
+            this T obj,
             params IBdoMetaData[] inputs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            if (list != null)
+            if (obj != null)
             {
 
                 Array.ForEach(inputs, q => { q.AsInput(); });
-                ((IBdoConfiguration)list).Add(inputs);
+                obj.Add(inputs);
             }
 
-            return list;
+            return obj;
         }
 
         /// <summary>
@@ -232,19 +231,19 @@ namespace BindOpen.System.Scoping
         /// </summary>
         /// <param key="pairs">The value to add.</param>
         public static T AddInputs<T>(
-            this T list,
+            this T obj,
             params KeyValuePair<string, object>[] pairs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            if (list != null)
+            if (obj != null)
             {
                 foreach (var pair in pairs)
                 {
-                    list.AddInputs(BdoData.NewMeta(pair.Key, pair.Value));
+                    obj.AddInputs(BdoData.NewMeta(pair.Key, pair.Value));
                 }
             }
 
-            return list;
+            return obj;
         }
 
         /// <summary>
@@ -253,19 +252,19 @@ namespace BindOpen.System.Scoping
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
         public static T AddInputs<T>(
-            this T list,
+            this T obj,
             params (string Name, object Value)[] pairs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            if (list != null)
+            if (obj != null)
             {
                 foreach (var (Name, Value) in pairs)
                 {
-                    list.AddInputs(BdoData.NewMeta(Name, Value));
+                    obj.AddInputs(BdoData.NewMeta(Name, Value));
                 }
             }
 
-            return list;
+            return obj;
         }
 
         /// <summary>
@@ -274,36 +273,36 @@ namespace BindOpen.System.Scoping
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
         public static T AddInputs<T>(
-            this T list,
+            this T obj,
             params (string Name, DataValueTypes ValueType, object Value)[] pairs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            if (list != null)
+            if (obj != null)
             {
                 foreach (var (Name, ValueType, Value) in pairs)
                 {
-                    list.AddInputs(BdoData.NewMeta(Name, ValueType, Value));
+                    obj.AddInputs(BdoData.NewMeta(Name, ValueType, Value));
                 }
             }
 
-            return list;
+            return obj;
         }
 
         // Outputs
 
         public static T WithOutputs<T>(
-            this T list,
+            this T obj,
             params IBdoMetaData[] outputs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            if (list != null)
+            if (obj != null)
             {
-                list.Remove(q => q.OfGroup(IBdoTaskExtensions.__Token_Output));
+                obj.Remove(q => q.OfGroup(IBdoTaskExtensions.__Token_Output));
                 Array.ForEach(outputs, q => { q.AsOutput(); });
-                ((IBdoConfiguration)list).Add(outputs);
+                obj.Add(outputs);
             }
 
-            return list;
+            return obj;
         }
 
         /// <summary>
@@ -311,13 +310,13 @@ namespace BindOpen.System.Scoping
         /// </summary>
         /// <param key="pairs">The value to add.</param>
         public static T WithOutputs<T>(
-            this T list,
+            this T obj,
             params KeyValuePair<string, object>[] pairs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            list?.WithOutputs(pairs?.Select(q => BdoData.NewMeta(q.Key, q.Value)).ToArray());
+            obj?.WithOutputs(pairs?.Select(q => BdoData.NewMeta(q.Key, q.Value)).ToArray());
 
-            return list;
+            return obj;
         }
 
         /// <summary>
@@ -326,13 +325,13 @@ namespace BindOpen.System.Scoping
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
         public static T WithOutputs<T>(
-            this T list,
+            this T obj,
             params (string Name, object Value)[] pairs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            list?.WithOutputs(pairs?.Select(q => BdoData.NewMeta(q.Name, q.Value)).ToArray());
+            obj?.WithOutputs(pairs?.Select(q => BdoData.NewMeta(q.Name, q.Value)).ToArray());
 
-            return list;
+            return obj;
         }
 
         /// <summary>
@@ -341,27 +340,27 @@ namespace BindOpen.System.Scoping
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
         public static T WithOutputs<T>(
-            this T list,
+            this T obj,
             params (string Name, DataValueTypes ValueType, object Value)[] pairs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            list?.WithOutputs(pairs?.Select(q => BdoData.NewMeta(q.Name, q.ValueType, q.Value)).ToArray());
+            obj?.WithOutputs(pairs?.Select(q => BdoData.NewMeta(q.Name, q.ValueType, q.Value)).ToArray());
 
-            return list;
+            return obj;
         }
 
         public static T AddOutputs<T>(
-            this T list,
+            this T obj,
             params IBdoMetaData[] outputs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            if (list != null)
+            if (obj != null)
             {
                 Array.ForEach(outputs, q => { q.AsOutput(); });
-                ((IBdoConfiguration)list).Add(outputs);
+                obj.Add(outputs);
             }
 
-            return list;
+            return obj;
         }
 
         /// <summary>
@@ -369,19 +368,19 @@ namespace BindOpen.System.Scoping
         /// </summary>
         /// <param key="pairs">The value to add.</param>
         public static T AddOutputs<T>(
-            this T list,
+            this T obj,
             params KeyValuePair<string, object>[] pairs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            if (list != null)
+            if (obj != null)
             {
                 foreach (var pair in pairs)
                 {
-                    list.AddOutputs(BdoData.NewMeta(pair.Key, pair.Value));
+                    obj.AddOutputs(BdoData.NewMeta(pair.Key, pair.Value));
                 }
             }
 
-            return list;
+            return obj;
         }
 
         /// <summary>
@@ -390,19 +389,19 @@ namespace BindOpen.System.Scoping
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
         public static T AddOutputs<T>(
-            this T list,
+            this T obj,
             params (string Name, object Value)[] pairs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            if (list != null)
+            if (obj != null)
             {
                 foreach (var (Name, Value) in pairs)
                 {
-                    list.AddOutputs(BdoData.NewMeta(Name, Value));
+                    obj.AddOutputs(BdoData.NewMeta(Name, Value));
                 }
             }
 
-            return list;
+            return obj;
         }
 
         /// <summary>
@@ -411,19 +410,19 @@ namespace BindOpen.System.Scoping
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
         public static T AddOutputs<T>(
-            this T list,
+            this T obj,
             params (string Name, DataValueTypes ValueType, object Value)[] pairs)
-            where T : IBdoConfiguration
+            where T : IBdoMetaObject
         {
-            if (list != null)
+            if (obj != null)
             {
                 foreach (var (Name, ValueType, Value) in pairs)
                 {
-                    list.AddOutputs(BdoData.NewMeta(Name, ValueType, Value));
+                    obj.AddOutputs(BdoData.NewMeta(Name, ValueType, Value));
                 }
             }
 
-            return list;
+            return obj;
         }
     }
 }

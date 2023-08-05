@@ -5,18 +5,18 @@ namespace BindOpen.System.Data
     /// <summary>
     /// This static class represents a data reference converter.
     /// </summary>
-    public static class FilterConverter
+    public static class MergerConverter
     {
         /// <summary>
         /// Converts to DTO.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static FilterDto ToDto(this IBdoFilter poco)
+        public static MergerDto ToDto(this IBdoFilter poco)
         {
             if (poco == null) return null;
 
-            FilterDto dto = new()
+            MergerDto dto = new()
             {
                 AddedValues = new List<string>(poco?.AddedValues),
                 RemovedValues = new List<string>(poco?.RemovedValues)
@@ -30,9 +30,9 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoFilter ToPoco(this FilterDto dto)
+        public static IBdoFilter ToPoco(this MergerDto dto)
         {
-            BdoFilter poco = new()
+            BdoMerger poco = new()
             {
                 AddedValues = new List<string>(dto?.AddedValues),
                 RemovedValues = new List<string>(dto?.RemovedValues)

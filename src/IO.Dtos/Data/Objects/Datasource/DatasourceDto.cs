@@ -38,16 +38,16 @@ namespace BindOpen.System.Data
         /// <summary>
         /// The config items for this instance.
         /// </summary>
-        [JsonPropertyName("config")]
-        [XmlElement("config")]
-        public List<ConfigurationDto> Configurations { get; set; }
+        [JsonPropertyName("objects")]
+        [XmlElement("object")]
+        public List<MetaObjectDto> MetaObjects { get; set; }
 
         /// <summary>
         /// Indicates whether the entities property must be ignored.
         /// </summary>
         [JsonIgnore]
         [XmlIgnore]
-        public bool ConfigurationsSpecified => Configurations?.Count > 0;
+        public bool MetaObjectsSpecified => MetaObjects?.Count > 0;
 
         /// <summary>
         /// Kind of the data module of this instance. 

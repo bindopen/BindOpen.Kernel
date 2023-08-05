@@ -60,9 +60,12 @@ namespace BindOpen.System.Scoping
             IBdoLog log = null)
         {
             IBdoFunctionDefinition definition;
-            if (!string.IsNullOrEmpty(word?.DefinitionUniqueName))
+
+            var definitionUniqueName = word.DataType.ClassReference?.DefinitionUniqueName;
+
+            if (!string.IsNullOrEmpty(definitionUniqueName))
             {
-                definition = scope?.ExtensionStore?.GetDefinition<IBdoFunctionDefinition>(word?.DefinitionUniqueName);
+                definition = scope?.ExtensionStore?.GetDefinition<IBdoFunctionDefinition>(definitionUniqueName);
             }
             else
             {
@@ -74,7 +77,7 @@ namespace BindOpen.System.Scoping
 
             if (definition == null)
             {
-                var functionName = word?.DefinitionUniqueName ?? word?.Name;
+                var functionName = definitionUniqueName ?? word?.Name;
 
                 log?.AddEvent(EventKinds.Error,
                     "Function named '" + functionName + "' not defined",

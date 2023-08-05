@@ -17,31 +17,24 @@ namespace BindOpen.System.Data.Assemblies
         #region Properties
 
         /// <summary>
-        /// The definition of this instance.
-        /// </summary>
-        [JsonPropertyName("definition")]
-        [XmlElement("definition")]
-        public DefinitionReferenceDto Definition { get; set; }
-
-        /// <summary>
         /// The library name of this instance.
         /// </summary>
         [JsonPropertyName("assemblyName")]
-        [XmlAttribute("assemblyName")]
+        [XmlElement("assemblyName")]
         public string AssemblyName { get; set; }
 
         /// <summary>
         /// The library version of this instance.
         /// </summary>
         [JsonPropertyName("assemblyVersion")]
-        [XmlAttribute("assemblyVersion")]
+        [XmlElement("assemblyVersion")]
         public string AssemblyVersion { get; set; }
 
         /// <summary>
         /// The file name of this instance.
         /// </summary>
         [JsonPropertyName("assemblyFileName")]
-        [XmlAttribute("assemblyFileName")]
+        [XmlElement("assemblyFileName")]
         public string AssemblyFileName { get; set; }
 
         #endregion

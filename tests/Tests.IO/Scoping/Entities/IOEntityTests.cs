@@ -26,11 +26,11 @@ namespace BindOpen.System.Scoping
         {
             if (_entity == null)
             {
-                IBdoConfiguration config = BdoEntityTests.CreateEntityConfig(_testData);
+                IBdoConfiguration config = BdoEntityTests.CreateMetaEntity(_testData);
                 _entity = SystemData.Scope.CreateEntity<EntityFake>(config);
             }
 
-            var isSaved = _entity.ToConfig(SystemData.Scope).ToDto().SaveXml(BdoEntityFaker.XmlFilePath);
+            var isSaved = _entity.ToMeta(SystemData.Scope).ToDto().SaveXml(BdoEntityFaker.XmlFilePath);
 
             Assert.That(isSaved, "Entity saving failed");
         }
@@ -58,11 +58,11 @@ namespace BindOpen.System.Scoping
         {
             if (_entity == null)
             {
-                IBdoConfiguration config = BdoEntityTests.CreateEntityConfig(_testData);
+                IBdoConfiguration config = BdoEntityTests.CreateMetaEntity(_testData);
                 _entity = SystemData.Scope.CreateEntity<EntityFake>(config);
             }
 
-            var isSaved = _entity.ToConfig(SystemData.Scope).ToDto().SaveJson(BdoEntityFaker.JsonFilePath);
+            var isSaved = _entity.ToMeta(SystemData.Scope).ToDto().SaveJson(BdoEntityFaker.JsonFilePath);
 
             Assert.That(isSaved, "Entity saving failed");
         }

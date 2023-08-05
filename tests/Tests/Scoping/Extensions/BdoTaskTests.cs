@@ -8,8 +8,6 @@ namespace BindOpen.System.Scoping
     [TestFixture, Order(300)]
     public class BdoTaskTests
     {
-        private readonly string _filePath = SystemData.WorkingFolder + "Task.xml";
-
         private dynamic _testData;
 
         [OneTimeSetUp]
@@ -23,11 +21,10 @@ namespace BindOpen.System.Scoping
         /// </summary>
         /// <param key="data"></param>
         /// <returns></returns>
-        public static IBdoConfiguration CreateTaskConfig(dynamic data)
+        public static IBdoMetaObject CreateMetaTask(dynamic data)
         {
-            var config =
-                BdoData.NewConfig()
-                .WithDefinition("bindopen.system.tests$taskFake")
+            var meta = BdoData.NewMetaObject()
+                .WithDataType(BdoExtensionKind.Task, "bindopen.system.tests$taskFake")
                 .WithProperties(
                     BdoData.NewMetaScalar("boolValue", data.boolValue as bool?),
                     BdoData.NewMetaScalar("intValue", data.intValue as int?))
@@ -36,14 +33,14 @@ namespace BindOpen.System.Scoping
                 .WithOutputs(
                     BdoData.NewMetaScalar("stringValue", data.stringValue as string));
 
-            return config;
+            return meta;
         }
 
         [Test, Order(1)]
         public void CreateTaskTest_FromMetaSet()
         {
-            IBdoConfiguration config = CreateTaskConfig(_testData);
-            var connector = SystemData.Scope.CreateTask<TaskFake>(config);
+            IBdoMetaObject meta = CreateMetaTask(_testData);
+            var connector = SystemData.Scope.CreateTask<TaskFake>(meta);
 
             BdoTaskFaker.AssertFake(connector, _testData);
         }
@@ -51,8 +48,8 @@ namespace BindOpen.System.Scoping
         [Test, Order(2)]
         public void CreateTaskTest_FromConfig()
         {
-            IBdoConfiguration config = CreateTaskConfig(_testData);
-            var connector = SystemData.Scope.CreateTask(config) as TaskFake;
+            IBdoMetaObject meta = CreateMetaTask(_testData);
+            var connector = SystemData.Scope.CreateTask(meta) as TaskFake;
 
             BdoTaskFaker.AssertFake(connector, _testData);
         }
@@ -68,7 +65,7 @@ namespace BindOpen.System.Scoping
                 StringValue = _testData.stringValue,
             };
 
-            var config = connector.ToConfig(SystemData.Scope, "testConfig");
+            var config = connector.ToMeta(SystemData.Scope, "testConfig");
             connector = SystemData.Scope.CreateTask(config) as TaskFake;
 
             BdoTaskFaker.AssertFake(connector, _testData);

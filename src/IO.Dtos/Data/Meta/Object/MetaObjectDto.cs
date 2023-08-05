@@ -28,7 +28,7 @@ namespace BindOpen.System.Data.Meta
         [XmlElement("item.datasource", Type = typeof(DatasourceDto))]
         [XmlElement("item.dictionary", Type = typeof(DictionaryDto))]
         [XmlElement("item.expression", Type = typeof(ExpressionDto))]
-        [XmlElement("item.filter", Type = typeof(FilterDto))]
+        [XmlElement("item.filter", Type = typeof(MergerDto))]
         public BdoItemDto Item { get; set; }
 
         /// <summary>

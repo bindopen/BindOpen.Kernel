@@ -144,7 +144,7 @@ namespace BindOpen.System.Scoping.Script
             if (word != null)
             {
                 var cloned = BdoScript.NewWord(word.Kind, word.Name)
-                    .WithDefinition(word.DefinitionUniqueName);
+                    .WithDataType(word.DataType.ClassReference?.DefinitionUniqueName);
 
                 switch (word.Kind)
                 {

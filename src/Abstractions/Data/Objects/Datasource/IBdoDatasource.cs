@@ -6,7 +6,7 @@ namespace BindOpen.System.Data
     /// 
     /// </summary>
     public interface IBdoDatasource :
-        IBdoConfigurationSet, IDefaultable,
+        ITBdoSet<IBdoMetaObject>, IDefaultable,
         IBdoObjectNotMetable, IIdentified, INamed, IReferenced
     {
         /// <summary>

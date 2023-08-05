@@ -19,7 +19,7 @@ namespace BindOpen.System.Data
 
             DatasourceDto dto = new()
             {
-                Configurations = poco?.Select(q => q?.ToDto<ConfigurationDto>()).ToList(),
+                MetaObjects = poco?.Select(q => q?.ToDto()).ToList(),
                 InstanceName = poco.InstanceName,
                 Kind = poco.Kind,
                 ModuleName = poco.ModuleName,
@@ -40,7 +40,7 @@ namespace BindOpen.System.Data
             var poco = BdoData.NewDatasource(
                 dto.Name,
                 dto.Kind,
-                dto.Configurations?.Count == 0 ? null : dto.Configurations?.Select(q => q.ToPoco<BdoConfiguration>()).ToArray())
+                dto.MetaObjects?.Count == 0 ? null : dto.MetaObjects?.Select(q => q.ToPoco()).ToArray())
                 .WithInstanceName(dto.InstanceName)
                 .WithModuleName(dto.ModuleName)
                 .WithName(dto.Name);

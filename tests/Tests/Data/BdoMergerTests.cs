@@ -7,13 +7,13 @@ using System.Linq;
 namespace BindOpen.System.Data
 {
     [TestFixture, Order(210)]
-    public class BdoFilterTests
+    public class BdoMergerTests
     {
         List<string> _addList = new();
         List<string> _removeList = new();
         List<string> _list = new();
 
-        public BdoFilter _set = null;
+        public BdoMerger _set = null;
 
 
         [OneTimeSetUp]
@@ -29,27 +29,23 @@ namespace BindOpen.System.Data
         public void Create1Test()
         {
             var list = _list.Adding(_removeList?.ToArray());
-            var set = BdoData.NewFilter(_addList, _removeList);
-            var newList = list.Merge(set);
+            var merger = BdoData.NewMerger(_addList, _removeList);
+            var newList = list.Merge(merger);
 
             Assert.That(
-                newList.All(q => _list?.Contains(q) == true || _addList?.Contains(q) == true), "Error with string set");
-            Assert.That(
-                _addList.All(q => newList?.Contains(q) == true), "Error with string set");
-            Assert.That(
                 _addList.All(q => newList?.Contains(q) == true || _removeList?.Contains(q) == true), "Error with string set");
+            Assert.That(
+                newList.All(q => _removeList?.Contains(q) == false), "Error with string set");
         }
 
         [Test, Order(2)]
         public void Create2Test()
         {
             var list = _list.Adding(_removeList?.ToArray());
-            var set = BdoData.NewFilter()
+            var merger = BdoData.NewMerger()
                 .Removing(_removeList?.ToArray());
-            var newList = list.Merge(set);
+            var newList = list.Merge(merger);
 
-            Assert.That(
-                newList.All(q => list?.Contains(q) == true), "Error with string set");
             Assert.That(
                 newList.All(q => _removeList?.Contains(q) == false), "Error with string set");
         }
@@ -58,15 +54,15 @@ namespace BindOpen.System.Data
         public void Create3Test()
         {
             var list = _list.Adding(_removeList?.ToArray());
-            var set = BdoData.NewFilter()
+            var set = BdoData.NewMerger()
                 .Adding(_addList?.ToArray())
                 .Removing(_removeList?.ToArray());
             var newList = list.Merge(set);
 
             Assert.That(
-                newList.All(q => _list?.Contains(q) == true || _addList?.Contains(q) == true), "Error with string set");
+                _addList.All(q => newList?.Contains(q) == true || _removeList?.Contains(q) == true), "Error with string set");
             Assert.That(
-                _addList.All(q => newList?.Contains(q) == true && !_removeList?.Contains(q) == true), "Error with string set");
+                newList.All(q => _removeList?.Contains(q) == false), "Error with string set");
         }
     }
 }

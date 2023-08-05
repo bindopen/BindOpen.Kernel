@@ -21,11 +21,11 @@ namespace BindOpen.System.Scoping
         /// </summary>
         /// <param key="data"></param>
         /// <returns></returns>
-        public static IBdoConfiguration CreateConnectorConfig(dynamic data)
+        public static IBdoMetaObject CreateMetaConnector(dynamic data)
         {
             var config =
-                BdoData.NewConfig()
-                .WithDefinition("bindopen.system.tests$testConnector")
+                BdoData.NewMetaObject()
+                .WithDataType(BdoExtensionKind.Connector, "bindopen.system.tests$testConnector")
                 .With(
                     BdoData.NewMetaScalar("host", data.host as string),
                     BdoData.NewMetaScalar("port", data.port as int?),
@@ -37,8 +37,8 @@ namespace BindOpen.System.Scoping
         [Test, Order(1)]
         public void CreateConnectorTest_FromMetaSet()
         {
-            IBdoConfiguration config = CreateConnectorConfig(_testData);
-            var connector = SystemData.Scope.CreateConnector<ConnectorFake>(config);
+            IBdoMetaObject meta = CreateMetaConnector(_testData);
+            var connector = SystemData.Scope.CreateConnector<ConnectorFake>(meta);
 
             BdoConnectorFaker.AssertFake(connector, _testData);
         }
@@ -46,8 +46,8 @@ namespace BindOpen.System.Scoping
         [Test, Order(2)]
         public void CreateConnectorTest_FromConfig()
         {
-            IBdoConfiguration config = CreateConnectorConfig(_testData);
-            var connector = SystemData.Scope.CreateConnector(config) as ConnectorFake;
+            IBdoMetaObject meta = CreateMetaConnector(_testData);
+            var connector = SystemData.Scope.CreateConnector(meta) as ConnectorFake;
 
             BdoConnectorFaker.AssertFake(connector, _testData);
         }
@@ -63,8 +63,8 @@ namespace BindOpen.System.Scoping
                 Port = BdoData.NewMetaScalar<int?>(_testData.port as int?)
             };
 
-            var config = connector.ToConfig(SystemData.Scope);
-            connector = SystemData.Scope.CreateConnector(config) as ConnectorFake;
+            var meta = connector.ToMeta(SystemData.Scope);
+            connector = SystemData.Scope.CreateConnector(meta) as ConnectorFake;
 
             BdoConnectorFaker.AssertFake(connector, _testData);
         }

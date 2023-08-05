@@ -86,12 +86,27 @@ namespace BindOpen.System.Scoping
             return task;
         }
 
+        /// <summary>
+        /// Creates the instance of the specified definition.
+        /// </summary>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="config">The config to consider.</param>
+        /// <param key="log">The log to consider.</param>
+        /// <param key="varSet">The variable element set to use.</param>
+        /// <typeparam name="T">The connector class to return.</typeparam>
+        /// <returns>Returns the created connector.</returns>
         public static IBdoTask CreateTask(
             this IBdoScope scope,
-            IBdoConfiguration config,
+            IBdoMetaObject meta,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
-            => scope.CreateTask(config, config?.DefinitionUniqueName, varSet, log);
+        {
+            var definitionUniqueName = meta.DataType.ClassReference?.DefinitionUniqueName;
+
+            var task = scope.CreateTask(meta, definitionUniqueName, varSet, log);
+
+            return task;
+        }
 
         /// <summary>
         /// Creates the instance of the specified definition.

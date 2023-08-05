@@ -10,12 +10,12 @@ namespace BindOpen.System.Data
     [XmlInclude(typeof(DatasourceDto))]
     [XmlInclude(typeof(DictionaryDto))]
     [XmlInclude(typeof(ExpressionDto))]
-    [XmlInclude(typeof(FilterDto))]
+    [XmlInclude(typeof(MergerDto))]
 
     [JsonDerivedType(typeof(DatasourceDto), "source")]
     [JsonDerivedType(typeof(DictionaryDto), "dictonary")]
     [JsonDerivedType(typeof(ExpressionDto), "expression")]
-    [JsonDerivedType(typeof(FilterDto), "string.filter")]
+    [JsonDerivedType(typeof(MergerDto), "string.filter")]
 
     public class BdoItemDto : IBdoDto
     {

@@ -56,12 +56,27 @@ namespace BindOpen.System.Scoping
             return entity;
         }
 
+        /// <summary>
+        /// Creates the instance of the specified definition.
+        /// </summary>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="config">The config to consider.</param>
+        /// <param key="log">The log to consider.</param>
+        /// <param key="varSet">The variable element set to use.</param>
+        /// <typeparam name="T">The connector class to return.</typeparam>
+        /// <returns>Returns the created connector.</returns>
         public static IBdoEntity CreateEntity(
             this IBdoScope scope,
-            IBdoConfiguration config,
+            IBdoMetaObject meta,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
-            => scope.CreateEntity(config, config?.DefinitionUniqueName, varSet, log);
+        {
+            var definitionUniqueName = meta.DataType.ClassReference?.DefinitionUniqueName;
+
+            var entity = scope.CreateEntity(meta, definitionUniqueName, varSet, log);
+
+            return entity;
+        }
 
         /// <summary>
         /// Creates the instance of the specified definition.

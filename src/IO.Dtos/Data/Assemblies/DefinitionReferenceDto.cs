@@ -27,7 +27,7 @@ namespace BindOpen.System.Data.Assemblies
         /// Creation date of this instance.
         /// </summary>
         [JsonPropertyName("uniqueName")]
-        [XmlElement("uniqueName")]
+        [XmlText()]
         public string DefinitionUniqueName { get; set; }
 
         #endregion

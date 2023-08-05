@@ -70,7 +70,7 @@ namespace BindOpen.System.Data
         /// <remarks>The new item must have a name.</remarks>
         public static T Add<T>(
            this T set,
-           params IBdoConfiguration[] items)
+           params IBdoMetaObject[] items)
            where T : IBdoDatasource
         {
             if (set != null && items != null)
@@ -91,7 +91,7 @@ namespace BindOpen.System.Data
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
         public static T With<T>(
            this T set,
-           params IBdoConfiguration[] items)
+           params IBdoMetaObject[] items)
            where T : IBdoDatasource
         {
             if (set != null)

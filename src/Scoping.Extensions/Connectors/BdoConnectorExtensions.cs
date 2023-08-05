@@ -23,8 +23,8 @@ namespace BindOpen.System.Scoping
         /// <returns>Returns the created connector.</returns>
         private static IBdoConnector CreateConnector(
             this IBdoScope scope,
-            IBdoMetaSet metaSet = null,
-            string definitionUniqueName = null,
+            IBdoMetaSet metaSet,
+            string definitionUniqueName,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
@@ -43,6 +43,7 @@ namespace BindOpen.System.Scoping
                 else
                 {
                     // we intantiate the connector
+
                     object item = definition.RuntimeType.CreateInstance(log);
 
                     if ((connector = item as IBdoConnector) != null)
@@ -56,12 +57,27 @@ namespace BindOpen.System.Scoping
             return connector;
         }
 
+        /// <summary>
+        /// Creates the instance of the specified definition.
+        /// </summary>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="config">The config to consider.</param>
+        /// <param key="log">The log to consider.</param>
+        /// <param key="varSet">The variable element set to use.</param>
+        /// <typeparam name="T">The connector class to return.</typeparam>
+        /// <returns>Returns the created connector.</returns>
         public static IBdoConnector CreateConnector(
             this IBdoScope scope,
-            IBdoConfiguration config,
+            IBdoMetaObject meta,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
-            => scope.CreateConnector(config, config?.DefinitionUniqueName, varSet, log);
+        {
+            var definitionUniqueName = meta.DataType.ClassReference?.DefinitionUniqueName;
+
+            var connector = scope.CreateConnector(meta, definitionUniqueName, varSet, log);
+
+            return connector;
+        }
 
         /// <summary>
         /// Creates the instance of the specified definition.
@@ -124,17 +140,17 @@ namespace BindOpen.System.Scoping
         /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
         public static T Open<T>(
             this IBdoScope scope,
-            IBdoConfiguration config,
+            IBdoMetaObject obj,
             IBdoLog log = null)
             where T : class, IBdoConnection
         {
-            if (config == null)
+            if (obj == null)
             {
                 log?.AddEvent(EventKinds.Error, "Connection missing");
             }
             else if (scope?.Check(true, log: log) == true)
             {
-                var connector = scope.CreateConnector(config, log: log);
+                var connector = scope.CreateConnector(obj, log: log);
 
                 if (connector != null)
                 {
@@ -146,6 +162,32 @@ namespace BindOpen.System.Scoping
             }
 
             return default;
+        }
+
+        /// <summary>
+        /// Creates a new literal exp into auto mode.
+        /// </summary>
+        /// <param key="text">The script text to consider.</param>
+        /// <returns>Returns the script exp.</returns>
+        public static T WithConnectionString<T>(
+            this T metaSet,
+            string connectionString)
+            where T : IBdoMetaSet
+        {
+            metaSet?.Add(("connectionString", connectionString));
+            return metaSet;
+        }
+
+        /// <summary>
+        /// Creates a new literal exp into auto mode.
+        /// </summary>
+        /// <param key="text">The script text to consider.</param>
+        /// <returns>Returns the script exp.</returns>
+        public static string GetConnectionString<T>(
+            this T metaSet)
+            where T : IBdoMetaSet
+        {
+            return metaSet?.GetData<string>("connectionString");
         }
     }
 }

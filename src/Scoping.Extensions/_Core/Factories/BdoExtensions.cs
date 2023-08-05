@@ -9,14 +9,12 @@ namespace BindOpen.System.Scoping
     /// </summary>
     public static class BdoExtensions
     {
-        public static IBdoConfiguration ToConfig(
+        public static IBdoMetaObject ToMeta(
             this IBdoExtension extension,
             IBdoScope scope,
             string name = null,
             bool onlyMetaAttributes = true)
         {
-            IBdoConfiguration config = null;
-
             if (scope != null && extension != null)
             {
                 var extensionKind = extension.GetValueType().GetExtensionKind();
@@ -24,18 +22,17 @@ namespace BindOpen.System.Scoping
                     extensionKind,
                     BdoData.Class(extension.GetType()));
 
-                config = BdoData.NewConfig(name)
-                    .WithDefinition(extensionKind, extensionDefinition?.UniqueName)
-                    .WithDataType(extension.GetValueType())
+                var meta = BdoData.NewMetaObject(name)
+                    .WithDataType(extensionKind, extensionDefinition?.UniqueName)
                     .WithId(extension?.Id)
                     .WithData(extension)
                     .UpdateTree(onlyMetaAttributes)
                     .WithName(name);
 
-                return config;
+                return meta;
             }
 
-            return config;
+            return null;
         }
     }
 }

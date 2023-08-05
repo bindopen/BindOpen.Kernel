@@ -26,11 +26,11 @@ namespace BindOpen.System.Scoping
         {
             if (_task == null)
             {
-                IBdoConfiguration config = BdoTaskTests.CreateTaskConfig(_testData);
+                IBdoConfiguration config = BdoTaskTests.CreateMetaTask(_testData);
                 _task = SystemData.Scope.CreateTask<TaskFake>(config);
             }
 
-            var isSaved = _task.ToConfig(SystemData.Scope).ToDto().SaveXml(BdoTaskFaker.XmlFilePath);
+            var isSaved = _task.ToMeta(SystemData.Scope).ToDto().SaveXml(BdoTaskFaker.XmlFilePath);
 
             Assert.That(isSaved, "Task saving failed");
         }
@@ -58,11 +58,11 @@ namespace BindOpen.System.Scoping
         {
             if (_task == null)
             {
-                IBdoConfiguration config = BdoTaskTests.CreateTaskConfig(_testData);
+                IBdoConfiguration config = BdoTaskTests.CreateMetaTask(_testData);
                 _task = SystemData.Scope.CreateTask<TaskFake>(config);
             }
 
-            var isSaved = _task.ToConfig(SystemData.Scope).ToDto().SaveJson(BdoTaskFaker.JsonFilePath);
+            var isSaved = _task.ToMeta(SystemData.Scope).ToDto().SaveJson(BdoTaskFaker.JsonFilePath);
 
             Assert.That(isSaved, "Task saving failed");
         }

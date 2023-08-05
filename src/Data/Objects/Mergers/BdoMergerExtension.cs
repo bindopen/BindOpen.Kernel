@@ -5,7 +5,7 @@ namespace BindOpen.System.Data
     /// <summary>
     /// This class represents a data exp that can contain a literal and script texts.
     /// </summary>
-    public static class BdoFilterExtension
+    public static class BdoMergerExtension
     {
         /// <summary>
         /// Adds the specified strings.

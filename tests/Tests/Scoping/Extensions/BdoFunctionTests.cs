@@ -22,14 +22,13 @@ namespace BindOpen.System.Scoping
         [Test, Order(1)]
         public void NewWordFromConfigTest()
         {
-            var config =
-                BdoData.NewConfig()
-                .WithDefinition("bindopen.system.tests$testEqual")
+            var meta = BdoData.NewMetaObject()
+                .WithDataType(BdoExtensionKind.Function, "bindopen.system.tests$testEqual")
                 .With(
                     BdoData.NewMetaScalar("stringValue", _testData.stringValue as string),
                     BdoData.NewMetaScalar("intValue", _testData.intValue as int?));
 
-            var word = BdoScript.NewWord(config);
+            var word = BdoScript.NewWord(meta);
 
             var result = SystemData.Scope?.CallFunction<bool?>(word);
 
