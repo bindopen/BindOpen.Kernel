@@ -54,7 +54,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The items of this instance.
         /// </summary>
-        protected IBdoMetaSet _propertySet;
+        protected IBdoMetaComposite _propertySet;
 
         #endregion
 
@@ -142,18 +142,18 @@ namespace BindOpen.System.Data.Meta
 
         public IBdoMetaData Insert(IBdoMetaData item)
         {
-            _propertySet ??= BdoData.NewMetaSet();
+            _propertySet ??= BdoData.NewMetaComposite();
             return _propertySet.Insert(item);
         }
 
         public override void Clear()
         {
             //base.Clear();
-            _propertySet ??= BdoData.NewMetaSet();
+            _propertySet ??= BdoData.NewMetaComposite();
             _propertySet.Clear();
         }
 
-        public IBdoMetaSet Add(
+        public IBdoMetaComposite Add(
             params IBdoMetaData[] items)
         {
             (this as ITBdoSet<IBdoMetaData>).Add(items);

@@ -22,12 +22,12 @@ namespace BindOpen.System.Scoping
         // Xml
 
         [Test, Order(2)]
-        public void SaveXmlTaskTest()
+        public void SaveXmlTest()
         {
             if (_task == null)
             {
-                IBdoConfiguration config = BdoTaskTests.CreateMetaTask(_testData);
-                _task = SystemData.Scope.CreateTask<TaskFake>(config);
+                IBdoMetaObject meta = BdoTaskTests.CreateMetaTask(_testData);
+                _task = SystemData.Scope.CreateTask<TaskFake>(meta);
             }
 
             var isSaved = _task.ToMeta(SystemData.Scope).ToDto().SaveXml(BdoTaskFaker.XmlFilePath);
@@ -36,15 +36,15 @@ namespace BindOpen.System.Scoping
         }
 
         [Test, Order(3)]
-        public void LoadXmlConfigurationTest()
+        public void LoadXmlTest()
         {
             if (_task == null || !File.Exists(BdoTaskFaker.XmlFilePath))
             {
-                SaveXmlTaskTest();
+                SaveXmlTest();
             }
 
-            var config = XmlHelper.LoadXml<ConfigurationDto>(BdoTaskFaker.XmlFilePath).ToPoco();
-            var task = SystemData.Scope.CreateTask<TaskFake>(config);
+            var meta = XmlHelper.LoadXml<MetaObjectDto>(BdoTaskFaker.XmlFilePath).ToPoco();
+            var task = SystemData.Scope.CreateTask<TaskFake>(meta);
 
             Assert.That(task != null, "Task loading failed");
 
@@ -54,12 +54,12 @@ namespace BindOpen.System.Scoping
         // Json
 
         [Test, Order(4)]
-        public void SaveJsonTaskTest()
+        public void SaveJsonTest()
         {
             if (_task == null)
             {
-                IBdoConfiguration config = BdoTaskTests.CreateMetaTask(_testData);
-                _task = SystemData.Scope.CreateTask<TaskFake>(config);
+                IBdoMetaObject meta = BdoTaskTests.CreateMetaTask(_testData);
+                _task = SystemData.Scope.CreateTask<TaskFake>(meta);
             }
 
             var isSaved = _task.ToMeta(SystemData.Scope).ToDto().SaveJson(BdoTaskFaker.JsonFilePath);
@@ -68,15 +68,15 @@ namespace BindOpen.System.Scoping
         }
 
         [Test, Order(5)]
-        public void LoadJsonConfigurationTest()
+        public void LoadJsonTest()
         {
             if (_task == null || !File.Exists(BdoTaskFaker.JsonFilePath))
             {
-                SaveJsonTaskTest();
+                SaveJsonTest();
             }
 
-            var config = JsonHelper.LoadJson<ConfigurationDto>(BdoTaskFaker.JsonFilePath).ToPoco();
-            var task = SystemData.Scope.CreateTask<TaskFake>(config);
+            var meta = JsonHelper.LoadJson<MetaObjectDto>(BdoTaskFaker.JsonFilePath).ToPoco();
+            var task = SystemData.Scope.CreateTask<TaskFake>(meta);
 
             Assert.That(task != null, "Task loading failed");
 

@@ -24,7 +24,7 @@ namespace BindOpen.System.Data.Meta.Reflection
         /// <param key="log">The log to consider.</param>
         public static void UpdateFromMeta(
             this object obj,
-            IBdoMetaSet set,
+            IBdoMetaComposite set,
             bool onlyMetaAttributes = false,
             string groupId = null,
             IBdoScope scope = null,
@@ -44,7 +44,7 @@ namespace BindOpen.System.Data.Meta.Reflection
         /// <param key="log">The log to consider.</param>
         public static void UpdateFromMeta<T>(
             this object obj,
-            IBdoMetaSet list,
+            IBdoMetaComposite list,
             bool onlyMetaAttributes = false,
             string groupId = null,
             IBdoScope scope = null,
@@ -104,16 +104,10 @@ namespace BindOpen.System.Data.Meta.Reflection
                                 {
                                     metaValue = BdoData.NewMetaScalar(name, meta?.DataType.ValueType);
                                 }
-                                else if (typeof(IBdoConfiguration).IsAssignableFrom(metaType))
+                                else if (typeof(IBdoMetaComposite).IsAssignableFrom(metaType))
                                 {
-                                    var config = meta as IBdoConfiguration;
-                                    metaValue = BdoData.NewConfig(name)
-                                        .With(config.Items?.ToArray());
-                                }
-                                else if (typeof(IBdoMetaSet).IsAssignableFrom(metaType))
-                                {
-                                    var set = meta as IBdoMetaSet;
-                                    metaValue = BdoData.NewMetaSet(name)
+                                    var set = meta as IBdoMetaComposite;
+                                    metaValue = BdoData.NewMetaComposite(name)
                                         .With(set?.Items?.ToArray());
                                 }
                                 else if (typeof(ITBdoMetaObject<>).IsAssignableFrom(metaType)

@@ -39,17 +39,6 @@ namespace BindOpen.System.Data
         }
 
         [Test, Order(1)]
-        public void CreateConfigurationSet()
-        {
-            var bundle = BdoData.NewConfigSet(
-                _config1,
-                _config20,
-                _config21);
-
-            bundle.Add(_config1);
-        }
-
-        [Test, Order(2)]
         public void GetConfigurationItem1()
         {
             var text = _config20.GetData<string>("text1");

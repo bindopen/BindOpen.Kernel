@@ -49,7 +49,7 @@ namespace BindOpen.System.Data.Meta
         /// The children of this instance.
         /// </summary>
         [JsonPropertyName("children")]
-        [XmlElement("children")]
+        [XmlElement("config")]
         public List<ConfigurationDto> Children { get; set; }
 
         /// <summary>
@@ -58,6 +58,7 @@ namespace BindOpen.System.Data.Meta
         [JsonIgnore()]
         [XmlIgnore()]
         public bool ChildrenSpecficied => Children?.Count > 0;
+
         /// <summary>
         /// The using item IDs of this instance.
         /// </summary>

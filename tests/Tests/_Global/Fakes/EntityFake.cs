@@ -67,7 +67,7 @@ namespace BindOpen.System.Tests
         /// </summary>
         [BdoProperty(Name = "inputs")]
         [BdoFunction(Name = "input")]
-        public BdoMetaSet Inputs { get; set; }
+        public BdoMetaComposite Inputs { get; set; }
 
         /// <summary>
         /// The sub entity of this instance.

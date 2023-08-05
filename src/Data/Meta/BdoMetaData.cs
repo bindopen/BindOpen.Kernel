@@ -93,7 +93,7 @@ namespace BindOpen.System.Data.Meta
                     return BdoMetaDataKind.Object;
                 else if (this is IBdoMetaScalar)
                     return BdoMetaDataKind.Scalar;
-                else if (this is IBdoMetaSet)
+                else if (this is IBdoMetaComposite)
                     return BdoMetaDataKind.Set;
                 return BdoMetaDataKind.None;
             }

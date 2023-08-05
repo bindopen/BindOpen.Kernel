@@ -50,7 +50,7 @@ namespace BindOpen.System.Data
         /// The script word of this instance.
         /// </summary>
         [JsonPropertyName("meta")]
-        [XmlElement("set", Type = typeof(MetaSetDto))]
+        [XmlElement("set", Type = typeof(MetaCompositeDto))]
         [XmlElement("object", Type = typeof(MetaObjectDto))]
         [XmlElement("scalar", Type = typeof(MetaScalarDto))]
         [XmlElement("scriptword", Type = typeof(ScriptwordDto))]

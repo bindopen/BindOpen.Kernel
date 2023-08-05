@@ -7,9 +7,7 @@ namespace BindOpen.System.Data.Meta
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    public partial class BdoMetaSet :
-        TBdoSet<IBdoMetaData>,
-        IBdoMetaSet
+    public partial class BdoMetaSet
     {
         /// <summary>
         /// Returns the specified item of this instance.
@@ -52,18 +50,18 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public IBdoMetaSet Set(
+        public IBdoMetaComposite Composite(
             string key = null)
-            => Get<IBdoMetaSet>(key);
+            => Get<IBdoMetaComposite>(key);
 
         /// <summary>
         /// Returns the specified item of this instance.
         /// </summary>
         /// <param key="index">The index to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public IBdoMetaSet Set(
+        public IBdoMetaComposite Composite(
             int index)
-            => Get<IBdoMetaSet>(index);
+            => Get<IBdoMetaComposite>(index);
 
         // Data
 
@@ -82,7 +80,11 @@ namespace BindOpen.System.Data.Meta
             IBdoLog log = null)
         {
             var meta = this[key];
-            if (meta is IBdoMetaScalar metaScalar)
+            if (meta is IBdoMetaObject metaObject)
+                return metaObject.GetDataList(scope, varSet, log);
+            else if (meta is IBdoMetaComposite metaComposite)
+                return metaComposite.GetDataList(scope, varSet, log);
+            else if (meta is IBdoMetaScalar metaScalar)
                 return metaScalar.GetDataList(scope, varSet, log);
 
             return default;
@@ -104,7 +106,11 @@ namespace BindOpen.System.Data.Meta
             IBdoLog log = null)
         {
             var meta = this[key];
-            if (meta is IBdoMetaScalar metaScalar)
+            if (meta is IBdoMetaObject metaObject)
+                return metaObject.GetDataList<Q>(scope, varSet, log);
+            else if (meta is IBdoMetaComposite metaComposite)
+                return metaComposite.GetDataList<Q>(scope, varSet, log);
+            else if (meta is IBdoMetaScalar metaScalar)
                 return metaScalar.GetDataList<Q>(scope, varSet, log);
 
             return default;
@@ -127,10 +133,10 @@ namespace BindOpen.System.Data.Meta
             var meta = this[key];
             if (meta is IBdoMetaObject metaObject)
                 return metaObject.GetData(scope, varSet, log);
+            else if (meta is IBdoMetaComposite metaSet)
+                return metaSet.GetData(scope, varSet, log);
             else if (meta is IBdoMetaScalar metaScalar)
                 return metaScalar.GetData(scope, varSet, log);
-            else if (meta is IBdoMetaSet metaSet)
-                return metaSet.GetData(scope, varSet, log);
 
             return default;
         }
@@ -152,6 +158,8 @@ namespace BindOpen.System.Data.Meta
             var meta = this[key];
             if (meta is IBdoMetaObject metaObject)
                 return metaObject.GetData<Q>(scope, varSet, log);
+            else if (meta is IBdoMetaComposite metaComposite)
+                return metaComposite.GetData<Q>(scope, varSet, log);
             else if (meta is IBdoMetaScalar metaScalar)
                 return metaScalar.GetData<Q>(scope, varSet, log);
 

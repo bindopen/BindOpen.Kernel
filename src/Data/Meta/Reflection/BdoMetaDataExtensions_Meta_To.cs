@@ -72,9 +72,9 @@ namespace BindOpen.System.Data.Meta.Reflection
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static IBdoMetaSet AsMetaSet(
+        public static IBdoMetaComposite AsMetaSet(
             this IBdoMetaData meta)
-            => meta as IBdoMetaSet;
+            => meta as IBdoMetaComposite;
 
         /// <summary>
         /// Creates a data element list from a dynamic object.
@@ -91,7 +91,7 @@ namespace BindOpen.System.Data.Meta.Reflection
         public static IList<IBdoMetaData> ToList(
             this IBdoMetaData meta)
         {
-            if (meta is IBdoMetaSet metaSet)
+            if (meta is IBdoMetaComposite metaSet)
             {
                 return metaSet.ToList();
             }

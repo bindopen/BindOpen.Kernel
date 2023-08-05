@@ -7,7 +7,7 @@ namespace BindOpen.System.Data.Meta
     /// <summary>
     /// This class represents an extension of the DataValueType enumeration.
     /// </summary>
-    public partial interface IBdoMetaSet : ITBdoSet<IBdoMetaData>
+    public partial interface IBdoMetaSet
     {
         /// <summary>
         /// Returns the specified item of this instance.
@@ -46,7 +46,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public IBdoMetaSet Set(
+        public IBdoMetaComposite Composite(
             string key = null);
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="index">The index to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public IBdoMetaSet Set(
+        public IBdoMetaComposite Composite(
             int index);
 
         // Data

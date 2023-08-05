@@ -1,6 +1,4 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
-using BindOpen.System.Scoping;
+﻿using BindOpen.System.Scoping;
 using NUnit.Framework;
 
 namespace BindOpen.System.Data
@@ -20,7 +18,7 @@ namespace BindOpen.System.Data
         {
             _datasource = BdoData.NewDatasource("name", DatasourceKind.Database)
                 .With(
-                    BdoData.NewConfig("bindopen.system.tests$test")
+                    BdoData.NewMetaObject("bindopen.system.tests$test")
                         .WithConnectionString("connectionString"));
 
             Assert.That(

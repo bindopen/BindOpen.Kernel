@@ -10,7 +10,7 @@ namespace BindOpen.System.Data.Meta
     /// <summary>
     /// This class represents a catalog el that is an el whose els are entities.
     /// </summary>
-    public partial class BdoMetaSet : TBdoSet<IBdoMetaData>, IBdoMetaSet
+    public partial class BdoMetaComposite : BdoMetaSet, IBdoMetaComposite
     {
         // ------------------------------------------
         // CONVERTERS
@@ -22,16 +22,16 @@ namespace BindOpen.System.Data.Meta
         /// Converts from data element array.
         /// </summary>
         /// <param key="elems">The elems to consider.</param>
-        public static explicit operator BdoMetaSet(IBdoMetaData[] elems)
+        public static explicit operator BdoMetaComposite(IBdoMetaData[] elems)
         {
-            return BdoData.NewMetaSet(elems);
+            return BdoData.NewMetaComposite(elems);
         }
 
         /// <summary>
         /// Converts from data element array.
         /// </summary>
         /// <param key="elems">The elems to consider.</param>
-        public static explicit operator IBdoMetaData[](BdoMetaSet metaSet)
+        public static explicit operator IBdoMetaData[](BdoMetaComposite metaSet)
         {
             return metaSet?.ToArray();
         }
@@ -45,9 +45,9 @@ namespace BindOpen.System.Data.Meta
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the CollectionElement class.
+        /// Initializes a new instance of the BdoMetaComposite class.
         /// </summary>
-        public BdoMetaSet() : base()
+        public BdoMetaComposite() : base()
         {
             DataMode = DataMode.Value;
         }
@@ -118,7 +118,7 @@ namespace BindOpen.System.Data.Meta
         #endregion
 
         // --------------------------------------------------
-        // IBdoMetaData Implementation
+        // BdoMetaComposite Implementation
         // --------------------------------------------------
 
         #region IBdoMetaData
@@ -145,11 +145,6 @@ namespace BindOpen.System.Data.Meta
         /// 
         /// </summary>
         public IBdoMetaData Parent { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Name { get; set; }
 
         /// <summary>
         /// 
@@ -261,50 +256,6 @@ namespace BindOpen.System.Data.Meta
         /// <param key="scope">The scope to consider.</param>
         /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        public object GetData(
-            int index,
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            var obj = GetData<object>(index, scope, varSet, log); ;
-            return obj;
-        }
-
-        /// <summary>
-        /// Returns the item object of this instance.
-        /// </summary>
-        /// <param key="log">The log to populate.</param>
-        /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable element set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public Q GetData<Q>(
-            int index,
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            var list = GetDataList(scope, varSet, log);
-            var obj = list?.FirstOrDefault(q =>
-                q is Q
-                && q is IIndexed indexed
-                && indexed.Index == index);
-            if (obj == null)
-            {
-                obj = list?.GetAt(index);
-                if (obj is not Q)
-                    obj = default;
-            }
-            return (Q)obj;
-        }
-
-        /// <summary>
-        /// Returns the item object of this instance.
-        /// </summary>
-        /// <param key="log">The log to populate.</param>
-        /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable element set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
         public IList<object> GetDataList(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
@@ -362,7 +313,7 @@ namespace BindOpen.System.Data.Meta
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            var el = base.Clone<BdoMetaSet>();
+            var el = base.Clone<BdoMetaComposite>();
             return el;
         }
 

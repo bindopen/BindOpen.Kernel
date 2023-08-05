@@ -36,7 +36,7 @@ namespace BindOpen.System.Data
         {
             _datasource = BdoData.NewDatasource("name", DatasourceKind.Database)
                 .With(
-                    BdoData.NewConfig("bindopen.system.tests$test")
+                    BdoData.NewMetaObject("bindopen.system.tests$test")
                         .WithConnectionString("connectionString")
                         .With(
                             BdoData.NewMeta("name1", "value1")));

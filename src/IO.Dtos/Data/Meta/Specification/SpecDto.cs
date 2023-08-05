@@ -183,15 +183,6 @@ namespace BindOpen.System.Data.Meta
         [XmlElement("requirement.exp")]
         public ExpressionDto RequirementExp { get; set; }
 
-        // Constraints ---------------------------
-
-        /// <summary>
-        /// Constraint statement of this instance.
-        /// </summary>
-        [JsonPropertyName("constraints")]
-        [XmlElement("constraints")]
-        public ConfigurationSetDto ConstraintStatement { get; set; }
-
         #endregion
 
         // --------------------------------------------------

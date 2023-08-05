@@ -36,7 +36,7 @@ namespace BindOpen.System.Scoping
 
             DepotStore = BdoData.NewDepotStore();
 
-            DataStore = BdoData.NewMetaSet();
+            DataStore = BdoData.NewMetaComposite();
         }
 
         #endregion
@@ -65,7 +65,7 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// The data store of this instance.
         /// </summary>
-        public IBdoMetaSet DataStore { get; }
+        public IBdoMetaComposite DataStore { get; }
 
         public IBdoScriptInterpreter Interpreter { get; }
 

@@ -6,7 +6,7 @@ using System.Linq;
 namespace BindOpen.System.Data
 {
     [TestFixture, Order(202)]
-    public class BdoMetaSetTests_Scalar
+    public class BdoMetaCompositeTests_Scalar
     {
         private dynamic _testData;
 

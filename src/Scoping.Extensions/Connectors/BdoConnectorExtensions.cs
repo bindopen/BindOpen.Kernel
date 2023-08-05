@@ -23,7 +23,7 @@ namespace BindOpen.System.Scoping
         /// <returns>Returns the created connector.</returns>
         private static IBdoConnector CreateConnector(
             this IBdoScope scope,
-            IBdoMetaSet metaSet,
+            IBdoMetaComposite metaSet,
             string definitionUniqueName,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
@@ -90,7 +90,7 @@ namespace BindOpen.System.Scoping
         /// <returns>Returns the created connector.</returns>
         public static T CreateConnector<T>(
             this IBdoScope scope,
-            IBdoMetaSet metaSet = null,
+            IBdoMetaComposite metaSet = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null) where T : class, IBdoConnector, new()
         {
@@ -172,7 +172,7 @@ namespace BindOpen.System.Scoping
         public static T WithConnectionString<T>(
             this T metaSet,
             string connectionString)
-            where T : IBdoMetaSet
+            where T : IBdoMetaComposite
         {
             metaSet?.Add(("connectionString", connectionString));
             return metaSet;
@@ -185,7 +185,7 @@ namespace BindOpen.System.Scoping
         /// <returns>Returns the script exp.</returns>
         public static string GetConnectionString<T>(
             this T metaSet)
-            where T : IBdoMetaSet
+            where T : IBdoMetaComposite
         {
             return metaSet?.GetData<string>("connectionString");
         }

@@ -22,12 +22,12 @@ namespace BindOpen.System.Scoping
         // Xml
 
         [Test, Order(2)]
-        public void SaveXmlConnectorTest()
+        public void SaveXmlTest()
         {
             if (_connector == null)
             {
-                IBdoConfiguration config = BdoConnectorTests.CreateMetaConnector(_testData);
-                _connector = SystemData.Scope.CreateConnector<ConnectorFake>(config);
+                IBdoMetaObject meta = BdoConnectorTests.CreateMetaConnector(_testData);
+                _connector = SystemData.Scope.CreateConnector<ConnectorFake>(meta);
             }
 
             var isSaved = _connector.ToMeta(SystemData.Scope).ToDto().SaveXml(BdoConnectorFaker.XmlFilePath);
@@ -36,15 +36,15 @@ namespace BindOpen.System.Scoping
         }
 
         [Test, Order(3)]
-        public void LoadXmlConnectorTest()
+        public void LoadXmlTest()
         {
             if (_connector == null || !File.Exists(BdoConnectorFaker.XmlFilePath))
             {
-                SaveXmlConnectorTest();
+                SaveXmlTest();
             }
 
-            var config = XmlHelper.LoadXml<ConfigurationDto>(BdoConnectorFaker.XmlFilePath).ToPoco();
-            var connector = SystemData.Scope.CreateConnector<ConnectorFake>(config);
+            var meta = XmlHelper.LoadXml<MetaObjectDto>(BdoConnectorFaker.XmlFilePath).ToPoco();
+            var connector = SystemData.Scope.CreateConnector<ConnectorFake>(meta);
 
             BdoConnectorFaker.AssertFake(connector, _testData);
         }
@@ -52,12 +52,12 @@ namespace BindOpen.System.Scoping
         // Json
 
         [Test, Order(4)]
-        public void SaveJsonConnectorTest()
+        public void SaveJsonTest()
         {
             if (_connector == null)
             {
-                IBdoConfiguration config = BdoConnectorTests.CreateMetaConnector(_testData);
-                _connector = SystemData.Scope.CreateConnector<ConnectorFake>(config);
+                IBdoMetaObject meta = BdoConnectorTests.CreateMetaConnector(_testData);
+                _connector = SystemData.Scope.CreateConnector<ConnectorFake>(meta);
             }
 
             var isSaved = _connector.ToMeta(SystemData.Scope).ToDto().SaveJson(BdoConnectorFaker.JsonFilePath);
@@ -66,15 +66,15 @@ namespace BindOpen.System.Scoping
         }
 
         [Test, Order(5)]
-        public void LoadJsonConnectorTest()
+        public void LoadJsonTest()
         {
             if (_connector == null || !File.Exists(BdoConnectorFaker.JsonFilePath))
             {
-                SaveJsonConnectorTest();
+                SaveJsonTest();
             }
 
-            var config = JsonHelper.LoadJson<ConfigurationDto>(BdoConnectorFaker.JsonFilePath).ToPoco();
-            var connector = SystemData.Scope.CreateConnector<ConnectorFake>(config);
+            var meta = JsonHelper.LoadJson<MetaObjectDto>(BdoConnectorFaker.JsonFilePath).ToPoco();
+            var connector = SystemData.Scope.CreateConnector<ConnectorFake>(meta);
 
             BdoConnectorFaker.AssertFake(connector, _testData);
         }

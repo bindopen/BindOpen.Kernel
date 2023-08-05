@@ -1,6 +1,4 @@
-﻿using BindOpen.System.Scoping.Script;
-using System.Collections.Generic;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -11,7 +9,7 @@ namespace BindOpen.System.Data.Meta
     /// </summary>
     [XmlType("MetaObject", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "object", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class MetaObjectDto : MetaDataDto
+    public class MetaObjectDto : MetaCompositeDto
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -28,18 +26,8 @@ namespace BindOpen.System.Data.Meta
         [XmlElement("item.datasource", Type = typeof(DatasourceDto))]
         [XmlElement("item.dictionary", Type = typeof(DictionaryDto))]
         [XmlElement("item.expression", Type = typeof(ExpressionDto))]
-        [XmlElement("item.filter", Type = typeof(MergerDto))]
+        [XmlElement("item.merger", Type = typeof(MergerDto))]
         public BdoItemDto Item { get; set; }
-
-        /// <summary>
-        /// The elements of this instance.
-        /// </summary>
-        [JsonPropertyName("items")]
-        [XmlElement("set", Type = typeof(MetaSetDto))]
-        [XmlElement("object", Type = typeof(MetaObjectDto))]
-        [XmlElement("scalar", Type = typeof(MetaScalarDto))]
-        [XmlElement("word", Type = typeof(ScriptwordDto))]
-        public List<MetaDataDto> MetaItems { get; set; }
 
         #endregion
 

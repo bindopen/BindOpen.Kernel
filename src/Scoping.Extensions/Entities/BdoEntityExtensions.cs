@@ -23,7 +23,7 @@ namespace BindOpen.System.Scoping
         /// <returns>Returns the created entity.</returns>
         private static IBdoEntity CreateEntity(
             this IBdoScope scope,
-            IBdoMetaSet metaSet = null,
+            IBdoMetaComposite metaSet = null,
             string definitionUniqueName = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
@@ -89,7 +89,7 @@ namespace BindOpen.System.Scoping
         /// <returns>Returns the created entity.</returns>
         public static T CreateEntity<T>(
             this IBdoScope scope,
-            IBdoMetaSet metaSet = null,
+            IBdoMetaComposite metaSet = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null) where T : class, IBdoEntity, new()
         {

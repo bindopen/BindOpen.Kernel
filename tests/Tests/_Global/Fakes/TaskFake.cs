@@ -50,7 +50,7 @@ namespace BindOpen.System.Tests
         /// Enumeration value of this instance.
         /// </summary>
         [BdoOutput(Name = "output")]
-        public BdoMetaSet Outputs { get; set; }
+        public BdoMetaComposite Outputs { get; set; }
 
         /// <summary>
         /// The sub task of this instance.

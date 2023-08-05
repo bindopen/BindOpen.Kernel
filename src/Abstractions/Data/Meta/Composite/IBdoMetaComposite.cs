@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoConfigurationSet : ITBdoSet<IBdoConfiguration>
+    public partial interface IBdoMetaComposite : IBdoMetaData, IBdoMetaSet
     {
     }
 }

@@ -12,11 +12,11 @@ namespace BindOpen.System.Data.Meta
     /// This class represents a data element.
     /// </summary>
     [XmlType("MetaData", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlInclude(typeof(MetaSetDto))]
+    [XmlInclude(typeof(MetaCompositeDto))]
     [XmlInclude(typeof(MetaObjectDto))]
     [XmlInclude(typeof(MetaScalarDto))]
     [XmlInclude(typeof(ScriptwordDto))]
-    [JsonDerivedType(typeof(MetaSetDto), "set")]
+    [JsonDerivedType(typeof(MetaCompositeDto), "set")]
     [JsonDerivedType(typeof(MetaObjectDto), "object")]
     [JsonDerivedType(typeof(MetaScalarDto), "scalar")]
     [JsonDerivedType(typeof(ScriptwordDto), "scripword")]
@@ -101,8 +101,8 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The class reference of this instance.
         /// </summary>
-        [JsonPropertyName("classRef")]
-        [XmlElement("classRef")]
+        [JsonPropertyName("class")]
+        [XmlElement("class")]
         public ClassReferenceDto ClassReference { get; set; }
 
         #endregion

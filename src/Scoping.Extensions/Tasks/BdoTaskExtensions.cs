@@ -47,7 +47,7 @@ namespace BindOpen.System.Scoping
         /// <returns>Returns the created task.</returns>
         private static IBdoTask CreateTask(
             this IBdoScope scope,
-            IBdoMetaSet metaSet = null,
+            IBdoMetaComposite metaSet = null,
             string definitionUniqueName = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
@@ -119,7 +119,7 @@ namespace BindOpen.System.Scoping
         /// <returns>Returns the created task.</returns>
         public static T CreateTask<T>(
             this IBdoScope scope,
-            IBdoMetaSet metaSet = null,
+            IBdoMetaComposite metaSet = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null) where T : class, IBdoTask, new()
         {

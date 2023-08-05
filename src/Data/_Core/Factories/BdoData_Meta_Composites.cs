@@ -12,73 +12,74 @@ namespace BindOpen.System.Data
         /// Defines the parameters of this instance.
         /// </summary>
         /// <returns>Return this instance.</returns>
-        public static BdoMetaSet NewMetaSet()
-            => NewMetaSet<BdoMetaSet>();
+        public static BdoMetaComposite NewMetaComposite()
+            => NewMetaComposite<BdoMetaComposite>();
 
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
         /// <param key="metas">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static BdoMetaSet NewMetaSet(string name)
-            => NewMetaSet<BdoMetaSet>(name);
+        public static BdoMetaComposite NewMetaComposite(
+            string name)
+            => NewMetaComposite<BdoMetaComposite>(name);
 
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
         /// <param key="metas">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static BdoMetaSet NewMetaSet(
+        public static BdoMetaComposite NewMetaComposite(
             params IBdoMetaData[] metas)
-            => NewMetaSet<BdoMetaSet>(null, metas);
+            => NewMetaComposite<BdoMetaComposite>(null, metas);
 
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
         /// <param key="metas">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static BdoMetaSet NewMetaSet(
+        public static BdoMetaComposite NewMetaComposite(
             string name,
             params IBdoMetaData[] metas)
-            => NewMetaSet<BdoMetaSet>(name, metas);
+            => NewMetaComposite<BdoMetaComposite>(name, metas);
 
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
         /// <param key="pairs">The pairs to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static BdoMetaSet NewMetaSet(
+        public static BdoMetaComposite NewMetaComposite(
             string name,
             params (string Name, object Value)[] pairs)
-            => NewMetaSet<BdoMetaSet>(name, pairs);
+            => NewMetaComposite<BdoMetaComposite>(name, pairs);
 
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
         /// <param key="pairs">The pairs to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static BdoMetaSet NewMetaSet(
+        public static BdoMetaComposite NewMetaComposite(
             params (string Name, object Value)[] pairs)
-            => NewMetaSet<BdoMetaSet>(null, pairs);
+            => NewMetaComposite<BdoMetaComposite>(null, pairs);
 
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
         /// <param key="pairs">The pairs to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static BdoMetaSet NewMetaSet(
+        public static BdoMetaComposite NewMetaComposite(
             string name,
             params (string Name, DataValueTypes ValueType, object Value)[] triplets)
-            => NewMetaSet<BdoMetaSet>(name, triplets);
+            => NewMetaComposite<BdoMetaComposite>(name, triplets);
 
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
         /// <param key="pairs">The pairs to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static BdoMetaSet NewMetaSet(
+        public static BdoMetaComposite NewMetaComposite(
             params (string Name, DataValueTypes ValueType, object Value)[] triplets)
-            => NewMetaSet<BdoMetaSet>(triplets);
+            => NewMetaComposite<BdoMetaComposite>(triplets);
 
         // Static T creators -------------------------
 
@@ -86,8 +87,8 @@ namespace BindOpen.System.Data
         /// Defines the parameters of this instance.
         /// </summary>
         /// <returns>Return this instance.</returns>
-        public static T NewMetaSet<T>()
-            where T : class, IBdoMetaSet, new()
+        public static T NewMetaComposite<T>()
+            where T : class, IBdoMetaComposite, new()
             => NewSet<T, IBdoMetaData>();
 
         /// <summary>
@@ -95,21 +96,21 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="items">The items to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static T NewMetaSet<T>(string name)
-            where T : class, IBdoMetaSet, new()
-            => NewMetaSet<T>().WithName(name);
+        public static T NewMetaComposite<T>(string name)
+            where T : class, IBdoMetaComposite, new()
+            => NewMetaComposite<T>().WithName(name);
 
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
         /// <param key="metas">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static T NewMetaSet<T>(
+        public static T NewMetaComposite<T>(
             string name,
             params IBdoMetaData[] metas)
-            where T : class, IBdoMetaSet, new()
+            where T : class, IBdoMetaComposite, new()
         {
-            var list = NewMetaSet<T>();
+            var list = NewMetaComposite<T>();
             list
                 .With(metas)
                 .WithName(name);
@@ -122,22 +123,22 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="metas">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static T NewMetaSet<T>(
+        public static T NewMetaComposite<T>(
             params IBdoMetaData[] metas)
-            where T : class, IBdoMetaSet, new()
-            => NewMetaSet<T>(null, metas);
+            where T : class, IBdoMetaComposite, new()
+            => NewMetaComposite<T>(null, metas);
 
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
         /// <param key="pairs">The pairs to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static T NewMetaSet<T>(
+        public static T NewMetaComposite<T>(
             string name,
             params (string Name, object Value)[] pairs)
-            where T : class, IBdoMetaSet, new()
+            where T : class, IBdoMetaComposite, new()
         {
-            var list = NewMetaSet<T>()
+            var list = NewMetaComposite<T>()
                 .With(pairs)
                 .WithName(name);
 
@@ -149,22 +150,22 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="pairs">The pairs to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static T NewMetaSet<T>(
+        public static T NewMetaComposite<T>(
             params (string Name, object Value)[] pairs)
-            where T : class, IBdoMetaSet, new()
-            => NewMetaSet<T>(null, pairs);
+            where T : class, IBdoMetaComposite, new()
+            => NewMetaComposite<T>(null, pairs);
 
         /// <summary>
         /// Defines the parameters of this instance.
         /// </summary>
         /// <param key="pairs">The pairs to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static T NewMetaSet<T>(
+        public static T NewMetaComposite<T>(
             string name,
             params (string Name, DataValueTypes ValueType, object Value)[] triplets)
-            where T : class, IBdoMetaSet, new()
+            where T : class, IBdoMetaComposite, new()
         {
-            var list = NewMetaSet<T>(
+            var list = NewMetaComposite<T>(
                 triplets.Select(q => NewMeta(q.Name, q.ValueType, q.Value)).ToArray())
                 .WithName(name);
 
@@ -176,9 +177,9 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="pairs">The pairs to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static T NewMetaSet<T>(
+        public static T NewMetaComposite<T>(
             params (string Name, DataValueTypes ValueType, object Value)[] triplets)
-            where T : class, IBdoMetaSet, new()
-            => NewMetaSet<T>(null, triplets);
+            where T : class, IBdoMetaComposite, new()
+            => NewMetaComposite<T>(null, triplets);
     }
 }

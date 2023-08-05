@@ -11,7 +11,7 @@ namespace BindOpen.System.Data.Meta
         private readonly string _filePath_xml = SystemData.WorkingFolder + "MetaObjectSet.xml";
         private readonly string _filePath_json = SystemData.WorkingFolder + "MetaObjectSet.json";
 
-        private BdoMetaSet _metaSet;
+        private BdoMetaComposite _metaSet;
 
         private object _obj1 = null;
         private object _obj2 = null;
@@ -25,7 +25,7 @@ namespace BindOpen.System.Data.Meta
             _obj3 = ClassObjectFaker.Fake();
         }
 
-        private void Test(IBdoMetaSet metaSet)
+        private void Test(IBdoMetaComposite metaSet)
         {
             var obj1 = metaSet.GetData("object1");
             var obj2 = metaSet.GetData("object2");
@@ -58,7 +58,7 @@ namespace BindOpen.System.Data.Meta
             var meta2 = BdoData.NewMetaObject("object2", _obj2);
             var meta3 = BdoData.NewMetaObject("object3", _obj3);
 
-            _metaSet = BdoData.NewMetaSet(meta1, meta2, meta3);
+            _metaSet = BdoData.NewMetaComposite(meta1, meta2, meta3);
 
             Test(_metaSet);
         }
@@ -85,7 +85,7 @@ namespace BindOpen.System.Data.Meta
                 SaveXmlTest();
             }
 
-            var metaSet = XmlHelper.LoadXml<MetaSetDto>(_filePath_xml).ToPoco();
+            var metaSet = XmlHelper.LoadXml<MetaCompositeDto>(_filePath_xml).ToPoco();
             Equals(metaSet, _metaSet);
         }
 
@@ -111,7 +111,7 @@ namespace BindOpen.System.Data.Meta
                 SaveJsonTest();
             }
 
-            var metaSet = JsonHelper.LoadJson<MetaSetDto>(_filePath_json).ToPoco();
+            var metaSet = JsonHelper.LoadJson<MetaCompositeDto>(_filePath_json).ToPoco();
             Equals(metaSet, _metaSet);
         }
     }

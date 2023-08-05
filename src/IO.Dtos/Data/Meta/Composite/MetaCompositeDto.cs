@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BindOpen.System.Scoping.Script;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -7,9 +8,9 @@ namespace BindOpen.System.Data.Meta
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    [XmlType("ConfigurationSet", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "config.set", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class ConfigurationSetDto : IBdoDto
+    [XmlType("MetaComposite", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "composite", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    public class MetaCompositeDto : MetaDataDto
     {
         // ------------------------------------------
         // PROPERTIES
@@ -21,15 +22,18 @@ namespace BindOpen.System.Data.Meta
         /// The elements of this instance.
         /// </summary>
         [JsonPropertyName("items")]
-        [XmlElement("config")]
-        public List<ConfigurationDto> Items { get; set; }
+        [XmlElement("composite", Type = typeof(MetaCompositeDto))]
+        [XmlElement("object", Type = typeof(MetaObjectDto))]
+        [XmlElement("scalar", Type = typeof(MetaScalarDto))]
+        [XmlElement("word", Type = typeof(ScriptwordDto))]
+        public List<MetaDataDto> MetaItems { get; set; }
 
         /// <summary>
         /// Indicates whether the entities property must be ignored.
         /// </summary>
         [JsonIgnore]
         [XmlIgnore]
-        public bool ItemsSpecified => Items?.Count > 0;
+        public bool MetaItemsSpecified => MetaItems?.Count > 0;
 
         #endregion
 
@@ -40,9 +44,9 @@ namespace BindOpen.System.Data.Meta
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the ConfigurationSetDto class.
+        /// Instantiates a new instance of the MetaCompositeDto class.
         /// </summary>
-        public ConfigurationSetDto()
+        public MetaCompositeDto()
         {
         }
 

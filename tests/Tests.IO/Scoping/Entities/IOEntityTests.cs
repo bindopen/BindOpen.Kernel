@@ -22,12 +22,12 @@ namespace BindOpen.System.Scoping
         // Xml
 
         [Test, Order(2)]
-        public void SaveXmlEntityTest()
+        public void SaveXmlTest()
         {
             if (_entity == null)
             {
-                IBdoConfiguration config = BdoEntityTests.CreateMetaEntity(_testData);
-                _entity = SystemData.Scope.CreateEntity<EntityFake>(config);
+                IBdoMetaObject meta = BdoEntityTests.CreateMetaEntity(_testData);
+                _entity = SystemData.Scope.CreateEntity<EntityFake>(meta);
             }
 
             var isSaved = _entity.ToMeta(SystemData.Scope).ToDto().SaveXml(BdoEntityFaker.XmlFilePath);
@@ -36,15 +36,15 @@ namespace BindOpen.System.Scoping
         }
 
         [Test, Order(3)]
-        public void LoadXmlConfigurationTest()
+        public void LoadXmlTest()
         {
             if (_entity == null || !File.Exists(BdoEntityFaker.XmlFilePath))
             {
-                SaveXmlEntityTest();
+                SaveXmlTest();
             }
 
-            var config = XmlHelper.LoadXml<ConfigurationDto>(BdoEntityFaker.XmlFilePath).ToPoco();
-            var entity = SystemData.Scope.CreateEntity<EntityFake>(config);
+            var meta = XmlHelper.LoadXml<MetaObjectDto>(BdoEntityFaker.XmlFilePath).ToPoco();
+            var entity = SystemData.Scope.CreateEntity(meta) as EntityFake;
 
             Assert.That(entity != null, "Entity loading failed");
 
@@ -54,12 +54,12 @@ namespace BindOpen.System.Scoping
         // Json
 
         [Test, Order(4)]
-        public void SaveJsonEntityTest()
+        public void SaveJsonTest()
         {
             if (_entity == null)
             {
-                IBdoConfiguration config = BdoEntityTests.CreateMetaEntity(_testData);
-                _entity = SystemData.Scope.CreateEntity<EntityFake>(config);
+                IBdoMetaObject meta = BdoEntityTests.CreateMetaEntity(_testData);
+                _entity = SystemData.Scope.CreateEntity<EntityFake>(meta);
             }
 
             var isSaved = _entity.ToMeta(SystemData.Scope).ToDto().SaveJson(BdoEntityFaker.JsonFilePath);
@@ -72,11 +72,11 @@ namespace BindOpen.System.Scoping
         {
             if (_entity == null || !File.Exists(BdoEntityFaker.JsonFilePath))
             {
-                SaveJsonEntityTest();
+                SaveJsonTest();
             }
 
-            var config = JsonHelper.LoadJson<ConfigurationDto>(BdoEntityFaker.JsonFilePath).ToPoco();
-            var entity = SystemData.Scope.CreateEntity<EntityFake>(config);
+            var meta = JsonHelper.LoadJson<MetaObjectDto>(BdoEntityFaker.JsonFilePath).ToPoco();
+            var entity = SystemData.Scope.CreateEntity(meta) as EntityFake;
 
             Assert.That(entity != null, "Entity loading failed");
 
