@@ -32,6 +32,9 @@ namespace BindOpen.System.Data.Meta
             var mapper = new Mapper(config);
             var dto = mapper.Map<MetaCompositeDto>(poco);
 
+            dto.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;
+            dto.ClassReference = poco?.DataType.ClassReference?.ToDto();
+
             dto.MetaItems = poco.Items?.Select(q => q.ToDto()).ToList();
             dto.Specs = poco.Specs?.Select(q => q.ToDto()).ToList();
 

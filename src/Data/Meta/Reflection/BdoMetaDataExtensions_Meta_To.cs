@@ -14,7 +14,7 @@ namespace BindOpen.System.Data.Meta.Reflection
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static IBdoMetaData ToMetaData(
+        public static IBdoMetaData ToMeta(
             this object obj,
             Type type,
             string name = null,
@@ -46,13 +46,13 @@ namespace BindOpen.System.Data.Meta.Reflection
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static IBdoMetaData ToMetaData(
+        public static IBdoMetaData ToMeta(
             this object obj,
             string name = null,
             bool onlyMetaAttributes = false)
         {
             return obj == null ? null :
-                obj.ToMetaData(null, name, onlyMetaAttributes);
+                obj.ToMeta(null, name, onlyMetaAttributes);
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace BindOpen.System.Data.Meta.Reflection
             string name = null,
             bool onlyMetaAttributes = false)
             where T : class, IBdoMetaData
-            => obj.ToMetaData(null, name, onlyMetaAttributes) as T;
+            => obj.ToMeta(null, name, onlyMetaAttributes) as T;
 
         /// <summary>
         /// Creates a meta data of the specified object.

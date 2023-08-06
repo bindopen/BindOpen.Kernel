@@ -13,7 +13,7 @@ namespace BindOpen.System.Data
         /// <param key="detail"></param>
         public static T WithDetail<T>(
             this T obj,
-            IBdoMetaComposite detail)
+            IBdoMetaSet detail)
             where T : IBdoDetailed
         {
             if (obj != null)

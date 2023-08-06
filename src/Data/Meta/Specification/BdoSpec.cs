@@ -70,7 +70,7 @@ namespace BindOpen.System.Data.Meta
             var dataElementSpec = base.Clone<BdoSpec>();
 
             dataElementSpec.WithAliases(Aliases?.ToArray());
-            dataElementSpec.WithValueModes(ValueModes?.ToArray());
+            dataElementSpec.WithValueModes(DataModes?.ToArray());
             dataElementSpec.WithSpecLevels(SpecLevels?.ToArray());
             dataElementSpec.WithSubSpecs(SubSpecs?.ToArray());
 
@@ -258,17 +258,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The available itemization modes of this instance.
         /// </summary>
-        public IList<DataMode> ValueModes
-        {
-            get => _availableValueModes;
-            set
-            {
-                if (value?.Any() != true || value.Contains(DataMode.Any))
-                    _availableValueModes = new List<DataMode>() { DataMode.Any };
-                else
-                    _availableValueModes = value;
-            }
-        }
+        public IList<DataMode> DataModes { get; set; }
 
         /// <summary>
         /// The default item of this instance.

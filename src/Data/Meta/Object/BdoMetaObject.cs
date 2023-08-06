@@ -54,7 +54,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The items of this instance.
         /// </summary>
-        protected IBdoMetaComposite _propertySet;
+        protected IBdoMetaSet _propertySet;
 
         #endregion
 

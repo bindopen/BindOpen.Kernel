@@ -20,6 +20,11 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
+        IList<string> Aliases { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         IList<SpecificationLevels> SpecLevels { get; set; }
 
         /// <summary>
@@ -45,17 +50,12 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        IList<string> Aliases { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         ITBdoSet<IBdoSpec> SubSpecs { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IList<DataMode> ValueModes { get; set; }
+        IList<DataMode> DataModes { get; set; }
 
         /// <summary>
         /// 

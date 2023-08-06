@@ -876,14 +876,14 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Meta.Reflection.BdoMetaDataExtensions.ToMetaData(System.Type,System.Object,System.String,System.Boolean)">
+        <member name="M:BindOpen.System.Data.Meta.Reflection.BdoMetaDataExtensions.ToMeta(System.Type,System.Object,System.String,System.Boolean)">
             <summary>
             Creates a meta data of the specified object.
             </summary>
             <param key="name">The name to consider.</param>
             <param key="items">The items to consider.</param>
         </member>
-        <member name="M:BindOpen.System.Data.Meta.Reflection.BdoMetaDataExtensions.ToMetaData(System.Object,System.String,System.Boolean)">
+        <member name="M:BindOpen.System.Data.Meta.Reflection.BdoMetaDataExtensions.ToMeta(System.Object,System.String,System.Boolean)">
             <summary>
             Creates a meta data of the specified object.
             </summary>

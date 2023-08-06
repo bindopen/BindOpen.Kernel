@@ -21,7 +21,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (spec != null)
             {
-                spec.ValueModes = modes;
+                spec.DataModes = modes;
             }
             return spec;
         }

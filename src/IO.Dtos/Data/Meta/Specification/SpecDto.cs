@@ -1,4 +1,5 @@
 ﻿using BindOpen.System.Data.Assemblies;
+using BindOpen.System.Scoping.Script;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
@@ -28,6 +29,28 @@ namespace BindOpen.System.Data.Meta
 
         // General ------------------------------------------
 
+
+        /// <summary>
+        /// The description DTO of this instance.
+        /// </summary>
+        [JsonPropertyName("description")]
+        [XmlElement("description")]
+        public DictionaryDto Description { get; set; }
+
+        /// <summary>
+        /// The description DTO of this instance.
+        /// </summary>
+        [JsonPropertyName("title")]
+        [XmlElement("title")]
+        public DictionaryDto Title { get; set; }
+
+        /// <summary>
+        /// ID of the group of this instance.
+        /// </summary>
+        [JsonPropertyName("detail")]
+        [XmlElement("detail")]
+        public MetaSetDto Detail { get; set; }
+
         /// <summary>
         /// The value type of this instance.
         /// </summary>
@@ -39,8 +62,8 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The class reference of this instance.
         /// </summary>
-        [JsonPropertyName("classRef")]
-        [XmlElement("classRef")]
+        [JsonPropertyName("class")]
+        [XmlElement("class")]
         public ClassReferenceDto ClassReference { get; set; }
 
         /// <summary>
@@ -55,8 +78,11 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         [JsonPropertyName("default.items")]
         [XmlArray("default.items")]
-        [XmlArrayItem("add")]
-        public List<string> DefaultItems { get; set; }
+        [XmlArrayItem("default.composite", Type = typeof(MetaCompositeDto))]
+        [XmlArrayItem("default.object", Type = typeof(MetaObjectDto))]
+        [XmlArrayItem("default.scalar", Type = typeof(MetaScalarDto))]
+        [XmlArrayItem("default.word", Type = typeof(ScriptwordDto))]
+        public List<MetaDataDto> DefaultItems { get; set; }
 
         /// <summary>
         /// The aliases of the entry.
@@ -65,6 +91,14 @@ namespace BindOpen.System.Data.Meta
         [XmlArray("aliases")]
         [XmlArrayItem("add")]
         public List<string> Aliases { get; set; }
+
+        /// <summary>
+        /// Levels of specification of this instance.
+        /// </summary>
+        [JsonPropertyName("spec.levels")]
+        [XmlArray("spec.levels")]
+        [XmlArrayItem("add")]
+        public List<SpecificationLevels> SpecificationLevels { get; set; }
 
         /// <summary>
         /// The area specifications for this instance.
@@ -135,14 +169,6 @@ namespace BindOpen.System.Data.Meta
         [JsonIgnore()]
         [XmlIgnore()]
         public bool MaxDataItemNumberSpecified => MaxDataItemNumber != null;
-
-        /// <summary>
-        /// Levels of specification of this instance.
-        /// </summary>
-        [JsonPropertyName("spec.levels")]
-        [XmlArray("spec.levels")]
-        [XmlArrayItem("add")]
-        public List<SpecificationLevels> SpecificationLevels { get; set; }
 
         /// <summary>
         /// Levels of specification of this instance.

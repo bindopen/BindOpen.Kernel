@@ -30,7 +30,7 @@ namespace BindOpen.System.Scoping.Script
         /// </summary>
         public static T WithVariableSet<T>(
             this T function,
-            IBdoMetaComposite variableSet)
+            IBdoMetaSet variableSet)
             where T : IBdoScriptDomain
         {
             if (function != null)

@@ -3,7 +3,6 @@ using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Stores;
 using BindOpen.System.Logging;
-using BindOpen.System.Scoping;
 using BindOpen.System.Scoping.Script;
 using BindOpen.System.Scoping.Stores;
 using System;
@@ -65,7 +64,7 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// The data store of this instance.
         /// </summary>
-        public IBdoMetaComposite DataStore { get; }
+        public IBdoMetaSet DataStore { get; }
 
         public IBdoScriptInterpreter Interpreter { get; }
 

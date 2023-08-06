@@ -80,10 +80,10 @@ namespace BindOpen.System.Data
                 _testData.path3,
                 _testData.folderPath3,
                 new EntityFake(_testData.path1 as string, _testData.folderPath3 as string));
-            var metaObj3 = obj3?.ToMetaData();
+            var metaObj3 = obj3?.ToMeta();
 
             var obj4 = new EntityFake(_testData.path4 as string);
-            var metaObj4 = obj4?.ToMetaData("object4");
+            var metaObj4 = obj4?.ToMeta("object4");
 
             _metaObjSet = BdoData.NewMetaComposite(
                 metaObj1,

@@ -31,7 +31,7 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// The data store of this instance.
         /// </summary>
-        IBdoMetaComposite DataStore { get; }
+        IBdoMetaSet DataStore { get; }
 
         /// <summary>
         /// The data context.

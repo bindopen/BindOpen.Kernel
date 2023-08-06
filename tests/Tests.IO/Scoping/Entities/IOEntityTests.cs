@@ -68,7 +68,7 @@ namespace BindOpen.System.Scoping
         }
 
         [Test, Order(5)]
-        public void LoadJsonConfigurationTest()
+        public void LoadJsonTest()
         {
             if (_entity == null || !File.Exists(BdoEntityFaker.JsonFilePath))
             {

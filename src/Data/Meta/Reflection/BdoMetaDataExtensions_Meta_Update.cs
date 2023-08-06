@@ -57,7 +57,7 @@ namespace BindOpen.System.Data.Meta.Reflection
                                 }
                                 else
                                 {
-                                    subMeta = propValue.ToMetaData(propInfo.PropertyType, propName, onlyMetaAttributes);
+                                    subMeta = propValue.ToMeta(propInfo.PropertyType, propName, onlyMetaAttributes);
                                     if (change)
                                     {
                                         subMeta.WithSpecs(spec);
@@ -78,7 +78,7 @@ namespace BindOpen.System.Data.Meta.Reflection
                     var objList = obj.ToObjectList();
                     foreach (var subObj in objList)
                     {
-                        var subMeta = subObj.ToMetaData(null, onlyMetaAttributes);
+                        var subMeta = subObj.ToMeta(null, onlyMetaAttributes);
 
                         list.Add(subMeta);
                     }
