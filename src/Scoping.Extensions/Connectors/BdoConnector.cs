@@ -1,7 +1,8 @@
-﻿using BindOpen.System.Data.Meta;
+﻿using BindOpen.System.Data;
+using BindOpen.System.Data.Meta;
 using BindOpen.System.Logging;
 
-namespace BindOpen.System.Scoping.Connectors
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class represents a connector.
@@ -20,6 +21,7 @@ namespace BindOpen.System.Scoping.Connectors
         /// </summary>
         protected BdoConnector() : base()
         {
+            this.WithDefinition(BdoExtensionKind.Connector);
         }
 
         #endregion

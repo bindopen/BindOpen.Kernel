@@ -1,5 +1,4 @@
 ﻿using BindOpen.System.Data.Conditions;
-using System;
 using System.Collections.Generic;
 
 namespace BindOpen.System.Data.Meta
@@ -8,7 +7,7 @@ namespace BindOpen.System.Data.Meta
     /// 
     /// </summary>
     public interface IBdoSpec :
-        IBdoObject, IReferenced, IBdoConditional,
+        IBdoObject, IReferenced, IBdoDataTyped, IBdoConditional,
         IIdentified, INamed, IIndexed,
         IBdoTitled, IBdoDescribed, IBdoDetailed,
         ITUpdatable<IBdoSpec>
@@ -17,6 +16,11 @@ namespace BindOpen.System.Data.Meta
         /// The identifier of the group of this instance.
         /// </summary>
         string GroupId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        IList<string> Aliases { get; set; }
 
         /// <summary>
         /// 
@@ -46,17 +50,12 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        IList<string> Aliases { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         ITBdoSet<IBdoSpec> SubSpecs { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        IList<DataMode> ValueModes { get; set; }
+        IList<DataMode> DataModes { get; set; }
 
         /// <summary>
         /// 
@@ -74,21 +73,6 @@ namespace BindOpen.System.Data.Meta
         uint? MaxDataItemNumber { get; set; }
 
         // Data
-
-        /// <summary>
-        /// 
-        /// </summary>
-        BdoDataType DataType { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        DataValueTypes DataValueType { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        Type DataClassType { get; }
 
         /// <summary>
         /// 

@@ -1,8 +1,6 @@
-﻿using BindOpen.System.Scoping.Connectors;
-using BindOpen.System.Data;
-using BindOpen.System.Scoping.Entities;
+﻿using BindOpen.System.Data;
 
-namespace BindOpen.System.Scoping.Connectors
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class represents a DTO connector definition.

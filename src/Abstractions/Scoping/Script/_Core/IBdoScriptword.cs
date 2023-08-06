@@ -7,7 +7,7 @@ namespace BindOpen.System.Scoping.Script
     /// 
     /// </summary>
     public interface IBdoScriptword :
-        IBdoMetaObject, IBdoObjectNotMetable, IBdoDefinable
+        IBdoMetaObject, IBdoObjectNotMetable
     {
         /// <summary>
         /// 

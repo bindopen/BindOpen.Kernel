@@ -1,7 +1,7 @@
 ﻿using BindOpen.System.Logging;
-using BindOpen.System.Scoping.Connectors;
+using BindOpen.System.Scoping;
 
-namespace BindOpen.System.Scoping.Connectors
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// 

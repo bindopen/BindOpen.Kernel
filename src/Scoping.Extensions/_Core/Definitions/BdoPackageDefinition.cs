@@ -63,7 +63,7 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// Dictionary full names of this instance.
         /// </summary>
-        public IBdoTextDictionary ItemIndexFullNameDictionary { get; set; }
+        public ITBdoDictionary<string> ItemIndexFullNameDictionary { get; set; }
 
         /// <summary>
         /// Gets the root namespace.
@@ -167,7 +167,7 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// 
         /// </summary>
-        public IBdoTextDictionary Title { get; set; }
+        public ITBdoDictionary<string> Title { get; set; }
 
         #endregion
 
@@ -180,7 +180,7 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// 
         /// </summary>
-        public IBdoTextDictionary Description { get; set; }
+        public ITBdoDictionary<string> Description { get; set; }
 
         #endregion
     }

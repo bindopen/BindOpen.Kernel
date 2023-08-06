@@ -27,11 +27,11 @@ namespace BindOpen.System.Data
                 BdoData.NewMetaScalar("float1", DataValueTypes.Number, f.Random.Float()))
                 .Using(_configName20, _configName21);
 
-            _config20 = BdoData.NewConfig(
-                _configName20,
-                BdoData.NewMetaScalar("text1", DataValueTypes.Text, f.Lorem.Words(10)),
-                BdoData.NewMetaScalar("integer1", DataValueTypes.Integer, Enumerable.Range(0, 10).Select(p => f.Random.Int(5000))),
-                BdoData.NewMetaScalar("byteArray1", DataValueTypes.ByteArray, Enumerable.Range(1, 2).Select(p => f.Random.Bytes(5000)).ToArray()));
+            _config20 = BdoData.NewConfig(_configName20)
+                .With(
+                    BdoData.NewMetaScalar("text1", DataValueTypes.Text, f.Lorem.Words(10)),
+                    BdoData.NewMetaScalar("integer1", DataValueTypes.Integer, Enumerable.Range(0, 10).Select(p => f.Random.Int(5000))),
+                    BdoData.NewMetaScalar("byteArray1", DataValueTypes.ByteArray, Enumerable.Range(1, 2).Select(p => f.Random.Bytes(5000)).ToArray()));
 
             _config21 = BdoData.NewConfig(
                 _configName21,
@@ -39,17 +39,6 @@ namespace BindOpen.System.Data
         }
 
         [Test, Order(1)]
-        public void CreateConfigurationSet()
-        {
-            var bundle = BdoData.NewConfigSet(
-                _config1,
-                _config20,
-                _config21);
-
-            bundle.Add(_config1);
-        }
-
-        [Test, Order(2)]
         public void GetConfigurationItem1()
         {
             var text = _config20.GetData<string>("text1");

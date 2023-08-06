@@ -14,7 +14,7 @@ namespace BindOpen.System.Data
         {
             if (obj != null)
             {
-                obj.Title ??= BdoData.NewDictionary();
+                obj.Title ??= BdoData.NewDictionary<string>();
                 obj.Title.Add(item);
             }
 

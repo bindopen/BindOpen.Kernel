@@ -1,4 +1,5 @@
 ﻿using BindOpen.System.Data.Helpers;
+using BindOpen.System.Scoping;
 using System;
 
 namespace BindOpen.System.Data.Assemblies
@@ -6,8 +7,7 @@ namespace BindOpen.System.Data.Assemblies
     /// <summary>
     /// This class represents the BindOpen library reference.
     /// </summary>
-    public class BdoAssemblyReference :
-        BdoObject, IBdoAssemblyReference
+    public class BdoAssemblyReference : BdoObject, IBdoAssemblyReference
     {
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -47,6 +47,11 @@ namespace BindOpen.System.Data.Assemblies
         /// The library name of this instance.
         /// </summary>
         public string DefinitionUniqueName { get; set; }
+
+        /// <summary>
+        /// The etension kind of this instance.
+        /// </summary>
+        public BdoExtensionKind DefinitionExtensionKind { get; set; }
 
         /// <summary>
         /// The library name of this instance.

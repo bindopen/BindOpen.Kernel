@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using BindOpen.System.Data.Assemblies;
+using BindOpen.System.Scoping.Script;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -10,7 +12,7 @@ namespace BindOpen.System.Data.Meta
     /// </summary>
     [XmlType("Spec", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "spec", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class SpecDto : IBdoDto
+    public class SpecDto : IBdoDto, IIdentified
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -18,7 +20,36 @@ namespace BindOpen.System.Data.Meta
 
         #region Properties
 
+        /// <summary>
+        /// ID of this instance.
+        /// </summary>
+        [JsonPropertyName("id")]
+        [XmlAttribute("id")]
+        public string Id { get; set; }
+
         // General ------------------------------------------
+
+
+        /// <summary>
+        /// The description DTO of this instance.
+        /// </summary>
+        [JsonPropertyName("description")]
+        [XmlElement("description")]
+        public DictionaryDto Description { get; set; }
+
+        /// <summary>
+        /// The description DTO of this instance.
+        /// </summary>
+        [JsonPropertyName("title")]
+        [XmlElement("title")]
+        public DictionaryDto Title { get; set; }
+
+        /// <summary>
+        /// ID of the group of this instance.
+        /// </summary>
+        [JsonPropertyName("detail")]
+        [XmlElement("detail")]
+        public MetaSetDto Detail { get; set; }
 
         /// <summary>
         /// The value type of this instance.
@@ -26,7 +57,14 @@ namespace BindOpen.System.Data.Meta
         [JsonPropertyName("valueType")]
         [XmlElement("valueType")]
         [DefaultValue(DataValueTypes.Any)]
-        public DataValueTypes DataValueType { get; set; } = DataValueTypes.Any;
+        public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
+
+        /// <summary>
+        /// The class reference of this instance.
+        /// </summary>
+        [JsonPropertyName("class")]
+        [XmlElement("class")]
+        public ClassReferenceDto ClassReference { get; set; }
 
         /// <summary>
         /// ID of the group of this instance.
@@ -40,8 +78,11 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         [JsonPropertyName("default.items")]
         [XmlArray("default.items")]
-        [XmlArrayItem("add")]
-        public List<string> DefaultItems { get; set; }
+        [XmlArrayItem("default.composite", Type = typeof(MetaCompositeDto))]
+        [XmlArrayItem("default.object", Type = typeof(MetaObjectDto))]
+        [XmlArrayItem("default.scalar", Type = typeof(MetaScalarDto))]
+        [XmlArrayItem("default.word", Type = typeof(ScriptwordDto))]
+        public List<MetaDataDto> DefaultItems { get; set; }
 
         /// <summary>
         /// The aliases of the entry.
@@ -50,6 +91,14 @@ namespace BindOpen.System.Data.Meta
         [XmlArray("aliases")]
         [XmlArrayItem("add")]
         public List<string> Aliases { get; set; }
+
+        /// <summary>
+        /// Levels of specification of this instance.
+        /// </summary>
+        [JsonPropertyName("spec.levels")]
+        [XmlArray("spec.levels")]
+        [XmlArrayItem("add")]
+        public List<SpecificationLevels> SpecificationLevels { get; set; }
 
         /// <summary>
         /// The area specifications for this instance.
@@ -124,14 +173,6 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// Levels of specification of this instance.
         /// </summary>
-        [JsonPropertyName("spec.levels")]
-        [XmlArray("spec.levels")]
-        [XmlArrayItem("add")]
-        public List<SpecificationLevels> SpecificationLevels { get; set; }
-
-        /// <summary>
-        /// Levels of specification of this instance.
-        /// </summary>
         [JsonPropertyName("itemSpec.levels")]
         [XmlArray("itemSpec.levels")]
         [XmlArrayItem("add")]
@@ -167,15 +208,6 @@ namespace BindOpen.System.Data.Meta
         [JsonPropertyName("requirement.exp")]
         [XmlElement("requirement.exp")]
         public ExpressionDto RequirementExp { get; set; }
-
-        // Constraints ---------------------------
-
-        /// <summary>
-        /// Constraint statement of this instance.
-        /// </summary>
-        [JsonPropertyName("constraints")]
-        [XmlElement("constraints")]
-        public ConfigurationSetDto ConstraintStatement { get; set; }
 
         #endregion
 

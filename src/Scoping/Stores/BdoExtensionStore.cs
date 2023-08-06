@@ -1,10 +1,6 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Data.Helpers;
-using BindOpen.System.Scoping.Connectors;
-using BindOpen.System.Scoping.Entities;
-using BindOpen.System.Scoping.Functions;
-using BindOpen.System.Scoping.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 

@@ -26,7 +26,7 @@ namespace BindOpen.System.Data
         [Test, Order(1)]
         public void ToMetaTest()
         {
-            var meta = _obj.ToMetaData();
+            var meta = _obj.ToMeta();
             Test(meta);
         }
 
