@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.System.Data.Meta
 {
     /// <summary>
     /// This class represents a config.
     /// </summary>
-    public partial class BdoDefinition : TBdoSet<IBdoSpec>,
-        IBdoDefinition
+    public partial class BdoDefinition : BdoSpecSet, IBdoDefinition
     {
         // --------------------------------------------------
         // VARIABLES
@@ -28,6 +28,13 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// Instantiates a new instance of the BdoDefinition class.
         /// </summary>
+        public BdoDefinition() : base()
+        {
+        }
+
+        /// <summary>
+        /// Instantiates a new instance of the BdoDefinition class.
+        /// </summary>
         public BdoDefinition(
             string name,
             string preffix) : base()
@@ -39,10 +46,10 @@ namespace BindOpen.System.Data.Meta
         #endregion
 
         // -------------------------------------------------------
-        // IBdoConfiguration Implementation
+        // IBdoDefinition Implementation
         // -------------------------------------------------------
 
-        #region IBdoConfiguration
+        #region IBdoDefinition
 
         /// <summary>
         /// The using file paths of this instance.
@@ -83,32 +90,6 @@ namespace BindOpen.System.Data.Meta
         #endregion
 
         // ------------------------------------------
-        // IReferenced Implementation
-        // ------------------------------------------
-
-        #region IReferenced
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public override string Key() => Name;
-
-        #endregion
-
-        // ------------------------------------------
-        // INamed Implementation
-        // ------------------------------------------
-
-        #region INamed
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Name { get; set; }
-
-        #endregion
-
-        // ------------------------------------------
         // IGloballyTitled Implementation
         // ------------------------------------------
 
@@ -131,6 +112,53 @@ namespace BindOpen.System.Data.Meta
         /// 
         /// </summary>
         public ITBdoDictionary<string> Description { get; set; }
+
+        #endregion
+
+        // ------------------------------------------
+        // ITParent Implementation
+        // ------------------------------------------
+
+        #region ITParent
+
+        public IBdoDefinition Parent { get; set; }
+
+        private IList<IBdoDefinition> _children = null;
+
+        public IList<IBdoDefinition> _Children { get => _children; set { _children = value; } }
+
+        public IEnumerable<IBdoDefinition> Children(Predicate<IBdoDefinition> filter = null)
+            => _children?.Where(p => filter?.Invoke(p) == true) ?? Enumerable.Empty<IBdoDefinition>();
+
+        public IBdoDefinition Child(Predicate<IBdoDefinition> filter = null, bool isRecursive = false)
+        {
+            if (filter == null || filter?.Invoke(this) == true)
+                return this;
+
+            if (isRecursive)
+            {
+                foreach (var currentChildLog in _Children)
+                {
+                    var log = currentChildLog.Child(filter, true);
+                    if (log != null) return log;
+                }
+            }
+
+            return null;
+        }
+
+        public bool HasChild(Predicate<IBdoDefinition> filter = null)
+            => _children?.Any(p => filter?.Invoke(p) == true) ?? false;
+
+        public IBdoDefinition InsertChild(Action<IBdoDefinition> updater)
+        {
+            var child = BdoData.NewDefinition();
+            updater?.Invoke(child);
+
+            child.WithParent(this);
+
+            return child;
+        }
 
         #endregion
     }
