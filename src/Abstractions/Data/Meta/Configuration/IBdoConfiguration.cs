@@ -6,7 +6,7 @@
     public interface IBdoConfiguration :
         IBdoMetaSet, ITTreeNode<IBdoConfiguration>,
         IBdoTitled, IBdoDescribed,
-        IDated, IBdoUsing
+        IIndexed, IDated, IBdoUsing
     {
     }
 }

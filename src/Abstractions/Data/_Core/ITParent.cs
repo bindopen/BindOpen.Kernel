@@ -6,7 +6,7 @@ namespace BindOpen.System.Data
     /// <summary>
     /// 
     /// </summary>
-    public interface ITParent<T> : IReferenced where T : ITChild<T>
+    public interface ITParent<T> : IReferenced where T : IReferenced
     {
         IList<T> _Children { get; set; }
 
