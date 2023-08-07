@@ -1,8 +1,7 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Logging;
-using BindOpen.System.Scoping.Entities;
-using BindOpen.System.Scoping.Tasks;
+using BindOpen.System.Scoping;
 using System.Linq;
 using System.Reflection;
 

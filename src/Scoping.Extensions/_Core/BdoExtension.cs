@@ -18,6 +18,7 @@ namespace BindOpen.System.Scoping
         /// </summary>
         protected BdoExtension() : base()
         {
+            this.WithId();
         }
 
         #endregion
@@ -32,6 +33,11 @@ namespace BindOpen.System.Scoping
         /// The config of this instance.
         /// </summary>
         public string DefinitionUniqueName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public BdoExtensionKind DefinitionExtensionKind { get; set; }
 
         #endregion
 

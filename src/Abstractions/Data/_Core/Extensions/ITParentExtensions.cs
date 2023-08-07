@@ -8,9 +8,37 @@ namespace BindOpen.System.Data
     public static class ITParentExtensions
     {
         public static T Child<T>(
-            this ITParent<T> obj,
+            this ITParent<T> parent,
             string id, bool isRecursive = false)
-            where T : IReferenced
-            => obj == null ? default : obj.Child(q => q.BdoKeyEquals(id), isRecursive);
+            where T : class, ITChild<T>
+            => parent == null ? default : parent.Child(q => q.BdoKeyEquals(id), isRecursive);
+
+        public static T Descendant<T>(
+            this ITParent<T> parent,
+            params object[] tokens)
+            where T : class, ITChild<T>
+        {
+            if (parent != null)
+            {
+                IReferenced current = parent;
+                foreach (object token in tokens)
+                {
+                    if (token is string key)
+                    {
+                        current = parent.Child(q => q.BdoKeyEquals(key));
+                        if (current == null) break;
+                    }
+                    else if (token is int index)
+                    {
+                        current = parent._Children?[index];
+                        if (current == null) break;
+                    }
+                }
+
+                return current as T;
+            }
+
+            return default;
+        }
     }
 }

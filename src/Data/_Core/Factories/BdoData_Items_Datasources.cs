@@ -16,12 +16,12 @@ namespace BindOpen.System.Data
         /// <param key="configs">The config items to consider.</param>
         public static BdoDatasource NewDatasource(
             DatasourceKind kind = DatasourceKind.Any,
-            params IBdoConfiguration[] configs)
+            params IBdoMetaObject[] metas)
         {
             var datasource = new BdoDatasource();
             datasource
                 .WithKind(kind)
-                .With(configs);
+                .With(metas);
 
             return datasource;
         }
@@ -35,12 +35,12 @@ namespace BindOpen.System.Data
         public static BdoDatasource NewDatasource(
             string name,
             DatasourceKind kind,
-            params IBdoConfiguration[] configs)
+            params IBdoMetaObject[] metas)
         {
             var datasource = new BdoDatasource(name);
             datasource
                 .WithKind(kind)
-                .With(configs);
+                .With(metas);
 
             return datasource;
         }

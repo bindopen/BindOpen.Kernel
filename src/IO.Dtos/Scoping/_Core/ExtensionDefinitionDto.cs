@@ -9,13 +9,20 @@ namespace BindOpen.System.Scoping
     /// This class represents the definition of BindOpen extension item.
     /// </summary>
     [XmlType("ExtensionDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    public abstract class ExtensionDefinitionDto : IBdoDto
+    public abstract class ExtensionDefinitionDto : IBdoDto, IIdentified
     {
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// ID of this instance.
+        /// </summary>
+        [JsonPropertyName("id")]
+        [XmlAttribute("id")]
+        public string Id { get; set; }
 
         /// <summary>
         /// The index of this instance.

@@ -21,6 +21,7 @@ namespace BindOpen.System.Scoping.Script
         /// </summary>
         public BdoScriptword() : base()
         {
+            this.WithDataType(BdoExtensionKind.Scriptword);
             this.WithDataType(DataValueTypes.Scriptword);
         }
 
@@ -66,12 +67,6 @@ namespace BindOpen.System.Scoping.Script
         // -----------------------------------------------
 
         #region IBdoScriptword
-
-        /// <summary>
-        /// Kind of this instance.
-        /// </summary>
-        /// <example>Script word, syntax, text...</example>
-        public string DefinitionUniqueName { get; set; }
 
         /// <summary>
         /// Kind of this instance.

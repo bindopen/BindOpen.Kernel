@@ -20,13 +20,6 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// Creation date of this instance.
         /// </summary>
-        [JsonPropertyName("definitionUniqueName")]
-        [XmlElement("definitionUniqueName")]
-        public string DefinitionUniqueName { get; set; }
-
-        /// <summary>
-        /// Creation date of this instance.
-        /// </summary>
         [JsonPropertyName("creationDate")]
         [XmlElement("creationDate")]
         public string CreationDate { get; set; }
@@ -56,7 +49,7 @@ namespace BindOpen.System.Data.Meta
         /// The children of this instance.
         /// </summary>
         [JsonPropertyName("children")]
-        [XmlElement("children")]
+        [XmlElement("config")]
         public List<ConfigurationDto> Children { get; set; }
 
         /// <summary>
@@ -65,6 +58,7 @@ namespace BindOpen.System.Data.Meta
         [JsonIgnore()]
         [XmlIgnore()]
         public bool ChildrenSpecficied => Children?.Count > 0;
+
         /// <summary>
         /// The using item IDs of this instance.
         /// </summary>

@@ -1,7 +1,4 @@
 ﻿using BindOpen.System.Data;
-using BindOpen.System.Scoping.Connectors;
-using BindOpen.System.Scoping.Entities;
-using BindOpen.System.Scoping.Tasks;
 
 namespace BindOpen.System.Scoping
 {

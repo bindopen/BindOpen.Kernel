@@ -1,16 +1,30 @@
-﻿using BindOpen.System.Logging;
-using BindOpen.System.Scoping;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace BindOpen.System.Data.Meta
+﻿namespace BindOpen.System.Data.Meta
 {
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
     public static partial class IBdoSpecExtensions
     {
+        public static T WithChildren<T>(this T log, params IBdoSpec[] children) where T : IBdoSpec
+        {
+            if (log != null)
+            {
+                log._Children = children;
+            }
+
+            return log;
+        }
+
+        public static T WithParent<T>(this T log, IBdoSpec parent) where T : IBdoSpec
+        {
+            if (log != null)
+            {
+                log.Parent = parent;
+            }
+
+            return log;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -22,7 +36,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (spec != null)
             {
-                spec.ValueModes = modes;
+                spec.AvailableDataModes = modes;
             }
             return spec;
         }
@@ -220,7 +234,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (spec != null)
             {
-                spec.DataRequirement = level;
+                spec.DataRequirementLevel = level;
             }
 
             return spec;
@@ -254,7 +268,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (spec != null)
             {
-                spec.Requirement = level;
+                spec.RequirementLevel = level;
             }
 
             return spec;
@@ -322,61 +336,6 @@ namespace BindOpen.System.Data.Meta
             }
 
             return RequirementLevels.None;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static IEnumerable<IBdoSpec> GetSpecs(
-            this IBdoSpec spec,
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            if (spec != null)
-            {
-                return spec.SubSpecs?.Where(
-                    q => q?.Condition.Evaluate(scope, varSet, log) == true);
-            }
-
-            return Enumerable.Empty<IBdoSpec>();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T WithDataType<T>(
-            this T spec,
-            BdoDataType dataType)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.DataType = dataType;
-            }
-
-            return spec;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T WithDataType<T>(
-            this T spec,
-            DataValueTypes valueType,
-            Type type = null)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.DataType = new BdoDataType()
-                {
-                    ClassType = type,
-                    ValueType = type != null ? DataValueTypes.Object : valueType
-                };
-            }
-
-            return spec;
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using BindOpen.System.Scoping.Script;
+﻿using BindOpen.System.Data.Meta;
+using BindOpen.System.Scoping.Script;
 using BindOpen.System.Tests;
 using Bogus;
 using NUnit.Framework;
@@ -70,9 +71,9 @@ namespace BindOpen.System.Data
         [Test, Order(4)]
         public void NewReferenceTest()
         {
-            var set = BdoData.NewMetaSet(
-                    BdoData.NewMeta(BdoData.NewReference(BdoScript.Func("eq", 1, 1))),
-                    BdoData.NewMeta(BdoScript.Func("eq", 1, 1))
+            var set = BdoData.NewMetaComposite(
+                    BdoData.NewMeta().WithDataReference(BdoData.NewReference(BdoScript.Func("eq", 1, 1))),
+                    BdoData.NewMeta().WithDataReference(BdoScript.Func("eq", 1, 1))
                 );
 
             var value1 = set[0].GetData<bool?>(SystemData.Scope);

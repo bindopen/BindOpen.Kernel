@@ -8,7 +8,7 @@ namespace BindOpen.System.Data
     public class BdoDictionaryTests
     {
         dynamic _valueSet;
-        public BdoTextDictionary _dico = null;
+        public TBdoDictionary<string> _dico = null;
 
 
         [OneTimeSetUp]
@@ -24,7 +24,7 @@ namespace BindOpen.System.Data
             };
         }
 
-        public void Test(IBdoTextDictionary dico)
+        public void Test(ITBdoDictionary<string> dico)
         {
             Assert.That(
                 dico["value1"] == _valueSet.value1
@@ -35,7 +35,7 @@ namespace BindOpen.System.Data
         [Test, Order(1)]
         public void Create1Test()
         {
-            _dico = BdoData.NewDictionary(
+            _dico = BdoData.NewDictionary<string>(
                 ("value1", _valueSet.value1),
                 ("value1", _valueSet.value1),
                 ("value2", _valueSet.value2),

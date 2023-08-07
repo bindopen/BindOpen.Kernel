@@ -4,7 +4,7 @@
     /// 
     /// </summary>
     public interface ITTreeNode<T> : IReferenced, ITParent<T>, ITChild<T>
-        where T : IReferenced
+        where T : ITChild<T>
     {
     }
 }

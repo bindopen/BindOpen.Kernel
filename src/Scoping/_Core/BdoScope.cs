@@ -3,7 +3,6 @@ using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Stores;
 using BindOpen.System.Logging;
-using BindOpen.System.Scoping.Entities;
 using BindOpen.System.Scoping.Script;
 using BindOpen.System.Scoping.Stores;
 using System;
@@ -36,7 +35,7 @@ namespace BindOpen.System.Scoping
 
             DepotStore = BdoData.NewDepotStore();
 
-            DataStore = BdoData.NewMetaSet();
+            DataStore = BdoData.NewMetaComposite();
         }
 
         #endregion

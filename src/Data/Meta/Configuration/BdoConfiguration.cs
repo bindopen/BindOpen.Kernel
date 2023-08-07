@@ -1,6 +1,4 @@
-﻿using BindOpen.System.Logging;
-using BindOpen.System.Scoping;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,8 +7,7 @@ namespace BindOpen.System.Data.Meta
     /// <summary>
     /// This class represents a config.
     /// </summary>
-    public partial class BdoConfiguration : BdoMetaObject,
-        IBdoConfiguration
+    public partial class BdoConfiguration : BdoMetaSet, IBdoConfiguration
     {
         // -------------------------------------------------------------
         // CONSTRUCTORS
@@ -23,32 +20,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         public BdoConfiguration() : base()
         {
-        }
-
-        #endregion
-
-
-        // -------------------------------------------------------------
-        // IBdoMetaData Implementation
-        // -------------------------------------------------------------
-
-        #region IBdoMetaData
-
-        /// <summary>
-        /// Returns the item TItem of this instance.
-        /// </summary>
-        /// <param key="log">The log to populate.</param>
-        /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable meta set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        public override IList<object> GetDataList(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            return Items?
-                .Select(q => q.GetData(scope, varSet, log))
-                .ToList();
+            this.WithId();
         }
 
         #endregion
@@ -58,11 +30,6 @@ namespace BindOpen.System.Data.Meta
         // -------------------------------------------------------
 
         #region IBdoConfiguration
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string DefinitionUniqueName { get; set; }
 
         /// <summary>
         /// The using file paths of this instance.
@@ -98,7 +65,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public IBdoTextDictionary Title { get; set; }
+        public ITBdoDictionary<string> Title { get; set; }
 
         #endregion
 
@@ -111,7 +78,54 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public IBdoTextDictionary Description { get; set; }
+        public ITBdoDictionary<string> Description { get; set; }
+
+        #endregion
+
+        // ------------------------------------------
+        // ITParent Implementation
+        // ------------------------------------------
+
+        #region ITParent
+
+        public IBdoConfiguration Parent { get; set; }
+
+        private IList<IBdoConfiguration> _children = null;
+
+        public IList<IBdoConfiguration> _Children { get => _children; set { _children = value; } }
+
+        public IEnumerable<IBdoConfiguration> Children(Predicate<IBdoConfiguration> filter = null)
+            => _children?.Where(p => filter?.Invoke(p) == true) ?? Enumerable.Empty<IBdoConfiguration>();
+
+        public IBdoConfiguration Child(Predicate<IBdoConfiguration> filter = null, bool isRecursive = false)
+        {
+            if (filter == null || filter?.Invoke(this) == true)
+                return this;
+
+            if (isRecursive)
+            {
+                foreach (var currentChildLog in _Children)
+                {
+                    var log = currentChildLog.Child(filter, true);
+                    if (log != null) return log;
+                }
+            }
+
+            return null;
+        }
+
+        public bool HasChild(Predicate<IBdoConfiguration> filter = null)
+            => _children?.Any(p => filter?.Invoke(p) == true) ?? false;
+
+        public IBdoConfiguration InsertChild(Action<IBdoConfiguration> updater)
+        {
+            var child = BdoData.NewConfig();
+            updater?.Invoke(child);
+
+            child.WithParent(this);
+
+            return child;
+        }
 
         #endregion
     }

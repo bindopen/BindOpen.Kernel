@@ -1,5 +1,5 @@
-﻿using BindOpen.System.Logging;
-using BindOpen.System.Data.Helpers;
+﻿using BindOpen.System.Data.Helpers;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
 using System.Linq;
 

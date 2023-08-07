@@ -283,7 +283,7 @@
             This static class provides methods to create extension items.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.BdoScopeExtensions.CreateConnected``1(BindOpen.System.Scoping.IBdoScope,BindOpen.System.Scoping.Connectors.IBdoConnector)">
+        <member name="M:BindOpen.System.Scoping.BdoScopeExtensions.CreateConnected``1(BindOpen.System.Scoping.IBdoScope,BindOpen.System.Scoping.IBdoConnector)">
             <summary>
             Creates a new connected service.
             </summary>

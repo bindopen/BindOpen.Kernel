@@ -1,6 +1,6 @@
-﻿using BindOpen.System.Scoping.Entities;
+﻿using BindOpen.System.Scoping;
 
-namespace BindOpen.System.Scoping.Entities
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class represents a DTO entity dico.

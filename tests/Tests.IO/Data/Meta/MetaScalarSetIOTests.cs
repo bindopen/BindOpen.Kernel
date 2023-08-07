@@ -17,7 +17,7 @@ namespace BindOpen.System.Data.Meta
 
         private dynamic _testData;
 
-        private IBdoMetaSet _metaSet = null;
+        private IBdoMetaComposite _metaSet = null;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -33,8 +33,8 @@ namespace BindOpen.System.Data.Meta
         }
 
         public static bool Equals(
-            IBdoMetaSet list1,
-            IBdoMetaSet list2)
+            IBdoMetaComposite list1,
+            IBdoMetaComposite list2)
         {
             var b = list1 != null && list2 != null
                 && list1.IsDeepEqual(list2);
@@ -56,7 +56,7 @@ namespace BindOpen.System.Data.Meta
                     //.WithSpecs(BdoMeta.NewSpec(), BdoMeta.NewSpec("spec1"))
             };
 
-            _metaSet = BdoData.NewMetaSet(metas.ToArray());
+            _metaSet = BdoData.NewMetaComposite(metas.ToArray());
         }
 
         // Xml
@@ -81,7 +81,7 @@ namespace BindOpen.System.Data.Meta
                 SaveXmlTest();
             }
 
-            var metaSet = XmlHelper.LoadXml<MetaSetDto>(_filePath_xml).ToPoco();
+            var metaSet = XmlHelper.LoadXml<MetaCompositeDto>(_filePath_xml).ToPoco();
             Equals(metaSet, _metaSet);
         }
 
@@ -107,7 +107,7 @@ namespace BindOpen.System.Data.Meta
                 SaveJsonTest();
             }
 
-            var metaSet = JsonHelper.LoadJson<MetaSetDto>(_filePath_json).ToPoco();
+            var metaSet = JsonHelper.LoadJson<MetaCompositeDto>(_filePath_json).ToPoco();
             Equals(metaSet, _metaSet);
         }
     }

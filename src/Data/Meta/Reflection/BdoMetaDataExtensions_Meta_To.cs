@@ -14,14 +14,30 @@ namespace BindOpen.System.Data.Meta.Reflection
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static IBdoMetaData ToMetaData(
+        public static IBdoMetaData ToMeta(
+            this object obj,
             Type type,
-            object obj,
             string name = null,
             bool onlyMetaAttributes = false)
         {
-            var meta = BdoData.NewMeta(name, type, obj)
-                .UpdateTree(onlyMetaAttributes);
+            IBdoMetaData meta = null;
+
+            if (type != null && typeof(IBdoMetaData).IsAssignableFrom(type) == true)
+            {
+                meta = obj as IBdoMetaData;
+
+                if (meta != null)
+                {
+                    meta.Name = name;
+                }
+            }
+            else
+            {
+                meta = BdoData.NewMeta(name, type, obj);
+            }
+
+            meta?.UpdateTree(onlyMetaAttributes);
+
             return meta;
         }
 
@@ -30,13 +46,13 @@ namespace BindOpen.System.Data.Meta.Reflection
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static IBdoMetaData ToMetaData(
+        public static IBdoMetaData ToMeta(
             this object obj,
             string name = null,
             bool onlyMetaAttributes = false)
         {
             return obj == null ? null :
-                ToMetaData(null, obj, name, onlyMetaAttributes);
+                obj.ToMeta(null, name, onlyMetaAttributes);
         }
 
         /// <summary>
@@ -49,16 +65,16 @@ namespace BindOpen.System.Data.Meta.Reflection
             string name = null,
             bool onlyMetaAttributes = false)
             where T : class, IBdoMetaData
-            => obj.ToMetaData(name, onlyMetaAttributes) as T;
+            => obj.ToMeta(null, name, onlyMetaAttributes) as T;
 
         /// <summary>
         /// Creates a meta data of the specified object.
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static IBdoMetaSet AsMetaSet(
+        public static IBdoMetaComposite AsMetaSet(
             this IBdoMetaData meta)
-            => meta as IBdoMetaSet;
+            => meta as IBdoMetaComposite;
 
         /// <summary>
         /// Creates a data element list from a dynamic object.
@@ -75,7 +91,7 @@ namespace BindOpen.System.Data.Meta.Reflection
         public static IList<IBdoMetaData> ToList(
             this IBdoMetaData meta)
         {
-            if (meta is IBdoMetaSet metaSet)
+            if (meta is IBdoMetaComposite metaSet)
             {
                 return metaSet.ToList();
             }
