@@ -4,9 +4,8 @@
     /// This interface defines a configuration.
     /// </summary>
     public interface IBdoDefinition :
-        ITBdoSet<IBdoSpec>,
+        IBdoSpecSet, ITTreeNode<IBdoDefinition>,
         IBdoTitled, IBdoDescribed,
-        INamed,
         IIndexed, IDated, IBdoUsing
     {
     }

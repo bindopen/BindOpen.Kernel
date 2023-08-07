@@ -10,13 +10,13 @@ namespace BindOpen.System.Data
         public static T Child<T>(
             this ITParent<T> parent,
             string id, bool isRecursive = false)
-            where T : class, ITChild<T>
+            where T : class, IReferenced
             => parent == null ? default : parent.Child(q => q.BdoKeyEquals(id), isRecursive);
 
         public static T Descendant<T>(
             this ITParent<T> parent,
             params object[] tokens)
-            where T : class, ITChild<T>
+            where T : class, IReferenced
         {
             if (parent != null)
             {

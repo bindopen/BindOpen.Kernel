@@ -39,6 +39,19 @@ namespace BindOpen.System.Data.Meta
         #endregion
 
         // ------------------------------------------
+        // IIndexed Implementation
+        // ------------------------------------------
+
+        #region IIndexed
+
+        /// <summary>
+        /// The index of this instance.
+        /// </summary>
+        public int? Index { get; set; }
+
+        #endregion
+
+        // ------------------------------------------
         // IStorable Implementation
         // ------------------------------------------
 

@@ -7,27 +7,27 @@ namespace BindOpen.System.Data.Meta
     /// <summary>
     /// This class represents a Xml helper.
     /// </summary>
-    public static class ConfigurationConverter
+    public static class DefinitionConverter
     {
         /// <summary>
         /// Converts to DTO.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static ConfigurationDto ToDto(this IBdoConfiguration poco) => poco.ToDto<ConfigurationDto>();
+        public static DefinitionDto ToDto(this IBdoDefinition poco) => poco.ToDto<DefinitionDto>();
 
         /// <summary>
         /// Converts to DTO.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static T ToDto<T>(this IBdoConfiguration poco)
-            where T : ConfigurationDto
+        public static T ToDto<T>(this IBdoDefinition poco)
+            where T : DefinitionDto
         {
             if (poco == null) return null;
 
             var config = new MapperConfiguration(
-                cfg => cfg.CreateMap<IBdoConfiguration, T>()
+                cfg => cfg.CreateMap<IBdoDefinition, T>()
                     .ForMember(q => q.CreationDate, opt => opt.MapFrom(q => StringHelper.ToString(q.CreationDate)))
                     .ForMember(q => q.Description, opt => opt.MapFrom(q => q.Description.ToDto()))
                     .ForMember(q => q.Items, opt => opt.MapFrom(q => q.Items == null ? null : q.Items.Select(q => q.ToDto()).ToList()))
@@ -47,20 +47,20 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoConfiguration ToPoco(this ConfigurationDto dto) => dto.ToPoco<BdoConfiguration>();
+        public static IBdoDefinition ToPoco(this DefinitionDto dto) => dto.ToPoco<BdoDefinition>();
 
         /// <summary>
         /// Converts to POCO.
         /// </summary>
         /// <param key="dto">The dto to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static T ToPoco<T>(this ConfigurationDto dto)
-            where T : IBdoConfiguration
+        public static T ToPoco<T>(this DefinitionDto dto)
+            where T : IBdoDefinition
         {
             if (dto == null) return default;
 
             var config = new MapperConfiguration(
-                cfg => cfg.CreateMap<ConfigurationDto, T>()
+                cfg => cfg.CreateMap<DefinitionDto, T>()
                     .ForMember(q => q.CreationDate, opt => opt.MapFrom(q => q.CreationDate.ToDateTime(null)))
                     .ForMember(q => q.Description, opt => opt.Ignore())
                     .ForMember(q => q.Items, opt => opt.Ignore())
