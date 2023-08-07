@@ -29,16 +29,6 @@ namespace BindOpen.System.Data.Meta
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static IBdoMetaData Descendant(
-            this IBdoMetaSet set,
-            params object[] tokens)
-        {
-            return set?.Descendant<IBdoMetaData>(tokens);
-        }
-
         public static IBdoMetaData GetOfGroup(
             this IBdoMetaSet set,
             string key,
