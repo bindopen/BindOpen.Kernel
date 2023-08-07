@@ -11,22 +11,6 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param key="specs"></param>
-        public static T WithSubSpecs<T>(
-            this T spec,
-            params IBdoSpec[] specs)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.SubSpecs = BdoData.NewSpecSet(specs);
-            }
-            return spec;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param key="isAllocatable"></param>
         /// <returns></returns>
         public static T AsAllocatable<T>(

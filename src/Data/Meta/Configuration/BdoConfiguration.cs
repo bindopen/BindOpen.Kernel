@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.System.Data.Meta
 {
@@ -78,6 +79,53 @@ namespace BindOpen.System.Data.Meta
         /// 
         /// </summary>
         public ITBdoDictionary<string> Description { get; set; }
+
+        #endregion
+
+        // ------------------------------------------
+        // ITParent Implementation
+        // ------------------------------------------
+
+        #region ITParent
+
+        public IBdoConfiguration Parent { get; set; }
+
+        private IList<IBdoConfiguration> _children = null;
+
+        public IList<IBdoConfiguration> _Children { get => _children; set { _children = value; } }
+
+        public IEnumerable<IBdoConfiguration> Children(Predicate<IBdoConfiguration> filter = null)
+            => _children?.Where(p => filter?.Invoke(p) == true) ?? Enumerable.Empty<IBdoConfiguration>();
+
+        public IBdoConfiguration Child(Predicate<IBdoConfiguration> filter = null, bool isRecursive = false)
+        {
+            if (filter == null || filter?.Invoke(this) == true)
+                return this;
+
+            if (isRecursive)
+            {
+                foreach (var currentChildLog in _Children)
+                {
+                    var log = currentChildLog.Child(filter, true);
+                    if (log != null) return log;
+                }
+            }
+
+            return null;
+        }
+
+        public bool HasChild(Predicate<IBdoConfiguration> filter = null)
+            => _children?.Any(p => filter?.Invoke(p) == true) ?? false;
+
+        public IBdoConfiguration InsertChild(Action<IBdoConfiguration> updater)
+        {
+            var child = BdoData.NewConfig();
+            updater?.Invoke(child);
+
+            child.WithParent(this);
+
+            return child;
+        }
 
         #endregion
     }

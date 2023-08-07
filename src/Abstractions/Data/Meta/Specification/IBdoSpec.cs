@@ -8,6 +8,7 @@ namespace BindOpen.System.Data.Meta
     /// </summary>
     public interface IBdoSpec :
         IBdoObject, IReferenced, IBdoDataTyped, IBdoConditional,
+        ITTreeNode<IBdoSpec>,
         IIdentified, INamed, IIndexed,
         IBdoTitled, IBdoDescribed, IBdoDetailed,
         ITUpdatable<IBdoSpec>
@@ -21,46 +22,6 @@ namespace BindOpen.System.Data.Meta
         /// 
         /// </summary>
         IList<string> Aliases { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IList<SpecificationLevels> SpecLevels { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        AccessibilityLevels AccessibilityLevel { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        InheritanceLevels InheritanceLevel { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        RequirementLevels Requirement { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        string RequirementExp { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        ITBdoSet<IBdoSpec> SubSpecs { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IList<DataMode> DataModes { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        bool IsAllocatable { get; set; }
 
         /// <summary>
         /// 
@@ -80,14 +41,53 @@ namespace BindOpen.System.Data.Meta
         bool IsStatic { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        bool IsAllocatable { get; set; }
+
+        /// <summary>
         /// The label of this instance.
         /// </summary>
         string Label { get; set; }
 
+        // Levels
+
         /// <summary>
         /// 
         /// </summary>
-        RequirementLevels DataRequirement { get; set; }
+        IList<DataMode> AvailableDataModes { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        IList<SpecificationLevels> SpecLevels { get; set; }
+
+        IList<SpecificationLevels> DataSpecLevels { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        AccessibilityLevels AccessibilityLevel { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        InheritanceLevels InheritanceLevel { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        RequirementLevels RequirementLevel { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        string RequirementExp { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        RequirementLevels DataRequirementLevel { get; set; }
 
         /// <summary>
         /// 

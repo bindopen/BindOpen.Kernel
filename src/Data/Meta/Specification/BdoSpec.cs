@@ -1,5 +1,6 @@
 ﻿using BindOpen.System.Data.Conditions;
 using BindOpen.System.Data.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -27,16 +28,6 @@ namespace BindOpen.System.Data.Meta
             nameof(BdoMetaDataAreaKind.Element),
             nameof(DataAreaKind.Items)
         };
-
-        #endregion
-
-        // --------------------------------------------------
-        // VARIABLES
-        // --------------------------------------------------
-
-        #region Variables
-
-        private IList<DataMode> _availableValueModes = null;
 
         #endregion
 
@@ -70,9 +61,9 @@ namespace BindOpen.System.Data.Meta
             var dataElementSpec = base.Clone<BdoSpec>();
 
             dataElementSpec.WithAliases(Aliases?.ToArray());
-            dataElementSpec.WithValueModes(DataModes?.ToArray());
+            dataElementSpec.WithValueModes(AvailableDataModes?.ToArray());
             dataElementSpec.WithSpecLevels(SpecLevels?.ToArray());
-            dataElementSpec.WithSubSpecs(SubSpecs?.ToArray());
+            dataElementSpec.WithChildren(SubSpecs?.ToArray());
 
             return dataElementSpec;
         }
@@ -103,7 +94,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The requirement level of this instance.
         /// </summary>
-        public RequirementLevels Requirement { get; set; } = RequirementLevels.None;
+        public RequirementLevels RequirementLevel { get; set; } = RequirementLevels.None;
 
         /// <summary>
         /// The requirement script of this instance.
@@ -124,6 +115,55 @@ namespace BindOpen.System.Data.Meta
         /// Level of accessibility of this instance.
         /// </summary>
         public AccessibilityLevels AccessibilityLevel { get; set; } = AccessibilityLevels.Public;
+
+        #endregion
+
+        // ------------------------------------------
+        // ITParent Implementation
+        // ------------------------------------------
+
+        #region ITParent
+
+        public IBdoSpec Parent { get; set; }
+
+        private IList<IBdoSpec> _children = null;
+
+        public IList<IBdoSpec> _Children { get => _children; set { _children = value; } }
+
+        public IEnumerable<IBdoSpec> Children(Predicate<IBdoSpec> filter = null)
+            => _children?.Where(p => filter?.Invoke(p) == true) ?? Enumerable.Empty<IBdoSpec>();
+
+        public IBdoSpec Child(Predicate<IBdoSpec> filter = null, bool isRecursive = false)
+        {
+            if (filter == null || filter?.Invoke(this) == true)
+                return this;
+
+            //q => q?.Condition.Evaluate(scope, varSet, log) == true);
+
+            if (isRecursive)
+            {
+                foreach (var currentChildLog in _Children)
+                {
+                    var log = currentChildLog.Child(filter, true);
+                    if (log != null) return log;
+                }
+            }
+
+            return null;
+        }
+
+        public bool HasChild(Predicate<IBdoSpec> filter = null)
+            => _children?.Any(p => filter?.Invoke(p) == true) ?? false;
+
+        public IBdoSpec InsertChild(Action<IBdoSpec> updater)
+        {
+            var child = BdoData.NewSpec();
+            updater?.Invoke(child);
+
+            child.WithParent(this);
+
+            return child;
+        }
 
         #endregion
 
@@ -258,7 +298,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The available itemization modes of this instance.
         /// </summary>
-        public IList<DataMode> DataModes { get; set; }
+        public IList<DataMode> AvailableDataModes { get; set; }
 
         /// <summary>
         /// The default item of this instance.
@@ -283,7 +323,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The item requirement level of this instance.
         /// </summary>
-        public RequirementLevels DataRequirement { get; set; }
+        public RequirementLevels DataRequirementLevel { get; set; }
 
         /// <summary>
         /// The requirement script of this instance.

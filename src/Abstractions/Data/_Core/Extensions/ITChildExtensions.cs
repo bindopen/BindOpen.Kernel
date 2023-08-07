@@ -11,17 +11,17 @@ namespace BindOpen.System.Data
         /// 
         /// </summary>
         public static T Root<T>(
-            this ITChild<T> obj,
+            this ITChild<T> child,
             int levelMax = 50)
             where T : IReferenced
         {
-            if (obj != null && levelMax > 0)
+            if (child != null && levelMax > 0)
             {
-                if (obj.Parent == null)
+                if (child.Parent == null)
                 {
-                    return obj.As<T>();
+                    return child.As<T>();
                 }
-                else if (obj.Parent is ITChild<T> tree)
+                else if (child.Parent is ITChild<T> tree)
                 {
                     return tree.Root(levelMax--);
                 }

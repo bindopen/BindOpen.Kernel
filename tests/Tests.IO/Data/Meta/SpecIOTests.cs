@@ -6,22 +6,26 @@ using System.IO;
 namespace BindOpen.System.Data.Meta
 {
     [TestFixture, Order(201)]
-    public class SpecTests
+    public class SpecIOTests
     {
         private readonly string _filePath_xml = SystemData.WorkingFolder + "Spec.xml";
         private readonly string _filePath_json = SystemData.WorkingFolder + "Spec.json";
 
-        private BdoSpec _spec;
+        private IBdoSpec _spec;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            _spec = BdoData.NewSpec("object1", DataValueTypes.Date);
+            _spec = BdoSpecFaker.CreateSpec();
         }
 
-        private void Test(IBdoSpec spec)
+        public static bool Equals(
+            IBdoSpec spec1,
+            IBdoSpec spec2)
         {
-            Assert.That(spec.IsDeepEqual(_spec) == true, "Bad obj element set - Count");
+            var b = spec1 != null && spec2 != null
+                && spec1.IsDeepEqual(spec2);
+            return b;
         }
 
         // Xml
@@ -41,8 +45,8 @@ namespace BindOpen.System.Data.Meta
                 SaveXmlTest();
             }
 
-            var metaSet = XmlHelper.LoadXml<SpecDto>(_filePath_xml).ToPoco();
-            Equals(metaSet, _spec);
+            var spec = XmlHelper.LoadXml<SpecDto>(_filePath_xml).ToPoco();
+            Equals(spec, _spec);
         }
 
         // Json
@@ -62,8 +66,8 @@ namespace BindOpen.System.Data.Meta
                 SaveJsonTest();
             }
 
-            var metaSet = JsonHelper.LoadJson<SpecDto>(_filePath_json).ToPoco();
-            Equals(metaSet, _spec);
+            var spec = JsonHelper.LoadJson<SpecDto>(_filePath_json).ToPoco();
+            Equals(spec, _spec);
         }
     }
 }

@@ -44,7 +44,7 @@ namespace BindOpen.System.Data.Meta
                 if (att.DataRequirement != RequirementLevels.Any)
                 {
                     change = true;
-                    spec.DataRequirement = att.DataRequirement;
+                    spec.DataRequirementLevel = att.DataRequirement;
                 }
 
                 if (!string.IsNullOrEmpty(att.DataRequirementExp))
@@ -67,7 +67,7 @@ namespace BindOpen.System.Data.Meta
                 if (att.Requirement != RequirementLevels.Any)
                 {
                     change = true;
-                    spec.Requirement = att.Requirement;
+                    spec.RequirementLevel = att.Requirement;
                 }
 
                 if (!string.IsNullOrEmpty(att.RequirementExp))

@@ -6,7 +6,7 @@ using System.IO;
 namespace BindOpen.System.Data.Meta
 {
     [TestFixture, Order(201)]
-    public class MetaObjectSetTests
+    public class MetaObjectSetIOTests
     {
         private readonly string _filePath_xml = SystemData.WorkingFolder + "MetaObjectSet.xml";
         private readonly string _filePath_json = SystemData.WorkingFolder + "MetaObjectSet.json";

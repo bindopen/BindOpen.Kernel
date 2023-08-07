@@ -1,4 +1,5 @@
 ﻿using BindOpen.System.Data.Assemblies;
+using BindOpen.System.Data.Conditions;
 using BindOpen.System.Scoping.Script;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +30,14 @@ namespace BindOpen.System.Data.Meta
 
         // General ------------------------------------------
 
+        /// <summary>
+        /// Default items of this instance.
+        /// </summary>
+        [JsonPropertyName("condition")]
+        [XmlElement("condition.basic", Type = typeof(BasicConditionDto))]
+        [XmlElement("condition.composite", Type = typeof(CompositeConditionDto))]
+        [XmlElement("condition.reference", Type = typeof(ReferenceConditionDto))]
+        public ConditionDto Condition { get; set; }
 
         /// <summary>
         /// The description DTO of this instance.
@@ -55,7 +64,7 @@ namespace BindOpen.System.Data.Meta
         /// The value type of this instance.
         /// </summary>
         [JsonPropertyName("valueType")]
-        [XmlElement("valueType")]
+        [XmlAttribute("valueType")]
         [DefaultValue(DataValueTypes.Any)]
         public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
 
@@ -93,14 +102,6 @@ namespace BindOpen.System.Data.Meta
         public List<string> Aliases { get; set; }
 
         /// <summary>
-        /// Levels of specification of this instance.
-        /// </summary>
-        [JsonPropertyName("spec.levels")]
-        [XmlArray("spec.levels")]
-        [XmlArrayItem("add")]
-        public List<SpecificationLevels> SpecificationLevels { get; set; }
-
-        /// <summary>
         /// The area specifications for this instance.
         /// </summary>
         [JsonPropertyName("areaSpecs")]
@@ -108,37 +109,15 @@ namespace BindOpen.System.Data.Meta
         [XmlArrayItem("add")]
         public List<SpecDto> AreaSpecifications { get; set; }
 
-        /// <summary>
-        /// Indicates whether the instance can be allocated.
-        /// </summary>
-        [JsonPropertyName("isAllocatable")]
-        [XmlElement("isAllocatable")]
-        [DefaultValue(false)]
-        public bool? IsAllocatable { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonIgnore()]
-        [XmlIgnore()]
-        public bool IsAllocatableSpecified => IsAllocatable != null;
-
         // Items ---------------------------------
-
-        /// <summary>
-        /// The script of this instance.
-        /// </summary>
-        [JsonPropertyName("itemExp")]
-        [XmlElement("itemExp")]
-        public ExpressionDto ItemExpression { get; set; }
 
         /// <summary>
         /// The available itemization modes of this instance.
         /// </summary>
-        [JsonPropertyName("valueModes")]
-        [XmlArray("valueModes")]
+        [JsonPropertyName("data.modes")]
+        [XmlArray("data.modes")]
         [XmlArrayItem("add")]
-        public List<DataMode> AvailableValueModes { get; set; }
+        public List<DataMode> AvailableDataModes { get; set; }
 
         /// <summary>
         /// Minimum item number of this instance.
@@ -170,13 +149,59 @@ namespace BindOpen.System.Data.Meta
         [XmlIgnore()]
         public bool MaxDataItemNumberSpecified => MaxDataItemNumber != null;
 
+        // Data 
+
+        /// <summary>
+        /// Indicates whether the instance can be allocated.
+        /// </summary>
+        [JsonPropertyName("isAllocatable")]
+        [XmlElement("isAllocatable")]
+        [DefaultValue(null)]
+        public bool? IsAllocatable { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonIgnore()]
+        [XmlIgnore()]
+        public bool IsAllocatableSpecified => IsAllocatable != null;
+
+        [JsonPropertyName("isStatic")]
+        [XmlElement("isStatic")]
+        [DefaultValue(null)]
+        public bool? IsStatic { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonIgnore()]
+        [XmlIgnore()]
+        public bool IsStaticSpecified => IsStatic != null;
+
+        /// <summary>
+        /// Indicates whether the instance can be allocated.
+        /// </summary>
+        [JsonPropertyName("label")]
+        [XmlElement("label")]
+        public string Label { get; set; }
+
+        // Levels
+
         /// <summary>
         /// Levels of specification of this instance.
         /// </summary>
-        [JsonPropertyName("itemSpec.levels")]
-        [XmlArray("itemSpec.levels")]
+        [JsonPropertyName("spec.levels")]
+        [XmlArray("spec.levels")]
         [XmlArrayItem("add")]
-        public List<SpecificationLevels> ItemSpecificationLevels { get; set; }
+        public List<SpecificationLevels> SpecLevels { get; set; }
+
+        /// <summary>
+        /// Levels of specification of this instance.
+        /// </summary>
+        [JsonPropertyName("data.spec.levels")]
+        [XmlArray("data.spec.levels")]
+        [XmlArrayItem("add")]
+        public List<SpecificationLevels> DataSpecLevels { get; set; }
 
         /// <summary>
         /// Level of accessibility of this instance.
@@ -207,7 +232,19 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         [JsonPropertyName("requirement.exp")]
         [XmlElement("requirement.exp")]
-        public ExpressionDto RequirementExp { get; set; }
+        public string RequirementExp { get; set; }
+
+        /// <summary>
+        /// The requirement level of this instance.
+        /// </summary>
+        [JsonPropertyName("data.requirement.level")]
+        [XmlElement("data.requirement.level")]
+        [DefaultValue(RequirementLevels.None)]
+        public RequirementLevels DataRequirementLevel { get; set; }
+
+        [JsonPropertyName("data.requirement.exp")]
+        [XmlElement("data.requirement.exp")]
+        public string DataRequirementExp { get; set; }
 
         #endregion
 

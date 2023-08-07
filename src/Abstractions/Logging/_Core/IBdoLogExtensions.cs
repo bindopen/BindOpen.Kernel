@@ -12,35 +12,6 @@ namespace BindOpen.System.Logging
         /// <summary>
         /// 
         /// </summary>
-        public static T WithChildren<T>(
-            this T log,
-            params IBdoLog[] children)
-            where T : IBdoLog
-        {
-            if (log != null)
-            {
-                log._Children = children;
-            }
-
-            return log;
-        }
-
-        public static T WithParent<T>(
-            this T log,
-            IBdoLog parent)
-            where T : IBdoLog
-        {
-            if (log != null)
-            {
-                log.Parent = parent;
-            }
-
-            return log;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="execution"></param>
         /// <returns></returns>
         public static T WithExecution<T>(
