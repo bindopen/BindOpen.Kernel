@@ -1,4 +1,6 @@
-﻿namespace BindOpen.System.Data
+﻿using BindOpen.System.Data.Helpers;
+
+namespace BindOpen.System.Data
 {
     /// <summary>
     /// This interface represents an identified data item.
@@ -11,12 +13,12 @@
         /// <param key="id"></param>
         public static T WithId<T>(
             this T obj,
-            string id)
+            string id = null)
             where T : IIdentified
         {
             if (obj != null)
             {
-                obj.Id = id;
+                obj.Id = id ?? StringHelper.NewGuid();
             }
 
             return obj;

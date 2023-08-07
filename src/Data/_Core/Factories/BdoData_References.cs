@@ -1,5 +1,6 @@
 ﻿using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Data.Helpers;
+using BindOpen.System.Scoping;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -113,6 +114,24 @@ namespace BindOpen.System.Data
             return Class(
                 assemblyReference,
                 className);
+        }
+
+        public static BdoClassReference Class(string definitionUniqueName)
+        {
+            return new BdoClassReference()
+                .WithDefinition(definitionUniqueName);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="detail"></param>
+        public static BdoClassReference Class(
+            BdoExtensionKind definitionExtensionKind,
+            string definitionUniqueName = null)
+        {
+            return new BdoClassReference()
+                .WithDefinition(definitionExtensionKind, definitionUniqueName);
         }
 
         /// <summary>

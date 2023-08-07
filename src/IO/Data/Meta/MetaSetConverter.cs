@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BindOpen.System.Data.Meta.Reflection;
 using System.Linq;
 
 namespace BindOpen.System.Data.Meta
@@ -19,8 +20,7 @@ namespace BindOpen.System.Data.Meta
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<BdoMetaSet, MetaSetDto>()
-                    .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.Reference.ToDto()))
-            //.ForMember(q => q.Specs, opt => opt.Ignore())
+                    .ForMember(q => q.MetaItems, opt => opt.Ignore())
             );
 
             var mapper = new Mapper(config);
@@ -43,15 +43,12 @@ namespace BindOpen.System.Data.Meta
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<MetaSetDto, BdoMetaSet>()
-                    .ForMember(q => q.Reference, opt => opt.Ignore())
-                    .ForMember(q => q.Specs, opt => opt.Ignore())
+                    .ForMember(q => q.Items, opt => opt.Ignore())
                 );
 
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoMetaSet>(dto);
 
-            poco.Reference = dto.DataReference.ToPoco();
-            //poco.Specs = dto.Specs?.Count == 0 ? null : dto.Specs?.Select(q => q.ToPoco()).Cast<IBdoSpec>().ToList();
             poco.With(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
 
             return poco;

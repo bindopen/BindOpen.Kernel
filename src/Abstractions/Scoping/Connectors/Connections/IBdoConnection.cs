@@ -2,7 +2,7 @@
 using System;
 using System.Data;
 
-namespace BindOpen.System.Scoping.Connectors
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This interfaces represents a connection.

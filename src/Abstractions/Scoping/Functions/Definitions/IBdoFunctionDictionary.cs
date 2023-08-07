@@ -1,4 +1,4 @@
-﻿namespace BindOpen.System.Scoping.Functions
+﻿namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// 

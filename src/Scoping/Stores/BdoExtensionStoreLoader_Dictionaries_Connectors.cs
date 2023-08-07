@@ -1,7 +1,7 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Logging;
-using BindOpen.System.Scoping.Connectors;
+using BindOpen.System.Scoping;
 using System.Linq;
 using System.Reflection;
 

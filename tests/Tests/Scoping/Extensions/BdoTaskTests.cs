@@ -1,16 +1,13 @@
-﻿using BindOpen.System.Scoping.Tasks;
-using BindOpen.System.Data;
+﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.System.Scoping.Tasks
+namespace BindOpen.System.Scoping
 {
     [TestFixture, Order(300)]
     public class BdoTaskTests
     {
-        private readonly string _filePath = SystemData.WorkingFolder + "Task.xml";
-
         private dynamic _testData;
 
         [OneTimeSetUp]
@@ -24,11 +21,10 @@ namespace BindOpen.System.Scoping.Tasks
         /// </summary>
         /// <param key="data"></param>
         /// <returns></returns>
-        public static IBdoConfiguration CreateTaskConfig(dynamic data)
+        public static IBdoMetaObject CreateMetaTask(dynamic data)
         {
-            var config =
-                BdoData.NewConfig()
-                .WithDefinition("bindopen.system.tests$taskFake")
+            var meta = BdoData.NewMetaObject()
+                .WithDataType(BdoExtensionKind.Task, "bindopen.system.tests$taskFake")
                 .WithProperties(
                     BdoData.NewMetaScalar("boolValue", data.boolValue as bool?),
                     BdoData.NewMetaScalar("intValue", data.intValue as int?))
@@ -37,39 +33,42 @@ namespace BindOpen.System.Scoping.Tasks
                 .WithOutputs(
                     BdoData.NewMetaScalar("stringValue", data.stringValue as string));
 
-            return config;
-        }
-
-        public static IBdoTask CreateTask(dynamic data)
-        {
-            var task = new TaskFake
-            {
-                BoolValue = data.boolValue,
-                EnumValue = data.enumValue,
-                IntValue = data.intValue,
-                StringValue = data.stringValue,
-            };
-
-            return task;
+            return meta;
         }
 
         [Test, Order(1)]
-        public void CreateTaskToConfig()
+        public void CreateTaskTest_FromMetaSet()
         {
-            IBdoTask task = CreateTask(_testData);
-            var config = SystemData.Scope.CreateConfigFrom(task, "testConfig");
-            var task2 = SystemData.Scope.CreateTask<TaskFake>(config);
+            IBdoMetaObject meta = CreateMetaTask(_testData);
+            var connector = SystemData.Scope.CreateTask<TaskFake>(meta);
 
-            BdoTaskFaker.AssertFake(task2, _testData);
+            BdoTaskFaker.AssertFake(connector, _testData);
+        }
+
+        [Test, Order(2)]
+        public void CreateTaskTest_FromConfig()
+        {
+            IBdoMetaObject meta = CreateMetaTask(_testData);
+            var connector = SystemData.Scope.CreateTask(meta) as TaskFake;
+
+            BdoTaskFaker.AssertFake(connector, _testData);
         }
 
         [Test, Order(3)]
-        public void CreateTaskFromScopeTest()
+        public void CreateTaskTest_FromObject()
         {
-            IBdoConfiguration config = CreateTaskConfig(_testData);
-            var task = SystemData.Scope.CreateTask<TaskFake>(config);
+            var connector = new TaskFake
+            {
+                BoolValue = _testData.boolValue,
+                EnumValue = _testData.enumValue,
+                IntValue = _testData.intValue,
+                StringValue = _testData.stringValue,
+            };
 
-            BdoTaskFaker.AssertFake(task, _testData);
+            var config = connector.ToMeta(SystemData.Scope, "testConfig");
+            connector = SystemData.Scope.CreateTask(config) as TaskFake;
+
+            BdoTaskFaker.AssertFake(connector, _testData);
         }
     }
 

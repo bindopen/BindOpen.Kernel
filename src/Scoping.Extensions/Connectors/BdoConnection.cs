@@ -2,7 +2,7 @@
 using BindOpen.System.Logging;
 using System.Data;
 
-namespace BindOpen.System.Scoping.Connectors
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class represents a connection.
