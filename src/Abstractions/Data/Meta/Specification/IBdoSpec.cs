@@ -1,5 +1,4 @@
 ﻿using BindOpen.System.Data.Conditions;
-using System;
 using System.Collections.Generic;
 
 namespace BindOpen.System.Data.Meta
@@ -8,7 +7,8 @@ namespace BindOpen.System.Data.Meta
     /// 
     /// </summary>
     public interface IBdoSpec :
-        IBdoObject, IReferenced, IBdoConditional,
+        IBdoObject, IReferenced, IBdoDataTyped, IBdoConditional,
+        ITTreeNode<IBdoSpec>,
         IIdentified, INamed, IIndexed,
         IBdoTitled, IBdoDescribed, IBdoDetailed,
         ITUpdatable<IBdoSpec>
@@ -21,47 +21,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        IList<SpecificationLevels> SpecLevels { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        AccessibilityLevels AccessibilityLevel { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        InheritanceLevels InheritanceLevel { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        RequirementLevels Requirement { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        string RequirementExp { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         IList<string> Aliases { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        ITBdoSet<IBdoSpec> SubSpecs { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IList<DataMode> ValueModes { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        bool IsAllocatable { get; set; }
 
         /// <summary>
         /// 
@@ -78,32 +38,56 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        BdoDataType DataType { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        DataValueTypes DataValueType { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        Type DataClassType { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         bool IsStatic { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        bool IsAllocatable { get; set; }
 
         /// <summary>
         /// The label of this instance.
         /// </summary>
         string Label { get; set; }
 
+        // Levels
+
         /// <summary>
         /// 
         /// </summary>
-        RequirementLevels DataRequirement { get; set; }
+        IList<DataMode> AvailableDataModes { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        IList<SpecificationLevels> SpecLevels { get; set; }
+
+        IList<SpecificationLevels> DataSpecLevels { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        AccessibilityLevels AccessibilityLevel { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        InheritanceLevels InheritanceLevel { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        RequirementLevels RequirementLevel { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        string RequirementExp { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        RequirementLevels DataRequirementLevel { get; set; }
 
         /// <summary>
         /// 

@@ -13,6 +13,7 @@ namespace BindOpen.System.Tests
         {
             var f = new Faker();
             dynamic b = new ExpandoObject();
+            b.connecString = f.Random.Word();
             b.host = f.Internet.IpAddress().ToString();
             b.port = f.Random.Int(800);
             b.isSslEnabled = f.Random.Bool();

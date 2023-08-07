@@ -1,6 +1,6 @@
 ﻿using BindOpen.System.Logging;
 
-namespace BindOpen.System.Scoping.Connectors
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// 

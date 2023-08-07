@@ -1,9 +1,8 @@
-﻿using BindOpen.System.Scoping.Entities;
-using BindOpen.System.Data;
+﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Assemblies;
 using System;
 
-namespace BindOpen.System.Scoping.Entities
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class represents the entity definition.
@@ -30,7 +29,7 @@ namespace BindOpen.System.Scoping.Entities
         /// <summary>
         /// 
         /// </summary>
-        public IBdoTextDictionary ViewerDictionary { get; set; }
+        public ITBdoDictionary<string> ViewerDictionary { get; set; }
 
         #endregion
 

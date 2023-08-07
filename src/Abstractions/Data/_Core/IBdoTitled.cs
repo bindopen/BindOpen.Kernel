@@ -8,6 +8,6 @@
         /// <summary>
         /// The global title of this instance.
         /// </summary>
-        IBdoTextDictionary Title { get; set; }
+        ITBdoDictionary<string> Title { get; set; }
     }
 }

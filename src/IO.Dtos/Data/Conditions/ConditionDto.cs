@@ -8,10 +8,13 @@ namespace BindOpen.System.Data.Conditions
     /// </summary>
     [XmlType("Condition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "condition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    [XmlInclude(typeof(CompositeConditionDto))]
     [XmlInclude(typeof(BasicConditionDto))]
+    [XmlInclude(typeof(CompositeConditionDto))]
     [XmlInclude(typeof(ReferenceConditionDto))]
-    public abstract class ConditionDto : IBdoDto
+    [JsonDerivedType(typeof(BasicConditionDto), "basic")]
+    [JsonDerivedType(typeof(CompositeConditionDto), "composite")]
+    [JsonDerivedType(typeof(ReferenceConditionDto), "reference")]
+    public abstract class ConditionDto : IBdoDto, IIdentified
     {
         // ------------------------------------------
         // PROPERTIES
@@ -20,11 +23,18 @@ namespace BindOpen.System.Data.Conditions
         #region Properties
 
         /// <summary>
+        /// ID of this instance.
+        /// </summary>
+        [JsonPropertyName("id")]
+        [XmlAttribute("id")]
+        public string Id { get; set; }
+
+        /// <summary>
         /// The value that expresses that the condition is satisfied.
         /// </summary>
         [JsonPropertyName("trueValue")]
         [XmlElement("trueValue")]
-        public bool TrueValue { get; set; } = true;
+        public bool? TrueValue { get; set; }
 
         #endregion
 

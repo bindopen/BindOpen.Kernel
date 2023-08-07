@@ -9,33 +9,30 @@ namespace BindOpen.System.Scoping
     /// </summary>
     public static class BdoExtensions
     {
-        public static IBdoConfiguration CreateConfigFrom(
-            this IBdoScope scope,
-            IBdoExtension extension,
-            string name = null)
+        public static IBdoMetaObject ToMeta(
+            this IBdoExtension extension,
+            IBdoScope scope,
+            string name = null,
+            bool onlyMetaAttributes = true)
         {
-            IBdoConfiguration config = null;
-
             if (scope != null && extension != null)
             {
-                config = BdoData.NewConfig(name);
-
-                config
-                    .WithData(extension)
-                    .UpdateTree(true);
-
-                // we get definition unique name
-
                 var extensionKind = extension.GetValueType().GetExtensionKind();
-                var extensionDefinition = scope.ExtensionStore.GetDefinitionFromType(
+                var extensionDefinition = scope.ExtensionStore?.GetDefinitionFromType(
                     extensionKind,
                     BdoData.Class(extension.GetType()));
-                config.WithDefinition(extensionDefinition?.UniqueName);
 
-                return config;
+                var meta = BdoData.NewMetaObject(name)
+                    .WithDataType(extensionKind, extensionDefinition?.UniqueName)
+                    .WithId(extension?.Id)
+                    .WithData(extension)
+                    .UpdateTree(onlyMetaAttributes)
+                    .WithName(name);
+
+                return meta;
             }
 
-            return config;
+            return null;
         }
     }
 }

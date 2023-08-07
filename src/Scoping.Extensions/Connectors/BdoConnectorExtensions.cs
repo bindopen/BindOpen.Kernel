@@ -4,7 +4,7 @@ using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Meta.Reflection;
 using BindOpen.System.Logging;
 
-namespace BindOpen.System.Scoping.Connectors
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class represents a connection service.
@@ -21,33 +21,35 @@ namespace BindOpen.System.Scoping.Connectors
         /// <param key="log">The log to consider.</param>
         /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the created connector.</returns>
-        public static IBdoConnector CreateConnector(
+        private static IBdoConnector CreateConnector(
             this IBdoScope scope,
-            IBdoConfiguration config,
+            IBdoMetaComposite metaSet,
+            string definitionUniqueName,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             IBdoConnector connector = null;
 
-            if (config != null && scope?.Check(true, log: log) == true)
+            if (metaSet != null && scope?.Check(true, log: log) == true)
             {
                 // we get the connector class reference
 
-                IBdoConnectorDefinition definition = scope.ExtensionStore.GetDefinition<IBdoConnectorDefinition>(config?.DefinitionUniqueName);
+                IBdoConnectorDefinition definition = scope.ExtensionStore.GetDefinition<IBdoConnectorDefinition>(definitionUniqueName);
                 if (definition == null)
                 {
                     log?.AddEvent(EventKinds.Error,
-                        "Could not retrieve the extension connector '" + config.DefinitionUniqueName + "' definitio in scope");
+                        "Could not retrieve the extension connector '" + definitionUniqueName + "' definitio in scope");
                 }
                 else
                 {
                     // we intantiate the connector
+
                     object item = definition.RuntimeType.CreateInstance(log);
 
                     if ((connector = item as IBdoConnector) != null)
                     {
                         connector.DefinitionUniqueName = definition.UniqueName;
-                        connector.UpdateFromMeta(config, true, scope: scope, varSet: varSet);
+                        connector.UpdateFromMeta(metaSet, true, scope: scope, varSet: varSet);
                     }
                 }
             }
@@ -64,13 +66,41 @@ namespace BindOpen.System.Scoping.Connectors
         /// <param key="varSet">The variable element set to use.</param>
         /// <typeparam name="T">The connector class to return.</typeparam>
         /// <returns>Returns the created connector.</returns>
+        public static IBdoConnector CreateConnector(
+            this IBdoScope scope,
+            IBdoMetaObject meta,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var definitionUniqueName = meta.DataType.ClassReference?.DefinitionUniqueName;
+
+            var connector = scope.CreateConnector(meta, definitionUniqueName, varSet, log);
+
+            return connector;
+        }
+
+        /// <summary>
+        /// Creates the instance of the specified definition.
+        /// </summary>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="config">The config to consider.</param>
+        /// <param key="log">The log to consider.</param>
+        /// <param key="varSet">The variable element set to use.</param>
+        /// <typeparam name="T">The connector class to return.</typeparam>
+        /// <returns>Returns the created connector.</returns>
         public static T CreateConnector<T>(
             this IBdoScope scope,
-            IBdoConfiguration config,
+            IBdoMetaComposite metaSet = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null) where T : class, IBdoConnector, new()
         {
-            return scope.CreateConnector(config, varSet, log) as T;
+            var extensionDefinition = scope.ExtensionStore?.GetDefinitionFromType(
+                BdoExtensionKind.Connector,
+                BdoData.Class(typeof(T)));
+
+            var connector = scope.CreateConnector(metaSet, extensionDefinition?.UniqueName, varSet, log) as T;
+
+            return connector;
         }
 
         /// <summary>
@@ -110,17 +140,17 @@ namespace BindOpen.System.Scoping.Connectors
         /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
         public static T Open<T>(
             this IBdoScope scope,
-            IBdoConfiguration config,
+            IBdoMetaObject obj,
             IBdoLog log = null)
             where T : class, IBdoConnection
         {
-            if (config == null)
+            if (obj == null)
             {
                 log?.AddEvent(EventKinds.Error, "Connection missing");
             }
             else if (scope?.Check(true, log: log) == true)
             {
-                var connector = scope.CreateConnector(config, log: log);
+                var connector = scope.CreateConnector(obj, log: log);
 
                 if (connector != null)
                 {
@@ -132,6 +162,32 @@ namespace BindOpen.System.Scoping.Connectors
             }
 
             return default;
+        }
+
+        /// <summary>
+        /// Creates a new literal exp into auto mode.
+        /// </summary>
+        /// <param key="text">The script text to consider.</param>
+        /// <returns>Returns the script exp.</returns>
+        public static T WithConnectionString<T>(
+            this T metaSet,
+            string connectionString)
+            where T : IBdoMetaComposite
+        {
+            metaSet?.Add(("connectionString", connectionString));
+            return metaSet;
+        }
+
+        /// <summary>
+        /// Creates a new literal exp into auto mode.
+        /// </summary>
+        /// <param key="text">The script text to consider.</param>
+        /// <returns>Returns the script exp.</returns>
+        public static string GetConnectionString<T>(
+            this T metaSet)
+            where T : IBdoMetaComposite
+        {
+            return metaSet?.GetData<string>("connectionString");
         }
     }
 }

@@ -35,12 +35,13 @@ namespace BindOpen.System.Scoping.Script
                 .WithKind(kind);
 
         public static TBdoScriptword<T> NewWord<T>(
-            IBdoConfiguration config)
+            IBdoMetaObject meta)
         {
             var word = new TBdoScriptword<T>();
+
             word
-                .WithDefinition(config.DefinitionUniqueName)
-                .With(config.Items?.ToArray());
+                .WithDataType(BdoExtensionKind.Scriptword, meta?.DataType.ClassReference?.DefinitionUniqueName)
+                .With(meta.Items?.ToArray());
 
             return word;
         }
@@ -53,12 +54,13 @@ namespace BindOpen.System.Scoping.Script
                 .WithKind(kind);
 
         public static BdoScriptword NewWord(
-            IBdoConfiguration config)
+            IBdoMetaObject meta)
         {
             var word = new BdoScriptword();
+
             word
-                .WithDefinition(config.DefinitionUniqueName)
-                .With(config.Items?.ToArray());
+                .WithDataType(BdoExtensionKind.Scriptword, meta?.DataType.ClassReference?.DefinitionUniqueName)
+                .With(meta.Items?.ToArray());
 
             return word;
         }

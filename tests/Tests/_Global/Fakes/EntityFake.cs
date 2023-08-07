@@ -1,7 +1,6 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
-using BindOpen.System.Scoping.Entities;
-using BindOpen.System.Scoping.Functions;
+using BindOpen.System.Scoping;
 using System;
 using System.ComponentModel;
 
@@ -17,6 +16,8 @@ namespace BindOpen.System.Tests
     )]
     public class EntityFake : BdoEntity
     {
+        public static string __DefinitionUniqueName = "bindopen.system.tests$testEntity";
+
         // -----------------------------------------------
         // VARIABLES
         // -----------------------------------------------
@@ -66,7 +67,7 @@ namespace BindOpen.System.Tests
         /// </summary>
         [BdoProperty(Name = "inputs")]
         [BdoFunction(Name = "input")]
-        public BdoMetaSet Inputs { get; set; }
+        public BdoMetaComposite Inputs { get; set; }
 
         /// <summary>
         /// The sub entity of this instance.

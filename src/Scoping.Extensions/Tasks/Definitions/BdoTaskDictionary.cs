@@ -1,6 +1,6 @@
-﻿using BindOpen.System.Scoping.Tasks;
+﻿using BindOpen.System.Scoping;
 
-namespace BindOpen.System.Scoping.Tasks
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class represents a DTO task dico.

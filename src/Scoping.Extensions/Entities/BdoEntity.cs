@@ -1,6 +1,6 @@
-﻿using BindOpen.System.Scoping.Entities;
+﻿using BindOpen.System.Data;
 
-namespace BindOpen.System.Scoping.Entities
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class represents a entity.
@@ -18,6 +18,7 @@ namespace BindOpen.System.Scoping.Entities
         /// </summary>
         protected BdoEntity() : base()
         {
+            this.WithDefinition(BdoExtensionKind.Entity);
         }
 
         #endregion

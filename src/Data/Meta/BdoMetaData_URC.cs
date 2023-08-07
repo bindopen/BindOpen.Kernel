@@ -23,9 +23,7 @@ namespace BindOpen.System.Data.Meta
             {
                 if (updateModes.Has(UpdateModes.Incremental_UpdateCommon))
                 {
-                    var spec = meta.GetSpec();
-
-                    this.WithDataType(spec.DataType);
+                    this.WithDataType(meta.DataType);
                     this.WithDataMode(meta.DataMode);
                     if (meta.DataMode == DataMode.Any || meta.DataMode == DataMode.Reference)
                     {

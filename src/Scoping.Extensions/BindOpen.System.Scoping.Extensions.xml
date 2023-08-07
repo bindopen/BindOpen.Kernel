@@ -4,79 +4,79 @@
         <name>BindOpen.System.Scoping.Extensions</name>
     </assembly>
     <members>
-        <member name="T:BindOpen.System.Scoping.Connectors.BdoConnection">
+        <member name="T:BindOpen.System.Scoping.BdoConnection">
             <summary>
             This class represents a connection.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.BdoConnection.Connector">
+        <member name="P:BindOpen.System.Scoping.BdoConnection.Connector">
             <summary>
             The connector of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.BdoConnection.ConnectionString">
+        <member name="P:BindOpen.System.Scoping.BdoConnection.ConnectionString">
             <summary>
             The connection string of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.BdoConnection.ConnectionTimeout">
+        <member name="P:BindOpen.System.Scoping.BdoConnection.ConnectionTimeout">
             <summary>
             The connection timeout of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.BdoConnection.State">
+        <member name="P:BindOpen.System.Scoping.BdoConnection.State">
             <summary>
             The state of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.BdoConnection.Connect(BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Scoping.BdoConnection.Connect(BindOpen.System.Logging.IBdoLog)">
             <summary>
             Connects this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.BdoConnection.Disconnect(BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Scoping.BdoConnection.Disconnect(BindOpen.System.Logging.IBdoLog)">
             <summary>
             Disconnects this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.BdoConnection.Dispose(System.Boolean)">
+        <member name="M:BindOpen.System.Scoping.BdoConnection.Dispose(System.Boolean)">
             <summary>
             Disposes this instance. 
             </summary>
             <param key="isDisposing">Indicates whether this instance is disposing</param>
         </member>
-        <member name="T:BindOpen.System.Scoping.Connectors.BdoConnector">
+        <member name="T:BindOpen.System.Scoping.BdoConnector">
             <summary>
             This class represents a connector.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.BdoConnector.#ctor">
+        <member name="M:BindOpen.System.Scoping.BdoConnector.#ctor">
             <summary>
             Instantiates a new instance of the BdoConnector class.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.BdoConnector.ConnectionString">
+        <member name="P:BindOpen.System.Scoping.BdoConnector.ConnectionString">
             <summary>
             The connection string of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.BdoConnector.ConnectionTimeOut">
+        <member name="P:BindOpen.System.Scoping.BdoConnector.ConnectionTimeOut">
             <summary>
             The connection string of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.BdoConnector.NewConnection(BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Scoping.BdoConnector.NewConnection(BindOpen.System.Logging.IBdoLog)">
             <summary>
             Creates a new connection.
             </summary>
             <param key="log">The log to consider.</param>
         </member>
-        <member name="T:BindOpen.System.Scoping.Connectors.BdoConnectorExtensions">
+        <member name="T:BindOpen.System.Scoping.BdoConnectorExtensions">
             <summary>
             This class represents a connection service.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.BdoConnectorExtensions.CreateConnector(BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.Meta.IBdoConfiguration,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Scoping.BdoConnectorExtensions.CreateConnector(BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.Meta.IBdoConfiguration,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -86,7 +86,7 @@
             <param key="varSet">The variable element set to use.</param>
             <returns>Returns the created connector.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.BdoConnectorExtensions.CreateConnector``1(BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.Meta.IBdoConfiguration,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Scoping.BdoConnectorExtensions.CreateConnector``1(BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.Meta.IBdoConfiguration,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -97,7 +97,7 @@
             <typeparam name="T">The connector class to return.</typeparam>
             <returns>Returns the created connector.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.BdoConnectorExtensions.Open``1(BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.IBdoDatasource,System.String,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Scoping.BdoConnectorExtensions.Open``1(BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.IBdoDatasource,System.String,BindOpen.System.Logging.IBdoLog)">
             <summary>
             Creates a connector.
             </summary>
@@ -107,7 +107,7 @@
             <param key="log">The log of execution to consider.</param>
             <returns>Returns True if the connector has been opened. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.BdoConnectorExtensions.Open``1(BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.Meta.IBdoConfiguration,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Scoping.BdoConnectorExtensions.Open``1(BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.Meta.IBdoConfiguration,BindOpen.System.Logging.IBdoLog)">
             <summary>
             Creates a connector using the specified data module and connector unique name.
             </summary>
@@ -116,86 +116,86 @@
             <param key="log">The log of execution to consider.</param>
             <returns>Returns True if the connector has been opened. False otherwise.</returns>
         </member>
-        <member name="T:BindOpen.System.Scoping.Connectors.BdoConnectorDefinition">
+        <member name="T:BindOpen.System.Scoping.BdoConnectorDefinition">
             <summary>
             This class represents a DTO connector definition.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Connectors.BdoConnectorDefinition.DatasourceKind">
+        <member name="P:BindOpen.System.Scoping.BdoConnectorDefinition.DatasourceKind">
             <summary>
             Data source kind of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.BdoConnectorDefinition.#ctor(System.String,BindOpen.System.Scoping.IBdoPackageDefinition)">
+        <member name="M:BindOpen.System.Scoping.BdoConnectorDefinition.#ctor(System.String,BindOpen.System.Scoping.IBdoPackageDefinition)">
             <summary>
             Instantiates a new instance of the ConnectorDefinition class.
             </summary>
             <param key="name">The name to consider.</param>
             <param key="extensionDefinition">The extensition definition to consider.</param>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.BdoConnectorDefinition.Key">
+        <member name="M:BindOpen.System.Scoping.BdoConnectorDefinition.Key">
             <summary>
             Returns the key of this instance.
             </summary>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.System.Scoping.Connectors.BdoConnectorDefinitionExtensions">
+        <member name="T:BindOpen.System.Scoping.BdoConnectorDefinitionExtensions">
             <summary>
             This class represents a connection service.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.BdoConnectorDefinitionExtensions.Update(BindOpen.System.Scoping.Connectors.IBdoConnectorDefinition,BindOpen.System.Scoping.Connectors.IBdoConnectorDefinition)">
+        <member name="M:BindOpen.System.Scoping.BdoConnectorDefinitionExtensions.Update(BindOpen.System.Scoping.IBdoConnectorDefinition,BindOpen.System.Scoping.IBdoConnectorDefinition)">
             <summary>
             Updates this instance with the specified attribute information.
             </summary>
             <param key="definition">The definition to consider.</param>
             <param key="attribute">The attribute to consider.</param>
         </member>
-        <member name="T:BindOpen.System.Scoping.Connectors.BdoConnectorDictionary">
+        <member name="T:BindOpen.System.Scoping.BdoConnectorDictionary">
             <summary>
             This class represents a DTO connector dico.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.BdoConnectorDictionary.#ctor">
+        <member name="M:BindOpen.System.Scoping.BdoConnectorDictionary.#ctor">
             <summary>
             Instantiates a new instance of the BdoConnectorDictionary class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Connectors.IBdoConfigurationExtensions">
+        <member name="T:BindOpen.System.Scoping.IBdoConfigurationExtensions">
             <summary>
             This class represents a data exp that can contain a literal and script texts.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.IBdoConfigurationExtensions.WithConnectionString``1(``0,System.String)">
+        <member name="M:BindOpen.System.Scoping.IBdoConfigurationExtensions.WithConnectionString``1(``0,System.String)">
             <summary>
             Creates a new literal exp into auto mode.
             </summary>
             <param key="text">The script text to consider.</param>
             <returns>Returns the script exp.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Connectors.IBdoConfigurationExtensions.GetConnectionString``1(``0)">
+        <member name="M:BindOpen.System.Scoping.IBdoConfigurationExtensions.GetConnectionString``1(``0)">
             <summary>
             Creates a new literal exp into auto mode.
             </summary>
             <param key="text">The script text to consider.</param>
             <returns>Returns the script exp.</returns>
         </member>
-        <member name="T:BindOpen.System.Scoping.Entities.BdoEntity">
+        <member name="T:BindOpen.System.Scoping.BdoEntity">
             <summary>
             This class represents a entity.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Entities.BdoEntity.#ctor">
+        <member name="M:BindOpen.System.Scoping.BdoEntity.#ctor">
             <summary>
             Instantiates a new instance of the BdoEntity class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Entities.BdoEntityExtensions">
+        <member name="T:BindOpen.System.Scoping.BdoEntityExtensions">
             <summary>
             This class represents an application 
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Entities.BdoEntityExtensions.CreateEntity(BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.Meta.IBdoConfiguration,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Scoping.BdoEntityExtensions.CreateEntity(BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.Meta.IBdoConfiguration,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -205,7 +205,7 @@
             <param key="varSet">The variable element set to use.</param>
             <returns>Returns the created entity.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Entities.BdoEntityExtensions.CreateEntity``1(BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.Meta.IBdoConfiguration,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Scoping.BdoEntityExtensions.CreateEntity``1(BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.Meta.IBdoConfiguration,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -216,67 +216,67 @@
             <typeparam name="T">The entity class to return.</typeparam>
             <returns>Returns the created entity.</returns>
         </member>
-        <member name="T:BindOpen.System.Scoping.Entities.BdoEntityDefinition">
+        <member name="T:BindOpen.System.Scoping.BdoEntityDefinition">
             <summary>
             This class represents the entity definition.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Entities.BdoEntityDefinition.ClassReference">
+        <member name="P:BindOpen.System.Scoping.BdoEntityDefinition.ClassReference">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Entities.BdoEntityDefinition.RuntimeType">
+        <member name="P:BindOpen.System.Scoping.BdoEntityDefinition.RuntimeType">
             <summary>
             The runtime type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Entities.BdoEntityDefinition.ViewerDictionary">
+        <member name="P:BindOpen.System.Scoping.BdoEntityDefinition.ViewerDictionary">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Entities.BdoEntityDefinition.#ctor(System.String,BindOpen.System.Scoping.IBdoPackageDefinition,System.String)">
+        <member name="M:BindOpen.System.Scoping.BdoEntityDefinition.#ctor(System.String,BindOpen.System.Scoping.IBdoPackageDefinition,System.String)">
             <summary>
             Instantiates a new instance of the EntityDefinition class.
             </summary>
             <param key="name">The name to consider.</param>
             <param key="extensionDefinition">The extensition definition to consider.</param>
         </member>
-        <member name="M:BindOpen.System.Scoping.Entities.BdoEntityDefinition.Key">
+        <member name="M:BindOpen.System.Scoping.BdoEntityDefinition.Key">
             <summary>
             Returns the key of this instance.
             </summary>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.System.Scoping.Entities.BdoEntityDefinitionExtensions">
+        <member name="T:BindOpen.System.Scoping.BdoEntityDefinitionExtensions">
             <summary>
             This class represents an application 
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Entities.BdoEntityDefinitionExtensions.Update``1(``0,BindOpen.System.Scoping.Entities.IBdoEntityDefinition)">
+        <member name="M:BindOpen.System.Scoping.BdoEntityDefinitionExtensions.Update``1(``0,BindOpen.System.Scoping.IBdoEntityDefinition)">
             <summary>
             Updates this instance with the specified attribute information.
             </summary>
             <param key="definition">The definition to consider.</param>
             <param key="attribute">The attribute to consider.</param>
         </member>
-        <member name="T:BindOpen.System.Scoping.Entities.BdoEntityDictionary">
+        <member name="T:BindOpen.System.Scoping.BdoEntityDictionary">
             <summary>
             This class represents a DTO entity dico.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Entities.BdoEntityDictionary.#ctor">
+        <member name="M:BindOpen.System.Scoping.BdoEntityDictionary.#ctor">
             <summary>
             Instantiates a new instance of the BdoEntityDictionary class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Functions.BdoFunctionExtensions">
+        <member name="T:BindOpen.System.Scoping.BdoFunctionExtensions">
             <summary>
             This class represents an application 
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Functions.BdoFunctionExtensions.GetFunctionDefinitionsWithName(BindOpen.System.Scoping.Stores.IBdoExtensionStore,System.String,System.Boolean)">
+        <member name="M:BindOpen.System.Scoping.BdoFunctionExtensions.GetFunctionDefinitionsWithName(BindOpen.System.Scoping.Stores.IBdoExtensionStore,System.String,System.Boolean)">
             <summary>
             Returns the word definitions with the specified name.
             </summary>
@@ -284,81 +284,81 @@
             <param key="parentDefinition">The parent definition.</param>
             <returns>The script words with the specified name.</returns>
         </member>
-        <member name="T:BindOpen.System.Scoping.Functions.BdoFunctionDefinition">
+        <member name="T:BindOpen.System.Scoping.BdoFunctionDefinition">
             <summary>
             This class represents a function definition.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.BdoFunctionDefinition.ParentDataType">
+        <member name="P:BindOpen.System.Scoping.BdoFunctionDefinition.ParentDataType">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.BdoFunctionDefinition.OutputDataType">
+        <member name="P:BindOpen.System.Scoping.BdoFunctionDefinition.OutputDataType">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.BdoFunctionDefinition.RuntimeClassType">
+        <member name="P:BindOpen.System.Scoping.BdoFunctionDefinition.RuntimeClassType">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.BdoFunctionDefinition.RuntimeFunction">
+        <member name="P:BindOpen.System.Scoping.BdoFunctionDefinition.RuntimeFunction">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.BdoFunctionDefinition.RuntimeScopedFunction">
+        <member name="P:BindOpen.System.Scoping.BdoFunctionDefinition.RuntimeScopedFunction">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Functions.BdoFunctionDefinition.RuntimeBasicFunction">
+        <member name="P:BindOpen.System.Scoping.BdoFunctionDefinition.RuntimeBasicFunction">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Functions.BdoFunctionDefinition.#ctor(System.String,BindOpen.System.Scoping.IBdoPackageDefinition,System.String)">
+        <member name="M:BindOpen.System.Scoping.BdoFunctionDefinition.#ctor(System.String,BindOpen.System.Scoping.IBdoPackageDefinition,System.String)">
             <summary>
             Instantiates a new instance of the FunctionDefinition class. 
             </summary>
             <param key="name">The name to consider.</param>
             <param key="extensionDefinition">The extensition definition to consider.</param>
         </member>
-        <member name="T:BindOpen.System.Scoping.Functions.BdoFunctionDefinitionExtensions">
+        <member name="T:BindOpen.System.Scoping.BdoFunctionDefinitionExtensions">
             <summary>
             This class represents an application 
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Functions.BdoFunctionDefinitionExtensions.Update(BindOpen.System.Scoping.Functions.IBdoFunctionDefinition,BindOpen.System.Scoping.Functions.IBdoFunctionDefinition)">
+        <member name="M:BindOpen.System.Scoping.BdoFunctionDefinitionExtensions.Update(BindOpen.System.Scoping.IBdoFunctionDefinition,BindOpen.System.Scoping.IBdoFunctionDefinition)">
             <summary>
             Updates this instance with the specified attribute information.
             </summary>
             <param key="definition">The definition to consider.</param>
             <param key="attribute">The attribute to consider.</param>
         </member>
-        <member name="T:BindOpen.System.Scoping.Functions.BdoFunctionDictionary">
+        <member name="T:BindOpen.System.Scoping.BdoFunctionDictionary">
             <summary>
             This class represents a DTO function dico.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Functions.BdoFunctionDictionary.#ctor">
+        <member name="M:BindOpen.System.Scoping.BdoFunctionDictionary.#ctor">
             <summary>
             Instantiates a new instance of the BdoFunctionDictionary class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Tasks.BdoTask">
+        <member name="T:BindOpen.System.Scoping.BdoTask">
             <summary>
             This class represents an task.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTask.#ctor">
+        <member name="M:BindOpen.System.Scoping.BdoTask.#ctor">
             <summary>
             Instantiates a new instance of the BdoTask class.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTask.ExecuteAsync(System.Threading.CancellationToken,BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Data.RuntimeModes,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Scoping.BdoTask.ExecuteAsync(System.Threading.CancellationToken,BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Data.RuntimeModes,BindOpen.System.Logging.IBdoLog)">
             <summary>
             Executes this instance.
             </summary>
@@ -368,7 +368,7 @@
             <param key="runtimeMode">The runtime mode to consider.</param>
             <returns>Returns the output value of the execution.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTask.Execute(System.Threading.CancellationToken,BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Data.RuntimeModes,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Scoping.BdoTask.Execute(System.Threading.CancellationToken,BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Data.RuntimeModes,BindOpen.System.Logging.IBdoLog)">
             <summary>
             Executes this instance.
             </summary>
@@ -378,7 +378,7 @@
             <param key="runtimeMode">The runtime mode to consider.</param>
             <returns>Returns the output value of the execution.</returns>
         </member>
-        <member name="T:BindOpen.System.Scoping.Tasks.BdoTaskExtensions">
+        <member name="T:BindOpen.System.Scoping.BdoTaskExtensions">
             <summary>
             This class represents an application 
             </summary>
@@ -386,7 +386,7 @@
             This class represents an application 
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.CreateTask(BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.Meta.IBdoConfiguration,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.CreateTask(BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.Meta.IBdoConfiguration,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -396,7 +396,7 @@
             <param key="varSet">The variable element set to use.</param>
             <returns>Returns the created task.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.CreateTask``1(BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.Meta.IBdoConfiguration,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.CreateTask``1(BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.Meta.IBdoConfiguration,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Logging.IBdoLog)">
             <summary>
             Creates the instance of the specified definition.
             </summary>
@@ -407,200 +407,200 @@
             <typeparam name="T">The entity class to return.</typeparam>
             <returns>Returns the created entity.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.WithProperties``1(``0,System.Collections.Generic.KeyValuePair{System.String,System.Object}[])">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.WithProperties``1(``0,System.Collections.Generic.KeyValuePair{System.String,System.Object}[])">
             <summary>
             Adds a new value to this instance.
             </summary>
             <param key="pairs">The value to add.</param>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.WithProperties``1(``0,System.ValueTuple{System.String,System.Object}[])">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.WithProperties``1(``0,System.ValueTuple{System.String,System.Object}[])">
             <summary>
             Adds a new value to this instance with the specified key and text.
             </summary>
             <param key="text">The text to consider.</param>
             <returns>Returns the added data key value.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.WithProperties``1(``0,System.ValueTuple{System.String,BindOpen.System.Data.DataValueTypes,System.Object}[])">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.WithProperties``1(``0,System.ValueTuple{System.String,BindOpen.System.Data.DataValueTypes,System.Object}[])">
             <summary>
             Adds a new value to this instance with the specified key and text.
             </summary>
             <param key="text">The text to consider.</param>
             <returns>Returns the added data key value.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.AddProperties``1(``0,System.Collections.Generic.KeyValuePair{System.String,System.Object}[])">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.AddProperties``1(``0,System.Collections.Generic.KeyValuePair{System.String,System.Object}[])">
             <summary>
             Adds a new value to this instance.
             </summary>
             <param key="pairs">The value to add.</param>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.AddProperties``1(``0,System.ValueTuple{System.String,System.Object}[])">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.AddProperties``1(``0,System.ValueTuple{System.String,System.Object}[])">
             <summary>
             Adds a new value to this instance with the specified key and text.
             </summary>
             <param key="text">The text to consider.</param>
             <returns>Returns the added data key value.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.AddProperties``1(``0,System.ValueTuple{System.String,BindOpen.System.Data.DataValueTypes,System.Object}[])">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.AddProperties``1(``0,System.ValueTuple{System.String,BindOpen.System.Data.DataValueTypes,System.Object}[])">
             <summary>
             Adds a new value to this instance with the specified key and text.
             </summary>
             <param key="text">The text to consider.</param>
             <returns>Returns the added data key value.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.WithInputs``1(``0,System.Collections.Generic.KeyValuePair{System.String,System.Object}[])">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.WithInputs``1(``0,System.Collections.Generic.KeyValuePair{System.String,System.Object}[])">
             <summary>
             Adds a new value to this instance.
             </summary>
             <param key="pairs">The value to add.</param>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.WithInputs``1(``0,System.ValueTuple{System.String,System.Object}[])">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.WithInputs``1(``0,System.ValueTuple{System.String,System.Object}[])">
             <summary>
             Adds a new value to this instance with the specified key and text.
             </summary>
             <param key="text">The text to consider.</param>
             <returns>Returns the added data key value.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.WithInputs``1(``0,System.ValueTuple{System.String,BindOpen.System.Data.DataValueTypes,System.Object}[])">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.WithInputs``1(``0,System.ValueTuple{System.String,BindOpen.System.Data.DataValueTypes,System.Object}[])">
             <summary>
             Adds a new value to this instance with the specified key and text.
             </summary>
             <param key="text">The text to consider.</param>
             <returns>Returns the added data key value.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.AddInputs``1(``0,System.Collections.Generic.KeyValuePair{System.String,System.Object}[])">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.AddInputs``1(``0,System.Collections.Generic.KeyValuePair{System.String,System.Object}[])">
             <summary>
             Adds a new value to this instance.
             </summary>
             <param key="pairs">The value to add.</param>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.AddInputs``1(``0,System.ValueTuple{System.String,System.Object}[])">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.AddInputs``1(``0,System.ValueTuple{System.String,System.Object}[])">
             <summary>
             Adds a new value to this instance with the specified key and text.
             </summary>
             <param key="text">The text to consider.</param>
             <returns>Returns the added data key value.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.AddInputs``1(``0,System.ValueTuple{System.String,BindOpen.System.Data.DataValueTypes,System.Object}[])">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.AddInputs``1(``0,System.ValueTuple{System.String,BindOpen.System.Data.DataValueTypes,System.Object}[])">
             <summary>
             Adds a new value to this instance with the specified key and text.
             </summary>
             <param key="text">The text to consider.</param>
             <returns>Returns the added data key value.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.WithOutputs``1(``0,System.Collections.Generic.KeyValuePair{System.String,System.Object}[])">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.WithOutputs``1(``0,System.Collections.Generic.KeyValuePair{System.String,System.Object}[])">
             <summary>
             Adds a new value to this instance.
             </summary>
             <param key="pairs">The value to add.</param>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.WithOutputs``1(``0,System.ValueTuple{System.String,System.Object}[])">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.WithOutputs``1(``0,System.ValueTuple{System.String,System.Object}[])">
             <summary>
             Adds a new value to this instance with the specified key and text.
             </summary>
             <param key="text">The text to consider.</param>
             <returns>Returns the added data key value.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.WithOutputs``1(``0,System.ValueTuple{System.String,BindOpen.System.Data.DataValueTypes,System.Object}[])">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.WithOutputs``1(``0,System.ValueTuple{System.String,BindOpen.System.Data.DataValueTypes,System.Object}[])">
             <summary>
             Adds a new value to this instance with the specified key and text.
             </summary>
             <param key="text">The text to consider.</param>
             <returns>Returns the added data key value.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.AddOutputs``1(``0,System.Collections.Generic.KeyValuePair{System.String,System.Object}[])">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.AddOutputs``1(``0,System.Collections.Generic.KeyValuePair{System.String,System.Object}[])">
             <summary>
             Adds a new value to this instance.
             </summary>
             <param key="pairs">The value to add.</param>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.AddOutputs``1(``0,System.ValueTuple{System.String,System.Object}[])">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.AddOutputs``1(``0,System.ValueTuple{System.String,System.Object}[])">
             <summary>
             Adds a new value to this instance with the specified key and text.
             </summary>
             <param key="text">The text to consider.</param>
             <returns>Returns the added data key value.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskExtensions.AddOutputs``1(``0,System.ValueTuple{System.String,BindOpen.System.Data.DataValueTypes,System.Object}[])">
+        <member name="M:BindOpen.System.Scoping.BdoTaskExtensions.AddOutputs``1(``0,System.ValueTuple{System.String,BindOpen.System.Data.DataValueTypes,System.Object}[])">
             <summary>
             Adds a new value to this instance with the specified key and text.
             </summary>
             <param key="text">The text to consider.</param>
             <returns>Returns the added data key value.</returns>
         </member>
-        <member name="T:BindOpen.System.Scoping.Tasks.BdoTaskDefinition">
+        <member name="T:BindOpen.System.Scoping.BdoTaskDefinition">
             <summary>
             This class represents a task definition.
             </summary>
             <seealso cref="!:BdoMeta_Config"/>
         </member>
-        <member name="P:BindOpen.System.Scoping.Tasks.BdoTaskDefinition.ClassReference">
+        <member name="P:BindOpen.System.Scoping.BdoTaskDefinition.ClassReference">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Tasks.BdoTaskDefinition.IsExecutable">
+        <member name="P:BindOpen.System.Scoping.BdoTaskDefinition.IsExecutable">
             <summary>
             Indicates whether this instance is executable.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Tasks.BdoTaskDefinition.MaximumIndex">
+        <member name="P:BindOpen.System.Scoping.BdoTaskDefinition.MaximumIndex">
             <summary>
             Maximum index of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Tasks.BdoTaskDefinition.OutputSpecs">
+        <member name="P:BindOpen.System.Scoping.BdoTaskDefinition.OutputSpecs">
             <summary>
             Output specification of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Tasks.BdoTaskDefinition.RuntimeType">
+        <member name="P:BindOpen.System.Scoping.BdoTaskDefinition.RuntimeType">
             <summary>
             The runtime type of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskDefinition.#ctor(System.String,BindOpen.System.Scoping.IBdoPackageDefinition)">
+        <member name="M:BindOpen.System.Scoping.BdoTaskDefinition.#ctor(System.String,BindOpen.System.Scoping.IBdoPackageDefinition)">
             <summary>
             Instantiates a new instance of the TaskDefinition class. 
             </summary>
             <param key="name">The name to consider.</param>
             <param key="extensionDefinition">The extensition definition to consider.</param>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskDefinition.Key">
+        <member name="M:BindOpen.System.Scoping.BdoTaskDefinition.Key">
             <summary>
             Returns the key of this instance.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskDefinition.Repair(BindOpen.System.Scoping.Tasks.IBdoTaskDefinition)">
+        <member name="M:BindOpen.System.Scoping.BdoTaskDefinition.Repair(BindOpen.System.Scoping.IBdoTaskDefinition)">
             <summary>
             Repairs this instance basing on the specified definition task.
             </summary>
             <param key="taskDefinition">The definition task to consider.</param>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskDefinition.Dispose(System.Boolean)">
+        <member name="M:BindOpen.System.Scoping.BdoTaskDefinition.Dispose(System.Boolean)">
             <summary>
             Disposes this instance. 
             </summary>
             <param key="isDisposing">Indicates whether this instance is disposing</param>
         </member>
-        <member name="T:BindOpen.System.Scoping.Tasks.BdoTaskDefinitionExtensions">
+        <member name="T:BindOpen.System.Scoping.BdoTaskDefinitionExtensions">
             <summary>
             This class represents an application 
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskDefinitionExtensions.Update(BindOpen.System.Scoping.Tasks.IBdoTaskDefinition,BindOpen.System.Scoping.Tasks.IBdoTaskDefinition)">
+        <member name="M:BindOpen.System.Scoping.BdoTaskDefinitionExtensions.Update(BindOpen.System.Scoping.IBdoTaskDefinition,BindOpen.System.Scoping.IBdoTaskDefinition)">
             <summary>
             Updates this instance with the specified attribute information.
             </summary>
             <param key="definition">The definition to consider.</param>
             <param key="attribute">The attribute to consider.</param>
         </member>
-        <member name="T:BindOpen.System.Scoping.Tasks.BdoTaskDictionary">
+        <member name="T:BindOpen.System.Scoping.BdoTaskDictionary">
             <summary>
             This class represents a DTO task dico.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Tasks.BdoTaskDictionary.#ctor">
+        <member name="M:BindOpen.System.Scoping.BdoTaskDictionary.#ctor">
             <summary>
             Instantiates a new instance of the BdoTaskDictionary class.
             </summary>

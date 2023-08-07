@@ -35,9 +35,7 @@ namespace BindOpen.System.Data.Meta
             string id = null)
             : base(name, namePreffix, id)
         {
-            Specs = BdoData.NewSpecSet(
-                BdoData.NewSpec()
-                    .WithDataType(DataValueTypes.Object));
+            this.WithDataType(DataValueTypes.Object);
         }
 
         #endregion
@@ -142,20 +140,20 @@ namespace BindOpen.System.Data.Meta
         public int Count
             => _propertySet?.Count ?? 0;
 
-        public IBdoMetaData Insert(string key, IBdoMetaData item)
+        public IBdoMetaData Insert(IBdoMetaData item)
         {
-            _propertySet ??= BdoData.NewMetaSet();
-            return _propertySet.Insert(key, item);
+            _propertySet ??= BdoData.NewMetaComposite();
+            return _propertySet.Insert(item);
         }
 
         public override void Clear()
         {
             //base.Clear();
-            _propertySet ??= BdoData.NewMetaSet();
+            _propertySet ??= BdoData.NewMetaComposite();
             _propertySet.Clear();
         }
 
-        public IBdoMetaSet Add(
+        public IBdoMetaComposite Add(
             params IBdoMetaData[] items)
         {
             (this as ITBdoSet<IBdoMetaData>).Add(items);

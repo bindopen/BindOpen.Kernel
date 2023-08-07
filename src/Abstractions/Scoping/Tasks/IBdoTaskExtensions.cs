@@ -1,4 +1,4 @@
-﻿namespace BindOpen.System.Scoping.Tasks
+﻿namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class represents an application 

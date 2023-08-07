@@ -19,29 +19,22 @@ namespace BindOpen.System.Data.Assemblies
         /// <summary>
         /// The library name of this instance.
         /// </summary>
-        [JsonPropertyName("definitionUniqueName")]
-        [XmlAttribute("definitionUniqueName")]
-        public string DefinitionUniqueName { get; set; }
-
-        /// <summary>
-        /// The library name of this instance.
-        /// </summary>
         [JsonPropertyName("assemblyName")]
-        [XmlAttribute("assemblyName")]
+        [XmlElement("assemblyName")]
         public string AssemblyName { get; set; }
 
         /// <summary>
         /// The library version of this instance.
         /// </summary>
         [JsonPropertyName("assemblyVersion")]
-        [XmlAttribute("assemblyVersion")]
+        [XmlElement("assemblyVersion")]
         public string AssemblyVersion { get; set; }
 
         /// <summary>
         /// The file name of this instance.
         /// </summary>
         [JsonPropertyName("assemblyFileName")]
-        [XmlAttribute("assemblyFileName")]
+        [XmlElement("assemblyFileName")]
         public string AssemblyFileName { get; set; }
 
         #endregion

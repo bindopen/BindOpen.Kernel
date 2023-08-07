@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 using BindOpen.System.Scoping;
 
-namespace BindOpen.System.Scoping.Functions
+namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This class represents a DTO script word dico.
