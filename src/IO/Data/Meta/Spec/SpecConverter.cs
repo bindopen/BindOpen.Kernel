@@ -37,17 +37,19 @@ namespace BindOpen.System.Data.Meta
             var mapper = new Mapper(config);
             var dto = mapper.Map<SpecDto>(poco);
 
-            dto.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;
-            dto.ClassReference = poco?.DataType.ClassReference?.ToDto();
-
             dto.Aliases = poco?.Aliases == null ? null : new List<string>(poco.Aliases);
             dto.AvailableDataModes = poco?.AvailableDataModes == null ? null : new List<DataMode>(poco.AvailableDataModes);
+
+            dto.ClassReference = poco?.DataType.ClassReference?.ToDto();
+
             dto.DataSpecLevels = poco?.DataSpecLevels == null ? null : new List<SpecificationLevels>(poco.DataSpecLevels);
             dto.IsAllocatable = poco?.IsAllocatable == false ? null : poco?.IsAllocatable;
             dto.IsStatic = poco?.IsStatic == false ? null : poco?.IsStatic;
-            dto.MinDataItemNumber = (int?)(poco?.MinDataItemNumber == 0 ? null : poco?.MinDataItemNumber);
             dto.MaxDataItemNumber = (int?)(poco?.MaxDataItemNumber == -1 ? null : poco?.MaxDataItemNumber);
+            dto.MinDataItemNumber = (int?)(poco?.MinDataItemNumber == 0 ? null : poco?.MinDataItemNumber);
             dto.SpecLevels = poco?.SpecLevels == null ? null : new List<SpecificationLevels>(poco.SpecLevels);
+
+            dto.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;
 
             var dataList = poco.DefaultData?.ToObjectList().Select(q => q?.ToMeta().ToDto()).ToList();
             dto.DefaultItems = dataList;
