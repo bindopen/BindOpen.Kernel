@@ -1,4 +1,6 @@
-﻿namespace BindOpen.System.Data.Meta
+﻿using BindOpen.System.Data.Helpers;
+
+namespace BindOpen.System.Data.Meta
 {
     /// <summary>
     /// This class represents a data element set.
@@ -370,5 +372,15 @@
             return spec;
         }
 
+        public static bool OfGroup(
+            this IBdoSpec spec,
+            string groupId)
+        {
+            return
+                spec != null &&
+                (groupId == spec.GroupId
+                    || groupId == StringHelper.__Star
+                    || groupId.BdoKeyEquals(spec?.GroupId));
+        }
     }
 }

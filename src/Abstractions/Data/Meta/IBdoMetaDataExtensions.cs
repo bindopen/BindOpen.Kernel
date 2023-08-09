@@ -1,5 +1,4 @@
-﻿using BindOpen.System.Data.Helpers;
-using BindOpen.System.Logging;
+﻿using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
 using System.Linq;
 
@@ -83,11 +82,7 @@ namespace BindOpen.System.Data.Meta
             string groupId)
         {
             var spec = meta?.GetSpec();
-            return
-                meta != null &&
-                (groupId == spec?.GroupId
-                    || groupId == StringHelper.__Star
-                    || groupId.BdoKeyEquals(spec?.GroupId));
+            return spec == null || spec.OfGroup(groupId);
         }
     }
 }

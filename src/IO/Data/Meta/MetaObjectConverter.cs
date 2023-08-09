@@ -34,7 +34,15 @@ namespace BindOpen.System.Data.Meta
             dto.ClassReference = poco?.DataType.ClassReference?.ToDto();
 
             dto.MetaItems = poco.Items?.Select(q => q.ToDto()).ToList();
-            dto.Specs = poco.Specs?.Select(q => q.ToDto()).ToList();
+            dto.Specs = poco.Specs?.Select(q =>
+            {
+                var dto = q.ToDto();
+                if (q.DataType.ValueType == poco.DataType.ValueType)
+                {
+                    dto.ValueType = DataValueTypes.Any;
+                }
+                return dto;
+            }).ToList();
 
             return dto;
         }

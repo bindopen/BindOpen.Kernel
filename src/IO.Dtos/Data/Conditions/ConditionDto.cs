@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel;
+using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
 namespace BindOpen.System.Data.Conditions
@@ -33,8 +34,9 @@ namespace BindOpen.System.Data.Conditions
         /// The value that expresses that the condition is satisfied.
         /// </summary>
         [JsonPropertyName("trueValue")]
-        [XmlElement("trueValue")]
-        public bool? TrueValue { get; set; }
+        [XmlAttribute("trueValue")]
+        [DefaultValue(true)]
+        public bool TrueValue { get; set; }
 
         #endregion
 
