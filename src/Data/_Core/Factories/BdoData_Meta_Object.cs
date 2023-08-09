@@ -67,7 +67,7 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="item">The items to consider.</param>
         public static TBdoMetaObject<T> NewMetaObject<T>(
-            T item)
+            T item = default)
             where T : class
             => NewMetaObject<T, TBdoMetaObject<T>>(null, item);
 
