@@ -15,8 +15,11 @@ namespace BindOpen.System.Tests
         {
             get
             {
-                _appScope ??= BdoScoping.NewScope();
-                _appScope.LoadExtensions(q => q.AddAssemblyFrom<GlobalSetUp>());
+                if (_appScope == null)
+                {
+                    _appScope = BdoScoping.NewScope();
+                    _appScope.LoadExtensions(q => q.AddAssemblyFrom<GlobalSetUp>());
+                }
 
                 return _appScope;
             }
