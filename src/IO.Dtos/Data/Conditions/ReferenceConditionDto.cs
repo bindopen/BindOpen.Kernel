@@ -19,9 +19,9 @@ namespace BindOpen.System.Data.Conditions
         /// <summary>
         /// Data exp DTO representing the condition.
         /// </summary>
-        [JsonPropertyName("reference")]
-        [XmlElement("reference")]
-        public ReferenceDto Reference { get; set; }
+        [JsonPropertyName("ref")]
+        [XmlElement("ref")]
+        public ReferenceDto DataReference { get; set; }
 
         #endregion
 

@@ -20,7 +20,7 @@ namespace BindOpen.System.Data
         {
             return valueType switch
             {
-                DataValueTypes.Boolean or DataValueTypes.Date or DataValueTypes.Integer or DataValueTypes.Number or DataValueTypes.Text or DataValueTypes.ByteArray or DataValueTypes.Time or DataValueTypes.Long or DataValueTypes.ULong => true,
+                DataValueTypes.Boolean or DataValueTypes.Date or DataValueTypes.Integer or DataValueTypes.Number or DataValueTypes.Text or DataValueTypes.Binary or DataValueTypes.Time or DataValueTypes.Long or DataValueTypes.ULong => true,
                 _ => false,
             };
         }
@@ -81,8 +81,8 @@ namespace BindOpen.System.Data
         {
             if (type == null) return DataValueTypes.None;
 
-            if (type == typeof(byte[]))
-                return DataValueTypes.ByteArray;
+            if (type == typeof(byte) || type == typeof(byte?) || type == typeof(byte[]))
+                return DataValueTypes.Binary;
             else if (type.IsArray)
                 type = type.GetElementType();
 

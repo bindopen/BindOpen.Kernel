@@ -12,39 +12,6 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public static T WithDataMode<T>(
-            this T meta,
-            DataMode mode)
-            where T : IBdoMetaData
-        {
-            if (meta != null)
-            {
-                meta.DataMode = mode;
-            }
-
-            return meta;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T WithDataReference<T>(
-            this T meta,
-            IBdoReference reference)
-            where T : IBdoMetaData
-        {
-            if (meta != null)
-            {
-                meta.WithDataMode(DataMode.Reference);
-                meta.Reference = reference;
-            }
-
-            return meta;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public static T WithData<T>(
             this T meta,
             object obj)

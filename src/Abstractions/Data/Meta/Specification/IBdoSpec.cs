@@ -8,7 +8,7 @@ namespace BindOpen.System.Data.Meta
     /// </summary>
     public interface IBdoSpec :
         IBdoObject, IReferenced, IBdoDataTyped, IBdoConditional,
-        IIdentified, INamed, IIndexed,
+        IIdentified, INamed, IIndexed, IBdoDataReferenced,
         IBdoTitled, IBdoDescribed, IBdoDetailed,
         ITChild<IBdoAggregateSpec>,
         ITUpdatable<IBdoSpec>

@@ -105,7 +105,14 @@ namespace BindOpen.System.Data.Meta
         {
             if (spec != null)
             {
-                spec.DefaultData = item;
+                if (item is IBdoReference reference)
+                {
+                    spec.WithDataReference(reference);
+                }
+                else
+                {
+                    spec.DefaultData = item;
+                }
             }
             return spec;
         }

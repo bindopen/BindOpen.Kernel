@@ -21,8 +21,7 @@ namespace BindOpen.System.Data.Meta.Reflection
         {
             List<IBdoMetaData> list;
 
-            var obj = meta?.DataMode == DataMode.Value ?
-                meta.GetData() : null;
+            var obj = meta?.DataReference == null ? meta.GetData() : null;
 
             if (obj != null)
             {
@@ -49,11 +48,8 @@ namespace BindOpen.System.Data.Meta.Reflection
                                 IBdoMetaData subMeta = metaObject[propName];
                                 if (subMeta != null)
                                 {
-                                    if (subMeta.DataMode == DataMode.Value)
-                                    {
-                                        subMeta.WithData(propValue);
-                                        subMeta.UpdateTree();
-                                    }
+                                    subMeta.WithData(propValue);
+                                    subMeta.UpdateTree();
                                 }
                                 else
                                 {

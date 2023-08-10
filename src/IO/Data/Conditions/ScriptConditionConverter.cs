@@ -16,7 +16,7 @@
 
             ReferenceConditionDto dto = new()
             {
-                Reference = poco.Reference.ToDto()
+                DataReference = poco.DataReference.ToDto()
             };
 
             return dto;
@@ -34,7 +34,7 @@
 
             BdoReferenceCondition poco = new()
             {
-                Reference = dto.Reference.ToPoco()
+                DataReference = dto.DataReference.ToPoco()
             };
 
             return poco;
