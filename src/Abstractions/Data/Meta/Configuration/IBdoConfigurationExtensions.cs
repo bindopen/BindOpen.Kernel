@@ -1,4 +1,6 @@
-﻿namespace BindOpen.System.Data.Meta
+﻿using System.Collections.Generic;
+
+namespace BindOpen.System.Data.Meta
 {
     /// <summary>
     /// This class represents an accessibility level extension.
@@ -10,6 +12,20 @@
             if (log != null)
             {
                 log._Children = children;
+            }
+
+            return log;
+        }
+
+        public static T AddChildren<T>(this T log, params IBdoConfiguration[] children) where T : IBdoConfiguration
+        {
+            if (log != null)
+            {
+                log._Children ??= new List<IBdoConfiguration>();
+                foreach (var child in children)
+                {
+                    log._Children.Add(child);
+                }
             }
 
             return log;

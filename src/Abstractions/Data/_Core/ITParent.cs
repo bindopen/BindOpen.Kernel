@@ -17,5 +17,7 @@ namespace BindOpen.System.Data
         bool HasChild(Predicate<T> filter = null);
 
         T InsertChild(Action<T> updater);
+
+        void RemoveChildren(Predicate<T> filter = null);
     }
 }

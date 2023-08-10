@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoCompositeSpec : IBdoSpec, ITParent<IBdoSpec>
+    public interface IBdoAggregateSpec : IBdoSpec, ITParent<IBdoSpec>
     {
     }
 }

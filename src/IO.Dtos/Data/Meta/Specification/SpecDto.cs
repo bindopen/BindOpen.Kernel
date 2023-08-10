@@ -15,7 +15,7 @@ namespace BindOpen.System.Data.Meta
     [XmlRoot(ElementName = "spec", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     [XmlInclude(typeof(SpecDto))]
     [JsonDerivedType(typeof(SpecDto), "spec")]
-    [JsonDerivedType(typeof(CompositeSpecDto), "composite")]
+    [JsonDerivedType(typeof(AggregateSpecDto), "composite")]
     public class SpecDto : IBdoDto, IIdentified
     {
         // --------------------------------------------------
