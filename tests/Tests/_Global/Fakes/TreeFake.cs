@@ -23,7 +23,21 @@ namespace BindOpen.System.Tests
         public string Name { get; set; }
 
         public TreeFake Child(Predicate<TreeFake> filter = null, bool isRecursive = false)
-            => _Children?.FirstOrDefault(q => filter == null || filter(q));
+        {
+            foreach (var child in _Children)
+            {
+                if (filter == null || filter?.Invoke(this) == true)
+                    return child;
+
+                if (isRecursive)
+                {
+                    var subChild = child.Child(filter, true);
+                    if (subChild != null) return subChild;
+                }
+            }
+
+            return null;
+        }
 
         public IEnumerable<TreeFake> Children(Predicate<TreeFake> filter = null)
             => _Children?.Where(q => filter == null || filter(q));

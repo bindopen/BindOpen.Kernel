@@ -12,7 +12,8 @@ Todo list for BindOpen
 - [ ] Implementing IO of specs
 - [ ] Cleaning comments
 - [ ] Making meta data easier: Class vs Entity, Config vs Object
-- [X] Dictinaries are now generic
+- [X] Dictionaries are now generic
+- [ ] Constrainsts of specification
 
 ## Stuff to check out later on
 

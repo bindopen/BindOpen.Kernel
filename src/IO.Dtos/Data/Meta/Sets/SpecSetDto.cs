@@ -37,7 +37,8 @@ namespace BindOpen.System.Data.Meta
         /// The elements of this instance.
         /// </summary>
         [JsonPropertyName("items")]
-        [XmlElement("spec")]
+        [XmlElement("spec", Type = typeof(SpecDto))]
+        [XmlElement("spec.composite", Type = typeof(CompositeSpecDto))]
         public List<SpecDto> Items { get; set; }
 
         #endregion

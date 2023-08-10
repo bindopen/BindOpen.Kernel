@@ -7,7 +7,7 @@ namespace BindOpen.System.Data.Conditions
     /// This class represents a script condition DTO.
     /// </summary>
     [XmlType("ReferenceCondition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "reference.condition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlRoot(ElementName = "condition.reference", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     public class ReferenceConditionDto : ConditionDto
     {
         // ------------------------------------------

@@ -112,15 +112,15 @@ namespace BindOpen.System.Data.Meta
 
         public IBdoConfiguration Child(Predicate<IBdoConfiguration> filter = null, bool isRecursive = false)
         {
-            if (filter == null || filter?.Invoke(this) == true)
-                return this;
-
-            if (isRecursive)
+            foreach (var child in _Children)
             {
-                foreach (var currentChildLog in _Children)
+                if (filter == null || filter?.Invoke(this) == true)
+                    return child;
+
+                if (isRecursive)
                 {
-                    var log = currentChildLog.Child(filter, true);
-                    if (log != null) return log;
+                    var subChild = child.Child(filter, true);
+                    if (subChild != null) return subChild;
                 }
             }
 

@@ -1,21 +1,13 @@
-﻿namespace BindOpen.System.Data.Meta
+﻿using BindOpen.System.Data.Helpers;
+
+namespace BindOpen.System.Data.Meta
 {
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
     public static partial class IBdoSpecExtensions
     {
-        public static T WithChildren<T>(this T log, params IBdoSpec[] children) where T : IBdoSpec
-        {
-            if (log != null)
-            {
-                log._Children = children;
-            }
-
-            return log;
-        }
-
-        public static T WithParent<T>(this T log, IBdoSpec parent) where T : IBdoSpec
+        public static T WithParent<T>(this T log, IBdoCompositeSpec parent) where T : IBdoSpec
         {
             if (log != null)
             {
@@ -370,5 +362,15 @@
             return spec;
         }
 
+        public static bool OfGroup(
+            this IBdoSpec spec,
+            string groupId)
+        {
+            return
+                spec != null &&
+                (groupId == spec.GroupId
+                    || groupId == StringHelper.__Star
+                    || groupId.BdoKeyEquals(spec?.GroupId));
+        }
     }
 }

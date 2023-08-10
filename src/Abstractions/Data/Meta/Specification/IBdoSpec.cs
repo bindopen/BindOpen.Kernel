@@ -8,9 +8,9 @@ namespace BindOpen.System.Data.Meta
     /// </summary>
     public interface IBdoSpec :
         IBdoObject, IReferenced, IBdoDataTyped, IBdoConditional,
-        ITTreeNode<IBdoSpec>,
         IIdentified, INamed, IIndexed,
         IBdoTitled, IBdoDescribed, IBdoDetailed,
+        ITChild<IBdoCompositeSpec>,
         ITUpdatable<IBdoSpec>
     {
         /// <summary>
@@ -105,12 +105,5 @@ namespace BindOpen.System.Data.Meta
         /// <param key="item"></param>
         /// <returns></returns>
         bool IsCompatibleWithData(object item);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="name"></param>
-        /// <returns></returns>
-        IBdoSpec GetSubSpec(string name);
     }
 }
