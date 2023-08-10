@@ -1,6 +1,4 @@
 ﻿using BindOpen.System.Data.Conditions;
-using BindOpen.System.Data.Helpers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -63,7 +61,6 @@ namespace BindOpen.System.Data.Meta
             dataElementSpec.WithAliases(Aliases?.ToArray());
             dataElementSpec.WithValueModes(AvailableDataModes?.ToArray());
             dataElementSpec.WithSpecLevels(SpecLevels?.ToArray());
-            dataElementSpec.WithChildren(SubSpecs?.ToArray());
 
             return dataElementSpec;
         }
@@ -124,46 +121,7 @@ namespace BindOpen.System.Data.Meta
 
         #region ITParent
 
-        public IBdoSpec Parent { get; set; }
-
-        private IList<IBdoSpec> _children = null;
-
-        public IList<IBdoSpec> _Children { get => _children; set { _children = value; } }
-
-        public IEnumerable<IBdoSpec> Children(Predicate<IBdoSpec> filter = null)
-            => _children?.Where(p => filter?.Invoke(p) == true) ?? Enumerable.Empty<IBdoSpec>();
-
-        public IBdoSpec Child(Predicate<IBdoSpec> filter = null, bool isRecursive = false)
-        {
-            if (filter == null || filter?.Invoke(this) == true)
-                return this;
-
-            //q => q?.Condition.Evaluate(scope, varSet, log) == true);
-
-            if (isRecursive)
-            {
-                foreach (var currentChildLog in _Children)
-                {
-                    var log = currentChildLog.Child(filter, true);
-                    if (log != null) return log;
-                }
-            }
-
-            return null;
-        }
-
-        public bool HasChild(Predicate<IBdoSpec> filter = null)
-            => _children?.Any(p => filter?.Invoke(p) == true) ?? false;
-
-        public IBdoSpec InsertChild(Action<IBdoSpec> updater)
-        {
-            var child = BdoData.NewSpec();
-            updater?.Invoke(child);
-
-            child.WithParent(this);
-
-            return child;
-        }
+        public IBdoCompositeSpec Parent { get; set; }
 
         #endregion
 
@@ -334,21 +292,6 @@ namespace BindOpen.System.Data.Meta
         /// Levels of specification of this instance.
         /// </summary>
         public IList<SpecificationLevels> DataSpecLevels { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ITBdoSet<IBdoSpec> SubSpecs { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="name"></param>
-        /// <returns></returns>
-        public IBdoSpec GetSubSpec(string name)
-        {
-            return SubSpecs.FirstOrDefault(q => q.BdoKeyEquals(name));
-        }
 
         #endregion
 
