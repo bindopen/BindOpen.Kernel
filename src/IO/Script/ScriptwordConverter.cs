@@ -10,7 +10,7 @@ namespace BindOpen.System.Scoping.Script
     /// <summary>
     /// This class represents a task converter.
     /// </summary>
-    public static class BdoScriptwordConverter
+    public static class ScriptwordConverter
     {
         /// <summary>
         /// Converts to DTO.

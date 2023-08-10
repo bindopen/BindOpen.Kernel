@@ -15,10 +15,12 @@ namespace BindOpen.System.Data
         /// <param key="valueType">The value type to consider.</param>
         public static BdoSpec NewSpec(
             string name = null,
-            DataValueTypes valueType = DataValueTypes.Any)
+            DataValueTypes valueType = DataValueTypes.Any,
+            object defaultData = null)
         {
-            var spec = NewSpec<BdoSpec>(name);
-            spec.WithDataType(valueType);
+            var spec = NewSpec<BdoSpec>(name)
+                .WithDataType(valueType)
+                .WithDefaultData(defaultData);
             return spec;
         }
 

@@ -21,7 +21,7 @@ namespace BindOpen.System.Data.Meta
 
             if (poco is IBdoScriptword script)
             {
-                dto = BdoScriptwordConverter.ToDto(script);
+                dto = ScriptwordConverter.ToDto(script);
             }
             else if (poco is IBdoMetaObject obj)
             {

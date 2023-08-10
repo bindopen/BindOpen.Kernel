@@ -11,30 +11,6 @@ namespace BindOpen.System.Scoping
     /// </summary>
     public static partial class BdoTaskExtensions
     {
-        public static IBdoMetaData AsProperty(
-            this IBdoMetaData meta)
-        {
-            meta?.WithGroupId(null);
-
-            return meta;
-        }
-
-        public static IBdoMetaData AsInput(
-            this IBdoMetaData meta)
-        {
-            meta?.WithGroupId(IBdoTaskExtensions.__Token_Input);
-
-            return meta;
-        }
-
-        public static IBdoMetaData AsOutput(
-            this IBdoMetaData meta)
-        {
-            meta?.WithGroupId(IBdoTaskExtensions.__Token_Output);
-
-            return meta;
-        }
-
         // Create
 
         /// <summary>
