@@ -1,6 +1,7 @@
 ﻿using BindOpen.System.Data.Meta;
 using BindOpen.System.Processing;
 using System;
+using System.Collections.Generic;
 
 namespace BindOpen.System.Logging
 {
@@ -20,6 +21,20 @@ namespace BindOpen.System.Logging
             if (log != null)
             {
                 log._Children = children;
+            }
+
+            return log;
+        }
+
+        public static T AddChildren<T>(this T log, params IBdoLog[] children) where T : IBdoLog
+        {
+            if (log != null)
+            {
+                log._Children ??= new List<IBdoLog>();
+                foreach (var child in children)
+                {
+                    log._Children.Add(child);
+                }
             }
 
             return log;

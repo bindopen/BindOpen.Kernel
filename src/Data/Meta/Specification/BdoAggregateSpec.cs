@@ -7,7 +7,7 @@ namespace BindOpen.System.Data.Meta
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    public partial class BdoCompositeSpec : BdoSpec, IBdoCompositeSpec
+    public partial class BdoAggregateSpec : BdoSpec, IBdoAggregateSpec
     {
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -16,9 +16,9 @@ namespace BindOpen.System.Data.Meta
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the BdoCompositeSpec class.
+        /// Initializes a new instance of the BdoAggregateSpec class.
         /// </summary>
-        public BdoCompositeSpec() : base()
+        public BdoAggregateSpec() : base()
         {
         }
 
@@ -36,7 +36,7 @@ namespace BindOpen.System.Data.Meta
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            var dataElementSpec = base.Clone<BdoCompositeSpec>();
+            var dataElementSpec = base.Clone<BdoAggregateSpec>();
 
             return dataElementSpec;
         }
@@ -44,7 +44,7 @@ namespace BindOpen.System.Data.Meta
         #endregion
 
         // ------------------------------------------
-        // ITTreeNode Implementation
+        // ITParent Implementation
         // ------------------------------------------
 
         #region ITParent
@@ -63,7 +63,7 @@ namespace BindOpen.System.Data.Meta
                 if (filter == null || filter?.Invoke(this) == true)
                     return child;
 
-                if (isRecursive && child is IBdoCompositeSpec compositeChild)
+                if (isRecursive && child is IBdoAggregateSpec compositeChild)
                 {
                     var subChild = compositeChild.Child(filter, true);
                     if (subChild != null) return subChild;
@@ -84,6 +84,11 @@ namespace BindOpen.System.Data.Meta
             child.WithParent(this);
 
             return child;
+        }
+
+        public void RemoveChildren(Predicate<IBdoSpec> filter = null)
+        {
+            _children = _children?.Where(p => filter?.Invoke(p) != true).ToList();
         }
 
         #endregion

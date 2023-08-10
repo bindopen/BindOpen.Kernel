@@ -56,6 +56,11 @@ namespace BindOpen.System.Tests
             return this;
         }
 
+        public void RemoveChildren(Predicate<TreeFake> filter = null)
+        {
+            _Children = _Children?.Where(p => filter?.Invoke(p) != true).ToList();
+        }
+
         public string Key() => Name;
 
         #endregion

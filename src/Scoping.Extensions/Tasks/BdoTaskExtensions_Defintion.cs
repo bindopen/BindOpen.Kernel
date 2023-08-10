@@ -43,11 +43,11 @@ namespace BindOpen.System.Scoping
         public static T WithProperties<T>(
             this T set,
             params IBdoSpec[] props)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             if (set != null)
             {
-                set.Remove(q => q.OfGroup(null));
+                set.RemoveChildren(q => q.OfGroup(null));
                 set.AddProperties(props);
             }
 
@@ -62,7 +62,7 @@ namespace BindOpen.System.Scoping
         public static T WithProperties<T>(
             this T set,
             params (string Name, DataValueTypes ValueType)[] pairs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             set?.WithProperties(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType)).ToArray());
 
@@ -76,7 +76,7 @@ namespace BindOpen.System.Scoping
         public static T WithProperties<T>(
             this T set,
             params KeyValuePair<string, DataValueTypes>[] pairs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             set?.WithProperties(pairs?.Select(q => BdoData.NewSpec(q.Key, q.Value)).ToArray());
 
@@ -91,7 +91,7 @@ namespace BindOpen.System.Scoping
         public static T WithProperties<T>(
             this T set,
             params (string Name, DataValueTypes ValueType, object DefaultData)[] pairs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             set?.WithProperties(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType, q.DefaultData)).ToArray());
 
@@ -101,12 +101,12 @@ namespace BindOpen.System.Scoping
         public static T AddProperties<T>(
             this T set,
             params IBdoSpec[] props)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             if (set != null)
             {
                 Array.ForEach(props, q => { q.AsProperty(); });
-                set.Add(props);
+                set.AddChildren(props);
             }
 
             return set;
@@ -120,7 +120,7 @@ namespace BindOpen.System.Scoping
         public static T AddProperties<T>(
             this T set,
             params (string Name, DataValueTypes ValueType)[] pairs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             set?.AddProperties(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType)).ToArray());
 
@@ -134,7 +134,7 @@ namespace BindOpen.System.Scoping
         public static T AddProperties<T>(
             this T set,
             params KeyValuePair<string, DataValueTypes>[] pairs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             set?.AddProperties(pairs?.Select(q => BdoData.NewSpec(q.Key, q.Value)).ToArray());
 
@@ -149,7 +149,7 @@ namespace BindOpen.System.Scoping
         public static T AddProperties<T>(
             this T set,
             params (string Name, DataValueTypes ValueType, object DefaultData)[] pairs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             set?.AddProperties(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType, q.DefaultData)).ToArray());
 
@@ -161,11 +161,11 @@ namespace BindOpen.System.Scoping
         public static T WithInputs<T>(
             this T set,
             params IBdoSpec[] inputs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             if (set != null)
             {
-                set.Remove(q => q.OfGroup(IBdoTaskExtensions.__Token_Input));
+                set.RemoveChildren(q => q.OfGroup(IBdoTaskExtensions.__Token_Input));
                 set.AddInputs(inputs);
             }
 
@@ -180,7 +180,7 @@ namespace BindOpen.System.Scoping
         public static T WithInputs<T>(
             this T set,
             params (string Name, DataValueTypes ValueType)[] pairs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             set?.WithInputs(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType)).ToArray());
 
@@ -194,7 +194,7 @@ namespace BindOpen.System.Scoping
         public static T WithInputs<T>(
             this T set,
             params KeyValuePair<string, DataValueTypes>[] pairs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             set?.WithInputs(pairs?.Select(q => BdoData.NewSpec(q.Key, q.Value)).ToArray());
 
@@ -209,7 +209,7 @@ namespace BindOpen.System.Scoping
         public static T WithInputs<T>(
             this T set,
             params (string Name, DataValueTypes ValueType, object DefaultData)[] pairs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             set?.WithInputs(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType, q.DefaultData)).ToArray());
 
@@ -219,13 +219,13 @@ namespace BindOpen.System.Scoping
         public static T AddInputs<T>(
             this T set,
             params IBdoSpec[] inputs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             if (set != null)
             {
 
                 Array.ForEach(inputs, q => { q.AsInput(); });
-                set.Add(inputs);
+                set.AddChildren(inputs);
             }
 
             return set;
@@ -239,7 +239,7 @@ namespace BindOpen.System.Scoping
         public static T AddInputs<T>(
             this T set,
             params (string Name, DataValueTypes ValueType)[] pairs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             set?.AddInputs(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType)).ToArray());
 
@@ -253,7 +253,7 @@ namespace BindOpen.System.Scoping
         public static T AddInputs<T>(
             this T set,
             params KeyValuePair<string, DataValueTypes>[] pairs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             set?.AddInputs(pairs?.Select(q => BdoData.NewSpec(q.Key, q.Value)).ToArray());
 
@@ -268,7 +268,7 @@ namespace BindOpen.System.Scoping
         public static T AddInputs<T>(
             this T set,
             params (string Name, DataValueTypes ValueType, object DefaultData)[] pairs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             set?.AddInputs(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType, q.DefaultData)).ToArray());
 
@@ -280,11 +280,11 @@ namespace BindOpen.System.Scoping
         public static T WithOutputs<T>(
             this T set,
             params IBdoSpec[] outputs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             if (set != null)
             {
-                set.Remove(q => q.OfGroup(IBdoTaskExtensions.__Token_Output));
+                set.RemoveChildren(q => q.OfGroup(IBdoTaskExtensions.__Token_Output));
                 set.AddOutputs(outputs);
             }
 
@@ -299,7 +299,7 @@ namespace BindOpen.System.Scoping
         public static T WithOutputs<T>(
             this T set,
             params (string Name, DataValueTypes ValueType)[] pairs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             set?.WithOutputs(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType)).ToArray());
 
@@ -313,7 +313,7 @@ namespace BindOpen.System.Scoping
         public static T WithOutputs<T>(
             this T set,
             params KeyValuePair<string, DataValueTypes>[] pairs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             set?.WithOutputs(pairs?.Select(q => BdoData.NewSpec(q.Key, q.Value)).ToArray());
 
@@ -328,7 +328,7 @@ namespace BindOpen.System.Scoping
         public static T WithOutputs<T>(
             this T set,
             params (string Name, DataValueTypes ValueType, object DefaultData)[] pairs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             set?.WithOutputs(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType, q.DefaultData)).ToArray());
 
@@ -338,13 +338,13 @@ namespace BindOpen.System.Scoping
         public static T AddOutputs<T>(
             this T set,
             params IBdoSpec[] outputs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             if (set != null)
             {
 
                 Array.ForEach(outputs, q => { q.AsOutput(); });
-                set.Add(outputs);
+                set.AddChildren(outputs);
             }
 
             return set;
@@ -358,7 +358,7 @@ namespace BindOpen.System.Scoping
         public static T AddOutputs<T>(
             this T set,
             params (string Name, DataValueTypes ValueType)[] pairs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             set?.AddOutputs(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType)).ToArray());
 
@@ -372,7 +372,7 @@ namespace BindOpen.System.Scoping
         public static T AddOutputs<T>(
             this T set,
             params KeyValuePair<string, DataValueTypes>[] pairs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             set?.AddOutputs(pairs?.Select(q => BdoData.NewSpec(q.Key, q.Value)).ToArray());
 
@@ -387,7 +387,7 @@ namespace BindOpen.System.Scoping
         public static T AddOutputs<T>(
             this T set,
             params (string Name, DataValueTypes ValueType, object DefaultData)[] pairs)
-            where T : IBdoSpecSet
+            where T : IBdoAggregateSpec
         {
             set?.AddOutputs(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType, q.DefaultData)).ToArray());
 

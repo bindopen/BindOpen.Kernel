@@ -7,9 +7,9 @@ namespace BindOpen.System.Data.Meta
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    [XmlType("CompositeSpecDto", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "composite.spec", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class CompositeSpecDto : SpecDto
+    [XmlType("AggregateSpecDto", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "spec.aggregate", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    public class AggregateSpecDto : SpecDto
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -22,7 +22,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         [JsonPropertyName("spec")]
         [XmlElement("spec", Type = typeof(SpecDto))]
-        [XmlElement("spec.composite", Type = typeof(CompositeSpecDto))]
+        [XmlElement("spec.aggregate", Type = typeof(AggregateSpecDto))]
         public List<SpecDto> Children { get; set; }
 
         #endregion
@@ -34,9 +34,9 @@ namespace BindOpen.System.Data.Meta
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the CompositeSpecDto class.
+        /// Initializes a new instance of the AggregateSpecDto class.
         /// </summary>
-        public CompositeSpecDto()
+        public AggregateSpecDto()
         {
         }
 

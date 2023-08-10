@@ -11,21 +11,21 @@ namespace BindOpen.System.Data.Meta
     /// <summary>
     /// This class represents a Xml helper.
     /// </summary>
-    public static class CompositeSpecConverter
+    public static class AggregateSpecConverter
     {
         /// <summary>
         /// Converts to DTO.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static CompositeSpecDto ToDto(this IBdoCompositeSpec poco)
+        public static AggregateSpecDto ToDto(this IBdoAggregateSpec poco)
         {
             if (poco == null) return null;
 
             if (poco == null) return null;
 
             var config = new MapperConfiguration(
-                cfg => cfg.CreateMap<BdoCompositeSpec, CompositeSpecDto>()
+                cfg => cfg.CreateMap<BdoAggregateSpec, AggregateSpecDto>()
                     .ForMember(q => q.ClassReference, opt => opt.Ignore())
                     .ForMember(q => q.Children, opt => opt.Ignore())
                     .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToDto()))
@@ -36,7 +36,7 @@ namespace BindOpen.System.Data.Meta
             );
 
             var mapper = new Mapper(config);
-            var dto = mapper.Map<CompositeSpecDto>(poco);
+            var dto = mapper.Map<AggregateSpecDto>(poco);
 
             dto.Aliases = poco?.Aliases == null ? null : new List<string>(poco.Aliases);
             dto.AvailableDataModes = poco?.AvailableDataModes == null ? null : new List<DataMode>(poco.AvailableDataModes);
@@ -64,13 +64,13 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoCompositeSpec ToPoco(
-            this CompositeSpecDto dto)
+        public static IBdoAggregateSpec ToPoco(
+            this AggregateSpecDto dto)
         {
             if (dto == null) return null;
 
             var config = new MapperConfiguration(
-                cfg => cfg.CreateMap<CompositeSpecDto, BdoCompositeSpec>()
+                cfg => cfg.CreateMap<AggregateSpecDto, BdoAggregateSpec>()
                     .ForMember(q => q._Children, opt => opt.Ignore())
                     .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToPoco()))
                     .ForMember(q => q.DataType, opt => opt.Ignore())
@@ -81,7 +81,7 @@ namespace BindOpen.System.Data.Meta
                 );
 
             var mapper = new Mapper(config);
-            var poco = mapper.Map<BdoCompositeSpec>(dto);
+            var poco = mapper.Map<BdoAggregateSpec>(dto);
 
             poco._Children = dto?.Children?.Select(q => q.ToPoco()).ToList();
 
