@@ -153,7 +153,7 @@ namespace BindOpen.System.Data.Helpers
                             }
                         }
                         break;
-                    case DataValueTypes.ByteArray:
+                    case DataValueTypes.Binary:
                         if (obj is byte[] byteArray)
                         {
                             stringValue = Convert.ToBase64String(byteArray);

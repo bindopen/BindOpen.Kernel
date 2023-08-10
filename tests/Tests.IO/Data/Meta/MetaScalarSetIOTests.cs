@@ -49,7 +49,7 @@ namespace BindOpen.System.Data.Meta
                 BdoData.NewMetaScalar("float1", DataValueTypes.Number, _testData.arrayNumber1 as double[]),
                 BdoData.NewMetaScalar("text2", DataValueTypes.Text, _testData.arrayString2 as string[]),
                 BdoData.NewMetaScalar("integer3", DataValueTypes.Integer, _testData.arrayInteger3 as int[]),
-                BdoData.NewMetaScalar("byteArray4", DataValueTypes.ByteArray, _testData.arrayArrayByte4 as byte[][]),
+                BdoData.NewMetaScalar("byteArray4", DataValueTypes.Binary, _testData.arrayArrayByte4 as byte[][]),
                 BdoData.NewMetaScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[0]),
                 BdoData.NewMetaScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[1])
                     .WithDataReference(BdoScript.Var("klkl"))

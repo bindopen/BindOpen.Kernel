@@ -3,17 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoReferenceCondition : IBdoCondition
+    public interface IBdoReferenceCondition : IBdoCondition, IBdoDataReferenced
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoReference Reference { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="expression"></param>
-        IBdoReferenceCondition WithReference(IBdoReference reference);
     }
 }

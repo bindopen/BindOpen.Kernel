@@ -25,7 +25,7 @@ namespace BindOpen.System.Scoping.Script
                 cfg => cfg.CreateMap<IBdoScriptword, ScriptwordDto>()
                     .ForMember(q => q.Child, opt => opt.MapFrom(q => q.Child.ToDto()))
                     .ForMember(q => q.ClassReference, opt => opt.Ignore())
-                    .ForMember(q => q.Reference, opt => opt.Ignore())
+                    .ForMember(q => q.DataReference, opt => opt.Ignore())
                     .ForMember(q => q.Item, opt => opt.Ignore())
                     .ForMember(q => q.MetaItems, opt => opt.MapFrom(q => q.Select(q => q.ToDto()).ToList()))
                     .ForMember(q => q.Specs, opt => opt.Ignore())
@@ -36,6 +36,8 @@ namespace BindOpen.System.Scoping.Script
 
             dto.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;
             dto.ClassReference = poco?.DataType.ClassReference?.ToDto();
+
+            dto.DataReference = poco.DataReference?.ToDto();
 
             dto.MetaItems = poco.Items?.Select(q => q.ToDto()).ToList();
             dto.Specs = poco.Specs?.Select(q => q.ToDto()).ToList();
@@ -59,7 +61,7 @@ namespace BindOpen.System.Scoping.Script
                         .ForMember(q => q.DataType, opt => opt.Ignore())
                         .ForMember(q => q.Items, opt => opt.Ignore())
                         .ForMember(q => q.Parent, opt => opt.Ignore())
-                        .ForMember(q => q.Reference, opt => opt.Ignore())
+                        .ForMember(q => q.DataReference, opt => opt.Ignore())
                         .ForMember(q => q.Specs, opt => opt.Ignore())
                    );
 
@@ -72,7 +74,7 @@ namespace BindOpen.System.Scoping.Script
                 ClassReference = dto.ClassReference.ToPoco(),
                 ValueType = dto.ValueType
             };
-            poco.Reference = dto.Reference.ToPoco();
+            poco.DataReference = dto.DataReference.ToPoco();
             var specs = dto.Specs?.Select(q => q.ToPoco())?.ToArray();
             poco.Specs = specs?.Length > 0 ? BdoData.NewSet<IBdoSpec>(specs) : null;
 

@@ -26,7 +26,7 @@
         public BdoReferenceCondition(
             IBdoReference exp) : base()
         {
-            Reference = exp;
+            DataReference = exp;
         }
 
         #endregion
@@ -44,7 +44,7 @@
         {
             var condition = new BdoReferenceCondition
             {
-                Reference = Reference.Clone<BdoReference>()
+                DataReference = DataReference.Clone<BdoReference>()
             };
 
             return condition;
@@ -61,18 +61,7 @@
         /// <summary>
         /// Expression script representing the condition.
         /// </summary>
-        public IBdoReference Reference { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="exp"></param>
-        /// <returns></returns>
-        public IBdoReferenceCondition WithReference(IBdoReference reference)
-        {
-            Reference = reference;
-            return this;
-        }
+        public IBdoReference DataReference { get; set; }
 
         #endregion
     }

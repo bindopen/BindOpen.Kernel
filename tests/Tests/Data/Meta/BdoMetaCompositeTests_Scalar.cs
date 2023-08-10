@@ -71,7 +71,7 @@ namespace BindOpen.System.Data
             Assert.That(
                 itemList[0]?.SequenceEqual(items[0]) == true
                 && itemList[1]?.SequenceEqual(items[1]) == true
-                && el.DataType.ValueType == DataValueTypes.ByteArray
+                && el.DataType.ValueType == DataValueTypes.Binary
                 , "Bad scalar element - Byte array");
         }
 

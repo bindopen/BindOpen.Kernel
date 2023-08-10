@@ -43,6 +43,13 @@ namespace BindOpen.System.Data.Meta
         public ConditionDto Condition { get; set; }
 
         /// <summary>
+        /// The expression of this instance.
+        /// </summary>
+        [JsonPropertyName("ref")]
+        [XmlElement("ref")]
+        public ReferenceDto DataReference { get; set; }
+
+        /// <summary>
         /// The description DTO of this instance.
         /// </summary>
         [JsonPropertyName("description")]
