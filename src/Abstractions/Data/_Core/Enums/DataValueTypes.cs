@@ -41,9 +41,9 @@ namespace BindOpen.System.Data
         Boolean = 5,
 
         /// <summary>
-        /// Byte array.
+        /// Binary.
         /// </summary>
-        ByteArray = 6,
+        Binary = 6,
 
         /// <summary>
         /// Connector.

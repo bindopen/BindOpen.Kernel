@@ -49,7 +49,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         public BdoMetaComposite() : base()
         {
-            DataMode = DataMode.Value;
+            DataType = BdoData.NewDataType(DataValueTypes.Any);
         }
 
         #endregion
@@ -63,7 +63,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public override string Key() => string.IsNullOrEmpty(Name) ? Reference?.Key() : Name;
+        public override string Key() => string.IsNullOrEmpty(Name) ? DataReference?.Key() : Name;
 
         #endregion
 
@@ -85,31 +85,31 @@ namespace BindOpen.System.Data.Meta
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            switch (DataMode)
+            if (DataReference != null)
             {
-                case DataMode.Value:
-                    var list = new List<object>();
-                    foreach (var item in Items)
+                if (scope == null)
+                {
+                    log?.AddEvent(EventKinds.Warning, "Application scope missing");
+                }
+                else
+                {
+                    if (DataReference == null)
                     {
-                        list.Add(item?.GetData(scope, varSet, log));
+                        log?.AddEvent(EventKinds.Warning, "Script missing");
                     }
-                    return list;
-                case DataMode.Reference:
-                    if (scope == null)
-                    {
-                        log?.AddEvent(EventKinds.Warning, "Application scope missing");
-                    }
-                    else
-                    {
-                        if (Reference == null)
-                        {
-                            log?.AddEvent(EventKinds.Warning, "Script missing");
-                        }
 
-                        var obj = scope.Interpreter.Evaluate<object>(Reference, varSet, log);
-                        return obj;
-                    }
-                    break;
+                    var obj = scope.Interpreter.Evaluate<object>(DataReference, varSet, log);
+                    return obj;
+                }
+            }
+            else
+            {
+                var list = new List<object>();
+                foreach (var item in Items)
+                {
+                    list.Add(item?.GetData(scope, varSet, log));
+                }
+                return list;
             }
 
             return default;
@@ -152,14 +152,9 @@ namespace BindOpen.System.Data.Meta
         public int? Index { get; set; }
 
         /// <summary>
-        /// The itemization mode of this instance.
-        /// </summary>
-        public DataMode DataMode { get; set; }
-
-        /// <summary>
         /// The script of this instance.
         /// </summary>
-        public IBdoReference Reference { get; set; }
+        public IBdoReference DataReference { get; set; }
 
         /// <summary>
         /// The identifier of the group of this instance.
@@ -210,6 +205,10 @@ namespace BindOpen.System.Data.Meta
 
         public virtual void SetData(object obj)
         {
+            if (obj is IBdoReference reference)
+            {
+                DataReference = reference;
+            }
         }
 
         /// <summary>

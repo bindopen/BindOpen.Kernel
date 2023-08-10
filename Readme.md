@@ -36,17 +36,19 @@ The BindOpen Blog is where we announce new features, write engineering blog post
 
 ## Repos and Projects
 
-[BindOpen](https://github.com/bindopen/BindOpen) contains the base BindOpen framework packages.
+[BindOpen.System](https://github.com/bindopen/BindOpen.System) contains the core BindOpen packages to manage data and scoping.
 
-[BindOpen.Forms](https://github.com/bindopen/BindOpen.Forms) allows you to manage forms.
+[BindOpen.System.Hosting](https://github.com/bindopen/BindOpen.System.Hosting) enables you to integrate a BindOpen agent within the .NET service builder.
 
-[BindOpen.Bpm](https://github.com/bindopen/BindOpen.Bpm) allows you to manage business processes.
+[BindOpen.System.Logging](https://github.com/bindopen/BindOpen.System.Logging) provides a simple and multidimensional logging system, perfect to monitor nested task executions.
 
-[BindOpen.System.Processing.Logging](https://github.com/bindopen/BindOpen.System.Processing.Logging) allows you to track your processes from basic methods to advanced workflows.
+[BindOpen.Labs.Bpm](https://github.com/bindopen/BindOpen.Labs.Bpm) allows you to streamline business processes.
 
-[BindOpen.System.Databases](https://github.com/bindopen/BindOpen.System.Databases) allows you to fluently build your SQL queries whatever the kind of databases you deal with.
+[BindOpen.Labs.Commands](https://github.com/bindopen/BindOpen.Labs.Commands) allows you to manage arguments of application.
 
-[BindOpen.Commands](https://github.com/bindopen/BindOpen.Commands) allows you to manage arguments of command lines.
+[BindOpen.Labs.Databases](https://github.com/bindopen/BindOpen.Labs.Databases) allows you to fluently build your SQL queries whatever the kind of databases you deal with.
+
+[BindOpen.Labs.Forms](https://github.com/bindopen/BindOpen.Labs.Forms) allows you to design and manage forms.
 
 
 A [full list of all the repos](https://github.com/bindopen?tab=repositories) is available as well.

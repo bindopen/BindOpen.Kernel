@@ -24,15 +24,8 @@ namespace BindOpen.System.Data.Meta
                 if (updateModes.Has(UpdateModes.Incremental_UpdateCommon))
                 {
                     this.WithDataType(meta.DataType);
-                    this.WithDataMode(meta.DataMode);
-                    if (meta.DataMode == DataMode.Any || meta.DataMode == DataMode.Reference)
-                    {
-                        this.WithDataReference(meta.Reference);
-                    }
-                    if (meta.DataMode == DataMode.Any || meta.DataMode == DataMode.Value)
-                    {
-                        this.WithData(meta.GetData());
-                    }
+                    this.WithDataReference(meta.DataReference);
+                    this.WithData(meta.GetData());
                     //this.WithDataValueType(metaScalar.DataValueType);
                     //this.WithIndex(metaObj.Index);
                     //this.WithName(metaObj.Name);

@@ -1,6 +1,5 @@
 ﻿using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
-using BindOpen.System.Scoping.Script;
 
 namespace BindOpen.System.Data.Meta
 {
@@ -37,50 +36,6 @@ namespace BindOpen.System.Data.Meta
             }
 
             return spec;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T WithDataReference<T>(
-            this T meta,
-            IBdoExpression exp)
-            where T : IBdoMetaData
-        {
-            return meta.WithDataReference(BdoData.NewRef(exp));
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T WithDataReference<T>(
-            this T meta,
-            IBdoScriptword word)
-            where T : IBdoMetaData
-        {
-            return meta.WithDataReference(BdoData.NewRef(word));
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T WithDataReference<T>(
-            this T meta,
-            string identifier)
-            where T : IBdoMetaData
-        {
-            return meta.WithDataReference(BdoData.NewRef(identifier));
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T WithDataReference<T>(
-            this T meta,
-            IBdoMetaData target)
-            where T : IBdoMetaData
-        {
-            return meta.WithDataReference(BdoData.NewRef(target));
         }
 
         /// <summary>

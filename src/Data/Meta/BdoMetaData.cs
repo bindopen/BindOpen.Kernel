@@ -105,11 +105,6 @@ namespace BindOpen.System.Data.Meta
         public IBdoMetaData Parent { get; set; }
 
         /// <summary>
-        /// The itemization mode of this instance.
-        /// </summary>
-        public DataMode DataMode { get; set; } = DataMode.Value;
-
-        /// <summary>
         /// The script of this instance.
         /// </summary>
         public BdoDataType DataType { get; set; }
@@ -117,7 +112,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        public IBdoReference Reference { get; set; }
+        public IBdoReference DataReference { get; set; }
 
         /// <summary>
         /// The identifier of the group of this instance.
@@ -145,26 +140,25 @@ namespace BindOpen.System.Data.Meta
         {
             object obj = default;
 
-            switch (DataMode)
+            if (DataReference != null)
             {
-                case DataMode.Value:
-                    obj = _data;
-                    break;
-                case DataMode.Reference:
-                    if (scope == null)
+                if (scope == null)
+                {
+                    log?.AddEvent(EventKinds.Warning, "Application scope missing");
+                }
+                else
+                {
+                    if (DataReference == null)
                     {
-                        log?.AddEvent(EventKinds.Warning, "Application scope missing");
+                        log?.AddEvent(EventKinds.Warning, "Script missing");
                     }
-                    else
-                    {
-                        if (Reference == null)
-                        {
-                            log?.AddEvent(EventKinds.Warning, "Script missing");
-                        }
 
-                        obj = scope.Interpreter.Evaluate<object>(Reference, varSet, log);
-                    }
-                    break;
+                    obj = scope.Interpreter.Evaluate<object>(DataReference, varSet, log);
+                }
+            }
+            else
+            {
+                obj = _data;
             }
 
             return obj;
@@ -182,8 +176,14 @@ namespace BindOpen.System.Data.Meta
 
         public virtual void SetData(object obj)
         {
-            _data = obj.ToBdoData();
-            DataMode = DataMode.Value;
+            if (obj is IBdoReference reference)
+            {
+                DataReference = reference;
+            }
+            else
+            {
+                _data = obj.ToBdoData();
+            }
         }
 
         /// <summary>
@@ -295,7 +295,7 @@ namespace BindOpen.System.Data.Meta
         {
             var el = base.Clone<BdoMetaData>();
 
-            el.Reference = Reference?.Clone<BdoReference>();
+            el.DataReference = DataReference?.Clone<BdoReference>();
             el.Specs = Specs?.Clone<TBdoSet<IBdoSpec>>();
 
             return el;
@@ -325,7 +325,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public virtual string Key() => string.IsNullOrEmpty(Name) ? Reference?.MetaData?.Name : Name;
+        public virtual string Key() => string.IsNullOrEmpty(Name) ? DataReference?.MetaData?.Name : Name;
 
         #endregion
 

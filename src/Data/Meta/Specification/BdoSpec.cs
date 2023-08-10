@@ -239,6 +239,11 @@ namespace BindOpen.System.Data.Meta
         public IBdoCondition Condition { get; set; }
 
         /// <summary>
+        /// The script of this instance.
+        /// </summary>
+        public IBdoReference DataReference { get; set; }
+
+        /// <summary>
         /// The aliases of the entry.
         /// </summary>
         public IList<string> Aliases { get; set; }

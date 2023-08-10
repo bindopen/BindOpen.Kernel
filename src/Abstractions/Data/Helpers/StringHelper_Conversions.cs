@@ -152,7 +152,7 @@ namespace BindOpen.System.Data.Helpers
                     if (!ulong.TryParse(st, out aULong))
                         return null;
                     return new ulong?(aULong);
-                case DataValueTypes.ByteArray:
+                case DataValueTypes.Binary:
                     byte[] aByteArray = Convert.FromBase64String(st);
                     return aByteArray;
                 default:

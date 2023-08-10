@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Scoping.Script;
-using BindOpen.System.Data.Conditions;
+﻿using BindOpen.System.Data.Conditions;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
+using BindOpen.System.Scoping.Script;
 
 namespace BindOpen.System.Data
 {
@@ -140,11 +140,11 @@ namespace BindOpen.System.Data
         {
             if (condition == null) return false;
 
-            if (condition.Reference == null)
+            if (condition.DataReference == null)
                 return false;
 
             var b = scriptInterpreter?.Evaluate<bool?>(
-                condition.Reference, varSet, log);
+                condition.DataReference, varSet, log);
 
             return b ?? false;
         }

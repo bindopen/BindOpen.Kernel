@@ -29,6 +29,9 @@ namespace BindOpen.System.Data
             var meta1 = BdoData.NewMetaObject()
                 .WithDataReference(
                     BdoScript.Var("workflow").Func("input", "input1"));
+
+            var meta2 = BdoData.NewMetaObject(
+                BdoData.NewRef(BdoScript.Var("workflow").Func("input", "input1")));
         }
 
         [Test, Order(2)]

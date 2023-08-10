@@ -74,7 +74,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         [JsonPropertyName("ref")]
         [XmlElement("ref")]
-        public ReferenceDto Reference { get; set; }
+        public ReferenceDto DataReference { get; set; }
 
         /// <summary>
         /// The elements of this instance.
