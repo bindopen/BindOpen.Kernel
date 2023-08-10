@@ -22,7 +22,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (poco == null) return null;
 
-            if (poco is IBdoCompositeSpec composite)
+            if (poco is IBdoAggregateSpec composite)
             {
                 var compositeDto = composite.ToDto();
                 return compositeDto;
@@ -71,7 +71,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (dto == null) return null;
 
-            if (dto is CompositeSpecDto compositeDto)
+            if (dto is AggregateSpecDto compositeDto)
             {
                 var composite = compositeDto.ToPoco();
                 return composite;

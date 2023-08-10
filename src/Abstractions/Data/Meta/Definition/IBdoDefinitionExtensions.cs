@@ -1,4 +1,6 @@
-﻿namespace BindOpen.System.Data.Meta
+﻿using System.Collections.Generic;
+
+namespace BindOpen.System.Data.Meta
 {
     /// <summary>
     /// 
@@ -10,6 +12,19 @@
             if (log != null)
             {
                 log._Children = children;
+            }
+
+            return log;
+        }
+        public static T AddChildren<T>(this T log, params IBdoDefinition[] children) where T : IBdoDefinition
+        {
+            if (log != null)
+            {
+                log._Children ??= new List<IBdoDefinition>();
+                foreach (var child in children)
+                {
+                    log._Children.Add(child);
+                }
             }
 
             return log;

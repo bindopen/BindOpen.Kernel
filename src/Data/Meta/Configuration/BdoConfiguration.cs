@@ -140,6 +140,11 @@ namespace BindOpen.System.Data.Meta
             return child;
         }
 
+        public void RemoveChildren(Predicate<IBdoConfiguration> filter = null)
+        {
+            _children = _children?.Where(p => filter?.Invoke(p) != true).ToList();
+        }
+
         #endregion
     }
 }

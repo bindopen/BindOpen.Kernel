@@ -10,7 +10,7 @@ namespace BindOpen.System.Data.Meta
         IBdoObject, IReferenced, IBdoDataTyped, IBdoConditional,
         IIdentified, INamed, IIndexed,
         IBdoTitled, IBdoDescribed, IBdoDetailed,
-        ITChild<IBdoCompositeSpec>,
+        ITChild<IBdoAggregateSpec>,
         ITUpdatable<IBdoSpec>
     {
         /// <summary>

@@ -121,7 +121,7 @@ namespace BindOpen.System.Data.Meta
 
         #region ITParent
 
-        public IBdoCompositeSpec Parent { get; set; }
+        public IBdoAggregateSpec Parent { get; set; }
 
         #endregion
 
