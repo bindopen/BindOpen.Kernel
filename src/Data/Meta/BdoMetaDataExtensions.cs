@@ -1,5 +1,7 @@
 ﻿using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.System.Data.Meta
 {
@@ -27,29 +29,27 @@ namespace BindOpen.System.Data.Meta
 
         public static IBdoSpec GetOrAddSpec(this IBdoMetaData meta)
         {
-            var spec = meta.GetSpec();
-            if (meta != null && spec == null)
+            if (meta != null)
             {
-                meta.Specs ??= BdoData.NewSpecSet();
-                spec = BdoData.NewSpec();
-                meta.Specs.Add(spec);
+                var spec = meta.Spec ??= BdoData.NewSpec();
+                return spec;
             }
 
-            return spec;
+            return null;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param key="modes"></param>
-        public static T WithSpecs<T>(
+        public static T WithSpec<T>(
             this T meta,
-            params IBdoSpec[] specs)
+            IBdoSpec spec)
             where T : IBdoMetaData
         {
             if (meta != null)
             {
-                meta.Specs = BdoData.NewSpecSet(specs);
+                meta.Spec = spec;
             }
             return meta;
         }
@@ -103,6 +103,38 @@ namespace BindOpen.System.Data.Meta
                 var exp = meta.GetOrAddSpec().Label.ToExpression();
                 var label = scope?.Interpreter?.Evaluate<string>(exp, varSet, log);
                 return label;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Creates a meta data of the specified object.
+        /// </summary>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="items">The items to consider.</param>
+        public static IBdoMetaComposite AsMetaComposite(
+            this IBdoMetaData meta)
+            => meta as IBdoMetaComposite;
+
+        /// <summary>
+        /// Creates a data element list from a dynamic object.
+        /// </summary>
+        /// <param key="obj">The objet to consider.</param>
+        public static IBdoMetaData[] ToArray(
+            this IBdoMetaData meta)
+            => meta.ToList()?.ToArray();
+
+        /// <summary>
+        /// Creates a data element list from a dynamic object.
+        /// </summary>
+        /// <param key="obj">The objet to consider.</param>
+        public static IList<IBdoMetaData> ToList(
+            this IBdoMetaData meta)
+        {
+            if (meta is IBdoMetaComposite metaSet)
+            {
+                return metaSet.ToList();
             }
 
             return null;

@@ -1,8 +1,4 @@
-﻿using BindOpen.System.Logging;
-using BindOpen.System.Scoping;
-using System.Linq;
-
-namespace BindOpen.System.Data.Meta
+﻿namespace BindOpen.System.Data.Meta
 {
     /// <summary>
     /// This class represents a data element set.
@@ -22,33 +18,11 @@ namespace BindOpen.System.Data.Meta
             return meta;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static IBdoSpec GetSpec(
-            this IBdoMetaData meta,
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            IBdoSpec spec = null;
-
-            if (meta != null)
-            {
-                spec = meta.Specs?.FirstOrDefault(
-                    q => q?.Condition.Evaluate(scope, varSet, log) == true);
-
-                spec ??= meta.Specs?.FirstOrDefault(q => q?.Condition == null);
-            }
-
-            return spec;
-        }
-
         public static bool OfGroup(
             this IBdoMetaData meta,
             string groupId)
         {
-            var spec = meta?.GetSpec();
+            var spec = meta?.Spec;
             return spec == null || spec.OfGroup(groupId);
         }
     }

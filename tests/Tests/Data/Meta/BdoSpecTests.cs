@@ -17,16 +17,22 @@ namespace BindOpen.System.Data
         }
 
         [Test, Order(1)]
-        public void GetSpec()
+        public void GetSpecTest()
         {
             var text = _spec.DataType;
         }
 
         [Test, Order(2)]
-        public void AggregateSpec()
+        public void AggregateSpecTest()
         {
             var spec = BdoData.NewSpec<BdoAggregateSpec>()
                 .WithProperties(BdoData.NewSpec("stringValue", DataValueTypes.Text));
+        }
+
+        [Test, Order(3)]
+        public void ToSpecTest()
+        {
+            var spec = BdoData.NewSpecFrom<EntityFake>("test1");
         }
     }
 }

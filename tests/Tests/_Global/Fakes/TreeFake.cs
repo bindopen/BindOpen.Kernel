@@ -39,10 +39,10 @@ namespace BindOpen.System.Tests
             return null;
         }
 
-        public IEnumerable<TreeFake> Children(Predicate<TreeFake> filter = null)
+        public IEnumerable<TreeFake> Children(Predicate<TreeFake> filter = null, bool isRecursive = false)
             => _Children?.Where(q => filter == null || filter(q));
 
-        public bool HasChild(Predicate<TreeFake> filter = null)
+        public bool HasChild(Predicate<TreeFake> filter = null, bool isRecursive = false)
             => _Children.Any(q => filter == null || filter(q));
 
         public TreeFake InsertChild(Action<TreeFake> updater)
@@ -56,7 +56,7 @@ namespace BindOpen.System.Tests
             return this;
         }
 
-        public void RemoveChildren(Predicate<TreeFake> filter = null)
+        public void RemoveChildren(Predicate<TreeFake> filter = null, bool isRecursive = false)
         {
             _Children = _Children?.Where(p => filter?.Invoke(p) != true).ToList();
         }

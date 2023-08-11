@@ -34,6 +34,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scoping.Script", "src\Scopi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abstractions", "src\Abstractions\Abstractions.csproj", "{48C4DBA4-544E-48BA-981F-E735ED6F8ED9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Transfer", "Transfer", "{9B4625A7-5381-44E3-8751-FB33C10C5F95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{0F72A99E-9D43-444A-98B5-65FE50AA0BF3} = {9B4625A7-5381-44E3-8751-FB33C10C5F95}
+		{B97E5721-E4F9-438A-B44B-67E8C94C0ABC} = {9B4625A7-5381-44E3-8751-FB33C10C5F95}
 		{24DF112D-1243-46B9-A132-08F30F07C726} = {929B9298-4957-41A7-A6D6-E070E285E22E}
 		{6421D71A-5BE6-448A-A71B-6069665F34FF} = {929B9298-4957-41A7-A6D6-E070E285E22E}
 	EndGlobalSection

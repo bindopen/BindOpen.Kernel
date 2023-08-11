@@ -37,7 +37,7 @@ namespace BindOpen.System.Tests
         /// <summary>
         /// The boolean value of this instance.
         /// </summary>
-        [BdoProperty(Name = "boolValue")]
+        [BdoProperty("boolValue", "b", "bValue")]
         [BdoProperty(Description = "This is a boolean property")]
         [BdoProperty(RequirementLevels.Optional, @"$eq($this(""stringValue""), ""AA"")")]
         [BdoProperty(0, 1)]

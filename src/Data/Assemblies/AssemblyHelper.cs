@@ -70,9 +70,10 @@ namespace BindOpen.System.Data.Assemblies
         /// </summary>
         /// <param key="type">The type to consider.</param>
         /// <param key="obj">The object to consider.</param>
-        public static object CreateInstance<T>(IBdoLog log = null)
+        public static T CreateInstance<T>(IBdoLog log = null)
+            where T : class, new()
         {
-            return CreateInstance(typeof(T), log);
+            return CreateInstance(typeof(T), log) as T;
         }
 
         /// <summary>

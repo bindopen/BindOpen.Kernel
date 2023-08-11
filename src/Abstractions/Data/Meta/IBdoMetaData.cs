@@ -21,7 +21,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        ITBdoSet<IBdoSpec> Specs { get; set; }
+        IBdoSpec Spec { get; set; }
 
         /// <summary>
         /// 
