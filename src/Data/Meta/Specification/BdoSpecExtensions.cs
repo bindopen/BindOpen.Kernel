@@ -1,4 +1,5 @@
-﻿using BindOpen.System.Logging;
+﻿using BindOpen.System.Data.Assemblies;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
 
 namespace BindOpen.System.Data.Meta
@@ -55,6 +56,60 @@ namespace BindOpen.System.Data.Meta
             }
 
             return b;
+        }
+
+        public static IBdoSpec ToSpec(
+            this IBdoMetaData meta,
+            string name = null,
+            bool onlyMetaAttributes = true)
+        {
+            IBdoSpec spec = null;
+
+            if (meta != null)
+            {
+                if (meta is IBdoMetaComposite metaComposite)
+                {
+                    spec = BdoData.NewSpec<BdoAggregateSpec>();
+
+                    var aggreagateSpec = spec as IBdoAggregateSpec;
+
+                    foreach (var subMeta in metaComposite)
+                    {
+                        var subSpec = subMeta.ToSpec(null, onlyMetaAttributes);
+                        aggreagateSpec.AddChildren(subSpec);
+                    }
+                }
+                else
+                {
+                    spec = BdoData.NewSpec();
+                }
+
+                spec.Update(meta.Spec);
+                spec.Name = name;
+                spec.Name ??= meta.Name;
+                spec.DataType = meta.DataType;
+            }
+
+            return spec;
+        }
+        public static T ToSpec<T>(
+            this IBdoMetaData meta,
+            string name = null,
+            bool onlyMetaAttributes = true)
+            where T : class, IBdoSpec, new()
+        {
+            var spec = AssemblyHelper.CreateInstance<T>();
+
+            var metaSpec = meta.ToSpec(name, onlyMetaAttributes);
+            spec.Update(metaSpec);
+
+            if (spec is IBdoAggregateSpec aggregateSpec
+                && metaSpec is IBdoAggregateSpec metaAggregateSpec)
+            {
+                aggregateSpec._Children = metaAggregateSpec._Children;
+            }
+
+            return spec;
         }
     }
 }

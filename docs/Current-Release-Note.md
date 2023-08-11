@@ -4,7 +4,9 @@ BindOpen __Publication.Version__ Update - __Publication.Date__
 # New features
 
 - [X] Metadata must have only one (possibly aggregate) specification
-
+- [X] Complete WithDetail methods (key value pairs, etc)
+- [X] Conversion from metadata to specification
+- [X] Fixing bug with UpdateMeta when property is null
 
 # Fixes
 

@@ -24,6 +24,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="_Global\Fakes\EntityFake.cs~RF139db88.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\..\docs\img\bindopen_icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>

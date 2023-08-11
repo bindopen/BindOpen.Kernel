@@ -44,7 +44,7 @@
         {
             var condition = new BdoReferenceCondition
             {
-                DataReference = DataReference.Clone<BdoReference>()
+                DataReference = DataReference?.Clone<BdoReference>()
             };
 
             return condition;

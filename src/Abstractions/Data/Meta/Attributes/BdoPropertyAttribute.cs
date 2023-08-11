@@ -62,7 +62,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The alias of the entry.
         /// </summary>
-        public string Alias { get; set; }
+        public string[] Aliases { get; set; }
 
         /// <summary>
         /// The minimum item number of this instance.
@@ -96,7 +96,15 @@ namespace BindOpen.System.Data.Meta
 
         public BdoPropertyAttribute(
             string name,
-            DataValueTypes valueType = DataValueTypes.Any,
+            params string[] aliases)
+        {
+            Name = name;
+            Aliases = aliases;
+        }
+
+        public BdoPropertyAttribute(
+            string name,
+            DataValueTypes valueType,
             RequirementLevels requirement = RequirementLevels.Any)
         {
             Name = name;
