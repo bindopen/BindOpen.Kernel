@@ -10,14 +10,14 @@ namespace BindOpen.System.Data
     {
         IList<T> _Children { get; set; }
 
-        IEnumerable<T> Children(Predicate<T> filter = null);
+        IEnumerable<T> Children(Predicate<T> filter = null, bool isRecursive = false);
 
         T Child(Predicate<T> filter = null, bool isRecursive = false);
 
-        bool HasChild(Predicate<T> filter = null);
+        bool HasChild(Predicate<T> filter = null, bool isRecursive = false);
 
         T InsertChild(Action<T> updater);
 
-        void RemoveChildren(Predicate<T> filter = null);
+        void RemoveChildren(Predicate<T> filter = null, bool isRecursive = false);
     }
 }

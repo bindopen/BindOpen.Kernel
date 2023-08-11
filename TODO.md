@@ -14,6 +14,10 @@ Todo list for BindOpen
 - [ ] Making meta data easier: Class vs Entity, Config vs Object
 - [X] Dictionaries are now generic
 - [ ] Constrainsts of specification
+- [ ] Setting ITParent methods recursively
+- [ ] Complete WithDetail methods (key value pairs, etc)
+- [ ] Bidirectional conversion between metadata and specification
+- [X] Metadata must have only one (possibly aggregate) specification
 
 ## Stuff to check out later on
 

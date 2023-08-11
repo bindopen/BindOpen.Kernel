@@ -1,4 +1,8 @@
-﻿namespace BindOpen.System.Data.Meta
+﻿using BindOpen.System.Logging;
+using BindOpen.System.Scoping;
+using System.Linq;
+
+namespace BindOpen.System.Data.Meta
 {
     /// <summary>
     /// 
@@ -45,6 +49,28 @@
             }
 
             return set;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static IBdoSpec Children(
+            this IBdoSpecSet specSet,
+            IBdoScope scope,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            IBdoSpec spec = null;
+
+            if (specSet != null)
+            {
+                spec = specSet.FirstOrDefault(
+                    q => q?.Condition.Evaluate(scope, varSet, log) == true);
+
+                spec ??= specSet?.FirstOrDefault(q => q?.Condition == null);
+            }
+
+            return spec;
         }
     }
 }

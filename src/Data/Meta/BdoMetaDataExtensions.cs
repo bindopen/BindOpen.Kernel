@@ -27,29 +27,27 @@ namespace BindOpen.System.Data.Meta
 
         public static IBdoSpec GetOrAddSpec(this IBdoMetaData meta)
         {
-            var spec = meta.GetSpec();
-            if (meta != null && spec == null)
+            if (meta != null)
             {
-                meta.Specs ??= BdoData.NewSpecSet();
-                spec = BdoData.NewSpec();
-                meta.Specs.Add(spec);
+                var spec = meta.Spec ??= BdoData.NewSpec();
+                return spec;
             }
 
-            return spec;
+            return null;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param key="modes"></param>
-        public static T WithSpecs<T>(
+        public static T WithSpec<T>(
             this T meta,
-            params IBdoSpec[] specs)
+            IBdoSpec spec)
             where T : IBdoMetaData
         {
             if (meta != null)
             {
-                meta.Specs = BdoData.NewSpecSet(specs);
+                meta.Spec = spec;
             }
             return meta;
         }

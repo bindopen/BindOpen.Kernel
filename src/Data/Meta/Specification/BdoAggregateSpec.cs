@@ -53,7 +53,7 @@ namespace BindOpen.System.Data.Meta
 
         public IList<IBdoSpec> _Children { get => _children; set { _children = value; } }
 
-        public IEnumerable<IBdoSpec> Children(Predicate<IBdoSpec> filter = null)
+        public IEnumerable<IBdoSpec> Children(Predicate<IBdoSpec> filter = null, bool isRecursive = false)
             => _children?.Where(p => filter?.Invoke(p) == true) ?? Enumerable.Empty<IBdoSpec>();
 
         public IBdoSpec Child(Predicate<IBdoSpec> filter = null, bool isRecursive = false)
@@ -73,7 +73,7 @@ namespace BindOpen.System.Data.Meta
             return null;
         }
 
-        public bool HasChild(Predicate<IBdoSpec> filter = null)
+        public bool HasChild(Predicate<IBdoSpec> filter = null, bool isRecursive = false)
             => _children?.Any(p => filter?.Invoke(p) == true) ?? false;
 
         public IBdoSpec InsertChild(Action<IBdoSpec> updater)
@@ -86,7 +86,7 @@ namespace BindOpen.System.Data.Meta
             return child;
         }
 
-        public void RemoveChildren(Predicate<IBdoSpec> filter = null)
+        public void RemoveChildren(Predicate<IBdoSpec> filter = null, bool isRecursive = false)
         {
             _children = _children?.Where(p => filter?.Invoke(p) != true).ToList();
         }

@@ -3,7 +3,7 @@ BindOpen __Publication.Version__ Update - __Publication.Date__
 
 # New features
 
-- [X] Specification are now data referenced.
+- [X] Metadata must have only one (possibly aggregate) specification
 
 
 # Fixes

@@ -56,7 +56,7 @@ namespace BindOpen.System.Data.Meta.Reflection
                                     subMeta = propValue.ToMeta(propInfo.PropertyType, propName, onlyMetaAttributes);
                                     if (change)
                                     {
-                                        subMeta.WithSpecs(spec);
+                                        subMeta.WithSpec(spec);
                                     }
                                 }
 
