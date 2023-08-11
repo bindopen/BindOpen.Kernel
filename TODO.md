@@ -15,6 +15,7 @@ Todo list for BindOpen
 - [X] Dictionaries are now generic
 - [ ] Constrainsts of specification
 - [ ] Setting ITParent methods recursively
+- [ ] Solve the issue of meta data valueType with ITMetaData<> type
 
 ## Stuff to check out later on
 

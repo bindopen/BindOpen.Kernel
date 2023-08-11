@@ -17,7 +17,7 @@ namespace BindOpen.System.Data.Meta
 
             if (spec != null && att != null)
             {
-                if (att.Aliases != null)
+                if (att.Aliases?.Any() == true)
                 {
                     change = true;
                     spec.Aliases = att.Aliases?.ToList();

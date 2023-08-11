@@ -24,14 +24,13 @@ namespace BindOpen.System.Data.Meta
                     .ForMember(q => q.ClassReference, opt => opt.Ignore())
                     .ForMember(q => q.Item, opt => opt.Ignore())
                     .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.DataReference.ToDto()))
-                    .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.ToDto()))
+                    .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.Spec.ToDto()))
             );
 
             var mapper = new Mapper(config);
             var dto = mapper.Map<MetaScalarDto>(poco);
 
             dto.ClassReference = poco?.DataType.ClassReference?.ToDto();
-            dto.DataReference = poco.DataReference?.ToDto();
 
             var dataList = poco.GetDataList<object>()?.Select(q => q.ToString(dto.ValueType)).ToList();
             if (dataList?.Count > 1)
@@ -43,11 +42,11 @@ namespace BindOpen.System.Data.Meta
                 dto.Item = dataList?.FirstOrDefault();
             }
 
+            dto.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;
             if (poco.Spec?.DataType.ValueType == poco.DataType.ValueType)
             {
                 dto.ValueType = DataValueTypes.Any;
             }
-            dto.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;
 
             return dto;
         }
@@ -64,16 +63,15 @@ namespace BindOpen.System.Data.Meta
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<MetaScalarDto, BdoMetaScalar>()
+                    .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.DataReference.ToPoco()))
                     .ForMember(q => q.DataType, opt => opt.Ignore())
                     .ForMember(q => q.Parent, opt => opt.Ignore())
-                    .ForMember(q => q.DataReference, opt => opt.Ignore())
-                    .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.ToPoco()))
+                    .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.Spec.ToPoco()))
                 );
 
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoMetaScalar>(dto);
 
-            poco.DataReference = dto.DataReference.ToPoco();
             poco.DataType = new BdoDataType()
             {
                 ClassReference = dto.ClassReference.ToPoco(),

@@ -27,13 +27,6 @@ namespace BindOpen.System.Data.Meta.Reflection
             {
                 meta = obj as IBdoMetaData;
 
-                meta.WithDataType(new BdoDataType()
-                {
-                    ValueType = DataValueTypes.MetaData,
-                    ClassReference = meta.DataType.ClassReference,
-                    ClassType = meta.DataType.ClassType
-                });
-
                 if (meta != null)
                 {
                     meta.Name = name;
