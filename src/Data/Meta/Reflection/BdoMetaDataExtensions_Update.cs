@@ -24,7 +24,7 @@ namespace BindOpen.System.Data.Meta.Reflection
         /// <param key="log">The log to consider.</param>
         public static void UpdateFromMeta(
             this object obj,
-            IBdoMetaComposite set,
+            IBdoMetaSet set,
             bool onlyMetaAttributes = false,
             string groupId = null,
             IBdoScope scope = null,
@@ -44,7 +44,7 @@ namespace BindOpen.System.Data.Meta.Reflection
         /// <param key="log">The log to consider.</param>
         public static void UpdateFromMeta<T>(
             this object obj,
-            IBdoMetaComposite list,
+            IBdoMetaSet set,
             bool onlyMetaAttributes = false,
             string groupId = null,
             IBdoScope scope = null,
@@ -52,7 +52,7 @@ namespace BindOpen.System.Data.Meta.Reflection
             IBdoLog log = null)
             where T : BdoPropertyAttribute
         {
-            if (obj == null || !list.Has()) return;
+            if (obj == null || !set.Has()) return;
 
             foreach (var propInfo in obj.GetType().GetProperties())
             {
@@ -68,7 +68,7 @@ namespace BindOpen.System.Data.Meta.Reflection
 
                     try
                     {
-                        if (list.Has(name, groupId))
+                        if (set.Has(name, groupId))
                         {
                             var type = propInfo.PropertyType;
 
@@ -92,7 +92,7 @@ namespace BindOpen.System.Data.Meta.Reflection
                             {
                                 // if current is meta
 
-                                var meta = list.GetOfGroup(name, groupId);
+                                var meta = set.GetOfGroup(name, groupId);
 
                                 if (typeof(ITBdoMetaScalar<>).IsAssignableFrom(metaType)
                                     && itemType?.IsScalar() == true)
@@ -106,9 +106,9 @@ namespace BindOpen.System.Data.Meta.Reflection
                                 }
                                 else if (typeof(IBdoMetaComposite).IsAssignableFrom(metaType))
                                 {
-                                    var set = meta as IBdoMetaComposite;
+                                    var subSet = meta as IBdoMetaComposite;
                                     metaValue = BdoData.NewMetaComposite(name)
-                                        .With(set?.Items?.ToArray());
+                                        .With(subSet?.Items?.ToArray());
                                 }
                                 else if (typeof(ITBdoMetaObject<>).IsAssignableFrom(metaType)
                                     && itemType != null)
@@ -126,7 +126,7 @@ namespace BindOpen.System.Data.Meta.Reflection
                             }
                             else
                             {
-                                value = list.GetData(name, scope, varSet, log);
+                                value = set.GetData(name, scope, varSet, log);
 
                                 if (value != null)
                                 {

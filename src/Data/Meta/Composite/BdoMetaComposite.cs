@@ -175,31 +175,9 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// Specification of this instance.
         /// </summary>
-        public ITBdoSet<IBdoSpec> Specs { get; set; }
+        public IBdoSpec Spec { get; set; }
 
         // Specification ---------------------
-
-        /// <summary>
-        /// Gets a new specification.
-        /// </summary>
-        /// <returns>Returns the new specifcation.</returns>
-        public IBdoSpec NewSpec()
-        {
-            return null;
-        }
-
-        // Specification
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="name"></param>
-        /// <returns></returns>
-        public IBdoSpec GetSpec(string name = null)
-        {
-            return Specs?.FirstOrDefault(
-                q => (name == null && q.Name == null) || q.Name.BdoKeyEquals(name));
-        }
 
         // Data
 

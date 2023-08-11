@@ -124,7 +124,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// Specification of this instance.
         /// </summary>
-        public ITBdoSet<IBdoSpec> Specs { get; set; }
+        public IBdoSpec Spec { get; set; }
 
         /// <summary>
         /// Returns the item object of this instance.
@@ -296,7 +296,7 @@ namespace BindOpen.System.Data.Meta
             var el = base.Clone<BdoMetaData>();
 
             el.DataReference = DataReference?.Clone<BdoReference>();
-            el.Specs = Specs?.Clone<TBdoSet<IBdoSpec>>();
+            el.Spec = Spec?.Clone<BdoSpec>();
 
             return el;
         }

@@ -1,4 +1,5 @@
 ﻿using BindOpen.System.Data.Meta;
+using BindOpen.System.Data.Meta.Reflection;
 using System;
 
 namespace BindOpen.System.Data
@@ -126,5 +127,16 @@ namespace BindOpen.System.Data
             }
             return spec;
         }
+
+
+        /// <summary>
+        /// Creates a meta data of the specified object.
+        /// </summary>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="items">The items to consider.</param>
+        public static IBdoSpec NewSpecFrom<T>(
+            string name = null,
+            bool onlyMetaAttributes = false)
+            => typeof(T).ToSpec(name, onlyMetaAttributes);
     }
 }

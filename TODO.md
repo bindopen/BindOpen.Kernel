@@ -14,6 +14,8 @@ Todo list for BindOpen
 - [ ] Making meta data easier: Class vs Entity, Config vs Object
 - [X] Dictionaries are now generic
 - [ ] Constrainsts of specification
+- [ ] Setting ITParent methods recursively
+- [ ] Solve the issue of meta data valueType with ITMetaData<> type
 
 ## Stuff to check out later on
 

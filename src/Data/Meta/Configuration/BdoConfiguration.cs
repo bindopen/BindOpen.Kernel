@@ -107,7 +107,7 @@ namespace BindOpen.System.Data.Meta
 
         public IList<IBdoConfiguration> _Children { get => _children; set { _children = value; } }
 
-        public IEnumerable<IBdoConfiguration> Children(Predicate<IBdoConfiguration> filter = null)
+        public IEnumerable<IBdoConfiguration> Children(Predicate<IBdoConfiguration> filter = null, bool isRecursive = false)
             => _children?.Where(p => filter?.Invoke(p) == true) ?? Enumerable.Empty<IBdoConfiguration>();
 
         public IBdoConfiguration Child(Predicate<IBdoConfiguration> filter = null, bool isRecursive = false)
@@ -127,7 +127,7 @@ namespace BindOpen.System.Data.Meta
             return null;
         }
 
-        public bool HasChild(Predicate<IBdoConfiguration> filter = null)
+        public bool HasChild(Predicate<IBdoConfiguration> filter = null, bool isRecursive = false)
             => _children?.Any(p => filter?.Invoke(p) == true) ?? false;
 
         public IBdoConfiguration InsertChild(Action<IBdoConfiguration> updater)
@@ -140,7 +140,7 @@ namespace BindOpen.System.Data.Meta
             return child;
         }
 
-        public void RemoveChildren(Predicate<IBdoConfiguration> filter = null)
+        public void RemoveChildren(Predicate<IBdoConfiguration> filter = null, bool isRecursive = false)
         {
             _children = _children?.Where(p => filter?.Invoke(p) != true).ToList();
         }

@@ -35,13 +35,16 @@ namespace BindOpen.System.Data
         public static BdoMetaObject NewMetaObject(
             string name,
             Type type,
-            object item)
+            object item,
+            DataValueTypes valueType = DataValueTypes.Object)
         {
             var el = new BdoMetaObject();
 
+            if (valueType.IsScalar()) valueType = DataValueTypes.Object;
+
             el
                 .WithName(name)
-                .WithDataType(DataValueTypes.Object, type)
+                .WithDataType(valueType, type)
                 .WithData(item);
 
             return el;

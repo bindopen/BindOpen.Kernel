@@ -17,10 +17,10 @@ namespace BindOpen.System.Data.Meta
 
             if (spec != null && att != null)
             {
-                if (!string.IsNullOrEmpty(att.Alias))
+                if (att.Aliases?.Any() == true)
                 {
                     change = true;
-                    spec.Aliases = att.Alias?.Split(",").Select(q => q.Trim()).ToList();
+                    spec.Aliases = att.Aliases?.ToList();
                 }
 
                 if (att.MinDataItemNumber != null)

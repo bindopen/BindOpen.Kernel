@@ -1,6 +1,5 @@
 ﻿using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Scoping.Script;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml;
@@ -79,16 +78,9 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The elements of this instance.
         /// </summary>
-        [JsonPropertyName("specs")]
+        [JsonPropertyName("spec")]
         [XmlElement("spec")]
-        public List<SpecDto> Specs { get; set; }
-
-        /// <summary>
-        /// Indicates whether the entities property must be ignored.
-        /// </summary>
-        [JsonIgnore]
-        [XmlIgnore]
-        public bool SpecsSpecified => Specs?.Count > 0;
+        public SpecDto Spec { get; set; }
 
         /// <summary>
         /// The value type of this instance.
