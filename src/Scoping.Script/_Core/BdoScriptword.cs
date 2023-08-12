@@ -111,24 +111,28 @@ namespace BindOpen.System.Scoping.Script
         /// <returns>Retuns the string that represents this instance.</returns>
         private string ToString(bool showSymbol)
         {
+            IBdoScriptword current = this;
+            if (showSymbol) current = this.Root() as IBdoScriptword;
+
             string script;
-            switch (Kind)
+            switch (current.Kind)
             {
                 case ScriptItemKinds.Function:
-                    script = "";
-                    if (Parent is BdoScriptword parentFun)
+                    script = string.Join(", ", current.Select(p => p.ToString(DataValueTypes.Any, true)).ToArray());
+                    script = (showSymbol ? BdoScriptHelper.Symbol_Fun : "")
+                        + current.Name + "(" + script + ")";
+                    if (current.Child is BdoScriptword subFunScriptWord)
                     {
-                        script = parentFun?.ToString(false) + ".";
+                        script += "." + subFunScriptWord?.ToString(false);
                     }
-
-                    script = (showSymbol ? BdoScriptHelper.Symbol_Fun : "") + script;
-                    script += Name;
-                    script += "(" + string.Join(", ", this.Select(p => p.ToString(DataValueTypes.Any, true)).ToArray()) + ")";
-
                     return script;
                 case ScriptItemKinds.Variable:
                     script = (showSymbol ? BdoScriptHelper.Symbol_Fun : "")
-                        + "('" + Name?.Replace("'", "''") + "')";
+                        + "('" + current.Name?.Replace("'", "''") + "')";
+                    if (current.Child is BdoScriptword subVarScriptWord)
+                    {
+                        script += "." + subVarScriptWord?.ToString(false);
+                    }
                     return script;
                 case ScriptItemKinds.None:
                     return string.Empty;

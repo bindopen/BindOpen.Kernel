@@ -139,12 +139,19 @@ namespace BindOpen.System.Scoping.Script
         public object Evaluate(
             IBdoScriptword word,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+            IBdoLog log = null,
+            bool root = true)
         {
             if (word != null)
             {
+                if (root)
+                {
+                    word = word.Root() as IBdoScriptword;
+                }
+
                 var cloned = BdoScript.NewWord(word.Kind, word.Name)
-                    .WithDataType(word.DataType.ClassReference?.DefinitionUniqueName);
+                    .WithDataType(word.DataType.ClassReference?.DefinitionUniqueName)
+                    .WithParent(word.Parent as IBdoScriptword);
 
                 switch (word.Kind)
                 {
@@ -452,13 +459,13 @@ namespace BindOpen.System.Scoping.Script
 
                 if (scriptword != null)
                 {
-                    scriptword.WithParent(parentScriptword);
-
                     // if the script word is a variable then we retrieve the sub script word
                     if (script.ToSubstring(nextIndex + 1, nextIndex + 1) == ".")
                     {
-                        var obj = Evaluate(scriptword, varSet, log);
+                        var obj = Evaluate(scriptword, varSet, log, false);
                         scriptword.WithData(obj);
+
+                        parentScriptword = scriptword;
 
                         nextIndex++;
                         scriptword = FindNextWord(
@@ -468,6 +475,9 @@ namespace BindOpen.System.Scoping.Script
                             offsetIndex,
                             varSet,
                             log);
+
+                        scriptword.WithParent(parentScriptword);
+
                         if (scriptword != null) index = nextIndex;
                     }
                 }

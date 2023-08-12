@@ -74,10 +74,10 @@ namespace BindOpen.System.Scoping.Script
         /// <returns></returns>
         public static BdoScriptword Variable(string name)
         {
-            var scriptword = NewWord(ScriptItemKinds.Variable)
+            var word = NewWord(ScriptItemKinds.Variable)
                 .WithName(name);
 
-            return scriptword;
+            return word;
         }
 
         public static BdoScriptword Var(string name)
@@ -90,10 +90,10 @@ namespace BindOpen.System.Scoping.Script
         /// <returns></returns>
         public static BdoScriptword Variable<T>(string name)
         {
-            var scriptword = NewWord(ScriptItemKinds.Variable)
+            var word = NewWord(ScriptItemKinds.Variable)
                 .WithName(name);
 
-            return scriptword;
+            return word;
         }
 
         public static BdoScriptword Var<T>(string name)
@@ -111,34 +111,34 @@ namespace BindOpen.System.Scoping.Script
             string name,
             params object[] parameters)
         {
-            var scriptword = NewWord<T>(ScriptItemKinds.Function)
+            var word = NewWord<T>(ScriptItemKinds.Function)
                 .WithName(name);
 
             var index = 0;
             foreach (var param in parameters)
             {
-                scriptword.InsertData(param);
+                word.InsertData(param);
                 index++;
             }
 
-            return scriptword;
+            return word;
         }
 
         public static BdoScriptword Function(
             string name,
             params object[] parameters)
         {
-            var scriptword = NewWord(ScriptItemKinds.Function)
+            var word = NewWord(ScriptItemKinds.Function)
                 .WithName(name);
 
             var index = 0;
             foreach (var param in parameters)
             {
-                scriptword.InsertData(param);
+                word.InsertData(param);
                 index++;
             }
 
-            return scriptword;
+            return word;
         }
 
         public static BdoScriptword Func(
