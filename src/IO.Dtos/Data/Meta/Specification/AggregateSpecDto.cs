@@ -20,10 +20,18 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// THe children of this instance.
         /// </summary>
-        [JsonPropertyName("spec")]
-        [XmlElement("spec", Type = typeof(SpecDto))]
-        [XmlElement("spec.aggregate", Type = typeof(AggregateSpecDto))]
+        [JsonPropertyName("items")]
+        [XmlArray("items")]
+        [XmlArrayItem("item", Type = typeof(SpecDto))]
+        [XmlArrayItem("aggregate", Type = typeof(AggregateSpecDto))]
         public List<SpecDto> Children { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonIgnore()]
+        [XmlIgnore()]
+        public bool ChildrenSpecficied => Children?.Count > 0;
 
         #endregion
 

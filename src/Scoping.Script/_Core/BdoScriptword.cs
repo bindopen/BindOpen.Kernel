@@ -115,21 +115,20 @@ namespace BindOpen.System.Scoping.Script
             switch (Kind)
             {
                 case ScriptItemKinds.Function:
-                    script = string.Join(", ", this.Select(p => p.ToString(DataValueTypes.Any, true)).ToArray());
-                    script = (showSymbol ? BdoScriptHelper.Symbol_Fun : "")
-                        + Name + "(" + script + ")";
-                    if (Child is BdoScriptword subFunScriptWord)
+                    script = "";
+                    if (Parent is BdoScriptword parentFun)
                     {
-                        script += "." + subFunScriptWord?.ToString(false);
+                        script = parentFun?.ToString(false) + ".";
                     }
+
+                    script = (showSymbol ? BdoScriptHelper.Symbol_Fun : "") + script;
+                    script += Name;
+                    script += "(" + string.Join(", ", this.Select(p => p.ToString(DataValueTypes.Any, true)).ToArray()) + ")";
+
                     return script;
                 case ScriptItemKinds.Variable:
                     script = (showSymbol ? BdoScriptHelper.Symbol_Fun : "")
                         + "('" + Name?.Replace("'", "''") + "')";
-                    if (Child is BdoScriptword subVarScriptWord)
-                    {
-                        script += "." + subVarScriptWord?.ToString(false);
-                    }
                     return script;
                 case ScriptItemKinds.None:
                     return string.Empty;

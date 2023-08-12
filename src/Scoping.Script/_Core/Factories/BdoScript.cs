@@ -163,7 +163,7 @@ namespace BindOpen.System.Scoping.Script
             string name,
             params object[] parameters)
         {
-            return word.WithChild(Function(name, parameters)) as BdoScriptword;
+            return Function(name, parameters).WithParent(word);
         }
 
         public static BdoScriptword Func(

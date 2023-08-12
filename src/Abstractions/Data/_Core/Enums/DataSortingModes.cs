@@ -3,12 +3,6 @@ using System.Xml.Serialization;
 
 namespace BindOpen.System.Data
 {
-    // --------------------------------------------------
-    // ENUMERATIONS
-    // --------------------------------------------------
-
-    #region Enumerations
-
     /// <summary>
     /// This enumeration represents the data sorting modes.
     /// </summary>
@@ -46,6 +40,4 @@ namespace BindOpen.System.Data
         /// </summary>
         Any = Ascending | Descending | Random
     }
-
-    #endregion
 }
