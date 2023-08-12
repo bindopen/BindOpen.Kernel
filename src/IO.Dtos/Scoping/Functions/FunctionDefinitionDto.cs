@@ -101,7 +101,11 @@ namespace BindOpen.System.Scoping
         /// The elements of this instance.
         /// </summary>
         [JsonPropertyName("parameters")]
-        [XmlElement("parameter")]
+        [XmlArray("parameters")]
+        [XmlArrayItem("composite", Type = typeof(MetaCompositeDto))]
+        [XmlArrayItem("object", Type = typeof(MetaObjectDto))]
+        [XmlArrayItem("scalar", Type = typeof(MetaScalarDto))]
+        [XmlArrayItem("word", Type = typeof(ScriptwordDto))]
         public List<MetaDataDto> ParameterSpecification { get; set; }
 
         /// <summary>

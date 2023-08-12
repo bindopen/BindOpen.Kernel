@@ -17,7 +17,7 @@ namespace BindOpen.System.Data
                 dataTyped.DataType = new()
                 {
                     ValueType = DataValueTypes.Object,
-                    ClassReference = BdoData.Class(definitionUniqueName)
+                    ClassReference = definitionUniqueName == null ? null : BdoData.Class(definitionUniqueName)
                 };
             }
             return dataTyped;

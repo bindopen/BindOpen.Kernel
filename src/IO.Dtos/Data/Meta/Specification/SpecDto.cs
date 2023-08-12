@@ -31,6 +31,13 @@ namespace BindOpen.System.Data.Meta
         [XmlAttribute("id")]
         public string Id { get; set; }
 
+        /// <summary>
+        /// The name of this instance.
+        /// </summary>
+        [JsonPropertyName("name")]
+        [XmlAttribute("name")]
+        public string Name { get; set; }
+
         // General ------------------------------------------
 
         /// <summary>
@@ -97,10 +104,10 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         [JsonPropertyName("default.items")]
         [XmlArray("default.items")]
-        [XmlArrayItem("default.composite", Type = typeof(MetaCompositeDto))]
-        [XmlArrayItem("default.object", Type = typeof(MetaObjectDto))]
-        [XmlArrayItem("default.scalar", Type = typeof(MetaScalarDto))]
-        [XmlArrayItem("default.word", Type = typeof(ScriptwordDto))]
+        [XmlArrayItem("composite", Type = typeof(MetaCompositeDto))]
+        [XmlArrayItem("object", Type = typeof(MetaObjectDto))]
+        [XmlArrayItem("scalar", Type = typeof(MetaScalarDto))]
+        [XmlArrayItem("word", Type = typeof(ScriptwordDto))]
         public List<MetaDataDto> DefaultItems { get; set; }
 
         /// <summary>

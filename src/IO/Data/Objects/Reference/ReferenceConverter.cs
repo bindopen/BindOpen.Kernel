@@ -22,7 +22,7 @@ namespace BindOpen.System.Data
                 cfg => cfg.CreateMap<BdoReference, ReferenceDto>()
                     .ForMember(q => q.Expression, opt => opt.MapFrom(q => q.Expression.ToDto()))
                     .ForMember(q => q.MetaData, opt => opt.MapFrom(q => q.MetaData.ToDto()))
-                    .ForMember(q => q.Word, opt => opt.MapFrom(q => q.Word.ToDto()))
+                    .ForMember(q => q.Word, opt => opt.MapFrom(q => q.Word.ToDto(true)))
             );
 
             var mapper = new Mapper(config);

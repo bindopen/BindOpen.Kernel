@@ -16,6 +16,7 @@ Todo list for BindOpen
 - [ ] Constrainsts of specification
 - [ ] Setting ITParent methods recursively
 - [ ] Solve the issue of meta data valueType with ITMetaData<> type
+- [ ] Solve Child/Parent issue with script word
 
 ## Stuff to check out later on
 

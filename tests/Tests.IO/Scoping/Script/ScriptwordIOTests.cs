@@ -1,7 +1,7 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Tests;
-using DeepEqual.Syntax;
 using NUnit.Framework;
+using System;
 using System.IO;
 
 namespace BindOpen.System.Scoping.Script
@@ -22,8 +22,11 @@ namespace BindOpen.System.Scoping.Script
             IBdoScriptword exp1,
             IBdoScriptword exp2)
         {
+            var st1 = (string)(exp1 as BdoScriptword);
+            var st2 = (string)(exp2 as BdoScriptword);
+
             var b = exp1 != null && exp2 != null
-                && exp1.IsDeepEqual(exp2);
+                && st1.Equals(st2, StringComparison.OrdinalIgnoreCase);
             return b;
         }
 

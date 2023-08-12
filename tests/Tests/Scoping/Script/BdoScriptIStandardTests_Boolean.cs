@@ -1,4 +1,5 @@
-﻿using BindOpen.System.Tests;
+﻿using BindOpen.System.Data;
+using BindOpen.System.Tests;
 using NUnit.Framework;
 
 namespace BindOpen.System.Scoping.Script
@@ -15,6 +16,22 @@ namespace BindOpen.System.Scoping.Script
 
             var interpreter = SystemData.Scope.Interpreter;
             var result = interpreter.Evaluate<bool?>(word);
+
+            Assert.That(result == true, "Bad script interpretation");
+        }
+
+        [Test, Order(202)]
+        public void SubwordTest()
+        {
+            var word = BdoScript._Eq(BdoScript.Var("MYTABLE").Func("value"), 135);
+
+            var interpreter = SystemData.Scope.Interpreter;
+
+            var varSet = BdoData.NewMetaSet(
+                ("MYTABLE", 135)
+            );
+
+            var result = interpreter.Evaluate<bool?>(word, varSet);
 
             Assert.That(result == true, "Bad script interpretation");
         }

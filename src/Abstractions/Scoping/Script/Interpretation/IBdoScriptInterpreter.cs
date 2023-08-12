@@ -31,7 +31,8 @@ namespace BindOpen.System.Scoping.Script
         object Evaluate(
             IBdoScriptword word,
             IBdoMetaSet varSet = null,
-            IBdoLog log = null);
+            IBdoLog log = null,
+            bool root = true);
 
         /// <summary>
         /// 

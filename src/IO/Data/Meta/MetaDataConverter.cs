@@ -53,7 +53,7 @@ namespace BindOpen.System.Data.Meta
 
             if (dto is ScriptwordDto script)
             {
-                return script.ToPoco();
+                return ScriptwordConverter.ToPoco(script);
             }
             else if (dto is MetaObjectDto obj)
             {
