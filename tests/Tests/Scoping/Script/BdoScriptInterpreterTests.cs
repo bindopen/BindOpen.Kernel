@@ -15,13 +15,14 @@ namespace BindOpen.System.Scoping.Script
 
         private readonly string _stringA = "totomax";
 
-        private readonly string _scriptB = "$('workflow').input('input1')";
+        private readonly string _scriptB = "$('workflow').input('input1').value('value1')";
 
         private readonly string _scriptC = "$eq('i,np)ut''', 'i,np)ut'''))";
 
         private readonly BdoScriptword _scriptwordB =
             BdoScript.Variable("workflow")
-            .Func("input", "input1");
+            .Func("input", "input1")
+            .Func("value", "value1");
 
         [OneTimeSetUp]
         public void OneTimeSetUp()

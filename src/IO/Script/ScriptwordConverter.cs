@@ -17,13 +17,15 @@ namespace BindOpen.System.Scoping.Script
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static ScriptwordDto ToDto(this IBdoScriptword poco)
+        public static ScriptwordDto ToDto(this IBdoScriptword poco, bool root = true)
         {
             if (poco == null) return null;
 
+            if (root) poco = poco.Root() as IBdoScriptword;
+
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<IBdoScriptword, ScriptwordDto>()
-                    .ForMember(q => q.Child, opt => opt.MapFrom(q => q.Child.ToDto()))
+                    .ForMember(q => q.Child, opt => opt.MapFrom(q => q.Child.ToDto(false)))
                     .ForMember(q => q.ClassReference, opt => opt.Ignore())
                     .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.DataReference.ToDto()))
                     .ForMember(q => q.Item, opt => opt.Ignore())
