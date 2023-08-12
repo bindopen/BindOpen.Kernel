@@ -83,5 +83,4 @@ namespace BindOpen.System.Scoping
             BdoTaskFaker.AssertFake(task, _testData);
         }
     }
-
 }
