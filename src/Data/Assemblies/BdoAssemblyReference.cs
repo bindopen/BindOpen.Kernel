@@ -96,8 +96,14 @@ namespace BindOpen.System.Data.Assemblies
 
         public static bool operator ==(BdoAssemblyReference left, IBdoAssemblyReference right)
         {
-            return left?.AssemblyName.Equals(right?.AssemblyName, StringComparison.OrdinalIgnoreCase) == true
-                && left?.AssemblyVersion.Equals(right?.AssemblyVersion) == true;
+            return
+                left != null && right != null
+                && left.AssemblyName?.Equals(right.AssemblyName, StringComparison.OrdinalIgnoreCase) == true
+                && left.AssemblyVersion?.Equals(right.AssemblyVersion) == true
+                && (left.DefinitionExtensionKind == BdoExtensionKind.Any
+                    || right.DefinitionExtensionKind == BdoExtensionKind.Any
+                    || left.DefinitionExtensionKind.Equals(right.DefinitionExtensionKind) == true)
+                && left.DefinitionUniqueName?.Equals(right.DefinitionUniqueName) == true;
         }
 
         public static bool operator !=(BdoAssemblyReference left, IBdoAssemblyReference right)
@@ -107,22 +113,34 @@ namespace BindOpen.System.Data.Assemblies
 
         public static bool operator >=(BdoAssemblyReference left, IBdoAssemblyReference right)
         {
-            return left?.AssemblyName.Equals(right?.AssemblyName, StringComparison.OrdinalIgnoreCase) == true
+            return
+                left != null && right != null
+                && left.AssemblyName?.Equals(right.AssemblyName, StringComparison.OrdinalIgnoreCase) == true
                 && (
-                    left?.AssemblyVersion == null
-                    || right?.AssemblyVersion == null
-                    || left?.AssemblyVersion >= right?.AssemblyVersion
-                );
+                    left.AssemblyVersion == null
+                    || right.AssemblyVersion == null
+                    || left.AssemblyVersion >= right.AssemblyVersion
+                )
+                && (left.DefinitionExtensionKind == BdoExtensionKind.Any
+                    || right.DefinitionExtensionKind == BdoExtensionKind.Any
+                    || left.DefinitionExtensionKind.Equals(right.DefinitionExtensionKind) == true)
+                && left.DefinitionUniqueName?.Equals(right.DefinitionUniqueName) == true;
         }
 
         public static bool operator <=(BdoAssemblyReference left, IBdoAssemblyReference right)
         {
-            return left?.AssemblyName.Equals(right?.AssemblyName, StringComparison.OrdinalIgnoreCase) == true
+            return
+                left != null && right != null
+                && left.AssemblyName?.Equals(right.AssemblyName, StringComparison.OrdinalIgnoreCase) == true
                 && (
-                    left?.AssemblyVersion == null
-                    || right?.AssemblyVersion == null
-                    || left?.AssemblyVersion <= right?.AssemblyVersion
-                );
+                    left.AssemblyVersion == null
+                    || right.AssemblyVersion == null
+                    || left.AssemblyVersion <= right.AssemblyVersion
+                )
+                && (left.DefinitionExtensionKind == BdoExtensionKind.Any
+                    || right.DefinitionExtensionKind == BdoExtensionKind.Any
+                    || left.DefinitionExtensionKind.Equals(right.DefinitionExtensionKind) == true)
+                && left.DefinitionUniqueName?.Equals(right.DefinitionUniqueName) == true;
         }
 
         public override string ToString()
