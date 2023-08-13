@@ -31,19 +31,6 @@ namespace BindOpen.System.Data
         #endregion
 
         // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
-        /// <summary>
-        /// The items of this instance.
-        /// </summary>
-        private List<T> _items;
-
-        #endregion
-
-        // ------------------------------------------
         // CONSTRUCTORS
         // ------------------------------------------
 
@@ -63,6 +50,8 @@ namespace BindOpen.System.Data
         // ------------------------------------------
 
         #region ITDataList
+
+        private List<T> _items;
 
         /// <summary>
         /// 
