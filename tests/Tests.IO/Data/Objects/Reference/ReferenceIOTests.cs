@@ -1,4 +1,5 @@
-﻿using BindOpen.System.Scoping.Script;
+﻿using BindOpen.System.IO.Dtos;
+using BindOpen.System.Scoping.Script;
 using BindOpen.System.Tests;
 using Bogus;
 using DeepEqual.Syntax;

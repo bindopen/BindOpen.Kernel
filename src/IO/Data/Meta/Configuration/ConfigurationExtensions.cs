@@ -1,4 +1,5 @@
-﻿using BindOpen.System.Logging;
+﻿using BindOpen.System.IO.Dtos;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
 using System.Xml.Schema;
 

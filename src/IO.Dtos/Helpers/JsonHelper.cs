@@ -3,7 +3,7 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace BindOpen.System.Data
+namespace BindOpen.System.IO.Dtos
 {
     public static class JsonHelper
     {
@@ -21,7 +21,7 @@ namespace BindOpen.System.Data
 
             var options = new JsonSerializerOptions()
             {
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault
             };
             options.Converters.Add(new JsonStringEnumConverter());
 
