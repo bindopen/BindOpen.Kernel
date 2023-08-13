@@ -118,14 +118,6 @@ namespace BindOpen.System.Data.Meta
         [XmlArrayItem("add")]
         public List<string> Aliases { get; set; }
 
-        /// <summary>
-        /// The area specifications for this instance.
-        /// </summary>
-        [JsonPropertyName("areaSpecs")]
-        [XmlArray("areaSpecs")]
-        [XmlArrayItem("add")]
-        public List<SpecDto> AreaSpecifications { get; set; }
-
         // Items ---------------------------------
 
         /// <summary>

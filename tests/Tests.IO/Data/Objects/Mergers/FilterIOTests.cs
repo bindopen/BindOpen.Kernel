@@ -1,4 +1,5 @@
-﻿using BindOpen.System.Tests;
+﻿using BindOpen.System.IO.Dtos;
+using BindOpen.System.Tests;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;

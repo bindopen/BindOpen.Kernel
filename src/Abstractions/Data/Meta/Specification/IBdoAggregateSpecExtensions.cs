@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.System.Data.Meta
 {
@@ -11,7 +12,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (log != null)
             {
-                log._Children = children;
+                log._Children = children?.Any() == true ? children : null;
             }
 
             return log;

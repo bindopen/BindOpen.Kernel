@@ -30,6 +30,11 @@ namespace BindOpen.System.Data.Meta
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<BdoSpec, SpecDto>()
+                    .ForMember(q => q.Aliases, opt => opt.Ignore())
+                    .ForMember(q => q.AvailableDataModes, opt => opt.Ignore())
+                    .ForMember(q => q.DataSpecLevels, opt => opt.Ignore())
+                    .ForMember(q => q.SpecLevels, opt => opt.Ignore())
+
                     .ForMember(q => q.ClassReference, opt => opt.Ignore())
                     .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToDto()))
                     .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.DataReference.ToDto()))
@@ -80,6 +85,11 @@ namespace BindOpen.System.Data.Meta
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<SpecDto, BdoSpec>()
+                    .ForMember(q => q.Aliases, opt => opt.Ignore())
+                    .ForMember(q => q.AvailableDataModes, opt => opt.Ignore())
+                    .ForMember(q => q.DataSpecLevels, opt => opt.Ignore())
+                    .ForMember(q => q.SpecLevels, opt => opt.Ignore())
+
                     .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToPoco()))
                     .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.DataReference.ToPoco()))
                     .ForMember(q => q.DataType, opt => opt.Ignore())
