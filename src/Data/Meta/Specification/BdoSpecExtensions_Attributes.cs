@@ -149,9 +149,7 @@ namespace BindOpen.System.Data.Meta
                 spec.Name ??= info.Name;
 
                 var type = info.ParameterType;
-                spec.WithDataType(
-                    spec.DataType.ValueType == DataValueTypes.Any ? type.GetValueType() : DataValueTypes.None,
-                    type);
+                spec.WithDataType(type);
             }
 
             return spec;

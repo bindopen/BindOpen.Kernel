@@ -1,5 +1,4 @@
 ﻿using BindOpen.System.Data.Helpers;
-using BindOpen.System.Scoping;
 using System;
 
 namespace BindOpen.System.Data.Assemblies
@@ -46,22 +45,12 @@ namespace BindOpen.System.Data.Assemblies
         /// <summary>
         /// The library name of this instance.
         /// </summary>
-        public string DefinitionUniqueName { get; set; }
-
-        /// <summary>
-        /// The etension kind of this instance.
-        /// </summary>
-        public BdoExtensionKind DefinitionExtensionKind { get; set; }
-
-        /// <summary>
-        /// The library name of this instance.
-        /// </summary>
-        public string AssemblyName { get; private set; }
+        public string AssemblyName { get; set; }
 
         /// <summary>
         /// The library version of this instance.
         /// </summary>
-        public Version AssemblyVersion { get; private set; }
+        public Version AssemblyVersion { get; set; }
 
         /// <summary>
         /// The file name of this instance.
@@ -69,12 +58,9 @@ namespace BindOpen.System.Data.Assemblies
         public string AssemblyFileName { get; set; }
 
         public virtual string Key()
-            =>
-            DefinitionUniqueName == null ?
-            (AssemblyName == StringHelper.__Star ?
+            => AssemblyName == StringHelper.__Star ?
             StringHelper.__Star :
-            AssemblyName + ";" + AssemblyVersion) :
-            (DefinitionExtensionKind.ToString() + ";" + DefinitionUniqueName + ";" + AssemblyVersion);
+            AssemblyName + (AssemblyVersion == null ? null : ", Version=" + AssemblyVersion);
 
         public override bool Equals(object obj)
         {
@@ -86,12 +72,6 @@ namespace BindOpen.System.Data.Assemblies
             return false;
         }
 
-        public bool IsCompatibleWith(IBdoAssemblyReference reference)
-        {
-            return this >= reference;
-        }
-
-
         public override int GetHashCode()
         {
             return Key()?.GetHashCode() ?? 0;
@@ -99,17 +79,6 @@ namespace BindOpen.System.Data.Assemblies
 
         public static bool operator ==(BdoAssemblyReference left, IBdoAssemblyReference right)
         {
-            if (left?.DefinitionUniqueName != null)
-            {
-                return
-                    left != null && right != null
-                    && (left.DefinitionExtensionKind == BdoExtensionKind.Any
-                        || right.DefinitionExtensionKind == BdoExtensionKind.Any
-                        || left.DefinitionExtensionKind.Equals(right.DefinitionExtensionKind) == true)
-                    && left.DefinitionUniqueName?.Equals(right.DefinitionUniqueName) == true
-                    && left.AssemblyVersion?.Equals(right.AssemblyVersion) == true;
-            }
-
             return
                 left != null && right != null
                 && left.AssemblyName?.Equals(right.AssemblyName, StringComparison.OrdinalIgnoreCase) == true
@@ -123,21 +92,6 @@ namespace BindOpen.System.Data.Assemblies
 
         public static bool operator >=(BdoAssemblyReference left, IBdoAssemblyReference right)
         {
-            if (left?.DefinitionUniqueName != null)
-            {
-                return
-                    left != null && right != null
-                    && (left.DefinitionExtensionKind == BdoExtensionKind.Any
-                        || right.DefinitionExtensionKind == BdoExtensionKind.Any
-                        || left.DefinitionExtensionKind.Equals(right.DefinitionExtensionKind) == true)
-                    && left.DefinitionUniqueName?.Equals(right.DefinitionUniqueName) == true
-                    && (
-                    left.AssemblyVersion == null
-                    || right.AssemblyVersion == null
-                    || left.AssemblyVersion >= right.AssemblyVersion
-                    );
-            }
-
             return
                 left != null && right != null
                 && left.AssemblyName?.Equals(right.AssemblyName, StringComparison.OrdinalIgnoreCase) == true
@@ -150,21 +104,6 @@ namespace BindOpen.System.Data.Assemblies
 
         public static bool operator <=(BdoAssemblyReference left, IBdoAssemblyReference right)
         {
-            if (left?.DefinitionUniqueName != null)
-            {
-                return
-                    left != null && right != null
-                    && (left.DefinitionExtensionKind == BdoExtensionKind.Any
-                        || right.DefinitionExtensionKind == BdoExtensionKind.Any
-                        || left.DefinitionExtensionKind.Equals(right.DefinitionExtensionKind) == true)
-                    && left.DefinitionUniqueName?.Equals(right.DefinitionUniqueName) == true
-                    && (
-                    left.AssemblyVersion == null
-                    || right.AssemblyVersion == null
-                    || left.AssemblyVersion <= right.AssemblyVersion
-                    );
-            }
-
             return
                 left != null && right != null
                 && left.AssemblyName?.Equals(right.AssemblyName, StringComparison.OrdinalIgnoreCase) == true
@@ -172,11 +111,7 @@ namespace BindOpen.System.Data.Assemblies
                     left.AssemblyVersion == null
                     || right.AssemblyVersion == null
                     || left.AssemblyVersion <= right.AssemblyVersion
-                )
-                && (left.DefinitionExtensionKind == BdoExtensionKind.Any
-                    || right.DefinitionExtensionKind == BdoExtensionKind.Any
-                    || left.DefinitionExtensionKind.Equals(right.DefinitionExtensionKind) == true)
-                && left.DefinitionUniqueName?.Equals(right.DefinitionUniqueName) == true;
+                );
         }
 
         public override string ToString()

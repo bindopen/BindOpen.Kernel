@@ -1,5 +1,5 @@
 ﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Assemblies;
+using System;
 using System.Collections.Generic;
 
 namespace BindOpen.System.Scoping.Stores
@@ -20,41 +20,21 @@ namespace BindOpen.System.Scoping.Stores
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        IEnumerable<T> GetDefinitions<T>() where T : IBdoExtensionDefinition;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param key="uniqueName"></param>
-        /// <returns></returns>
-        T GetDefinition<T>(string uniqueName) where T : IBdoExtensionDefinition;
+        IEnumerable<IBdoExtensionDefinition> GetDefinitions(BdoExtensionKinds kind);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param key="uniqueName"></param>
         /// <returns></returns>
-        IBdoExtensionDefinition GetDefinition(
-            BdoExtensionKind kind,
-            string uniqueName);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param key="uniqueName"></param>
-        /// <returns></returns>
-        T GetDefinitionFromType<T>(IBdoClassReference reference) where T : IBdoExtensionDefinition;
+        IBdoExtensionDefinition GetDefinition(BdoExtensionKinds kind, string uniqueName);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param key="uniqueName"></param>
         /// <returns></returns>
-        IBdoExtensionDefinition GetDefinitionFromType(
-            BdoExtensionKind kind,
-            IBdoClassReference reference);
+        IBdoExtensionDefinition GetDefinitionFromType(Type type);
 
         /// <summary>
         /// Clears this instance.

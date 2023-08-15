@@ -1,4 +1,8 @@
-﻿namespace BindOpen.System.Data.Assemblies
+﻿using BindOpen.System.Logging;
+using BindOpen.System.Scoping;
+using System;
+
+namespace BindOpen.System.Data.Assemblies
 {
     /// <summary>
     /// 
@@ -8,8 +12,8 @@
         /// <summary>
         /// The library name of this instance.
         /// </summary>
-        string ClassName { get; }
+        string ClassName { get; set; }
 
-        bool IsCompatibleWith(IBdoClassReference reference);
+        Type GetRuntimeType(IBdoScope scope = null, IBdoLog log = null);
     }
 }

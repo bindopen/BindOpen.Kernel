@@ -30,7 +30,9 @@ namespace BindOpen.System.Data.Meta
             var mapper = new Mapper(config);
             var dto = mapper.Map<MetaObjectDto>(poco);
 
-            dto.ClassReference = poco?.DataType.ClassReference?.ToDto();
+            dto.ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDto() : null;
+            dto.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
+
             dto.MetaItems = poco.Items?.Select(q => q.ToDto()).ToList();
             dto.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;
             if (poco.Spec?.DataType.ValueType == poco.DataType.ValueType)
@@ -63,11 +65,9 @@ namespace BindOpen.System.Data.Meta
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoMetaObject>(dto);
 
-            poco.DataType = new BdoDataType()
-            {
-                ClassReference = dto.ClassReference.ToPoco(),
-                ValueType = dto.ValueType
-            };
+            poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco());
+            poco.DataType.DefinitionUniqueName = dto.DefinitionUniqueName;
+            poco.DataType.ValueType = dto.ValueType;
 
             poco.With(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
 

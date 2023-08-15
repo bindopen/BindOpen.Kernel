@@ -42,7 +42,8 @@ namespace BindOpen.System.Data.Meta.Reflection
                                 IBdoSpec spec = BdoData.NewSpec();
                                 var change = spec.UpdateFrom<BdoPropertyAttribute>(propInfo);
 
-                                var propName = spec?.Name ?? propInfo.Name;
+                                var propName = spec.Name ?? propInfo.Name;
+                                spec.Name = null;
                                 object propValue = propInfo.GetValue(obj);
 
                                 IBdoMetaData subMeta = metaObject[propName];

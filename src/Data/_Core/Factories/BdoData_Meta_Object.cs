@@ -40,11 +40,9 @@ namespace BindOpen.System.Data
         {
             var el = new BdoMetaObject();
 
-            if (valueType.IsScalar()) valueType = DataValueTypes.Object;
-
             el
                 .WithName(name)
-                .WithDataType(valueType, type)
+                .WithDataType(type)
                 .WithData(item);
 
             return el;
@@ -90,7 +88,7 @@ namespace BindOpen.System.Data
 
             el
                 .WithName(name)
-                .WithDataType(DataValueTypes.Object, typeof(TItem))
+                .WithDataType(typeof(TItem))
                 .WithData(item);
 
             return el;

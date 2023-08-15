@@ -25,7 +25,7 @@ namespace BindOpen.System.Scoping
         {
             var config =
                 BdoData.NewMetaObject()
-                .WithDataType(BdoExtensionKind.Connector, "bindopen.system.tests$testConnector")
+                .WithDataType(BdoExtensionKinds.Connector, "bindopen.system.tests$testConnector")
                 .With(
                     BdoData.NewMetaScalar("host", data.host as string),
                     BdoData.NewMetaScalar("port", data.port as int?),

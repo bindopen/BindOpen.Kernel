@@ -61,7 +61,7 @@ namespace BindOpen.System.Scoping
         {
             IBdoFunctionDefinition definition;
 
-            var definitionUniqueName = word.DataType.ClassReference?.DefinitionUniqueName;
+            var definitionUniqueName = word.DataType?.DefinitionUniqueName;
 
             if (!string.IsNullOrEmpty(definitionUniqueName))
             {
@@ -69,7 +69,7 @@ namespace BindOpen.System.Scoping
             }
             else
             {
-                var parentDataType = BdoData.NewDataType(word?.Parent?.GetData()?.GetType());
+                var parentDataType = word?.Parent == null ? null : BdoData.NewDataType(word?.Parent?.GetData()?.GetType());
                 definition = scope?.ExtensionStore?.GetFunctionDefinition(word?.Name, word, parentDataType, log);
             }
 
@@ -193,7 +193,7 @@ namespace BindOpen.System.Scoping
             this IBdoExtensionStore store,
             string functionName,
             IBdoMetaComposite paramSet,
-            BdoDataType parentDataType = default,
+            IBdoDataType parentDataType = default,
             IBdoLog log = null)
         {
             if (store != null)
@@ -206,10 +206,7 @@ namespace BindOpen.System.Scoping
                     IBdoFunctionDefinition functionDefinition = null;
                     foreach (var definition in functionDefinitions)
                     {
-                        if ((parentDataType == DataValueTypes.None
-                                || parentDataType == DataValueTypes.Any
-                                || definition?.ParentDataType.ValueType == DataValueTypes.Object
-                                 || definition?.ParentDataType <= parentDataType)
+                        if ((parentDataType == null || parentDataType.IsCompatibleWith(definition?.ParentDataType) == true)
                             && (definition.RuntimeFunction != null || (definition?.IsCompatibleWith(paramSet, log: log) ?? false)))
                         {
                             functionDefinition = definition;

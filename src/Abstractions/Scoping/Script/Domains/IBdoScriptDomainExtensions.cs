@@ -1,5 +1,4 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.System.Data.Meta;
 using BindOpen.System.Logging;
 
 namespace BindOpen.System.Scoping.Script
@@ -71,15 +70,6 @@ namespace BindOpen.System.Scoping.Script
             }
 
             return function;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="assemblyFileName"></param>
-        public static bool IsScriptDomain(this BdoDataType dataType)
-        {
-            return dataType >= typeof(IBdoScriptDomain);
         }
     }
 }

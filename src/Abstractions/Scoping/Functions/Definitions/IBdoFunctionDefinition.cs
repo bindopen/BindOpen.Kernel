@@ -17,12 +17,12 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// 
         /// </summary>
-        BdoDataType ParentDataType { get; set; }
+        IBdoDataType ParentDataType { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        BdoDataType OutputDataType { get; set; }
+        IBdoDataType OutputDataType { get; set; }
 
         /// <summary>
         /// 

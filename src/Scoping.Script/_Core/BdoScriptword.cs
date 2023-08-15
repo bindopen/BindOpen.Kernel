@@ -21,7 +21,6 @@ namespace BindOpen.System.Scoping.Script
         /// </summary>
         public BdoScriptword() : base()
         {
-            this.WithDataType(BdoExtensionKind.Scriptword);
             this.WithDataType(DataValueTypes.Scriptword);
         }
 

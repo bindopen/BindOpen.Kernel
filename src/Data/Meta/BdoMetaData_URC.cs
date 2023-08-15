@@ -26,10 +26,6 @@ namespace BindOpen.System.Data.Meta
                     this.WithDataType(meta.DataType);
                     this.WithDataReference(meta.DataReference);
                     this.WithData(meta.GetData());
-                    //this.WithDataValueType(metaScalar.DataValueType);
-                    //this.WithIndex(metaObj.Index);
-                    //this.WithName(metaObj.Name);
-                    //this.WithSpecs(metaObj.Specs?.ToArray());
                 }
             }
         }

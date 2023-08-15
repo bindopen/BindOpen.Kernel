@@ -1,4 +1,5 @@
 ﻿using BindOpen.System.Scoping;
+using System;
 
 namespace BindOpen.System.Data
 {
@@ -7,40 +8,67 @@ namespace BindOpen.System.Data
     /// </summary>
     public static partial class BdoDataTypedExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static T WithDataType<T>(
             this T dataTyped,
-            string definitionUniqueName)
+            DataValueTypes valueType)
             where T : IBdoDataTyped
         {
             if (dataTyped != null)
             {
-                dataTyped.DataType = new()
-                {
-                    ValueType = DataValueTypes.Object,
-                    ClassReference = definitionUniqueName == null ? null : BdoData.Class(definitionUniqueName)
-                };
+                dataTyped.DataType = BdoData.NewDataType(valueType);
             }
+
             return dataTyped;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param key="detail"></param>
         public static T WithDataType<T>(
             this T dataTyped,
-            BdoExtensionKind definitionExtensionKind,
+            Type type)
+            where T : IBdoDataTyped
+        {
+            if (dataTyped != null)
+            {
+                dataTyped.DataType = BdoData.NewDataType(type);
+            }
+
+            return dataTyped;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithDataType<T>(
+            this T dataTyped)
+            where T : IBdoDataTyped
+        {
+            if (dataTyped != null)
+            {
+                dataTyped.DataType = BdoData.NewDataType<T>();
+            }
+
+            return dataTyped;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithDataType<T>(
+            this T dataTyped,
+            BdoExtensionKinds definitionExtensionKind,
             string definitionUniqueName = null)
             where T : IBdoDataTyped
         {
             if (dataTyped != null)
             {
-                dataTyped.DataType = new()
-                {
-                    ValueType = DataValueTypes.Object,
-                    ClassReference = BdoData.Class(definitionExtensionKind, definitionUniqueName)
-                };
+                dataTyped.DataType = BdoData.NewDataType(definitionExtensionKind, definitionUniqueName);
             }
+
             return dataTyped;
         }
     }

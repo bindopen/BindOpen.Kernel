@@ -30,7 +30,8 @@ namespace BindOpen.System.Data.Meta
             var mapper = new Mapper(config);
             var dto = mapper.Map<MetaScalarDto>(poco);
 
-            dto.ClassReference = poco?.DataType.ClassReference?.ToDto();
+            dto.ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDto() : null;
+            dto.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
 
             var dataList = poco.GetDataList<object>()?.Select(q => q.ToString(dto.ValueType)).ToList();
             if (dataList?.Count > 1)
@@ -72,11 +73,9 @@ namespace BindOpen.System.Data.Meta
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoMetaScalar>(dto);
 
-            poco.DataType = new BdoDataType()
-            {
-                ClassReference = dto.ClassReference.ToPoco(),
-                ValueType = dto.ValueType
-            };
+            poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco());
+            poco.DataType.DefinitionUniqueName = dto.DefinitionUniqueName;
+            poco.DataType.ValueType = dto.ValueType;
 
             if (!string.IsNullOrEmpty(dto.Item))
             {

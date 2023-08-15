@@ -7,6 +7,10 @@ namespace BindOpen.System.Scoping
     /// </summary>
     public interface IBdoExtension : IBdoObject, IIdentified, IBdoDefinable
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        BdoExtensionKinds ExtensionKind { get; set; }
     }
 }
 

@@ -1,12 +1,10 @@
 ﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Stores;
 using BindOpen.System.Logging;
 using BindOpen.System.Scoping.Script;
 using BindOpen.System.Scoping.Stores;
 using System;
-using System.Linq;
 
 namespace BindOpen.System.Scoping
 {
@@ -67,34 +65,6 @@ namespace BindOpen.System.Scoping
         public IBdoMetaSet DataStore { get; }
 
         public IBdoScriptInterpreter Interpreter { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="reference"></param>
-        public Type CreateType(
-            IBdoClassReference reference,
-            IBdoLog log = null)
-        {
-            if (!string.IsNullOrEmpty(reference?.DefinitionUniqueName))
-            {
-                var definition = ExtensionStore?.GetDefinition<IBdoEntityDefinition>(
-                    reference.DefinitionUniqueName);
-
-                return definition?.RuntimeType;
-            }
-            else
-            {
-                var assembly = AppDomain.GetAssembly(reference);
-                var type = assembly.GetTypes()
-                    .FirstOrDefault(q =>
-                        BdoData.Class(
-                            BdoData.Assembly(assembly),
-                            reference.ClassName) == (BdoClassReference)reference);
-
-                return type;
-            }
-        }
 
         /// <summary>
         /// Clears this instance.

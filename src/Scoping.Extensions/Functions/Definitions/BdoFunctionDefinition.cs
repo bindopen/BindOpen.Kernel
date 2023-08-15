@@ -20,12 +20,12 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// 
         /// </summary>
-        public BdoDataType ParentDataType { get; set; }
+        public IBdoDataType ParentDataType { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public BdoDataType OutputDataType { get; set; }
+        public IBdoDataType OutputDataType { get; set; }
 
         /// <summary>
         /// 

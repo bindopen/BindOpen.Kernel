@@ -23,7 +23,7 @@ namespace BindOpen.System.Scoping.Stores
         /// <returns></returns>
         private int LoadDictionary(
             Assembly assembly,
-            BdoExtensionKind kind,
+            BdoExtensionKinds kind,
             IBdoPackageDefinition packageDefinition = null,
             IBdoLog log = null)
         {
@@ -34,13 +34,13 @@ namespace BindOpen.System.Scoping.Stores
 
             switch (kind)
             {
-                case BdoExtensionKind.Connector:
+                case BdoExtensionKinds.Connector:
                     return LoadConnectorDictionaryFromAssembly(assembly, packageDefinition, log);
-                case BdoExtensionKind.Entity:
+                case BdoExtensionKinds.Entity:
                     return LoadEntityDictionaryFromAssembly(assembly, packageDefinition, log);
-                case BdoExtensionKind.Function:
+                case BdoExtensionKinds.Function:
                     return LoadFunctionDictionaryFromAssembly(assembly, packageDefinition, log);
-                case BdoExtensionKind.Task:
+                case BdoExtensionKinds.Task:
                     return LoadTaskDictionaryFromAssembly(assembly, packageDefinition, log);
                 default:
                     break;
@@ -109,14 +109,14 @@ namespace BindOpen.System.Scoping.Stores
         /// <returns>Returns the class of the specified dico.</returns>
         private static string GetDictionaryResourceName<T>() where T : IBdoExtensionDefinition
         {
-            BdoExtensionKind itemKind = typeof(T).GetExtensionKind();
+            BdoExtensionKinds itemKind = typeof(T).GetExtensionKind();
 
             return itemKind switch
             {
-                BdoExtensionKind.Connector => "BindOpen.Connectors",
-                BdoExtensionKind.Entity => "BindOpen.Entities",
-                BdoExtensionKind.Function => "BindOpen.Functions",
-                BdoExtensionKind.Task => "BindOpen.Tasks",
+                BdoExtensionKinds.Connector => "BindOpen.Connectors",
+                BdoExtensionKinds.Entity => "BindOpen.Entities",
+                BdoExtensionKinds.Function => "BindOpen.Functions",
+                BdoExtensionKinds.Task => "BindOpen.Tasks",
                 _ => null,
             };
         }
@@ -127,14 +127,14 @@ namespace BindOpen.System.Scoping.Stores
         /// <returns>Returns the class of the specified dico.</returns>
         private static Type GetDictionaryType<T>() where T : IBdoExtensionDefinition
         {
-            BdoExtensionKind itemKind = typeof(T).GetExtensionKind();
+            BdoExtensionKinds itemKind = typeof(T).GetExtensionKind();
 
             return itemKind switch
             {
-                BdoExtensionKind.Connector => typeof(BdoConnectorDictionary),
-                BdoExtensionKind.Entity => typeof(BdoEntityDictionary),
-                BdoExtensionKind.Function => typeof(BdoFunctionDictionary),
-                BdoExtensionKind.Task => typeof(BdoTaskDictionary),
+                BdoExtensionKinds.Connector => typeof(BdoConnectorDictionary),
+                BdoExtensionKinds.Entity => typeof(BdoEntityDictionary),
+                BdoExtensionKinds.Function => typeof(BdoFunctionDictionary),
+                BdoExtensionKinds.Task => typeof(BdoTaskDictionary),
                 _ => null,
             };
         }

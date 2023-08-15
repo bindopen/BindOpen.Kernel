@@ -18,7 +18,7 @@ namespace BindOpen.System.Scoping
         /// </summary>
         protected BdoEntity() : base()
         {
-            this.WithDefinition(BdoExtensionKind.Entity);
+            this.WithDefinition(BdoExtensionKinds.Entity);
         }
 
         #endregion

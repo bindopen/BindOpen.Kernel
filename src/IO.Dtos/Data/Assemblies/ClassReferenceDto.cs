@@ -17,13 +17,6 @@ namespace BindOpen.System.Data.Assemblies
         #region Properties
 
         /// <summary>
-        /// The definition of this instance.
-        /// </summary>
-        [JsonPropertyName("definition")]
-        [XmlElement("definition")]
-        public DefinitionReferenceDto Definition { get; set; }
-
-        /// <summary>
         /// The library name of this instance.
         /// </summary>
         [JsonPropertyName("className")]
