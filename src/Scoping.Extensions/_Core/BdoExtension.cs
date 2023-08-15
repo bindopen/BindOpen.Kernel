@@ -37,7 +37,7 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// 
         /// </summary>
-        public BdoExtensionKind DefinitionExtensionKind { get; set; }
+        public BdoExtensionKinds ExtensionKind { get; set; }
 
         #endregion
 

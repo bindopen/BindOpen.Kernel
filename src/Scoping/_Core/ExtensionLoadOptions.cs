@@ -25,7 +25,7 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// The extension kinds of this instance.
         /// </summary>
-        public IList<BdoExtensionKind> ExtensionKinds { get; set; }
+        public IList<BdoExtensionKinds> ExtensionKinds { get; set; }
 
         /// <summary>
         /// The assmbly references of this instance.

@@ -22,7 +22,7 @@ namespace BindOpen.System.Scoping
         /// </summary>
         protected BdoTask() : base()
         {
-            this.WithDefinition(BdoExtensionKind.Task);
+            this.WithDefinition(BdoExtensionKinds.Task);
         }
 
         #endregion

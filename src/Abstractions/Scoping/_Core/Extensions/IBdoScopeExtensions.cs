@@ -1,21 +1,10 @@
-﻿using BindOpen.System.Data;
-
-namespace BindOpen.System.Scoping
+﻿namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// This static class provides methods to create extension items.
     /// </summary>
     public static class IBdoScopeExtensions
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="assemblyFileName"></param>
-        public static bool IsScope(this BdoDataType dataType)
-        {
-            return dataType >= typeof(IBdoScope);
-        }
-
         public static T WithScope<T>(
             this T scoped,
             IBdoScope scope)

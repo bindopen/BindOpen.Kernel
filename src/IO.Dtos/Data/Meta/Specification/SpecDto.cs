@@ -86,6 +86,13 @@ namespace BindOpen.System.Data.Meta
         public DataValueTypes ValueType { get; set; } = DataValueTypes.Any;
 
         /// <summary>
+        /// Creation date of this instance.
+        /// </summary>
+        [JsonPropertyName("definition")]
+        [XmlAttribute("definition")]
+        public string DefinitionUniqueName { get; set; }
+
+        /// <summary>
         /// The class reference of this instance.
         /// </summary>
         [JsonPropertyName("class")]

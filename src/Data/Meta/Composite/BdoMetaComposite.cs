@@ -1,7 +1,6 @@
 ﻿using BindOpen.System.Data.Helpers;
 using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -164,11 +163,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        public BdoDataType DataType { get; set; }
-
-        public DataValueTypes DataValueType => DataType.ValueType;
-
-        public Type DataClassType => DataType.ClassType;
+        public IBdoDataType DataType { get; set; }
 
         // Specification -------------------------------
 

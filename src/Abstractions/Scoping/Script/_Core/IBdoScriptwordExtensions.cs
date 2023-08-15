@@ -1,6 +1,4 @@
-﻿using BindOpen.System.Data;
-
-namespace BindOpen.System.Scoping.Script
+﻿namespace BindOpen.System.Scoping.Script
 {
     /// <summary>
     /// This interface represents an named data item.
@@ -54,15 +52,6 @@ namespace BindOpen.System.Scoping.Script
             scriptword.WithChild(word);
 
             return word;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="assemblyFileName"></param>
-        public static bool IsScriptword(this BdoDataType dataType)
-        {
-            return dataType >= typeof(IBdoScriptword);
         }
     }
 }

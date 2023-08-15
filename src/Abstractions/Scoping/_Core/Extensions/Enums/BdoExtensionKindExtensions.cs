@@ -11,7 +11,7 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// Gets the extension item kind corresponding to the specified object.
         /// </summary>
-        public static BdoExtensionKind GetExtensionKind(
+        public static BdoExtensionKinds GetExtensionKind(
             this IBdoExtensionDefinition extensionDefinition)
         {
             return (extensionDefinition?.GetType()).GetExtensionKind();
@@ -20,7 +20,7 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// Gets the extension item kind corresponding to the specified object.
         /// </summary>
-        public static BdoExtensionKind GetExtensionKind(
+        public static BdoExtensionKinds GetExtensionKind(
             this IBdoExtension extension)
         {
             return (extension?.GetType()).GetExtensionKind();
@@ -30,30 +30,30 @@ namespace BindOpen.System.Scoping
         /// Gets the extension item kind corresponding to the specified type.
         /// </summary>
         /// <param key="type">The type to consider.</param>
-        public static BdoExtensionKind GetExtensionKind(
+        public static BdoExtensionKinds GetExtensionKind(
             this Type type)
         {
             if (typeof(IBdoConnectorDefinition).IsAssignableFrom(type)
                 || typeof(IBdoConnector).IsAssignableFrom(type))
             {
-                return BdoExtensionKind.Connector;
+                return BdoExtensionKinds.Connector;
             }
             else if (typeof(IBdoEntityDefinition).IsAssignableFrom(type)
                 || typeof(IBdoEntity).IsAssignableFrom(type))
             {
-                return BdoExtensionKind.Entity;
+                return BdoExtensionKinds.Entity;
             }
             else if (typeof(IBdoFunctionDefinition).IsAssignableFrom(type))
             {
-                return BdoExtensionKind.Function;
+                return BdoExtensionKinds.Function;
             }
             else if (typeof(IBdoTaskDefinition).IsAssignableFrom(type)
                 || typeof(IBdoTask).IsAssignableFrom(type))
             {
-                return BdoExtensionKind.Task;
+                return BdoExtensionKinds.Task;
             }
 
-            return BdoExtensionKind.None;
+            return BdoExtensionKinds.None;
         }
 
         /// <summary>
@@ -61,16 +61,17 @@ namespace BindOpen.System.Scoping
         /// </summary>
         /// <param name="valueType"></param>
         /// <returns></returns>
-        public static BdoExtensionKind GetExtensionKind(
+        public static BdoExtensionKinds GetExtensionKind(
             this DataValueTypes valueType)
         {
             return valueType
                 switch
             {
-                DataValueTypes.Connector => BdoExtensionKind.Connector,
-                DataValueTypes.Entity => BdoExtensionKind.Entity,
-                DataValueTypes.Task => BdoExtensionKind.Task,
-                _ => BdoExtensionKind.None
+                DataValueTypes.Connector => BdoExtensionKinds.Connector,
+                DataValueTypes.Entity => BdoExtensionKinds.Entity,
+                DataValueTypes.Scriptword => BdoExtensionKinds.Scriptword,
+                DataValueTypes.Task => BdoExtensionKinds.Task,
+                _ => BdoExtensionKinds.None
             };
         }
     }

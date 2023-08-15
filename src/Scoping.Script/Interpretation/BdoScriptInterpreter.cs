@@ -150,7 +150,7 @@ namespace BindOpen.System.Scoping.Script
                 }
 
                 var cloned = BdoScript.NewWord(word.Kind, word.Name)
-                    .WithDataType(word.DataType.ClassReference?.DefinitionUniqueName)
+                    .WithDataType(BdoExtensionKinds.Scriptword, word.DataType?.DefinitionUniqueName)
                     .WithParent(word.Parent as IBdoScriptword);
 
                 switch (word.Kind)

@@ -36,7 +36,9 @@ namespace BindOpen.System.Scoping.Script
             var mapper = new Mapper(config);
             var dto = mapper.Map<ScriptwordDto>(poco);
 
-            dto.ClassReference = poco?.DataType.ClassReference?.ToDto();
+            dto.ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDto() : null;
+            dto.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
+
             dto.MetaItems = poco.Items?.Select(q => q.ToDto()).ToList();
             dto.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;
             if (poco.Spec?.DataType.ValueType == poco.DataType.ValueType
@@ -73,11 +75,10 @@ namespace BindOpen.System.Scoping.Script
             var poco = mapper.Map<BdoScriptword>(dto);
 
             poco.Child = dto.Child.ToPoco();
-            poco.DataType = new()
-            {
-                ClassReference = dto.ClassReference.ToPoco(),
-                ValueType = dto.ValueType
-            };
+
+            poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco());
+            poco.DataType.DefinitionUniqueName = dto.DefinitionUniqueName;
+            poco.DataType.ValueType = dto.ValueType;
 
             poco.With(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
 

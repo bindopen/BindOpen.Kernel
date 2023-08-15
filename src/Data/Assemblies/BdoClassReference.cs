@@ -1,4 +1,6 @@
 ﻿using BindOpen.System.Data.Helpers;
+using BindOpen.System.Logging;
+using BindOpen.System.Scoping;
 using System;
 
 namespace BindOpen.System.Data.Assemblies
@@ -44,12 +46,12 @@ namespace BindOpen.System.Data.Assemblies
         /// <summary>
         /// The class name of this instance.
         /// </summary>
-        public string ClassName { get; private set; }
+        public string ClassName { get; set; }
 
         public override string Key()
             => AssemblyName == StringHelper.__Star ?
             StringHelper.__Star :
-            AssemblyName + ";" + AssemblyVersion + ";" + ClassName;
+            (ClassName == null ? null : (ClassName + ", " + base.Key()));
 
         public override int GetHashCode()
         {
@@ -66,15 +68,17 @@ namespace BindOpen.System.Data.Assemblies
             return false;
         }
 
-        public bool IsCompatibleWith(IBdoClassReference reference)
+        public virtual Type GetRuntimeType(IBdoScope scope = null, IBdoLog log = null)
         {
-            return this >= reference;
+            var fullName = Key();
+            var type = fullName == null ? null : Type.GetType(fullName);
+
+            return type;
         }
 
         public static bool operator ==(BdoClassReference left, IBdoClassReference right)
         {
-            return (BdoAssemblyReference)left == (IBdoAssemblyReference)right
-                && left?.ClassName.Equals(right?.ClassName, StringComparison.OrdinalIgnoreCase) == true;
+            return left?.Key() == right?.Key();
         }
 
         public static bool operator !=(BdoClassReference left, IBdoClassReference right)
@@ -84,26 +88,28 @@ namespace BindOpen.System.Data.Assemblies
 
         public static bool operator >=(BdoClassReference left, IBdoClassReference right)
         {
-            return (BdoAssemblyReference)left >= (IBdoAssemblyReference)right
-                && left?.ClassName.Equals(right?.ClassName) == true;
+            return
+                left is not null && right != null
+                && left.AssemblyName?.Equals(right.AssemblyName, StringComparison.OrdinalIgnoreCase) == true
+                && left.ClassName?.Equals(right.ClassName, StringComparison.OrdinalIgnoreCase) == true
+                && (
+                    left.AssemblyVersion == null
+                    || right.AssemblyVersion == null
+                    || left.AssemblyVersion >= right.AssemblyVersion
+                );
         }
 
         public static bool operator <=(BdoClassReference left, IBdoClassReference right)
         {
-            return (BdoAssemblyReference)left <= (IBdoAssemblyReference)right
-                && left?.ClassName.Equals(right?.ClassName) == true;
-        }
-
-        public static bool operator ==(BdoClassReference left, BdoDataType right)
-        {
-            return right.ValueType == DataValueTypes.Any
-                || (right.ValueType == DataValueTypes.Object
-                && left == right.ClassType);
-        }
-
-        public static bool operator !=(BdoClassReference left, BdoDataType right)
-        {
-            return !(left == right);
+            return
+                left is not null && right != null
+                && left.AssemblyName?.Equals(right.AssemblyName, StringComparison.OrdinalIgnoreCase) == true
+                && left.ClassName?.Equals(right.ClassName, StringComparison.OrdinalIgnoreCase) == true
+                && (
+                    left.AssemblyVersion == null
+                    || right.AssemblyVersion == null
+                    || left.AssemblyVersion <= right.AssemblyVersion
+                );
         }
 
         public static bool operator ==(BdoClassReference left, Type right)

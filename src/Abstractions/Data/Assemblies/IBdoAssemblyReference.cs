@@ -6,17 +6,17 @@ namespace BindOpen.System.Data.Assemblies
     /// 
     /// </summary>
     public interface IBdoAssemblyReference :
-        IBdoObject, IReferenced, IBdoDefinable
+        IBdoObject, IReferenced
     {
         /// <summary>
         /// The library name of this instance.
         /// </summary>
-        string AssemblyName { get; }
+        string AssemblyName { get; set; }
 
         /// <summary>
         /// The library version of this instance.
         /// </summary>
-        Version AssemblyVersion { get; }
+        Version AssemblyVersion { get; set; }
 
         /// <summary>
         /// The file name of this instance.
@@ -24,7 +24,5 @@ namespace BindOpen.System.Data.Assemblies
         string AssemblyFileName { get; set; }
 
         bool IsEmpty();
-
-        bool IsCompatibleWith(IBdoAssemblyReference reference);
     }
 }

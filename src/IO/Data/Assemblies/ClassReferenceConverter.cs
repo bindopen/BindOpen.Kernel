@@ -18,11 +18,6 @@ namespace BindOpen.System.Data.Assemblies
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<BdoClassReference, ClassReferenceDto>()
-                    .ForMember(q => q.Definition, opt => opt.MapFrom(q => new DefinitionReferenceDto()
-                    {
-                        DefinitionExtensionKind = q.DefinitionExtensionKind,
-                        DefinitionUniqueName = q.DefinitionUniqueName,
-                    }))
             );
 
             var mapper = new Mapper(config);
@@ -30,6 +25,13 @@ namespace BindOpen.System.Data.Assemblies
 
             return dto;
         }
+
+        public static bool IsSpecified(this IBdoClassReference poco) =>
+            poco != null
+            && (poco?.AssemblyFileName != null
+            || poco?.AssemblyName != null
+            || poco?.AssemblyVersion != null
+            || poco?.ClassName != null);
 
         /// <summary>
         /// Converts to DTO.
@@ -43,8 +45,6 @@ namespace BindOpen.System.Data.Assemblies
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<ClassReferenceDto, BdoClassReference>()
-                    .ForMember(q => q.DefinitionExtensionKind, opt => opt.MapFrom(q => q.Definition.DefinitionExtensionKind))
-                    .ForMember(q => q.DefinitionUniqueName, opt => opt.MapFrom(q => q.Definition.DefinitionUniqueName))
             );
 
             var mapper = new Mapper(config);

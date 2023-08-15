@@ -189,6 +189,28 @@ namespace BindOpen.System.Processing
 
         // Actions
 
+        public static bool IsAlive<T>(
+            this T execution)
+            where T : IBdoProcessExecution
+            => execution?.State == ProcessExecutionState.Pending
+                && (execution?.Status == ProcessExecutionStatus.Paused
+                    || execution?.Status == ProcessExecutionStatus.Processing
+                    || execution?.Status == ProcessExecutionStatus.Waiting);
+
+        public static bool IsRunning<T>(
+            this T execution)
+            where T : IBdoProcessExecution
+            => execution?.State == ProcessExecutionState.Pending
+                && (execution?.Status == ProcessExecutionStatus.Paused
+                    || execution?.Status == ProcessExecutionStatus.Processing
+                    || execution?.Status == ProcessExecutionStatus.Waiting);
+
+        public static bool IsProcessing<T>(
+            this T execution)
+            where T : IBdoProcessExecution
+            => execution?.State == ProcessExecutionState.Pending
+                && execution?.Status == ProcessExecutionStatus.Processing;
+
         public static void SetAsStarted<T>(
             this T execution)
             where T : IBdoProcessExecution

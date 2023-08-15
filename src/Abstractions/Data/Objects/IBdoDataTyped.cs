@@ -8,6 +8,6 @@
         /// <summary>
         /// 
         /// </summary>
-        BdoDataType DataType { get; set; }
+        IBdoDataType DataType { get; set; }
     }
 }

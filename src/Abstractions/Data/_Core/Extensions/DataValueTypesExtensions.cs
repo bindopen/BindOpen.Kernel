@@ -73,6 +73,25 @@ namespace BindOpen.System.Data
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="valueType"></param>
+        /// <returns></returns>
+        public static DataValueTypes GetValueType(
+            this BdoExtensionKinds extensionKind)
+        {
+            return extensionKind
+                switch
+            {
+                BdoExtensionKinds.Connector => DataValueTypes.Connector,
+                BdoExtensionKinds.Entity => DataValueTypes.Entity,
+                BdoExtensionKinds.Scriptword => DataValueTypes.Scriptword,
+                BdoExtensionKinds.Task => DataValueTypes.Task,
+                _ => DataValueTypes.None
+            };
+        }
+
+        /// <summary>
         /// Returns the value type of the specified object.
         /// </summary>
         /// <param key="type">The type to consider.</param>
@@ -118,6 +137,8 @@ namespace BindOpen.System.Data
                 return DataValueTypes.Long;
             else if (type == typeof(ulong) || type == typeof(ulong?))
                 return DataValueTypes.ULong;
+            else if (type == typeof(object))
+                return DataValueTypes.Any;
             else
                 return DataValueTypes.Object;
         }

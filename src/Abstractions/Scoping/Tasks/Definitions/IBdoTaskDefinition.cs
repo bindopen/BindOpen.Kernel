@@ -1,14 +1,13 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Data.Meta;
-using System;
 
 namespace BindOpen.System.Scoping
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoTaskDefinition : IBdoExtensionDefinition
+    public interface IBdoTaskDefinition : IBdoExtensionDefinition, IBdoRuntimeTyped
     {
         /// <summary>
         /// 
@@ -19,11 +18,6 @@ namespace BindOpen.System.Scoping
         /// 
         /// </summary>
         ITBdoSet<IBdoSpec> OutputSpecs { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        Type RuntimeType { get; set; }
 
         /// <summary>
         /// 

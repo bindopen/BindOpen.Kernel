@@ -48,7 +48,9 @@ namespace BindOpen.System.Data.Meta
             dto.AvailableDataModes = poco?.AvailableDataModes == null ? null : new List<DataMode>(poco.AvailableDataModes);
 
             dto.Children = poco?._Children?.Select(q => q.ToDto()).ToList();
-            dto.ClassReference = poco?.DataType.ClassReference?.ToDto();
+
+            dto.ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDto() : null;
+            dto.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
 
             dto.DataSpecLevels = poco?.DataSpecLevels == null ? null : new List<SpecificationLevels>(poco.DataSpecLevels);
             dto.IsAllocatable = poco?.IsAllocatable == false ? null : poco?.IsAllocatable;
@@ -57,7 +59,7 @@ namespace BindOpen.System.Data.Meta
             dto.MinDataItemNumber = (int?)(poco?.MinDataItemNumber == 0 ? null : poco?.MinDataItemNumber);
             dto.SpecLevels = poco?.SpecLevels == null ? null : new List<SpecificationLevels>(poco.SpecLevels);
 
-            dto.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;
+            dto.ValueType = poco?.DataType?.ValueType ?? DataValueTypes.Any;
 
             var dataList = poco.DefaultData?.ToObjectList().Select(q => q?.ToMeta().ToDto()).ToList();
             dto.DefaultItems = dataList;
@@ -95,13 +97,17 @@ namespace BindOpen.System.Data.Meta
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoAggregateSpec>(dto);
 
+            poco.Aliases = dto?.Aliases == null ? null : new List<string>(dto.Aliases);
+            poco.AvailableDataModes = dto?.AvailableDataModes == null ? null : new List<DataMode>(dto.AvailableDataModes);
+            poco.DataSpecLevels = dto?.DataSpecLevels == null ? null : new List<SpecificationLevels>(dto.DataSpecLevels);
+            poco.SpecLevels = dto?.SpecLevels == null ? null : new List<SpecificationLevels>(dto.SpecLevels);
+
             poco._Children = dto?.Children?.Select(q => q.ToPoco()).ToList();
 
-            poco.DataType = new BdoDataType()
-            {
-                ClassReference = dto.ClassReference.ToPoco(),
-                ValueType = dto.ValueType
-            };
+            poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco());
+            poco.DataType.DefinitionUniqueName = dto.DefinitionUniqueName;
+            poco.DataType.ValueType = dto.ValueType;
+
             poco
                 .WithTitle(dto.Title.ToPoco<string>())
                 .WithDescription(dto.Description.ToPoco<string>())

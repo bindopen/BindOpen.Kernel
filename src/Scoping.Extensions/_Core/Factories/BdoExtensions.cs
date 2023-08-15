@@ -18,9 +18,7 @@ namespace BindOpen.System.Scoping
             if (scope != null && extension != null)
             {
                 var extensionKind = extension.GetValueType().GetExtensionKind();
-                var extensionDefinition = scope.ExtensionStore?.GetDefinitionFromType(
-                    extensionKind,
-                    BdoData.Class(extension.GetType()));
+                var extensionDefinition = scope.ExtensionStore?.GetDefinitionFromType(extension.GetType());
 
                 var meta = BdoData.NewMetaObject(name)
                     .WithDataType(extensionKind, extensionDefinition?.UniqueName)

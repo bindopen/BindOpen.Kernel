@@ -1,6 +1,5 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
-using BindOpen.System.Data.Meta.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +11,17 @@ namespace BindOpen.System.Scoping
     /// </summary>
     public static class BdoTaskExtensions_Configuration
     {
+        // Is
+
+        public static bool IsProperty(
+            this IBdoMetaData meta) => meta.OfGroup(null);
+
+        public static bool IsInput(
+            this IBdoMetaData meta) => meta.OfGroup(IBdoTaskExtensions.__Token_Input);
+
+        public static bool IsOutput(
+            this IBdoMetaData meta) => meta.OfGroup(IBdoTaskExtensions.__Token_Output);
+
         // As
 
         public static IBdoMetaData AsProperty(

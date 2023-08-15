@@ -17,7 +17,7 @@ namespace BindOpen.System.Scoping
         /// <summary>
         /// 
         /// </summary>
-        IList<BdoExtensionKind> ExtensionKinds { get; set; }
+        IList<BdoExtensionKinds> ExtensionKinds { get; set; }
 
 
         IList<IBdoAssemblyReference> References { get; set; }
