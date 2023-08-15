@@ -163,11 +163,11 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="st">The string to normalize.</param>
         /// <returns>Returns the quoted string.</returns>
-        public static IBdoMetaSet ExtractTokens(this string st, string pattern, char quote = '\'')
+        public static IBdoMetaSet ExtractTokenMetas(this string st, string pattern, char quote = '\'')
         {
             var set = BdoData.NewMetaSet();
 
-            if (!string.IsNullOrEmpty(st))
+            if (!string.IsNullOrEmpty(st) && pattern != null)
             {
                 int i = 0;
                 int ii = -1;
@@ -191,6 +191,53 @@ namespace BindOpen.System.Data.Meta
                         var tokenValue = st.ToSubstring(ji, jj - 1).ToUnquoted(quote);
                         set.Add((tokenName, tokenValue));
                         ji = jj + word.Length;
+                    }
+
+                    if (i > -1)
+                    {
+                        int j = pattern.IndexOfNextString("}}", i + 2);
+
+                        if (j > -1)
+                        {
+                            tokenName = pattern.ToSubstring(i + 2, j - 1);
+                            ii = j + 2;
+                        }
+                        i++;
+                    }
+                }
+            }
+
+            return set;
+        }
+
+        /// <summary>
+        /// Gets the quoted string.
+        /// </summary>
+        /// <param key="st">The string to normalize.</param>
+        /// <returns>Returns the quoted string.</returns>
+        public static IEnumerable<string> ExtractTokens(this string pattern, char quote = '\'')
+        {
+            var set = new List<string>();
+
+            if (!string.IsNullOrEmpty(pattern))
+            {
+                int i = 0;
+                int ii = -1;
+                int ji = 0;
+                string tokenName = null;
+
+                while (i > -1)
+                {
+                    i = pattern.IndexOfNextString("{{", i);
+
+                    if (ii == -1)
+                    {
+                        ji = i;
+                    }
+
+                    if (ii > -1)
+                    {
+                        set.Add(tokenName);
                     }
 
                     if (i > -1)

@@ -3,6 +3,7 @@ using BindOpen.System.Data.Helpers;
 using BindOpen.System.Data.Meta;
 using Bogus;
 using NUnit.Framework;
+using System.Linq;
 
 namespace BindOpen.System.Scoping.Script
 {
@@ -42,7 +43,7 @@ namespace BindOpen.System.Scoping.Script
             string st = _valueSet.preffix + _valueSet.value1 + _valueSet.middle + _valueSet.value2 + _valueSet.suffix;
             string pattern = _valueSet.preffix + "{{" + _valueSet.name_value1 + "}}" + _valueSet.middle + "{{" + _valueSet.name_value2 + "}}" + _valueSet.suffix;
 
-            var set = st.ExtractTokens(pattern);
+            var set = st.ExtractTokenMetas(pattern);
 
             Test(set);
         }
@@ -53,7 +54,7 @@ namespace BindOpen.System.Scoping.Script
             string st = _valueSet.value1 + _valueSet.middle + _valueSet.value2 + _valueSet.suffix;
             string pattern = "{{" + _valueSet.name_value1 + "}}" + _valueSet.middle + "{{" + _valueSet.name_value2 + "}}" + _valueSet.suffix;
 
-            var set = st.ExtractTokens(pattern);
+            var set = st.ExtractTokenMetas(pattern);
 
             Test(set);
         }
@@ -64,7 +65,7 @@ namespace BindOpen.System.Scoping.Script
             string st = _valueSet.preffix + _valueSet.value1 + _valueSet.middle + _valueSet.value2;
             string pattern = _valueSet.preffix + "{{" + _valueSet.name_value1 + "}}" + _valueSet.middle + "{{" + _valueSet.name_value2 + "}}";
 
-            var set = st.ExtractTokens(pattern);
+            var set = st.ExtractTokenMetas(pattern);
 
             Test(set);
         }
@@ -75,7 +76,7 @@ namespace BindOpen.System.Scoping.Script
             string st = _valueSet.value1 + _valueSet.middle + _valueSet.value2;
             string pattern = "{{" + _valueSet.name_value1 + "}}" + _valueSet.middle + "{{" + _valueSet.name_value2 + "}}";
 
-            var set = st.ExtractTokens(pattern, '"');
+            var set = st.ExtractTokenMetas(pattern, '"');
 
             Test(set);
         }
@@ -86,7 +87,7 @@ namespace BindOpen.System.Scoping.Script
             string st = (_valueSet.value1 as string).ToQuoted('"') + ":" + _valueSet.value2;
             string pattern = "{{" + _valueSet.name_value1 + "}}" + ":" + "{{" + _valueSet.name_value2 + "}}";
 
-            var set = st.ExtractTokens(pattern, '"');
+            var set = st.ExtractTokenMetas(pattern, '"');
 
             Test(set);
         }
@@ -98,7 +99,7 @@ namespace BindOpen.System.Scoping.Script
             string st = name.ToQuoted('"') + " " + _valueSet.value2;
             string pattern = LabelFormats.NameSpaceValue.GetScript();
 
-            var set = st.ExtractTokens(pattern, '"');
+            var set = st.ExtractTokenMetas(pattern, '"');
 
             Assert.That(
                 set.GetData<string>(LabelFormatsExtensions.__Script_This_Name) == name
@@ -115,7 +116,7 @@ namespace BindOpen.System.Scoping.Script
             string st_name = null;
             string st_value = null;
 
-            var set = st.ExtractTokens(pattern, '"');
+            var set = st.ExtractTokenMetas(pattern, '"');
             set.Map(
                 (LabelFormatsExtensions.__Script_This_Name, q => { st_name = q.GetData<string>(); }
             ),
@@ -123,6 +124,18 @@ namespace BindOpen.System.Scoping.Script
             ));
 
             Assert.That(st_name == name as string && st_value == _valueSet.value2, "Bad string parsing");
+        }
+
+        [Test, Order(7)]
+        public void ExtractValuesTest()
+        {
+            string pattern = LabelFormats.NameSpaceValue.GetScript();
+
+            var list = pattern.ExtractTokens()?.ToList();
+
+            Assert.That(list.Count == 2
+                && list[0] == LabelFormatsExtensions.__Script_This_Name
+                && list[1] == LabelFormatsExtensions.__Script_This_Value, "Bad string parsing");
         }
     }
 }
