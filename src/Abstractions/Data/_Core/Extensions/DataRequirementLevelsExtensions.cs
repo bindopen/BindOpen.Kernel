@@ -3,7 +3,7 @@
     /// <summary>
     /// This class represents an extension of the RequirementLevels enumeration.
     /// </summary>
-    public static class RequirementLevelsExtensions
+    public static class DataRequirementLevelsExtensions
     {
 
         /// <summary>
@@ -14,7 +14,8 @@
         public static bool IsPossible(this RequirementLevels requirementLevel)
         {
             return requirementLevel == RequirementLevels.Optional
-                || requirementLevel == RequirementLevels.Required;
+                || requirementLevel == RequirementLevels.Required
+                || requirementLevel == RequirementLevels.None;
         }
     }
 }
