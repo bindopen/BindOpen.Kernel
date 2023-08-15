@@ -188,14 +188,18 @@ namespace BindOpen.System.Data.Meta
                         var word = pattern.ToSubstring(ii, i == -1 ? pattern.Length - 1 : i - 1);
                         var wordst = word.ToUnquoted(quote);
                         var jj = string.IsNullOrEmpty(wordst) ? st.Length : st.IndexOfNextString(wordst, ji, quote: quote);
-                        var tokenValue = st.ToSubstring(ji, jj - 1).ToUnquoted(quote);
-                        set.Add((tokenName, tokenValue));
+
+                        if (jj > -1)
+                        {
+                            var tokenValue = st.ToSubstring(ji, jj - 1).ToUnquoted(quote);
+                            set.Add((tokenName, tokenValue));
+                        }
                         ji = jj + word.Length;
                     }
 
                     if (i > -1)
                     {
-                        int j = pattern.IndexOfNextString("}}", i + 2);
+                        int j = pattern.IndexOfNextString("}}", i + 2, quote: quote);
 
                         if (j > -1)
                         {
@@ -242,7 +246,7 @@ namespace BindOpen.System.Data.Meta
 
                     if (i > -1)
                     {
-                        int j = pattern.IndexOfNextString("}}", i + 2);
+                        int j = pattern.IndexOfNextString("}}", i + 2, quote: quote);
 
                         if (j > -1)
                         {
