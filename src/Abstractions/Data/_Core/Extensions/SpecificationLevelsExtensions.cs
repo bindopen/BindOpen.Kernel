@@ -3,12 +3,6 @@ using System.Linq;
 
 namespace BindOpen.System.Data
 {
-    // --------------------------------------------------
-    // EXTENSION
-    // --------------------------------------------------
-
-    #region Extension
-
     /// <summary>
     /// This class represents an specification level extension.
     /// </summary>
@@ -68,6 +62,4 @@ namespace BindOpen.System.Data
             return (new[] { specificationLevel }).Excluding(excludingSpecificationLevels);
         }
     }
-
-    #endregion
 }
