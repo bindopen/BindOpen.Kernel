@@ -256,7 +256,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        public BdoDataType DataType { get; set; }
+        public IBdoDataType DataType { get; set; }
 
         /// <summary>
         /// The available itemization modes of this instance.

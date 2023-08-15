@@ -25,7 +25,7 @@ namespace BindOpen.System.Scoping
         {
             var meta =
                 BdoData.NewMetaObject()
-                .WithDataType(BdoExtensionKind.Entity, "bindopen.system.tests$testEntity")
+                .WithDataType(BdoExtensionKinds.Entity, "bindopen.system.tests$testEntity")
                 .With(
                     BdoData.NewMetaScalar("boolValue", data.boolValue as bool?),
                     BdoData.NewMetaScalar("enumValue", data.enumValue as ActionPriorities?),

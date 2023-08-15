@@ -40,7 +40,7 @@ namespace BindOpen.System.Scoping.Script
             var word = new TBdoScriptword<T>();
 
             word
-                .WithDataType(BdoExtensionKind.Scriptword, meta?.DataType.ClassReference?.DefinitionUniqueName)
+                .WithDataType(BdoExtensionKinds.Scriptword, meta?.DataType?.DefinitionUniqueName)
                 .With(meta.Items?.ToArray());
 
             return word;
@@ -59,7 +59,7 @@ namespace BindOpen.System.Scoping.Script
             var word = new BdoScriptword();
 
             word
-                .WithDataType(BdoExtensionKind.Scriptword, meta?.DataType.ClassReference?.DefinitionUniqueName)
+                .WithDataType(BdoExtensionKinds.Scriptword, meta?.DataType?.DefinitionUniqueName)
                 .With(meta.Items?.ToArray());
 
             return word;

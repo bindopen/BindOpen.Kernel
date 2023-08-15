@@ -1,5 +1,4 @@
-﻿using BindOpen.System.Data.Assemblies;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Stores;
 using BindOpen.System.Logging;
 using BindOpen.System.Scoping.Script;
@@ -41,15 +40,6 @@ namespace BindOpen.System.Scoping
         IBdoScriptDomain NewScriptDomain(
             IBdoMetaSet varSet,
             IBdoScriptword scriptword = null,
-            IBdoLog log = null);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="reference"></param>
-        /// <returns></returns>
-        Type CreateType(
-            IBdoClassReference reference,
             IBdoLog log = null);
 
         /// <summary>

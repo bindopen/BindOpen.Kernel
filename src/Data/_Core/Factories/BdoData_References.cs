@@ -93,17 +93,6 @@ namespace BindOpen.System.Data
         /// Creates a class reference of the spcefied type.
         /// </summary>
         /// <returns>Returns the itemized list of the spcefied type</returns>
-        public static BdoClassReference ClassFromEntity(
-            string definitionUniqueName)
-        {
-            return new BdoClassReference()
-                .WithDefinition(definitionUniqueName);
-        }
-
-        /// <summary>
-        /// Creates a class reference of the spcefied type.
-        /// </summary>
-        /// <returns>Returns the itemized list of the spcefied type</returns>
         public static BdoClassReference Class(Type type)
         {
             if (type == null) return null;
@@ -116,24 +105,6 @@ namespace BindOpen.System.Data
                 className);
         }
 
-        public static BdoClassReference Class(string definitionUniqueName)
-        {
-            return new BdoClassReference()
-                .WithDefinition(definitionUniqueName);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="detail"></param>
-        public static BdoClassReference Class(
-            BdoExtensionKind definitionExtensionKind,
-            string definitionUniqueName = null)
-        {
-            return new BdoClassReference()
-                .WithDefinition(definitionExtensionKind, definitionUniqueName);
-        }
-
         /// <summary>
         /// Creates a class reference of the spcefied type.
         /// </summary>
@@ -144,25 +115,44 @@ namespace BindOpen.System.Data
             return Class(type);
         }
 
+        // DataType
+
         /// <summary>
         /// Creates a class reference of the spcefied type.
         /// </summary>
         /// <returns>Returns the itemized list of the spcefied type</returns>
-        public static BdoDataType NewDataType(
-            DataValueTypes valueType,
-            Type type = null)
+        public static BdoDataType NewDataType(DataValueTypes valueType = DataValueTypes.Any)
         {
             return new BdoDataType()
-                .WithValueType(valueType)
-                .WithClassType(type);
+                .WithValueType(valueType);
         }
 
+        public static BdoDataType NewDataType(Type type)
+        {
+            return new BdoDataType(Class(type))
+                .WithValueType(type.GetValueType());
+        }
+
+        /// <summary>
+        /// Creates a class reference of the spcefied type.
+        /// </summary>
+        /// <returns>Returns the itemized list of the spcefied type</returns>
+        public static BdoDataType NewDataType<T>()
+        {
+            var type = typeof(T);
+            return NewDataType(type);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="detail"></param>
         public static BdoDataType NewDataType(
-            Type type)
+            BdoExtensionKinds definitionExtensionKind,
+            string definitionUniqueName = null)
         {
             return new BdoDataType()
-                .WithValueType(type.GetValueType())
-                .WithClassType(type);
+                .WithDefinition(definitionExtensionKind, definitionUniqueName);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace BindOpen.System.Scoping
         public static IBdoMetaObject CreateMetaTask(dynamic data)
         {
             var meta = BdoData.NewMetaObject()
-                .WithDataType(BdoExtensionKind.Task, "bindopen.system.tests$taskFake")
+                .WithDataType(BdoExtensionKinds.Task, "bindopen.system.tests$taskFake")
                 .WithProperties(
                     BdoData.NewMetaScalar("boolValue", data.boolValue as bool?),
                     BdoData.NewMetaScalar("intValue", data.intValue as int?))

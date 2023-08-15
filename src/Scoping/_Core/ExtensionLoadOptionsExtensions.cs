@@ -36,7 +36,7 @@ namespace BindOpen.System.Scoping
         /// <returns>Returns this instance.</returns>
         public static T WithExtensionKinds<T>(
             this T obj,
-            params BdoExtensionKind[] extensionKinds)
+            params BdoExtensionKinds[] extensionKinds)
             where T : IExtensionLoadOptions
         {
             if (obj != null)

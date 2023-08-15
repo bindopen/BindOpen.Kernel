@@ -50,7 +50,8 @@ namespace BindOpen.System.Data.Meta
             dto.Aliases = poco?.Aliases == null ? null : new List<string>(poco.Aliases);
             dto.AvailableDataModes = poco?.AvailableDataModes == null ? null : new List<DataMode>(poco.AvailableDataModes);
 
-            dto.ClassReference = poco?.DataType.ClassReference?.ToDto();
+            dto.ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDto() : null;
+            dto.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
 
             dto.DataSpecLevels = poco?.DataSpecLevels == null ? null : new List<SpecificationLevels>(poco.DataSpecLevels);
             dto.IsAllocatable = poco?.IsAllocatable == false ? null : poco?.IsAllocatable;
@@ -102,11 +103,15 @@ namespace BindOpen.System.Data.Meta
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoSpec>(dto);
 
-            poco.DataType = new BdoDataType()
-            {
-                ClassReference = dto.ClassReference.ToPoco(),
-                ValueType = dto.ValueType
-            };
+            poco.Aliases = dto?.Aliases == null ? null : new List<string>(dto.Aliases);
+            poco.AvailableDataModes = dto?.AvailableDataModes == null ? null : new List<DataMode>(dto.AvailableDataModes);
+            poco.DataSpecLevels = dto?.DataSpecLevels == null ? null : new List<SpecificationLevels>(dto.DataSpecLevels);
+            poco.SpecLevels = dto?.SpecLevels == null ? null : new List<SpecificationLevels>(dto.SpecLevels);
+
+            poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco());
+            poco.DataType.DefinitionUniqueName = dto.DefinitionUniqueName;
+            poco.DataType.ValueType = dto.ValueType;
+
             poco
                 .WithTitle(dto.Title.ToPoco<string>())
                 .WithDescription(dto.Description.ToPoco<string>())

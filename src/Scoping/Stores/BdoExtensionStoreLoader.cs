@@ -208,10 +208,10 @@ namespace BindOpen.System.Scoping.Stores
                             var extensionKinds = _loadOptions.ExtensionKinds?.ToArray()
                                 ?? new[]
                                 {
-                                    BdoExtensionKind.Connector,
-                                    BdoExtensionKind.Entity,
-                                    BdoExtensionKind.Function,
-                                    BdoExtensionKind.Task
+                                    BdoExtensionKinds.Connector,
+                                    BdoExtensionKinds.Entity,
+                                    BdoExtensionKinds.Function,
+                                    BdoExtensionKinds.Task
                                 };
 
                             foreach (var extensionKind in extensionKinds)
