@@ -106,6 +106,19 @@ namespace BindOpen.System.Scoping.Script
                 && set.GetData<string>(LabelFormatsExtensions.__Script_This_Value) == _valueSet.value2 as string, "Bad string parsing");
         }
 
+        [Test, Order(6)]
+        public void CreateTest_NameSpaceValue2()
+        {
+            var name = "toto";
+            string st = name;
+            string pattern = LabelFormats.NameSpaceValue.GetScript();
+
+            var set = st.ExtractTokenMetas(pattern, '"');
+
+            Assert.That(
+                set.Count == 1 && set.GetData<string>(0) == name, "Bad string parsing");
+        }
+
         [Test, Order(7)]
         public void CreateTest_Map()
         {
