@@ -1,11 +1,10 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Helpers;
+﻿using BindOpen.System.Data.Helpers;
 using BindOpen.System.Data.Meta;
 using Bogus;
 using NUnit.Framework;
 using System.Linq;
 
-namespace BindOpen.System.Scoping.Script
+namespace BindOpen.System.Data
 {
     [TestFixture, Order(210)]
     public class BdoExtractTests
@@ -115,8 +114,19 @@ namespace BindOpen.System.Scoping.Script
 
             var set = st.ExtractTokenMetas(pattern, '"');
 
-            Assert.That(
-                set.Count == 1 && set.GetData<string>(0) == name, "Bad string parsing");
+            Assert.That(set == null, "Bad string parsing");
+        }
+
+        [Test, Order(6)]
+        public void CreateTest_PatternNull()
+        {
+            var name = "toto";
+            string st = null;
+            string pattern = null;
+
+            var set = st.ExtractTokenMetas(pattern, '"');
+
+            Assert.That(set == null, "Bad string parsing");
         }
 
         [Test, Order(7)]
