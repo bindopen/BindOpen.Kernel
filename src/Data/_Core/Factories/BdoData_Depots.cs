@@ -19,14 +19,5 @@ namespace BindOpen.System.Data
             initializer?.Invoke(store);
             return store;
         }
-
-        /// <summary>
-        /// Instantiates a new instance of the Datasource class.
-        /// </summary>
-        /// <param key="name">The name to consider.</param>
-        /// <param key="kind">The kind of the data source to consider.</param>
-        public static IBdoSourceDepot NewDatasourceDepot(
-            params IBdoDatasource[] datasources)
-            => BdoData.NewSet<BdoDatasourceDepot, IBdoDatasource>(datasources);
     }
 }

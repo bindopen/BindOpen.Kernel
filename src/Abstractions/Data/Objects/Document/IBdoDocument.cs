@@ -1,5 +1,5 @@
-﻿using BindOpen.System.Logging;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.System.Data.Meta;
+using BindOpen.System.Logging;
 
 namespace BindOpen.System.Data
 {
@@ -17,14 +17,6 @@ namespace BindOpen.System.Data
         /// 
         /// </summary>
         IBdoConfiguration Content { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="dataSource"></param>
-        /// <param key="log"></param>
-        /// <returns></returns>
-        IBdoConfiguration DetectFormat(IBdoDatasource dataSource, ref IBdoLog log);
 
         /// <summary>
         /// 

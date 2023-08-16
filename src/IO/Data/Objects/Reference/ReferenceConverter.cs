@@ -54,7 +54,7 @@ namespace BindOpen.System.Data
 
             poco.Word = dto.Word.ToPoco();
 
-            if (poco.Kind == BdoReferenceKind.Expression)
+            if (dto.Text != null)
             {
                 poco.Expression = new BdoExpression()
                 {

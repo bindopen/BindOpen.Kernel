@@ -123,34 +123,6 @@ namespace BindOpen.System.Scoping
         }
 
         /// <summary>
-        /// Creates a connector.
-        /// </summary>
-        /// <param key="scope">The scope to consider.</param>
-        /// <param key="dataSource">The data source to consider.</param>
-        /// <param key="connectorDefinitionUniqueName">The connector definition name to consider.</param>
-        /// <param key="log">The log of execution to consider.</param>
-        /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
-        public static T Open<T>(
-            this IBdoScope scope,
-            IBdoDatasource dataSource,
-            string connectorDefinitionUniqueName,
-            IBdoLog log = null)
-            where T : class, IBdoConnection
-        {
-            if (dataSource == null)
-                log?.AddEvent(EventKinds.Error, "Data source missing");
-            else if (!string.IsNullOrEmpty(connectorDefinitionUniqueName) && dataSource.Has(connectorDefinitionUniqueName))
-                log?.AddEvent(EventKinds.Error,
-                    "Connection not defined in data source", description: "No connector is defined in the specified data source.");
-            else if (!string.IsNullOrEmpty(connectorDefinitionUniqueName))
-                return scope.Open<T>(dataSource.Get(connectorDefinitionUniqueName), log);
-            else if (dataSource.Count > 0)
-                return scope.Open<T>(dataSource[0], log);
-
-            return default;
-        }
-
-        /// <summary>
         /// Creates a connector using the specified data module and connector unique name.
         /// </summary>
         /// <param key="scope">The scope to consider.</param>
