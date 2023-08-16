@@ -60,9 +60,6 @@ namespace BindOpen.System.Data.Meta
             var meta3 = BdoData.NewMetaObject("object3", _obj3)
                 .WithDataType(BdoExtensionKinds.Task, "test$sample3");
 
-            var source1 = BdoData.NewDatasource(DatasourceKind.Database,
-                BdoData.NewMetaScalar("port", DataValueTypes.Integer, (_testData.arrayInteger3 as int[])[0]));
-
             _config = BdoData.NewConfig("config1",
                 BdoData.NewMetaScalar("float1", DataValueTypes.Number, _testData.arrayNumber1 as double[]),
                 BdoData.NewMetaScalar("text2", DataValueTypes.Text, _testData.arrayString2 as string[]),
