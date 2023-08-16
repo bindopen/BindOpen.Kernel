@@ -6,16 +6,6 @@
     public enum BdoReferenceKind
     {
         /// <summary>
-        /// Any.
-        /// </summary>
-        Any,
-
-        /// <summary>
-        /// None. Such as script word.
-        /// </summary>
-        None,
-
-        /// <summary>
         /// Expression.
         /// </summary>
         Expression,
@@ -33,7 +23,18 @@
         /// <summary>
         /// Meta data.
         /// </summary>
-        MetaData
+        MetaData,
+
+
+        /// <summary>
+        /// None. Such as script word.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// Any.
+        /// </summary>
+        Any
     }
 
 }

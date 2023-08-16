@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel;
+using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
 namespace BindOpen.System.Data
@@ -28,6 +29,7 @@ namespace BindOpen.System.Data
         /// </summary>
         [JsonPropertyName("kind")]
         [XmlAttribute("kind")]
+        [DefaultValue(BdoExpressionKind.Auto)]
         public BdoExpressionKind Kind { get; set; } = BdoExpressionKind.Auto;
 
         #endregion

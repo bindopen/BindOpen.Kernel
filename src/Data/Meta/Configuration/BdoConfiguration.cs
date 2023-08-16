@@ -20,7 +20,6 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         public BdoConfiguration() : base()
         {
-            this.WithId();
         }
 
         #endregion
@@ -108,13 +107,13 @@ namespace BindOpen.System.Data.Meta
         public IList<IBdoConfiguration> _Children { get => _children; set { _children = value; } }
 
         public IEnumerable<IBdoConfiguration> Children(Predicate<IBdoConfiguration> filter = null, bool isRecursive = false)
-            => _children?.Where(p => filter?.Invoke(p) == true) ?? Enumerable.Empty<IBdoConfiguration>();
+            => _children?.Where(p => filter?.Invoke(p) != false) ?? Enumerable.Empty<IBdoConfiguration>();
 
         public IBdoConfiguration Child(Predicate<IBdoConfiguration> filter = null, bool isRecursive = false)
         {
             foreach (var child in _Children)
             {
-                if (filter == null || filter?.Invoke(this) == true)
+                if (filter == null || filter?.Invoke(child) == true)
                     return child;
 
                 if (isRecursive)

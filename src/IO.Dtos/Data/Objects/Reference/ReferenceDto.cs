@@ -1,5 +1,6 @@
 ﻿using BindOpen.System.Data.Meta;
 using BindOpen.System.Scoping.Script;
+using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -23,7 +24,8 @@ namespace BindOpen.System.Data
         /// </summary>
         [JsonPropertyName("kind")]
         [XmlAttribute("kind")]
-        public BdoReferenceKind Kind { get; set; }
+        [DefaultValue(BdoReferenceKind.Expression)]
+        public BdoReferenceKind Kind { get; set; } = BdoReferenceKind.Expression;
 
         /// <summary>
         /// The identifier of this instance.
@@ -33,11 +35,19 @@ namespace BindOpen.System.Data
         public string Identifier { get; set; }
 
         /// <summary>
-        /// The expression of this instance.
+        /// The value of this instance.
         /// </summary>
-        [JsonPropertyName("expression")]
-        [XmlElement("expression")]
-        public ExpressionDto Expression { get; set; }
+        [JsonPropertyName("text")]
+        [XmlText()]
+        public string Text { get; set; }
+
+        /// <summary>
+        /// The kind of this instance.
+        /// </summary>
+        [JsonPropertyName("expKind")]
+        [XmlAttribute("expKind")]
+        [DefaultValue(BdoExpressionKind.Auto)]
+        public BdoExpressionKind ExpressionKind { get; set; } = BdoExpressionKind.Auto;
 
         /// <summary>
         /// The script word of this instance.

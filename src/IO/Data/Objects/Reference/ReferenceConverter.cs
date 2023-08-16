@@ -20,13 +20,15 @@ namespace BindOpen.System.Data
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<BdoReference, ReferenceDto>()
-                    .ForMember(q => q.Expression, opt => opt.MapFrom(q => q.Expression.ToDto()))
                     .ForMember(q => q.MetaData, opt => opt.MapFrom(q => q.MetaData.ToDto()))
                     .ForMember(q => q.Word, opt => opt.MapFrom(q => q.Word.ToDto(true)))
             );
 
             var mapper = new Mapper(config);
             var dto = mapper.Map<ReferenceDto>(poco);
+
+            dto.ExpressionKind = poco.Expression?.Kind ?? BdoExpressionKind.Literal;
+            dto.Text = poco.Expression?.Text;
 
             return dto;
         }
@@ -43,7 +45,6 @@ namespace BindOpen.System.Data
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<ReferenceDto, BdoReference>()
-                    .ForMember(q => q.Expression, opt => opt.MapFrom(q => q.Expression.ToPoco()))
                     .ForMember(q => q.MetaData, opt => opt.MapFrom(q => q.MetaData.ToPoco()))
                     .ForMember(q => q.Word, opt => opt.Ignore())
             );
@@ -52,6 +53,15 @@ namespace BindOpen.System.Data
             var poco = mapper.Map<BdoReference>(dto);
 
             poco.Word = dto.Word.ToPoco();
+
+            if (poco.Kind == BdoReferenceKind.Expression)
+            {
+                poco.Expression = new BdoExpression()
+                {
+                    Kind = dto.ExpressionKind,
+                    Text = dto.Text
+                };
+            }
 
             return poco;
         }

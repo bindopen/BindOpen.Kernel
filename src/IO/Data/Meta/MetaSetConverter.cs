@@ -18,6 +18,8 @@ namespace BindOpen.System.Data.Meta
         {
             if (poco == null) return null;
 
+            poco.UpdateTrees();
+
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<BdoMetaSet, MetaSetDto>()
                     .ForMember(q => q.Items, opt => opt.Ignore())

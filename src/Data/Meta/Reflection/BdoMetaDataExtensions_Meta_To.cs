@@ -52,7 +52,7 @@ namespace BindOpen.System.Data.Meta.Reflection
             string name = null,
             bool onlyMetaAttributes = false)
         {
-            return obj?.ToMeta(null, name, onlyMetaAttributes);
+            return obj.ToMeta(null, name, onlyMetaAttributes);
         }
 
         /// <summary>

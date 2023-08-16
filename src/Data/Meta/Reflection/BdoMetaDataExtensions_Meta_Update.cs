@@ -10,6 +10,33 @@ namespace BindOpen.System.Data.Meta.Reflection
     /// </summary>
     public static partial class BdoMetaDataExtensions
     {
+        public static void UpdateTrees(
+            this IBdoMetaSet set,
+            bool onlyMetaAttributes = false)
+        {
+            if (set != null)
+            {
+                foreach (var meta in set)
+                {
+                    meta?.UpdateTree(onlyMetaAttributes);
+                }
+            }
+        }
+
+        public static void UpdateTrees(
+            this IBdoConfiguration config,
+            bool onlyMetaAttributes = false)
+        {
+            ((IBdoMetaSet)config).UpdateTrees(onlyMetaAttributes);
+            if (config?._Children != null)
+            {
+                foreach (var child in config._Children)
+                {
+                    child.UpdateTrees(onlyMetaAttributes);
+                }
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -73,11 +100,25 @@ namespace BindOpen.System.Data.Meta.Reflection
                     list = new();
 
                     var objList = obj.ToObjectList();
+
+                    int i = 0;
                     foreach (var subObj in objList)
                     {
-                        var subMeta = subObj.ToMeta(null, onlyMetaAttributes);
+                        var propName = metaSet?[i]?.Name;
+
+                        IBdoMetaData subMeta = metaSet?[i];
+                        if (subMeta != null)
+                        {
+                            subMeta.WithData(subObj);
+                            subMeta.UpdateTree();
+                        }
+                        else
+                        {
+                            subMeta = subObj.ToMeta(propName, onlyMetaAttributes);
+                        }
 
                         list.Add(subMeta);
+                        i++;
                     }
 
                     metaSet.With(list?.ToArray());
