@@ -165,7 +165,10 @@ namespace BindOpen.System.Data.Meta
         /// <returns>Returns the quoted string.</returns>
         public static IBdoMetaSet ExtractTokenMetas(this string st, string pattern, char quote = '\'')
         {
+            if (st == null) return null;
+
             var set = BdoData.NewMetaSet();
+            int tokenCount = 0;
 
             if (!string.IsNullOrEmpty(st) && pattern != null)
             {
@@ -203,6 +206,7 @@ namespace BindOpen.System.Data.Meta
 
                         if (j > -1)
                         {
+                            tokenCount++;
                             tokenName = pattern.ToSubstring(i + 2, j - 1);
                             ii = j + 2;
                         }
@@ -211,7 +215,7 @@ namespace BindOpen.System.Data.Meta
                 }
             }
 
-            return set;
+            return set?.Count == tokenCount ? set : null;
         }
 
         /// <summary>
