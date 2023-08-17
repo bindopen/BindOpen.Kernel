@@ -125,8 +125,6 @@ namespace BindOpen.System.Data
                 return DataValueTypes.Scriptword;
             else if (typeof(IBdoMetaData).IsAssignableFrom(type))
                 return DataValueTypes.MetaData;
-            else if (typeof(IBdoDocument).IsAssignableFrom(type))
-                return DataValueTypes.Document;
             else if (typeof(IBdoEntity).IsAssignableFrom(type))
                 return DataValueTypes.Entity;
             else if (typeof(IBdoTask).IsAssignableFrom(type))

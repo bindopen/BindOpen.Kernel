@@ -27,7 +27,7 @@ namespace BindOpen.System.Scoping
         {
             if (_entity == null)
             {
-                IBdoMetaObject meta = BdoEntityTests.CreateMetaEntity(_testData);
+                IBdoMetaObject meta = BdoEntityTests.CreateMetaObject(_testData);
                 _entity = SystemData.Scope.CreateEntity<EntityFake>(meta);
             }
 
@@ -59,7 +59,7 @@ namespace BindOpen.System.Scoping
         {
             if (_entity == null)
             {
-                IBdoMetaObject meta = BdoEntityTests.CreateMetaEntity(_testData);
+                IBdoMetaObject meta = BdoEntityTests.CreateMetaObject(_testData);
                 _entity = SystemData.Scope.CreateEntity<EntityFake>(meta);
             }
 

@@ -87,9 +87,7 @@ namespace BindOpen.System.Data.Meta
         {
             get
             {
-                if (this is IBdoMetaDocument)
-                    return BdoMetaDataKind.Document;
-                else if (this is IBdoMetaObject)
+                if (this is IBdoMetaObject)
                     return BdoMetaDataKind.Object;
                 else if (this is IBdoMetaScalar)
                     return BdoMetaDataKind.Scalar;

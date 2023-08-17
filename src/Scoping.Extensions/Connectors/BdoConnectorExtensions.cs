@@ -131,17 +131,17 @@ namespace BindOpen.System.Scoping
         /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
         public static T Open<T>(
             this IBdoScope scope,
-            IBdoMetaObject obj,
+            IBdoMetaObject meta,
             IBdoLog log = null)
             where T : class, IBdoConnection
         {
-            if (obj == null)
+            if (meta == null)
             {
                 log?.AddEvent(EventKinds.Error, "Connection missing");
             }
             else if (scope?.Check(true, log: log) == true)
             {
-                var connector = scope.CreateConnector(obj, log: log);
+                var connector = scope.CreateConnector(meta, log: log);
 
                 if (connector != null)
                 {
