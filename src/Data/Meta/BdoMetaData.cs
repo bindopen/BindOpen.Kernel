@@ -98,6 +98,7 @@ namespace BindOpen.System.Data.Meta
                 return BdoMetaDataKind.None;
             }
         }
+        public DataMode DataMode { get; set; }
 
         /// <summary>
         /// 

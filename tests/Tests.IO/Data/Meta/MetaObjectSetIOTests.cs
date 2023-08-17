@@ -9,8 +9,8 @@ namespace BindOpen.System.Data.Meta
     [TestFixture, Order(201)]
     public class MetaObjectSetIOTests
     {
-        private readonly string _filePath_xml = SystemData.WorkingFolder + "MetaObjectSet.xml";
-        private readonly string _filePath_json = SystemData.WorkingFolder + "MetaObjectSet.json";
+        private readonly string _filePath_xml = SystemData.WorkingFolder + "MetaObjectSetIO.xml";
+        private readonly string _filePath_json = SystemData.WorkingFolder + "MetaObjectSetIO.json";
 
         private BdoMetaComposite _metaSet;
 

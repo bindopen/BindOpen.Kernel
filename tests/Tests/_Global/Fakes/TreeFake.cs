@@ -26,7 +26,7 @@ namespace BindOpen.System.Tests
         {
             foreach (var child in _Children)
             {
-                if (filter == null || filter?.Invoke(this) == true)
+                if (filter == null || filter?.Invoke(child) == true)
                     return child;
 
                 if (isRecursive)

@@ -14,7 +14,7 @@ namespace BindOpen.System.Data
 
         #region Properties
 
-        public BdoReferenceKind Kind { get; set; }
+        public BdoReferenceKind Kind { get; set; } = BdoReferenceKind.Expression;
 
         /// <summary>
         /// The script word of this instance.

@@ -23,7 +23,6 @@ namespace BindOpen.System.Data.Meta
         /// The value of this instance.
         /// </summary>
         [JsonPropertyName("item")]
-        [XmlElement("item.datasource", Type = typeof(DatasourceDto))]
         [XmlElement("item.dictionary", Type = typeof(DictionaryDto))]
         [XmlElement("item.expression", Type = typeof(ExpressionDto))]
         [XmlElement("item.merger", Type = typeof(MergerDto))]

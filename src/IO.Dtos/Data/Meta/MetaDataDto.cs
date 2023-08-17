@@ -61,14 +61,6 @@ namespace BindOpen.System.Data.Meta
         // Items
 
         /// <summary>
-        /// The itemization mode of this instance.
-        /// </summary>
-        [JsonPropertyName("mode")]
-        [XmlAttribute("mode")]
-        [DefaultValue(DataMode.Value)]
-        public DataMode DataMode = DataMode.Value;
-
-        /// <summary>
         /// The expression of this instance.
         /// </summary>
         [JsonPropertyName("ref")]

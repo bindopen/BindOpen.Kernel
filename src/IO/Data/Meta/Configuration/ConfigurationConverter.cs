@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BindOpen.System.Data.Helpers;
+using BindOpen.System.Data.Meta.Reflection;
 using System.Linq;
 
 namespace BindOpen.System.Data.Meta
@@ -26,6 +27,8 @@ namespace BindOpen.System.Data.Meta
         {
             if (poco == null) return null;
 
+            poco.UpdateTrees();
+
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<IBdoConfiguration, T>()
                     .ForMember(q => q.CreationDate, opt => opt.MapFrom(q => StringHelper.ToString(q.CreationDate)))
@@ -38,6 +41,8 @@ namespace BindOpen.System.Data.Meta
 
             var mapper = new Mapper(config);
             var dto = mapper.Map<T>(poco);
+
+            dto.Children = poco.Children()?.Select(q => q.ToDto()).ToList();
 
             return dto;
         }
@@ -74,7 +79,8 @@ namespace BindOpen.System.Data.Meta
             poco
                 .WithTitle(dto.Title.ToPoco<string>())
                 .WithDescription(dto.Description.ToPoco<string>())
-                .With(dto.Items.Select(q => q.ToPoco()).ToArray());
+                .With(dto.Items.Select(q => q.ToPoco()).ToArray())
+                .WithChildren(dto.Children?.Select(q => q.ToPoco()).ToArray());
 
             return poco;
         }

@@ -37,7 +37,7 @@ namespace BindOpen.System.Data.Meta
 
             dto.MetaItems = poco.Items?.Select(q => q.ToDto()).ToList();
             dto.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;
-            if (poco.Spec?.DataType.ValueType == poco.DataType.ValueType)
+            if (poco.Spec?.DataType.ValueType == poco.DataType?.ValueType)
             {
                 dto.ValueType = DataValueTypes.Any;
             }
