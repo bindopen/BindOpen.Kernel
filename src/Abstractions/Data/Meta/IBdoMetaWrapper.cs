@@ -2,7 +2,7 @@
 
 namespace BindOpen.System.Data.Meta
 {
-    public interface IBdoMetaWrap : IBdoObject, IBdoScoped, IBdoDetailed
+    public interface IBdoMetaWrapper : IBdoObject, IBdoScoped, IBdoDetailed
     {
         T GetData<T>(string name);
 

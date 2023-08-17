@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace BindOpen.System.Data
 {
     [TestFixture, Order(100)]
-    public class BdoMetaWrapTests
+    public class BdoMetaWrapperTests
     {
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -15,7 +15,7 @@ namespace BindOpen.System.Data
         [Test, Order(1)]
         public void CreateTest()
         {
-            var obj = SystemData.Scope.NewMetaWrap<MetaWrapFake>(
+            var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>(
                 ("test1", "ABC"));
 
             var value1 = obj.Test1;
