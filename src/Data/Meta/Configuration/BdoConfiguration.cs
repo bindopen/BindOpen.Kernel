@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BindOpen.System.Data.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -34,6 +35,41 @@ namespace BindOpen.System.Data.Meta
         /// The using file paths of this instance.
         /// </summary>
         public IList<string> UsedItemIds { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public override TChild Descendant<TChild>(
+            params object[] tokens)
+        {
+            var token = tokens?.FirstOrDefault();
+            object child = null;
+
+            if (token?.ToString().StartsWith('/') == true)
+            {
+                var tokenSt = token?.ToString().ToSubstring(1);
+                object tokenInt = tokenSt.ToObject(DataValueTypes.Integer);
+
+                if (tokenInt is int index)
+                {
+                    child = _Children.GetAt(index);
+                }
+                else if (token is string key)
+                {
+                    child = Child(q => q.BdoKeyEquals(tokenSt));
+                }
+
+                if (child is IBdoSet childSet)
+                {
+                    tokens = tokens?.Skip(1).ToArray();
+                    child = childSet?.Descendant<TChild>(tokens);
+                }
+
+                return (child ?? this) as TChild;
+            }
+
+            return base.Descendant<TChild>(tokens);
+        }
 
         #endregion
 
