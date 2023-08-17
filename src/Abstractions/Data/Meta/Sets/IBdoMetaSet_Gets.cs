@@ -46,7 +46,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public IBdoMetaComposite Composite(
+        public IBdoMetaNode Composite(
             string key = null);
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="index">The index to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public IBdoMetaComposite Composite(
+        public IBdoMetaNode Composite(
             int index);
 
         // Data

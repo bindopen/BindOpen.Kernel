@@ -7,11 +7,11 @@ using NUnit.Framework;
 namespace BindOpen.System.Data
 {
     [TestFixture, Order(200)]
-    public class BdoMetaCompositeTests_Object
+    public class BdoMetaNodeTests_Object
     {
         private dynamic _testData;
 
-        private IBdoMetaComposite _metaObjSet = null;
+        private IBdoMetaNode _metaObjSet = null;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -27,7 +27,7 @@ namespace BindOpen.System.Data
             };
         }
 
-        public void Test(IBdoMetaComposite metaSet)
+        public void Test(IBdoMetaNode metaSet)
         {
             // set
             //  - "object1"
@@ -85,7 +85,7 @@ namespace BindOpen.System.Data
             var obj4 = new EntityFake(_testData.path4 as string);
             var metaObj4 = obj4?.ToMeta("object4");
 
-            _metaObjSet = BdoData.NewMetaComposite(
+            _metaObjSet = BdoData.NewMetaNode(
                 metaObj1,
                 metaObj2,
                 metaObj3);

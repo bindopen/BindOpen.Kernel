@@ -22,10 +22,10 @@ namespace BindOpen.System.Data.Meta
         {
             if (poco == null) return null;
 
-            if (poco is IBdoAggregateSpec composite)
+            if (poco is IBdoAggregateSpec node)
             {
-                var compositeDto = composite.ToDto();
-                return compositeDto;
+                var nodeDto = node.ToDto();
+                return nodeDto;
             }
 
             var config = new MapperConfiguration(
@@ -78,10 +78,10 @@ namespace BindOpen.System.Data.Meta
         {
             if (dto == null) return null;
 
-            if (dto is AggregateSpecDto compositeDto)
+            if (dto is AggregateSpecDto nodeDto)
             {
-                var composite = compositeDto.ToPoco();
-                return composite;
+                var node = nodeDto.ToPoco();
+                return node;
             }
 
             var config = new MapperConfiguration(

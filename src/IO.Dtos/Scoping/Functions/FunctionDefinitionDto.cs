@@ -102,7 +102,7 @@ namespace BindOpen.System.Scoping
         /// </summary>
         [JsonPropertyName("parameters")]
         [XmlArray("parameters")]
-        [XmlArrayItem("composite", Type = typeof(MetaCompositeDto))]
+        [XmlArrayItem("node", Type = typeof(MetaNodeDto))]
         [XmlArrayItem("object", Type = typeof(MetaObjectDto))]
         [XmlArrayItem("scalar", Type = typeof(MetaScalarDto))]
         [XmlArrayItem("word", Type = typeof(ScriptwordDto))]

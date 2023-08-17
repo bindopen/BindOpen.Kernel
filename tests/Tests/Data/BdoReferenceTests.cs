@@ -71,7 +71,7 @@ namespace BindOpen.System.Data
         [Test, Order(4)]
         public void NewReferenceTest()
         {
-            var set = BdoData.NewMetaComposite(
+            var set = BdoData.NewMetaNode(
                     BdoData.NewMeta().WithDataReference(BdoData.NewReference(BdoScript.Func("eq", 1, 1))),
                     BdoData.NewMeta().WithDataReference(BdoScript.Func("eq", 1, 1))
                 );

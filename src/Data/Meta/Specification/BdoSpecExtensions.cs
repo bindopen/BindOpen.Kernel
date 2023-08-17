@@ -67,7 +67,7 @@ namespace BindOpen.System.Data.Meta
 
             if (meta != null)
             {
-                if (meta is IBdoMetaComposite metaComposite)
+                if (meta is IBdoMetaNode metaComposite)
                 {
                     spec = BdoData.NewSpec<BdoAggregateSpec>();
 

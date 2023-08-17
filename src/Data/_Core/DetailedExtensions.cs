@@ -20,7 +20,7 @@ namespace BindOpen.System.Data
         {
             if (obj != null)
             {
-                obj.Detail = BdoData.NewMetaComposite(elms);
+                obj.Detail = BdoData.NewMetaNode(elms);
             }
             return obj;
         }

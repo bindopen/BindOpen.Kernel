@@ -81,7 +81,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (meta != null)
             {
-                varSet ??= BdoData.NewMetaComposite();
+                varSet ??= BdoData.NewMetaNode();
                 varSet.Add((BdoData.__This, meta));
 
                 var exp = meta.GetOrAddSpec().Label.ToExpression();
@@ -97,9 +97,9 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static IBdoMetaComposite AsMetaComposite(
+        public static IBdoMetaNode AsMetaNode(
             this IBdoMetaData meta)
-            => meta as IBdoMetaComposite;
+            => meta as IBdoMetaNode;
 
         /// <summary>
         /// Creates a data element list from a dynamic object.
@@ -116,7 +116,7 @@ namespace BindOpen.System.Data.Meta
         public static IList<IBdoMetaData> ToList(
             this IBdoMetaData meta)
         {
-            if (meta is IBdoMetaComposite metaSet)
+            if (meta is IBdoMetaNode metaSet)
             {
                 return metaSet.ToList();
             }

@@ -31,7 +31,7 @@ namespace BindOpen.System.Data.Meta
             {
                 dto = scalar.ToDto();
             }
-            else if (poco is IBdoMetaComposite set)
+            else if (poco is IBdoMetaNode set)
             {
                 dto = set.ToDto();
             }
@@ -63,7 +63,7 @@ namespace BindOpen.System.Data.Meta
             {
                 return scalar.ToPoco();
             }
-            else if (dto is MetaCompositeDto list)
+            else if (dto is MetaNodeDto list)
             {
                 return list.ToPoco();
             }
