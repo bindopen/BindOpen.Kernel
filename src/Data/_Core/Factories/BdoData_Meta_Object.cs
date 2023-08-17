@@ -45,6 +45,11 @@ namespace BindOpen.System.Data
                 .WithDataType(type)
                 .WithData(item);
 
+            if (el?.DataType?.ValueType == DataValueTypes.None)
+            {
+                el.DataType.ValueType = DataValueTypes.Object;
+            }
+
             return el;
         }
 
@@ -90,6 +95,11 @@ namespace BindOpen.System.Data
                 .WithName(name)
                 .WithDataType(typeof(TItem))
                 .WithData(item);
+
+            if (el?.DataType?.ValueType == DataValueTypes.None)
+            {
+                el.DataType.ValueType = DataValueTypes.Object;
+            }
 
             return el;
         }

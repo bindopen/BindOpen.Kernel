@@ -125,6 +125,11 @@ namespace BindOpen.System.Data.Meta
         // Items --------------------------------------------
 
         /// <summary>
+        /// The label of this instance.
+        /// </summary>
+        public DataMode DataMode { get; set; }
+
+        /// <summary>
         /// Indicates whether this instance is repeated in a set.
         /// </summary>
         public bool IsRepeated { get; set; }

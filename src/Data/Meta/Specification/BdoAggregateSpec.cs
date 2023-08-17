@@ -54,13 +54,13 @@ namespace BindOpen.System.Data.Meta
         public IList<IBdoSpec> _Children { get => _children; set { _children = value; } }
 
         public IEnumerable<IBdoSpec> Children(Predicate<IBdoSpec> filter = null, bool isRecursive = false)
-            => _children?.Where(p => filter?.Invoke(p) == true) ?? Enumerable.Empty<IBdoSpec>();
+            => _children?.Where(p => filter?.Invoke(p) != false) ?? Enumerable.Empty<IBdoSpec>();
 
         public IBdoSpec Child(Predicate<IBdoSpec> filter = null, bool isRecursive = false)
         {
             foreach (var child in _Children)
             {
-                if (filter == null || filter?.Invoke(this) == true)
+                if (filter == null || filter?.Invoke(child) == true)
                     return child;
 
                 if (isRecursive && child is IBdoAggregateSpec compositeChild)

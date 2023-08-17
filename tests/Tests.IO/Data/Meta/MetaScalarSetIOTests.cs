@@ -1,5 +1,4 @@
 ﻿using BindOpen.System.IO.Dtos;
-using BindOpen.System.Scoping.Script;
 using BindOpen.System.Tests;
 using Bogus;
 using DeepEqual.Syntax;
@@ -11,10 +10,10 @@ using System.Linq;
 namespace BindOpen.System.Data.Meta
 {
     [TestFixture, Order(202)]
-    public class MetaScalarListIOTests
+    public class MetaScalarSetIOTests
     {
-        private readonly string _filePath_xml = SystemData.WorkingFolder + "MetaScalarList.xml";
-        private readonly string _filePath_json = SystemData.WorkingFolder + "MetaScalarList.json";
+        private readonly string _filePath_xml = SystemData.WorkingFolder + "MetaScalarSetIO.xml";
+        private readonly string _filePath_json = SystemData.WorkingFolder + "MetaScalarSetIO.json";
 
         private dynamic _testData;
 
@@ -53,7 +52,7 @@ namespace BindOpen.System.Data.Meta
                 BdoData.NewMetaScalar("byteArray4", DataValueTypes.Binary, _testData.arrayArrayByte4 as byte[][]),
                 BdoData.NewMetaScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[0]),
                 BdoData.NewMetaScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[1])
-                    .WithDataReference(BdoScript.Var("klkl"))
+                    .WithDataReference(BdoData.NewExp("$sampleExp()", BdoExpressionKind.Auto))
                     //.WithSpecs(BdoMeta.NewSpec(), BdoMeta.NewSpec("spec1"))
             };
 

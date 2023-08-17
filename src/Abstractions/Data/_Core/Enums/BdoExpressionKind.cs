@@ -6,16 +6,6 @@
     public enum BdoExpressionKind
     {
         /// <summary>
-        /// Any.
-        /// </summary>
-        Any,
-
-        /// <summary>
-        /// None. Such as script word.
-        /// </summary>
-        None,
-
-        /// <summary>
         /// Literal expression that can include scripts embedded in braces.
         /// </summary>
         Auto,
@@ -28,7 +18,17 @@
         /// <summary>
         /// Script expression is considered as default.
         /// </summary>
-        Script
+        Script,
+
+        /// <summary>
+        /// None. Such as script word.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// Any.
+        /// </summary>
+        Any
     }
 
 }
