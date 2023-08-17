@@ -262,6 +262,34 @@ namespace BindOpen.System.Data.Meta
         public IList<IBdoMetaData> ToList()
             => _propertySet?.ToList();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual TChild Descendant<TChild>(
+            params object[] tokens)
+            where TChild : class, IReferenced
+        {
+            var token = tokens?.FirstOrDefault();
+            object child = null;
+
+            if (token is string key)
+            {
+                child = this[key];
+            }
+            else if (token is int index)
+            {
+                child = this[index];
+            }
+
+            if (child is IBdoSet childSet)
+            {
+                tokens = tokens?.Skip(1).ToArray();
+                return childSet?.Descendant<TChild>(tokens);
+            }
+
+            return this as TChild;
+        }
+
         #endregion
 
         // ------------------------------------------

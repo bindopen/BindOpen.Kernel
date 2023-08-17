@@ -23,5 +23,10 @@ namespace BindOpen.System.Data
         /// <param key="key"></param>
         /// <returns></returns>
         IReferenced this[int index] { get; }
+
+        T Descendant<T>(
+            params object[] tokens)
+            where T : class, IReferenced;
+
     }
 }
