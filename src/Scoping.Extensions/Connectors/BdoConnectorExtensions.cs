@@ -131,17 +131,17 @@ namespace BindOpen.System.Scoping
         /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
         public static T Open<T>(
             this IBdoScope scope,
-            IBdoMetaObject obj,
+            IBdoMetaObject meta,
             IBdoLog log = null)
             where T : class, IBdoConnection
         {
-            if (obj == null)
+            if (meta == null)
             {
                 log?.AddEvent(EventKinds.Error, "Connection missing");
             }
             else if (scope?.Check(true, log: log) == true)
             {
-                var connector = scope.CreateConnector(obj, log: log);
+                var connector = scope.CreateConnector(meta, log: log);
 
                 if (connector != null)
                 {
@@ -163,7 +163,7 @@ namespace BindOpen.System.Scoping
         public static T WithConnectionString<T>(
             this T metaSet,
             string connectionString)
-            where T : IBdoMetaComposite
+            where T : IBdoMetaNode
         {
             metaSet?.Add(("connectionString", connectionString));
             return metaSet;
@@ -176,7 +176,7 @@ namespace BindOpen.System.Scoping
         /// <returns>Returns the script exp.</returns>
         public static string GetConnectionString<T>(
             this T metaSet)
-            where T : IBdoMetaComposite
+            where T : IBdoMetaNode
         {
             return metaSet?.GetData<string>("connectionString");
         }

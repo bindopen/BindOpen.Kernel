@@ -8,9 +8,9 @@ namespace BindOpen.System.Data.Meta
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    [XmlType("MetaComposite", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "composite", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class MetaCompositeDto : MetaDataDto
+    [XmlType("MetaNode", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlRoot(ElementName = "node", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    public class MetaNodeDto : MetaDataDto
     {
         // ------------------------------------------
         // PROPERTIES
@@ -22,7 +22,7 @@ namespace BindOpen.System.Data.Meta
         /// The elements of this instance.
         /// </summary>
         [JsonPropertyName("items")]
-        [XmlElement("composite", Type = typeof(MetaCompositeDto))]
+        [XmlElement("node", Type = typeof(MetaNodeDto))]
         [XmlElement("object", Type = typeof(MetaObjectDto))]
         [XmlElement("scalar", Type = typeof(MetaScalarDto))]
         [XmlElement("word", Type = typeof(ScriptwordDto))]
@@ -44,9 +44,9 @@ namespace BindOpen.System.Data.Meta
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the MetaCompositeDto class.
+        /// Instantiates a new instance of the MetaNodeDto class.
         /// </summary>
-        public MetaCompositeDto()
+        public MetaNodeDto()
         {
         }
 

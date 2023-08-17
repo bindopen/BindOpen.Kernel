@@ -24,11 +24,6 @@ namespace BindOpen.System.Data
         Entity,
 
         /// <summary>
-        /// Document.
-        /// </summary>
-        Document,
-
-        /// <summary>
         /// Object.
         /// </summary>
         Object,

@@ -63,9 +63,9 @@ namespace BindOpen.System.Data.Meta
                 if (filter == null || filter?.Invoke(child) == true)
                     return child;
 
-                if (isRecursive && child is IBdoAggregateSpec compositeChild)
+                if (isRecursive && child is IBdoAggregateSpec nodeChild)
                 {
-                    var subChild = compositeChild.Child(filter, true);
+                    var subChild = nodeChild.Child(filter, true);
                     if (subChild != null) return subChild;
                 }
             }

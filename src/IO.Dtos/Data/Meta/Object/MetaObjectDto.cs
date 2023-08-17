@@ -9,7 +9,7 @@ namespace BindOpen.System.Data.Meta
     /// </summary>
     [XmlType("MetaObject", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "object", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class MetaObjectDto : MetaCompositeDto
+    public class MetaObjectDto : MetaNodeDto
     {
         // --------------------------------------------------
         // PROPERTIES

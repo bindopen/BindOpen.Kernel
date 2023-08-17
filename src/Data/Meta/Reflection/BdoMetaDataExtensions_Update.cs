@@ -104,12 +104,6 @@ namespace BindOpen.System.Data.Meta.Reflection
                                 {
                                     metaValue = BdoData.NewMetaScalar(name, meta?.DataType.ValueType);
                                 }
-                                else if (typeof(IBdoMetaComposite).IsAssignableFrom(metaType))
-                                {
-                                    var subSet = meta as IBdoMetaComposite;
-                                    metaValue = BdoData.NewMetaComposite(name)
-                                        .With(subSet?.Items?.ToArray());
-                                }
                                 else if (typeof(ITBdoMetaObject<>).IsAssignableFrom(metaType)
                                     && itemType != null)
                                 {
@@ -119,6 +113,12 @@ namespace BindOpen.System.Data.Meta.Reflection
                                 else if (typeof(IBdoMetaObject).IsAssignableFrom(type))
                                 {
                                     metaValue = BdoData.NewMetaObject(name);
+                                }
+                                else if (typeof(IBdoMetaNode).IsAssignableFrom(metaType))
+                                {
+                                    var subSet = meta as IBdoMetaNode;
+                                    metaValue = BdoData.NewMetaNode(name)
+                                        .With(subSet?.Items?.ToArray());
                                 }
 
                                 metaValue?.Update(meta);
