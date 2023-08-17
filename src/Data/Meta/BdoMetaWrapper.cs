@@ -5,7 +5,7 @@ namespace BindOpen.System.Data.Meta
     /// <summary>
     /// This class represents a data element.
     /// </summary>
-    public abstract class BdoMetaWrap : BdoObject, IBdoMetaWrap
+    public abstract class BdoMetaWrapper : BdoObject, IBdoMetaWrapper
     {
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -16,14 +16,14 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// Initializes a new data element.
         /// </summary>
-        public BdoMetaWrap()
+        public BdoMetaWrapper()
         {
         }
 
         /// <summary>
         /// Initializes a new data element.
         /// </summary>
-        public BdoMetaWrap(IBdoScope scope, IBdoMetaSet sst)
+        public BdoMetaWrapper(IBdoScope scope, IBdoMetaSet sst)
         {
             Scope = scope;
             Detail = sst;

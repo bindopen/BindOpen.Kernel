@@ -163,7 +163,7 @@ namespace BindOpen.System.Scoping
         public static T WithConnectionString<T>(
             this T metaSet,
             string connectionString)
-            where T : IBdoMetaNode
+            where T : IBdoMetaSet
         {
             metaSet?.Add(("connectionString", connectionString));
             return metaSet;
@@ -176,7 +176,7 @@ namespace BindOpen.System.Scoping
         /// <returns>Returns the script exp.</returns>
         public static string GetConnectionString<T>(
             this T metaSet)
-            where T : IBdoMetaNode
+            where T : IBdoMetaSet
         {
             return metaSet?.GetData<string>("connectionString");
         }

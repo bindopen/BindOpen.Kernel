@@ -5,7 +5,7 @@ namespace BindOpen.System.Tests
     /// <summary>
     /// This class represents a database data field.
     /// </summary>
-    public class MetaWrapFake : BdoMetaWrap
+    public class MetaWrapperFake : BdoMetaWrapper
     {
         // ------------------------------------------
         // PROPERTIES
@@ -36,7 +36,7 @@ namespace BindOpen.System.Tests
         /// <summary>
         /// Instantiates a new instance of the DynamicObjectFake class.
         /// </summary>
-        public MetaWrapFake() : base()
+        public MetaWrapperFake() : base()
         {
         }
 
