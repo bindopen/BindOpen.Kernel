@@ -39,7 +39,7 @@ namespace BindOpen.System.Data
             var el3 = BdoData.NewMetaScalar("integer3", arrayInteger);
             var el4 = BdoData.NewMetaScalar("byteArray4", arrayArrayByte);
 
-            var elSet = BdoData.NewMetaComposite(el1, el2, el3, el4);
+            var elSet = BdoData.NewMetaNode(el1, el2, el3, el4);
 
             var itemList1 = elSet.GetDataList<double>("number1");
             Assert.That(
@@ -66,13 +66,13 @@ namespace BindOpen.System.Data
             var elAB = BdoData.NewMetaScalar("name1", "Test1");
             elAA.Update(elAB);
 
-            var elSetA = BdoData.NewMetaComposite(elAA, elAB);
+            var elSetA = BdoData.NewMetaNode(elAA, elAB);
 
             var elBA = BdoData.NewMetaScalar("name1", "Test1");
             var elBB = BdoData.NewMetaScalar("name1", null);
             elBA.Update(elBB);
 
-            var elSetB = BdoData.NewMetaComposite(elBA, elBB);
+            var elSetB = BdoData.NewMetaNode(elBA, elBB);
 
             elSetB.Add(elBB);
             elSetA.Add(elAB);
@@ -116,7 +116,7 @@ namespace BindOpen.System.Data
             var elAB = BdoData.NewMetaScalar("name1", "Test1");
             elAA.Update(elAB);
 
-            var elSetA = BdoData.NewMetaComposite(("key1", elAA), (null, elAB), ("key2", this));
+            var elSetA = BdoData.NewMetaNode(("key1", elAA), (null, elAB), ("key2", this));
 
             Assert.That(elSetA.Count == 3, "Bad scalar el - ToString");
 

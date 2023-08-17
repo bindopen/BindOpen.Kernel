@@ -96,7 +96,7 @@ namespace BindOpen.System.Data
             {
                 var objList = data.ToObjectArray();
 
-                var metaSet = NewMetaComposite(name);
+                var metaSet = NewMetaNode(name);
                 if (objList != null)
                 {
                     foreach (var obj in objList)

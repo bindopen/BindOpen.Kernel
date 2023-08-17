@@ -15,7 +15,7 @@ namespace BindOpen.System.Data.Meta
     [XmlRoot(ElementName = "spec", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     [XmlInclude(typeof(SpecDto))]
     [JsonDerivedType(typeof(SpecDto), "spec")]
-    [JsonDerivedType(typeof(AggregateSpecDto), "composite")]
+    [JsonDerivedType(typeof(AggregateSpecDto), "node")]
     public class SpecDto : IBdoDto, IIdentified
     {
         // --------------------------------------------------
@@ -45,7 +45,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         [JsonPropertyName("condition")]
         [XmlElement("condition", Type = typeof(BasicConditionDto))]
-        [XmlElement("condition.composite", Type = typeof(CompositeConditionDto))]
+        [XmlElement("condition.node", Type = typeof(CompositeConditionDto))]
         [XmlElement("condition.reference", Type = typeof(ReferenceConditionDto))]
         public ConditionDto Condition { get; set; }
 
@@ -111,7 +111,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         [JsonPropertyName("default.items")]
         [XmlArray("default.items")]
-        [XmlArrayItem("composite", Type = typeof(MetaCompositeDto))]
+        [XmlArrayItem("node", Type = typeof(MetaNodeDto))]
         [XmlArrayItem("object", Type = typeof(MetaObjectDto))]
         [XmlArrayItem("scalar", Type = typeof(MetaScalarDto))]
         [XmlArrayItem("word", Type = typeof(ScriptwordDto))]

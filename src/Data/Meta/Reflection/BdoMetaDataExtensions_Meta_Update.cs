@@ -95,7 +95,7 @@ namespace BindOpen.System.Data.Meta.Reflection
 
                     metaObject.With(list?.ToArray());
                 }
-                else if (type.IsList() && meta is IBdoMetaComposite metaSet)
+                else if (type.IsList() && meta is IBdoMetaNode metaSet)
                 {
                     list = new();
 

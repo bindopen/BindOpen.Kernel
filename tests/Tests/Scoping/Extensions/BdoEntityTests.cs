@@ -21,7 +21,7 @@ namespace BindOpen.System.Scoping
         /// </summary>
         /// <param key="data"></param>
         /// <returns></returns>
-        public static IBdoMetaObject CreateMetaEntity(dynamic data)
+        public static IBdoMetaObject CreateMetaObject(dynamic data)
         {
             var meta =
                 BdoData.NewMetaObject()
@@ -38,7 +38,7 @@ namespace BindOpen.System.Scoping
         [Test, Order(1)]
         public void CreateEntityTest_FromMetaSet()
         {
-            IBdoMetaObject meta = CreateMetaEntity(_testData);
+            IBdoMetaObject meta = CreateMetaObject(_testData);
             var connector = SystemData.Scope.CreateEntity<EntityFake>(meta);
 
             BdoEntityFaker.AssertFake(connector, _testData);
@@ -47,7 +47,7 @@ namespace BindOpen.System.Scoping
         [Test, Order(2)]
         public void CreateEntityTest_FromConfig()
         {
-            IBdoMetaObject meta = CreateMetaEntity(_testData);
+            IBdoMetaObject meta = CreateMetaObject(_testData);
             var connector = SystemData.Scope.CreateEntity(meta) as EntityFake;
 
             BdoEntityFaker.AssertFake(connector, _testData);

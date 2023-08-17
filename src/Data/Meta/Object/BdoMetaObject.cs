@@ -141,18 +141,18 @@ namespace BindOpen.System.Data.Meta
 
         public IBdoMetaData Insert(IBdoMetaData item)
         {
-            _propertySet ??= BdoData.NewMetaComposite();
+            _propertySet ??= BdoData.NewMetaNode();
             return _propertySet.Insert(item);
         }
 
         public override void Clear()
         {
             //base.Clear();
-            _propertySet ??= BdoData.NewMetaComposite();
+            _propertySet ??= BdoData.NewMetaNode();
             _propertySet.Clear();
         }
 
-        public IBdoMetaComposite Add(
+        public IBdoMetaNode Add(
             params IBdoMetaData[] items)
         {
             (this as ITBdoSet<IBdoMetaData>).Add(items);

@@ -9,7 +9,7 @@ namespace BindOpen.System.Data.Meta
     /// <summary>
     /// This class represents a catalog el that is an el whose els are entities.
     /// </summary>
-    public partial class BdoMetaComposite : BdoMetaSet, IBdoMetaComposite
+    public partial class BdoMetaNode : BdoMetaSet, IBdoMetaNode
     {
         // ------------------------------------------
         // CONVERTERS
@@ -21,16 +21,16 @@ namespace BindOpen.System.Data.Meta
         /// Converts from data element array.
         /// </summary>
         /// <param key="elems">The elems to consider.</param>
-        public static explicit operator BdoMetaComposite(IBdoMetaData[] elems)
+        public static explicit operator BdoMetaNode(IBdoMetaData[] elems)
         {
-            return BdoData.NewMetaComposite(elems);
+            return BdoData.NewMetaNode(elems);
         }
 
         /// <summary>
         /// Converts from data element array.
         /// </summary>
         /// <param key="elems">The elems to consider.</param>
-        public static explicit operator IBdoMetaData[](BdoMetaComposite metaSet)
+        public static explicit operator IBdoMetaData[](BdoMetaNode metaSet)
         {
             return metaSet?.ToArray();
         }
@@ -44,9 +44,9 @@ namespace BindOpen.System.Data.Meta
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the BdoMetaComposite class.
+        /// Initializes a new instance of the BdoMetaNode class.
         /// </summary>
-        public BdoMetaComposite() : base()
+        public BdoMetaNode() : base()
         {
             DataType = BdoData.NewDataType(DataValueTypes.Any);
         }
@@ -117,7 +117,7 @@ namespace BindOpen.System.Data.Meta
         #endregion
 
         // --------------------------------------------------
-        // BdoMetaComposite Implementation
+        // BdoMetaNode Implementation
         // --------------------------------------------------
 
         #region IBdoMetaData
@@ -290,7 +290,7 @@ namespace BindOpen.System.Data.Meta
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            var el = base.Clone<BdoMetaComposite>();
+            var el = base.Clone<BdoMetaNode>();
             return el;
         }
 
