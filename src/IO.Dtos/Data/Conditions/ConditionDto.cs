@@ -13,7 +13,7 @@ namespace BindOpen.System.Data.Conditions
     [XmlInclude(typeof(CompositeConditionDto))]
     [XmlInclude(typeof(ReferenceConditionDto))]
     [JsonDerivedType(typeof(BasicConditionDto), "condition")]
-    [JsonDerivedType(typeof(CompositeConditionDto), "node")]
+    [JsonDerivedType(typeof(CompositeConditionDto), "composite")]
     [JsonDerivedType(typeof(ReferenceConditionDto), "reference")]
     public abstract class ConditionDto : IBdoDto, IIdentified
     {
