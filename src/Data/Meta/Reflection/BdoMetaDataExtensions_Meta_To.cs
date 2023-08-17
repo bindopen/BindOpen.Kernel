@@ -60,7 +60,7 @@ namespace BindOpen.System.Data.Meta.Reflection
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static T ToMetaData<T>(
+        public static T ToMeta<T>(
             this object obj,
             string name = null,
             bool onlyMetaAttributes = false)

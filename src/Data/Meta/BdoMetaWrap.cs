@@ -5,14 +5,8 @@ namespace BindOpen.System.Data.Meta
     /// <summary>
     /// This class represents a data element.
     /// </summary>
-    public partial class BdoDynamicObject : BdoObject //, IBdoDynamicObject
+    public abstract class BdoMetaWrap : BdoObject, IBdoMetaWrap
     {
-        [BdoProperty("test1")]
-        public string Test1 { get; set; }
-
-        [BdoProperty("test2")]
-        public int Test2 { get; set; }
-
         // --------------------------------------------------
         // CONSTRUCTORS
         // --------------------------------------------------
@@ -22,17 +16,17 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// Initializes a new data element.
         /// </summary>
-        public BdoDynamicObject()
+        public BdoMetaWrap()
         {
         }
 
         /// <summary>
         /// Initializes a new data element.
         /// </summary>
-        public BdoDynamicObject(IBdoScope scope, IBdoMetaSet sst)
+        public BdoMetaWrap(IBdoScope scope, IBdoMetaSet sst)
         {
             Scope = scope;
-            MetaSet = sst;
+            Detail = sst;
         }
 
         #endregion
@@ -51,7 +45,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The item of this instance.
         /// </summary>
-        public IBdoMetaSet MetaSet { get; set; }
+        public IBdoMetaSet Detail { get; set; }
 
         /// <summary>
         /// Returns the key of this instance.
@@ -59,7 +53,7 @@ namespace BindOpen.System.Data.Meta
         /// <returns></returns>
         public string Key()
         {
-            return MetaSet?.Name;
+            return Detail?.Name;
         }
 
         /// <summary>
@@ -68,9 +62,8 @@ namespace BindOpen.System.Data.Meta
         /// <typeparam name="T"></typeparam>
         /// <param key="name">The name to consider.</param>
         public T GetData<T>(string name)
-            where T : class
         {
-            return MetaSet?.GetData<T>(name, Scope);
+            return Detail == null ? default : Detail.GetData<T>(name, Scope);
         }
 
         /// <summary>
@@ -79,7 +72,7 @@ namespace BindOpen.System.Data.Meta
         /// <param key="name">The name to consider.</param>
         public object GetData(string name)
         {
-            return MetaSet?.GetData(name, Scope);
+            return Detail?.GetData(name, Scope);
         }
 
         #endregion

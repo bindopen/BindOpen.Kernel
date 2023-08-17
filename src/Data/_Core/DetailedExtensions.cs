@@ -68,6 +68,5 @@ namespace BindOpen.System.Data
 
             return obj;
         }
-
     }
 }
