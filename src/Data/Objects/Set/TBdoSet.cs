@@ -268,6 +268,34 @@ namespace BindOpen.System.Data
             return Items?.ToList();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual TChild Descendant<TChild>(
+            params object[] tokens)
+            where TChild : class, IReferenced
+        {
+            var token = tokens?.FirstOrDefault();
+            object child = null;
+
+            if (token is string key)
+            {
+                child = this[key];
+            }
+            else if (token is int index)
+            {
+                child = this[index];
+            }
+
+            if (child is IBdoSet childSet)
+            {
+                tokens = tokens?.Skip(1).ToArray();
+                child = childSet?.Descendant<TChild>(tokens);
+            }
+
+            return (child ?? this) as TChild;
+        }
+
         #endregion
 
         // ------------------------------------------

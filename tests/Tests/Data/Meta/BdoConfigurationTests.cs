@@ -30,6 +30,7 @@ namespace BindOpen.System.Data
             _config20 = BdoData.NewConfig(_configName20)
                 .WithTitle("myConfiguration")
                 .WithDescription(("en", "Sample of description"))
+                .WithChildren(_config1)
                 .With(
                     BdoData.NewMetaScalar("text1", DataValueTypes.Text, f.Lorem.Words(10)),
                     BdoData.NewMetaScalar("integer1", DataValueTypes.Integer, Enumerable.Range(0, 10).Select(p => f.Random.Int(5000))),
@@ -46,6 +47,18 @@ namespace BindOpen.System.Data
             var text = _config20.GetData<string>("text1");
 
             Assert.That(!string.IsNullOrEmpty(text), "Error with config");
+        }
+
+        [Test, Order(1)]
+        public void DescendantTest()
+        {
+            var meta = _config20.Descendant<IBdoMetaData>("/" + _configName1, "float1");
+
+            Assert.That(meta.GetData() == _config1["float1"]?.GetData(), "Error with config");
+
+            meta = _config20.Descendant<IBdoMetaData>("/0", "float1");
+
+            Assert.That(meta.GetData() == _config1["float1"]?.GetData(), "Error with config");
         }
     }
 }
