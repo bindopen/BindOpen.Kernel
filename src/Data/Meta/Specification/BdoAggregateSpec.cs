@@ -58,15 +58,18 @@ namespace BindOpen.System.Data.Meta
 
         public IBdoSpec Child(Predicate<IBdoSpec> filter = null, bool isRecursive = false)
         {
-            foreach (var child in _Children)
+            if (_Children != null)
             {
-                if (filter == null || filter?.Invoke(child) == true)
-                    return child;
-
-                if (isRecursive && child is IBdoAggregateSpec nodeChild)
+                foreach (var child in _Children)
                 {
-                    var subChild = nodeChild.Child(filter, true);
-                    if (subChild != null) return subChild;
+                    if (filter == null || filter?.Invoke(child) == true)
+                        return child;
+
+                    if (isRecursive && child is IBdoAggregateSpec nodeChild)
+                    {
+                        var subChild = nodeChild.Child(filter, true);
+                        if (subChild != null) return subChild;
+                    }
                 }
             }
 
