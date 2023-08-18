@@ -38,6 +38,53 @@ namespace BindOpen.System.Data
             obj.UpdateProperties();
             Assert.That(obj?.Test1 == "TEST1", "Bad dynamic object");
 
+            // null
+
+            IBdoMetaSet metaSet = null;
+            var obj1 = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>(metaSet);
+            Assert.That(obj?.Test1 == "TEST1", "Bad dynamic object");
+        }
+
+        [Test, Order(1)]
+        public void DescendantTest()
+        {
+            var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>(
+                BdoData.NewConfig(
+                    BdoData.NewMetaScalar("test1", "ABC"))
+                    .WithChildren(BdoData.NewConfig(
+                        "config1A",
+                        BdoData.NewMetaScalar("test1A", "1_ABC"))));
+
+            var meta = obj.Detail.Descendant<IBdoMetaData>("/config1A", 0);
+            Assert.That(meta?.GetData<string>() == "1_ABC", "Bad dynamic object");
+
+            meta = obj.Detail.Descendant<IBdoMetaData>("/0", "test1A");
+            Assert.That(meta?.GetData<string>() == "1_ABC", "Bad dynamic object");
+        }
+
+        [Test, Order(1)]
+        public void ListTest()
+        {
+            var values = new[] { "daily", "month" };
+
+            var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>(
+                BdoData.NewConfig(
+                    BdoData.NewMetaScalar("testList", values)));
+
+            Assert.That(obj?.List?.Count == 2, "Bad dynamic object");
+        }
+
+        [Test, Order(1)]
+        public void DictionaryTest()
+        {
+            var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>(
+                BdoData.NewConfig(
+                    BdoData.NewMetaNode("testDico")
+                        .With(
+                            BdoData.NewMetaScalar("day", 120),
+                            BdoData.NewMetaScalar("month", 130))));
+
+            Assert.That(obj?.Dico?.Count == 2, "Bad dynamic object");
         }
     }
 }

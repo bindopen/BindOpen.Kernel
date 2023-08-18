@@ -1,4 +1,6 @@
-﻿using BindOpen.System.Data.Meta;
+﻿using BindOpen.System.Data;
+using BindOpen.System.Data.Meta;
+using System.Collections.Generic;
 
 namespace BindOpen.System.Tests
 {
@@ -24,6 +26,18 @@ namespace BindOpen.System.Tests
         /// </summary>
         [BdoProperty("test2")]
         public int Test2 { get; set; }
+
+        /// <summary>
+        /// The News URIs of this instance.
+        /// </summary>
+        [BdoProperty("testDico")]
+        public TBdoDictionary<int> Dico { get; set; }
+
+        /// <summary>
+        /// The News URIs of this instance.
+        /// </summary>
+        [BdoProperty("testList")]
+        public List<string> List { get; set; }
 
         #endregion
 

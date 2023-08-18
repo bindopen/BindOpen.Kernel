@@ -3,6 +3,7 @@ using BindOpen.System.Data.Helpers;
 using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -52,7 +53,7 @@ namespace BindOpen.System.Data.Meta.Reflection
             IBdoLog log = null)
             where T : BdoPropertyAttribute
         {
-            if (obj == null || !set.Has()) return;
+            if (obj == null || set?.Has() != true) return;
 
             foreach (var propInfo in obj.GetType().GetProperties())
             {
@@ -68,7 +69,9 @@ namespace BindOpen.System.Data.Meta.Reflection
 
                     try
                     {
-                        if (set.Has(name, groupId))
+                        var meta = set.GetOfGroup(name, groupId);
+
+                        if (meta != null)
                         {
                             var type = propInfo.PropertyType;
 
@@ -91,8 +94,6 @@ namespace BindOpen.System.Data.Meta.Reflection
                             if (typeof(IBdoMetaData).IsAssignableFrom(type))
                             {
                                 // if current is meta
-
-                                var meta = set.GetOfGroup(name, groupId);
 
                                 if (typeof(ITBdoMetaScalar<>).IsAssignableFrom(metaType)
                                     && itemType?.IsScalar() == true)
@@ -126,7 +127,7 @@ namespace BindOpen.System.Data.Meta.Reflection
                             }
                             else
                             {
-                                value = set.GetData(name, scope, varSet, log);
+                                value = meta.GetData(scope, varSet, log);
 
                                 if (value != null)
                                 {
@@ -137,22 +138,45 @@ namespace BindOpen.System.Data.Meta.Reflection
                                             value = Enum.Parse(type, value as string);
                                         }
                                     }
-                                    else if (value.GetType() == typeof(Dictionary<string, object>)
-                                        && type.IsGenericType
-                                        && type.GetGenericTypeDefinition() == typeof(Dictionary<,>)
-                                        && type != typeof(Dictionary<string, object>))
+                                    else if (
+                                        type.IsGenericType
+                                        && typeof(TBdoDictionary<>).IsAssignableFrom(type.GetGenericTypeDefinition()))
                                     {
+                                        //var itemType0 = type.GetGenericArguments()[0];
                                         itemType = type.GetGenericArguments()[0];
 
-                                        var dictionary = typeof(Dictionary<,>).MakeGenericType(typeof(string), itemType).CreateInstance();
+                                        var dictionary = type.GetGenericTypeDefinition().MakeGenericType(itemType).CreateInstance();
                                         var method = dictionary.GetType().GetMethod("Add", new Type[] { typeof(string), itemType });
 
-                                        foreach (var item in value as Dictionary<string, object>)
+                                        if (meta is IBdoMetaSet metaSet)
                                         {
-                                            method.Invoke(dictionary, new object[] { item.Key, Convert.ChangeType(item.Value, itemType) });
+                                            foreach (var child in metaSet)
+                                            {
+                                                var childValue = child?.GetData(scope, varSet, log);
+                                                method?.Invoke(dictionary, new object[] { child?.Name, Convert.ChangeType(childValue, itemType) });
+                                            }
                                         }
                                         value = dictionary;
                                     }
+                                    else if (
+                                        type.IsGenericType
+                                        && typeof(List<>).IsAssignableFrom(type.GetGenericTypeDefinition()))
+                                    {
+                                        itemType = type.GetGenericArguments()[0];
+
+                                        var list = type.GetGenericTypeDefinition().MakeGenericType(itemType).CreateInstance();
+                                        var method = list.GetType().GetMethod("Add", new Type[] { itemType });
+
+                                        foreach (var item in value as IEnumerable)
+                                        {
+                                            method?.Invoke(list, new object[] { item });
+                                        }
+                                        value = list;
+                                    }
+                                }
+                                else
+                                {
+                                    // if object case we parse sub meta data
                                 }
                             }
 

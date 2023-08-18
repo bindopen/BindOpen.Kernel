@@ -24,15 +24,18 @@ namespace BindOpen.System.Tests
 
         public TreeFake Child(Predicate<TreeFake> filter = null, bool isRecursive = false)
         {
-            foreach (var child in _Children)
+            if (_Children != null)
             {
-                if (filter == null || filter?.Invoke(child) == true)
-                    return child;
-
-                if (isRecursive)
+                foreach (var child in _Children)
                 {
-                    var subChild = child.Child(filter, true);
-                    if (subChild != null) return subChild;
+                    if (filter == null || filter?.Invoke(child) == true)
+                        return child;
+
+                    if (isRecursive)
+                    {
+                        var subChild = child.Child(filter, true);
+                        if (subChild != null) return subChild;
+                    }
                 }
             }
 
