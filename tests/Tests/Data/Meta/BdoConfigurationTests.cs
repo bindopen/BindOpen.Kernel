@@ -14,7 +14,7 @@ namespace BindOpen.System.Data
         private readonly string _configName21 = "Child2";
 
         private IBdoConfiguration _config1 = null;
-        private IBdoConfiguration _config20 = null;
+        private IBdoMetaSet _config20 = null;
         private IBdoConfiguration _config21 = null;
 
         [OneTimeSetUp]
