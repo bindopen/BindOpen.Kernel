@@ -63,6 +63,19 @@ namespace BindOpen.System.Data
         #endregion
 
         // ------------------------------------------
+        // IReferenced Implementation
+        // ------------------------------------------
+
+        #region IReferenced Implementation
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Key() => Id;
+
+        #endregion
+
+        // ------------------------------------------
         // IIdentified Implementation
         // ------------------------------------------
 

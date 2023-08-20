@@ -7,7 +7,7 @@ namespace BindOpen.System.Data
     /// <summary>
     /// This class specifies the data value filter.
     /// </summary>
-    public class BdoMerger : BdoObject, IBdoFilter
+    public class BdoMerger : BdoObject, IBdoMerger
     {
         // --------------------------------------------------
         // CONSTRUCTORS

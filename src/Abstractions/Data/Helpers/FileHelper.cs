@@ -65,7 +65,7 @@ namespace BindOpen.System.Data.Helpers
                 path = (rootPath.EndingWith(@"\") + path).ToPath();
             }
 
-            return path?.Replace('\\', Path.DirectorySeparatorChar);
+            return path.ToPath();
         }
 
         /// <summary>

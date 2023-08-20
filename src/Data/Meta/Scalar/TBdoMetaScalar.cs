@@ -90,7 +90,7 @@ namespace BindOpen.System.Data.Meta
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            var scalarElement = base.Clone<BdoMetaScalar>();
+            var scalarElement = base.Clone().As<BdoMetaScalar>();
             return scalarElement;
         }
 

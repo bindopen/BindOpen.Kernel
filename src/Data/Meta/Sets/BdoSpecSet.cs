@@ -1,4 +1,6 @@
-﻿namespace BindOpen.System.Data.Meta
+﻿using BindOpen.System.Data.Helpers;
+
+namespace BindOpen.System.Data.Meta
 {
     /// <summary>
     /// This class represents a catalog el that is an el whose els are entities.
@@ -89,7 +91,8 @@
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            var el = base.Clone<BdoSpecSet>();
+            var el = base.Clone().As<BdoSpecSet>();
+
             return el;
         }
 

@@ -54,7 +54,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public static IBdoSpec Children(
+        public static IBdoSpec Child(
             this IBdoSpecSet specSet,
             IBdoScope scope,
             IBdoMetaSet varSet = null,

@@ -15,7 +15,7 @@ namespace BindOpen.System.Data
         public static T Adding<T>(
             this T filter,
             params string[] values)
-            where T : IBdoFilter
+            where T : IBdoMerger
         {
             if (filter != null)
             {
@@ -37,7 +37,7 @@ namespace BindOpen.System.Data
         public static T Removing<T>(
             this T filter,
             params string[] values)
-            where T : IBdoFilter
+            where T : IBdoMerger
         {
             if (filter != null)
             {
