@@ -171,7 +171,7 @@ namespace BindOpen.System.Data.Meta
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            var el = base.Clone<BdoMetaSet>();
+            var el = base.Clone().As<BdoMetaSet>();
             return el;
         }
 

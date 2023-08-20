@@ -1,5 +1,5 @@
-﻿using BindOpen.System.Logging;
-using BindOpen.System.Data.Helpers;
+﻿using BindOpen.System.Data.Helpers;
+using BindOpen.System.Logging;
 using System.Linq;
 
 namespace BindOpen.System.Data
@@ -64,13 +64,13 @@ namespace BindOpen.System.Data
             where T : IReferenced
         {
             areas ??= new[] { nameof(DataAreaKind.Any) };
-            updateModes ??= new[] { UpdateModes.Full };
+            updateModes ??= new[] { UpdateModes.Incremental_AddMissingInTarget, UpdateModes.Incremental_UpdateCommon };
 
             if (set != null)
             {
                 if (updateModes.Has(UpdateModes.Full))
                 {
-                    set.With(set?.ToArray());
+                    set.With(refSet?.ToArray());
                 }
                 else
                 {
@@ -111,19 +111,22 @@ namespace BindOpen.System.Data
 
                     if (updateModes.Has(UpdateModes.Incremental_AddMissingInTarget))
                     {
-                        if (set != null)
+                        if (refSet != null)
                         {
-                            foreach (var setItem in set)
+                            foreach (var refSetItem in refSet)
                             {
-                                var item = set[setItem?.Key()];
+                                var item = set[refSetItem?.Key()];
 
-                                if (item is IClonable clonable)
+                                if (item == null)
                                 {
-                                    var newSubItem = clonable.Clone().As<T>();
-
-                                    if (newSubItem != null)
+                                    if (refSetItem is IClonable clonable)
                                     {
+                                        var newSubItem = clonable.Clone().As<T>();
                                         set.Add(newSubItem);
+                                    }
+                                    else
+                                    {
+                                        set.Add(refSetItem);
                                     }
                                 }
                             }

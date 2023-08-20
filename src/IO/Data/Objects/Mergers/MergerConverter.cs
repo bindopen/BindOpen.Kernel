@@ -12,7 +12,7 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static MergerDto ToDto(this IBdoFilter poco)
+        public static MergerDto ToDto(this IBdoMerger poco)
         {
             if (poco == null) return null;
 
@@ -30,7 +30,7 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoFilter ToPoco(this MergerDto dto)
+        public static IBdoMerger ToPoco(this MergerDto dto)
         {
             BdoMerger poco = new()
             {

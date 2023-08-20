@@ -358,8 +358,8 @@ namespace BindOpen.System.Data
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            var obj = Clone<TBdoSet<T>>();
-            obj.Id = Id != null ? StringHelper.NewGuid() : null;
+            var obj = base.Clone().As<TBdoSet<T>>();
+            obj.Id = StringHelper.NewGuid();
             obj._items = _items?.Select(p =>
             {
                 if (p is IClonable dataItem)

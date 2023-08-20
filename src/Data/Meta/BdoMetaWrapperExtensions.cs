@@ -21,9 +21,29 @@ namespace BindOpen.System.Data.Meta
             bool onlyMetaAttributes = true)
             where T : IBdoMetaWrapper
         {
+            return obj.UpdateDetail(null, onlyMetaAttributes);
+        }
+
+        /// <summary>
+        /// Gets the specified value.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param key="propertyName">The calling property name to consider.</param>
+        public static T UpdateDetail<T>(
+            this T obj,
+            IBdoMetaSet detail,
+            bool onlyMetaAttributes = true)
+            where T : IBdoMetaWrapper
+        {
             if (obj != null)
             {
-                obj.Detail = BdoData.NewMetaSet(obj.ToMeta<BdoMetaObject>(null, onlyMetaAttributes)?.ToArray());
+                obj.Detail ??= BdoData.NewMetaSet();
+
+                if (detail == null)
+                {
+                    detail = BdoData.NewMetaSet(obj.ToMeta(null, onlyMetaAttributes)?.ToArray());
+                }
+                obj.Detail.Update(detail);
             }
 
             return obj;
