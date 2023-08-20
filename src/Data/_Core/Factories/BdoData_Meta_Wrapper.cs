@@ -18,8 +18,10 @@ namespace BindOpen.System.Data
             this IBdoScope scope,
             IBdoMetaSet detail = null,
             bool onlyMetaAttributes = false)
-            where T : class, IBdoMetaWrapper, new()
+            where T : IBdoMetaWrapper, new()
         {
+            detail ??= NewMetaSet();
+
             var obj = new T()
                 .WithScope(scope)
                 .WithDetail(detail);
@@ -30,82 +32,21 @@ namespace BindOpen.System.Data
         }
 
         /// <summary>
-        /// 
+        /// Defines the parameters of this instance.
         /// </summary>
-        /// <param key="detail"></param>
-        public static T NewMetaWrapper<T>(
-            this IBdoScope scope,
-            params IBdoMetaData[] elms)
-            where T : class, IBdoMetaWrapper, new()
+        /// <param key="metas">The parameters to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static T NewMetaWrapper<T, Q>(
+            this IBdoScope scope)
+            where T : IBdoMetaWrapper, new()
+            where Q : IBdoMetaSet, new()
         {
-            return scope.NewMetaWrapper<T>(NewMetaSet(elms));
-        }
+            var obj = new T()
+                .WithScope(scope);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="detail"></param>
-        public static T NewMetaWrapper<T>(
-            this IBdoScope scope,
-            bool onlyMetaAttributes = false,
-            params IBdoMetaData[] elms)
-            where T : class, IBdoMetaWrapper, new()
-        {
-            return scope.NewMetaWrapper<T>(NewMetaSet(elms), onlyMetaAttributes);
-        }
+            obj.WithDetail(new Q());
 
-        /// <summary>
-        /// Adds a new value to this instance with the specified key and text.
-        /// </summary>
-        /// <param key="text">The text to consider.</param>
-        /// <returns>Returns the added data key value.</returns>
-        public static T NewMetaWrapper<T>(
-            this IBdoScope scope,
-            params (string Name, object Value)[] pairs)
-            where T : class, IBdoMetaWrapper, new()
-        {
-            return scope.NewMetaWrapper<T>(NewMetaSet(pairs));
-        }
-
-        /// <summary>
-        /// Adds a new value to this instance with the specified key and text.
-        /// </summary>
-        /// <param key="text">The text to consider.</param>
-        /// <returns>Returns the added data key value.</returns>
-        public static T NewMetaWrapper<T>(
-            this IBdoScope scope,
-            bool onlyMetaAttributes = false,
-            params (string Name, object Value)[] pairs)
-            where T : class, IBdoMetaWrapper, new()
-        {
-            return scope.NewMetaWrapper<T>(NewMetaSet(pairs), onlyMetaAttributes);
-        }
-
-        /// <summary>
-        /// Adds a new value to this instance with the specified key and text.
-        /// </summary>
-        /// <param key="text">The text to consider.</param>
-        /// <returns>Returns the added data key value.</returns>
-        public static T NewMetaWrapper<T>(
-            this IBdoScope scope,
-            params (string Name, DataValueTypes ValueType, object Value)[] pairs)
-            where T : class, IBdoMetaWrapper, new()
-        {
-            return scope.NewMetaWrapper<T>(NewMetaSet(pairs));
-        }
-
-        /// <summary>
-        /// Adds a new value to this instance with the specified key and text.
-        /// </summary>
-        /// <param key="text">The text to consider.</param>
-        /// <returns>Returns the added data key value.</returns>
-        public static T NewMetaWrapper<T>(
-            this IBdoScope scope,
-            bool onlyMetaAttributes = false,
-            params (string Name, DataValueTypes ValueType, object Value)[] pairs)
-            where T : class, IBdoMetaWrapper, new()
-        {
-            return scope.NewMetaWrapper<T>(NewMetaSet(pairs), onlyMetaAttributes);
+            return obj;
         }
     }
 }

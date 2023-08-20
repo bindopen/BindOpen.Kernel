@@ -16,7 +16,7 @@ namespace BindOpen.System.Data
         public void CreateTest()
         {
             var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>(
-                ("test1", "ABC"));
+                BdoData.NewMetaSet(("test1", "ABC")));
 
             var value1 = obj.Test1;
             Assert.That(value1 == "ABC", "Bad dynamic object");

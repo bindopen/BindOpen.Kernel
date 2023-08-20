@@ -35,10 +35,8 @@ namespace BindOpen.System.Data.Meta
             bool onlyMetaAttributes = true)
             where T : IBdoMetaWrapper
         {
-            if (obj != null)
+            if (obj?.Detail != null)
             {
-                obj.Detail ??= BdoData.NewMetaSet();
-
                 if (detail == null)
                 {
                     detail = BdoData.NewMetaSet(obj.ToMeta(null, onlyMetaAttributes)?.ToArray());
