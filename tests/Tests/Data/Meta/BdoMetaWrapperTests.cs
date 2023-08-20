@@ -86,5 +86,25 @@ namespace BindOpen.System.Data
 
             Assert.That(obj?.Dico?.Count == 2, "Bad dynamic object");
         }
+
+        [Test, Order(1)]
+        public void UpdateDetailTest()
+        {
+            var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>();
+            obj.UpdateDetail(
+                BdoData.NewConfig(
+                    BdoData.NewMetaScalar("testListA", "monthA")),
+                true);
+            obj.UpdateDetail(
+                BdoData.NewConfig(
+                    BdoData.NewMetaScalar("testListB", "dailyA")),
+                true);
+            obj.UpdateDetail(
+                BdoData.NewConfig(
+                    BdoData.NewMetaScalar("testListB", "dailyB")),
+                true);
+
+            Assert.That(obj?.Detail?.Count == 2, "Bad dynamic object");
+        }
     }
 }

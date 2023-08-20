@@ -14,7 +14,7 @@ namespace BindOpen.System.Data
         private readonly string _filePath_xml = SystemData.WorkingFolder + "Filter.xml";
         private readonly string _filePath_json = SystemData.WorkingFolder + "Filter.json";
         dynamic _valueSet;
-        private IBdoFilter _filter = null;
+        private IBdoMerger _filter = null;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -28,8 +28,8 @@ namespace BindOpen.System.Data
         }
 
         public static bool Equals(
-            IBdoFilter filter1,
-            IBdoFilter filter2)
+            IBdoMerger filter1,
+            IBdoMerger filter2)
         {
             var b = filter1 != null && filter2 != null
                 && filter1.IsDeepEqual(filter2);

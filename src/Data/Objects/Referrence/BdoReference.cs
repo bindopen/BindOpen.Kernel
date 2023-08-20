@@ -1,4 +1,5 @@
-﻿using BindOpen.System.Data.Meta;
+﻿using BindOpen.System.Data.Helpers;
+using BindOpen.System.Data.Meta;
 using BindOpen.System.Scoping.Script;
 
 namespace BindOpen.System.Data
@@ -111,5 +112,29 @@ namespace BindOpen.System.Data
         }
 
         #endregion
+
+        // --------------------------------------------------
+        // CLONING
+        // --------------------------------------------------
+
+        #region Cloning
+
+        /// <summary>
+        /// Clones this instance.
+        /// </summary>
+        /// <returns>Returns a cloned instance.</returns>
+        public override object Clone()
+        {
+            var reference = base.Clone().As<BdoReference>();
+
+            reference.Expression = Expression?.Clone<BdoExpression>();
+            reference.Word = Word?.Clone<IBdoScriptword>();
+            reference.MetaData = MetaData?.Clone<BdoMetaData>();
+
+            return reference;
+        }
+
+        #endregion
+
     }
 }

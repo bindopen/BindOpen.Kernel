@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BindOpen.System.Data.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -36,9 +37,11 @@ namespace BindOpen.System.Data.Meta
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            var dataElementSpec = base.Clone<BdoAggregateSpec>();
+            var spec = base.Clone().As<BdoAggregateSpec>();
 
-            return dataElementSpec;
+            spec._children = _children?.Select(q => q.Clone<IBdoSpec>()).ToList();
+
+            return spec;
         }
 
         #endregion

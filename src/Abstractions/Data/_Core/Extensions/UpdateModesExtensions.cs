@@ -24,10 +24,10 @@ namespace BindOpen.System.Data
             this UpdateModes[] updateModes,
             params UpdateModes[] modes)
         {
-            var b = modes?.Length > 0;
+            var b = false;
             foreach (var mode in modes)
             {
-                b &= (updateModes.Aggregate((current, value) => current | value) & mode) == mode;
+                b |= (updateModes.Aggregate((current, value) => current | value) & mode) == mode;
             }
             return b;
         }

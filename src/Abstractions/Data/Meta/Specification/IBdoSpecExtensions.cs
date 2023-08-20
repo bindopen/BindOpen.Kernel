@@ -50,6 +50,22 @@ namespace BindOpen.System.Data.Meta
         /// 
         /// </summary>
         /// <param key="aliases"></param>
+        public static T WithAvailableDataModes<T>(
+            this T spec,
+            params DataMode[] modes)
+            where T : IBdoSpec
+        {
+            if (spec != null)
+            {
+                spec.AvailableDataModes = modes;
+            }
+            return spec;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="aliases"></param>
         public static T WithAliases<T>(
             this T spec,
             params string[] aliases)
@@ -302,6 +318,23 @@ namespace BindOpen.System.Data.Meta
             if (spec != null)
             {
                 spec.SpecLevels = levels;
+            }
+
+            return spec;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="levels"></param>
+        public static T WithDataSpecLevels<T>(
+            this T spec,
+            params SpecificationLevels[] levels)
+            where T : IBdoSpec
+        {
+            if (spec != null)
+            {
+                spec.DataSpecLevels = levels;
             }
 
             return spec;

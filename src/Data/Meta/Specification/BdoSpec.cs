@@ -1,4 +1,5 @@
 ﻿using BindOpen.System.Data.Conditions;
+using BindOpen.System.Data.Helpers;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -56,13 +57,22 @@ namespace BindOpen.System.Data.Meta
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            var dataElementSpec = base.Clone<BdoSpec>();
+            var spec = base.Clone().As<BdoSpec>();
 
-            dataElementSpec.WithAliases(Aliases?.ToArray());
-            dataElementSpec.WithValueModes(AvailableDataModes?.ToArray());
-            dataElementSpec.WithSpecLevels(SpecLevels?.ToArray());
+            spec.WithAvailableDataModes(AvailableDataModes?.ToArray());
+            spec.WithAliases(Aliases?.ToArray());
+            spec.Condition = Condition?.Clone<BdoCondition>();
+            spec.DataReference = Condition?.Clone<BdoReference>();
+            spec.WithDataSpecLevels(DataSpecLevels?.ToArray());
+            spec.DataType = DataType?.Clone<BdoDataType>();
+            spec.DefaultData = DefaultData;
+            spec.Description = Condition?.Clone<TBdoDictionary<string>>();
+            spec.Detail = Condition?.Clone<BdoMetaSet>();
+            spec.WithSpecLevels(SpecLevels?.ToArray());
+            spec.Title = Condition?.Clone<TBdoDictionary<string>>();
+            spec.WithValueModes(AvailableDataModes?.ToArray());
 
-            return dataElementSpec;
+            return spec;
         }
 
         #endregion
