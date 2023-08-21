@@ -44,9 +44,7 @@ namespace BindOpen.System.Data.Meta
         {
             var token = tokens?.FirstOrDefault();
 
-            if (token == null) return this as TChild;
-
-            object child = null;
+            object child = default;
 
             if (token?.ToString().StartsWith('/') == true)
             {
@@ -62,13 +60,15 @@ namespace BindOpen.System.Data.Meta
                     child = Child(q => q.BdoKeyEquals(tokenSt), false);
                 }
 
+                if (tokens?.Length == 1) return child.As<TChild>();
+
                 if (child is IBdoSet childSet)
                 {
                     tokens = tokens?.Skip(1).ToArray();
-                    child = childSet?.Descendant<TChild>(tokens);
+                    return childSet.Descendant<TChild>(tokens);
                 }
-
-                return child as TChild;
+                else
+                    return default;
             }
 
             return base.Descendant<TChild>(tokens);

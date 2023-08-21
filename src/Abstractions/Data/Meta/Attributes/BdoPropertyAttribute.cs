@@ -79,6 +79,11 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         public SpecificationLevels[] SpecLevels { get; set; }
 
+        /// <summary>
+        /// The reference of this instance.
+        /// </summary>
+        public string Reference { get; set; }
+
         #endregion
 
         // ------------------------------------------

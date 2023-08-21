@@ -26,7 +26,7 @@ namespace BindOpen.System.Data
 
         T Descendant<T>(
             params object[] tokens)
-            where T : class, IReferenced;
+            where T : IReferenced;
 
     }
 }
