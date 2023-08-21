@@ -7,7 +7,7 @@ namespace BindOpen.System.Tests
     /// <summary>
     /// This class represents a database data field.
     /// </summary>
-    public class MetaWrapperFake : BdoMetaWrapper
+    public class MetaWrapperFake : TBdoMetaWrapper<BdoConfiguration>
     {
         // ------------------------------------------
         // PROPERTIES

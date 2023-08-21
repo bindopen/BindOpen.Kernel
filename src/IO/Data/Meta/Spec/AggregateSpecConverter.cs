@@ -102,7 +102,7 @@ namespace BindOpen.System.Data.Meta
             poco.DataSpecLevels = dto?.DataSpecLevels == null ? null : new List<SpecificationLevels>(dto.DataSpecLevels);
             poco.SpecLevels = dto?.SpecLevels == null ? null : new List<SpecificationLevels>(dto.SpecLevels);
 
-            poco._Children = dto?.Children?.Select(q => q.ToPoco()).ToList();
+            poco._Children = BdoData.NewSet(dto?.Children?.Select(q => q.ToPoco()).ToArray());
 
             poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco());
             poco.DataType.DefinitionUniqueName = dto.DefinitionUniqueName;

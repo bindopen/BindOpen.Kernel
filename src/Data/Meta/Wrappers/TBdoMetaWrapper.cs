@@ -1,11 +1,11 @@
-﻿using BindOpen.System.Scoping;
+﻿using BindOpen.System.Data.Helpers;
+using BindOpen.System.Data.Meta.Reflection;
+using BindOpen.System.Scoping;
 
 namespace BindOpen.System.Data.Meta
 {
-    /// <summary>
-    /// This class represents a data element.
-    /// </summary>
-    public abstract class BdoMetaWrapper : BdoObject, IBdoMetaWrapper
+    public abstract class TBdoMetaWrapper<TDetail> : BdoObject, ITBdoMetaWrapper<TDetail>
+        where TDetail : IBdoMetaSet, new()
     {
         // --------------------------------------------------
         // CONSTRUCTORS
@@ -16,36 +16,40 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// Initializes a new data element.
         /// </summary>
-        public BdoMetaWrapper()
+        public TBdoMetaWrapper() : this(null, default)
         {
         }
 
         /// <summary>
         /// Initializes a new data element.
         /// </summary>
-        public BdoMetaWrapper(IBdoScope scope, IBdoMetaSet sst)
+        public TBdoMetaWrapper(IBdoScope scope, TDetail detail)
         {
             Scope = scope;
-            Detail = sst;
+            Detail = detail;
+
+            Detail = new TDetail();
         }
 
         #endregion
 
         // -------------------------------------------------------
-        // IBdoSettings Implementation
+        // IBdoMetaWrapper Implementation
         // -------------------------------------------------------
 
-        #region IBdoSettings
+        #region IBdoMetaWrapper
 
         /// <summary>
         /// The application scope of this instance.
         /// </summary>
         public IBdoScope Scope { get; set; }
 
+        IBdoMetaSet IBdoDetailed.Detail { get => Detail; set { Detail = value.As<TDetail>(); } }
+
         /// <summary>
         /// The item of this instance.
         /// </summary>
-        public IBdoMetaSet Detail { get; set; }
+        public TDetail Detail { get; set; }
 
         /// <summary>
         /// Returns the key of this instance.
@@ -75,6 +79,32 @@ namespace BindOpen.System.Data.Meta
             return Detail?.GetData(name, Scope);
         }
 
+        /// <summary>
+        /// Gets the specified value.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param key="propertyName">The calling property name to consider.</param>
+        public void UpdateDetail(
+            IBdoMetaSet detail = null,
+            bool onlyMetaAttributes = true)
+        {
+            Detail ??= new TDetail();
+
+            detail ??= BdoData.NewMetaSet(this.ToMeta(null, onlyMetaAttributes)?.ToArray());
+            Detail.Update(detail);
+        }
+
+        /// <summary>
+        /// Gets the specified value.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param key="propertyName">The calling property name to consider.</param>
+        public void UpdateProperties(
+            bool onlyMetaAttributes = true)
+        {
+            this.UpdateFromMeta(Detail, onlyMetaAttributes);
+        }
+
         #endregion
 
         // ------------------------------------------
@@ -101,6 +131,6 @@ namespace BindOpen.System.Data.Meta
             base.Dispose(isDisposing);
         }
 
-        #endregion
+        #endregion    
     }
 }

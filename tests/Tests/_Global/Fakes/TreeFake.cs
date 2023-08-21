@@ -18,17 +18,38 @@ namespace BindOpen.System.Tests
 
         #region Properties
 
-        public IList<TreeFake> _Children { get; set; }
+        public ITBdoSet<TreeFake> _Children { get; set; }
         public TreeFake Parent { get => _parent; set { _parent = value; } }
         public string Name { get; set; }
 
-        public TreeFake Child(Predicate<TreeFake> filter = null, bool isRecursive = false)
+        public IEnumerable<TreeFake> Children(Predicate<TreeFake> filter = null, bool isRecursive = false)
+        {
+            var children = new List<TreeFake>();
+
+            if (_Children != null)
+            {
+                foreach (var child in _Children)
+                {
+                    if (filter?.Invoke(child) != false)
+                        children.Add(child);
+
+                    if (isRecursive)
+                    {
+                        children.AddRange(child.Children(filter, isRecursive));
+                    }
+                }
+            }
+
+            return children;
+        }
+
+        public TreeFake Child(Predicate<TreeFake> filter, bool isRecursive = false)
         {
             if (_Children != null)
             {
                 foreach (var child in _Children)
                 {
-                    if (filter == null || filter?.Invoke(child) == true)
+                    if (filter?.Invoke(child) != false)
                         return child;
 
                     if (isRecursive)
@@ -42,26 +63,23 @@ namespace BindOpen.System.Tests
             return null;
         }
 
-        public IEnumerable<TreeFake> Children(Predicate<TreeFake> filter = null, bool isRecursive = false)
-            => _Children?.Where(q => filter == null || filter(q));
-
         public bool HasChild(Predicate<TreeFake> filter = null, bool isRecursive = false)
-            => _Children.Any(q => filter == null || filter(q));
+            => _Children?.Any(q => filter?.Invoke(q) != false || (isRecursive && q.HasChild(filter, isRecursive))) == true;
 
         public TreeFake InsertChild(Action<TreeFake> updater)
         {
             var child = new TreeFake();
             updater?.Invoke(child);
 
-            _Children ??= new List<TreeFake>();
+            _Children ??= BdoData.NewSet<TreeFake>();
             _Children.Add(child);
 
-            return this;
+            return child;
         }
 
         public void RemoveChildren(Predicate<TreeFake> filter = null, bool isRecursive = false)
         {
-            _Children = _Children?.Where(p => filter?.Invoke(p) != true).ToList();
+            _Children?.Remove(filter);
         }
 
         public string Key() => Name;

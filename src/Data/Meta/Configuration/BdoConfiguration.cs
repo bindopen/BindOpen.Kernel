@@ -43,6 +43,9 @@ namespace BindOpen.System.Data.Meta
             params object[] tokens)
         {
             var token = tokens?.FirstOrDefault();
+
+            if (token == null) return this as TChild;
+
             object child = null;
 
             if (token?.ToString().StartsWith('/') == true)
@@ -52,11 +55,11 @@ namespace BindOpen.System.Data.Meta
 
                 if (tokenInt is int index)
                 {
-                    child = _Children.GetAt(index);
+                    child = _Children[index];
                 }
                 else if (token is string key)
                 {
-                    child = Child(q => q.BdoKeyEquals(tokenSt));
+                    child = Child(q => q.BdoKeyEquals(tokenSt), false);
                 }
 
                 if (child is IBdoSet childSet)
@@ -65,7 +68,7 @@ namespace BindOpen.System.Data.Meta
                     child = childSet?.Descendant<TChild>(tokens);
                 }
 
-                return (child ?? this) as TChild;
+                return child as TChild;
             }
 
             return base.Descendant<TChild>(tokens);
@@ -138,20 +141,38 @@ namespace BindOpen.System.Data.Meta
 
         public IBdoConfiguration Parent { get; set; }
 
-        private IList<IBdoConfiguration> _children = null;
+        protected ITBdoSet<IBdoConfiguration> _children = null;
 
-        public IList<IBdoConfiguration> _Children { get => _children; set { _children = value; } }
+        public ITBdoSet<IBdoConfiguration> _Children { get => _children; set { _children = value; } }
 
         public IEnumerable<IBdoConfiguration> Children(Predicate<IBdoConfiguration> filter = null, bool isRecursive = false)
-            => _children?.Where(p => filter?.Invoke(p) != false) ?? Enumerable.Empty<IBdoConfiguration>();
+        {
+            var children = new List<IBdoConfiguration>();
 
-        public IBdoConfiguration Child(Predicate<IBdoConfiguration> filter = null, bool isRecursive = false)
+            if (_children != null)
+            {
+                foreach (var child in _children)
+                {
+                    if (filter?.Invoke(child) != false)
+                        children.Add(child);
+
+                    if (isRecursive)
+                    {
+                        children.AddRange(child.Children(filter, isRecursive));
+                    }
+                }
+            }
+
+            return children;
+        }
+
+        public IBdoConfiguration Child(Predicate<IBdoConfiguration> filter, bool isRecursive = false)
         {
             if (_Children != null)
             {
                 foreach (var child in _Children)
                 {
-                    if (filter == null || filter?.Invoke(child) == true)
+                    if (filter?.Invoke(child) != false)
                         return child;
 
                     if (isRecursive)
@@ -166,7 +187,7 @@ namespace BindOpen.System.Data.Meta
         }
 
         public bool HasChild(Predicate<IBdoConfiguration> filter = null, bool isRecursive = false)
-            => _children?.Any(p => filter?.Invoke(p) == true) ?? false;
+            => _Children?.Any(q => filter?.Invoke(q) != false || (isRecursive && q.HasChild(filter, isRecursive))) == true;
 
         public IBdoConfiguration InsertChild(Action<IBdoConfiguration> updater)
         {
@@ -180,7 +201,7 @@ namespace BindOpen.System.Data.Meta
 
         public void RemoveChildren(Predicate<IBdoConfiguration> filter = null, bool isRecursive = false)
         {
-            _children = _children?.Where(p => filter?.Invoke(p) != true).ToList();
+            _children?.Remove(filter);
         }
 
         #endregion

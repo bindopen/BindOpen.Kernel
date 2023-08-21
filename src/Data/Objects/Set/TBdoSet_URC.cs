@@ -8,7 +8,7 @@ namespace BindOpen.System.Data
     public partial class TBdoSet<T> : BdoObject, ITBdoSet<T>
         where T : IReferenced
     {
-        public void Update(
+        public virtual void Update(
             ITBdoSet<T> refSet,
             string[] areas = null,
             UpdateModes[] updateModes = null,

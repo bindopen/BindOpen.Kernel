@@ -13,18 +13,7 @@ namespace BindOpen.System.Data.Meta
             UpdateModes[] updateModes = null,
             IBdoLog log = null)
         {
-            areas ??= new[] { nameof(DataAreaKind.Any) };
-            updateModes ??= new[] { UpdateModes.Incremental_AddMissingInTarget, UpdateModes.Incremental_UpdateCommon };
-
-            if (refItem is IBdoMetaData meta)
-            {
-                if (updateModes.Has(UpdateModes.Incremental_UpdateCommon))
-                {
-                    this.WithDataType(meta.DataType?.Clone<BdoDataType>());
-                    this.WithDataReference(meta.DataReference?.Clone<BdoReference>());
-                    this.WithData(meta.GetData());
-                }
-            }
+            BdoMetaDataExtensions.Update(this, refItem, areas, updateModes, log);
         }
     }
 }

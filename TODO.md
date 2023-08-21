@@ -17,6 +17,9 @@ Todo list for BindOpen
 - [ ] Setting ITParent methods recursively
 - [ ] Solve the issue of meta data valueType with ITMetaData<> type
 - [ ] Solve Child/Parent issue with script word
+- [ ] Check Descendant when set is null or requested item does not exist
+- [ ] Update detail children of meta wrapper if detail is a config
+- [ ] Update Children and Child and HasChild methods
 
 ## Stuff to check out later on
 
