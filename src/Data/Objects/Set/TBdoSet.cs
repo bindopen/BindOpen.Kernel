@@ -273,10 +273,11 @@ namespace BindOpen.System.Data
         /// </summary>
         public virtual TChild Descendant<TChild>(
             params object[] tokens)
-            where TChild : class, IReferenced
+            where TChild : IReferenced
         {
             var token = tokens?.FirstOrDefault();
-            object child = null;
+
+            object child = default;
 
             if (token is string key)
             {
@@ -287,13 +288,15 @@ namespace BindOpen.System.Data
                 child = this[index];
             }
 
+            if (tokens?.Length == 1) return child.As<TChild>();
+
             if (child is IBdoSet childSet)
             {
                 tokens = tokens?.Skip(1).ToArray();
-                child = childSet?.Descendant<TChild>(tokens);
+                return childSet.Descendant<TChild>(tokens);
             }
-
-            return (child ?? this) as TChild;
+            else
+                return default;
         }
 
         #endregion

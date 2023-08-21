@@ -56,9 +56,15 @@ namespace BindOpen.System.Data
         [Test, Order(1)]
         public void DescendantTest()
         {
+            // Null
+
+            var meta = _config20.Descendant<IBdoMetaData>();
+
+            Assert.That(meta == null, "Error with config");
+
             // String
 
-            var meta = _config20.Descendant<IBdoMetaData>("/" + _configName1, "float1");
+            meta = _config20.Descendant<IBdoMetaData>("/" + _configName1, "float1");
 
             Assert.That(meta.GetData() == _config1["float1"]?.GetData(), "Error with config");
 
