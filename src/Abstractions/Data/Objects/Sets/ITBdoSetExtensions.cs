@@ -15,10 +15,10 @@ namespace BindOpen.System.Data
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
         public static Q Add<Q, T>(
-            this Q set,
-            params T[] items)
-            where Q : ITBdoSet<T>
-            where T : IReferenced
+        this Q set,
+        params T[] items)
+        where Q : ITBdoSet<T>
+        where T : IReferenced
         {
             if (set != null && items != null)
             {

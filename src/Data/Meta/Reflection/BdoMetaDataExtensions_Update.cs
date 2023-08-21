@@ -69,7 +69,8 @@ namespace BindOpen.System.Data.Meta.Reflection
 
                     try
                     {
-                        var meta = set.GetOfGroup(name, groupId);
+                        var meta = spec.DataReference?.Kind == BdoReferenceKind.Identifier ?
+                            set.Descendant<IBdoMetaData>(spec.DataReference.Identifier.Split(',')) : set.GetOfGroup(name, groupId);
 
                         if (meta != null)
                         {
@@ -177,6 +178,15 @@ namespace BindOpen.System.Data.Meta.Reflection
                                 else
                                 {
                                     // if object case we parse sub meta data
+
+                                    if (!type.IsScalar() && meta is IBdoMetaObject metaObject)
+                                    {
+                                        var metaObj = AssemblyHelper.CreateInstance(type, log);
+                                        metaObj.UpdateFromMeta(metaObject, onlyMetaAttributes);
+                                        meta.WithData(metaObj);
+
+                                        value = metaObj;
+                                    }
                                 }
                             }
 

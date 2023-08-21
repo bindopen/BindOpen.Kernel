@@ -23,6 +23,12 @@ namespace BindOpen.System.Data.Meta
                     spec.Aliases = att.Aliases?.ToList();
                 }
 
+                if (!string.IsNullOrEmpty(att.Reference))
+                {
+                    change = true;
+                    spec.DataReference = BdoData.NewRef(att.Reference);
+                }
+
                 if (att.MinDataItemNumber != null)
                 {
                     change = true;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BindOpen.System.Data.Helpers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -267,10 +268,11 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         public virtual TChild Descendant<TChild>(
             params object[] tokens)
-            where TChild : class, IReferenced
+            where TChild : IReferenced
         {
             var token = tokens?.FirstOrDefault();
-            object child = null;
+
+            object child = default;
 
             if (token is string key)
             {
@@ -281,13 +283,15 @@ namespace BindOpen.System.Data.Meta
                 child = this[index];
             }
 
+            if (tokens?.Length == 1) return child.As<TChild>();
+
             if (child is IBdoSet childSet)
             {
                 tokens = tokens?.Skip(1).ToArray();
-                return childSet?.Descendant<TChild>(tokens);
+                return childSet.Descendant<TChild>(tokens);
             }
-
-            return this as TChild;
+            else
+                return default;
         }
 
         #endregion

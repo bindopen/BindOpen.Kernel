@@ -39,6 +39,16 @@ namespace BindOpen.System.Tests
         [BdoProperty("testList")]
         public List<string> List { get; set; }
 
+
+        [BdoProperty("entityFake")]
+        public EntityFake EntityFake { get; set; }
+
+        /// <summary>
+        /// Enumeration value of this instance.
+        /// </summary>
+        [BdoProperty(Name = "subEnumValue", Reference = "entityFake,enumValue")]
+        public ActionPriorities SubEnumValue { get; set; }
+
         #endregion
 
         // ------------------------------------------
