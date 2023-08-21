@@ -39,7 +39,7 @@ namespace BindOpen.System.Data.Meta
         {
             var spec = base.Clone().As<BdoAggregateSpec>();
 
-            spec._children = _children?.Select(q => q.Clone<IBdoSpec>()).ToList();
+            spec._children = BdoData.NewSet(_children?.Select(q => q.Clone<IBdoSpec>()).ToArray());
 
             return spec;
         }
@@ -52,20 +52,38 @@ namespace BindOpen.System.Data.Meta
 
         #region ITParent
 
-        private IList<IBdoSpec> _children = null;
+        protected ITBdoSet<IBdoSpec> _children = null;
 
-        public IList<IBdoSpec> _Children { get => _children; set { _children = value; } }
+        public ITBdoSet<IBdoSpec> _Children { get => _children; set { _children = value; } }
 
         public IEnumerable<IBdoSpec> Children(Predicate<IBdoSpec> filter = null, bool isRecursive = false)
-            => _children?.Where(p => filter?.Invoke(p) != false) ?? Enumerable.Empty<IBdoSpec>();
+        {
+            var children = new List<IBdoSpec>();
 
-        public IBdoSpec Child(Predicate<IBdoSpec> filter = null, bool isRecursive = false)
+            if (_children != null)
+            {
+                foreach (var child in _children)
+                {
+                    if (filter?.Invoke(child) != false)
+                        children.Add(child);
+
+                    if (isRecursive && child is IBdoAggregateSpec nodeChild)
+                    {
+                        children.AddRange(nodeChild.Children(filter, isRecursive));
+                    }
+                }
+            }
+
+            return children;
+        }
+
+        public IBdoSpec Child(Predicate<IBdoSpec> filter, bool isRecursive = false)
         {
             if (_Children != null)
             {
                 foreach (var child in _Children)
                 {
-                    if (filter == null || filter?.Invoke(child) == true)
+                    if (filter?.Invoke(child) != false)
                         return child;
 
                     if (isRecursive && child is IBdoAggregateSpec nodeChild)
@@ -80,7 +98,7 @@ namespace BindOpen.System.Data.Meta
         }
 
         public bool HasChild(Predicate<IBdoSpec> filter = null, bool isRecursive = false)
-            => _children?.Any(p => filter?.Invoke(p) == true) ?? false;
+            => _Children?.Any(q => filter?.Invoke(q) != false || (isRecursive && q is IBdoAggregateSpec qChild && qChild.HasChild(filter, isRecursive))) == true;
 
         public IBdoSpec InsertChild(Action<IBdoSpec> updater)
         {
@@ -94,7 +112,7 @@ namespace BindOpen.System.Data.Meta
 
         public void RemoveChildren(Predicate<IBdoSpec> filter = null, bool isRecursive = false)
         {
-            _children = _children?.Where(p => filter?.Invoke(p) != true).ToList();
+            _children?.Remove(filter);
         }
 
         #endregion

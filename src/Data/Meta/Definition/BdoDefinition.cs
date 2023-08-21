@@ -123,12 +123,30 @@ namespace BindOpen.System.Data.Meta
 
         public IBdoDefinition Parent { get; set; }
 
-        private IList<IBdoDefinition> _children = null;
+        protected ITBdoSet<IBdoDefinition> _children = null;
 
-        public IList<IBdoDefinition> _Children { get => _children; set { _children = value; } }
+        public ITBdoSet<IBdoDefinition> _Children { get => _children; set { _children = value; } }
 
         public IEnumerable<IBdoDefinition> Children(Predicate<IBdoDefinition> filter = null, bool isRecursive = false)
-            => _children?.Where(p => filter?.Invoke(p) != false) ?? Enumerable.Empty<IBdoDefinition>();
+        {
+            var children = new List<IBdoDefinition>();
+
+            if (_children != null)
+            {
+                foreach (var child in _children)
+                {
+                    if (filter?.Invoke(child) != false)
+                        children.Add(child);
+
+                    if (isRecursive)
+                    {
+                        children.AddRange(child.Children(filter, isRecursive));
+                    }
+                }
+            }
+
+            return children;
+        }
 
         public IBdoDefinition Child(Predicate<IBdoDefinition> filter = null, bool isRecursive = false)
         {
@@ -136,7 +154,7 @@ namespace BindOpen.System.Data.Meta
             {
                 foreach (var child in _Children)
                 {
-                    if (filter == null || filter?.Invoke(child) == true)
+                    if (filter?.Invoke(child) != false)
                         return child;
 
                     if (isRecursive)
@@ -151,7 +169,7 @@ namespace BindOpen.System.Data.Meta
         }
 
         public bool HasChild(Predicate<IBdoDefinition> filter = null, bool isRecursive = false)
-            => _children?.Any(p => filter?.Invoke(p) == true) ?? false;
+            => _Children?.Any(q => filter?.Invoke(q) != false || (isRecursive && q.HasChild(filter, isRecursive))) == true;
 
         public IBdoDefinition InsertChild(Action<IBdoDefinition> updater)
         {
@@ -165,7 +183,7 @@ namespace BindOpen.System.Data.Meta
 
         public void RemoveChildren(Predicate<IBdoDefinition> filter = null, bool isRecursive = false)
         {
-            _children = _children?.Where(p => filter?.Invoke(p) != true).ToList();
+            _children?.Remove(filter);
         }
 
         #endregion

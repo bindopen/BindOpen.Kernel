@@ -8,11 +8,11 @@ namespace BindOpen.System.Data
     /// </summary>
     public interface ITParent<T> : IReferenced where T : IReferenced
     {
-        IList<T> _Children { get; set; }
+        ITBdoSet<T> _Children { get; set; }
 
         IEnumerable<T> Children(Predicate<T> filter = null, bool isRecursive = false);
 
-        T Child(Predicate<T> filter = null, bool isRecursive = false);
+        T Child(Predicate<T> filter, bool isRecursive = false);
 
         bool HasChild(Predicate<T> filter = null, bool isRecursive = false);
 

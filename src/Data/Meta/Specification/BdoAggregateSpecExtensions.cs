@@ -1,18 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
 namespace BindOpen.System.Data.Meta
 {
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    public static partial class IBdoAggregateSpecExtensions
+    public static partial class BdoAggregateSpecExtensions
     {
         public static T WithChildren<T>(this T log, params IBdoSpec[] children) where T : IBdoAggregateSpec
         {
             if (log != null)
             {
-                log._Children = children?.Any() == true ? children : null;
+                log._Children = BdoData.NewSet(children?.Any() == true ? children : null);
             }
 
             return log;
@@ -22,7 +21,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (log != null)
             {
-                log._Children ??= new List<IBdoSpec>();
+                log._Children ??= BdoData.NewSet<IBdoSpec>();
                 foreach (var child in children)
                 {
                     log._Children.Add(child);

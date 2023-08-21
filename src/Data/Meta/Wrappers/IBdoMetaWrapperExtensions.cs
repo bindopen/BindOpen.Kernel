@@ -1,5 +1,4 @@
 ﻿using BindOpen.System.Data.Helpers;
-using BindOpen.System.Data.Meta.Reflection;
 using System;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -9,62 +8,8 @@ namespace BindOpen.System.Data.Meta
     /// <summary>
     /// This class represents a data element.
     /// </summary>
-    public static class BdoMetaWrapperExtensions
+    public static class IBdoMetaWrapperExtensions
     {
-        /// <summary>
-        /// Gets the specified value.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param key="propertyName">The calling property name to consider.</param>
-        public static T UpdateDetail<T>(
-            this T obj,
-            bool onlyMetaAttributes = true)
-            where T : IBdoMetaWrapper
-        {
-            return obj.UpdateDetail(null, onlyMetaAttributes);
-        }
-
-        /// <summary>
-        /// Gets the specified value.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param key="propertyName">The calling property name to consider.</param>
-        public static T UpdateDetail<T>(
-            this T obj,
-            IBdoMetaSet detail,
-            bool onlyMetaAttributes = true)
-            where T : IBdoMetaWrapper
-        {
-            if (obj?.Detail != null)
-            {
-                if (detail == null)
-                {
-                    detail = BdoData.NewMetaSet(obj.ToMeta(null, onlyMetaAttributes)?.ToArray());
-                }
-                obj.Detail.Update(detail);
-            }
-
-            return obj;
-        }
-
-        /// <summary>
-        /// Gets the specified value.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param key="propertyName">The calling property name to consider.</param>
-        public static T UpdateProperties<T>(
-            this T obj,
-            bool onlyMetaAttributes = true)
-            where T : IBdoMetaWrapper
-        {
-            if (obj != null)
-            {
-                obj.UpdateFromMeta(obj?.Detail, onlyMetaAttributes);
-            }
-
-            return obj;
-        }
-
         /// <summary>
         /// Gets the specified value.
         /// </summary>
@@ -84,8 +29,8 @@ namespace BindOpen.System.Data.Meta
             var propName = spec.Name ?? propInfo.Name;
 
             if (propName != null
-                && propName != nameof(BdoMetaWrapper.Scope)
-                && propName != nameof(BdoMetaWrapper.Detail))
+                && propName != nameof(IBdoMetaWrapper.Scope)
+                && propName != nameof(IBdoMetaWrapper.Detail))
             {
                 var meta = obj.Detail[propName];
                 if (meta != null)
@@ -122,13 +67,13 @@ namespace BindOpen.System.Data.Meta
             var propName = spec.Name ?? propInfo.Name;
 
             if (propName != null
-                && propName != nameof(BdoMetaWrapper.Scope)
-                && propName != nameof(BdoMetaWrapper.Detail))
+                && propName != nameof(IBdoMetaWrapper.Scope)
+                && propName != nameof(IBdoMetaWrapper.Detail))
             {
                 var meta = obj.Detail[propName];
                 if (meta != null)
                 {
-                    return meta.GetData<string>(obj.Scope)?.ToEnum<Q>(defaultValue) ?? defaultValue;
+                    return meta.GetData<string>(obj.Scope)?.ToEnum(defaultValue) ?? defaultValue;
                 }
                 else
                 {
@@ -147,9 +92,7 @@ namespace BindOpen.System.Data.Meta
         public static void SetProperty<T, TResult>(this T obj, Expression<Func<T, TResult>> expr, TResult value)
             where T : IBdoMetaWrapper
         {
-            if (obj == null) return;
-
-            obj.Detail ??= BdoData.NewMetaSet();
+            if (obj?.Detail == null) return;
 
             var outExpr = (MemberExpression)expr.Body;
             var propInfo = (PropertyInfo)outExpr.Member;
@@ -160,8 +103,8 @@ namespace BindOpen.System.Data.Meta
             var propName = spec.Name ?? propInfo.Name;
 
             if (propName != null
-                && propName != nameof(BdoMetaWrapper.Scope)
-                && propName != nameof(BdoMetaWrapper.Detail))
+                && propName != nameof(IBdoMetaWrapper.Scope)
+                && propName != nameof(IBdoMetaWrapper.Detail))
             {
                 var meta = obj.Detail[propName];
                 if (meta != null)
