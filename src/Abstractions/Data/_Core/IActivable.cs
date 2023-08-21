@@ -1,12 +1,12 @@
 ﻿namespace BindOpen.System.Data
 {
     /// <summary>
-    /// This interface represents a data with detail.
+    /// This interface represents an activable object.
     /// </summary>
     public interface IActivable
     {
         /// <summary>
-        /// Indicates whether it is active.
+        /// Indicates whether this object is active.
         /// </summary>
         bool IsActive { get; set; }
     }

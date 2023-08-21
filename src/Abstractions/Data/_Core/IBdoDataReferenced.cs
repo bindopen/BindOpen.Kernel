@@ -6,7 +6,7 @@
     public interface IBdoDataReferenced
     {
         /// <summary>
-        /// 
+        /// The reference of this object.
         /// </summary>
         IBdoReference DataReference { get; set; }
     }

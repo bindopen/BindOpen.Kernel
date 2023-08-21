@@ -6,7 +6,7 @@
     public interface IBdoTitled
     {
         /// <summary>
-        /// The global title of this instance.
+        /// The title of this object that is a string dictionary.
         /// </summary>
         ITBdoDictionary<string> Title { get; set; }
     }

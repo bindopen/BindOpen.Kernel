@@ -1,12 +1,12 @@
 ﻿namespace BindOpen.System.Data
 {
     /// <summary>
-    /// This interface defines a configurable data.
+    /// This interface defines a definable data.
     /// </summary>
     public interface IBdoDefinable
     {
         /// <summary>
-        /// 
+        /// The définition of this object.
         /// </summary>
         string DefinitionUniqueName { get; set; }
     }

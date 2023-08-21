@@ -1,6 +1,5 @@
 ﻿using BindOpen.System.Data;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BindOpen.System.Tests
@@ -22,50 +21,6 @@ namespace BindOpen.System.Tests
         public TreeFake Parent { get => _parent; set { _parent = value; } }
         public string Name { get; set; }
 
-        public IEnumerable<TreeFake> Children(Predicate<TreeFake> filter = null, bool isRecursive = false)
-        {
-            var children = new List<TreeFake>();
-
-            if (_Children != null)
-            {
-                foreach (var child in _Children)
-                {
-                    if (filter?.Invoke(child) != false)
-                        children.Add(child);
-
-                    if (isRecursive)
-                    {
-                        children.AddRange(child.Children(filter, isRecursive));
-                    }
-                }
-            }
-
-            return children;
-        }
-
-        public TreeFake Child(Predicate<TreeFake> filter, bool isRecursive = false)
-        {
-            if (_Children != null)
-            {
-                foreach (var child in _Children)
-                {
-                    if (filter?.Invoke(child) != false)
-                        return child;
-
-                    if (isRecursive)
-                    {
-                        var subChild = child.Child(filter, true);
-                        if (subChild != null) return subChild;
-                    }
-                }
-            }
-
-            return null;
-        }
-
-        public bool HasChild(Predicate<TreeFake> filter = null, bool isRecursive = false)
-            => _Children?.Any(q => filter?.Invoke(q) != false || (isRecursive && q.HasChild(filter, isRecursive))) == true;
-
         public TreeFake InsertChild(Action<TreeFake> updater)
         {
             var child = new TreeFake();
@@ -80,6 +35,14 @@ namespace BindOpen.System.Tests
         public void RemoveChildren(Predicate<TreeFake> filter = null, bool isRecursive = false)
         {
             _Children?.Remove(filter);
+
+            if (isRecursive && _Children?.Any() == true)
+            {
+                foreach (var child in _Children)
+                {
+                    child.RemoveChildren(filter, true);
+                }
+            }
         }
 
         public string Key() => Name;

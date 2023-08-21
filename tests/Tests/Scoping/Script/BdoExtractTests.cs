@@ -120,7 +120,6 @@ namespace BindOpen.System.Data
         [Test, Order(6)]
         public void CreateTest_PatternNull()
         {
-            var name = "toto";
             string st = null;
             string pattern = null;
 

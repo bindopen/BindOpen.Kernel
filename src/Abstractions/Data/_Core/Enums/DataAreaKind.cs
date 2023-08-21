@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.System.Data
 {
     /// <summary>
-    /// This enumeration lists the possible kinds of data areas.
+    /// This enumeration lists the possible kinds of data area.
     /// </summary>
     public enum DataAreaKind
     {

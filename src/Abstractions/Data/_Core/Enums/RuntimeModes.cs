@@ -3,7 +3,7 @@
 namespace BindOpen.System.Data
 {
     /// <summary>
-    /// This enumerates the possible modes of runtime.
+    /// This enumerates the possible runtime modes.
     /// </summary>
     [Flags]
     public enum RuntimeModes

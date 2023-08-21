@@ -105,19 +105,19 @@ namespace BindOpen.System.Data
             var b = false;
             switch (condition.Operator)
             {
-                case ConditionOperator.DifferentFrom:
+                case DataOperators.DifferentFrom:
                     b = (condition.Argument1 != condition.Argument2);
                     break;
-                case ConditionOperator.EqualTo:
+                case DataOperators.EqualTo:
                     b = (condition.Argument1 == condition.Argument2);
                     break;
-                case ConditionOperator.Exist:
+                case DataOperators.Exists:
                     //b = !string.IsNullOrEmpty(condition.Argument1);
                     break;
-                case ConditionOperator.GreaterThan:
+                case DataOperators.GreaterThan:
                     //b = (Argument1 > Argument2);
                     break;
-                case ConditionOperator.LesserThan:
+                case DataOperators.LesserThan:
                     //b = (Argument1 < Argument2);
                     break;
             }
