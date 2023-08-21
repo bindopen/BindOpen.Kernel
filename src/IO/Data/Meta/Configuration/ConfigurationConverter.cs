@@ -42,7 +42,7 @@ namespace BindOpen.System.Data.Meta
             var mapper = new Mapper(config);
             var dto = mapper.Map<T>(poco);
 
-            dto.Children = poco.Children()?.Select(q => q.ToDto()).ToList();
+            dto.Children = poco._Children?.Select(q => q.ToDto()).ToList();
 
             return dto;
         }

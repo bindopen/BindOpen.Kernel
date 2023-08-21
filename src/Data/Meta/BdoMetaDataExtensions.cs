@@ -10,6 +10,28 @@ namespace BindOpen.System.Data.Meta
     /// </summary>
     public static partial class BdoMetaDataExtensions
     {
+        public static void Update<T>(
+            this T meta,
+            IBdoMetaData refItem,
+            string[] areas = null,
+            UpdateModes[] updateModes = null,
+            IBdoLog log = null)
+            where T : IBdoMetaData
+        {
+            if (meta != null)
+            {
+                areas ??= new[] { nameof(DataAreaKind.Any) };
+                updateModes ??= new[] { UpdateModes.Incremental_AddMissingInTarget, UpdateModes.Incremental_UpdateCommon };
+
+                if (updateModes.Has(UpdateModes.Incremental_UpdateCommon))
+                {
+                    meta.WithDataType(refItem.DataType?.Clone<BdoDataType>());
+                    meta.WithDataReference(refItem.DataReference?.Clone<BdoReference>());
+                    meta.WithData(refItem.GetData());
+                }
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -18,11 +40,8 @@ namespace BindOpen.System.Data.Meta
             string groupId)
             where T : IBdoMetaData
         {
-            if (meta != null)
-            {
-                meta.GetOrAddSpec()
+            meta?.GetOrAddSpec()
                     .WithGroupId(groupId);
-            }
 
             return meta;
         }

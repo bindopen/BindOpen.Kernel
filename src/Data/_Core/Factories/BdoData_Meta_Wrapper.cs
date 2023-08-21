@@ -20,13 +20,14 @@ namespace BindOpen.System.Data
             bool onlyMetaAttributes = false)
             where T : IBdoMetaWrapper, new()
         {
-            detail ??= NewMetaSet();
-
             var obj = new T()
-                .WithScope(scope)
-                .WithDetail(detail);
+                .WithScope(scope);
 
-            obj.UpdateFromMeta(detail, onlyMetaAttributes);
+            if (detail != null)
+            {
+                obj.Detail.Update(detail);
+                obj.UpdateFromMeta(detail, onlyMetaAttributes);
+            }
 
             return obj;
         }
@@ -36,15 +37,15 @@ namespace BindOpen.System.Data
         /// </summary>
         /// <param key="metas">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
-        public static T NewMetaWrapper<T, Q>(
+        public static T NewMetaWrapper<T, TDetail>(
             this IBdoScope scope)
-            where T : IBdoMetaWrapper, new()
-            where Q : IBdoMetaSet, new()
+            where T : ITBdoMetaWrapper<TDetail>, new()
+            where TDetail : IBdoMetaSet, new()
         {
             var obj = new T()
                 .WithScope(scope);
 
-            obj.WithDetail(new Q());
+            obj.WithDetail(new TDetail());
 
             return obj;
         }

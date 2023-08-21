@@ -93,18 +93,41 @@ namespace BindOpen.System.Data
             var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>();
             obj.UpdateDetail(
                 BdoData.NewConfig(
-                    BdoData.NewMetaScalar("testListA", "monthA")),
+                    BdoData.NewMetaScalar("test1", "monthA")),
                 true);
             obj.UpdateDetail(
                 BdoData.NewConfig(
-                    BdoData.NewMetaScalar("testListB", "dailyA")),
+                    BdoData.NewMetaScalar("test2", "dailyA")),
                 true);
             obj.UpdateDetail(
                 BdoData.NewConfig(
-                    BdoData.NewMetaScalar("testListB", "dailyB")),
+                    BdoData.NewMetaScalar("test2", "dailyB")),
                 true);
 
             Assert.That(obj?.Detail?.Count == 2, "Bad dynamic object");
+        }
+
+        [Test, Order(1)]
+        public void WithConfigurationTest()
+        {
+            var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake, BdoConfiguration>();
+            obj.UpdateDetail(
+                BdoData.NewConfig(
+                    BdoData.NewMetaScalar("testListA", "monthA")),
+                true);
+
+            Assert.That(obj?.Detail?.Count == 1, "Bad dynamic object");
+
+            // Sub configuration
+
+            obj.UpdateDetail(
+                BdoData.NewConfig(
+                    BdoData.NewMetaScalar("test2", "dailyB"))
+                    .WithChildren(
+                        BdoData.NewConfig(
+                            BdoData.NewMetaScalar("float2A", 1500))));
+
+            Assert.That(obj?.Detail?._Children?.Count == 1, "Bad dynamic object");
         }
     }
 }

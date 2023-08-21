@@ -115,7 +115,9 @@ namespace BindOpen.System.Data
                         {
                             foreach (var refSetItem in refSet)
                             {
-                                var item = set[refSetItem?.Key()];
+                                var key = refSetItem?.Key();
+
+                                var item = set[key];
 
                                 if (item == null)
                                 {
