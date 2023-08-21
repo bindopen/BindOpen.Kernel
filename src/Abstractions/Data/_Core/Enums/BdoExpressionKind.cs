@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.System.Data
 {
     /// <summary>
-    /// This enumeration represents the possible kinds of expressions.
+    /// This enumeration represents the possible kinds of expression.
     /// </summary>
     public enum BdoExpressionKind
     {

@@ -177,7 +177,7 @@ namespace BindOpen.System.Data.Meta
 
                     if (isRecursive)
                     {
-                        var subChild = child.Child(filter, true);
+                        var subChild = child?.Child(filter, true);
                         if (subChild != null) return subChild;
                     }
                 }
@@ -187,7 +187,7 @@ namespace BindOpen.System.Data.Meta
         }
 
         public bool HasChild(Predicate<IBdoConfiguration> filter = null, bool isRecursive = false)
-            => _Children?.Any(q => filter?.Invoke(q) != false || (isRecursive && q.HasChild(filter, isRecursive))) == true;
+            => _Children?.Any(q => filter?.Invoke(q) != false || (isRecursive && q.HasChild(filter, true))) == true;
 
         public IBdoConfiguration InsertChild(Action<IBdoConfiguration> updater)
         {

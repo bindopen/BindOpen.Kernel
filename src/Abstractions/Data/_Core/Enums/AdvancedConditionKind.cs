@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.System.Data
 {
     /// <summary>
-    /// This enumeration lists the possible kinds of advanced conditions.
+    /// This enumeration lists the possible kinds of composite conditions.
     /// </summary>
     public enum CompositeConditionKind
     {

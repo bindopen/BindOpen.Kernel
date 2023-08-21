@@ -31,23 +31,5 @@ namespace BindOpen.System.Data
 
             return obj;
         }
-
-        /// <summary>
-        /// Defines the parameters of this instance.
-        /// </summary>
-        /// <param key="metas">The parameters to consider.</param>
-        /// <returns>Return this instance.</returns>
-        public static T NewMetaWrapper<T, TDetail>(
-            this IBdoScope scope)
-            where T : ITBdoMetaWrapper<TDetail>, new()
-            where TDetail : IBdoMetaSet, new()
-        {
-            var obj = new T()
-                .WithScope(scope);
-
-            obj.WithDetail(new TDetail());
-
-            return obj;
-        }
     }
 }

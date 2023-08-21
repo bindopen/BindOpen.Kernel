@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.System.Data
 {
     /// <summary>
-    /// This enumeration represents the possible kinds for data expression.
+    /// This enumeration represents the possible kinds for reference.
     /// </summary>
     public enum BdoReferenceKind
     {
@@ -24,7 +24,6 @@
         /// Meta data.
         /// </summary>
         MetaData,
-
 
         /// <summary>
         /// None. Such as script word.

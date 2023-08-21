@@ -18,6 +18,6 @@
         /// <summary>
         /// 
         /// </summary>
-        ConditionOperator Operator { get; set; }
+        DataOperators Operator { get; set; }
     }
 }

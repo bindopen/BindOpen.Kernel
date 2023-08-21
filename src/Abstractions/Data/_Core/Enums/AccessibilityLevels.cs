@@ -36,13 +36,8 @@ namespace BindOpen.System.Data
         Restricted = 0x1 << 3,
 
         /// <summary>
-        /// Only people who bought for it can access.
-        /// </summary>
-        Payable = 0x1 << 4,
-
-        /// <summary>
         /// Any accessibility level.
         /// </summary>
-        Any = Inherited | Public | Private | Restricted | Payable
+        Any = Inherited | Public | Private | Restricted
     }
 }

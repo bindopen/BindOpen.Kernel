@@ -29,7 +29,7 @@ namespace BindOpen.System.Data.Conditions
         /// </summary>
         [JsonPropertyName("operator")]
         [XmlElement("operator")]
-        public ConditionOperator Operator { get; set; }
+        public DataOperators Operator { get; set; }
 
         /// <summary>
         /// The arugment 2 of this instance.
@@ -68,7 +68,7 @@ namespace BindOpen.System.Data.Conditions
         /// <param key="arg1">The argument 1 to consider.</param>
         /// <param key="ope">The operator to consider.</param>
         /// <param key="arg2">The argument 2 to consider.</param>
-        public BasicConditionDto(string arg1, ConditionOperator ope, string arg2 = null)
+        public BasicConditionDto(string arg1, DataOperators ope, string arg2 = null)
         {
             Argument1 = arg1;
             Argument2 = arg2;
@@ -85,7 +85,7 @@ namespace BindOpen.System.Data.Conditions
         public BasicConditionDto(
             bool trueValue,
             string arg1,
-            ConditionOperator ope,
+            DataOperators ope,
             string arg2 = null) : base(trueValue)
         {
             Argument1 = arg1;

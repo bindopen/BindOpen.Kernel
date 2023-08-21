@@ -1,11 +1,5 @@
 ﻿namespace BindOpen.System.Data
 {
-    // ------------------------------------------
-    // ENUMERATIONS
-    // ------------------------------------------
-
-    #region Enumerations
-
     /// <summary>
     /// This enumeration lists the possible kinds of text formats.
     /// </summary>
@@ -27,6 +21,4 @@
         /// </summary>
         StrongPassword
     }
-
-    #endregion
 }

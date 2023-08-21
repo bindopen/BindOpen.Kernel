@@ -6,7 +6,7 @@
     public interface IBdoDescribed
     {
         /// <summary>
-        /// The global description of this instance.
+        /// The description of this object that is a string dictionary.
         /// </summary>
         ITBdoDictionary<string> Description { get; set; }
     }

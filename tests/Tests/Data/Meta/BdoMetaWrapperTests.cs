@@ -110,7 +110,7 @@ namespace BindOpen.System.Data
         [Test, Order(1)]
         public void WithConfigurationTest()
         {
-            var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake, BdoConfiguration>();
+            var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>();
             obj.UpdateDetail(
                 BdoData.NewConfig(
                     BdoData.NewMetaScalar("testListA", "monthA")),
