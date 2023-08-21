@@ -20,7 +20,7 @@ namespace BindOpen.System.Data
 
         public static BdoBasicCondition NewCondition(
             object arg1,
-            ConditionOperator ope,
+            DataOperators ope,
             object arg2 = null)
             => new(arg1, ope, arg2);
 

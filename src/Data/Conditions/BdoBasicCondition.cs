@@ -20,7 +20,7 @@
         /// <summary>
         /// The operator of this instance.
         /// </summary>
-        public ConditionOperator Operator { get; set; }
+        public DataOperators Operator { get; set; }
 
         /// <summary>
         /// The arugment 2 of this instance.
@@ -50,7 +50,7 @@
         /// <param key="arg2">The argument 2 to consider.</param>
         public BdoBasicCondition(
             object arg1,
-            ConditionOperator ope,
+            DataOperators ope,
             object arg2 = null)
         {
             Argument1 = arg1;

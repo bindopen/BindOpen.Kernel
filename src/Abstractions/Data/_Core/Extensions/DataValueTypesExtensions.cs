@@ -7,15 +7,15 @@ using System.Collections;
 namespace BindOpen.System.Data
 {
     /// <summary>
-    /// This class represents an extension of the DataValueType enumeration.
+    /// This class extends data vlue types.
     /// </summary>
     public static class DataValueTypesExtensions
     {
         /// <summary>
-        /// Indicates whether the specified value type corresponds to a scalar.
+        /// Indicates whether the specified value type is a scalar.
         /// </summary>
-        /// <param key="valueType">The object to consider.</param>
-        /// <returns>The result object.</returns>
+        /// <param key="valueType">The value type to consider.</param>
+        /// <returns>True if the specified value type is a scalar.</returns>
         public static bool IsScalar(this DataValueTypes valueType)
         {
             return valueType switch
@@ -25,7 +25,12 @@ namespace BindOpen.System.Data
             };
         }
 
-        public static bool IsExtension(this DataValueTypes valueType)
+        /// <summary>
+        /// Indicates whether the specified value type is a BindOpen extension.
+        /// </summary>
+        /// <param key="valueType">The value type to consider.</param>
+        /// <returns>True if the specified value type is a BindOpen extension.</returns>
+        public static bool IsBdoExtension(this DataValueTypes valueType)
         {
             return valueType switch
             {
@@ -35,15 +40,20 @@ namespace BindOpen.System.Data
         }
 
         /// <summary>
-        /// Indicates whether the specified value type corresponds to a scalar.
+        /// Indicates whether the specified object is a scalar.
         /// </summary>
         /// <param key="obj">The object to consider.</param>
-        /// <returns>The result object.</returns>
+        /// <returns>True if the specified object is a scalar.</returns>
         public static bool IsScalar(this object obj)
         {
             return obj.GetValueType().IsScalar();
         }
 
+        /// <summary>
+        /// Indicates whether the specified type is a scalar.
+        /// </summary>
+        /// <param key="obj">The type to consider.</param>
+        /// <returns>True if the specified type is a scalar.</returns>
         public static bool IsScalar(this Type type)
         {
             var valueType = type?.GetValueType() ?? DataValueTypes.None;

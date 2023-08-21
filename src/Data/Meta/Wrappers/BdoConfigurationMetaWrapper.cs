@@ -3,9 +3,9 @@
     /// <summary>
     /// This class represents a data element.
     /// </summary>
-    public abstract class BdoBaseMetaWrapper : TBdoMetaWrapper<BdoMetaSet>
+    public abstract class BdoConfigurationMetaWrapper : TBdoMetaWrapper<BdoConfiguration>
     {
-        public BdoBaseMetaWrapper() : base()
+        public BdoConfigurationMetaWrapper() : base()
         {
         }
     }

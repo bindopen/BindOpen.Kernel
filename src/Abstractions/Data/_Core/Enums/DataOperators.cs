@@ -43,36 +43,36 @@ namespace BindOpen.System.Data
         /// <summary>
         /// Equal.
         /// </summary>
-        Equal = 0x1 << 5,
+        EqualTo = 0x1 << 5,
 
         /// <summary>
         /// Different.
         /// </summary>
-        Different = 0x1 << 6,
+        DifferentFrom = 0x1 << 6,
 
         /// <summary>
         /// Lesser.
         /// </summary>
-        Lesser = 0x1 << 7,
+        LesserThan = 0x1 << 7,
 
         /// <summary>
         /// Lesser or equal.
         /// </summary>
-        LesserOrEqual = Lesser | Equal,
+        LesserThanOrEqualTo = LesserThan | EqualTo,
 
         /// <summary>
         /// Greater.
         /// </summary>
-        Greater = 0x1 << 8,
+        GreaterThan = 0x1 << 8,
 
         /// <summary>
         /// Greater or equal.
         /// </summary>
-        GreaterOrEqual = Greater | Equal,
+        GreaterThanOrEqualTo = GreaterThan | EqualTo,
 
         /// <summary>
         /// Any operator.
         /// </summary>
-        Any = Exists | Contains | Has | In | Equal | Different | Lesser | LesserOrEqual | Greater | GreaterOrEqual
+        Any = Exists | Contains | Has | In | EqualTo | DifferentFrom | LesserThan | LesserThanOrEqualTo | GreaterThan | GreaterThanOrEqualTo
     }
 }

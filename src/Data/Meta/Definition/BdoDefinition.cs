@@ -127,50 +127,6 @@ namespace BindOpen.System.Data.Meta
 
         public ITBdoSet<IBdoDefinition> _Children { get => _children; set { _children = value; } }
 
-        public IEnumerable<IBdoDefinition> Children(Predicate<IBdoDefinition> filter = null, bool isRecursive = false)
-        {
-            var children = new List<IBdoDefinition>();
-
-            if (_children != null)
-            {
-                foreach (var child in _children)
-                {
-                    if (filter?.Invoke(child) != false)
-                        children.Add(child);
-
-                    if (isRecursive)
-                    {
-                        children.AddRange(child.Children(filter, isRecursive));
-                    }
-                }
-            }
-
-            return children;
-        }
-
-        public IBdoDefinition Child(Predicate<IBdoDefinition> filter = null, bool isRecursive = false)
-        {
-            if (_Children != null)
-            {
-                foreach (var child in _Children)
-                {
-                    if (filter?.Invoke(child) != false)
-                        return child;
-
-                    if (isRecursive)
-                    {
-                        var subChild = child.Child(filter, true);
-                        if (subChild != null) return subChild;
-                    }
-                }
-            }
-
-            return null;
-        }
-
-        public bool HasChild(Predicate<IBdoDefinition> filter = null, bool isRecursive = false)
-            => _Children?.Any(q => filter?.Invoke(q) != false || (isRecursive && q.HasChild(filter, isRecursive))) == true;
-
         public IBdoDefinition InsertChild(Action<IBdoDefinition> updater)
         {
             var child = BdoData.NewDefinition();
@@ -184,6 +140,14 @@ namespace BindOpen.System.Data.Meta
         public void RemoveChildren(Predicate<IBdoDefinition> filter = null, bool isRecursive = false)
         {
             _children?.Remove(filter);
+
+            if (isRecursive && _children?.Any() == true)
+            {
+                foreach (var child in _children)
+                {
+                    child.RemoveChildren(filter, true);
+                }
+            }
         }
 
         #endregion

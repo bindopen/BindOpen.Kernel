@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace BindOpen.System.Data
 {
     /// <summary>
-    /// This enumeration lists all the possible name formats.
+    /// This enumeration lists all the possible label formats.
     /// </summary>
     [Flags]
     [XmlType("LabelFormats", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
