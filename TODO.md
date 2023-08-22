@@ -14,12 +14,12 @@ Todo list for BindOpen
 - [ ] Making meta data easier: Class vs Entity, Config vs Object
 - [X] Dictionaries are now generic
 - [ ] Constrainsts of specification
-- [ ] Setting ITParent methods recursively
 - [ ] Solve the issue of meta data valueType with ITMetaData<> type
 - [ ] Solve Child/Parent issue with script word
 - [ ] Check Descendant when set is null or requested item does not exist
 - [ ] Update detail children of meta wrapper if detail is a config
 - [ ] Update Children and Child and HasChild methods
+- [ ] StringHelper - Format string from tokens
 
 ## Stuff to check out later on
 
