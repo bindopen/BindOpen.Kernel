@@ -90,7 +90,7 @@ namespace BindOpen.System.Data.Meta
         {
             Detail ??= new TDetail();
 
-            detail ??= BdoData.NewMetaSet(this.ToMeta(null, onlyMetaAttributes)?.ToArray());
+            detail ??= BdoData.NewMetaSet(this.ToMeta(null, onlyMetaAttributes, false)?.ToArray());
             Detail.Update(detail);
         }
 

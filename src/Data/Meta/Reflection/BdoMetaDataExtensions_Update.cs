@@ -55,7 +55,7 @@ namespace BindOpen.System.Data.Meta.Reflection
         {
             if (obj == null || set?.Has() != true) return;
 
-            foreach (var propInfo in obj.GetType().GetProperties())
+            foreach (var propInfo in obj.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public))
             {
                 var hasMetaAttribute = propInfo.GetCustomAttributes(typeof(T)).Any();
                 if (hasMetaAttribute || !onlyMetaAttributes)
@@ -70,7 +70,7 @@ namespace BindOpen.System.Data.Meta.Reflection
                     try
                     {
                         var meta = spec.DataReference?.Kind == BdoReferenceKind.Identifier ?
-                            set.Descendant<IBdoMetaData>(spec.DataReference.Identifier.Split(',')) : set.GetOfGroup(name, groupId);
+                            set.Descendant<IBdoMetaData>(spec.DataReference.Identifier?.Split('/')) : set.GetOfGroup(name, groupId);
 
                         if (meta != null)
                         {

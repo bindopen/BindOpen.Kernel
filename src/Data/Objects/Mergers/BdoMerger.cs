@@ -98,11 +98,13 @@ namespace BindOpen.System.Data
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            return new BdoMerger()
+            var obj = new BdoMerger()
             {
                 AddedValues = new List<string>(AddedValues),
                 RemovedValues = new List<string>(RemovedValues),
             };
+
+            return obj;
         }
 
         #endregion

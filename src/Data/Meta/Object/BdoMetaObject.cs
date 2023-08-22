@@ -276,7 +276,18 @@ namespace BindOpen.System.Data.Meta
 
             if (token is string key)
             {
-                child = this[key];
+                if (key?.StartsWith(':') == true)
+                {
+                    object tokenInt = key.ToSubstring(1).ToObject(DataValueTypes.Integer);
+                    if (tokenInt is int index)
+                    {
+                        child = this[index];
+                    }
+                }
+                else
+                {
+                    child = this[key];
+                }
             }
             else if (token is int index)
             {

@@ -57,22 +57,26 @@ namespace BindOpen.System.Data.Meta
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            var spec = base.Clone().As<BdoSpec>();
+            var obj = base.Clone().As<BdoSpec>();
 
-            spec.WithAvailableDataModes(AvailableDataModes?.ToArray());
-            spec.WithAliases(Aliases?.ToArray());
-            spec.Condition = Condition?.Clone<BdoCondition>();
-            spec.DataReference = Condition?.Clone<BdoReference>();
-            spec.WithDataSpecLevels(DataSpecLevels?.ToArray());
-            spec.DataType = DataType?.Clone<BdoDataType>();
-            spec.DefaultData = DefaultData;
-            spec.Description = Condition?.Clone<TBdoDictionary<string>>();
-            spec.Detail = Condition?.Clone<BdoMetaSet>();
-            spec.WithSpecLevels(SpecLevels?.ToArray());
-            spec.Title = Condition?.Clone<TBdoDictionary<string>>();
-            spec.WithValueModes(AvailableDataModes?.ToArray());
+            if (!string.IsNullOrEmpty(Id))
+            {
+                obj.Id = StringHelper.NewGuid();
+            }
 
-            return spec;
+            obj.WithAvailableDataModes(AvailableDataModes?.ToArray());
+            obj.WithAliases(Aliases?.ToArray());
+            obj.Condition = Condition?.Clone<BdoCondition>();
+            obj.DataReference = DataReference?.Clone<BdoReference>();
+            obj.WithDataSpecLevels(DataSpecLevels?.ToArray());
+            obj.DataType = DataType?.Clone<BdoDataType>();
+            obj.DefaultData = DefaultData;
+            obj.Description = Condition?.Clone<TBdoDictionary<string>>();
+            obj.Detail = Condition?.Clone<BdoMetaSet>();
+            obj.WithSpecLevels(SpecLevels?.ToArray());
+            obj.Title = Condition?.Clone<TBdoDictionary<string>>();
+
+            return obj;
         }
 
         #endregion

@@ -125,13 +125,13 @@ namespace BindOpen.System.Data
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            var reference = base.Clone().As<BdoReference>();
+            var obj = base.Clone().As<BdoReference>();
 
-            reference.Expression = Expression?.Clone<BdoExpression>();
-            reference.Word = Word?.Clone<IBdoScriptword>();
-            reference.MetaData = MetaData?.Clone<BdoMetaData>();
+            obj.Expression = Expression?.Clone<BdoExpression>();
+            obj.Word = Word?.Clone<IBdoScriptword>();
+            obj.MetaData = MetaData?.Clone<BdoMetaData>();
 
-            return reference;
+            return obj;
         }
 
         #endregion

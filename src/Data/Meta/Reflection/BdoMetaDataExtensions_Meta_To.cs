@@ -19,9 +19,12 @@ namespace BindOpen.System.Data.Meta.Reflection
             this object obj,
             Type type,
             string name = null,
-            bool onlyMetaAttributes = false)
+            bool onlyMetaAttributes = false,
+            bool includeNullValues = true)
         {
-            IBdoMetaData meta = null;
+            IBdoMetaData meta;
+
+            if (obj == null && !includeNullValues) return null;
 
             if (type != null && typeof(IBdoMetaData).IsAssignableFrom(type) == true && obj != null)
             {
@@ -37,7 +40,7 @@ namespace BindOpen.System.Data.Meta.Reflection
                 meta = BdoData.NewMeta(name, type, obj);
             }
 
-            meta?.UpdateTree(onlyMetaAttributes);
+            meta?.UpdateTree(onlyMetaAttributes, includeNullValues);
 
             return meta;
         }
@@ -50,9 +53,10 @@ namespace BindOpen.System.Data.Meta.Reflection
         public static IBdoMetaData ToMeta(
             this object obj,
             string name = null,
-            bool onlyMetaAttributes = false)
+            bool onlyMetaAttributes = false,
+            bool includeNullValues = true)
         {
-            return obj.ToMeta(null, name, onlyMetaAttributes);
+            return obj.ToMeta(null, name, onlyMetaAttributes, includeNullValues);
         }
 
         /// <summary>
@@ -63,9 +67,10 @@ namespace BindOpen.System.Data.Meta.Reflection
         public static T ToMeta<T>(
             this object obj,
             string name = null,
-            bool onlyMetaAttributes = false)
+            bool onlyMetaAttributes = false,
+            bool includeNullValues = true)
             where T : class, IBdoMetaData
-            => obj.ToMeta(null, name, onlyMetaAttributes) as T;
+            => obj.ToMeta(null, name, onlyMetaAttributes, includeNullValues) as T;
 
         // Specification
 
