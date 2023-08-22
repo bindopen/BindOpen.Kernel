@@ -41,13 +41,16 @@ namespace BindOpen.System.Tests
 
 
         [BdoProperty("entityFake")]
-        public EntityFake EntityFake { get; set; }
+        public WrapperClassFake EntityFake { get; set; }
 
         /// <summary>
         /// Enumeration value of this instance.
         /// </summary>
-        [BdoProperty(Name = "subEnumValue", Reference = "entityFake,enumValue")]
+        [BdoProperty(Name = "subEnumValue", Reference = "entityFake/enumValue")]
         public ActionPriorities SubEnumValue { get; set; }
+
+        [BdoProperty(Name = "configEntityFake", Reference = "^$entityFake/node1")]
+        public WrapperClassFake ConfigEntityFake { get; set; }
 
         #endregion
 

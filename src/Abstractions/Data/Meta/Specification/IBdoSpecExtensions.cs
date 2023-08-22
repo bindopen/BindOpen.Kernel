@@ -17,22 +17,6 @@ namespace BindOpen.System.Data.Meta
             return log;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="modes"></param>
-        public static T WithValueModes<T>(
-            this T spec,
-            params DataMode[] modes)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.AvailableDataModes = modes;
-            }
-            return spec;
-        }
-
         public static T WithGroupId<T>(
             this T spec,
             string groupId)

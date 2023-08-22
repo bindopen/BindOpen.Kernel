@@ -17,7 +17,7 @@ namespace BindOpen.System.Data
         public static T NewMetaWrapper<T>(
             this IBdoScope scope,
             IBdoMetaSet detail = null,
-            bool onlyMetaAttributes = false)
+            bool onlyMetaAttributes = true)
             where T : IBdoMetaWrapper, new()
         {
             var obj = new T()

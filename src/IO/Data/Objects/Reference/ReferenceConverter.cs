@@ -27,7 +27,7 @@ namespace BindOpen.System.Data
             var mapper = new Mapper(config);
             var dto = mapper.Map<ReferenceDto>(poco);
 
-            dto.ExpressionKind = poco.Expression?.Kind ?? BdoExpressionKind.Literal;
+            dto.ExpressionKind = poco.Expression?.Kind ?? BdoExpressionKind.Auto;
             dto.Text = poco.Expression?.Text;
 
             return dto;

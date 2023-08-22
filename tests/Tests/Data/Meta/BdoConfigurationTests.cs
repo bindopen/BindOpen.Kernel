@@ -64,19 +64,19 @@ namespace BindOpen.System.Data
 
             // String
 
-            meta = _config20.Descendant<IBdoMetaData>("/" + _configName1, "float1");
+            meta = _config20.Descendant<IBdoMetaData>("^" + _configName1, "float1");
 
-            Assert.That(meta.GetData() == _config1["float1"]?.GetData(), "Error with config");
+            Assert.That(meta?.GetData() == _config1["float1"]?.GetData(), "Error with config");
 
             // Indexed
 
-            meta = _config20.Descendant<IBdoMetaData>("/0", "float1");
+            meta = _config20.Descendant<IBdoMetaData>("^:0", "float1");
 
-            Assert.That(meta.GetData() == _config1["float1"]?.GetData(), "Error with config");
+            Assert.That(meta?.GetData() == _config1["float1"]?.GetData(), "Error with config");
 
             // Not existing
 
-            var subConfig = _config20.Descendant<IBdoConfiguration>("/" + _configName1 + "x", "float1");
+            var subConfig = _config20.Descendant<IBdoConfiguration>("^" + _configName1 + "x", "float1");
 
             Assert.That(subConfig == null, "Error with config");
         }
