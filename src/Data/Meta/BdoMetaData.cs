@@ -292,13 +292,18 @@ namespace BindOpen.System.Data.Meta
         /// <returns>Returns a cloned instance.</returns>
         public override object Clone()
         {
-            var el = base.Clone().As<BdoMetaData>();
+            var obj = base.Clone().As<BdoMetaData>();
 
-            el.DataReference = DataReference?.Clone<BdoReference>();
-            el.DataType = DataType?.Clone<BdoDataType>();
-            el.Spec = Spec?.Clone<BdoSpec>();
+            if (!string.IsNullOrEmpty(Id))
+            {
+                obj.Id = StringHelper.NewGuid();
+            }
 
-            return el;
+            obj.DataReference = DataReference?.Clone<BdoReference>();
+            obj.DataType = DataType?.Clone<BdoDataType>();
+            obj.Spec = Spec?.Clone<BdoSpec>();
+
+            return obj;
         }
 
         #endregion

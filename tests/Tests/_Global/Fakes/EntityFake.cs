@@ -14,7 +14,7 @@ namespace BindOpen.System.Tests
         Description = "Database field.",
         CreationDate = "2016-09-14"
     )]
-    public class EntityFake : BdoEntity
+    public class EntityFake : BdoEntity, IEntityFake
     {
         public static string __DefinitionUniqueName = "bindopen.system.tests$testEntity";
 

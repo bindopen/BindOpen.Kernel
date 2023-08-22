@@ -55,10 +55,10 @@ namespace BindOpen.System.Data
                         "config1A",
                         BdoData.NewMetaScalar("test1A", "1_ABC"))));
 
-            var meta = obj.Detail.Descendant<IBdoMetaData>("/config1A", 0);
+            var meta = obj.Detail.Descendant<IBdoMetaData>("^config1A", 0);
             Assert.That(meta?.GetData<string>() == "1_ABC", "Bad meta wrapper");
 
-            meta = obj.Detail.Descendant<IBdoMetaData>("/0", "test1A");
+            meta = obj.Detail.Descendant<IBdoMetaData>("^:0", "test1A");
             Assert.That(meta?.GetData<string>() == "1_ABC", "Bad meta wrapper");
         }
 
@@ -178,6 +178,29 @@ namespace BindOpen.System.Data
             obj.UpdateDetail();
 
             Assert.That(obj?.Detail["subEnumValue"].GetData<ActionPriorities>() == ActionPriorities.High, "Bad meta wrapper");
+        }
+
+        [Test, Order(9)]
+        public void ObjectInCOnfigTest()
+        {
+            var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>();
+            obj.UpdateDetail(
+                BdoData.NewConfig(
+                    BdoData.NewMetaScalar("testList", "monthA"))
+                .WithChildren(
+                    BdoData.NewConfig("$entityFake",
+                        BdoData.NewMetaObject("node1").With(
+                            BdoData.NewMetaScalar("stringValue", "_string"),
+                            BdoData.NewMetaScalar("intValue", 1500),
+                            BdoData.NewMetaScalar("enumValue", ActionPriorities.Low)
+                        )
+                )));
+
+            obj.UpdateProperties();
+
+            Assert.That(obj?.ConfigEntityFake?.StringValue == "_string", "Bad meta wrapper");
+            Assert.That(obj?.ConfigEntityFake?.IntValue == 1500, "Bad meta wrapper");
+            Assert.That(obj?.ConfigEntityFake?.EnumValue == ActionPriorities.Low, "Bad meta wrapper");
         }
     }
 }

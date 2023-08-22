@@ -46,14 +46,17 @@ namespace BindOpen.System.Data.Meta
 
             object child = default;
 
-            if (token?.ToString().StartsWith('/') == true)
+            if (token?.ToString().StartsWith('^') == true)
             {
                 var tokenSt = token?.ToString().ToSubstring(1);
-                object tokenInt = tokenSt.ToObject(DataValueTypes.Integer);
 
-                if (tokenInt is int index)
+                if (tokenSt?.StartsWith(':') == true)
                 {
-                    child = _Children[index];
+                    object tokenInt = tokenSt.ToSubstring(1).ToObject(DataValueTypes.Integer);
+                    if (tokenInt is int index)
+                    {
+                        child = _Children[index];
+                    }
                 }
                 else if (token is string key)
                 {

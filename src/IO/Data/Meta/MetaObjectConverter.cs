@@ -40,6 +40,10 @@ namespace BindOpen.System.Data.Meta
             {
                 dto.ValueType = DataValueTypes.Any;
             }
+            if (dto.Spec?.ValueType == DataValueTypes.Object)
+            {
+                dto.Spec.ValueType = DataValueTypes.Any;
+            }
 
             return dto;
         }

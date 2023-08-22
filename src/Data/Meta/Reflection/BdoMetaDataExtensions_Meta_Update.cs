@@ -12,27 +12,29 @@ namespace BindOpen.System.Data.Meta.Reflection
     {
         public static void UpdateTrees(
             this IBdoMetaSet set,
-            bool onlyMetaAttributes = false)
+            bool onlyMetaAttributes = false,
+            bool includeNullValues = true)
         {
             if (set != null)
             {
                 foreach (var meta in set)
                 {
-                    meta?.UpdateTree(onlyMetaAttributes);
+                    meta?.UpdateTree(onlyMetaAttributes, includeNullValues);
                 }
             }
         }
 
         public static void UpdateTrees(
             this IBdoConfiguration config,
-            bool onlyMetaAttributes = false)
+            bool onlyMetaAttributes = false,
+            bool includeNullValues = true)
         {
-            ((IBdoMetaSet)config).UpdateTrees(onlyMetaAttributes);
+            ((IBdoMetaSet)config).UpdateTrees(onlyMetaAttributes, includeNullValues);
             if (config?._Children != null)
             {
                 foreach (var child in config._Children)
                 {
-                    child.UpdateTrees(onlyMetaAttributes);
+                    child.UpdateTrees(onlyMetaAttributes, includeNullValues);
                 }
             }
         }
@@ -43,7 +45,8 @@ namespace BindOpen.System.Data.Meta.Reflection
         /// <returns></returns>
         public static T UpdateTree<T>(
             this T meta,
-            bool onlyMetaAttributes = false)
+            bool onlyMetaAttributes = false,
+            bool includeNullValues = true)
             where T : IBdoMetaData
         {
             List<IBdoMetaData> list;
@@ -77,11 +80,11 @@ namespace BindOpen.System.Data.Meta.Reflection
                                 if (subMeta != null)
                                 {
                                     subMeta.WithData(propValue);
-                                    subMeta.UpdateTree();
+                                    subMeta.UpdateTree(onlyMetaAttributes, includeNullValues);
                                 }
                                 else
                                 {
-                                    subMeta = propValue.ToMeta(propInfo.PropertyType, propName, onlyMetaAttributes);
+                                    subMeta = propValue.ToMeta(propInfo.PropertyType, propName, onlyMetaAttributes, includeNullValues);
                                     if (change)
                                     {
                                         subMeta.WithSpec(spec);
@@ -110,11 +113,11 @@ namespace BindOpen.System.Data.Meta.Reflection
                         if (subMeta != null)
                         {
                             subMeta.WithData(subObj);
-                            subMeta.UpdateTree();
+                            subMeta.UpdateTree(onlyMetaAttributes, includeNullValues);
                         }
                         else
                         {
-                            subMeta = subObj.ToMeta(propName, onlyMetaAttributes);
+                            subMeta = subObj.ToMeta(propName, onlyMetaAttributes, includeNullValues);
                         }
 
                         list.Add(subMeta);
