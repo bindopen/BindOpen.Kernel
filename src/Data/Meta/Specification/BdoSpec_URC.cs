@@ -20,9 +20,9 @@ namespace BindOpen.System.Data.Meta
             AvailableDataModes = refItem?.AvailableDataModes == null ? null : new List<DataMode>(refItem?.AvailableDataModes);
             Condition = refItem?.Condition?.Clone<IBdoCondition>();
             DataReference = refItem?.DataReference?.Clone<IBdoReference>();
-            DataRequirementExp = refItem?.DataRequirementExp;
-            DataRequirementLevel = refItem?.DataRequirementLevel ?? RequirementLevels.None;
-            DataSpecLevels = refItem?.DataSpecLevels == null ? null : new List<SpecificationLevels>(refItem?.DataSpecLevels);
+            ItemRequirementExp = refItem?.ItemRequirementExp;
+            ItemRequirementLevel = refItem?.ItemRequirementLevel ?? RequirementLevels.None;
+            ItemSpecLevels = refItem?.ItemSpecLevels == null ? null : new List<SpecificationLevels>(refItem?.ItemSpecLevels);
             DataType = refItem?.DataType ?? new BdoDataType();
             DefaultData = refItem?.DefaultData;
             Description = refItem?.Description?.Clone<TBdoDictionary<string>>();

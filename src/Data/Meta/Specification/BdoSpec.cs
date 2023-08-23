@@ -68,7 +68,7 @@ namespace BindOpen.System.Data.Meta
             obj.WithAliases(Aliases?.ToArray());
             obj.Condition = Condition?.Clone<BdoCondition>();
             obj.DataReference = DataReference?.Clone<BdoReference>();
-            obj.WithDataSpecLevels(DataSpecLevels?.ToArray());
+            obj.WithItemSpecLevels(ItemSpecLevels?.ToArray());
             obj.DataType = DataType?.Clone<BdoDataType>();
             obj.DefaultData = DefaultData;
             obj.Description = Condition?.Clone<TBdoDictionary<string>>();
@@ -300,17 +300,17 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The item requirement level of this instance.
         /// </summary>
-        public RequirementLevels DataRequirementLevel { get; set; }
+        public RequirementLevels ItemRequirementLevel { get; set; }
 
         /// <summary>
         /// The requirement script of this instance.
         /// </summary>
-        public string DataRequirementExp { get; set; }
+        public string ItemRequirementExp { get; set; }
 
         /// <summary>
         /// Levels of specification of this instance.
         /// </summary>
-        public IList<SpecificationLevels> DataSpecLevels { get; set; }
+        public IList<SpecificationLevels> ItemSpecLevels { get; set; }
 
         #endregion
 
