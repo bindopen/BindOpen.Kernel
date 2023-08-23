@@ -103,6 +103,11 @@ namespace BindOpen.System.Data
         /// <summary>
         /// Time.
         /// </summary>
-        Time = 18
+        Time = 18,
+
+        /// <summary>
+        /// Null
+        /// </summary>
+        Null = 19
     }
 }

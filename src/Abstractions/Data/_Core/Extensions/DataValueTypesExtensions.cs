@@ -193,7 +193,7 @@ namespace BindOpen.System.Data
                 return valueType;
             }
 
-            return obj?.GetType().GetValueType() ?? DataValueTypes.None;
+            return obj?.GetType().GetValueType() ?? DataValueTypes.Null;
         }
     }
 }

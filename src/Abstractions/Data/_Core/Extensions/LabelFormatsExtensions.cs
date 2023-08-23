@@ -8,12 +8,12 @@
         /// <summary>
         /// The name of this meta data.
         /// </summary>
-        public static readonly string __Script_This_Name = "$(this).(name)";
+        public static readonly string __This_Name = "$(this).(name)";
 
         /// <summary>
         /// The pattern empty value.
         /// </summary>
-        public static readonly string __Script_This_Value = "$(this).value()";
+        public static readonly string __This_Value = "$(this).value()";
 
         /// <summary>
         /// Indicates whether the specified kind has name.
@@ -55,7 +55,7 @@
                 _ => "{{{{{0}}}}}"
             };
 
-            return string.Format(format, __Script_This_Name, __Script_This_Value);
+            return string.Format(format, __This_Name, __This_Value);
         }
     }
 }

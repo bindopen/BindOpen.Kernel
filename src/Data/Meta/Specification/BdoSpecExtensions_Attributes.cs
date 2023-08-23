@@ -50,13 +50,13 @@ namespace BindOpen.System.Data.Meta
                 if (att.DataRequirement != RequirementLevels.Any)
                 {
                     change = true;
-                    spec.DataRequirementLevel = att.DataRequirement;
+                    spec.ItemRequirementLevel = att.DataRequirement;
                 }
 
                 if (!string.IsNullOrEmpty(att.DataRequirementExp))
                 {
                     change = true;
-                    spec.DataRequirementExp = att.DataRequirementExp;
+                    spec.ItemRequirementExp = att.DataRequirementExp;
                 }
 
                 if (att.Name != null)

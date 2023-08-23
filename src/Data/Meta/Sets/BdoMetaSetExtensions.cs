@@ -158,6 +158,8 @@ namespace BindOpen.System.Data.Meta
             return list;
         }
 
+        // Tokens
+
         /// <summary>
         /// Gets the quoted string.
         /// </summary>
@@ -231,17 +233,11 @@ namespace BindOpen.System.Data.Meta
             {
                 int i = 0;
                 int ii = -1;
-                int ji = 0;
                 string tokenName = null;
 
                 while (i > -1)
                 {
                     i = pattern.IndexOfNextString("{{", i);
-
-                    if (ii == -1)
-                    {
-                        ji = i;
-                    }
 
                     if (ii > -1)
                     {
@@ -257,12 +253,60 @@ namespace BindOpen.System.Data.Meta
                             tokenName = pattern.ToSubstring(i + 2, j - 1);
                             ii = j + 2;
                         }
-                        i++;
+                        i = j + 1;
                     }
                 }
             }
 
             return set;
         }
+
+        /// <summary>
+        /// Formats the specified string replacing the specified index by the specified string.
+        /// </summary>
+        /// <param key="st">The string to consider.</param>
+        /// <param key="index">The index to consider.</param>
+        /// <param key="replaceString">The replacement string to consider.</param>
+        /// <param key="wholeReplaceString">The whole replacement string to consider.</param>
+        /// <example>The string should be formated this way: {0} {1} or { .. {0} .. } { .. {1} .. } and so on.</example>
+        /// <returns>The formated string.</returns>
+        public static string FormatFromTokens(this string pattern, IBdoMetaSet metaSet, char quote = '\'')
+        {
+            if (string.IsNullOrEmpty(pattern)) return pattern;
+
+            var st = pattern;
+            if (metaSet?.Any() == true)
+            {
+                int i = 0;
+                string tokenName = null;
+
+                while (i > -1)
+                {
+                    i = st.IndexOfNextString("{{", i);
+
+                    if (i > -1)
+                    {
+                        int j = st.IndexOfNextString("}}", i + 2, quote: quote);
+
+                        if (j > -1)
+                        {
+                            tokenName = st.ToSubstring(i + 2, j - 1);
+
+                            var meta = metaSet[tokenName];
+                            if (meta != null)
+                            {
+                                var newSt = meta.GetData<string>();
+                                st = st[0..i] + newSt + st[(j + 2)..^0];
+                                j -= (tokenName.Length - newSt.Length + 3);
+                            }
+                        }
+                        i = j + 1;
+                    }
+                }
+            }
+
+            return st;
+        }
+
     }
 }

@@ -62,7 +62,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         IList<SpecificationLevels> SpecLevels { get; set; }
 
-        IList<SpecificationLevels> DataSpecLevels { get; set; }
+        IList<SpecificationLevels> ItemSpecLevels { get; set; }
 
         /// <summary>
         /// 
@@ -87,12 +87,12 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        RequirementLevels DataRequirementLevel { get; set; }
+        RequirementLevels ItemRequirementLevel { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        string DataRequirementExp { get; set; }
+        string ItemRequirementExp { get; set; }
 
         /// <summary>
         /// 

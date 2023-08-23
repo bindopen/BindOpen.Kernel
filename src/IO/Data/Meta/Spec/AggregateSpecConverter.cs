@@ -28,7 +28,7 @@ namespace BindOpen.System.Data.Meta
                 cfg => cfg.CreateMap<BdoAggregateSpec, AggregateSpecDto>()
                     .ForMember(q => q.Aliases, opt => opt.Ignore())
                     .ForMember(q => q.AvailableDataModes, opt => opt.Ignore())
-                    .ForMember(q => q.DataSpecLevels, opt => opt.Ignore())
+                    .ForMember(q => q.ItemSpecLevels, opt => opt.Ignore())
                     .ForMember(q => q.SpecLevels, opt => opt.Ignore())
 
                     .ForMember(q => q.ClassReference, opt => opt.Ignore())
@@ -52,7 +52,7 @@ namespace BindOpen.System.Data.Meta
             dto.ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDto() : null;
             dto.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
 
-            dto.DataSpecLevels = poco?.DataSpecLevels == null ? null : new List<SpecificationLevels>(poco.DataSpecLevels);
+            dto.ItemSpecLevels = poco?.ItemSpecLevels == null ? null : new List<SpecificationLevels>(poco.ItemSpecLevels);
             dto.IsAllocatable = poco?.IsAllocatable == false ? null : poco?.IsAllocatable;
             dto.IsStatic = poco?.IsStatic == false ? null : poco?.IsStatic;
             dto.MaxDataItemNumber = (int?)(poco?.MaxDataItemNumber == -1 ? null : poco?.MaxDataItemNumber);
@@ -81,7 +81,7 @@ namespace BindOpen.System.Data.Meta
                 cfg => cfg.CreateMap<AggregateSpecDto, BdoAggregateSpec>()
                     .ForMember(q => q.Aliases, opt => opt.Ignore())
                     .ForMember(q => q.AvailableDataModes, opt => opt.Ignore())
-                    .ForMember(q => q.DataSpecLevels, opt => opt.Ignore())
+                    .ForMember(q => q.ItemSpecLevels, opt => opt.Ignore())
                     .ForMember(q => q.SpecLevels, opt => opt.Ignore())
 
                     .ForMember(q => q._Children, opt => opt.Ignore())
@@ -99,7 +99,7 @@ namespace BindOpen.System.Data.Meta
 
             poco.Aliases = dto?.Aliases == null ? null : new List<string>(dto.Aliases);
             poco.AvailableDataModes = dto?.AvailableDataModes == null ? null : new List<DataMode>(dto.AvailableDataModes);
-            poco.DataSpecLevels = dto?.DataSpecLevels == null ? null : new List<SpecificationLevels>(dto.DataSpecLevels);
+            poco.ItemSpecLevels = dto?.ItemSpecLevels == null ? null : new List<SpecificationLevels>(dto.ItemSpecLevels);
             poco.SpecLevels = dto?.SpecLevels == null ? null : new List<SpecificationLevels>(dto.SpecLevels);
 
             poco._Children = BdoData.NewSet(dto?.Children?.Select(q => q.ToPoco()).ToArray());

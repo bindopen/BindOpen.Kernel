@@ -37,46 +37,6 @@ namespace BindOpen.System.Data.Helpers
         }
 
         /// <summary>
-        /// Formats the specified string replacing the specified index by the specified string.
-        /// </summary>
-        /// <param key="st">The string to consider.</param>
-        /// <param key="index">The index to consider.</param>
-        /// <param key="replaceString">The replacement string to consider.</param>
-        /// <param key="wholeReplaceString">The whole replacement string to consider.</param>
-        /// <example>The string should be formated this way: {0} {1} or { .. {0} .. } { .. {1} .. } and so on.</example>
-        /// <returns>The formated string.</returns>
-        public static string ToFormatedString(this string st, int index, string replaceString, string wholeReplaceString = null)
-        {
-            string indexString = "{" + index.ToString() + "}";
-            int indexStringIndex = st.IndexOf(indexString);
-            if (indexStringIndex > -1)
-            {
-                string stringToReplace = indexString;
-                int startIndex = st.IndexOfLastString("{", indexStringIndex - 1);
-                string newString;
-                if (startIndex > -1)
-                {
-                    int endIndex = st.IndexOfNextString("}", indexStringIndex + indexString.Length);
-                    if (endIndex > -1)
-                    {
-                        stringToReplace = st.Substring(startIndex, endIndex - startIndex + 1);
-                    }
-
-                    newString = wholeReplaceString ?? stringToReplace[1..^1].Replace(indexString, replaceString)
-;
-                }
-                else
-                {
-                    newString = replaceString;
-                }
-
-                st = st.Replace(stringToReplace, newString);
-            }
-
-            return st;
-        }
-
-        /// <summary>
         /// Gets the specified sub string.
         /// </summary>
         /// <param key="st">The string to consider.</param>
@@ -210,11 +170,6 @@ namespace BindOpen.System.Data.Helpers
             int stv_l = stv.Length;
             while (index < st_l && index > -1 && !b)
             {
-                //if (st[index] == '"' && (stv == "\"" || st[index] == quote))
-                //{
-                //    index = st.IndexOfNextString("\"", index + 1, quote: quote) + 1;
-                //}
-                //else 
                 if (st[index] == quote && (stv[0] != quote && st[index] == quote))
                 {
                     if (index < stv_l - 1 && st[index..(index + 2)] == string.Concat(quote, quote))
