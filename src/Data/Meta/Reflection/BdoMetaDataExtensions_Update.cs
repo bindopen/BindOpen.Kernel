@@ -184,6 +184,7 @@ namespace BindOpen.System.Data.Meta.Reflection
                                         var metaObj = AssemblyHelper.CreateInstance(type, log);
                                         metaObj.UpdateFromMeta(metaObject, onlyMetaAttributes);
                                         meta.WithData(metaObj);
+                                        meta.WithDataType(DataValueTypes.Null);
 
                                         value = metaObj;
                                     }

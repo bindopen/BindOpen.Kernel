@@ -226,14 +226,14 @@ namespace BindOpen.System.Data.Meta
         /// 
         /// </summary>
         /// <param key="level"></param>
-        public static T WithDataRequirement<T>(
+        public static T WithItemRequirement<T>(
             this T spec,
             RequirementLevels level)
             where T : IBdoSpec
         {
             if (spec != null)
             {
-                spec.DataRequirementLevel = level;
+                spec.ItemRequirementLevel = level;
             }
 
             return spec;
@@ -243,14 +243,14 @@ namespace BindOpen.System.Data.Meta
         /// 
         /// </summary>
         /// <param key="script"></param>
-        public static T WithDataRequirementExp<T>(
+        public static T WithItemRequirementExp<T>(
             this T spec,
             string exp)
             where T : IBdoSpec
         {
             if (spec != null)
             {
-                spec.DataRequirementExp = exp;
+                spec.ItemRequirementExp = exp;
             }
 
             return spec;
@@ -311,14 +311,14 @@ namespace BindOpen.System.Data.Meta
         /// 
         /// </summary>
         /// <param key="levels"></param>
-        public static T WithDataSpecLevels<T>(
+        public static T WithItemSpecLevels<T>(
             this T spec,
             params SpecificationLevels[] levels)
             where T : IBdoSpec
         {
             if (spec != null)
             {
-                spec.DataSpecLevels = levels;
+                spec.ItemSpecLevels = levels;
             }
 
             return spec;
@@ -333,7 +333,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (spec != null)
             {
-                if (!string.IsNullOrEmpty(spec.DataRequirementExp))
+                if (!string.IsNullOrEmpty(spec.ItemRequirementExp))
                 {
                     return RequirementLevels.Custom;
                 }

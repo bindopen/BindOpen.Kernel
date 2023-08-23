@@ -7,7 +7,7 @@ using System.Linq;
 namespace BindOpen.System.Data
 {
     [TestFixture, Order(210)]
-    public class BdoExtractTests
+    public class BdoStringTokensTests
     {
         dynamic _valueSet;
         public TBdoDictionary<string> _dico = null;
@@ -101,8 +101,8 @@ namespace BindOpen.System.Data
             var set = st.ExtractTokenMetas(pattern, '"');
 
             Assert.That(
-                set.GetData<string>(LabelFormatsExtensions.__Script_This_Name) == name
-                && set.GetData<string>(LabelFormatsExtensions.__Script_This_Value) == _valueSet.value2 as string, "Bad string parsing");
+                set.GetData<string>(LabelFormatsExtensions.__This_Name) == name
+                && set.GetData<string>(LabelFormatsExtensions.__This_Value) == _valueSet.value2 as string, "Bad string parsing");
         }
 
         [Test, Order(6)]
@@ -129,7 +129,7 @@ namespace BindOpen.System.Data
         }
 
         [Test, Order(7)]
-        public void CreateTest_Map()
+        public void ExtractTokenMetasTest()
         {
             var name = @"toto ""max";
             string st = name.ToQuoted('"') + " " + _valueSet.value2;
@@ -140,24 +140,37 @@ namespace BindOpen.System.Data
 
             var set = st.ExtractTokenMetas(pattern, '"');
             set.Map(
-                (LabelFormatsExtensions.__Script_This_Name, q => { st_name = q.GetData<string>(); }
+                (LabelFormatsExtensions.__This_Name, q => { st_name = q.GetData<string>(); }
             ),
-                (LabelFormatsExtensions.__Script_This_Value, q => { st_value = q.GetData<string>(); }
+                (LabelFormatsExtensions.__This_Value, q => { st_value = q.GetData<string>(); }
             ));
 
             Assert.That(st_name == name as string && st_value == _valueSet.value2, "Bad string parsing");
         }
 
         [Test, Order(7)]
-        public void ExtractValuesTest()
+        public void ExtractTokensTest()
         {
             string pattern = LabelFormats.NameSpaceValue.GetScript();
 
             var list = pattern.ExtractTokens()?.ToList();
 
             Assert.That(list.Count == 2
-                && list[0] == LabelFormatsExtensions.__Script_This_Name
-                && list[1] == LabelFormatsExtensions.__Script_This_Value, "Bad string parsing");
+                && list[0] == LabelFormatsExtensions.__This_Name
+                && list[1] == LabelFormatsExtensions.__This_Value, "Bad string parsing");
+        }
+
+        [Test, Order(8)]
+        public void FormatFromTokensTest()
+        {
+            string pattern = LabelFormats.NameSpaceValue.GetScript();
+
+            var st = pattern.FormatFromTokens(
+                BdoData.NewMetaSet(
+                    (LabelFormatsExtensions.__This_Name, "_name"),
+                    (LabelFormatsExtensions.__This_Value, "_value")));
+
+            Assert.That(st == "_name _value", "Bad string parsing");
         }
     }
 }

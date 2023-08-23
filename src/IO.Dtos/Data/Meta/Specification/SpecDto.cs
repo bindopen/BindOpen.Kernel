@@ -214,10 +214,10 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// Levels of specification of this instance.
         /// </summary>
-        [JsonPropertyName("data.spec.levels")]
-        [XmlArray("data.spec.levels")]
+        [JsonPropertyName("item.spec.levels")]
+        [XmlArray("item.spec.levels")]
         [XmlArrayItem("add")]
-        public List<SpecificationLevels> DataSpecLevels { get; set; }
+        public List<SpecificationLevels> ItemSpecLevels { get; set; }
 
         /// <summary>
         /// Level of accessibility of this instance.
@@ -253,14 +253,14 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The requirement level of this instance.
         /// </summary>
-        [JsonPropertyName("data.requirement.level")]
-        [XmlElement("data.requirement.level")]
+        [JsonPropertyName("item.requirement.level")]
+        [XmlElement("item.requirement.level")]
         [DefaultValue(RequirementLevels.None)]
-        public RequirementLevels DataRequirementLevel { get; set; }
+        public RequirementLevels ItemRequirementLevel { get; set; }
 
-        [JsonPropertyName("data.requirement.exp")]
-        [XmlElement("data.requirement.exp")]
-        public string DataRequirementExp { get; set; }
+        [JsonPropertyName("item.requirement.exp")]
+        [XmlElement("item.requirement.exp")]
+        public string ItemRequirementExp { get; set; }
 
         #endregion
 
