@@ -1,45 +1,49 @@
-![BindOpen logo](https://storage.bindopen.org/img/logos/logo_bindopen.png)
-
------
-
 # BindOpen
 
-BindOpen is a framework that allows you to build widely-extended applications.
-
-For any additional information, please visit the BindOpen website at https://www.bindopen.org.
+![BindOpen logo](https://storage.bindopen.org/img/logos/logo_bindopen.png)
 
 
-## Usage
+## About
 
-## Examples
+BindOpen is a framework that allows you to build widely-extended applications. It enables you to enhance your project with custom script functions, connectors, entities, and tasks.
 
-## Solution
+### BindOpen.System
 
-The solution layers are structured as followed:
+BindOpen.System is the core of the BindOpen framework. It is composed of the following modules:
 
-![BindOpen architecture](https://github.com/bindopen/BindOpen/raw/master/docs/img/bindopen_architecture.png)
+* [System.Data](https://github.com/bindopen/BindOpen.System/blob/master/docs/bindopen-system-data.md).
+* [System.Scoping](https://github.com/bindopen/BindOpen.System/blob/master/docs/bindopen-system-scoping.md).
+* [System.IO](https://github.com/bindopen/BindOpen.System/blob/master/docs/bindopen-system-io.md).
 
-Each layer is a different solution project.
+## Use Data
+
+### Metadata
+
+```csharp
+var meta = BdoData.NewMeta("host", DataValueTypes.Text, "my-test-host");
+```
+
+### Definition
+
+### Configuration
+
+## Use Scoping
+
+### Script
+
+### Connectors
+
+### Entities
+
+### Tasks
+
+## Use IO
 
 ## License
 
 This project is licensed under the terms of the [MIT LICENSE](https://github.com/bindopen/BindOpen/blob/master/LICENSE).
 
-## Documentation and Further Learning
-
-### [BindOpen Docs](https://docs.bindopen.org/)
-
-The BindOpen Docs are the ideal place to start if you are new to BindOpen. They are categorized in 3 broader topics:
-
-* [Articles](https://docs.bindopen.org/articles) to learn how to use BindOpen;
-* [Notes](https://docs.bindopen.org/notes) to follow our releases;
-* [Api](https://docs.bindopen.org/api) to have an overview of BindOpen APIs.
-
-### [BindOpen Blog](https://www.bindopen.org/blog)
-
-The BindOpen Blog is where we announce new features, write engineering blog posts, demonstrate proof-of-concepts and features under development.
-
-## Repos and Projects
+## Other repos and Projects
 
 [BindOpen.System](https://github.com/bindopen/BindOpen.System) contains the core BindOpen packages to manage data and scoping.
 
@@ -57,6 +61,20 @@ The BindOpen Blog is where we announce new features, write engineering blog post
 
 
 A [full list of all the repos](https://github.com/bindopen?tab=repositories) is available as well.
+
+## Documentation and Further Learning
+
+### [BindOpen Docs](https://docs.bindopen.org/)
+
+The BindOpen Docs are the ideal place to start if you are new to BindOpen. They are categorized in 3 broader topics:
+
+* [Articles](https://docs.bindopen.org/articles) to learn how to use BindOpen;
+* [Notes](https://docs.bindopen.org/notes) to follow our releases;
+* [Api](https://docs.bindopen.org/api) to have an overview of BindOpen APIs.
+
+### [BindOpen Blog](https://www.bindopen.org/blog)
+
+The BindOpen Blog is where we announce new features, write engineering blog posts, demonstrate proof-of-concepts and features under development.
 
 ## NuGet Packages by the BindOpen team
 

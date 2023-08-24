@@ -10,12 +10,6 @@ namespace BindOpen.System.Tests
     /// </summary>
     public static class ScriptWordDefinitionFake
     {
-        // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
         /// <summary>
         /// Evaluates the script word $TEXT.
         /// </summary>
@@ -102,7 +96,5 @@ namespace BindOpen.System.Tests
 
             return valuesText;
         }
-
-        #endregion
     }
 }
