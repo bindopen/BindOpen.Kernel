@@ -14,4 +14,3 @@ BindOpen.System is the core of the BindOpen framework. It is composed of the fol
 * [System.Data](https://github.com/bindopen/BindOpen.System/blob/master/docs/bindopen-system-data.md).
 * [System.Scoping](https://github.com/bindopen/BindOpen.System/blob/master/docs/bindopen-system-scoping.md).
 * [System.IO](https://github.com/bindopen/BindOpen.System/blob/master/docs/bindopen-system-io.md).
-
