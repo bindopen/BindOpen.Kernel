@@ -76,19 +76,22 @@ namespace BindOpen.System.Data.Meta
             {
                 var metaComposite = meta as IBdoMetaNode;
                 spec = metaComposite != null
-                    && !typeof(T).IsAssignableFrom(typeof(BdoAggregateSpec)) ? BdoData.NewSpec<BdoAggregateSpec>().As<T>() : BdoData.NewSpec<T>();
+                    && !typeof(BdoAggregateSpec).IsAssignableFrom(typeof(T)) ? BdoData.NewSpec<BdoAggregateSpec>().As<T>() : BdoData.NewSpec<T>();
 
-                spec.Update(meta.Spec);
-                spec.Name = name;
-                spec.Name ??= meta.Name;
-                spec.DataType = meta.DataType;
-
-                if (metaComposite != null && spec is IBdoAggregateSpec aggreagateSpec)
+                if (spec != null)
                 {
-                    foreach (var subMeta in metaComposite)
+                    spec.Update(meta.Spec);
+                    spec.Name = name;
+                    spec.Name ??= meta.Name;
+                    spec.DataType = meta.DataType;
+
+                    if (metaComposite != null && spec is IBdoAggregateSpec aggreagateSpec)
                     {
-                        var subSpec = subMeta.ToSpec<T>(null, onlyMetaAttributes);
-                        aggreagateSpec.AddChildren(subSpec);
+                        foreach (var subMeta in metaComposite)
+                        {
+                            var subSpec = subMeta.ToSpec<T>(null, onlyMetaAttributes);
+                            aggreagateSpec.AddChildren(subSpec);
+                        }
                     }
                 }
             }
