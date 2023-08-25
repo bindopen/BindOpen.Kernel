@@ -1,5 +1,6 @@
 ﻿using BindOpen.System.Data.Helpers;
 using BindOpen.System.Data.Meta;
+using BindOpen.System.Data.Meta.Reflection;
 using BindOpen.System.Scoping;
 using BindOpen.System.Tests;
 using NUnit.Framework;
@@ -32,10 +33,17 @@ namespace BindOpen.System.Data
         }
 
         [Test, Order(3)]
-        public void ToSpecTest()
+        public void CreateFromTypeTest()
         {
             var spec = BdoData.NewSpecFrom<EntityFake>("test1");
-            Assert.That(spec.As<BdoAggregateSpec>()._Children?.Count == 17, "Aggregate specification error");
+            Assert.That(spec.As<BdoAggregateSpec>()._Children?.Count == 13, "Aggregate specification error");
+        }
+
+        [Test, Order(4)]
+        public void CreateFromTypeToSpecTest()
+        {
+            var spec = typeof(EntityFake).ToSpec<SpecFake>("test1");
+            Assert.That(spec.As<BdoAggregateSpec>()._Children?.Count == 13, "Aggregate specification error");
         }
     }
 }
