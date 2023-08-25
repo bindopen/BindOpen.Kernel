@@ -26,12 +26,12 @@ namespace BindOpen.System.Scoping
             var meta = BdoData.NewMetaObject()
                 .WithDataType(BdoExtensionKinds.Task, "bindopen.system.tests$taskFake")
                 .WithProperties(
-                    BdoData.NewMetaScalar("boolValue", data.boolValue as bool?),
-                    BdoData.NewMetaScalar("intValue", data.intValue as int?))
+                    ("boolValue", data.boolValue as bool?),
+                    ("intValue", data.intValue as int?))
                 .WithInputs(
-                    BdoData.NewMetaScalar("enumValue", data.enumValue as ActionPriorities?))
+                    ("enumValue", data.enumValue as ActionPriorities?))
                 .WithOutputs(
-                    BdoData.NewMetaScalar("stringValue", data.stringValue as string));
+                    ("stringValue", data.stringValue as string));
 
             return meta;
         }
