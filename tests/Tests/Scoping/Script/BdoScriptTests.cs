@@ -6,7 +6,7 @@ using System;
 namespace BindOpen.System.Scoping.Script
 {
     [TestFixture, Order(401)]
-    public partial class BdoScriptInterpreterTests
+    public partial class BdoScriptTests
     {
         private readonly string _scriptA = "$eq('MYTABLE', $text('MYTABLE'))";
 
@@ -30,7 +30,7 @@ namespace BindOpen.System.Scoping.Script
         }
 
         [Test, Order(1)]
-        public void InterpreteScriptNullTest()
+        public void EvaluateScriptNullTest()
         {
             BdoExpression exp = null;
             var resultScript = SystemData.ScriptInterpreter.Evaluate<bool?>(exp)?.ToString();
@@ -41,7 +41,7 @@ namespace BindOpen.System.Scoping.Script
         [Test, Order(2)]
         public void CreateVariableSetTest()
         {
-            var varSet = BdoData.NewMetaNode(
+            var varSet = BdoData.NewMetaSet(
                 ((string Name, object Value))("var1", "sample1"),
                 ((string Name, object Value))("var2", 4.55));
 
@@ -62,7 +62,7 @@ namespace BindOpen.System.Scoping.Script
 
 
         [Test, Order(4)]
-        public void CreateWordConcatenation()
+        public void WordConcatenationTest()
         {
             var st = _stringA + _scriptwordA;
             var script = _stringA + "{{" + _scriptA + "}}";
@@ -74,16 +74,25 @@ namespace BindOpen.System.Scoping.Script
         }
 
         [Test, Order(4)]
-        public void CreateSubword()
+        public void CompareSubwordStringTest()
         {
             var script = (string)_scriptwordB;
             Assert.That(_scriptB.Equals(script, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
 
         [Test, Order(5)]
-        public void Create5()
+        public void EvaluateExpressionTest()
         {
             var script = BdoData.NewExp(_scriptC, BdoExpressionKind.Script);
+            var result = SystemData.ScriptInterpreter.Evaluate<bool?>(script);
+
+            Assert.That(result == true, "Bad script interpretation");
+        }
+
+        [Test, Order(6)]
+        public void EvaluateStringTest()
+        {
+            var script = _scriptC;
             var result = SystemData.ScriptInterpreter.Evaluate<bool?>(script);
 
             Assert.That(result == true, "Bad script interpretation");

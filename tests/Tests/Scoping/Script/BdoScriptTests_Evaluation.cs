@@ -8,7 +8,7 @@ namespace BindOpen.System.Scoping.Script
     /// <summary>
     /// 
     /// </summary>
-    public partial class BdoScriptInterpreterTests
+    public partial class BdoScriptTests
     {
         private readonly IBdoScriptword _scriptword1 =
             BdoScript.Function("eq", "MYTABLE", BdoScript.Function("text", "MYTABLE"));

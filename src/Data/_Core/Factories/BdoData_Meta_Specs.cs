@@ -135,7 +135,7 @@ namespace BindOpen.System.Data
         /// <param key="items">The items to consider.</param>
         public static IBdoSpec NewSpecFrom<T, Q>(
             string name = null,
-            bool onlyMetaAttributes = false)
+            bool onlyMetaAttributes = true)
             where Q : class, IBdoSpec, new()
             => typeof(T).ToSpec<Q>(name, onlyMetaAttributes);
 
@@ -146,7 +146,7 @@ namespace BindOpen.System.Data
         /// <param key="items">The items to consider.</param>
         public static IBdoSpec NewSpecFrom<T>(
             string name = null,
-            bool onlyMetaAttributes = false)
+            bool onlyMetaAttributes = true)
             => typeof(T).ToSpec(name, onlyMetaAttributes);
     }
 }
