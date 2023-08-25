@@ -1,4 +1,4 @@
-﻿using BindOpen.System.Data.Assemblies;
+﻿using BindOpen.System.Data.Helpers;
 using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
 
@@ -62,51 +62,35 @@ namespace BindOpen.System.Data.Meta
             this IBdoMetaData meta,
             string name = null,
             bool onlyMetaAttributes = true)
-        {
-            IBdoSpec spec = null;
+            => ToSpec<BdoSpec>(meta, name, onlyMetaAttributes);
 
-            if (meta != null)
-            {
-                if (meta is IBdoMetaNode metaComposite)
-                {
-                    spec = BdoData.NewSpec<BdoAggregateSpec>();
-
-                    var aggreagateSpec = spec as IBdoAggregateSpec;
-
-                    foreach (var subMeta in metaComposite)
-                    {
-                        var subSpec = subMeta.ToSpec(null, onlyMetaAttributes);
-                        aggreagateSpec.AddChildren(subSpec);
-                    }
-                }
-                else
-                {
-                    spec = BdoData.NewSpec();
-                }
-
-                spec.Update(meta.Spec);
-                spec.Name = name;
-                spec.Name ??= meta.Name;
-                spec.DataType = meta.DataType;
-            }
-
-            return spec;
-        }
         public static T ToSpec<T>(
             this IBdoMetaData meta,
             string name = null,
             bool onlyMetaAttributes = true)
             where T : class, IBdoSpec, new()
         {
-            var spec = AssemblyHelper.CreateInstance<T>();
+            T spec = null;
 
-            var metaSpec = meta.ToSpec(name, onlyMetaAttributes);
-            spec.Update(metaSpec);
-
-            if (spec is IBdoAggregateSpec aggregateSpec
-                && metaSpec is IBdoAggregateSpec metaAggregateSpec)
+            if (meta != null)
             {
-                aggregateSpec._Children = metaAggregateSpec._Children;
+                var metaComposite = meta as IBdoMetaNode;
+                spec = metaComposite != null
+                    && !typeof(T).IsAssignableFrom(typeof(BdoAggregateSpec)) ? BdoData.NewSpec<BdoAggregateSpec>().As<T>() : BdoData.NewSpec<T>();
+
+                spec.Update(meta.Spec);
+                spec.Name = name;
+                spec.Name ??= meta.Name;
+                spec.DataType = meta.DataType;
+
+                if (metaComposite != null && spec is IBdoAggregateSpec aggreagateSpec)
+                {
+                    foreach (var subMeta in metaComposite)
+                    {
+                        var subSpec = subMeta.ToSpec<T>(null, onlyMetaAttributes);
+                        aggreagateSpec.AddChildren(subSpec);
+                    }
+                }
             }
 
             return spec;

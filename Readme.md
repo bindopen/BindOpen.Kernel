@@ -30,26 +30,44 @@ Note: Later you will be able to install only the package you need.
 
 ### From Visual Studio
 
-| Module | Instruction
+| Module | Instruction |
 |----------|
-| [BindOpen.System.Data](https://www.nuget.org/packages/BindOpen.System.Data) | ```PM> Install-Package BindOpen.System.Data```
-| [BindOpen.System.Scoping](https://www.nuget.org/packages/BindOpen.System.Scoping) | ```PM> Install-Package BindOpen.System.Scoping```
-| [BindOpen.System.IO](https://www.nuget.org/packages/BindOpen.System.IO) | ```PM> Install-Package BindOpen.System.IO```
+| [BindOpen.System.Data](https://www.nuget.org/packages/BindOpen.System.Data) | ```PM> Install-Package BindOpen.System.Data``` |
+| [BindOpen.System.Scoping](https://www.nuget.org/packages/BindOpen.System.Scoping) | ```PM> Install-Package BindOpen.System.Scoping``` |
+| [BindOpen.System.IO](https://www.nuget.org/packages/BindOpen.System.IO) | ```PM> Install-Package BindOpen.System.IO``` |
 
 ### From .NET CLI
 
-| Module | Instruction
+| Module | Instruction |
 |----------|
-| [BindOpen.System.Data](https://www.nuget.org/packages/BindOpen.System.Data) | ```> dotnet add package BindOpen.System.Data```
-| [BindOpen.System.Scoping](https://www.nuget.org/packages/BindOpen.System.Scoping) | ```> dotnet add package BindOpen.System.Scoping```
-| [BindOpen.System.IO](https://www.nuget.org/packages/BindOpen.System.IO) | ```> dotnet add package BindOpen.System.IO```
+| [BindOpen.System.Data](https://www.nuget.org/packages/BindOpen.System.Data) | ```> dotnet add package BindOpen.System.Data``` |
+| [BindOpen.System.Scoping](https://www.nuget.org/packages/BindOpen.System.Scoping) | ```> dotnet add package BindOpen.System.Scoping``` |
+| [BindOpen.System.IO](https://www.nuget.org/packages/BindOpen.System.IO) | ```> dotnet add package BindOpen.System.IO``` |
 
 ## Get started
 
 ### System.Data
 
+#### Metadata
+
 ```csharp
 var meta = BdoData.NewMeta("host", DataValueTypes.Text, "my-test-host");
+```
+
+#### Configuration
+
+```csharp
+var config = BdoData.NewConfig(
+        "testConfig",
+        BdoData.NewMetaScalar("text1", DataValueTypes.Text, f.Lorem.Words(10)),
+        BdoData.NewMetaScalar("integer1", DataValueTypes.Integer, Enumerable.Range(0, 10).Select(p => f.Random.Int(5000))),
+        BdoData.NewMetaScalar("byteArray1", DataValueTypes.Binary, Enumerable.Range(1, 2).Select(p => f.Random.Bytes(5000)).ToArray()),
+        BdoData.NewMetaNode(
+            BdoData.NewMetaScalar("textB1", DataValueTypes.Text, f.Lorem.Words(10)),
+            BdoData.NewMetaScalar("textB2", DataValueTypes.Integer, f.Random.Int(5000)))
+    )
+    .WithTitle("Example of configuration")
+    .WithDescription(("en", "This is an example of description"))
 ```
 
 ### System.Scoping
@@ -75,30 +93,56 @@ public static object Fun_Func2a(
 
 ...
 
-var exp = "$testFunction('MYTABLE', $text('MYTABLE_'))".ToExpression();
-scope.Interpreter.Evaluate<bool?>(exp);
+var exp = "$testFunction('MYTABLE', $text('MYTABLE_'))";
+var result = scope.Interpreter.Evaluate<bool?>(exp);
+// result is True
 ```
 
-#### Connectors
-
-#### Entities
-
 #### Tasks
+
+```csharp
+
+[BdoTask("taskFake")]
+public class TaskFake : BdoTask
+{
+    [BdoProperty(Name = "boolValue")]
+    public bool BoolValue { get; set; }
+
+    [BdoOutput(Name = "stringValue")]
+    public string StringValue { get; set; }
+
+    [BdoInput(Name = "enumValue")]
+    public ActionPriorities EnumValue { get; set; }
+
+    ...
+}
+
+...
+
+var meta = BdoData.NewMetaObject()
+    .WithDataType(BdoExtensionKinds.Task, "bindopen.system.tests$taskFake")
+    .WithProperties(
+        ("boolValue", false))
+    .WithInputs(
+        BdoData.NewMetaScalar("enumValue", ActionPriorities.Low))
+    .WithOutputs(
+        ("stringValue", "test-out"));
+                    
+var task = SystemData.Scope.CreateTask<TaskFake>(meta);
+```
 
 ### System.IO
 
 #### Serialization
 
 ```csharp
-var meta = JsonHelper.LoadJson<MetaObjectDto>(BdoConnectorFaker.JsonFilePath).ToPoco();
-var connector = scope.CreateConnector<ConnectorFake>(meta);
+_metaSet.ToDto().SaveXml("output.xml");
 ```
 
 #### Deserialization
 
 ```csharp
-var meta = JsonHelper.LoadJson<MetaObjectDto>(BdoConnectorFaker.JsonFilePath).ToPoco();
-var connector = scope.CreateConnector<ConnectorFake>(meta);
+var metaSet = JsonHelper.LoadJson<MetaSetDto>("output.xml").ToPoco();
 ```
 
 
@@ -110,15 +154,15 @@ This project is licensed under the terms of the MIT license. [See LICENSE](https
 
 This repository contains the code of the following Nuget packages:
 
-| The package | Provides
-|----------|
-| [BindOpen.System.Abstractions](https://www.nuget.org/packages/BindOpen.System.Abstractions) | Interfaces and enumerations
-| [BindOpen.System.Data](https://www.nuget.org/packages/BindOpen.System.Data) | Core data model
-| [BindOpen.System.Scoping](https://www.nuget.org/packages/BindOpen.System.Scoping) | Extension manager
-| [BindOpen.System.Scoping.Extensions](https://www.nuget.org/packages/BindOpen.System.Scoping.Extensions) | Classes of extensions
-| [BindOpen.System.Scoping.Script](https://www.nuget.org/packages/BindOpen.System.Scoping.Script) | Script interpreter
-| [BindOpen.System.IO](https://www.nuget.org/packages/BindOpen.System.IO) | Serialization / Deserialization
-| [BindOpen.System.IO.Dtos](https://www.nuget.org/packages/BindOpen.System.IO.Dtos) | Data transfer classes
+| The package | Provides |
+|----------|-----|
+| [BindOpen.System.Abstractions](https://www.nuget.org/packages/BindOpen.System.Abstractions) | Interfaces and enumerations |
+| [BindOpen.System.Data](https://www.nuget.org/packages/BindOpen.System.Data) | Core data model |
+| [BindOpen.System.Scoping](https://www.nuget.org/packages/BindOpen.System.Scoping) | Extension manager |
+| [BindOpen.System.Scoping.Extensions](https://www.nuget.org/packages/BindOpen.System.Scoping.Extensions) | Classes of extensions |
+| [BindOpen.System.Scoping.Script](https://www.nuget.org/packages/BindOpen.System.Scoping.Script) | Script interpreter |
+| [BindOpen.System.IO](https://www.nuget.org/packages/BindOpen.System.IO) | Serialization / Deserialization |
+| [BindOpen.System.IO.Dtos](https://www.nuget.org/packages/BindOpen.System.IO.Dtos) | Data transfer classes |
 
 The atomicity of these packages allows you install only what you need respecting your solution's architecture.
 

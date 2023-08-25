@@ -128,6 +128,16 @@ namespace BindOpen.System.Data
             return spec;
         }
 
+        /// <summary>
+        /// Creates a meta data of the specified object.
+        /// </summary>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="items">The items to consider.</param>
+        public static IBdoSpec NewSpecFrom<T, Q>(
+            string name = null,
+            bool onlyMetaAttributes = false)
+            where Q : class, IBdoSpec, new()
+            => typeof(T).ToSpec<Q>(name, onlyMetaAttributes);
 
         /// <summary>
         /// Creates a meta data of the specified object.

@@ -101,10 +101,6 @@ namespace BindOpen.System.Data.Meta.Reflection
             this Type type,
             string name = null,
             bool onlyMetaAttributes = true)
-        {
-            var spec = type.ToSpec<BdoAggregateSpec>(name, onlyMetaAttributes);
-
-            return spec;
-        }
+        => type.ToSpec<BdoAggregateSpec>(name, onlyMetaAttributes);
     }
 }
