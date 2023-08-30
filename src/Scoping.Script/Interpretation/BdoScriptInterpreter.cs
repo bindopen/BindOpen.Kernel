@@ -112,7 +112,6 @@ namespace BindOpen.System.Scoping.Script
                     {
                         // we parse the text to interpretate
                         index = 0;
-                        scriptwordBeginIndex = index;
 
                         // we get the next function or variable
                         var childLog = log?.NewLog();
@@ -131,6 +130,8 @@ namespace BindOpen.System.Scoping.Script
                         return result;
                     }
                     break;
+                case BdoExpressionKind.Word:
+                    return Evaluate(exp?.Word, varSet, log);
             }
 
             return exp?.Text;
@@ -195,8 +196,6 @@ namespace BindOpen.System.Scoping.Script
                     return varSet?[reference?.Identifier];
                 case BdoReferenceKind.MetaData:
                     return reference?.MetaData.GetData(_scope, varSet, log);
-                case BdoReferenceKind.Word:
-                    return Evaluate(reference?.Word, varSet, log);
             }
 
             return null;

@@ -1,4 +1,5 @@
-﻿using Bogus;
+﻿using BindOpen.System.Scoping.Script;
+using Bogus;
 using NUnit.Framework;
 
 namespace BindOpen.System.Data
@@ -52,5 +53,15 @@ namespace BindOpen.System.Data
 
             Test(_exp);
         }
+
+        [Test, Order(3)]
+        public void Create3Test()
+        {
+            _exp = BdoData.NewExp(
+                BdoScript.Func(_valueSet.ScriptwordName as string));
+
+            Test(_exp);
+        }
+
     }
 }

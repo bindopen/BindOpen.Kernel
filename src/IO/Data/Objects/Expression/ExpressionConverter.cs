@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BindOpen.System.Scoping.Script;
 
 namespace BindOpen.System.Data
 {
@@ -18,6 +19,7 @@ namespace BindOpen.System.Data
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<BdoExpression, ExpressionDto>()
+                    .ForMember(q => q.Word, opt => opt.MapFrom(q => q.Word.ToDto(true)))
             );
 
             var mapper = new Mapper(config);
@@ -39,7 +41,8 @@ namespace BindOpen.System.Data
             var poco = new BdoExpression()
             {
                 Kind = dto.Kind,
-                Text = dto.Text
+                Text = dto.Text,
+                Word = dto.Word.ToPoco()
             };
 
             return poco;

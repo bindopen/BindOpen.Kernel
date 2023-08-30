@@ -1,4 +1,6 @@
-﻿namespace BindOpen.System.Data
+﻿using BindOpen.System.Scoping.Script;
+
+namespace BindOpen.System.Data
 {
     /// <summary>
     /// 
@@ -60,6 +62,24 @@
             if (exp != null)
             {
                 exp.Kind = BdoExpressionKind.Auto;
+            }
+
+            return exp;
+        }
+
+        /// <summary>
+        /// Removes the item with the specified name.
+        /// </summary>
+        /// <param key="keys">The keys of the item to remove.</param>
+        public static T WithWord<T>(
+            this T exp,
+            IBdoScriptword word)
+            where T : IBdoExpression
+        {
+            if (exp != null)
+            {
+                exp.Kind = BdoExpressionKind.Word;
+                exp.Word = word;
             }
 
             return exp;

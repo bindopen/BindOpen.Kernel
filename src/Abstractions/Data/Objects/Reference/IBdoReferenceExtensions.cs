@@ -1,5 +1,4 @@
 ﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Scoping.Script;
 
 namespace BindOpen.System.Data
 {
@@ -8,24 +7,6 @@ namespace BindOpen.System.Data
     /// </summary>
     public static class IBdoReferenceExtensions
     {
-        /// <summary>
-        /// Removes the item with the specified name.
-        /// </summary>
-        /// <param key="keys">The keys of the item to remove.</param>
-        public static T WithWord<T>(
-            this T reference,
-            IBdoScriptword word)
-            where T : IBdoReference
-        {
-            if (reference != null)
-            {
-                reference.Kind = BdoReferenceKind.Word;
-                reference.Word = word;
-            }
-
-            return reference;
-        }
-
         /// <summary>
         /// Removes the item with the specified name.
         /// </summary>

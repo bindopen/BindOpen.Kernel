@@ -1,5 +1,4 @@
 ﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Scoping.Script;
 
 namespace BindOpen.System.Data
 {
@@ -14,11 +13,6 @@ namespace BindOpen.System.Data
         BdoReferenceKind Kind { get; set; }
 
         IBdoExpression Expression { get; set; }
-
-        /// <summary>
-        /// The script word.
-        /// </summary>
-        IBdoScriptword Word { get; set; }
 
         string Identifier { get; set; }
 

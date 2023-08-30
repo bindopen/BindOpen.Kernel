@@ -21,6 +21,11 @@
         Script,
 
         /// <summary>
+        /// Word.
+        /// </summary>
+        Word,
+
+        /// <summary>
         /// None. Such as script word.
         /// </summary>
         None,

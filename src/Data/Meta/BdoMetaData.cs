@@ -59,6 +59,54 @@ namespace BindOpen.System.Data.Meta
 
         #endregion
 
+        // --------------------------------------------------
+        // CONVERTERS
+        // --------------------------------------------------
+
+        #region Converters
+
+        // String
+
+        /// <summary>
+        /// Converts from string.
+        /// </summary>
+        /// <param key="st">The string to consider.</param>
+        public static explicit operator BdoMetaData(string st)
+            => BdoData.NewMetaScalar(DataValueTypes.Any, st);
+
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <param key="meta">The meta to consider.</param>
+        public static explicit operator string(BdoMetaData meta)
+        {
+            return meta?.ToString();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="items"></param>
+        public static implicit operator BdoMetaData((string Name, object Value) item)
+        {
+            var meta = BdoData.NewMeta(item.Name, item.Value);
+
+            return meta as BdoMetaData;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="items"></param>
+        public static implicit operator BdoMetaData((string Name, DataValueTypes ValueType, object Value) item)
+        {
+            var meta = BdoData.NewMeta(item.Name, item.ValueType, item.Value);
+
+            return meta as BdoMetaData;
+        }
+
+        #endregion
+
         // ------------------------------------------
         // IIdentified Implementation
         // ------------------------------------------
