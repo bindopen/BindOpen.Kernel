@@ -53,5 +53,13 @@
 
             return word;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static IBdoScriptword LastChild(this IBdoScriptword word)
+        {
+            return word.Child == null ? word : word.Child.LastChild();
+        }
     }
 }

@@ -149,6 +149,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
+        [BdoProperty("parent")]
         public IBdoMetaData Parent { get; set; }
 
         /// <summary>

@@ -15,7 +15,7 @@ namespace BindOpen.System.Data
         /// <returns>Returns the created exp.</returns>
         public static BdoExpression NewExpression(
             string text,
-            BdoExpressionKind kind = BdoExpressionKind.Auto)
+            BdoExpressionKind kind = BdoExpressionKind.Script)
             => new()
             {
                 Kind = kind,
@@ -43,7 +43,7 @@ namespace BindOpen.System.Data
         /// <returns>Returns the created exp.</returns>
         public static BdoExpression NewExp(
             string text,
-            BdoExpressionKind kind = BdoExpressionKind.Auto)
+            BdoExpressionKind kind = BdoExpressionKind.Script)
             => NewExpression(text, kind);
 
         /// <summary>

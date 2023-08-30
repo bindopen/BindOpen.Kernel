@@ -88,16 +88,50 @@ namespace BindOpen.System.Scoping.Script
         /// </summary>
         /// <param key="name"></param>
         /// <returns></returns>
-        public static BdoScriptword Variable<T>(string name)
+        public static BdoScriptword Variable(
+            this IBdoScriptword word,
+            string name)
         {
-            var word = NewWord(ScriptItemKinds.Variable)
+            return Variable(name).WithParent(word);
+        }
+
+        public static BdoScriptword Var(
+            this IBdoScriptword word,
+            string name)
+            => word.Variable(name);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="name"></param>
+        /// <returns></returns>
+        public static TBdoScriptword<T> Variable<T>(string name)
+        {
+            var word = NewWord<T>(ScriptItemKinds.Variable)
                 .WithName(name);
 
             return word;
         }
 
-        public static BdoScriptword Var<T>(string name)
+        public static TBdoScriptword<T> Var<T>(string name)
             => Variable<T>(name);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="name"></param>
+        /// <returns></returns>
+        public static TBdoScriptword<T> Variable<T>(
+            this IBdoScriptword word,
+            string name)
+        {
+            return Variable<T>(name).WithParent(word);
+        }
+
+        public static TBdoScriptword<T> Var<T>(
+            this IBdoScriptword word,
+            string name)
+            => word.Variable<T>(name);
 
         // Function
 
@@ -192,5 +226,13 @@ namespace BindOpen.System.Scoping.Script
             string name,
             params object[] parameters)
             => word.Function<T>(name, parameters);
+
+        // This
+
+        public static string __This_VarName = "$this";
+
+        public static TBdoScriptword<T> _This<T>()
+            => Var<T>(__This_VarName);
+
     }
 }
