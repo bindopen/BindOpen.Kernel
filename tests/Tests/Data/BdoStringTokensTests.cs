@@ -172,5 +172,18 @@ namespace BindOpen.System.Data
 
             Assert.That(st == "_name _value", "Bad string parsing");
         }
+
+        [Test, Order(8)]
+        public void FormatFromTokensWithNullTokenTest()
+        {
+            string pattern = LabelFormats.NameSpaceValue.GetScript();
+
+            var st = pattern.FormatFromTokens(
+                BdoData.NewMetaSet(
+                    (LabelFormatsExtensions.__This_Name, "_name"),
+                    (LabelFormatsExtensions.__This_Value, null)));
+
+            Assert.That(st == "_name ", "Bad string parsing");
+        }
     }
 }

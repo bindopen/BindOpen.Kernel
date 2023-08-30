@@ -297,7 +297,7 @@ namespace BindOpen.System.Data.Meta
                             {
                                 var newSt = meta.GetData<string>();
                                 st = st[0..i] + newSt + st[(j + 2)..^0];
-                                j -= (tokenName.Length - newSt.Length + 3);
+                                j -= (tokenName.Length - (newSt?.Length ?? 0) + 3);
                             }
                         }
                         i = j + 1;

@@ -71,5 +71,20 @@ namespace BindOpen.System.Data
 
             return dataTyped;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T WithNullValue<T>(
+            this T dataTyped)
+            where T : IBdoDataTyped
+        {
+            if (dataTyped != null)
+            {
+                dataTyped.DataType = BdoData.NewDataType(DataValueTypes.Null);
+            }
+
+            return dataTyped;
+        }
     }
 }
