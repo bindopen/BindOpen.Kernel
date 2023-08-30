@@ -74,7 +74,7 @@ namespace BindOpen.System.Scoping.Script
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoScriptword>(dto);
 
-            poco.Child = dto.Child.ToPoco();
+            poco.WithChild(dto.Child.ToPoco());
 
             poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco());
             poco.DataType.DefinitionUniqueName = dto.DefinitionUniqueName;
