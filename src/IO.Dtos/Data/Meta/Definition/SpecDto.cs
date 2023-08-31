@@ -58,7 +58,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         [JsonPropertyName("condition")]
         [XmlElement("condition", Type = typeof(BasicConditionDto))]
-        [XmlElement("condition.node", Type = typeof(CompositeConditionDto))]
+        [XmlElement("condition.composite", Type = typeof(CompositeConditionDto))]
         [XmlElement("condition.expression", Type = typeof(ExpressionConditionDto))]
         public ConditionDto Condition { get; set; }
 
@@ -253,21 +253,21 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         [JsonPropertyName("constaints")]
         [XmlElement("constaints")]
-        public TConditionalStatementDto<string> ConstraintStatement { get; set; }
+        public StringConditionalStatementDto ConstraintStatement { get; set; }
 
         /// <summary>
         /// The requirement level of this instance.
         /// </summary>
         [JsonPropertyName("requirement")]
         [XmlElement("requirement")]
-        public TConditionalStatementDto<RequirementLevels> RequirementStatement { get; set; }
+        public RequirementLevelConditionalStatementDto RequirementStatement { get; set; }
 
         /// <summary>
         /// The requirement level of this instance.
         /// </summary>
         [JsonPropertyName("item.requirement")]
         [XmlElement("item.requirement")]
-        public TConditionalStatementDto<RequirementLevels> ItemRequirementStatement { get; set; }
+        public RequirementLevelConditionalStatementDto ItemRequirementStatement { get; set; }
 
         #endregion
 

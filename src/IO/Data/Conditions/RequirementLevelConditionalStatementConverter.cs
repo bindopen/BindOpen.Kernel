@@ -6,20 +6,24 @@ namespace BindOpen.System.Data.Conditions
     /// <summary>
     /// This class represents a Xml helper.
     /// </summary>
-    public static class TConditionalStatementConverter
+    public static class RequirementLevelConditionalStatementConverter
     {
         /// <summary>
         /// Converts to DTO.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static TConditionalStatementDto<TItem> ToDto<TItem>(this ITBdoConditionalStatement<TItem> poco)
+        public static RequirementLevelConditionalStatementDto ToDto(this ITBdoConditionalStatement<RequirementLevels> poco)
         {
             if (poco == null) return null;
 
-            TConditionalStatementDto<TItem> dto = new();
+            RequirementLevelConditionalStatementDto dto = new();
             dto.Items = new();
-            dto.Items.AddRange(poco.Select(q => q.ToDto()));
+            dto.Items.AddRange(poco.Select(q => new RequirementLevelConditionalStatementPairDto()
+            {
+                Item = q.Item,
+                Condition = q.Condition?.ToDto()
+            }));
 
             return dto;
         }
@@ -29,11 +33,11 @@ namespace BindOpen.System.Data.Conditions
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static ITBdoConditionalStatement<TItem> ToPoco<TItem>(this TConditionalStatementDto<TItem> dto)
+        public static ITBdoConditionalStatement<RequirementLevels> ToPoco(this RequirementLevelConditionalStatementDto dto)
         {
             if (dto == null) return null;
 
-            var poco = BdoData.NewStatement<TItem>(dto.Items?.Select(q => q.ToPoco())?.ToArray());
+            var poco = BdoData.NewStatement(dto.Items?.Select(q => (q.Item, q.Condition?.ToPoco()))?.ToArray());
 
             return poco;
         }

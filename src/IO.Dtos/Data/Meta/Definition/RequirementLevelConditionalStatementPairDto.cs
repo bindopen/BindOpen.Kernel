@@ -7,9 +7,9 @@ namespace BindOpen.System.Data
     /// <summary>
     /// This class represents a data key value.
     /// </summary>
-    //[XmlType("ConditionalStatementPair", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlType("RequirementLevelConditionalStatementPair", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "add", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class TConditionalStatementPairDto<T>
+    public class RequirementLevelConditionalStatementPairDto
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -22,14 +22,14 @@ namespace BindOpen.System.Data
         /// </summary>
         [JsonPropertyName("item")]
         [XmlAttribute("item")]
-        public T Item { get; set; }
+        public RequirementLevels Item { get; set; }
 
         /// <summary>
         /// Default items of this instance.
         /// </summary>
         [JsonPropertyName("condition")]
         [XmlElement("condition", Type = typeof(BasicConditionDto))]
-        [XmlElement("condition.node", Type = typeof(CompositeConditionDto))]
+        [XmlElement("condition.composite", Type = typeof(CompositeConditionDto))]
         [XmlElement("condition.expression", Type = typeof(ExpressionConditionDto))]
         public ConditionDto Condition { get; set; }
 
@@ -45,7 +45,7 @@ namespace BindOpen.System.Data
         /// <summary>
         /// Instantiates a new instance of TConditionalStatementPairDto class.
         /// </summary>
-        public TConditionalStatementPairDto()
+        public RequirementLevelConditionalStatementPairDto()
         {
         }
 

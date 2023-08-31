@@ -34,7 +34,7 @@ namespace BindOpen.System.Data.Meta
                     .ForMember(q => q.Children, opt => opt.Ignore())
                     .ForMember(q => q.ClassReference, opt => opt.Ignore())
                     .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToDto()))
-                    .ForMember(q => q.ConstraintStatement, opt => opt.MapFrom(q => q.ConstraintStatement.ToDto<string>()))
+                    .ForMember(q => q.ConstraintStatement, opt => opt.MapFrom(q => q.ConstraintStatement.ToDto()))
                     .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDto()))
                     .ForMember(q => q.DefaultItems, opt => opt.Ignore())
                     .ForMember(q => q.Description, opt => opt.MapFrom(q => q.Description.ToDto()))
@@ -89,14 +89,14 @@ namespace BindOpen.System.Data.Meta
 
                     .ForMember(q => q._Children, opt => opt.Ignore())
                     .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToPoco()))
-                    .ForMember(q => q.ConstraintStatement, opt => opt.MapFrom(q => q.ConstraintStatement.ToPoco()))
+                    .ForMember(q => q.ConstraintStatement, opt => opt.Ignore())
                     .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToPoco()))
                     .ForMember(q => q.DataType, opt => opt.Ignore())
                     .ForMember(q => q.Description, opt => opt.Ignore())
                     .ForMember(q => q.DefaultData, opt => opt.Ignore())
                     .ForMember(q => q.Detail, opt => opt.Ignore())
-                    .ForMember(q => q.ItemRequirementStatement, opt => opt.MapFrom(q => q.ItemRequirementStatement.ToPoco()))
-                    .ForMember(q => q.RequirementStatement, opt => opt.MapFrom(q => q.RequirementStatement.ToPoco()))
+                    .ForMember(q => q.ItemRequirementStatement, opt => opt.Ignore())
+                    .ForMember(q => q.RequirementStatement, opt => opt.Ignore())
                     .ForMember(q => q.Title, opt => opt.Ignore())
                 );
 
@@ -106,13 +106,18 @@ namespace BindOpen.System.Data.Meta
             poco.Aliases = dto?.Aliases == null ? null : new List<string>(dto.Aliases);
             poco.AvailableDataModes = dto?.AvailableDataModes == null ? null : new List<DataMode>(dto.AvailableDataModes);
 
+            poco.ConstraintStatement = dto?.ConstraintStatement?.ToPoco();
             poco._Children = BdoData.NewSet(dto?.Children?.Select(q => q.ToPoco()).ToArray());
 
-            poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco());
-            poco.DataType.DefinitionUniqueName = dto.DefinitionUniqueName;
-            poco.DataType.ValueType = dto.ValueType;
+            poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco())
+            {
+                DefinitionUniqueName = dto.DefinitionUniqueName,
+                ValueType = dto.ValueType
+            };
 
+            poco.ItemRequirementStatement = dto?.ItemRequirementStatement?.ToPoco();
             poco.ItemSpecLevels = dto?.ItemSpecLevels == null ? null : new List<SpecificationLevels>(dto.ItemSpecLevels);
+            poco.RequirementStatement = dto?.RequirementStatement?.ToPoco();
             poco.SpecLevels = dto?.SpecLevels == null ? null : new List<SpecificationLevels>(dto.SpecLevels);
 
             poco

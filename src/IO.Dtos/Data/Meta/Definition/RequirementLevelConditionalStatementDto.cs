@@ -7,9 +7,9 @@ namespace BindOpen.System.Data.Meta
     /// <summary>
     /// This class represents a data key value.
     /// </summary>
-    //[XmlType("TConditionalStatementDto", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlType("RequirementLevelConditionalStatement", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "conditional.statement", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    public class TConditionalStatementDto<T>
+    public class RequirementLevelConditionalStatementDto
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -29,7 +29,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         [JsonPropertyName("items")]
         [XmlElement("add")]
-        public List<TConditionalStatementPairDto<T>> Items { get; set; }
+        public List<RequirementLevelConditionalStatementPairDto> Items { get; set; }
 
 
         #endregion
@@ -41,9 +41,9 @@ namespace BindOpen.System.Data.Meta
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of TConditionalStatementDto class.
+        /// Instantiates a new instance of RequirementLevelConditionalStatementDto class.
         /// </summary>
-        public TConditionalStatementDto()
+        public RequirementLevelConditionalStatementDto()
         {
         }
 
