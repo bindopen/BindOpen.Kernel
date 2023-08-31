@@ -13,9 +13,6 @@ namespace BindOpen.System.Data.Meta
     /// </summary>
     [XmlType("Spec", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
     [XmlRoot(ElementName = "spec", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
-    [XmlInclude(typeof(SpecDto))]
-    [JsonDerivedType(typeof(SpecDto), "spec")]
-    [JsonDerivedType(typeof(AggregateSpecDto), "node")]
     public class SpecDto : IBdoDto, IIdentified
     {
         // --------------------------------------------------
@@ -23,6 +20,22 @@ namespace BindOpen.System.Data.Meta
         // --------------------------------------------------
 
         #region Properties
+
+
+        /// <summary>
+        /// THe children of this instance.
+        /// </summary>
+        [JsonPropertyName("items")]
+        [XmlArray("items")]
+        [XmlArrayItem("item", Type = typeof(SpecDto))]
+        public List<SpecDto> Children { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonIgnore()]
+        [XmlIgnore()]
+        public bool ChildrenSpecficied => Children?.Count > 0;
 
         /// <summary>
         /// ID of this instance.

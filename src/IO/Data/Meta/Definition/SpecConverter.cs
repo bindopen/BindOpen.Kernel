@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using BindOpen.System.Data;
 using BindOpen.System.Data.Assemblies;
 using BindOpen.System.Data.Conditions;
 using BindOpen.System.Data.Helpers;
+using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Meta.Reflection;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,28 +13,26 @@ namespace BindOpen.System.Data.Meta
     /// <summary>
     /// This class represents a Xml helper.
     /// </summary>
-    public static class AggregateSpecConverter
+    public static class SpecConverter
     {
         /// <summary>
         /// Converts to DTO.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static AggregateSpecDto ToDto(this IBdoAggregateSpec poco)
+        public static SpecDto ToDto(this IBdoSpec poco)
         {
             if (poco == null) return null;
 
-            if (poco == null) return null;
-
             var config = new MapperConfiguration(
-                cfg => cfg.CreateMap<BdoAggregateSpec, AggregateSpecDto>()
+                cfg => cfg.CreateMap<BdoSpec, SpecDto>()
                     .ForMember(q => q.Aliases, opt => opt.Ignore())
                     .ForMember(q => q.AvailableDataModes, opt => opt.Ignore())
                     .ForMember(q => q.ItemSpecLevels, opt => opt.Ignore())
                     .ForMember(q => q.SpecLevels, opt => opt.Ignore())
 
-                    .ForMember(q => q.ClassReference, opt => opt.Ignore())
                     .ForMember(q => q.Children, opt => opt.Ignore())
+                    .ForMember(q => q.ClassReference, opt => opt.Ignore())
                     .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToDto()))
                     .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.DataReference.ToDto()))
                     .ForMember(q => q.DefaultItems, opt => opt.Ignore())
@@ -42,7 +42,7 @@ namespace BindOpen.System.Data.Meta
             );
 
             var mapper = new Mapper(config);
-            var dto = mapper.Map<AggregateSpecDto>(poco);
+            var dto = mapper.Map<SpecDto>(poco);
 
             dto.Aliases = poco?.Aliases == null ? null : new List<string>(poco.Aliases);
             dto.AvailableDataModes = poco?.AvailableDataModes == null ? null : new List<DataMode>(poco.AvailableDataModes);
@@ -72,13 +72,13 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoAggregateSpec ToPoco(
-            this AggregateSpecDto dto)
+        public static IBdoSpec ToPoco(
+            this SpecDto dto)
         {
             if (dto == null) return null;
 
             var config = new MapperConfiguration(
-                cfg => cfg.CreateMap<AggregateSpecDto, BdoAggregateSpec>()
+                cfg => cfg.CreateMap<SpecDto, BdoSpec>()
                     .ForMember(q => q.Aliases, opt => opt.Ignore())
                     .ForMember(q => q.AvailableDataModes, opt => opt.Ignore())
                     .ForMember(q => q.ItemSpecLevels, opt => opt.Ignore())
@@ -95,18 +95,19 @@ namespace BindOpen.System.Data.Meta
                 );
 
             var mapper = new Mapper(config);
-            var poco = mapper.Map<BdoAggregateSpec>(dto);
+            var poco = mapper.Map<BdoSpec>(dto);
 
             poco.Aliases = dto?.Aliases == null ? null : new List<string>(dto.Aliases);
             poco.AvailableDataModes = dto?.AvailableDataModes == null ? null : new List<DataMode>(dto.AvailableDataModes);
-            poco.ItemSpecLevels = dto?.ItemSpecLevels == null ? null : new List<SpecificationLevels>(dto.ItemSpecLevels);
-            poco.SpecLevels = dto?.SpecLevels == null ? null : new List<SpecificationLevels>(dto.SpecLevels);
 
             poco._Children = BdoData.NewSet(dto?.Children?.Select(q => q.ToPoco()).ToArray());
 
             poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco());
             poco.DataType.DefinitionUniqueName = dto.DefinitionUniqueName;
             poco.DataType.ValueType = dto.ValueType;
+
+            poco.ItemSpecLevels = dto?.ItemSpecLevels == null ? null : new List<SpecificationLevels>(dto.ItemSpecLevels);
+            poco.SpecLevels = dto?.SpecLevels == null ? null : new List<SpecificationLevels>(dto.SpecLevels);
 
             poco
                 .WithTitle(dto.Title.ToPoco<string>())

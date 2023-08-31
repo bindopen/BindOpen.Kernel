@@ -1,5 +1,6 @@
 ﻿using BindOpen.System.Data.Conditions;
 using BindOpen.System.Data.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -45,6 +46,41 @@ namespace BindOpen.System.Data.Meta
 
         #endregion
 
+        // ------------------------------------------
+        // ITParent Implementation
+        // ------------------------------------------
+
+        #region ITParent
+
+        protected ITBdoSet<IBdoSpec> _children = null;
+
+        public ITBdoSet<IBdoSpec> _Children { get => _children; set { _children = value; } }
+
+        public IBdoSpec InsertChild(Action<IBdoSpec> updater)
+        {
+            var child = BdoData.NewSpec();
+            updater?.Invoke(child);
+
+            child.WithParent(this);
+
+            return child;
+        }
+
+        public void RemoveChildren(Predicate<IBdoSpec> filter = null, bool isRecursive = false)
+        {
+            _children?.Remove(filter);
+
+            if (isRecursive && _children?.Any() == true)
+            {
+                foreach (var child in _children)
+                {
+                    child.RemoveChildren(filter, true);
+                }
+            }
+        }
+
+        #endregion
+
         // --------------------------------------------------
         // CLONING
         // --------------------------------------------------
@@ -63,6 +99,8 @@ namespace BindOpen.System.Data.Meta
             {
                 obj.Id = StringHelper.NewGuid();
             }
+
+            obj._children = _children == null ? null : BdoData.NewSet(_children?.Select(q => q.Clone<IBdoSpec>()).ToArray());
 
             obj.WithAvailableDataModes(AvailableDataModes?.ToArray());
             obj.WithAliases(Aliases?.ToArray());
@@ -135,7 +173,7 @@ namespace BindOpen.System.Data.Meta
 
         #region ITParent
 
-        public IBdoAggregateSpec Parent { get; set; }
+        public IBdoSpec Parent { get; set; }
 
         #endregion
 

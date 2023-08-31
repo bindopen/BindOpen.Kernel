@@ -1,6 +1,6 @@
-﻿using BindOpen.System.Data.Helpers;
-using BindOpen.System.Logging;
+﻿using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
+using System.Linq;
 
 namespace BindOpen.System.Data.Meta
 {
@@ -9,6 +9,30 @@ namespace BindOpen.System.Data.Meta
     /// </summary>
     public static partial class BdoSpecExtensions
     {
+        public static T WithChildren<T>(this T log, params IBdoSpec[] children) where T : IBdoSpec
+        {
+            if (log != null)
+            {
+                log._Children = BdoData.NewSet(children?.Any() == true ? children : null);
+            }
+
+            return log;
+        }
+
+        public static T AddChildren<T>(this T log, params IBdoSpec[] children) where T : IBdoSpec
+        {
+            if (log != null)
+            {
+                log._Children ??= BdoData.NewSet<IBdoSpec>();
+                foreach (var child in children)
+                {
+                    log._Children.Add(child);
+                }
+            }
+
+            return log;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -75,8 +99,7 @@ namespace BindOpen.System.Data.Meta
             if (meta != null)
             {
                 var metaComposite = meta as IBdoMetaNode;
-                spec = metaComposite != null
-                    && !typeof(BdoAggregateSpec).IsAssignableFrom(typeof(T)) ? BdoData.NewSpec<BdoAggregateSpec>().As<T>() : BdoData.NewSpec<T>();
+                spec = BdoData.NewSpec<T>();
 
                 if (spec != null)
                 {
@@ -85,12 +108,12 @@ namespace BindOpen.System.Data.Meta
                     spec.Name ??= meta.Name;
                     spec.DataType = meta.DataType;
 
-                    if (metaComposite != null && spec is IBdoAggregateSpec aggreagateSpec)
+                    if (metaComposite != null)
                     {
                         foreach (var subMeta in metaComposite)
                         {
                             var subSpec = subMeta.ToSpec<T>(null, onlyMetaAttributes);
-                            aggreagateSpec.AddChildren(subSpec);
+                            spec.AddChildren(subSpec);
                         }
                     }
                 }

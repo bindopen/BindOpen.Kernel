@@ -7,7 +7,7 @@ namespace BindOpen.System.Data.Meta
     /// </summary>
     public static partial class IBdoSpecExtensions
     {
-        public static T WithParent<T>(this T log, IBdoAggregateSpec parent) where T : IBdoSpec
+        public static T WithParent<T>(this T log, IBdoSpec parent) where T : IBdoSpec
         {
             if (log != null)
             {
