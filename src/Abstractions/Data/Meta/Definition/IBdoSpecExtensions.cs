@@ -199,7 +199,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (spec != null)
             {
-                spec.RequirementLevelStatement = statement;
+                spec.RequirementStatement = statement;
             }
 
             return spec;
@@ -218,7 +218,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (spec != null)
             {
-                spec.ItemRequirementLevelStatement = statement;
+                spec.ItemRequirementStatement = statement;
             }
 
             return spec;
@@ -272,7 +272,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (spec != null)
             {
-                var level = spec.ItemRequirementLevelStatement.GetItem(scope, varSet, log);
+                var level = spec.ItemRequirementStatement.GetItem(scope, varSet, log);
 
                 if (level == RequirementLevels.None)
                 {

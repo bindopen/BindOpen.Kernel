@@ -1,4 +1,5 @@
-﻿using BindOpen.System.Data;
+﻿using BindOpen.System.Data.Meta;
+using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Scoping.Script;
 using BindOpen.System.Tests;

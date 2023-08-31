@@ -1,4 +1,6 @@
-﻿using BindOpen.System.IO.Dtos;
+﻿using BindOpen.System.Data.Meta;
+using BindOpen.System.IO.Dtos;
+using BindOpen.System.Data.Meta;
 using BindOpen.System.Tests;
 using DeepEqual.Syntax;
 using NUnit.Framework;

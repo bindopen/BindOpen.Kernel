@@ -157,8 +157,8 @@ namespace BindOpen.System.Data.Meta
         {
             if (spec != null)
             {
-                spec.RequirementLevelStatement ??= BdoData.NewStatement<RequirementLevels>();
-                spec.RequirementLevelStatement.Add((level, condition));
+                spec.RequirementStatement ??= BdoData.NewStatement<RequirementLevels>();
+                spec.RequirementStatement.Add((level, condition));
             }
 
             return spec;
@@ -240,8 +240,8 @@ namespace BindOpen.System.Data.Meta
         {
             if (spec != null)
             {
-                spec.ItemRequirementLevelStatement ??= BdoData.NewStatement<RequirementLevels>();
-                spec.ItemRequirementLevelStatement.Add((level, condition));
+                spec.ItemRequirementStatement ??= BdoData.NewStatement<RequirementLevels>();
+                spec.ItemRequirementStatement.Add((level, condition));
             }
 
             return spec;

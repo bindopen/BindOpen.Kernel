@@ -34,10 +34,13 @@ namespace BindOpen.System.Data.Meta
                     .ForMember(q => q.Children, opt => opt.Ignore())
                     .ForMember(q => q.ClassReference, opt => opt.Ignore())
                     .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToDto()))
+                    .ForMember(q => q.ConstraintStatement, opt => opt.MapFrom(q => q.ConstraintStatement.ToDto<string>()))
                     .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDto()))
                     .ForMember(q => q.DefaultItems, opt => opt.Ignore())
                     .ForMember(q => q.Description, opt => opt.MapFrom(q => q.Description.ToDto()))
                     .ForMember(q => q.Detail, opt => opt.MapFrom(q => q.Detail.ToDto()))
+                    .ForMember(q => q.RequirementStatement, opt => opt.MapFrom(q => q.RequirementStatement.ToDto()))
+                    .ForMember(q => q.ItemRequirementStatement, opt => opt.MapFrom(q => q.ItemRequirementStatement.ToDto()))
                     .ForMember(q => q.Title, opt => opt.MapFrom(q => q.Title.ToDto()))
             );
 
@@ -86,11 +89,14 @@ namespace BindOpen.System.Data.Meta
 
                     .ForMember(q => q._Children, opt => opt.Ignore())
                     .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToPoco()))
+                    .ForMember(q => q.ConstraintStatement, opt => opt.MapFrom(q => q.ConstraintStatement.ToPoco()))
                     .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToPoco()))
                     .ForMember(q => q.DataType, opt => opt.Ignore())
                     .ForMember(q => q.Description, opt => opt.Ignore())
                     .ForMember(q => q.DefaultData, opt => opt.Ignore())
                     .ForMember(q => q.Detail, opt => opt.Ignore())
+                    .ForMember(q => q.ItemRequirementStatement, opt => opt.MapFrom(q => q.ItemRequirementStatement.ToPoco()))
+                    .ForMember(q => q.RequirementStatement, opt => opt.MapFrom(q => q.RequirementStatement.ToPoco()))
                     .ForMember(q => q.Title, opt => opt.Ignore())
                 );
 

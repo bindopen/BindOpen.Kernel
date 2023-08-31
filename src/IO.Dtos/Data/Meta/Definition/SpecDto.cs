@@ -251,29 +251,23 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The requirement level of this instance.
         /// </summary>
-        [JsonPropertyName("requirement.level")]
-        [XmlElement("requirement.level")]
-        [DefaultValue(RequirementLevels.None)]
-        public RequirementLevels RequirementLevel { get; set; }
-
-        /// <summary>
-        /// The requirement script of this instance.
-        /// </summary>
-        [JsonPropertyName("requirement.exp")]
-        [XmlElement("requirement.exp")]
-        public string RequirementExp { get; set; }
+        [JsonPropertyName("constaints")]
+        [XmlElement("constaints")]
+        public TConditionalStatementDto<string> ConstraintStatement { get; set; }
 
         /// <summary>
         /// The requirement level of this instance.
         /// </summary>
-        [JsonPropertyName("item.requirement.level")]
-        [XmlElement("item.requirement.level")]
-        [DefaultValue(RequirementLevels.None)]
-        public RequirementLevels ItemRequirementLevel { get; set; }
+        [JsonPropertyName("requirement")]
+        [XmlElement("requirement")]
+        public TConditionalStatementDto<RequirementLevels> RequirementStatement { get; set; }
 
-        [JsonPropertyName("item.requirement.exp")]
-        [XmlElement("item.requirement.exp")]
-        public string ItemRequirementExp { get; set; }
+        /// <summary>
+        /// The requirement level of this instance.
+        /// </summary>
+        [JsonPropertyName("item.requirement")]
+        [XmlElement("item.requirement")]
+        public TConditionalStatementDto<RequirementLevels> ItemRequirementStatement { get; set; }
 
         #endregion
 

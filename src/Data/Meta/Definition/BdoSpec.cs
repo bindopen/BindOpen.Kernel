@@ -107,12 +107,12 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public ITBdoConditionalStatement<RequirementLevels> RequirementLevelStatement { get; set; }
+        public ITBdoConditionalStatement<RequirementLevels> RequirementStatement { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public ITBdoConditionalStatement<RequirementLevels> ItemRequirementLevelStatement { get; set; }
+        public ITBdoConditionalStatement<RequirementLevels> ItemRequirementStatement { get; set; }
 
 
         /// <summary>
