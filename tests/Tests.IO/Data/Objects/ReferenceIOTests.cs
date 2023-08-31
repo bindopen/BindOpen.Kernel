@@ -10,8 +10,8 @@ namespace BindOpen.System.Data
     [TestFixture, Order(210)]
     public class ReferenceIOTests
     {
-        private readonly string _filePath_xml = SystemData.WorkingFolder + "DataReference.xml";
-        private readonly string _filePath_json = SystemData.WorkingFolder + "DataReference.json";
+        private readonly string _filePath_xml = SystemData.WorkingFolder + "Reference.xml";
+        private readonly string _filePath_json = SystemData.WorkingFolder + "Reference.json";
         dynamic _valueSet;
         private IBdoReference _ref = null;
 

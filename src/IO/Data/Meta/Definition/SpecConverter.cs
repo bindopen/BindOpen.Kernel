@@ -34,7 +34,7 @@ namespace BindOpen.System.Data.Meta
                     .ForMember(q => q.Children, opt => opt.Ignore())
                     .ForMember(q => q.ClassReference, opt => opt.Ignore())
                     .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToDto()))
-                    .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.DataReference.ToDto()))
+                    .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDto()))
                     .ForMember(q => q.DefaultItems, opt => opt.Ignore())
                     .ForMember(q => q.Description, opt => opt.MapFrom(q => q.Description.ToDto()))
                     .ForMember(q => q.Detail, opt => opt.MapFrom(q => q.Detail.ToDto()))
@@ -86,7 +86,7 @@ namespace BindOpen.System.Data.Meta
 
                     .ForMember(q => q._Children, opt => opt.Ignore())
                     .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToPoco()))
-                    .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.DataReference.ToPoco()))
+                    .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToPoco()))
                     .ForMember(q => q.DataType, opt => opt.Ignore())
                     .ForMember(q => q.Description, opt => opt.Ignore())
                     .ForMember(q => q.DefaultData, opt => opt.Ignore())

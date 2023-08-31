@@ -409,22 +409,22 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Meta.BdoMetaDataExtensions.WithDataReference``1(``0,BindOpen.System.Data.IBdoExpression)">
+        <member name="M:BindOpen.System.Data.Meta.BdoMetaDataExtensions.WithReference``1(``0,BindOpen.System.Data.IBdoExpression)">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Meta.BdoMetaDataExtensions.WithDataReference``1(``0,BindOpen.System.Scoping.Script.IBdoScriptword)">
+        <member name="M:BindOpen.System.Data.Meta.BdoMetaDataExtensions.WithReference``1(``0,BindOpen.System.Scoping.Script.IBdoScriptword)">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Meta.BdoMetaDataExtensions.WithDataReference``1(``0,System.String)">
+        <member name="M:BindOpen.System.Data.Meta.BdoMetaDataExtensions.WithReference``1(``0,System.String)">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Meta.BdoMetaDataExtensions.WithDataReference``1(``0,BindOpen.System.Data.Meta.IBdoMetaData)">
+        <member name="M:BindOpen.System.Data.Meta.BdoMetaDataExtensions.WithReference``1(``0,BindOpen.System.Data.Meta.IBdoMetaData)">
             <summary>
             
             </summary>

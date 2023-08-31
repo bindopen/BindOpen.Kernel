@@ -19,9 +19,8 @@ namespace BindOpen.System.Data.Meta
             Aliases = refItem?.Aliases == null ? null : new List<string>(refItem?.Aliases);
             AvailableDataModes = refItem?.AvailableDataModes == null ? null : new List<DataMode>(refItem?.AvailableDataModes);
             Condition = refItem?.Condition?.Clone<IBdoCondition>();
-            DataReference = refItem?.DataReference?.Clone<IBdoReference>();
-            ItemRequirementExp = refItem?.ItemRequirementExp;
-            ItemRequirementLevel = refItem?.ItemRequirementLevel ?? RequirementLevels.None;
+            Reference = refItem?.Reference?.Clone<IBdoReference>();
+            ItemRequirementLevelStatement = refItem?.ItemRequirementLevelStatement?.Clone<ITBdoConditionalStatement<RequirementLevels>>();
             ItemSpecLevels = refItem?.ItemSpecLevels == null ? null : new List<SpecificationLevels>(refItem?.ItemSpecLevels);
             DataType = refItem?.DataType ?? new BdoDataType();
             DefaultData = refItem?.DefaultData;
@@ -35,8 +34,7 @@ namespace BindOpen.System.Data.Meta
             Label = refItem?.Label;
             MinDataItemNumber = refItem?.MinDataItemNumber ?? 0;
             Name = refItem?.Name;
-            RequirementExp = refItem?.RequirementExp;
-            RequirementLevel = refItem?.RequirementLevel ?? RequirementLevels.None;
+            RequirementLevelStatement = refItem?.RequirementLevelStatement?.Clone<ITBdoConditionalStatement<RequirementLevels>>();
             SpecLevels = refItem?.SpecLevels == null ? null : new List<SpecificationLevels>(refItem?.SpecLevels);
             Title = refItem?.Title?.Clone<TBdoDictionary<string>>();
         }

@@ -69,8 +69,8 @@ namespace BindOpen.System.Data.Meta.Reflection
 
                     try
                     {
-                        var meta = spec.DataReference?.Kind == BdoReferenceKind.Identifier ?
-                            set.Descendant<IBdoMetaData>(spec.DataReference.Identifier?.Split('/')) : set.GetOfGroup(name, groupId);
+                        var meta = spec.Reference?.Kind == BdoReferenceKind.Identifier ?
+                            set.Descendant<IBdoMetaData>(spec.Reference.Identifier?.Split('/')) : set.GetOfGroup(name, groupId);
 
                         if (meta != null)
                         {

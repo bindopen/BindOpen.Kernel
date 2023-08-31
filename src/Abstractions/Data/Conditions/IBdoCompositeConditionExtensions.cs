@@ -1,7 +1,6 @@
-﻿using BindOpen.System.Data.Conditions;
-using System.Linq;
+﻿using System.Linq;
 
-namespace BindOpen.System.Data
+namespace BindOpen.System.Data.Conditions
 {
     /// <summary>
     /// This static class provides methods to handle conditions.

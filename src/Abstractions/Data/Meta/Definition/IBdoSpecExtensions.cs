@@ -1,4 +1,7 @@
-﻿using BindOpen.System.Data.Helpers;
+﻿using BindOpen.System.Data.Conditions;
+using BindOpen.System.Data.Helpers;
+using BindOpen.System.Logging;
+using BindOpen.System.Scoping;
 
 namespace BindOpen.System.Data.Meta
 {
@@ -107,7 +110,7 @@ namespace BindOpen.System.Data.Meta
             {
                 if (item is IBdoReference reference)
                 {
-                    spec.WithDataReference(reference);
+                    spec.WithReference(reference);
                 }
                 else
                 {
@@ -183,78 +186,7 @@ namespace BindOpen.System.Data.Meta
             return spec;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public static T TAsOptional<T>(
-            this T spec)
-            where T : IBdoSpec
-        {
-            spec?.WithRequirement(RequirementLevels.Optional);
-
-            return spec;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public static T AsRequired<T>(
-            this T spec)
-            where T : IBdoSpec
-        {
-            spec?.WithRequirement(RequirementLevels.Required);
-
-            return spec;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public static T AsForbidden<T>(
-            this T spec)
-            where T : IBdoSpec
-        {
-            spec?.WithRequirement(RequirementLevels.Forbidden);
-
-            return spec;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="level"></param>
-        public static T WithItemRequirement<T>(
-            this T spec,
-            RequirementLevels level)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.ItemRequirementLevel = level;
-            }
-
-            return spec;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="script"></param>
-        public static T WithItemRequirementExp<T>(
-            this T spec,
-            string exp)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.ItemRequirementExp = exp;
-            }
-
-            return spec;
-        }
+        // Requirement
 
         /// <summary>
         /// 
@@ -262,33 +194,37 @@ namespace BindOpen.System.Data.Meta
         /// <param key="level"></param>
         public static T WithRequirement<T>(
             this T spec,
-            RequirementLevels level)
+            ITBdoConditionalStatement<RequirementLevels> statement)
             where T : IBdoSpec
         {
             if (spec != null)
             {
-                spec.RequirementLevel = level;
+                spec.RequirementLevelStatement = statement;
             }
 
             return spec;
         }
+
+        // Item requirement
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param key="script"></param>
-        public static T WithRequirementExp<T>(
+        /// <param key="level"></param>
+        public static T WithItemRequirement<T>(
             this T spec,
-            string exp)
+            ITBdoConditionalStatement<RequirementLevels> statement)
             where T : IBdoSpec
         {
             if (spec != null)
             {
-                spec.RequirementExp = exp;
+                spec.ItemRequirementLevelStatement = statement;
             }
 
             return spec;
         }
+
+        // Specification
 
         /// <summary>
         /// 
@@ -327,27 +263,31 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The item requirement level of this instance.
         /// </summary>
-        public static RequirementLevels WhatDataRequirement<T>(
-            this T spec)
+        public static RequirementLevels WhatItemRequirement<T>(
+            this T spec,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
             where T : IBdoSpec
         {
             if (spec != null)
             {
-                if (!string.IsNullOrEmpty(spec.ItemRequirementExp))
+                var level = spec.ItemRequirementLevelStatement.GetItem(scope, varSet, log);
+
+                if (level == RequirementLevels.None)
                 {
-                    return RequirementLevels.Custom;
-                }
-                else if (spec.MaxDataItemNumber == 0)
-                {
-                    return RequirementLevels.Forbidden;
-                }
-                else if (spec.MinDataItemNumber > 0)
-                {
-                    return RequirementLevels.Required;
-                }
-                else if (spec.MinDataItemNumber == 0)
-                {
-                    return RequirementLevels.Optional;
+                    if (spec.MaxDataItemNumber == 0)
+                    {
+                        return RequirementLevels.Forbidden;
+                    }
+                    else if (spec.MinDataItemNumber > 0)
+                    {
+                        return RequirementLevels.Required;
+                    }
+                    else if (spec.MinDataItemNumber == 0)
+                    {
+                        return RequirementLevels.Optional;
+                    }
                 }
             }
 
@@ -395,6 +335,21 @@ namespace BindOpen.System.Data.Meta
                 (groupId == spec.GroupId
                     || groupId == StringHelper.__Star
                     || groupId.BdoKeyEquals(spec?.GroupId));
+        }
+
+        // Constraints
+
+        public static T WithConstraints<T>(
+            this T spec,
+            ITBdoConditionalStatement<string> statement)
+            where T : IBdoSpec
+        {
+            if (spec != null)
+            {
+                spec.ConstraintStatement = statement;
+            }
+
+            return spec;
         }
     }
 }

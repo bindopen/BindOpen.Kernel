@@ -68,7 +68,7 @@ namespace BindOpen.System.Data
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of DataReferenceDto class.
+        /// Instantiates a new instance of ReferenceDto class.
         /// </summary>
         public ReferenceDto()
         {

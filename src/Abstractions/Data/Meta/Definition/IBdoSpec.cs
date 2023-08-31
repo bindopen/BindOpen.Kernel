@@ -8,11 +8,16 @@ namespace BindOpen.System.Data.Meta
     /// </summary>
     public interface IBdoSpec :
         IBdoObject, IReferenced, IBdoDataTyped, IBdoConditional,
-        IIdentified, INamed, IIndexed, IBdoDataReferenced,
+        IIdentified, INamed, IIndexed, IBdoReferenced,
         IBdoTitled, IBdoDescribed, IBdoDetailed,
         ITTreeNode<IBdoSpec>,
         ITUpdatable<IBdoSpec>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        ITBdoConditionalStatement<string> ConstraintStatement { get; set; }
+
         /// <summary>
         /// The identifier of the group of this instance.
         /// </summary>
@@ -77,22 +82,12 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        RequirementLevels RequirementLevel { get; set; }
+        ITBdoConditionalStatement<RequirementLevels> RequirementLevelStatement { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        string RequirementExp { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        RequirementLevels ItemRequirementLevel { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        string ItemRequirementExp { get; set; }
+        ITBdoConditionalStatement<RequirementLevels> ItemRequirementLevelStatement { get; set; }
 
         /// <summary>
         /// 

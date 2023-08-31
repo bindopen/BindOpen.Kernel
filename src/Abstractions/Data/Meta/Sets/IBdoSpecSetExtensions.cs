@@ -1,4 +1,5 @@
-﻿using BindOpen.System.Logging;
+﻿using BindOpen.System.Data.Conditions;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
 using System.Linq;
 
@@ -65,7 +66,7 @@ namespace BindOpen.System.Data.Meta
             if (specSet != null)
             {
                 spec = specSet.FirstOrDefault(
-                    q => q?.Condition.Evaluate(scope, varSet, log) == true);
+                    q => scope.Evaluate(q?.Condition, varSet, log) == true);
 
                 spec ??= specSet?.FirstOrDefault(q => q?.Condition == null);
             }

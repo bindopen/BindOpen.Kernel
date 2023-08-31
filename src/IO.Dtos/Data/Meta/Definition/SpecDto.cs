@@ -59,7 +59,7 @@ namespace BindOpen.System.Data.Meta
         [JsonPropertyName("condition")]
         [XmlElement("condition", Type = typeof(BasicConditionDto))]
         [XmlElement("condition.node", Type = typeof(CompositeConditionDto))]
-        [XmlElement("condition.reference", Type = typeof(ExpressionConditionDto))]
+        [XmlElement("condition.expression", Type = typeof(ExpressionConditionDto))]
         public ConditionDto Condition { get; set; }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         [JsonPropertyName("ref")]
         [XmlElement("ref")]
-        public ReferenceDto DataReference { get; set; }
+        public ReferenceDto Reference { get; set; }
 
         /// <summary>
         /// The description DTO of this instance.

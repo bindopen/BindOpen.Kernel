@@ -11,7 +11,7 @@ namespace BindOpen.System.Tests
         public static IBdoSpec CreateSpec()
         {
             var spec = BdoData.NewSpec<BdoSpec>()
-                .WithDataReference(BdoData.NewRef(BdoScript._Eq(1, 0)));
+                .WithReference(BdoData.NewRef(BdoScript._Eq(1, 0)));
 
             return spec;
         }

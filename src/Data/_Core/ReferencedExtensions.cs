@@ -6,50 +6,50 @@ namespace BindOpen.System.Data
     /// <summary>
     /// This interface defines a storable data item.
     /// </summary>
-    public static class DataReferencedExtensions
+    public static class ReferencedExtensions
     {
         /// <summary>
         /// 
         /// </summary>
-        public static T WithDataReference<T>(
+        public static T WithReference<T>(
             this T meta,
             IBdoExpression exp)
-            where T : IBdoDataReferenced
+            where T : IBdoReferenced
         {
-            return meta.WithDataReference(BdoData.NewRef(exp));
+            return meta.WithReference(BdoData.NewRef(exp));
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public static T WithDataReference<T>(
+        public static T WithReference<T>(
             this T meta,
             IBdoScriptword word)
-            where T : IBdoDataReferenced
+            where T : IBdoReferenced
         {
-            return meta.WithDataReference(BdoData.NewRef(word));
+            return meta.WithReference(BdoData.NewRef(word));
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public static T WithDataReference<T>(
+        public static T WithReference<T>(
             this T meta,
             string identifier)
-            where T : IBdoDataReferenced
+            where T : IBdoReferenced
         {
-            return meta.WithDataReference(BdoData.NewRef(identifier));
+            return meta.WithReference(BdoData.NewRef(identifier));
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public static T WithDataReference<T>(
+        public static T WithReference<T>(
             this T meta,
             IBdoMetaData target)
-            where T : IBdoDataReferenced
+            where T : IBdoReferenced
         {
-            return meta.WithDataReference(BdoData.NewRef(target));
+            return meta.WithReference(BdoData.NewRef(target));
         }
     }
 }

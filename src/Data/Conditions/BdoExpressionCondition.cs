@@ -30,6 +30,50 @@
 
         #endregion
 
+        // -----------------------------------------------
+        // Converters
+        // -----------------------------------------------
+
+        #region Converters
+
+        /// <summary>
+        /// Converts from string.
+        /// </summary>
+        /// <param key="st">The string to consider.</param>
+        public static explicit operator string(BdoExpressionCondition condition)
+        {
+            return condition?.Expression?.ToString();
+        }
+
+        /// <summary>
+        /// Converts from string.
+        /// </summary>
+        /// <param key="st">The string to consider.</param>
+        public static explicit operator BdoExpressionCondition(string script)
+        {
+            return BdoData.NewCondition(script);
+        }
+
+        /// <summary>
+        /// Converts from string.
+        /// </summary>
+        /// <param key="st">The string to consider.</param>
+        public static explicit operator BdoExpression(BdoExpressionCondition condition)
+        {
+            return condition?.Expression as BdoExpression;
+        }
+
+        /// <summary>
+        /// Converts from string.
+        /// </summary>
+        /// <param key="st">The string to consider.</param>
+        public static explicit operator BdoExpressionCondition(BdoExpression exp)
+        {
+            return BdoData.NewCondition(exp);
+        }
+
+        #endregion
+
         // ------------------------------------------
         // IDataItem Implementation
         // ------------------------------------------

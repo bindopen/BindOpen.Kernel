@@ -1,10 +1,9 @@
-﻿using BindOpen.System.Data.Conditions;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.System.Data.Meta;
 using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
 using BindOpen.System.Scoping.Script;
 
-namespace BindOpen.System.Data
+namespace BindOpen.System.Data.Conditions
 {
     /// <summary>
     /// This static class provides methods to handle conditions.
@@ -19,13 +18,12 @@ namespace BindOpen.System.Data
         /// <param key="varSet">The variable element set used to evaluate.</param>
         /// <returns>True if this instance is true.</returns>
         public static bool Evaluate(
-            this IBdoCondition condition,
-            IBdoScope scope,
+            this IBdoScope scope,
+            IBdoCondition condition,
             IBdoMetaSet varSet,
             IBdoLog log = null)
         {
-            return condition.Evaluate(
-                scope?.Interpreter, varSet, log);
+            return scope?.Interpreter.Evaluate(condition, varSet, log) ?? false;
         }
 
         /// <summary>
@@ -36,8 +34,8 @@ namespace BindOpen.System.Data
         /// <param key="varSet">The variable element set used to evaluate.</param>
         /// <returns>True if this instance is true.</returns>
         public static bool Evaluate(
-            this IBdoCondition condition,
-            IBdoScriptInterpreter scriptInterpreter,
+            this IBdoScriptInterpreter scriptInterpreter,
+            IBdoCondition condition,
             IBdoMetaSet varSet,
             IBdoLog log = null)
         {
@@ -78,10 +76,10 @@ namespace BindOpen.System.Data
                 switch (condition.Kind)
                 {
                     case CompositeConditionKind.And:
-                        b &= subCondition.Evaluate(scriptInterpreter, varSet, log);
+                        b &= scriptInterpreter.Evaluate(subCondition, varSet, log);
                         break;
                     case CompositeConditionKind.Or:
-                        b |= subCondition.Evaluate(scriptInterpreter, varSet, log);
+                        b |= scriptInterpreter.Evaluate(subCondition, varSet, log);
                         break;
                     default:
                         break;

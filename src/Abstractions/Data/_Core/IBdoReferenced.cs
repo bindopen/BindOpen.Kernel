@@ -3,11 +3,11 @@
     /// <summary>
     /// This interface defines a configurable data.
     /// </summary>
-    public interface IBdoDataReferenced
+    public interface IBdoReferenced
     {
         /// <summary>
         /// The reference of this object.
         /// </summary>
-        IBdoReference DataReference { get; set; }
+        IBdoReference Reference { get; set; }
     }
 }

@@ -432,7 +432,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Meta.IBdoMetaDataExtensions.WithDataReference``1(``0,BindOpen.System.Data.IBdoReference)">
+        <member name="M:BindOpen.System.Data.Meta.IBdoMetaDataExtensions.WithReference``1(``0,BindOpen.System.Data.IBdoReference)">
             <summary>
             
             </summary>

@@ -82,48 +82,12 @@ namespace BindOpen.System.Data.Meta
         #endregion
 
         // --------------------------------------------------
-        // CLONING
-        // --------------------------------------------------
-
-        #region Cloning
-
-        /// <summary>
-        /// Clones this instance.
-        /// </summary>
-        /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
-        {
-            var obj = base.Clone().As<BdoSpec>();
-
-            if (!string.IsNullOrEmpty(Id))
-            {
-                obj.Id = StringHelper.NewGuid();
-            }
-
-            obj._children = _children == null ? null : BdoData.NewSet(_children?.Select(q => q.Clone<IBdoSpec>()).ToArray());
-
-            obj.WithAvailableDataModes(AvailableDataModes?.ToArray());
-            obj.WithAliases(Aliases?.ToArray());
-            obj.Condition = Condition?.Clone<BdoCondition>();
-            obj.DataReference = DataReference?.Clone<BdoReference>();
-            obj.WithItemSpecLevels(ItemSpecLevels?.ToArray());
-            obj.DataType = DataType?.Clone<BdoDataType>();
-            obj.DefaultData = DefaultData;
-            obj.Description = Condition?.Clone<TBdoDictionary<string>>();
-            obj.Detail = Condition?.Clone<BdoMetaSet>();
-            obj.WithSpecLevels(SpecLevels?.ToArray());
-            obj.Title = Condition?.Clone<TBdoDictionary<string>>();
-
-            return obj;
-        }
-
-        #endregion
-
-        // --------------------------------------------------
         // IBdoSpec Implementation
         // --------------------------------------------------
 
         #region IBdoSpec
+
+        public ITBdoConditionalStatement<string> ConstraintStatement { get; set; }
 
         /// <summary>
         /// The identifier of the group of this instance.
@@ -141,14 +105,15 @@ namespace BindOpen.System.Data.Meta
         public string Label { get; set; }
 
         /// <summary>
-        /// The requirement level of this instance.
+        /// 
         /// </summary>
-        public RequirementLevels RequirementLevel { get; set; } = RequirementLevels.None;
+        public ITBdoConditionalStatement<RequirementLevels> RequirementLevelStatement { get; set; }
 
         /// <summary>
-        /// The requirement script of this instance.
+        /// 
         /// </summary>
-        public string RequirementExp { get; set; }
+        public ITBdoConditionalStatement<RequirementLevels> ItemRequirementLevelStatement { get; set; }
+
 
         /// <summary>
         /// The level of inheritance of this instance.
@@ -293,7 +258,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        public IBdoReference DataReference { get; set; }
+        public IBdoReference Reference { get; set; }
 
         /// <summary>
         /// The aliases of the entry.
@@ -336,19 +301,47 @@ namespace BindOpen.System.Data.Meta
         public bool IsValueList => MaxDataItemNumber == null || MaxDataItemNumber > 1;
 
         /// <summary>
-        /// The item requirement level of this instance.
-        /// </summary>
-        public RequirementLevels ItemRequirementLevel { get; set; }
-
-        /// <summary>
-        /// The requirement script of this instance.
-        /// </summary>
-        public string ItemRequirementExp { get; set; }
-
-        /// <summary>
         /// Levels of specification of this instance.
         /// </summary>
         public IList<SpecificationLevels> ItemSpecLevels { get; set; }
+
+        #endregion
+
+        // --------------------------------------------------
+        // IClonable
+        // --------------------------------------------------
+
+        #region IClonable
+
+        /// <summary>
+        /// Clones this instance.
+        /// </summary>
+        /// <returns>Returns a cloned instance.</returns>
+        public override object Clone()
+        {
+            var obj = base.Clone().As<BdoSpec>();
+
+            if (!string.IsNullOrEmpty(Id))
+            {
+                obj.Id = StringHelper.NewGuid();
+            }
+
+            obj._children = _children == null ? null : BdoData.NewSet(_children?.Select(q => q.Clone<IBdoSpec>()).ToArray());
+
+            obj.WithAvailableDataModes(AvailableDataModes?.ToArray());
+            obj.WithAliases(Aliases?.ToArray());
+            obj.Condition = Condition?.Clone<BdoCondition>();
+            obj.Reference = Reference?.Clone<BdoReference>();
+            obj.WithItemSpecLevels(ItemSpecLevels?.ToArray());
+            obj.DataType = DataType?.Clone<BdoDataType>();
+            obj.DefaultData = DefaultData;
+            obj.Description = Condition?.Clone<TBdoDictionary<string>>();
+            obj.Detail = Condition?.Clone<BdoMetaSet>();
+            obj.WithSpecLevels(SpecLevels?.ToArray());
+            obj.Title = Condition?.Clone<TBdoDictionary<string>>();
+
+            return obj;
+        }
 
         #endregion
 

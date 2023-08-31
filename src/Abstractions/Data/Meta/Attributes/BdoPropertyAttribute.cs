@@ -37,12 +37,12 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public RequirementLevels DataRequirement { get; set; } = RequirementLevels.Any;
+        public RequirementLevels ItemRequirement { get; set; } = RequirementLevels.Any;
 
         /// <summary>
         /// 
         /// </summary>
-        public string DataRequirementExp { get; set; }
+        public string ItemRequirementExp { get; set; }
 
         /// <summary>
         /// 
@@ -121,8 +121,8 @@ namespace BindOpen.System.Data.Meta
             RequirementLevels dataRequirement,
             string dataRequirementExp)
         {
-            DataRequirement = dataRequirement;
-            DataRequirementExp = dataRequirementExp;
+            ItemRequirement = dataRequirement;
+            ItemRequirementExp = dataRequirementExp;
         }
 
         public BdoPropertyAttribute(uint min, uint max)

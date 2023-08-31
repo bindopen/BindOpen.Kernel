@@ -8,7 +8,7 @@ namespace BindOpen.System.Data.Meta
     /// 
     /// </summary>
     public interface IBdoMetaData :
-        IBdoObjectNotMetable, IBdoDataReferenced,
+        IBdoObjectNotMetable, IBdoReferenced,
         INamed, IReferenced, IIndexed, IBdoDataTyped,
         ITChild<IBdoMetaData>,
         ITUpdatable<IBdoMetaData>

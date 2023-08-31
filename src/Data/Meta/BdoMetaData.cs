@@ -160,7 +160,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        public IBdoReference DataReference { get; set; }
+        public IBdoReference Reference { get; set; }
 
         /// <summary>
         /// The identifier of the group of this instance.
@@ -188,7 +188,7 @@ namespace BindOpen.System.Data.Meta
         {
             object obj = default;
 
-            if (DataReference != null)
+            if (Reference != null)
             {
                 if (scope == null)
                 {
@@ -196,12 +196,12 @@ namespace BindOpen.System.Data.Meta
                 }
                 else
                 {
-                    if (DataReference == null)
+                    if (Reference == null)
                     {
                         log?.AddEvent(EventKinds.Warning, "Script missing");
                     }
 
-                    obj = scope.Interpreter.Evaluate<object>(DataReference, varSet, log);
+                    obj = scope.Interpreter.Evaluate<object>(Reference, varSet, log);
                 }
             }
             else
@@ -226,7 +226,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (obj is IBdoReference reference)
             {
-                DataReference = reference;
+                Reference = reference;
             }
             else
             {
@@ -348,7 +348,7 @@ namespace BindOpen.System.Data.Meta
                 obj.Id = StringHelper.NewGuid();
             }
 
-            obj.DataReference = DataReference?.Clone<BdoReference>();
+            obj.Reference = Reference?.Clone<BdoReference>();
             obj.DataType = DataType?.Clone<BdoDataType>();
             obj.Spec = Spec?.Clone<BdoSpec>();
 
@@ -379,7 +379,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public virtual string Key() => string.IsNullOrEmpty(Name) ? DataReference?.MetaData?.Name : Name;
+        public virtual string Key() => string.IsNullOrEmpty(Name) ? Reference?.MetaData?.Name : Name;
 
         #endregion
 

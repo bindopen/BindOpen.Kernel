@@ -27,7 +27,7 @@ namespace BindOpen.System.Scoping.Script
                 cfg => cfg.CreateMap<IBdoScriptword, ScriptwordDto>()
                     .ForMember(q => q.Child, opt => opt.MapFrom(q => q.Child.ToDto(false)))
                     .ForMember(q => q.ClassReference, opt => opt.Ignore())
-                    .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.DataReference.ToDto()))
+                    .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDto()))
                     .ForMember(q => q.Item, opt => opt.Ignore())
                     .ForMember(q => q.MetaItems, opt => opt.Ignore())
                     .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.Spec.ToDto()))
@@ -63,11 +63,11 @@ namespace BindOpen.System.Scoping.Script
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<ScriptwordDto, BdoScriptword>()
                     .ForMember(q => q.Child, opt => opt.Ignore())
-                    .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.DataReference.ToPoco()))
+                    .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToPoco()))
                     .ForMember(q => q.DataType, opt => opt.Ignore())
                     .ForMember(q => q.Items, opt => opt.Ignore())
                     .ForMember(q => q.Parent, opt => opt.Ignore())
-                    .ForMember(q => q.DataReference, opt => opt.Ignore())
+                    .ForMember(q => q.Reference, opt => opt.Ignore())
                     .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.Spec.ToPoco()))
                 );
 

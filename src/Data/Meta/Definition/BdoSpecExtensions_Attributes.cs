@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BindOpen.System.Data.Conditions;
+using System;
 using System.Linq;
 using System.Reflection;
 
@@ -26,7 +27,7 @@ namespace BindOpen.System.Data.Meta
                 if (!string.IsNullOrEmpty(att.Reference))
                 {
                     change = true;
-                    spec.DataReference = BdoData.NewRef(att.Reference);
+                    spec.Reference = BdoData.NewRef(att.Reference);
                 }
 
                 if (att.MinDataItemNumber != null)
@@ -47,16 +48,17 @@ namespace BindOpen.System.Data.Meta
                     spec.Description = BdoData.NewDictionary(att.Description);
                 }
 
-                if (att.DataRequirement != RequirementLevels.Any)
+                if (att.ItemRequirement != RequirementLevels.Any)
                 {
                     change = true;
-                    spec.ItemRequirementLevel = att.DataRequirement;
-                }
 
-                if (!string.IsNullOrEmpty(att.DataRequirementExp))
-                {
-                    change = true;
-                    spec.ItemRequirementExp = att.DataRequirementExp;
+                    string exp = null;
+
+                    if (!string.IsNullOrEmpty(att.ItemRequirementExp))
+                    {
+                        exp = att.ItemRequirementExp;
+                    }
+                    spec.AddItemRequirement(att.ItemRequirement, (BdoExpressionCondition)exp);
                 }
 
                 if (att.Name != null)
@@ -73,13 +75,14 @@ namespace BindOpen.System.Data.Meta
                 if (att.Requirement != RequirementLevels.Any)
                 {
                     change = true;
-                    spec.RequirementLevel = att.Requirement;
-                }
 
-                if (!string.IsNullOrEmpty(att.RequirementExp))
-                {
-                    change = true;
-                    spec.RequirementExp = att.RequirementExp;
+                    string exp = null;
+
+                    if (!string.IsNullOrEmpty(att.RequirementExp))
+                    {
+                        exp = att.RequirementExp;
+                    }
+                    spec.AddRequirement(att.Requirement, (BdoExpressionCondition)exp);
                 }
 
                 if (!string.IsNullOrEmpty(att.Title))

@@ -21,7 +21,7 @@ namespace BindOpen.System.Data.Meta
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<BdoMetaObject, MetaObjectDto>()
                     .ForMember(q => q.ClassReference, opt => opt.Ignore())
-                    .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.DataReference.ToDto()))
+                    .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDto()))
                     .ForMember(q => q.Item, opt => opt.Ignore())
                     .ForMember(q => q.MetaItems, opt => opt.Ignore())
                     .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.Spec.ToDto()))
@@ -60,7 +60,7 @@ namespace BindOpen.System.Data.Meta
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<MetaObjectDto, BdoMetaObject>()
-                    .ForMember(q => q.DataReference, opt => opt.MapFrom(q => q.DataReference.ToPoco()))
+                    .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToPoco()))
                     .ForMember(q => q.DataType, opt => opt.Ignore())
                     .ForMember(q => q.Items, opt => opt.Ignore())
                     .ForMember(q => q.Parent, opt => opt.Ignore())

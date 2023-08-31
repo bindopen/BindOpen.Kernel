@@ -15,17 +15,15 @@ namespace BindOpen.System.Data
         /// <returns>Returns the created exp.</returns>
         public static BdoCompositeCondition NewCondition(
             CompositeConditionKind kind,
-            params IBdoCondition[] conditions)
-            => new(kind, conditions);
+            params IBdoCondition[] conditions) => new(kind, conditions);
 
         public static BdoBasicCondition NewCondition(
             object arg1,
             DataOperators ope,
-            object arg2 = null)
-            => new(arg1, ope, arg2);
+            object arg2 = null) => new(arg1, ope, arg2);
 
-        public static BdoExpressionCondition NewCondition(
-            IBdoExpression exp)
-            => new(exp);
+        public static BdoExpressionCondition NewCondition(IBdoExpression exp) => new(exp);
+
+        public static BdoExpressionCondition NewCondition(string script) => new(NewExp(script));
     }
 }

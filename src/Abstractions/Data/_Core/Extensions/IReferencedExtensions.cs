@@ -3,21 +3,21 @@
     /// <summary>
     /// This interface defines a storable data item.
     /// </summary>
-    public static class IDataReferencedExtensions
+    public static class IReferencedExtensions
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param key="date"></param>
         /// <returns></returns>
-        public static T WithDataReference<T>(
+        public static T WithReference<T>(
             this T obj,
             IBdoReference reference = null)
-            where T : IBdoDataReferenced
+            where T : IBdoReferenced
         {
             if (obj != null)
             {
-                obj.DataReference = reference;
+                obj.Reference = reference;
             }
 
             return obj;

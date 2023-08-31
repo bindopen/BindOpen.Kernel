@@ -367,7 +367,7 @@
             The itemization mode of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.MetaDataDto.DataReference">
+        <member name="P:BindOpen.System.Data.Meta.MetaDataDto.Reference">
             <summary>
             The expression of this instance.
             </summary>
@@ -746,7 +746,7 @@
         </member>
         <member name="M:BindOpen.System.Data.ReferenceDto.#ctor">
             <summary>
-            Instantiates a new instance of DataReferenceDto class.
+            Instantiates a new instance of ReferenceDto class.
             </summary>
         </member>
         <member name="T:BindOpen.System.Data.StringSetDto">

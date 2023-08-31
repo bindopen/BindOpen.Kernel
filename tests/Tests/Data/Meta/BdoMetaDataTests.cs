@@ -24,10 +24,10 @@ namespace BindOpen.System.Data
         }
 
         [Test, Order(1)]
-        public void DataReferenceTest()
+        public void ReferenceTest()
         {
             var meta1 = BdoData.NewMetaObject()
-                .WithDataReference(
+                .WithReference(
                     BdoScript.Var("workflow").Func("input", "input1"));
 
             var meta2 = BdoData.NewMetaObject(
