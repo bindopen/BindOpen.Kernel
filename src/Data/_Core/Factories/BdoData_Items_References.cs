@@ -44,8 +44,8 @@ namespace BindOpen.System.Data
             IBdoScriptword word)
             => new()
             {
-                Kind = BdoReferenceKind.Word,
-                Word = word
+                Kind = BdoReferenceKind.Expression,
+                Expression = NewExp(word)
             };
 
         /// <summary>

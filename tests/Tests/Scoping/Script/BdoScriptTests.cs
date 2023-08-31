@@ -6,7 +6,7 @@ using System;
 namespace BindOpen.System.Scoping.Script
 {
     [TestFixture, Order(401)]
-    public partial class BdoScriptTests
+    public class BdoScriptTests
     {
         private readonly string _scriptA = "$eq('MYTABLE', $text('MYTABLE'))";
 

@@ -27,23 +27,23 @@ namespace BindOpen.System.Data
         [Test, Order(2)]
         public void AggregateSpecTest()
         {
-            var spec = BdoData.NewSpec<BdoAggregateSpec>()
+            var spec = BdoData.NewSpec<BdoSpec>()
                 .WithProperties(BdoData.NewSpec("stringValue", DataValueTypes.Text));
-            Assert.That(spec.As<BdoAggregateSpec>()._Children?.Count == 1, "Aggregate specification error");
+            Assert.That(spec.As<BdoSpec>()._Children?.Count == 1, "Aggregate specification error");
         }
 
         [Test, Order(3)]
         public void CreateFromTypeTest()
         {
             var spec = BdoData.NewSpecFrom<EntityFake>("test1");
-            Assert.That(spec.As<BdoAggregateSpec>()._Children?.Count == 13, "Aggregate specification error");
+            Assert.That(spec.As<BdoSpec>()._Children?.Count == 13, "Aggregate specification error");
         }
 
         [Test, Order(4)]
         public void CreateFromTypeToSpecTest()
         {
             var spec = typeof(EntityFake).ToSpec<SpecFake>("test1");
-            Assert.That(spec.As<BdoAggregateSpec>()._Children?.Count == 13, "Aggregate specification error");
+            Assert.That(spec.As<BdoSpec>()._Children?.Count == 13, "Aggregate specification error");
         }
     }
 }

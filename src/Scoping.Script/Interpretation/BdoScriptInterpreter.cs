@@ -1,4 +1,5 @@
-﻿using BindOpen.System.Data;
+﻿using AutoMapper.Execution;
+using BindOpen.System.Data;
 using BindOpen.System.Data.Helpers;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Meta.Reflection;
@@ -112,7 +113,6 @@ namespace BindOpen.System.Scoping.Script
                     {
                         // we parse the text to interpretate
                         index = 0;
-                        scriptwordBeginIndex = index;
 
                         // we get the next function or variable
                         var childLog = log?.NewLog();
@@ -131,6 +131,8 @@ namespace BindOpen.System.Scoping.Script
                         return result;
                     }
                     break;
+                case BdoExpressionKind.Word:
+                    return Evaluate(exp?.Word, varSet, log);
             }
 
             return exp?.Text;
@@ -141,6 +143,15 @@ namespace BindOpen.System.Scoping.Script
             IBdoMetaSet varSet = null,
             IBdoLog log = null,
             bool root = true)
+            => Evaluate(word, varSet, log, root, true, null);
+
+        private object Evaluate(
+            IBdoScriptword word,
+            IBdoMetaSet varSet,
+            IBdoLog log,
+            bool root,
+            bool child,
+            IBdoScriptword parent)
         {
             if (word != null)
             {
@@ -151,7 +162,7 @@ namespace BindOpen.System.Scoping.Script
 
                 var cloned = BdoScript.NewWord(word.Kind, word.Name)
                     .WithDataType(BdoExtensionKinds.Scriptword, word.DataType?.DefinitionUniqueName)
-                    .WithParent(word.Parent as IBdoScriptword);
+                    .WithParent(parent ?? word.Parent as IBdoScriptword);
 
                 switch (word.Kind)
                 {
@@ -162,7 +173,7 @@ namespace BindOpen.System.Scoping.Script
                             {
                                 if (paramValue is IBdoScriptword scriptwordParam)
                                 {
-                                    var expParam = BdoData.NewRef(scriptwordParam);
+                                    var expParam = BdoData.NewExp(scriptwordParam);
                                     var obj = Evaluate(expParam, varSet, log);
 
                                     cloned.InsertData(obj);
@@ -176,7 +187,15 @@ namespace BindOpen.System.Scoping.Script
                         break;
                 }
 
-                return EvaluateScriptword(cloned, varSet, log);
+                var data = EvaluateScriptword(cloned, varSet, log);
+                cloned.SetData(data);
+
+                if (child && word.Child != null)
+                {
+                    return Evaluate(word.Child, varSet, log, false, child, cloned);
+                }
+
+                return data;
             }
 
             return null;
@@ -195,8 +214,6 @@ namespace BindOpen.System.Scoping.Script
                     return varSet?[reference?.Identifier];
                 case BdoReferenceKind.MetaData:
                     return reference?.MetaData.GetData(_scope, varSet, log);
-                case BdoReferenceKind.Word:
-                    return Evaluate(reference?.Word, varSet, log);
             }
 
             return null;
@@ -404,7 +421,7 @@ namespace BindOpen.System.Scoping.Script
                                 {
                                     int subIndex = 0;
                                     var word = FindNextWord(
-                                        subScript, scriptword,
+                                        subScript, null,
                                         ref subIndex, offsetIndex + index + 1,
                                         varSet, log);
 
@@ -444,7 +461,7 @@ namespace BindOpen.System.Scoping.Script
                         var varName = script.ToSubstring(index, nextIndex - 1).Trim();
                         if (varName.Equals("this", StringComparison.OrdinalIgnoreCase))
                         {
-                            varName = "$this";
+                            varName = BdoScript.__This_VarName;
                         }
                         else
                         {
@@ -459,13 +476,16 @@ namespace BindOpen.System.Scoping.Script
 
                 if (scriptword != null)
                 {
+                    scriptword.WithParent(parentScriptword);
+
                     // if the script word is a variable then we retrieve the sub script word
                     if (script.ToSubstring(nextIndex + 1, nextIndex + 1) == ".")
                     {
+                        //scriptword.WithParent(parentScriptword);
                         var obj = Evaluate(scriptword, varSet, log, false);
                         scriptword.WithData(obj);
 
-                        parentScriptword = scriptword;
+                        //parentScriptword = scriptword;
 
                         nextIndex++;
                         scriptword = FindNextWord(
@@ -476,7 +496,7 @@ namespace BindOpen.System.Scoping.Script
                             varSet,
                             log);
 
-                        scriptword.WithParent(parentScriptword);
+                        //scriptword.WithParent(parentScriptword);
 
                         if (scriptword != null) index = nextIndex;
                     }

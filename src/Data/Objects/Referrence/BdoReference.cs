@@ -1,6 +1,5 @@
 ﻿using BindOpen.System.Data.Helpers;
 using BindOpen.System.Data.Meta;
-using BindOpen.System.Scoping.Script;
 
 namespace BindOpen.System.Data
 {
@@ -21,11 +20,6 @@ namespace BindOpen.System.Data
         /// The script word of this instance.
         /// </summary>
         public IBdoExpression Expression { get; set; }
-
-        /// <summary>
-        /// The script word of this instance.
-        /// </summary>
-        public IBdoScriptword Word { get; set; }
 
         /// <summary>
         /// The script word of this instance.
@@ -64,14 +58,7 @@ namespace BindOpen.System.Data
         /// <param key="st">The string to consider.</param>
         public static explicit operator string(BdoReference reference)
         {
-            return reference.Kind switch
-            {
-                BdoReferenceKind.Expression => reference.Expression?.ToString(),
-                BdoReferenceKind.Identifier => reference.Identifier,
-                BdoReferenceKind.MetaData => reference.MetaData?.ToString(),
-                BdoReferenceKind.Word => reference.Word?.ToString(),
-                _ => null
-            };
+            return reference?.ToString();
         }
 
         #endregion
@@ -106,9 +93,13 @@ namespace BindOpen.System.Data
         /// <returns></returns>
         public override string ToString()
         {
-            if (Word != null) return Word.ToString();
-
-            return base.ToString();
+            return Kind switch
+            {
+                BdoReferenceKind.Expression => Expression?.ToString(),
+                BdoReferenceKind.Identifier => "{{id=" + Identifier + "}}",
+                BdoReferenceKind.MetaData => MetaData?.ToString(),
+                _ => null
+            };
         }
 
         #endregion
@@ -128,7 +119,6 @@ namespace BindOpen.System.Data
             var obj = base.Clone().As<BdoReference>();
 
             obj.Expression = Expression?.Clone<BdoExpression>();
-            obj.Word = Word?.Clone<IBdoScriptword>();
             obj.MetaData = MetaData?.Clone<BdoMetaData>();
 
             return obj;

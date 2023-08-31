@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using BindOpen.System.Scoping.Script;
+using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -23,6 +24,13 @@ namespace BindOpen.System.Data
         [JsonPropertyName("text")]
         [XmlText()]
         public string Text { get; set; }
+
+        /// <summary>
+        /// The script word of this instance.
+        /// </summary>
+        [JsonPropertyName("word")]
+        [XmlElement("word")]
+        public ScriptwordDto Word { get; set; }
 
         /// <summary>
         /// The kind of this instance.

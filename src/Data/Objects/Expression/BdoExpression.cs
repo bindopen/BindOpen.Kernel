@@ -1,4 +1,7 @@
-﻿namespace BindOpen.System.Data
+﻿using BindOpen.System.Data.Helpers;
+using BindOpen.System.Scoping.Script;
+
+namespace BindOpen.System.Data
 {
     /// <summary>
     /// This class represents a data exp that can contain a literal and script texts.
@@ -15,6 +18,11 @@
         /// The value of this instance.
         /// </summary>
         public string Text { get; set; }
+
+        /// <summary>
+        /// The script word of this instance.
+        /// </summary>
+        public IBdoScriptword Word { get; set; }
 
         /// <summary>
         /// The kind of this instance.
@@ -70,7 +78,32 @@
         /// <returns></returns>
         public override string ToString()
         {
-            return Text;
+            return Kind switch
+            {
+                BdoExpressionKind.Word => Word?.ToString(),
+                _ => Text
+            };
+        }
+
+        #endregion
+
+        // --------------------------------------------------
+        // CLONING
+        // --------------------------------------------------
+
+        #region Cloning
+
+        /// <summary>
+        /// Clones this instance.
+        /// </summary>
+        /// <returns>Returns a cloned instance.</returns>
+        public override object Clone()
+        {
+            var obj = base.Clone().As<BdoExpression>();
+
+            obj.Word = Word?.Clone<IBdoScriptword>();
+
+            return obj;
         }
 
         #endregion

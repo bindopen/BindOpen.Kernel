@@ -95,17 +95,17 @@
             
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.Conditions.IBdoReferenceCondition">
+        <member name="T:BindOpen.System.Data.Conditions.IBdoExpressionCondition">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Conditions.IBdoReferenceCondition.Reference">
+        <member name="P:BindOpen.System.Data.Conditions.IBdoExpressionCondition.Reference">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Conditions.IBdoReferenceCondition.WithReference(BindOpen.System.Data.IBdoReference)">
+        <member name="M:BindOpen.System.Data.Conditions.IBdoExpressionCondition.WithReference(BindOpen.System.Data.IBdoReference)">
             <summary>
             
             </summary>
@@ -157,7 +157,7 @@
             <param key="varSet">The variable element set used to evaluate.</param>
             <returns>True if this instance is true.</returns>
         </member>
-        <member name="M:BindOpen.System.Data.IBdoConditionExtensions.Evaluate(BindOpen.System.Data.Conditions.IBdoReferenceCondition,BindOpen.System.Scoping.Script.IBdoScriptInterpreter,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.System.Data.IBdoConditionExtensions.Evaluate(BindOpen.System.Data.Conditions.IBdoExpressionCondition,BindOpen.System.Scoping.Script.IBdoScriptInterpreter,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Logging.IBdoLog)">
             <summary>
             Evaluate this instance.
             </summary>
@@ -432,7 +432,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Meta.IBdoMetaDataExtensions.WithDataReference``1(``0,BindOpen.System.Data.IBdoReference)">
+        <member name="M:BindOpen.System.Data.Meta.IBdoMetaDataExtensions.WithReference``1(``0,BindOpen.System.Data.IBdoReference)">
             <summary>
             
             </summary>

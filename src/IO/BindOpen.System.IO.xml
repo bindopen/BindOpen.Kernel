@@ -61,19 +61,19 @@
             <param key="dto">The dto to consider.</param>
             <returns>The POCO object.</returns>
         </member>
-        <member name="T:BindOpen.System.Data.Conditions.ReferenceConditionConverter">
+        <member name="T:BindOpen.System.Data.Conditions.ExpressionConditionConverter">
             <summary>
             This class represents a Xml helper.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Conditions.ReferenceConditionConverter.ToDto(BindOpen.System.Data.Conditions.IBdoReferenceCondition)">
+        <member name="M:BindOpen.System.Data.Conditions.ExpressionConditionConverter.ToDto(BindOpen.System.Data.Conditions.IBdoExpressionCondition)">
             <summary>
             Converts to DTO.
             </summary>
             <param key="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.System.Data.Conditions.ReferenceConditionConverter.ToPoco(BindOpen.System.Data.Conditions.ReferenceConditionDto)">
+        <member name="M:BindOpen.System.Data.Conditions.ExpressionConditionConverter.ToPoco(BindOpen.System.Data.Conditions.ExpressionConditionDto)">
             <summary>
             Converts to POCO.
             </summary>

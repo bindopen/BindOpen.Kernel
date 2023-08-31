@@ -52,13 +52,6 @@ namespace BindOpen.System.Data
         /// <summary>
         /// The script word of this instance.
         /// </summary>
-        [JsonPropertyName("word")]
-        [XmlElement("word")]
-        public ScriptwordDto Word { get; set; }
-
-        /// <summary>
-        /// The script word of this instance.
-        /// </summary>
         [JsonPropertyName("meta")]
         [XmlElement("set", Type = typeof(MetaNodeDto))]
         [XmlElement("object", Type = typeof(MetaObjectDto))]
@@ -75,7 +68,7 @@ namespace BindOpen.System.Data
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of DataReferenceDto class.
+        /// Instantiates a new instance of ReferenceDto class.
         /// </summary>
         public ReferenceDto()
         {

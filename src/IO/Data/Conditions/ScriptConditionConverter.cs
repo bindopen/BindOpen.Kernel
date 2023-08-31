@@ -3,20 +3,20 @@
     /// <summary>
     /// This class represents a Xml helper.
     /// </summary>
-    public static class ReferenceConditionConverter
+    public static class ExpressionConditionConverter
     {
         /// <summary>
         /// Converts to DTO.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static ReferenceConditionDto ToDto(this IBdoReferenceCondition poco)
+        public static ExpressionConditionDto ToDto(this IBdoExpressionCondition poco)
         {
             if (poco == null) return null;
 
-            ReferenceConditionDto dto = new()
+            ExpressionConditionDto dto = new()
             {
-                DataReference = poco.DataReference.ToDto()
+                Expression = poco.Expression.ToDto()
             };
 
             return dto;
@@ -27,14 +27,14 @@
         /// </summary>
         /// <param key="dto">The dto to consider.</param>
         /// <returns>The POCO object.</returns>
-        public static IBdoReferenceCondition ToPoco(
-            this ReferenceConditionDto dto)
+        public static IBdoExpressionCondition ToPoco(
+            this ExpressionConditionDto dto)
         {
             if (dto == null) return null;
 
-            BdoReferenceCondition poco = new()
+            BdoExpressionCondition poco = new()
             {
-                DataReference = dto.DataReference.ToPoco()
+                Expression = dto.Expression.ToPoco()
             };
 
             return poco;

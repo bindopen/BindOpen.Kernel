@@ -1,4 +1,6 @@
-﻿using BindOpen.System.IO.Dtos;
+﻿using BindOpen.System.Data.Meta;
+using BindOpen.System.IO.Dtos;
+using BindOpen.System.Data.Meta;
 using BindOpen.System.Tests;
 using Bogus;
 using DeepEqual.Syntax;
@@ -52,7 +54,7 @@ namespace BindOpen.System.Data.Meta
                 BdoData.NewMetaScalar("byteArray4", DataValueTypes.Binary, _testData.arrayArrayByte4 as byte[][]),
                 BdoData.NewMetaScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[0]),
                 BdoData.NewMetaScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[1])
-                    .WithDataReference(BdoData.NewExp("$sampleExp()", BdoExpressionKind.Auto))
+                    .WithReference(BdoData.NewExp("$sampleExp()", BdoExpressionKind.Auto))
                     //.WithSpecs(BdoMeta.NewSpec(), BdoMeta.NewSpec("spec1"))
             };
 

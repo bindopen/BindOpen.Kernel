@@ -7,7 +7,7 @@ namespace BindOpen.System.Scoping.Script
     /// <summary>
     /// 
     /// </summary>
-    public partial class BdoScriptIStandardTests
+    public class BdoScriptTests_Boolean
     {
         [Test, Order(201)]
         public void EqTest()
@@ -23,7 +23,7 @@ namespace BindOpen.System.Scoping.Script
         [Test, Order(202)]
         public void SubwordTest()
         {
-            var word = BdoScript._Eq(BdoScript.Var("MYTABLE").Func("value"), 135);
+            var word = BdoScript._Eq(BdoScript.Var("MYTABLE"), 135);
 
             var interpreter = SystemData.Scope.Interpreter;
 

@@ -5,7 +5,7 @@ namespace BindOpen.System.Tests
     /// <summary>
     /// This class represents an option specification.
     /// </summary>
-    public class SpecFake : BdoAggregateSpec
+    public class SpecFake : BdoSpec
     {
         // -------------------------------------------------------------
         // CONSTRUCTORS

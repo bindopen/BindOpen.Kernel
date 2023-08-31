@@ -72,8 +72,8 @@ namespace BindOpen.System.Data
         public void NewReferenceTest()
         {
             var set = BdoData.NewMetaNode(
-                    BdoData.NewMeta().WithDataReference(BdoData.NewReference(BdoScript.Func("eq", 1, 1))),
-                    BdoData.NewMeta().WithDataReference(BdoScript.Func("eq", 1, 1))
+                    BdoData.NewMeta().WithReference(BdoData.NewReference(BdoScript.Func("eq", 1, 1))),
+                    BdoData.NewMeta().WithReference(BdoScript.Func("eq", 1, 1))
                 );
 
             var value1 = set[0].GetData<bool?>(SystemData.Scope);

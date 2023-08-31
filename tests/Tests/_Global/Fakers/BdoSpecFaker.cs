@@ -10,8 +10,8 @@ namespace BindOpen.System.Tests
 
         public static IBdoSpec CreateSpec()
         {
-            var spec = BdoData.NewSpec<BdoAggregateSpec>()
-                .WithDataReference(BdoData.NewRef(BdoScript._Eq(1, 0)));
+            var spec = BdoData.NewSpec<BdoSpec>()
+                .WithReference(BdoData.NewRef(BdoScript._Eq(1, 0)));
 
             return spec;
         }

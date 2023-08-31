@@ -62,7 +62,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public override string Key() => string.IsNullOrEmpty(Name) ? DataReference?.Key() : Name;
+        public override string Key() => string.IsNullOrEmpty(Name) ? Reference?.Key() : Name;
 
         #endregion
 
@@ -84,7 +84,7 @@ namespace BindOpen.System.Data.Meta
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            if (DataReference != null)
+            if (Reference != null)
             {
                 if (scope == null)
                 {
@@ -92,12 +92,12 @@ namespace BindOpen.System.Data.Meta
                 }
                 else
                 {
-                    if (DataReference == null)
+                    if (Reference == null)
                     {
                         log?.AddEvent(EventKinds.Warning, "Script missing");
                     }
 
-                    var obj = scope.Interpreter.Evaluate<object>(DataReference, varSet, log);
+                    var obj = scope.Interpreter.Evaluate<object>(Reference, varSet, log);
                     return obj;
                 }
             }
@@ -167,7 +167,7 @@ namespace BindOpen.System.Data.Meta
         /// <summary>
         /// The script of this instance.
         /// </summary>
-        public IBdoReference DataReference { get; set; }
+        public IBdoReference Reference { get; set; }
 
         /// <summary>
         /// The identifier of the group of this instance.
@@ -194,7 +194,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (obj is IBdoReference reference)
             {
-                DataReference = reference;
+                Reference = reference;
             }
         }
 

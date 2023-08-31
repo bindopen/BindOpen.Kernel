@@ -89,22 +89,22 @@ namespace BindOpen.System.Data
 
             if (valueType.IsScalar() && type?.IsScalar() == true)
             {
-                var metaScalar = NewMetaScalar(name, valueType, data);
-                return metaScalar;
+                var scalar = NewMetaScalar(name, valueType, data);
+                return scalar;
             }
             else if (type?.IsList() == true)
             {
                 var objList = data.ToObjectArray();
 
-                var metaSet = NewMetaNode(name);
+                var node = NewMetaNode(name);
                 if (objList != null)
                 {
                     foreach (var obj in objList)
                     {
-                        metaSet.InsertData(obj);
+                        node.InsertData(obj);
                     }
                 }
-                return metaSet;
+                return node;
             }
             else
             {

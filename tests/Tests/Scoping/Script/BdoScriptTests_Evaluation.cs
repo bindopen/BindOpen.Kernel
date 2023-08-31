@@ -8,8 +8,13 @@ namespace BindOpen.System.Scoping.Script
     /// <summary>
     /// 
     /// </summary>
-    public partial class BdoScriptTests
+    public class BdoScriptTests_Evaluation
     {
+        private readonly string _scriptA = "$eq('MYTABLE', $text('MYTABLE'))";
+
+        private readonly BdoScriptword _scriptwordA =
+            BdoScript.Function("eq", "MYTABLE", BdoScript.Function("text", "mytable"));
+
         private readonly IBdoScriptword _scriptword1 =
             BdoScript.Function("eq", "MYTABLE", BdoScript.Function("text", "MYTABLE"));
         private readonly string _interpretedScript1 = "true";
