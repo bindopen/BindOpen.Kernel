@@ -116,7 +116,7 @@ namespace BindOpen.System.Data
                 }
                 else if (type.IsEnum)
                 {
-                    spec.Condition ??= BdoData.NewCondition(null);
+                    spec.ConstraintStatement ??= NewStatement<string>();
                     //spec.ConstraintStatement.Add(
                     //    BdoMango.
                     //    null,

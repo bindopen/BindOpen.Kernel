@@ -1,5 +1,4 @@
 ﻿using BindOpen.System.IO.Dtos;
-using BindOpen.System.Scoping.Script;
 using BindOpen.System.Tests;
 using Bogus;
 using DeepEqual.Syntax;
@@ -11,8 +10,8 @@ namespace BindOpen.System.Data
     [TestFixture, Order(210)]
     public class ReferenceIOTests
     {
-        private readonly string _filePath_xml = SystemData.WorkingFolder + "DataReference.xml";
-        private readonly string _filePath_json = SystemData.WorkingFolder + "DataReference.json";
+        private readonly string _filePath_xml = SystemData.WorkingFolder + "Reference.xml";
+        private readonly string _filePath_json = SystemData.WorkingFolder + "Reference.json";
         dynamic _valueSet;
         private IBdoReference _ref = null;
 
@@ -44,7 +43,6 @@ namespace BindOpen.System.Data
             _ref = BdoData.NewReference(BdoReferenceKind.Any)
                 .WithExpression(BdoData.NewExpression("text", BdoExpressionKind.Auto))
                 .WithMetaData(BdoData.NewMeta("meta1", "test"))
-                .WithWord(BdoScript._Eq(1, 0))
                 .WithIdentifier("id");
         }
 

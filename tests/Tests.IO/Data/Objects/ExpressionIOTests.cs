@@ -1,4 +1,5 @@
 ﻿using BindOpen.System.IO.Dtos;
+using BindOpen.System.Scoping.Script;
 using BindOpen.System.Tests;
 using Bogus;
 using DeepEqual.Syntax;
@@ -42,7 +43,8 @@ namespace BindOpen.System.Data
         {
             _exp = BdoData.NewExpression(
                 _valueSet.Literal as string,
-                _valueSet.ExpressionKind as BdoExpressionKind? ?? BdoExpressionKind.Auto);
+                _valueSet.ExpressionKind as BdoExpressionKind? ?? BdoExpressionKind.Auto)
+                .WithWord(BdoScript._Eq(1, 0));
         }
 
         // Xml

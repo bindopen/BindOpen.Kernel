@@ -31,7 +31,7 @@ Note: Later you will be able to install only the package you need.
 ### From Visual Studio
 
 | Module | Instruction |
-|----------|
+|--------|-----|
 | [BindOpen.System.Data](https://www.nuget.org/packages/BindOpen.System.Data) | ```PM> Install-Package BindOpen.System.Data``` |
 | [BindOpen.System.Scoping](https://www.nuget.org/packages/BindOpen.System.Scoping) | ```PM> Install-Package BindOpen.System.Scoping``` |
 | [BindOpen.System.IO](https://www.nuget.org/packages/BindOpen.System.IO) | ```PM> Install-Package BindOpen.System.IO``` |
@@ -39,7 +39,7 @@ Note: Later you will be able to install only the package you need.
 ### From .NET CLI
 
 | Module | Instruction |
-|----------|
+|--------|-----|
 | [BindOpen.System.Data](https://www.nuget.org/packages/BindOpen.System.Data) | ```> dotnet add package BindOpen.System.Data``` |
 | [BindOpen.System.Scoping](https://www.nuget.org/packages/BindOpen.System.Scoping) | ```> dotnet add package BindOpen.System.Scoping``` |
 | [BindOpen.System.IO](https://www.nuget.org/packages/BindOpen.System.IO) | ```> dotnet add package BindOpen.System.IO``` |
@@ -154,7 +154,7 @@ This project is licensed under the terms of the MIT license. [See LICENSE](https
 
 This repository contains the code of the following Nuget packages:
 
-| The package | Provides |
+| Package | Provision |
 |----------|-----|
 | [BindOpen.System.Abstractions](https://www.nuget.org/packages/BindOpen.System.Abstractions) | Interfaces and enumerations |
 | [BindOpen.System.Data](https://www.nuget.org/packages/BindOpen.System.Data) | Core data model |

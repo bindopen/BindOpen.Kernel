@@ -20,7 +20,7 @@
             {
                 return basicCondition.ToDto();
             }
-            else if (poco is IBdoReferenceCondition referenceCondition)
+            else if (poco is IBdoExpressionCondition referenceCondition)
             {
                 return referenceCondition.ToDto();
             }
@@ -44,7 +44,7 @@
             {
                 return basicConditionDto.ToPoco();
             }
-            else if (dto is ReferenceConditionDto referenceConditionDto)
+            else if (dto is ExpressionConditionDto referenceConditionDto)
             {
                 return referenceConditionDto.ToPoco();
             }

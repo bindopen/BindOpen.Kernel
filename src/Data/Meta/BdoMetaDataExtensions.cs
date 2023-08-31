@@ -26,7 +26,7 @@ namespace BindOpen.System.Data.Meta
                 if (updateModes.Has(UpdateModes.Incremental_UpdateCommon))
                 {
                     meta.WithDataType(refItem.DataType?.Clone<BdoDataType>());
-                    meta.WithDataReference(refItem.DataReference?.Clone<BdoReference>());
+                    meta.WithReference(refItem.Reference?.Clone<BdoReference>());
                     meta.WithData(refItem.GetData());
                 }
             }

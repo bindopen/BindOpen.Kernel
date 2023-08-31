@@ -19,7 +19,7 @@ namespace BindOpen.System.Data
             DictionaryDto dto = new()
             {
                 Id = poco.Id,
-                Values = poco?.Select(q => q.ToDto<TItem>()).ToList()
+                Values = poco?.Select(q => q.ToDto()).ToList()
             };
 
             return dto;
@@ -34,7 +34,7 @@ namespace BindOpen.System.Data
         {
             if (dto == null) return null;
 
-            TBdoDictionary<TItem> poco = BdoData.NewDictionary<TItem>(dto.Values?.Select(q => q.ToPoco<TItem>()).ToArray());
+            TBdoDictionary<TItem> poco = BdoData.NewDictionary(dto.Values?.Select(q => q.ToPoco<TItem>()).ToArray());
             poco.WithId(dto.Id);
 
             return poco;

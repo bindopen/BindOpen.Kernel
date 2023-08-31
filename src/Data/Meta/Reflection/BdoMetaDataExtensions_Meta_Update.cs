@@ -51,7 +51,7 @@ namespace BindOpen.System.Data.Meta.Reflection
         {
             List<IBdoMetaData> list;
 
-            var obj = meta?.DataReference == null ? meta.GetData() : null;
+            var obj = meta?.Reference == null ? meta.GetData() : null;
 
             if (obj != null)
             {

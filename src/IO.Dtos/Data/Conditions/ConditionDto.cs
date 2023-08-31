@@ -11,10 +11,10 @@ namespace BindOpen.System.Data.Conditions
     [XmlRoot(ElementName = "condition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
     [XmlInclude(typeof(BasicConditionDto))]
     [XmlInclude(typeof(CompositeConditionDto))]
-    [XmlInclude(typeof(ReferenceConditionDto))]
+    [XmlInclude(typeof(ExpressionConditionDto))]
     [JsonDerivedType(typeof(BasicConditionDto), "condition")]
     [JsonDerivedType(typeof(CompositeConditionDto), "composite")]
-    [JsonDerivedType(typeof(ReferenceConditionDto), "reference")]
+    [JsonDerivedType(typeof(ExpressionConditionDto), "reference")]
     public abstract class ConditionDto : IBdoDto, IIdentified
     {
         // ------------------------------------------

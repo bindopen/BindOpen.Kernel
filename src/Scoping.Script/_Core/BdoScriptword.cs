@@ -33,6 +33,15 @@ namespace BindOpen.System.Scoping.Script
         #region Converters
 
         /// <summary>
+        /// Converts from string.
+        /// </summary>
+        /// <param key="st">The string to consider.</param>
+        public static implicit operator BdoExpression(BdoScriptword word)
+        {
+            return BdoData.NewExp(word);
+        }
+
+        /// <summary>
         /// Converts from word.
         /// </summary>
         /// <param key="word">The word to consider.</param>
@@ -101,36 +110,34 @@ namespace BindOpen.System.Scoping.Script
         /// Returns a string that represents this instance.
         /// </summary>
         /// <returns>Retuns the string that represents this instance.</returns>
-        public override string ToString()
-            => ToString(true);
+        public override string ToString() => ToString(true);
 
-        /// <summary>
-        /// Returns a string that represents this instance.
-        /// </summary>
-        /// <returns>Retuns the string that represents this instance.</returns>
-        private string ToString(bool showSymbol)
+        public string ToString(bool lastChild)
         {
             IBdoScriptword current = this;
-            if (showSymbol) current = this.Root() as IBdoScriptword;
+            if (lastChild && current.Parent == null)
+            {
+                current = current.LastChild();
+            }
 
             string script;
             switch (current.Kind)
             {
                 case ScriptItemKinds.Function:
                     script = string.Join(", ", current.Select(p => p.ToString(DataValueTypes.Any, true)).ToArray());
-                    script = (showSymbol ? BdoScriptHelper.Symbol_Fun : "")
+                    script = (current.Parent == null ? BdoScriptHelper.Symbol_Fun : "")
                         + current.Name + "(" + script + ")";
-                    if (current.Child is BdoScriptword subFunScriptWord)
+                    if (current.Parent is BdoScriptword subFunScriptWord)
                     {
-                        script += "." + subFunScriptWord?.ToString(false);
+                        script = subFunScriptWord?.ToString(false) + "." + script;
                     }
                     return script;
                 case ScriptItemKinds.Variable:
-                    script = (showSymbol ? BdoScriptHelper.Symbol_Fun : "")
+                    script = (current.Parent == null ? BdoScriptHelper.Symbol_Fun : "")
                         + "('" + current.Name?.Replace("'", "''") + "')";
-                    if (current.Child is BdoScriptword subVarScriptWord)
+                    if (current.Parent is BdoScriptword subVarScriptWord)
                     {
-                        script += "." + subVarScriptWord?.ToString(false);
+                        script = subVarScriptWord?.ToString(false) + "." + script;
                     }
                     return script;
                 case ScriptItemKinds.None:

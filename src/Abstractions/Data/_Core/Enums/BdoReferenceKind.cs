@@ -11,11 +11,6 @@
         Expression,
 
         /// <summary>
-        /// Word.
-        /// </summary>
-        Word,
-
-        /// <summary>
         /// Target identifier.
         /// </summary>
         Identifier,

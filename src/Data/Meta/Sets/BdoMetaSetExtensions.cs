@@ -113,8 +113,8 @@ namespace BindOpen.System.Data.Meta
         {
             if (list != null)
             {
-                list.Clear();
-                list.Add(pairs);
+                var items = pairs.Select(q => BdoData.NewMeta(q.Key, DataValueTypes.Any, q.Value)).ToArray();
+                list.With(items);
             }
 
             return list;
@@ -132,8 +132,8 @@ namespace BindOpen.System.Data.Meta
         {
             if (list != null)
             {
-                list.Clear();
-                list.Add(pairs);
+                var items = pairs.Select(q => BdoData.NewMeta(q.Name, DataValueTypes.Any, q.Value)).ToArray();
+                list.With(items);
             }
 
             return list;
@@ -297,7 +297,7 @@ namespace BindOpen.System.Data.Meta
                             {
                                 var newSt = meta.GetData<string>();
                                 st = st[0..i] + newSt + st[(j + 2)..^0];
-                                j -= (tokenName.Length - newSt.Length + 3);
+                                j -= (tokenName.Length - (newSt?.Length ?? 0) + 3);
                             }
                         }
                         i = j + 1;
