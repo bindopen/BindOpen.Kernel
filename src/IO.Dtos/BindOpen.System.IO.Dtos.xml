@@ -247,19 +247,19 @@
             </summary>
             <param key="trueValue">The true value to consider.</param>
         </member>
-        <member name="T:BindOpen.System.Data.Conditions.ReferenceConditionDto">
+        <member name="T:BindOpen.System.Data.Conditions.ExpressionConditionDto">
             <summary>
             This class represents a script condition DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Conditions.ReferenceConditionDto.Reference">
+        <member name="P:BindOpen.System.Data.Conditions.ExpressionConditionDto.Reference">
             <summary>
             Data exp DTO representing the condition.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Conditions.ReferenceConditionDto.#ctor">
+        <member name="M:BindOpen.System.Data.Conditions.ExpressionConditionDto.#ctor">
             <summary>
-            Instantiates a new instance of the ReferenceConditionDto class.
+            Instantiates a new instance of the ExpressionConditionDto class.
             </summary>
         </member>
         <member name="T:BindOpen.System.Data.Meta.ConfigurationDto">

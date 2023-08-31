@@ -3,7 +3,7 @@
     /// <summary>
     /// This class represents a script condition.
     /// </summary>
-    public class BdoReferenceCondition : BdoCondition, IBdoReferenceCondition
+    public class BdoExpressionCondition : BdoCondition, IBdoExpressionCondition
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -12,21 +12,20 @@
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the ReferenceCondition class.
+        /// Instantiates a new instance of the ExpressionCondition class.
         /// </summary>
-        public BdoReferenceCondition()
+        public BdoExpressionCondition()
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the ReferenceCondition class.
+        /// Instantiates a new instance of the ExpressionCondition class.
         /// </summary>
         /// <param key="trueValue">The true value to consider.</param>
         /// <param key="exp">The exp to consider.</param>
-        public BdoReferenceCondition(
-            IBdoReference exp) : base()
+        public BdoExpressionCondition(IBdoExpression exp) : base()
         {
-            DataReference = exp;
+            Expression = exp;
         }
 
         #endregion
@@ -42,9 +41,9 @@
         /// </summary>
         public override object Clone()
         {
-            var condition = new BdoReferenceCondition
+            var condition = new BdoExpressionCondition
             {
-                DataReference = DataReference?.Clone<BdoReference>()
+                Expression = Expression?.Clone<BdoExpression>()
             };
 
             return condition;
@@ -53,15 +52,15 @@
         #endregion
 
         // ------------------------------------------
-        // IReferenceCondition Implementation
+        // IExpressionCondition Implementation
         // ------------------------------------------
 
-        #region IReferenceCondition
+        #region IExpressionCondition
 
         /// <summary>
         /// Expression script representing the condition.
         /// </summary>
-        public IBdoReference DataReference { get; set; }
+        public IBdoExpression Expression { get; set; }
 
         #endregion
     }

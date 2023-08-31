@@ -212,34 +212,34 @@
             Instantiates a new instance of the Condition class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.Conditions.BdoReferenceCondition">
+        <member name="T:BindOpen.System.Data.Conditions.BdoExpressionCondition">
             <summary>
             This class represents a script condition.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Conditions.BdoReferenceCondition.#ctor">
+        <member name="M:BindOpen.System.Data.Conditions.BdoExpressionCondition.#ctor">
             <summary>
-            Instantiates a new instance of the ReferenceCondition class.
+            Instantiates a new instance of the ExpressionCondition class.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Conditions.BdoReferenceCondition.#ctor(BindOpen.System.Data.IBdoReference)">
+        <member name="M:BindOpen.System.Data.Conditions.BdoExpressionCondition.#ctor(BindOpen.System.Data.IBdoReference)">
             <summary>
-            Instantiates a new instance of the ReferenceCondition class.
+            Instantiates a new instance of the ExpressionCondition class.
             </summary>
             <param key="trueValue">The true value to consider.</param>
             <param key="exp">The exp to consider.</param>
         </member>
-        <member name="M:BindOpen.System.Data.Conditions.BdoReferenceCondition.Clone">
+        <member name="M:BindOpen.System.Data.Conditions.BdoExpressionCondition.Clone">
             <summary>
             Clones this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Conditions.BdoReferenceCondition.Reference">
+        <member name="P:BindOpen.System.Data.Conditions.BdoExpressionCondition.Reference">
             <summary>
             Expression script representing the condition.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Conditions.BdoReferenceCondition.WithReference(BindOpen.System.Data.IBdoReference)">
+        <member name="M:BindOpen.System.Data.Conditions.BdoExpressionCondition.WithReference(BindOpen.System.Data.IBdoReference)">
             <summary>
             
             </summary>

@@ -46,7 +46,7 @@ namespace BindOpen.System.Data.Meta
         [JsonPropertyName("condition")]
         [XmlElement("condition", Type = typeof(BasicConditionDto))]
         [XmlElement("condition.node", Type = typeof(CompositeConditionDto))]
-        [XmlElement("condition.reference", Type = typeof(ReferenceConditionDto))]
+        [XmlElement("condition.reference", Type = typeof(ExpressionConditionDto))]
         public ConditionDto Condition { get; set; }
 
         /// <summary>

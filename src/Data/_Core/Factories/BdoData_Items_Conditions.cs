@@ -24,8 +24,8 @@ namespace BindOpen.System.Data
             object arg2 = null)
             => new(arg1, ope, arg2);
 
-        public static BdoReferenceCondition NewCondition(
-            IBdoReference exp)
+        public static BdoExpressionCondition NewCondition(
+            IBdoExpression exp)
             => new(exp);
     }
 }

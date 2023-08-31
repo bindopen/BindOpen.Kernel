@@ -49,9 +49,9 @@ namespace BindOpen.System.Data
             {
                 return basicCondition.Evaluate();
             }
-            else if (condition is IBdoReferenceCondition referenceCondition)
+            else if (condition is IBdoExpressionCondition expCondition)
             {
-                return referenceCondition.Evaluate(scriptInterpreter, varSet, log);
+                return expCondition.Evaluate(scriptInterpreter, varSet, log);
             }
 
             return false;
@@ -112,10 +112,10 @@ namespace BindOpen.System.Data
                     b = (condition.Argument1 == condition.Argument2);
                     break;
                 case DataOperators.Exists:
-                    //b = !string.IsNullOrEmpty(condition.Argument1);
+                    b = condition.Argument1 != null;
                     break;
                 case DataOperators.GreaterThan:
-                    //b = (Argument1 > Argument2);
+                    //b = (condition.Argument1 > condition.Argument2);
                     break;
                 case DataOperators.LesserThan:
                     //b = (Argument1 < Argument2);
@@ -133,18 +133,18 @@ namespace BindOpen.System.Data
         /// <param key="varSet">The variable element set used to evaluate.</param>
         /// <returns>True if the business script value is the true value.</returns>
         private static bool Evaluate(
-            this IBdoReferenceCondition condition,
+            this IBdoExpressionCondition condition,
             IBdoScriptInterpreter scriptInterpreter,
             IBdoMetaSet varSet,
             IBdoLog log = null)
         {
             if (condition == null) return false;
 
-            if (condition.DataReference == null)
+            if (condition.Expression == null)
                 return false;
 
             var b = scriptInterpreter?.Evaluate<bool?>(
-                condition.DataReference, varSet, log);
+                condition.Expression, varSet, log);
 
             return b ?? false;
         }
