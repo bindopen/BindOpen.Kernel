@@ -13,6 +13,43 @@ namespace BindOpen.System.Data.Conditions
     public class TBdoConditionalStatement<TItem> : List<(TItem Item, IBdoCondition Condition)>,
         ITBdoConditionalStatement<TItem>
     {
+        // ------------------------------------------
+        // PROPERTIES
+        // ------------------------------------------
+
+        #region Properties
+
+        /// <summary>
+        /// The value that expresses that the condition is satisfied.
+        /// </summary>
+        public string Id { get; set; }
+
+        #endregion
+
+        // ------------------------------------------
+        // CONSTRUCTORS
+        // ------------------------------------------
+
+        #region Constructors
+
+        /// <summary>
+        /// Instantiates a new instance of the Condition class.
+        /// </summary>
+        public TBdoConditionalStatement()
+        {
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // ITBdoConditionalStatement
+        // ------------------------------------------
+
+        #region Constructors
+
+        /// <summary>
+        /// Instantiates a new instance of the Condition class.
+        /// </summary>
         public TItem GetItem(IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
         {
             var (Item, Condition) = this.FirstOrDefault(q => scope.Evaluate(q.Condition, varSet, log));
@@ -20,9 +57,17 @@ namespace BindOpen.System.Data.Conditions
             return Item;
         }
 
-        public TBdoConditionalStatement()
-        {
-        }
+        #endregion
+
+        // ------------------------------------------
+        // IReferenced Implementation
+        // ------------------------------------------
+
+        #region IReferenced
+
+        public string Key() => Id;
+
+        #endregion
 
         // --------------------------------------------------
         // IClonable

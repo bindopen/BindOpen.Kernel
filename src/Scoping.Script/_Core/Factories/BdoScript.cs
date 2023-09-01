@@ -1,6 +1,6 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Data;
+﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
+using BindOpen.System.Data.Meta.Reflection;
 using System.Linq;
 
 namespace BindOpen.System.Scoping.Script
@@ -230,10 +230,27 @@ namespace BindOpen.System.Scoping.Script
 
         // This
 
-        public static string __This_VarName = "$this";
+        public static string __VarName_This = "$this";
 
         public static TBdoScriptword<T> _This<T>()
-            => Var<T>(__This_VarName);
+            => Var<T>(__VarName_This);
 
+        public static TBdoScriptword<T> _Parent<T>()
+            => Var(__VarName_This).Var<T>("parent");
+
+        /// <summary>
+        /// Returns the item TItem of this instance.
+        /// </summary>
+        /// <param key="log">The log to populate.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable meta set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        [BdoFunction("prop")]
+        public static object Property(
+            this IBdoObject obj,
+            string propName)
+        {
+            return obj?.GetPropertyValue(propName, typeof(BdoPropertyAttribute));
+        }
     }
 }

@@ -20,6 +20,9 @@ Todo list for BindOpen
 - [ ] Update detail children of meta wrapper if detail is a config
 - [ ] Update Children and Child and HasChild methods
 - [ ] StringHelper - Format string from tokens
+- [ ] Add _If script function
+- [ ] Add Has(name) script function for metaSet
+- [ ] Interpreter: Returns null if any interpretation error
 
 ## Stuff to check out later on
 

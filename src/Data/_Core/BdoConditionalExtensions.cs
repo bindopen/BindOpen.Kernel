@@ -1,4 +1,6 @@
-﻿namespace BindOpen.System.Data.Conditions
+﻿using BindOpen.System.Data.Conditions;
+
+namespace BindOpen.System.Data
 {
     /// <summary>
     /// This static class provides methods to handle conditions.
