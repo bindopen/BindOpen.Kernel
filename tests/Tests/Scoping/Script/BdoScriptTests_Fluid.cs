@@ -42,5 +42,22 @@ namespace BindOpen.System.Scoping.Script
 
             Assert.That(result == 125, "Bad script interpretation");
         }
+
+        [Test, Order(201)]
+        public void InterpreteWordParentTest()
+        {
+            var exp = BdoData.NewExp(BdoScript._Parent<IBdoMetaData>()._Descendant("titi")._Value());
+
+            var interpreter = SystemData.Scope.Interpreter;
+
+            var set = BdoData.NewMetaNode(("toto", 123), ("titi", 125));
+            var meta = set[0];
+
+            var varSet = BdoData.NewMetaSet((BdoScript.__VarName_This, meta));
+
+            var result = interpreter.Evaluate<int?>(exp, varSet);
+
+            Assert.That(result == 125, "Bad script interpretation");
+        }
     }
 }
