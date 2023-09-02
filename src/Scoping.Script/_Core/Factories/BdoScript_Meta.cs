@@ -46,10 +46,10 @@ namespace BindOpen.System.Scoping.Script
         /// <returns>Returns the items of this instance.</returns>
         [BdoFunction("descendant")]
         public static IBdoMetaData BdoDescendant(
-            [BdoThis] IBdoMetaSet data,
+            [BdoThis] IBdoMetaSet set,
             params object[] tokens)
         {
-            return data?.Descendant<IBdoMetaData>(tokens);
+            return set?.Descendant<IBdoMetaData>(tokens);
         }
 
         /// <summary>
@@ -62,9 +62,9 @@ namespace BindOpen.System.Scoping.Script
         [BdoFunction("has")]
         public static bool BdoHas(
             [BdoThis] IBdoMetaSet set,
-            string name)
+            params object[] tokens)
         {
-            return set?.Has(name) ?? false;
+            return set?.Descendant<IBdoMetaData>(tokens) != null;
         }
     }
 }

@@ -24,6 +24,7 @@ Todo list for BindOpen
 - [ ] Add Has(tokens) script function
 - [ ] Interpreter: Returns null if any interpretation error
 - [ ] Allow script word polymorphism
+- [ ] Check meta data
 
 ## Stuff to check out later on
 
