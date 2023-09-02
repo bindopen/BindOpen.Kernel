@@ -1,7 +1,5 @@
 ﻿using BindOpen.System.Data.Conditions;
 using BindOpen.System.Data.Helpers;
-using BindOpen.System.Logging;
-using BindOpen.System.Scoping;
 
 namespace BindOpen.System.Data.Meta
 {
@@ -258,40 +256,6 @@ namespace BindOpen.System.Data.Meta
             }
 
             return spec;
-        }
-
-        /// <summary>
-        /// The item requirement level of this instance.
-        /// </summary>
-        public static RequirementLevels WhatItemRequirement<T>(
-            this T spec,
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                var level = spec.ItemRequirementStatement.GetItem(scope, varSet, log);
-
-                if (level == RequirementLevels.None)
-                {
-                    if (spec.MaxDataItemNumber == 0)
-                    {
-                        return RequirementLevels.Forbidden;
-                    }
-                    else if (spec.MinDataItemNumber > 0)
-                    {
-                        return RequirementLevels.Required;
-                    }
-                    else if (spec.MinDataItemNumber == 0)
-                    {
-                        return RequirementLevels.Optional;
-                    }
-                }
-            }
-
-            return RequirementLevels.None;
         }
 
         /// <summary>

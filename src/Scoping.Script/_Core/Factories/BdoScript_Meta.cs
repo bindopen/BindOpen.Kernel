@@ -52,19 +52,19 @@ namespace BindOpen.System.Scoping.Script
             return data?.Descendant<IBdoMetaData>(tokens);
         }
 
-        ///// <summary>
-        ///// Returns the item TItem of this instance.
-        ///// </summary>
-        ///// <param key="log">The log to populate.</param>
-        ///// <param key="scope">The scope to consider.</param>
-        ///// <param key="varSet">The variable meta set to use.</param>
-        ///// <returns>Returns the items of this instance.</returns>
-        //[BdoFunction("has")]
-        //public static bool BdoHas(
-        //    [BdoThis] IBdoMetaSet set,
-        //    string name)
-        //{
-        //    return set?.Has(name) ?? false;
-        //}
+        /// <summary>
+        /// Returns the item TItem of this instance.
+        /// </summary>
+        /// <param key="log">The log to populate.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable meta set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
+        [BdoFunction("has")]
+        public static bool BdoHas(
+            [BdoThis] IBdoMetaSet set,
+            string name)
+        {
+            return set?.Has(name) ?? false;
+        }
     }
 }

@@ -52,9 +52,15 @@ namespace BindOpen.System.Data.Conditions
         /// </summary>
         public TItem GetItem(IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
         {
-            var (Item, Condition) = this.FirstOrDefault(q => scope.Evaluate(q.Condition, varSet, log));
+            foreach (var (Item, Condition) in this)
+            {
+                if (Condition != null && scope.Evaluate(Condition, varSet, log))
+                {
+                    return Item;
+                }
+            }
 
-            return Item;
+            return this.FirstOrDefault(q => q.Condition == null).Item;
         }
 
         #endregion

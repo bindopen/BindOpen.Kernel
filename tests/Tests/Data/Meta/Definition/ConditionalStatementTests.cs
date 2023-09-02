@@ -14,31 +14,73 @@ namespace BindOpen.System.Data.Meta
         public void OneTimeSetUp()
         {
             _spec = BdoData.NewSpec<BdoSpec>()
-                .WithChildren(
-                    BdoData.NewSpec("title"),
-                    BdoData.NewSpec("auto"))
-                .WithCondition((BdoExpression)BdoScript._This<IBdoSpec>()._Has("auto"))
-                .AsRequired((BdoCondition)BdoScript._This<IBdoSpec>()._Has("title"))
-                .WithItemRequirement((RequirementLevels.Optional, (BdoCondition)BdoScript._Eq(BdoScript._Parent<IBdoSpec>()._Descendant("auto")._Value(), true)));
+                .WithCondition((BdoExpression)BdoScript._Eq(BdoScript._This<IBdoMetaData>()._Descendant("title")._Value(), "myTitle"))
+                .AsRequired((BdoCondition)BdoScript._This<IBdoMetaData>()._Has("title"))
+                .AsForbidden()
+                .WithItemRequirement((RequirementLevels.Required,
+                    (BdoCondition)BdoScript._This<IBdoMetaData>()._Descendant("auto")._Value()));
         }
 
         [Test, Order(1)]
         public void ConditionTest()
         {
-            var varSet = BdoData.NewMetaSet(("$this", _spec));
-            var requirementLvel = _spec.RequirementStatement?.GetItem(SystemData.Scope, varSet);
-            Assert.That(requirementLvel == RequirementLevels.Required, "Statement - Error");
+            var meta1 = BdoData.NewMetaNode("meta-test")
+                .WithSpec(_spec)
+                .With(
+                    BdoData.NewMeta("title", "myTitle"));
+
+            var existence1 = meta1.WhatCondition(SystemData.Scope);
+            Assert.That(existence1, "Statement - Error");
+
+            var meta2 = BdoData.NewMetaNode("meta-test")
+                .WithSpec(_spec)
+                .With(
+                    BdoData.NewMeta("title", "A"));
+
+            var existence2 = meta1.WhatCondition(SystemData.Scope);
+            Assert.That(existence2, "Statement - Error");
         }
 
         [Test, Order(2)]
         public void RequirementTest()
         {
+            var meta1 = BdoData.NewMetaNode("meta-test")
+                .WithSpec(_spec)
+                .With(
+                    BdoData.NewMeta("auto", true),
+                    BdoData.NewMeta("title", "This is my title"));
 
+            var requirementLvel1 = meta1.WhatRequirement(SystemData.Scope);
+            Assert.That(requirementLvel1 == RequirementLevels.Required, "Statement - Error");
+
+            var meta2 = BdoData.NewMetaNode("meta-test")
+                .WithSpec(_spec)
+                .With(
+                    BdoData.NewMeta("auto", true));
+
+            var requirementLvel2 = meta2.WhatRequirement(SystemData.Scope);
+            Assert.That(requirementLvel2 == RequirementLevels.Forbidden, "Statement - Error");
         }
 
         [Test, Order(3)]
         public void ItemRequirementTest()
         {
+            var meta1 = BdoData.NewMetaNode("meta-test")
+                .WithSpec(_spec)
+                .With(
+                    BdoData.NewMeta("auto", true),
+                    BdoData.NewMeta("title", "This is my title"));
+
+            var requirementLvel1 = meta1.WhatItemRequirement(SystemData.Scope);
+            Assert.That(requirementLvel1 == RequirementLevels.Required, "Statement - Error");
+
+            var meta2 = BdoData.NewMetaNode("meta-test")
+                .WithSpec(_spec)
+                .With(
+                    BdoData.NewMeta("auto", false));
+
+            var requirementLvel2 = meta2.WhatItemRequirement(SystemData.Scope);
+            Assert.That(requirementLvel2 == RequirementLevels.Optional, "Statement - Error");
 
         }
     }

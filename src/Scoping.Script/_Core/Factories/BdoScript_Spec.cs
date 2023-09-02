@@ -1,6 +1,4 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Helpers;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.System.Data.Meta;
 
 namespace BindOpen.System.Scoping.Script
 {
@@ -38,20 +36,5 @@ namespace BindOpen.System.Scoping.Script
         //{
         //    return spec?.Descendant<IBdoSpec>(tokens);
         //}
-
-        /// <summary>
-        /// Returns the item TItem of this instance.
-        /// </summary>
-        /// <param key="log">The log to populate.</param>
-        /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable meta set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        [BdoFunction("has")]
-        public static bool BdoHas(
-            [BdoThis] IBdoSpec spec,
-            string name)
-        {
-            return spec?.HasChild(q => q.Name.BdoKeyEquals(name)) ?? false;
-        }
     }
 }
