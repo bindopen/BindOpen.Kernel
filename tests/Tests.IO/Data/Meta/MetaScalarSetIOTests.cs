@@ -33,13 +33,16 @@ namespace BindOpen.System.Data.Meta
             };
         }
 
-        public static bool Equals(
+        public static void Test(
             IBdoMetaNode list1,
             IBdoMetaNode list2)
         {
-            var b = list1 != null && list2 != null
-                && list1.IsDeepEqual(list2);
-            return b;
+            Assert.That(list1 != null && list2 != null, "Meta list saving failed. ");
+
+            list1.WithDeepEqual(list2)
+                .SkipDefault<IBdoMetaData>()
+                .IgnoreProperty<IBdoMetaData>(x => x.Parent)
+                .Assert();
         }
 
         [Test, Order(2)]
@@ -83,7 +86,7 @@ namespace BindOpen.System.Data.Meta
             }
 
             var metaSet = XmlHelper.LoadXml<MetaNodeDto>(_filePath_xml).ToPoco();
-            Equals(metaSet, _metaSet);
+            Test(metaSet, _metaSet);
         }
 
         // Json
@@ -109,7 +112,7 @@ namespace BindOpen.System.Data.Meta
             }
 
             var metaSet = JsonHelper.LoadJson<MetaNodeDto>(_filePath_json).ToPoco();
-            Equals(metaSet, _metaSet);
+            Test(metaSet, _metaSet);
         }
     }
 }

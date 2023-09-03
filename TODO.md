@@ -25,6 +25,7 @@ Todo list for BindOpen
 - [ ] Interpreter: Returns null if any interpretation error
 - [ ] Allow script word polymorphism
 - [ ] Check meta data
+- [ ] Limit level depth
 
 ## Stuff to check out later on
 
