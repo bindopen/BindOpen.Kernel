@@ -1,5 +1,4 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Data.Helpers;
+﻿using BindOpen.System.Data.Helpers;
 using BindOpen.System.Data.Meta;
 using Bogus;
 using NUnit.Framework;

@@ -117,10 +117,30 @@ namespace BindOpen.System.Data.Meta
         #endregion
 
         // --------------------------------------------------
-        // BdoMetaNode Implementation
+        // IBdoMetaNode Implementation
         // --------------------------------------------------
 
-        #region IBdoMetaData
+        #region IBdoMetaNode
+
+
+        /// <summary>
+        /// Adds the specified item.
+        /// </summary>
+        /// <param key="item">The item of the item to add.</param>
+        /// <returns>Returns the new item that has been added.
+        /// Returns null if the new item is null or else its name is null.</returns>
+        /// <remarks>The new item must have a name.</remarks>
+        public override IBdoMetaData Insert(IBdoMetaData item)
+        {
+            base.Insert(item);
+
+            if (item != null)
+            {
+                item.Parent = this;
+            }
+
+            return item;
+        }
 
         public virtual void Update(
             IBdoMetaData refItem,

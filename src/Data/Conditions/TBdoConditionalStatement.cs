@@ -13,16 +13,67 @@ namespace BindOpen.System.Data.Conditions
     public class TBdoConditionalStatement<TItem> : List<(TItem Item, IBdoCondition Condition)>,
         ITBdoConditionalStatement<TItem>
     {
-        public TItem GetItem(IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
-        {
-            var (Item, Condition) = this.FirstOrDefault(q => scope.Evaluate(q.Condition, varSet, log));
+        // ------------------------------------------
+        // PROPERTIES
+        // ------------------------------------------
 
-            return Item;
-        }
+        #region Properties
 
+        /// <summary>
+        /// The value that expresses that the condition is satisfied.
+        /// </summary>
+        public string Id { get; set; }
+
+        #endregion
+
+        // ------------------------------------------
+        // CONSTRUCTORS
+        // ------------------------------------------
+
+        #region Constructors
+
+        /// <summary>
+        /// Instantiates a new instance of the Condition class.
+        /// </summary>
         public TBdoConditionalStatement()
         {
         }
+
+        #endregion
+
+        // ------------------------------------------
+        // ITBdoConditionalStatement
+        // ------------------------------------------
+
+        #region Constructors
+
+        /// <summary>
+        /// Instantiates a new instance of the Condition class.
+        /// </summary>
+        public TItem GetItem(IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
+        {
+            foreach (var (Item, Condition) in this)
+            {
+                if (Condition != null && scope.Evaluate(Condition, varSet, log))
+                {
+                    return Item;
+                }
+            }
+
+            return this.FirstOrDefault(q => q.Condition == null).Item;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // IReferenced Implementation
+        // ------------------------------------------
+
+        #region IReferenced
+
+        public string Key() => Id;
+
+        #endregion
 
         // --------------------------------------------------
         // IClonable

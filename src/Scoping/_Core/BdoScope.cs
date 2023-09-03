@@ -33,7 +33,7 @@ namespace BindOpen.System.Scoping
 
             DepotStore = BdoData.NewDepotStore();
 
-            DataStore = BdoData.NewMetaNode();
+            DataStore = BdoData.NewMetaSet();
         }
 
         #endregion

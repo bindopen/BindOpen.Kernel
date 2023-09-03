@@ -1,7 +1,6 @@
 ﻿using BindOpen.System.Data.Helpers;
 using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
-using BindOpen.System.Scoping.Script;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -241,7 +240,6 @@ namespace BindOpen.System.Data.Meta
         /// <param key="scope">The scope to consider.</param>
         /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
-        [BdoFunction("data")]
         public object GetData(
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
@@ -277,21 +275,6 @@ namespace BindOpen.System.Data.Meta
 
             var list = obj?.ToObjectList();
             return list;
-        }
-
-        /// <summary>
-        /// Returns the item TItem of this instance.
-        /// </summary>
-        /// <param key="log">The log to populate.</param>
-        /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable meta set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        [BdoFunction("value")]
-        public static object Value(
-            [BdoThis] IBdoMetaData data,
-            IBdoScriptDomain scriptDomain = null)
-        {
-            return data?.GetData(scriptDomain?.Scope, scriptDomain?.VariableSet, scriptDomain?.Log);
         }
 
         /// <summary>

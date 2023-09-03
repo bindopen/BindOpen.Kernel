@@ -1,5 +1,4 @@
 ﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Data.Meta;
 using System.Linq;
 
 namespace BindOpen.System.Data

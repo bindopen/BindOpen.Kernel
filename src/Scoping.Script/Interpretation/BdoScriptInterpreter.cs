@@ -153,13 +153,13 @@ namespace BindOpen.System.Scoping.Script
             bool child,
             IBdoScriptword parent)
         {
+            if (root)
+            {
+                word = word?.Root() as IBdoScriptword;
+            }
+
             if (word != null)
             {
-                if (root)
-                {
-                    word = word.Root() as IBdoScriptword;
-                }
-
                 var cloned = BdoScript.NewWord(word.Kind, word.Name)
                     .WithDataType(BdoExtensionKinds.Scriptword, word.DataType?.DefinitionUniqueName)
                     .WithParent(parent ?? word.Parent as IBdoScriptword);
@@ -461,7 +461,7 @@ namespace BindOpen.System.Scoping.Script
                         var varName = script.ToSubstring(index, nextIndex - 1).Trim();
                         if (varName.Equals("this", StringComparison.OrdinalIgnoreCase))
                         {
-                            varName = BdoScript.__This_VarName;
+                            varName = BdoScript.__VarName_This;
                         }
                         else
                         {

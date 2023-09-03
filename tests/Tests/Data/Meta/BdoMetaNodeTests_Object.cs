@@ -1,5 +1,4 @@
 ﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Data.Meta;
 using BindOpen.System.Data.Meta.Reflection;
 using BindOpen.System.Tests;
 using Bogus;
