@@ -100,7 +100,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (meta != null)
             {
-                varSet ??= BdoData.NewMetaNode();
+                varSet ??= BdoData.NewMetaSet();
                 varSet.Add((BdoData.__This, meta));
 
                 var exp = meta.GetOrAddSpec().Label.ToExpression();

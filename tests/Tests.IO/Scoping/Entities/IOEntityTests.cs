@@ -1,8 +1,6 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Data;
+﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.IO.Dtos;
-using BindOpen.System.Data.Meta;
 using BindOpen.System.Tests;
 using NUnit.Framework;
 using System.IO;

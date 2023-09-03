@@ -1,4 +1,5 @@
 ﻿using BindOpen.System.Data;
+using BindOpen.System.Data.Conditions;
 using BindOpen.System.Data.Helpers;
 using BindOpen.System.Data.Meta;
 using System.Linq;
@@ -39,6 +40,15 @@ namespace BindOpen.System.Scoping.Script
         public static implicit operator BdoExpression(BdoScriptword word)
         {
             return BdoData.NewExp(word);
+        }
+
+        /// <summary>
+        /// Converts from string.
+        /// </summary>
+        /// <param key="st">The string to consider.</param>
+        public static implicit operator BdoCondition(BdoScriptword word)
+        {
+            return BdoData.NewCondition((BdoExpression)word);
         }
 
         /// <summary>

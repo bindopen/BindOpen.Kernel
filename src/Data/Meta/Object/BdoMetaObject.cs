@@ -1,5 +1,5 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Data.Helpers;
+﻿using BindOpen.System.Data.Helpers;
+using BindOpen.System.Data.Meta;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -143,14 +143,14 @@ namespace BindOpen.System.Data.Meta
 
         public IBdoMetaData Insert(IBdoMetaData item)
         {
-            _propertySet ??= BdoData.NewMetaNode();
+            _propertySet ??= BdoData.NewMetaSet();
             return _propertySet.Insert(item);
         }
 
         public override void Clear()
         {
             //base.Clear();
-            _propertySet ??= BdoData.NewMetaNode();
+            _propertySet ??= BdoData.NewMetaSet();
             _propertySet.Clear();
         }
 
@@ -266,7 +266,7 @@ namespace BindOpen.System.Data.Meta
 
         /// <summary>
         /// 
-        /// </summary>
+        /// </summary>        
         public virtual TChild Descendant<TChild>(
             params object[] tokens)
             where TChild : IReferenced

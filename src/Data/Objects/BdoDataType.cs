@@ -164,15 +164,23 @@ namespace BindOpen.System.Data
             var leftValueType = left?.ValueType ?? DataValueTypes.Any;
             var rightValueType = right?.ValueType ?? DataValueTypes.Any;
 
-            return
-                (
-                    leftValueType == DataValueTypes.Any
+            var b = leftValueType == DataValueTypes.Any
                     || rightValueType == DataValueTypes.Any
                     || leftValueType == DataValueTypes.Entity
                     || leftValueType == DataValueTypes.Object
-                    || leftValueType == right.ValueType
-                )
-                && (right?.GetRuntimeType()?.IsAssignableFrom(left?.GetRuntimeType()) == true);
+                    || rightValueType == DataValueTypes.Entity
+                    || rightValueType == DataValueTypes.Object
+                    || leftValueType == right.ValueType;
+
+            if (b)
+            {
+                var rightRuntimeType = right?.GetRuntimeType();
+                var leftRuntimeType = left?.GetRuntimeType();
+
+                b = rightRuntimeType?.IsAssignableFrom(leftRuntimeType) == true;
+            }
+
+            return b;
         }
 
         public static bool operator <=(BdoDataType left, BdoDataType right)
@@ -180,15 +188,23 @@ namespace BindOpen.System.Data
             var leftValueType = left?.ValueType ?? DataValueTypes.Any;
             var rightValueType = right?.ValueType ?? DataValueTypes.Any;
 
-            return
-                (
-                    leftValueType == DataValueTypes.Any
-                    || rightValueType == DataValueTypes.Any
-                    || leftValueType == DataValueTypes.Entity
-                    || leftValueType == DataValueTypes.Object
-                    || leftValueType == right.ValueType
-                )
-                && (left?.GetRuntimeType()?.IsAssignableFrom(right?.GetRuntimeType()) == true);
+            var b = leftValueType == DataValueTypes.Any
+                || rightValueType == DataValueTypes.Any
+                || leftValueType == DataValueTypes.Entity
+                || leftValueType == DataValueTypes.Object
+                || rightValueType == DataValueTypes.Entity
+                || rightValueType == DataValueTypes.Object
+                || leftValueType == right.ValueType;
+
+            if (b)
+            {
+                var rightRuntimeType = right?.GetRuntimeType();
+                var leftRuntimeType = left?.GetRuntimeType();
+
+                b = leftRuntimeType?.IsAssignableFrom(rightRuntimeType) == true;
+            }
+
+            return b;
         }
 
         public static bool operator <=(BdoDataType left, Type right)

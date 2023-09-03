@@ -5,7 +5,7 @@ using BindOpen.System.Scoping;
 using BindOpen.System.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.System.Data
+namespace BindOpen.System.Data.Meta
 {
     [TestFixture, Order(100)]
     public class BdoSpecTests

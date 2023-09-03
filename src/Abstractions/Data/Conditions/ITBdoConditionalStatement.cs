@@ -8,7 +8,7 @@ namespace BindOpen.System.Data.Conditions
     /// <summary>
     /// 
     /// </summary>
-    public interface ITBdoConditionalStatement<TItem> : IList<(TItem Item, IBdoCondition Condition)>, IBdoObject
+    public interface ITBdoConditionalStatement<TItem> : IList<(TItem Item, IBdoCondition Condition)>, IBdoObject, IIdentified, IReferenced
     {
         /// <summary>
         /// 

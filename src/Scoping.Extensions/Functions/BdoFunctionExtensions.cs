@@ -1,5 +1,4 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Data;
+﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Helpers;
 using BindOpen.System.Data.Meta;
 using BindOpen.System.Logging;
@@ -160,10 +159,10 @@ namespace BindOpen.System.Scoping
                             var parameters = method.GetParameters();
 
                             var i = Array.IndexOf(parameters, lastParam);
-                            if (i > -1 && objs.Count > i + 1)
+                            if (i > -1 && objs.Count >= i + 1)
                             {
-                                var list = objs.GetRange(i, objs.Count);
-                                objs.RemoveRange(i, objs.Count);
+                                var list = objs.GetRange(i, objs.Count - i);
+                                objs.RemoveRange(i, objs.Count - i);
                                 objs.Add(list?.ToArray());
                             }
                         }

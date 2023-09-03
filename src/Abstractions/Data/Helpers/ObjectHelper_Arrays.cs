@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BindOpen.System.Data.Meta;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -142,9 +143,10 @@ namespace BindOpen.System.Data.Helpers
 
             if (type == typeof(byte[])) { return false; }
 
-            return typeof(Array).IsAssignableFrom(type)
+            return !typeof(IBdoMetaSet).IsAssignableFrom(type)
+                && (typeof(Array).IsAssignableFrom(type)
                 || typeof(IEnumerable).IsAssignableFrom(type)
-                || type.IsArray;
+                || type.IsArray);
         }
     }
 }

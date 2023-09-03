@@ -20,6 +20,12 @@ Todo list for BindOpen
 - [ ] Update detail children of meta wrapper if detail is a config
 - [ ] Update Children and Child and HasChild methods
 - [ ] StringHelper - Format string from tokens
+- [ ] Add _If script function
+- [ ] Add Has(tokens) script function
+- [ ] Interpreter: Returns null if any interpretation error
+- [ ] Allow script word polymorphism
+- [ ] Check meta data
+- [ ] Limit level depth
 
 ## Stuff to check out later on
 
