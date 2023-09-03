@@ -24,6 +24,14 @@ namespace BindOpen.System.Data.Meta
         [Test, Order(1)]
         public void ConditionTest()
         {
+            var meta0 = BdoData.NewMetaNode("meta-test")
+                .WithSpec(BdoData.NewSpec())
+                .With(
+                    BdoData.NewMeta("title", "A"));
+
+            var existence0 = meta0.WhatCondition(SystemData.Scope);
+            Assert.That(existence0, "Statement - Error");
+
             var meta1 = BdoData.NewMetaNode("meta-test")
                 .WithSpec(_spec)
                 .With(
@@ -37,13 +45,21 @@ namespace BindOpen.System.Data.Meta
                 .With(
                     BdoData.NewMeta("title", "A"));
 
-            var existence2 = meta1.WhatCondition(SystemData.Scope);
-            Assert.That(existence2, "Statement - Error");
+            var existence2 = meta2.WhatCondition(SystemData.Scope);
+            Assert.That(!existence2, "Statement - Error");
         }
 
         [Test, Order(2)]
         public void RequirementTest()
         {
+            var meta0 = BdoData.NewMetaNode("meta-test")
+                .WithSpec(BdoData.NewSpec())
+                .With(
+                    BdoData.NewMeta("title", "A"));
+
+            var requirementLvel0 = meta0.WhatRequirement(SystemData.Scope);
+            Assert.That(requirementLvel0 == RequirementLevels.None, "Statement - Error");
+
             var meta1 = BdoData.NewMetaNode("meta-test")
                 .WithSpec(_spec)
                 .With(
@@ -65,6 +81,14 @@ namespace BindOpen.System.Data.Meta
         [Test, Order(3)]
         public void ItemRequirementTest()
         {
+            var meta0 = BdoData.NewMetaNode("meta-test")
+                .WithSpec(BdoData.NewSpec())
+                .With(
+                    BdoData.NewMeta("title", "A"));
+
+            var requirementLvel0 = meta0.WhatItemRequirement(SystemData.Scope);
+            Assert.That(requirementLvel0 == RequirementLevels.Optional, "Statement - Error");
+
             var meta1 = BdoData.NewMetaNode("meta-test")
                 .WithSpec(_spec)
                 .With(
