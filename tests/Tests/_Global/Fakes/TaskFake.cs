@@ -1,6 +1,10 @@
 ﻿using BindOpen.System.Data;
 using BindOpen.System.Data.Meta;
+using BindOpen.System.Logging;
 using BindOpen.System.Scoping;
+using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace BindOpen.System.Tests
 {
@@ -92,5 +96,17 @@ namespace BindOpen.System.Tests
         }
 
         #endregion
+
+        public override Task<bool> ExecuteAsync(
+            CancellationToken token,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            RuntimeModes runtimeMode = RuntimeModes.Normal,
+            IBdoLog log = null)
+        {
+            Debug.WriteLine("Task completed");
+
+            return Task.FromResult(true);
+        }
     }
 }

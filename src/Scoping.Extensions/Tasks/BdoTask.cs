@@ -42,7 +42,7 @@ namespace BindOpen.System.Scoping
         /// <param key="runtimeMode">The runtime mode to consider.</param>
         /// <returns>Returns the output value of the execution.</returns>
         public virtual Task<bool> ExecuteAsync(
-            CancellationToken toekn,
+            CancellationToken token,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             RuntimeModes runtimeMode = RuntimeModes.Normal,
@@ -60,7 +60,7 @@ namespace BindOpen.System.Scoping
         /// <param key="runtimeMode">The runtime mode to consider.</param>
         /// <returns>Returns the output value of the execution.</returns>
         public virtual bool Execute(
-            CancellationToken toekn,
+            CancellationToken token,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             RuntimeModes runtimeMode = RuntimeModes.Normal,

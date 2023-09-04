@@ -14,7 +14,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (log != null)
             {
-                log._Children = BdoData.NewSet(children?.Any() == true ? children : null);
+                log._Children = BdoData.NewItemSet(children?.Any() == true ? children : null);
             }
 
             return log;
@@ -24,7 +24,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (log != null)
             {
-                log._Children ??= BdoData.NewSet<IBdoSpec>();
+                log._Children ??= BdoData.NewItemSet<IBdoSpec>();
                 foreach (var child in children)
                 {
                     log._Children.Add(child);

@@ -69,7 +69,7 @@ namespace BindOpen.System.Data
         /// <returns>Return this instance.</returns>
         public static T NewSpecSet<T>()
             where T : class, IBdoSpecSet, new()
-            => NewSet<T, IBdoSpec>();
+            => NewItemSet<T, IBdoSpec>();
 
         /// <summary>
         /// Defines the parameters of this instance.

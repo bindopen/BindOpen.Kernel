@@ -55,11 +55,11 @@ namespace BindOpen.System.Data.Meta
             //        BdoConfig.New("bindopen.system.tests$testEntity")
             //                .With(new { path = _testData.path4 }).ToMetaArray()))?.ToMeta();
 
-            var meta1 = BdoData.NewMetaObject("object1", _obj1);
-            var meta2 = BdoData.NewMetaObject("object2", _obj2);
-            var meta3 = BdoData.NewMetaObject("object3", _obj3);
+            var meta1 = BdoData.NewObject("object1", _obj1);
+            var meta2 = BdoData.NewObject("object2", _obj2);
+            var meta3 = BdoData.NewObject("object3", _obj3);
 
-            _metaSet = BdoData.NewMetaNode(meta1, meta2, meta3);
+            _metaSet = BdoData.NewNode(meta1, meta2, meta3);
 
             Test(_metaSet);
         }

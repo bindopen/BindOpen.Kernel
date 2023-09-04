@@ -20,7 +20,7 @@ namespace BindOpen.System.Data.Meta
 
             if (refItem is IBdoConfiguration refConfig && refConfig._Children?.Any() == true)
             {
-                _children ??= BdoData.NewSet<IBdoConfiguration>();
+                _children ??= BdoData.NewItemSet<IBdoConfiguration>();
 
                 _children?.Update(refConfig._Children, areas, updateModes, log);
             }

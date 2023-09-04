@@ -7,7 +7,7 @@
     <Product>BindOpen.System</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
-    <Description>The classes of data transfer objects for BindOpen Runtime.</Description>
+    <Description>This package provides core DTO classes of BindOpen.System.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.System.IO.Dtos</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.System</PackageProjectUrl>
@@ -23,16 +23,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>BindOpen.System.IO.Dtos.xml</DocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="_Core\**" />
-    <EmbeddedResource Remove="_Core\**" />
-    <None Remove="_Core\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Data\Assemblies\AssemblyReferenceDto.cs~RF5fdedf9.TMP" />
-  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\..\docs\img\bindopen_icon.png">

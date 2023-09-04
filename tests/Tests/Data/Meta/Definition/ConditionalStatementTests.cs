@@ -24,7 +24,7 @@ namespace BindOpen.System.Data.Meta
         [Test, Order(1)]
         public void ConditionTest()
         {
-            var meta0 = BdoData.NewMetaNode("meta-test")
+            var meta0 = BdoData.NewNode("meta-test")
                 .WithSpec(BdoData.NewSpec())
                 .With(
                     BdoData.NewMeta("title", "A"));
@@ -32,7 +32,7 @@ namespace BindOpen.System.Data.Meta
             var existence0 = meta0.WhatCondition(SystemData.Scope);
             Assert.That(existence0, "Statement - Error");
 
-            var meta1 = BdoData.NewMetaNode("meta-test")
+            var meta1 = BdoData.NewNode("meta-test")
                 .WithSpec(_spec)
                 .With(
                     BdoData.NewMeta("title", "myTitle"));
@@ -40,7 +40,7 @@ namespace BindOpen.System.Data.Meta
             var existence1 = meta1.WhatCondition(SystemData.Scope);
             Assert.That(existence1, "Statement - Error");
 
-            var meta2 = BdoData.NewMetaNode("meta-test")
+            var meta2 = BdoData.NewNode("meta-test")
                 .WithSpec(_spec)
                 .With(
                     BdoData.NewMeta("title", "A"));
@@ -52,7 +52,7 @@ namespace BindOpen.System.Data.Meta
         [Test, Order(2)]
         public void RequirementTest()
         {
-            var meta0 = BdoData.NewMetaNode("meta-test")
+            var meta0 = BdoData.NewNode("meta-test")
                 .WithSpec(BdoData.NewSpec())
                 .With(
                     BdoData.NewMeta("title", "A"));
@@ -60,7 +60,7 @@ namespace BindOpen.System.Data.Meta
             var requirementLvel0 = meta0.WhatRequirement(SystemData.Scope);
             Assert.That(requirementLvel0 == RequirementLevels.None, "Statement - Error");
 
-            var meta1 = BdoData.NewMetaNode("meta-test")
+            var meta1 = BdoData.NewNode("meta-test")
                 .WithSpec(_spec)
                 .With(
                     BdoData.NewMeta("auto", true),
@@ -69,7 +69,7 @@ namespace BindOpen.System.Data.Meta
             var requirementLvel1 = meta1.WhatRequirement(SystemData.Scope);
             Assert.That(requirementLvel1 == RequirementLevels.Required, "Statement - Error");
 
-            var meta2 = BdoData.NewMetaNode("meta-test")
+            var meta2 = BdoData.NewNode("meta-test")
                 .WithSpec(_spec)
                 .With(
                     BdoData.NewMeta("auto", true));
@@ -81,7 +81,7 @@ namespace BindOpen.System.Data.Meta
         [Test, Order(3)]
         public void ItemRequirementTest()
         {
-            var meta0 = BdoData.NewMetaNode("meta-test")
+            var meta0 = BdoData.NewNode("meta-test")
                 .WithSpec(BdoData.NewSpec())
                 .With(
                     BdoData.NewMeta("title", "A"));
@@ -89,7 +89,7 @@ namespace BindOpen.System.Data.Meta
             var requirementLvel0 = meta0.WhatItemRequirement(SystemData.Scope);
             Assert.That(requirementLvel0 == RequirementLevels.Optional, "Statement - Error");
 
-            var meta1 = BdoData.NewMetaNode("meta-test")
+            var meta1 = BdoData.NewNode("meta-test")
                 .WithSpec(_spec)
                 .With(
                     BdoData.NewMeta("auto", true),
@@ -98,7 +98,7 @@ namespace BindOpen.System.Data.Meta
             var requirementLvel1 = meta1.WhatItemRequirement(SystemData.Scope);
             Assert.That(requirementLvel1 == RequirementLevels.Required, "Statement - Error");
 
-            var meta2 = BdoData.NewMetaNode("meta-test")
+            var meta2 = BdoData.NewNode("meta-test")
                 .WithSpec(_spec)
                 .With(
                     BdoData.NewMeta("auto", false));

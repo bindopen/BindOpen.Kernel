@@ -71,7 +71,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="st">The string to consider.</param>
         public static explicit operator BdoMetaData(string st)
-            => BdoData.NewMetaScalar(DataValueTypes.Any, st);
+            => BdoData.NewScalar(DataValueTypes.Any, st);
 
         /// <summary>
         /// Converts to string.

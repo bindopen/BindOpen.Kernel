@@ -53,20 +53,20 @@ namespace BindOpen.System.Data.Meta
         [Test, Order(1)]
         public void CreateTest()
         {
-            var meta1 = BdoData.NewMetaObject("object1", _obj1)
+            var meta1 = BdoData.NewObject("object1", _obj1)
                 .WithDataType(BdoExtensionKinds.Connector, "test$sample1");
-            var meta2 = BdoData.NewMetaObject("object2", _obj2)
+            var meta2 = BdoData.NewObject("object2", _obj2)
                 .WithDataType(BdoExtensionKinds.Entity, "test$sample2");
-            var meta3 = BdoData.NewMetaObject("object3", _obj3)
+            var meta3 = BdoData.NewObject("object3", _obj3)
                 .WithDataType(BdoExtensionKinds.Task, "test$sample3");
 
             _config = BdoData.NewConfig("config1",
-                BdoData.NewMetaScalar("float1", DataValueTypes.Number, _testData.arrayNumber1 as double[]),
-                BdoData.NewMetaScalar("text2", DataValueTypes.Text, _testData.arrayString2 as string[]),
-                BdoData.NewMetaScalar("integer3", DataValueTypes.Integer, _testData.arrayInteger3 as int[]),
-                BdoData.NewMetaScalar("byteArray4", DataValueTypes.Binary, _testData.arrayArrayByte4 as byte[][]),
-                BdoData.NewMetaScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[0]),
-                BdoData.NewMetaScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[1])
+                BdoData.NewScalar("float1", DataValueTypes.Number, _testData.arrayNumber1 as double[]),
+                BdoData.NewScalar("text2", DataValueTypes.Text, _testData.arrayString2 as string[]),
+                BdoData.NewScalar("integer3", DataValueTypes.Integer, _testData.arrayInteger3 as int[]),
+                BdoData.NewScalar("byteArray4", DataValueTypes.Binary, _testData.arrayArrayByte4 as byte[][]),
+                BdoData.NewScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[0]),
+                BdoData.NewScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[1])
                     .WithReference(BdoData.NewExp("$sampleExp()", BdoExpressionKind.Auto)))
                 .WithChildren(
                     BdoData.NewConfig("sources", meta1, meta2, meta3),

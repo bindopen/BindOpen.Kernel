@@ -26,7 +26,7 @@ namespace BindOpen.System.Tests
             var child = new TreeFake();
             updater?.Invoke(child);
 
-            _Children ??= BdoData.NewSet<TreeFake>();
+            _Children ??= BdoData.NewItemSet<TreeFake>();
             _Children.Add(child);
 
             return child;

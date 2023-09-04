@@ -19,7 +19,7 @@ namespace BindOpen.System.Scoping.Script
 
             var meta = BdoData.NewMeta(123).WithParent(BdoData.NewMeta(125));
 
-            var varSet = BdoData.NewMetaSet((BdoScript.__VarName_This, meta));
+            var varSet = BdoData.NewSet((BdoData.__VarName_This, meta));
 
             var result = interpreter.Evaluate<int?>(exp, varSet);
 
@@ -33,10 +33,10 @@ namespace BindOpen.System.Scoping.Script
 
             var interpreter = SystemData.Scope.Interpreter;
 
-            var set = BdoData.NewMetaNode(("toto", 123), ("titi", 125));
+            var set = BdoData.NewNode(("toto", 123), ("titi", 125));
             var meta = set[0];
 
-            var varSet = BdoData.NewMetaSet((BdoScript.__VarName_This, meta));
+            var varSet = BdoData.NewSet((BdoData.__VarName_This, meta));
 
             var result = interpreter.Evaluate<int?>(exp, varSet);
 
@@ -50,10 +50,10 @@ namespace BindOpen.System.Scoping.Script
 
             var interpreter = SystemData.Scope.Interpreter;
 
-            var set = BdoData.NewMetaNode(("toto", 123), ("titi", 125));
+            var set = BdoData.NewNode(("toto", 123), ("titi", 125));
             var meta = set[0];
 
-            var varSet = BdoData.NewMetaSet((BdoScript.__VarName_This, meta));
+            var varSet = BdoData.NewSet((BdoData.__VarName_This, meta));
 
             var result = interpreter.Evaluate<int?>(exp, varSet);
 

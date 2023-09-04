@@ -25,7 +25,7 @@ namespace BindOpen.System.Data
         /// <param key="st">The string to consider.</param>
         public static implicit operator TBdoSet<T>(T[] items)
         {
-            return BdoData.NewSet(items);
+            return BdoData.NewItemSet(items);
         }
 
         #endregion

@@ -385,7 +385,7 @@ namespace BindOpen.System.Scoping.Script
                                 "Syntax Error: Required character '(' for functions missing. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR")
                                 .WithDetail(
-                                    BdoData.NewMetaScalar("Position", (index + offsetIndex).ToString()));
+                                    BdoData.NewScalar("Position", (index + offsetIndex).ToString()));
 
                             return null;
                         }
@@ -409,7 +409,7 @@ namespace BindOpen.System.Scoping.Script
                                     "Syntax Error: Character ')' not found for function. Position " + (index + offsetIndex),
                                     resultCode: "SCRIPT_SYNTAXERROR")
                                     .WithDetail(
-                                        BdoData.NewMetaScalar("Position", (index + offsetIndex).ToString()));
+                                        BdoData.NewScalar("Position", (index + offsetIndex).ToString()));
 
                                 return null;
                             }
@@ -453,7 +453,7 @@ namespace BindOpen.System.Scoping.Script
                                 "Syntax Error: Character ')' needed for function has not been found. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR")
                                 .WithDetail(
-                                    BdoData.NewMetaScalar("Position", (index + offsetIndex).ToString()));
+                                    BdoData.NewScalar("Position", (index + offsetIndex).ToString()));
 
                             return null;
                         }
@@ -461,7 +461,7 @@ namespace BindOpen.System.Scoping.Script
                         var varName = script.ToSubstring(index, nextIndex - 1).Trim();
                         if (varName.Equals("this", StringComparison.OrdinalIgnoreCase))
                         {
-                            varName = BdoScript.__VarName_This;
+                            varName = BdoData.__VarName_This;
                         }
                         else
                         {

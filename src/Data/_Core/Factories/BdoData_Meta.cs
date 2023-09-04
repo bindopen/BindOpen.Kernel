@@ -31,7 +31,7 @@ namespace BindOpen.System.Data
             string name,
             object data)
         {
-            if (data == null) return NewMetaObject(name);
+            if (data == null) return NewObject(name);
 
             var type = data.GetType();
             var meta = NewMeta(name, type, DataValueTypes.Any, data);
@@ -89,14 +89,14 @@ namespace BindOpen.System.Data
 
             if (valueType.IsScalar() && type?.IsScalar() == true)
             {
-                var scalar = NewMetaScalar(name, valueType, data);
+                var scalar = NewScalar(name, valueType, data);
                 return scalar;
             }
             else if (type?.IsList() == true)
             {
                 var objList = data.ToObjectArray();
 
-                var node = NewMetaNode(name);
+                var node = NewNode(name);
                 if (objList != null)
                 {
                     foreach (var obj in objList)
@@ -108,7 +108,7 @@ namespace BindOpen.System.Data
             }
             else
             {
-                var metaObj = NewMetaObject(name, type, data, valueType);
+                var metaObj = NewObject(name, type, data, valueType);
                 return metaObj;
             }
         }

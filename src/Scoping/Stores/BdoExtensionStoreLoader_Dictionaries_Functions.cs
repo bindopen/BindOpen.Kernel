@@ -109,7 +109,7 @@ namespace BindOpen.System.Scoping.Stores
 
                         if (spec.IsStatic || spec.DataType.IsScope() || spec.DataType.IsScriptDomain())
                         {
-                            definition.AdditionalSpecs ??= BdoData.NewSet<IBdoSpec>();
+                            definition.AdditionalSpecs ??= BdoData.NewItemSet<IBdoSpec>();
                             definition.AdditionalSpecs.Add((IBdoSpec)spec);
                         }
                         else
@@ -133,7 +133,7 @@ namespace BindOpen.System.Scoping.Stores
                         {
                             definition.Remove(spec?.Key());
                         }
-                        definition.AdditionalSpecs ??= BdoData.NewSet<IBdoSpec>();
+                        definition.AdditionalSpecs ??= BdoData.NewItemSet<IBdoSpec>();
                         definition.AdditionalSpecs.Add(spec);
                     }
 

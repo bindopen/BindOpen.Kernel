@@ -143,14 +143,14 @@ namespace BindOpen.System.Data.Meta
 
         public IBdoMetaData Insert(IBdoMetaData item)
         {
-            _propertySet ??= BdoData.NewMetaSet();
+            _propertySet ??= BdoData.NewSet();
             return _propertySet.Insert(item);
         }
 
         public override void Clear()
         {
             //base.Clear();
-            _propertySet ??= BdoData.NewMetaSet();
+            _propertySet ??= BdoData.NewSet();
             _propertySet.Clear();
         }
 

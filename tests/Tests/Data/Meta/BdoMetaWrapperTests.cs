@@ -16,7 +16,7 @@ namespace BindOpen.System.Data
         public void CreateTest()
         {
             var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>(
-                BdoData.NewMetaSet(("test1", "ABC")));
+                BdoData.NewSet(("test1", "ABC")));
 
             var value1 = obj.Test1;
             Assert.That(value1 == "ABC", "Bad meta wrapper");
@@ -50,10 +50,10 @@ namespace BindOpen.System.Data
         {
             var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>(
                 BdoData.NewConfig(
-                    BdoData.NewMetaScalar("test1", "ABC"))
+                    BdoData.NewScalar("test1", "ABC"))
                     .WithChildren(BdoData.NewConfig(
                         "config1A",
-                        BdoData.NewMetaScalar("test1A", "1_ABC"))));
+                        BdoData.NewScalar("test1A", "1_ABC"))));
 
             var meta = obj.Detail.Descendant<IBdoMetaData>("^config1A", 0);
             Assert.That(meta?.GetData<string>() == "1_ABC", "Bad meta wrapper");
@@ -69,7 +69,7 @@ namespace BindOpen.System.Data
 
             var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>(
                 BdoData.NewConfig(
-                    BdoData.NewMetaScalar("testList", values)));
+                    BdoData.NewScalar("testList", values)));
 
             Assert.That(obj?.List?.Count == 2, "Bad meta wrapper");
         }
@@ -79,10 +79,10 @@ namespace BindOpen.System.Data
         {
             var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>(
                 BdoData.NewConfig(
-                    BdoData.NewMetaNode("testDico")
+                    BdoData.NewNode("testDico")
                         .With(
-                            BdoData.NewMetaScalar("day", 120),
-                            BdoData.NewMetaScalar("month", 130))));
+                            BdoData.NewScalar("day", 120),
+                            BdoData.NewScalar("month", 130))));
 
             Assert.That(obj?.Dico?.Count == 2, "Bad meta wrapper");
         }
@@ -93,15 +93,15 @@ namespace BindOpen.System.Data
             var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>();
             obj.UpdateDetail(
                 BdoData.NewConfig(
-                    BdoData.NewMetaScalar("test1", "monthA")),
+                    BdoData.NewScalar("test1", "monthA")),
                 true);
             obj.UpdateDetail(
                 BdoData.NewConfig(
-                    BdoData.NewMetaScalar("test2", "dailyA")),
+                    BdoData.NewScalar("test2", "dailyA")),
                 true);
             obj.UpdateDetail(
                 BdoData.NewConfig(
-                    BdoData.NewMetaScalar("test2", "dailyB")),
+                    BdoData.NewScalar("test2", "dailyB")),
                 true);
 
             Assert.That(obj?.Detail?.Count == 2, "Bad meta wrapper");
@@ -113,7 +113,7 @@ namespace BindOpen.System.Data
             var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>();
             obj.UpdateDetail(
                 BdoData.NewConfig(
-                    BdoData.NewMetaScalar("testListA", "monthA")),
+                    BdoData.NewScalar("testListA", "monthA")),
                 true);
 
             Assert.That(obj?.Detail?.Count == 1, "Bad meta wrapper");
@@ -122,10 +122,10 @@ namespace BindOpen.System.Data
 
             obj.UpdateDetail(
                 BdoData.NewConfig(
-                    BdoData.NewMetaScalar("test2", "dailyB"))
+                    BdoData.NewScalar("test2", "dailyB"))
                     .WithChildren(
                         BdoData.NewConfig(
-                            BdoData.NewMetaScalar("float2A", 1500))));
+                            BdoData.NewScalar("float2A", 1500))));
 
             Assert.That(obj?.Detail?._Children?.Count == 1, "Bad meta wrapper");
         }
@@ -136,12 +136,12 @@ namespace BindOpen.System.Data
             var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>();
             obj.UpdateDetail(
                 BdoData.NewConfig(
-                    BdoData.NewMetaScalar("testList", "monthA"),
-                    BdoData.NewMetaObject("entityFake")
+                    BdoData.NewScalar("testList", "monthA"),
+                    BdoData.NewObject("entityFake")
                         .With(
-                            BdoData.NewMetaScalar("stringValue", "_string"),
-                            BdoData.NewMetaScalar("intValue", 1500),
-                            BdoData.NewMetaScalar("enumValue", ActionPriorities.Low)
+                            BdoData.NewScalar("stringValue", "_string"),
+                            BdoData.NewScalar("intValue", 1500),
+                            BdoData.NewScalar("enumValue", ActionPriorities.Low)
                         )));
 
             obj.UpdateProperties();
@@ -159,12 +159,12 @@ namespace BindOpen.System.Data
             var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>();
             obj.UpdateDetail(
                 BdoData.NewConfig(
-                    BdoData.NewMetaScalar("testListA", "monthA"),
-                    BdoData.NewMetaObject("entityFake")
+                    BdoData.NewScalar("testListA", "monthA"),
+                    BdoData.NewObject("entityFake")
                         .With(
-                            BdoData.NewMetaScalar("stringValue", "_string"),
-                            BdoData.NewMetaScalar("intValue", 1500),
-                            BdoData.NewMetaScalar("enumValue", ActionPriorities.Low)
+                            BdoData.NewScalar("stringValue", "_string"),
+                            BdoData.NewScalar("intValue", 1500),
+                            BdoData.NewScalar("enumValue", ActionPriorities.Low)
                         )));
 
             obj.UpdateProperties();
@@ -186,13 +186,13 @@ namespace BindOpen.System.Data
             var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>();
             obj.UpdateDetail(
                 BdoData.NewConfig(
-                    BdoData.NewMetaScalar("testList", "monthA"))
+                    BdoData.NewScalar("testList", "monthA"))
                 .WithChildren(
                     BdoData.NewConfig("$entityFake",
-                        BdoData.NewMetaObject("node1").With(
-                            BdoData.NewMetaScalar("stringValue", "_string"),
-                            BdoData.NewMetaScalar("intValue", 1500),
-                            BdoData.NewMetaScalar("enumValue", ActionPriorities.Low)
+                        BdoData.NewObject("node1").With(
+                            BdoData.NewScalar("stringValue", "_string"),
+                            BdoData.NewScalar("intValue", 1500),
+                            BdoData.NewScalar("enumValue", ActionPriorities.Low)
                         )
                 )));
 

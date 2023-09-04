@@ -326,7 +326,7 @@ namespace BindOpen.System.Data.Meta
                 obj.Id = StringHelper.NewGuid();
             }
 
-            obj._children = _children == null ? null : BdoData.NewSet(_children?.Select(q => q.Clone<IBdoSpec>()).ToArray());
+            obj._children = _children == null ? null : BdoData.NewItemSet(_children?.Select(q => q.Clone<IBdoSpec>()).ToArray());
 
             obj.WithAvailableDataModes(AvailableDataModes?.ToArray());
             obj.WithAliases(Aliases?.ToArray());
