@@ -100,8 +100,8 @@ namespace BindOpen.System.Data.Meta
         {
             if (meta != null)
             {
-                varSet ??= BdoData.NewMetaSet();
-                varSet.Add((BdoData.__This, meta));
+                varSet ??= BdoData.NewSet();
+                varSet.Add((BdoData.__VarName_This, meta));
 
                 var exp = meta.GetOrAddSpec().Label.ToExpression();
                 var label = scope?.Interpreter?.Evaluate<string>(exp, varSet, log);

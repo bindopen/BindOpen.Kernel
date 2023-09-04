@@ -27,7 +27,7 @@ namespace BindOpen.System.Scoping.Script
 
             var interpreter = SystemData.Scope.Interpreter;
 
-            var varSet = BdoData.NewMetaSet(
+            var varSet = BdoData.NewSet(
                 ("MYTABLE", 135)
             );
 

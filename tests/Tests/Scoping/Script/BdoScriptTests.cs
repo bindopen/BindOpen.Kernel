@@ -41,7 +41,7 @@ namespace BindOpen.System.Scoping.Script
         [Test, Order(2)]
         public void CreateVariableSetTest()
         {
-            var varSet = BdoData.NewMetaSet(
+            var varSet = BdoData.NewSet(
                 ((string Name, object Value))("var1", "sample1"),
                 ((string Name, object Value))("var2", 4.55));
 

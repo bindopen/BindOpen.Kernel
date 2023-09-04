@@ -33,10 +33,10 @@ namespace BindOpen.System.Data
         [Test, Order(2)]
         public void NewTest()
         {
-            var meta1 = BdoData.NewMetaObject(_obj);
+            var meta1 = BdoData.NewObject(_obj);
             Test(meta1);
 
-            var meta2 = BdoData.NewMetaObject()
+            var meta2 = BdoData.NewObject()
                 .WithData(_obj);
             Test(meta2);
         }

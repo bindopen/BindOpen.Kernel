@@ -7,7 +7,7 @@
     <Product>BindOpen.System</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
-    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package provides core classes of the BindOpen.System.Scoping.</Description>
+    <Description>This package allows to convert core classes from and to core DTOs.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.System.IO</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.System</PackageProjectUrl>
@@ -23,12 +23,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>BindOpen.System.IO.xml</DocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Scoping.Script\NewFolder\**" />
-    <EmbeddedResource Remove="Scoping.Script\NewFolder\**" />
-    <None Remove="Scoping.Script\NewFolder\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\..\docs\img\bindopen_icon.png">

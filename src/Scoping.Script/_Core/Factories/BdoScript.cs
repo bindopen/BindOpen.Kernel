@@ -230,13 +230,11 @@ namespace BindOpen.System.Scoping.Script
 
         // This
 
-        public static string __VarName_This = "$this";
-
         public static TBdoScriptword<T> _This<T>()
-            => Var<T>(__VarName_This);
+            => Var<T>(BdoData.__VarName_This);
 
         public static TBdoScriptword<T> _Parent<T>()
-            => Var(__VarName_This).Var<T>("parent");
+            => Var(BdoData.__VarName_This).Var<T>("parent");
 
         /// <summary>
         /// Returns the item TItem of this instance.

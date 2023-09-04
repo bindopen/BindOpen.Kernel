@@ -26,18 +26,18 @@ namespace BindOpen.System.Data
         [Test, Order(1)]
         public void ReferenceTest()
         {
-            var meta1 = BdoData.NewMetaObject()
+            var meta1 = BdoData.NewObject()
                 .WithReference(
                     BdoScript.Var("workflow").Func("input", "input1"));
 
-            var meta2 = BdoData.NewMetaObject(
+            var meta2 = BdoData.NewObject(
                 BdoData.NewRef(BdoScript.Var("workflow").Func("input", "input1")));
         }
 
         [Test, Order(2)]
         public void LabelTest()
         {
-            var meta1 = BdoData.NewMetaScalar("toto", 23);
+            var meta1 = BdoData.NewScalar("toto", 23);
             meta1.WithLabel(LabelFormats.NameColonValue);
             Assert.That(meta1.GetOrAddSpec().Label == "{{$(this).(name)}}:{{$(this).value()}}", "Bad meta data label");
 

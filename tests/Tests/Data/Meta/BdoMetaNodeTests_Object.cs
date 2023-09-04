@@ -65,11 +65,11 @@ namespace BindOpen.System.Data
         [Test, Order(1)]
         public void NewTest()
         {
-            var metaObj1 = BdoData.NewMetaObject("object1")
+            var metaObj1 = BdoData.NewObject("object1")
                 .With(
-                    BdoData.NewMetaScalar("path", _testData.path1 as string));
+                    BdoData.NewScalar("path", _testData.path1 as string));
 
-            var metaObj2 = BdoData.NewMetaObject("object2", "bindopen.system.tests$testEntity")
+            var metaObj2 = BdoData.NewObject("object2", "bindopen.system.tests$testEntity")
                 .WithData(new EntityFake()
                 {
                     Path = _testData.path2 as string
@@ -85,7 +85,7 @@ namespace BindOpen.System.Data
             var obj4 = new EntityFake(_testData.path4 as string);
             var metaObj4 = obj4?.ToMeta("object4");
 
-            _metaObjSet = BdoData.NewMetaNode(
+            _metaObjSet = BdoData.NewNode(
                 metaObj1,
                 metaObj2,
                 metaObj3);

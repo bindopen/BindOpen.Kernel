@@ -20,7 +20,7 @@ namespace BindOpen.System.Data
         {
             if (obj != null)
             {
-                obj.Detail ??= BdoData.NewMetaSet();
+                obj.Detail ??= BdoData.NewSet();
                 obj.Detail.Clear();
                 obj.Detail.Add(metas);
             }

@@ -7,7 +7,7 @@
     <Product>BindOpen.System</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
-    <Description>The core abstractions of BindOpen.System.Scoping.</Description>
+    <Description>This package provides the core abstractions of BindOpen.System.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.System.Abstractions</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.System</PackageProjectUrl>
@@ -23,15 +23,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>BindOpen.System.Abstractions.xml</DocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Data\Context\**" />
-    <Compile Remove="Data\Resources\**" />
-    <EmbeddedResource Remove="Data\Context\**" />
-    <EmbeddedResource Remove="Data\Resources\**" />
-    <None Remove="Data\Context\**" />
-    <None Remove="Data\Resources\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\..\docs\img\bindopen_icon.png">

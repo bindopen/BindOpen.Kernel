@@ -7,7 +7,7 @@
     <Product>BindOpen.System</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
-    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package provides core classes of the BindOpen.System.Scoping.Script.</Description>
+    <Description>This package allows to interprete and manage BindOpen script.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.System.Scoping.Script</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.System</PackageProjectUrl>

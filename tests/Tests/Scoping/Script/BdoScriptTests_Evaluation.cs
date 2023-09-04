@@ -57,7 +57,7 @@ namespace BindOpen.System.Scoping.Script
         [Test, Order(202)]
         public void InterpreteScript2Test()
         {
-            var varSet = BdoData.NewMetaSet();
+            var varSet = BdoData.NewSet();
             var exp = BdoData.NewExp(_script2, BdoExpressionKind.Script);
 
             var interpreter = SystemData.Scope.Interpreter;
@@ -69,7 +69,7 @@ namespace BindOpen.System.Scoping.Script
         [Test, Order(203)]
         public void InterpreteScript3Test()
         {
-            var varSet = BdoData.NewMetaSet();
+            var varSet = BdoData.NewSet();
             var exp = BdoData.NewExp(_script3, BdoExpressionKind.Script);
 
             var interpreter = SystemData.Scope.Interpreter;
@@ -81,7 +81,7 @@ namespace BindOpen.System.Scoping.Script
         [Test, Order(204)]
         public void InterpreteScript4Test()
         {
-            var varSet = BdoData.NewMetaSet(
+            var varSet = BdoData.NewSet(
                 ("var1", "const"));
 
             var exp = BdoData.NewExp(_script4, BdoExpressionKind.Script);
@@ -95,7 +95,7 @@ namespace BindOpen.System.Scoping.Script
         [Test, Order(205)]
         public void InterpreteScript5Test()
         {
-            var varSet = BdoData.NewMetaSet(
+            var varSet = BdoData.NewSet(
                 ("var1", "const"));
 
             var exp = BdoData.NewExp(_script5, BdoExpressionKind.Auto);
@@ -118,7 +118,7 @@ namespace BindOpen.System.Scoping.Script
         [Test, Order(207)]
         public void InterpreteScript7Test()
         {
-            var varSet = BdoData.NewMetaSet(
+            var varSet = BdoData.NewSet(
                 ("var1", _scriptVarValue71),
                 ("var2", _scriptVarValue72));
 
@@ -131,7 +131,7 @@ namespace BindOpen.System.Scoping.Script
         [Test, Order(208)]
         public void VariableSetTest()
         {
-            var varSet = BdoData.NewMetaSet(
+            var varSet = BdoData.NewSet(
                 ("var1", _scriptVarValue81),
                 ("var2", _scriptVarValue82));
 

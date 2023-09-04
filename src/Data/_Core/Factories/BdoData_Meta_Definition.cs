@@ -80,7 +80,7 @@ namespace BindOpen.System.Data
             params IBdoSpec[] items)
             where T : BdoDefinition, new()
         {
-            var config = NewSet<T, IBdoSpec>(items)
+            var config = NewItemSet<T, IBdoSpec>(items)
                 .WithName(name)
                 .Using(usingIds);
             return config;

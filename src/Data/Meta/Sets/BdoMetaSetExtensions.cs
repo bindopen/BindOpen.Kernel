@@ -169,7 +169,7 @@ namespace BindOpen.System.Data.Meta
         {
             if (st == null || pattern == null) return null;
 
-            var set = BdoData.NewMetaSet();
+            var set = BdoData.NewSet();
             int tokenCount = 0;
 
             if (!string.IsNullOrEmpty(st) && pattern != null)

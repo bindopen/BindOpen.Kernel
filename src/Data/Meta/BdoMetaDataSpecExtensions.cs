@@ -22,8 +22,8 @@ namespace BindOpen.System.Data.Meta
         {
             if (meta?.Spec?.Condition != null)
             {
-                var localVarSet = BdoData.NewMetaSet(varSet?.ToArray());
-                localVarSet.Add("$this", meta);
+                var localVarSet = BdoData.NewSet(varSet?.ToArray());
+                localVarSet.Add(BdoData.__VarName_This, meta);
 
                 var b = scope.Evaluate(meta.Spec.Condition, localVarSet, log);
 
@@ -45,8 +45,8 @@ namespace BindOpen.System.Data.Meta
         {
             if (meta?.Spec != null)
             {
-                var localVarSet = BdoData.NewMetaSet(varSet?.ToArray());
-                localVarSet.Add("$this", meta);
+                var localVarSet = BdoData.NewSet(varSet?.ToArray());
+                localVarSet.Add(BdoData.__VarName_This, meta);
 
                 var level = meta.Spec.RequirementStatement?.GetItem(scope, localVarSet, log) ?? RequirementLevels.None;
 
@@ -68,8 +68,8 @@ namespace BindOpen.System.Data.Meta
         {
             if (meta?.Spec != null)
             {
-                var localVarSet = BdoData.NewMetaSet(varSet?.ToArray());
-                localVarSet.Add("$this", meta);
+                var localVarSet = BdoData.NewSet(varSet?.ToArray());
+                localVarSet.Add(BdoData.__VarName_This, meta);
 
                 var level = meta.Spec.ItemRequirementStatement?.GetItem(scope, localVarSet, log) ?? RequirementLevels.None;
 
