@@ -9,7 +9,7 @@
         {
             if (log != null)
             {
-                log._Children = BdoData.NewSet(children);
+                log._Children = BdoData.NewItemSet(children);
             }
 
             return log;
@@ -18,7 +18,7 @@
         {
             if (log != null)
             {
-                log._Children ??= BdoData.NewSet<IBdoDefinition>();
+                log._Children ??= BdoData.NewItemSet<IBdoDefinition>();
                 foreach (var child in children)
                 {
                     log._Children.Add(child);

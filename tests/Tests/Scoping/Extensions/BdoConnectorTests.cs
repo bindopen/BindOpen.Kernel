@@ -24,12 +24,12 @@ namespace BindOpen.System.Scoping
         public static IBdoMetaObject CreateMetaConnector(dynamic data)
         {
             var config =
-                BdoData.NewMetaObject()
+                BdoData.NewObject()
                 .WithDataType(BdoExtensionKinds.Connector, "bindopen.system.tests$testConnector")
                 .With(
-                    BdoData.NewMetaScalar("host", data.host as string),
-                    BdoData.NewMetaScalar("port", data.port as int?),
-                    BdoData.NewMetaScalar("isSslEnabled", data.isSslEnabled as bool?));
+                    BdoData.NewScalar("host", data.host as string),
+                    BdoData.NewScalar("port", data.port as int?),
+                    BdoData.NewScalar("isSslEnabled", data.isSslEnabled as bool?));
 
             return config;
         }
@@ -60,7 +60,7 @@ namespace BindOpen.System.Scoping
                 ConnectionString = _testData.connecString,
                 Host = _testData.host,
                 IsSslEnabled = _testData.isSslEnabled,
-                Port = BdoData.NewMetaScalar<int?>(_testData.port as int?)
+                Port = BdoData.NewScalar<int?>(_testData.port as int?)
             };
 
             var meta = connector.ToMeta(SystemData.Scope);

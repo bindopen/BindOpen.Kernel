@@ -5,7 +5,7 @@
 ![Github release version](https://img.shields.io/nuget/v/BindOpen.System.Abstractions.svg?style=plastic)
 
 
-BindOpen is a framework that allows you to build widely-extended applications. It enables you to enhance your .NET projects with custom script functions, connectors, entities, and tasks.
+BindOpen is a framework that allows to build widely-extended applications. It enables you to enhance your .NET projects with custom script functions, connectors, entities, and tasks.
 
 ## About
 
@@ -13,11 +13,11 @@ BindOpen.System is the kernel of the BindOpen framework. It is composed of the f
 
 * __System.Data__ offers a comprehensive data model based on metadata.
 * __System.Scoping__ offers an effective mechanism for defining and managing your extensions.
-* __System.Hosting__ allows you to integrate a BindOpen agent within the .NET service builder.
-* __System.Logging__ provides a straightforward and multi-dimensional logging system.
+* [System.Hosting](https://github.com/bindopen/BindOpen.Hosting) allows you to integrate a BindOpen agent within the .NET service builder.
+* [System.Logging](https://github.com/bindopen/BindOpen.Logging) provides a straightforward and multi-dimensional logging system.
 * __System.IO__ provides packages to serialize and deserialize BindOpen.System objects.
 
-This repository contains the System.Data, System.Scoping and System.IO modules.
+This repository contains the System.Data, System.Scoping and System.IO modules. The two other ones are separate repositories.
 
 A [full list of all the repos](https://github.com/bindopen?tab=repositories) is available as well.
 
@@ -26,7 +26,7 @@ A [full list of all the repos](https://github.com/bindopen?tab=repositories) is 
 
 To get started, install the BindOpen.System module you want to use.
 
-Note: Later you will be able to install only the package you need.
+Note: We recommend that later on, you install only the package you need.
 
 ### From Visual Studio
 
@@ -58,13 +58,14 @@ var meta = BdoData.NewMeta("host", DataValueTypes.Text, "my-test-host");
 
 ```csharp
 var config = BdoData.NewConfig(
-        "testConfig",
-        BdoData.NewMetaScalar("text1", DataValueTypes.Text, f.Lorem.Words(10)),
-        BdoData.NewMetaScalar("integer1", DataValueTypes.Integer, Enumerable.Range(0, 10).Select(p => f.Random.Int(5000))),
-        BdoData.NewMetaScalar("byteArray1", DataValueTypes.Binary, Enumerable.Range(1, 2).Select(p => f.Random.Bytes(5000)).ToArray()),
-        BdoData.NewMetaNode(
-            BdoData.NewMetaScalar("textB1", DataValueTypes.Text, f.Lorem.Words(10)),
-            BdoData.NewMetaScalar("textB2", DataValueTypes.Integer, f.Random.Int(5000)))
+        "test-config",
+        BdoData.NewScalar("comment", DataValueTypes.Text, "Sunny day"),
+        BdoData.NewScalar("temperature", DataValueTypes.Integer, 25, 26, 26),
+        BdoData.NewScalar("date", DataValueTypes.Date, DateTime.Now),
+        BdoData.NewNode(
+            "subscriber"
+            BdoData.NewScalar("name", DataValueTypes.Text, "Ernest E."),
+            BdoData.NewScalar("code", DataValueTypes.Integer, 1560))
     )
     .WithTitle("Example of configuration")
     .WithDescription(("en", "This is an example of description"))
@@ -73,8 +74,8 @@ var config = BdoData.NewConfig(
 ### System.Scoping
 
 ```csharp
-var scope = BdoScoping.NewScope();
-scope.LoadExtensions(q => q.AddAllAssemblies());
+var scope = BdoScoping.NewScope()
+    .LoadExtensions(q => q.AddAllAssemblies());
 ```
 
 #### Script
@@ -115,20 +116,33 @@ public class TaskFake : BdoTask
     public ActionPriorities EnumValue { get; set; }
 
     ...
+
+    public override Task<bool> ExecuteAsync(
+        CancellationToken token,
+        IBdoScope scope = null,
+        IBdoMetaSet varSet = null,
+        RuntimeModes runtimeMode = RuntimeModes.Normal,
+        IBdoLog log = null)
+    {
+        ...
+
+        Debug.WriteLine("Task completed");
+
+        return Task.FromResult(true);
+    }
 }
 
 ...
 
-var meta = BdoData.NewMetaObject()
+var meta = BdoData.NewObject()
     .WithDataType(BdoExtensionKinds.Task, "bindopen.system.tests$taskFake")
-    .WithProperties(
-        ("boolValue", false))
-    .WithInputs(
-        BdoData.NewMetaScalar("enumValue", ActionPriorities.Low))
-    .WithOutputs(
-        ("stringValue", "test-out"));
+    .WithProperties(("boolValue", false))
+    .WithInputs(BdoData.NewScalar("enumValue", ActionPriorities.Low))
+    .WithOutputs(("stringValue", "test-out"));
                     
-var task = SystemData.Scope.CreateTask<TaskFake>(meta);
+var task = scope.CreateTask<TaskFake>(meta);
+var cancelToken = new CancellationTokenSource();
+task.Execute(cancelToken.Token, scope);
 ```
 
 ### System.IO
@@ -136,7 +150,8 @@ var task = SystemData.Scope.CreateTask<TaskFake>(meta);
 #### Serialization
 
 ```csharp
-_metaSet.ToDto().SaveXml("output.xml");
+var metaSet = BdoData.NewSet("test-io").With(("host", "host-test"), ("address", "0.0.0.0"));
+metaSet.ToDto().SaveXml("output.xml");
 ```
 
 #### Deserialization

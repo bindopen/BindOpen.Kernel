@@ -107,7 +107,7 @@ namespace BindOpen.System.Data.Meta
             poco.AvailableDataModes = dto?.AvailableDataModes == null ? null : new List<DataMode>(dto.AvailableDataModes);
 
             poco.ConstraintStatement = dto?.ConstraintStatement?.ToPoco();
-            poco._Children = BdoData.NewSet(dto?.Children?.Select(q => q.ToPoco()).ToArray());
+            poco._Children = BdoData.NewItemSet(dto?.Children?.Select(q => q.ToPoco()).ToArray());
 
             poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco())
             {

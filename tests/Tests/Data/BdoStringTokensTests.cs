@@ -166,7 +166,7 @@ namespace BindOpen.System.Data
             string pattern = LabelFormats.NameSpaceValue.GetScript();
 
             var st = pattern.FormatFromTokens(
-                BdoData.NewMetaSet(
+                BdoData.NewSet(
                     (LabelFormatsExtensions.__This_Name, "_name"),
                     (LabelFormatsExtensions.__This_Value, "_value")));
 
@@ -179,7 +179,7 @@ namespace BindOpen.System.Data
             string pattern = LabelFormats.NameSpaceValue.GetScript();
 
             var st = pattern.FormatFromTokens(
-                BdoData.NewMetaSet(
+                BdoData.NewSet(
                     (LabelFormatsExtensions.__This_Name, "_name"),
                     (LabelFormatsExtensions.__This_Value, null)));
 

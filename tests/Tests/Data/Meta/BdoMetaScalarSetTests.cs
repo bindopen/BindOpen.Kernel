@@ -20,7 +20,7 @@ namespace BindOpen.System.Data
         [Test, Order(1)]
         public void NewTest_WithNull()
         {
-            var el1 = BdoData.NewMetaScalar("null1", null);
+            var el1 = BdoData.NewScalar("null1", null);
 
             Assert.That(
                 el1 != null, "Bad scalar el creation");
@@ -34,12 +34,12 @@ namespace BindOpen.System.Data
             int[] arrayInteger = _testData.arrayInteger;
             byte[][] arrayArrayByte = _testData.arrayArrayByte;
 
-            var el1 = BdoData.NewMetaScalar("number1", arrayNumber);
-            var el2 = BdoData.NewMetaScalar("text2", arrayString);
-            var el3 = BdoData.NewMetaScalar("integer3", arrayInteger);
-            var el4 = BdoData.NewMetaScalar("byteArray4", arrayArrayByte);
+            var el1 = BdoData.NewScalar("number1", arrayNumber);
+            var el2 = BdoData.NewScalar("text2", arrayString);
+            var el3 = BdoData.NewScalar("integer3", arrayInteger);
+            var el4 = BdoData.NewScalar("byteArray4", arrayArrayByte);
 
-            var elSet = BdoData.NewMetaNode(el1, el2, el3, el4);
+            var elSet = BdoData.NewNode(el1, el2, el3, el4);
 
             var itemList1 = elSet.GetDataList<double>("number1");
             Assert.That(
@@ -62,17 +62,17 @@ namespace BindOpen.System.Data
         [Test, Order(3)]
         public void UpdateCheckRepairTest()
         {
-            var elAA = BdoData.NewMetaScalar("name1", null);
-            var elAB = BdoData.NewMetaScalar("name1", "Test1");
+            var elAA = BdoData.NewScalar("name1", null);
+            var elAB = BdoData.NewScalar("name1", "Test1");
             elAA.Update(elAB);
 
-            var elSetA = BdoData.NewMetaNode(elAA, elAB);
+            var elSetA = BdoData.NewNode(elAA, elAB);
 
-            var elBA = BdoData.NewMetaScalar("name1", "Test1");
-            var elBB = BdoData.NewMetaScalar("name1", null);
+            var elBA = BdoData.NewScalar("name1", "Test1");
+            var elBB = BdoData.NewScalar("name1", null);
             elBA.Update(elBB);
 
-            var elSetB = BdoData.NewMetaNode(elBA, elBB);
+            var elSetB = BdoData.NewNode(elBA, elBB);
 
             elSetB.Add(elBB);
             elSetA.Add(elAB);
@@ -88,7 +88,7 @@ namespace BindOpen.System.Data
             elSetA
                 .Add(BdoData.NewMeta("name1", typeof(string)))
                 .Add(BdoData.NewMeta("name2", null as EntityFake))
-                .Add(BdoData.NewMetaScalar("name4", DataValueTypes.Text, null))
+                .Add(BdoData.NewScalar("name4", DataValueTypes.Text, null))
                 .Add(BdoData.NewMeta("name5", null as string));
             elSetB.Update(elSetA);
         }
@@ -98,13 +98,13 @@ namespace BindOpen.System.Data
         {
             string[] arrayString = _testData.arrayString;
 
-            var el = BdoData.NewMetaScalar(DataValueTypes.Text, arrayString[0]);
+            var el = BdoData.NewScalar(DataValueTypes.Text, arrayString[0]);
             var st = el.ToString();
             Assert.That(st == arrayString[0], "Bad scalar el - ToString");
 
             int[] arrayInteger = _testData.arrayInteger;
 
-            el = BdoData.NewMetaScalar(DataValueTypes.Text, _testData.arrayInteger[0]);
+            el = BdoData.NewScalar(DataValueTypes.Text, _testData.arrayInteger[0]);
             st = el.ToString();
             Assert.That(st == arrayInteger[0].ToString(), "Bad scalar el - ToString");
         }
@@ -112,11 +112,11 @@ namespace BindOpen.System.Data
         [Test, Order(5)]
         public void AddMetaSetWithKeys()
         {
-            var elAA = BdoData.NewMetaScalar("name1", null);
-            var elAB = BdoData.NewMetaScalar("name1", "Test1");
+            var elAA = BdoData.NewScalar("name1", null);
+            var elAB = BdoData.NewScalar("name1", "Test1");
             elAA.Update(elAB);
 
-            var elSetA = BdoData.NewMetaNode(("key1", elAA), (null, elAB), ("key2", this));
+            var elSetA = BdoData.NewNode(("key1", elAA), (null, elAB), ("key2", this));
 
             Assert.That(elSetA.Count == 3, "Bad scalar el - ToString");
 
