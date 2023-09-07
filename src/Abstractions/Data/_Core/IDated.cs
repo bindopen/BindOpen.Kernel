@@ -3,17 +3,17 @@
 namespace BindOpen.System.Data
 {
     /// <summary>
-    /// This interface defines a storable data.
+    /// This interface defines an object tracked with creation and last modification date.
     /// </summary>
     public interface IDated
     {
         /// <summary>
-        /// Creation date of this instance.
+        /// The creation date of this object.
         /// </summary>
         DateTime? CreationDate { get; set; }
 
         /// <summary>
-        /// Last modification date of this instance.
+        /// The last modification date of this object.
         /// </summary>
         DateTime? LastModificationDate { get; set; }
     }

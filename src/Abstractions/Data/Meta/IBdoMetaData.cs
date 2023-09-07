@@ -28,7 +28,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="scope"></param>
         /// <param key="varSet"></param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         object GetData(
             IBdoScope scope = null,
@@ -40,7 +40,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="scope"></param>
         /// <param key="varSet"></param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         T GetData<T>(
             IBdoScope scope = null,
@@ -52,7 +52,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="scope"></param>
         /// <param key="varSet"></param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         IList<object> GetDataList(
             IBdoScope scope = null,
@@ -64,7 +64,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="scope"></param>
         /// <param key="varSet"></param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         IList<T> GetDataList<T>(
             IBdoScope scope = null,

@@ -19,7 +19,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="scope"></param>
         /// <param key="varSet"></param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         new TItem GetData(
             IBdoScope scope = null,
@@ -31,7 +31,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="scope"></param>
         /// <param key="varSet"></param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         new TItem GetData(
             int index,

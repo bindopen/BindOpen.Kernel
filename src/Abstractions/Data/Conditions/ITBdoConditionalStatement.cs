@@ -15,7 +15,7 @@ namespace BindOpen.System.Data.Conditions
         /// </summary>
         /// <param key="scope"></param>
         /// <param key="varSet"></param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         TItem GetItem(
             IBdoScope scope = null,

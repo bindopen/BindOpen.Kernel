@@ -1,22 +1,20 @@
 ﻿namespace BindOpen.System.Data
 {
     /// <summary>
-    /// 
+    /// This instance represents a clonable object.
     /// </summary>
     public interface IClonable
     {
         /// <summary>
-        /// Clones this instance.
+        /// Clones this object.
         /// </summary>
-        /// <param key="areas">The areas to consider.</param>
-        /// <returns>Returns a cloned instance.</returns>
+        /// <returns>Returns the cloned object.</returns>
         object Clone();
 
         /// <summary>
-        /// Clones this instance.
+        /// Clones this object by specifying the class of the cloned object.
         /// </summary>
-        /// <param key="areas">The areas to consider.</param>
-        /// <returns>Returns a cloned instance.</returns>
+        /// <returns>Returns the cloned object.</returns>
         T Clone<T>() where T : class;
     }
 }

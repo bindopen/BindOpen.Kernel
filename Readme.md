@@ -5,7 +5,7 @@
 ![Github release version](https://img.shields.io/nuget/v/BindOpen.System.Abstractions.svg?style=plastic)
 
 
-BindOpen is a framework that allows to build widely-extended applications. It enables you to enhance your .NET projects with custom script functions, connectors, entities, and tasks.
+BindOpen is a framework that enables the construction of highly extensible applications. It allows you to enhance your .NET projects with custom script functions, connectors, entities, and tasks.
 
 ## About
 

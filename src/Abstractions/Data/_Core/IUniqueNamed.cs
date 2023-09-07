@@ -1,12 +1,12 @@
 ﻿namespace BindOpen.System.Data
 {
     /// <summary>
-    /// This interface represents an unique data.
+    /// This interface represents an unique object.
     /// </summary>
     public interface IUniqueNamed
     {
         /// <summary>
-        /// Unique name of this instance.
+        /// The unique name of this instance.
         /// </summary>
         string UniqueName { get; set; }
     }

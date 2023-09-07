@@ -65,7 +65,7 @@ namespace BindOpen.System.Data.Meta
         /// <param key="elementSet"></param>
         /// <param key="scope"></param>
         /// <param key="varSet"></param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         public IList<object> GetDataList(
             string key,
@@ -80,7 +80,7 @@ namespace BindOpen.System.Data.Meta
         /// <param key="elementSet"></param>
         /// <param key="scope"></param>
         /// <param key="varSet"></param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         public IList<Q> GetDataList<Q>(
             string key,
@@ -94,7 +94,7 @@ namespace BindOpen.System.Data.Meta
         /// <param key="element"></param>
         /// <param key="scope"></param>
         /// <param key="varSet"></param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         public object GetData(
             string key,
@@ -108,7 +108,7 @@ namespace BindOpen.System.Data.Meta
         /// <param key="elementSet"></param>
         /// <param key="scope"></param>
         /// <param key="varSet"></param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         public Q GetData<Q>(
             string key,

@@ -284,7 +284,7 @@ namespace BindOpen.System.Scoping.Script
         /// 
         /// </summary>
         /// <param key="script"></param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         public IBdoScriptword FindNextWord(
             string script,
@@ -309,7 +309,7 @@ namespace BindOpen.System.Scoping.Script
         /// <param key="index">The index to consider.</param>
         /// <param key="offsetIndex">The offset index to consider.</param>
         /// <param key="varSet">The variable element set to consider.</param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         private IBdoScriptword FindNextWord(
             string script,

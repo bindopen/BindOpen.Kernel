@@ -40,6 +40,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MTT" Version="0.7.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Abstractions\Abstractions.csproj" />
   </ItemGroup>
+
+  <Target Name="Convert" BeforeTargets="PrepareForBuild">
+    <ConvertMain WorkingDirectory="CSharp/" ConvertDirectory="Javascript/" PathStyle="Default" />
+  </Target>
 </Project>

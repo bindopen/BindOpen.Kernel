@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.System.Data.Meta
 {
     /// <summary>
-    /// This interface defines a configuration.
+    /// This interface represents a configuration.
     /// </summary>
     public interface IBdoDefinition :
         IBdoSpecSet, ITTreeNode<IBdoDefinition>,
