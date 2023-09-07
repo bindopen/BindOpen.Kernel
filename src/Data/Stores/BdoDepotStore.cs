@@ -83,7 +83,7 @@ namespace BindOpen.System.Data.Stores
         /// Executes the lazy functions of all the depots of this instance.
         /// </summary>
         /// <param key="scope">The scope to append.</param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         public bool LoadLazy(IBdoScope scope, IBdoLog log = null)
         {
             bool loaded = true;

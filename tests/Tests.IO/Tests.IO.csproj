@@ -7,7 +7,7 @@
     <Product>BindOpen.System</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
-    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package conducts unit tests on Core libraries.</Description>
+    <Description>This package conducts unit tests on BindOpen.System.IO.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.System.Tests.IO</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.System</PackageProjectUrl>
@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
     <PackageReference Include="NUnit" Version="3.13.3" />
   </ItemGroup>
 

@@ -1,12 +1,12 @@
 ﻿namespace BindOpen.System.Data
 {
     /// <summary>
-    /// This interface represents a described data.
+    /// This interface represents an object that can be default.
     /// </summary>
     public interface IDefaultable
     {
         /// <summary>
-        /// The description of this instance.
+        /// Indicates whether this object is default.
         /// </summary>
         bool IsDefault { get; set; }
     }

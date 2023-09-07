@@ -14,7 +14,7 @@ namespace BindOpen.System.Scoping.Script
         /// </summary>
         /// <param key="exp"></param>
         /// <param key="varSet">The variable element set to consider.</param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         object Evaluate(
             IBdoExpression exp,
@@ -26,7 +26,7 @@ namespace BindOpen.System.Scoping.Script
         /// </summary>
         /// <param key="exp"></param>
         /// <param key="varSet">The variable element set to consider.</param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         object Evaluate(
             IBdoScriptword word,
@@ -39,7 +39,7 @@ namespace BindOpen.System.Scoping.Script
         /// </summary>
         /// <param key="exp"></param>
         /// <param key="varSet">The variable element set to consider.</param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         object Evaluate(
             IBdoReference reference,
@@ -55,7 +55,7 @@ namespace BindOpen.System.Scoping.Script
         /// <param key="offsetIndex"></param>
         /// <param key="varSet">The variable element set to consider.</param>
         /// <param key="isSimulationModeOn"></param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         IBdoScriptword FindNextWord(
             string script,
