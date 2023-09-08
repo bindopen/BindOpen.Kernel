@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Scoping.Script;
+﻿using BindOpen.Kernel.Scoping.Script;
 using Bogus;
 using NUnit.Framework;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     [TestFixture, Order(210)]
     public class BdoExpressionTests

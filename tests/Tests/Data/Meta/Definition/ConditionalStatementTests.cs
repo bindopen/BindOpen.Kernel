@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Data.Conditions;
-using BindOpen.System.Scoping.Script;
-using BindOpen.System.Tests;
+﻿using BindOpen.Kernel.Data.Conditions;
+using BindOpen.Kernel.Scoping.Script;
+using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.System.Data.Meta
+namespace BindOpen.Kernel.Data.Meta
 {
     [TestFixture, Order(100)]
     public class ConditionalStatementTests

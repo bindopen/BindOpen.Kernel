@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Data.Meta;
+﻿using BindOpen.Kernel.Data.Meta;
 using Bogus;
 using NUnit.Framework;
 using System.Linq;
 
-namespace BindOpen.System.Tests
+namespace BindOpen.Kernel.Tests
 {
     public static class BdoMetaScalarFaker
     {

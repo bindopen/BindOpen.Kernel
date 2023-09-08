@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Data.Meta.Reflection;
+﻿using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Data.Meta.Reflection;
 using System;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This static class provides methods to create element specifications.

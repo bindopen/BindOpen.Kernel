@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This interface defines an object that defines a runtimee type.

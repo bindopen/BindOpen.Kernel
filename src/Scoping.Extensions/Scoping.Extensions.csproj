@@ -2,16 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <AssemblyName>BindOpen.System.Scoping.Extensions</AssemblyName>
-    <PackageId>BindOpen.System.Scoping.Extensions</PackageId>
-    <Product>BindOpen.System</Product>
+    <AssemblyName>BindOpen.Kernel.Scoping.Extensions</AssemblyName>
+    <PackageId>BindOpen.Kernel.Scoping.Extensions</PackageId>
+    <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
     <Description>This package defines BindOpen extensions such as connectors, entities functions and tasks.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.System.Scoping</RootNamespace>
-    <PackageProjectUrl>https://github.com/bindopen/BindOpen.System</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/bindopen/BindOpen.System.git</RepositoryUrl>
+    <RootNamespace>BindOpen.Kernel.Scoping</RootNamespace>
+    <PackageProjectUrl>https://github.com/bindopen/BindOpen.Kernel</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bindopen/BindOpen.Kernel.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>bindopen_icon.png</PackageIcon>
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.System.Scoping.Extensions.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Kernel.Scoping.Extensions.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

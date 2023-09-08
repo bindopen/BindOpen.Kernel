@@ -1,12 +1,12 @@
 ﻿using AutoMapper.Execution;
-using BindOpen.System.Data;
-using BindOpen.System.Data.Helpers;
-using BindOpen.System.Data.Meta;
-using BindOpen.System.Data.Meta.Reflection;
-using BindOpen.System.Logging;
+using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Data.Meta.Reflection;
+using BindOpen.Kernel.Logging;
 using System;
 
-namespace BindOpen.System.Scoping.Script
+namespace BindOpen.Kernel.Scoping.Script
 {
     /// <summary>
     /// This class represents a script interpreter. A script interpreter allows to interpret a script
@@ -284,7 +284,7 @@ namespace BindOpen.System.Scoping.Script
         /// 
         /// </summary>
         /// <param key="script"></param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         public IBdoScriptword FindNextWord(
             string script,
@@ -309,7 +309,7 @@ namespace BindOpen.System.Scoping.Script
         /// <param key="index">The index to consider.</param>
         /// <param key="offsetIndex">The offset index to consider.</param>
         /// <param key="varSet">The variable element set to consider.</param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         private IBdoScriptword FindNextWord(
             string script,

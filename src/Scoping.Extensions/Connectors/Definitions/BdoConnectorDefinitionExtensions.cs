@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using BindOpen.System.Data;
+using BindOpen.Kernel.Data;
 using System;
 using System.Reflection;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This class represents a connection service.

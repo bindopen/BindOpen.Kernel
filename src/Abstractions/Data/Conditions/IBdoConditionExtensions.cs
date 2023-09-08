@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Logging;
-using BindOpen.System.Scoping;
-using BindOpen.System.Scoping.Script;
+﻿using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Scoping;
+using BindOpen.Kernel.Scoping.Script;
 
-namespace BindOpen.System.Data.Conditions
+namespace BindOpen.Kernel.Data.Conditions
 {
     /// <summary>
     /// This static class provides methods to handle conditions.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This class represents a entity attribute.

@@ -1,4 +1,4 @@
-﻿namespace BindOpen.System.Scoping
+﻿namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This class represents an application 

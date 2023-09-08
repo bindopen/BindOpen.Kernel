@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BindOpen.System.Processing
+namespace BindOpen.Kernel.Processing
 {
     /// <summary>
     /// This class represents a event kind extension.

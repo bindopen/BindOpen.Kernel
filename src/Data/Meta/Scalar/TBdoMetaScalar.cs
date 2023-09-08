@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Data.Helpers;
-using BindOpen.System.Logging;
-using BindOpen.System.Scoping;
+﻿using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Scoping;
 
-namespace BindOpen.System.Data.Meta
+namespace BindOpen.Kernel.Data.Meta
 {
     /// <summary>
     /// This class represents a scalar meta that is an meta whose items are scalars.

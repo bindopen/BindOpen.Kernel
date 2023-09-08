@@ -1,12 +1,12 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
-using BindOpen.System.Logging;
-using BindOpen.System.Scoping;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Scoping;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BindOpen.System.Tests
+namespace BindOpen.Kernel.Tests
 {
     /// <summary>
     /// This class represents a database data field.
@@ -18,7 +18,7 @@ namespace BindOpen.System.Tests
     )]
     public class TaskFake : BdoTask
     {
-        public static string __DefinitionUniqueName = "bindopen.system.tests$taskFake";
+        public static string __DefinitionUniqueName = "bindopen.kernel.tests$taskFake";
 
         // ------------------------------------------
         // PROPERTIES

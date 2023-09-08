@@ -1,7 +1,7 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Logging;
+﻿using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Logging;
 
-namespace BindOpen.System.Scoping.Script
+namespace BindOpen.Kernel.Scoping.Script
 {
     /// <summary>
     /// This interface represents an named data item.

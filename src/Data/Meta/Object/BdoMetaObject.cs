@@ -1,11 +1,11 @@
-﻿using BindOpen.System.Data.Helpers;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Data.Meta;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.System.Data.Meta
+namespace BindOpen.Kernel.Data.Meta
 {
     /// <summary>
     /// This class represents a catalog el that is an el whose els are carriers.

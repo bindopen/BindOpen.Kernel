@@ -1,7 +1,7 @@
-﻿using BindOpen.System.Logging;
-using BindOpen.System.Scoping;
+﻿using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Scoping;
 
-namespace BindOpen.System.Data.Meta
+namespace BindOpen.Kernel.Data.Meta
 {
     /// <summary>
     /// 
@@ -13,7 +13,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="scope"></param>
         /// <param key="varSet"></param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         object GetData(
             int index,
@@ -26,7 +26,7 @@ namespace BindOpen.System.Data.Meta
         /// </summary>
         /// <param key="scope"></param>
         /// <param key="varSet"></param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         Q GetData<Q>(
             int index,

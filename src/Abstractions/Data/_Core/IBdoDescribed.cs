@@ -1,7 +1,7 @@
-﻿namespace BindOpen.System.Data
+﻿namespace BindOpen.Kernel.Data
 {
     /// <summary>
-    /// This interface represents a globally described data.
+    /// This interface represents a globally-described data.
     /// </summary>
     public interface IBdoDescribed
     {

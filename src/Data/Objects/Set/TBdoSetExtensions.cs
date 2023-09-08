@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Data.Helpers;
-using BindOpen.System.Logging;
+﻿using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Logging;
 using System.Linq;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// 

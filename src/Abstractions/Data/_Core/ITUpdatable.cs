@@ -1,18 +1,18 @@
-﻿using BindOpen.System.Logging;
+﻿using BindOpen.Kernel.Logging;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
-    /// 
+    /// This interface represents an updatable object by specifying the class of the object used for update.
     /// </summary>
     public interface ITUpdatable<T>
     {
         /// <summary>
-        /// 
+        /// Updates this object.
         /// </summary>
-        /// <param key="areas"></param>
-        /// <param key="updateModes"></param>
-        /// <param key="log"></param>
+        /// <param key="areas">The areas of update.</param>
+        /// <param key="updateModes">The update modes to consider.</param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         void Update(
             T refItem,

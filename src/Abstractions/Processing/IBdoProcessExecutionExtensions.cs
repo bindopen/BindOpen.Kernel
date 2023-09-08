@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.System.Processing
+namespace BindOpen.Kernel.Processing
 {
     /// <summary>
     /// 

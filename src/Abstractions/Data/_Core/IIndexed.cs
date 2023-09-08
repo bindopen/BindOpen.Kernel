@@ -1,12 +1,12 @@
-﻿namespace BindOpen.System.Data
+﻿namespace BindOpen.Kernel.Data
 {
     /// <summary>
-    /// This interface represents an indexed data.
+    /// This interface represents an indexed object.
     /// </summary>
     public interface IIndexed
     {
         /// <summary>
-        /// The index of this instance.
+        /// The index of this object.
         /// </summary>
         int? Index { get; set; }
     }

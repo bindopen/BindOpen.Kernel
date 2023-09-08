@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.System.Tests
+namespace BindOpen.Kernel.Tests
 {
     /// <summary>
     /// This class represents a fake class.

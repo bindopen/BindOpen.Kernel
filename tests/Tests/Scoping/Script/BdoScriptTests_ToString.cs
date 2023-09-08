@@ -1,7 +1,7 @@
-﻿using BindOpen.System.Data.Meta;
+﻿using BindOpen.Kernel.Data.Meta;
 using NUnit.Framework;
 
-namespace BindOpen.System.Scoping.Script
+namespace BindOpen.Kernel.Scoping.Script
 {
     [TestFixture, Order(401)]
     public class BdoScriptTests_ToString

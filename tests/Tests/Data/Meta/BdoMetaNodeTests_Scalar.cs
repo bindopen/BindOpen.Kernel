@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Tests;
+﻿using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 using System.Linq;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     [TestFixture, Order(202)]
     public class BdoMetaNodeTests_Scalar

@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using BindOpen.System.Data;
-using BindOpen.System.Data.Assemblies;
-using BindOpen.System.Data.Meta;
-using BindOpen.System.Scoping.Script;
+using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Assemblies;
+using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Scoping.Script;
 using System.Linq;
 
-namespace BindOpen.System.Scoping.Script
+namespace BindOpen.Kernel.Scoping.Script
 {
     /// <summary>
     /// This class represents a task converter.

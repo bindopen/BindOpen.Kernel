@@ -2,16 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <AssemblyName>BindOpen.System.IO</AssemblyName>
-    <PackageId>BindOpen.System.IO</PackageId>
-    <Product>BindOpen.System</Product>
+    <AssemblyName>BindOpen.Kernel.IO</AssemblyName>
+    <PackageId>BindOpen.Kernel.IO</PackageId>
+    <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
     <Description>This package allows to convert core classes from and to core DTOs.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.System.IO</RootNamespace>
-    <PackageProjectUrl>https://github.com/bindopen/BindOpen.System</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/bindopen/BindOpen.System.git</RepositoryUrl>
+    <RootNamespace>BindOpen.Kernel.IO</RootNamespace>
+    <PackageProjectUrl>https://github.com/bindopen/BindOpen.Kernel</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bindopen/BindOpen.Kernel.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>bindopen_icon.png</PackageIcon>
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.System.IO.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Kernel.IO.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

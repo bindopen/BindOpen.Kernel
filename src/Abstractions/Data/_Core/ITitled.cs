@@ -1,7 +1,7 @@
-﻿namespace BindOpen.System.Data
+﻿namespace BindOpen.Kernel.Data
 {
     /// <summary>
-    /// This interface represents a globally described data.
+    /// This interface represents a titled object.
     /// </summary>
     public interface ITitled
     {

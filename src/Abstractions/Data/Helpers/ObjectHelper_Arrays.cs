@@ -1,10 +1,10 @@
-﻿using BindOpen.System.Data.Meta;
+﻿using BindOpen.Kernel.Data.Meta;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.System.Data.Helpers
+namespace BindOpen.Kernel.Data.Helpers
 {
     /// <summary>
     /// This class represents a helper for objects.

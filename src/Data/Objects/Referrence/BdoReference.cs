@@ -1,7 +1,7 @@
-﻿using BindOpen.System.Data.Helpers;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Data.Meta;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This class represents a data exp that can contain a literal and script texts.

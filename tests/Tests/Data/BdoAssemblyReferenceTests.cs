@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Data.Assemblies;
+﻿using BindOpen.Kernel.Data.Assemblies;
 using Bogus;
 using NUnit.Framework;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     [TestFixture, Order(210)]
     public class BdoAssemblyReferenceTests

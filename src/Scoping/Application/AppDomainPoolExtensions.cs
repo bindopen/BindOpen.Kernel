@@ -1,10 +1,10 @@
-﻿using BindOpen.System.Data.Assemblies;
-using BindOpen.System.Logging;
+﻿using BindOpen.Kernel.Data.Assemblies;
+using BindOpen.Kernel.Logging;
 using System;
 using System.IO;
 using System.Reflection;
 
-namespace BindOpen.System.Scoping.Application
+namespace BindOpen.Kernel.Scoping.Application
 {
     /// <summary>
     /// This class represents an assembly pool.

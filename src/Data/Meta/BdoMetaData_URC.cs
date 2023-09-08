@@ -1,6 +1,6 @@
-﻿using BindOpen.System.Logging;
+﻿using BindOpen.Kernel.Logging;
 
-namespace BindOpen.System.Data.Meta
+namespace BindOpen.Kernel.Data.Meta
 {
     /// <summary>
     /// This class represents a data element.

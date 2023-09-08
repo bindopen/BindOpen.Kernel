@@ -1,7 +1,7 @@
-﻿using BindOpen.System.Data.Conditions;
+﻿using BindOpen.Kernel.Data.Conditions;
 using System.Collections.Generic;
 
-namespace BindOpen.System.Data.Meta
+namespace BindOpen.Kernel.Data.Meta
 {
     /// <summary>
     /// 

@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System.Dynamic;
 
-namespace BindOpen.System.Tests
+namespace BindOpen.Kernel.Tests
 {
     public static class BdoConnectorFaker
     {

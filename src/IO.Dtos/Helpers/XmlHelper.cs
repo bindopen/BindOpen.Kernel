@@ -1,4 +1,4 @@
-﻿using BindOpen.System.Logging;
+﻿using BindOpen.Kernel.Logging;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -9,7 +9,7 @@ using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
-namespace BindOpen.System.IO.Dtos
+namespace BindOpen.Kernel.IO.Dtos
 {
     public static class XmlHelper
     {

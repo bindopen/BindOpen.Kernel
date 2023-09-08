@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Tests;
+﻿using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This class set the global setup.
