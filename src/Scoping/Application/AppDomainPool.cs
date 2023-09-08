@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Kernel.Scoping.Application
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This class represents an assembly pool.

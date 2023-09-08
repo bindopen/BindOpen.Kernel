@@ -8,8 +8,8 @@ namespace BindOpen.Kernel.Data
     /// <summary>
     /// This class represents a data key value.
     /// </summary>
-    [XmlType("KeyValuePair", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "add.value", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("KeyValuePair", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "add.value", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class KeyValuePairDto
     {
         // --------------------------------------------------

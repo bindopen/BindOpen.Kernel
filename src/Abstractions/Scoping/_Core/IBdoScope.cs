@@ -2,7 +2,7 @@
 using BindOpen.Kernel.Data.Stores;
 using BindOpen.Kernel.Logging;
 using BindOpen.Kernel.Scoping.Script;
-using BindOpen.Kernel.Scoping.Stores;
+using BindOpen.Kernel.Scoping;
 using System;
 
 namespace BindOpen.Kernel.Scoping

@@ -7,8 +7,8 @@ namespace BindOpen.Kernel.Scoping.Script
     /// <summary>
     /// This class represents a script word configuration.
     /// </summary>
-    [XmlType("Scriptword", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "word", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("Scriptword", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "word", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class ScriptwordDto : MetaObjectDto
     {
         // ------------------------------------------

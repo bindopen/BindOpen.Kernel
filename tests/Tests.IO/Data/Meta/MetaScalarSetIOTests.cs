@@ -1,5 +1,5 @@
 ﻿using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.IO.Dtos;
+using BindOpen.Kernel.IO;
 using BindOpen.Kernel.Tests;
 using Bogus;
 using DeepEqual.Syntax;

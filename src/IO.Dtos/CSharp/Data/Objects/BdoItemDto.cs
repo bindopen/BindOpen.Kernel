@@ -6,7 +6,7 @@ namespace BindOpen.Kernel.Data
     /// <summary>
     /// This class represents a catalog element that is an element whose elements are carriers.
     /// </summary>
-    [XmlType("item", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlType("item", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlInclude(typeof(DictionaryDto))]
     [XmlInclude(typeof(ExpressionDto))]
     [XmlInclude(typeof(MergerDto))]

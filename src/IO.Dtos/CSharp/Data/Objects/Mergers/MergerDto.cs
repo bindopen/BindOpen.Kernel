@@ -7,8 +7,8 @@ namespace BindOpen.Kernel.Data
     /// <summary>
     /// This class specifies the data value filter.
     /// </summary>
-    [XmlType("Merger", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "merger", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("Merger", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "merger", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class MergerDto : BdoItemDto
     {
         // ------------------------------------------

@@ -276,7 +276,7 @@
             This class represents an application 
             </summary>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.BdoFunctionExtensions.GetFunctionDefinitionsWithName(BindOpen.Kernel.Scoping.Stores.IBdoExtensionStore,System.String,System.Boolean)">
+        <member name="M:BindOpen.Kernel.Scoping.BdoFunctionExtensions.GetFunctionDefinitionsWithName(BindOpen.Kernel.Scoping.IBdoExtensionStore,System.String,System.Boolean)">
             <summary>
             Returns the word definitions with the specified name.
             </summary>

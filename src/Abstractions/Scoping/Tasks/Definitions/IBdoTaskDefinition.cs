@@ -2,7 +2,7 @@
 using BindOpen.Kernel.Data.Assemblies;
 using BindOpen.Kernel.Data.Meta;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Kernel.Scoping.Tasks
 {
     /// <summary>
     /// 

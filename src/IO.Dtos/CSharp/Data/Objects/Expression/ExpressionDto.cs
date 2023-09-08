@@ -8,8 +8,8 @@ namespace BindOpen.Kernel.Data
     /// <summary>
     /// This class represents a data exp that can contain a literal and script texts.
     /// </summary>
-    [XmlType("Expression", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "expression", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("Expression", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "expression", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class ExpressionDto : BdoItemDto
     {
         // ------------------------------------------

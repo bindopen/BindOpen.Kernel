@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
-using BindOpen.Kernel.Scoping;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Kernel.Scoping.Connectors
 {
     /// <summary>
     /// This class represents a DTO connector dico.
     /// </summary>
-    [XmlType("ConnectorDictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "connectors.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("ConnectorDictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "connector.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class ConnectorDictionaryDto
         : TBdoExtensionDictionaryDto<ConnectorDefinitionDto>
     {

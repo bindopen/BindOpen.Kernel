@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Kernel.Scoping.Functions
 {
     /// <summary>
     /// This class represents a script word definition.
     /// </summary>
-    [XmlType("FunctionDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "scriptWord.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("FunctionDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "scriptWord.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class FunctionDefinitionDto : ExtensionDefinitionDto
     {
         // ------------------------------------------

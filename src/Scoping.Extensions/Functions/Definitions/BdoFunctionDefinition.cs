@@ -2,7 +2,7 @@
 using BindOpen.Kernel.Data.Meta;
 using System;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Kernel.Scoping.Functions
 {
     /// <summary>
     /// This class represents a function definition.

@@ -1,6 +1,4 @@
-﻿using BindOpen.Kernel.Data;
-
-namespace BindOpen.Kernel.Scoping
+﻿namespace BindOpen.Kernel.Scoping.Entities
 {
     /// <summary>
     /// This class represents a entity.

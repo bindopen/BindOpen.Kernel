@@ -4,27 +4,27 @@
         <name>BindOpen.Kernel.Scoping</name>
     </assembly>
     <members>
-        <member name="T:BindOpen.Kernel.Scoping.Application.AppDomainPool">
+        <member name="T:BindOpen.Kernel.Scoping.AppDomainPool">
             <summary>
             This class represents an assembly pool.
             </summary>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Application.AppDomainPool.#ctor">
+        <member name="M:BindOpen.Kernel.Scoping.AppDomainPool.#ctor">
             <summary>
             Instantiates a new instance of AppDomainPool class.
             </summary>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Application.AppDomainPool.GetAppDomain(System.String)">
+        <member name="M:BindOpen.Kernel.Scoping.AppDomainPool.GetAppDomain(System.String)">
             <summary>
             Gets the specified application domain.
             </summary>
         </member>
-        <member name="T:BindOpen.Kernel.Scoping.Application.AppDomainPoolExtensions">
+        <member name="T:BindOpen.Kernel.Scoping.AppDomainPoolExtensions">
             <summary>
             This class represents an assembly pool.
             </summary>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Application.AppDomainPoolExtensions.LoadAssemblyFromFile(System.AppDomain,System.String,BindOpen.Kernel.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Scoping.AppDomainPoolExtensions.LoadAssemblyFromFile(System.AppDomain,System.String,BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Gets the assembly of this instance from file.
             </summary>
@@ -33,7 +33,7 @@
             <param key="log">The loading log to consider.</param>
             <returns>The assembly of this instance.</returns>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Application.AppDomainPoolExtensions.LoadAssembly(System.AppDomain,BindOpen.Kernel.Data.Assemblies.IBdoAssemblyReference,BindOpen.Kernel.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Scoping.AppDomainPoolExtensions.LoadAssembly(System.AppDomain,BindOpen.Kernel.Data.Assemblies.IBdoAssemblyReference,BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Gets the assembly of this instance from embed resource.
             </summary>
@@ -42,65 +42,65 @@
             <param key="log">The loading log to consider.</param>
             <returns>The assembly of this instance.</returns>
         </member>
-        <member name="T:BindOpen.Kernel.Scoping.Application.AssemblyResolver">
+        <member name="T:BindOpen.Kernel.Scoping.AssemblyResolver">
             <summary>
             This class represents an assembly resolver.
             </summary>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Application.AssemblyResolver.Resolve(System.AppDomain)">
+        <member name="M:BindOpen.Kernel.Scoping.AssemblyResolver.Resolve(System.AppDomain)">
             <summary>
             Resolves the domain i.e. initializes the assembly resolving routines.
             </summary>
             <param key="appDomain">The domain to consider.</param>
         </member>
-        <member name="T:BindOpen.Kernel.Scoping.Stores.BdoExtensionStore">
+        <member name="T:BindOpen.Kernel.Scoping.BdoExtensionStore">
             <summary>
             This class represents a BindOpen extension item store.
             </summary>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.BdoExtensionStore.#ctor">
+        <member name="M:BindOpen.Kernel.Scoping.BdoExtensionStore.#ctor">
             <summary>
             Instantiates a new instance of the BdoExtensionStore class.
             </summary>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.BdoExtensionStore.GetDefinitions``1">
+        <member name="M:BindOpen.Kernel.Scoping.BdoExtensionStore.GetDefinitions``1">
             <summary>
             Returns the item definitions of this instance.
             </summary>
             <returns>The item words of specified library names.</returns>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.BdoExtensionStore.GetDefinition``1(System.String)">
+        <member name="M:BindOpen.Kernel.Scoping.BdoExtensionStore.GetDefinition``1(System.String)">
             <summary>
             
             </summary>
             <param key="uniqueName"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.BdoExtensionStore.GetDefinition(BindOpen.Kernel.Scoping.BdoExtensionKind,System.String)">
+        <member name="M:BindOpen.Kernel.Scoping.BdoExtensionStore.GetDefinition(BindOpen.Kernel.Scoping.BdoExtensionKind,System.String)">
             <summary>
             Returns the item definition with the specified unique name.
             </summary>
             <param key="uniqueName">The unique ID of item to return.</param>
             <returns>The item with the specified unique name.</returns>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.BdoExtensionStore.Clear">
+        <member name="M:BindOpen.Kernel.Scoping.BdoExtensionStore.Clear">
             <summary>
             Clears this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.BdoExtensionStore.Add(BindOpen.Kernel.Scoping.IBdoExtensionDefinition)">
+        <member name="M:BindOpen.Kernel.Scoping.BdoExtensionStore.Add(BindOpen.Kernel.Scoping.IBdoExtensionDefinition)">
             <summary>
             Adds the specified definition.
             </summary>
             <typeparam name="T">The BindOpen extension item definition class to consider.</typeparam>
             <param key="definition">The definition to add.</param>
         </member>
-        <member name="P:BindOpen.Kernel.Scoping.Stores.BdoExtensionStore.Id">
+        <member name="P:BindOpen.Kernel.Scoping.BdoExtensionStore.Id">
             <summary>
             
             </summary>
         </member>
-        <member name="T:BindOpen.Kernel.Scoping.Stores.BdoExtensionStoreLoader">
+        <member name="T:BindOpen.Kernel.Scoping.BdoExtensionStoreLoader">
             <summary>
             This class represents a extension scope loader.
             </summary>
@@ -123,7 +123,7 @@
             This class represents a extension scope loader.
             </summary>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.BdoExtensionStoreLoader.#ctor(System.AppDomain,BindOpen.Kernel.Scoping.Stores.IBdoExtensionStore,BindOpen.Kernel.Scoping.IExtensionLoadOptions)">
+        <member name="M:BindOpen.Kernel.Scoping.BdoExtensionStoreLoader.#ctor(System.AppDomain,BindOpen.Kernel.Scoping.IBdoExtensionStore,BindOpen.Kernel.Scoping.IExtensionLoadOptions)">
             <summary>
             Initializes a new instance of BdoExtensionStoreLoader the class.
             </summary>
@@ -131,14 +131,14 @@
             <param key="store">The extension store to consider.</param>
             <param key="loadOptions">The load options to consider.</param>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.BdoExtensionStoreLoader.LoadPackages(BindOpen.Kernel.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Scoping.BdoExtensionStoreLoader.LoadPackages(BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Loads the specified extensions into the specified scope.
             </summary>
             <param key="references">The library references to consider.</param>
             <param key="log">The log to consider.</param>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.BdoExtensionStoreLoader.LoadPackage(BindOpen.Kernel.Data.Assemblies.IBdoAssemblyReference,System.Collections.Generic.List{System.String},BindOpen.Kernel.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Scoping.BdoExtensionStoreLoader.LoadPackage(BindOpen.Kernel.Data.Assemblies.IBdoAssemblyReference,System.Collections.Generic.List{System.String},BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Loads the specified library.
             </summary>
@@ -146,13 +146,13 @@
             <param key="log">The log to consider.</param>
             <returns>Returns the loaded library.</returns>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.BdoExtensionStoreLoader.Dispose(System.Boolean)">
+        <member name="M:BindOpen.Kernel.Scoping.BdoExtensionStoreLoader.Dispose(System.Boolean)">
             <summary>
             Disposes this instance. 
             </summary>
             <param key="isDisposing">Indicates whether this instance is disposing</param>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.BdoExtensionStoreLoader.LoadDictionary(System.Reflection.Assembly,BindOpen.Kernel.Scoping.BdoExtensionKind,BindOpen.Kernel.Scoping.IBdoPackageDefinition,BindOpen.Kernel.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Scoping.BdoExtensionStoreLoader.LoadDictionary(System.Reflection.Assembly,BindOpen.Kernel.Scoping.BdoExtensionKind,BindOpen.Kernel.Scoping.IBdoPackageDefinition,BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Loads the extension dico of the specified kind from the specified assembly.
             </summary>
@@ -162,7 +162,7 @@
             <param key="log">The log to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.BdoExtensionStoreLoader.ExtractDictionaryFromAssembly``1(System.Reflection.Assembly,BindOpen.Kernel.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Scoping.BdoExtensionStoreLoader.ExtractDictionaryFromAssembly``1(System.Reflection.Assembly,BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Loads the specified BindOpen extension dico.
             </summary>
@@ -170,19 +170,19 @@
             <param key="log">The log to consider.</param>
             <returns>The created library.</returns>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.BdoExtensionStoreLoader.GetDictionaryResourceName``1">
+        <member name="M:BindOpen.Kernel.Scoping.BdoExtensionStoreLoader.GetDictionaryResourceName``1">
             <summary>
             Gets the dico resource name.
             </summary>
             <returns>Returns the class of the specified dico.</returns>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.BdoExtensionStoreLoader.GetDictionaryType``1">
+        <member name="M:BindOpen.Kernel.Scoping.BdoExtensionStoreLoader.GetDictionaryType``1">
             <summary>
             Gets the item definition file name of the TO specified extension item definition class.
             </summary>
             <returns>Returns the class of the specified dico.</returns>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.BdoExtensionStoreLoader.LoadConnectorDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Kernel.Scoping.IBdoPackageDefinition,BindOpen.Kernel.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Scoping.BdoExtensionStoreLoader.LoadConnectorDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Kernel.Scoping.IBdoPackageDefinition,BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Loads the connector dico from the specified assembly.
             </summary>
@@ -191,7 +191,7 @@
             <param key="log">The log to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.BdoExtensionStoreLoader.LoadEntityDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Kernel.Scoping.IBdoPackageDefinition,BindOpen.Kernel.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Scoping.BdoExtensionStoreLoader.LoadEntityDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Kernel.Scoping.IBdoPackageDefinition,BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Loads the entity dico from the specified assembly.
             </summary>
@@ -200,7 +200,7 @@
             <param key="log">The log to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.BdoExtensionStoreLoader.LoadFunctionDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Kernel.Scoping.IBdoPackageDefinition,BindOpen.Kernel.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Scoping.BdoExtensionStoreLoader.LoadFunctionDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Kernel.Scoping.IBdoPackageDefinition,BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Loads the function dico from the specified assembly.
             </summary>
@@ -209,7 +209,7 @@
             <param key="log">The log to consider.</param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.BdoExtensionStoreLoader.LoadTaskDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Kernel.Scoping.IBdoPackageDefinition,BindOpen.Kernel.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Scoping.BdoExtensionStoreLoader.LoadTaskDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Kernel.Scoping.IBdoPackageDefinition,BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Loads the task dico from the specified assembly.
             </summary>
@@ -218,12 +218,12 @@
             <param key="log">The log to consider.</param>
             <returns></returns>
         </member>
-        <member name="F:BindOpen.Kernel.Scoping.Stores.BdoExtensionStoreLoader.__DefaultResourceFileName">
+        <member name="F:BindOpen.Kernel.Scoping.BdoExtensionStoreLoader.__DefaultResourceFileName">
             <summary>
             The default resource file name for library definition.
             </summary>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.BdoExtensionStoreLoader.ExtractPackageDefinition(System.Reflection.Assembly,System.String,BindOpen.Kernel.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Scoping.BdoExtensionStoreLoader.ExtractPackageDefinition(System.Reflection.Assembly,System.String,BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Extract extension definition from the specified assembly.
             </summary>

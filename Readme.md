@@ -177,7 +177,7 @@ This repository contains the code of the following Nuget packages:
 | [BindOpen.Kernel.Scoping.Extensions](https://www.nuget.org/packages/BindOpen.Kernel.Scoping.Extensions) | Classes of extensions |
 | [BindOpen.Kernel.Scoping.Script](https://www.nuget.org/packages/BindOpen.Kernel.Scoping.Script) | Script interpreter |
 | [BindOpen.Kernel.IO](https://www.nuget.org/packages/BindOpen.Kernel.IO) | Serialization / Deserialization |
-| [BindOpen.Kernel.IO.Dtos](https://www.nuget.org/packages/BindOpen.Kernel.IO.Dtos) | Data transfer classes |
+| [BindOpen.Kernel.IO](https://www.nuget.org/packages/BindOpen.Kernel.IO) | Data transfer classes |
 
 The atomicity of these packages allows you install only what you need respecting your solution's architecture.
 

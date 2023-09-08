@@ -1,9 +1,8 @@
-﻿using BindOpen.Kernel.Scoping;
-using BindOpen.Kernel.Logging;
+﻿using BindOpen.Kernel.Logging;
 using System;
 using System.Runtime.InteropServices;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Kernel.Scoping.Connectors
 {
     /// <summary>
     /// This interface represents an named data item.
