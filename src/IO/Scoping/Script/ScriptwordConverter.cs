@@ -42,7 +42,7 @@ namespace BindOpen.Kernel.Scoping.Script
             dto.MetaItems = poco.Items?.Select(q => q.ToDto()).ToList();
             dto.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;
             if (poco.Spec?.DataType.ValueType == poco.DataType?.ValueType
-                || (poco.DataType.ValueType == DataValueTypes.Scriptword))
+                || poco.DataType.ValueType == DataValueTypes.Scriptword)
             {
                 dto.ValueType = DataValueTypes.Any;
             }

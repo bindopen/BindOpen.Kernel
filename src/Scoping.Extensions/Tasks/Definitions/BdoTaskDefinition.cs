@@ -3,7 +3,7 @@ using BindOpen.Kernel.Data.Assemblies;
 using BindOpen.Kernel.Data.Meta;
 using System;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Kernel.Scoping.Tasks
 {
     /// <summary>
     /// This class represents a task definition.

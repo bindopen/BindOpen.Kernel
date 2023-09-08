@@ -1,6 +1,6 @@
 ﻿using BindOpen.Kernel.Logging;
 
-namespace BindOpen.Kernel.Scoping.Stores
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// 

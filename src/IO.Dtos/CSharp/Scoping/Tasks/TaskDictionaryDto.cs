@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
-using BindOpen.Kernel.Scoping;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Kernel.Scoping.Tasks
 {
     /// <summary>
     /// This class represents a DTO task dico.
     /// </summary>
     [XmlType("TaskDictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
-    [XmlRoot(ElementName = "tasks.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
+    [XmlRoot(ElementName = "task.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class TaskDictionaryDto : TBdoExtensionDictionaryDto<TaskDefinitionDto>
     {
         // ------------------------------------------

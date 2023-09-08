@@ -5,7 +5,7 @@ using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Kernel.Scoping.Connectors
 {
     [TestFixture, Order(301)]
     public class IOConnectorTests

@@ -4115,12 +4115,12 @@
             Resumes this instance.
             </summary>
         </member>
-        <member name="T:BindOpen.Kernel.Scoping.Application.IAppDomainPool">
+        <member name="T:BindOpen.Kernel.Scoping.IAppDomainPool">
             <summary>
             This interface defines an assembly pool.
             </summary>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Application.IAppDomainPool.GetAppDomain(System.String)">
+        <member name="M:BindOpen.Kernel.Scoping.IAppDomainPool.GetAppDomain(System.String)">
             <summary>
             Gets the specified application domain.
             </summary>
@@ -4679,40 +4679,25 @@
             The index.
             </summary>
         </member>
-        <member name="T:BindOpen.Kernel.Scoping.Stores.IBdoExtensionStore">
+        <member name="T:BindOpen.Kernel.Scoping.IBdoExtensionStore">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.IBdoExtensionStore.Add(BindOpen.Kernel.Scoping.IBdoExtensionDefinition)">
+        <member name="M:BindOpen.Kernel.Scoping.IBdoExtensionStore.Add(BindOpen.Kernel.Scoping.IBdoExtensionDefinition)">
             <summary>
             Adds the specified definition.
             </summary>
             <param key="definition">The definition to add.</param>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.IBdoExtensionStore.GetDefinitions``1">
+        <member name="M:BindOpen.Kernel.Scoping.IBdoExtensionStore.GetDefinitions``1">
             <summary>
             
             </summary>
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.IBdoExtensionStore.GetDefinition``1(System.String)">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param key="uniqueName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.IBdoExtensionStore.GetDefinition(BindOpen.Kernel.Scoping.BdoExtensionKind,System.String)">
-            <summary>
-            
-            </summary>
-            <param key="uniqueName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.IBdoExtensionStore.GetDefinitionFromType``1(BindOpen.Kernel.Data.Assemblies.IBdoClassReference)">
+        <member name="M:BindOpen.Kernel.Scoping.IBdoExtensionStore.GetDefinition``1(System.String)">
             <summary>
             
             </summary>
@@ -4720,24 +4705,39 @@
             <param key="uniqueName"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.IBdoExtensionStore.GetDefinitionFromType(BindOpen.Kernel.Scoping.BdoExtensionKind,BindOpen.Kernel.Data.Assemblies.IBdoClassReference)">
+        <member name="M:BindOpen.Kernel.Scoping.IBdoExtensionStore.GetDefinition(BindOpen.Kernel.Scoping.BdoExtensionKind,System.String)">
             <summary>
             
             </summary>
             <param key="uniqueName"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.IBdoExtensionStore.Clear">
+        <member name="M:BindOpen.Kernel.Scoping.IBdoExtensionStore.GetDefinitionFromType``1(BindOpen.Kernel.Data.Assemblies.IBdoClassReference)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param key="uniqueName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Kernel.Scoping.IBdoExtensionStore.GetDefinitionFromType(BindOpen.Kernel.Scoping.BdoExtensionKind,BindOpen.Kernel.Data.Assemblies.IBdoClassReference)">
+            <summary>
+            
+            </summary>
+            <param key="uniqueName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Kernel.Scoping.IBdoExtensionStore.Clear">
             <summary>
             Clears this instance.
             </summary>
         </member>
-        <member name="T:BindOpen.Kernel.Scoping.Stores.IBdoExtensionStoreLoader">
+        <member name="T:BindOpen.Kernel.Scoping.IBdoExtensionStoreLoader">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.Kernel.Scoping.Stores.IBdoExtensionStoreLoader.LoadPackages(BindOpen.Kernel.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Scoping.IBdoExtensionStoreLoader.LoadPackages(BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Loads the specified extensions into the specified scope.
             </summary>

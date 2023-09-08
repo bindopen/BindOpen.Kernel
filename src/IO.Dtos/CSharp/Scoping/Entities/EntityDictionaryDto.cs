@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
-using BindOpen.Kernel.Scoping;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Kernel.Scoping.Entities
 {
     /// <summary>
     /// This class represents a DTO entity dico.
     /// </summary>
     [XmlType("EntityDictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
-    [XmlRoot(ElementName = "carriers.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
+    [XmlRoot(ElementName = "entry.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class EntityDictionaryDto
         : TBdoExtensionDictionaryDto<EntityDefinitionDto>
     {

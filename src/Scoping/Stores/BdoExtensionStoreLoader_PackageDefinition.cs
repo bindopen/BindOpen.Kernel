@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Scoping.Stores
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This class represents a extension scope loader.

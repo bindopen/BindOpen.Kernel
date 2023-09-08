@@ -5,7 +5,7 @@ using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Kernel.Scoping.Tasks
 {
     [TestFixture, Order(300)]
     public class IOTaskTests

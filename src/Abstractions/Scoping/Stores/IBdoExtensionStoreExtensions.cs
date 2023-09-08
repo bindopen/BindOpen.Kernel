@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Kernel.Scoping.Stores
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This class represents a extension scope loader.

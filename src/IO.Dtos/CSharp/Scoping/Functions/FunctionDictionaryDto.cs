@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
-using BindOpen.Kernel.Scoping;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Kernel.Scoping.Functions
 {
     /// <summary>
     /// This class represents a DTO script word dico.
     /// </summary>
     [XmlType("FunctionDictionaryDto", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
-    [XmlRoot(ElementName = "scriptwords.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
+    [XmlRoot(ElementName = "function.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class FunctionDictionaryDto
         : TBdoExtensionDictionaryDto<FunctionDefinitionDto>
     {

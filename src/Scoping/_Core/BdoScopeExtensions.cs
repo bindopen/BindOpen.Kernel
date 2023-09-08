@@ -1,6 +1,5 @@
 ﻿using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping;
-using BindOpen.Kernel.Scoping.Stores;
+using BindOpen.Kernel.Scoping.Connectors;
 using System;
 
 namespace BindOpen.Kernel.Scoping

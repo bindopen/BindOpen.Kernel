@@ -4,12 +4,12 @@ using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Kernel.Scoping.Tasks
 {
     /// <summary>
     /// This class represents a task definition.
     /// </summary>
-    /// <seealso cref="BdoMeta_Config"/>
+    /// <seealso cref="ConfigurationDto"/>
     [XmlType("TaskDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlRoot(ElementName = "task.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class TaskDefinitionDto : ExtensionDefinitionDto

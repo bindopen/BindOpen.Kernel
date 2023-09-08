@@ -1,4 +1,4 @@
-﻿using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Kernel.Scoping.Tasks;
 using System;
 
 namespace BindOpen.Kernel.Data.Meta

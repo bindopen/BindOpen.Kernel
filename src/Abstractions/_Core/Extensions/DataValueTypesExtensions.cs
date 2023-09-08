@@ -1,7 +1,10 @@
 ﻿using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Scoping;
+using BindOpen.Kernel.Scoping.Connectors;
+using BindOpen.Kernel.Scoping.Entities;
 using BindOpen.Kernel.Scoping.Script;
+using BindOpen.Kernel.Scoping.Tasks;
 using System;
 using System.Collections;
 

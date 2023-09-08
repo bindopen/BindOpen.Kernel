@@ -3,6 +3,7 @@ using BindOpen.Kernel.Data.Assemblies;
 using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Data.Meta.Reflection;
 using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Scoping.Connectors;
 using System;
 
 namespace BindOpen.Kernel.Scoping

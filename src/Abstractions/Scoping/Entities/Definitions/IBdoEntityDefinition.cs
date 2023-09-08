@@ -1,7 +1,7 @@
 ﻿using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Data.Assemblies;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Kernel.Scoping.Entities
 {
     /// <summary>
     /// 
