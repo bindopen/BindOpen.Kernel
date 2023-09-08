@@ -8,8 +8,8 @@ namespace BindOpen.Kernel.Scoping
     /// <summary>
     /// This class represents a DTO entity dico.
     /// </summary>
-    [XmlType("EntityDictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "carriers.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("EntityDictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "carriers.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class EntityDictionaryDto
         : TBdoExtensionDictionaryDto<EntityDefinitionDto>
     {

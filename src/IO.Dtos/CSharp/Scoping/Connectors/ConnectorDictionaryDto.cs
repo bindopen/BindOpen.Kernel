@@ -8,8 +8,8 @@ namespace BindOpen.Kernel.Scoping
     /// <summary>
     /// This class represents a DTO connector dico.
     /// </summary>
-    [XmlType("ConnectorDictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "connectors.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("ConnectorDictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "connectors.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class ConnectorDictionaryDto
         : TBdoExtensionDictionaryDto<ConnectorDefinitionDto>
     {

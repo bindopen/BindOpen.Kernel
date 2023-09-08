@@ -8,7 +8,7 @@ namespace BindOpen.Kernel.Scoping
     /// <summary>
     /// This class represents the extension loading options.
     /// </summary>
-    [XmlType("ExtensionLoadOptions", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlType("ExtensionLoadOptions", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     public class ExtensionLoadOptions : BdoObject, IExtensionLoadOptions
     {
         // --------------------------------------------------

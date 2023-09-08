@@ -1,4 +1,4 @@
-﻿using BindOpen.Kernel.IO.Dtos;
+﻿using BindOpen.Kernel.IO;
 using BindOpen.Kernel.Tests;
 using DeepEqual.Syntax;
 using NUnit.Framework;

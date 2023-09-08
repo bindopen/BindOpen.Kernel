@@ -7,8 +7,8 @@ namespace BindOpen.Kernel.Data.Meta
     /// <summary>
     /// This class represents a data key value.
     /// </summary>
-    [XmlType("StringConditionalStatement", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "conditional.statement", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("StringConditionalStatement", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "conditional.statement", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class StringConditionalStatementDto
     {
         // --------------------------------------------------

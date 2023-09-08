@@ -10,8 +10,8 @@ namespace BindOpen.Kernel.Scoping
     /// <summary>
     /// This class represents a script word definition.
     /// </summary>
-    [XmlType("FunctionDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "scriptWord.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("FunctionDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "scriptWord.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class FunctionDefinitionDto : ExtensionDefinitionDto
     {
         // ------------------------------------------

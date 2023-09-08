@@ -7,8 +7,8 @@ namespace BindOpen.Kernel.Data.Meta
     /// <summary>
     /// This class represents a scalar element that is an element whose items are scalars.
     /// </summary>
-    [XmlType("MetaScalar", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "scalar", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("MetaScalar", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "scalar", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class MetaScalarDto : MetaDataDto
     {
         // --------------------------------------------------

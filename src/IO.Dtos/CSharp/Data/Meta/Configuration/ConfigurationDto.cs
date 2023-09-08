@@ -7,8 +7,8 @@ namespace BindOpen.Kernel.Data.Meta
     /// <summary>
     /// This class represents a config DTO.
     /// </summary>
-    [XmlType("Configuration", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot("config", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("Configuration", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot("config", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class ConfigurationDto : MetaSetDto
     {
         // -------------------------------------------------------

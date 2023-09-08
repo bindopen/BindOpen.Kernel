@@ -8,8 +8,8 @@ namespace BindOpen.Kernel.Scoping
     /// <summary>
     /// This class represents a DTO script word dico.
     /// </summary>
-    [XmlType("FunctionDictionaryDto", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "scriptwords.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("FunctionDictionaryDto", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "scriptwords.dico", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class FunctionDictionaryDto
         : TBdoExtensionDictionaryDto<FunctionDefinitionDto>
     {

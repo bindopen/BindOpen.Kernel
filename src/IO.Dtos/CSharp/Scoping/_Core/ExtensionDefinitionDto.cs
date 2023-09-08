@@ -8,7 +8,7 @@ namespace BindOpen.Kernel.Scoping
     /// <summary>
     /// This class represents the definition of BindOpen extension item.
     /// </summary>
-    [XmlType("ExtensionDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlType("ExtensionDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     public abstract class ExtensionDefinitionDto : IBdoDto, IIdentified
     {
         // --------------------------------------------------

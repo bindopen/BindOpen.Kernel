@@ -5,7 +5,7 @@ namespace BindOpen.Kernel.Scoping
     /// <summary>
     /// This enumeration represents the possible kinds of library item viewers.
     /// </summary>
-    [XmlType("BdoExtensionViewerKind", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlType("BdoExtensionViewerKind", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     public enum BdoExtensionViewerKind
     {
         /// <summary>

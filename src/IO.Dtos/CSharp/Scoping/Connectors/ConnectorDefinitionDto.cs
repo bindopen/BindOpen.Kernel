@@ -9,8 +9,8 @@ namespace BindOpen.Kernel.Scoping
     /// <summary>
     /// This class represents a DTO connector definition.
     /// </summary>
-    [XmlType("ConnectorDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "connector.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("ConnectorDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "connector.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class ConnectorDefinitionDto : ExtensionDefinitionDto
     {
         // --------------------------------------------------

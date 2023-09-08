@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>BindOpen.Kernel.IO.Dtos</name>
+        <name>BindOpen.Kernel.IO</name>
     </assembly>
     <members>
         <member name="T:BindOpen.Kernel.Data.Apis.BdoApiLogDto">

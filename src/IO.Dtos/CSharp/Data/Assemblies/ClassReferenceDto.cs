@@ -6,8 +6,8 @@ namespace BindOpen.Kernel.Data.Assemblies
     /// <summary>
     /// This class represents the assembly reference DTO.
     /// </summary>
-    [XmlType("ClassReference", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "class", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("ClassReference", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "class", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class ClassReferenceDto : AssemblyReferenceDto
     {
         // --------------------------------------------------

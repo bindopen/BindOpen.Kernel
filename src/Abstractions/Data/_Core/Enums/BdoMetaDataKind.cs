@@ -5,7 +5,7 @@ namespace BindOpen.Kernel.Data
     /// <summary>
     /// This enumeration represents the possible kinds of meta data.
     /// </summary>
-    [XmlType("BdoMetaDataKind", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlType("BdoMetaDataKind", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     public enum BdoMetaDataKind
     {
         /// <summary>

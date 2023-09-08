@@ -10,8 +10,8 @@ namespace BindOpen.Kernel.Scoping
     /// This class represents a task definition.
     /// </summary>
     /// <seealso cref="BdoMeta_Config"/>
-    [XmlType("TaskDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "task.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("TaskDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "task.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class TaskDefinitionDto : ExtensionDefinitionDto
     {
         // ------------------------------------------

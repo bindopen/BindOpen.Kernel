@@ -28,7 +28,7 @@ BindOpen __Publication.Version__ Update - __Publication.Date__
 | BindOpen.Kernel.Abstractions            | Install-Package BindOpen.Kernel.Abstractions -Version __Publication.Version__              |
 | BindOpen.Kernel.Data            | Install-Package BindOpen.Kernel.Data -Version __Publication.Version__              |
 | BindOpen.Kernel.IO            | Install-Package BindOpen.Kernel.IO -Version __Publication.Version__              |
-| BindOpen.Kernel.IO.Dtos            | Install-Package BindOpen.Kernel.IO.Dtos -Version __Publication.Version__              |
+| BindOpen.Kernel.IO            | Install-Package BindOpen.Kernel.IO -Version __Publication.Version__              |
 | BindOpen.Kernel.Scoping         | Install-Package BindOpen.Kernel.Scoping -Version __Publication.Version__           |
 | BindOpen.Kernel.Scoping.Extensions | Install-Package BindOpen.Kernel.Scoping.Extensions -Version __Publication.Version__   |
 | BindOpen.Kernel.Scoping.Script | Install-Package BindOpen.Kernel.Scoping.Script -Version __Publication.Version__   |
@@ -40,7 +40,7 @@ BindOpen __Publication.Version__ Update - __Publication.Date__
 | BindOpen.Kernel.Abstractions            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.Kernel.Abstractions-__Publication.Version__.zip) |
 | BindOpen.Kernel.Data            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.Kernel.Data-__Publication.Version__.zip) |
 | BindOpen.Kernel.IO            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.Kernel.IO-__Publication.Version__.zip) |
-| BindOpen.Kernel.IO.Dtos            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.Kernel.IO.Dtos-__Publication.Version__.zip) |
+| BindOpen.Kernel.IO            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.Kernel.IO-__Publication.Version__.zip) |
 | BindOpen.Kernel.Scoping         | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.extensions/BindOpen.Kernel.Scoping-__Publication.Version__.zip) |
 | BindOpen.Kernel.Scoping.Extensions | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.scopes/BindOpen.Kernel.Scoping.Extensions-__Publication.Version__.zip) |
 | BindOpen.Kernel.Scoping.Script | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.script/BindOpen.Kernel.Scoping.Script-__Publication.Version__.zip) |
@@ -53,7 +53,7 @@ BindOpen __Publication.Version__ Update - __Publication.Date__
 | BindOpen.Kernel.Abstractions            | __Publication.Version__   |
 | BindOpen.Kernel.Data            | __Publication.Version__   |
 | BindOpen.Kernel.IO            | __Publication.Version__   |
-| BindOpen.Kernel.IO.Dtos            | __Publication.Version__   |
+| BindOpen.Kernel.IO            | __Publication.Version__   |
 | BindOpen.Kernel.Scoping         | __Publication.Version__   |
 | BindOpen.Kernel.Scoping.Extensions | __Publication.Version__   |
 | BindOpen.Kernel.Scoping.Script | __Publication.Version__   |
