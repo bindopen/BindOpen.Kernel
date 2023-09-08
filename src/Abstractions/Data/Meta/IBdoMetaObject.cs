@@ -1,4 +1,4 @@
-﻿namespace BindOpen.System.Data.Meta
+﻿namespace BindOpen.Kernel.Data.Meta
 {
     /// <summary>
     /// 

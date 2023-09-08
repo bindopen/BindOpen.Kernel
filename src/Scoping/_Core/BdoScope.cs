@@ -1,12 +1,12 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
-using BindOpen.System.Data.Stores;
-using BindOpen.System.Logging;
-using BindOpen.System.Scoping.Script;
-using BindOpen.System.Scoping.Stores;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Data.Stores;
+using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Scoping.Script;
+using BindOpen.Kernel.Scoping.Stores;
 using System;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This class represents an application scope.

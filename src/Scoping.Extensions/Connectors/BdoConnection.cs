@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Logging;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Logging;
 using System.Data;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This class represents a connection.

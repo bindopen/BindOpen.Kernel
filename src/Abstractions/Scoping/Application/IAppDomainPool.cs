@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.System.Scoping.Application
+namespace BindOpen.Kernel.Scoping.Application
 {
     /// <summary>
     /// This interface defines an assembly pool.

@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// 

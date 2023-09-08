@@ -1,10 +1,10 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Data.Meta.Reflection;
-using BindOpen.System.Tests;
+﻿using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Data.Meta.Reflection;
+using BindOpen.Kernel.Tests;
 using Bogus;
 using NUnit.Framework;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     [TestFixture, Order(200)]
     public class BdoMetaNodeTests_Object
@@ -69,7 +69,7 @@ namespace BindOpen.System.Data
                 .With(
                     BdoData.NewScalar("path", _testData.path1 as string));
 
-            var metaObj2 = BdoData.NewObject("object2", "bindopen.system.tests$testEntity")
+            var metaObj2 = BdoData.NewObject("object2", "bindopen.kernel.tests$testEntity")
                 .WithData(new EntityFake()
                 {
                     Path = _testData.path2 as string

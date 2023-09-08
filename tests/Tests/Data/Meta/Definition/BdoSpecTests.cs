@@ -1,11 +1,11 @@
-﻿using BindOpen.System.Data.Helpers;
-using BindOpen.System.Data.Meta;
-using BindOpen.System.Data.Meta.Reflection;
-using BindOpen.System.Scoping;
-using BindOpen.System.Tests;
+﻿using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Data.Meta.Reflection;
+using BindOpen.Kernel.Scoping;
+using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.System.Data.Meta
+namespace BindOpen.Kernel.Data.Meta
 {
     [TestFixture, Order(100)]
     public class BdoSpecTests

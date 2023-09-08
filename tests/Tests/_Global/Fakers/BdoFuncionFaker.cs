@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Data;
+﻿using BindOpen.Kernel.Data;
 using Bogus;
 using System.Dynamic;
 
-namespace BindOpen.System.Tests
+namespace BindOpen.Kernel.Tests
 {
     public static class BdoFunctionFaker
     {

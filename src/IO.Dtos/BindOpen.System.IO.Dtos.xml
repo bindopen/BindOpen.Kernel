@@ -1,215 +1,215 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>BindOpen.System.IO.Dtos</name>
+        <name>BindOpen.Kernel.IO.Dtos</name>
     </assembly>
     <members>
-        <member name="T:BindOpen.System.Data.Apis.BdoApiLogDto">
+        <member name="T:BindOpen.Kernel.Data.Apis.BdoApiLogDto">
             <summary>
             This class represents a Api log DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Apis.BdoApiLogDto.Name">
+        <member name="P:BindOpen.Kernel.Data.Apis.BdoApiLogDto.Name">
             <summary>
             Name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Apis.BdoApiLogDto.DisplayName">
+        <member name="P:BindOpen.Kernel.Data.Apis.BdoApiLogDto.DisplayName">
             <summary>
             The display name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Apis.BdoApiLogDto.Description">
+        <member name="P:BindOpen.Kernel.Data.Apis.BdoApiLogDto.Description">
             <summary>
             The description of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Apis.BdoApiLogDto.Events">
+        <member name="P:BindOpen.Kernel.Data.Apis.BdoApiLogDto.Events">
             <summary>
             The events of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Apis.BdoApiLogDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.Apis.BdoApiLogDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoApiLogDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.Apis.BdoApiLogEventDto">
+        <member name="T:BindOpen.Kernel.Data.Apis.BdoApiLogEventDto">
             <summary>
             This class represents a Api log event DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Apis.BdoApiLogEventDto.Name">
+        <member name="P:BindOpen.Kernel.Data.Apis.BdoApiLogEventDto.Name">
             <summary>
             Name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Apis.BdoApiLogEventDto.Kind">
+        <member name="P:BindOpen.Kernel.Data.Apis.BdoApiLogEventDto.Kind">
             <summary>
             Kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Apis.BdoApiLogEventDto.Date">
+        <member name="P:BindOpen.Kernel.Data.Apis.BdoApiLogEventDto.Date">
             <summary>
             Creation date of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Apis.BdoApiLogEventDto.Criticality">
+        <member name="P:BindOpen.Kernel.Data.Apis.BdoApiLogEventDto.Criticality">
             <summary>
             Criticality of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Apis.BdoApiLogEventDto.ResultCode">
+        <member name="P:BindOpen.Kernel.Data.Apis.BdoApiLogEventDto.ResultCode">
             <summary>
             Result code of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Apis.BdoApiLogEventDto.DisplayName">
+        <member name="P:BindOpen.Kernel.Data.Apis.BdoApiLogEventDto.DisplayName">
             <summary>
             The display name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Apis.BdoApiLogEventDto.Description">
+        <member name="P:BindOpen.Kernel.Data.Apis.BdoApiLogEventDto.Description">
             <summary>
             The description of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Apis.BdoApiLogEventDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.Apis.BdoApiLogEventDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoApiLogEventDto class.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Apis.BdoApiLogEventDto.WithDisplayName(System.String)">
+        <member name="M:BindOpen.Kernel.Data.Apis.BdoApiLogEventDto.WithDisplayName(System.String)">
             <summary>
             
             </summary>
             <param key="displayName"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.System.Data.Apis.ResultItemDto">
+        <member name="T:BindOpen.Kernel.Data.Apis.ResultItemDto">
             <summary>
             This class represents a DTO item result.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Apis.ResultItemDto.Key">
+        <member name="P:BindOpen.Kernel.Data.Apis.ResultItemDto.Key">
             <summary>
             The key of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Apis.ResultItemDto.Status">
+        <member name="P:BindOpen.Kernel.Data.Apis.ResultItemDto.Status">
             <summary>
             The status of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Apis.ResultItemDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.Apis.ResultItemDto.#ctor">
             <summary>
             Initializes a new instance of the ResultItemDto class.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Apis.ResultItemDto.#ctor(System.String,BindOpen.System.Data.ResourceStatus)">
+        <member name="M:BindOpen.Kernel.Data.Apis.ResultItemDto.#ctor(System.String,BindOpen.Kernel.Data.ResourceStatus)">
             <summary>
             Initializes a new instance of the ResultItemDto class.
             </summary>
             <param key="key">The key to consider.</param>
             <param key="status">The status to consider.</param>
         </member>
-        <member name="T:BindOpen.System.Data.Assemblies.AssemblyReferenceDto">
+        <member name="T:BindOpen.Kernel.Data.Assemblies.AssemblyReferenceDto">
             <summary>
             This class represents the assembly reference DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Assemblies.AssemblyReferenceDto.DefinitionUniqueName">
+        <member name="P:BindOpen.Kernel.Data.Assemblies.AssemblyReferenceDto.DefinitionUniqueName">
             <summary>
             The library name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Assemblies.AssemblyReferenceDto.AssemblyName">
+        <member name="P:BindOpen.Kernel.Data.Assemblies.AssemblyReferenceDto.AssemblyName">
             <summary>
             The library name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Assemblies.AssemblyReferenceDto.AssemblyVersion">
+        <member name="P:BindOpen.Kernel.Data.Assemblies.AssemblyReferenceDto.AssemblyVersion">
             <summary>
             The library version of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Assemblies.AssemblyReferenceDto.AssemblyFileName">
+        <member name="P:BindOpen.Kernel.Data.Assemblies.AssemblyReferenceDto.AssemblyFileName">
             <summary>
             The file name of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Assemblies.AssemblyReferenceDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.Assemblies.AssemblyReferenceDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoAssemblyReferenceDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.Assemblies.ClassReferenceDto">
+        <member name="T:BindOpen.Kernel.Data.Assemblies.ClassReferenceDto">
             <summary>
             This class represents the assembly reference DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Assemblies.ClassReferenceDto.ClassName">
+        <member name="P:BindOpen.Kernel.Data.Assemblies.ClassReferenceDto.ClassName">
             <summary>
             The library name of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Assemblies.ClassReferenceDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.Assemblies.ClassReferenceDto.#ctor">
             <summary>
             Instantiates a new instance of the ClassReferenceDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.Conditions.CompositeConditionDto">
+        <member name="T:BindOpen.Kernel.Data.Conditions.CompositeConditionDto">
             <summary>
             This class represents an advanced condition DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Conditions.CompositeConditionDto.Kind">
+        <member name="P:BindOpen.Kernel.Data.Conditions.CompositeConditionDto.Kind">
             <summary>
             Kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Conditions.CompositeConditionDto.Conditions">
+        <member name="P:BindOpen.Kernel.Data.Conditions.CompositeConditionDto.Conditions">
             <summary>
             Conditions of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Conditions.CompositeConditionDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.Conditions.CompositeConditionDto.#ctor">
             <summary>
             Instantiates a new instance of the CompositeCondition class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.Conditions.BasicConditionDto">
+        <member name="T:BindOpen.Kernel.Data.Conditions.BasicConditionDto">
             <summary>
             This class represents a basic condition DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Conditions.BasicConditionDto.Argument1">
+        <member name="P:BindOpen.Kernel.Data.Conditions.BasicConditionDto.Argument1">
             <summary>
             The arugment 1 of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Conditions.BasicConditionDto.Operator">
+        <member name="P:BindOpen.Kernel.Data.Conditions.BasicConditionDto.Operator">
             <summary>
             The operator of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Conditions.BasicConditionDto.Argument2">
+        <member name="P:BindOpen.Kernel.Data.Conditions.BasicConditionDto.Argument2">
             <summary>
             The arugment 2 of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Conditions.BasicConditionDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.Conditions.BasicConditionDto.#ctor">
             <summary>
             Instantiates a new instance of the BasicBusinessCondition class.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Conditions.BasicConditionDto.#ctor(System.Boolean)">
+        <member name="M:BindOpen.Kernel.Data.Conditions.BasicConditionDto.#ctor(System.Boolean)">
             <summary>
             Instantiates a new instance of the BasicBusinessCondition class.
             </summary>
             <param key="trueValue">The value that expresses that the condition is satisfied.</param>
         </member>
-        <member name="M:BindOpen.System.Data.Conditions.BasicConditionDto.#ctor(System.String,BindOpen.System.Data.ConditionOperator,System.String)">
+        <member name="M:BindOpen.Kernel.Data.Conditions.BasicConditionDto.#ctor(System.String,BindOpen.Kernel.Data.ConditionOperator,System.String)">
             <summary>
             Instantiates a new instance of the BasicBusinessCondition class.
             </summary>
@@ -217,7 +217,7 @@
             <param key="ope">The operator to consider.</param>
             <param key="arg2">The argument 2 to consider.</param>
         </member>
-        <member name="M:BindOpen.System.Data.Conditions.BasicConditionDto.#ctor(System.Boolean,System.String,BindOpen.System.Data.ConditionOperator,System.String)">
+        <member name="M:BindOpen.Kernel.Data.Conditions.BasicConditionDto.#ctor(System.Boolean,System.String,BindOpen.Kernel.Data.ConditionOperator,System.String)">
             <summary>
             Instantiates a new instance of the BasicBusinessCondition class.
             </summary>
@@ -226,552 +226,552 @@
             <param key="ope">The operator to consider.</param>
             <param key="arg2">The argument 2 to consider.</param>
         </member>
-        <member name="T:BindOpen.System.Data.Conditions.ConditionDto">
+        <member name="T:BindOpen.Kernel.Data.Conditions.ConditionDto">
             <summary>
             This class represents a condition DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Conditions.ConditionDto.TrueValue">
+        <member name="P:BindOpen.Kernel.Data.Conditions.ConditionDto.TrueValue">
             <summary>
             The value that expresses that the condition is satisfied.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Conditions.ConditionDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.Conditions.ConditionDto.#ctor">
             <summary>
             Instantiates a new instance of the BusinessCondition class.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Conditions.ConditionDto.#ctor(System.Boolean)">
+        <member name="M:BindOpen.Kernel.Data.Conditions.ConditionDto.#ctor(System.Boolean)">
             <summary>
             Instantiates a new instance of the BusinessCondition class.
             </summary>
             <param key="trueValue">The true value to consider.</param>
         </member>
-        <member name="T:BindOpen.System.Data.Conditions.ExpressionConditionDto">
+        <member name="T:BindOpen.Kernel.Data.Conditions.ExpressionConditionDto">
             <summary>
             This class represents a script condition DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Conditions.ExpressionConditionDto.Reference">
+        <member name="P:BindOpen.Kernel.Data.Conditions.ExpressionConditionDto.Reference">
             <summary>
             Data exp DTO representing the condition.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Conditions.ExpressionConditionDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.Conditions.ExpressionConditionDto.#ctor">
             <summary>
             Instantiates a new instance of the ExpressionConditionDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.Meta.ConfigurationDto">
+        <member name="T:BindOpen.Kernel.Data.Meta.ConfigurationDto">
             <summary>
             This class represents a config DTO.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.ConfigurationDto.DefinitionUniqueName">
+        <member name="P:BindOpen.Kernel.Data.Meta.ConfigurationDto.DefinitionUniqueName">
             <summary>
             Creation date of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.ConfigurationDto.CreationDate">
+        <member name="P:BindOpen.Kernel.Data.Meta.ConfigurationDto.CreationDate">
             <summary>
             Creation date of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.ConfigurationDto.LastModificationDate">
+        <member name="P:BindOpen.Kernel.Data.Meta.ConfigurationDto.LastModificationDate">
             <summary>
             Last modification date of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.ConfigurationDto.Description">
+        <member name="P:BindOpen.Kernel.Data.Meta.ConfigurationDto.Description">
             <summary>
             The description DTO of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.ConfigurationDto.Title">
+        <member name="P:BindOpen.Kernel.Data.Meta.ConfigurationDto.Title">
             <summary>
             The description DTO of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.ConfigurationDto.Children">
+        <member name="P:BindOpen.Kernel.Data.Meta.ConfigurationDto.Children">
             <summary>
             The children of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.ConfigurationDto.ChildrenSpecficied">
+        <member name="P:BindOpen.Kernel.Data.Meta.ConfigurationDto.ChildrenSpecficied">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.ConfigurationDto.UsedItemIds">
+        <member name="P:BindOpen.Kernel.Data.Meta.ConfigurationDto.UsedItemIds">
             <summary>
             The using item IDs of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.ConfigurationDto.UsedItemIdsSpecified">
+        <member name="P:BindOpen.Kernel.Data.Meta.ConfigurationDto.UsedItemIdsSpecified">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.ConfigurationDto.ShouldUsedItemIds">
+        <member name="P:BindOpen.Kernel.Data.Meta.ConfigurationDto.ShouldUsedItemIds">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Meta.ConfigurationDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.Meta.ConfigurationDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoBaseConfigurationDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.Meta.ConfigurationSetDto">
+        <member name="T:BindOpen.Kernel.Data.Meta.ConfigurationSetDto">
             <summary>
             This class represents a data element set.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.ConfigurationSetDto.Items">
+        <member name="P:BindOpen.Kernel.Data.Meta.ConfigurationSetDto.Items">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.ConfigurationSetDto.ItemsSpecified">
+        <member name="P:BindOpen.Kernel.Data.Meta.ConfigurationSetDto.ItemsSpecified">
             <summary>
             Indicates whether the entities property must be ignored.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Meta.ConfigurationSetDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.Meta.ConfigurationSetDto.#ctor">
             <summary>
             Instantiates a new instance of the ConfigurationSetDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.Meta.MetaDataDto">
+        <member name="T:BindOpen.Kernel.Data.Meta.MetaDataDto">
             <summary>
             This class represents a data element.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.MetaDataDto.Name">
+        <member name="P:BindOpen.Kernel.Data.Meta.MetaDataDto.Name">
             <summary>
             Name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.MetaDataDto.Index">
+        <member name="P:BindOpen.Kernel.Data.Meta.MetaDataDto.Index">
             <summary>
             The index of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.MetaDataDto.IndexSpecified">
+        <member name="P:BindOpen.Kernel.Data.Meta.MetaDataDto.IndexSpecified">
             <summary>
             
             </summary>
         </member>
-        <member name="F:BindOpen.System.Data.Meta.MetaDataDto.DataMode">
+        <member name="F:BindOpen.Kernel.Data.Meta.MetaDataDto.DataMode">
             <summary>
             The itemization mode of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.MetaDataDto.Reference">
+        <member name="P:BindOpen.Kernel.Data.Meta.MetaDataDto.Reference">
             <summary>
             The expression of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.MetaDataDto.Specs">
+        <member name="P:BindOpen.Kernel.Data.Meta.MetaDataDto.Specs">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.MetaDataDto.SpecsSpecified">
+        <member name="P:BindOpen.Kernel.Data.Meta.MetaDataDto.SpecsSpecified">
             <summary>
             Indicates whether the entities property must be ignored.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Meta.MetaDataDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.Meta.MetaDataDto.#ctor">
             <summary>
             Initializes a new DTO data element.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.Meta.MetaObjectDto">
+        <member name="T:BindOpen.Kernel.Data.Meta.MetaObjectDto">
             <summary>
             This class represents a catalog element that is an element whose elements are carriers.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.MetaObjectDto.SubSet">
+        <member name="P:BindOpen.Kernel.Data.Meta.MetaObjectDto.SubSet">
             <summary>
             The sub  mode of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.MetaObjectDto.ClassFullName">
+        <member name="P:BindOpen.Kernel.Data.Meta.MetaObjectDto.ClassFullName">
             <summary>
             The class full name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.MetaObjectDto.DefinitionUniqueName">
+        <member name="P:BindOpen.Kernel.Data.Meta.MetaObjectDto.DefinitionUniqueName">
             <summary>
             The definition unique ID of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.MetaObjectDto.Item">
+        <member name="P:BindOpen.Kernel.Data.Meta.MetaObjectDto.Item">
             <summary>
             The value of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.MetaObjectDto.MetaItems">
+        <member name="P:BindOpen.Kernel.Data.Meta.MetaObjectDto.MetaItems">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Meta.MetaObjectDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.Meta.MetaObjectDto.#ctor">
             <summary>
             Initializes a new instance of the MetaObjectDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.Meta.MetaScalarDto">
+        <member name="T:BindOpen.Kernel.Data.Meta.MetaScalarDto">
             <summary>
             This class represents a scalar element that is an element whose items are scalars.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.MetaScalarDto.Item">
+        <member name="P:BindOpen.Kernel.Data.Meta.MetaScalarDto.Item">
             <summary>
             The value of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.MetaScalarDto.Items">
+        <member name="P:BindOpen.Kernel.Data.Meta.MetaScalarDto.Items">
             <summary>
             The values of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.MetaScalarDto.ItemsSpecified">
+        <member name="P:BindOpen.Kernel.Data.Meta.MetaScalarDto.ItemsSpecified">
             <summary>
             Indicates whether the entities property must be ignored.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Meta.MetaScalarDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.Meta.MetaScalarDto.#ctor">
             <summary>
             Initializes a new instance of the MetaScalarDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.Meta.MetaSetDto">
+        <member name="T:BindOpen.Kernel.Data.Meta.MetaSetDto">
             <summary>
             This class represents a data element set.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.MetaSetDto.MetaItems">
+        <member name="P:BindOpen.Kernel.Data.Meta.MetaSetDto.MetaItems">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.MetaSetDto.MetaItemsSpecified">
+        <member name="P:BindOpen.Kernel.Data.Meta.MetaSetDto.MetaItemsSpecified">
             <summary>
             Indicates whether the entities property must be ignored.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Meta.MetaSetDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.Meta.MetaSetDto.#ctor">
             <summary>
             Instantiates a new instance of the MetaSetDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.Meta.SpecDto">
+        <member name="T:BindOpen.Kernel.Data.Meta.SpecDto">
             <summary>
             This class represents a data element specification.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.DataValueType">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.DataValueType">
             <summary>
             The value type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.DataValueTypeSpecified">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.DataValueTypeSpecified">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.GroupId">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.GroupId">
             <summary>
             ID of the group of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.DefaultItems">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.DefaultItems">
             <summary>
             Default items of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.Aliases">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.Aliases">
             <summary>
             The aliases of the entry.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.AreaSpecifications">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.AreaSpecifications">
             <summary>
             The area specifications for this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.IsAllocatable">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.IsAllocatable">
             <summary>
             Indicates whether the instance can be allocated.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.ItemExpression">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.ItemExpression">
             <summary>
             The script of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.AvailableValueModes">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.AvailableValueModes">
             <summary>
             The available itemization modes of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.MinDataItemNumber">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.MinDataItemNumber">
             <summary>
             Minimum item number of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.MinDataItemNumberSpecified">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.MinDataItemNumberSpecified">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.MaxDataItemNumber">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.MaxDataItemNumber">
             <summary>
             Maximum item number of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.MaxDataItemNumberSpecified">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.MaxDataItemNumberSpecified">
             <summary>
             
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.SpecificationLevels">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.SpecificationLevels">
             <summary>
             Levels of specification of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.ItemSpecificationLevels">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.ItemSpecificationLevels">
             <summary>
             Levels of specification of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.AccessibilityLevel">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.AccessibilityLevel">
             <summary>
             Level of accessibility of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.InheritanceLevel">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.InheritanceLevel">
             <summary>
             The level of inheritance of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.RequirementLevel">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.RequirementLevel">
             <summary>
             The requirement level of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.RequirementExp">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.RequirementExp">
             <summary>
             The requirement script of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Meta.SpecDto.ConstraintStatement">
+        <member name="P:BindOpen.Kernel.Data.Meta.SpecDto.ConstraintStatement">
             <summary>
             Constraint statement of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Meta.SpecDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.Meta.SpecDto.#ctor">
             <summary>
             Initializes a new instance of the SpecDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.Stores.BdoDatasourceDepotDto">
+        <member name="T:BindOpen.Kernel.Data.Stores.BdoDatasourceDepotDto">
             <summary>
             This class represents a datasource depot.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Stores.BdoDatasourceDepotDto.Id">
+        <member name="P:BindOpen.Kernel.Data.Stores.BdoDatasourceDepotDto.Id">
             <summary>
             ID of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.Stores.BdoDatasourceDepotDto.Sources">
+        <member name="P:BindOpen.Kernel.Data.Stores.BdoDatasourceDepotDto.Sources">
             <summary>
             The sources of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.Stores.BdoDatasourceDepotDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.Stores.BdoDatasourceDepotDto.#ctor">
             <summary>
             Initializes a new instance of the DatasourceDepotDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.BdoItemDto">
+        <member name="T:BindOpen.Kernel.Data.BdoItemDto">
             <summary>
             This class represents a catalog element that is an element whose elements are carriers.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.BdoItemDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.BdoItemDto.#ctor">
             <summary>
             Initializes a new instance of the BdoItemDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.DatasourceDto">
+        <member name="T:BindOpen.Kernel.Data.DatasourceDto">
             <summary>
             This class represents a data source.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.DatasourceDto.Name">
+        <member name="P:BindOpen.Kernel.Data.DatasourceDto.Name">
             <summary>
             Name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.DatasourceDto.Configurations">
+        <member name="P:BindOpen.Kernel.Data.DatasourceDto.Configurations">
             <summary>
             The config items for this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.DatasourceDto.ConfigurationsSpecified">
+        <member name="P:BindOpen.Kernel.Data.DatasourceDto.ConfigurationsSpecified">
             <summary>
             Indicates whether the entities property must be ignored.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.DatasourceDto.Kind">
+        <member name="P:BindOpen.Kernel.Data.DatasourceDto.Kind">
             <summary>
             Kind of the data module of this instance. 
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.DatasourceDto.InstanceName">
+        <member name="P:BindOpen.Kernel.Data.DatasourceDto.InstanceName">
             <summary>
             The instance name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.DatasourceDto.IsDefault">
+        <member name="P:BindOpen.Kernel.Data.DatasourceDto.IsDefault">
             <summary>
             Indicates whether this instance is default.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.DatasourceDto.ModuleName">
+        <member name="P:BindOpen.Kernel.Data.DatasourceDto.ModuleName">
             <summary>
             The module name of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.DatasourceDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.DatasourceDto.#ctor">
             <summary>
             This instantiates a new instance of the DatasourceDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.DictionaryDto">
+        <member name="T:BindOpen.Kernel.Data.DictionaryDto">
             <summary>
             This class represents a dico data item.
             </summary>
             <example>Titles, Descriptions.</example>
-            <seealso cref="T:BindOpen.System.Data.KeyValuePairDto"/>
+            <seealso cref="T:BindOpen.Kernel.Data.KeyValuePairDto"/>
         </member>
-        <member name="P:BindOpen.System.Data.DictionaryDto.Id">
+        <member name="P:BindOpen.Kernel.Data.DictionaryDto.Id">
             <summary>
             The ID of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.DictionaryDto.Values">
+        <member name="P:BindOpen.Kernel.Data.DictionaryDto.Values">
             <summary>
             Values of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.DictionaryDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.DictionaryDto.#ctor">
             <summary>
             Instantiates a new instance of the DictionaryDto class. 
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.KeyValuePairDto">
+        <member name="T:BindOpen.Kernel.Data.KeyValuePairDto">
             <summary>
             This class represents a data key value.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.KeyValuePairDto.Key">
+        <member name="P:BindOpen.Kernel.Data.KeyValuePairDto.Key">
             <summary>
             Key of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.KeyValuePairDto.Value">
+        <member name="P:BindOpen.Kernel.Data.KeyValuePairDto.Value">
             <summary>
             Content of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.KeyValuePairDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.KeyValuePairDto.#ctor">
             <summary>
             Instantiates a new instance of DataKeyValueDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.ExpressionDto">
+        <member name="T:BindOpen.Kernel.Data.ExpressionDto">
             <summary>
             This class represents a data exp that can contain a literal and script texts.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.ExpressionDto.Text">
+        <member name="P:BindOpen.Kernel.Data.ExpressionDto.Text">
             <summary>
             The value of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.ExpressionDto.Kind">
+        <member name="P:BindOpen.Kernel.Data.ExpressionDto.Kind">
             <summary>
             The kind of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.ExpressionDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.ExpressionDto.#ctor">
             <summary>
             Instantiates a new instance of DataExpressionDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.ReferenceDto">
+        <member name="T:BindOpen.Kernel.Data.ReferenceDto">
             <summary>
             This class represents a data exp that can contain a literal and script texts.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.ReferenceDto.Kind">
+        <member name="P:BindOpen.Kernel.Data.ReferenceDto.Kind">
             <summary>
             The kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.ReferenceDto.Identifier">
+        <member name="P:BindOpen.Kernel.Data.ReferenceDto.Identifier">
             <summary>
             The identifier of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.ReferenceDto.Expression">
+        <member name="P:BindOpen.Kernel.Data.ReferenceDto.Expression">
             <summary>
             The expression of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.ReferenceDto.Word">
+        <member name="P:BindOpen.Kernel.Data.ReferenceDto.Word">
             <summary>
             The script word of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.ReferenceDto.MetaData">
+        <member name="P:BindOpen.Kernel.Data.ReferenceDto.MetaData">
             <summary>
             The script word of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.ReferenceDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.ReferenceDto.#ctor">
             <summary>
             Instantiates a new instance of ReferenceDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Data.StringSetDto">
+        <member name="T:BindOpen.Kernel.Data.StringSetDto">
             <summary>
             This class specifies the data value filter.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Data.StringSetDto.AddedValues">
+        <member name="P:BindOpen.Kernel.Data.StringSetDto.AddedValues">
             <summary>
             The added values of this instance.
             </summary>
             <remarks>If empty then all the values are added.</remarks>
         </member>
-        <member name="P:BindOpen.System.Data.StringSetDto.RemovedValues">
+        <member name="P:BindOpen.Kernel.Data.StringSetDto.RemovedValues">
             <summary>
             The removed values of this instance.
             </summary>
             <remarks>If empty then no value is removed.</remarks>
         </member>
-        <member name="M:BindOpen.System.Data.StringSetDto.#ctor">
+        <member name="M:BindOpen.Kernel.Data.StringSetDto.#ctor">
             <summary>
             Instantiates a new instance of the StringFilterDto class.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Data.JsonHelper.ToJson``1(``0,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Data.JsonHelper.ToJson``1(``0,BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Saves the JSON string of this instance.
             </summary>
@@ -779,7 +779,7 @@
             <param key="log">The saving log to consider.</param>
             <returns>The Json string of this instance.</returns>
         </member>
-        <member name="M:BindOpen.System.Data.JsonHelper.SaveJson``1(``0,System.String,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Data.JsonHelper.SaveJson``1(``0,System.String,BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Saves this instance to the specified file path.
             </summary>
@@ -788,7 +788,7 @@
             <param key="log">The log to consider.</param>
             <returns>True if the saving operation has been done. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.System.Data.JsonHelper.LoadJson``1(System.String,BindOpen.System.Logging.IBdoLog,System.Boolean)">
+        <member name="M:BindOpen.Kernel.Data.JsonHelper.LoadJson``1(System.String,BindOpen.Kernel.Logging.IBdoLog,System.Boolean)">
             <summary>
             Loads a data item from the specified file path.
             </summary>
@@ -798,7 +798,7 @@
             <returns>The loaded log.</returns>
             <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         </member>
-        <member name="M:BindOpen.System.Data.JsonHelper.LoadJsonFromString``1(System.String,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Data.JsonHelper.LoadJsonFromString``1(System.String,BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Loads the data item from the specified file path.
             </summary>
@@ -808,7 +808,7 @@
             <returns>The loaded log.</returns>
             <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         </member>
-        <member name="M:BindOpen.System.Data.XmlHelper.ToXml(System.Object,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Data.XmlHelper.ToXml(System.Object,BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Saves the XML string of this instance.
             </summary>
@@ -816,7 +816,7 @@
             <param key="log">The saving log to consider.</param>
             <returns>The Xml string of this instance.</returns>
         </member>
-        <member name="M:BindOpen.System.Data.XmlHelper.SaveXml(System.Object,System.String,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Data.XmlHelper.SaveXml(System.Object,System.String,BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Saves this instance to the specified XML file path.
             </summary>
@@ -825,7 +825,7 @@
             <param key="log">The log to consider.</param>
             <returns>True if the saving operation has been done. False otherwise.</returns>
         </member>
-        <member name="M:BindOpen.System.Data.XmlHelper.LoadXml``1(System.String,BindOpen.System.Logging.IBdoLog,System.Xml.Schema.XmlSchemaSet,System.Boolean)">
+        <member name="M:BindOpen.Kernel.Data.XmlHelper.LoadXml``1(System.String,BindOpen.Kernel.Logging.IBdoLog,System.Xml.Schema.XmlSchemaSet,System.Boolean)">
             <summary>
             Loads a data item from the specified XML file path.
             </summary>
@@ -836,7 +836,7 @@
             <returns>The loaded log.</returns>
             <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         </member>
-        <member name="M:BindOpen.System.Data.XmlHelper.LoadXmlFromString``1(System.String,BindOpen.System.Logging.IBdoLog,System.Xml.Schema.XmlSchemaSet)">
+        <member name="M:BindOpen.Kernel.Data.XmlHelper.LoadXmlFromString``1(System.String,BindOpen.Kernel.Logging.IBdoLog,System.Xml.Schema.XmlSchemaSet)">
             <summary>
             Loads the data item from the specified XML file path.
             </summary>
@@ -847,7 +847,7 @@
             <returns>The loaded log.</returns>
             <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         </member>
-        <member name="M:BindOpen.System.Data.XmlHelper.LoadXmlSchemaSet(System.Xml.Schema.XmlSchemaSet,System.Reflection.Assembly,System.Collections.Generic.List{System.String})">
+        <member name="M:BindOpen.Kernel.Data.XmlHelper.LoadXmlSchemaSet(System.Xml.Schema.XmlSchemaSet,System.Reflection.Assembly,System.Collections.Generic.List{System.String})">
             <summary>
             Loads the specified XML schema set.
             </summary>
@@ -856,411 +856,411 @@
             <param key="xsdResources">The XSD resources to consider.</param>
             <returns>The XML schema set.</returns>
         </member>
-        <member name="T:BindOpen.System.Scoping.ConnectorDefinitionDto">
+        <member name="T:BindOpen.Kernel.Scoping.ConnectorDefinitionDto">
             <summary>
             This class represents a DTO connector definition.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.ConnectorDefinitionDto.DatasourceKind">
+        <member name="P:BindOpen.Kernel.Scoping.ConnectorDefinitionDto.DatasourceKind">
             <summary>
             Data source kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.ConnectorDefinitionDto.ItemClass">
+        <member name="P:BindOpen.Kernel.Scoping.ConnectorDefinitionDto.ItemClass">
             <summary>
             Item class of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.ConnectorDefinitionDto.Specs">
+        <member name="P:BindOpen.Kernel.Scoping.ConnectorDefinitionDto.Specs">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.ConnectorDefinitionDto.SpecsSpecified">
+        <member name="P:BindOpen.Kernel.Scoping.ConnectorDefinitionDto.SpecsSpecified">
             <summary>
             Indicates whether the entities property must be ignored.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.ConnectorDefinitionDto.#ctor">
+        <member name="M:BindOpen.Kernel.Scoping.ConnectorDefinitionDto.#ctor">
             <summary>
             Instantiates a new instance of the ConnectorDefinition class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.ConnectorDictionaryDto">
+        <member name="T:BindOpen.Kernel.Scoping.ConnectorDictionaryDto">
             <summary>
             This class represents a DTO connector dico.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.ConnectorDictionaryDto.Definitions">
+        <member name="P:BindOpen.Kernel.Scoping.ConnectorDictionaryDto.Definitions">
             <summary>
             Definitions of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.ConnectorDictionaryDto.#ctor">
+        <member name="M:BindOpen.Kernel.Scoping.ConnectorDictionaryDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoConnectorDictionaryDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.EntityDefinitionDto">
+        <member name="T:BindOpen.Kernel.Scoping.EntityDefinitionDto">
             <summary>
             This class represents the entity definition.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.EntityDefinitionDto.ItemClass">
+        <member name="P:BindOpen.Kernel.Scoping.EntityDefinitionDto.ItemClass">
             <summary>
             Item class of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.EntityDefinitionDto.ViewerClass">
+        <member name="P:BindOpen.Kernel.Scoping.EntityDefinitionDto.ViewerClass">
             <summary>
             Viewer class of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.EntityDefinitionDto.OutputSpecification">
+        <member name="P:BindOpen.Kernel.Scoping.EntityDefinitionDto.OutputSpecification">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.EntityDefinitionDto.OutputSpecificationSpecified">
+        <member name="P:BindOpen.Kernel.Scoping.EntityDefinitionDto.OutputSpecificationSpecified">
             <summary>
             Indicates whether the entities property must be ignored.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.EntityDefinitionDto.#ctor">
+        <member name="M:BindOpen.Kernel.Scoping.EntityDefinitionDto.#ctor">
             <summary>
             Instantiates a new instance of the EntityDefinition class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.EntityDictionaryDto">
+        <member name="T:BindOpen.Kernel.Scoping.EntityDictionaryDto">
             <summary>
             This class represents a DTO entity dico.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.EntityDictionaryDto.Definitions">
+        <member name="P:BindOpen.Kernel.Scoping.EntityDictionaryDto.Definitions">
             <summary>
             Definitions of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.EntityDictionaryDto.#ctor">
+        <member name="M:BindOpen.Kernel.Scoping.EntityDictionaryDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoEntityDictionaryDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.FunctionDefinitionDto">
+        <member name="T:BindOpen.Kernel.Scoping.FunctionDefinitionDto">
             <summary>
             This class represents a script word definition.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.CallingClass">
+        <member name="P:BindOpen.Kernel.Scoping.FunctionDefinitionDto.CallingClass">
             <summary>
             The calling class of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.Kind">
+        <member name="P:BindOpen.Kernel.Scoping.FunctionDefinitionDto.Kind">
             <summary>
             Kind of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.MaxParameterNumber">
+        <member name="P:BindOpen.Kernel.Scoping.FunctionDefinitionDto.MaxParameterNumber">
             <summary>
             Maximum number of parameters of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.MinParameterNumber">
+        <member name="P:BindOpen.Kernel.Scoping.FunctionDefinitionDto.MinParameterNumber">
             <summary>
             Minimum number of parameters of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.RepeatedParameterName">
+        <member name="P:BindOpen.Kernel.Scoping.FunctionDefinitionDto.RepeatedParameterName">
             <summary>
             Name of parameters of this instance when parameters are repeated.
             </summary>
             <seealso cref="!:IsRepeatedParameters"/>
-            <seealso cref="P:BindOpen.System.Scoping.FunctionDefinitionDto.RepeatedParameterValueType"/>
+            <seealso cref="P:BindOpen.Kernel.Scoping.FunctionDefinitionDto.RepeatedParameterValueType"/>
         </member>
-        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.RepeatedParameterValueType">
+        <member name="P:BindOpen.Kernel.Scoping.FunctionDefinitionDto.RepeatedParameterValueType">
             <summary>
             Value type of parameters of this instance when parameters are repeated.
             </summary>
             <seealso cref="!:IsRepeatedParameters"/>
-            <seealso cref="P:BindOpen.System.Scoping.FunctionDefinitionDto.RepeatedParameterName"/>
+            <seealso cref="P:BindOpen.Kernel.Scoping.FunctionDefinitionDto.RepeatedParameterName"/>
         </member>
-        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.ReferenceUniqueName">
+        <member name="P:BindOpen.Kernel.Scoping.FunctionDefinitionDto.ReferenceUniqueName">
             <summary>
             Reference unique ID of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.ReturnValueType">
+        <member name="P:BindOpen.Kernel.Scoping.FunctionDefinitionDto.ReturnValueType">
             <summary>
             The return value type of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.RuntimeFunctionName">
+        <member name="P:BindOpen.Kernel.Scoping.FunctionDefinitionDto.RuntimeFunctionName">
             <summary>
             Name of the runtime function.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.Children">
+        <member name="P:BindOpen.Kernel.Scoping.FunctionDefinitionDto.Children">
             <summary>
             The definitions of the sub words of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.ParameterSpecification">
+        <member name="P:BindOpen.Kernel.Scoping.FunctionDefinitionDto.ParameterSpecification">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.ParameterSpecificationSpecified">
+        <member name="P:BindOpen.Kernel.Scoping.FunctionDefinitionDto.ParameterSpecificationSpecified">
             <summary>
             Indicates whether the entities property must be ignored.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.FunctionDefinitionDto.RepeatedParameterDescription">
+        <member name="P:BindOpen.Kernel.Scoping.FunctionDefinitionDto.RepeatedParameterDescription">
             <summary>
             Description of parameters of this instance when parameters are repeated.
             </summary>
             <seealso cref="!:IsRepeatedParameters"/>
-            <seealso cref="P:BindOpen.System.Scoping.FunctionDefinitionDto.RepeatedParameterName"/>
+            <seealso cref="P:BindOpen.Kernel.Scoping.FunctionDefinitionDto.RepeatedParameterName"/>
         </member>
-        <member name="M:BindOpen.System.Scoping.FunctionDefinitionDto.#ctor">
+        <member name="M:BindOpen.Kernel.Scoping.FunctionDefinitionDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoFunctionDefinitionDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.FunctionDictionaryDto">
+        <member name="T:BindOpen.Kernel.Scoping.FunctionDictionaryDto">
             <summary>
             This class represents a DTO script word dico.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.FunctionDictionaryDto.DefinitionClass">
+        <member name="P:BindOpen.Kernel.Scoping.FunctionDictionaryDto.DefinitionClass">
             <summary>
             The definition class of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.FunctionDictionaryDto.Definitions">
+        <member name="P:BindOpen.Kernel.Scoping.FunctionDictionaryDto.Definitions">
             <summary>
             Definitions of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.FunctionDictionaryDto.#ctor">
+        <member name="M:BindOpen.Kernel.Scoping.FunctionDictionaryDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoFunctionDictionaryDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.TaskDefinitionDto">
+        <member name="T:BindOpen.Kernel.Scoping.TaskDefinitionDto">
             <summary>
             This class represents a task definition.
             </summary>
             <seealso cref="!:BdoMeta_Config"/>
         </member>
-        <member name="P:BindOpen.System.Scoping.TaskDefinitionDto.GroupName">
+        <member name="P:BindOpen.Kernel.Scoping.TaskDefinitionDto.GroupName">
             <summary>
             Name of the group of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.TaskDefinitionDto.IsExecutable">
+        <member name="P:BindOpen.Kernel.Scoping.TaskDefinitionDto.IsExecutable">
             <summary>
             Indicates whether this instance is executable.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.TaskDefinitionDto.ItemClass">
+        <member name="P:BindOpen.Kernel.Scoping.TaskDefinitionDto.ItemClass">
             <summary>
             Item class of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.TaskDefinitionDto.MaximumIndex">
+        <member name="P:BindOpen.Kernel.Scoping.TaskDefinitionDto.MaximumIndex">
             <summary>
             Maximum index of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.TaskDefinitionDto.InputSpecification">
+        <member name="P:BindOpen.Kernel.Scoping.TaskDefinitionDto.InputSpecification">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.TaskDefinitionDto.InputSpecificationSpecified">
+        <member name="P:BindOpen.Kernel.Scoping.TaskDefinitionDto.InputSpecificationSpecified">
             <summary>
             Indicates whether the entities property must be ignored.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.TaskDefinitionDto.OutputSpecification">
+        <member name="P:BindOpen.Kernel.Scoping.TaskDefinitionDto.OutputSpecification">
             <summary>
             The elements of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.TaskDefinitionDto.OutputSpecificationSpecified">
+        <member name="P:BindOpen.Kernel.Scoping.TaskDefinitionDto.OutputSpecificationSpecified">
             <summary>
             Indicates whether the entities property must be ignored.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.TaskDefinitionDto.#ctor">
+        <member name="M:BindOpen.Kernel.Scoping.TaskDefinitionDto.#ctor">
             <summary>
             Instantiates a new instance of the TaskDefinition class. 
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.TaskDictionaryDto">
+        <member name="T:BindOpen.Kernel.Scoping.TaskDictionaryDto">
             <summary>
             This class represents a DTO task dico.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.TaskDictionaryDto.Definitions">
+        <member name="P:BindOpen.Kernel.Scoping.TaskDictionaryDto.Definitions">
             <summary>
             Definitions of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.TaskDictionaryDto.#ctor">
+        <member name="M:BindOpen.Kernel.Scoping.TaskDictionaryDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoTaskDictionaryDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.ExtensionDefinitionDto">
+        <member name="T:BindOpen.Kernel.Scoping.ExtensionDefinitionDto">
             <summary>
             This class represents the definition of BindOpen extension item.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.ExtensionDefinitionDto.Index">
+        <member name="P:BindOpen.Kernel.Scoping.ExtensionDefinitionDto.Index">
             <summary>
             The index of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.ExtensionDefinitionDto.ImageUri">
+        <member name="P:BindOpen.Kernel.Scoping.ExtensionDefinitionDto.ImageUri">
             <summary>
             Uri of the image representing this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.ExtensionDefinitionDto.IsEditable">
+        <member name="P:BindOpen.Kernel.Scoping.ExtensionDefinitionDto.IsEditable">
             <summary>
             Indicates whether this instance is editable.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.ExtensionDefinitionDto.IsIndexed">
+        <member name="P:BindOpen.Kernel.Scoping.ExtensionDefinitionDto.IsIndexed">
             <summary>
             Indicates whether this instance is indexed.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.ExtensionDefinitionDto.#ctor">
+        <member name="M:BindOpen.Kernel.Scoping.ExtensionDefinitionDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoExtensionDefinitionDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.ExtensionGroupDto">
+        <member name="T:BindOpen.Kernel.Scoping.ExtensionGroupDto">
             <summary>
             This class represents the group of BindOpen extension items.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.ExtensionGroupDto.Description">
+        <member name="P:BindOpen.Kernel.Scoping.ExtensionGroupDto.Description">
             <summary>
             Description of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.ExtensionGroupDto.SubGroups">
+        <member name="P:BindOpen.Kernel.Scoping.ExtensionGroupDto.SubGroups">
             <summary>
             Sub groups of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.ExtensionGroupDto.#ctor">
+        <member name="M:BindOpen.Kernel.Scoping.ExtensionGroupDto.#ctor">
             <summary>
             Instantiates a new instance of the BdoExtensionGroupDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.PackageDefinitionDto">
+        <member name="T:BindOpen.Kernel.Scoping.PackageDefinitionDto">
             <summary>
             This class represents the definition of a library.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.PackageDefinitionDto.Description">
+        <member name="P:BindOpen.Kernel.Scoping.PackageDefinitionDto.Description">
             <summary>
             Description of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.PackageDefinitionDto.GroupName">
+        <member name="P:BindOpen.Kernel.Scoping.PackageDefinitionDto.GroupName">
             <summary>
             Name of the group of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.PackageDefinitionDto.AssemblyName">
+        <member name="P:BindOpen.Kernel.Scoping.PackageDefinitionDto.AssemblyName">
             <summary>
             Name of the assembly where the library can be loaded.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.PackageDefinitionDto.RootNamespace">
+        <member name="P:BindOpen.Kernel.Scoping.PackageDefinitionDto.RootNamespace">
             <summary>
             Root name space of this intance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.PackageDefinitionDto.FileName">
+        <member name="P:BindOpen.Kernel.Scoping.PackageDefinitionDto.FileName">
             <summary>
             File name of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.PackageDefinitionDto.UsingAssemblyFileNames">
+        <member name="P:BindOpen.Kernel.Scoping.PackageDefinitionDto.UsingAssemblyFileNames">
             <summary>
             Names of the using assembly files of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.PackageDefinitionDto.ItemIndexFullNameDictionary">
+        <member name="P:BindOpen.Kernel.Scoping.PackageDefinitionDto.ItemIndexFullNameDictionary">
             <summary>
             Dictionary full names of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.PackageDefinitionDto.#ctor">
+        <member name="M:BindOpen.Kernel.Scoping.PackageDefinitionDto.#ctor">
             <summary>
             Instantiates a new instance of BdoPackageDefinitionDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.TBdoExtensionDictionaryDto`1">
+        <member name="T:BindOpen.Kernel.Scoping.TBdoExtensionDictionaryDto`1">
             <summary>
             This class represents a BindOpen extension dico.
             </summary>
             <typeparam name="T">The class of extension item definition to consider.</typeparam>
         </member>
-        <member name="P:BindOpen.System.Scoping.TBdoExtensionDictionaryDto`1.CreationDate">
+        <member name="P:BindOpen.Kernel.Scoping.TBdoExtensionDictionaryDto`1.CreationDate">
             <summary>
             Creation date of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.TBdoExtensionDictionaryDto`1.LastModificationDate">
+        <member name="P:BindOpen.Kernel.Scoping.TBdoExtensionDictionaryDto`1.LastModificationDate">
             <summary>
             Last modification date of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.TBdoExtensionDictionaryDto`1.LibraryId">
+        <member name="P:BindOpen.Kernel.Scoping.TBdoExtensionDictionaryDto`1.LibraryId">
             <summary>
             ID of the library of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.TBdoExtensionDictionaryDto`1.LibraryName">
+        <member name="P:BindOpen.Kernel.Scoping.TBdoExtensionDictionaryDto`1.LibraryName">
             <summary>
             Name of the library of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.TBdoExtensionDictionaryDto`1.Groups">
+        <member name="P:BindOpen.Kernel.Scoping.TBdoExtensionDictionaryDto`1.Groups">
             <summary>
             Groups of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.TBdoExtensionDictionaryDto`1.#ctor">
+        <member name="M:BindOpen.Kernel.Scoping.TBdoExtensionDictionaryDto`1.#ctor">
             <summary>
             Instantiates a new instance of the TBdoExtensionDictionaryDto class.
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Script.ScriptwordDto">
+        <member name="T:BindOpen.Kernel.Scoping.Script.ScriptwordDto">
             <summary>
             This class represents a script word configuration.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Script.ScriptwordDto.Kind">
+        <member name="P:BindOpen.Kernel.Scoping.Script.ScriptwordDto.Kind">
             <summary>
             Kind of this instance.
             </summary>
             <example>Script word, syntax, text...</example>
         </member>
-        <member name="P:BindOpen.System.Scoping.Script.ScriptwordDto.Child">
+        <member name="P:BindOpen.Kernel.Scoping.Script.ScriptwordDto.Child">
             <summary>
             Sub script words of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.ScriptwordDto.#ctor">
+        <member name="M:BindOpen.Kernel.Scoping.Script.ScriptwordDto.#ctor">
             <summary>
             Instantiates a new instance of the ScriptwordConfigurationDto class.
             </summary>

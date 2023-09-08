@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Data;
-using BindOpen.System.Tests;
+﻿using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     [TestFixture, Order(300)]
     public class BdoTaskTests
@@ -24,7 +24,7 @@ namespace BindOpen.System.Scoping
         public static IBdoMetaObject CreateMetaTask(dynamic data)
         {
             var meta = BdoData.NewObject()
-                .WithDataType(BdoExtensionKinds.Task, "bindopen.system.tests$taskFake")
+                .WithDataType(BdoExtensionKinds.Task, "bindopen.kernel.tests$taskFake")
                 .WithProperties(
                     ("boolValue", data.boolValue as bool?),
                     ("intValue", data.intValue as int?))

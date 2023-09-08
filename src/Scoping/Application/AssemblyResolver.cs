@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Data;
+﻿using BindOpen.Kernel.Data;
 using System;
 using System.Reflection;
 
-namespace BindOpen.System.Scoping.Application
+namespace BindOpen.Kernel.Scoping.Application
 {
 
     /// <summary>

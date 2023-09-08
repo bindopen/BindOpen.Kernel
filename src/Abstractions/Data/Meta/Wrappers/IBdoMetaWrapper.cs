@@ -1,6 +1,6 @@
-﻿using BindOpen.System.Scoping;
+﻿using BindOpen.Kernel.Scoping;
 
-namespace BindOpen.System.Data.Meta
+namespace BindOpen.Kernel.Data.Meta
 {
     public interface IBdoMetaWrapper : IBdoObject, IBdoScoped, IBdoDetailed
     {

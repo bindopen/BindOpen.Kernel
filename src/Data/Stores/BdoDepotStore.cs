@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Logging;
-using BindOpen.System.Scoping;
+﻿using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Scoping;
 using System;
 using System.Collections.Generic;
 
-namespace BindOpen.System.Data.Stores
+namespace BindOpen.Kernel.Data.Stores
 {
     /// <summary>
     /// This class represents a set of depots.
@@ -83,7 +83,7 @@ namespace BindOpen.System.Data.Stores
         /// Executes the lazy functions of all the depots of this instance.
         /// </summary>
         /// <param key="scope">The scope to append.</param>
-        /// <param key="log"></param>
+        /// <param key="log">The BindOpen log used for tracking.</param>
         public bool LoadLazy(IBdoScope scope, IBdoLog log = null)
         {
             bool loaded = true;

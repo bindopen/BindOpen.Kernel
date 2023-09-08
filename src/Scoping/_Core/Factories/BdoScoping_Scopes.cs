@@ -1,7 +1,7 @@
-﻿using BindOpen.System.Scoping.Script;
+﻿using BindOpen.Kernel.Scoping.Script;
 using System;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This class represents an scope factory.

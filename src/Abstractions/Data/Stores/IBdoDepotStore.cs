@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Logging;
-using BindOpen.System.Scoping;
+﻿using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Scoping;
 using System;
 using System.Collections.Generic;
 
-namespace BindOpen.System.Data.Stores
+namespace BindOpen.Kernel.Data.Stores
 {
     /// <summary>
     /// 

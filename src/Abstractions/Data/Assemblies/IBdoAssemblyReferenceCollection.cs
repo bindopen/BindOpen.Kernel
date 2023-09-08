@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BindOpen.System.Data.Assemblies
+namespace BindOpen.Kernel.Data.Assemblies
 {
     /// <summary>
     /// This class represents a data reference.

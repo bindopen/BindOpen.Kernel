@@ -1,12 +1,12 @@
-﻿using BindOpen.System.IO.Dtos;
-using BindOpen.System.Scoping.Script;
-using BindOpen.System.Tests;
+﻿using BindOpen.Kernel.IO.Dtos;
+using BindOpen.Kernel.Scoping.Script;
+using BindOpen.Kernel.Tests;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     [TestFixture, Order(210)]
     public class ExpressionIOTests

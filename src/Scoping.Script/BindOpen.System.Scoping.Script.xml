@@ -1,35 +1,35 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>BindOpen.System.Scoping.Script</name>
+        <name>BindOpen.Kernel.Scoping.Script</name>
     </assembly>
     <members>
-        <member name="T:BindOpen.System.Scoping.Script.BdoScriptDomain">
+        <member name="T:BindOpen.Kernel.Scoping.Script.BdoScriptDomain">
             <summary>
             This class represents the script word area.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Script.BdoScriptDomain.Scope">
+        <member name="P:BindOpen.Kernel.Scoping.Script.BdoScriptDomain.Scope">
             <summary>
             The scope of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Script.BdoScriptDomain.VariableSet">
+        <member name="P:BindOpen.Kernel.Scoping.Script.BdoScriptDomain.VariableSet">
             <summary>
             The variable element set of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Script.BdoScriptDomain.Log">
+        <member name="P:BindOpen.Kernel.Scoping.Script.BdoScriptDomain.Log">
             <summary>
             The log of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Script.BdoScriptDomain.Scriptword">
+        <member name="P:BindOpen.Kernel.Scoping.Script.BdoScriptDomain.Scriptword">
             <summary>
             The script word of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptDomain.#ctor(BindOpen.System.Scoping.IBdoScope,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Scoping.Script.IBdoScriptword,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptDomain.#ctor(BindOpen.Kernel.Scoping.IBdoScope,BindOpen.Kernel.Data.Meta.IBdoMetaSet,BindOpen.Kernel.Scoping.Script.IBdoScriptword,BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Initializes a new instance of the BdoScriptwordArea class.
             </summary>
@@ -37,7 +37,7 @@
             <param key="varSet">The variable element set to consider.</param>
             <param key="scriptword">The script word to consider.</param>
         </member>
-        <member name="T:BindOpen.System.Scoping.Script.BdoScriptHelper">
+        <member name="T:BindOpen.Kernel.Scoping.Script.BdoScriptHelper">
             <summary>
             This class represents a script format helper.
             </summary>
@@ -45,7 +45,7 @@
             This class represents a string parser.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptHelper.FormatScript(System.String,System.Int32)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptHelper.FormatScript(System.String,System.Int32)">
             <summary>
             Formats the specified script string considering the specified number of tabulations.
             </summary>
@@ -53,29 +53,29 @@
             <param key="tabulationNumber">The number of tabulations.</param>
             <returns>Returns the formated script.</returns>
         </member>
-        <member name="F:BindOpen.System.Scoping.Script.BdoScriptHelper.Symbol_Var">
+        <member name="F:BindOpen.Kernel.Scoping.Script.BdoScriptHelper.Symbol_Var">
             <summary>
             The leading character of the variable.
             </summary>
         </member>
-        <member name="F:BindOpen.System.Scoping.Script.BdoScriptHelper.Symbol_Fun">
+        <member name="F:BindOpen.Kernel.Scoping.Script.BdoScriptHelper.Symbol_Fun">
             <summary>
             The leading character of the function.
             </summary>
         </member>
-        <member name="F:BindOpen.System.Scoping.Script.BdoScriptHelper.SyntaxItems">
+        <member name="F:BindOpen.Kernel.Scoping.Script.BdoScriptHelper.SyntaxItems">
             <summary>
             The syntax items of this class.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptHelper.GetValueFromScript(System.String)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptHelper.GetValueFromScript(System.String)">
             <summary>
             Returns the string value from a text.
             </summary>
             <param key="text">The text from which the string value is retrieved.</param>
             <returns>The string value from a text</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptHelper.IndexOfScript(System.String,System.String,System.Int32)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptHelper.IndexOfScript(System.String,System.String,System.Int32)">
             <summary>
             Returns the position of stv in st from index taking in account the closing ponctuation (,{,[. 
             </summary>
@@ -84,7 +84,7 @@
             <param key="indexDeb">The start index.</param>
             <returns>The position of the next stv into st from index position.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptHelper.LastIndexOfScript(System.String,System.String,System.Int32)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptHelper.LastIndexOfScript(System.String,System.String,System.Int32)">
             <summary>
             Returns the last position of stv in st from index taking in account the closing ponctuation (,{,[. 
             </summary>
@@ -93,14 +93,14 @@
             <param key="indexDeb">The start index.</param>
             <returns>The position of the next stv into st from index position.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptHelper.FindScriptItems(System.String)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptHelper.FindScriptItems(System.String)">
             <summary>
             Returns the items that are in the specified script.
             </summary>
             <param key="script">The script to analyse.</param>
             <returns>The items that are in the specified script.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptHelper.GetScriptBlock(System.String,System.Int32)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptHelper.GetScriptBlock(System.String,System.Int32)">
             <summary>
             Returns the first script block in the specified script from the specified index.
             </summary>
@@ -108,24 +108,24 @@
             <param key="index">The index position to begin analyse.</param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.System.Scoping.Script.BdoScriptInterpreter">
+        <member name="T:BindOpen.Kernel.Scoping.Script.BdoScriptInterpreter">
             <summary>
             This class represents a script interpreter. A script interpreter allows to interpret a script
             using script dictionnaries and data context, providing a log for the interpretation task.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptInterpreter.#ctor">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptInterpreter.#ctor">
             <summary>
             Instantiates a new instance of the BdoScriptInterpreter class.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptInterpreter.#ctor(BindOpen.System.Scoping.IBdoScope)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptInterpreter.#ctor(BindOpen.Kernel.Scoping.IBdoScope)">
             <summary>
             Instantiates a new instance of the BdoScriptInterpreter class.
             </summary>
             <param key="scope">The application scope used to interprete.</param>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptInterpreter.Evaluate(BindOpen.System.Data.IBdoExpression,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptInterpreter.Evaluate(BindOpen.Kernel.Data.IBdoExpression,BindOpen.Kernel.Data.Meta.IBdoMetaSet,BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Evaluates the specified data reference.
             </summary>
@@ -134,7 +134,7 @@
             <param key="log">The log to consider.</param>
             <returns>Literal or script value according to the specified default mode.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptInterpreter.FindNextWord(System.String,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptInterpreter.FindNextWord(System.String,BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -142,7 +142,7 @@
             <param key="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptInterpreter.FindNextWord(System.String,BindOpen.System.Scoping.Script.IBdoScriptword,System.Int32@,System.Int32,BindOpen.System.Data.Meta.IBdoMetaSet,BindOpen.System.Logging.IBdoLog)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptInterpreter.FindNextWord(System.String,BindOpen.Kernel.Scoping.Script.IBdoScriptword,System.Int32@,System.Int32,BindOpen.Kernel.Data.Meta.IBdoMetaSet,BindOpen.Kernel.Logging.IBdoLog)">
             <summary>
             Finds the next script words at the specified index.
             </summary>
@@ -154,28 +154,28 @@
             <param key="log"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptInterpreter.Dispose(System.Boolean)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptInterpreter.Dispose(System.Boolean)">
             <summary>
             Disposes this instance. 
             </summary>
         </member>
-        <member name="T:BindOpen.System.Scoping.Script.BdoScriptword">
+        <member name="T:BindOpen.Kernel.Scoping.Script.BdoScriptword">
             <summary>
             This class represents a script word.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptword.#ctor">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptword.#ctor">
             <summary>
             Instantiates a new instance of the Scriptword class.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptword.op_Explicit(BindOpen.System.Scoping.Script.BdoScriptword)~System.String">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptword.op_Explicit(BindOpen.Kernel.Scoping.Script.BdoScriptword)~System.String">
             <summary>
             Converts from word.
             </summary>
             <param key="word">The word to consider.</param>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptword.op_Addition(System.String,BindOpen.System.Scoping.Script.BdoScriptword)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptword.op_Addition(System.String,BindOpen.Kernel.Scoping.Script.BdoScriptword)">
             <summary>
             
             </summary>
@@ -183,7 +183,7 @@
             <param key="word"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptword.op_Addition(BindOpen.System.Scoping.Script.BdoScriptword,System.String)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptword.op_Addition(BindOpen.Kernel.Scoping.Script.BdoScriptword,System.String)">
             <summary>
             
             </summary>
@@ -191,73 +191,73 @@
             <param key="word"></param>
             <returns></returns>
         </member>
-        <member name="P:BindOpen.System.Scoping.Script.BdoScriptword.DefinitionUniqueName">
+        <member name="P:BindOpen.Kernel.Scoping.Script.BdoScriptword.DefinitionUniqueName">
             <summary>
             Kind of this instance.
             </summary>
             <example>Script word, syntax, text...</example>
         </member>
-        <member name="P:BindOpen.System.Scoping.Script.BdoScriptword.Kind">
+        <member name="P:BindOpen.Kernel.Scoping.Script.BdoScriptword.Kind">
             <summary>
             Kind of this instance.
             </summary>
             <example>Script word, syntax, text...</example>
         </member>
-        <member name="P:BindOpen.System.Scoping.Script.BdoScriptword.Child">
+        <member name="P:BindOpen.Kernel.Scoping.Script.BdoScriptword.Child">
             <summary>
             Sub script words of this instance.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptword.Key">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptword.Key">
             <summary>
             Returns a string that represents this instance.
             </summary>
             <returns>Retuns the string that represents this instance.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptword.Last(System.Int32)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptword.Last(System.Int32)">
             <summary>
             Get the root script word of this instance.
             </summary>
             <returns>The root script word of this instance.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptword.ToString">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptword.ToString">
             <summary>
             Returns a string that represents this instance.
             </summary>
             <returns>Retuns the string that represents this instance.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptword.ToString(System.Boolean)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptword.ToString(System.Boolean)">
             <summary>
             Returns a string that represents this instance.
             </summary>
             <returns>Retuns the string that represents this instance.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptword.Clone">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptword.Clone">
             <summary>
             Clones this instance.
             </summary>
             <param key="areas">The areas to consider.</param>
             <returns>Returns a cloned instance.</returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScriptword.Dispose(System.Boolean)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScriptword.Dispose(System.Boolean)">
             <summary>
             Disposes specifying whether this instance is disposing.
             </summary>
             <param key="isDisposing">Indicates whether this instance is disposing</param>
         </member>
-        <member name="T:BindOpen.System.Scoping.Script.BdoScript">
+        <member name="T:BindOpen.Kernel.Scoping.Script.BdoScript">
             <summary>
             This static class provides methods to create script elements.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScript.Variable(System.String)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScript.Variable(System.String)">
             <summary>
             
             </summary>
             <param key="name"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScript.Function(System.String,System.Object[])">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScript.Function(System.String,System.Object[])">
             <summary>
             
             </summary>
@@ -265,7 +265,7 @@
             <param key="parameters"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.BdoScript.Function(BindOpen.System.Scoping.Script.BdoScriptword,System.String,System.Object[])">
+        <member name="M:BindOpen.Kernel.Scoping.Script.BdoScript.Function(BindOpen.Kernel.Scoping.Script.BdoScriptword,System.String,System.Object[])">
             <summary>
             
             </summary>
@@ -274,17 +274,17 @@
             <param key="parameters"></param>
             <returns></returns>
         </member>
-        <member name="T:BindOpen.System.Scoping.Script.ScriptItem">
+        <member name="T:BindOpen.Kernel.Scoping.Script.ScriptItem">
             <summary>
             This class represents a script item.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.ScriptItem.#ctor">
+        <member name="M:BindOpen.Kernel.Scoping.Script.ScriptItem.#ctor">
             <summary>
             Instantiates a new instance of the ScriptItem class.
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.ScriptItem.#ctor(BindOpen.System.Scoping.Script.ScriptItemKinds,System.String,System.Int32)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.ScriptItem.#ctor(BindOpen.Kernel.Scoping.Script.ScriptItemKinds,System.String,System.Int32)">
             <summary>
             Instantiates a new instance of the ScriptItem class.
             </summary>
@@ -292,23 +292,23 @@
             <param key="name">The name of the instance.</param>
             <param key="index">The index of the instance.</param>
         </member>
-        <member name="P:BindOpen.System.Scoping.Script.ScriptItem.Kind">
+        <member name="P:BindOpen.Kernel.Scoping.Script.ScriptItem.Kind">
             <summary>
             Kind of this instance.
             </summary>
             <example>Script word, syntax, text...</example>
         </member>
-        <member name="P:BindOpen.System.Scoping.Script.ScriptItem.Index">
+        <member name="P:BindOpen.Kernel.Scoping.Script.ScriptItem.Index">
             <summary>
             The index of this instance.
             </summary>
         </member>
-        <member name="P:BindOpen.System.Scoping.Script.ScriptItem.Name">
+        <member name="P:BindOpen.Kernel.Scoping.Script.ScriptItem.Name">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BindOpen.System.Scoping.Script.ScriptItem.WithName(System.String)">
+        <member name="M:BindOpen.Kernel.Scoping.Script.ScriptItem.WithName(System.String)">
             <summary>
             
             </summary>

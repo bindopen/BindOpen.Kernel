@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace BindOpen.System.Data.Assemblies
+namespace BindOpen.Kernel.Data.Assemblies
 {
     /// <summary>
     /// This class represents a Xml helper.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This enumeration lists the possible kinds of script items.

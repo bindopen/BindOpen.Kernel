@@ -1,9 +1,9 @@
-﻿using BindOpen.System.IO.Dtos;
-using BindOpen.System.Tests;
+﻿using BindOpen.Kernel.IO.Dtos;
+using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.System.Data.Meta
+namespace BindOpen.Kernel.Data.Meta
 {
     [TestFixture, Order(201)]
     public class MetaWrapperIOTests

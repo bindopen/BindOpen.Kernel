@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using BindOpen.System.Data.Meta;
+using BindOpen.Kernel.Data.Meta;
 using System.Linq;
 
-namespace BindOpen.System.Data.Meta
+namespace BindOpen.Kernel.Data.Meta
 {
     /// <summary>
     /// This class represents a Xml helper.

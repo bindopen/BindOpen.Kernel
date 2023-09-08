@@ -1,7 +1,7 @@
-﻿using BindOpen.System.Scoping;
+﻿using BindOpen.Kernel.Scoping;
 using System;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This class represents a data element set.

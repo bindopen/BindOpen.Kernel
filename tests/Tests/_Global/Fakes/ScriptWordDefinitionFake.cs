@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Scoping;
-using BindOpen.System.Scoping.Script;
+﻿using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Scoping;
+using BindOpen.Kernel.Scoping.Script;
 using System;
 
-namespace BindOpen.System.Tests
+namespace BindOpen.Kernel.Tests
 {
     /// <summary>
     /// This class represents a script word definition fake.

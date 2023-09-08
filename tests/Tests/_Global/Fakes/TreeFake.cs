@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Data;
+﻿using BindOpen.Kernel.Data;
 using System;
 using System.Linq;
 
-namespace BindOpen.System.Tests
+namespace BindOpen.Kernel.Tests
 {
     /// <summary>
     /// This class represents a fake class.

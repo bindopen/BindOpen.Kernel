@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Logging;
-using BindOpen.System.Scoping;
+﻿using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Scoping;
 using System;
 
-namespace BindOpen.System.Data.Assemblies
+namespace BindOpen.Kernel.Data.Assemblies
 {
     /// <summary>
     /// 

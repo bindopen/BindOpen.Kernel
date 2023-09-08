@@ -1,7 +1,7 @@
-﻿using BindOpen.System.Data.Conditions;
+﻿using BindOpen.Kernel.Data.Conditions;
 using System.Linq;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This class represents a data exp that can contain a literal and script texts.

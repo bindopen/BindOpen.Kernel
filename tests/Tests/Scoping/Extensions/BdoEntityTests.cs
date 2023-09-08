@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
-using BindOpen.System.Tests;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     [TestFixture, Order(300)]
     public class BdoEntityTests
@@ -25,7 +25,7 @@ namespace BindOpen.System.Scoping
         {
             var meta =
                 BdoData.NewObject()
-                .WithDataType(BdoExtensionKinds.Entity, "bindopen.system.tests$testEntity")
+                .WithDataType(BdoExtensionKinds.Entity, "bindopen.kernel.tests$testEntity")
                 .With(
                     BdoData.NewScalar("boolValue", data.boolValue as bool?),
                     BdoData.NewScalar("enumValue", data.enumValue as ActionPriorities?),

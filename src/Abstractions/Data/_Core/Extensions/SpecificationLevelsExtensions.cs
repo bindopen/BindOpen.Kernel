@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This class represents an specification level extension.

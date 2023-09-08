@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Logging;
+﻿using BindOpen.Kernel.Logging;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace BindOpen.System.IO.Dtos
+namespace BindOpen.Kernel.IO.Dtos
 {
     public static class JsonHelper
     {

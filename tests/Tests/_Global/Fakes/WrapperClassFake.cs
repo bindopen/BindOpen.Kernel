@@ -1,7 +1,7 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Meta;
 
-namespace BindOpen.System.Tests
+namespace BindOpen.Kernel.Tests
 {
     /// <summary>
     /// This class represents a fake class.

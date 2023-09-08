@@ -1,10 +1,10 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
-using BindOpen.System.Scoping.Script;
-using BindOpen.System.Tests;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Scoping.Script;
+using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     [TestFixture, Order(300)]
     public class BdoFunctionTests
@@ -23,7 +23,7 @@ namespace BindOpen.System.Scoping
         public void NewWordFromConfigTest()
         {
             var meta = BdoData.NewObject()
-                .WithDataType(BdoExtensionKinds.Function, "bindopen.system.tests$testEqual")
+                .WithDataType(BdoExtensionKinds.Function, "bindopen.kernel.tests$testEqual")
                 .With(
                     BdoData.NewScalar("stringValue", _testData.stringValue as string),
                     BdoData.NewScalar("intValue", _testData.intValue as int?));

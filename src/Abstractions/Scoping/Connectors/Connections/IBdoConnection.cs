@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Logging;
+﻿using BindOpen.Kernel.Logging;
 using System;
 using System.Data;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This interfaces represents a connection.

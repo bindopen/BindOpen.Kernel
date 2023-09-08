@@ -1,10 +1,10 @@
-﻿using BindOpen.System.IO.Dtos;
-using BindOpen.System.Tests;
+﻿using BindOpen.Kernel.IO.Dtos;
+using BindOpen.Kernel.Tests;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.System.Data.Meta
+namespace BindOpen.Kernel.Data.Meta
 {
     [TestFixture, Order(201)]
     public class MetaObjectSetIOTests
@@ -44,15 +44,15 @@ namespace BindOpen.System.Data.Meta
             //        var metaEntity1 = BdoMeta.NewEntity(
             //"entity1",
             //        BdoConfig.New(
-            //    "bindopen.system.tests$testEntity",
+            //    "bindopen.kernel.tests$testEntity",
             //    BdoMeta.NewScalar("path", _testData.path1)));
 
-            //        var metaEntity2 = BdoMeta.NewEntity("entity2", "bindopen.system.tests$testEntity")
+            //        var metaEntity2 = BdoMeta.NewEntity("entity2", "bindopen.kernel.tests$testEntity")
             //            .With(new { path = _testData.path2 }).ToMetaSet<BdoConfiguration>());
             //        var metaEntity3 = new EntityFake(_testData.path3, _testData.folderPath3)?.ToMeta();
 
             //        var metaEntity4 = BdoExt.NewEntity<EntityFake>(
-            //        BdoConfig.New("bindopen.system.tests$testEntity")
+            //        BdoConfig.New("bindopen.kernel.tests$testEntity")
             //                .With(new { path = _testData.path4 }).ToMetaArray()))?.ToMeta();
 
             var meta1 = BdoData.NewObject("object1", _obj1);

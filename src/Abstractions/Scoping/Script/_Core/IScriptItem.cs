@@ -1,7 +1,7 @@
-﻿using BindOpen.System.Scoping.Script;
-using BindOpen.System.Data;
+﻿using BindOpen.Kernel.Scoping.Script;
+using BindOpen.Kernel.Data;
 
-namespace BindOpen.System.Scoping.Script
+namespace BindOpen.Kernel.Scoping.Script
 {
     /// <summary>
     /// 

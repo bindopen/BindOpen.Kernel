@@ -1,4 +1,4 @@
-﻿namespace BindOpen.System.Scoping.Script
+﻿namespace BindOpen.Kernel.Scoping.Script
 {
     /// <summary>
     /// 

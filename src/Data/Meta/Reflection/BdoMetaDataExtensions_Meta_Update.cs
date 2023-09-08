@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Data.Helpers;
+﻿using BindOpen.Kernel.Data.Helpers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace BindOpen.System.Data.Meta.Reflection
+namespace BindOpen.Kernel.Data.Meta.Reflection
 {
     /// <summary>
     /// 

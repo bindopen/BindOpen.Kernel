@@ -1,10 +1,10 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Meta;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This class represents an application 
