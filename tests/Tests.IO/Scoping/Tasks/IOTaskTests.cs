@@ -1,11 +1,11 @@
 ﻿using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.IO.Dtos;
+using BindOpen.Kernel.IO;
 using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Kernel.Scoping.Tasks
 {
     [TestFixture, Order(300)]
     public class IOTaskTests

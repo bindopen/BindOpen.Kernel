@@ -7,8 +7,8 @@ namespace BindOpen.Kernel.Data.Conditions
     /// <summary>
     /// This class represents a condition DTO.
     /// </summary>
-    [XmlType("Condition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "condition", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("Condition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "condition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     [XmlInclude(typeof(BasicConditionDto))]
     [XmlInclude(typeof(CompositeConditionDto))]
     [XmlInclude(typeof(ExpressionConditionDto))]

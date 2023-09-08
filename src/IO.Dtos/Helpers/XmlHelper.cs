@@ -9,7 +9,7 @@ using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.IO.Dtos
+namespace BindOpen.Kernel.IO
 {
     public static class XmlHelper
     {
@@ -192,7 +192,7 @@ namespace BindOpen.Kernel.IO.Dtos
             foreach (string currentXsdResource in xsdResources)
             {
                 var stream = assembly.GetManifestResourceStream(currentXsdResource);
-                xmlSchemaSet.Add("https://storage.bindopen.org/xsd/bindopen", XmlReader.Create(new StreamReader(stream)));
+                xmlSchemaSet.Add("https://storage.bindopen.org/xsd/bindopen/kernel", XmlReader.Create(new StreamReader(stream)));
             }
 
             return xmlSchemaSet;

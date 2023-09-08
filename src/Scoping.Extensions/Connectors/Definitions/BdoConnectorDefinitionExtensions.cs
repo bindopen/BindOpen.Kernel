@@ -3,7 +3,7 @@ using BindOpen.Kernel.Data;
 using System;
 using System.Reflection;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Kernel.Scoping.Connectors
 {
     /// <summary>
     /// This class represents a connection service.

@@ -9,8 +9,8 @@ namespace BindOpen.Kernel.Data
     /// </summary>
     /// <example>Titles, Descriptions.</example>
     /// <seealso cref="KeyValuePairDto"/>
-    [XmlType("Dictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "dictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("Dictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "dictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class DictionaryDto : BdoItemDto, IIdentified
     {
         // --------------------------------------------------

@@ -8,8 +8,8 @@ namespace BindOpen.Kernel.Scoping
     /// <summary>
     /// This class represents the definition of a library.
     /// </summary>
-    [XmlType("PackageDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "extension", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("PackageDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "extension", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class PackageDefinitionDto : IBdoDto
     {
         // ------------------------------------------

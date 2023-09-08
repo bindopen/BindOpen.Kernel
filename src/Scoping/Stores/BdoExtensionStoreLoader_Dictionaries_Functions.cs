@@ -2,6 +2,7 @@
 using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Logging;
 using BindOpen.Kernel.Scoping;
+using BindOpen.Kernel.Scoping.Functions;
 using BindOpen.Kernel.Scoping.Script;
 using System;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace BindOpen.Kernel.Scoping.Stores
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This class represents a extension scope loader.

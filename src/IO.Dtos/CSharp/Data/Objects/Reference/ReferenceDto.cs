@@ -9,8 +9,8 @@ namespace BindOpen.Kernel.Data
     /// <summary>
     /// This class represents a data exp that can contain a literal and script texts.
     /// </summary>
-    [XmlType("Reference", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "reference", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("Reference", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "reference", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class ReferenceDto : IBdoDto
     {
         // ------------------------------------------

@@ -9,8 +9,8 @@ namespace BindOpen.Kernel.Data.Meta
     /// <summary>
     /// This class represents a meta set DTO.
     /// </summary>
-    [XmlType("MetaSet", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot("set", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("MetaSet", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot("set", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class MetaSetDto : IBdoDto
     {
         // -------------------------------------------------------

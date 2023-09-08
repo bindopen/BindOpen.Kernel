@@ -10,7 +10,7 @@ namespace BindOpen.Kernel.Data.Meta
     /// <summary>
     /// This class represents a data element.
     /// </summary>
-    [XmlType("MetaData", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
+    [XmlType("MetaData", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlInclude(typeof(MetaNodeDto))]
     [XmlInclude(typeof(MetaObjectDto))]
     [XmlInclude(typeof(MetaScalarDto))]

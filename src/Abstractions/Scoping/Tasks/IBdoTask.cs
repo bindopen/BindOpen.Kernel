@@ -1,6 +1,6 @@
 ﻿using BindOpen.Kernel.Processing;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Kernel.Scoping.Tasks
 {
     /// <summary>
     /// 

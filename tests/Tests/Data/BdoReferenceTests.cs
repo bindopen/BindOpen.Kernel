@@ -1,5 +1,4 @@
-﻿using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Scoping.Script;
+﻿using BindOpen.Kernel.Scoping.Script;
 using BindOpen.Kernel.Tests;
 using Bogus;
 using NUnit.Framework;

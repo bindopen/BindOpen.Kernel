@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
-namespace BindOpen.Kernel.Scoping.Application
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This class represents an assembly pool.

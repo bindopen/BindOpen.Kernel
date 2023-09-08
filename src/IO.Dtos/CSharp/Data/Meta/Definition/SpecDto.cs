@@ -11,8 +11,8 @@ namespace BindOpen.Kernel.Data.Meta
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    [XmlType("Spec", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "spec", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("Spec", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "spec", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class SpecDto : IBdoDto, IIdentified
     {
         // --------------------------------------------------

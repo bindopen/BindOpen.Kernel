@@ -8,8 +8,8 @@ namespace BindOpen.Kernel.Scoping
     /// <summary>
     /// This class represents the group of BindOpen extension items.
     /// </summary>
-    [XmlType("ExtensionGroup", Namespace = "https://storage.bindopen.org/xsd/bindopen")]
-    [XmlRoot(ElementName = "extension.item.group", Namespace = "https://storage.bindopen.org/xsd/bindopen", IsNullable = false)]
+    [XmlType("ExtensionGroup", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "extension.item.group", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
     public class ExtensionGroupDto : IBdoDto
     {
         // ------------------------------------------

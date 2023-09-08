@@ -1,7 +1,6 @@
 ﻿using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Kernel.Scoping.Connectors
 {
     /// <summary>
     /// 

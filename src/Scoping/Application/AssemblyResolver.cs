@@ -2,7 +2,7 @@
 using System;
 using System.Reflection;
 
-namespace BindOpen.Kernel.Scoping.Application
+namespace BindOpen.Kernel.Scoping
 {
 
     /// <summary>

@@ -1,5 +1,5 @@
 ﻿using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping;
+using BindOpen.Kernel.Scoping.Connectors;
 
 namespace BindOpen.Kernel.Tests
 {

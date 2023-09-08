@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="https://storage.bindopen.org/xsd/bindopen/kernel" elementFormDefault="qualified" targetNamespace="https://storage.bindopen.org/xsd/bindopen/kernel" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/StoredDataItem.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/EntityElementSpec.xsd" />
+  <!--<xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/DocumentElementSpec.xsd" />-->
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/EntityElementSpec.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/ObjectElementSpec.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/ScalarElementSpec.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/SchemaElementSpec.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/SourceElementSpec.xsd" />
+
+  <xs:complexType name="TBdoSet<IBdoSpec>">
+    <xs:complexContent mixed="false">
+      <xs:extension base="StoredDataItem">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded">
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entity" nillable="true" type="EntityElementSpec" />
+            <!--<xs:element minOccurs="0" maxOccurs="unbounded" name="documentElement" nillable="true" type="DocumentElement" />-->
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entity" nillable="true" type="EntityElementSpec" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="object" nillable="true" type="ObjectElementSpec" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="scalar" nillable="true" type="ScalarElementSpec" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="schema" nillable="true" type="SchemaElementSpec" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="source" nillable="true" type="SourceElementSpec" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+</xs:schema>
