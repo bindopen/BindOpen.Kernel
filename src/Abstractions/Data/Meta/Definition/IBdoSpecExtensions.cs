@@ -1,7 +1,7 @@
-﻿using BindOpen.System.Data.Conditions;
-using BindOpen.System.Data.Helpers;
+﻿using BindOpen.Kernel.Data.Conditions;
+using BindOpen.Kernel.Data.Helpers;
 
-namespace BindOpen.System.Data.Meta
+namespace BindOpen.Kernel.Data.Meta
 {
     /// <summary>
     /// This class represents a data element set.

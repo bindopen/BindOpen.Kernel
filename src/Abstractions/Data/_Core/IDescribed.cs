@@ -1,4 +1,4 @@
-﻿namespace BindOpen.System.Data
+﻿namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This interface represents a described object.

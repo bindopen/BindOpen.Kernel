@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
-using BindOpen.System.Tests;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     [TestFixture, Order(301)]
     public class BdoConnectorTests
@@ -25,7 +25,7 @@ namespace BindOpen.System.Scoping
         {
             var config =
                 BdoData.NewObject()
-                .WithDataType(BdoExtensionKinds.Connector, "bindopen.system.tests$testConnector")
+                .WithDataType(BdoExtensionKinds.Connector, "bindopen.kernel.tests$testConnector")
                 .With(
                     BdoData.NewScalar("host", data.host as string),
                     BdoData.NewScalar("port", data.port as int?),

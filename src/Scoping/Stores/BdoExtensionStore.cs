@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Data;
+﻿using BindOpen.Kernel.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.System.Scoping.Stores
+namespace BindOpen.Kernel.Scoping.Stores
 {
     /// <summary>
     /// This class represents a BindOpen extension item store.

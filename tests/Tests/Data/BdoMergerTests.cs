@@ -1,10 +1,10 @@
-﻿using BindOpen.System.Data.Helpers;
+﻿using BindOpen.Kernel.Data.Helpers;
 using Bogus;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     [TestFixture, Order(210)]
     public class BdoMergerTests

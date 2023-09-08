@@ -1,4 +1,4 @@
-﻿namespace BindOpen.System.Data
+﻿namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This enumeration lists the possible kinds of data areas.

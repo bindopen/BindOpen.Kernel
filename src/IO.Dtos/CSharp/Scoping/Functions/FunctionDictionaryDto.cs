@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
-using BindOpen.System.Scoping;
+using BindOpen.Kernel.Scoping;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This class represents a DTO script word dico.

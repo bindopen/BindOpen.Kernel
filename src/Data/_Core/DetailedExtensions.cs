@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Data.Meta;
+﻿using BindOpen.Kernel.Data.Meta;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This interface represents a named data.

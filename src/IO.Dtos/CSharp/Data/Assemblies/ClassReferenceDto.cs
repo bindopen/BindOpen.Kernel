@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.System.Data.Assemblies
+namespace BindOpen.Kernel.Data.Assemblies
 {
     /// <summary>
     /// This class represents the assembly reference DTO.

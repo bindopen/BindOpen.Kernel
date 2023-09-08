@@ -1,7 +1,7 @@
-﻿using BindOpen.System.Data;
+﻿using BindOpen.Kernel.Data;
 using System;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This class represents an extension of the DataValueType enumeration.

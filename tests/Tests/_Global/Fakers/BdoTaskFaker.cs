@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Data;
+﻿using BindOpen.Kernel.Data;
 using Bogus;
 using NUnit.Framework;
 
-namespace BindOpen.System.Tests
+namespace BindOpen.Kernel.Tests
 {
     public static class BdoTaskFaker
     {

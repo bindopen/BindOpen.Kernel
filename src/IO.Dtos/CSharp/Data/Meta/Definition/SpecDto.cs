@@ -1,12 +1,12 @@
-﻿using BindOpen.System.Data.Assemblies;
-using BindOpen.System.Data.Conditions;
-using BindOpen.System.Scoping.Script;
+﻿using BindOpen.Kernel.Data.Assemblies;
+using BindOpen.Kernel.Data.Conditions;
+using BindOpen.Kernel.Scoping.Script;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.System.Data.Meta
+namespace BindOpen.Kernel.Data.Meta
 {
     /// <summary>
     /// This class represents a data element specification.

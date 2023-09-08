@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Assemblies;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Assemblies;
 using System.Collections.Generic;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This interface defines the extension loading options.

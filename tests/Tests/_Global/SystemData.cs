@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Data.Helpers;
-using BindOpen.System.Scoping;
-using BindOpen.System.Scoping.Script;
+﻿using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Scoping;
+using BindOpen.Kernel.Scoping.Script;
 
-namespace BindOpen.System.Tests
+namespace BindOpen.Kernel.Tests
 {
     public static class SystemData
     {

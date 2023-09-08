@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Processing;
+﻿using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Processing;
 using System;
 
-namespace BindOpen.System.Logging
+namespace BindOpen.Kernel.Logging
 {
     /// <summary>
     /// 

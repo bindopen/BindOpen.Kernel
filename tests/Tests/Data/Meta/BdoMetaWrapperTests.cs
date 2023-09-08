@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Tests;
+﻿using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     [TestFixture, Order(100)]
     public class BdoMetaWrapperTests

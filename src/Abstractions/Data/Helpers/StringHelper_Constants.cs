@@ -1,4 +1,4 @@
-﻿namespace BindOpen.System.Data.Helpers
+﻿namespace BindOpen.Kernel.Data.Helpers
 {
     /// <summary>
     /// This structure represents a string helper.

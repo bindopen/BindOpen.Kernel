@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace BindOpen.System.Data.Helpers
+namespace BindOpen.Kernel.Data.Helpers
 {
 
     /// <summary>

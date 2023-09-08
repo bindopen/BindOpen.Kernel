@@ -1,5 +1,5 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Scoping.Script;
+﻿using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Scoping.Script;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 
-namespace BindOpen.System.Data.Helpers
+namespace BindOpen.Kernel.Data.Helpers
 {
     /// <summary>
     /// This class represents a helper for objects.

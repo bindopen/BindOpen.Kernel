@@ -1,10 +1,10 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Scoping.Script;
-using BindOpen.System.Tests;
+﻿using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Scoping.Script;
+using BindOpen.Kernel.Tests;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     [TestFixture, Order(201)]
     public class BdoMetaDataTests

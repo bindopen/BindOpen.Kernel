@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Data;
+﻿using BindOpen.Kernel.Data;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This class represents the definition of BindOpen extension item.

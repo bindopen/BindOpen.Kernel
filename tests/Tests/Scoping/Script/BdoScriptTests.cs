@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Tests;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 using System;
 
-namespace BindOpen.System.Scoping.Script
+namespace BindOpen.Kernel.Scoping.Script
 {
     [TestFixture, Order(401)]
     public class BdoScriptTests

@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.System.Data.Meta
+namespace BindOpen.Kernel.Data.Meta
 {
     /// <summary>
     /// This class represents a meta set DTO.

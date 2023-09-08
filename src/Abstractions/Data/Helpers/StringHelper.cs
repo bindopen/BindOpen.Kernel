@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace BindOpen.System.Data.Helpers
+namespace BindOpen.Kernel.Data.Helpers
 {
     /// <summary>
     /// This structure represents a string helper.

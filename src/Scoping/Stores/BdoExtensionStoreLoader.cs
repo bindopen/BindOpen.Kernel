@@ -1,15 +1,15 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Assemblies;
-using BindOpen.System.Data.Helpers;
-using BindOpen.System.Logging;
-using BindOpen.System.Scoping.Application;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Assemblies;
+using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Scoping.Application;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace BindOpen.System.Scoping.Stores
+namespace BindOpen.Kernel.Scoping.Stores
 {
     /// <summary>
     /// This class represents a extension scope loader.

@@ -1,6 +1,6 @@
-﻿using BindOpen.System.Logging;
+﻿using BindOpen.Kernel.Logging;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This interface represents an updatable object by specifying the class of the object used for update.

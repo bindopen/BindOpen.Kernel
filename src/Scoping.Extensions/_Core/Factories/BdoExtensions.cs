@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
-using BindOpen.System.Data.Meta.Reflection;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Data.Meta.Reflection;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This static class provides methods to handle configs.

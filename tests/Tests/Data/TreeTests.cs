@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Tests;
+﻿using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 using System.Linq;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     [TestFixture, Order(210)]
     public class TreeTests

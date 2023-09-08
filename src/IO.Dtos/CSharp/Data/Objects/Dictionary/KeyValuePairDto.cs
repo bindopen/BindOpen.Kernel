@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Data.Helpers;
+﻿using BindOpen.Kernel.Data.Helpers;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This class represents a data key value.

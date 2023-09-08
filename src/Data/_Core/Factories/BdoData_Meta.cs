@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Data.Helpers;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Data.Meta;
 using System;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This static class provides methods to create data elems.

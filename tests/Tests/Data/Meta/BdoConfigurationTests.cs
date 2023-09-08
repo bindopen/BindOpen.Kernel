@@ -1,10 +1,10 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Meta;
 using Bogus;
 using NUnit.Framework;
 using System.Linq;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     [TestFixture, Order(100)]
     public class BdoConfigurationTests

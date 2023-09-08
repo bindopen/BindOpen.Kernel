@@ -1,7 +1,7 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Scoping.Script;
+﻿using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Scoping.Script;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This interface defines a storable data item.

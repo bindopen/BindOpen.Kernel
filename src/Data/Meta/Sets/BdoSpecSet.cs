@@ -1,6 +1,6 @@
-﻿using BindOpen.System.Data.Helpers;
+﻿using BindOpen.Kernel.Data.Helpers;
 
-namespace BindOpen.System.Data.Meta
+namespace BindOpen.Kernel.Data.Meta
 {
     /// <summary>
     /// This class represents a catalog el that is an el whose els are entities.

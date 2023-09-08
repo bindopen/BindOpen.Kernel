@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.System.Data.Assemblies
+namespace BindOpen.Kernel.Data.Assemblies
 {
     /// <summary>
     /// 

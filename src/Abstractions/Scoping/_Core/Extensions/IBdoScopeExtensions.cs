@@ -1,4 +1,4 @@
-﻿namespace BindOpen.System.Scoping
+﻿namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This static class provides methods to create extension items.

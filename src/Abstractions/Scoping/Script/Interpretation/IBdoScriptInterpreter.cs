@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Data;
-using BindOpen.System.Data.Meta;
-using BindOpen.System.Logging;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Logging;
 
-namespace BindOpen.System.Scoping.Script
+namespace BindOpen.Kernel.Scoping.Script
 {
     /// <summary>
     /// This interface defines the script interpreter.

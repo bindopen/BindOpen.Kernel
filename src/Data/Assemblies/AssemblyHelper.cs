@@ -1,11 +1,11 @@
-﻿using BindOpen.System.Data.Helpers;
-using BindOpen.System.Logging;
+﻿using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace BindOpen.System.Data.Assemblies
+namespace BindOpen.Kernel.Data.Assemblies
 {
     /// <summary>
     /// This structure represents a string manager.

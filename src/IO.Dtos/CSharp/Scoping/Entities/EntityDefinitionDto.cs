@@ -1,10 +1,10 @@
-﻿using BindOpen.System.Data.Assemblies;
-using BindOpen.System.Data.Meta;
+﻿using BindOpen.Kernel.Data.Assemblies;
+using BindOpen.Kernel.Data.Meta;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This class represents the entity definition.

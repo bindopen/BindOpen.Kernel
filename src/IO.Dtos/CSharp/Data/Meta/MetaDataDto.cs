@@ -1,11 +1,11 @@
-﻿using BindOpen.System.Data.Assemblies;
-using BindOpen.System.Scoping.Script;
+﻿using BindOpen.Kernel.Data.Assemblies;
+using BindOpen.Kernel.Scoping.Script;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BindOpen.System.Data.Meta
+namespace BindOpen.Kernel.Data.Meta
 {
     /// <summary>
     /// This class represents a data element.

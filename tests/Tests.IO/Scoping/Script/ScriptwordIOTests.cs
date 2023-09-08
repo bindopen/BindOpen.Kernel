@@ -1,10 +1,10 @@
-﻿using BindOpen.System.IO.Dtos;
-using BindOpen.System.Tests;
+﻿using BindOpen.Kernel.IO.Dtos;
+using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 using System;
 using System.IO;
 
-namespace BindOpen.System.Scoping.Script
+namespace BindOpen.Kernel.Scoping.Script
 {
     [TestFixture, Order(210)]
     public class ScriptwordIOTests

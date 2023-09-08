@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BindOpen.System.Data
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This interface defines an using data.

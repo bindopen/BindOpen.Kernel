@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.System.Data.Conditions
+namespace BindOpen.Kernel.Data.Conditions
 {
     /// <summary>
     /// This class represents a script condition DTO.

@@ -1,8 +1,8 @@
-﻿using BindOpen.System.Data;
+﻿using BindOpen.Kernel.Data;
 using System;
 using System.Collections.Generic;
 
-namespace BindOpen.System.Scoping
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This class represents the group of BindOpen extension items.

@@ -1,9 +1,9 @@
-﻿using BindOpen.System.Data.Meta;
-using BindOpen.System.Logging;
-using BindOpen.System.Scoping;
+﻿using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Scoping;
 using System.Collections.Generic;
 
-namespace BindOpen.System.Data.Conditions
+namespace BindOpen.Kernel.Data.Conditions
 {
     /// <summary>
     /// 

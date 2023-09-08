@@ -1,12 +1,12 @@
 ﻿using AutoMapper.Execution;
-using BindOpen.System.Data;
-using BindOpen.System.Data.Helpers;
-using BindOpen.System.Data.Meta;
-using BindOpen.System.Data.Meta.Reflection;
-using BindOpen.System.Logging;
+using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Data.Meta.Reflection;
+using BindOpen.Kernel.Logging;
 using System;
 
-namespace BindOpen.System.Scoping.Script
+namespace BindOpen.Kernel.Scoping.Script
 {
     /// <summary>
     /// This class represents a script interpreter. A script interpreter allows to interpret a script
