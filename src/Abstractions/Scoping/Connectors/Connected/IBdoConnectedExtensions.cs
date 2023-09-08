@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Kernel.Scoping.Connectors
+﻿using BindOpen.Kernel.Scoping.Connectors;
+
+namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// This interfaces represents a connected service.
