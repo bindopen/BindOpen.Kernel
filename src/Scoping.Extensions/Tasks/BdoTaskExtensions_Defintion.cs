@@ -1,5 +1,5 @@
 ﻿using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Scoping.Tasks;
+using BindOpen.Kernel.Scoping;
 using System;
 using System.Collections.Generic;
 using System.Linq;

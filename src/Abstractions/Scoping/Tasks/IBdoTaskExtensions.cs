@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Scoping.Tasks
+﻿namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
     /// 
