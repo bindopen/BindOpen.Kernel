@@ -35,18 +35,16 @@ namespace BindOpen.Kernel.Tests
         /// Connects this instance.
         /// </summary>
         /// <returns>Returns the log of process.</returns>
-        public override IBdoConnection Connect(IBdoLog log = null)
+        public override void Connect(IBdoLog log = null)
         {
-            return this;
         }
 
         /// <summary>
         /// Disconnects this instance.
         /// </summary>
         /// <returns>Returns the log of process.</returns>
-        public override IBdoConnection Disconnect(IBdoLog log = null)
+        public override void Disconnect(IBdoLog log = null)
         {
-            return this;
         }
 
         #endregion
