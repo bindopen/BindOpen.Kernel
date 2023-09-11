@@ -6,8 +6,7 @@ namespace BindOpen.Kernel.Scoping.Connectors
     /// <summary>
     /// This class represents a connector.
     /// </summary>
-    public abstract class BdoConnector : BdoExtension,
-        IBdoConnector
+    public abstract class BdoConnector : BdoExtension, IBdoConnector
     {
         // ------------------------------------------
         // CONSTRUCTORS

@@ -12,17 +12,7 @@ namespace BindOpen.Kernel.Scoping.Connectors
         /// <summary>
         /// Connector.
         /// </summary>
-        IBdoConnector Connector { get; set; }
-
-        /// <summary>
-        /// Sets the specified connector.
-        /// </summary>
-        /// <param key="connector">The connector to consider.</param>
-        IBdoConnection WithConnector(IBdoConnector connector)
-        {
-            Connector = connector;
-            return this;
-        }
+        IBdoConnector Connector { get; }
 
         /// <summary>
         /// The connection string.
@@ -44,11 +34,11 @@ namespace BindOpen.Kernel.Scoping.Connectors
         /// <summary>
         /// Opens a connection.
         /// </summary>
-        IBdoConnection Connect(IBdoLog log = null);
+        void Connect(IBdoLog log = null);
 
         /// <summary>
         /// Closes the existing connection.
         /// </summary>
-        IBdoConnection Disconnect(IBdoLog log = null);
+        void Disconnect(IBdoLog log = null);
     }
 }
