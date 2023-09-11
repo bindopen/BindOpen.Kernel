@@ -18,7 +18,7 @@ namespace BindOpen.Kernel.Scoping.Connectors
         /// <summary>
         /// The connector of this instance.
         /// </summary>
-        public IBdoConnector Connector { get; set; }
+        public IBdoConnector Connector { get; protected set; }
 
         /// <summary>
         /// The connection string of this instance.
@@ -38,12 +38,12 @@ namespace BindOpen.Kernel.Scoping.Connectors
         /// <summary>
         /// Connects this instance.
         /// </summary>
-        public abstract IBdoConnection Connect(IBdoLog log = null);
+        public abstract void Connect(IBdoLog log = null);
 
         /// <summary>
         /// Disconnects this instance.
         /// </summary>
-        public abstract IBdoConnection Disconnect(IBdoLog log = null);
+        public abstract void Disconnect(IBdoLog log = null);
 
         #endregion
 

@@ -19,7 +19,7 @@ BindOpen.Kernel is the kernel of the BindOpen framework. It is composed of the f
 
 This repository contains the System.Data, System.Scoping and System.IO modules. The two other ones are separate repositories.
 
-A [full list of all the repos](https://github.com/bindopen?tab=repositories) is available as well.
+A [full list of all the BindOpen repos](https://github.com/bindopen?tab=repositories) is available as well.
 
 
 ## Install
