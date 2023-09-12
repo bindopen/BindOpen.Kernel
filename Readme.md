@@ -11,13 +11,13 @@ BindOpen is a framework that enables the development of highly extensible applic
 
 BindOpen.Kernel is the kernel of the BindOpen framework. It is composed of the following modules:
 
-* __System.Data__ offers a comprehensive data model based on metadata.
-* __System.Scoping__ offers an effective mechanism for defining and managing your extensions.
-* [System.Hosting](https://github.com/bindopen/BindOpen.Hosting) allows you to integrate a BindOpen agent within the .NET service builder.
-* [System.Logging](https://github.com/bindopen/BindOpen.Logging) provides a straightforward and multi-dimensional logging system.
-* __System.IO__ provides packages to serialize and deserialize BindOpen.Kernel objects.
+* __Kernel.Data__ offers a comprehensive data model based on metadata.
+* __Kernel.Scoping__ offers an effective mechanism for defining and managing your extensions.
+* [Kernel.Hosting](https://github.com/bindopen/BindOpen.Hosting) allows you to integrate a BindOpen agent within the .NET service builder.
+* [Kernel.Logging](https://github.com/bindopen/BindOpen.Logging) provides a straightforward and multi-dimensional logging system.
+* __Kernel.IO__ provides packages to serialize and deserialize BindOpen.Kernel objects.
 
-This repository contains the System.Data, System.Scoping and System.IO modules. The two other ones are separate repositories.
+This repository contains the Kernel.Data, Kernel.Scoping and Kernel.IO modules. The two other ones are separate repositories.
 
 A [full list of all the BindOpen repos](https://github.com/bindopen?tab=repositories) is available as well.
 
@@ -46,7 +46,7 @@ Note: We recommend that later on, you install only the package you need.
 
 ## Get started
 
-### System.Data
+### Kernel.Data
 
 #### Metadata
 
@@ -71,7 +71,7 @@ var config = BdoData.NewConfig(
     .WithDescription(("en", "This is an example of description"))
 ```
 
-### System.Scoping
+### Kernel.Scoping
 
 ```csharp
 var scope = BdoScoping.NewScope()
@@ -145,7 +145,7 @@ var cancelToken = new CancellationTokenSource();
 task.Execute(cancelToken.Token, scope);
 ```
 
-### System.IO
+### Kernel.IO
 
 #### Serialization
 
@@ -160,10 +160,9 @@ metaSet.ToDto().SaveXml("output.xml");
 var metaSet = JsonHelper.LoadJson<MetaSetDto>("output.xml").ToPoco();
 ```
 
-
 ## License
 
-This project is licensed under the terms of the MIT license. [See LICENSE](https://github.com/bindopen/BindOpen/blob/master/LICENSE).
+This project is licensed under the terms of the MIT license. [See LICENSE](https://github.com/bindopen/BindOpen.Kernel/blob/master/LICENSE).
 
 ## Packages
 
@@ -177,7 +176,7 @@ This repository contains the code of the following Nuget packages:
 | [BindOpen.Kernel.Scoping.Extensions](https://www.nuget.org/packages/BindOpen.Kernel.Scoping.Extensions) | Classes of extensions |
 | [BindOpen.Kernel.Scoping.Script](https://www.nuget.org/packages/BindOpen.Kernel.Scoping.Script) | Script interpreter |
 | [BindOpen.Kernel.IO](https://www.nuget.org/packages/BindOpen.Kernel.IO) | Serialization / Deserialization |
-| [BindOpen.Kernel.IO](https://www.nuget.org/packages/BindOpen.Kernel.IO) | Data transfer classes |
+| [BindOpen.Kernel.IO.Dtos](https://www.nuget.org/packages/BindOpen.Kernel.IO.Dtos) | Data transfer classes |
 
 The atomicity of these packages allows you install only what you need respecting your solution's architecture.
 
