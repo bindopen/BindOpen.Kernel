@@ -1,9 +1,9 @@
-﻿namespace BindOpen.Kernel.Data
+﻿namespace BindOpen.Kernel
 {
     /// <summary>
     /// This interface represents a conditional object.
     /// </summary>
-    public interface IBdoResultItem
+    public interface IResultItem
     {
         string Key { get; set; }
 
