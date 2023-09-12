@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Data
+﻿namespace BindOpen.Kernel
 {
     /// <summary>
     /// This class represents a Xml helper.
@@ -11,7 +11,7 @@
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static ResultItemDto ToDto(
-            this IBdoResultItem poco)
+            this IResultItem poco)
         {
             if (poco == null) return null;
 
@@ -29,12 +29,12 @@
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static IBdoResultItem ToPoco(
+        public static IResultItem ToPoco(
             this ResultItemDto dto)
         {
             if (dto == null) return null;
 
-            var poco = new BdoResultItem()
+            var poco = new ResultItem()
             {
                 Key = dto.Key,
                 Status = dto.Status

@@ -1,14 +1,14 @@
-﻿namespace BindOpen.Kernel.Data
+﻿namespace BindOpen.Kernel
 {
     /// <summary>
     /// This static class provides methods to handle conditions.
     /// </summary>
-    public static class IBdoResultItemExtensions
+    public static class IResultItemExtensions
     {
         public static T WithKey<T>(
             this T obj,
             string key)
-            where T : IBdoResultItem
+            where T : IResultItem
         {
             if (obj != null)
             {
@@ -21,7 +21,7 @@
         public static T WithStatus<T>(
             this T obj,
             ResourceStatus status)
-            where T : IBdoResultItem
+            where T : IResultItem
         {
             if (obj != null)
             {

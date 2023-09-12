@@ -15,9 +15,9 @@
         /// Instantiates a new instance of the NewResultItem class.
         /// </summary>
         /// <returns>The new instance of the NewResultItem class.</returns>
-        public static BdoResultItem NewResultItem(string key, ResourceStatus status = ResourceStatus.None)
+        public static ResultItem NewResultItem(ResourceStatus status, string key = null)
         {
-            var result = new BdoResultItem()
+            var result = new ResultItem()
                 .WithKey(key)
                 .WithStatus(status);
 

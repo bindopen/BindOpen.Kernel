@@ -1,12 +1,12 @@
 ﻿using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Kernel
 {
     /// <summary>
     /// This interface represents a conditional object.
     /// </summary>
-    public class ResultItemDto
+    public class ResultItem : IResultItem
     {
         // -------------------------------------------------------
         // PROPERTIES
@@ -37,9 +37,9 @@ namespace BindOpen.Kernel.Data
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the BdoResultItemDto class.
+        /// Initializes a new instance of the BdoResultItem class.
         /// </summary>
-        public ResultItemDto()
+        public ResultItem()
         {
         }
 
