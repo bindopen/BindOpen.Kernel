@@ -40,7 +40,7 @@
                 Status = dto.Status
             };
 
-            return dto;
+            return poco;
         }
     }
 }

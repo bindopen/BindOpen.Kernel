@@ -6,7 +6,7 @@ namespace BindOpen.Kernel.Data
     /// <summary>
     /// This interface represents a conditional object.
     /// </summary>
-    public class BdoResultItem
+    public class BdoResultItem : IBdoResultItem
     {
         // -------------------------------------------------------
         // PROPERTIES
