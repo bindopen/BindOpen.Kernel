@@ -10,7 +10,7 @@ namespace BindOpen.Kernel.Logging
     /// </summary>
     public interface IBdoLog :
         IIdentified, INamed,
-        IDisplayNamed, IDescribed,
+        ITitled, IDescribed,
         ITTreeNode<IBdoLog>,
         IBdoDetailed, IDisposable
     {
