@@ -2,7 +2,6 @@
 using BindOpen.Kernel.Data.Assemblies;
 using BindOpen.Kernel.Data.Helpers;
 using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -117,7 +116,7 @@ namespace BindOpen.Kernel.Scoping
                     // first we load the assembly
 
                     IBdoLog newLog = log?.NewLog()
-                        .WithDisplayName("Loading package '" + reference.AssemblyName + "'");
+                        .WithTitle("Loading package '" + reference.AssemblyName + "'");
 
                     try
                     {
@@ -198,7 +197,7 @@ namespace BindOpen.Kernel.Scoping
                                 foreach (var usingReference in packageDefinition?.UsingAssemblyReferences)
                                 {
                                     IBdoLog subChildLog = log?.NewLog()
-                                        .WithDisplayName("Loading using extensions...");
+                                        .WithTitle("Loading using extensions...");
                                     loaded &= LoadPackage(usingReference, loadedAssemblyNames, subChildLog);
                                 }
                             }
