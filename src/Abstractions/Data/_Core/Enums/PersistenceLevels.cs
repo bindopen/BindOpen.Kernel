@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Abstractions.Data._Core.Enums
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This enumeration represents the possible persistence levels.
