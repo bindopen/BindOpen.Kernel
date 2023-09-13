@@ -1,4 +1,4 @@
-﻿using BindOpen.Kernel.Abstractions.Data._Core.Enums;
+﻿using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Logging;
