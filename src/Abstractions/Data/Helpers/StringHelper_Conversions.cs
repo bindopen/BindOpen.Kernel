@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading;
+using BindOpen.Kernel.Data;
 
 namespace BindOpen.Kernel.Data.Helpers
 {

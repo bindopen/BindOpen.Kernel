@@ -1,5 +1,5 @@
 ﻿using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.IO;
+using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Tests;
 using Bogus;
 using DeepEqual.Syntax;
@@ -7,6 +7,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using BindOpen.Kernel.Data;
 
 namespace BindOpen.Kernel.Data.Meta
 {

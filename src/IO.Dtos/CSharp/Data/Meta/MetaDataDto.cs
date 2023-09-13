@@ -1,4 +1,5 @@
-﻿using BindOpen.Kernel.Data.Assemblies;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Assemblies;
 using BindOpen.Kernel.Scoping.Script;
 using System.ComponentModel;
 using System.Text.Json.Serialization;

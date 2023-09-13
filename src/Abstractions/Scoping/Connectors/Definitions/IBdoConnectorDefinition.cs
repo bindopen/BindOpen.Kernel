@@ -1,4 +1,5 @@
-﻿using BindOpen.Kernel.Scoping.Entities;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Scoping.Entities;
 
 namespace BindOpen.Kernel.Scoping.Connectors
 {

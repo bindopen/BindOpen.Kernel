@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Kernel
+namespace BindOpen.Kernel.Abstractions.Data._Core.Enums
 {
     /// <summary>
     /// This enumeration lists all the possible statuses of resource.

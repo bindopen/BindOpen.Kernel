@@ -1,4 +1,5 @@
-﻿using BindOpen.Kernel.Data.Helpers;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Helpers;
 using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Data.Meta.Reflection;
 using BindOpen.Kernel.Scoping;
