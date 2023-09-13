@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Kernel.Abstractions.Data._Core.Enums
 {
     /// <summary>
     /// This enumeration lists the possible exporter formats.

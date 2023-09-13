@@ -1,4 +1,5 @@
-﻿using BindOpen.Kernel.IO;
+﻿using BindOpen.Kernel.Abstractions.Data._Core.Enums;
+using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 using System.IO;

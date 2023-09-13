@@ -1,6 +1,6 @@
 ﻿using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.IO;
+using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 using System.IO;

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Data.Assemblies;
 using System.Linq;
 

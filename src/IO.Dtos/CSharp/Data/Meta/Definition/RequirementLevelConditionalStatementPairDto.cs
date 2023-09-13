@@ -1,4 +1,5 @@
-﻿using BindOpen.Kernel.Data.Conditions;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Conditions;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 

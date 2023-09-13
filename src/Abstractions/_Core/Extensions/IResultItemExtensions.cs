@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Kernel
+﻿using BindOpen.Kernel.Abstractions.Data._Core.Enums;
+
+namespace BindOpen.Kernel
 {
     /// <summary>
     /// This static class provides methods to handle conditions.

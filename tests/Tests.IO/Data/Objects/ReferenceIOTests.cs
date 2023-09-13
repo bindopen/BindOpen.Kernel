@@ -1,4 +1,4 @@
-﻿using BindOpen.Kernel.IO;
+﻿using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Tests;
 using Bogus;
 using DeepEqual.Syntax;

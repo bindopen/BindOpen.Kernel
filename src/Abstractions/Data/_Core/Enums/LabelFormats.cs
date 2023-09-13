@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This enumeration lists all the possible label formats.

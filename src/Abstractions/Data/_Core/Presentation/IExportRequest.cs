@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Kernel.Data
+﻿using BindOpen.Kernel.Abstractions.Data._Core.Enums;
+
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This class represents the search form request DTO.
