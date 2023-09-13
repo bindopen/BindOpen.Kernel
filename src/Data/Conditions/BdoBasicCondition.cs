@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Kernel.Data.Conditions
+﻿using BindOpen.Kernel.Data;
+
+namespace BindOpen.Kernel.Data.Conditions
 {
 
     /// <summary>

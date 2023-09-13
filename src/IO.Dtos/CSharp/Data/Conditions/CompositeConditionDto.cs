@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
+using BindOpen.Kernel.Data;
 
 namespace BindOpen.Kernel.Data.Conditions
 {

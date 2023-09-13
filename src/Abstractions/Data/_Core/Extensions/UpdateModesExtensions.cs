@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
+using BindOpen.Kernel.Data;
 
-namespace BindOpen.Kernel
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This class represents an update mode extension.

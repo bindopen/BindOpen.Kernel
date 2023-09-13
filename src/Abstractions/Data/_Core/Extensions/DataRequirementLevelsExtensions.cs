@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel
+﻿namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This class extends data requirement levels.

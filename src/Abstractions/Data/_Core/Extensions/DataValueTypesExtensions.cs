@@ -1,4 +1,5 @@
 ﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Scoping;
 using BindOpen.Kernel.Scoping.Connectors;
@@ -8,7 +9,7 @@ using BindOpen.Kernel.Scoping.Tasks;
 using System;
 using System.Collections;
 
-namespace BindOpen.Kernel
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This class extends data vlue types.

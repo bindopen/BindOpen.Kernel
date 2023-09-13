@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel
+﻿namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This enumeration lists the possible kinds of text formats.

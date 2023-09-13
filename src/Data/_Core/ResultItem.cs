@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using System.Xml.Serialization;
+using BindOpen.Kernel.Abstractions.Data._Core.Enums;
 
 namespace BindOpen.Kernel
 {

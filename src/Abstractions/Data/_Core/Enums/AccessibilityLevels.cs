@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel
+namespace BindOpen.Kernel.Abstractions.Data._Core.Enums
 {
     /// <summary>
     /// This enumerates the possible levels of accesibility.

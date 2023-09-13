@@ -1,4 +1,6 @@
-﻿using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Scoping;
 using BindOpen.Kernel.Scoping.Script;
 
 namespace BindOpen.Kernel.Data

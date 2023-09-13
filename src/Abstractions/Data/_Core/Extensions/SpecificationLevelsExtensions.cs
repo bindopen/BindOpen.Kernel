@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
+using BindOpen.Kernel.Abstractions.Data._Core.Enums;
 
-namespace BindOpen.Kernel
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This class represents an specification level extension.
