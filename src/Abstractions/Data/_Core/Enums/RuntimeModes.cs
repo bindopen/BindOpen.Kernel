@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Kernel.Abstractions.Data._Core.Enums
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This enumerates the possible runtime modes.
