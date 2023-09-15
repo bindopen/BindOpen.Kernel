@@ -1,5 +1,4 @@
 ﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Data.Assemblies;
 using System.Collections.Generic;
 using System.Linq;

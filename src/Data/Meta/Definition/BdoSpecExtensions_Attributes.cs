@@ -1,6 +1,4 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Conditions;
+﻿using BindOpen.Kernel.Data.Conditions;
 using System;
 using System.Linq;
 using System.Reflection;
