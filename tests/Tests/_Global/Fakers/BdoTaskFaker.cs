@@ -1,5 +1,4 @@
 ﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data;
 using Bogus;
 using NUnit.Framework;
 

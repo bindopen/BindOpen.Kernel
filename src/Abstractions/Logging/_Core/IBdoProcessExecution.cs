@@ -1,12 +1,13 @@
 ﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Processing;
 using System;
 
-namespace BindOpen.Kernel.Processing
+namespace BindOpen.Kernel.Logging
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoProcessExecution : IBdoObject, IBdoDetailed
+    public interface IBdoProcessExecution : IBdoObject
     {
         /// <summary>
         /// 

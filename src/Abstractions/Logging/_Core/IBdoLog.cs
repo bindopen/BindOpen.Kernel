@@ -1,6 +1,5 @@
 ﻿using BindOpen.Kernel.Data;
 using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Processing;
 using System;
 
 namespace BindOpen.Kernel.Logging

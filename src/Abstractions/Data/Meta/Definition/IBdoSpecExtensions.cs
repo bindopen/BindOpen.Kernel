@@ -1,7 +1,4 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Conditions;
+﻿using BindOpen.Kernel.Data.Conditions;
 using BindOpen.Kernel.Data.Helpers;
 
 namespace BindOpen.Kernel.Data.Meta
