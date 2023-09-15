@@ -16,8 +16,8 @@ namespace BindOpen.Kernel.Data
         /// <param name="items">The items to consider.</param>
         /// <param name="totalCount">The total number of items to consider.</param>
         public static TDataPage<T> ToDataPage<T>(
-            this IDataPageRequest request,
-            IEnumerable<T> items,
+            this IEnumerable<T> items,
+            IDataPageRequest request,
             int? totalCount = null) where T : class
         {
             return new TDataPage<T>()
@@ -36,7 +36,7 @@ namespace BindOpen.Kernel.Data
         /// <param name="func">The function of item conversion to consider.</param>
         /// <typeparam name="P">The destination class to consider.</typeparam>
         /// <typeparam name="Q">The source class to consider.</typeparam>
-        public static TDataPage<P> Convert<P, Q>(
+        public static TDataPage<P> Map<P, Q>(
             this TDataPage<Q> page,
             Func<Q, P> func)
             where Q : class
