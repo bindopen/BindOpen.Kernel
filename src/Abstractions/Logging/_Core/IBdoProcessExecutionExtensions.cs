@@ -1,6 +1,7 @@
-﻿using System;
+﻿using BindOpen.Kernel.Processing;
+using System;
 
-namespace BindOpen.Kernel.Processing
+namespace BindOpen.Kernel.Logging
 {
     /// <summary>
     /// 
