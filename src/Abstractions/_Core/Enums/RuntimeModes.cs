@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Kernel
 {
     /// <summary>
     /// This enumerates the possible runtime modes.
