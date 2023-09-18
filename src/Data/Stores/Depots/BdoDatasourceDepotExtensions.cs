@@ -12,23 +12,23 @@ namespace BindOpen.Kernel.Data.Stores
         /// <summary>
         /// Add a datasource depot into the specified data store executing the specified action.
         /// </summary>
-        /// <param key="dataStore">The data store to consider.</param>
+        /// <param key="depotStore">The data store to consider.</param>
         /// <param key="action">The action to execute on the created depot.</param>
         /// <returns>Returns the data store to update.</returns>
         public static T RegisterDatasources<T>(
-            this T dataStore,
+            this T depotStore,
             Action<IBdoDatasourceDepot> action = null)
             where T : IBdoDepotStore
-            => RegisterDatasources<T>(dataStore, (d, l) => action?.Invoke(d));
+            => RegisterDatasources<T>(depotStore, (d, l) => action?.Invoke(d));
 
         /// <summary>
         /// Add a data source depot into the specified data store using the specified options.
         /// </summary>
-        /// <param key="dataStore">The data store to consider.</param>
+        /// <param key="depotStore">The data store to consider.</param>
         /// <param key="action">The action to execute on the created depot.</param>
         /// <returns>Returns the data store to update.</returns>
         public static T RegisterDatasources<T>(
-            this T dataStore,
+            this T depotStore,
             Action<IBdoDatasourceDepot, IBdoLog> action)
             where T : IBdoDepotStore
         {
@@ -56,19 +56,19 @@ namespace BindOpen.Kernel.Data.Stores
 
             // we populate the data source depot from settings
 
-            dataStore?.Add<IBdoDatasourceDepot>(depot);
+            depotStore?.Add<IBdoDatasourceDepot>(depot);
 
-            return dataStore;
+            return depotStore;
         }
 
         /// <summary>
         /// Gets the datasource depot of the specified data store.
         /// </summary>
-        /// <param key="dataStore">The data store to consider.</param>
+        /// <param key="depotStore">The data store to consider.</param>
         /// <returns>Returns the datasource depot of the specified data store.</returns>
-        public static IBdoDatasourceDepot GetDatasourceDepot(this IBdoDepotStore dataStore)
+        public static IBdoDatasourceDepot GetDatasourceDepot(this IBdoDepotStore depotStore)
         {
-            return dataStore?.Get<IBdoDatasourceDepot>();
+            return depotStore?.Get<IBdoDatasourceDepot>();
         }
 
         /// <summary>

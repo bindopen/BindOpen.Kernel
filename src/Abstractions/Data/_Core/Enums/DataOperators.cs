@@ -58,7 +58,7 @@ namespace BindOpen.Kernel.Data
         /// <summary>
         /// Lesser or equal.
         /// </summary>
-        LesserThanOrEqualTo = LesserThan | EqualTo,
+        LesserOrEqualThan = LesserThan | EqualTo,
 
         /// <summary>
         /// Greater.
@@ -68,11 +68,11 @@ namespace BindOpen.Kernel.Data
         /// <summary>
         /// Greater or equal.
         /// </summary>
-        GreaterThanOrEqualTo = GreaterThan | EqualTo,
+        GreaterOrEqualThan = GreaterThan | EqualTo,
 
         /// <summary>
         /// Any operator.
         /// </summary>
-        Any = Exists | Contains | Has | In | EqualTo | DifferentFrom | LesserThan | LesserThanOrEqualTo | GreaterThan | GreaterThanOrEqualTo
+        Any = Exists | Contains | Has | In | EqualTo | DifferentFrom | LesserThan | LesserOrEqualThan | GreaterThan | GreaterOrEqualThan
     }
 }
