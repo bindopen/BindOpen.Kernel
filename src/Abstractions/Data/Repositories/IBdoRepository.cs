@@ -13,15 +13,8 @@ namespace BindOpen.Kernel.Data.Services
         /// 
         /// </summary>
         /// <param name="action"></param>
-        /// <param name="autoConnect"></param>
-        void UsingConnection(Action<IBdoConnection> action, bool autoConnect = true);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="action"></param>
         /// <param name="log"></param>
         /// <param name="autoConnect"></param>
-        void UsingConnection(Action<IBdoConnection, IBdoLog> action, IBdoLog log, bool autoConnect = true);
+        void UsingConnection(Action<IBdoConnection, IBdoLog> action, bool autoConnect = true, IBdoLog log = null);
     }
 }
