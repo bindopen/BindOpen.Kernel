@@ -2,7 +2,7 @@
 using BindOpen.Kernel.Scoping.Connectors;
 using System;
 
-namespace BindOpen.Kernel.Data.Services
+namespace BindOpen.Kernel.Data.Repositories
 {
     /// <summary>
     /// 
