@@ -10,9 +10,9 @@ namespace BindOpen.Kernel.Data.Services
     public interface IBdoDataService
     {
         IResultItem ExecuteScoped(
-            IBdoLog log,
             TransactionScope scope,
             Action<TransactionScope, IResultItem> action,
-            ResourceStatus successStatus);
+            ResourceStatus successStatus,
+            IBdoLog log = null);
     }
 }
