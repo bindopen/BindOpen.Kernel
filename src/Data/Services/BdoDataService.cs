@@ -7,7 +7,7 @@ namespace BindOpen.Kernel.Data.Services
     /// <summary>
     /// 
     /// </summary>
-    public class BdoDataService : BdoObject
+    public class BdoDataService : BdoObject, IBdoDataService
     {
         public IResultItem ExecuteScoped(
             TransactionScope scope,

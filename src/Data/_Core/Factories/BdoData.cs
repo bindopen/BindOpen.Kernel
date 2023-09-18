@@ -23,5 +23,12 @@
 
             return result;
         }
+
+        /// <summary>
+        /// Instantiates a new instance of the NewResultItem class.
+        /// </summary>
+        /// <returns>The new instance of the NewResultItem class.</returns>
+        public static ResultItem NewResultItem(string key, ResourceStatus status = ResourceStatus.None)
+            => NewResultItem(status, key);
     }
 }
