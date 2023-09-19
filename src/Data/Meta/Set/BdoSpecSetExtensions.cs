@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using BindOpen.Kernel.Data.Meta;
+using System.Collections.Generic;
 using System.Linq;
-using BindOpen.Kernel.Data;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// 
