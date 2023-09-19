@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Data;
+﻿using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Logging;
 using BindOpen.Kernel.Scoping;
 using System.Xml.Schema;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This static class provides methods to handle configs.

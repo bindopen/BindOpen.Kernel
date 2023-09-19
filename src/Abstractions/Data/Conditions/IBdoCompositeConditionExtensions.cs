@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using BindOpen.Kernel.Data;
+﻿using BindOpen.Kernel.Data.Conditions;
+using System.Linq;
 
-namespace BindOpen.Kernel.Data.Conditions
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This static class provides methods to handle conditions.
