@@ -1,5 +1,4 @@
 ﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Processing;
 using System;
 
 namespace BindOpen.Kernel.Logging
