@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Kernel.Data.Meta
+﻿using BindOpen.Kernel.Data.Meta;
+
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This class represents a data element set.
