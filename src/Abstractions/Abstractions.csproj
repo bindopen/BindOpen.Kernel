@@ -39,4 +39,9 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Processing\Enums\" />
+    <Folder Include="Processing\Extensions\" />
+  </ItemGroup>
+
 </Project>

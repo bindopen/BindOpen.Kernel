@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Kernel.Processing
+namespace BindOpen.Kernel.Logging
 {
     /// <summary>
     /// This class represents a event kind extension.

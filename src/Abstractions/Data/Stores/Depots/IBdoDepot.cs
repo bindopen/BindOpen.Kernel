@@ -8,8 +8,7 @@ namespace BindOpen.Kernel.Data.Stores
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoDepot :
-        IIdentified, ITBdoScoped<IBdoDepot>
+    public interface IBdoDepot : IIdentified, IBdoScoped
     {
         /// <summary>
         /// Add the items from all the assemblies.
