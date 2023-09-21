@@ -8,12 +8,12 @@ using System.Linq;
 namespace BindOpen.Kernel.Scoping.Script
 {
     /// <summary>
-    /// This class represents a task converter.
+    /// This class represents a IO converter of script words.
     /// </summary>
     public static class ScriptwordConverter
     {
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a script word poco into a DTO one.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
@@ -51,10 +51,10 @@ namespace BindOpen.Kernel.Scoping.Script
         }
 
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a script word DTO into a poco one.
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
-        /// <returns>The DTO object.</returns>
+        /// <returns>The poco object.</returns>
         public static IBdoScriptword ToPoco(
             this ScriptwordDto dto)
         {

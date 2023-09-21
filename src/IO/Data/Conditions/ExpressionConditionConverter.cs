@@ -1,12 +1,12 @@
 ﻿namespace BindOpen.Kernel.Data.Conditions
 {
     /// <summary>
-    /// This class represents a Xml helper.
+    /// This class represents a IO converter of expression conditions.
     /// </summary>
     public static class ExpressionConditionConverter
     {
         /// <summary>
-        /// Converts to DTO.
+        /// Converts an expression poco into a DTO one.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
@@ -23,10 +23,10 @@
         }
 
         /// <summary>
-        /// Converts to POCO.
+        /// Converts an expression condition DTO into a poco one.
         /// </summary>
-        /// <param key="dto">The dto to consider.</param>
-        /// <returns>The POCO object.</returns>
+        /// <param key="dto">The DTO to consider.</param>
+        /// <returns>The poco object.</returns>
         public static IBdoExpressionCondition ToPoco(
             this ExpressionConditionDto dto)
         {

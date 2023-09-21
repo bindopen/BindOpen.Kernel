@@ -6,12 +6,12 @@ using System.Linq;
 namespace BindOpen.Kernel.Data.Meta
 {
     /// <summary>
-    /// This class represents a Xml helper.
+    /// This class represents a IO converter of meta sets.
     /// </summary>
     public static class MetaSetConverter
     {
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a meta set poco into a DTO one.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
@@ -35,10 +35,10 @@ namespace BindOpen.Kernel.Data.Meta
         }
 
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a meta set DTO to a poco one.
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
-        /// <returns>The DTO object.</returns>
+        /// <returns>The poco object.</returns>
         public static IBdoMetaSet ToPoco(
             this MetaSetDto dto)
         {

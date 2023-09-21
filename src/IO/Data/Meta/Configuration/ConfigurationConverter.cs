@@ -6,20 +6,21 @@ using System.Linq;
 namespace BindOpen.Kernel.Data.Meta
 {
     /// <summary>
-    /// This class represents a Xml helper.
+    /// This class represents a IO converter of configurations.
     /// </summary>
     public static class ConfigurationConverter
     {
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a configuration poco into a DTO one.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static ConfigurationDto ToDto(this IBdoConfiguration poco) => poco.ToDto<ConfigurationDto>();
 
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a configuration poco of the specified class into a DTO one.
         /// </summary>
+        /// <typeparam name="T">The type of configuration to consider.</typeparam>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static T ToDto<T>(this IBdoConfiguration poco)
@@ -48,17 +49,18 @@ namespace BindOpen.Kernel.Data.Meta
         }
 
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a configuration DTO to a poco one.
         /// </summary>
-        /// <param key="poco">The poco to consider.</param>
-        /// <returns>The DTO object.</returns>
+        /// <param key="dto">The DTO to consider.</param>
+        /// <returns>The poco object.</returns>
         public static IBdoConfiguration ToPoco(this ConfigurationDto dto) => dto.ToPoco<BdoConfiguration>();
 
         /// <summary>
-        /// Converts to POCO.
+        /// Converts a configuration DTO of the specified class to a poco one.
         /// </summary>
-        /// <param key="dto">The dto to consider.</param>
-        /// <returns>The POCO object.</returns>
+        /// <typeparam name="T">The type of configuration DTO to consider.</typeparam>
+        /// <param key="dto">The DTO to consider.</param>
+        /// <returns>The poco object.</returns>
         public static T ToPoco<T>(this ConfigurationDto dto)
             where T : IBdoConfiguration
         {

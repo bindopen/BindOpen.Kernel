@@ -6,7 +6,7 @@ using System.Xml.Schema;
 namespace BindOpen.Kernel.Data
 {
     /// <summary>
-    /// This static class provides methods to handle configs.
+    /// This static class provides extension of.
     /// </summary>
     public static class ConfigurationExtensions
     {

@@ -5,20 +5,21 @@ using System.Linq;
 namespace BindOpen.Kernel.Data.Meta
 {
     /// <summary>
-    /// This class represents a Xml helper.
+    /// This class represents a IO converter of definitions.
     /// </summary>
     public static class DefinitionConverter
     {
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a definition poco into a DTO one.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static DefinitionDto ToDto(this IBdoDefinition poco) => poco.ToDto<DefinitionDto>();
 
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a definition poco of the specified class into a DTO one.
         /// </summary>
+        /// <typeparam name="T">The type of configuration to consider.</typeparam>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static T ToDto<T>(this IBdoDefinition poco)
@@ -43,17 +44,18 @@ namespace BindOpen.Kernel.Data.Meta
         }
 
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a definition DTO to a poco one.
         /// </summary>
-        /// <param key="poco">The poco to consider.</param>
-        /// <returns>The DTO object.</returns>
+        /// <param key="dto">The DTO to consider.</param>
+        /// <returns>The poco object.</returns>
         public static IBdoDefinition ToPoco(this DefinitionDto dto) => dto.ToPoco<BdoDefinition>();
 
         /// <summary>
-        /// Converts to POCO.
+        /// Converts a definition DTO of the specified class to a poco one.
         /// </summary>
-        /// <param key="dto">The dto to consider.</param>
-        /// <returns>The POCO object.</returns>
+        /// <typeparam name="T">The type of configuration to consider.</typeparam>
+        /// <param key="dto">The DTO to consider.</param>
+        /// <returns>The poco object.</returns>
         public static T ToPoco<T>(this DefinitionDto dto)
             where T : IBdoDefinition
         {

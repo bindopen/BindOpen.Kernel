@@ -3,12 +3,12 @@
 namespace BindOpen.Kernel.Data
 {
     /// <summary>
-    /// This static class represents a data reference converter.
+    /// This class represents a IO converter of mergers.
     /// </summary>
     public static class MergerConverter
     {
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a merger poco into a DTO one.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
@@ -26,10 +26,10 @@ namespace BindOpen.Kernel.Data
         }
 
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a merger DTO to a poco one.
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
-        /// <returns>The DTO object.</returns>
+        /// <returns>The poco object.</returns>
         public static IBdoMerger ToPoco(this MergerDto dto)
         {
             BdoMerger poco = new()

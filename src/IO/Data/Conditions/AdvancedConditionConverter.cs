@@ -3,12 +3,12 @@
 namespace BindOpen.Kernel.Data.Conditions
 {
     /// <summary>
-    /// This class represents a Xml helper.
+    /// This class represents a IO converter of composite conditions.
     /// </summary>
     public static class CompositeConditionConverter
     {
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a composite condition poco into a DTO one.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
@@ -26,10 +26,10 @@ namespace BindOpen.Kernel.Data.Conditions
         }
 
         /// <summary>
-        /// Converts to POCO.
+        /// Converts a composite condition DTO into a poco one.
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
-        /// <returns>The POCO object.</returns>
+        /// <returns>The poco object.</returns>
         public static IBdoCompositeCondition ToPoco(
             this CompositeConditionDto dto)
         {

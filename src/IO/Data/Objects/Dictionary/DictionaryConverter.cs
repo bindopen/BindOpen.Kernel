@@ -3,12 +3,12 @@
 namespace BindOpen.Kernel.Data
 {
     /// <summary>
-    /// This class represents a Xml helper.
+    /// This class represents a IO converter of dictionaries.
     /// </summary>
     public static class DictionaryConverter
     {
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a dictionary poco into a DTO one.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
@@ -26,10 +26,10 @@ namespace BindOpen.Kernel.Data
         }
 
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a dictionary DTO to a poco one.
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
-        /// <returns>The DTO object.</returns>
+        /// <returns>The poco object.</returns>
         public static ITBdoDictionary<TItem> ToPoco<TItem>(this DictionaryDto dto)
         {
             if (dto == null) return null;

@@ -5,6 +5,9 @@ using System.Text.Json.Serialization;
 
 namespace BindOpen.Kernel.Data
 {
+    /// <summary>
+    /// This static class provides methods to serailize and deserialize objects into Json.
+    /// </summary>
     public static class JsonHelper
     {
         /// <summary>
