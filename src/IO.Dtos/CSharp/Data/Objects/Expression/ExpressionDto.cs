@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace BindOpen.Kernel.Data
 {
     /// <summary>
-    /// This class represents a data exp that can contain a literal and script texts.
+    /// This class represents an expression DTO.
     /// </summary>
     [XmlType("Expression", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlRoot(ElementName = "expression", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
@@ -19,7 +19,7 @@ namespace BindOpen.Kernel.Data
         #region Properties
 
         /// <summary>
-        /// The value of this instance.
+        /// The text of this instance.
         /// </summary>
         [JsonPropertyName("text")]
         [XmlText()]
@@ -49,7 +49,7 @@ namespace BindOpen.Kernel.Data
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of DataExpressionDto class.
+        /// Instantiates a new instance of ExpressionDto class.
         /// </summary>
         public ExpressionDto()
         {

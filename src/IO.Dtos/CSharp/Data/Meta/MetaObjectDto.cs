@@ -23,7 +23,7 @@ namespace BindOpen.Kernel.Data.Meta
         /// The value of this instance.
         /// </summary>
         [JsonPropertyName("item")]
-        [XmlElement("item.dictionary", Type = typeof(DictionaryDto))]
+        [XmlElement("item.dictionary", Type = typeof(StringDictionaryDto))]
         [XmlElement("item.expression", Type = typeof(ExpressionDto))]
         [XmlElement("item.merger", Type = typeof(MergerDto))]
         public BdoItemDto Item { get; set; }

@@ -1,13 +1,13 @@
 ﻿/* Auto Generated */
 
 import { SpecSetDto } from "./specSetDto";
-import { DictionaryDto } from "./../../Objects/Dictionary/dictionaryDto";
+import { StringDictionaryDto } from "./../../Objects/Dictionary/stringDictionaryDto";
 
 export interface DefinitionDto extends SpecSetDto {
     creationDate: string;
     lastModificationDate: string;
-    description: DictionaryDto;
-    title: DictionaryDto;
+    description: StringDictionaryDto;
+    title: StringDictionaryDto;
     children: any[];
     childrenSpecficied: boolean;
     usedItemIds: any[];

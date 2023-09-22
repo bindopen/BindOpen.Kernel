@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace BindOpen.Kernel.Data.Assemblies
 {
     /// <summary>
-    /// This class represents the assembly reference DTO.
+    /// This class represents an assembly reference DTO.
     /// </summary>
     [XmlType("AssemblyReference", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlRoot(ElementName = "assembly", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
@@ -17,21 +17,21 @@ namespace BindOpen.Kernel.Data.Assemblies
         #region Properties
 
         /// <summary>
-        /// The library name of this instance.
+        /// The assembly name of this instance.
         /// </summary>
         [JsonPropertyName("assemblyName")]
         [XmlElement("assemblyName")]
         public string AssemblyName { get; set; }
 
         /// <summary>
-        /// The library version of this instance.
+        /// The assembly version of this instance.
         /// </summary>
         [JsonPropertyName("assemblyVersion")]
         [XmlElement("assemblyVersion")]
         public string AssemblyVersion { get; set; }
 
         /// <summary>
-        /// The file name of this instance.
+        /// The assembly file name of this instance.
         /// </summary>
         [JsonPropertyName("assemblyFileName")]
         [XmlElement("assemblyFileName")]
@@ -46,7 +46,7 @@ namespace BindOpen.Kernel.Data.Assemblies
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BdoAssemblyReferenceDto class.
+        /// Instantiates a new instance of the AssemblyReferenceDto class.
         /// </summary>
         public AssemblyReferenceDto()
         {

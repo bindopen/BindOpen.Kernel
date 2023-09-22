@@ -11,10 +11,10 @@ namespace BindOpen.Kernel.Data
     public static class JsonHelper
     {
         /// <summary>
-        /// Saves the JSON string of this instance.
+        /// Converts the specified DTO object to the JSON string.
         /// </summary>
-        /// <param key="dto">The DTO to save.</param>
-        /// <param key="log">The saving log to consider.</param>
+        /// <param key="dto">The DTO to consider.</param>
+        /// <param key="log">The log to update.</param>
         /// <returns>The Json string of this instance.</returns>
         public static string ToJson<T>(this T dto, IBdoLog log = null) where T : class
         {
@@ -43,11 +43,11 @@ namespace BindOpen.Kernel.Data
         }
 
         /// <summary>
-        /// Saves this instance to the specified file path.
+        /// Saves the specified DTO object to the specified file path.
         /// </summary>
-        /// <param key="dto">The DTO to save.</param>
-        /// <param key="filePath">Path of the file to save.</param>
-        /// <param key="log">The log to consider.</param>
+        /// <param key="dto">The DTO to consider.</param>
+        /// <param key="filePath">The path of the file to save.</param>
+        /// <param key="log">The log to update.</param>
         /// <returns>True if the saving operation has been done. False otherwise.</returns>
         public static bool SaveJson<T>(this T dto, string filePath, IBdoLog log = null) where T : class
         {
@@ -95,7 +95,6 @@ namespace BindOpen.Kernel.Data
         /// <param key="log">The output log of the method.</param>
         /// <param key="mustFileExist">Indicates whether the file must exist.</param>
         /// <returns>The loaded log.</returns>
-        /// <remarks>If the XML schema set is null then the schema is not checked.</remarks>
         public static T LoadJson<T>(
             string filePath,
             IBdoLog log = null,

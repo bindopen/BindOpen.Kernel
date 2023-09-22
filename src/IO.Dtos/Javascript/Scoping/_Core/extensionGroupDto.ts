@@ -1,8 +1,8 @@
 ﻿/* Auto Generated */
 
-import { DictionaryDto } from "./../../Data/Objects/Dictionary/dictionaryDto";
+import { StringDictionaryDto } from "./../../Data/Objects/Dictionary/stringDictionaryDto";
 
 export interface ExtensionGroupDto {
-    description: DictionaryDto;
+    description: StringDictionaryDto;
     subGroups: any[];
 }

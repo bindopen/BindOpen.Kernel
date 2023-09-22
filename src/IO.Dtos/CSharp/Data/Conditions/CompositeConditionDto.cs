@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
-using BindOpen.Kernel.Data;
 
 namespace BindOpen.Kernel.Data.Conditions
 {
     /// <summary>
-    /// This class represents an advanced condition DTO.
+    /// This class represents an compisite condition DTO.
     /// </summary>
     [XmlType("CompositeCondition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlRoot(ElementName = "condition.composite", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
@@ -19,14 +18,14 @@ namespace BindOpen.Kernel.Data.Conditions
         #region Properties
 
         /// <summary>
-        /// Kind of this instance.
+        /// The kind of this instance.
         /// </summary>
         [JsonPropertyName("kind")]
         [XmlElement("kind")]
         public CompositeConditionKind Kind { get; set; } = CompositeConditionKind.And;
 
         /// <summary>
-        /// Conditions of this instance.
+        /// THe conditions of this instance.
         /// </summary>
         [JsonPropertyName("conditions")]
         [XmlArray("conditions")]
@@ -42,7 +41,7 @@ namespace BindOpen.Kernel.Data.Conditions
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the CompositeCondition class.
+        /// Instantiates a new instance of the CompositeConditionDto class.
         /// </summary>
         public CompositeConditionDto()
         {

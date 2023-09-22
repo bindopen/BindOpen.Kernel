@@ -23,7 +23,7 @@ namespace BindOpen.Kernel.Scoping
         /// </summary>
         [JsonPropertyName("description")]
         [XmlElement("description")]
-        public DictionaryDto Description { get; set; }
+        public StringDictionaryDto Description { get; set; }
 
         /// <summary>
         /// Name of the group of this instance.
@@ -70,7 +70,7 @@ namespace BindOpen.Kernel.Scoping
         /// </summary>
         [JsonPropertyName("indexes")]
         [XmlElement("indexes")]
-        public DictionaryDto ItemIndexFullNameDictionary { get; set; }
+        public StringDictionaryDto ItemIndexFullNameDictionary { get; set; }
 
         #endregion
 

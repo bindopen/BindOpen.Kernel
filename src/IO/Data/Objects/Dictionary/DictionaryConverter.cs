@@ -12,11 +12,11 @@ namespace BindOpen.Kernel.Data
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static DictionaryDto ToDto<TItem>(this ITBdoDictionary<TItem> poco)
+        public static StringDictionaryDto ToDto<TItem>(this ITBdoDictionary<TItem> poco)
         {
             if (poco == null) return null;
 
-            DictionaryDto dto = new()
+            StringDictionaryDto dto = new()
             {
                 Id = poco.Id,
                 Values = poco?.Select(q => q.ToDto()).ToList()
@@ -30,7 +30,7 @@ namespace BindOpen.Kernel.Data
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
         /// <returns>The poco object.</returns>
-        public static ITBdoDictionary<TItem> ToPoco<TItem>(this DictionaryDto dto)
+        public static ITBdoDictionary<TItem> ToPoco<TItem>(this StringDictionaryDto dto)
         {
             if (dto == null) return null;
 
