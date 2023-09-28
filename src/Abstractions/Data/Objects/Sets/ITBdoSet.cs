@@ -8,7 +8,7 @@ namespace BindOpen.Kernel.Data
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface ITBdoSet<T> :
-        IEnumerable<T>, IBdoSet, ITUpdatable<ITBdoSet<T>>
+        IEnumerable<T>, IBdoSet, IUpdatable
         where T : IReferenced
     {
         /// <summary>

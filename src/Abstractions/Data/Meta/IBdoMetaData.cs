@@ -11,7 +11,7 @@ namespace BindOpen.Kernel.Data.Meta
         IBdoObjectNotMetable, IBdoReferenced,
         INamed, IReferenced, IIndexed, IBdoDataTyped,
         ITChild<IBdoMetaData>,
-        ITUpdatable<IBdoMetaData>
+        IUpdatable
     {
         /// <summary>
         /// The kind of meta data of this instance.

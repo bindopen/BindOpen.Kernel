@@ -1,5 +1,4 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Logging;
+﻿using BindOpen.Kernel.Logging;
 
 namespace BindOpen.Kernel.Data
 {
@@ -10,12 +9,19 @@ namespace BindOpen.Kernel.Data
         where T : IReferenced
     {
         public virtual void Update(
-            ITBdoSet<T> refSet,
+            object item,
             string[] areas = null,
             UpdateModes[] updateModes = null,
             IBdoLog log = null)
         {
-            TBdoSetExtensions.Update(this, refSet, updateModes, areas, log);
+            if (item is ITBdoSet<T> set)
+            {
+                TBdoSetExtensions.Update(this, set, updateModes, areas, log);
+            }
+            else if (item is T setItem)
+            {
+                TBdoSetExtensions.Update(this, setItem, updateModes, areas, log);
+            }
         }
     }
 }

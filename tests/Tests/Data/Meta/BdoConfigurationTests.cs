@@ -12,7 +12,6 @@ namespace BindOpen.Kernel.Data.Meta
         private readonly string _configName10 = "Child1";
         private readonly string _configName10a = "Child1a";
         private readonly string _configName20 = "Child2";
-        private readonly string _configName20a = "Child2a";
 
         private IBdoMetaSet _config10 = null;
         private IBdoConfiguration _config10a = null;
@@ -47,7 +46,8 @@ namespace BindOpen.Kernel.Data.Meta
 
             _config20a = BdoData.NewConfig(
                 _configName10a,
-                BdoData.NewScalar("float1", DataValueTypes.Number, f.Random.Float()))
+                BdoData.NewScalar("float1", DataValueTypes.Number, f.Random.Float()),
+                BdoData.NewScalar("text1", f.Lorem.Words(10)))
                 .Using(_configName10, _configName20);
 
             _config20 = BdoData.NewConfig(
@@ -114,6 +114,7 @@ namespace BindOpen.Kernel.Data.Meta
 
             Assert.That(meta.Descendant<IBdoMetaScalar>("float1")?.GetData() == _config20["float1"]?.GetData(), "Error with config");
             Assert.That(meta.Descendant<IBdoMetaNode>("$node1")?.Count == 3, "Error with config");
+            Assert.That(meta.Descendant<IBdoConfiguration>("^" + _configName10a)?.Count == 2, "Error with config");
             Assert.That(meta.Descendant<IBdoMetaScalar>("^" + _configName10a, "float1")?.GetData() == _config20a["float1"]?.GetData(), "Error with config");
         }
     }
