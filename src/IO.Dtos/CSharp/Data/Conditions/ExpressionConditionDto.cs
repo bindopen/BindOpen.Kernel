@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace BindOpen.Kernel.Data.Conditions
 {
     /// <summary>
-    /// This class represents a script condition DTO.
+    /// This class represents an expression condition DTO.
     /// </summary>
     [XmlType("ExpressionCondition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlRoot(ElementName = "condition.expression", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
@@ -17,7 +17,7 @@ namespace BindOpen.Kernel.Data.Conditions
         #region Properties
 
         /// <summary>
-        /// Data exp DTO representing the condition.
+        /// The expression of this instance.
         /// </summary>
         [JsonPropertyName("expression")]
         [XmlElement("expression")]

@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 namespace BindOpen.Kernel.Scoping.Script
 {
     /// <summary>
-    /// This class represents a script word configuration.
+    /// This class represents a script word DTO.
     /// </summary>
     [XmlType("Scriptword", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlRoot(ElementName = "word", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
@@ -18,7 +18,7 @@ namespace BindOpen.Kernel.Scoping.Script
         #region Properties
 
         /// <summary>
-        /// Kind of this instance.
+        /// The kind of this instance.
         /// </summary>
         /// <example>Script word, syntax, text...</example>
         [JsonPropertyName("kind")]
@@ -28,7 +28,7 @@ namespace BindOpen.Kernel.Scoping.Script
         // Tree ----------------------------------
 
         /// <summary>
-        /// Sub script words of this instance.
+        /// The script word child of this instance.
         /// </summary>
         [JsonPropertyName("child")]
         [XmlElement("child")]
@@ -43,7 +43,7 @@ namespace BindOpen.Kernel.Scoping.Script
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the ScriptwordConfigurationDto class.
+        /// Instantiates a new instance of the ScriptwordDto class.
         /// </summary>
         public ScriptwordDto()
         {

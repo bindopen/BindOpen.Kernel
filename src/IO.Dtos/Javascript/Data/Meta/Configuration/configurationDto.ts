@@ -1,13 +1,13 @@
 ﻿/* Auto Generated */
 
 import { MetaSetDto } from "./../metaSetDto";
-import { DictionaryDto } from "./../../Objects/Dictionary/dictionaryDto";
+import { StringDictionaryDto } from "./../../Objects/Dictionary/stringDictionaryDto";
 
 export interface ConfigurationDto extends MetaSetDto {
     creationDate: string;
     lastModificationDate: string;
-    description: DictionaryDto;
-    title: DictionaryDto;
+    description: StringDictionaryDto;
+    title: StringDictionaryDto;
     children: any[];
     childrenSpecficied: boolean;
     usedItemIds: any[];

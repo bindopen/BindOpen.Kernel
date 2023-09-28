@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 namespace BindOpen.Kernel.Scoping.Connectors
 {
     /// <summary>
-    /// This class represents a DTO connector definition.
+    /// This class represents a connector definition DTO.
     /// </summary>
     [XmlType("ConnectorDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlRoot(ElementName = "connector.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
@@ -20,30 +20,28 @@ namespace BindOpen.Kernel.Scoping.Connectors
         #region Properties
 
         /// <summary>
-        /// Data source kind of this instance.
+        /// The data source kind of this instance.
         /// </summary>
         [JsonPropertyName("dataSourceKind")]
         [XmlElement("dataSourceKind")]
         public DatasourceKind DatasourceKind { get; set; } = DatasourceKind.None;
 
         /// <summary>
-        /// Item class of this instance.
+        /// The item class of this instance.
         /// </summary>
         [JsonPropertyName("itemClass")]
         [XmlElement("itemClass")]
         public string ItemClass { get; set; }
 
-        // DTO
-
         /// <summary>
-        /// The elements of this instance.
+        /// The specifications of this instance.
         /// </summary>
         [JsonPropertyName("specs")]
         [XmlElement("spec")]
         public List<SpecDto> Specs { get; set; }
 
         /// <summary>
-        /// Indicates whether the entities property must be ignored.
+        /// Indicates whether the Specs property must be ignored.
         /// </summary>
         [JsonIgnore]
         [XmlIgnore]
@@ -57,7 +55,7 @@ namespace BindOpen.Kernel.Scoping.Connectors
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the ConnectorDefinition class.
+        /// Instantiates a new instance of the ConnectorDefinitionDto class.
         /// </summary>
         public ConnectorDefinitionDto()
         {

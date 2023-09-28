@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 namespace BindOpen.Kernel.Data
 {
     /// <summary>
-    /// This class specifies the data value filter.
+    /// This class specifies a merger DTO.
     /// </summary>
     [XmlType("Merger", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlRoot(ElementName = "merger", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
@@ -42,7 +42,7 @@ namespace BindOpen.Kernel.Data
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the StringFilterDto class.
+        /// Instantiates a new instance of the MergerDto class.
         /// </summary>
         public MergerDto()
         {

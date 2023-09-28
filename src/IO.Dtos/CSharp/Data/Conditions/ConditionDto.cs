@@ -24,14 +24,14 @@ namespace BindOpen.Kernel.Data.Conditions
         #region Properties
 
         /// <summary>
-        /// ID of this instance.
+        /// The identifier of this instance.
         /// </summary>
         [JsonPropertyName("id")]
         [XmlAttribute("id")]
         public string Id { get; set; }
 
         /// <summary>
-        /// The value that expresses that the condition is satisfied.
+        /// The value expressing that this instance is satisfied.
         /// </summary>
         [JsonPropertyName("trueValue")]
         [XmlAttribute("trueValue")]
@@ -47,14 +47,14 @@ namespace BindOpen.Kernel.Data.Conditions
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BusinessCondition class.
+        /// Instantiates a new instance of the ConditionDto class.
         /// </summary>
         protected ConditionDto() : base()
         {
         }
 
         /// <summary>
-        /// Instantiates a new instance of the BusinessCondition class.
+        /// Instantiates a new instance of the ConditionDto class.
         /// </summary>
         /// <param key="trueValue">The true value to consider.</param>
         protected ConditionDto(bool trueValue) : base()

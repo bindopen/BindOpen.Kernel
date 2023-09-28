@@ -48,6 +48,6 @@
   </ItemGroup>
 
   <Target Name="Convert" BeforeTargets="PrepareForBuild">
-    <ConvertMain WorkingDirectory="CSharp/" ConvertDirectory="Javascript/" PathStyle="Default" />
+    <ConvertMain WorkingDirectory="CSharp/" ConvertDirectory="Javascript" PathStyle="Default" />
   </Target>
 </Project>

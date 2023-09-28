@@ -1,11 +1,8 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Scoping.Script;
+﻿using BindOpen.Kernel.Scoping.Script;
 using BindOpen.Kernel.Tests;
-using DeepEqual.Syntax;
 using NUnit.Framework;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Kernel.Data.Meta
 {
     [TestFixture, Order(201)]
     public class BdoMetaDataTests
@@ -16,12 +13,6 @@ namespace BindOpen.Kernel.Data
         public void OneTimeSetUp()
         {
             _obj = ClassObjectFaker.Fake();
-        }
-
-        private void Test(IBdoMetaData meta)
-        {
-            var obj = meta?.GetData();
-            Assert.That(obj?.IsDeepEqual(_obj) == true, "Bad obj element set - Count");
         }
 
         [Test, Order(1)]

@@ -26,6 +26,7 @@ Todo list for BindOpen
 - [ ] Allow script word polymorphism
 - [ ] Check meta data
 - [ ] Limit level depth
+- [ ] Improve filter path (**/item, /item)
 
 ## Stuff to check out later on
 

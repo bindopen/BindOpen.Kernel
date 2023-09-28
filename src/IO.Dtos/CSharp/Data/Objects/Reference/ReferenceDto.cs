@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 namespace BindOpen.Kernel.Data
 {
     /// <summary>
-    /// This class represents a data exp that can contain a literal and script texts.
+    /// This class represents a reference DTO.
     /// </summary>
     [XmlType("Reference", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlRoot(ElementName = "reference", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
@@ -35,14 +35,14 @@ namespace BindOpen.Kernel.Data
         public string Identifier { get; set; }
 
         /// <summary>
-        /// The value of this instance.
+        /// The text of this instance.
         /// </summary>
         [JsonPropertyName("text")]
         [XmlText()]
         public string Text { get; set; }
 
         /// <summary>
-        /// The kind of this instance.
+        /// The expression kind of this instance.
         /// </summary>
         [JsonPropertyName("expKind")]
         [XmlAttribute("expKind")]
@@ -50,7 +50,7 @@ namespace BindOpen.Kernel.Data
         public BdoExpressionKind ExpressionKind { get; set; } = BdoExpressionKind.Auto;
 
         /// <summary>
-        /// The script word of this instance.
+        /// The meta data  of this instance.
         /// </summary>
         [JsonPropertyName("meta")]
         [XmlElement("set", Type = typeof(MetaNodeDto))]

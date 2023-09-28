@@ -1,13 +1,13 @@
 ﻿/* Auto Generated */
 
-import { DictionaryDto } from "./../../Data/Objects/Dictionary/dictionaryDto";
+import { StringDictionaryDto } from "./../../Data/Objects/Dictionary/stringDictionaryDto";
 
 export interface PackageDefinitionDto {
-    description: DictionaryDto;
+    description: StringDictionaryDto;
     groupName: string;
     assemblyName: string;
     rootNamespace: string;
     fileName: string;
     usingAssemblyFileNames: any[];
-    itemIndexFullNameDictionary: DictionaryDto;
+    itemIndexFullNameDictionary: StringDictionaryDto;
 }

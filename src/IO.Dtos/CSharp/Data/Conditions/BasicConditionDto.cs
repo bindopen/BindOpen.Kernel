@@ -1,6 +1,5 @@
 ﻿using System.Text.Json.Serialization;
 using System.Xml.Serialization;
-using BindOpen.Kernel.Data;
 
 namespace BindOpen.Kernel.Data.Conditions
 {
@@ -48,7 +47,7 @@ namespace BindOpen.Kernel.Data.Conditions
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BasicBusinessCondition class.
+        /// Instantiates a new instance of the BasicConditionDto class.
         /// </summary>
         public BasicConditionDto()
         {

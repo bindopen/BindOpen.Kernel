@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace BindOpen.Kernel.Data
 {
     /// <summary>
-    /// This class represents a data key value.
+    /// This class represents a key value pair DTO.
     /// </summary>
     [XmlType("KeyValuePair", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlRoot(ElementName = "add.value", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
@@ -19,7 +19,7 @@ namespace BindOpen.Kernel.Data
         #region Properties
 
         /// <summary>
-        /// Key of this instance.
+        /// The key of this instance.
         /// </summary>
         [JsonPropertyName("key")]
         [XmlAttribute("key")]
@@ -27,7 +27,7 @@ namespace BindOpen.Kernel.Data
         public string Key { get; set; } = StringHelper.__Star;
 
         /// <summary>
-        /// Content of this instance.
+        /// The value of this instance.
         /// </summary>
         [JsonPropertyName("value")]
         [XmlText]
@@ -42,7 +42,7 @@ namespace BindOpen.Kernel.Data
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of DataKeyValueDto class.
+        /// Instantiates a new instance of KeyValuePairDto class.
         /// </summary>
         public KeyValuePairDto()
         {

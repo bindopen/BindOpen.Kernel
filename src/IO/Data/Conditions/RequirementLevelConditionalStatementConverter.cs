@@ -1,16 +1,15 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Kernel.Data.Meta;
 using System.Linq;
 
 namespace BindOpen.Kernel.Data.Conditions
 {
     /// <summary>
-    /// This class represents a Xml helper.
+    /// This class represents a IO converter of requirement level conditional statements.
     /// </summary>
     public static class RequirementLevelConditionalStatementConverter
     {
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a requirement level conditional statement poco into a DTO one.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
@@ -30,10 +29,10 @@ namespace BindOpen.Kernel.Data.Conditions
         }
 
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a string conditional statement DTO into a poco one.
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
-        /// <returns>The DTO object.</returns>
+        /// <returns>The poco object.</returns>
         public static ITBdoConditionalStatement<RequirementLevels> ToPoco(this RequirementLevelConditionalStatementDto dto)
         {
             if (dto == null) return null;

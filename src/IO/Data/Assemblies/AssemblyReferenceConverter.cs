@@ -3,12 +3,12 @@
 namespace BindOpen.Kernel.Data.Assemblies
 {
     /// <summary>
-    /// This class represents a Xml helper.
+    /// This class represents a IO converter of assembly references.
     /// </summary>
     public static class AssemblyReferenceConverter
     {
         /// <summary>
-        /// Converts to DTO.
+        /// Converts an assembly reference poco into a DTO one.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
@@ -27,10 +27,10 @@ namespace BindOpen.Kernel.Data.Assemblies
         }
 
         /// <summary>
-        /// Converts to DTO.
+        /// Converts an assembly reference DTO into a poco one.
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
-        /// <returns>The DTO object.</returns>
+        /// <returns>The poco object.</returns>
         public static IBdoAssemblyReference ToPoco(
             this AssemblyReferenceDto dto)
         {

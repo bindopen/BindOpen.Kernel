@@ -11,7 +11,7 @@ namespace BindOpen.Kernel.Data.Meta
         IIdentified, INamed, IIndexed, IBdoReferenced,
         IBdoTitled, IBdoDescribed, IBdoDetailed,
         ITTreeNode<IBdoSpec>,
-        ITUpdatable<IBdoSpec>
+        IUpdatable
     {
         /// <summary>
         /// 
