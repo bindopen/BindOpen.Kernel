@@ -1,16 +1,15 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Helpers;
+﻿using BindOpen.Kernel.Data.Helpers;
 using System.Collections.Generic;
 
 namespace BindOpen.Kernel.Data
 {
     /// <summary>
-    /// This class represents a Xml helper.
+    /// This class represents a IO converter of key value pairs.
     /// </summary>
     public static class KeyValuePairConverter
     {
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a key value pair poco into a DTO one.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
@@ -28,10 +27,10 @@ namespace BindOpen.Kernel.Data
         }
 
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a key value pair DTO to a poco one.
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
-        /// <returns>The DTO object.</returns>
+        /// <returns>The poco object.</returns>
         public static KeyValuePair<string, TItem> ToPoco<TItem>(this KeyValuePairDto dto)
         {
             var valueType = typeof(TItem).GetValueType();

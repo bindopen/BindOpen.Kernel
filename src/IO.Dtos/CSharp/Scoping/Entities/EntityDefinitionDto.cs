@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 namespace BindOpen.Kernel.Scoping.Entities
 {
     /// <summary>
-    /// This class represents the entity definition.
+    /// This class represents the entity definition DTO.
     /// </summary>
     [XmlType("EntityDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlRoot(ElementName = "entity.definition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
@@ -20,30 +20,28 @@ namespace BindOpen.Kernel.Scoping.Entities
         #region Properties
 
         /// <summary>
-        /// Item class of this instance.
+        /// The item class of this instance.
         /// </summary>
         [JsonPropertyName("itemClass")]
         [XmlElement("itemClass")]
         public ClassReferenceDto ItemClass { get; set; }
 
         /// <summary>
-        /// Viewer class of this instance.
+        /// The viewer class of this instance.
         /// </summary>
         [JsonPropertyName("viewerClass")]
         [XmlElement("viewerClass")]
         public string ViewerClass { get; set; }
 
-        // DTO
-
         /// <summary>
-        /// The elements of this instance.
+        /// The outputs of this instance.
         /// </summary>
         [JsonPropertyName("outputs")]
         [XmlElement("output")]
         public List<MetaDataDto> OutputSpecification { get; set; }
 
         /// <summary>
-        /// Indicates whether the entities property must be ignored.
+        /// Indicates whether the OutputSpecification property must be ignored.
         /// </summary>
         [JsonIgnore]
         [XmlIgnore]
@@ -58,7 +56,7 @@ namespace BindOpen.Kernel.Scoping.Entities
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the EntityDefinition class.
+        /// Instantiates a new instance of the EntityDefinitionDto class.
         /// </summary>
         public EntityDefinitionDto()
         {

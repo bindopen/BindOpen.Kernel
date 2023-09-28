@@ -5,13 +5,13 @@ using System.Xml.Serialization;
 namespace BindOpen.Kernel.Data
 {
     /// <summary>
-    /// This class represents a dico data item.
+    /// This class represents a string dictionary item.
     /// </summary>
     /// <example>Titles, Descriptions.</example>
     /// <seealso cref="KeyValuePairDto"/>
     [XmlType("Dictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlRoot(ElementName = "dictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
-    public class DictionaryDto : BdoItemDto, IIdentified
+    public class StringDictionaryDto : BdoItemDto, IIdentified
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -20,14 +20,14 @@ namespace BindOpen.Kernel.Data
         #region Properties
 
         /// <summary>
-        /// The ID of this instance.
+        /// The identifier of this instance.
         /// </summary>
         [JsonPropertyName("id")]
         [XmlElement("id")]
         public string Id { get; set; }
 
         /// <summary>
-        /// Values of this instance.
+        /// The values of this instance.
         /// </summary>
         [JsonPropertyName("values")]
         [XmlElement("add")]
@@ -42,9 +42,9 @@ namespace BindOpen.Kernel.Data
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the DictionaryDto class. 
+        /// Instantiates a new instance of the StringDictionaryDto class. 
         /// </summary>
-        public DictionaryDto()
+        public StringDictionaryDto()
         {
         }
 

@@ -97,7 +97,7 @@ namespace BindOpen.Kernel.Data
                             }
                             else if (updateModes.Has(UpdateModes.Incremental_UpdateCommon))
                             {
-                                if (item is ITUpdatable<T> updatable)
+                                if (item is IUpdatable updatable)
                                 {
                                     updatable.Update(setItem, areas, updateModes, log);
                                 }
@@ -131,6 +131,62 @@ namespace BindOpen.Kernel.Data
                                         set.Add(refSetItem);
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return set;
+        }
+
+        public static ITBdoSet<T> Update<T>(
+            this ITBdoSet<T> set,
+            T item = default,
+            UpdateModes[] updateModes = null,
+            string[] areas = null,
+            IBdoLog log = null)
+            where T : IReferenced
+        {
+            areas ??= new[] { nameof(DataAreaKind.Any) };
+            updateModes ??= new[] { UpdateModes.Incremental_AddMissingInTarget, UpdateModes.Incremental_UpdateCommon };
+
+            if (set != null)
+            {
+                if (updateModes.Has(UpdateModes.Full))
+                {
+                    set.With(item);
+                }
+                else
+                {
+                    var setItem = set[item?.Key()];
+
+                    // we check that all the elems in this instance are in the specified item
+
+                    if (setItem != null)
+                    {
+                        if (updateModes.Has(UpdateModes.Incremental_UpdateCommon))
+                        {
+                            if (setItem is IUpdatable updatable)
+                            {
+                                updatable.Update(item, areas, updateModes, log);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // we check that all the elems in specified item are in this instance
+
+                        if (updateModes.Has(UpdateModes.Incremental_AddMissingInTarget))
+                        {
+                            if (item is IClonable clonable)
+                            {
+                                var newSubItem = clonable.Clone().As<T>();
+                                set.Add(newSubItem);
+                            }
+                            else
+                            {
+                                set.Add(item);
                             }
                         }
                     }

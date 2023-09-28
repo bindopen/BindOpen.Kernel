@@ -2,7 +2,7 @@
 
 import { BdoItemDto } from "./../bdoItemDto";
 
-export interface DictionaryDto extends BdoItemDto {
+export interface StringDictionaryDto extends BdoItemDto {
     id: string;
     values: any[];
 }

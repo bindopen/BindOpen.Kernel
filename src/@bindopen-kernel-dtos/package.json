@@ -1,0 +1,32 @@
+{
+  "name": "@bindopen/kernel-dtos",
+  "version": "1.0.0",
+  "description": "This package includes BindOpen Kernel data transfer classes.",
+  "main": "ResultItemDto.ts",
+  "scripts": {
+    "build": "tsup",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bindopen/BindOpen.Kernel.git"
+  },
+  "keywords": [
+    "bindopen",
+    "kernel",
+    "dtos",
+    "io"
+  ],
+  "author": "BindOpen SARL",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bindopen/BindOpen.Kernel/issues"
+  },
+  "homepage": "https://github.com/bindopen/BindOpen.Kernel#readme",
+  "devDependencies": {
+    "tsup": "^7.2.0"
+  },
+  "dependencies": {
+    "typescript": "^5.2.2"
+  }
+}

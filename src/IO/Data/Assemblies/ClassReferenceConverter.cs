@@ -3,12 +3,12 @@
 namespace BindOpen.Kernel.Data.Assemblies
 {
     /// <summary>
-    /// This class represents a Xml helper.
+    /// This class represents a IO converter of class references.
     /// </summary>
     public static class ClassReferenceConverter
     {
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a class reference poco into a DTO one.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
@@ -26,6 +26,11 @@ namespace BindOpen.Kernel.Data.Assemblies
             return dto;
         }
 
+        /// <summary>
+        /// Indicates whether the specified poco can be specified as DTO.
+        /// </summary>
+        /// <param key="poco">The poco to consider.</param>
+        /// <returns>True if the poco can be specified as DTO.</returns>
         public static bool IsSpecified(this IBdoClassReference poco) =>
             poco != null
             && (poco?.AssemblyFileName != null
@@ -34,10 +39,10 @@ namespace BindOpen.Kernel.Data.Assemblies
             || poco?.ClassName != null);
 
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a class reference DTO into a poco one.
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
-        /// <returns>The DTO object.</returns>
+        /// <returns>The poco object.</returns>
         public static IBdoClassReference ToPoco(
             this ClassReferenceDto dto)
         {

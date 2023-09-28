@@ -2,7 +2,7 @@
 
 import { ConditionDto } from "./../../Conditions/conditionDto";
 import { ReferenceDto } from "./../../Objects/Reference/referenceDto";
-import { DictionaryDto } from "./../../Objects/Dictionary/dictionaryDto";
+import { StringDictionaryDto } from "./../../Objects/Dictionary/stringDictionaryDto";
 import { MetaSetDto } from "./../metaSetDto";
 import { ClassReferenceDto } from "./../../Assemblies/classReferenceDto";
 import { StringConditionalStatementDto } from "./stringConditionalStatementDto";
@@ -15,8 +15,8 @@ export interface SpecDto {
     name: string;
     condition: ConditionDto;
     reference: ReferenceDto;
-    description: DictionaryDto;
-    title: DictionaryDto;
+    description: StringDictionaryDto;
+    title: StringDictionaryDto;
     detail: MetaSetDto;
     valueType: any;
     definitionUniqueName: string;

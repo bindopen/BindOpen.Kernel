@@ -1,12 +1,12 @@
 ﻿namespace BindOpen.Kernel
 {
     /// <summary>
-    /// This class represents a Xml helper.
+    /// This class represents a IO converter of result items.
     /// </summary>
     public static class BdoResultItemConverter
     {
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a result item poco into a DTO one.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
@@ -25,10 +25,10 @@
         }
 
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a result item DTO to a poco one.
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
-        /// <returns>The DTO object.</returns>
+        /// <returns>The poco object.</returns>
         public static IResultItem ToPoco(
             this ResultItemDto dto)
         {

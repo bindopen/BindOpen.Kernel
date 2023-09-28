@@ -1,5 +1,4 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Logging;
+﻿using BindOpen.Kernel.Logging;
 
 namespace BindOpen.Kernel.Data.Meta
 {
@@ -9,12 +8,15 @@ namespace BindOpen.Kernel.Data.Meta
     public abstract partial class BdoMetaData : BdoObject, IBdoMetaData
     {
         public virtual void Update(
-            IBdoMetaData refItem,
+            object item,
             string[] areas = null,
             UpdateModes[] updateModes = null,
             IBdoLog log = null)
         {
-            BdoMetaDataExtensions.Update(this, refItem, areas, updateModes, log);
+            if (item is IBdoMetaData meta)
+            {
+                BdoMetaDataExtensions.Update(this, meta, areas, updateModes, log);
+            }
         }
     }
 }

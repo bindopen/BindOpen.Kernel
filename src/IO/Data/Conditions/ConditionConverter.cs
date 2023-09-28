@@ -1,12 +1,12 @@
 ﻿namespace BindOpen.Kernel.Data.Conditions
 {
     /// <summary>
-    /// This static class represents a converter.
+    /// This abstract class represents a IO converter of conditions.
     /// </summary>
     public static class ConditionConverter
     {
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a condition poco into a DTO one.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
@@ -29,10 +29,10 @@
         }
 
         /// <summary>
-        /// Converts to POCO.
+        /// Converts a condition DTO into a poco one.
         /// </summary>
-        /// <param key="dto">The dto to consider.</param>
-        /// <returns>The POCO object.</returns>
+        /// <param key="dto">The DTO to consider.</param>
+        /// <returns>The poco object.</returns>
         public static IBdoCondition ToPoco(
             this ConditionDto dto)
         {

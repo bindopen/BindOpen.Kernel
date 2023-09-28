@@ -21,7 +21,7 @@ namespace BindOpen.Kernel.Scoping.Tasks
         #region Properties
 
         /// <summary>
-        /// Name of the group of this instance.
+        /// The name of the group of this instance.
         /// </summary>
         [JsonPropertyName("groupName")]
         [XmlElement("groupName")]
@@ -35,45 +35,43 @@ namespace BindOpen.Kernel.Scoping.Tasks
         public bool IsExecutable { get; set; }
 
         /// <summary>
-        /// Item class of this instance.
+        /// The item class of this instance.
         /// </summary>
         [JsonPropertyName("itemClass")]
         [XmlElement("itemClass")]
         public string ItemClass { get; set; }
 
         /// <summary>
-        /// Maximum index of this instance.
+        /// The maximum index of this instance.
         /// </summary>
         [JsonPropertyName("maximumIndex")]
         [XmlElement("maximumIndex")]
         [DefaultValue(100)]
         public float MaximumIndex { get; set; } = 100;
 
-        // DTO
-
         /// <summary>
-        /// The elements of this instance.
+        /// The inputs of this instance.
         /// </summary>
         [JsonPropertyName("inputs")]
         [XmlElement("input")]
         public List<MetaDataDto> InputSpecification { get; set; }
 
         /// <summary>
-        /// Indicates whether the entities property must be ignored.
+        /// Indicates whether the input specification property must be ignored.
         /// </summary>
         [JsonIgnore]
         [XmlIgnore]
         public bool InputSpecificationSpecified => InputSpecification?.Count > 0;
 
         /// <summary>
-        /// The elements of this instance.
+        /// The outputs of this instance.
         /// </summary>
         [JsonPropertyName("outputs")]
         [XmlElement("output")]
         public List<MetaDataDto> OutputSpecification { get; set; }
 
         /// <summary>
-        /// Indicates whether the entities property must be ignored.
+        /// Indicates whether the output specification property must be ignored.
         /// </summary>
         [JsonIgnore]
         [XmlIgnore]
@@ -88,7 +86,7 @@ namespace BindOpen.Kernel.Scoping.Tasks
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the TaskDefinition class. 
+        /// Instantiates a new instance of the TaskDefinitionDto class. 
         /// </summary>
         public TaskDefinitionDto()
         {

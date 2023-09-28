@@ -1,5 +1,4 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Logging;
+﻿using BindOpen.Kernel.Logging;
 using System.Linq;
 
 namespace BindOpen.Kernel.Data.Meta
@@ -10,20 +9,31 @@ namespace BindOpen.Kernel.Data.Meta
     public partial class BdoConfiguration : BdoMetaSet, IBdoConfiguration
     {
         public override void Update(
-            ITBdoSet<IBdoMetaData> refItem,
+            object item,
             string[] areas = null,
             UpdateModes[] updateModes = null,
             IBdoLog log = null)
         {
-            base.Update(refItem, areas, updateModes, log);
-
-            // we update the children
-
-            if (refItem is IBdoConfiguration refConfig && refConfig._Children?.Any() == true)
+            if (item is IBdoConfiguration config)
             {
-                _children ??= BdoData.NewItemSet<IBdoConfiguration>();
+                base.Update(item, areas, updateModes, log);
 
-                _children?.Update(refConfig._Children, areas, updateModes, log);
+                // we update the children
+
+                if (config._Children?.Any() == true)
+                {
+                    _children ??= BdoData.NewItemSet<IBdoConfiguration>();
+
+                    _children?.Update(config._Children, areas, updateModes, log);
+                }
+            }
+            else if (item is ITBdoSet<IBdoMetaData> set)
+            {
+                TBdoSetExtensions.Update(this, set, updateModes, areas, log);
+            }
+            else if (item is IBdoMetaData setItem)
+            {
+                TBdoSetExtensions.Update(this, setItem, updateModes, areas, log);
             }
         }
     }

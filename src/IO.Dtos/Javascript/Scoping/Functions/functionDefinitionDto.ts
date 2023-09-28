@@ -1,7 +1,7 @@
 ﻿/* Auto Generated */
 
 import { ExtensionDefinitionDto } from "./../_Core/extensionDefinitionDto";
-import { DictionaryDto } from "./../../Data/Objects/Dictionary/dictionaryDto";
+import { StringDictionaryDto } from "./../../Data/Objects/Dictionary/stringDictionaryDto";
 
 export interface FunctionDefinitionDto extends ExtensionDefinitionDto {
     callingClass: string;
@@ -10,11 +10,11 @@ export interface FunctionDefinitionDto extends ExtensionDefinitionDto {
     minParameterNumber: number;
     repeatedParameterName: string;
     repeatedParameterValueType: any;
+    repeatedParameterDescription: StringDictionaryDto;
     referenceUniqueName: string;
     returnValueType: any;
     runtimeFunctionName: string;
     children: any[];
     parameterSpecification: any[];
     parameterSpecificationSpecified: boolean;
-    repeatedParameterDescription: DictionaryDto;
 }

@@ -5,12 +5,12 @@ using BindOpen.Kernel.Scoping.Script;
 namespace BindOpen.Kernel.Data
 {
     /// <summary>
-    /// This class represents a Xml helper.
+    /// This class represents a IO converter of references.
     /// </summary>
     public static class ReferenceConverter
     {
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a reference poco into a DTO one.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
@@ -33,10 +33,10 @@ namespace BindOpen.Kernel.Data
         }
 
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a reference DTO to a poco one.
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
-        /// <returns>The DTO object.</returns>
+        /// <returns>The poco object.</returns>
         public static IBdoReference ToPoco(
             this ReferenceDto dto)
         {

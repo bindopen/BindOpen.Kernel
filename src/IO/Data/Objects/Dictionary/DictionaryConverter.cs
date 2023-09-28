@@ -3,20 +3,20 @@
 namespace BindOpen.Kernel.Data
 {
     /// <summary>
-    /// This class represents a Xml helper.
+    /// This class represents a IO converter of dictionaries.
     /// </summary>
     public static class DictionaryConverter
     {
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a dictionary poco into a DTO one.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static DictionaryDto ToDto<TItem>(this ITBdoDictionary<TItem> poco)
+        public static StringDictionaryDto ToDto<TItem>(this ITBdoDictionary<TItem> poco)
         {
             if (poco == null) return null;
 
-            DictionaryDto dto = new()
+            StringDictionaryDto dto = new()
             {
                 Id = poco.Id,
                 Values = poco?.Select(q => q.ToDto()).ToList()
@@ -26,11 +26,11 @@ namespace BindOpen.Kernel.Data
         }
 
         /// <summary>
-        /// Converts to DTO.
+        /// Converts a dictionary DTO to a poco one.
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
-        /// <returns>The DTO object.</returns>
-        public static ITBdoDictionary<TItem> ToPoco<TItem>(this DictionaryDto dto)
+        /// <returns>The poco object.</returns>
+        public static ITBdoDictionary<TItem> ToPoco<TItem>(this StringDictionaryDto dto)
         {
             if (dto == null) return null;
 

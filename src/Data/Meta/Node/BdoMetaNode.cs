@@ -1,5 +1,4 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Helpers;
+﻿using BindOpen.Kernel.Data.Helpers;
 using BindOpen.Kernel.Logging;
 using BindOpen.Kernel.Scoping;
 using System.Collections.Generic;
@@ -149,7 +148,10 @@ namespace BindOpen.Kernel.Data.Meta
             UpdateModes[] updateModes = null,
             IBdoLog log = null)
         {
-            BdoMetaDataExtensions.Update(this, refItem, areas, updateModes, log);
+            if (refItem is ITBdoSet<IBdoMetaData> set)
+            {
+                TBdoSetExtensions.Update(this, set, updateModes, areas, log);
+            }
         }
 
         // Items --------------------------------------------
