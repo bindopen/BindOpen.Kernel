@@ -86,8 +86,6 @@ namespace BindOpen.Kernel.Data
             return false;
         }
 
-        // Deserialiaze ----------------------------
-
         /// <summary>
         /// Loads a data item from the specified file path.
         /// </summary>

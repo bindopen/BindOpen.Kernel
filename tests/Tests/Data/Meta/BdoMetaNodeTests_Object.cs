@@ -1,10 +1,9 @@
-﻿using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Data.Meta.Reflection;
+﻿using BindOpen.Kernel.Data.Meta.Reflection;
 using BindOpen.Kernel.Tests;
 using Bogus;
 using NUnit.Framework;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Kernel.Data.Meta
 {
     [TestFixture, Order(200)]
     public class BdoMetaNodeTests_Object
