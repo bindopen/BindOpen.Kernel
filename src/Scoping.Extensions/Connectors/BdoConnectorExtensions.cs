@@ -69,7 +69,7 @@ namespace BindOpen.Kernel.Scoping
         /// <returns>Returns the created connector.</returns>
         public static IBdoConnector CreateConnector(
             this IBdoScope scope,
-            IBdoMetaObject meta,
+            IBdoMetaNode meta,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
@@ -132,7 +132,7 @@ namespace BindOpen.Kernel.Scoping
         /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
         public static T Open<T>(
             this IBdoScope scope,
-            IBdoMetaObject meta,
+            IBdoMetaNode meta,
             IBdoLog log = null)
             where T : class, IBdoConnection
         {
