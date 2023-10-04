@@ -1,5 +1,4 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Scoping;
 using System;
 using System.Collections.Generic;
@@ -12,16 +11,27 @@ namespace BindOpen.Kernel.Data.Meta
     /// </summary>
     public static class BdoTaskExtensions_Configuration
     {
+        // Get
+
+        public static ITBdoSet<IBdoMetaData> Properties(this IBdoMetaSet set)
+            => BdoData.NewSet(set?.Where(q => q.IsProperty())?.ToArray());
+
+        public static ITBdoSet<IBdoMetaData> Inputs(this IBdoMetaSet set)
+            => BdoData.NewSet(set?.Where(q => q.IsInput())?.ToArray());
+
+        public static ITBdoSet<IBdoMetaData> Outputs(this IBdoMetaSet set)
+            => BdoData.NewSet(set?.Where(q => q.IsOutput())?.ToArray());
+
         // Is
 
-        public static bool IsProperty(
-            this IBdoMetaData meta) => meta.OfGroup(null);
+        public static bool IsProperty(this IBdoMetaData meta)
+            => meta.OfGroup(null);
 
-        public static bool IsInput(
-            this IBdoMetaData meta) => meta.OfGroup(IBdoTaskExtensions.__Token_Input);
+        public static bool IsInput(this IBdoMetaData meta)
+            => meta.OfGroup(IBdoTaskExtensions.__Token_Input);
 
-        public static bool IsOutput(
-            this IBdoMetaData meta) => meta.OfGroup(IBdoTaskExtensions.__Token_Output);
+        public static bool IsOutput(this IBdoMetaData meta)
+            => meta.OfGroup(IBdoTaskExtensions.__Token_Output);
 
         // As
 
