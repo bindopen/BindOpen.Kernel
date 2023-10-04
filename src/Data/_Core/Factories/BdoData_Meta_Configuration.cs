@@ -80,7 +80,7 @@ namespace BindOpen.Kernel.Data
             params IBdoMetaData[] items)
             where T : BdoConfiguration, new()
         {
-            var config = BdoData.NewItemSet<T, IBdoMetaData>(items)
+            var config = NewItemSet<T, IBdoMetaData>(items)
                 .WithName(name)
                 .Using(usingIds);
             return config;
