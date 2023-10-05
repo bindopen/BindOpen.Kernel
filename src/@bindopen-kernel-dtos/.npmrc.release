@@ -1,0 +1,4 @@
+registry=https://registry.npmjs.org/
+email=__npm.registry.email__
+always-auth=true
+_auth=__npm.registry.token__
