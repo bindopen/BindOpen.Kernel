@@ -1,3 +1,0 @@
-registry=__npm.registry.url__
-_authToken=_auth=__npm.registry.token__
-always-auth=true
