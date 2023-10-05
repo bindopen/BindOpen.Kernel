@@ -1,6 +1,6 @@
 {
   "name": "@bindopen/kernel-dtos",
-  "version": "1.0.0",
+  "version": "1.2.115",
   "description": "This package includes BindOpen Kernel data transfer classes.",
   "main": "ResultItemDto.ts",
   "scripts": {
