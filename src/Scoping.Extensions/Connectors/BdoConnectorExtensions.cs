@@ -2,6 +2,7 @@
 using BindOpen.Kernel.Data.Assemblies;
 using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Data.Meta.Reflection;
+using BindOpen.Kernel.Data.Stores;
 using BindOpen.Kernel.Logging;
 using BindOpen.Kernel.Scoping.Connectors;
 using System;
@@ -119,6 +120,26 @@ namespace BindOpen.Kernel.Scoping
             var dataType = BdoData.NewDataType(BdoExtensionKinds.Connector, definitionUniqueName);
 
             var connector = scope.CreateConnector(dataType, metaSet, varSet, log);
+
+            return connector;
+        }
+
+        /// <summary>
+        /// Creates the instance of the specified definition.
+        /// </summary>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="config">The config to consider.</param>
+        /// <param key="log">The log to consider.</param>
+        /// <param key="varSet">The variable element set to use.</param>
+        /// <typeparam name="T">The connector class to return.</typeparam>
+        /// <returns>Returns the created connector.</returns>
+        public static IBdoConnector CreateConnector(
+            this IBdoScope scope,
+            IBdoDatasource dataSource,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var connector = scope.CreateConnector(dataSource?.DataType, dataSource?.Detail, varSet, log);
 
             return connector;
         }
