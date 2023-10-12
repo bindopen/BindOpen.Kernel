@@ -1,6 +1,4 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Conditions;
-using BindOpen.Kernel.Logging;
+﻿using BindOpen.Kernel.Logging;
 using BindOpen.Kernel.Scoping;
 
 namespace BindOpen.Kernel.Data.Meta

@@ -5,7 +5,7 @@ namespace BindOpen.Kernel.Data.Stores
     /// <summary>
     /// This interface defines a data source.
     /// </summary>
-    public interface IBdoDatasource : ITBdoMetaWrapper<IBdoMetaNode>, INamed, IReferenced
+    public interface IBdoDatasource : ITBdoMetaWrapper<IBdoMetaNode>, INamed, IReferenced, IBdoDataTyped
     {
         public static string __ConnectionString_DatasourceKind = "datasourceKind";
         public static string __ConnectionString_Token = "connectionString";
