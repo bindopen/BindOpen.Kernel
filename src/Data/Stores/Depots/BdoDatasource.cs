@@ -13,9 +13,9 @@ namespace BindOpen.Kernel.Data.Stores
 
         #region Properties
 
-        public string Id { get => Detail?.Id; set { (Detail ??= BdoData.NewNode()).WithId(value); } }
+        public string Name { get; set; }
 
-        public string Name { get => Detail?.Name; set { (Detail ??= BdoData.NewNode()).WithName(value); } }
+        public IBdoDataType DataType { get; set; }
 
         [BdoProperty("datasourceKind")]
         public DatasourceKind DatasourceKind { get; set; }
