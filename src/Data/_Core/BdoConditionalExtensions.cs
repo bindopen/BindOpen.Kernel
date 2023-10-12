@@ -1,5 +1,4 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Conditions;
+﻿using BindOpen.Kernel.Data.Conditions;
 
 namespace BindOpen.Kernel.Data
 {
