@@ -55,9 +55,9 @@ namespace BindOpen.Kernel.Data.Meta
         /// Returns the key of this instance.
         /// </summary>
         /// <returns></returns>
-        public string Key()
+        public virtual string Key()
         {
-            return Detail?.Name;
+            return Detail?.Id;
         }
 
         /// <summary>

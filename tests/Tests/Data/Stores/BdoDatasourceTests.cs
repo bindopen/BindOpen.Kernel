@@ -1,11 +1,10 @@
 ﻿using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Data.Stores;
 using BindOpen.Kernel.Scoping;
 using BindOpen.Kernel.Tests;
 using Bogus;
 using NUnit.Framework;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Kernel.Data.Stores
 {
     [TestFixture, Order(210)]
     public class BdoDatasourceTests
