@@ -139,6 +139,7 @@ namespace BindOpen.Kernel.Scoping
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
+            dataSource.UpdateDetail(null);
             var connector = scope.CreateConnector(dataSource?.DataType, dataSource?.Detail, varSet, log);
 
             return connector;
