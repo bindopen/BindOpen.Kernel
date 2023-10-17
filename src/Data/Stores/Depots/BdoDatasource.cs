@@ -13,6 +13,7 @@ namespace BindOpen.Kernel.Data.Stores
 
         #region Properties
 
+        [BdoProperty("name")]
         public string Name { get; set; }
 
         public IBdoDataType DataType { get; set; }
@@ -41,5 +42,15 @@ namespace BindOpen.Kernel.Data.Stores
         }
 
         #endregion
+
+        /// <summary>
+        /// Returns the key of this instance.
+        /// </summary>
+        /// <returns></returns>
+        public override string Key()
+        {
+            return Name;
+        }
+
     }
 }
