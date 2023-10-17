@@ -37,5 +37,22 @@ namespace BindOpen.Kernel.Data.Stores
             Assert.That(source.DataType == _metaNode.DataType, "Bad data type");
             Assert.That(source.Name == _metaNode.Name, "Bad data type");
         }
+
+        [Test, Order(2)]
+        public void Create2Test()
+        {
+            var source = BdoData.New<BdoDatasource>()
+                .WithName(_metaNode.Name)
+                .WithDataType(_metaNode.DataType)
+                .WithConnectionString("__connectionString__")
+                .WithDatasourceKind(DatasourceKind.EmailServer);
+
+            source.UpdateDetail(null);
+
+            Assert.That(source.DataType == _metaNode.DataType, "Bad data type");
+            Assert.That(source.Name == _metaNode.Name, "Bad data type");
+            Assert.That(source.Detail?.GetData<string>("connectionString") == "__connectionString__", "Bad data type");
+            Assert.That(source.Detail?.GetData<DatasourceKind?>("datasourceKind") == DatasourceKind.EmailServer, "Bad data type");
+        }
     }
 }
