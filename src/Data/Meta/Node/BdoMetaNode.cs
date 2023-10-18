@@ -327,5 +327,21 @@ namespace BindOpen.Kernel.Data.Meta
         }
 
         #endregion
+
+        public override void Update(
+            object item,
+            string[] areas = null,
+            UpdateModes[] updateModes = null,
+            IBdoLog log = null)
+        {
+            if (item is IBdoMetaData meta)
+            {
+                BdoMetaDataExtensions.Update(this, meta, areas, updateModes, log);
+            }
+            else
+            {
+                base.Update(item, areas, updateModes, log);
+            }
+        }
     }
 }
