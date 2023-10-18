@@ -338,10 +338,8 @@ namespace BindOpen.Kernel.Data.Meta
             {
                 BdoMetaDataExtensions.Update(this, meta, areas, updateModes, log);
             }
-            else
-            {
-                base.Update(item, areas, updateModes, log);
-            }
+
+            base.Update(item, areas, updateModes, log);
         }
     }
 }
