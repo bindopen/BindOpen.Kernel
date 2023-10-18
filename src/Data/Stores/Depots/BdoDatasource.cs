@@ -13,7 +13,6 @@ namespace BindOpen.Kernel.Data.Stores
 
         #region Properties
 
-        [BdoProperty("name")]
         public string Name { get; set; }
 
         public IBdoDataType DataType { get; set; }
