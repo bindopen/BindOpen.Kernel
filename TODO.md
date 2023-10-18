@@ -3,6 +3,7 @@ Todo list for BindOpen
 
 ## Next tasks
 
+- [ ] Data wrapper: Detail must inherit Name, DataType, Id in both ways
 - [ ] Extension store : improve package loading
 - [ ] Apply cloning when needed (ie. in ToMetaData method)
 - [ ] Implementing Clone methods
