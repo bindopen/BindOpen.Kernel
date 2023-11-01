@@ -1,4 +1,6 @@
 ﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Scoping;
 using Bogus;
 using NUnit.Framework;
 
@@ -9,7 +11,7 @@ namespace BindOpen.Kernel.Tests
         public static readonly string XmlFilePath = SystemData.WorkingFolder + "Task.xml";
         public static readonly string JsonFilePath = SystemData.WorkingFolder + "Task.json";
 
-        public static dynamic Fake()
+        public static dynamic NewData()
         {
             var f = new Faker();
             return new
@@ -19,6 +21,28 @@ namespace BindOpen.Kernel.Tests
                 enumValue = ActionPriorities.High,
                 stringValue = f.Lorem.Word()
             };
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="data"></param>
+        /// <returns></returns>
+        public static IBdoMetaObject NewMetaObject(dynamic data = null)
+        {
+            data ??= NewData();
+
+            var meta = BdoData.NewObject()
+                .WithDataType(BdoExtensionKinds.Task, "bindopen.kernel.tests$taskFake")
+                .WithProperties(
+                    ("boolValue", data.boolValue as bool?),
+                    ("intValue", data.intValue as int?))
+                .WithInputs(
+                    ("enumValue", data.enumValue as ActionPriorities?))
+                .WithOutputs(
+                    ("stringValue", data.stringValue as string));
+
+            return meta;
         }
 
         public static void AssertFake(TaskFake task, dynamic reference)

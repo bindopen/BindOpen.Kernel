@@ -1,4 +1,6 @@
 ﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Scoping;
 using Bogus;
 using NUnit.Framework;
 using System.Dynamic;
@@ -10,7 +12,7 @@ namespace BindOpen.Kernel.Tests
         public static readonly string XmlFilePath = SystemData.WorkingFolder + "Entity.xml";
         public static readonly string JsonFilePath = SystemData.WorkingFolder + "Entity.json";
 
-        public static dynamic Fake()
+        public static dynamic NewData()
         {
             var f = new Faker();
             dynamic b = new ExpandoObject();
@@ -21,7 +23,28 @@ namespace BindOpen.Kernel.Tests
             return b;
         }
 
-        public static void AssertFake(EntityFake entity, dynamic reference)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="data"></param>
+        /// <returns></returns>
+        public static IBdoMetaObject NewMetaObject(dynamic data = null)
+        {
+            data ??= NewData();
+
+            var meta =
+                BdoData.NewObject()
+                .WithDataType(BdoExtensionKinds.Entity, "bindopen.kernel.tests$testEntity")
+                .With(
+                    BdoData.NewScalar("boolValue", data.boolValue as bool?),
+                    BdoData.NewScalar("enumValue", data.enumValue as ActionPriorities?),
+                    BdoData.NewScalar("intValue", data.intValue as int?),
+                    BdoData.NewScalar("stringValue", data.stringValue as string));
+
+            return meta;
+        }
+
+        public static void AssertFake(EntityFake entity, dynamic reference = null)
         {
             Assert.That(entity != null, "Entity missing");
 

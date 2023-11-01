@@ -16,7 +16,7 @@ namespace BindOpen.Kernel.Scoping.Tasks
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            _testData = BdoTaskFaker.Fake();
+            _testData = BdoTaskFaker.NewData();
         }
 
         // Xml
@@ -26,7 +26,7 @@ namespace BindOpen.Kernel.Scoping.Tasks
         {
             if (_task == null)
             {
-                IBdoMetaObject meta = BdoTaskTests.CreateMetaTask(_testData);
+                IBdoMetaObject meta = BdoTaskFaker.NewMetaObject(_testData);
                 _task = SystemData.Scope.CreateTask<TaskFake>(meta);
             }
 
@@ -58,7 +58,7 @@ namespace BindOpen.Kernel.Scoping.Tasks
         {
             if (_task == null)
             {
-                IBdoMetaObject meta = BdoTaskTests.CreateMetaTask(_testData);
+                IBdoMetaObject meta = BdoTaskFaker.NewMetaObject(_testData);
                 _task = SystemData.Scope.CreateTask<TaskFake>(meta);
             }
 
