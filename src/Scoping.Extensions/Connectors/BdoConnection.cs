@@ -1,5 +1,8 @@
 ﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Scoping.Entities;
+using System.Collections.Generic;
 using System.Data;
 
 namespace BindOpen.Kernel.Scoping.Connectors
@@ -35,6 +38,8 @@ namespace BindOpen.Kernel.Scoping.Connectors
         /// </summary>
         public ConnectionState State => ConnectionState.Closed;
 
+        // Open / Close -----------------------------
+
         /// <summary>
         /// Connects this instance.
         /// </summary>
@@ -44,6 +49,36 @@ namespace BindOpen.Kernel.Scoping.Connectors
         /// Disconnects this instance.
         /// </summary>
         public abstract void Disconnect(IBdoLog log = null);
+
+        // Push / Pull -----------------------------
+
+        /// <summary>
+        /// Pulls entity objects using the specified parameter set.
+        /// </summary>
+        /// <param name="paramSet">The set of meta parameters.</param>
+        /// <returns>Returns the entity objects.</returns>
+        public virtual IEnumerable<IBdoEntity> Pull(IBdoMetaSet paramSet = null)
+        {
+            var entities = Pull<IBdoEntity>(paramSet);
+
+            return entities;
+        }
+
+        /// <summary>
+        /// Pulls entity objects using the specified parameter set.
+        /// </summary>
+        /// <typeparam name="T">The BindOpen entity class to consider.</typeparam>
+        /// <param name="paramSet">The set of meta parameters.</param>
+        /// <returns>Returns the entity objects.</returns>
+        public abstract IEnumerable<T> Pull<T>(IBdoMetaSet paramSet = null)
+            where T : IBdoEntity;
+
+        /// <summary>
+        /// Pushes the specified entity objects.
+        /// </summary>
+        /// <param name="entities">The entity object to push.</param>
+        /// <returns>Returns True whether the entities have been pushed.</returns>
+        public abstract bool Push(params IBdoEntity[] entities);
 
         #endregion
 

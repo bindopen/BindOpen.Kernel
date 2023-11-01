@@ -16,7 +16,7 @@ namespace BindOpen.Kernel.Scoping.Connectors
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            _testData = BdoConnectorFaker.Fake();
+            _testData = BdoConnectorFaker.NewData();
         }
 
         // Xml
@@ -26,7 +26,7 @@ namespace BindOpen.Kernel.Scoping.Connectors
         {
             if (_connector == null)
             {
-                IBdoMetaObject meta = BdoConnectorTests.CreateMetaConnector(_testData);
+                IBdoMetaObject meta = BdoConnectorFaker.NewMetaObject(_testData);
                 _connector = SystemData.Scope.CreateConnector<ConnectorFake>(meta);
             }
 
@@ -56,7 +56,7 @@ namespace BindOpen.Kernel.Scoping.Connectors
         {
             if (_connector == null)
             {
-                IBdoMetaObject meta = BdoConnectorTests.CreateMetaConnector(_testData);
+                IBdoMetaObject meta = BdoConnectorFaker.NewMetaObject(_testData);
                 _connector = SystemData.Scope.CreateConnector<ConnectorFake>(meta);
             }
 
