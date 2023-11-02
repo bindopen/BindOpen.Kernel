@@ -13,33 +13,13 @@ namespace BindOpen.Kernel.Scoping.Tasks
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            _testData = BdoTaskFaker.Fake();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="data"></param>
-        /// <returns></returns>
-        public static IBdoMetaObject CreateMetaTask(dynamic data)
-        {
-            var meta = BdoData.NewObject()
-                .WithDataType(BdoExtensionKinds.Task, "bindopen.kernel.tests$taskFake")
-                .WithProperties(
-                    ("boolValue", data.boolValue as bool?),
-                    ("intValue", data.intValue as int?))
-                .WithInputs(
-                    ("enumValue", data.enumValue as ActionPriorities?))
-                .WithOutputs(
-                    ("stringValue", data.stringValue as string));
-
-            return meta;
+            _testData = BdoTaskFaker.NewData();
         }
 
         [Test, Order(1)]
         public void CreateTaskTest_FromMetaSet()
         {
-            IBdoMetaObject meta = CreateMetaTask(_testData);
+            IBdoMetaObject meta = BdoTaskFaker.NewMetaObject(_testData);
             var connector = SystemData.Scope.CreateTask<TaskFake>(meta);
 
             BdoTaskFaker.AssertFake(connector, _testData);
@@ -48,7 +28,7 @@ namespace BindOpen.Kernel.Scoping.Tasks
         [Test, Order(2)]
         public void CreateTaskTest_FromConfig()
         {
-            IBdoMetaObject meta = CreateMetaTask(_testData);
+            IBdoMetaObject meta = BdoTaskFaker.NewMetaObject(_testData);
             var connector = SystemData.Scope.CreateTask(meta) as TaskFake;
 
             BdoTaskFaker.AssertFake(connector, _testData);

@@ -2,6 +2,7 @@
 using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Tests;
 using NUnit.Framework;
+using System.Linq;
 
 namespace BindOpen.Kernel.Scoping.Connectors
 {
@@ -13,31 +14,13 @@ namespace BindOpen.Kernel.Scoping.Connectors
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            _testData = BdoConnectorFaker.Fake();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="data"></param>
-        /// <returns></returns>
-        public static IBdoMetaObject CreateMetaConnector(dynamic data)
-        {
-            var config =
-                BdoData.NewObject()
-                .WithDataType(BdoExtensionKinds.Connector, "bindopen.kernel.tests$testConnector")
-                .With(
-                    BdoData.NewScalar("host", data.host as string),
-                    BdoData.NewScalar("port", data.port as int?),
-                    BdoData.NewScalar("isSslEnabled", data.isSslEnabled as bool?));
-
-            return config;
+            _testData = BdoConnectorFaker.NewData();
         }
 
         [Test, Order(1)]
         public void CreateConnectorTest_FromMetaSet()
         {
-            IBdoMetaObject meta = CreateMetaConnector(_testData);
+            IBdoMetaObject meta = BdoConnectorFaker.NewMetaObject(_testData);
             var connector = SystemData.Scope.CreateConnector<ConnectorFake>(meta);
 
             BdoConnectorFaker.AssertFake(connector, _testData);
@@ -46,7 +29,7 @@ namespace BindOpen.Kernel.Scoping.Connectors
         [Test, Order(2)]
         public void CreateConnectorTest_FromConfig()
         {
-            IBdoMetaObject meta = CreateMetaConnector(_testData);
+            IBdoMetaObject meta = BdoConnectorFaker.NewMetaObject(_testData);
             var connector = SystemData.Scope.CreateConnector(meta) as ConnectorFake;
 
             BdoConnectorFaker.AssertFake(connector, _testData);
@@ -67,6 +50,30 @@ namespace BindOpen.Kernel.Scoping.Connectors
             connector = SystemData.Scope.CreateConnector(meta) as ConnectorFake;
 
             BdoConnectorFaker.AssertFake(connector, _testData);
+        }
+
+        [Test, Order(4)]
+        public void CreateConnectorTest_Pull_Push()
+        {
+            var connector = new ConnectorFake
+            {
+                ConnectionString = _testData.connecString,
+                Host = _testData.host,
+                IsSslEnabled = _testData.isSslEnabled,
+                Port = BdoData.NewScalar<int?>(_testData.port as int?)
+            };
+
+            var meta = connector.ToMeta(SystemData.Scope);
+            connector = SystemData.Scope.CreateConnector(meta) as ConnectorFake;
+
+            connector.UsingConnection((conn, log) =>
+            {
+                var paramSet = BdoData.NewSet(
+                    BdoData.NewObject(nameof(BdoSpec.GroupId)));
+                var entities = conn.Pull(paramSet);
+
+                conn.Push(entities?.ToArray());
+            });
         }
     }
 }

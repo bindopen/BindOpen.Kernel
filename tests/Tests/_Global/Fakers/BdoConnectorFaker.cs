@@ -1,4 +1,7 @@
-﻿using Bogus;
+﻿using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Scoping;
+using Bogus;
 using NUnit.Framework;
 using System.Dynamic;
 
@@ -9,7 +12,7 @@ namespace BindOpen.Kernel.Tests
         public static readonly string XmlFilePath = SystemData.WorkingFolder + "Connector.xml";
         public static readonly string JsonFilePath = SystemData.WorkingFolder + "Connector.json";
 
-        public static dynamic Fake()
+        public static dynamic NewData()
         {
             var f = new Faker();
             dynamic b = new ExpandoObject();
@@ -18,6 +21,26 @@ namespace BindOpen.Kernel.Tests
             b.port = f.Random.Int(800);
             b.isSslEnabled = f.Random.Bool();
             return b;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="data"></param>
+        /// <returns></returns>
+        public static IBdoMetaObject NewMetaObject(dynamic data = null)
+        {
+            data ??= NewData();
+
+            var config =
+                BdoData.NewObject()
+                .WithDataType(BdoExtensionKinds.Connector, "bindopen.kernel.tests$testConnector")
+                .With(
+                    BdoData.NewScalar("host", data.host as string),
+                    BdoData.NewScalar("port", data.port as int?),
+                    BdoData.NewScalar("isSslEnabled", data.isSslEnabled as bool?));
+
+            return config;
         }
 
         public static void AssertFake(ConnectorFake connector, dynamic reference)

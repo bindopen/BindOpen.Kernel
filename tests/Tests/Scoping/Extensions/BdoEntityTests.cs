@@ -13,32 +13,13 @@ namespace BindOpen.Kernel.Scoping.Entities
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            _testData = BdoEntityFaker.Fake();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="data"></param>
-        /// <returns></returns>
-        public static IBdoMetaObject CreateMetaObject(dynamic data)
-        {
-            var meta =
-                BdoData.NewObject()
-                .WithDataType(BdoExtensionKinds.Entity, "bindopen.kernel.tests$testEntity")
-                .With(
-                    BdoData.NewScalar("boolValue", data.boolValue as bool?),
-                    BdoData.NewScalar("enumValue", data.enumValue as ActionPriorities?),
-                    BdoData.NewScalar("intValue", data.intValue as int?),
-                    BdoData.NewScalar("stringValue", data.stringValue as string));
-
-            return meta;
+            _testData = BdoEntityFaker.NewData();
         }
 
         [Test, Order(1)]
         public void CreateEntityTest_FromMetaSet()
         {
-            IBdoMetaObject meta = CreateMetaObject(_testData);
+            IBdoMetaObject meta = BdoEntityFaker.NewMetaObject(_testData);
             var entity = SystemData.Scope.CreateEntity<EntityFake>(meta);
 
             BdoEntityFaker.AssertFake(entity, _testData);
@@ -47,7 +28,7 @@ namespace BindOpen.Kernel.Scoping.Entities
         [Test, Order(2)]
         public void CreateEntityTest_FromConfig()
         {
-            IBdoMetaObject meta = CreateMetaObject(_testData);
+            IBdoMetaObject meta = BdoEntityFaker.NewMetaObject(_testData);
             var entity = SystemData.Scope.CreateEntity(meta) as EntityFake;
 
             BdoEntityFaker.AssertFake(entity, _testData);

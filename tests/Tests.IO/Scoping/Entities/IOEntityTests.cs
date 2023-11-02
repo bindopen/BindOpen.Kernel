@@ -16,7 +16,7 @@ namespace BindOpen.Kernel.Scoping.Entities
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            _testData = BdoEntityFaker.Fake();
+            _testData = BdoEntityFaker.NewData();
         }
 
         // Xml
@@ -26,7 +26,7 @@ namespace BindOpen.Kernel.Scoping.Entities
         {
             if (_entity == null)
             {
-                IBdoMetaObject meta = BdoEntityTests.CreateMetaObject(_testData);
+                IBdoMetaObject meta = BdoEntityFaker.NewMetaObject(_testData);
                 _entity = SystemData.Scope.CreateEntity<EntityFake>(meta);
             }
 
@@ -58,7 +58,7 @@ namespace BindOpen.Kernel.Scoping.Entities
         {
             if (_entity == null)
             {
-                IBdoMetaObject meta = BdoEntityTests.CreateMetaObject(_testData);
+                IBdoMetaObject meta = BdoEntityFaker.NewMetaObject(_testData);
                 _entity = SystemData.Scope.CreateEntity<EntityFake>(meta);
             }
 
