@@ -1,5 +1,4 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Conditions;
+﻿using BindOpen.Kernel.Data.Conditions;
 using BindOpen.Kernel.Logging;
 using BindOpen.Kernel.Scoping;
 using System.Linq;
@@ -132,12 +131,14 @@ namespace BindOpen.Kernel.Data.Meta
         /// <param key="level"></param>
         public static T WithRequirement<T>(
             this T spec,
-            params (RequirementLevels Level, IBdoCondition Condition)[] specs)
+            params (RequirementLevels Level, IBdoCondition Condition)[] constraints)
             where T : IBdoSpec
         {
             if (spec != null)
             {
-                foreach (var (Level, Condition) in specs)
+                spec.RemoveOfGroup(BdoMetaConstraintGroupIds.Requirement);
+
+                foreach (var (Level, Condition) in constraints)
                 {
                     spec.AddRequirement(Level, Condition);
                 }
@@ -146,10 +147,6 @@ namespace BindOpen.Kernel.Data.Meta
             return spec;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="level"></param>
         public static T AddRequirement<T>(
             this T spec,
             RequirementLevels level,
@@ -158,8 +155,8 @@ namespace BindOpen.Kernel.Data.Meta
         {
             if (spec != null)
             {
-                spec.RequirementStatement ??= BdoData.NewStatement<RequirementLevels>();
-                spec.RequirementStatement.Add((level, condition));
+                BdoConstraint constraint = (level, condition, BdoMetaConstraintGroupIds.Requirement);
+                spec.Insert(constraint);
             }
 
             return spec;
@@ -207,20 +204,16 @@ namespace BindOpen.Kernel.Data.Meta
             return spec;
         }
 
-        // Item requirement
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="level"></param>
         public static T WithItemRequirement<T>(
             this T spec,
-            params (RequirementLevels Level, IBdoCondition Condition)[] specs)
+            params (RequirementLevels Level, IBdoCondition Condition)[] constraints)
             where T : IBdoSpec
         {
             if (spec != null)
             {
-                foreach (var (Level, Condition) in specs)
+                spec.RemoveOfGroup(BdoMetaConstraintGroupIds.ItemRequirement);
+
+                foreach (var (Level, Condition) in constraints)
                 {
                     spec.AddItemRequirement(Level, Condition);
                 }
@@ -228,11 +221,6 @@ namespace BindOpen.Kernel.Data.Meta
 
             return spec;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="level"></param>
         public static T AddItemRequirement<T>(
             this T spec,
             RequirementLevels level,
@@ -241,8 +229,8 @@ namespace BindOpen.Kernel.Data.Meta
         {
             if (spec != null)
             {
-                spec.ItemRequirementStatement ??= BdoData.NewStatement<RequirementLevels>();
-                spec.ItemRequirementStatement.Add((level, condition));
+                BdoConstraint constraint = (level, condition, BdoMetaConstraintGroupIds.ItemRequirement);
+                spec.Insert(constraint);
             }
 
             return spec;
@@ -286,36 +274,6 @@ namespace BindOpen.Kernel.Data.Meta
             where T : IBdoSpec
         {
             spec?.AddItemRequirement(RequirementLevels.Forbidden, condition);
-
-            return spec;
-        }
-
-        // Constraint
-
-        public static T WithConstraints<T>(
-            this T spec,
-            params (string, IBdoCondition)[] constraints)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.ConstraintStatement = BdoData.NewStatement(constraints);
-            }
-
-            return spec;
-        }
-
-        public static T AddConstraint<T>(
-            this T spec,
-            string resultCode,
-            IBdoCondition condition = null)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.ConstraintStatement ??= BdoData.NewStatement<string>();
-                spec.ConstraintStatement.Add((resultCode, condition));
-            }
 
             return spec;
         }

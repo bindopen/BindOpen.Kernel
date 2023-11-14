@@ -27,11 +27,11 @@ namespace BindOpen.Kernel.Scoping.Script
 
             var interpreter = SystemData.Scope.Interpreter;
 
-            var varSet = BdoData.NewSet(
+            var metaSet = BdoData.NewSet(
                 ("MYTABLE", 135)
             );
 
-            var result = interpreter.Evaluate<bool?>(word, varSet);
+            var result = interpreter.Evaluate<bool?>(word, metaSet);
 
             Assert.That(result == true, "Bad script interpretation");
         }

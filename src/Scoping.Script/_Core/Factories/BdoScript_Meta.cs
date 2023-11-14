@@ -27,7 +27,7 @@ namespace BindOpen.Kernel.Scoping.Script
         /// </summary>
         /// <param key="log">The log to populate.</param>
         /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable meta set to use.</param>
+        /// <param key="metaSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         [BdoFunction("value")]
         public static object BdoValue(
@@ -42,7 +42,7 @@ namespace BindOpen.Kernel.Scoping.Script
         /// </summary>
         /// <param key="log">The log to populate.</param>
         /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable meta set to use.</param>
+        /// <param key="metaSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         [BdoFunction("descendant")]
         public static IBdoMetaData BdoDescendant(
@@ -57,7 +57,7 @@ namespace BindOpen.Kernel.Scoping.Script
         /// </summary>
         /// <param key="log">The log to populate.</param>
         /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable meta set to use.</param>
+        /// <param key="metaSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         [BdoFunction("has")]
         public static bool BdoHas(

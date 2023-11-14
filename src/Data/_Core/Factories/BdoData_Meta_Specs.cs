@@ -116,7 +116,11 @@ namespace BindOpen.Kernel.Data
                 }
                 else if (type.IsEnum)
                 {
-                    spec.ConstraintStatement ??= NewStatement<string>();
+                    spec.With(NewConstraint(
+                        nameof(RequirementLevels.Required),
+                        BdoData.NewCondition("$eq($item, true)"),
+                        nameof(BdoMetaConstraintGroupIds.ItemMustBeInList),
+                        BdoMetaConstraintResultCodes.BadItem));
                     //spec.ConstraintStatement.Add(
                     //    BdoMango.
                     //    null,

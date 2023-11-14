@@ -17,18 +17,6 @@
             return obj;
         }
 
-        public static T WithGroupId<T>(
-            this T obj,
-            string groupId)
-            where T : IBdoExtensionDefinition
-        {
-            if (obj != null)
-            {
-                obj.GroupId = groupId;
-            }
-            return obj;
-        }
-
         public static T WithImageUri<T>(
             this T obj,
             string imageUri)

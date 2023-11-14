@@ -47,7 +47,8 @@ namespace BindOpen.Kernel.Data.Meta
                 var localVarSet = BdoData.NewSet(varSet?.ToArray());
                 localVarSet.Add(BdoData.__VarName_This, meta);
 
-                var level = meta.Spec.RequirementStatement?.GetItem(scope, localVarSet, log) ?? RequirementLevels.None;
+                var level = meta.Spec?.GetValue<RequirementLevels>(
+                    BdoMetaConstraintGroupIds.Requirement, scope, localVarSet, log) ?? RequirementLevels.None;
 
                 return level;
             }
@@ -70,7 +71,8 @@ namespace BindOpen.Kernel.Data.Meta
                 var localVarSet = BdoData.NewSet(varSet?.ToArray());
                 localVarSet.Add(BdoData.__VarName_This, meta);
 
-                var level = meta.Spec.ItemRequirementStatement?.GetItem(scope, localVarSet, log) ?? RequirementLevels.None;
+                var level = meta.Spec?.GetValue<RequirementLevels>(
+                    BdoMetaConstraintGroupIds.ItemRequirement, scope, localVarSet, log) ?? RequirementLevels.None;
 
                 if (level == RequirementLevels.None)
                 {

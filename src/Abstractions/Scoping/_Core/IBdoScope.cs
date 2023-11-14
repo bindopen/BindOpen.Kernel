@@ -38,7 +38,7 @@ namespace BindOpen.Kernel.Scoping
         IBdoScriptInterpreter Interpreter { get; }
 
         IBdoScriptDomain NewScriptDomain(
-            IBdoMetaSet varSet,
+            IBdoMetaSet metaSet,
             IBdoScriptword scriptword = null,
             IBdoLog log = null);
 

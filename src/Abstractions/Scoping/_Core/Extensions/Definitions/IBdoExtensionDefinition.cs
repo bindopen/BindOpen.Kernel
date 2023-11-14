@@ -5,7 +5,7 @@ namespace BindOpen.Kernel.Scoping
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoExtensionDefinition : IBdoDefinition
+    public interface IBdoExtensionDefinition : IBdoDefinition, IGrouped
     {
         /// <summary>
         /// 
@@ -16,11 +16,6 @@ namespace BindOpen.Kernel.Scoping
         /// The unique ID of this instance.
         /// </summary> 
         string UniqueName { get; }
-
-        /// <summary>
-        /// Name of the group of this instance.
-        /// </summary>
-        string GroupId { get; set; }
 
         /// <summary>
         /// 

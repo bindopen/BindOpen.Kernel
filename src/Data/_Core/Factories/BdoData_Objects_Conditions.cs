@@ -1,6 +1,4 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Conditions;
-using System.Linq;
+﻿using BindOpen.Kernel.Data.Conditions;
 
 namespace BindOpen.Kernel.Data
 {
@@ -27,20 +25,5 @@ namespace BindOpen.Kernel.Data
         public static BdoExpressionCondition NewCondition(IBdoExpression exp) => new(exp);
 
         public static BdoExpressionCondition NewCondition(string script) => new(NewExp(script));
-
-        /// <summary>
-        /// Creates the exp.
-        /// </summary>
-        /// <param key="kind">The kind of exp to consider.</param>
-        /// <param key="text">The text to consider.</param>
-        /// <returns>Returns the created exp.</returns>
-        public static TBdoConditionalStatement<T> NewStatement<T>(
-            params (T, IBdoCondition)[] items)
-        {
-            var statement = new TBdoConditionalStatement<T>();
-            statement.AddRange(items?.ToList());
-
-            return statement;
-        }
     }
 }

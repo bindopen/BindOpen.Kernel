@@ -22,7 +22,7 @@ namespace BindOpen.Kernel.Data
         /// </summary>
         /// <param key="key"></param>
         /// <returns></returns>
-        IList<T> Items { get; }
+        List<T> Items { get; }
 
         /// <summary>
         /// 

@@ -19,9 +19,9 @@ namespace BindOpen.Kernel.Scoping.Script
 
             var meta = BdoData.NewMeta(123).WithParent(BdoData.NewMeta(125));
 
-            var varSet = BdoData.NewSet((BdoData.__VarName_This, meta));
+            var metaSet = BdoData.NewSet((BdoData.__VarName_This, meta));
 
-            var result = interpreter.Evaluate<int?>(exp, varSet);
+            var result = interpreter.Evaluate<int?>(exp, metaSet);
 
             Assert.That(result == 125, "Bad script interpretation");
         }
@@ -36,9 +36,9 @@ namespace BindOpen.Kernel.Scoping.Script
             var set = BdoData.NewNode(("toto", 123), ("titi", 125));
             var meta = set[0];
 
-            var varSet = BdoData.NewSet((BdoData.__VarName_This, meta));
+            var metaSet = BdoData.NewSet((BdoData.__VarName_This, meta));
 
-            var result = interpreter.Evaluate<int?>(exp, varSet);
+            var result = interpreter.Evaluate<int?>(exp, metaSet);
 
             Assert.That(result == 125, "Bad script interpretation");
         }
@@ -53,9 +53,9 @@ namespace BindOpen.Kernel.Scoping.Script
             var set = BdoData.NewNode(("toto", 123), ("titi", 125));
             var meta = set[0];
 
-            var varSet = BdoData.NewSet((BdoData.__VarName_This, meta));
+            var metaSet = BdoData.NewSet((BdoData.__VarName_This, meta));
 
-            var result = interpreter.Evaluate<int?>(exp, varSet);
+            var result = interpreter.Evaluate<int?>(exp, metaSet);
 
             Assert.That(result == 125, "Bad script interpretation");
         }

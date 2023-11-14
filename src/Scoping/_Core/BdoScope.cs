@@ -103,11 +103,11 @@ namespace BindOpen.Kernel.Scoping
         }
 
         public IBdoScriptDomain NewScriptDomain(
-            IBdoMetaSet varSet,
+            IBdoMetaSet metaSet,
             IBdoScriptword scriptword = null,
             IBdoLog log = null)
         {
-            return new BdoScriptDomain(this, varSet, scriptword, log);
+            return new BdoScriptDomain(this, metaSet, scriptword, log);
         }
 
         #endregion

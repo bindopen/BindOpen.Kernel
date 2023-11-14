@@ -1,5 +1,6 @@
 ﻿using BindOpen.Kernel.Data.Conditions;
 using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Scoping;
 using System.Collections.Generic;
 
 namespace BindOpen.Kernel.Data.Meta
@@ -7,9 +8,9 @@ namespace BindOpen.Kernel.Data.Meta
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    public partial class BdoSpec : BdoObject, IBdoSpec
+    public partial class BdoSpec : TBdoSet<IBdoConstraint>, IBdoSpec
     {
-        public virtual void Update(
+        public override void Update(
             object item,
             string[] areas = null,
             UpdateModes[] updateModes = null,
@@ -17,13 +18,12 @@ namespace BindOpen.Kernel.Data.Meta
         {
             if (item is IBdoSpec spec)
             {
+                ((TBdoSet<IBdoConstraint>)item).Update(item, areas, updateModes, log);
+
                 AccessibilityLevel = spec?.AccessibilityLevel ?? AccessibilityLevels.None;
                 Aliases = spec?.Aliases == null ? null : new List<string>(spec?.Aliases);
                 AvailableDataModes = spec?.AvailableDataModes == null ? null : new List<DataMode>(spec?.AvailableDataModes);
                 Condition = spec?.Condition?.Clone<IBdoCondition>();
-                Reference = spec?.Reference?.Clone<IBdoReference>();
-                ItemRequirementStatement = spec?.ItemRequirementStatement?.Clone<ITBdoConditionalStatement<RequirementLevels>>();
-                ItemSpecLevels = spec?.ItemSpecLevels == null ? null : new List<SpecificationLevels>(spec?.ItemSpecLevels);
                 DataType = spec?.DataType ?? new BdoDataType();
                 DefaultData = spec?.DefaultData;
                 Description = spec?.Description?.Clone<TBdoDictionary<string>>();
@@ -36,8 +36,7 @@ namespace BindOpen.Kernel.Data.Meta
                 Label = spec?.Label;
                 MinDataItemNumber = spec?.MinDataItemNumber ?? 0;
                 Name = spec?.Name;
-                RequirementStatement = spec?.RequirementStatement?.Clone<ITBdoConditionalStatement<RequirementLevels>>();
-                SpecLevels = spec?.SpecLevels == null ? null : new List<SpecificationLevels>(spec?.SpecLevels);
+                Reference = spec?.Reference?.Clone<IBdoReference>();
                 Title = spec?.Title?.Clone<TBdoDictionary<string>>();
             }
         }

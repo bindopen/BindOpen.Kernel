@@ -106,7 +106,7 @@ namespace BindOpen.Kernel.Data.Meta
         /// <summary>
         /// Returns the number of items.
         /// </summary>
-        public IList<IBdoMetaData> Items
+        public List<IBdoMetaData> Items
             => _propertySet?.Items;
 
         /// <summary>

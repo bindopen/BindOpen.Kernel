@@ -10,7 +10,7 @@ namespace BindOpen.Kernel.Data.Meta
     public interface IBdoMetaData :
         IBdoObjectNotMetable, IBdoReferenced,
         INamed, IReferenced, IIndexed, IBdoDataTyped,
-        ITChild<IBdoMetaData>,
+        ITChild<IBdoMetaData>, IBdoSpecified,
         IUpdatable
     {
         /// <summary>
@@ -21,13 +21,8 @@ namespace BindOpen.Kernel.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        IBdoSpec Spec { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param key="scope"></param>
-        /// <param key="varSet"></param>
+        /// <param key="metaSet"></param>
         /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         object GetData(
@@ -39,7 +34,7 @@ namespace BindOpen.Kernel.Data.Meta
         /// 
         /// </summary>
         /// <param key="scope"></param>
-        /// <param key="varSet"></param>
+        /// <param key="metaSet"></param>
         /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         T GetData<T>(
@@ -51,7 +46,7 @@ namespace BindOpen.Kernel.Data.Meta
         /// 
         /// </summary>
         /// <param key="scope"></param>
-        /// <param key="varSet"></param>
+        /// <param key="metaSet"></param>
         /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         IList<object> GetDataList(
@@ -63,7 +58,7 @@ namespace BindOpen.Kernel.Data.Meta
         /// 
         /// </summary>
         /// <param key="scope"></param>
-        /// <param key="varSet"></param>
+        /// <param key="metaSet"></param>
         /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         IList<T> GetDataList<T>(

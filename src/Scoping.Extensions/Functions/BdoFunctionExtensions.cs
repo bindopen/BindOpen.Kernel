@@ -47,9 +47,9 @@ namespace BindOpen.Kernel.Scoping
             this IBdoScope scope,
             string functionName,
             IBdoMetaNode paramSet = null,
-            IBdoMetaSet varSet = null)
+            IBdoMetaSet metaSet = null)
         {
-            var result = scope?.CallFunction(functionName, paramSet, varSet);
+            var result = scope?.CallFunction(functionName, paramSet, metaSet);
             return result.As<T>();
         }
 

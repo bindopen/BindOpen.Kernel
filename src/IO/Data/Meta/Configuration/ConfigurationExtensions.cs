@@ -15,7 +15,7 @@ namespace BindOpen.Kernel.Data
         /// </summary>
         /// <param key="filePath">The file path to consider.</param>
         /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The set of script variables to consider.</param>
+        /// <param key="metaSet">The set of script variables to consider.</param>
         /// <param key="log">The log to consider.</param>
         /// <param key="xmlSchemaSet">The XML schema set to consider for checking.</param>
         /// <param key="mustFileExist">Indicates whether the file must exist.</param>
