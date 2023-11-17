@@ -14,17 +14,32 @@ namespace BindOpen.Kernel.Data
         /// <param key="kind">The kind of exp to consider.</param>
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the created exp.</returns>
-        public static BdoConstraint NewConstraint(
+        public static BdoConstraint NewConstraintRequirement(
+            string groupId = null,
             object value = null,
             IBdoCondition condition = null,
-            string groupId = null,
             string resultCode = null)
         {
             var constraint = New<BdoConstraint>()
+                .WithMode(BdoConstraintModes.Requirement)
+                .WithGroupId(groupId)
                 .WithValue(value)
-                .WithResultCode(resultCode)
                 .WithCondition(condition)
-                .WithGroupId(groupId);
+                .WithResultCode(resultCode);
+
+            return constraint;
+        }
+
+        public static BdoConstraint NewConstraintRule(
+            string groupId = null,
+            IBdoCondition condition = null,
+            string resultCode = null)
+        {
+            var constraint = New<BdoConstraint>()
+                .WithMode(BdoConstraintModes.Rule)
+                .WithGroupId(groupId)
+                .WithCondition(condition)
+                .WithResultCode(resultCode);
 
             return constraint;
         }

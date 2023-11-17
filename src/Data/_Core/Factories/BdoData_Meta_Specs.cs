@@ -116,17 +116,11 @@ namespace BindOpen.Kernel.Data
                 }
                 else if (type.IsEnum)
                 {
-                    spec.With(NewConstraint(
-                        nameof(RequirementLevels.Required),
-                        BdoData.NewCondition("$eq($item, true)"),
-                        nameof(BdoMetaConstraintGroupIds.ItemMustBeInList),
-                        BdoMetaConstraintResultCodes.BadItem));
-                    //spec.ConstraintStatement.Add(
-                    //    BdoMango.
-                    //    null,
-                    //    KnownRoutineKinds.ItemMustBeInList,
-                    //    BdoElement.CreateSet(
-                    //        BdoElement.CreateScalar(DataValueTypes.Text, type.GetEnumFields())));
+                    //spec.Add(
+                    //    NewConstraintRule(
+                    //        nameof(BdoMetaConstraintGroupIds.ItemMustBeInList),
+                    //        NewCondition("$eq($item, true)"),
+                    //        BdoMetaConstraintResultCodes.BadItem));
                 }
             }
             return spec;

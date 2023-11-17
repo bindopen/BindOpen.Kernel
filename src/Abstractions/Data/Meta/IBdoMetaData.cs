@@ -66,6 +66,12 @@ namespace BindOpen.Kernel.Data.Meta
             IBdoMetaSet varSet = null,
             IBdoLog log = null);
 
+        object GetConstraintValue(
+            string groupId,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null);
+
         /// <summary>
         /// 
         /// </summary>

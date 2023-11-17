@@ -15,6 +15,11 @@ namespace BindOpen.Kernel.Data.Meta
         #region Properties
 
         /// <summary>
+        /// The mode.
+        /// </summary>
+        public BdoConstraintModes Mode { get; set; }
+
+        /// <summary>
         /// The group identifier.
         /// </summary>
         public string GroupId { get; set; }
@@ -37,16 +42,9 @@ namespace BindOpen.Kernel.Data.Meta
 
         #region Converters
 
-        public static implicit operator BdoConstraint((object Value, IBdoCondition Condition) item)
+        public static implicit operator BdoConstraint((string GroupId, object Value, IBdoCondition Condition) item)
         {
-            var constraint = BdoData.NewConstraint(item.Value, item.Condition);
-
-            return constraint;
-        }
-
-        public static implicit operator BdoConstraint((object Value, IBdoCondition Condition, string GroupId) item)
-        {
-            var constraint = BdoData.NewConstraint(item.Value, item.Condition, item.GroupId);
+            var constraint = BdoData.NewConstraintRequirement(item.GroupId, item.Value, item.Condition);
 
             return constraint;
         }

@@ -30,5 +30,18 @@
 
             return obj;
         }
+
+        public static T WithMode<T>(
+            this T obj,
+            BdoConstraintModes mode)
+            where T : IBdoConstraint
+        {
+            if (obj != null)
+            {
+                obj.Mode = mode;
+            }
+
+            return obj;
+        }
     }
 }

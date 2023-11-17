@@ -2,6 +2,7 @@
 using BindOpen.Kernel.Logging;
 using BindOpen.Kernel.Scoping;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.Kernel.Data.Meta
 {
@@ -18,7 +19,7 @@ namespace BindOpen.Kernel.Data.Meta
         {
             if (item is IBdoSpec spec)
             {
-                ((TBdoSet<IBdoConstraint>)item).Update(item, areas, updateModes, log);
+                this.With(spec?.Items?.Select(q => q.Clone<IBdoConstraint>()).ToArray());
 
                 AccessibilityLevel = spec?.AccessibilityLevel ?? AccessibilityLevels.None;
                 Aliases = spec?.Aliases == null ? null : new List<string>(spec?.Aliases);

@@ -155,7 +155,7 @@ namespace BindOpen.Kernel.Data.Meta
         {
             if (spec != null)
             {
-                BdoConstraint constraint = (level, condition, BdoMetaConstraintGroupIds.Requirement);
+                BdoConstraint constraint = (BdoMetaConstraintGroupIds.Requirement, level, condition);
                 spec.Insert(constraint);
             }
 
@@ -229,7 +229,7 @@ namespace BindOpen.Kernel.Data.Meta
         {
             if (spec != null)
             {
-                BdoConstraint constraint = (level, condition, BdoMetaConstraintGroupIds.ItemRequirement);
+                BdoConstraint constraint = (BdoMetaConstraintGroupIds.ItemRequirement, level, condition);
                 spec.Insert(constraint);
             }
 

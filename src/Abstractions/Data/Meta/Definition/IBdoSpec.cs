@@ -77,10 +77,10 @@ namespace BindOpen.Kernel.Data.Meta
         /// <returns></returns>
         bool IsCompatibleWithData(object item);
 
-        IBdoConstraint Get(string groupId, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null);
+        IBdoConstraint Get(string groupId, BdoConstraintModes mode = BdoConstraintModes.Requirement, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null);
 
-        object GetValue(string groupId, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null);
+        object GetValue(string groupId, BdoConstraintModes mode = BdoConstraintModes.Requirement, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null);
 
-        T GetValue<T>(string groupId, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null);
+        T GetValue<T>(string groupId, BdoConstraintModes mode = BdoConstraintModes.Requirement, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null);
     }
 }

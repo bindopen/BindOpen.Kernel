@@ -292,13 +292,13 @@ namespace BindOpen.Kernel.Data.Meta
         /// </summary>
         public bool IsValueList => MaxDataItemNumber == null || MaxDataItemNumber > 1;
 
-        public IBdoConstraint Get(string groupId, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
+        public IBdoConstraint Get(string groupId, BdoConstraintModes mode, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
         {
-            var constraints = this.Where(q => q.OfGroup(groupId));
+            var constraints = this.Where(q => q.OfGroup(groupId) && (mode == BdoConstraintModes.Any || q.Mode == mode));
 
             foreach (var constraint in constraints)
             {
-                if (constraint?.Condition != null && scope.Evaluate(constraint.Condition, varSet, log))
+                if (constraint?.Condition != null && scope?.Interpreter?.Evaluate(constraint.Condition, varSet, log) == true)
                 {
                     return constraint;
                 }
@@ -307,16 +307,16 @@ namespace BindOpen.Kernel.Data.Meta
             return constraints.FirstOrDefault(q => q.Condition == null);
         }
 
-        public object GetValue(string groupId, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
+        public object GetValue(string groupId, BdoConstraintModes mode, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
         {
-            var constraint = Get(groupId, scope, varSet, log);
+            var constraint = Get(groupId, mode, scope, varSet, log);
 
             return constraint?.Value;
         }
 
-        public T GetValue<T>(string groupId, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
+        public T GetValue<T>(string groupId, BdoConstraintModes mode, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
         {
-            object obj = GetValue(groupId, scope, varSet, log);
+            object obj = GetValue(groupId, mode, scope, varSet, log);
 
             return obj.As<T>();
         }

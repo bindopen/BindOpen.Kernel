@@ -26,32 +26,18 @@ namespace BindOpen.Kernel.Data.Meta
         /// 
         /// </summary>
         /// <param key="level"></param>
-        public static T WithConstraints<T>(
+        public static T WithConstraintRequirements<T>(
             this T obj,
-            params (RequirementLevels Level, IBdoCondition Condition)[] constraints)
-            where T : IBdoSpecified
-        {
-            obj.WithConstraints(constraints.Select(q=> (BdoConstraint)(q.Level.ToString(), q.Condition, null)).ToArray());
-
-            return obj;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="level"></param>
-        public static T WithConstraints<T>(
-            this T obj,
-            params (RequirementLevels Level, IBdoCondition Condition, string GroupId)[] constraints)
+            params (string GroupId, object Value, IBdoCondition Condition)[] constraints)
             where T : IBdoSpecified
         {
             if (obj != null)
             {
                 obj.Spec = BdoData.NewSpec();
 
-                foreach (var (Level, Condition, GroupId) in constraints)
+                foreach (var (GroupId, Value, Condition) in constraints)
                 {
-                    obj.AddConstraint(Level, Condition, GroupId);
+                    obj.AddConstraintRequirement(GroupId, Value, Condition);
                 }
             }
 
@@ -72,14 +58,14 @@ namespace BindOpen.Kernel.Data.Meta
             return obj;
         }
 
-        public static T AddConstraint<T>(
+        public static T AddConstraintRequirement<T>(
             this T obj,
-            RequirementLevels level,
-            IBdoCondition condition = null,
-            string groupId = null)
+            string groupId,
+            object value,
+            IBdoCondition condition = null)
             where T : IBdoSpecified
         {
-            return obj.AddConstraint((BdoConstraint)(level.ToString(), condition, groupId));
+            return obj.AddConstraint((BdoConstraint)(groupId, value, condition));
         }
     }
 }
