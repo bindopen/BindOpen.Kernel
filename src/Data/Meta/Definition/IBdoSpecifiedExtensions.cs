@@ -28,16 +28,16 @@ namespace BindOpen.Kernel.Data.Meta
         /// <param key="level"></param>
         public static T WithConstraintRequirements<T>(
             this T obj,
-            params (string GroupId, object Value, IBdoCondition Condition)[] constraints)
+            params (string Reference, object Value, IBdoCondition Condition)[] constraints)
             where T : IBdoSpecified
         {
             if (obj != null)
             {
                 obj.Spec = BdoData.NewSpec();
 
-                foreach (var (GroupId, Value, Condition) in constraints)
+                foreach (var (Reference, Value, Condition) in constraints)
                 {
-                    obj.AddConstraintRequirement(GroupId, Value, Condition);
+                    obj.AddConstraintRequirement(Reference, Value, Condition);
                 }
             }
 
@@ -60,12 +60,12 @@ namespace BindOpen.Kernel.Data.Meta
 
         public static T AddConstraintRequirement<T>(
             this T obj,
-            string groupId,
+            string reference,
             object value,
             IBdoCondition condition = null)
             where T : IBdoSpecified
         {
-            return obj.AddConstraint((BdoConstraint)(groupId, value, condition));
+            return obj.AddConstraint((BdoConstraint)(reference, value, condition));
         }
     }
 }

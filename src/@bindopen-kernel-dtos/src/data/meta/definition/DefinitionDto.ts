@@ -9,8 +9,6 @@ export interface DefinitionDto extends SpecSetDto {
     description: DictionaryDto;
     title: DictionaryDto;
     children: any[];
-    childrenSpecficied: boolean;
     usedItemIds: any[];
-    usedItemIdsSpecified: boolean;
     shouldUsedItemIds: boolean;
 }

@@ -23,7 +23,11 @@ namespace BindOpen.Kernel.Data.Meta
                 Condition = poco.Condition.ToDto(),
                 GroupId = poco.GroupId,
                 Id = poco.Id,
+                Reference = poco.Reference.ToDto(),
                 ResultCode = poco.ResultCode,
+                ResultDescription = poco.ResultDescription,
+                ResultEventKind = poco.ResultEventKind,
+                ResultTitle = poco.ResultTitle,
                 Value = BdoData.NewScalar(poco.Value).ToDto()
             };
 
@@ -44,7 +48,11 @@ namespace BindOpen.Kernel.Data.Meta
                 Condition = dto.Condition.ToPoco(),
                 GroupId = dto.GroupId,
                 Id = dto.Id,
+                Reference = dto.Reference.ToPoco(),
                 ResultCode = dto.ResultCode,
+                ResultDescription = dto.ResultDescription,
+                ResultEventKind = dto.ResultEventKind,
+                ResultTitle = dto.ResultTitle,
                 Value = dto.Value
             };
 

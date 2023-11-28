@@ -13,7 +13,7 @@ namespace BindOpen.Kernel.Scoping.Script
         public static TBdoScriptword<string> _Name(this TBdoScriptword<IBdoSpec> spec)
             => spec.Var<string>("name");
 
-        public static TBdoScriptword<bool> _Value(this TBdoScriptword<IBdoSpec> spec)
+        public static TBdoScriptword<bool> Value(this TBdoScriptword<IBdoSpec> spec)
             => spec.Func<bool>("value");
 
         public static TBdoScriptword<bool> _Has(this TBdoScriptword<IBdoSpec> spec, string name)

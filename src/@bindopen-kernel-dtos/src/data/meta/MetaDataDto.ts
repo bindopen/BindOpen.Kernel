@@ -8,7 +8,6 @@ export interface MetaDataDto {
     id: string;
     name: string;
     index?: number;
-    indexSpecified: boolean;
     reference: ReferenceDto;
     spec: SpecDto;
     valueType: any;

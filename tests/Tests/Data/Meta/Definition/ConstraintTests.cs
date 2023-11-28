@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace BindOpen.Kernel.Data.Meta
 {
     [TestFixture, Order(100)]
-    public class ConditionalStatementTests
+    public class ConstraintTests
     {
         private IBdoSpec _spec = null;
 
@@ -14,11 +14,11 @@ namespace BindOpen.Kernel.Data.Meta
         public void OneTimeSetUp()
         {
             _spec = BdoData.NewSpec<BdoSpec>()
-                .WithCondition((BdoExpression)BdoScript._Eq(BdoScript._This<IBdoMetaData>()._Descendant("title")._Value(), "myTitle"))
-                .AsRequired((BdoCondition)BdoScript._This<IBdoMetaData>()._Has("title"))
+                .WithCondition((BdoExpression)BdoScript.Eq(BdoScript.This<IBdoMetaData>()._Descendant("title").Value(), "myTitle"))
+                .AsRequired((BdoCondition)BdoScript.This<IBdoMetaData>()._Has("title"))
                 .AsForbidden()
                 .WithItemRequirement((RequirementLevels.Required,
-                    (BdoCondition)BdoScript._This<IBdoMetaData>()._Descendant("auto")._Value()));
+                    (BdoCondition)BdoScript.This<IBdoMetaData>()._Descendant("auto").Value()));
         }
 
         [Test, Order(1)]
@@ -71,8 +71,7 @@ namespace BindOpen.Kernel.Data.Meta
 
             var meta2 = BdoData.NewNode("meta-test")
                 .WithSpec(_spec)
-                .With(
-                    BdoData.NewMeta("auto", true));
+                .With(("auto", true));
 
             var requirementLevel2 = meta2.GetRequirement(SystemData.Scope);
             Assert.That(requirementLevel2 == RequirementLevels.Forbidden, "Statement - Error");
@@ -105,7 +104,21 @@ namespace BindOpen.Kernel.Data.Meta
 
             var requirementLevel2 = meta2.GetItemRequirement(SystemData.Scope);
             Assert.That(requirementLevel2 == RequirementLevels.Optional, "Statement - Error");
+        }
 
+        [Test, Order(4)]
+        public void CheckConstraintsTest()
+        {
+            var validator = SystemData.Scope.CreateValidator();
+
+            var meta1 = BdoData.NewNode("meta-test")
+                .WithSpec(_spec)
+                .With(
+                    BdoData.NewMeta("auto", true),
+                    BdoData.NewMeta("title", "This is my title"));
+
+            var ok = validator.Check(meta1);
+            Assert.That(ok, "Check constraints - Error");
         }
     }
 }

@@ -136,7 +136,7 @@ namespace BindOpen.Kernel.Data.Meta
         {
             if (spec != null)
             {
-                spec.RemoveOfGroup(BdoMetaConstraintGroupIds.Requirement);
+                spec.RemoveOfReference(BdoMetaConstraintGroupIds.Requirement);
 
                 foreach (var (Level, Condition) in constraints)
                 {
@@ -211,7 +211,7 @@ namespace BindOpen.Kernel.Data.Meta
         {
             if (spec != null)
             {
-                spec.RemoveOfGroup(BdoMetaConstraintGroupIds.ItemRequirement);
+                spec.RemoveOfReference(BdoMetaConstraintGroupIds.ItemRequirement);
 
                 foreach (var (Level, Condition) in constraints)
                 {

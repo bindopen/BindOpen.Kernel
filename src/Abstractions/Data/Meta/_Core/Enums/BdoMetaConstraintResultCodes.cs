@@ -18,6 +18,8 @@
         /// <summary>
         /// Item must be in list.
         /// </summary>
-        public static readonly string BadItem = "ItemMustBeInList";
+        public static readonly string BadValueType = "ItemMustBeInList";
+
+        public static readonly string ItemMustBeInList = "ItemMustBeInList";        
     }
 }

@@ -1,5 +1,5 @@
 ﻿using BindOpen.Kernel.Data.Conditions;
-using System.Data;
+using BindOpen.Kernel.Logging;
 
 namespace BindOpen.Kernel.Data.Meta
 {
@@ -25,9 +25,20 @@ namespace BindOpen.Kernel.Data.Meta
         public string GroupId { get; set; }
 
         /// <summary>
+        /// The group identifier.
+        /// </summary>
+        public IBdoReference Reference { get; set; }
+
+        /// <summary>
         /// The result code.
         /// </summary>
         public string ResultCode { get; set; }
+
+        public EventKinds ResultEventKind { get; set; }
+
+        public string ResultTitle { get; set; }
+
+        public string ResultDescription { get; set; }
 
         /// <summary>
         /// The value.
@@ -42,9 +53,9 @@ namespace BindOpen.Kernel.Data.Meta
 
         #region Converters
 
-        public static implicit operator BdoConstraint((string GroupId, object Value, IBdoCondition Condition) item)
+        public static implicit operator BdoConstraint((string Reference, object Value, IBdoCondition Condition) item)
         {
-            var constraint = BdoData.NewConstraintRequirement(item.GroupId, item.Value, item.Condition);
+            var constraint = BdoData.NewConstraintRequirement(item.Reference, item.Value, item.Condition);
 
             return constraint;
         }

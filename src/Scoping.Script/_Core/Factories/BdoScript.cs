@@ -230,7 +230,7 @@ namespace BindOpen.Kernel.Scoping.Script
 
         // This
 
-        public static TBdoScriptword<T> _This<T>()
+        public static TBdoScriptword<T> This<T>()
             => Var<T>(BdoData.__VarName_This);
 
         public static TBdoScriptword<T> _Parent<T>()

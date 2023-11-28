@@ -29,7 +29,7 @@ namespace BindOpen.Kernel.Scoping.Script
         [Test, Order(201)]
         public void InterpreteWordThisTest()
         {
-            var exp = BdoData.NewExp(BdoScript._This<IBdoMetaData>()._Parent()._Descendant("titi")._Value());
+            var exp = BdoData.NewExp(BdoScript.This<IBdoMetaData>()._Parent()._Descendant("titi").Value());
 
             var interpreter = SystemData.Scope.Interpreter;
 
@@ -46,7 +46,7 @@ namespace BindOpen.Kernel.Scoping.Script
         [Test, Order(201)]
         public void InterpreteWordParentTest()
         {
-            var exp = BdoData.NewExp(BdoScript._Parent<IBdoMetaData>()._Descendant("titi")._Value());
+            var exp = BdoData.NewExp(BdoScript._Parent<IBdoMetaData>()._Descendant("titi").Value());
 
             var interpreter = SystemData.Scope.Interpreter;
 

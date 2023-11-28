@@ -1,4 +1,5 @@
 ﻿using BindOpen.Kernel.Data.Conditions;
+using BindOpen.Kernel.Logging;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -25,6 +26,13 @@ namespace BindOpen.Kernel.Data.Meta
         public string Id { get; set; }
 
         /// <summary>
+        /// The group identifier of this instance.
+        /// </summary>
+        [JsonPropertyName("groupId")]
+        [XmlElement("groupId")]
+        public string GroupId { get; set; }
+
+        /// <summary>
         /// Values of this instance.
         /// </summary>
         [JsonPropertyName("value")]
@@ -32,11 +40,11 @@ namespace BindOpen.Kernel.Data.Meta
         public MetaScalarDto Value { get; set; }
 
         /// <summary>
-        /// The group identifier of this instance.
+        /// The reference of this instance.
         /// </summary>
-        [JsonPropertyName("groupId")]
-        [XmlElement("groupId")]
-        public string GroupId { get; set; }
+        [JsonPropertyName("reference")]
+        [XmlElement("reference")]
+        public ReferenceDto Reference { get; set; }
 
         /// <summary>
         /// Default items of this instance.
@@ -53,6 +61,18 @@ namespace BindOpen.Kernel.Data.Meta
         [JsonPropertyName("resultCode")]
         [XmlElement("resultCode")]
         public string ResultCode { get; set; }
+
+        [JsonPropertyName("resultEventKind")]
+        [XmlElement("resultEventKind")]
+        public EventKinds ResultEventKind { get; set; }
+
+        [JsonPropertyName("resultTitle")]
+        [XmlElement("resultTitle")]
+        public string ResultTitle { get; set; }
+
+        [JsonPropertyName("resultDescription")]
+        [XmlElement("resultDescription")]
+        public string ResultDescription { get; set; }
 
         #endregion
 

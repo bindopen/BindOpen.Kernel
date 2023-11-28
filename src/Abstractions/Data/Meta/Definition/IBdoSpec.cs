@@ -77,10 +77,12 @@ namespace BindOpen.Kernel.Data.Meta
         /// <returns></returns>
         bool IsCompatibleWithData(object item);
 
-        IBdoConstraint Get(string groupId, BdoConstraintModes mode = BdoConstraintModes.Requirement, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null);
+        IBdoConstraint Get(string reference, BdoConstraintModes mode = BdoConstraintModes.Requirement, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null);
 
-        object GetValue(string groupId, BdoConstraintModes mode = BdoConstraintModes.Requirement, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null);
+        object GetValue(string reference, BdoConstraintModes mode = BdoConstraintModes.Requirement, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null);
 
-        T GetValue<T>(string groupId, BdoConstraintModes mode = BdoConstraintModes.Requirement, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null);
+        T GetValue<T>(string reference, BdoConstraintModes mode = BdoConstraintModes.Requirement, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null);
+
+        void RemoveOfReference(string reference, bool isRecursive = false);
     }
 }

@@ -210,6 +210,19 @@ namespace BindOpen.Kernel.Data.Meta
 
         #region IGroup
 
+        public void RemoveOfReference(string reference, bool isRecursive = false)
+        {
+            this.RemoveAll(q => q.OfReference(reference));
+
+            if (isRecursive && _children?.Any() == true)
+            {
+                foreach (var child in _children)
+                {
+                    child.RemoveOfReference(reference, true);
+                }
+            }
+        }
+
         public void RemoveOfGroup(string groupId, bool isRecursive = false)
         {
             this.RemoveAll(q => q.OfGroup(groupId));
@@ -292,9 +305,9 @@ namespace BindOpen.Kernel.Data.Meta
         /// </summary>
         public bool IsValueList => MaxDataItemNumber == null || MaxDataItemNumber > 1;
 
-        public IBdoConstraint Get(string groupId, BdoConstraintModes mode, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
+        public IBdoConstraint Get(string reference, BdoConstraintModes mode, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
         {
-            var constraints = this.Where(q => q.OfGroup(groupId) && (mode == BdoConstraintModes.Any || q.Mode == mode));
+            var constraints = this.Where(q => q.OfReference(reference) && (mode == BdoConstraintModes.Any || q.Mode == mode));
 
             foreach (var constraint in constraints)
             {
@@ -307,16 +320,16 @@ namespace BindOpen.Kernel.Data.Meta
             return constraints.FirstOrDefault(q => q.Condition == null);
         }
 
-        public object GetValue(string groupId, BdoConstraintModes mode, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
+        public object GetValue(string reference, BdoConstraintModes mode, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
         {
-            var constraint = Get(groupId, mode, scope, varSet, log);
+            var constraint = Get(reference, mode, scope, varSet, log);
 
             return constraint?.Value;
         }
 
-        public T GetValue<T>(string groupId, BdoConstraintModes mode, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
+        public T GetValue<T>(string reference, BdoConstraintModes mode, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
         {
-            object obj = GetValue(groupId, mode, scope, varSet, log);
+            object obj = GetValue(reference, mode, scope, varSet, log);
 
             return obj.As<T>();
         }

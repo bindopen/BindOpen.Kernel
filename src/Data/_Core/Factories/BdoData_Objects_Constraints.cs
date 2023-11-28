@@ -15,14 +15,14 @@ namespace BindOpen.Kernel.Data
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the created exp.</returns>
         public static BdoConstraint NewConstraintRequirement(
-            string groupId = null,
+            string reference = null,
             object value = null,
             IBdoCondition condition = null,
             string resultCode = null)
         {
             var constraint = New<BdoConstraint>()
                 .WithMode(BdoConstraintModes.Requirement)
-                .WithGroupId(groupId)
+                .WithReference(reference)
                 .WithValue(value)
                 .WithCondition(condition)
                 .WithResultCode(resultCode);
@@ -31,13 +31,13 @@ namespace BindOpen.Kernel.Data
         }
 
         public static BdoConstraint NewConstraintRule(
-            string groupId = null,
+            IBdoReference reference = null,
             IBdoCondition condition = null,
             string resultCode = null)
         {
             var constraint = New<BdoConstraint>()
                 .WithMode(BdoConstraintModes.Rule)
-                .WithGroupId(groupId)
+                .WithReference(reference)
                 .WithCondition(condition)
                 .WithResultCode(resultCode);
 

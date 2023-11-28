@@ -298,7 +298,7 @@ namespace BindOpen.Kernel.Data.Meta
         /// The item requirement level of this instance.
         /// </summary>
         public object GetConstraintValue(
-            string groupId,
+            string reference,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
@@ -308,7 +308,7 @@ namespace BindOpen.Kernel.Data.Meta
                 var localVarSet = BdoData.NewSet(varSet?.ToArray());
                 localVarSet.Add(BdoData.__VarName_This, this);
 
-                var level = Spec?.GetValue(groupId, BdoConstraintModes.Requirement, scope, localVarSet, log);
+                var level = Spec?.GetValue(reference, BdoConstraintModes.Requirement, scope, localVarSet, log);
 
                 return level;
             }
