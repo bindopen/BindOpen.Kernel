@@ -1,4 +1,6 @@
 ﻿using BindOpen.Kernel.Data.Conditions;
+using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Scoping;
 using System.Collections.Generic;
 
 namespace BindOpen.Kernel.Data.Meta
@@ -7,22 +9,13 @@ namespace BindOpen.Kernel.Data.Meta
     /// 
     /// </summary>
     public interface IBdoSpec :
-        IBdoObject, IReferenced, IBdoDataTyped, IBdoConditional,
+        IBdoObject, IReferenced, IBdoDataTyped, IBdoConditional, IGrouped,
         IIdentified, INamed, IIndexed, IBdoReferenced,
         IBdoTitled, IBdoDescribed, IBdoDetailed,
-        ITTreeNode<IBdoSpec>,
+        ITBdoSet<IBdoConstraint>,
+        ITTreeNode<IBdoSpec>, ITGroup<IBdoSpec>,
         IUpdatable
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        ITBdoConditionalStatement<string> ConstraintStatement { get; set; }
-
-        /// <summary>
-        /// The identifier of the group of this instance.
-        /// </summary>
-        string GroupId { get; set; }
-
         /// <summary>
         /// 
         /// </summary>
@@ -65,29 +58,12 @@ namespace BindOpen.Kernel.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        IList<SpecificationLevels> SpecLevels { get; set; }
-
-        IList<SpecificationLevels> ItemSpecLevels { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         AccessibilityLevels AccessibilityLevel { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         InheritanceLevels InheritanceLevel { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        ITBdoConditionalStatement<RequirementLevels> RequirementStatement { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        ITBdoConditionalStatement<RequirementLevels> ItemRequirementStatement { get; set; }
 
         /// <summary>
         /// 
@@ -100,5 +76,13 @@ namespace BindOpen.Kernel.Data.Meta
         /// <param key="item"></param>
         /// <returns></returns>
         bool IsCompatibleWithData(object item);
+
+        IBdoConstraint Get(string reference, BdoConstraintModes mode = BdoConstraintModes.Requirement, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null);
+
+        object GetValue(string reference, BdoConstraintModes mode = BdoConstraintModes.Requirement, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null);
+
+        T GetValue<T>(string reference, BdoConstraintModes mode = BdoConstraintModes.Requirement, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null);
+
+        void RemoveOfReference(string reference, bool isRecursive = false);
     }
 }

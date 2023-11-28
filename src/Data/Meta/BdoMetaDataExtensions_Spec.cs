@@ -1,76 +1,64 @@
-﻿using BindOpen.Kernel.Logging;
+﻿using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Logging;
 using BindOpen.Kernel.Scoping;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    public static partial class BdoMetaDataSpecExtensions
+    public static partial class BdoMetaDataExtensions
     {
 
         /// <summary>
         /// The item requirement level of this instance.
         /// </summary>
-        public static bool WhatCondition<T>(
-            this T meta,
+        public static T GetConstraintValue<T>(
+            this IBdoMetaData meta,
+            string groupId,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
-            where T : IBdoMetaData
         {
-            if (meta?.Spec?.Condition != null)
+            if (meta!=null)
             {
-                var localVarSet = BdoData.NewSet(varSet?.ToArray());
-                localVarSet.Add(BdoData.__VarName_This, meta);
-
-                var b = scope.Evaluate(meta.Spec.Condition, localVarSet, log);
-
-                return b;
+                return meta.GetConstraintValue(groupId, scope, varSet, log).As<T>();
             }
 
-            return true;
+            return default;
         }
 
         /// <summary>
         /// The item requirement level of this instance.
         /// </summary>
-        public static RequirementLevels WhatRequirement<T>(
+        public static RequirementLevels GetRequirement<T>(
             this T meta,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
             where T : IBdoMetaData
         {
-            if (meta?.Spec != null)
-            {
-                var localVarSet = BdoData.NewSet(varSet?.ToArray());
-                localVarSet.Add(BdoData.__VarName_This, meta);
+            var level = meta.GetConstraintValue<RequirementLevels?>(
+                BdoMetaConstraintGroupIds.Requirement, scope, varSet, log) ?? RequirementLevels.None;
 
-                var level = meta.Spec.RequirementStatement?.GetItem(scope, localVarSet, log) ?? RequirementLevels.None;
-
-                return level;
-            }
-
-            return RequirementLevels.None;
+            return level;
         }
+
 
         /// <summary>
         /// The item requirement level of this instance.
         /// </summary>
-        public static RequirementLevels WhatItemRequirement<T>(
-            this T meta,
+        public static RequirementLevels GetItemRequirement(
+            this IBdoMetaData meta,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
-            where T : IBdoMetaData
         {
             if (meta?.Spec != null)
             {
-                var localVarSet = BdoData.NewSet(varSet?.ToArray());
-                localVarSet.Add(BdoData.__VarName_This, meta);
-
-                var level = meta.Spec.ItemRequirementStatement?.GetItem(scope, localVarSet, log) ?? RequirementLevels.None;
+                var level = meta.GetConstraintValue<RequirementLevels?>(
+                    BdoMetaConstraintGroupIds.ItemRequirement, scope, varSet, log) ?? RequirementLevels.None;
 
                 if (level == RequirementLevels.None)
                 {

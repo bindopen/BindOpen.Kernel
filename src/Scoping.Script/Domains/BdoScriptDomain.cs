@@ -47,16 +47,16 @@ namespace BindOpen.Kernel.Scoping.Script
         /// Initializes a new instance of the BdoScriptwordArea class.
         /// </summary>
         /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable element set to consider.</param>
+        /// <param key="metaSet">The variable element set to consider.</param>
         /// <param key="scriptword">The script word to consider.</param>
         public BdoScriptDomain(
             IBdoScope scope,
-            IBdoMetaSet varSet,
+            IBdoMetaSet metaSet,
             IBdoScriptword scriptword,
             IBdoLog log = null)
         {
             Scope = scope;
-            VariableSet = varSet;
+            VariableSet = metaSet;
             Scriptword = scriptword;
             Log = log;
         }

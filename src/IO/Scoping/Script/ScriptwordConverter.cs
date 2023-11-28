@@ -68,7 +68,7 @@ namespace BindOpen.Kernel.Scoping.Script
                     .ForMember(q => q.Items, opt => opt.Ignore())
                     .ForMember(q => q.Parent, opt => opt.Ignore())
                     .ForMember(q => q.Reference, opt => opt.Ignore())
-                    .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.Spec.ToPoco()))
+                    .ForMember(q => q.Spec, opt => opt.Ignore())
                 );
 
             var mapper = new Mapper(config);
@@ -76,9 +76,12 @@ namespace BindOpen.Kernel.Scoping.Script
 
             poco.WithChild(dto.Child.ToPoco());
 
-            poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco());
-            poco.DataType.DefinitionUniqueName = dto.DefinitionUniqueName;
-            poco.DataType.ValueType = dto.ValueType;
+            poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco())
+            {
+                DefinitionUniqueName = dto.DefinitionUniqueName,
+                ValueType = dto.ValueType
+            };
+            poco.Spec = dto.Spec.ToPoco();
 
             poco.With(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
 

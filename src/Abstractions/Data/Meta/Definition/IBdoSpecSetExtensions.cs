@@ -66,7 +66,7 @@ namespace BindOpen.Kernel.Data
             if (specSet != null)
             {
                 spec = specSet.FirstOrDefault(
-                    q => scope.Evaluate(q?.Condition, varSet, log) == true);
+                    q => scope?.Interpreter?.Evaluate(q?.Condition, varSet, log) == true);
 
                 spec ??= specSet?.FirstOrDefault(q => q?.Condition == null);
             }

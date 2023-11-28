@@ -58,7 +58,7 @@ namespace BindOpen.Kernel.Data
         /// </summary>
         /// <param key="name"></param>
         /// <returns></returns>
-        public IList<T> Items => _items;
+        public List<T> Items => _items;
 
         /// <summary>
         /// Returns the number of items.

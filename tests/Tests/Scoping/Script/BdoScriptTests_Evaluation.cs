@@ -57,11 +57,11 @@ namespace BindOpen.Kernel.Scoping.Script
         [Test, Order(202)]
         public void InterpreteScript2Test()
         {
-            var varSet = BdoData.NewSet();
+            var metaSet = BdoData.NewSet();
             var exp = BdoData.NewExp(_script2, BdoExpressionKind.Script);
 
             var interpreter = SystemData.Scope.Interpreter;
-            var result = interpreter.Evaluate<bool?>(exp, varSet)?.ToString();
+            var result = interpreter.Evaluate<bool?>(exp, metaSet)?.ToString();
 
             Assert.That(_interpretedScript2.Equals(result, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
@@ -69,11 +69,11 @@ namespace BindOpen.Kernel.Scoping.Script
         [Test, Order(203)]
         public void InterpreteScript3Test()
         {
-            var varSet = BdoData.NewSet();
+            var metaSet = BdoData.NewSet();
             var exp = BdoData.NewExp(_script3, BdoExpressionKind.Script);
 
             var interpreter = SystemData.Scope.Interpreter;
-            var result = interpreter.Evaluate<string>(exp, varSet);
+            var result = interpreter.Evaluate<string>(exp, metaSet);
 
             Assert.That(_interpretedScript3.Equals(result, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
@@ -81,13 +81,13 @@ namespace BindOpen.Kernel.Scoping.Script
         [Test, Order(204)]
         public void InterpreteScript4Test()
         {
-            var varSet = BdoData.NewSet(
+            var metaSet = BdoData.NewSet(
                 ("var1", "const"));
 
             var exp = BdoData.NewExp(_script4, BdoExpressionKind.Script);
 
             var interpreter = SystemData.Scope.Interpreter;
-            var result = interpreter.Evaluate<bool?>(exp, varSet)?.ToString();
+            var result = interpreter.Evaluate<bool?>(exp, metaSet)?.ToString();
 
             Assert.That(_interpretedScript4.Equals(result, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
@@ -95,13 +95,13 @@ namespace BindOpen.Kernel.Scoping.Script
         [Test, Order(205)]
         public void InterpreteScript5Test()
         {
-            var varSet = BdoData.NewSet(
+            var metaSet = BdoData.NewSet(
                 ("var1", "const"));
 
             var exp = BdoData.NewExp(_script5, BdoExpressionKind.Auto);
 
             var interpreter = SystemData.Scope.Interpreter;
-            var result = interpreter.Evaluate<string>(exp, varSet);
+            var result = interpreter.Evaluate<string>(exp, metaSet);
 
             Assert.That(_interpretedScript5.Equals(result, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }

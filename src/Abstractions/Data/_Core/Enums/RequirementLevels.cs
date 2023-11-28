@@ -37,7 +37,7 @@ namespace BindOpen.Kernel.Data
         Optional = 0x01 << 2,
 
         /// <summary>
-        /// Required.
+        /// Required item.
         /// </summary>
         Required = 0x01 << 3,
 

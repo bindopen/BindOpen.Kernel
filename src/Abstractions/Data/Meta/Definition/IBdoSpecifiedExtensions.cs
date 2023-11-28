@@ -1,0 +1,21 @@
+﻿namespace BindOpen.Kernel.Data.Meta
+{
+    /// <summary>
+    /// This class represents a data element set.
+    /// </summary>
+    public static partial class IBdoSpecifiedExtensions
+    {
+        public static T WithSpec<T>(
+            this T obj,
+            IBdoSpec spec)
+            where T : IBdoSpecified
+        {
+            if (obj != null)
+            {
+                obj.Spec = spec;
+            }
+
+            return obj;
+        }
+    }
+}

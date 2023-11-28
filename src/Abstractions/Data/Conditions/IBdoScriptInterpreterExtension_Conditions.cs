@@ -16,41 +16,25 @@ namespace BindOpen.Kernel.Data
         /// </summary>
         /// <param key="condition">The condition to consider.</param>
         /// <param key="scriptInterpreter">Script interpreter.</param>
-        /// <param key="varSet">The variable element set used to evaluate.</param>
+        /// <param key="metaSet">The variable element set used to evaluate.</param>
         /// <returns>True if this instance is true.</returns>
         public static bool Evaluate(
-            this IBdoScope scope,
+            this IBdoScriptInterpreter interpreter,
             IBdoCondition condition,
-            IBdoMetaSet varSet,
-            IBdoLog log = null)
-        {
-            return scope?.Interpreter.Evaluate(condition, varSet, log) ?? false;
-        }
-
-        /// <summary>
-        /// Evaluate this instance.
-        /// </summary>
-        /// <param key="condition">The condition to consider.</param>
-        /// <param key="scriptInterpreter">Script interpreter.</param>
-        /// <param key="varSet">The variable element set used to evaluate.</param>
-        /// <returns>True if this instance is true.</returns>
-        public static bool Evaluate(
-            this IBdoScriptInterpreter scriptInterpreter,
-            IBdoCondition condition,
-            IBdoMetaSet varSet,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             if (condition is IBdoCompositeCondition advancedCondition)
             {
-                return advancedCondition.Evaluate(scriptInterpreter, varSet, log);
+                return interpreter.Evaluate(advancedCondition, varSet, log);
             }
             else if (condition is IBdoBasicCondition basicCondition)
             {
-                return basicCondition.Evaluate();
+                return Evaluate(basicCondition);
             }
             else if (condition is IBdoExpressionCondition expCondition)
             {
-                return expCondition.Evaluate(scriptInterpreter, varSet, log);
+                return interpreter.Evaluate(expCondition, varSet, log);
             }
 
             return false;
@@ -61,12 +45,12 @@ namespace BindOpen.Kernel.Data
         /// </summary>
         /// <param key="condition">The condition to consider.</param>
         /// <param key="scriptInterpreter">Script interpreter.</param>
-        /// <param key="varSet">The variable element set used to evaluate.</param>
+        /// <param key="metaSet">The variable element set used to evaluate.</param>
         /// <returns>True if this instance is true.</returns>
         private static bool Evaluate(
-            this IBdoCompositeCondition condition,
-            IBdoScriptInterpreter scriptInterpreter,
-            IBdoMetaSet varSet,
+            this IBdoScriptInterpreter interpreter,
+            IBdoCompositeCondition condition,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             if (condition == null) return false;
@@ -77,10 +61,10 @@ namespace BindOpen.Kernel.Data
                 switch (condition.Kind)
                 {
                     case CompositeConditionKind.And:
-                        b &= scriptInterpreter.Evaluate(subCondition, varSet, log);
+                        b &= interpreter.Evaluate(subCondition, varSet, log);
                         break;
                     case CompositeConditionKind.Or:
-                        b |= scriptInterpreter.Evaluate(subCondition, varSet, log);
+                        b |= interpreter.Evaluate(subCondition, varSet, log);
                         break;
                     default:
                         break;
@@ -95,9 +79,9 @@ namespace BindOpen.Kernel.Data
         /// </summary>
         /// <param key="condition">The condition to consider.</param>
         /// <param key="scriptInterpreter">Script interpreter.</param>
-        /// <param key="varSet">The variable element set used to evaluate.</param>
+        /// <param key="metaSet">The variable element set used to evaluate.</param>
         /// <returns>True if this instance is true.</returns>
-        private static bool Evaluate(this IBdoBasicCondition condition)
+        private static bool Evaluate(IBdoBasicCondition condition)
         {
             if (condition == null) return false;
 
@@ -105,10 +89,10 @@ namespace BindOpen.Kernel.Data
             switch (condition.Operator)
             {
                 case DataOperators.DifferentFrom:
-                    b = (condition.Argument1 != condition.Argument2);
+                    b = condition.Argument1 != condition.Argument2;
                     break;
                 case DataOperators.EqualTo:
-                    b = (condition.Argument1 == condition.Argument2);
+                    b = condition.Argument1 == condition.Argument2;
                     break;
                 case DataOperators.Exists:
                     b = condition.Argument1 != null;
@@ -129,12 +113,12 @@ namespace BindOpen.Kernel.Data
         /// </summary>
         /// <param key="condition">The condition to consider.</param>
         /// <param key="scriptInterpreter">Script interpreter.</param>
-        /// <param key="varSet">The variable element set used to evaluate.</param>
+        /// <param key="metaSet">The variable element set used to evaluate.</param>
         /// <returns>True if the business script value is the true value.</returns>
         private static bool Evaluate(
-            this IBdoExpressionCondition condition,
-            IBdoScriptInterpreter scriptInterpreter,
-            IBdoMetaSet varSet,
+            this IBdoScriptInterpreter interpreter,
+            IBdoExpressionCondition condition,
+            IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             if (condition == null) return false;
@@ -142,8 +126,7 @@ namespace BindOpen.Kernel.Data
             if (condition.Expression == null)
                 return false;
 
-            var b = scriptInterpreter?.Evaluate<bool?>(
-                condition.Expression, varSet, log);
+            var b = interpreter?.Evaluate<bool?>(condition.Expression, varSet, log);
 
             return b ?? false;
         }

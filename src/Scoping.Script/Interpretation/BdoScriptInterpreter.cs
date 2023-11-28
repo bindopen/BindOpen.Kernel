@@ -62,7 +62,7 @@ namespace BindOpen.Kernel.Scoping.Script
         /// Evaluates the specified data reference.
         /// </summary>
         /// <param key="exp">The data exp to consider.</param>
-        /// <param key="varSet">The variable element set to consider.</param>
+        /// <param key="metaSet">The variable element set to consider.</param>
         /// <param key="log">The log to consider.</param>
         /// <returns>Literal or script value according to the specified default mode.</returns>
         public object Evaluate(
@@ -308,7 +308,7 @@ namespace BindOpen.Kernel.Scoping.Script
         /// <param key="parentScriptword">The parent script word to consider.</param>
         /// <param key="index">The index to consider.</param>
         /// <param key="offsetIndex">The offset index to consider.</param>
-        /// <param key="varSet">The variable element set to consider.</param>
+        /// <param key="metaSet">The variable element set to consider.</param>
         /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         private IBdoScriptword FindNextWord(

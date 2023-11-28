@@ -9,8 +9,6 @@ export interface ConfigurationDto extends MetaSetDto {
     description: DictionaryDto;
     title: DictionaryDto;
     children: any[];
-    childrenSpecficied: boolean;
     usedItemIds: any[];
-    usedItemIdsSpecified: boolean;
     shouldUsedItemIds: boolean;
 }

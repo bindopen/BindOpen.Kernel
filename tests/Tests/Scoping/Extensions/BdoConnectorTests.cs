@@ -63,9 +63,6 @@ namespace BindOpen.Kernel.Scoping.Connectors
                 Port = BdoData.NewScalar<int?>(_testData.port as int?)
             };
 
-            var meta = connector.ToMeta(SystemData.Scope);
-            connector = SystemData.Scope.CreateConnector(meta) as ConnectorFake;
-
             connector.UsingConnection((conn, log) =>
             {
                 var paramSet = BdoData.NewSet(

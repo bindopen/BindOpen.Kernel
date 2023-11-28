@@ -1,6 +1,4 @@
-﻿using BindOpen.Kernel.Data.Conditions;
-using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Kernel.Data.Meta;
 
 namespace BindOpen.Kernel.Data
 {
@@ -9,6 +7,13 @@ namespace BindOpen.Kernel.Data
     /// </summary>
     public static partial class IBdoSpecExtensions
     {
+        public static T With<T>(this T spec, params IBdoConstraint[] constraints) where T : IBdoSpec
+        {
+            spec?.With<T, IBdoConstraint>(constraints);
+
+            return spec;
+        }
+
         public static T WithParent<T>(this T log, IBdoSpec parent) where T : IBdoSpec
         {
             if (log != null)
@@ -17,19 +22,6 @@ namespace BindOpen.Kernel.Data
             }
 
             return log;
-        }
-
-        public static T WithGroupId<T>(
-            this T spec,
-            string groupId)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.GroupId = groupId;
-            }
-
-            return spec;
         }
 
         /// <summary>
@@ -185,80 +177,6 @@ namespace BindOpen.Kernel.Data
             return spec;
         }
 
-        // Requirement
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="level"></param>
-        public static T WithRequirement<T>(
-            this T spec,
-            ITBdoConditionalStatement<RequirementLevels> statement)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.RequirementStatement = statement;
-            }
-
-            return spec;
-        }
-
-        // Item requirement
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="level"></param>
-        public static T WithItemRequirement<T>(
-            this T spec,
-            ITBdoConditionalStatement<RequirementLevels> statement)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.ItemRequirementStatement = statement;
-            }
-
-            return spec;
-        }
-
-        // Specification
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="levels"></param>
-        public static T WithSpecLevels<T>(
-            this T spec,
-            params SpecificationLevels[] levels)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.SpecLevels = levels;
-            }
-
-            return spec;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="levels"></param>
-        public static T WithItemSpecLevels<T>(
-            this T spec,
-            params SpecificationLevels[] levels)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.ItemSpecLevels = levels;
-            }
-
-            return spec;
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -286,32 +204,6 @@ namespace BindOpen.Kernel.Data
             if (spec != null)
             {
                 spec.Label = label.GetScript();
-            }
-
-            return spec;
-        }
-
-        public static bool OfGroup(
-            this IBdoSpec spec,
-            string groupId)
-        {
-            return
-                spec != null &&
-                (groupId == spec.GroupId
-                    || groupId == StringHelper.__Star
-                    || groupId.BdoKeyEquals(spec?.GroupId));
-        }
-
-        // Constraints
-
-        public static T WithConstraints<T>(
-            this T spec,
-            ITBdoConditionalStatement<string> statement)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.ConstraintStatement = statement;
             }
 
             return spec;

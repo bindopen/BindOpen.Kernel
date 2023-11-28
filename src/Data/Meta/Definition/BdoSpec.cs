@@ -1,5 +1,7 @@
 ﻿using BindOpen.Kernel.Data.Conditions;
 using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Scoping;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ namespace BindOpen.Kernel.Data.Meta
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    public partial class BdoSpec : BdoObject, IBdoSpec
+    public partial class BdoSpec : TBdoSet<IBdoConstraint>, IBdoSpec
     {
         // --------------------------------------------------
         // CONSTANTS
@@ -87,8 +89,6 @@ namespace BindOpen.Kernel.Data.Meta
 
         #region IBdoSpec
 
-        public ITBdoConditionalStatement<string> ConstraintStatement { get; set; }
-
         /// <summary>
         /// The identifier of the group of this instance.
         /// </summary>
@@ -105,25 +105,9 @@ namespace BindOpen.Kernel.Data.Meta
         public string Label { get; set; }
 
         /// <summary>
-        /// 
-        /// </summary>
-        public ITBdoConditionalStatement<RequirementLevels> RequirementStatement { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ITBdoConditionalStatement<RequirementLevels> ItemRequirementStatement { get; set; }
-
-
-        /// <summary>
         /// The level of inheritance of this instance.
         /// </summary>
         public InheritanceLevels InheritanceLevel { get; set; } = InheritanceLevels.None;
-
-        /// <summary>
-        /// Levels of specification of this instance.
-        /// </summary>
-        public IList<SpecificationLevels> SpecLevels { get; set; }
 
         /// <summary>
         /// Level of accessibility of this instance.
@@ -164,20 +148,7 @@ namespace BindOpen.Kernel.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public string Key() => Name;
-
-        #endregion
-
-        // ------------------------------------------
-        // IIdentified Implementation
-        // ------------------------------------------
-
-        #region IIdentified
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Id { get; set; }
+        public override string Key() => Name;
 
         #endregion
 
@@ -230,6 +201,40 @@ namespace BindOpen.Kernel.Data.Meta
         /// 
         /// </summary>
         public IBdoMetaSet Detail { get; set; }
+
+        #endregion
+
+        // ------------------------------------------
+        // IGroup Implementation
+        // ------------------------------------------
+
+        #region IGroup
+
+        public void RemoveOfReference(string reference, bool isRecursive = false)
+        {
+            this.RemoveAll(q => q.OfReference(reference));
+
+            if (isRecursive && _children?.Any() == true)
+            {
+                foreach (var child in _children)
+                {
+                    child.RemoveOfReference(reference, true);
+                }
+            }
+        }
+
+        public void RemoveOfGroup(string groupId, bool isRecursive = false)
+        {
+            this.RemoveAll(q => q.OfGroup(groupId));
+
+            if (isRecursive && _children?.Any() == true)
+            {
+                foreach (var child in _children)
+                {
+                    child.RemoveOfGroup(groupId, true);
+                }
+            }
+        }
 
         #endregion
 
@@ -300,10 +305,34 @@ namespace BindOpen.Kernel.Data.Meta
         /// </summary>
         public bool IsValueList => MaxDataItemNumber == null || MaxDataItemNumber > 1;
 
-        /// <summary>
-        /// Levels of specification of this instance.
-        /// </summary>
-        public IList<SpecificationLevels> ItemSpecLevels { get; set; }
+        public IBdoConstraint Get(string reference, BdoConstraintModes mode, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
+        {
+            var constraints = this.Where(q => q.OfReference(reference) && (mode == BdoConstraintModes.Any || q.Mode == mode));
+
+            foreach (var constraint in constraints)
+            {
+                if (constraint?.Condition != null && scope?.Interpreter?.Evaluate(constraint.Condition, varSet, log) == true)
+                {
+                    return constraint;
+                }
+            }
+
+            return constraints.FirstOrDefault(q => q.Condition == null);
+        }
+
+        public object GetValue(string reference, BdoConstraintModes mode, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
+        {
+            var constraint = Get(reference, mode, scope, varSet, log);
+
+            return constraint?.Value;
+        }
+
+        public T GetValue<T>(string reference, BdoConstraintModes mode, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
+        {
+            object obj = GetValue(reference, mode, scope, varSet, log);
+
+            return obj.As<T>();
+        }
 
         #endregion
 
@@ -332,12 +361,10 @@ namespace BindOpen.Kernel.Data.Meta
             obj.WithAliases(Aliases?.ToArray());
             obj.Condition = Condition?.Clone<BdoCondition>();
             obj.Reference = Reference?.Clone<BdoReference>();
-            obj.WithItemSpecLevels(ItemSpecLevels?.ToArray());
             obj.DataType = DataType?.Clone<BdoDataType>();
             obj.DefaultData = DefaultData;
             obj.Description = Condition?.Clone<TBdoDictionary<string>>();
             obj.Detail = Condition?.Clone<BdoMetaSet>();
-            obj.WithSpecLevels(SpecLevels?.ToArray());
             obj.Title = Condition?.Clone<TBdoDictionary<string>>();
 
             return obj;

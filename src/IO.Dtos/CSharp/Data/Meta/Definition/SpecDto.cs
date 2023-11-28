@@ -21,6 +21,19 @@ namespace BindOpen.Kernel.Data.Meta
 
         #region Properties
 
+        /// <summary>
+        /// The constraints of this instance.
+        /// </summary>
+        [JsonPropertyName("constraints")]
+        [XmlElement("constraint", Type = typeof(ConstraintDto))]
+        public List<ConstraintDto> Constraints { get; set; }
+
+        /// <summary>
+        /// Indicates whether the constraint property must be ignored.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public bool ConstraintsSpecified => Constraints?.Count > 0;
 
         /// <summary>
         /// THe children of this instance.
@@ -217,22 +230,6 @@ namespace BindOpen.Kernel.Data.Meta
         // Levels
 
         /// <summary>
-        /// Levels of specification of this instance.
-        /// </summary>
-        [JsonPropertyName("spec.levels")]
-        [XmlArray("spec.levels")]
-        [XmlArrayItem("add")]
-        public List<SpecificationLevels> SpecLevels { get; set; }
-
-        /// <summary>
-        /// Levels of specification of this instance.
-        /// </summary>
-        [JsonPropertyName("item.spec.levels")]
-        [XmlArray("item.spec.levels")]
-        [XmlArrayItem("add")]
-        public List<SpecificationLevels> ItemSpecLevels { get; set; }
-
-        /// <summary>
         /// Level of accessibility of this instance.
         /// </summary>
         [JsonPropertyName("accessibility.level")]
@@ -247,27 +244,6 @@ namespace BindOpen.Kernel.Data.Meta
         [XmlElement("inheritance.level")]
         [DefaultValue(InheritanceLevels.None)]
         public InheritanceLevels InheritanceLevel { get; set; }
-
-        /// <summary>
-        /// The requirement level of this instance.
-        /// </summary>
-        [JsonPropertyName("constaints")]
-        [XmlElement("constaints")]
-        public StringConditionalStatementDto ConstraintStatement { get; set; }
-
-        /// <summary>
-        /// The requirement level of this instance.
-        /// </summary>
-        [JsonPropertyName("requirement")]
-        [XmlElement("requirement")]
-        public RequirementLevelConditionalStatementDto RequirementStatement { get; set; }
-
-        /// <summary>
-        /// The requirement level of this instance.
-        /// </summary>
-        [JsonPropertyName("item.requirement")]
-        [XmlElement("item.requirement")]
-        public RequirementLevelConditionalStatementDto ItemRequirementStatement { get; set; }
 
         #endregion
 

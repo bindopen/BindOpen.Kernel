@@ -72,7 +72,7 @@ namespace BindOpen.Kernel.Data.Meta
         /// </summary>
         /// <param key="elementSet"></param>
         /// <param key="scope"></param>
-        /// <param key="varSet"></param>
+        /// <param key="metaSet"></param>
         /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         public IList<object> GetDataList(
@@ -94,7 +94,7 @@ namespace BindOpen.Kernel.Data.Meta
         /// <typeparam name="Q"></typeparam>
         /// <param key="elementSet"></param>
         /// <param key="scope"></param>
-        /// <param key="varSet"></param>
+        /// <param key="metaSet"></param>
         /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         public IList<Q> GetDataList<Q>(
@@ -115,7 +115,7 @@ namespace BindOpen.Kernel.Data.Meta
         /// </summary>
         /// <param key="element"></param>
         /// <param key="scope"></param>
-        /// <param key="varSet"></param>
+        /// <param key="metaSet"></param>
         /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         public object GetData(
@@ -140,7 +140,7 @@ namespace BindOpen.Kernel.Data.Meta
         /// </summary>
         /// <param key="element"></param>
         /// <param key="scope"></param>
-        /// <param key="varSet"></param>
+        /// <param key="metaSet"></param>
         /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         public object GetData(
@@ -165,7 +165,7 @@ namespace BindOpen.Kernel.Data.Meta
         /// </summary>
         /// <param key="elementSet"></param>
         /// <param key="scope"></param>
-        /// <param key="varSet"></param>
+        /// <param key="metaSet"></param>
         /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         public Q GetData<Q>(
@@ -188,7 +188,7 @@ namespace BindOpen.Kernel.Data.Meta
         /// </summary>
         /// <param key="elementSet"></param>
         /// <param key="scope"></param>
-        /// <param key="varSet"></param>
+        /// <param key="metaSet"></param>
         /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         public Q GetData<Q>(

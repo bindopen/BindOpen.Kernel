@@ -1,5 +1,6 @@
 ﻿
 
+import { DataValueTypes } from "../../data/enums/DataValueTypes";
 import { DictionaryDto } from "../../data/objects/dictionary/DictionaryDto";
 import { ExtensionDefinitionDto } from "./../ExtensionDefinitionDto";
 
@@ -9,12 +10,11 @@ export interface FunctionDefinitionDto extends ExtensionDefinitionDto {
     maxParameterNumber: number;
     minParameterNumber: number;
     repeatedParameterName: string;
-    repeatedParameterValueType: any;
+    repeatedParameterValueType: DataValueTypes;
     referenceUniqueName: string;
     returnValueType: any;
     runtimeFunctionName: string;
     children: any[];
     parameterSpecification: any[];
-    parameterSpecificationSpecified: boolean;
     repeatedParameterDescription: DictionaryDto;
 }

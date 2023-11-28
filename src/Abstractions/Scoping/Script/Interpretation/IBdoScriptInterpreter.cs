@@ -13,7 +13,7 @@ namespace BindOpen.Kernel.Scoping.Script
         /// 
         /// </summary>
         /// <param key="exp"></param>
-        /// <param key="varSet">The variable element set to consider.</param>
+        /// <param key="metaSet">The variable element set to consider.</param>
         /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         object Evaluate(
@@ -25,7 +25,7 @@ namespace BindOpen.Kernel.Scoping.Script
         /// 
         /// </summary>
         /// <param key="exp"></param>
-        /// <param key="varSet">The variable element set to consider.</param>
+        /// <param key="metaSet">The variable element set to consider.</param>
         /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         object Evaluate(
@@ -38,7 +38,7 @@ namespace BindOpen.Kernel.Scoping.Script
         /// 
         /// </summary>
         /// <param key="exp"></param>
-        /// <param key="varSet">The variable element set to consider.</param>
+        /// <param key="metaSet">The variable element set to consider.</param>
         /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
         object Evaluate(
@@ -53,7 +53,7 @@ namespace BindOpen.Kernel.Scoping.Script
         /// <param key="parentScriptword"></param>
         /// <param key="index"></param>
         /// <param key="offsetIndex"></param>
-        /// <param key="varSet">The variable element set to consider.</param>
+        /// <param key="metaSet">The variable element set to consider.</param>
         /// <param key="isSimulationModeOn"></param>
         /// <param key="log">The BindOpen log used for tracking.</param>
         /// <returns></returns>
