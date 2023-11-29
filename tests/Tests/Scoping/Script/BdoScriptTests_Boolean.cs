@@ -12,7 +12,7 @@ namespace BindOpen.Kernel.Scoping.Script
         [Test, Order(201)]
         public void EqTest()
         {
-            var word = BdoScript._Eq("MYTABLE", BdoScript._Text("MYTABLE"));
+            var word = BdoScript.Eq("MYTABLE", BdoScript.Text("MYTABLE"));
 
             var interpreter = SystemData.Scope.Interpreter;
             var result = interpreter.Evaluate<bool?>(word);
@@ -23,15 +23,15 @@ namespace BindOpen.Kernel.Scoping.Script
         [Test, Order(202)]
         public void SubwordTest()
         {
-            var word = BdoScript._Eq(BdoScript.Var("MYTABLE"), 135);
+            var word = BdoScript.Eq(BdoScript.Var("MYTABLE"), 135);
 
             var interpreter = SystemData.Scope.Interpreter;
 
-            var varSet = BdoData.NewSet(
+            var metaSet = BdoData.NewSet(
                 ("MYTABLE", 135)
             );
 
-            var result = interpreter.Evaluate<bool?>(word, varSet);
+            var result = interpreter.Evaluate<bool?>(word, metaSet);
 
             Assert.That(result == true, "Bad script interpretation");
         }

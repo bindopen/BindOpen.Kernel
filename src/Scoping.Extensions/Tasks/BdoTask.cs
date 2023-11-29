@@ -37,7 +37,7 @@ namespace BindOpen.Kernel.Scoping.Tasks
         /// </summary>
         /// <param key="log">The log to consider.</param>
         /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable element set to use for execution.</param>
+        /// <param key="metaSet">The variable element set to use for execution.</param>
         /// <param key="runtimeMode">The runtime mode to consider.</param>
         /// <returns>Returns the output value of the execution.</returns>
         public virtual Task<bool> ExecuteAsync(
@@ -55,7 +55,7 @@ namespace BindOpen.Kernel.Scoping.Tasks
         /// </summary>
         /// <param key="log">The log to consider.</param>
         /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable element set to use for execution.</param>
+        /// <param key="metaSet">The variable element set to use for execution.</param>
         /// <param key="runtimeMode">The runtime mode to consider.</param>
         /// <returns>Returns the output value of the execution.</returns>
         public virtual bool Execute(

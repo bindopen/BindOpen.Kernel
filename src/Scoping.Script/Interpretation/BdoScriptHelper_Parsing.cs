@@ -506,7 +506,7 @@ namespace BindOpen.Kernel.Scoping.Script
         //        null,
         //        ref tempIndex,
         //        0,
-        //        varSet,
+        //        metaSet,
         //        log);
 
         //    // if it is not null

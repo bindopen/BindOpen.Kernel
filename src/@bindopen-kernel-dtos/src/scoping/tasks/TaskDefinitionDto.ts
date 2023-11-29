@@ -8,7 +8,5 @@ export interface TaskDefinitionDto extends ExtensionDefinitionDto {
     itemClass: string;
     maximumIndex: number;
     inputSpecification: any[];
-    inputSpecificationSpecified: boolean;
     outputSpecification: any[];
-    outputSpecificationSpecified: boolean;
 }

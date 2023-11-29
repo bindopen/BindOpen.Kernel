@@ -33,7 +33,7 @@ namespace BindOpen.Kernel.Scoping.Script
         [Test, Order(1)]
         public void CreateTest()
         {
-            _scriptword = BdoScript._Eq(BdoScript.Var("var1").Func("func1", 1, "lk", 1.2), BdoScript._Text("text1"));
+            _scriptword = BdoScript.Eq(BdoScript.Var("var1").Func("func1", 1, "lk", 1.2), BdoScript.Text("text1"));
         }
 
         // Xml

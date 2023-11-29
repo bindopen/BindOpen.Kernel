@@ -21,7 +21,7 @@ namespace BindOpen.Kernel.Data.Meta.Reflection
         /// <param key="obj">The object to update.</param>
         /// <param key="list">The list of elements to return.</param>
         /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable element list to use.</param>
+        /// <param key="metaSet">The variable element list to use.</param>
         /// <param key="log">The log to consider.</param>
         public static void UpdateFromMeta(
             this object obj,
@@ -41,7 +41,7 @@ namespace BindOpen.Kernel.Data.Meta.Reflection
         /// <param key="obj">The object to update.</param>
         /// <param key="list">The list of elements to return.</param>
         /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable element list to use.</param>
+        /// <param key="metaSet">The variable element list to use.</param>
         /// <param key="log">The log to consider.</param>
         public static void UpdateFromMeta<T>(
             this object obj,

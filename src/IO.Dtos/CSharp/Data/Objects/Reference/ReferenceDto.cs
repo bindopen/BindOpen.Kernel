@@ -35,19 +35,11 @@ namespace BindOpen.Kernel.Data
         public string Identifier { get; set; }
 
         /// <summary>
-        /// The text of this instance.
+        /// The expression of this instance.
         /// </summary>
-        [JsonPropertyName("text")]
-        [XmlText()]
-        public string Text { get; set; }
-
-        /// <summary>
-        /// The expression kind of this instance.
-        /// </summary>
-        [JsonPropertyName("expKind")]
-        [XmlAttribute("expKind")]
-        [DefaultValue(BdoExpressionKind.Auto)]
-        public BdoExpressionKind ExpressionKind { get; set; } = BdoExpressionKind.Auto;
+        [JsonPropertyName("expression")]
+        [XmlElement("expression")]
+        public ExpressionDto Expression { get; set; }
 
         /// <summary>
         /// The meta data  of this instance.

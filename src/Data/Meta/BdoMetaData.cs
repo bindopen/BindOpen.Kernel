@@ -161,11 +161,6 @@ namespace BindOpen.Kernel.Data.Meta
         /// </summary>
         public IBdoReference Reference { get; set; }
 
-        /// <summary>
-        /// The identifier of the group of this instance.
-        /// </summary>
-        public string GroupId { get; set; }
-
         // Specification -------------------------------
 
         /// <summary>
@@ -264,7 +259,7 @@ namespace BindOpen.Kernel.Data.Meta
         /// </summary>
         /// <param key="log">The log to populate.</param>
         /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable meta set to use.</param>
+        /// <param key="metaSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         public virtual IList<object> GetDataList(
             IBdoScope scope = null,
@@ -282,7 +277,7 @@ namespace BindOpen.Kernel.Data.Meta
         /// </summary>
         /// <param key="log">The log to populate.</param>
         /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable meta set to use.</param>
+        /// <param key="metaSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         public virtual IList<Q> GetDataList<Q>(
             IBdoScope scope = null,
@@ -297,6 +292,28 @@ namespace BindOpen.Kernel.Data.Meta
 
                 return default;
             }).ToList();
+        }
+
+        /// <summary>
+        /// The item requirement level of this instance.
+        /// </summary>
+        public object GetConstraintValue(
+            string reference,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            if (Spec != null)
+            {
+                var localVarSet = BdoData.NewSet(varSet?.ToArray());
+                localVarSet.Add(BdoData.__VarName_This, this);
+
+                var level = Spec?.GetValue(reference, BdoConstraintModes.Requirement, scope, localVarSet, log);
+
+                return level;
+            }
+
+            return null;
         }
 
         // Accessors --------------------------

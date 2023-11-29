@@ -28,19 +28,15 @@ namespace BindOpen.Kernel.Data.Meta
                 cfg => cfg.CreateMap<BdoSpec, SpecDto>()
                     .ForMember(q => q.Aliases, opt => opt.Ignore())
                     .ForMember(q => q.AvailableDataModes, opt => opt.Ignore())
-                    .ForMember(q => q.ItemSpecLevels, opt => opt.Ignore())
-                    .ForMember(q => q.SpecLevels, opt => opt.Ignore())
 
                     .ForMember(q => q.Children, opt => opt.Ignore())
                     .ForMember(q => q.ClassReference, opt => opt.Ignore())
                     .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToDto()))
-                    .ForMember(q => q.ConstraintStatement, opt => opt.MapFrom(q => q.ConstraintStatement.ToDto()))
+                    .ForMember(q => q.Constraints, opt => opt.Ignore())
                     .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDto()))
                     .ForMember(q => q.DefaultItems, opt => opt.Ignore())
                     .ForMember(q => q.Description, opt => opt.MapFrom(q => q.Description.ToDto()))
                     .ForMember(q => q.Detail, opt => opt.MapFrom(q => q.Detail.ToDto()))
-                    .ForMember(q => q.RequirementStatement, opt => opt.MapFrom(q => q.RequirementStatement.ToDto()))
-                    .ForMember(q => q.ItemRequirementStatement, opt => opt.MapFrom(q => q.ItemRequirementStatement.ToDto()))
                     .ForMember(q => q.Title, opt => opt.MapFrom(q => q.Title.ToDto()))
             );
 
@@ -53,14 +49,13 @@ namespace BindOpen.Kernel.Data.Meta
             dto.Children = poco?._Children?.Select(q => q.ToDto()).ToList();
 
             dto.ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDto() : null;
+            dto.Constraints = poco?.Items == null ? null : poco.Items.Select(q => q.ToDto()).ToList();
             dto.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
 
-            dto.ItemSpecLevels = poco?.ItemSpecLevels == null ? null : new List<SpecificationLevels>(poco.ItemSpecLevels);
             dto.IsAllocatable = poco?.IsAllocatable == false ? null : poco?.IsAllocatable;
             dto.IsStatic = poco?.IsStatic == false ? null : poco?.IsStatic;
             dto.MaxDataItemNumber = (int?)(poco?.MaxDataItemNumber == -1 ? null : poco?.MaxDataItemNumber);
             dto.MinDataItemNumber = (int?)(poco?.MinDataItemNumber == 0 ? null : poco?.MinDataItemNumber);
-            dto.SpecLevels = poco?.SpecLevels == null ? null : new List<SpecificationLevels>(poco.SpecLevels);
 
             dto.ValueType = poco?.DataType?.ValueType ?? DataValueTypes.Any;
 
@@ -82,32 +77,28 @@ namespace BindOpen.Kernel.Data.Meta
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<SpecDto, BdoSpec>()
+                    .ForMember(q => q._Children, opt => opt.Ignore())
+
                     .ForMember(q => q.Aliases, opt => opt.Ignore())
                     .ForMember(q => q.AvailableDataModes, opt => opt.Ignore())
-                    .ForMember(q => q.ItemSpecLevels, opt => opt.Ignore())
-                    .ForMember(q => q.SpecLevels, opt => opt.Ignore())
 
-                    .ForMember(q => q._Children, opt => opt.Ignore())
                     .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToPoco()))
-                    .ForMember(q => q.ConstraintStatement, opt => opt.Ignore())
+                    .ForMember(q => q.Items, opt => opt.Ignore())
                     .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToPoco()))
                     .ForMember(q => q.DataType, opt => opt.Ignore())
                     .ForMember(q => q.Description, opt => opt.Ignore())
                     .ForMember(q => q.DefaultData, opt => opt.Ignore())
                     .ForMember(q => q.Detail, opt => opt.Ignore())
-                    .ForMember(q => q.ItemRequirementStatement, opt => opt.Ignore())
-                    .ForMember(q => q.RequirementStatement, opt => opt.Ignore())
                     .ForMember(q => q.Title, opt => opt.Ignore())
                 );
 
             var mapper = new Mapper(config);
             var poco = mapper.Map<BdoSpec>(dto);
 
+            poco._Children = BdoData.NewItemSet(dto?.Children?.Select(q => q.ToPoco()).ToArray());
+
             poco.Aliases = dto?.Aliases == null ? null : new List<string>(dto.Aliases);
             poco.AvailableDataModes = dto?.AvailableDataModes == null ? null : new List<DataMode>(dto.AvailableDataModes);
-
-            poco.ConstraintStatement = dto?.ConstraintStatement?.ToPoco();
-            poco._Children = BdoData.NewItemSet(dto?.Children?.Select(q => q.ToPoco()).ToArray());
 
             poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco())
             {
@@ -115,10 +106,7 @@ namespace BindOpen.Kernel.Data.Meta
                 ValueType = dto.ValueType
             };
 
-            poco.ItemRequirementStatement = dto?.ItemRequirementStatement?.ToPoco();
-            poco.ItemSpecLevels = dto?.ItemSpecLevels == null ? null : new List<SpecificationLevels>(dto.ItemSpecLevels);
-            poco.RequirementStatement = dto?.RequirementStatement?.ToPoco();
-            poco.SpecLevels = dto?.SpecLevels == null ? null : new List<SpecificationLevels>(dto.SpecLevels);
+            poco.With(dto?.Constraints == null ? null : dto.Constraints.Select(q=> q.ToPoco()).ToArray());
 
             poco
                 .WithTitle(dto.Title.ToPoco<string>())

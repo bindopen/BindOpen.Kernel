@@ -1,4 +1,8 @@
-﻿namespace BindOpen.Kernel.Data
+﻿using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Data.Meta;
+using System.Text.RegularExpressions;
+
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This interface defines a storable data item.
@@ -21,6 +25,18 @@
             }
 
             return obj;
+        }
+
+        public static bool OfReference<T>(
+            this T obj,
+            string reference)
+            where T : IBdoReferenced
+        {
+            return
+                obj != null &&
+                (reference == obj.Reference?.Identifier
+                        || reference == StringHelper.__Star
+                        || reference.BdoKeyEquals(obj.Reference?.Identifier));
         }
     }
 }

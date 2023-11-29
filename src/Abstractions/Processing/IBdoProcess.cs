@@ -15,7 +15,7 @@ namespace BindOpen.Kernel.Processing
         /// 
         /// </summary>
         /// <param key="scope"></param>
-        /// <param key="varSet">The variable element set to consider.</param>
+        /// <param key="metaSet">The variable element set to consider.</param>
         /// <param key="runtimeMode"></param>
         /// <param key="log">The BindOpen log used for tracking.</param>
         Task<bool> ExecuteAsync(

@@ -1,5 +1,4 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Helpers;
+﻿using BindOpen.Kernel.Data.Helpers;
 using BindOpen.Kernel.Data.Meta;
 using System;
 using System.Collections;
@@ -106,7 +105,7 @@ namespace BindOpen.Kernel.Data.Meta
         /// <summary>
         /// Returns the number of items.
         /// </summary>
-        public IList<IBdoMetaData> Items
+        public List<IBdoMetaData> Items
             => _propertySet?.Items;
 
         /// <summary>

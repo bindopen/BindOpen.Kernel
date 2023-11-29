@@ -5,11 +5,11 @@
     /// </summary>
     public static partial class BdoScript
     {
-        public static ITBdoScriptword<bool> _Text(
+        public static ITBdoScriptword<bool> Text(
             object obj)
             => Func<bool>("text", obj);
 
-        public static ITBdoScriptword<bool> _Concat(
+        public static ITBdoScriptword<bool> Concat(
             params object[] parameters)
             => Func<bool>("concat", parameters);
     }

@@ -60,7 +60,7 @@ namespace BindOpen.Kernel.Data.Meta
         /// </summary>
         /// <param key="log">The log to populate.</param>
         /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable meta set to use.</param>
+        /// <param key="metaSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         public override Q GetData<Q>(
             IBdoScope scope = null,

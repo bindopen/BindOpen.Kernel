@@ -44,7 +44,7 @@ namespace BindOpen.Kernel.Data
             _exp = BdoData.NewExpression(
                 _valueSet.Literal as string,
                 _valueSet.ExpressionKind as BdoExpressionKind? ?? BdoExpressionKind.Auto)
-                .WithWord(BdoScript._Eq(1, 0));
+                .WithWord(BdoScript.Eq(1, 0));
         }
 
         // Xml

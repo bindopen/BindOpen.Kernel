@@ -6,7 +6,7 @@ namespace BindOpen.Kernel.Data.Meta
     /// This class represents a data element attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
-    public class BdoPropertyAttribute : Attribute
+    public class BdoPropertyAttribute : Attribute, INamed, IGrouped, ITitled, IDescribed
     {
         // --------------------------------------------------
         // PROPERTIES

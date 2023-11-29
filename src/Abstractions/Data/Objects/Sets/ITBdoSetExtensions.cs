@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace BindOpen.Kernel.Data
 {
@@ -71,6 +72,24 @@ namespace BindOpen.Kernel.Data
             }
 
             return set;
+        }
+
+        /// <summary>
+        /// Adds the specified item.
+        /// </summary>
+        /// <param key="items">The items of the item to add.</param>
+        /// <returns>Returns the new item that has been added.
+        /// Returns null if the new item is null or else its name is null.</returns>
+        /// <remarks>The new item must have a name.</remarks>
+        public static void RemoveAll<T>(
+            this ITBdoSet<T> set,
+            Predicate<T> filter = null)
+            where T : IReferenced
+        {
+            if (set?.Items != null)
+            {
+                set.Items.RemoveAll(filter ?? (q => true));
+            }
         }
     }
 }
