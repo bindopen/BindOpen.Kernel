@@ -6,30 +6,30 @@ export enum ExportFormats
     /// <summary>
     /// Undefined.
     /// </summary>
-    Undefined,
+    Undefined = "Undefined",
 
     /// <summary>
     /// Json.
     /// </summary>
-    Json,
+    Json = "Json",
 
     /// <summary>
     /// Tsv.
     /// </summary>
-    Tsv,
+    Tsv = "Tsv",
 
     /// <summary>
     /// Pdf.
     /// </summary>
-    Pdf,
+    Pdf = "Pdf",
 
     /// <summary>
     /// Excel.
     /// </summary>
-    Excel,
+    Excel = "Excel",
 
     /// <summary>
     /// Any.
     /// </summary>
-    Any
+    Any = "Any"
 }

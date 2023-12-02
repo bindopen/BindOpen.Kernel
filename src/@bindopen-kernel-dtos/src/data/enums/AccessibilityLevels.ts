@@ -6,30 +6,30 @@ export enum AccessibilityLevels
     /// <summary>
     /// Anyone can access.
     /// </summary>
-    Public,
+    Public = "Public",
 
     /// <summary>
     /// None.
     /// </summary>
-    None,
+    None = "None",
 
     /// <summary>
     /// Inherited.
     /// </summary>
-    Inherited,
+    Inherited = "Inherited",
 
     /// <summary>
     /// Only authentized people can access.
     /// </summary>
-    Private,
+    Private = "Private",
 
     /// <summary>
     /// Only allowed people can access.
     /// </summary>
-    Restricted,
+    Restricted = "Restricted",
 
     /// <summary>
     /// Any accessibility level.
     /// </summary>
-    Any
+    Any = "Any"
 }

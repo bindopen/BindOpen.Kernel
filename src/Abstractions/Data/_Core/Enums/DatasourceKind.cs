@@ -36,7 +36,7 @@ namespace BindOpen.Kernel.Data
         /// <summary>
         /// SOAP API.
         /// </summary>
-        SoapAPI,
+        SoapApi,
 
         /// <summary>
         /// Email server.

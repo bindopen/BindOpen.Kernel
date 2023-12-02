@@ -6,30 +6,30 @@ export enum LabelFormats
     /// <summary>
     /// Any.
     /// </summary>
-    Any,
+    Any = "Any",
 
     /// <summary>
     /// Only name.
     /// </summary>
-    OnlyName,
+    OnlyName = "OnlyName",
 
     /// <summary>
     /// Name=value.
     /// </summary>
-    NameEqualsValue,
+    NameEqualsValue = "NameEqualsValue",
 
     /// <summary>
     /// Name:value.
     /// </summary>
-    NameColonValue,
+    NameColonValue = "NameColonValue",
 
     /// <summary>
     /// Name value.
     /// </summary>
-    NameSpaceValue,
+    NameSpaceValue = "NameSpaceValue",
 
     /// <summary>
     /// Only value.
     /// </summary>
-    OnlyValue,
+    OnlyValue = "OnlyValue"
 }

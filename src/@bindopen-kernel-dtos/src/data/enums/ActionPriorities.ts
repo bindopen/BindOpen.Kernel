@@ -6,35 +6,35 @@ export enum ActionPriorities
     /// <summary>
     /// None.
     /// </summary>
-    None,
+    None = "None",
 
     /// <summary>
     /// Inherited.
     /// </summary>
-    Inherited,
+    Inherited = "Inherited",
 
     /// <summary>
     /// Low.
     /// </summary>
-    Low,
+    Low = "Low",
 
     /// <summary>
     /// Medium.
     /// </summary>
-    Medium,
+    Medium = "Medium",
 
     /// <summary>
     /// High.
     /// </summary>
-    High,
+    High = "High",
 
     /// <summary>
     /// Very high.
     /// </summary>
-    VeryHigh,
+    VeryHigh = "VeryHigh",
 
     /// <summary>
     /// Any action priority.
     /// </summary>
-    Any
+    Any = "Any"
 }

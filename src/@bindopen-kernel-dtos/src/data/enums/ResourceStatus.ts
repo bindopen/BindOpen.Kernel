@@ -6,35 +6,35 @@ export enum ResourceStatus
     /// <summary>
     /// None.
     /// </summary>
-    None,
+    None = "None",
 
     /// <summary>
     /// Undefined.
     /// </summary>
-    Undefined,
+    Undefined = "Undefined",
 
     /// <summary>
     /// Created.
     /// </summary>
-    Created,
+    Created = "Created",
 
     /// <summary>
     /// Updated.
     /// </summary>
-    Updated,
+    Updated = "Updated",
 
     /// <summary>
     /// Patched.
     /// </summary>
-    Patched,
+    Patched = "Patched",
 
     /// <summary>
     /// Deleted.
     /// </summary>
-    Deleted,
+    Deleted = "Deleted",
 
     /// <summary>
     /// Any.
     /// </summary>
-    Any
+    Any = "Any"
 }

@@ -6,17 +6,17 @@
         /// <summary>
         /// None.
         /// </summary>
-        None,
+        None = "None",
 
-        Any,
+        Any = "Any",
 
         /// <summary>
         /// Element must be.
         /// </summary>
-        Requirement,
+        Requirement = "Requirement",
 
         /// <summary>
         /// Element must not be.
         /// </summary>
-        Rule
+        Rule = "Rule"
     };

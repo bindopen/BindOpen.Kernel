@@ -6,30 +6,30 @@ export enum DataAreaKind
     /// <summary>
     /// None.
     /// </summary>
-    None,
+    None = "None",
 
     /// <summary>
     /// Any.
     /// </summary>
-    Any,
+    Any = "Any",
 
     /// <summary>
     /// Constraint attributes.
     /// </summary>
-    Constraints,
+    Constraints = "Constraints",
 
     /// <summary>
     /// Design attribute.
     /// </summary>
-    Design,
+    Design = "Design",
 
     /// <summary>
     /// Item attribute.
     /// </summary>
-    Items,
+    Items = "Items",
 
     /// <summary>
     /// Property attribute.
     /// </summary>
-    Properties
+    Properties = "Properties"
 }

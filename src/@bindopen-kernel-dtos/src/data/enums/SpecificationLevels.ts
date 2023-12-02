@@ -6,35 +6,35 @@ export enum SpecificationLevels
     /// <summary>
     /// None.
     /// </summary>
-    None,
+    None = "None",
 
     /// <summary>
     /// Undefined.
     /// </summary>
-    Undefined,
+    Undefined = "Undefined",
 
     /// <summary>
     /// Definition.
     /// </summary>
-    Definition,
+    Definition = "Definition",
 
     /// <summary>
     /// Design.
     /// </summary>
-    Design,
+    Design = "Design",
 
     /// <summary>
     /// Configuration.
     /// </summary>
-    Configuration,
+    Configuration = "Configuration",
 
     /// <summary>
     /// Runtime.
     /// </summary>
-    Runtime,
+    Runtime = "Runtime",
 
     /// <summary>
     /// Any specification level.
     /// </summary>
-    Any = Definition | Design | Configuration | Runtime
+    Any = "Any"
 }
