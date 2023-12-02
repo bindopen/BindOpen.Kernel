@@ -8,7 +8,7 @@
       <xs:enumeration value="Database" />
       <xs:enumeration value="Repository" />
       <xs:enumeration value="RestAPI" />
-      <xs:enumeration value="SoapAPI" />
+      <xs:enumeration value="SoapApi" />
       <xs:enumeration value="EmailServer" />
       <xs:enumeration value="Memory" />
     </xs:restriction>

@@ -6,20 +6,20 @@ export enum QueryResultModes
     /// <summary>
     /// Full.
     /// </summary>
-    Full,
+    Full = "Full",
 
     /// <summary>
     /// Partial.
     /// </summary>
-    Partial,
+    Partial = "Partial",
 
     /// <summary>
     /// Quick.
     /// </summary>
-    Quick,
+    Quick = "Quick",
 
     /// <summary>
     /// Any.
     /// </summary>
-    Any
+    Any = "Any"
 }

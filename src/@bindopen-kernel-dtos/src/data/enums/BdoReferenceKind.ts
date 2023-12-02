@@ -6,25 +6,25 @@ export enum BdoReferenceKind
     /// <summary>
     /// Expression.
     /// </summary>
-    Expression,
+    Expression = "Expression",
 
     /// <summary>
     /// Target identifier.
     /// </summary>
-    Identifier,
+    Identifier = "Identifier",
 
     /// <summary>
     /// Meta data.
     /// </summary>
-    MetaData,
+    MetaData = "MetaData",
 
     /// <summary>
     /// None. Such as script word.
     /// </summary>
-    None,
+    None = "None",
 
     /// <summary>
     /// Any.
     /// </summary>
-    Any
+    Any = "Any"
 }

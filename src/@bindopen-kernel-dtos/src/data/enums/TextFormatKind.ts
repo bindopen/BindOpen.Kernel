@@ -6,16 +6,16 @@ export enum TextFormatKind
     /// <summary>
     /// No format.
     /// </summary>
-    None,
+    None = "None",
 
     /// <summary>
     /// Email format.
     /// </summary>
-    Email,
+    Email = "Email",
 
     /// <summary>
     /// Strong password (Must be at least 10 characters,
     /// Must contain at least one one lower case letter, one upper case letter, one digit and one special character
     /// </summary>
-    StrongPassword
+    StrongPassword = "StrongPassword"
 }

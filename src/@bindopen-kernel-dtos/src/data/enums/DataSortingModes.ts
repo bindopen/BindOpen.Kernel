@@ -6,30 +6,30 @@ export enum DataSortingModes
     /// <summary>
     /// None.
     /// </summary>
-    None,
+    None = "None",
 
     /// <summary>
     /// Undefined.
     /// </summary>
-    Undefined,
+    Undefined = "Undefined",
 
     /// <summary>
     /// Ascending.
     /// </summary>
-    Ascending,
+    Ascending = "Ascending",
 
     /// <summary>
     /// Descending.
     /// </summary>
-    Descending,
+    Descending = "Descending",
 
     /// <summary>
     /// Random.
     /// </summary>
-    Random,
+    Random = "Random",
 
     /// <summary>
     /// Any data sorting mode.
     /// </summary>
-    Any
+    Any = "Any"
 }

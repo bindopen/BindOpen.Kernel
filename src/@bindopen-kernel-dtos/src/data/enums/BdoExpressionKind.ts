@@ -6,30 +6,30 @@ export enum BdoExpressionKind
     /// <summary>
     /// Literal expression that can include scripts embedded in braces.
     /// </summary>
-    Auto,
+    Auto = "Auto",
 
     /// <summary>
     /// Literal expression is considered as default. A literal mode can then be applied.
     /// </summary>
-    Literal,
+    Literal = "Literal",
 
     /// <summary>
     /// Script expression is considered as default.
     /// </summary>
-    Script,
+    Script = "Script",
 
     /// <summary>
     /// Word.
     /// </summary>
-    Word,
+    Word = "Word",
 
     /// <summary>
     /// None. Such as script word.
     /// </summary>
-    None,
+    None = "None",
 
     /// <summary>
     /// Any.
     /// </summary>
-    Any
+    Any = "Any"
 }

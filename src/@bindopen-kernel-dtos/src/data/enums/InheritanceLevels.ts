@@ -6,25 +6,25 @@ export enum InheritanceLevels
     /// <summary>
     /// None.
     /// </summary>
-    None,
+    None = "None",
 
     /// <summary>
     /// Undefined.
     /// </summary>
-    Undefined,
+    Undefined = "Undefined",
 
     /// <summary>
     /// Heritable.
     /// </summary>
-    Heritable,
+    Heritable = "Heritable",
 
     /// <summary>
     /// Inherited.
     /// </summary>
-    Inherited,
+    Inherited = "Inherited",
 
     /// <summary>
     /// Any inherintance level.
     /// </summary>
-    Any
+    Any = "Any"
 }

@@ -11,6 +11,13 @@
     "type": "git",
     "url": "git+https://github.com/bindopen/BindOpen.Kernel.git"
   },
+  "exports": {
+    ".": {
+      "data": "./data/**/*.js",
+      "logging": "./logging/**/*.js",
+      "scoping": "./scoping/**/*.js"
+    }
+  },  
   "keywords": [
     "bindopen",
     "kernel",

@@ -6,25 +6,25 @@ export enum Criticalities
     /// <summary>
     /// None.
     /// </summary>
-    None,
+    None = "None",
 
     /// <summary>
     /// Low.
     /// </summary>
-    Low,
+    Low = "Low",
 
     /// <summary>
     /// Medium.
     /// </summary>
-    Medium,
+    Medium = "Medium",
 
     /// <summary>
     /// High.
     /// </summary>
-    High,
+    High = "High",
 
     /// <summary>
     /// Very high.
     /// </summary>
-    VeryHigh
+    VeryHigh = "VeryHigh"
 };

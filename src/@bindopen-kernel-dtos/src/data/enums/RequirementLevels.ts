@@ -6,35 +6,35 @@ export enum RequirementLevels
     /// <summary>
     /// None.
     /// </summary>
-    None,
+    None = "None",
 
     /// <summary>
     /// Undefined.
     /// </summary>
-    Undefined,
+    Undefined = "Undefined",
 
     /// <summary>
     /// Forbidden.
     /// </summary>
-    Forbidden,
+    Forbidden = "Forbidden",
 
     /// <summary>
     /// Optional.
     /// </summary>
-    Optional,
+    Optional = "Optional",
 
     /// <summary>
     /// Required item.
     /// </summary>
-    Required,
+    Required = "Required",
 
     /// <summary>
     /// Custom.
     /// </summary>
-    Custom,
+    Custom = "Custom",
 
     /// <summary>
     /// Any the requirement level.
     /// </summary>
-    Any
+    Any = "Any"
 }
