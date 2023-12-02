@@ -6,10 +6,10 @@ export enum CompositeConditionKind
     /// <summary>
     /// And.
     /// </summary>
-    And,
+    And = "And",
 
     /// <summary>
     /// Or.
     /// </summary>
-    Or
+    Or = "Or"
 }

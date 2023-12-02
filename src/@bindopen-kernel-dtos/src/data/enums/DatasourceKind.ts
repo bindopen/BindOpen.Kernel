@@ -6,45 +6,45 @@ export enum DatasourceKind
     /// <summary>
     /// None.
     /// </summary>
-    None,
+    None = "None",
 
     /// <summary>
     /// Any.
     /// </summary>
-    Any,
+    Any = "Any",
 
     /// <summary>
     /// Database.
     /// </summary>
-    Database,
+    Database = "Database",
 
     /// <summary>
     /// Repository.
     /// </summary>
-    Repository,
+    Repository = "Repository",
 
     /// <summary>
     /// Rest API.
     /// </summary>
-    RestApi,
+    RestApi = "RestApi",
 
     /// <summary>
     /// SOAP API.
     /// </summary>
-    SoapAPI,
+    SoapApi = "SoapApi",
 
     /// <summary>
     /// Email server.
     /// </summary>
-    EmailServer,
+    EmailServer = "EmailServer",
 
     /// <summary>
     /// Memory.
     /// </summary>
-    Memory,
+    Memory = "Memory",
 
     /// <summary>
     /// Console.
     /// </summary>
-    Console
+    Console = "Console"
 }

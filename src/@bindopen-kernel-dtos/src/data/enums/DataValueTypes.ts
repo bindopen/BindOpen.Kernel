@@ -6,100 +6,100 @@ export enum DataValueTypes
     /// <summary>
     /// None.
     /// </summary>
-    None,
+    None = "None",
 
     /// <summary>
     /// Any.
     /// </summary>
-    Any,
+    Any = "Any",
 
     /// <summary>
-    /// Text.
+    /// Meta data.
     /// </summary>
-    MetaData,
-
-    /// <summary>
-    /// Script word.
-    /// </summary>
-    Scriptword,
+    MetaData = "MetaData",
 
     /// <summary>
     /// Script word.
     /// </summary>
-    Reference,
+    Scriptword = "Scriptword",
+
+    /// <summary>
+    /// Reference.
+    /// </summary>
+    Reference = "Reference",
 
     /// <summary>
     /// Boolean.
     /// </summary>
-    Boolean,
+    Boolean = "Boolean",
 
     /// <summary>
     /// Binary.
     /// </summary>
-    Binary,
+    Binary = "Binary",
 
     /// <summary>
     /// Connector.
     /// </summary>
-    Connector,
+    Connector = "Connector",
 
     /// <summary>
     /// Date.
     /// </summary>
-    Date,
+    Date = "Date",
 
     /// <summary>
     /// Document.
     /// </summary>
-    Document,
+    Document = "Document",
 
     /// <summary>
     /// Data entity.
     /// </summary>
-    Entity,
+    Entity = "Entity",
 
     /// <summary>
     /// Integer.
     /// </summary>
-    Integer,
+    Integer = "Integer",
 
     /// <summary>
     /// Long.
     /// </summary>
-    Long,
+    Long = "Long",
 
     /// <summary>
     /// Ultra long.
     /// </summary>
-    ULong,
+    ULong = "ULong",
 
     /// <summary>
     /// Number value.
     /// </summary>
-    Number,
+    Number = "Number",
 
     /// <summary>
     /// Object.
     /// </summary>
-    Object,
+    Object = "Object",
+
+    /// <summary>
+    /// Task.
+    /// </summary>
+    Task = "Task",
 
     /// <summary>
     /// Text.
     /// </summary>
-    Task,
-
-    /// <summary>
-    /// Text.
-    /// </summary>
-    Text,
+    Text = "Text",
 
     /// <summary>
     /// Time.
     /// </summary>
-    Time,
+    Time = "Time",
 
     /// <summary>
     /// Null
     /// </summary>
-    Null
+    Null = "Null"
 }

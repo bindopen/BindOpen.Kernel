@@ -6,20 +6,20 @@ export enum DataMode
     /// <summary>
     /// None.
     /// </summary>
-    None,
+    None = "None",
 
     /// <summary>
     /// Any.
     /// </summary>
-    Any,
+    Any = "Any",
 
     /// <summary>
     /// Value.
     /// </summary>
-    Value,
+    Value = "Value",
 
     /// <summary>
     /// Reference.
     /// </summary>
-    Reference
+    Reference = "Reference"
 }

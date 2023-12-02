@@ -6,30 +6,30 @@ export enum PersistenceLevels
     /// <summary>
     /// None.
     /// </summary>
-    None,
+    None = "None",
 
     /// <summary>
     /// Undefined.
     /// </summary>
-    Undefined,
+    Undefined = "Undefined",
 
     /// <summary>
     /// The information remains alive.
     /// </summary>
-    Singleton,
+    Singleton = "Singleton",
 
     /// <summary>
     /// The information remains alive until the session ends.
     /// </summary>
-    Scoped,
+    Scoped = "Scoped",
 
     /// <summary>
     /// The information remains alive until the request ends.
     /// </summary>
-    Transient,
+    Transient = "Transient",
 
     /// <summary>
     /// Any the persistence level.
     /// </summary>
-    Any
+    Any = "Any"
 }

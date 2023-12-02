@@ -6,65 +6,65 @@ export enum DataOperators
     /// <summary>
     /// None.
     /// </summary>
-    None,
+    None = "None",
 
     /// <summary>
     /// Undefined.
     /// </summary>
-    Undefined,
+    Undefined = "Undefined",
 
     /// <summary>
     /// Exists.
     /// </summary>
-    Exists,
+    Exists = "Exists",
 
     /// <summary>
     /// Contains.
     /// </summary>
-    Contains,
+    Contains = "Contains",
 
     /// <summary>
     /// Has.
     /// </summary>
-    Has,
+    Has = "Has",
 
     /// <summary>
     /// In.
     /// </summary>
-    In,
+    In = "In",
 
     /// <summary>
     /// Equal.
     /// </summary>
-    EqualTo,
+    EqualTo = "EqualTo",
 
     /// <summary>
     /// Different.
     /// </summary>
-    DifferentFrom,
+    DifferentFrom = "DifferentFrom",
 
     /// <summary>
     /// Lesser.
     /// </summary>
-    LesserThan,
+    LesserThan = "LesserThan",
 
     /// <summary>
     /// Lesser or equal.
     /// </summary>
-    LesserOrEqualThan,
+    LesserOrEqualThan = "LesserOrEqualThan",
 
     /// <summary>
     /// Greater.
     /// </summary>
-    GreaterThan,
+    GreaterThan = "GreaterThan",
 
     /// <summary>
     /// Greater or equal.
     /// </summary>
-    GreaterOrEqualThan,
+    GreaterOrEqualThan = "GreaterOrEqualThan",
 
     /// <summary>
     /// Any operator.
     /// </summary>
-    Any
+    Any = "Any"
 }
