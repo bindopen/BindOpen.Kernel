@@ -7,8 +7,17 @@ namespace BindOpen.Kernel.Data
     /// <summary>
     /// This interface represents a named data.
     /// </summary>
-    public static class DetailedExtensions
+    public static class IBdoDetailedExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="detail"></param>
+        public static IBdoMetaSet GetOrNewDetail(this IBdoDetailed obj)
+        {
+            return obj.Detail ??= BdoData.NewSet();
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -20,8 +29,7 @@ namespace BindOpen.Kernel.Data
         {
             if (obj != null)
             {
-                obj.Detail ??= BdoData.NewSet();
-                obj.Detail.Clear();
+                obj.GetOrNewDetail().Clear();
                 obj.Detail.Add(metas);
             }
             return obj;

@@ -5,15 +5,18 @@ using System.Linq;
 namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
-    /// This class represents a extension scope loader.
+    /// This static class extends the IBdoExtensionStore interface.
     /// </summary>
     public static class IBdoExtensionStoreExtensions
     {
         /// <summary>
-        /// Returns the item definitions of this instance.
+        /// Gets the specified extension definitions.
         /// </summary>
-        /// <returns>The item words of specified library names.</returns>
-        public static IEnumerable<T> GetDefinitions<T>(this IBdoExtensionStore store) where T : IBdoExtensionDefinition
+        /// <param name="store">The extension store to consider.</param>
+        /// <typeparam name="T">The type to consider.</typeparam>
+        /// <returns>Returns the extension definitions of the specified type.</returns>
+        public static IEnumerable<T> GetDefinitions<T>(this IBdoExtensionStore store)
+            where T : IBdoExtensionDefinition
         {
             if (store != null)
             {
@@ -24,10 +27,11 @@ namespace BindOpen.Kernel.Scoping
         }
 
         /// <summary>
-        /// 
+        /// Get the specified extension definition.
         /// </summary>
-        /// <param key="uniqueName"></param>
-        /// <returns></returns>
+        /// <param name="store">The extension store to consider.</param>
+        /// <typeparam name="T">The type to consider.</typeparam>
+        /// <returns>Returns the extension definitions of the specified type and the specified unique name.</returns>
         public static T GetDefinition<T>(
             this IBdoExtensionStore store,
             string uniqueName) where T : IBdoExtensionDefinition
@@ -40,6 +44,12 @@ namespace BindOpen.Kernel.Scoping
             return default;
         }
 
+        /// <summary>
+        /// Get the specified extension definition.
+        /// </summary>
+        /// <param name="store">The extension store to consider.</param>
+        /// <typeparam name="T">The type to consider.</typeparam>
+        /// <returns>Returns the extension definitions of the specified type.</returns>
         public static T GetDefinitionFromType<T>(this IBdoExtensionStore store) where T : IBdoExtension
         {
             if (store != null)

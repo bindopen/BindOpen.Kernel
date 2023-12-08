@@ -1,5 +1,4 @@
-﻿using BindOpen.Kernel.Data.Conditions;
-using BindOpen.Kernel.Logging;
+﻿using BindOpen.Kernel.Logging;
 using BindOpen.Kernel.Scoping;
 using System.Collections.Generic;
 
@@ -12,7 +11,7 @@ namespace BindOpen.Kernel.Data.Meta
         IBdoObject, IReferenced, IBdoDataTyped, IBdoConditional, IGrouped,
         IIdentified, INamed, IIndexed, IBdoReferenced,
         IBdoTitled, IBdoDescribed, IBdoDetailed,
-        ITBdoSet<IBdoConstraint>,
+        ITBdoSet<IBdoSpecRule>,
         ITTreeNode<IBdoSpec>, ITGroup<IBdoSpec>,
         IUpdatable
     {
@@ -32,16 +31,6 @@ namespace BindOpen.Kernel.Data.Meta
         uint? MaxDataItemNumber { get; set; }
 
         // Data
-
-        /// <summary>
-        /// 
-        /// </summary>
-        bool IsStatic { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        bool IsAllocatable { get; set; }
 
         /// <summary>
         /// The label of this instance.
@@ -77,12 +66,18 @@ namespace BindOpen.Kernel.Data.Meta
         /// <returns></returns>
         bool IsCompatibleWithData(object item);
 
-        IBdoConstraint Get(string reference, BdoConstraintModes mode = BdoConstraintModes.Requirement, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null);
+        IBdoSpecRule Get(
+            string groupId,
+            BdoSpecRuleKinds ruleKind = BdoSpecRuleKinds.Requirement,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null);
 
-        object GetValue(string reference, BdoConstraintModes mode = BdoConstraintModes.Requirement, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null);
-
-        T GetValue<T>(string reference, BdoConstraintModes mode = BdoConstraintModes.Requirement, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null);
-
-        void RemoveOfReference(string reference, bool isRecursive = false);
+        object GetValue(
+            string groupId,
+            BdoSpecRuleKinds ruleKind = BdoSpecRuleKinds.Requirement,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null);
     }
 }

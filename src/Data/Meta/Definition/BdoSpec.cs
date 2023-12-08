@@ -11,7 +11,7 @@ namespace BindOpen.Kernel.Data.Meta
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    public partial class BdoSpec : TBdoSet<IBdoConstraint>, IBdoSpec
+    public partial class BdoSpec : TBdoSet<IBdoSpecRule>, IBdoSpec
     {
         // --------------------------------------------------
         // CONSTANTS
@@ -25,7 +25,7 @@ namespace BindOpen.Kernel.Data.Meta
         public static readonly string[] __AreaNames = new[]
         {
             nameof(DataAreaKind.Design),
-            nameof(DataAreaKind.Constraints),
+            nameof(DataAreaKind.SpecRules),
             nameof(DataAreaKind.Properties),
             nameof(BdoMetaDataAreaKind.Element),
             nameof(DataAreaKind.Items)
@@ -93,11 +93,6 @@ namespace BindOpen.Kernel.Data.Meta
         /// The identifier of the group of this instance.
         /// </summary>
         public string GroupId { get; set; }
-
-        /// <summary>
-        /// The identifier of the group of this instance.
-        /// </summary>
-        public bool IsStatic { get; set; }
 
         /// <summary>
         /// The label of this instance.
@@ -210,19 +205,6 @@ namespace BindOpen.Kernel.Data.Meta
 
         #region IGroup
 
-        public void RemoveOfReference(string reference, bool isRecursive = false)
-        {
-            this.RemoveAll(q => q.OfReference(reference));
-
-            if (isRecursive && _children?.Any() == true)
-            {
-                foreach (var child in _children)
-                {
-                    child.RemoveOfReference(reference, true);
-                }
-            }
-        }
-
         public void RemoveOfGroup(string groupId, bool isRecursive = false)
         {
             this.RemoveAll(q => q.OfGroup(groupId));
@@ -245,22 +227,6 @@ namespace BindOpen.Kernel.Data.Meta
         #region IBdoSpec
 
         /// <summary>
-        /// Indicates whether this instance is compatible with the specified data item.
-        /// </summary>
-        /// <param key="item">The data item to consider.</param>
-        /// <returns>True if this instance is compatible with the specified data item.</returns>
-        public virtual bool IsCompatibleWithData(
-            object item)
-        {
-            return true;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IBdoCondition Condition { get; set; }
-
-        /// <summary>
         /// The script of this instance.
         /// </summary>
         public IBdoReference Reference { get; set; }
@@ -269,11 +235,6 @@ namespace BindOpen.Kernel.Data.Meta
         /// The aliases of the entry.
         /// </summary>
         public IList<string> Aliases { get; set; }
-
-        /// <summary>
-        /// Indicates whether the instance can be allocated.
-        /// </summary>
-        public bool IsAllocatable { get; set; } = false;
 
         /// <summary>
         /// The script of this instance.
@@ -305,33 +266,63 @@ namespace BindOpen.Kernel.Data.Meta
         /// </summary>
         public bool IsValueList => MaxDataItemNumber == null || MaxDataItemNumber > 1;
 
-        public IBdoConstraint Get(string reference, BdoConstraintModes mode, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
+        /// <summary>
+        /// Indicates whether this instance is compatible with the specified data item.
+        /// </summary>
+        /// <param key="item">The data item to consider.</param>
+        /// <returns>True if this instance is compatible with the specified data item.</returns>
+        public virtual bool IsCompatibleWithData(
+            object item)
         {
-            var constraints = this.Where(q => q.OfReference(reference) && (mode == BdoConstraintModes.Any || q.Mode == mode));
+            return true;
+        }
 
-            foreach (var constraint in constraints)
+        public IBdoSpecRule Get(string groupId, BdoSpecRuleKinds ruleKind, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
+        {
+            var rules = this.Where(q => q.OfGroup(groupId) && (ruleKind == BdoSpecRuleKinds.Any || q.Kind == ruleKind));
+
+            foreach (var rule in rules)
             {
-                if (constraint?.Condition != null && scope?.Interpreter?.Evaluate(constraint.Condition, varSet, log) == true)
+                if (rule?.Condition != null && scope?.Interpreter?.Evaluate(rule.Condition, varSet, log) == true)
                 {
-                    return constraint;
+                    return rule;
                 }
             }
 
-            return constraints.FirstOrDefault(q => q.Condition == null);
+            return rules.FirstOrDefault(q => q.Condition == null);
         }
 
-        public object GetValue(string reference, BdoConstraintModes mode, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
+        public object GetValue(string groupId, BdoSpecRuleKinds ruleKind, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
         {
-            var constraint = Get(reference, mode, scope, varSet, log);
+            var rule = Get(groupId, ruleKind, scope, varSet, log);
 
-            return constraint?.Value;
+            return rule?.Value;
         }
 
-        public T GetValue<T>(string reference, BdoConstraintModes mode, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
-        {
-            object obj = GetValue(reference, mode, scope, varSet, log);
+        #endregion
 
-            return obj.As<T>();
+        // ------------------------------------------
+        // IConditional Implementation
+        // ------------------------------------------
+
+        #region IConditional
+
+        /// <summary>
+        /// The condition.
+        /// </summary>
+        public IBdoCondition Condition { get; set; }
+
+        /// <summary>
+        /// The item requirement level of this instance.
+        /// </summary>
+        public bool GetConditionValue(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var b = scope?.Interpreter?.Evaluate(Condition, varSet, log) == true;
+
+            return b;
         }
 
         #endregion

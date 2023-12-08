@@ -1,5 +1,8 @@
-﻿using BindOpen.Kernel.Logging;
+﻿using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Logging;
 using BindOpen.Kernel.Scoping;
+using System.Data;
+using System.Linq;
 
 namespace BindOpen.Kernel.Data.Meta
 {
@@ -31,7 +34,7 @@ namespace BindOpen.Kernel.Data.Meta
         {
             bool isOk = true;
 
-            if (spec !=null)
+            if (spec != null)
             {
                 var localVarSet = BdoData.NewSet(varSet?.ToArray());
                 localVarSet.Add(BdoData.__VarName_This, meta);
@@ -44,45 +47,91 @@ namespace BindOpen.Kernel.Data.Meta
                         EventKinds.Error,
                         "Bas value type",
                         string.Format("Value not compatible with '{0}' type", spec.DataType.ToString()),
-                        resultCode: BdoMetaConstraintResultCodes.BadValueType);
+                        resultCode: BdoSpecRuleResultCodes.BadValueType);
                 }
 
-                // check the constraints
+                // check the value type
+
+                var data = meta?.GetData(Scope, varSet, log);
+                if (!spec.IsCompatibleWithData(data))
+                {
+                    isOk = false;
+                    log?.AddEvent(EventKinds.Error, "Invalid data").WithResultCode("CS1250");
+                }
+
+                // check the item number
+
+                var itemNumber = data.ToObjectList()?.Count ?? 0;
+                if ((itemNumber > (spec.MaxDataItemNumber ?? int.MaxValue))
+                    || (itemNumber < spec.MinDataItemNumber))
+                {
+                    isOk = false;
+                    log?.AddEvent(EventKinds.Error, "Invalid data item number").WithResultCode("CS1251");
+                }
+
+                // check the rules
 
                 if (spec.Items != null)
                 {
-                    foreach (var constraint in spec)
+                    // we check requirements
+
+                    var groupIds = spec.Where(q => q.Kind == BdoSpecRuleKinds.Requirement)
+                        .OrderBy(q => q.GetIndexValue())
+                        .Select(q => q.GroupId).Distinct();
+
+                    foreach (var groupId in groupIds)
                     {
-                        var conditionValue = Scope?.Interpreter.Evaluate(constraint.Condition, localVarSet, log);
+                        var rule = meta.GetSpecRule(groupId, BdoSpecRuleKinds.Requirement, Scope, varSet, log);
 
-                        switch(constraint.Mode)
+                        if (rule != null)
                         {
-                            case BdoConstraintModes.Requirement:
-                                if (conditionValue == true)
-                                {
-                                    var expectedValue = constraint.Value;
-                                    var exp = BdoData.NewExp(string.Format("$(this).prop('{0}')", constraint.Reference?.Identifier));
+                            var expectedValue = rule.Value;
 
-                                    var currentValue = Scope?.Interpreter.Evaluate(exp, localVarSet, log);
+                            var exp = BdoData.NewExp(rule.GroupId);
+                            var currentValue = Scope?.Interpreter.Evaluate(exp, localVarSet, log);
 
+                            if ((currentValue == null && expectedValue != null)
+                                || currentValue?.Equals(expectedValue) != true)
+                            {
+                                isOk = false;
 
-                                    log?.AddEvent(
-                                        constraint.ResultEventKind,
-                                        constraint.ResultTitle,
-                                        constraint.ResultDescription,
-                                        resultCode: constraint.ResultCode);
-                                }
-                                break;
-                            case BdoConstraintModes.Rule:
-                                if (conditionValue != false)
-                                {
-                                    log?.AddEvent(
-                                        constraint.ResultEventKind,
-                                        constraint.ResultTitle,
-                                        constraint.ResultDescription,
-                                        resultCode: constraint.ResultCode);
-                                }
-                                break;
+                                log?.AddEvent(
+                                    rule.ResultEventKind,
+                                    rule.ResultTitle,
+                                    rule.ResultDescription,
+                                    resultCode: rule.ResultCode);
+                            }
+                        }
+                    }
+
+                    // we check constraints
+
+                    var constraints = spec.Where(q => q.Kind == BdoSpecRuleKinds.Constraint);
+
+                    foreach (var constraint in constraints)
+                    {
+                        if (constraint != null)
+                        {
+                            if (constraint.Reference != null)
+                            {
+                                var referenceObj = Scope?.Interpreter.Evaluate(constraint.Reference, localVarSet, log);
+                                localVarSet.Add(BdoData.__VarName_This, referenceObj);
+                            }
+                            localVarSet.Add(BdoData.__VarName_This, meta);
+
+                            var conditionValue = Scope?.Interpreter.Evaluate(
+                                constraint.Condition, localVarSet, log);
+
+                            if (conditionValue != false)
+                            {
+                                isOk = false;
+
+                                log?.AddEvent(
+                                    constraint.ResultEventKind,
+                                    constraint.ResultTitle,
+                                    constraint.ResultDescription,
+                                    resultCode: constraint.ResultCode);
+                            }
                         }
                     }
                 }

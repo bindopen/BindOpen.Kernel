@@ -24,9 +24,9 @@
         //    var log = new BdoLog();
         //    if (item != null && dataElement != null)
         //    {
-        //        if (dataElement.Specification?.ConstraintStatement != null)
+        //        if (dataElement.Specification?.SpecRuleStatement != null)
         //        {
-        //            log.AddEvents(_constraintStatement.CheckItem(item, dataElement, true));
+        //            log.AddEvents(_ruleStatement.CheckItem(item, dataElement, true));
         //        }
         //    }
 

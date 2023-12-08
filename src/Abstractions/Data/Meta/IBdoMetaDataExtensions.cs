@@ -1,4 +1,8 @@
-﻿using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Scoping;
+using System.Linq;
 
 namespace BindOpen.Kernel.Data
 {

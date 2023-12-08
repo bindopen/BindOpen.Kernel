@@ -1,5 +1,4 @@
 ﻿using BindOpen.Kernel.Scoping;
-using BindOpen.Kernel.Scoping.Script;
 
 namespace BindOpen.Kernel.Data
 {
@@ -44,34 +43,6 @@ namespace BindOpen.Kernel.Data
                 }
             }
             return obj;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="assemblyFileName"></param>
-        public static bool IsScope(this IBdoDataType dataType)
-        {
-            return dataType?.IsCompatibleWith(typeof(IBdoScope)) ?? false;
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="assemblyFileName"></param>
-        public static bool IsScriptDomain(this IBdoDataType dataType)
-        {
-            return dataType?.IsCompatibleWith(typeof(IBdoScriptDomain)) ?? false;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="assemblyFileName"></param>
-        public static bool IsScriptword(this IBdoDataType dataType)
-        {
-            return dataType?.IsCompatibleWith(typeof(IBdoScriptword)) ?? false;
         }
     }
 }

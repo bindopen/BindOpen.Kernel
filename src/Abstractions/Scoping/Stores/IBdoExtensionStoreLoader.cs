@@ -3,15 +3,15 @@
 namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
-    /// 
+    /// This interface defines an extension store loader.
     /// </summary>
     public interface IBdoExtensionStoreLoader
     {
         /// <summary>
-        /// Loads the specified extensions into the specified scope.
+        /// Loads the packages.
         /// </summary>
-        /// <param key="references">The library references to consider.</param>
         /// <param key="log">The log to populate.</param>
+        /// <returns>Returns True whether this instance has loaded the packages.</returns>
         bool LoadPackages(IBdoLog log = null);
     }
 }

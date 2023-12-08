@@ -1,4 +1,5 @@
-﻿using BindOpen.Kernel.Data.Helpers;
+﻿using BindOpen.Kernel.Data.Conditions;
+using BindOpen.Kernel.Data.Helpers;
 using BindOpen.Kernel.Logging;
 using BindOpen.Kernel.Scoping;
 using System.Collections.Generic;
@@ -186,7 +187,7 @@ namespace BindOpen.Kernel.Data.Meta
             {
                 if (scope == null)
                 {
-                    log?.AddEvent(EventKinds.Warning, "Application scope missing");
+                    log?.AddEvent(EventKinds.Error, "Application scope missing");
                 }
                 else
                 {
@@ -297,8 +298,9 @@ namespace BindOpen.Kernel.Data.Meta
         /// <summary>
         /// The item requirement level of this instance.
         /// </summary>
-        public object GetConstraintValue(
-            string reference,
+        public IBdoSpecRule GetSpecRule(
+            string groupId,
+            BdoSpecRuleKinds ruleKind = BdoSpecRuleKinds.Requirement,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
@@ -308,9 +310,9 @@ namespace BindOpen.Kernel.Data.Meta
                 var localVarSet = BdoData.NewSet(varSet?.ToArray());
                 localVarSet.Add(BdoData.__VarName_This, this);
 
-                var level = Spec?.GetValue(reference, BdoConstraintModes.Requirement, scope, localVarSet, log);
+                var rule = Spec?.Get(groupId, ruleKind, scope, localVarSet, log);
 
-                return level;
+                return rule;
             }
 
             return null;
@@ -394,6 +396,47 @@ namespace BindOpen.Kernel.Data.Meta
         /// </summary>
         [BdoProperty("name")]
         public string Name { get; set; }
+
+        #endregion
+
+        // ------------------------------------------
+        // IConditional Implementation
+        // ------------------------------------------
+
+        #region IConditional
+
+        /// <summary>
+        /// The condition.
+        /// </summary>
+        public IBdoCondition Condition
+        {
+            get => Spec?.Condition;
+            set
+            {
+                this.GetOrAddSpec().Condition = value;
+            }
+        }
+
+        /// <summary>
+        /// The item requirement level of this instance.
+        /// </summary>
+        public bool GetConditionValue(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            if (Condition != null)
+            {
+                var localVarSet = BdoData.NewSet(varSet?.ToArray());
+                localVarSet.Add(BdoData.__VarName_This, this);
+
+                var b = scope?.Interpreter?.Evaluate(Condition, localVarSet, log) == true;
+
+                return b;
+            }
+
+            return true;
+        }
 
         #endregion
 
