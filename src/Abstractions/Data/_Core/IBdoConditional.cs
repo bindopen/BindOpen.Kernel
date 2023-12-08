@@ -1,4 +1,7 @@
 ﻿using BindOpen.Kernel.Data.Conditions;
+using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Scoping;
 
 namespace BindOpen.Kernel.Data
 {
@@ -11,5 +14,13 @@ namespace BindOpen.Kernel.Data
         /// The condition of this object.
         /// </summary>
         IBdoCondition Condition { get; set; }
+
+        /// <summary>
+        /// The item requirement level of this instance.
+        /// </summary>
+        bool GetConditionValue(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null);
     }
 }

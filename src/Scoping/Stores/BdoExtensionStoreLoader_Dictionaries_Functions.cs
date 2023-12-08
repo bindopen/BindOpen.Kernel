@@ -102,13 +102,16 @@ namespace BindOpen.Kernel.Scoping
                         spec.UpdateFrom(paramInfo, typeof(BdoParameterAttribute));
                         spec.Index = i;
 
-                        if (spec.IsStatic)
+                        var isStatic = spec.IsFlag(BdoSpecProperties.IsStatic);
+                        var isScriptParameter = spec.IsFlag(BdoSpecProperties.IsScriptParameter);
+
+                        if (isStatic)
                         {
                             var type1 = paramInfo.ParameterType;
                             definition.ParentDataType = BdoData.NewDataType(type1);
                         }
 
-                        if (spec.IsStatic || spec.DataType.IsScope() || spec.DataType.IsScriptDomain())
+                        if (isStatic || isScriptParameter || spec.DataType.IsCompatibleWith(typeof(IBdoScriptDomain)))
                         {
                             definition.AdditionalSpecs ??= BdoData.NewItemSet<IBdoSpec>();
                             definition.AdditionalSpecs.Add((IBdoSpec)spec);
@@ -129,7 +132,7 @@ namespace BindOpen.Kernel.Scoping
                         var type1 = methodInfo.GetParameters()[0].ParameterType;
                         definition.ParentDataType = BdoData.NewDataType(type1);
 
-                        var spec = definition.FirstOrDefault().AsStatic();
+                        var spec = definition.FirstOrDefault().AsFlag(BdoSpecProperties.IsStatic);
                         if (definition.AdditionalSpecs?[0]?.Index != 0)
                         {
                             definition.Remove(spec?.Key());

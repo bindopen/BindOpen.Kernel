@@ -13,10 +13,8 @@ namespace BindOpen.Kernel.Tests
         /// </summary>
         [BdoFunction(Name = "testEqual")]
         public static bool GetTest(
-            [BdoParameter(Title = "String value")]
-            string stringValue,
-            [BdoParameter(Title = "Integer value")]
-            int intValue = 10)
+            [BdoParameter(Title = "String value")] string stringValue,
+            [BdoParameter(Title = "Integer value")] int intValue = 10)
             => stringValue == intValue.ToString();
     }
 }

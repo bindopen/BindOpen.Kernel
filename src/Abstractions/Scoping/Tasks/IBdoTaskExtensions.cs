@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
-    /// 
+    /// This static class extends the IBdoTask interface.
     /// </summary>
     public static class IBdoTaskExtensions
     {

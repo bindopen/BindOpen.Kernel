@@ -21,5 +21,16 @@
 
             return obj;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="index"></param>
+        public static int? GetIndexValue(this IIndexed obj)
+        {
+            if (obj == null) return -1;
+
+            return obj.Index < 0 ? int.MaxValue : obj.Index;
+        }
     }
 }

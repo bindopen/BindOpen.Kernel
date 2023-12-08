@@ -3,7 +3,7 @@
 namespace BindOpen.Kernel.Scoping
 {
     /// <summary>
-    /// This class represents an attribute of tasks.
+    /// This class represents a task attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class BdoTaskAttribute : MetaExtensionAttribute
@@ -15,7 +15,7 @@ namespace BindOpen.Kernel.Scoping
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the TaskAttribute class.
+        /// Instantiates a new instance of the BdoTaskAttribute class.
         /// </summary>
         public BdoTaskAttribute() : base()
         {
