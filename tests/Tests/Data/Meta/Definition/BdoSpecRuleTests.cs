@@ -70,20 +70,5 @@ namespace BindOpen.Kernel.Data.Meta
             var requirementLevel2 = meta2.GetItemRequirementLevel(SystemData.Scope);
             Assert.That(requirementLevel2 == RequirementLevels.Optional, "Statement - Error");
         }
-
-        [Test, Order(4)]
-        public void CheckSpecRulesTest()
-        {
-            var validator = SystemData.Scope.CreateValidator();
-
-            var meta1 = BdoData.NewNode("meta-test")
-                .WithSpec(_spec)
-                .With(
-                    BdoData.NewMeta("auto", true),
-                    BdoData.NewMeta("title", "myTitle"));
-
-            var ok = validator.Check(meta1);
-            Assert.That(ok, "Check rules - Error");
-        }
     }
 }

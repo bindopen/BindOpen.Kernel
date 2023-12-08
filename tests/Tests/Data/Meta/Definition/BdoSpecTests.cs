@@ -61,5 +61,20 @@ namespace BindOpen.Kernel.Data.Meta
             var subSpec = meta.FindChildSpec(_spec, SystemData.Scope);
             Assert.That(subSpec == _spec._Children[0], "Bad spec condition");
         }
+
+        [Test, Order(7)]
+        public void CheckSpecRulesTest()
+        {
+            var validator = SystemData.Scope.CreateValidator();
+
+            var meta1 = BdoData.NewNode("meta-test")
+                .WithSpec(_spec)
+                .With(
+                    BdoData.NewMeta("auto", true),
+                    BdoData.NewMeta("title", "myTitle"));
+
+            var ok = validator.Check(meta1);
+            Assert.That(ok, "Check rules - Error");
+        }
     }
 }

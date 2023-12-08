@@ -39,6 +39,24 @@ namespace BindOpen.Kernel.Logging
             return log;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="execution"></param>
+        /// <returns></returns>
+        public static T WithResultCode<T>(
+            this T log,
+            string resultCode)
+            where T : IBdoLog
+        {
+            if (log != null)
+            {
+                log.ResultCode = resultCode;
+            }
+
+            return log;
+        }
+
         public static T WithTask<T>(
             this T log,
             IBdoConfiguration config)

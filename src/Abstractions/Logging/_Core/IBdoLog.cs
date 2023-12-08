@@ -16,7 +16,7 @@ namespace BindOpen.Kernel.Logging
         /// <summary>
         /// 
         /// </summary>
-        string ResultCode { get; }
+        string ResultCode { get; set; }
 
 
         /// <summary>

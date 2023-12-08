@@ -1,5 +1,7 @@
-﻿using BindOpen.Kernel.Logging;
+﻿using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Logging;
 using BindOpen.Kernel.Scoping;
+using System.Data;
 using System.Linq;
 
 namespace BindOpen.Kernel.Data.Meta
@@ -46,6 +48,25 @@ namespace BindOpen.Kernel.Data.Meta
                         "Bas value type",
                         string.Format("Value not compatible with '{0}' type", spec.DataType.ToString()),
                         resultCode: BdoSpecRuleResultCodes.BadValueType);
+                }
+
+                // check the value type
+
+                var data = meta?.GetData(Scope, varSet, log);
+                if (!spec.IsCompatibleWithData(data))
+                {
+                    isOk = false;
+                    log?.AddEvent(EventKinds.Error, "Invalid data").WithResultCode("CS1250");
+                }
+
+                // check the item number
+
+                var itemNumber = data.ToObjectList()?.Count ?? 0;
+                if ((itemNumber > (spec.MaxDataItemNumber ?? int.MaxValue))
+                    || (itemNumber < spec.MinDataItemNumber))
+                {
+                    isOk = false;
+                    log?.AddEvent(EventKinds.Error, "Invalid data item number").WithResultCode("CS1251");
                 }
 
                 // check the rules
