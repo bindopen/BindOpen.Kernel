@@ -3,12 +3,6 @@ using System.Xml.Serialization;
 
 namespace BindOpen.Kernel.Data
 {
-    // --------------------------------------------------
-    // ENUMERATIONS
-    // --------------------------------------------------
-
-    #region Enumerations
-
     /// <summary>
     /// This enumeration represents the possible levels of requirement.
     /// </summary>
@@ -51,6 +45,4 @@ namespace BindOpen.Kernel.Data
         /// </summary>
         Any = Forbidden | Optional | Required | Custom
     }
-
-    #endregion
 }

@@ -3,12 +3,12 @@
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    public static partial class IBdoConstraintExtensions
+    public static partial class IBdoSpecRuleExtensions
     {
         public static T WithResultCode<T>(
             this T obj,
             string resultCode)
-            where T : IBdoConstraint
+            where T : IBdoSpecRule
         {
             if (obj != null)
             {
@@ -21,7 +21,7 @@
         public static T WithValue<T>(
             this T obj,
             object value)
-            where T : IBdoConstraint
+            where T : IBdoSpecRule
         {
             if (obj != null)
             {
@@ -33,12 +33,12 @@
 
         public static T WithMode<T>(
             this T obj,
-            BdoConstraintModes mode)
-            where T : IBdoConstraint
+            BdoSpecRuleKinds mode)
+            where T : IBdoSpecRule
         {
             if (obj != null)
             {
-                obj.Mode = mode;
+                obj.Kind = mode;
             }
 
             return obj;

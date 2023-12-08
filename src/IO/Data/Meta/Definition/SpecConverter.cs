@@ -32,7 +32,7 @@ namespace BindOpen.Kernel.Data.Meta
                     .ForMember(q => q.Children, opt => opt.Ignore())
                     .ForMember(q => q.ClassReference, opt => opt.Ignore())
                     .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToDto()))
-                    .ForMember(q => q.Constraints, opt => opt.Ignore())
+                    .ForMember(q => q.Rules, opt => opt.Ignore())
                     .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDto()))
                     .ForMember(q => q.DefaultItems, opt => opt.Ignore())
                     .ForMember(q => q.Description, opt => opt.MapFrom(q => q.Description.ToDto()))
@@ -49,11 +49,9 @@ namespace BindOpen.Kernel.Data.Meta
             dto.Children = poco?._Children?.Select(q => q.ToDto()).ToList();
 
             dto.ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDto() : null;
-            dto.Constraints = poco?.Items == null ? null : poco.Items.Select(q => q.ToDto()).ToList();
+            dto.Rules = poco?.Items == null ? null : poco.Items.Select(q => q.ToDto()).ToList();
             dto.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
 
-            dto.IsAllocatable = poco?.IsAllocatable == false ? null : poco?.IsAllocatable;
-            dto.IsStatic = poco?.IsStatic == false ? null : poco?.IsStatic;
             dto.MaxDataItemNumber = (int?)(poco?.MaxDataItemNumber == -1 ? null : poco?.MaxDataItemNumber);
             dto.MinDataItemNumber = (int?)(poco?.MinDataItemNumber == 0 ? null : poco?.MinDataItemNumber);
 
@@ -106,7 +104,7 @@ namespace BindOpen.Kernel.Data.Meta
                 ValueType = dto.ValueType
             };
 
-            poco.With(dto?.Constraints == null ? null : dto.Constraints.Select(q=> q.ToPoco()).ToArray());
+            poco.With(dto?.Rules == null ? null : dto.Rules.Select(q => q.ToPoco()).ToArray());
 
             poco
                 .WithTitle(dto.Title.ToPoco<string>())

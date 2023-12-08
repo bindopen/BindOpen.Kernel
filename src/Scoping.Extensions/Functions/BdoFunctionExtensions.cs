@@ -139,14 +139,18 @@ namespace BindOpen.Kernel.Scoping
                             foreach (var spec in definition.AdditionalSpecs)
                             {
                                 object obj = null;
-                                if (spec.DataType.IsScope())
-                                    obj = scope;
-                                else if (spec.DataType.IsScriptDomain())
-                                    obj = scope.NewScriptDomain(varSet, paramSet as IBdoScriptword, log);
-                                else if (spec.DataType.IsScriptword())
-                                    obj = paramSet as IBdoScriptword;
-                                else
+                                if (spec.IsFlag(BdoSpecProperties.IsStatic))
                                     obj = (paramSet as IBdoScriptword)?.Parent?.GetData();
+                                else if (spec.DataType.IsCompatibleWith(typeof(IBdoScope)))
+                                    obj = scope;
+                                else if (spec.DataType.IsCompatibleWith(typeof(IBdoScriptDomain)))
+                                    obj = scope.NewScriptDomain(varSet, paramSet as IBdoScriptword, log);
+                                else if (spec.DataType.IsCompatibleWith(typeof(IBdoScriptword)))
+                                    obj = paramSet as IBdoScriptword;
+                                else if (spec.DataType.IsCompatibleWith(typeof(IBdoMetaSet)))
+                                    obj = varSet;
+                                else if (spec.DataType.IsCompatibleWith(typeof(IBdoLog)))
+                                    obj = log;
 
                                 objs.Insert(int.Min(objs.Count, spec.Index ?? 0), obj);
                             }

@@ -117,10 +117,10 @@ namespace BindOpen.Kernel.Data
                 else if (type.IsEnum)
                 {
                     //spec.Add(
-                    //    NewConstraintRule(
-                    //        nameof(BdoMetaConstraintGroupIds.ItemMustBeInList),
+                    //    NewSpecRule(
+                    //        nameof(BdoMetaSpecRuleGroupIds.ItemMustBeInList),
                     //        NewCondition("$eq($item, true)"),
-                    //        BdoMetaConstraintResultCodes.BadItem));
+                    //        BdoMetaSpecRuleResultCodes.BadItem));
                 }
             }
             return spec;

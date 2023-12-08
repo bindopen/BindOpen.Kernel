@@ -8,7 +8,7 @@ namespace BindOpen.Kernel.Data.Meta
     /// 
     /// </summary>
     public interface IBdoMetaData :
-        IBdoObjectNotMetable, IBdoReferenced,
+        IBdoObjectNotMetable, IBdoReferenced, IBdoConditional,
         INamed, IReferenced, IIndexed, IBdoDataTyped,
         ITChild<IBdoMetaData>, IBdoSpecified,
         IUpdatable
@@ -66,8 +66,9 @@ namespace BindOpen.Kernel.Data.Meta
             IBdoMetaSet varSet = null,
             IBdoLog log = null);
 
-        object GetConstraintValue(
+        IBdoSpecRule GetSpecRule(
             string groupId,
+            BdoSpecRuleKinds ruleKind = BdoSpecRuleKinds.Requirement,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null);

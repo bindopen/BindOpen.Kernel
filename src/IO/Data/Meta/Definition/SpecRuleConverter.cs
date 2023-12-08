@@ -1,28 +1,28 @@
 ﻿using BindOpen.Kernel.Data.Conditions;
 using BindOpen.Kernel.Data.Meta;
-using System.Linq;
 
 namespace BindOpen.Kernel.Data.Meta
 {
     /// <summary>
-    /// This class represents a constraint converter.
+    /// This class represents a rule converter.
     /// </summary>
-    public static class ConstraintConverter
+    public static class SpecRuleConverter
     {
         /// <summary>
         /// Converts a requirement level conditional statement poco into a DTO one.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static ConstraintDto ToDto(this IBdoConstraint poco)
+        public static SpecRuleDto ToDto(this IBdoSpecRule poco)
         {
             if (poco == null) return null;
 
-            var dto = new ConstraintDto()
+            var dto = new SpecRuleDto()
             {
                 Condition = poco.Condition.ToDto(),
                 GroupId = poco.GroupId,
                 Id = poco.Id,
+                Kind = poco.Kind,
                 Reference = poco.Reference.ToDto(),
                 ResultCode = poco.ResultCode,
                 ResultDescription = poco.ResultDescription,
@@ -39,14 +39,15 @@ namespace BindOpen.Kernel.Data.Meta
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
         /// <returns>The poco object.</returns>
-        public static IBdoConstraint ToPoco(this ConstraintDto dto)
+        public static IBdoSpecRule ToPoco(this SpecRuleDto dto)
         {
             if (dto == null) return null;
 
-            var poco = new BdoConstraint()
+            var poco = new BdoSpecRule()
             {
                 Condition = dto.Condition.ToPoco(),
                 GroupId = dto.GroupId,
+                Kind = dto.Kind,
                 Id = dto.Id,
                 Reference = dto.Reference.ToPoco(),
                 ResultCode = dto.ResultCode,

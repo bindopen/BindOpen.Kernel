@@ -1,4 +1,7 @@
-﻿using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Logging;
+using BindOpen.Kernel.Scoping;
 
 namespace BindOpen.Kernel.Data
 {
@@ -7,9 +10,9 @@ namespace BindOpen.Kernel.Data
     /// </summary>
     public static partial class IBdoSpecExtensions
     {
-        public static T With<T>(this T spec, params IBdoConstraint[] constraints) where T : IBdoSpec
+        public static T With<T>(this T spec, params IBdoSpecRule[] rules) where T : IBdoSpec
         {
-            spec?.With<T, IBdoConstraint>(constraints);
+            spec?.With<T, IBdoSpecRule>(rules);
 
             return spec;
         }
@@ -52,38 +55,6 @@ namespace BindOpen.Kernel.Data
             if (spec != null)
             {
                 spec.Aliases = aliases;
-            }
-            return spec;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="isAllocatable"></param>
-        public static T AsAllocatable<T>(
-            this T spec,
-            bool isAllocatable = true)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.IsAllocatable = isAllocatable;
-            }
-            return spec;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="isAllocatable"></param>
-        public static T AsStatic<T>(
-            this T spec,
-            bool isStatic = true)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.IsStatic = isStatic;
             }
             return spec;
         }
@@ -208,5 +179,23 @@ namespace BindOpen.Kernel.Data
 
             return spec;
         }
+
+        public static T GetValue<T>(
+            this T spec,
+            string groupId,
+            BdoSpecRuleKinds mode,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+            where T : IBdoSpec
+        {
+            if (spec != null)
+            {
+                return spec.GetValue(groupId, mode, scope, varSet, log).As<T>();
+            }
+
+            return default;
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using BindOpen.Kernel.Logging;
+﻿using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Kernel.Logging;
 using BindOpen.Kernel.Scoping;
 using System.Collections.Generic;
 using System.Linq;
@@ -141,6 +142,51 @@ namespace BindOpen.Kernel.Data.Meta
             }
 
             return null;
+        }
+
+        public static IBdoSpec FindChildSpec(
+            this IBdoMetaData meta,
+            IBdoSpec parent,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            {
+                if (parent?._Children != null)
+                {
+                    var localVarSet = BdoData.NewSet(varSet?.ToArray());
+                    localVarSet.Add(BdoData.__VarName_This, meta);
+
+                    foreach (var child in parent._Children)
+                    {
+                        if (child?.Condition != null && child.GetConditionValue(scope, localVarSet, log))
+                        {
+                            return child;
+                        }
+                    }
+
+                    // otherwise we return the default child
+
+                    return parent._Children.FirstOrDefault(q => q.Condition == null);
+                }
+
+                return null;
+            }
+        }
+
+        public static T FindChildSpec<T>(
+            this IBdoMetaData meta,
+            IBdoSpec parent,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            if (meta != null)
+            {
+                return meta.FindChildSpec(parent, scope, varSet, log).As<T>();
+            }
+
+            return default;
         }
     }
 }

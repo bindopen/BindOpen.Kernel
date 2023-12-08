@@ -4,7 +4,7 @@
   <xs:include schemaLocation="https://xsd.bindopen.org/DictionaryDataItem.xsd" />
   <xs:include schemaLocation="https://xsd.bindopen.org/ConditionalEvent.xsd" />
 
-  <xs:complexType name="DataConstraint" abstract="true">
+  <xs:complexType name="DataSpecRule" abstract="true">
     <xs:complexContent mixed="false">
       <xs:extension base="Routine">
         <xs:sequence>

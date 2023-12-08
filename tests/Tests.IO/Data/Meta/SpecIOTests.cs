@@ -17,7 +17,7 @@ namespace BindOpen.Kernel.Data.Meta
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            _spec = BdoSpecFaker.CreateSpec();
+            _spec = BdoSpecFaker.CreateSpecWithReference();
         }
 
         public static bool Equals(
