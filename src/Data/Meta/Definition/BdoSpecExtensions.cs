@@ -37,23 +37,6 @@ namespace BindOpen.Kernel.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        /// <param key="isAllocatable"></param>
-        /// <returns></returns>
-        public static T AsAllocatable<T>(
-            this T spec,
-            bool isAllocatable = true)
-            where T : IBdoSpec
-        {
-            if (spec != null)
-            {
-                spec.IsAllocatable = isAllocatable;
-            }
-            return spec;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <returns></returns>
         public static bool IsCompatibleWith(
             this ITBdoSet<IBdoSpec> specs,
@@ -131,14 +114,14 @@ namespace BindOpen.Kernel.Data.Meta
         /// <param key="level"></param>
         public static T WithRequirement<T>(
             this T spec,
-            params (RequirementLevels Level, IBdoCondition Condition)[] constraints)
+            params (RequirementLevels Level, IBdoCondition Condition)[] rules)
             where T : IBdoSpec
         {
             if (spec != null)
             {
-                spec.RemoveOfReference(BdoMetaConstraintGroupIds.Requirement);
+                spec.RemoveOfGroup(BdoMetaDataProperties.RequirementLevel);
 
-                foreach (var (Level, Condition) in constraints)
+                foreach (var (Level, Condition) in rules)
                 {
                     spec.AddRequirement(Level, Condition);
                 }
@@ -155,8 +138,8 @@ namespace BindOpen.Kernel.Data.Meta
         {
             if (spec != null)
             {
-                BdoConstraint constraint = (BdoMetaConstraintGroupIds.Requirement, level, condition);
-                spec.Insert(constraint);
+                BdoSpecRule rule = (BdoMetaDataProperties.RequirementLevel, level, condition);
+                spec.Insert(rule);
             }
 
             return spec;
@@ -206,14 +189,14 @@ namespace BindOpen.Kernel.Data.Meta
 
         public static T WithItemRequirement<T>(
             this T spec,
-            params (RequirementLevels Level, IBdoCondition Condition)[] constraints)
+            params (RequirementLevels Level, IBdoCondition Condition)[] rules)
             where T : IBdoSpec
         {
             if (spec != null)
             {
-                spec.RemoveOfReference(BdoMetaConstraintGroupIds.ItemRequirement);
+                spec.RemoveOfGroup(BdoMetaDataProperties.ItemRequirementLevel);
 
-                foreach (var (Level, Condition) in constraints)
+                foreach (var (Level, Condition) in rules)
                 {
                     spec.AddItemRequirement(Level, Condition);
                 }
@@ -221,6 +204,7 @@ namespace BindOpen.Kernel.Data.Meta
 
             return spec;
         }
+
         public static T AddItemRequirement<T>(
             this T spec,
             RequirementLevels level,
@@ -229,8 +213,8 @@ namespace BindOpen.Kernel.Data.Meta
         {
             if (spec != null)
             {
-                BdoConstraint constraint = (BdoMetaConstraintGroupIds.ItemRequirement, level, condition);
-                spec.Insert(constraint);
+                BdoSpecRule rule = (BdoMetaDataProperties.ItemRequirementLevel, level, condition);
+                spec.Insert(rule);
             }
 
             return spec;
@@ -276,6 +260,34 @@ namespace BindOpen.Kernel.Data.Meta
             spec?.AddItemRequirement(RequirementLevels.Forbidden, condition);
 
             return spec;
+        }
+
+        // Flag
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="isAllocatable"></param>
+        /// <returns></returns>
+        public static T AsFlag<T>(
+            this T spec,
+            string flagName,
+            bool isFlag = true)
+            where T : IBdoSpec
+        {
+            spec?.GetOrNewDetail().Add(flagName, isFlag);
+
+            return spec;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="isAllocatable"></param>
+        /// <returns></returns>
+        public static bool IsFlag(this IBdoSpec spec, string flagName)
+        {
+            return spec?.Detail?.GetData<bool?>(flagName) ?? false;
         }
     }
 }

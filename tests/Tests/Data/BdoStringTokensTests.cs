@@ -1,5 +1,4 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Helpers;
+﻿using BindOpen.Kernel.Data.Helpers;
 using BindOpen.Kernel.Data.Meta;
 using Bogus;
 using NUnit.Framework;
@@ -102,8 +101,8 @@ namespace BindOpen.Kernel.Data
             var set = st.ExtractTokenMetas(pattern, '"');
 
             Assert.That(
-                set.GetData<string>(LabelFormatsExtensions.__This_Name) == name
-                && set.GetData<string>(LabelFormatsExtensions.__This_Value) == _valueSet.value2 as string, "Bad string parsing");
+                set.GetData<string>(BdoMetaDataProperties.Name) == name
+                && set.GetData<string>(BdoMetaDataProperties.Value) == _valueSet.value2 as string, "Bad string parsing");
         }
 
         [Test, Order(6)]
@@ -141,9 +140,9 @@ namespace BindOpen.Kernel.Data
 
             var set = st.ExtractTokenMetas(pattern, '"');
             set.Map(
-                (LabelFormatsExtensions.__This_Name, q => { st_name = q.GetData<string>(); }
+                (BdoMetaDataProperties.Name, q => { st_name = q.GetData<string>(); }
             ),
-                (LabelFormatsExtensions.__This_Value, q => { st_value = q.GetData<string>(); }
+                (BdoMetaDataProperties.Value, q => { st_value = q.GetData<string>(); }
             ));
 
             Assert.That(st_name == name as string && st_value == _valueSet.value2, "Bad string parsing");
@@ -157,8 +156,8 @@ namespace BindOpen.Kernel.Data
             var list = pattern.ExtractTokens()?.ToList();
 
             Assert.That(list.Count == 2
-                && list[0] == LabelFormatsExtensions.__This_Name
-                && list[1] == LabelFormatsExtensions.__This_Value, "Bad string parsing");
+                && list[0] == BdoMetaDataProperties.Name
+                && list[1] == BdoMetaDataProperties.Value, "Bad string parsing");
         }
 
         [Test, Order(8)]
@@ -168,8 +167,8 @@ namespace BindOpen.Kernel.Data
 
             var st = pattern.FormatFromTokens(
                 BdoData.NewSet(
-                    (LabelFormatsExtensions.__This_Name, "_name"),
-                    (LabelFormatsExtensions.__This_Value, "_value")));
+                    (BdoMetaDataProperties.Name, "_name"),
+                    (BdoMetaDataProperties.Value, "_value")));
 
             Assert.That(st == "_name _value", "Bad string parsing");
         }
@@ -181,8 +180,8 @@ namespace BindOpen.Kernel.Data
 
             var st = pattern.FormatFromTokens(
                 BdoData.NewSet(
-                    (LabelFormatsExtensions.__This_Name, "_name"),
-                    (LabelFormatsExtensions.__This_Value, null)));
+                    (BdoMetaDataProperties.Name, "_name"),
+                    (BdoMetaDataProperties.Value, null)));
 
             Assert.That(st == "_name ", "Bad string parsing");
         }

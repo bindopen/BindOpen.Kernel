@@ -9,39 +9,39 @@ namespace BindOpen.Kernel.Data
     public static partial class BdoData
     {
         /// <summary>
-        /// Creates a new constraint.
+        /// Creates a new rule.
         /// </summary>
         /// <param key="kind">The kind of exp to consider.</param>
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the created exp.</returns>
-        public static BdoConstraint NewConstraintRequirement(
-            string reference = null,
-            object value = null,
+        public static BdoSpecRule NewRequirement(
+            string groupId,
+            object value,
             IBdoCondition condition = null,
             string resultCode = null)
         {
-            var constraint = New<BdoConstraint>()
-                .WithMode(BdoConstraintModes.Requirement)
-                .WithReference(reference)
+            var rule = New<BdoSpecRule>()
+                .WithMode(BdoSpecRuleKinds.Requirement)
+                .WithGroupId(groupId)
                 .WithValue(value)
                 .WithCondition(condition)
                 .WithResultCode(resultCode);
 
-            return constraint;
+            return rule;
         }
 
-        public static BdoConstraint NewConstraintRule(
+        public static BdoSpecRule NewConstraint(
+            string groupId,
             IBdoReference reference = null,
-            IBdoCondition condition = null,
-            string resultCode = null)
+            IBdoCondition condition = null)
         {
-            var constraint = New<BdoConstraint>()
-                .WithMode(BdoConstraintModes.Rule)
+            var rule = New<BdoSpecRule>()
+                .WithMode(BdoSpecRuleKinds.Constraint)
+                .WithGroupId(groupId)
                 .WithReference(reference)
-                .WithCondition(condition)
-                .WithResultCode(resultCode);
+                .WithCondition(condition);
 
-            return constraint;
+            return rule;
         }
     }
 }

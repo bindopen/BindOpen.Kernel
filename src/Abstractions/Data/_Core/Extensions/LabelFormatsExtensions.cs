@@ -1,4 +1,4 @@
-﻿using BindOpen.Kernel.Data;
+﻿using BindOpen.Kernel.Data.Meta;
 
 namespace BindOpen.Kernel.Data
 {
@@ -7,16 +7,6 @@ namespace BindOpen.Kernel.Data
     /// </summary>
     public static class LabelFormatsExtensions
     {
-        /// <summary>
-        /// The name of this meta data.
-        /// </summary>
-        public static readonly string __This_Name = "$(this).(name)";
-
-        /// <summary>
-        /// The pattern empty value.
-        /// </summary>
-        public static readonly string __This_Value = "$(this).value()";
-
         /// <summary>
         /// Indicates whether the specified kind has name.
         /// </summary>
@@ -57,7 +47,7 @@ namespace BindOpen.Kernel.Data
                 _ => "{{{{{0}}}}}"
             };
 
-            return string.Format(format, __This_Name, __This_Value);
+            return string.Format(format, BdoMetaDataProperties.Name, BdoMetaDataProperties.Value);
         }
     }
 }

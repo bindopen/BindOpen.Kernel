@@ -1,5 +1,4 @@
-﻿using BindOpen.Kernel.Scoping.Script;
-using BindOpen.Kernel.Data;
+﻿using BindOpen.Kernel.Data;
 
 namespace BindOpen.Kernel.Scoping.Script
 {
@@ -51,13 +50,20 @@ namespace BindOpen.Kernel.Scoping.Script
         /// <example>Script word, syntax, text...</example>
         public ScriptItemKinds Kind { get; set; } = ScriptItemKinds.None;
 
+        #endregion
+
+        // ------------------------------------------
+        // IIndexed Implementation
+        // ------------------------------------------
+
+        #region IIndexed
+
         /// <summary>
         /// The index of this instance.
         /// </summary>
-        public int Index { get; set; } = -1;
+        public int? Index { get; set; }
 
         #endregion
-
 
         // ------------------------------------------
         // INamed Implementation

@@ -5,12 +5,14 @@ namespace BindOpen.Kernel.Data.Meta
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoConstraint : IBdoObject, IIdentified, IReferenced, IBdoConditional, IBdoReferenced, IGrouped
+    public interface IBdoSpecRule :
+        IBdoObject, IIdentified, IReferenced, IIndexed,
+        IBdoConditional, IBdoReferenced, IGrouped
     {
         /// <summary>
         /// The mode.
         /// </summary>
-        BdoConstraintModes Mode { get; set; }
+        BdoSpecRuleKinds Kind { get; set; }
 
         /// <summary>
         /// The result criticality.

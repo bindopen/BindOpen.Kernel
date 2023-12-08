@@ -22,25 +22,24 @@ namespace BindOpen.Kernel.Data.Meta
         #region Properties
 
         /// <summary>
-        /// The constraints of this instance.
+        /// The rules of this instance.
         /// </summary>
-        [JsonPropertyName("constraints")]
-        [XmlElement("constraint", Type = typeof(ConstraintDto))]
-        public List<ConstraintDto> Constraints { get; set; }
+        [JsonPropertyName("rules")]
+        [XmlElement("rule", Type = typeof(SpecRuleDto))]
+        public List<SpecRuleDto> Rules { get; set; }
 
         /// <summary>
-        /// Indicates whether the constraint property must be ignored.
+        /// Indicates whether the rule property must be ignored.
         /// </summary>
         [JsonIgnore]
         [XmlIgnore]
-        public bool ConstraintsSpecified => Constraints?.Count > 0;
+        public bool RulesSpecified => Rules?.Count > 0;
 
         /// <summary>
         /// THe children of this instance.
         /// </summary>
-        [JsonPropertyName("items")]
-        [XmlArray("items")]
-        [XmlArrayItem("item", Type = typeof(SpecDto))]
+        [JsonPropertyName("children")]
+        [XmlElement("child", Type = typeof(SpecDto))]
         public List<SpecDto> Children { get; set; }
 
         /// <summary>

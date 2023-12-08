@@ -8,9 +8,9 @@ namespace BindOpen.Kernel.Data.Meta
     /// <summary>
     /// This class represents a data key value.
     /// </summary>
-    [XmlType("constraint", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
-    [XmlRoot(ElementName = "constraint", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
-    public class ConstraintDto
+    [XmlType("rule", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlRoot(ElementName = "rule", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
+    public class SpecRuleDto
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -24,6 +24,13 @@ namespace BindOpen.Kernel.Data.Meta
         [JsonPropertyName("id")]
         [XmlAttribute("id")]
         public string Id { get; set; }
+
+        /// <summary>
+        /// The kind of this instance.
+        /// </summary>
+        [JsonPropertyName("kind")]
+        [XmlElement("kind")]
+        public BdoSpecRuleKinds Kind { get; set; }
 
         /// <summary>
         /// The group identifier of this instance.
@@ -83,9 +90,9 @@ namespace BindOpen.Kernel.Data.Meta
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of ConstraintDto class.
+        /// Instantiates a new instance of SpecRuleDto class.
         /// </summary>
-        public ConstraintDto()
+        public SpecRuleDto()
         {
         }
 

@@ -1,5 +1,4 @@
 ﻿using BindOpen.Kernel.Data.Conditions;
-using System.Linq;
 
 namespace BindOpen.Kernel.Data.Meta
 {
@@ -8,15 +7,15 @@ namespace BindOpen.Kernel.Data.Meta
     /// </summary>
     public static class IBdoSpecifiedExtensions
     {
-        public static T WithConstraints<T>(
+        public static T WithSpecRules<T>(
             this T obj,
-            params IBdoConstraint[] constraints)
+            params IBdoSpecRule[] rules)
             where T : IBdoSpecified
         {
             if (obj != null)
             {
                 obj.Spec = BdoData.NewSpec()
-                    .With(constraints);
+                    .With(rules);
             }
 
             return obj;
@@ -26,46 +25,46 @@ namespace BindOpen.Kernel.Data.Meta
         /// 
         /// </summary>
         /// <param key="level"></param>
-        public static T WithConstraintRequirements<T>(
+        public static T WithSpecRuleRequirements<T>(
             this T obj,
-            params (string Reference, object Value, IBdoCondition Condition)[] constraints)
+            params (string Reference, object Value, IBdoCondition Condition)[] rules)
             where T : IBdoSpecified
         {
             if (obj != null)
             {
                 obj.Spec = BdoData.NewSpec();
 
-                foreach (var (Reference, Value, Condition) in constraints)
+                foreach (var (Reference, Value, Condition) in rules)
                 {
-                    obj.AddConstraintRequirement(Reference, Value, Condition);
+                    obj.AddSpecRuleRequirement(Reference, Value, Condition);
                 }
             }
 
             return obj;
         }
 
-        public static T AddConstraint<T>(
+        public static T AddSpecRule<T>(
             this T obj,
-            IBdoConstraint constraint)
+            IBdoSpecRule rule)
             where T : IBdoSpecified
         {
             if (obj != null)
             {
                 obj.Spec ??= BdoData.NewSpec();
-                obj.Spec.Add(constraint);
+                obj.Spec.Add(rule);
             }
 
             return obj;
         }
 
-        public static T AddConstraintRequirement<T>(
+        public static T AddSpecRuleRequirement<T>(
             this T obj,
-            string reference,
+            string groupId,
             object value,
             IBdoCondition condition = null)
             where T : IBdoSpecified
         {
-            return obj.AddConstraint((BdoConstraint)(reference, value, condition));
+            return obj.AddSpecRule((BdoSpecRule)(groupId, value, condition));
         }
     }
 }

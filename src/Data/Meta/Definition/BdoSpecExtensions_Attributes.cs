@@ -152,7 +152,9 @@ namespace BindOpen.Kernel.Data.Meta
                         change |= spec.UpdateFrom((BdoPropertyAttribute)att);
                     }
 
-                    spec.IsStatic = info.GetCustomAttributes(typeof(BdoThisAttribute)).Any();
+                    spec.AsFlag(
+                        BdoSpecProperties.IsScriptParameter,
+                        info.GetCustomAttributes(typeof(BdoScriptParameterAttribute)).Any());
                 }
 
                 spec.Name ??= info.Name;

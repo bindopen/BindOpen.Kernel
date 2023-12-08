@@ -8,6 +8,16 @@ namespace BindOpen.Kernel.Data.Helpers
     public static partial class StringHelper
     {
         /// <summary>
+        /// Indicates whether the specified string is quoted.
+        /// </summary>
+        /// <param key="st">The string to normalize.</param>
+        /// <returns>Returns the quoted string.</returns>
+        public static bool IsQuoted(this string st, char quote = '\'')
+        {
+            return !string.IsNullOrEmpty(st) && st.StartsWith(quote) && st.EndsWith(quote);
+        }
+
+        /// <summary>
         /// Gets the quoted string.
         /// </summary>
         /// <param key="st">The string to normalize.</param>

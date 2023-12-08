@@ -1,6 +1,5 @@
 ﻿using BindOpen.Kernel.Data.Conditions;
 using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +8,7 @@ namespace BindOpen.Kernel.Data.Meta
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    public partial class BdoSpec : TBdoSet<IBdoConstraint>, IBdoSpec
+    public partial class BdoSpec : TBdoSet<IBdoSpecRule>, IBdoSpec
     {
         public override void Update(
             object item,
@@ -19,7 +18,7 @@ namespace BindOpen.Kernel.Data.Meta
         {
             if (item is IBdoSpec spec)
             {
-                this.With(spec?.Items?.Select(q => q.Clone<IBdoConstraint>()).ToArray());
+                this.With(spec?.Items?.Select(q => q.Clone<IBdoSpecRule>()).ToArray());
 
                 AccessibilityLevel = spec?.AccessibilityLevel ?? AccessibilityLevels.None;
                 Aliases = spec?.Aliases == null ? null : new List<string>(spec?.Aliases);
@@ -32,8 +31,6 @@ namespace BindOpen.Kernel.Data.Meta
                 GroupId = spec?.GroupId;
                 Index = spec?.Index;
                 InheritanceLevel = spec?.InheritanceLevel ?? InheritanceLevels.None;
-                IsAllocatable = spec?.IsAllocatable ?? false;
-                IsStatic = spec?.IsStatic ?? false;
                 Label = spec?.Label;
                 MinDataItemNumber = spec?.MinDataItemNumber ?? 0;
                 Name = spec?.Name;

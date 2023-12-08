@@ -434,8 +434,16 @@ namespace BindOpen.Kernel.Scoping.Script
                                     }
                                     else
                                     {
-                                        subScript = subScript.ToUnquoted();
-                                        scriptword.InsertData(subScript);
+                                        if (subScript.IsQuoted())
+                                        {
+                                            subScript = subScript.ToUnquoted();
+                                            scriptword.InsertData(subScript);
+                                        }
+                                        else
+                                        {
+                                            var value = subScript.ToObject();
+                                            scriptword.InsertData(value);
+                                        }
                                     }
 
                                     scriptwordParameterCount++;

@@ -16,9 +16,9 @@
         Any,
 
         /// <summary>
-        /// Constraint attributes.
+        /// SpecRule attributes.
         /// </summary>
-        Constraints,
+        SpecRules,
 
         /// <summary>
         /// Design attribute.
