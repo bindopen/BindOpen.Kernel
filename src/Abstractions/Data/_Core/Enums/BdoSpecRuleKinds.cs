@@ -5,7 +5,7 @@ namespace BindOpen.Kernel.Data
     /// <summary>
     /// This enumeration lists the possible specification rule modes.
     /// </summary>
-    [XmlType("SpecRuleMode", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+    [XmlType("SpecRuleKind", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     public enum BdoSpecRuleKinds
     {
         /// <summary>
