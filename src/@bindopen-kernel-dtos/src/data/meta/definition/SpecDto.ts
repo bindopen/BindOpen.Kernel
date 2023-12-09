@@ -4,14 +4,14 @@ import { DictionaryDto } from "../../objects/dictionary/DictionaryDto";
 import { MetaSetDto } from "../MetaSetDto";
 import { ClassReferenceDto } from "../../assemblies/ClassReferenceDto";
 import { DataValueTypes } from "../../enums/DataValueTypes";
-import { ConstraintDto } from "./ConstraintDto";
+import { SpecRuleDto } from "./SpecRuleDto";
 
 export interface SpecDto {
     children: any[];
     id: string;
     name: string;
     condition: ConditionDto;
-    constraints: ConstraintDto[];
+    rules: SpecRuleDto[];
     reference: ReferenceDto;
     description: DictionaryDto;
     title: DictionaryDto;
@@ -25,11 +25,7 @@ export interface SpecDto {
     availableDataModes: any[];
     minDataItemNumber?: number;
     maxDataItemNumber?: number;
-    isAllocatable?: boolean;
-    isStatic?: boolean;
     label: string;
-    specLevels: any[];
-    itemSpecLevels: any[];
     accessibilityLevel: any;
     inheritanceLevel: any;
 }
