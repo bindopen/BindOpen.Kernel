@@ -1,15 +1,19 @@
 ﻿import { EventKinds } from "../../../logging/enums/EventKinds";
 import { ConditionDto } from "../../conditions/ConditionDto";
+import { SpecRuleKinds } from "../../enums/SpecRuleKinds";
 import { ReferenceDto } from "../../objects/reference/ReferenceDto";
 import { MetaScalarDto } from "../MetaScalarDto";
 
 /// </summary>
-export interface ConstraintDto
+export interface SpecRuleDto
 {
     /// <summary>
     /// Identifier of this instance.
     /// </summary>
     id: string;
+
+    //
+    kind: SpecRuleKinds;
 
     /// <summary>
     /// The group identifier of this instance.
