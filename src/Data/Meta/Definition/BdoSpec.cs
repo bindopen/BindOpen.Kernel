@@ -266,17 +266,6 @@ namespace BindOpen.Kernel.Data.Meta
         /// </summary>
         public bool IsValueList => MaxDataItemNumber == null || MaxDataItemNumber > 1;
 
-        /// <summary>
-        /// Indicates whether this instance is compatible with the specified data item.
-        /// </summary>
-        /// <param key="item">The data item to consider.</param>
-        /// <returns>True if this instance is compatible with the specified data item.</returns>
-        public virtual bool IsCompatibleWithData(
-            object item)
-        {
-            return true;
-        }
-
         public IBdoSpecRule Get(string groupId, BdoSpecRuleKinds ruleKind, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
         {
             var rules = this.Where(q => q.OfGroup(groupId) && (ruleKind == BdoSpecRuleKinds.Any || q.Kind == ruleKind));
