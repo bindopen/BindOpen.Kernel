@@ -5,7 +5,7 @@ namespace BindOpen.Kernel
     /// <summary>
     /// This interface defines a storable data item.
     /// </summary>
-    public static class IStorableExtensions
+    public static class IDatedExtensions
     {
         /// <summary>
         /// 

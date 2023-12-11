@@ -13,7 +13,9 @@
 
         public static readonly string ItemForbidden = "ItemForbidden";
 
-        public static readonly string BadValueType = "BadValueType";
+        public static readonly string InvalidData = "InvalidData";
+
+        public static readonly string BadItemNumber = "BadItemNumber";
 
         public static readonly string ItemNotAllowedValue = "ItemNotAllowedValue";
     }
