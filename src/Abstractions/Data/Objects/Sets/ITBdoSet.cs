@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BindOpen.Kernel.Data;
 
 namespace BindOpen.Kernel.Data
 {

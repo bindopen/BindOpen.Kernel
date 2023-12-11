@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Kernel.Data.Meta
+﻿using BindOpen.Kernel.Data;
+
+namespace BindOpen.Kernel.Data.Meta
 {
     /// <summary>
     /// This interface defines a configuration.

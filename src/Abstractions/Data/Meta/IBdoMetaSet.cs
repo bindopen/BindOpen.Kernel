@@ -1,4 +1,5 @@
-﻿using BindOpen.Kernel.Logging;
+﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Logging;
 using BindOpen.Kernel.Scoping;
 
 namespace BindOpen.Kernel.Data.Meta
