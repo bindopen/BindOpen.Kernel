@@ -2,7 +2,7 @@
   "name": "@bindopen/kernel-dtos",
   "version": "1.0.0",
   "description": "This package includes BindOpen Kernel data transfer classes.",
-  "main": "ResultItemDto.ts",
+  "main": "data/index.js",
   "scripts": {
     "build": "tsup",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,11 +13,11 @@
   },
   "exports": {
     ".": {
-      "data": "./data/**/*.js",
-      "logging": "./logging/**/*.js",
-      "scoping": "./scoping/**/*.js"
+      "data": "./data/index.js",
+      "logging": "./logging/index.js",
+      "scoping": "./scoping/index.js"
     }
-  },  
+  },
   "keywords": [
     "bindopen",
     "kernel",
