@@ -1,8 +1,8 @@
-// created from 'create-ts-index'
+﻿// created from 'create-ts-index'
 
-export * from './assemblies';
-export * from './conditions';
-export * from './enums';
-export * from './meta';
-export * from './objects';
+export * from './assemblies/index';
+export * from './conditions/index';
+export * from './enums/index';
+export * from './meta/index';
+export * from './objects/index';
 export * from './TDataPageDto';

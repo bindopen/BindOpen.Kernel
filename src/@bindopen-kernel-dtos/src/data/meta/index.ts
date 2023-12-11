@@ -1,7 +1,7 @@
 // created from 'create-ts-index'
 
-export * from './configuration';
-export * from './definition';
+export * from './configuration/index';
+export * from './definition/index';
 export * from './MetaDataDto';
 export * from './MetaNodeDto';
 export * from './MetaObjectDto';
