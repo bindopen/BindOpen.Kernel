@@ -5,4 +5,5 @@ export * from './conditions/index';
 export * from './enums/index';
 export * from './meta/index';
 export * from './objects/index';
-export * from './TDataPageDto';
+export * from './common/TDataPageDto';
+export * from './common/ResultItemDto';
