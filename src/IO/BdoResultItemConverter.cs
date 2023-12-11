@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Kernel
+﻿using BindOpen.Kernel.Data;
+
+namespace BindOpen.Kernel
 {
     /// <summary>
     /// This class represents a IO converter of result items.

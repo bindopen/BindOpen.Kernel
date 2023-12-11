@@ -1,4 +1,5 @@
 ﻿using BindOpen.Kernel.Data;
+using BindOpen.Kernel.Data;
 using System;
 
 namespace BindOpen.Kernel.Scoping

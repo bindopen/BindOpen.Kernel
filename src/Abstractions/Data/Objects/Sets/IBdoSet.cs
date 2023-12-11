@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using BindOpen.Kernel.Data;
 
 namespace BindOpen.Kernel.Data
 {

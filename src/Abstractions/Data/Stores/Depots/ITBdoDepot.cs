@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Kernel.Data.Stores
+﻿using BindOpen.Kernel.Data;
+
+namespace BindOpen.Kernel.Data.Stores
 {
     /// <summary>
     /// 
