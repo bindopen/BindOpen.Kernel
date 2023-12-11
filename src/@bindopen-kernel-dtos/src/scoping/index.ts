@@ -1,10 +1,10 @@
 // created from 'create-ts-index'
 
-export * from './connectors';
-export * from './entities';
-export * from './functions';
-export * from './script';
-export * from './tasks';
+export * from './connectors/index';
+export * from './entities/index';
+export * from './functions/index';
+export * from './script/index';
+export * from './tasks/index';
 export * from './ExtensionDefinitionDto';
 export * from './ExtensionGroupDto';
 export * from './PackageDefinitionDto';
