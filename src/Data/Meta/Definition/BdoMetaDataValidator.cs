@@ -21,7 +21,10 @@ namespace BindOpen.Kernel.Data.Meta
         /// </summary>
         /// <param name="meta">The meta data to check.</param>
         /// <returns>Returns the check log./returns>
-        public bool Check(IBdoMetaData meta, IBdoMetaSet varSet = null, IBdoLog log = null)
+        public bool Check(
+            IBdoMetaData meta,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
             => Check(meta, meta?.Spec, varSet, log);
 
         /// <summary>
@@ -30,7 +33,11 @@ namespace BindOpen.Kernel.Data.Meta
         /// <param name="meta">The meta data to check.</param>
         /// <param name="spec">The meta specification to consider.</param>
         /// <returns>Returns the check log./returns>
-        public virtual bool Check(IBdoMetaData meta, IBdoSpec spec, IBdoMetaSet varSet = null, IBdoLog log = null)
+        public virtual bool Check(
+            IBdoMetaData meta,
+            IBdoSpec spec,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
         {
             bool isOk = true;
 
@@ -39,34 +46,105 @@ namespace BindOpen.Kernel.Data.Meta
                 var localVarSet = BdoData.NewSet(varSet?.ToArray());
                 localVarSet.Add(BdoData.__VarName_This, meta);
 
-                // check the value type
+                // check requirement
 
-                if (spec.IsCompatibleWithData(meta) == false)
+                var requirementLevel = spec.GetValue<RequirementLevels>(
+                    BdoMetaDataProperties.RequirementLevel,
+                    BdoSpecRuleKinds.Requirement, Scope, varSet, log);
+
+                switch (requirementLevel)
                 {
-                    log?.AddEvent(
-                        EventKinds.Error,
-                        "Bas value type",
-                        string.Format("Value not compatible with '{0}' type", spec.DataType.ToString()),
-                        resultCode: BdoSpecRuleResultCodes.BadValueType);
+                    case RequirementLevels.Required:
+                        if (meta == null)
+                        {
+                            log?.AddEvent(
+                                EventKinds.Error,
+                                "Element missing",
+                                string.Format("The required element '{0}' is missing", spec.Name),
+                                resultCode: BdoSpecRuleResultCodes.ElementMissing);
+
+                            return false;
+                        }
+                        break;
+                    case RequirementLevels.Forbidden:
+                        if (meta != null)
+                        {
+                            log?.AddEvent(
+                                EventKinds.Error,
+                                "Element forbidden",
+                                string.Format("The element '{0}' is forbidden", spec.Name),
+                                resultCode: BdoSpecRuleResultCodes.ElementForbidden);
+
+                            return false;
+                        }
+                        break;
+                }
+
+                // check item requirement
+
+                var data = meta?.GetData(Scope, varSet, log);
+
+                var itemRequirementLevel = spec.GetValue<RequirementLevels>(
+                    BdoMetaDataProperties.ItemRequirementLevel,
+                    BdoSpecRuleKinds.Requirement, Scope, varSet, log);
+
+                switch (itemRequirementLevel)
+                {
+                    case RequirementLevels.Required:
+                        if (meta == null)
+                        {
+                            log?.AddEvent(
+                                EventKinds.Error,
+                                "Value missing",
+                                string.Format("The value of the element '{0}' is missing", spec.Name),
+                                resultCode: BdoSpecRuleResultCodes.ElementMissing);
+
+                            return false;
+                        }
+                        break;
+                    case RequirementLevels.Forbidden:
+                        if (meta != null)
+                        {
+                            log?.AddEvent(
+                                EventKinds.Error,
+                                "Value forbidden",
+                                string.Format("Any value of element '{0}' is forbidden", spec.Name),
+                                resultCode: BdoSpecRuleResultCodes.ElementForbidden);
+
+                            return false;
+                        }
+                        break;
                 }
 
                 // check the value type
 
-                var data = meta?.GetData(Scope, varSet, log);
-                if (!spec.IsCompatibleWithData(data))
+                if (spec.DataType?.IsCompatibleWith(data?.GetType()) == false)
                 {
                     isOk = false;
-                    log?.AddEvent(EventKinds.Error, "Invalid data").WithResultCode("CS1250");
+                    log?.AddEvent(
+                        EventKinds.Error,
+                        "Bad value type",
+                        string.Format("The value of element '{0}' is not compatible with '{1}' type",
+                            spec.Name,
+                            spec.DataType.ToString()),
+                        resultCode: BdoSpecRuleResultCodes.InvalidData);
                 }
 
                 // check the item number
 
                 var itemNumber = data.ToObjectList()?.Count ?? 0;
-                if ((itemNumber > (spec.MaxDataItemNumber ?? int.MaxValue))
+                var maxNumber = spec.MaxDataItemNumber ?? int.MaxValue;
+                if ((itemNumber > maxNumber)
                     || (itemNumber < spec.MinDataItemNumber))
                 {
                     isOk = false;
-                    log?.AddEvent(EventKinds.Error, "Invalid data item number").WithResultCode("CS1251");
+                    log?.AddEvent(
+                        EventKinds.Error,
+                        "Invalid data item number",
+                        string.Format("The element '{0}' must have between {0} and {1} data items",
+                            spec.MinDataItemNumber,
+                            maxNumber),
+                        resultCode: BdoSpecRuleResultCodes.BadItemNumber);
                 }
 
                 // check the rules
@@ -133,6 +211,44 @@ namespace BindOpen.Kernel.Data.Meta
                                     resultCode: constraint.ResultCode);
                             }
                         }
+                    }
+                }
+
+                // we check sub meta data items
+
+                if (meta is ITBdoSet<IBdoMetaData> metaSet)
+                {
+                    if (spec._Children != null)
+                    {
+                        var requiredSpecs = spec._Children.Where(q =>
+                        {
+                            var requirementLevel = q.GetValue<RequirementLevels>(
+                                BdoMetaDataProperties.RequirementLevel, BdoSpecRuleKinds.Requirement,
+                                Scope, varSet, log);
+                            return requirementLevel == RequirementLevels.Required;
+                        });
+
+                        foreach (var childSpec in requiredSpecs)
+                        {
+                            if (!metaSet.Has(childSpec.Name))
+                            {
+                                isOk = false;
+                                log?.AddEvent(EventKinds.Error, "Option '" + spec.Name + "' missing");
+                            }
+                        }
+                    }
+
+                    // we check the sub meta elements
+
+                    foreach (var subMeta in metaSet)
+                    {
+                        var subSpec = spec.Child(subMeta?.Name);
+                        if (subSpec != null)
+                        {
+                            subSpec = subMeta?.Spec;
+                        }
+
+                        isOk &= Check(subMeta, spec, varSet, log);
                     }
                 }
             }

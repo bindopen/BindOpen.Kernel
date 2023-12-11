@@ -1,8 +1,4 @@
-﻿using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping;
-using System.Linq;
+﻿using BindOpen.Kernel.Data.Meta;
 
 namespace BindOpen.Kernel.Data
 {
@@ -21,22 +17,6 @@ namespace BindOpen.Kernel.Data
                 meta.Parent = parent;
             }
 
-            return meta;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="modes"></param>
-        public static T WithSpec<T>(
-            this T meta,
-            IBdoSpec spec)
-            where T : IBdoMetaData
-        {
-            if (meta != null)
-            {
-                meta.Spec = spec;
-            }
             return meta;
         }
 

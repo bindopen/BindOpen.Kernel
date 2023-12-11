@@ -1,6 +1,5 @@
 ﻿using BindOpen.Kernel.Data.Meta;
 using BindOpen.Kernel.Scoping;
-using System;
 
 namespace BindOpen.Kernel.Data
 {
@@ -23,7 +22,7 @@ namespace BindOpen.Kernel.Data
         /// <returns>The new instance of the NewResultItem class.</returns>
         public static BdoMetaDataValidator CreateValidator<T, TSpecified, TSpec>(this IBdoScope scope)
             where T : ITBdoDataValidator<TSpecified, TSpec>, new()
-            where TSpecified : IBdoSpecified
+            where TSpecified : IBdoSpecified, IReferenced
             where TSpec : IBdoSpec
         {
             var result = new BdoMetaDataValidator()

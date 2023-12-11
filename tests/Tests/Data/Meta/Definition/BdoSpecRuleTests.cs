@@ -39,7 +39,7 @@ namespace BindOpen.Kernel.Data.Meta
                 .With(("auto", true));
 
             var requirementLevel2 = meta2.GetRequirementLevel(SystemData.Scope);
-            Assert.That(requirementLevel2 == RequirementLevels.Forbidden, "Statement - Error");
+            Assert.That(requirementLevel2 == RequirementLevels.Optional, "Statement - Error");
         }
 
         [Test, Order(3)]

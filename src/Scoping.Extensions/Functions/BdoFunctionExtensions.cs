@@ -24,7 +24,7 @@ namespace BindOpen.Kernel.Scoping
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            var definition = scope?.ExtensionStore?.GetFunctionDefinition(functionName, paramSet);
+            var definition = scope.GetFunctionDefinition(functionName, paramSet);
 
             object result = null;
 
@@ -70,7 +70,7 @@ namespace BindOpen.Kernel.Scoping
             else
             {
                 var parentDataType = word?.Parent == null ? null : BdoData.NewDataType(word?.Parent?.GetData()?.GetType());
-                definition = scope?.ExtensionStore?.GetFunctionDefinition(word?.Name, word, parentDataType, log);
+                definition = scope.GetFunctionDefinition(word?.Name, word, parentDataType, log);
             }
 
             object result = null;
@@ -194,24 +194,28 @@ namespace BindOpen.Kernel.Scoping
         }
 
         private static IBdoFunctionDefinition GetFunctionDefinition(
-            this IBdoExtensionStore store,
+            this IBdoScope scope,
             string functionName,
             IBdoMetaNode paramSet,
             IBdoDataType parentDataType = default,
             IBdoLog log = null)
         {
-            if (store != null)
+            if (scope?.ExtensionStore != null)
             {
+                var validator = scope.CreateValidator();
+
                 // we try to find the corresponding defined function
-                var functionDefinitions = store.GetFunctionDefinitionsWithName(functionName, true);
+                var functionDefinitions = scope.GetFunctionDefinitionsWithName(functionName, true);
 
                 if (functionDefinitions?.Any() == true)
                 {
                     IBdoFunctionDefinition functionDefinition = null;
                     foreach (var definition in functionDefinitions)
                     {
+                        var spec = BdoData.NewSpec().WithChildren(definition.Items?.ToArray());
+
                         if ((parentDataType == null || parentDataType.IsCompatibleWith(definition?.ParentDataType) == true)
-                            && (definition.RuntimeFunction != null || (definition?.IsCompatibleWith(paramSet, log: log) ?? false)))
+                            && (definition.RuntimeFunction != null || (validator?.Check(paramSet, spec, log: log) ?? false)))
                         {
                             functionDefinition = definition;
                             break;
@@ -232,13 +236,13 @@ namespace BindOpen.Kernel.Scoping
         /// <param key="parentDefinition">The parent definition.</param>
         /// <returns>The script words with the specified name.</returns>
         public static IEnumerable<IBdoFunctionDefinition> GetFunctionDefinitionsWithName(
-            this IBdoExtensionStore store,
+            this IBdoScope scope,
             string name,
             bool isExact = false)
         {
-            if (store != null && !string.IsNullOrEmpty(name))
+            if (scope?.ExtensionStore != null && !string.IsNullOrEmpty(name))
             {
-                var definitions = store.GetDefinitions<IBdoFunctionDefinition>();
+                var definitions = scope.ExtensionStore.GetDefinitions<IBdoFunctionDefinition>();
 
                 if (isExact)
                     return definitions.Where(p => p?.Name.BdoKeyEquals(name) == true);

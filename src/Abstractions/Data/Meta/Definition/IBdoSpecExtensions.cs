@@ -181,13 +181,12 @@ namespace BindOpen.Kernel.Data
         }
 
         public static T GetValue<T>(
-            this T spec,
+            this IBdoSpec spec,
             string groupId,
             BdoSpecRuleKinds mode,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
-            where T : IBdoSpec
         {
             if (spec != null)
             {

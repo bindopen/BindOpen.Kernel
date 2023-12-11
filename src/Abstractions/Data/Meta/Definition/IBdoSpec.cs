@@ -59,13 +59,6 @@ namespace BindOpen.Kernel.Data.Meta
         /// </summary>
         object DefaultData { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="item"></param>
-        /// <returns></returns>
-        bool IsCompatibleWithData(object item);
-
         IBdoSpecRule Get(
             string groupId,
             BdoSpecRuleKinds ruleKind = BdoSpecRuleKinds.Requirement,

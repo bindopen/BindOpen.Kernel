@@ -1,6 +1,4 @@
 ﻿using BindOpen.Kernel.Data.Conditions;
-using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping;
 using System.Linq;
 
 namespace BindOpen.Kernel.Data.Meta
@@ -32,38 +30,6 @@ namespace BindOpen.Kernel.Data.Meta
             }
 
             return log;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public static bool IsCompatibleWith(
-            this ITBdoSet<IBdoSpec> specs,
-            ITBdoSet<IBdoMetaData> metas,
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            if (specs == null || metas == null) return false;
-
-            var b = true;
-
-            var iObj = 0;
-            var iSpec = 0;
-            while (iSpec < specs.Count && iObj < metas.Count)
-            {
-                var spec = specs[iSpec];
-
-                var obj = metas[iObj].GetData(scope, varSet, log);
-                b &= spec?.IsCompatibleWithData(obj) ?? true;
-
-                iSpec++;
-
-                iObj++;
-            }
-
-            return b;
         }
 
         public static IBdoSpec ToSpec(

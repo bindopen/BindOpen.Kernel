@@ -31,7 +31,7 @@ namespace BindOpen.Kernel.Tests
                     BdoData.NewRequirement(BdoMetaDataProperties.Property("title"), "myTitle")
                 )
                 .AsRequired((BdoCondition)BdoScript.This<IBdoMetaData>()._Has("title"))
-                .AsForbidden()
+                .AsOptional()
                 .WithItemRequirement((RequirementLevels.Required,
                     (BdoCondition)BdoScript.This<IBdoMetaData>()._Descendant("auto").Value()));
 
