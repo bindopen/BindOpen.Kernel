@@ -20,9 +20,7 @@ A [full list of all the BindOpen repos](https://www.npmjs.com/search?q=bindopen)
 
 ## Install
 
-To get started, install the kernel-dtos module you want to use.
-
-Note: We recommend that later on, you install only the package you need.
+To get started, install the kernel-dtos package.
 
 ### From Npm
 
