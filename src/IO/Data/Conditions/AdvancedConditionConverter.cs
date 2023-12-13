@@ -18,6 +18,7 @@ namespace BindOpen.Kernel.Data.Conditions
 
             CompositeConditionDto dto = new()
             {
+                CompositionKind = poco.CompositionKind,
                 Conditions = poco.Conditions?.Select(q => q.ToDto()).ToList(),
                 Kind = poco.Kind
             };
@@ -37,6 +38,7 @@ namespace BindOpen.Kernel.Data.Conditions
 
             BdoCompositeCondition poco = new()
             {
+                CompositionKind = dto.CompositionKind,
                 Conditions = dto.Conditions?.Select(q => q.ToPoco()).ToList(),
                 Kind = dto.Kind
             };

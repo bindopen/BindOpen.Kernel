@@ -3,7 +3,7 @@
     /// <summary>
     /// This enumeration lists the possible kinds of composite conditions.
     /// </summary>
-    public enum CompositeConditionKind
+    public enum BdoCompositeConditionKind
     {
         /// <summary>
         /// And.

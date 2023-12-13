@@ -16,6 +16,11 @@
         /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// The kind of this instance.
+        /// </summary>
+        public BdoConditionKind Kind { get; set; }
+
         #endregion
 
         // ------------------------------------------

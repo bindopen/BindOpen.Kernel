@@ -18,7 +18,7 @@ namespace BindOpen.Kernel.Data
         /// <returns>Returns the created exp.</returns>
         public static T WithCondition<T>(
             this T obj,
-            CompositeConditionKind kind,
+            BdoCompositeConditionKind kind,
             params IBdoCondition[] conditions)
             where T : IBdoConditional
             => obj.WithCondition(new BdoCompositeCondition(kind, conditions));

@@ -31,6 +31,13 @@ namespace BindOpen.Kernel.Data.Conditions
         public string Id { get; set; }
 
         /// <summary>
+        /// The kind of this instance.
+        /// </summary>
+        [JsonPropertyName("kind")]
+        [XmlAttribute("kind")]
+        public BdoConditionKind Kind { get; set; }
+
+        /// <summary>
         /// The value expressing that this instance is satisfied.
         /// </summary>
         [JsonPropertyName("trueValue")]
