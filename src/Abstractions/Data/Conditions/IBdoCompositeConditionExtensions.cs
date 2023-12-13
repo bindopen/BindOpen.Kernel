@@ -8,14 +8,14 @@ namespace BindOpen.Kernel.Data
     /// </summary>
     public static class IBdoCompositeConditionExtensions
     {
-        public static T WithKind<T>(
+        public static T WithCompositionKind<T>(
             this T obj,
-            CompositeConditionKind kind)
+            BdoCompositeConditionKind kind)
             where T : IBdoCompositeCondition
         {
             if (obj != null)
             {
-                obj.Kind = kind;
+                obj.CompositionKind = kind;
             }
 
             return obj;

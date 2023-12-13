@@ -18,11 +18,11 @@ namespace BindOpen.Kernel.Data.Conditions
         #region Properties
 
         /// <summary>
-        /// The kind of this instance.
+        /// The composite kind of this instance.
         /// </summary>
-        [JsonPropertyName("kind")]
-        [XmlElement("kind")]
-        public CompositeConditionKind Kind { get; set; } = CompositeConditionKind.And;
+        [JsonPropertyName("compositionKind")]
+        [XmlElement("compositionKind")]
+        public BdoCompositeConditionKind CompositionKind { get; set; } = BdoCompositeConditionKind.And;
 
         /// <summary>
         /// THe conditions of this instance.

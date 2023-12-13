@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// This enumeration lists the possible kinds of composite conditions.
 /// </summary>
-export enum CompositeConditionKind
+export enum BdoAdvancedConditionKind
 {
     /// <summary>
     /// And.

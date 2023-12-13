@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using BindOpen.Kernel.Data;
 
 namespace BindOpen.Kernel.Data.Conditions
 {
@@ -11,7 +10,7 @@ namespace BindOpen.Kernel.Data.Conditions
         /// <summary>
         /// 
         /// </summary>
-        CompositeConditionKind Kind { get; set; }
+        BdoCompositeConditionKind CompositionKind { get; set; }
 
         /// <summary>
         /// 
