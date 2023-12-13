@@ -1,9 +1,8 @@
 ﻿
-
-import { CompositeConditionKind } from "../enums/AdvancedConditionKind";
+import { BdoCompositeConditionKind } from "../enums/BdoCompositeConditionKind";
 import { ConditionDto } from "./ConditionDto";
 
 export interface CompositeConditionDto extends ConditionDto {
-    kind: CompositeConditionKind;
+    compositionKind: BdoCompositeConditionKind;
     conditions: any[];
 }

@@ -2,7 +2,7 @@
 
 export * from './AccessibilityLevels';
 export * from './ActionPriorities';
-export * from './AdvancedConditionKind';
+export * from './BdoCompositeConditionKind';
 export * from './BdoConstraintModes';
 export * from './BdoExpressionKind';
 export * from './BdoReferenceKind';
