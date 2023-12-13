@@ -58,13 +58,15 @@ namespace BindOpen.Kernel.Data
             var b = true;
             foreach (var subCondition in condition.Conditions)
             {
-                switch (condition.Kind)
+                var value = interpreter.Evaluate(subCondition, varSet, log);
+
+                switch (condition.CompositionKind)
                 {
-                    case CompositeConditionKind.And:
-                        b &= interpreter.Evaluate(subCondition, varSet, log);
+                    case BdoCompositeConditionKind.And:
+                        b &= value;
                         break;
-                    case CompositeConditionKind.Or:
-                        b |= interpreter.Evaluate(subCondition, varSet, log);
+                    case BdoCompositeConditionKind.Or:
+                        b |= value;
                         break;
                     default:
                         break;

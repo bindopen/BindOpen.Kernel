@@ -17,7 +17,7 @@ namespace BindOpen.Kernel.Data.Conditions
         /// <summary>
         /// Kind of this instance.
         /// </summary>
-        public CompositeConditionKind Kind { get; set; } = CompositeConditionKind.And;
+        public BdoCompositeConditionKind CompositionKind { get; set; } = BdoCompositeConditionKind.And;
 
         /// <summary>
         /// Conditions of this instance.
@@ -44,7 +44,7 @@ namespace BindOpen.Kernel.Data.Conditions
         /// </summary>
         /// <param key="conditions">The conditions to consider.</param>
         public BdoCompositeCondition(
-            CompositeConditionKind kind,
+            BdoCompositeConditionKind kind,
             params IBdoCondition[] conditions)
         {
             Conditions = conditions?.ToList();

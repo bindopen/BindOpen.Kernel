@@ -14,7 +14,7 @@ namespace BindOpen.Kernel.Data
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the created exp.</returns>
         public static BdoCompositeCondition NewCondition(
-            CompositeConditionKind kind,
+            BdoCompositeConditionKind kind,
             params IBdoCondition[] conditions) => new(kind, conditions);
 
         public static BdoBasicCondition NewCondition(

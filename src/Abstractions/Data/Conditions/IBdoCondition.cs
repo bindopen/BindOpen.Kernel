@@ -1,6 +1,4 @@
-﻿using BindOpen.Kernel.Data;
-
-namespace BindOpen.Kernel.Data.Conditions
+﻿namespace BindOpen.Kernel.Data.Conditions
 {
     /// <summary>
     /// 
@@ -8,5 +6,6 @@ namespace BindOpen.Kernel.Data.Conditions
     public interface IBdoCondition :
         INamed, IReferenced, IBdoObjectNotMetable
     {
+        BdoConditionKind Kind { get; set; }
     }
 }
