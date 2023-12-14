@@ -12,9 +12,9 @@
     "url": "git+https://github.com/bindopen/BindOpen.Kernel.git"
   },
   "exports": {
-    "./data": "./data/index.js",
-    "./logging": "./logging/index.js",
-    "./scoping": "./scoping/index.js"
+    "./data": ["./data/index.js", "./data/index.mjs"],
+    "./logging": ["./logging/index.js", "./logging/index.mjs"],
+    "./scoping": ["./scoping/index.js", "./scoping/index.mjs"]
   },
   "typesVersions": {
     "*": {
