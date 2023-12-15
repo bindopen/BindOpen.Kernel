@@ -9,6 +9,7 @@ import { SpecRuleDto } from "./SpecRuleDto";
 export interface SpecDto {
     children: any[];
     id: string;
+    parentId: string;
     name: string;
     condition: ConditionDto;
     rules: SpecRuleDto[];

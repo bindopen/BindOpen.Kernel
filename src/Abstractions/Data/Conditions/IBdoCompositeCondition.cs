@@ -5,7 +5,7 @@ namespace BindOpen.Kernel.Data.Conditions
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoCompositeCondition : IBdoCondition
+    public interface IBdoCompositeCondition : IBdoCondition, ITParent<IBdoCondition>
     {
         /// <summary>
         /// 

@@ -57,7 +57,7 @@ namespace BindOpen.Kernel.Data
         public static T NewDefinition<T>(
             string name,
             params IBdoSpec[] items)
-            where T : BdoDefinition, new()
+            where T : IBdoDefinition, new()
             => NewDefinition<T>(name, null as string[], items);
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace BindOpen.Kernel.Data
         /// <param key="items">The items to consider.</param>
         public static T NewDefinition<T>(
             params IBdoSpec[] items)
-            where T : BdoDefinition, new()
+            where T : IBdoDefinition, new()
             => NewDefinition<T>(null as string, null as string[], items);
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace BindOpen.Kernel.Data
             string name,
             string[] usingIds,
             params IBdoSpec[] items)
-            where T : BdoDefinition, new()
+            where T : IBdoDefinition, new()
         {
             var config = NewItemSet<T, IBdoSpec>(items)
                 .WithName(name)

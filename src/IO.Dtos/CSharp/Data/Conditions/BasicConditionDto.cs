@@ -1,4 +1,6 @@
-﻿using System.Text.Json.Serialization;
+﻿using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Scoping.Script;
+using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
 namespace BindOpen.Kernel.Data.Conditions
@@ -21,8 +23,11 @@ namespace BindOpen.Kernel.Data.Conditions
         /// The arugment 1 of this instance.
         /// </summary>
         [JsonPropertyName("arg1")]
-        [XmlElement("arg1")]
-        public object Argument1 { get; set; }
+        [XmlElement("node1", Type = typeof(MetaNodeDto))]
+        [XmlElement("object1", Type = typeof(MetaObjectDto))]
+        [XmlElement("scalar1", Type = typeof(MetaScalarDto))]
+        [XmlElement("word1", Type = typeof(ScriptwordDto))]
+        public MetaDataDto Argument1 { get; set; }
 
         /// <summary>
         /// The operator of this instance.
@@ -35,8 +40,11 @@ namespace BindOpen.Kernel.Data.Conditions
         /// The arugment 2 of this instance.
         /// </summary>
         [JsonPropertyName("arg2")]
-        [XmlElement("arg2")]
-        public object Argument2 { get; set; }
+        [XmlElement("node2", Type = typeof(MetaNodeDto))]
+        [XmlElement("object2", Type = typeof(MetaObjectDto))]
+        [XmlElement("scalar2", Type = typeof(MetaScalarDto))]
+        [XmlElement("word2", Type = typeof(ScriptwordDto))]
+        public MetaDataDto Argument2 { get; set; }
 
         #endregion
 
@@ -51,46 +59,6 @@ namespace BindOpen.Kernel.Data.Conditions
         /// </summary>
         public BasicConditionDto()
         {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the BasicBusinessCondition class.
-        /// </summary>
-        /// <param key="trueValue">The value that expresses that the condition is satisfied.</param>
-        public BasicConditionDto(
-            bool trueValue) : base(trueValue)
-        {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the BasicBusinessCondition class.
-        /// </summary>
-        /// <param key="arg1">The argument 1 to consider.</param>
-        /// <param key="ope">The operator to consider.</param>
-        /// <param key="arg2">The argument 2 to consider.</param>
-        public BasicConditionDto(string arg1, DataOperators ope, string arg2 = null)
-        {
-            Argument1 = arg1;
-            Argument2 = arg2;
-            Operator = ope;
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the BasicBusinessCondition class.
-        /// </summary>
-        /// <param key="trueValue">The value that expresses that the condition is satisfied.</param>
-        /// <param key="arg1">The argument 1 to consider.</param>
-        /// <param key="ope">The operator to consider.</param>
-        /// <param key="arg2">The argument 2 to consider.</param>
-        public BasicConditionDto(
-            bool trueValue,
-            string arg1,
-            DataOperators ope,
-            string arg2 = null) : base(trueValue)
-        {
-            Argument1 = arg1;
-            Argument2 = arg2;
-            Operator = ope;
         }
 
         #endregion

@@ -42,9 +42,9 @@ namespace BindOpen.Kernel.Data.Meta
             this IBdoMetaData meta,
             string name = null,
             bool onlyMetaAttributes = true)
-            where T : class, IBdoSpec, new()
+            where T : IBdoSpec, new()
         {
-            T spec = null;
+            T spec = default;
 
             if (meta != null)
             {

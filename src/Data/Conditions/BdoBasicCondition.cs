@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Kernel.Data.Conditions
+﻿using BindOpen.Kernel.Data.Meta;
+
+namespace BindOpen.Kernel.Data.Conditions
 {
 
     /// <summary>
@@ -15,7 +17,7 @@
         /// <summary>
         /// The arugment 1 of this instance.
         /// </summary>
-        public object Argument1 { get; set; }
+        public IBdoMetaData Argument1 { get; set; }
 
         /// <summary>
         /// The operator of this instance.
@@ -25,7 +27,7 @@
         /// <summary>
         /// The arugment 2 of this instance.
         /// </summary>
-        public object Argument2 { get; set; }
+        public IBdoMetaData Argument2 { get; set; }
 
         #endregion
 
@@ -49,9 +51,9 @@
         /// <param key="ope">The operator to consider.</param>
         /// <param key="arg2">The argument 2 to consider.</param>
         public BdoBasicCondition(
-            object arg1,
+            IBdoMetaData arg1,
             DataOperators ope,
-            object arg2 = null)
+            IBdoMetaData arg2 = null)
         {
             Argument1 = arg1;
             Argument2 = arg2;

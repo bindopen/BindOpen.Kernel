@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using BindOpen.Kernel.Data.Meta;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BindOpen.Kernel.Data.Conditions
@@ -68,6 +70,31 @@ namespace BindOpen.Kernel.Data.Conditions
             //condition.Conditions.AddRange(Conditions.Select(p => p.Clone() as BdoCondition));
 
             return condition;
+        }
+
+        #endregion
+
+        // ------------------------------------------
+        // ITParent Implementation
+        // ------------------------------------------
+
+        #region ITParent
+
+        protected ITBdoSet<IBdoCondition> _children = null;
+
+        public ITBdoSet<IBdoCondition> _Children { get => _children; set { _children = value; } }
+
+        public Q InsertChild<Q>(Action<Q> updater) where Q : IBdoCondition, new()
+        {
+            var child = BdoData.New(updater);
+            child.WithParent<IBdoCondition, IBdoCompositeCondition>(this);
+
+            return child;
+        }
+
+        public void RemoveChildren(Predicate<IBdoCondition> filter = null, bool isRecursive = false)
+        {
+            _children?.Remove(filter);
         }
 
         #endregion

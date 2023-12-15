@@ -1,4 +1,4 @@
-﻿using BindOpen.Kernel.Data;
+﻿using BindOpen.Kernel.Data.Meta;
 
 namespace BindOpen.Kernel.Data.Conditions
 {
@@ -10,12 +10,12 @@ namespace BindOpen.Kernel.Data.Conditions
         /// <summary>
         /// 
         /// </summary>
-        object Argument1 { get; set; }
+        IBdoMetaData Argument1 { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        object Argument2 { get; set; }
+        IBdoMetaData Argument2 { get; set; }
 
         /// <summary>
         /// 

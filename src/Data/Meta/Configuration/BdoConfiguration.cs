@@ -60,7 +60,7 @@ namespace BindOpen.Kernel.Data.Meta
                 }
                 else if (token is string key)
                 {
-                    child = Child(q => q.BdoKeyEquals(tokenSt), false);
+                    child = this.Child(q => q.BdoKeyEquals(tokenSt), false);
                 }
 
                 if (tokens?.Length == 1) return child.As<TChild>();
@@ -137,7 +137,7 @@ namespace BindOpen.Kernel.Data.Meta
         #endregion
 
         // ------------------------------------------
-        // ITParent Implementation
+        // ITTreeNode Implementation
         // ------------------------------------------
 
         #region ITParent
@@ -148,56 +148,12 @@ namespace BindOpen.Kernel.Data.Meta
 
         public ITBdoSet<IBdoConfiguration> _Children { get => _children; set { _children = value; } }
 
-        public IEnumerable<IBdoConfiguration> Children(Predicate<IBdoConfiguration> filter = null, bool isRecursive = false)
+        public Q InsertChild<Q>(Action<Q> updater) where Q : IBdoConfiguration, new()
         {
-            var children = new List<IBdoConfiguration>();
-
-            if (_children != null)
-            {
-                foreach (var child in _children)
-                {
-                    if (filter?.Invoke(child) != false)
-                        children.Add(child);
-
-                    if (isRecursive)
-                    {
-                        children.AddRange(child.Children(filter, isRecursive));
-                    }
-                }
-            }
-
-            return children;
-        }
-
-        public IBdoConfiguration Child(Predicate<IBdoConfiguration> filter, bool isRecursive = false)
-        {
-            if (_Children != null)
-            {
-                foreach (var child in _Children)
-                {
-                    if (filter?.Invoke(child) != false)
-                        return child;
-
-                    if (isRecursive)
-                    {
-                        var subChild = child?.Child(filter, true);
-                        if (subChild != null) return subChild;
-                    }
-                }
-            }
-
-            return null;
-        }
-
-        public bool HasChild(Predicate<IBdoConfiguration> filter = null, bool isRecursive = false)
-            => _Children?.Any(q => filter?.Invoke(q) != false || (isRecursive && q.HasChild(filter, true))) == true;
-
-        public IBdoConfiguration InsertChild(Action<IBdoConfiguration> updater)
-        {
-            var child = BdoData.NewConfig();
+            var child = BdoData.NewConfig<Q>();
             updater?.Invoke(child);
 
-            child.WithParent(this);
+            child.WithParent<IBdoConfiguration, IBdoConfiguration>(this);
 
             return child;
         }
