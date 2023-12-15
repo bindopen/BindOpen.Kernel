@@ -15,11 +15,11 @@ namespace BindOpen.Kernel.Data
             _tree = new TreeFake();
             for (var i = 0; i < 10; i++)
             {
-                var child = _tree.InsertChild(q => q.WithName("child" + i));
+                var child = _tree.InsertChild<TreeFake>(q => q.WithName("child" + i));
 
                 for (var j = 0; j < 10; j++)
                 {
-                    child.InsertChild(q => q.WithName("subChild" + j));
+                    child.InsertChild<TreeFake>(q => q.WithName("subChild" + j));
                 }
             }
         }

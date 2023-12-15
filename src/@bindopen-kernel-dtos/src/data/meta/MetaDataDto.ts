@@ -6,6 +6,7 @@ import { SpecDto } from "./definition/SpecDto";
 
 export interface MetaDataDto {
     id: string;
+    parentId: string;
     name: string;
     index?: number;
     reference: ReferenceDto;

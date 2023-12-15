@@ -3,8 +3,8 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoCondition :
-        INamed, IReferenced, IBdoObjectNotMetable
+    public interface IBdoCondition : IIdentified,
+        INamed, IReferenced, IBdoObjectNotMetable, ITChild<IBdoCompositeCondition>
     {
         BdoConditionKind Kind { get; set; }
     }

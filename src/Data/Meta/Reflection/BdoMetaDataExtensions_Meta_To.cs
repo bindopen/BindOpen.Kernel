@@ -1,4 +1,5 @@
 ﻿using BindOpen.Kernel.Data.Assemblies;
+using BindOpen.Kernel.Data.Helpers;
 using System;
 
 namespace BindOpen.Kernel.Data.Meta.Reflection
@@ -69,8 +70,8 @@ namespace BindOpen.Kernel.Data.Meta.Reflection
             string name = null,
             bool onlyMetaAttributes = false,
             bool includeNullValues = true)
-            where T : class, IBdoMetaData
-            => obj.ToMeta(null, name, onlyMetaAttributes, includeNullValues) as T;
+            where T : IBdoMetaData
+            => obj.ToMeta(null, name, onlyMetaAttributes, includeNullValues).As<T>();
 
         // Specification
 
@@ -83,7 +84,7 @@ namespace BindOpen.Kernel.Data.Meta.Reflection
             this Type type,
             string name = null,
             bool onlyMetaAttributes = true)
-            where T : class, IBdoSpec, new()
+            where T : IBdoSpec, new()
         {
             var obj = AssemblyHelper.CreateInstance(type);
 

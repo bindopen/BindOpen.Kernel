@@ -17,16 +17,6 @@ namespace BindOpen.Kernel.Data
             return spec;
         }
 
-        public static T WithParent<T>(this T log, IBdoSpec parent) where T : IBdoSpec
-        {
-            if (log != null)
-            {
-                log.Parent = parent;
-            }
-
-            return log;
-        }
-
         /// <summary>
         /// 
         /// </summary>

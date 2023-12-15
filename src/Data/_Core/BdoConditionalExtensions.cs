@@ -1,7 +1,5 @@
 ﻿using BindOpen.Kernel.Data.Conditions;
 using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping;
 
 namespace BindOpen.Kernel.Data
 {
@@ -25,9 +23,9 @@ namespace BindOpen.Kernel.Data
 
         public static T WithCondition<T>(
             this T obj,
-            object arg1,
+            IBdoMetaData arg1,
             DataOperators ope,
-            object arg2 = null)
+            IBdoMetaData arg2 = null)
             where T : IBdoConditional
             => obj.WithCondition(new BdoBasicCondition(arg1, ope, arg2));
 

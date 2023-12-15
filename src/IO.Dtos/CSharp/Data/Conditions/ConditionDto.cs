@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
 namespace BindOpen.Kernel.Data.Conditions
@@ -31,19 +30,25 @@ namespace BindOpen.Kernel.Data.Conditions
         public string Id { get; set; }
 
         /// <summary>
+        /// The name of this instance.
+        /// </summary>
+        [JsonPropertyName("name")]
+        [XmlAttribute("name")]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// The parent identifier of this instance.
+        /// </summary>
+        [JsonPropertyName("parentId")]
+        [XmlAttribute("parentId")]
+        public string ParentId { get; set; }
+
+        /// <summary>
         /// The kind of this instance.
         /// </summary>
         [JsonPropertyName("kind")]
         [XmlAttribute("kind")]
         public BdoConditionKind Kind { get; set; }
-
-        /// <summary>
-        /// The value expressing that this instance is satisfied.
-        /// </summary>
-        [JsonPropertyName("trueValue")]
-        [XmlAttribute("trueValue")]
-        [DefaultValue(true)]
-        public bool TrueValue { get; set; }
 
         #endregion
 
@@ -58,15 +63,6 @@ namespace BindOpen.Kernel.Data.Conditions
         /// </summary>
         protected ConditionDto() : base()
         {
-        }
-
-        /// <summary>
-        /// Instantiates a new instance of the ConditionDto class.
-        /// </summary>
-        /// <param key="trueValue">The true value to consider.</param>
-        protected ConditionDto(bool trueValue) : base()
-        {
-            this.TrueValue = trueValue;
         }
 
         #endregion

@@ -60,7 +60,7 @@ namespace BindOpen.Kernel.Data
         /// <param key="valueType">The value type to consider.</param>
         public static T NewSpec<T>(
             string name = null)
-            where T : class, IBdoSpec, new()
+            where T : IBdoSpec, new()
         {
             var spec = new T();
             spec.WithName(name);
@@ -75,7 +75,7 @@ namespace BindOpen.Kernel.Data
         /// <param key="type">The value type to consider.</param>
         public static T NewSpec<T>(
             Type type)
-            where T : class, IBdoSpec, new()
+            where T : IBdoSpec, new()
             => NewSpec<T>(null, type);
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace BindOpen.Kernel.Data
         public static T NewSpec<T>(
             string name,
             Type type)
-            where T : class, IBdoSpec, new()
+            where T : IBdoSpec, new()
         {
             if (type == null) return default;
 
@@ -134,7 +134,7 @@ namespace BindOpen.Kernel.Data
         public static IBdoSpec NewSpecFrom<T, Q>(
             string name = null,
             bool onlyMetaAttributes = true)
-            where Q : class, IBdoSpec, new()
+            where Q : IBdoSpec, new()
             => typeof(T).ToSpec<Q>(name, onlyMetaAttributes);
 
         /// <summary>

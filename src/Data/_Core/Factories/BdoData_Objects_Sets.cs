@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BindOpen.Kernel.Data;
 
 namespace BindOpen.Kernel.Data
 {
@@ -17,7 +16,7 @@ namespace BindOpen.Kernel.Data
         /// <typeparam name="Q">The data item set type to consider.</typeparam>
         /// <typeparam name="T">The identified data item to consider.</typeparam>
         public static Q NewItemSet<Q, T>(params T[] items)
-            where Q : class, ITBdoSet<T>, new()
+            where Q : ITBdoSet<T>, new()
             where T : IReferenced
         {
             var q = new Q();

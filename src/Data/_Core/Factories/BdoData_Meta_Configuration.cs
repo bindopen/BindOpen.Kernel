@@ -57,7 +57,7 @@ namespace BindOpen.Kernel.Data
         public static T NewConfig<T>(
             string name,
             params IBdoMetaData[] items)
-            where T : BdoConfiguration, new()
+            where T : IBdoConfiguration, new()
             => NewConfig<T>(name, null as string[], items);
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace BindOpen.Kernel.Data
         /// <param key="items">The items to consider.</param>
         public static T NewConfig<T>(
             params IBdoMetaData[] items)
-            where T : BdoConfiguration, new()
+            where T : IBdoConfiguration, new()
             => NewConfig<T>(null as string, null as string[], items);
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace BindOpen.Kernel.Data
             string name,
             string[] usingIds,
             params IBdoMetaData[] items)
-            where T : BdoConfiguration, new()
+            where T : IBdoConfiguration, new()
         {
             var config = NewItemSet<T, IBdoMetaData>(items)
                 .WithName(name)

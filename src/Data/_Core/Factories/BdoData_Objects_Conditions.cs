@@ -1,4 +1,5 @@
 ﻿using BindOpen.Kernel.Data.Conditions;
+using BindOpen.Kernel.Data.Meta;
 
 namespace BindOpen.Kernel.Data
 {
@@ -18,9 +19,9 @@ namespace BindOpen.Kernel.Data
             params IBdoCondition[] conditions) => new(kind, conditions);
 
         public static BdoBasicCondition NewCondition(
-            object arg1,
+            IBdoMetaData arg1,
             DataOperators ope,
-            object arg2 = null) => new(arg1, ope, arg2);
+            IBdoMetaData arg2 = null) => new(arg1, ope, arg2);
 
         public static BdoExpressionCondition NewCondition(IBdoExpression exp) => new(exp);
 

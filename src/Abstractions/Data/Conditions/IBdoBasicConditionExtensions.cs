@@ -1,4 +1,5 @@
 ﻿using BindOpen.Kernel.Data.Conditions;
+using BindOpen.Kernel.Data.Meta;
 
 namespace BindOpen.Kernel.Data
 {
@@ -9,7 +10,7 @@ namespace BindOpen.Kernel.Data
     {
         public static T WithArgument1<T>(
             this T obj,
-            object argument1)
+            IBdoMetaData argument1)
             where T : IBdoBasicCondition
         {
             if (obj != null)
@@ -22,7 +23,7 @@ namespace BindOpen.Kernel.Data
 
         public static T WithArgument2<T>(
             this T obj,
-            object argument1)
+            IBdoMetaData argument1)
             where T : IBdoBasicCondition
         {
             if (obj != null)
