@@ -127,12 +127,12 @@ namespace BindOpen.Kernel.Data.Meta
 
         public ITBdoSet<IBdoDefinition> _Children { get => _children; set { _children = value; } }
 
-        public IBdoDefinition InsertChild(Action<IBdoDefinition> updater)
+        public Q InsertChild<Q>(Action<Q> updater) where Q : IBdoDefinition, new()
         {
-            var child = BdoData.NewDefinition();
+            var child = BdoData.NewDefinition<Q>();
             updater?.Invoke(child);
 
-            child.WithParent(this);
+            child.WithParent<IBdoDefinition, IBdoDefinition>(this);
 
             return child;
         }

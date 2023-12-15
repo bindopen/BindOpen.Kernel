@@ -17,7 +17,7 @@ namespace BindOpen.Kernel.Data
         /// </summary>
         /// <param name="updater">The updater action used to update the new child object.</param>
         /// <returns>Returns the new child object.</returns>
-        T InsertChild(Action<T> updater);
+        Q InsertChild<Q>(Action<Q> updater) where Q : T, new();
 
         /// <summary>
         /// Removes the specified child.

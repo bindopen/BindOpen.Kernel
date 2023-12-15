@@ -58,12 +58,12 @@ namespace BindOpen.Kernel.Data.Meta
 
         public ITBdoSet<IBdoSpec> _Children { get => _children; set { _children = value; } }
 
-        public IBdoSpec InsertChild(Action<IBdoSpec> updater)
+        public Q InsertChild<Q>(Action<Q> updater) where Q : IBdoSpec, new()
         {
-            var child = BdoData.NewSpec();
+            var child = BdoData.NewSpec<Q>();
             updater?.Invoke(child);
 
-            child.WithParent(this);
+            child.WithParent<IBdoSpec, IBdoSpec>(this);
 
             return child;
         }

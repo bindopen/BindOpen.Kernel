@@ -6,18 +6,12 @@ namespace BindOpen.Kernel.Scoping.Script
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoScriptword :
-        IBdoMetaObject, IBdoObjectNotMetable
+    public interface IBdoScriptword : IBdoMetaObject, IBdoObjectNotMetable, ITSingleChildParent<IBdoScriptword>
     {
         /// <summary>
         /// 
         /// </summary>
         ScriptItemKinds Kind { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        IBdoScriptword Child { get; set; }
 
         /// <summary>
         /// 

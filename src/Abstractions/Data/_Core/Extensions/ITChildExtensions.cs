@@ -31,6 +31,23 @@ namespace BindOpen.Kernel.Data
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public static Q WithParent<Q, T>(this Q item, T parent)
+            where Q : ITChild<T>
+            where T : IReferenced
+        {
+            item.Parent = parent;
+
+            if (parent is ITSingleChildParent<Q> singleChildParent)
+            {
+                singleChildParent.WithChild(item);
+            }
+
+            return item;
+        }
+
+        /// <summary>
         /// The level of this instance.
         /// </summary>
         public static int Level<T>(this ITChild<T> child)

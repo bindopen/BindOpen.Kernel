@@ -7,19 +7,6 @@ namespace BindOpen.Kernel.Data
     /// </summary>
     public static partial class IBdoMetaDataExtensions
     {
-        public static T WithParent<T>(
-            this T meta,
-            IBdoMetaData parent)
-            where T : IBdoMetaData
-        {
-            if (meta != null)
-            {
-                meta.Parent = parent;
-            }
-
-            return meta;
-        }
-
         /// <summary>
         /// 
         /// </summary>

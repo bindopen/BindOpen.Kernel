@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Kernel.Data.Conditions
+﻿using BindOpen.Kernel.Data.Meta;
+
+namespace BindOpen.Kernel.Data.Conditions
 {
     /// <summary>
     /// This class represents a IO converter of basic conditions.
@@ -16,9 +18,13 @@
 
             BasicConditionDto dto = new()
             {
-                Argument1 = poco.Argument1,
-                Argument2 = poco.Argument2,
-                Operator = poco.Operator
+                Argument1 = poco.Argument1?.ToDto(),
+                Argument2 = poco.Argument2?.ToDto(),
+                Id = poco.Id,
+                Kind = poco.Kind,
+                Name = poco.Name,
+                Operator = poco.Operator,
+                ParentId = poco.Parent?.Id
             };
 
             return dto;
@@ -36,9 +42,13 @@
 
             BdoBasicCondition poco = new()
             {
-                Argument1 = dto.Argument1,
-                Argument2 = dto.Argument2,
-                Operator = dto.Operator
+                Argument1 = dto.Argument1?.ToPoco(),
+                Argument2 = dto.Argument2?.ToPoco(),
+                Kind = dto.Kind,
+                Id = dto.Id,
+                Operator = dto.Operator,
+                Name = dto.Name,
+                Parent = null
             };
 
             return poco;

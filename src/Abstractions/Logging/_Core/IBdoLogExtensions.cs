@@ -8,19 +8,6 @@ namespace BindOpen.Kernel.Logging
     /// </summary>
     public static class IBdoLogExtensions
     {
-        public static T WithParent<T>(
-            this T log,
-            IBdoLog parent)
-            where T : IBdoLog
-        {
-            if (log != null)
-            {
-                log.Parent = parent;
-            }
-
-            return log;
-        }
-
         /// <summary>
         /// 
         /// </summary>

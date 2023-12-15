@@ -1,4 +1,5 @@
 ﻿using BindOpen.Kernel.Data.Meta;
+using BindOpen.Kernel.Scoping.Script;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
@@ -53,7 +54,11 @@ namespace BindOpen.Kernel.Scoping.Tasks
         /// The inputs of this instance.
         /// </summary>
         [JsonPropertyName("inputs")]
-        [XmlElement("input")]
+        [XmlArray("inputs")]
+        [XmlArrayItem("node", Type = typeof(MetaNodeDto))]
+        [XmlArrayItem("object", Type = typeof(MetaObjectDto))]
+        [XmlArrayItem("scalar", Type = typeof(MetaScalarDto))]
+        [XmlArrayItem("word", Type = typeof(ScriptwordDto))]
         public List<MetaDataDto> InputSpecification { get; set; }
 
         /// <summary>
@@ -67,7 +72,11 @@ namespace BindOpen.Kernel.Scoping.Tasks
         /// The outputs of this instance.
         /// </summary>
         [JsonPropertyName("outputs")]
-        [XmlElement("output")]
+        [XmlArray("outputs")]
+        [XmlArrayItem("node", Type = typeof(MetaNodeDto))]
+        [XmlArrayItem("object", Type = typeof(MetaObjectDto))]
+        [XmlArrayItem("scalar", Type = typeof(MetaScalarDto))]
+        [XmlArrayItem("word", Type = typeof(ScriptwordDto))]
         public List<MetaDataDto> OutputSpecification { get; set; }
 
         /// <summary>

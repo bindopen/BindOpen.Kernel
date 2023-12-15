@@ -1,5 +1,4 @@
 ﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data;
 using System;
 using System.Linq;
 
@@ -12,26 +11,13 @@ namespace BindOpen.Kernel.Tests
     {
         private TreeFake _parent;
 
-        // ------------------------------------------
-        // PROPERTIES
-        // ------------------------------------------
-
-        #region Properties
+        public TreeFake()
+        {
+        }
 
         public ITBdoSet<TreeFake> _Children { get; set; }
         public TreeFake Parent { get => _parent; set { _parent = value; } }
         public string Name { get; set; }
-
-        public TreeFake InsertChild(Action<TreeFake> updater)
-        {
-            var child = new TreeFake();
-            updater?.Invoke(child);
-
-            _Children ??= BdoData.NewItemSet<TreeFake>();
-            _Children.Add(child);
-
-            return child;
-        }
 
         public void RemoveChildren(Predicate<TreeFake> filter = null, bool isRecursive = false)
         {
@@ -48,6 +34,15 @@ namespace BindOpen.Kernel.Tests
 
         public string Key() => Name;
 
-        #endregion
+        public Q InsertChild<Q>(Action<Q> updater) where Q : TreeFake, new()
+        {
+            var child = new Q();
+            updater?.Invoke(child);
+
+            _Children ??= BdoData.NewItemSet<TreeFake>();
+            _Children.Insert(child);
+
+            return child;
+        }
     }
 }

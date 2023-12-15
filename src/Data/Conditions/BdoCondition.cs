@@ -14,6 +14,16 @@
         /// <summary>
         /// The value that expresses that the condition is satisfied.
         /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// The value that expresses that the condition is satisfied.
+        /// </summary>
+        public IBdoCompositeCondition Parent { get; set; }
+
+        /// <summary>
+        /// The value that expresses that the condition is satisfied.
+        /// </summary>
         public string Name { get; set; }
 
         /// <summary>

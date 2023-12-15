@@ -1,7 +1,6 @@
-﻿using System.Text.Json.Serialization;
+﻿using BindOpen.Kernel.Data;
+using System.Text.Json.Serialization;
 using System.Xml.Serialization;
-using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data;
 
 namespace BindOpen.Kernel
 {
