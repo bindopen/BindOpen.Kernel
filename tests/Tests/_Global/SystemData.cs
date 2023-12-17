@@ -50,7 +50,7 @@ namespace BindOpen.Kernel.Tests
             {
                 if (_scriptInterpreter == null)
                 {
-                    _scriptInterpreter = SystemData.Scope.Interpreter; ;
+                    _scriptInterpreter = Scope.Interpreter; ;
                 }
 
                 return _scriptInterpreter;

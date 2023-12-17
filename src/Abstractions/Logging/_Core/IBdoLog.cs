@@ -11,7 +11,7 @@ namespace BindOpen.Kernel.Logging
         IIdentified, INamed,
         ITitled, IDescribed,
         ITTreeNode<IBdoLog>,
-        IBdoDetailed, IDisposable
+        IBdoDetailed, IBdoObject
     {
         /// <summary>
         /// 
