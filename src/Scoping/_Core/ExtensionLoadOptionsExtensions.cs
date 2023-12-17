@@ -63,14 +63,14 @@ namespace BindOpen.Kernel.Scoping
         }
 
         public static IExtensionLoadOptions AddAssemblyFrom<Q>(
-            this IExtensionLoadOptions obj)
+            this IExtensionLoadOptions options)
         {
-            if (obj != null)
+            if (options != null)
             {
-                obj.References ??= new List<IBdoAssemblyReference>();
-                obj.References.Add(BdoData.AssemblyFrom<Q>());
+                options.References ??= new List<IBdoAssemblyReference>();
+                options.References.Add(BdoData.AssemblyFrom<Q>());
             }
-            return obj;
+            return options;
         }
 
         public static T AddAllAssemblies<T>(
