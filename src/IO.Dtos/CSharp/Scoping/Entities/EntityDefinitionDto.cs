@@ -1,11 +1,11 @@
-﻿using BindOpen.Kernel.Data.Assemblies;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Scoping.Script;
+﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Meta;
+using BindOpen.Scoping.Script;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Scoping.Entities
+namespace BindOpen.Scoping.Entities
 {
     /// <summary>
     /// This class represents the entity definition DTO.

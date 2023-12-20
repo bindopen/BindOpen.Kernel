@@ -1,6 +1,6 @@
-﻿using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data.Meta;
 
-namespace BindOpen.Kernel.Scoping.Script
+namespace BindOpen.Scoping.Script
 {
     /// <summary>
     /// This static class provides methods to create script elements.

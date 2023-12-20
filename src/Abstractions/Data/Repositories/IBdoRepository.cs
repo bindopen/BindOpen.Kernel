@@ -1,8 +1,8 @@
-﻿using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping.Connectors;
+﻿using BindOpen.Logging;
+using BindOpen.Scoping.Connectors;
 using System;
 
-namespace BindOpen.Kernel.Data.Repositories
+namespace BindOpen.Data.Repositories
 {
     /// <summary>
     /// 

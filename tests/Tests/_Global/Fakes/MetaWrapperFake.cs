@@ -1,5 +1,5 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using System.Collections.Generic;
 
 namespace BindOpen.Kernel.Tests

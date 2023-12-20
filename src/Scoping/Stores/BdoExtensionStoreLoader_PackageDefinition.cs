@@ -1,13 +1,13 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Assemblies;
-using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Logging;
+﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
+using BindOpen.Data.Helpers;
+using BindOpen.Logging;
 using System;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Scoping
 {
     /// <summary>
     /// This class represents a extension scope loader.
@@ -86,7 +86,7 @@ namespace BindOpen.Kernel.Scoping
                     definition.Title ??= BdoData.NewDictionary<string>();
                     definition.Title.With(
                         string.Format(
-                            "Extension library 'BindOpen.Kernel.Scoping.Tests'",
+                            "Extension library 'BindOpen.Scoping.Tests'",
                             definition.AssemblyName));
                 }
 

@@ -1,12 +1,12 @@
-﻿using BindOpen.Kernel.Data.Conditions;
-using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Data.Conditions;
+using BindOpen.Data.Helpers;
+using BindOpen.Logging;
+using BindOpen.Scoping;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a data element specification.

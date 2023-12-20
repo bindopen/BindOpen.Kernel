@@ -1,10 +1,10 @@
-﻿using BindOpen.Kernel.Data;
+﻿using BindOpen.Data;
 using BindOpen.Kernel.Tests;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     [TestFixture, Order(201)]
     public class SpecIOTests

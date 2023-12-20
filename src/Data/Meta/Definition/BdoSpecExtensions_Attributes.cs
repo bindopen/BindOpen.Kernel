@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Data.Conditions;
+﻿using BindOpen.Data.Conditions;
 using System;
 using System.Linq;
 using System.Reflection;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a data element set.

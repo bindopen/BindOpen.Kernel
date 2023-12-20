@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     [TestFixture, Order(201)]
     public class MetaWrapperIOTests

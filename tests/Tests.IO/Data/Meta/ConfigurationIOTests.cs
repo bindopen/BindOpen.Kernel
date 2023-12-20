@@ -1,11 +1,11 @@
-﻿using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Scoping;
 using BindOpen.Kernel.Tests;
 using Bogus;
 using NUnit.Framework;
 using System.IO;
 using System.Linq;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     [TestFixture, Order(201)]
     public class ConfigurationIOTests

@@ -1,10 +1,10 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Conditions;
-using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data;
+using BindOpen.Data.Conditions;
+using BindOpen.Data.Helpers;
+using BindOpen.Data.Meta;
 using System.Linq;
 
-namespace BindOpen.Kernel.Scoping.Script
+namespace BindOpen.Scoping.Script
 {
     /// <summary>
     /// This class represents a script word.

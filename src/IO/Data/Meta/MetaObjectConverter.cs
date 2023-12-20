@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Assemblies;
+using BindOpen.Data;
+using BindOpen.Data.Assemblies;
 using System.Linq;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a IO converter of meta objects.

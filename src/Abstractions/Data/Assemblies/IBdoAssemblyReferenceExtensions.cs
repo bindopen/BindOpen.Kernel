@@ -1,7 +1,7 @@
-﻿using BindOpen.Kernel.Data.Assemblies;
+﻿using BindOpen.Data.Assemblies;
 using System;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This class represents a data element set.

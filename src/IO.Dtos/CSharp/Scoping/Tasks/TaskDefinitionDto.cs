@@ -1,11 +1,11 @@
-﻿using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Scoping.Script;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Scoping.Script;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Scoping.Tasks
+namespace BindOpen.Scoping.Tasks
 {
     /// <summary>
     /// This class represents a task definition.

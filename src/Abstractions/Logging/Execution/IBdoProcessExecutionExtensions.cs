@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Kernel.Logging
+namespace BindOpen.Logging
 {
     /// <summary>
     /// 

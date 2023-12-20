@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Data
+﻿namespace BindOpen.Data
 {
     /// <summary>
     /// 

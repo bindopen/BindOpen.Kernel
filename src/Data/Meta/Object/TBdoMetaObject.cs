@@ -1,8 +1,8 @@
-﻿using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Logging;
+using BindOpen.Scoping;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a catalog el that is an el whose els are carriers.

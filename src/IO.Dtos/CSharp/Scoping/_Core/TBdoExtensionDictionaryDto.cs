@@ -1,10 +1,10 @@
-﻿using BindOpen.Kernel.Data;
+﻿using BindOpen.Data;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Scoping
 {
     /// <summary>
     /// This class represents a BindOpen extension dico.

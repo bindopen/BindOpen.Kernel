@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Data.Conditions
+﻿namespace BindOpen.Data.Conditions
 {
     /// <summary>
     /// This class represents a condition.

@@ -1,7 +1,7 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Scoping.Entities;
+﻿using BindOpen.Data;
+using BindOpen.Scoping.Entities;
 
-namespace BindOpen.Kernel.Scoping.Connectors
+namespace BindOpen.Scoping.Connectors
 {
     /// <summary>
     /// This class represents a DTO connector definition.

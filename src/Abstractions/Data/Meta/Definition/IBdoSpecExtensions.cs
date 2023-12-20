@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Meta;
+using BindOpen.Logging;
+using BindOpen.Scoping;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This class represents a data element set.

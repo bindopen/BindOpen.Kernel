@@ -1,7 +1,7 @@
 ﻿using System;
-using BindOpen.Kernel.Data;
+using BindOpen.Data;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a data element attribute.

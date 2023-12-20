@@ -1,7 +1,7 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Scoping;
-using BindOpen.Kernel.Scoping.Entities;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
+using BindOpen.Scoping;
+using BindOpen.Scoping.Entities;
 using System;
 using System.ComponentModel;
 

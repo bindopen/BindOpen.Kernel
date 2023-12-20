@@ -1,8 +1,7 @@
-﻿using BindOpen.Kernel.Data;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel
+namespace BindOpen.Data
 {
     /// <summary>
     /// This interface represents a conditional object.

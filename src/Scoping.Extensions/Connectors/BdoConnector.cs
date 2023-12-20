@@ -1,7 +1,7 @@
-﻿using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Logging;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Logging;
 
-namespace BindOpen.Kernel.Scoping.Connectors
+namespace BindOpen.Scoping.Connectors
 {
     /// <summary>
     /// This class represents a connector.

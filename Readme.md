@@ -32,16 +32,16 @@ Note: We recommend that later on, you install only the package you need.
 
 | Module | Instruction |
 |--------|-----|
-| [BindOpen.Kernel.Data](https://www.nuget.org/packages/BindOpen.Kernel.Data) | ```PM> Install-Package BindOpen.Kernel.Data``` |
-| [BindOpen.Kernel.Scoping](https://www.nuget.org/packages/BindOpen.Kernel.Scoping) | ```PM> Install-Package BindOpen.Kernel.Scoping``` |
+| [BindOpen.Data](https://www.nuget.org/packages/BindOpen.Data) | ```PM> Install-Package BindOpen.Data``` |
+| [BindOpen.Scoping](https://www.nuget.org/packages/BindOpen.Scoping) | ```PM> Install-Package BindOpen.Scoping``` |
 | [BindOpen.Kernel.IO](https://www.nuget.org/packages/BindOpen.Kernel.IO) | ```PM> Install-Package BindOpen.Kernel.IO``` |
 
 ### From .NET CLI
 
 | Module | Instruction |
 |--------|-----|
-| [BindOpen.Kernel.Data](https://www.nuget.org/packages/BindOpen.Kernel.Data) | ```> dotnet add package BindOpen.Kernel.Data``` |
-| [BindOpen.Kernel.Scoping](https://www.nuget.org/packages/BindOpen.Kernel.Scoping) | ```> dotnet add package BindOpen.Kernel.Scoping``` |
+| [BindOpen.Data](https://www.nuget.org/packages/BindOpen.Data) | ```> dotnet add package BindOpen.Data``` |
+| [BindOpen.Scoping](https://www.nuget.org/packages/BindOpen.Scoping) | ```> dotnet add package BindOpen.Scoping``` |
 | [BindOpen.Kernel.IO](https://www.nuget.org/packages/BindOpen.Kernel.IO) | ```> dotnet add package BindOpen.Kernel.IO``` |
 
 ## Get started
@@ -171,10 +171,10 @@ This repository contains the code of the following Nuget packages:
 | Package | Provision |
 |----------|-----|
 | [BindOpen.Kernel.Abstractions](https://www.nuget.org/packages/BindOpen.Kernel.Abstractions) | Interfaces and enumerations |
-| [BindOpen.Kernel.Data](https://www.nuget.org/packages/BindOpen.Kernel.Data) | Core data model |
-| [BindOpen.Kernel.Scoping](https://www.nuget.org/packages/BindOpen.Kernel.Scoping) | Extension manager |
-| [BindOpen.Kernel.Scoping.Extensions](https://www.nuget.org/packages/BindOpen.Kernel.Scoping.Extensions) | Classes of extensions |
-| [BindOpen.Kernel.Scoping.Script](https://www.nuget.org/packages/BindOpen.Kernel.Scoping.Script) | Script interpreter |
+| [BindOpen.Data](https://www.nuget.org/packages/BindOpen.Data) | Core data model |
+| [BindOpen.Scoping](https://www.nuget.org/packages/BindOpen.Scoping) | Extension manager |
+| [BindOpen.Scoping.Extensions](https://www.nuget.org/packages/BindOpen.Scoping.Extensions) | Classes of extensions |
+| [BindOpen.Scoping.Script](https://www.nuget.org/packages/BindOpen.Scoping.Script) | Script interpreter |
 | [BindOpen.Kernel.IO](https://www.nuget.org/packages/BindOpen.Kernel.IO) | Serialization / Deserialization |
 | [BindOpen.Kernel.IO.Dtos](https://www.nuget.org/packages/BindOpen.Kernel.IO.Dtos) | Data transfer classes |
 
@@ -187,7 +187,7 @@ All of our NuGet packages are available from [our NuGet.org profile page](https:
 
 [BindOpen.Kernel.Hosting](https://github.com/bindopen/BindOpen.Kernel.Hosting) enables you to integrate a BindOpen agent within the .NET service builder.
 
-[BindOpen.Kernel.Logging](https://github.com/bindopen/BindOpen.Kernel.Logging) provides a simple and multidimensional logging system, perfect to monitor nested task executions.
+[BindOpen.Logging](https://github.com/bindopen/BindOpen.Logging) provides a simple and multidimensional logging system, perfect to monitor nested task executions.
 
 [BindOpen.Labs](https://github.com/bindopen/BindOpen.Labs) is a collection of projects based on BindOpen.Kernel.
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using BindOpen.Kernel.Data;
+using BindOpen.Data;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// 

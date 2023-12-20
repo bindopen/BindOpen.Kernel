@@ -1,7 +1,7 @@
-﻿using BindOpen.Kernel.Data;
+﻿using BindOpen.Data;
 using System;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Scoping
 {
     /// <summary>
     /// This class represents an indexed data item attribute.

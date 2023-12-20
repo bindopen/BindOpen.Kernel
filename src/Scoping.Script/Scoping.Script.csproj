@@ -9,7 +9,7 @@
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
     <Description>This package allows to interprete and manage BindOpen script.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.Kernel.Scoping.Script</RootNamespace>
+    <RootNamespace>BindOpen.Scoping.Script</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.Kernel</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.Kernel.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Kernel.Scoping.Script.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Scoping.Script.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,7 +1,7 @@
-﻿using BindOpen.Kernel.Data.Stores;
+﻿using BindOpen.Data.Stores;
 using System;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This static class provides methods to handle configs.

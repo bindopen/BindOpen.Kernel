@@ -2,9 +2,9 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading;
-using BindOpen.Kernel.Data;
+using BindOpen.Data;
 
-namespace BindOpen.Kernel.Data.Helpers
+namespace BindOpen.Data.Helpers
 {
     /// <summary>
     /// This structure represents a string helper.

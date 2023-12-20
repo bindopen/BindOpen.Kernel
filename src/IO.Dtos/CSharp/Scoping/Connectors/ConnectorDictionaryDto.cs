@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Scoping.Connectors
+namespace BindOpen.Scoping.Connectors
 {
     /// <summary>
     /// This class represents a DTO connector dico.

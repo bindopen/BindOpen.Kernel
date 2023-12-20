@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Scoping
+﻿namespace BindOpen.Scoping
 {
     /// <summary>
     /// This static class provides methods to check data elements.

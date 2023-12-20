@@ -1,10 +1,10 @@
-﻿using BindOpen.Kernel.Data.Conditions;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping;
-using BindOpen.Kernel.Scoping.Script;
+﻿using BindOpen.Data.Conditions;
+using BindOpen.Data.Meta;
+using BindOpen.Logging;
+using BindOpen.Scoping;
+using BindOpen.Scoping.Script;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This static class provides methods to handle conditions.

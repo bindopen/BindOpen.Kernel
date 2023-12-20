@@ -1,7 +1,7 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 
-namespace BindOpen.Kernel.Data.Stores
+namespace BindOpen.Data.Stores
 {
     /// <summary>
     /// This interface defines a data source.

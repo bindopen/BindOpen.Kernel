@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Scoping.Functions
+﻿namespace BindOpen.Scoping.Functions
 {
     // --------------------------------------------------
     // DELEGATES

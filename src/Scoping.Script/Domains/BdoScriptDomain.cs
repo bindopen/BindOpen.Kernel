@@ -1,7 +1,7 @@
-﻿using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Logging;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Logging;
 
-namespace BindOpen.Kernel.Scoping.Script
+namespace BindOpen.Scoping.Script
 {
     /// <summary>
     /// This class represents the script word area.

@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Scoping.Connectors;
-using BindOpen.Kernel.Scoping.Entities;
-using BindOpen.Kernel.Scoping.Tasks;
+﻿using BindOpen.Data;
+using BindOpen.Scoping.Connectors;
+using BindOpen.Scoping.Entities;
+using BindOpen.Scoping.Tasks;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Scoping
 {
     /// <summary>
     /// This static class provides methods to create objects.

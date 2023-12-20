@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Data.Helpers;
 using System.Linq;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a IO converter of definitions.

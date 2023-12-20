@@ -1,10 +1,10 @@
-﻿using BindOpen.Kernel.Data;
+﻿using BindOpen.Data;
 using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 using System;
 using System.IO;
 
-namespace BindOpen.Kernel.Scoping.Script
+namespace BindOpen.Scoping.Script
 {
     [TestFixture, Order(210)]
     public class ScriptwordIOTests

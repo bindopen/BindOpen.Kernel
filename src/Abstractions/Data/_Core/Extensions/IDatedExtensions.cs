@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This interface defines a storable data item.

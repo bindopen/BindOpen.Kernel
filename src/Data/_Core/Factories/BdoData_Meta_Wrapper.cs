@@ -1,8 +1,8 @@
-﻿using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Data.Meta.Reflection;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Data.Meta.Reflection;
+using BindOpen.Scoping;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This static class provides methods to create data metaent list.

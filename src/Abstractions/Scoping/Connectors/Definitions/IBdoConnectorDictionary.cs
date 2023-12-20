@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Scoping.Connectors
+﻿namespace BindOpen.Scoping.Connectors
 {
     /// <summary>
     /// 

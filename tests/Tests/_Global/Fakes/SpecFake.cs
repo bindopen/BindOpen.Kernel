@@ -1,4 +1,4 @@
-﻿using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data.Meta;
 
 namespace BindOpen.Kernel.Tests
 {

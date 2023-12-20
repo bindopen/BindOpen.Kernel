@@ -1,8 +1,8 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Assemblies;
+﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
 using System.Collections.Generic;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Scoping
 {
     /// <summary>
     /// This interface defines the extension definition.

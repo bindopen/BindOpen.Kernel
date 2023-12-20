@@ -1,4 +1,4 @@
-﻿using BindOpen.Kernel.Data;
+﻿using BindOpen.Data;
 using Bogus;
 using System.Dynamic;
 

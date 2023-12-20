@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This interface represents an named data item.

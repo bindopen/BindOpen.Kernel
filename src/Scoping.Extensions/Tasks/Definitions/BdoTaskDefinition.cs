@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Assemblies;
-using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
+using BindOpen.Data.Meta;
 using System;
 
-namespace BindOpen.Kernel.Scoping.Tasks
+namespace BindOpen.Scoping.Tasks
 {
     /// <summary>
     /// This class represents a task definition.

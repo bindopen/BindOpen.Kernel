@@ -1,4 +1,4 @@
-﻿using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data.Meta;
 using Bogus;
 using NUnit.Framework;
 using System.Linq;

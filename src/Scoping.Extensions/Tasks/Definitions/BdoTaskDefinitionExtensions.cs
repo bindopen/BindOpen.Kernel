@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using BindOpen.Kernel.Data;
+using BindOpen.Data;
 using System;
 using System.Reflection;
 
-namespace BindOpen.Kernel.Scoping.Tasks
+namespace BindOpen.Scoping.Tasks
 {
     /// <summary>
     /// This class represents an application 

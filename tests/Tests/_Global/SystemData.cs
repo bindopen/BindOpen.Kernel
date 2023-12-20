@@ -1,6 +1,6 @@
-﻿using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Scoping;
-using BindOpen.Kernel.Scoping.Script;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Scoping;
+using BindOpen.Scoping.Script;
 
 namespace BindOpen.Kernel.Tests
 {

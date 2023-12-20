@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace BindOpen.Kernel.Data.Assemblies
+namespace BindOpen.Data.Assemblies
 {
     /// <summary>
     /// This class represents a IO converter of assembly references.

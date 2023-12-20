@@ -1,10 +1,10 @@
-﻿using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Meta;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// 

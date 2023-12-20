@@ -1,10 +1,10 @@
-﻿using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Meta;
 using Bogus;
 using NUnit.Framework;
 using System.Linq;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     [TestFixture, Order(210)]
     public class BdoStringTokensTests

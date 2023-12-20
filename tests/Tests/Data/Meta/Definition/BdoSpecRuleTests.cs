@@ -1,7 +1,7 @@
 ﻿using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     [TestFixture, Order(100)]
     public class BdoSpecRuleTests
