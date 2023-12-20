@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data;
 
-namespace BindOpen.Kernel
+namespace BindOpen.Kernel.Data
 {
     /// <summary>
     /// This class represents a IO converter of result items.
