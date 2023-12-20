@@ -40,7 +40,7 @@ namespace BindOpen.Kernel.Scoping.Entities
             var entity = new EntityFake
             {
                 BoolValue = BdoData.NewScalar<bool?>(_testData.boolValue as bool?),
-                EnumValue = (ActionPriorities)_testData.enumValue,
+                EnumValue = (AccessibilityLevels)_testData.enumValue,
                 IntValue = (int)_testData.intValue,
                 StringValue = _testData.stringValue as string,
             };

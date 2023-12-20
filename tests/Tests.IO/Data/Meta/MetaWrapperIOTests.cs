@@ -19,7 +19,7 @@ namespace BindOpen.Kernel.Data.Meta
 
         private void Test(MetaWrapperFake wrapper)
         {
-            Assert.That(wrapper?.SubEnumValue == ActionPriorities.Medium, "Bad obj element set - Count");
+            Assert.That(wrapper?.SubEnumValue == AccessibilityLevels.Public, "Bad obj element set - Count");
             Assert.That(wrapper?.EntityFake?.StringValue == "_string", "Bad obj element set - Count");
         }
 
@@ -30,7 +30,7 @@ namespace BindOpen.Kernel.Data.Meta
             {
                 EntityFake = new WrapperClassFake()
                 {
-                    EnumValue = ActionPriorities.Medium,
+                    EnumValue = AccessibilityLevels.Public,
                     StringValue = "_string"
                 }
             };
