@@ -60,7 +60,7 @@ namespace BindOpen.Data
         /// <param key="valueType">The value type to consider.</param>
         public static T NewSpec<T>(
             string name = null)
-            where T : IBdoSpec, new()
+            where T : IBdoBaseSpec, new()
         {
             var spec = new T();
             spec.WithName(name);
@@ -75,7 +75,7 @@ namespace BindOpen.Data
         /// <param key="type">The value type to consider.</param>
         public static T NewSpec<T>(
             Type type)
-            where T : IBdoSpec, new()
+            where T : IBdoBaseSpec, new()
             => NewSpec<T>(null, type);
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace BindOpen.Data
         public static T NewSpec<T>(
             string name,
             Type type)
-            where T : IBdoSpec, new()
+            where T : IBdoBaseSpec, new()
         {
             if (type == null) return default;
 
@@ -100,7 +100,7 @@ namespace BindOpen.Data
         public static T AsType<T>(
             this T spec,
             Type type)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             if (spec != null)
             {
@@ -131,7 +131,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static IBdoSpec NewSpecFrom<T, Q>(
+        public static Q NewSpecFrom<T, Q>(
             string name = null,
             bool onlyMetaAttributes = true)
             where Q : IBdoSpec, new()

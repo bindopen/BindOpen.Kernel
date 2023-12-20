@@ -6,7 +6,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    public static partial class BdoSpecExtensions
+    public static partial class IBdoBaseSpecExtensions
     {
         public static T WithChildren<T>(this T log, params IBdoSpec[] children) where T : IBdoSpec
         {
@@ -32,7 +32,7 @@ namespace BindOpen.Data.Meta
             return log;
         }
 
-        public static IBdoSpec ToSpec(
+        public static IBdoBaseSpec ToSpec(
             this IBdoMetaData meta,
             string name = null,
             bool onlyMetaAttributes = true)
@@ -100,7 +100,7 @@ namespace BindOpen.Data.Meta
             this T spec,
             RequirementLevels level,
             IBdoCondition condition = null)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             if (spec != null)
             {
@@ -118,7 +118,7 @@ namespace BindOpen.Data.Meta
         public static T AsOptional<T>(
             this T spec,
             IBdoCondition condition = null)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             spec?.AddRequirement(RequirementLevels.Optional, condition);
 
@@ -132,7 +132,7 @@ namespace BindOpen.Data.Meta
         public static T AsRequired<T>(
             this T spec,
             IBdoCondition condition = null)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             spec?.AddRequirement(RequirementLevels.Required, condition);
 
@@ -146,7 +146,7 @@ namespace BindOpen.Data.Meta
         public static T AsForbidden<T>(
             this T spec,
             IBdoCondition condition = null)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             spec?.AddRequirement(RequirementLevels.Forbidden, condition);
 
@@ -175,7 +175,7 @@ namespace BindOpen.Data.Meta
             this T spec,
             RequirementLevels level,
             IBdoCondition condition = null)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             if (spec != null)
             {
@@ -193,7 +193,7 @@ namespace BindOpen.Data.Meta
         public static T AsItemOptional<T>(
             this T spec,
             IBdoCondition condition = null)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             spec?.AddItemRequirement(RequirementLevels.Optional, condition);
 
@@ -207,7 +207,7 @@ namespace BindOpen.Data.Meta
         public static T AsItemRequired<T>(
             this T spec,
             IBdoCondition condition = null)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             spec?.AddItemRequirement(RequirementLevels.Required, condition);
 
@@ -221,7 +221,7 @@ namespace BindOpen.Data.Meta
         public static T AsItemForbidden<T>(
             this T spec,
             IBdoCondition condition = null)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             spec?.AddItemRequirement(RequirementLevels.Forbidden, condition);
 
@@ -239,7 +239,7 @@ namespace BindOpen.Data.Meta
             this T spec,
             string flagName,
             bool isFlag = true)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             spec?.GetOrNewDetail().Add(flagName, isFlag);
 

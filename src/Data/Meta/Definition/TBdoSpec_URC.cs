@@ -8,7 +8,8 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    public partial class BdoSpec : TBdoSet<IBdoSpecRule>, IBdoSpec
+    public partial class TBdoSpec<T> : TBdoSet<IBdoSpecRule>, ITBdoSpec<T>
+        where T : IBdoBaseSpec
     {
         public override void Update(
             object item,
