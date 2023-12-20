@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Scoping.Extensions.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Kernel.Scoping.Extensions.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
