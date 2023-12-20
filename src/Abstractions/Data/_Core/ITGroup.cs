@@ -1,7 +1,4 @@
-﻿using BindOpen.Data;
-using System;
-
-namespace BindOpen.Data
+﻿namespace BindOpen.Data
 {
     /// <summary>
     /// This interface represents a group.

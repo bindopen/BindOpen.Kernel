@@ -33,13 +33,13 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        public static Q WithParent<Q, T>(this Q item, T parent)
-            where Q : ITChild<T>
-            where T : IReferenced
+        public static TChild WithParent<TChild, TParent>(this TChild item, TParent parent)
+            where TChild : ITChild<TParent>
+            where TParent : IReferenced
         {
             item.Parent = parent;
 
-            if (parent is ITSingleChildParent<Q> singleChildParent)
+            if (parent is ITSingleChildParent<TChild> singleChildParent)
             {
                 singleChildParent.WithChild(item);
             }

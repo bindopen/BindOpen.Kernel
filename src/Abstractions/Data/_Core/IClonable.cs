@@ -15,6 +15,6 @@
         /// Clones this object by specifying the class of the cloned object.
         /// </summary>
         /// <returns>Returns the cloned object.</returns>
-        T Clone<T>() where T : class;
+        T Clone<T>();
     }
 }
