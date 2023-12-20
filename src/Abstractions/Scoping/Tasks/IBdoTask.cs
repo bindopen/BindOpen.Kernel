@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Scoping.Tasks
+﻿using BindOpen.Hosting;
+
+namespace BindOpen.Scoping.Tasks
 {
     /// <summary>
     /// This interface defines a task.
