@@ -15,7 +15,7 @@ namespace BindOpen.Kernel.Tests
             dynamic b = new ExpandoObject();
             b.boolValue = f.Random.Bool();
             b.intValue = f.Random.Int(800);
-            b.enumValue = ActionPriorities.High;
+            b.enumValue = AccessibilityLevels.Private;
             b.stringValue = f.Lorem.Word();
             return b;
         }

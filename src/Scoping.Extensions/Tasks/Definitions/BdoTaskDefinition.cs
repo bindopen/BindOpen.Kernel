@@ -8,7 +8,7 @@ namespace BindOpen.Kernel.Scoping.Tasks
     /// <summary>
     /// This class represents a task definition.
     /// </summary>
-    /// <seealso cref="BdoMeta_Config"/>
+    /// <seealso cref="BdoConfiguration"/>
     public class BdoTaskDefinition : BdoExtensionDefinition, IBdoTaskDefinition
     {
         // ------------------------------------------

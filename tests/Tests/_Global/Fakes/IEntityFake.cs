@@ -37,7 +37,7 @@ namespace BindOpen.Kernel.Tests
         /// Enumeration value of this instance.
         /// </summary>
         [BdoProperty(Name = "enumValue")]
-        ActionPriorities EnumValue { get; set; }
+        AccessibilityLevels EnumValue { get; set; }
 
         /// <summary>
         /// Enumeration value of this instance.

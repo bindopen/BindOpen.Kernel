@@ -47,7 +47,7 @@ namespace BindOpen.Kernel.Tests
         /// Enumeration value of this instance.
         /// </summary>
         [BdoProperty(Name = "subEnumValue", Reference = "entityFake/enumValue")]
-        public ActionPriorities SubEnumValue { get; set; }
+        public AccessibilityLevels SubEnumValue { get; set; }
 
         [BdoProperty(Name = "configEntityFake", Reference = "^$entityFake/node1")]
         public WrapperClassFake ConfigEntityFake { get; set; }
