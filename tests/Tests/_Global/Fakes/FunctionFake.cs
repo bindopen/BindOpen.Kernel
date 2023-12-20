@@ -1,5 +1,5 @@
-﻿using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Scoping;
 
 namespace BindOpen.Kernel.Tests
 {

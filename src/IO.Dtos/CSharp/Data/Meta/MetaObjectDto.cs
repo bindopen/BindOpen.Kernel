@@ -2,7 +2,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a catalog element that is an element whose elements are carriers.

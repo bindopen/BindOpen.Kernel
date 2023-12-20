@@ -1,13 +1,13 @@
-﻿using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Scoping;
-using BindOpen.Kernel.Scoping.Connectors;
-using BindOpen.Kernel.Scoping.Entities;
-using BindOpen.Kernel.Scoping.Script;
-using BindOpen.Kernel.Scoping.Tasks;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Scoping;
+using BindOpen.Scoping.Connectors;
+using BindOpen.Scoping.Entities;
+using BindOpen.Scoping.Script;
+using BindOpen.Scoping.Tasks;
 using System;
 using System.Collections;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This class extends data vlue types.

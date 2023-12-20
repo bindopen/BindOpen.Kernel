@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Kernel.Scoping.Script
+namespace BindOpen.Scoping.Script
 {
     /// <summary>
     /// This class represents a string parser.

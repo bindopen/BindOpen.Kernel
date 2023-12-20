@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Logging;
+﻿using BindOpen.Logging;
 using System;
 using System.IO;
 using System.Reflection;
 
-namespace BindOpen.Kernel.Data.Helpers
+namespace BindOpen.Data.Helpers
 {
     /// <summary>
     /// This class represents a helper for files.

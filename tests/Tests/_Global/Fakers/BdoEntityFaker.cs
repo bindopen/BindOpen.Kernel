@@ -1,6 +1,6 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
+using BindOpen.Scoping;
 using Bogus;
 using NUnit.Framework;
 using System.Dynamic;
@@ -18,7 +18,7 @@ namespace BindOpen.Kernel.Tests
             dynamic b = new ExpandoObject();
             b.boolValue = f.Random.Bool();
             b.intValue = f.Random.Int(800);
-            b.enumValue = ActionPriorities.High;
+            b.enumValue = AccessibilityLevels.Private;
             b.stringValue = f.Lorem.Word();
             return b;
         }
@@ -37,7 +37,7 @@ namespace BindOpen.Kernel.Tests
                 .WithDataType(BdoExtensionKinds.Entity, "bindopen.kernel.tests$testEntity")
                 .With(
                     BdoData.NewScalar("boolValue", data.boolValue as bool?),
-                    BdoData.NewScalar("enumValue", data.enumValue as ActionPriorities?),
+                    BdoData.NewScalar("enumValue", data.enumValue as AccessibilityLevels?),
                     BdoData.NewScalar("intValue", data.intValue as int?),
                     BdoData.NewScalar("stringValue", data.stringValue as string));
 

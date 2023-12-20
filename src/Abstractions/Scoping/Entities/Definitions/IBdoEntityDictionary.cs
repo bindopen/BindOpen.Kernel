@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Scoping.Entities
+﻿namespace BindOpen.Scoping.Entities
 {
     /// <summary>
     /// 

@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Scoping
 {
     /// <summary>
     /// This enumeration represents the possible kinds of library item viewers.

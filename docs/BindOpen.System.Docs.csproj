@@ -7,7 +7,7 @@
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
-    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package provides core classes of the BindOpen.Kernel.Scoping.</Description>
+    <Description>BindOpen is a framework that allows you to build widely-extended applications. This package provides core classes of the BindOpen.Scoping.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Kernel.Docs</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.Kernel</PackageProjectUrl>

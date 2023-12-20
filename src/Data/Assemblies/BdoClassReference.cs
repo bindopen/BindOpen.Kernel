@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Logging;
+using BindOpen.Scoping;
 using System;
 
-namespace BindOpen.Kernel.Data.Assemblies
+namespace BindOpen.Data.Assemblies
 {
     /// <summary>
     /// This structure represents an class reference.

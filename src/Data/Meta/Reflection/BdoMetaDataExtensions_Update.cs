@@ -1,14 +1,14 @@
-﻿using BindOpen.Kernel.Data.Assemblies;
-using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Helpers;
+using BindOpen.Logging;
+using BindOpen.Scoping;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace BindOpen.Kernel.Data.Meta.Reflection
+namespace BindOpen.Data.Meta.Reflection
 {
     /// <summary>
     /// 

@@ -1,6 +1,6 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
+using BindOpen.Scoping;
 using Bogus;
 using NUnit.Framework;
 
@@ -18,7 +18,7 @@ namespace BindOpen.Kernel.Tests
             {
                 boolValue = f.Random.Bool(),
                 intValue = f.Random.Int(800),
-                enumValue = ActionPriorities.High,
+                enumValue = AccessibilityLevels.Private,
                 stringValue = f.Lorem.Word()
             };
         }
@@ -38,7 +38,7 @@ namespace BindOpen.Kernel.Tests
                     ("boolValue", data.boolValue as bool?),
                     ("intValue", data.intValue as int?))
                 .WithInputs(
-                    ("enumValue", data.enumValue as ActionPriorities?))
+                    ("enumValue", data.enumValue as AccessibilityLevels?))
                 .WithOutputs(
                     ("stringValue", data.stringValue as string));
 

@@ -1,8 +1,8 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Assemblies;
+﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
 using System;
 
-namespace BindOpen.Kernel.Scoping.Entities
+namespace BindOpen.Scoping.Entities
 {
     /// <summary>
     /// This class represents the entity definition.

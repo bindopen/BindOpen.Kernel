@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Scoping.Entities
+namespace BindOpen.Scoping.Entities
 {
     /// <summary>
     /// This class represents a DTO entity dico.

@@ -1,6 +1,6 @@
-﻿using BindOpen.Kernel.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This interface represents an described data item.

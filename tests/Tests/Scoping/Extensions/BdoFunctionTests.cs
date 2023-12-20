@@ -1,10 +1,10 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Scoping.Script;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
+using BindOpen.Scoping.Script;
 using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.Kernel.Scoping.Functions
+namespace BindOpen.Scoping.Functions
 {
     [TestFixture, Order(300)]
     public class BdoFunctionTests

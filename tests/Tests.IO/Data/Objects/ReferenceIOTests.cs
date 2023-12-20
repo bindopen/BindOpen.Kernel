@@ -1,11 +1,11 @@
-﻿using BindOpen.Kernel.Data;
+﻿using BindOpen.Data;
 using BindOpen.Kernel.Tests;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     [TestFixture, Order(210)]
     public class ReferenceIOTests

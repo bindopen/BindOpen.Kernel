@@ -1,10 +1,10 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Assemblies;
-using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
+using BindOpen.Logging;
+using BindOpen.Scoping;
 using System;
 
-namespace BindOpen.Kernel.Data.Stores
+namespace BindOpen.Data.Stores
 {
     /// <summary>
     /// This class represents a depot.

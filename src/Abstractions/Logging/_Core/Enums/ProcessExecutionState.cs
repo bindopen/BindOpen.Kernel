@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Logging
+namespace BindOpen.Logging
 {
     /// <summary>
     /// This enumeration represents the possible process execution states.

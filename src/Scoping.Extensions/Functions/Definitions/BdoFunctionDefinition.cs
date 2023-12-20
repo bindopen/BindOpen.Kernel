@@ -1,8 +1,8 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using System;
 
-namespace BindOpen.Kernel.Scoping.Functions
+namespace BindOpen.Scoping.Functions
 {
     /// <summary>
     /// This class represents a function definition.

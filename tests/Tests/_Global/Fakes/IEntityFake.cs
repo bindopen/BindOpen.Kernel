@@ -1,6 +1,6 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
+using BindOpen.Scoping;
 using System;
 using System.ComponentModel;
 
@@ -37,7 +37,7 @@ namespace BindOpen.Kernel.Tests
         /// Enumeration value of this instance.
         /// </summary>
         [BdoProperty(Name = "enumValue")]
-        ActionPriorities EnumValue { get; set; }
+        AccessibilityLevels EnumValue { get; set; }
 
         /// <summary>
         /// Enumeration value of this instance.

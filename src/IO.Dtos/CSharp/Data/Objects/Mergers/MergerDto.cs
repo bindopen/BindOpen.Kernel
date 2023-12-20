@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This class specifies a merger DTO.

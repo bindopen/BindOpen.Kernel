@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Kernel.Data.Helpers
+namespace BindOpen.Data.Helpers
 {
     /// <summary>
     /// This class represents a helper for objects.

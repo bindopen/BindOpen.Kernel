@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Scoping.Script;
+﻿using BindOpen.Scoping.Script;
 using BindOpen.Kernel.Tests;
 using Bogus;
 using NUnit.Framework;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     [TestFixture, Order(210)]
     public class BdoReferenceTests

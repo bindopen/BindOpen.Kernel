@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Data.Meta
+﻿namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This enumeration represents the possible meta data properties.

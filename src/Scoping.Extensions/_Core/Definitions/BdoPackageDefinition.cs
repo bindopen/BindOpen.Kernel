@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Assemblies;
-using BindOpen.Kernel.Data.Helpers;
+﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
+using BindOpen.Data.Helpers;
 using System.Collections.Generic;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Scoping
 {
     /// <summary>
     /// This class represents the definition of a library.

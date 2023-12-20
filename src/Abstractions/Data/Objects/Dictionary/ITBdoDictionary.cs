@@ -1,8 +1,8 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Helpers;
+﻿using BindOpen.Data;
+using BindOpen.Data.Helpers;
 using System.Collections.Generic;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// 

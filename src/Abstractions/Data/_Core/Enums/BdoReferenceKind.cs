@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Data
+﻿namespace BindOpen.Data
 {
     /// <summary>
     /// This enumeration represents the possible kinds for reference.

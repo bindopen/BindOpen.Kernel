@@ -1,6 +1,6 @@
-﻿using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data.Meta;
 
-namespace BindOpen.Kernel.Data.Stores
+namespace BindOpen.Data.Stores
 {
     /// <summary>
     /// This class represents a data source.

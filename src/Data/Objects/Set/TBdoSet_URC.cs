@@ -1,7 +1,7 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Logging;
+﻿using BindOpen.Data;
+using BindOpen.Logging;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This class represents a data item set.

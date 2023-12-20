@@ -1,6 +1,6 @@
-﻿using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data.Meta;
 
-namespace BindOpen.Kernel.Data.Conditions
+namespace BindOpen.Data.Conditions
 {
     /// <summary>
     /// This class represents a IO converter of basic conditions.

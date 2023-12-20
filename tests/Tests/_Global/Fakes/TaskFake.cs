@@ -1,9 +1,8 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping;
-using BindOpen.Kernel.Scoping.Tasks;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
+using BindOpen.Logging;
+using BindOpen.Scoping;
+using BindOpen.Scoping.Tasks;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
@@ -50,7 +49,7 @@ namespace BindOpen.Kernel.Tests
         /// Enumeration value of this instance.
         /// </summary>
         [BdoInput(Name = "enumValue")]
-        public ActionPriorities EnumValue { get; set; }
+        public AccessibilityLevels EnumValue { get; set; }
 
         /// <summary>
         /// Enumeration value of this instance.

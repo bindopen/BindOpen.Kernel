@@ -1,6 +1,6 @@
-﻿using BindOpen.Kernel.Scoping.Script;
+﻿using BindOpen.Scoping.Script;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This interface defines a data expression.

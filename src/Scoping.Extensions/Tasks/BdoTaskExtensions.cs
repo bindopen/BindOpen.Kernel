@@ -1,12 +1,12 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Assemblies;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Data.Meta.Reflection;
-using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping.Tasks;
+﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
+using BindOpen.Data.Meta;
+using BindOpen.Data.Meta.Reflection;
+using BindOpen.Logging;
+using BindOpen.Scoping.Tasks;
 using System;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Scoping
 {
     /// <summary>
     /// This class represents an application 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Scoping
 {
     /// <summary>
     /// This class represents a task attribute.

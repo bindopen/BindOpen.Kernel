@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a config DTO.

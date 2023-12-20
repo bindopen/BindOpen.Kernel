@@ -1,7 +1,7 @@
-﻿using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data.Meta;
 using System;
 
-namespace BindOpen.Kernel.Logging
+namespace BindOpen.Logging
 {
     /// <summary>
     /// 

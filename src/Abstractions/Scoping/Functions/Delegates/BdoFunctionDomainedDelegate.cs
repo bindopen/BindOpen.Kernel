@@ -1,6 +1,6 @@
-﻿using BindOpen.Kernel.Scoping.Script;
+﻿using BindOpen.Scoping.Script;
 
-namespace BindOpen.Kernel.Scoping.Functions
+namespace BindOpen.Scoping.Functions
 {
     // --------------------------------------------------
     // DELEGATES

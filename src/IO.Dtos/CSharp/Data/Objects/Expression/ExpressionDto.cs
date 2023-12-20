@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Scoping.Script;
+﻿using BindOpen.Scoping.Script;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This class represents an expression DTO.

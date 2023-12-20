@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Data.Meta.Reflection;
+﻿using BindOpen.Data.Meta.Reflection;
 using BindOpen.Kernel.Tests;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     [TestFixture, Order(201)]
     public class BdoMetaObjectTests

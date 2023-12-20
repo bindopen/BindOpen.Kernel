@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Scoping.Tasks
+﻿namespace BindOpen.Scoping.Tasks
 {
     /// <summary>
     /// This class represents a DTO task dico.

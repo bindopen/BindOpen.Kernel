@@ -1,8 +1,8 @@
-﻿using BindOpen.Kernel.Data.Assemblies;
-using BindOpen.Kernel.Data.Helpers;
+﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Helpers;
 using System;
 
-namespace BindOpen.Kernel.Data.Meta.Reflection
+namespace BindOpen.Data.Meta.Reflection
 {
     /// <summary>
     /// This class represents a meta data.

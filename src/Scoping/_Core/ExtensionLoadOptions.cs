@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Assemblies;
+﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Scoping
 {
     /// <summary>
     /// This class represents the extension loading options.

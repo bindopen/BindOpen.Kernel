@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Scoping.Script
+﻿namespace BindOpen.Scoping.Script
 {
     /// <summary>
     /// This interface represents an named data item.

@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Logging;
+﻿using BindOpen.Data;
+using BindOpen.Logging;
 using System;
 using System.Transactions;
 
-namespace BindOpen.Kernel.Data.Services
+namespace BindOpen.Data.Services
 {
     /// <summary>
     /// 

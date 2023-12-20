@@ -1,7 +1,7 @@
-﻿using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping;
-using BindOpen.Kernel.Scoping.Connectors;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Logging;
+using BindOpen.Scoping;
+using BindOpen.Scoping.Connectors;
 
 namespace BindOpen.Kernel.Tests
 {
