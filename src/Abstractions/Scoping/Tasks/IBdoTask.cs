@@ -1,6 +1,4 @@
-﻿using BindOpen.Processing;
-
-namespace BindOpen.Scoping.Tasks
+﻿namespace BindOpen.Scoping.Tasks
 {
     /// <summary>
     /// This interface defines a task.
