@@ -1,7 +1,7 @@
 ﻿using System;
-using BindOpen.Kernel.Data;
+using BindOpen.Data;
 
-namespace BindOpen.Kernel.Data.Assemblies
+namespace BindOpen.Data.Assemblies
 {
     /// <summary>
     /// 

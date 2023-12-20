@@ -1,5 +1,5 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 
 namespace BindOpen.Kernel.Tests
 {
@@ -30,7 +30,7 @@ namespace BindOpen.Kernel.Tests
         /// Enumeration value of this instance.
         /// </summary>
         [BdoProperty(Name = "enumValue")]
-        public ActionPriorities EnumValue { get; set; }
+        public AccessibilityLevels EnumValue { get; set; }
 
         #endregion
     }

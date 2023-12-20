@@ -1,6 +1,6 @@
-﻿using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Scoping;
-using BindOpen.Kernel.Scoping.Script;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Scoping;
+using BindOpen.Scoping.Script;
 using System;
 
 namespace BindOpen.Kernel.Tests

@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.Kernel.Scoping.Entities
+namespace BindOpen.Scoping.Entities
 {
     [TestFixture, Order(300)]
     public class BdoEntityTests
@@ -40,7 +40,7 @@ namespace BindOpen.Kernel.Scoping.Entities
             var entity = new EntityFake
             {
                 BoolValue = BdoData.NewScalar<bool?>(_testData.boolValue as bool?),
-                EnumValue = (ActionPriorities)_testData.enumValue,
+                EnumValue = (AccessibilityLevels)_testData.enumValue,
                 IntValue = (int)_testData.intValue,
                 StringValue = _testData.stringValue as string,
             };

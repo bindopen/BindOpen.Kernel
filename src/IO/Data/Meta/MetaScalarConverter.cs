@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Assemblies;
-using BindOpen.Kernel.Data.Helpers;
+using BindOpen.Data;
+using BindOpen.Data.Assemblies;
+using BindOpen.Data.Helpers;
 using System.Linq;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a IO converter of meta scalars.

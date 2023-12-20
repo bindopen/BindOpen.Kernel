@@ -1,8 +1,8 @@
-﻿using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping.Connectors;
+﻿using BindOpen.Logging;
+using BindOpen.Scoping.Connectors;
 using System;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Scoping
 {
     /// <summary>
     /// This static class provides methods to create extension items.

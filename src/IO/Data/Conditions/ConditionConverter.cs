@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Data.Conditions
+﻿namespace BindOpen.Data.Conditions
 {
     /// <summary>
     /// This abstract class represents a IO converter of conditions.

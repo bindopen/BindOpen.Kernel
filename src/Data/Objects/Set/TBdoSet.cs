@@ -1,11 +1,11 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Helpers;
+﻿using BindOpen.Data;
+using BindOpen.Data.Helpers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This class represents a data item set.

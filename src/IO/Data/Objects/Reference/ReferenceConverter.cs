@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Scoping.Script;
+using BindOpen.Data.Meta;
+using BindOpen.Scoping.Script;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This class represents a IO converter of references.

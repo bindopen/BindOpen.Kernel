@@ -1,7 +1,7 @@
-﻿using BindOpen.Kernel.Logging;
+﻿using BindOpen.Logging;
 using System.Linq;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a data item set.

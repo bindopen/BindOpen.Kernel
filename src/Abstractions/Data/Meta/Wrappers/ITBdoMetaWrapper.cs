@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Data.Meta
+﻿namespace BindOpen.Data.Meta
 {
     public interface ITBdoMetaWrapper<TDetail> : IBdoMetaWrapper
         where TDetail : IBdoMetaSet

@@ -1,6 +1,6 @@
-﻿using BindOpen.Kernel.Logging;
+﻿using BindOpen.Logging;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This interface represents a reparaible object.

@@ -1,6 +1,6 @@
-﻿using BindOpen.Kernel.Data;
+﻿using BindOpen.Data;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Scoping
 {
     /// <summary>
     /// 

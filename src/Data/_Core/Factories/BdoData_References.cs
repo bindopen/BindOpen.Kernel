@@ -1,12 +1,12 @@
-﻿using BindOpen.Kernel.Data.Assemblies;
-using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Helpers;
+using BindOpen.Scoping;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This class represents an application scope factory.

@@ -1,4 +1,4 @@
-# BindOpen.Kernel.Scoping
+# BindOpen.Scoping
 
 ![BindOpen logo](https://storage.bindopen.org/img/logos/logo_bindopen.png)
 

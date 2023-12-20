@@ -1,10 +1,10 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Logging;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
+using BindOpen.Logging;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BindOpen.Kernel.Scoping.Tasks
+namespace BindOpen.Scoping.Tasks
 {
     /// <summary>
     /// This class represents an task.

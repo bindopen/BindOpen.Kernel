@@ -1,4 +1,4 @@
-﻿using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data.Meta;
 using BindOpen.Kernel.Tests;
 using Bogus;
 using DeepEqual.Syntax;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     [TestFixture, Order(202)]
     public class MetaScalarSetIOTests

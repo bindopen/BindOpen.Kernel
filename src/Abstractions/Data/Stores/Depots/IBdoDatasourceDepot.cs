@@ -1,4 +1,4 @@
-﻿namespace BindOpen.Kernel.Data.Stores
+﻿namespace BindOpen.Data.Stores
 {
     /// <summary>
     /// 

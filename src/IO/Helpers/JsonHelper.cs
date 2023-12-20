@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Logging;
+﻿using BindOpen.Logging;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This static class provides methods to serailize and deserialize objects into Json.

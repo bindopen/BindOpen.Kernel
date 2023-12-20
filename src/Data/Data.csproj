@@ -9,7 +9,7 @@
     <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
     <Description>This package offers a comprehensive data model to easily manage business data and configuration.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.Kernel.Data</RootNamespace>
+    <RootNamespace>BindOpen.Data</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.Kernel</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.Kernel.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Kernel.Data.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Data.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

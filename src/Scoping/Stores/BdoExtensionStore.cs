@@ -1,13 +1,13 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Scoping.Connectors;
-using BindOpen.Kernel.Scoping.Entities;
-using BindOpen.Kernel.Scoping.Functions;
-using BindOpen.Kernel.Scoping.Tasks;
+﻿using BindOpen.Data;
+using BindOpen.Scoping.Connectors;
+using BindOpen.Scoping.Entities;
+using BindOpen.Scoping.Functions;
+using BindOpen.Scoping.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Scoping
 {
     /// <summary>
     /// This class represents a BindOpen extension item store.

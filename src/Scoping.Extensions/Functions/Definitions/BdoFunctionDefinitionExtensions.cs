@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using BindOpen.Kernel.Scoping.Functions;
+using BindOpen.Scoping.Functions;
 using System.Reflection;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Scoping
 {
     /// <summary>
     /// This class represents an application 

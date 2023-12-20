@@ -1,9 +1,9 @@
-﻿using BindOpen.Kernel.Data.Conditions;
-using BindOpen.Kernel.Logging;
+﻿using BindOpen.Data.Conditions;
+using BindOpen.Logging;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a data key value.

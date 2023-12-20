@@ -1,8 +1,8 @@
-﻿using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Meta;
 using System.Text.RegularExpressions;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This interface defines a storable data item.

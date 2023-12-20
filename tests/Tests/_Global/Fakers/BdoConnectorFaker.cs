@@ -1,6 +1,6 @@
-﻿using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Data;
+using BindOpen.Scoping;
 using Bogus;
 using NUnit.Framework;
 using System.Dynamic;

@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
-using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Assemblies;
-using BindOpen.Kernel.Data.Conditions;
-using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Data.Meta.Reflection;
+using BindOpen.Data;
+using BindOpen.Data.Assemblies;
+using BindOpen.Data.Conditions;
+using BindOpen.Data.Helpers;
+using BindOpen.Data.Meta;
+using BindOpen.Data.Meta.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a IO converter of specifications.

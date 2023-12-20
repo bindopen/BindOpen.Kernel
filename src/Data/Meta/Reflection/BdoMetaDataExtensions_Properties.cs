@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace BindOpen.Kernel.Data.Meta.Reflection
+namespace BindOpen.Data.Meta.Reflection
 {
     /// <summary>
     /// This class represents a meta data.

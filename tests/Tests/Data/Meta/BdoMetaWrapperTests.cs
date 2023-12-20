@@ -1,7 +1,7 @@
 ﻿using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     [TestFixture, Order(100)]
     public class BdoMetaWrapperTests
@@ -140,14 +140,14 @@ namespace BindOpen.Kernel.Data.Meta
                         .With(
                             BdoData.NewScalar("stringValue", "_string"),
                             BdoData.NewScalar("intValue", 1500),
-                            BdoData.NewScalar("enumValue", ActionPriorities.Low)
+                            BdoData.NewScalar("enumValue", AccessibilityLevels.Restricted)
                         )));
 
             obj.UpdateProperties();
 
             Assert.That(obj?.EntityFake?.StringValue == "_string", "Bad meta wrapper");
             Assert.That(obj?.EntityFake?.IntValue == 1500, "Bad meta wrapper");
-            Assert.That(obj?.EntityFake?.EnumValue == ActionPriorities.Low, "Bad meta wrapper");
+            Assert.That(obj?.EntityFake?.EnumValue == AccessibilityLevels.Restricted, "Bad meta wrapper");
         }
 
         [Test, Order(8)]
@@ -163,20 +163,20 @@ namespace BindOpen.Kernel.Data.Meta
                         .With(
                             BdoData.NewScalar("stringValue", "_string"),
                             BdoData.NewScalar("intValue", 1500),
-                            BdoData.NewScalar("enumValue", ActionPriorities.Low)
+                            BdoData.NewScalar("enumValue", AccessibilityLevels.Restricted)
                         )));
 
             obj.UpdateProperties();
 
-            Assert.That(obj?.SubEnumValue == ActionPriorities.Low, "Bad meta wrapper");
+            Assert.That(obj?.SubEnumValue == AccessibilityLevels.Restricted, "Bad meta wrapper");
 
             // Update detail
 
-            obj.SubEnumValue = ActionPriorities.High;
+            obj.SubEnumValue = AccessibilityLevels.Private;
 
             obj.UpdateDetail();
 
-            Assert.That(obj?.Detail["subEnumValue"].GetData<ActionPriorities>() == ActionPriorities.High, "Bad meta wrapper");
+            Assert.That(obj?.Detail["subEnumValue"].GetData<AccessibilityLevels>() == AccessibilityLevels.Private, "Bad meta wrapper");
         }
 
         [Test, Order(9)]
@@ -191,7 +191,7 @@ namespace BindOpen.Kernel.Data.Meta
                         BdoData.NewObject("node1").With(
                             BdoData.NewScalar("stringValue", "_string"),
                             BdoData.NewScalar("intValue", 1500),
-                            BdoData.NewScalar("enumValue", ActionPriorities.Low)
+                            BdoData.NewScalar("enumValue", AccessibilityLevels.Restricted)
                         )
                 )));
 
@@ -199,7 +199,7 @@ namespace BindOpen.Kernel.Data.Meta
 
             Assert.That(obj?.ConfigEntityFake?.StringValue == "_string", "Bad meta wrapper");
             Assert.That(obj?.ConfigEntityFake?.IntValue == 1500, "Bad meta wrapper");
-            Assert.That(obj?.ConfigEntityFake?.EnumValue == ActionPriorities.Low, "Bad meta wrapper");
+            Assert.That(obj?.ConfigEntityFake?.EnumValue == AccessibilityLevels.Restricted, "Bad meta wrapper");
         }
     }
 }

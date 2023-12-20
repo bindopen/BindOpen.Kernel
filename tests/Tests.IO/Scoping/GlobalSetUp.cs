@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Kernel.Scoping
+namespace BindOpen.Scoping
 {
     /// <summary>
     /// This class set the global setup.

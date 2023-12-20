@@ -1,6 +1,4 @@
-﻿using BindOpen.Kernel.Data;
-
-namespace BindOpen.Kernel.Data
+﻿namespace BindOpen.Data
 {
     /// <summary>
     /// This interface represents a conditional object.

@@ -1,8 +1,8 @@
-﻿using BindOpen.Kernel.Data;
+﻿using BindOpen.Data;
 using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.Kernel.Scoping.Script
+namespace BindOpen.Scoping.Script
 {
     /// <summary>
     /// 

@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System.Linq;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     [TestFixture, Order(202)]
     public class BdoMetaNodeTests_Scalar

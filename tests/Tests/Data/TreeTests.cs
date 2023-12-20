@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System.Linq;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     [TestFixture, Order(210)]
     public class TreeTests

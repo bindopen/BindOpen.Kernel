@@ -1,7 +1,7 @@
-﻿using BindOpen.Kernel.Data;
+﻿using BindOpen.Data;
 using System;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This interface represents a group.

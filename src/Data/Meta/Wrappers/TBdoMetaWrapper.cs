@@ -1,8 +1,8 @@
-﻿using BindOpen.Kernel.Data.Helpers;
-using BindOpen.Kernel.Data.Meta.Reflection;
-using BindOpen.Kernel.Scoping;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Meta.Reflection;
+using BindOpen.Scoping;
 
-namespace BindOpen.Kernel.Data.Meta
+namespace BindOpen.Data.Meta
 {
     public abstract class TBdoMetaWrapper<TDetail> : BdoObject, ITBdoMetaWrapper<TDetail>
         where TDetail : IBdoMetaSet, new()

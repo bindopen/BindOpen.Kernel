@@ -1,8 +1,8 @@
-﻿using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Logging;
-using BindOpen.Kernel.Scoping;
-using BindOpen.Kernel.Scoping.Connectors;
-using BindOpen.Kernel.Scoping.Entities;
+﻿using BindOpen.Data.Meta;
+using BindOpen.Logging;
+using BindOpen.Scoping;
+using BindOpen.Scoping.Connectors;
+using BindOpen.Scoping.Entities;
 using Bogus;
 using System;
 using System.Collections.Generic;

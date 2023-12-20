@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Assemblies;
-using BindOpen.Kernel.Data.Meta;
-using BindOpen.Kernel.Scoping.Script;
+using BindOpen.Data;
+using BindOpen.Data.Assemblies;
+using BindOpen.Data.Meta;
+using BindOpen.Scoping.Script;
 using System.Linq;
 
-namespace BindOpen.Kernel.Scoping.Script
+namespace BindOpen.Scoping.Script
 {
     /// <summary>
     /// This class represents a IO converter of script words.

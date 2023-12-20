@@ -1,5 +1,5 @@
-﻿using BindOpen.Kernel.Data;
-using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using System.Collections.Generic;
 
 namespace BindOpen.Kernel.Tests
@@ -47,7 +47,7 @@ namespace BindOpen.Kernel.Tests
         /// Enumeration value of this instance.
         /// </summary>
         [BdoProperty(Name = "subEnumValue", Reference = "entityFake/enumValue")]
-        public ActionPriorities SubEnumValue { get; set; }
+        public AccessibilityLevels SubEnumValue { get; set; }
 
         [BdoProperty(Name = "configEntityFake", Reference = "^$entityFake/node1")]
         public WrapperClassFake ConfigEntityFake { get; set; }

@@ -1,7 +1,7 @@
-﻿using BindOpen.Kernel.Data.Conditions;
-using BindOpen.Kernel.Data.Meta;
+﻿using BindOpen.Data.Conditions;
+using BindOpen.Data.Meta;
 
-namespace BindOpen.Kernel.Data
+namespace BindOpen.Data
 {
     /// <summary>
     /// This static class provides methods to handle conditions.
