@@ -13,7 +13,7 @@ namespace BindOpen.Scoping.Script
         public static TBdoScriptword<string> _Name(this TBdoScriptword<IBdoMetaData> meta)
             => meta.Var<string>("name");
 
-        public static TBdoScriptword<bool> Value(this TBdoScriptword<IBdoMetaData> meta)
+        public static TBdoScriptword<bool> _Value(this TBdoScriptword<IBdoMetaData> meta)
             => meta.Func<bool>("value");
 
         public static TBdoScriptword<bool> _Has(this TBdoScriptword<IBdoMetaData> meta, string name)
