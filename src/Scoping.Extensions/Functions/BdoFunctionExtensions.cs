@@ -139,7 +139,7 @@ namespace BindOpen.Scoping
                             foreach (var spec in definition.AdditionalSpecs)
                             {
                                 object obj = null;
-                                if (spec.IsFlag(BdoSpecProperties.IsStatic))
+                                if (spec.GetFlagValue(BdoSpecProperties.IsStatic))
                                     obj = (paramSet as IBdoScriptword)?.Parent?.GetData();
                                 else if (spec.DataType.IsCompatibleWith(typeof(IBdoScope)))
                                     obj = scope;

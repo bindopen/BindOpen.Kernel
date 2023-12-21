@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using BindOpen.Data;
 
 namespace BindOpen.Data
 {
@@ -8,8 +7,7 @@ namespace BindOpen.Data
     /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface ITBdoSet<T> :
-        IEnumerable<T>, IBdoSet, IUpdatable
+    public interface ITBdoSet<T> : IEnumerable<T>, IBdoSet, IUpdatable
         where T : IReferenced
     {
         /// <summary>

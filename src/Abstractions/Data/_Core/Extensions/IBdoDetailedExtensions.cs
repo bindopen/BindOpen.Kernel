@@ -22,5 +22,19 @@ namespace BindOpen.Data
             }
             return obj;
         }
+
+        // Flag
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="isAllocatable"></param>
+        /// <returns></returns>
+        public static bool GetFlagValue(
+            this IBdoDetailed detailed,
+            string flagName)
+        {
+            return detailed?.Detail?.GetData<bool?>(flagName) ?? false;
+        }
     }
 }

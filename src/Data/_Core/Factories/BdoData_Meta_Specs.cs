@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
 using System;
+using System.Linq;
 
 namespace BindOpen.Data
 {
@@ -9,6 +10,8 @@ namespace BindOpen.Data
     /// </summary>
     public static partial class BdoData
     {
+        // NewSpec
+
         /// <summary>
         /// Creates a data element of the specified kind.
         /// </summary>
@@ -18,12 +21,7 @@ namespace BindOpen.Data
             string name = null,
             DataValueTypes valueType = DataValueTypes.Any,
             object defaultData = null)
-        {
-            var spec = NewSpec<BdoSpec>(name)
-                .WithDataType(valueType)
-                .WithDefaultData(defaultData);
-            return spec;
-        }
+            => NewSpec<BdoSpec>(name, valueType, defaultData);
 
         /// <summary>
         /// 
@@ -31,9 +29,8 @@ namespace BindOpen.Data
         /// <param key="name"></param>
         /// <param key="type"></param>
         /// <returns></returns>
-        public static BdoSpec NewSpec(
-            Type type)
-            => NewSpec(null, type);
+        public static BdoSpec NewSpec(string name, Type type)
+            => NewSpec<BdoSpec>(name, type);
 
         /// <summary>
         /// 
@@ -41,15 +38,8 @@ namespace BindOpen.Data
         /// <param key="name"></param>
         /// <param key="type"></param>
         /// <returns></returns>
-        public static BdoSpec NewSpec(
-            string name,
-            Type type)
-        {
-            var valueType = type.GetValueType();
-            var spec = NewSpec(name, valueType);
-            spec.AsType(type);
-            return spec;
-        }
+        public static BdoSpec NewSpec(Type type)
+            => NewSpec<BdoSpec>(null, type);
 
         // NewSpec<T>
 
@@ -59,30 +49,19 @@ namespace BindOpen.Data
         /// <param key="name">The name to consider.</param>
         /// <param key="valueType">The value type to consider.</param>
         public static T NewSpec<T>(
-            string name = null)
+            string name = null,
+            DataValueTypes valueType = DataValueTypes.Any,
+            object defaultData = null)
             where T : IBdoBaseSpec, new()
         {
             var spec = new T();
-            spec.WithName(name);
+            spec.WithName(name)
+                .WithDataType(valueType)
+                .WithDefaultData(defaultData);
 
             return spec;
         }
 
-        /// <summary>
-        /// Creates a data element of the specified kind.
-        /// </summary>
-        /// <param key="name">The name to consider.</param>
-        /// <param key="type">The value type to consider.</param>
-        public static T NewSpec<T>(
-            Type type)
-            where T : IBdoBaseSpec, new()
-            => NewSpec<T>(null, type);
-
-        /// <summary>
-        /// Creates a data element of the specified kind.
-        /// </summary>
-        /// <param key="name">The name to consider.</param>
-        /// <param key="type">The value type to consider.</param>
         public static T NewSpec<T>(
             string name,
             Type type)
@@ -97,6 +76,23 @@ namespace BindOpen.Data
             return spec;
         }
 
+        /// <summary>
+        /// Creates a data element of the specified kind.
+        /// </summary>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="type">The value type to consider.</param>
+        public static T NewSpec<T>(
+            Type type)
+            where T : IBdoBaseSpec, new()
+            => NewSpec<T>(null, type);
+
+        // AsType
+
+        /// <summary>
+        /// Creates a data element of the specified kind.
+        /// </summary>
+        /// <param key="name">The name to consider.</param>
+        /// <param key="type">The value type to consider.</param>
         public static T AsType<T>(
             this T spec,
             Type type)
@@ -125,6 +121,172 @@ namespace BindOpen.Data
             }
             return spec;
         }
+
+        // with children
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="specs">The parameters to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static BdoSpec NewSpec(
+            string name,
+            params IBdoSpec[] specs)
+        {
+            var list = NewSpec<BdoSpec>()
+                .WithChildren(specs)
+                .WithName(name);
+
+            return list;
+        }
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="specs">The parameters to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static BdoSpec NewSpec(
+            params IBdoSpec[] specs)
+            => NewSpec<BdoSpec, IBdoSpec>(specs);
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="pairs">The pairs to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static BdoSpec NewSpec(
+            string name,
+            params (string Name, DataValueTypes ValueType)[] pairs)
+        {
+            var spec = NewSpec<BdoSpec, IBdoSpec>(
+                pairs.Select(q => NewSpec<BdoSpec>(q.Name, q.ValueType)).ToArray())
+                .WithName(name);
+
+            return spec;
+        }
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="pairs">The pairs to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static BdoSpec NewSpec(
+            params (string Name, DataValueTypes ValueType)[] pairs)
+            => NewSpec<BdoSpec>(pairs);
+
+        // Static T creators -------------------------
+        // with children
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="specs">The parameters to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static T NewSpec<T>(
+            string name,
+            params IBdoSpec[] specs)
+            where T : IBdoSpec, new()
+            => NewSpec<T, IBdoSpec>(name, specs);
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="specs">The parameters to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static T NewSpec<T>(
+            params IBdoSpec[] specs)
+            where T : IBdoSpec, new()
+            => NewSpec<T>(null, specs);
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="pairs">The pairs to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static T NewSpec<T>(
+            string name,
+            params (string Name, DataValueTypes ValueType)[] pairs)
+            where T : IBdoSpec, new()
+        {
+            var spec = NewSpec<T>()
+                .WithChildren(pairs.Select(q => NewSpec<BdoSpec>(q.Name, q.ValueType)).Cast<IBdoSpec>().ToArray())
+                .WithName(name);
+
+            return spec;
+        }
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="pairs">The pairs to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static T NewSpec<T>(
+            params (string Name, DataValueTypes ValueType)[] pairs)
+            where T : IBdoSpec, new()
+            => NewSpec<T>(null, pairs);
+
+        // Static TParent, TChild creators -------------------------
+        // with children
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="specs">The parameters to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static TParent NewSpec<TParent, TChild>(
+            string name,
+            params TChild[] specs)
+            where TParent : ITBdoSpec<TChild>, new()
+            where TChild : IBdoBaseSpec
+        {
+            var spec = NewSpec<TParent>()
+                .WithChildren(specs.ToArray())
+                .WithName(name);
+
+            return spec;
+        }
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="specs">The parameters to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static TParent NewSpec<TParent, TChild>(
+            params TChild[] specs)
+            where TParent : ITBdoSpec<TChild>, new()
+            where TChild : IBdoBaseSpec
+            => NewSpec<TParent, TChild>(null, specs);
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="pairs">The pairs to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static TParent NewSpec<TParent, TChild>(
+            string name,
+            params (string Name, DataValueTypes ValueType)[] pairs)
+            where TParent : ITBdoSpec<TChild>, new()
+            where TChild : IBdoBaseSpec, new()
+        {
+            var spec = NewSpec<TParent, TChild>(
+                pairs.Select(q => NewSpec<TChild>(q.Name, q.ValueType)).ToArray())
+                .WithName(name);
+
+            return spec;
+        }
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="pairs">The pairs to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static TParent NewSpec<TParent, TChild>(
+            params (string Name, DataValueTypes ValueType)[] pairs)
+            where TParent : ITBdoSpec<TChild>, new()
+            where TChild : IBdoBaseSpec, new()
+            => NewSpec<TParent, TChild>(null, pairs);
+
+        // From
 
         /// <summary>
         /// Creates a meta data of the specified object.

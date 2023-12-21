@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface ITBdoSpec<T> : IBdoBaseSpec, ITTreeNode<T>, ITGroup<T>
+    public interface ITBdoSpec<T> : IBdoBaseSpec, ITTreeNode<T>
         where T : IBdoBaseSpec
     {
     }

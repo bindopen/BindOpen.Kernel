@@ -7,7 +7,7 @@ namespace BindOpen.Data
     /// <summary>
     /// 
     /// </summary>
-    public static partial class BdoSpecExtensions
+    public static partial class IBdoSpecSetExtensions
     {
         // Add
 
@@ -34,13 +34,13 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="pairs">The value to add.</param>
         public static T Add<T>(
-            this T list,
+            this T set,
             params KeyValuePair<string, DataValueTypes>[] pairs)
             where T : IBdoSpecSet
         {
-            list.Add(pairs.Select(q => (q.Key, q.Value)).ToArray());
+            set.Add(pairs.Select(q => (q.Key, q.Value)).ToArray());
 
-            return list;
+            return set;
         }
 
         /// <summary>
@@ -49,19 +49,19 @@ namespace BindOpen.Data
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
         public static T Add<T>(
-            this T list,
+            this T set,
             params (string Name, DataValueTypes ValueType)[] pairs)
             where T : IBdoSpecSet
         {
-            if (list != null)
+            if (set != null)
             {
                 foreach (var (Name, ValueType) in pairs)
                 {
-                    list.Add(BdoData.NewSpec(Name, ValueType));
+                    set.Add(BdoData.NewSpec(Name, ValueType));
                 }
             }
 
-            return list;
+            return set;
         }
 
         // With
@@ -71,17 +71,17 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="pairs">The value to add.</param>
         public static T With<T>(
-            this T list,
+            this T set,
             params KeyValuePair<string, DataValueTypes>[] pairs)
             where T : IBdoSpecSet
         {
-            if (list != null)
+            if (set != null)
             {
-                list.Clear();
-                list.Add(pairs);
+                set.Clear();
+                set.Add(pairs);
             }
 
-            return list;
+            return set;
         }
 
         /// <summary>
@@ -90,17 +90,17 @@ namespace BindOpen.Data
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
         public static T With<T>(
-            this T list,
+            this T set,
             params (string Name, DataValueTypes Value)[] pairs)
             where T : IBdoSpecSet
         {
-            if (list != null)
+            if (set != null)
             {
-                list.Clear();
-                list.Add(pairs);
+                set.Clear();
+                set.Add(pairs);
             }
 
-            return list;
+            return set;
         }
     }
 }

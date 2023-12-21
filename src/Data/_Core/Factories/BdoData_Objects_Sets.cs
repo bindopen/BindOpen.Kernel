@@ -15,11 +15,11 @@ namespace BindOpen.Data
         /// <param key="items">The items to consider.</param>
         /// <typeparam name="Q">The data item set type to consider.</typeparam>
         /// <typeparam name="T">The identified data item to consider.</typeparam>
-        public static Q NewItemSet<Q, T>(params T[] items)
-            where Q : ITBdoSet<T>, new()
-            where T : IReferenced
+        public static TSet NewItemSet<TSet, TItem>(params TItem[] items)
+            where TSet : ITBdoSet<TItem>, new()
+            where TItem : IReferenced
         {
-            var q = new Q();
+            var q = new TSet();
             q.With(items);
             return q;
         }
@@ -29,10 +29,10 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="items">The items to consider.</param>
         /// <typeparam name="T">The class of the named data items.</typeparam>
-        public static TBdoSet<T> NewItemSet<T>(params T[] items)
-            where T : IReferenced
+        public static TBdoSet<TItem> NewItemSet<TItem>(params TItem[] items)
+            where TItem : IReferenced
         {
-            return NewItemSet<TBdoSet<T>, T>(items);
+            return NewItemSet<TBdoSet<TItem>, TItem>(items);
         }
 
         /// <summary>
@@ -41,12 +41,12 @@ namespace BindOpen.Data
         /// <param key="items">The items to consider.</param>
         /// <typeparam name="Q">The data item set type to consider.</typeparam>
         /// <typeparam name="T">The identified data item to consider.</typeparam>
-        public static Q ToBdoItemSet<Q, T>(
-            this IEnumerable<T> enumerable)
-            where Q : class, ITBdoSet<T>, new()
-            where T : IReferenced
+        public static TSet ToBdoItemSet<TSet, TItem>(
+            this IEnumerable<TItem> enumerable)
+            where TSet : class, ITBdoSet<TItem>, new()
+            where TItem : IReferenced
         {
-            var set = NewItemSet<Q, T>(enumerable?.ToArray());
+            var set = NewItemSet<TSet, TItem>(enumerable?.ToArray());
             return set;
         }
 
@@ -55,9 +55,9 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="items">The items to consider.</param>
         /// <typeparam name="T">The class of the named data items.</typeparam>
-        public static TBdoSet<T> ToBdoItemSet<T>(
-            this IEnumerable<T> enumerable)
-            where T : IReferenced
+        public static TBdoSet<TItem> ToBdoItemSet<TItem>(
+            this IEnumerable<TItem> enumerable)
+            where TItem : IReferenced
         {
             var set = NewItemSet(enumerable?.ToArray());
             return set;

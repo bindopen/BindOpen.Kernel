@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Conditions;
-using System.Linq;
 
 namespace BindOpen.Data.Meta
 {
@@ -8,70 +7,6 @@ namespace BindOpen.Data.Meta
     /// </summary>
     public static partial class IBdoBaseSpecExtensions
     {
-        public static T WithChildren<T>(this T log, params IBdoSpec[] children) where T : IBdoSpec
-        {
-            if (log != null)
-            {
-                log._Children = BdoData.NewItemSet(children?.Any() == true ? children : null);
-            }
-
-            return log;
-        }
-
-        public static T AddChildren<T>(this T log, params IBdoSpec[] children) where T : IBdoSpec
-        {
-            if (log != null)
-            {
-                log._Children ??= BdoData.NewItemSet<IBdoSpec>();
-                foreach (var child in children)
-                {
-                    log._Children.Add(child);
-                }
-            }
-
-            return log;
-        }
-
-        public static IBdoBaseSpec ToSpec(
-            this IBdoMetaData meta,
-            string name = null,
-            bool onlyMetaAttributes = true)
-            => ToSpec<BdoSpec>(meta, name, onlyMetaAttributes);
-
-        public static T ToSpec<T>(
-            this IBdoMetaData meta,
-            string name = null,
-            bool onlyMetaAttributes = true)
-            where T : IBdoSpec, new()
-        {
-            T spec = default;
-
-            if (meta != null)
-            {
-                var metaComposite = meta as IBdoMetaNode;
-                spec = BdoData.NewSpec<T>();
-
-                if (spec != null)
-                {
-                    spec.Update(meta.Spec);
-                    spec.Name = name;
-                    spec.Name ??= meta.Name;
-                    spec.DataType = meta.DataType;
-
-                    if (metaComposite != null)
-                    {
-                        foreach (var subMeta in metaComposite)
-                        {
-                            var subSpec = subMeta.ToSpec<T>(null, onlyMetaAttributes);
-                            spec.AddChildren(subSpec);
-                        }
-                    }
-                }
-            }
-
-            return spec;
-        }
-
         // Requirement
 
         /// <summary>
@@ -81,7 +16,7 @@ namespace BindOpen.Data.Meta
         public static T WithRequirement<T>(
             this T spec,
             params (RequirementLevels Level, IBdoCondition Condition)[] rules)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             if (spec != null)
             {
@@ -156,7 +91,7 @@ namespace BindOpen.Data.Meta
         public static T WithItemRequirement<T>(
             this T spec,
             params (RequirementLevels Level, IBdoCondition Condition)[] rules)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             if (spec != null)
             {
@@ -226,34 +161,6 @@ namespace BindOpen.Data.Meta
             spec?.AddItemRequirement(RequirementLevels.Forbidden, condition);
 
             return spec;
-        }
-
-        // Flag
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="isAllocatable"></param>
-        /// <returns></returns>
-        public static T AsFlag<T>(
-            this T spec,
-            string flagName,
-            bool isFlag = true)
-            where T : IBdoBaseSpec
-        {
-            spec?.GetOrNewDetail().Add(flagName, isFlag);
-
-            return spec;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="isAllocatable"></param>
-        /// <returns></returns>
-        public static bool IsFlag(this IBdoSpec spec, string flagName)
-        {
-            return spec?.Detail?.GetData<bool?>(flagName) ?? false;
         }
     }
 }

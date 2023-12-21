@@ -8,10 +8,10 @@ namespace BindOpen.Data.Meta
     /// 
     /// </summary>
     public interface IBdoBaseSpec :
-        IBdoObject, IReferenced, IBdoDataTyped, IBdoConditional, IGrouped,
+        IBdoObject, ITGroupsOf<IBdoSpecRule>,
+        IReferenced, IBdoDataTyped, IBdoConditional, IGrouped,
         IIdentified, INamed, IIndexed, IBdoReferenced,
         IBdoTitled, IBdoDescribed, IBdoDetailed,
-        ITBdoSet<IBdoSpecRule>,
         IUpdatable
     {
         /// <summary>

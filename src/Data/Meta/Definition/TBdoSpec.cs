@@ -214,7 +214,7 @@ namespace BindOpen.Data.Meta
 
         public void RemoveOfGroup(string groupId, bool isRecursive = false)
         {
-            this.RemoveAll(q => q.OfGroup(groupId));
+            Remove(q => q.OfGroup(groupId));
 
             if (isRecursive && _children?.Any() == true)
             {

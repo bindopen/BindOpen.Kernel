@@ -1,5 +1,4 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Assemblies;
+﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Helpers;
 using BindOpen.Logging;
 using BindOpen.Scoping;
@@ -173,7 +172,7 @@ namespace BindOpen.Data
                     || rightValueType == DataValueTypes.Object
                     || leftValueType == right.ValueType;
 
-            if (b)
+            if (b && leftValueType != DataValueTypes.Any)
             {
                 var rightRuntimeType = right?.GetRuntimeType();
                 var leftRuntimeType = left?.GetRuntimeType();
@@ -197,7 +196,7 @@ namespace BindOpen.Data
                 || rightValueType == DataValueTypes.Object
                 || leftValueType == right.ValueType;
 
-            if (b)
+            if (b && rightValueType != DataValueTypes.Any)
             {
                 var rightRuntimeType = right?.GetRuntimeType();
                 var leftRuntimeType = left?.GetRuntimeType();
