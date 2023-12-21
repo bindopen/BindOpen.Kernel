@@ -78,5 +78,23 @@ namespace BindOpen.Data
 
             return obj;
         }
+
+        // Flag
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param key="isAllocatable"></param>
+        /// <returns></returns>
+        public static T SetFlagValue<T>(
+            this T spec,
+            string flagName,
+            bool isFlag = true)
+            where T : IBdoDetailed
+        {
+            spec?.GetOrNewDetail().Add(flagName, isFlag);
+
+            return spec;
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace BindOpen.Scoping.Script
         [Test, Order(1)]
         public void ToStringTest()
         {
-            var word = BdoScript.This<IBdoMetaData>()._Parent().Value();
+            var word = BdoScript.This<IBdoMetaData>()._Parent()._Value();
 
             var script = word?.ToString();
             Assert.That(script == "$('$this').('parent').value()", "Bad script interpretation");

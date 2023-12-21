@@ -1,57 +1,70 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
 using BindOpen.Logging;
-using System.Linq;
 
 namespace BindOpen.Data
 {
     /// <summary>
     /// 
     /// </summary>
-    public static class TBdoSetExtensions
+    public static class ITBdoSetExtensions
     {
-        // Add
-
         /// <summary>
-        /// 
+        /// Adds the specified item.
         /// </summary>
-        /// <typeparam name="Q"></typeparam>
-        /// <typeparam name="T"></typeparam>
-        /// <param key="list1"></param>
-        /// <param key="list2"></param>
-        /// <returns></returns>
-        public static Q AddRange<Q, T>(
-            this Q list1,
-            ITBdoSet<T> list2)
-            where Q : ITBdoSet<T>
+        /// <param key="items">The items of the item to add.</param>
+        /// <returns>Returns the new item that has been added.
+        /// Returns null if the new item is null or else its name is null.</returns>
+        /// <remarks>The new item must have a name.</remarks>
+        public static ITBdoSet<T> Add<T>(
+            this ITBdoSet<T> set,
+            params T[] items)
             where T : IReferenced
         {
-            list1?.Add(list2?.Items?
-                .Cast<T>()
-                .ToArray());
-            return list1;
+            if (set != null && items != null)
+            {
+                foreach (var item in items)
+                {
+                    set.Insert(item);
+                }
+            }
+
+            return set;
         }
 
-        // With
-
         /// <summary>
-        /// 
+        /// Adds the specified item.
         /// </summary>
-        /// <typeparam name="Q"></typeparam>
-        /// <typeparam name="T"></typeparam>
-        /// <param key="list1"></param>
-        /// <param key="list2"></param>
-        /// <returns></returns>
-        public static Q WithRange<Q, T>(
-            this Q list1,
-            ITBdoSet<T> list2)
-            where Q : ITBdoSet<T>
+        /// <param key="items">The items of the item to add.</param>
+        /// <returns>Returns the new item that has been added.
+        /// Returns null if the new item is null or else its name is null.</returns>
+        /// <remarks>The new item must have a name.</remarks>
+        public static ITBdoSet<T> AddRange<T>(
+            this ITBdoSet<T> set,
+            ITBdoSet<T> list)
             where T : IReferenced
         {
-            list1?.With(list2?.Items?
-                .Cast<T>()
-                .ToArray());
-            return list1;
+            set?.Add(list?.Items?.ToArray());
+
+            return set;
+        }
+
+        /// <summary>
+        /// Sets the specified single item of this instance.
+        /// </summary>
+        /// <param key="items">The items to apply to this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
+        public static ITBdoSet<T> With<T>(
+            this ITBdoSet<T> set,
+            params T[] items)
+            where T : IReferenced
+        {
+            if (set != null)
+            {
+                set.Clear();
+                set.Add(items);
+            }
+
+            return set;
         }
 
         // Update

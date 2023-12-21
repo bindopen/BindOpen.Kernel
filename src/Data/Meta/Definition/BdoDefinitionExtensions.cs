@@ -5,27 +5,15 @@
     /// </summary>
     public static partial class BdoDefinitionExtensions
     {
-        public static T WithChildren<T>(this T log, params IBdoDefinition[] children) where T : IBdoDefinition
+        public static T WithChildren<T>(this T parent, params IBdoDefinition[] children)
+            where T : IBdoDefinition
         {
-            if (log != null)
-            {
-                log._Children = BdoData.NewItemSet(children);
-            }
-
-            return log;
+            return parent.WithChildren<T, IBdoDefinition>(children);
         }
-        public static T AddChildren<T>(this T log, params IBdoDefinition[] children) where T : IBdoDefinition
-        {
-            if (log != null)
-            {
-                log._Children ??= BdoData.NewItemSet<IBdoDefinition>();
-                foreach (var child in children)
-                {
-                    log._Children.Add(child);
-                }
-            }
 
-            return log;
+        public static T AddChildren<T>(this T parent, params IBdoDefinition[] children) where T : IBdoDefinition
+        {
+            return parent.AddChildren<T, IBdoDefinition>(children);
         }
     }
 }

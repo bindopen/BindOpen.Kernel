@@ -78,6 +78,15 @@ namespace BindOpen.Scoping.Script
         public static string operator +(BdoScriptword word, string st)
             => "{{" + word?.ToString() + "}}" + st;
 
+        /// <summary>
+        /// Converts from string.
+        /// </summary>
+        /// <param key="st">The string to consider.</param>
+        public static explicit operator BdoReference(BdoScriptword word)
+        {
+            return BdoData.NewRef(word);
+        }
+
         #endregion
 
         // -----------------------------------------------

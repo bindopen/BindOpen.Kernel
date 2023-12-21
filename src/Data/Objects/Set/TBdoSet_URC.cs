@@ -17,11 +17,11 @@ namespace BindOpen.Data
         {
             if (item is ITBdoSet<T> set)
             {
-                TBdoSetExtensions.Update(this, set, updateModes, areas, log);
+                ITBdoSetExtensions.Update(this, set, updateModes, areas, log);
             }
             else if (item is T setItem)
             {
-                TBdoSetExtensions.Update(this, setItem, updateModes, areas, log);
+                ITBdoSetExtensions.Update(this, setItem, updateModes, areas, log);
             }
         }
     }
