@@ -8,7 +8,7 @@ import { MetaDataKinds } from "../enums/MetaDataKind";
 export interface MetaDataDto extends IBdoTypedDto {
     id: string;
     parentId: string;
-    kind: MetaDataKinds;
+    metakind: MetaDataKinds;
     name: string;
     index?: number;
     reference: ReferenceDto;
