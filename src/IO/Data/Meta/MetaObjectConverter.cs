@@ -33,6 +33,7 @@ namespace BindOpen.Data.Meta
 
             dto.ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDto() : null;
             dto.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
+            dto.Kind = MetaDataKind.Object;
 
             dto.MetaItems = poco.Items?.Select(q => q.ToDto()).ToList();
             dto.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;

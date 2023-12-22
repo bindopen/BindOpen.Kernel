@@ -1,7 +1,8 @@
-﻿
+﻿import { SpecDto } from "./SpecDto";
+
 
 export interface SpecSetDto {
     id: string;
     name: string;
-    items: any[];
+    items: SpecDto[];
 }

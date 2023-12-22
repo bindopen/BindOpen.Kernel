@@ -23,7 +23,7 @@ namespace BindOpen.Scoping.Script
         /// <example>Script word, syntax, text...</example>
         [JsonPropertyName("kind")]
         [XmlAttribute("kind")]
-        public ScriptItemKinds Kind { get; set; } = ScriptItemKinds.None;
+        public ScriptItemKinds WordKind { get; set; } = ScriptItemKinds.None;
 
         // Tree ----------------------------------
 

@@ -2,5 +2,5 @@
 
 
 export interface MetaNodeDto extends MetaDataDto {
-    metaItems: any[];
+    items: MetaDataDto[];
 }

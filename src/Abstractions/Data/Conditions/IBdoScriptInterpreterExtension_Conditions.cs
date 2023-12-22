@@ -93,7 +93,7 @@ namespace BindOpen.Data
                 case DataOperators.DifferentFrom:
                     b = condition.Argument1 != condition.Argument2;
                     break;
-                case DataOperators.EqualTo:
+                case DataOperators.EqualsTo:
                     b = condition.Argument1 == condition.Argument2;
                     break;
                 case DataOperators.Exists:

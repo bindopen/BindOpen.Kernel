@@ -18,7 +18,7 @@
             {
                 Id = poco.Id,
                 Expression = poco.Expression.ToDto(),
-                Kind = poco.Kind,
+                Kind = BdoConditionKind.Expression,
                 Name = poco.Name,
                 ParentId = poco.Parent?.Id
             };
@@ -39,7 +39,6 @@
             BdoExpressionCondition poco = new()
             {
                 Expression = dto.Expression.ToPoco(),
-                Kind = dto.Kind,
                 Id = dto.Id,
                 Name = dto.Name,
                 Parent = null

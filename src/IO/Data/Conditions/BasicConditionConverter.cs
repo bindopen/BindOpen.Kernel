@@ -21,7 +21,7 @@ namespace BindOpen.Data.Conditions
                 Argument1 = poco.Argument1?.ToDto(),
                 Argument2 = poco.Argument2?.ToDto(),
                 Id = poco.Id,
-                Kind = poco.Kind,
+                Kind = BdoConditionKind.Basic,
                 Name = poco.Name,
                 Operator = poco.Operator,
                 ParentId = poco.Parent?.Id
@@ -44,7 +44,6 @@ namespace BindOpen.Data.Conditions
             {
                 Argument1 = dto.Argument1?.ToPoco(),
                 Argument2 = dto.Argument2?.ToPoco(),
-                Kind = dto.Kind,
                 Id = dto.Id,
                 Operator = dto.Operator,
                 Name = dto.Name,

@@ -36,7 +36,7 @@ export enum DataOperators
     /// <summary>
     /// Equal.
     /// </summary>
-    EqualTo = "EqualTo",
+    EqualsTo = "EqualsTo",
 
     /// <summary>
     /// Different.
