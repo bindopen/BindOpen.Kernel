@@ -1,4 +1,4 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Data.Assemblies;
 using BindOpen.Logging;
 using BindOpen.Scoping;
 using System.Collections.Generic;

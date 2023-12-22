@@ -3,9 +3,8 @@ import { MetaDataDto } from "../../meta/MetaDataDto";
 
 
 export interface ReferenceDto {
-    kind: any;
+    kind: BdoReferenceKind;
     identifier: string;
     text: string;
-    expressionKind: BdoReferenceKind;
     metaData: MetaDataDto;
 }

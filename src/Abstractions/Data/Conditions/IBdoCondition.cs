@@ -6,6 +6,5 @@
     public interface IBdoCondition : IIdentified,
         INamed, IReferenced, IBdoObjectNotMetable, ITChild<IBdoCompositeCondition>
     {
-        BdoConditionKind Kind { get; set; }
     }
 }
