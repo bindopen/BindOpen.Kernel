@@ -6,7 +6,7 @@ namespace BindOpen.Data
     /// <summary>
     /// 
     /// </summary>
-    public static class ITBdoSetExtensions
+    public static class TBdoSetExtensions
     {
         /// <summary>
         /// Adds the specified item.

@@ -2,12 +2,12 @@
 import { ReferenceDto } from "../../objects/reference/ReferenceDto";
 import { DictionaryDto } from "../../objects/dictionary/DictionaryDto";
 import { MetaSetDto } from "../MetaSetDto";
-import { ClassReferenceDto } from "../../assemblies/ClassReferenceDto";
-import { DataValueTypes } from "../../enums/DataValueTypes";
 import { SpecRuleDto } from "./SpecRuleDto";
+import { DataMode } from "../../enums/DataMode";
+import { IBdoTypedDto } from "../../assemblies/IBdoTyped";
 
-export interface SpecDto {
-    children: any[];
+export interface SpecDto extends IBdoTypedDto {
+    children: SpecDto[];
     id: string;
     parentId: string;
     name: string;
@@ -17,13 +17,10 @@ export interface SpecDto {
     description: DictionaryDto;
     title: DictionaryDto;
     detail: MetaSetDto;
-    valueType: DataValueTypes;
-    definitionUniqueName: string;
-    classReference: ClassReferenceDto;
     groupId: string;
     defaultItems: any[];
-    aliases: any[];
-    availableDataModes: any[];
+    aliases: string[];
+    availableDataModes: DataMode[];
     minDataItemNumber?: number;
     maxDataItemNumber?: number;
     label: string;

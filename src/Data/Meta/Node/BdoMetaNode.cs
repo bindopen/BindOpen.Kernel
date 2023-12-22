@@ -186,7 +186,7 @@ namespace BindOpen.Data.Meta
         {
             if (refItem is ITBdoSet<IBdoMetaData> set)
             {
-                ITBdoSetExtensions.Update(this, set, updateModes, areas, log);
+                TBdoSetExtensions.Update(this, set, updateModes, areas, log);
             }
         }
 

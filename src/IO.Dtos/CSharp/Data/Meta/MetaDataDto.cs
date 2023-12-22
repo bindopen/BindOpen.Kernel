@@ -1,5 +1,4 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Assemblies;
+﻿using BindOpen.Data.Assemblies;
 using BindOpen.Scoping.Script;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
@@ -42,6 +41,13 @@ namespace BindOpen.Data.Meta
         [XmlAttribute("name")]
         [DefaultValue(null)]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Kind of this instance.
+        /// </summary>
+        [JsonPropertyName("kind")]
+        [XmlAttribute("kind")]
+        public MetaDataKind Kind { get; set; }
 
         // IIndexedDataItem -------------------------------
 

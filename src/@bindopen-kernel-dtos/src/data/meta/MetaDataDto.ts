@@ -1,17 +1,16 @@
 ﻿
 
 import { ReferenceDto } from "../objects/reference/ReferenceDto";
-import { ClassReferenceDto } from "../assemblies/ClassReferenceDto";
 import { SpecDto } from "./definition/SpecDto";
+import { IBdoTypedDto } from "../assemblies/IBdoTyped";
+import { MetaDataKinds } from "../enums/MetaDataKind";
 
-export interface MetaDataDto {
+export interface MetaDataDto extends IBdoTypedDto {
     id: string;
     parentId: string;
+    kind: MetaDataKinds;
     name: string;
     index?: number;
     reference: ReferenceDto;
     spec: SpecDto;
-    valueType: any;
-    definitionUniqueName: string;
-    classReference: ClassReferenceDto;
 }

@@ -44,5 +44,15 @@ namespace BindOpen.Data
             }
             return obj;
         }
+
+        /// <summary>
+        /// Indicates whether the specified data type is a scalar.
+        /// </summary>
+        /// <param key="dataType">The data type to consider.</param>
+        /// <returns>True if the specified data type is a scalar.</returns>
+        public static bool IsScalar(this IBdoDataType dataType)
+        {
+            return dataType?.ValueType.IsScalar() ?? false;
+        }
     }
 }

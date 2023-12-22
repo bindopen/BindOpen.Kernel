@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Assemblies;
 using BindOpen.Data.Meta;
 using System;
 

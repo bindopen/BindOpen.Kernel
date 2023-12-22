@@ -43,7 +43,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Equal.
         /// </summary>
-        EqualTo = 0x1 << 5,
+        EqualsTo = 0x1 << 5,
 
         /// <summary>
         /// Different.
@@ -58,7 +58,7 @@ namespace BindOpen.Data
         /// <summary>
         /// Lesser or equal.
         /// </summary>
-        LesserOrEqualThan = LesserThan | EqualTo,
+        LesserOrEqualThan = LesserThan | EqualsTo,
 
         /// <summary>
         /// Greater.
@@ -68,11 +68,11 @@ namespace BindOpen.Data
         /// <summary>
         /// Greater or equal.
         /// </summary>
-        GreaterOrEqualThan = GreaterThan | EqualTo,
+        GreaterOrEqualThan = GreaterThan | EqualsTo,
 
         /// <summary>
         /// Any operator.
         /// </summary>
-        Any = Exists | Contains | Has | In | EqualTo | DifferentFrom | LesserThan | LesserOrEqualThan | GreaterThan | GreaterOrEqualThan
+        Any = Exists | Contains | Has | In | EqualsTo | DifferentFrom | LesserThan | LesserOrEqualThan | GreaterThan | GreaterOrEqualThan
     }
 }
