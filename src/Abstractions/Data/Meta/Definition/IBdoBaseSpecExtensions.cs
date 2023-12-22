@@ -8,9 +8,9 @@ namespace BindOpen.Data
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    public static partial class IBdoSpecExtensions
+    public static partial class IBdoBaseSpecExtensions
     {
-        public static T With<T>(this T spec, params IBdoSpecRule[] rules) where T : IBdoSpec
+        public static T With<T>(this T spec, params IBdoSpecRule[] rules) where T : IBdoBaseSpec
         {
             spec?.With<T, IBdoSpecRule>(rules);
 
@@ -24,7 +24,7 @@ namespace BindOpen.Data
         public static T WithAvailableDataModes<T>(
             this T spec,
             params DataMode[] modes)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             if (spec != null)
             {
@@ -40,7 +40,7 @@ namespace BindOpen.Data
         public static T WithAliases<T>(
             this T spec,
             params string[] aliases)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             if (spec != null)
             {
@@ -56,7 +56,7 @@ namespace BindOpen.Data
         public static T WithDefaultData<T>(
             this T spec,
             object item)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             if (spec != null)
             {
@@ -79,7 +79,7 @@ namespace BindOpen.Data
         public static T WithMaxDataItemNumber<T>(
             this T spec,
             uint? number = null)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             if (spec != null)
             {
@@ -95,7 +95,7 @@ namespace BindOpen.Data
         public static T WithMinDataItemNumber<T>(
             this T spec,
             uint number)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             if (spec != null)
             {
@@ -111,7 +111,7 @@ namespace BindOpen.Data
         public static T WithAccessibilityLevel<T>(
             this T spec,
             AccessibilityLevels level)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             if (spec != null)
             {
@@ -128,7 +128,7 @@ namespace BindOpen.Data
         public static T WithInheritanceLevel<T>(
             this T spec,
             InheritanceLevels level)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             if (spec != null)
             {
@@ -144,7 +144,7 @@ namespace BindOpen.Data
         public static T WithLabel<T>(
             this T spec,
             string label)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             if (spec != null)
             {
@@ -160,7 +160,7 @@ namespace BindOpen.Data
         public static T WithLabel<T>(
             this T spec,
             LabelFormats label)
-            where T : IBdoSpec
+            where T : IBdoBaseSpec
         {
             if (spec != null)
             {

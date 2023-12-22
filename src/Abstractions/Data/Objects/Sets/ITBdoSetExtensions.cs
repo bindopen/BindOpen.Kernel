@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using BindOpen.Data;
-
-namespace BindOpen.Data
+﻿namespace BindOpen.Data
 {
     /// <summary>
     /// 
@@ -17,10 +13,10 @@ namespace BindOpen.Data
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
         public static Q Add<Q, T>(
-        this Q set,
-        params T[] items)
-        where Q : ITBdoSet<T>
-        where T : IReferenced
+            this Q set,
+            params T[] items)
+            where Q : ITBdoSet<T>
+            where T : IReferenced
         {
             if (set != null && items != null)
             {
@@ -46,11 +42,7 @@ namespace BindOpen.Data
             where Q : ITBdoSet<T>
             where T : IReferenced
         {
-            if (set != null)
-            {
-                var items = list?.Items?.ToArray();
-                set.Add(items);
-            }
+            set?.Add(list?.Items?.ToArray());
 
             return set;
         }
@@ -61,10 +53,10 @@ namespace BindOpen.Data
         /// <param key="items">The items to apply to this instance.</param>
         /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
         public static Q With<Q, T>(
-           this Q set,
-           params T[] items)
-           where Q : ITBdoSet<T>
-           where T : IReferenced
+            this Q set,
+            params T[] items)
+            where Q : ITBdoSet<T>
+            where T : IReferenced
         {
             if (set != null)
             {
@@ -73,24 +65,6 @@ namespace BindOpen.Data
             }
 
             return set;
-        }
-
-        /// <summary>
-        /// Adds the specified item.
-        /// </summary>
-        /// <param key="items">The items of the item to add.</param>
-        /// <returns>Returns the new item that has been added.
-        /// Returns null if the new item is null or else its name is null.</returns>
-        /// <remarks>The new item must have a name.</remarks>
-        public static void RemoveAll<T>(
-            this ITBdoSet<T> set,
-            Predicate<T> filter = null)
-            where T : IReferenced
-        {
-            if (set?.Items != null)
-            {
-                set.Items.RemoveAll(filter ?? (q => true));
-            }
         }
     }
 }

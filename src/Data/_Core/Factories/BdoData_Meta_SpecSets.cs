@@ -4,7 +4,7 @@ using System.Linq;
 namespace BindOpen.Data
 {
     /// <summary>
-    /// This static class provides methods to create data metaent list.
+    /// This static class provides methods to create data metaent spec.
     /// </summary>
     public static partial class BdoData
     {
@@ -29,7 +29,7 @@ namespace BindOpen.Data
         /// <param key="metas">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
         public static BdoSpecSet NewSpecSet(
-            params IBdoSpec[] metas)
+        params IBdoSpec[] metas)
             => NewSpecSet<BdoSpecSet>(null, metas);
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace BindOpen.Data
         /// <returns>Return this instance.</returns>
         public static BdoSpecSet NewSpecSet(
             string name,
-            params IBdoSpec[] metas)
+        params IBdoSpec[] metas)
             => NewSpecSet<BdoSpecSet>(name, metas);
 
         /// <summary>

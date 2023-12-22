@@ -5,29 +5,14 @@
     /// </summary>
     public static partial class BdoConfigurationExtensions
     {
-        public static T WithChildren<T>(this T log, params IBdoConfiguration[] children) where T : IBdoConfiguration
+        public static T WithChildren<T>(this T parent, params IBdoConfiguration[] children) where T : IBdoConfiguration
         {
-            if (log != null)
-            {
-                log._Children = BdoData.NewItemSet(children);
-            }
-
-            return log;
+            return parent.WithChildren<T, IBdoConfiguration>(children);
         }
 
-        public static T AddChildren<T>(this T log, params IBdoConfiguration[] children) where T : IBdoConfiguration
+        public static T AddChildren<T>(this T parent, params IBdoConfiguration[] children) where T : IBdoConfiguration
         {
-            if (log != null)
-            {
-                log._Children ??= BdoData.NewItemSet<IBdoConfiguration>();
-                foreach (var child in children)
-                {
-                    log._Children.Add(child);
-                }
-            }
-
-            return log;
+            return parent.AddChildren<T, IBdoConfiguration>(children);
         }
-
     }
 }

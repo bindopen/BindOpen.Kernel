@@ -29,11 +29,11 @@ namespace BindOpen.Data.Meta
             }
             else if (item is ITBdoSet<IBdoMetaData> set)
             {
-                TBdoSetExtensions.Update(this, set, updateModes, areas, log);
+                ITBdoSetExtensions.Update(this, set, updateModes, areas, log);
             }
             else if (item is IBdoMetaData setItem)
             {
-                TBdoSetExtensions.Update(this, setItem, updateModes, areas, log);
+                ITBdoSetExtensions.Update(this, setItem, updateModes, areas, log);
             }
         }
     }

@@ -16,7 +16,7 @@ namespace BindOpen.Data.Meta
             UpdateModes[] updateModes = null,
             IBdoLog log = null)
         {
-            TBdoSetExtensions.Update(this, refSet, updateModes, areas, log);
+            ITBdoSetExtensions.Update(this, refSet, updateModes, areas, log);
         }
     }
 }

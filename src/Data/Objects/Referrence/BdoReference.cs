@@ -61,6 +61,15 @@ namespace BindOpen.Data
             return reference?.ToString();
         }
 
+        /// <summary>
+        /// Converts from string.
+        /// </summary>
+        /// <param key="st">The string to consider.</param>
+        public static explicit operator BdoReference(BdoExpression exp)
+        {
+            return BdoData.NewRef(exp);
+        }
+
         #endregion
 
         // ------------------------------------------

@@ -15,7 +15,7 @@ namespace BindOpen.Data
             this ITParent<T> parent,
             Predicate<T> filter = null,
             bool isRecursive = false)
-            where T : class, IReferenced
+            where T : IReferenced
         {
             var children = new List<T>();
 
@@ -41,7 +41,7 @@ namespace BindOpen.Data
             this ITParent<T> parent,
             Predicate<T> filter = null,
             bool isRecursive = false)
-            where T : class, IReferenced
+            where T : IReferenced
         {
             var parentChildren = parent?._Children;
             if (parentChildren != null)
@@ -53,39 +53,39 @@ namespace BindOpen.Data
 
                     if (isRecursive && child is ITParent<T> parentChild)
                     {
-                        var subChild = parentChild?.Child(filter, true);
+                        var subChild = parentChild.Child(filter, true);
                         if (subChild != null) return subChild;
                     }
                 }
             }
 
-            return null;
+            return default;
         }
 
         public static bool HasChild<T>(
             this ITParent<T> parent,
             Predicate<T> filter = null,
             bool isRecursive = false)
-            where T : class, IReferenced
+            where T : IReferenced
             => parent?._Children?.Any(q => filter?.Invoke(q) != false || (isRecursive && q is ITParent<T> parentQ && parentQ.HasChild(filter, true))) == true;
 
 
         public static IEnumerable<T> Children<T>(
             this ITParent<T> parent,
             bool isRecursive)
-            where T : class, IReferenced
+            where T : IReferenced
             => parent == null ? default : parent.Children(null, isRecursive);
 
         public static T FirstChild<T>(
             this ITParent<T> parent)
-            where T : class, IReferenced
+            where T : IReferenced
             => parent == null ? default : parent.Child(null as Predicate<T>, false);
 
         public static T Child<T>(
             this ITParent<T> parent,
             string id,
             bool isRecursive = false)
-            where T : class, IReferenced
+            where T : IReferenced
             => parent == null ? default : parent.Child(q => q.BdoKeyEquals(id), isRecursive);
     }
 }

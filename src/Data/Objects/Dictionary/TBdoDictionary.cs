@@ -236,9 +236,9 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="areas">The areas to consider.</param>
         /// <returns>Returns a cloned instance.</returns>
-        public T Clone<T>() where T : class
+        public T Clone<T>()
         {
-            return Clone() as T;
+            return Clone().As<T>();
         }
 
         #endregion

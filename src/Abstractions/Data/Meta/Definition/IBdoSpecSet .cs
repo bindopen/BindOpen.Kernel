@@ -1,6 +1,4 @@
-﻿using BindOpen.Data;
-
-namespace BindOpen.Data.Meta
+﻿namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// 

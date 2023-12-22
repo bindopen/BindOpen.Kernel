@@ -102,8 +102,8 @@ namespace BindOpen.Scoping
                         spec.UpdateFrom(paramInfo, typeof(BdoParameterAttribute));
                         spec.Index = i;
 
-                        var isStatic = spec.IsFlag(BdoSpecProperties.IsStatic);
-                        var isScriptParameter = spec.IsFlag(BdoSpecProperties.IsScriptParameter);
+                        var isStatic = spec.GetFlagValue(BdoSpecProperties.IsStatic);
+                        var isScriptParameter = spec.GetFlagValue(BdoSpecProperties.IsScriptParameter);
 
                         if (isStatic)
                         {
@@ -111,14 +111,16 @@ namespace BindOpen.Scoping
                             definition.ParentDataType = BdoData.NewDataType(type1);
                         }
 
-                        if (isStatic || isScriptParameter || spec.DataType.IsCompatibleWith(typeof(IBdoScriptDomain)))
+                        if (isStatic || isScriptParameter ||
+                            (spec.DataType?.ValueType != DataValueTypes.Any
+                            && spec.DataType.IsCompatibleWith(typeof(IBdoScriptDomain))))
                         {
-                            definition.AdditionalSpecs ??= BdoData.NewItemSet<IBdoSpec>();
-                            definition.AdditionalSpecs.Add((IBdoSpec)spec);
+                            definition.AdditionalSpecs ??= BdoData.NewItemSet<IBdoBaseSpec>();
+                            definition.AdditionalSpecs.Insert(spec);
                         }
                         else
                         {
-                            definition.Add(spec);
+                            definition.Insert(spec);
                         }
 
                         i++;
@@ -132,13 +134,13 @@ namespace BindOpen.Scoping
                         var type1 = methodInfo.GetParameters()[0].ParameterType;
                         definition.ParentDataType = BdoData.NewDataType(type1);
 
-                        var spec = definition.FirstOrDefault().AsFlag(BdoSpecProperties.IsStatic);
+                        var spec = definition.FirstOrDefault().SetFlagValue(BdoSpecProperties.IsStatic);
                         if (definition.AdditionalSpecs?[0]?.Index != 0)
                         {
                             definition.Remove(spec?.Key());
                         }
-                        definition.AdditionalSpecs ??= BdoData.NewItemSet<IBdoSpec>();
-                        definition.AdditionalSpecs.Add(spec);
+                        definition.AdditionalSpecs ??= BdoData.NewItemSet<IBdoBaseSpec>();
+                        definition.AdditionalSpecs.Insert(spec);
                     }
 
                     definition.OutputDataType = BdoData.NewDataType(methodInfo.ReturnType);

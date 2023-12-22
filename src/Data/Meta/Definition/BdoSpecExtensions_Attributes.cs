@@ -152,7 +152,7 @@ namespace BindOpen.Data.Meta
                         change |= spec.UpdateFrom((BdoPropertyAttribute)att);
                     }
 
-                    spec.AsFlag(
+                    spec.SetFlagValue(
                         BdoSpecProperties.IsScriptParameter,
                         info.GetCustomAttributes(typeof(BdoScriptParameterAttribute)).Any());
                 }
