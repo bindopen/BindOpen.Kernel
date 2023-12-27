@@ -17,7 +17,7 @@ namespace BindOpen.Scoping.Tasks
         /// <summary>
         /// The output specifications.
         /// </summary>
-        ITBdoSet<IBdoSpec> OutputSpecs { get; set; }
+        ITBdoSet<IBdoNodeSpec> OutputSpecs { get; set; }
 
         /// <summary>
         /// The maximum index.

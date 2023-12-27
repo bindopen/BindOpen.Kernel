@@ -3,8 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoSpecified
+    public interface IBdoNodeSpec : ITBdoNodeSpec<IBdoNodeSpec>
     {
-        IBdoNodeSpec Spec { get; set; }
     }
 }

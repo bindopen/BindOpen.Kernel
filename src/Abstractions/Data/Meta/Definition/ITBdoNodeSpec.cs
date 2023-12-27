@@ -3,8 +3,8 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoSpecified
+    public interface ITBdoNodeSpec<T> : IBdoSpec, ITTreeNode<T>
+        where T : IBdoSpec
     {
-        IBdoNodeSpec Spec { get; set; }
     }
 }

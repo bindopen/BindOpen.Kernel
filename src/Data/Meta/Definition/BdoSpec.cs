@@ -3,7 +3,7 @@
     /// <summary>
     /// This class represents a specification.
     /// </summary>
-    public class BdoSpec : TBdoSpec<IBdoSpec>, IBdoSpec
+    public class BdoSpec : TBdoSpec<IBdoNodeSpec>, IBdoNodeSpec
     {
         // --------------------------------------------------
         // CONSTRUCTORS

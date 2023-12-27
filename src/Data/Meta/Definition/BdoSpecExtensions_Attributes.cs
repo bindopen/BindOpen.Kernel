@@ -11,7 +11,7 @@ namespace BindOpen.Data.Meta
     public static partial class BdoSpecExtensions
     {
         public static bool UpdateFrom(
-            this IBdoSpec spec,
+            this IBdoNodeSpec spec,
             BdoPropertyAttribute att)
         {
             var change = false;
@@ -102,7 +102,7 @@ namespace BindOpen.Data.Meta
         }
 
         public static bool UpdateFrom<TAtt>(
-            this IBdoSpec spec,
+            this IBdoNodeSpec spec,
             PropertyInfo info)
             where TAtt : Attribute
         {
@@ -110,7 +110,7 @@ namespace BindOpen.Data.Meta
         }
 
         public static bool UpdateFrom(
-            this IBdoSpec spec,
+            this IBdoNodeSpec spec,
             PropertyInfo info,
             Type attributeType)
         {
@@ -136,8 +136,8 @@ namespace BindOpen.Data.Meta
             return change;
         }
 
-        public static IBdoSpec UpdateFrom(
-            this IBdoSpec spec,
+        public static IBdoNodeSpec UpdateFrom(
+            this IBdoNodeSpec spec,
             ParameterInfo info,
             Type attributeType)
         {

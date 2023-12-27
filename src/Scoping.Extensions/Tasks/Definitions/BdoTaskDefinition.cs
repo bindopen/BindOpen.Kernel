@@ -35,7 +35,7 @@ namespace BindOpen.Scoping.Tasks
         /// <summary>
         /// Output specification of this instance.
         /// </summary>
-        public ITBdoSet<IBdoSpec> OutputSpecs { get; set; }
+        public ITBdoSet<IBdoNodeSpec> OutputSpecs { get; set; }
 
         /// <summary>
         /// The runtime type of this instance.

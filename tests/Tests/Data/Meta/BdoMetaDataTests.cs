@@ -9,7 +9,7 @@ namespace BindOpen.Data.Meta
     public class BdoMetaDataTests
     {
         private object _obj = null;
-        private IBdoSpec _spec = null;
+        private IBdoNodeSpec _spec = null;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()

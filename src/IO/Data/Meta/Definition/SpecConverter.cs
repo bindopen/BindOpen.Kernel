@@ -20,7 +20,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static SpecDto ToDto(this IBdoSpec poco)
+        public static SpecDto ToDto(this IBdoNodeSpec poco)
         {
             if (poco == null) return null;
 
@@ -49,7 +49,7 @@ namespace BindOpen.Data.Meta
             dto.Children = poco?._Children?.Select(q => q.ToDto()).ToList();
 
             dto.ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDto() : null;
-            dto.Rules = poco?.Items == null ? null : poco.Items.Select(q => q.ToDto()).ToList();
+            dto.Rules = poco?.RuleSet == null ? null : poco?.RuleSet.Select(q => q.ToDto()).ToList();
             dto.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
 
             dto.MaxDataItemNumber = (int?)(poco?.MaxDataItemNumber == -1 ? null : poco?.MaxDataItemNumber);
@@ -68,7 +68,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
         /// <returns>The poco object.</returns>
-        public static IBdoSpec ToPoco(
+        public static IBdoNodeSpec ToPoco(
             this SpecDto dto)
         {
             if (dto == null) return null;
@@ -104,7 +104,7 @@ namespace BindOpen.Data.Meta
                 ValueType = dto.ValueType
             };
 
-            poco.With(dto?.Rules == null ? null : dto.Rules.Select(q => q.ToPoco()).ToArray());
+            poco.WithRules(dto?.Rules == null ? null : dto.Rules.Select(q => q.ToPoco()).ToArray());
 
             poco
                 .WithTitle(dto.Title.ToPoco<string>())

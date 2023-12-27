@@ -7,20 +7,20 @@ namespace BindOpen.Scoping.Script
     /// </summary>
     public static partial class BdoScript
     {
-        public static TBdoScriptword<IBdoSpec> _Parent(this TBdoScriptword<IBdoSpec> spec)
-            => spec.Var<IBdoSpec>("parent");
+        public static TBdoScriptword<IBdoNodeSpec> _Parent(this TBdoScriptword<IBdoNodeSpec> spec)
+            => spec.Var<IBdoNodeSpec>("parent");
 
-        public static TBdoScriptword<string> _Name(this TBdoScriptword<IBdoSpec> spec)
+        public static TBdoScriptword<string> _Name(this TBdoScriptword<IBdoNodeSpec> spec)
             => spec.Var<string>("name");
 
-        public static TBdoScriptword<bool> Value(this TBdoScriptword<IBdoSpec> spec)
+        public static TBdoScriptword<bool> Value(this TBdoScriptword<IBdoNodeSpec> spec)
             => spec.Func<bool>("value");
 
-        public static TBdoScriptword<bool> _Has(this TBdoScriptword<IBdoSpec> spec, string name)
+        public static TBdoScriptword<bool> _Has(this TBdoScriptword<IBdoNodeSpec> spec, string name)
             => spec.Func<bool>("has", name);
 
-        public static TBdoScriptword<IBdoSpec> _Descendant(this TBdoScriptword<IBdoSpec> spec, params object[] tokens)
-            => spec.Func<IBdoSpec>("descendant", tokens);
+        public static TBdoScriptword<IBdoNodeSpec> _Descendant(this TBdoScriptword<IBdoNodeSpec> spec, params object[] tokens)
+            => spec.Func<IBdoNodeSpec>("descendant", tokens);
 
         ///// <summary>
         ///// Returns the item TItem of this instance.

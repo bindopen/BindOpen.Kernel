@@ -8,7 +8,7 @@ namespace BindOpen.Data.Meta
     /// </summary>
     public interface ITBdoDataValidator<TSpecified, TSpec> : IBdoScoped
         where TSpecified : IBdoSpecified, IReferenced
-        where TSpec : IBdoSpec
+        where TSpec : IBdoNodeSpec
     {
         /// <summary>
         /// Checks the specified meta data.

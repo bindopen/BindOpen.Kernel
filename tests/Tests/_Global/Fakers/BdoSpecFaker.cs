@@ -9,7 +9,7 @@ namespace BindOpen.Kernel.Tests
     {
         public static readonly string XmlFilePath = SystemData.WorkingFolder + "Spec.xml";
 
-        public static IBdoSpec CreateSpecWithReference()
+        public static IBdoNodeSpec CreateSpecWithReference()
         {
             var spec = BdoData.NewSpec<BdoSpec>()
                 .WithReference(BdoData.NewRef(BdoScript.Eq(1, 0)));
@@ -17,7 +17,7 @@ namespace BindOpen.Kernel.Tests
             return spec;
         }
 
-        public static IBdoSpec CreateSpec()
+        public static IBdoNodeSpec CreateSpec()
         {
             var spec = BdoData.NewSpec<BdoSpec>()
                 .WithCondition((BdoExpression)BdoScript.Eq(BdoScript.This<IBdoMetaData>()._Descendant("title")._Value(), "myTitle"))
@@ -27,7 +27,7 @@ namespace BindOpen.Kernel.Tests
                     BdoData.NewSpec<BdoSpec>()
                         .WithCondition((BdoExpression)BdoScript.Eq(BdoScript.This<IBdoMetaData>()._Descendant("description")._Value(), "myDescription"))
                 )
-                .With(
+                .WithRules(
                     BdoData.NewRequirement(BdoMetaDataProperties.Property("title"), "myTitle")
                 )
                 .AsRequired((BdoCondition)BdoScript.This<IBdoMetaData>()._Has("title"))

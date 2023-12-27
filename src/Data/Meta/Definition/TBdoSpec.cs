@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Assemblies;
-using BindOpen.Data.Conditions;
+﻿using BindOpen.Data.Conditions;
 using BindOpen.Data.Helpers;
 using BindOpen.Logging;
 using BindOpen.Scoping;
@@ -12,8 +11,8 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    public partial class TBdoSpec<T> : TBdoSet<IBdoSpecRule>, ITBdoSpec<T>
-        where T : IBdoBaseSpec
+    public partial class TBdoSpec<T> : TBdoSet<IBdoSpec>, ITBdoNodeSpec<T>
+        where T : IBdoSpec
     {
         // --------------------------------------------------
         // CONSTANTS
@@ -65,7 +64,7 @@ namespace BindOpen.Data.Meta
             var child = BdoData.NewSpec<Q>();
             updater?.Invoke(child);
 
-            if (child is ITBdoSpec<T> specChild)
+            if (child is ITBdoNodeSpec<T> specChild)
             {
                 specChild.WithParent(this.As<T>());
             }
@@ -81,7 +80,7 @@ namespace BindOpen.Data.Meta
             {
                 foreach (var child in _children)
                 {
-                    if (child is ITBdoSpec<T> specChild)
+                    if (child is ITBdoNodeSpec<T> specChild)
                     {
                         specChild.RemoveChildren(filter, true);
                     }
@@ -96,6 +95,11 @@ namespace BindOpen.Data.Meta
         // --------------------------------------------------
 
         #region IBdoSpec
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ITBdoGroupsOf<IBdoSpecRule> RuleSet { get; set; }
 
         /// <summary>
         /// The identifier of the group of this instance.
@@ -207,30 +211,6 @@ namespace BindOpen.Data.Meta
 
         #endregion
 
-        // ------------------------------------------
-        // IGroup Implementation
-        // ------------------------------------------
-
-        #region IGroup
-
-        public void RemoveOfGroup(string groupId, bool isRecursive = false)
-        {
-            Remove(q => q.OfGroup(groupId));
-
-            if (isRecursive && _children?.Any() == true)
-            {
-                foreach (var child in _children)
-                {
-                    if (child is ITBdoSpec<T> specChild)
-                    {
-                        specChild.RemoveOfGroup(groupId, true);
-                    }
-                }
-            }
-        }
-
-        #endregion
-
         // --------------------------------------------------
         // IBdoSpec Implementation
         // --------------------------------------------------
@@ -277,9 +257,11 @@ namespace BindOpen.Data.Meta
         /// </summary>
         public bool IsValueList => MaxDataItemNumber == null || MaxDataItemNumber > 1;
 
-        public IBdoSpecRule Get(string groupId, BdoSpecRuleKinds ruleKind, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
+        public IBdoSpecRule GetRule(string groupId, BdoSpecRuleKinds ruleKind, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
         {
-            var rules = this.Where(q => q.OfGroup(groupId) && (ruleKind == BdoSpecRuleKinds.Any || q.Kind == ruleKind));
+            var rules = RuleSet?.Where(q => q.OfGroup(groupId) && (ruleKind == BdoSpecRuleKinds.Any || q.Kind == ruleKind));
+
+            if (rules == null) return null;
 
             foreach (var rule in rules)
             {
@@ -292,9 +274,9 @@ namespace BindOpen.Data.Meta
             return rules.FirstOrDefault(q => q.Condition == null);
         }
 
-        public object GetValue(string groupId, BdoSpecRuleKinds ruleKind, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
+        public object GetRuleValue(string groupId, BdoSpecRuleKinds ruleKind, IBdoScope scope = null, IBdoMetaSet varSet = null, IBdoLog log = null)
         {
-            var rule = Get(groupId, ruleKind, scope, varSet, log);
+            var rule = GetRule(groupId, ruleKind, scope, varSet, log);
 
             return rule?.Value;
         }

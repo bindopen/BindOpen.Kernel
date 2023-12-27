@@ -13,46 +13,46 @@ namespace BindOpen.Data.Meta
     {
         // Get
 
-        public static ITBdoSet<IBdoSpec> Properties(this ITBdoSet<IBdoSpec> set)
+        public static ITBdoSet<IBdoNodeSpec> Properties(this ITBdoSet<IBdoNodeSpec> set)
             => BdoData.NewItemSet(set?.Where(q => q.IsProperty())?.ToArray());
 
-        public static ITBdoSet<IBdoSpec> Inputs(this ITBdoSet<IBdoSpec> set)
+        public static ITBdoSet<IBdoNodeSpec> Inputs(this ITBdoSet<IBdoNodeSpec> set)
             => BdoData.NewItemSet(set?.Where(q => q.IsInput())?.ToArray());
 
-        public static ITBdoSet<IBdoSpec> Outputs(this ITBdoSet<IBdoSpec> set)
+        public static ITBdoSet<IBdoNodeSpec> Outputs(this ITBdoSet<IBdoNodeSpec> set)
             => BdoData.NewItemSet(set?.Where(q => q.IsOutput())?.ToArray());
 
         // Is
 
-        public static bool IsProperty(this IBdoSpec spec)
+        public static bool IsProperty(this IBdoNodeSpec spec)
             => spec.OfGroup(null);
 
-        public static bool IsInput(this IBdoSpec spec)
+        public static bool IsInput(this IBdoNodeSpec spec)
             => spec.OfGroup(IBdoTaskExtensions.__Token_Input);
 
-        public static bool IsOutput(this IBdoSpec spec)
+        public static bool IsOutput(this IBdoNodeSpec spec)
             => spec.OfGroup(IBdoTaskExtensions.__Token_Output);
 
         // As
 
-        public static IBdoSpec AsProperty(
-            this IBdoSpec spec)
+        public static IBdoNodeSpec AsProperty(
+            this IBdoNodeSpec spec)
         {
             spec?.WithGroupId(null);
 
             return spec;
         }
 
-        public static IBdoSpec AsInput(
-            this IBdoSpec spec)
+        public static IBdoNodeSpec AsInput(
+            this IBdoNodeSpec spec)
         {
             spec?.WithGroupId(IBdoTaskExtensions.__Token_Input);
 
             return spec;
         }
 
-        public static IBdoSpec AsOutput(
-            this IBdoSpec spec)
+        public static IBdoNodeSpec AsOutput(
+            this IBdoNodeSpec spec)
         {
             spec?.WithGroupId(IBdoTaskExtensions.__Token_Output);
 
@@ -63,8 +63,8 @@ namespace BindOpen.Data.Meta
 
         public static T WithProperties<T>(
             this T set,
-            params IBdoSpec[] props)
-            where T : IBdoSpec
+            params IBdoNodeSpec[] props)
+            where T : IBdoNodeSpec
         {
             if (set != null)
             {
@@ -83,7 +83,7 @@ namespace BindOpen.Data.Meta
         public static T WithProperties<T>(
             this T set,
             params (string Name, DataValueTypes ValueType)[] pairs)
-            where T : IBdoSpec
+            where T : IBdoNodeSpec
         {
             set?.WithProperties(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType)).ToArray());
 
@@ -97,7 +97,7 @@ namespace BindOpen.Data.Meta
         public static T WithProperties<T>(
             this T set,
             params KeyValuePair<string, DataValueTypes>[] pairs)
-            where T : IBdoSpec
+            where T : IBdoNodeSpec
         {
             set?.WithProperties(pairs?.Select(q => BdoData.NewSpec(q.Key, q.Value)).ToArray());
 
@@ -112,7 +112,7 @@ namespace BindOpen.Data.Meta
         public static T WithProperties<T>(
             this T set,
             params (string Name, DataValueTypes ValueType, object DefaultData)[] pairs)
-            where T : IBdoSpec
+            where T : IBdoNodeSpec
         {
             set?.WithProperties(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType, q.DefaultData)).ToArray());
 
@@ -121,8 +121,8 @@ namespace BindOpen.Data.Meta
 
         public static T AddProperties<T>(
             this T set,
-            params IBdoSpec[] props)
-            where T : IBdoSpec
+            params IBdoNodeSpec[] props)
+            where T : IBdoNodeSpec
         {
             if (set != null)
             {
@@ -141,7 +141,7 @@ namespace BindOpen.Data.Meta
         public static T AddProperties<T>(
             this T set,
             params (string Name, DataValueTypes ValueType)[] pairs)
-            where T : IBdoSpec
+            where T : IBdoNodeSpec
         {
             set?.AddProperties(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType)).ToArray());
 
@@ -155,7 +155,7 @@ namespace BindOpen.Data.Meta
         public static T AddProperties<T>(
             this T set,
             params KeyValuePair<string, DataValueTypes>[] pairs)
-            where T : IBdoSpec
+            where T : IBdoNodeSpec
         {
             set?.AddProperties(pairs?.Select(q => BdoData.NewSpec(q.Key, q.Value)).ToArray());
 
@@ -170,7 +170,7 @@ namespace BindOpen.Data.Meta
         public static T AddProperties<T>(
             this T set,
             params (string Name, DataValueTypes ValueType, object DefaultData)[] pairs)
-            where T : IBdoSpec
+            where T : IBdoNodeSpec
         {
             set?.AddProperties(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType, q.DefaultData)).ToArray());
 
@@ -181,8 +181,8 @@ namespace BindOpen.Data.Meta
 
         public static T WithInputs<T>(
             this T set,
-            params IBdoSpec[] inputs)
-            where T : IBdoSpec
+            params IBdoNodeSpec[] inputs)
+            where T : IBdoNodeSpec
         {
             if (set != null)
             {
@@ -201,7 +201,7 @@ namespace BindOpen.Data.Meta
         public static T WithInputs<T>(
             this T set,
             params (string Name, DataValueTypes ValueType)[] pairs)
-            where T : IBdoSpec
+            where T : IBdoNodeSpec
         {
             set?.WithInputs(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType)).ToArray());
 
@@ -215,7 +215,7 @@ namespace BindOpen.Data.Meta
         public static T WithInputs<T>(
             this T set,
             params KeyValuePair<string, DataValueTypes>[] pairs)
-            where T : IBdoSpec
+            where T : IBdoNodeSpec
         {
             set?.WithInputs(pairs?.Select(q => BdoData.NewSpec(q.Key, q.Value)).ToArray());
 
@@ -230,7 +230,7 @@ namespace BindOpen.Data.Meta
         public static T WithInputs<T>(
             this T set,
             params (string Name, DataValueTypes ValueType, object DefaultData)[] pairs)
-            where T : IBdoSpec
+            where T : IBdoNodeSpec
         {
             set?.WithInputs(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType, q.DefaultData)).ToArray());
 
@@ -239,8 +239,8 @@ namespace BindOpen.Data.Meta
 
         public static T AddInputs<T>(
             this T set,
-            params IBdoSpec[] inputs)
-            where T : IBdoSpec
+            params IBdoNodeSpec[] inputs)
+            where T : IBdoNodeSpec
         {
             if (set != null)
             {
@@ -260,7 +260,7 @@ namespace BindOpen.Data.Meta
         public static T AddInputs<T>(
             this T set,
             params (string Name, DataValueTypes ValueType)[] pairs)
-            where T : IBdoSpec
+            where T : IBdoNodeSpec
         {
             set?.AddInputs(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType)).ToArray());
 
@@ -274,7 +274,7 @@ namespace BindOpen.Data.Meta
         public static T AddInputs<T>(
             this T set,
             params KeyValuePair<string, DataValueTypes>[] pairs)
-            where T : IBdoSpec
+            where T : IBdoNodeSpec
         {
             set?.AddInputs(pairs?.Select(q => BdoData.NewSpec(q.Key, q.Value)).ToArray());
 
@@ -289,7 +289,7 @@ namespace BindOpen.Data.Meta
         public static T AddInputs<T>(
             this T set,
             params (string Name, DataValueTypes ValueType, object DefaultData)[] pairs)
-            where T : IBdoSpec
+            where T : IBdoNodeSpec
         {
             set?.AddInputs(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType, q.DefaultData)).ToArray());
 
@@ -300,8 +300,8 @@ namespace BindOpen.Data.Meta
 
         public static T WithOutputs<T>(
             this T set,
-            params IBdoSpec[] outputs)
-            where T : IBdoSpec
+            params IBdoNodeSpec[] outputs)
+            where T : IBdoNodeSpec
         {
             if (set != null)
             {
@@ -320,7 +320,7 @@ namespace BindOpen.Data.Meta
         public static T WithOutputs<T>(
             this T set,
             params (string Name, DataValueTypes ValueType)[] pairs)
-            where T : IBdoSpec
+            where T : IBdoNodeSpec
         {
             set?.WithOutputs(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType)).ToArray());
 
@@ -334,7 +334,7 @@ namespace BindOpen.Data.Meta
         public static T WithOutputs<T>(
             this T set,
             params KeyValuePair<string, DataValueTypes>[] pairs)
-            where T : IBdoSpec
+            where T : IBdoNodeSpec
         {
             set?.WithOutputs(pairs?.Select(q => BdoData.NewSpec(q.Key, q.Value)).ToArray());
 
@@ -349,7 +349,7 @@ namespace BindOpen.Data.Meta
         public static T WithOutputs<T>(
             this T set,
             params (string Name, DataValueTypes ValueType, object DefaultData)[] pairs)
-            where T : IBdoSpec
+            where T : IBdoNodeSpec
         {
             set?.WithOutputs(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType, q.DefaultData)).ToArray());
 
@@ -358,8 +358,8 @@ namespace BindOpen.Data.Meta
 
         public static T AddOutputs<T>(
             this T set,
-            params IBdoSpec[] outputs)
-            where T : IBdoSpec
+            params IBdoNodeSpec[] outputs)
+            where T : IBdoNodeSpec
         {
             if (set != null)
             {
@@ -379,7 +379,7 @@ namespace BindOpen.Data.Meta
         public static T AddOutputs<T>(
             this T set,
             params (string Name, DataValueTypes ValueType)[] pairs)
-            where T : IBdoSpec
+            where T : IBdoNodeSpec
         {
             set?.AddOutputs(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType)).ToArray());
 
@@ -393,7 +393,7 @@ namespace BindOpen.Data.Meta
         public static T AddOutputs<T>(
             this T set,
             params KeyValuePair<string, DataValueTypes>[] pairs)
-            where T : IBdoSpec
+            where T : IBdoNodeSpec
         {
             set?.AddOutputs(pairs?.Select(q => BdoData.NewSpec(q.Key, q.Value)).ToArray());
 
@@ -408,7 +408,7 @@ namespace BindOpen.Data.Meta
         public static T AddOutputs<T>(
             this T set,
             params (string Name, DataValueTypes ValueType, object DefaultData)[] pairs)
-            where T : IBdoSpec
+            where T : IBdoNodeSpec
         {
             set?.AddOutputs(pairs?.Select(q => BdoData.NewSpec(q.Name, q.ValueType, q.DefaultData)).ToArray());
 

@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Assemblies;
-using BindOpen.Data.Conditions;
+﻿using BindOpen.Data.Conditions;
 using BindOpen.Data.Helpers;
 using BindOpen.Logging;
 using BindOpen.Scoping;
@@ -168,7 +167,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Specification of this instance.
         /// </summary>
-        public IBdoSpec Spec { get; set; }
+        public IBdoNodeSpec Spec { get; set; }
 
         /// <summary>
         /// Returns the item object of this instance.
@@ -311,7 +310,7 @@ namespace BindOpen.Data.Meta
                 var localVarSet = BdoData.NewSet(varSet?.ToArray());
                 localVarSet.Add(BdoData.__VarName_This, this);
 
-                var rule = Spec?.Get(groupId, ruleKind, scope, localVarSet, log);
+                var rule = Spec?.GetRule(groupId, ruleKind, scope, localVarSet, log);
 
                 return rule;
             }
