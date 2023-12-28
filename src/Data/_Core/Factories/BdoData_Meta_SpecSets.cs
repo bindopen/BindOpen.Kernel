@@ -29,8 +29,8 @@ namespace BindOpen.Data
         /// <param key="metas">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
         public static BdoSpecSet NewSpecSet(
-        params IBdoSpec[] metas)
-            => NewSpecSet<BdoSpecSet>(null, metas);
+        params IBdoSpec[] specs)
+            => NewSpecSet<BdoSpecSet>(null, specs);
 
         /// <summary>
         /// Defines the parameters of this instance.
@@ -39,8 +39,8 @@ namespace BindOpen.Data
         /// <returns>Return this instance.</returns>
         public static BdoSpecSet NewSpecSet(
             string name,
-        params IBdoSpec[] metas)
-            => NewSpecSet<BdoSpecSet>(name, metas);
+            params IBdoSpec[] specs)
+            => NewSpecSet<BdoSpecSet>(name, specs);
 
         /// <summary>
         /// Defines the parameters of this instance.
@@ -104,9 +104,9 @@ namespace BindOpen.Data
         /// <param key="metas">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
         public static T NewSpecSet<T>(
-            params IBdoSpec[] metas)
+            params IBdoSpec[] specs)
             where T : class, IBdoSpecSet, new()
-            => NewSpecSet<T>(null, metas);
+            => NewSpecSet<T>(null, specs);
 
         /// <summary>
         /// Defines the parameters of this instance.

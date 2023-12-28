@@ -49,7 +49,7 @@ namespace BindOpen.Data.Meta
             dto.Children = poco?._Children?.Select(q => q.ToDto()).ToList();
 
             dto.ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDto() : null;
-            dto.Rules = poco?.Items == null ? null : poco.Items.Select(q => q.ToDto()).ToList();
+            dto.Rules = poco?.RuleSet == null ? null : poco?.RuleSet.Select(q => q.ToDto()).ToList();
             dto.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
 
             dto.MaxDataItemNumber = (int?)(poco?.MaxDataItemNumber == -1 ? null : poco?.MaxDataItemNumber);
@@ -81,7 +81,7 @@ namespace BindOpen.Data.Meta
                     .ForMember(q => q.AvailableDataModes, opt => opt.Ignore())
 
                     .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToPoco()))
-                    .ForMember(q => q.Items, opt => opt.Ignore())
+                    .ForMember(q => q.ItemSet, opt => opt.Ignore())
                     .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToPoco()))
                     .ForMember(q => q.DataType, opt => opt.Ignore())
                     .ForMember(q => q.Description, opt => opt.Ignore())
@@ -104,7 +104,9 @@ namespace BindOpen.Data.Meta
                 ValueType = dto.ValueType
             };
 
-            poco.With(dto?.Rules == null ? null : dto.Rules.Select(q => q.ToPoco()).ToArray());
+            poco.ItemSet = BdoData.NewSpecSet(dto?.Items?.Select(q => q.ToPoco()).ToArray());
+
+            poco.WithRules(dto?.Rules == null ? null : dto.Rules.Select(q => q.ToPoco()).ToArray());
 
             poco
                 .WithTitle(dto.Title.ToPoco<string>())

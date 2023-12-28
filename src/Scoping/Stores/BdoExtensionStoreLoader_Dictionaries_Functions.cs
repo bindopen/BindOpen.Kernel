@@ -115,7 +115,7 @@ namespace BindOpen.Scoping
                             (spec.DataType?.ValueType != DataValueTypes.Any
                             && spec.DataType.IsCompatibleWith(typeof(IBdoScriptDomain))))
                         {
-                            definition.AdditionalSpecs ??= BdoData.NewItemSet<IBdoBaseSpec>();
+                            definition.AdditionalSpecs ??= BdoData.NewItemSet<IBdoSpec>();
                             definition.AdditionalSpecs.Insert(spec);
                         }
                         else
@@ -139,7 +139,7 @@ namespace BindOpen.Scoping
                         {
                             definition.Remove(spec?.Key());
                         }
-                        definition.AdditionalSpecs ??= BdoData.NewItemSet<IBdoBaseSpec>();
+                        definition.AdditionalSpecs ??= BdoData.NewItemSet<IBdoSpec>();
                         definition.AdditionalSpecs.Insert(spec);
                     }
 

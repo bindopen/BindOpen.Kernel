@@ -3,7 +3,7 @@
     /// <summary>
     /// This interface represents a group.
     /// </summary>
-    public interface ITGroupsOf<T> : ITBdoSet<T>
+    public interface ITBdoGroupsOf<T> : ITBdoSet<T>
         where T : IReferenced, IGrouped
     {
         /// <summary>

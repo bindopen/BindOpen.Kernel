@@ -151,7 +151,7 @@ namespace BindOpen.Data.Meta
                 var localVarSet = BdoData.NewSet(varSet?.ToArray());
                 localVarSet.Add(BdoData.__VarName_This, this);
 
-                var rule = Spec?.Get(groupId, ruleKind, scope, localVarSet, log);
+                var rule = Spec?.GetRule(groupId, ruleKind, scope, localVarSet, log);
 
                 return rule;
             }

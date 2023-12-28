@@ -13,7 +13,7 @@ namespace BindOpen.Scoping.Functions
         /// <summary>
         /// 
         /// </summary>
-        ITBdoSet<IBdoBaseSpec> AdditionalSpecs { get; set; }
+        ITBdoSet<IBdoSpec> AdditionalSpecs { get; set; }
 
         /// <summary>
         /// 

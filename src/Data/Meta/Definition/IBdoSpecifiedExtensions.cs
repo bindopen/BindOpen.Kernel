@@ -15,7 +15,7 @@ namespace BindOpen.Data.Meta
             if (obj != null)
             {
                 obj.Spec = BdoData.NewSpec()
-                    .With(rules);
+                    .WithRules(rules);
             }
 
             return obj;
@@ -51,7 +51,7 @@ namespace BindOpen.Data.Meta
             if (obj != null)
             {
                 obj.Spec ??= BdoData.NewSpec();
-                obj.Spec.Add(rule);
+                obj.Spec.GetOrNewRuleSet().Add(rule);
             }
 
             return obj;
