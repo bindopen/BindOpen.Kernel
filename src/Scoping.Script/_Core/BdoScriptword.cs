@@ -46,7 +46,7 @@ namespace BindOpen.Scoping.Script
         /// Converts from string.
         /// </summary>
         /// <param key="st">The string to consider.</param>
-        public static implicit operator BdoCondition(BdoScriptword word)
+        public static explicit operator BdoCondition(BdoScriptword word)
         {
             return BdoData.NewCondition((BdoExpression)word);
         }

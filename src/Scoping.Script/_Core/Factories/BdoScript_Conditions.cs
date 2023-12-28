@@ -1,10 +1,36 @@
-﻿namespace BindOpen.Scoping.Script
+﻿using BindOpen.Data;
+using BindOpen.Data.Conditions;
+using System;
+
+namespace BindOpen.Scoping.Script
 {
     /// <summary>
     /// This static class provides methods to create script elements.
     /// </summary>
     public static partial class BdoScript
     {
+        /// <summary>
+        /// Creates the exp.
+        /// </summary>
+        /// <param key="word">The word of exp to consider.</param>
+        /// <returns>Returns the created exp.</returns>
+        public static BdoCondition NewCondition<T>(Func<TBdoScriptword<T>, IBdoScriptword> func)
+        {
+            var word = func?.Invoke(This<T>());
+
+            return BdoData.NewCondition(BdoData.NewExp(word));
+        }
+
+        public static T WithCondition<T, TThis>(
+            this T obj,
+            Func<TBdoScriptword<TThis>, IBdoScriptword> func)
+            where T : IBdoConditional
+        {
+            var condition = NewCondition(func);
+
+            return obj.WithCondition(condition);
+        }
+
         public static TBdoScriptword<bool> And(
             params object[] parameters)
             => Func<bool>("and", parameters);
