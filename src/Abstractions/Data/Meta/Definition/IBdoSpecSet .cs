@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public partial interface IBdoSpecSet : ITBdoSet<IBdoNodeSpec>, INamed
+    public partial interface IBdoSpecSet : ITBdoSet<IBdoSpec>, INamed
     {
     }
 }

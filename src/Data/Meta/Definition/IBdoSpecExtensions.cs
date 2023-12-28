@@ -19,6 +19,18 @@ namespace BindOpen.Data.Meta
             return spec;
         }
 
+        public static IBdoSpecSet GetOrNewItemSet(this IBdoSpec spec)
+        {
+            return spec.ItemSet ??= BdoData.NewSpecSet();
+        }
+
+        public static T WithItems<T>(this T spec, params IBdoSpec[] items) where T : IBdoSpec
+        {
+            spec?.GetOrNewItemSet().With(items);
+
+            return spec;
+        }
+
         // Requirement
 
         /// <summary>

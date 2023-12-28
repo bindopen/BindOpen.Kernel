@@ -70,7 +70,7 @@ namespace BindOpen.Scoping
                 {
                     var spec = BdoData.NewSpec();
                     spec.UpdateFrom(prop, typeof(BdoOutputAttribute));
-                    definition.OutputSpecs.Add((IBdoNodeSpec)spec);
+                    definition.OutputSpecs.Add((IBdoSpec)spec);
                 }
 
                 // we build the runtime definition

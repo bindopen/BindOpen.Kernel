@@ -70,7 +70,7 @@ namespace BindOpen.Data.Meta.Reflection
                             var hasMetaAttribute = propInfo.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any();
                             if (hasMetaAttribute || !onlyMetaAttributes)
                             {
-                                IBdoNodeSpec spec = BdoData.NewSpec();
+                                IBdoSpec spec = BdoData.NewSpec();
                                 var change = spec.UpdateFrom<BdoPropertyAttribute>(propInfo);
 
                                 var propName = spec.Name ?? propInfo.Name;

@@ -1,7 +1,6 @@
-﻿using BindOpen.Scoping.Script;
-using BindOpen.Kernel.Tests;
+﻿using BindOpen.Kernel.Tests;
+using BindOpen.Scoping.Script;
 using NUnit.Framework;
-using System.Reflection.Emit;
 
 namespace BindOpen.Data.Meta
 {
@@ -9,7 +8,7 @@ namespace BindOpen.Data.Meta
     public class BdoMetaDataTests
     {
         private object _obj = null;
-        private IBdoNodeSpec _spec = null;
+        private IBdoSpec _spec = null;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()

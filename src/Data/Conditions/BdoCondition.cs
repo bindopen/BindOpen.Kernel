@@ -14,11 +14,6 @@
         /// <summary>
         /// The value that expresses that the condition is satisfied.
         /// </summary>
-        public string Id { get; set; }
-
-        /// <summary>
-        /// The value that expresses that the condition is satisfied.
-        /// </summary>
         public IBdoCompositeCondition Parent { get; set; }
 
         /// <summary>
@@ -45,6 +40,19 @@
         protected BdoCondition() : base()
         {
         }
+
+        #endregion
+
+        // ------------------------------------------
+        // IIdentified Implementation
+        // ------------------------------------------
+
+        #region IIdentified
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Id { get; set; }
 
         #endregion
 

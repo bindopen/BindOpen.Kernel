@@ -5,18 +5,18 @@
     /// </summary>
     public static partial class BdoSpecExtensions
     {
-        public static T WithChildren<T>(this T parent, params IBdoNodeSpec[] children)
-            where T : IBdoNodeSpec
+        public static T WithChildren<T>(this T parent, params IBdoSpec[] children)
+            where T : IBdoSpec
         {
-            return parent.WithChildren<T, IBdoNodeSpec>(children);
+            return parent.WithChildren<T, IBdoSpec>(children);
         }
 
-        public static T AddChildren<T>(this T parent, params IBdoNodeSpec[] children) where T : IBdoNodeSpec
+        public static T AddChildren<T>(this T parent, params IBdoSpec[] children) where T : IBdoSpec
         {
-            return parent.AddChildren<T, IBdoNodeSpec>(children);
+            return parent.AddChildren<T, IBdoSpec>(children);
         }
 
-        public static IBdoNodeSpec ToSpec(
+        public static IBdoSpec ToSpec(
             this IBdoMetaData meta,
             string name = null,
             bool onlyMetaAttributes = true)
@@ -26,7 +26,7 @@
             this IBdoMetaData meta,
             string name = null,
             bool onlyMetaAttributes = true)
-            where T : IBdoNodeSpec, new()
+            where T : IBdoSpec, new()
         {
             T spec = default;
 

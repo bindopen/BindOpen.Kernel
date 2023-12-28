@@ -9,7 +9,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data validator.
     /// </summary>
-    public class BdoMetaDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoNodeSpec>
+    public class BdoMetaDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSpec>
     {
         /// <summary>
         /// The scope of this instance.
@@ -35,7 +35,7 @@ namespace BindOpen.Data.Meta
         /// <returns>Returns the check log./returns>
         public virtual bool Check(
             IBdoMetaData meta,
-            IBdoNodeSpec spec,
+            IBdoSpec spec,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
@@ -149,11 +149,11 @@ namespace BindOpen.Data.Meta
 
                 // check the rules
 
-                if (spec.Items != null)
+                if (spec.RuleSet != null)
                 {
                     // we check requirements
 
-                    var groupIds = spec.RuleSet?.Where(q => q.Kind == BdoSpecRuleKinds.Requirement)
+                    var groupIds = spec.RuleSet.Where(q => q.Kind == BdoSpecRuleKinds.Requirement)
                         .OrderBy(q => q.GetIndexValue())
                         .Select(q => q.GroupId).Distinct();
 

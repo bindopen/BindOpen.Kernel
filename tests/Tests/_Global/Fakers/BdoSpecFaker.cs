@@ -9,15 +9,15 @@ namespace BindOpen.Kernel.Tests
     {
         public static readonly string XmlFilePath = SystemData.WorkingFolder + "Spec.xml";
 
-        public static IBdoNodeSpec CreateSpecWithReference()
+        public static IBdoSpec CreateSpecWithReference()
         {
             var spec = BdoData.NewSpec<BdoSpec>()
-                .WithReference(BdoData.NewRef(BdoScript.Eq(1, 0)));
+                .WithReference(BdoScript.Eq(1, 0));
 
             return spec;
         }
 
-        public static IBdoNodeSpec CreateSpec()
+        public static IBdoSpec CreateSpec()
         {
             var spec = BdoData.NewSpec<BdoSpec>()
                 .WithCondition(

@@ -12,7 +12,7 @@ namespace BindOpen.Data.Meta
         private readonly string _filePath_xml = SystemData.WorkingFolder + "Spec.xml";
         private readonly string _filePath_json = SystemData.WorkingFolder + "Spec.json";
 
-        private IBdoNodeSpec _spec;
+        private IBdoSpec _spec;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -21,8 +21,8 @@ namespace BindOpen.Data.Meta
         }
 
         public static bool Equals(
-            IBdoNodeSpec spec1,
-            IBdoNodeSpec spec2)
+            IBdoSpec spec1,
+            IBdoSpec spec2)
         {
             var b = spec1 != null && spec2 != null
                 && spec1.IsDeepEqual(spec2);

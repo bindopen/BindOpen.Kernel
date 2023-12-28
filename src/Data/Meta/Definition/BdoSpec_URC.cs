@@ -7,17 +7,17 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element specification.
     /// </summary>
-    public partial class TBdoSpec<T> : TBdoSet<IBdoSpec>, ITBdoNodeSpec<T>
-        where T : IBdoSpec
+    public partial class BdoSpec : BdoObject, IBdoSpec
     {
-        public override void Update(
+        public void Update(
             object item,
             string[] areas = null,
             UpdateModes[] updateModes = null,
             IBdoLog log = null)
         {
-            if (item is IBdoNodeSpec spec)
+            if (item is IBdoSpec spec)
             {
+                _children = spec?._Children?.Clone<ITBdoSet<IBdoSpec>>();
                 AccessibilityLevel = spec?.AccessibilityLevel ?? AccessibilityLevels.None;
                 Aliases = spec?.Aliases == null ? null : new List<string>(spec?.Aliases);
                 AvailableDataModes = spec?.AvailableDataModes == null ? null : new List<DataMode>(spec?.AvailableDataModes);
@@ -29,6 +29,7 @@ namespace BindOpen.Data.Meta
                 GroupId = spec?.GroupId;
                 Index = spec?.Index;
                 InheritanceLevel = spec?.InheritanceLevel ?? InheritanceLevels.None;
+                ItemSet = spec?.ItemSet?.Clone<BdoSpecSet>();
                 Label = spec?.Label;
                 MinDataItemNumber = spec?.MinDataItemNumber ?? 0;
                 Name = spec?.Name;

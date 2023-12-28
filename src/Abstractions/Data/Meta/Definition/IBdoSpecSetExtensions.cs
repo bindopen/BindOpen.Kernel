@@ -13,13 +13,13 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        public static IBdoNodeSpec Child(
+        public static IBdoSpec Child(
             this IBdoSpecSet specSet,
             IBdoScope scope,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            IBdoNodeSpec spec = null;
+            IBdoSpec spec = null;
 
             if (specSet != null)
             {

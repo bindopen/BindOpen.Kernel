@@ -86,6 +86,115 @@ namespace BindOpen.Data
             where T : IBdoSpec, new()
             => NewSpec<T>(null, type);
 
+        // with children
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="specs">The parameters to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static BdoSpec NewSpec(
+            string name,
+            params IBdoSpec[] specs)
+        {
+            var list = NewSpec<BdoSpec>()
+                .WithChildren(specs)
+                .WithName(name);
+
+            return list;
+        }
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="specs">The parameters to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static BdoSpec NewSpec(
+            params IBdoSpec[] specs)
+            => NewSpec(null, specs);
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="pairs">The pairs to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static BdoSpec NewSpec(
+            string name,
+            params (string Name, DataValueTypes ValueType)[] pairs)
+        {
+            var spec = NewSpec(
+                pairs.Select(q => NewSpec<BdoSpec>(q.Name, q.ValueType)).ToArray())
+                .WithName(name);
+
+            return spec;
+        }
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="pairs">The pairs to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static BdoSpec NewSpec(
+            params (string Name, DataValueTypes ValueType)[] pairs)
+            => NewSpec<BdoSpec>(pairs);
+
+        // Static T creators -------------------------
+        // with children
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="specs">The parameters to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static T NewSpec<T>(
+            string name,
+            params IBdoSpec[] specs)
+            where T : IBdoSpec, new()
+        {
+            var spec = NewSpec<T>()
+                .WithChildren(specs)
+                .WithName(name);
+
+            return spec;
+        }
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="specs">The parameters to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static T NewSpec<T>(
+            params IBdoSpec[] specs)
+            where T : IBdoSpec, new()
+            => NewSpec<T>(null, specs);
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="pairs">The pairs to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static T NewSpec<T>(
+            string name,
+            params (string Name, DataValueTypes ValueType)[] pairs)
+            where T : IBdoSpec, new()
+        {
+            var spec = NewSpec<T>()
+                .WithChildren(pairs.Select(q => NewSpec<BdoSpec>(q.Name, q.ValueType)).Cast<IBdoSpec>().ToArray())
+                .WithName(name);
+
+            return spec;
+        }
+
+        /// <summary>
+        /// Defines the parameters of this instance.
+        /// </summary>
+        /// <param key="pairs">The pairs to consider.</param>
+        /// <returns>Return this instance.</returns>
+        public static T NewSpec<T>(
+            params (string Name, DataValueTypes ValueType)[] pairs)
+            where T : IBdoSpec, new()
+            => NewSpec<T>(null, pairs);
+
         // AsType
 
         /// <summary>
@@ -122,170 +231,6 @@ namespace BindOpen.Data
             return spec;
         }
 
-        // with children
-
-        /// <summary>
-        /// Defines the parameters of this instance.
-        /// </summary>
-        /// <param key="specs">The parameters to consider.</param>
-        /// <returns>Return this instance.</returns>
-        public static BdoSpec NewSpec(
-            string name,
-            params IBdoNodeSpec[] specs)
-        {
-            var list = NewSpec<BdoSpec>()
-                .WithChildren(specs)
-                .WithName(name);
-
-            return list;
-        }
-
-        /// <summary>
-        /// Defines the parameters of this instance.
-        /// </summary>
-        /// <param key="specs">The parameters to consider.</param>
-        /// <returns>Return this instance.</returns>
-        public static BdoSpec NewSpec(
-            params IBdoNodeSpec[] specs)
-            => NewSpec<BdoSpec, IBdoNodeSpec>(specs);
-
-        /// <summary>
-        /// Defines the parameters of this instance.
-        /// </summary>
-        /// <param key="pairs">The pairs to consider.</param>
-        /// <returns>Return this instance.</returns>
-        public static BdoSpec NewSpec(
-            string name,
-            params (string Name, DataValueTypes ValueType)[] pairs)
-        {
-            var spec = NewSpec<BdoSpec, IBdoNodeSpec>(
-                pairs.Select(q => NewSpec<BdoSpec>(q.Name, q.ValueType)).ToArray())
-                .WithName(name);
-
-            return spec;
-        }
-
-        /// <summary>
-        /// Defines the parameters of this instance.
-        /// </summary>
-        /// <param key="pairs">The pairs to consider.</param>
-        /// <returns>Return this instance.</returns>
-        public static BdoSpec NewSpec(
-            params (string Name, DataValueTypes ValueType)[] pairs)
-            => NewSpec<BdoSpec>(pairs);
-
-        // Static T creators -------------------------
-        // with children
-
-        /// <summary>
-        /// Defines the parameters of this instance.
-        /// </summary>
-        /// <param key="specs">The parameters to consider.</param>
-        /// <returns>Return this instance.</returns>
-        public static T NewSpec<T>(
-            string name,
-            params IBdoNodeSpec[] specs)
-            where T : IBdoNodeSpec, new()
-            => NewSpec<T, IBdoNodeSpec>(name, specs);
-
-        /// <summary>
-        /// Defines the parameters of this instance.
-        /// </summary>
-        /// <param key="specs">The parameters to consider.</param>
-        /// <returns>Return this instance.</returns>
-        public static T NewSpec<T>(
-            params IBdoNodeSpec[] specs)
-            where T : IBdoNodeSpec, new()
-            => NewSpec<T>(null, specs);
-
-        /// <summary>
-        /// Defines the parameters of this instance.
-        /// </summary>
-        /// <param key="pairs">The pairs to consider.</param>
-        /// <returns>Return this instance.</returns>
-        public static T NewSpec<T>(
-            string name,
-            params (string Name, DataValueTypes ValueType)[] pairs)
-            where T : IBdoNodeSpec, new()
-        {
-            var spec = NewSpec<T>()
-                .WithChildren(pairs.Select(q => NewSpec<BdoSpec>(q.Name, q.ValueType)).Cast<IBdoNodeSpec>().ToArray())
-                .WithName(name);
-
-            return spec;
-        }
-
-        /// <summary>
-        /// Defines the parameters of this instance.
-        /// </summary>
-        /// <param key="pairs">The pairs to consider.</param>
-        /// <returns>Return this instance.</returns>
-        public static T NewSpec<T>(
-            params (string Name, DataValueTypes ValueType)[] pairs)
-            where T : IBdoNodeSpec, new()
-            => NewSpec<T>(null, pairs);
-
-        // Static TParent, TChild creators -------------------------
-        // with children
-
-        /// <summary>
-        /// Defines the parameters of this instance.
-        /// </summary>
-        /// <param key="specs">The parameters to consider.</param>
-        /// <returns>Return this instance.</returns>
-        public static TParent NewSpec<TParent, TChild>(
-            string name,
-            params TChild[] specs)
-            where TParent : ITBdoNodeSpec<TChild>, new()
-            where TChild : IBdoSpec
-        {
-            var spec = NewSpec<TParent>()
-                .WithChildren(specs.ToArray())
-                .WithName(name);
-
-            return spec;
-        }
-
-        /// <summary>
-        /// Defines the parameters of this instance.
-        /// </summary>
-        /// <param key="specs">The parameters to consider.</param>
-        /// <returns>Return this instance.</returns>
-        public static TParent NewSpec<TParent, TChild>(
-            params TChild[] specs)
-            where TParent : ITBdoNodeSpec<TChild>, new()
-            where TChild : IBdoSpec
-            => NewSpec<TParent, TChild>(null, specs);
-
-        /// <summary>
-        /// Defines the parameters of this instance.
-        /// </summary>
-        /// <param key="pairs">The pairs to consider.</param>
-        /// <returns>Return this instance.</returns>
-        public static TParent NewSpec<TParent, TChild>(
-            string name,
-            params (string Name, DataValueTypes ValueType)[] pairs)
-            where TParent : ITBdoNodeSpec<TChild>, new()
-            where TChild : IBdoSpec, new()
-        {
-            var spec = NewSpec<TParent, TChild>(
-                pairs.Select(q => NewSpec<TChild>(q.Name, q.ValueType)).ToArray())
-                .WithName(name);
-
-            return spec;
-        }
-
-        /// <summary>
-        /// Defines the parameters of this instance.
-        /// </summary>
-        /// <param key="pairs">The pairs to consider.</param>
-        /// <returns>Return this instance.</returns>
-        public static TParent NewSpec<TParent, TChild>(
-            params (string Name, DataValueTypes ValueType)[] pairs)
-            where TParent : ITBdoNodeSpec<TChild>, new()
-            where TChild : IBdoSpec, new()
-            => NewSpec<TParent, TChild>(null, pairs);
-
         // From
 
         /// <summary>
@@ -296,7 +241,7 @@ namespace BindOpen.Data
         public static Q NewSpecFrom<T, Q>(
             string name = null,
             bool onlyMetaAttributes = true)
-            where Q : IBdoNodeSpec, new()
+            where Q : IBdoSpec, new()
             => typeof(T).ToSpec<Q>(name, onlyMetaAttributes);
 
         /// <summary>
@@ -304,7 +249,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static IBdoNodeSpec NewSpecFrom<T>(
+        public static IBdoSpec NewSpecFrom<T>(
             string name = null,
             bool onlyMetaAttributes = true)
             => typeof(T).ToSpec(name, onlyMetaAttributes);

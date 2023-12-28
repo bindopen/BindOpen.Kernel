@@ -14,7 +14,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="items">The items to consider.</param>
         public static BdoDefinition NewDefinition(
-            params IBdoNodeSpec[] items)
+            params IBdoSpec[] items)
         {
             var config = NewDefinition<BdoDefinition>(items);
             return config;
@@ -27,7 +27,7 @@ namespace BindOpen.Data
         /// <param key="items">The items to consider.</param>
         public static BdoDefinition NewDefinition(
             string name,
-            params IBdoNodeSpec[] items)
+            params IBdoSpec[] items)
         {
             var config = NewDefinition<BdoDefinition>(name, items);
             return config;
@@ -41,7 +41,7 @@ namespace BindOpen.Data
         public static BdoDefinition NewDefinition(
             string name,
             string[] usingIds,
-            params IBdoNodeSpec[] items)
+            params IBdoSpec[] items)
         {
             var config = NewDefinition<BdoDefinition>(name, usingIds, items);
             return config;
@@ -56,7 +56,7 @@ namespace BindOpen.Data
         /// <param key="items">The items to consider.</param>
         public static T NewDefinition<T>(
             string name,
-            params IBdoNodeSpec[] items)
+            params IBdoSpec[] items)
             where T : IBdoDefinition, new()
             => NewDefinition<T>(name, null as string[], items);
 
@@ -65,7 +65,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="items">The items to consider.</param>
         public static T NewDefinition<T>(
-            params IBdoNodeSpec[] items)
+            params IBdoSpec[] items)
             where T : IBdoDefinition, new()
             => NewDefinition<T>(null as string, null as string[], items);
 
@@ -77,10 +77,10 @@ namespace BindOpen.Data
         public static T NewDefinition<T>(
             string name,
             string[] usingIds,
-            params IBdoNodeSpec[] items)
+            params IBdoSpec[] items)
             where T : IBdoDefinition, new()
         {
-            var config = NewItemSet<T, IBdoNodeSpec>(items)
+            var config = NewItemSet<T, IBdoSpec>(items)
                 .WithName(name)
                 .Using(usingIds);
             return config;

@@ -5,7 +5,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a catalog el that is an el whose els are entities.
     /// </summary>
-    public partial class BdoSpecSet : TBdoSet<IBdoNodeSpec>, IBdoSpecSet
+    public partial class BdoSpecSet : TBdoSet<IBdoSpec>, IBdoSpecSet
     {
         // ------------------------------------------
         // CONVERTERS
@@ -17,7 +17,7 @@ namespace BindOpen.Data.Meta
         /// Converts from data element array.
         /// </summary>
         /// <param key="elems">The elems to consider.</param>
-        public static explicit operator BdoSpecSet(IBdoNodeSpec[] elems)
+        public static explicit operator BdoSpecSet(IBdoSpec[] elems)
         {
             return BdoData.NewSpecSet(elems);
         }
@@ -26,7 +26,7 @@ namespace BindOpen.Data.Meta
         /// Converts from data element array.
         /// </summary>
         /// <param key="elems">The elems to consider.</param>
-        public static explicit operator IBdoNodeSpec[](BdoSpecSet metaSet)
+        public static explicit operator IBdoSpec[](BdoSpecSet metaSet)
         {
             return metaSet?.ToArray();
         }

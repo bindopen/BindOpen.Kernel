@@ -7,7 +7,7 @@
     {
         public static T WithSpec<T>(
             this T obj,
-            IBdoNodeSpec spec)
+            IBdoSpec spec)
             where T : IBdoSpecified
         {
             if (obj != null)

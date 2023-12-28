@@ -5,6 +5,6 @@
     /// </summary>
     public interface IBdoSpecified
     {
-        IBdoNodeSpec Spec { get; set; }
+        IBdoSpec Spec { get; set; }
     }
 }

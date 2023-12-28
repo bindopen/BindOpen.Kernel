@@ -23,7 +23,7 @@ namespace BindOpen.Data.Meta
             var outExpr = (MemberExpression)expr.Body;
             var propInfo = (PropertyInfo)outExpr.Member;
 
-            IBdoNodeSpec spec = BdoData.NewSpec();
+            IBdoSpec spec = BdoData.NewSpec();
             spec.UpdateFrom<BdoPropertyAttribute>(propInfo);
 
             var propName = spec.Name ?? propInfo.Name;
@@ -61,7 +61,7 @@ namespace BindOpen.Data.Meta
             var outExpr = (MemberExpression)expr.Body;
             var propInfo = (PropertyInfo)outExpr.Member;
 
-            IBdoNodeSpec spec = BdoData.NewSpec();
+            IBdoSpec spec = BdoData.NewSpec();
             spec.UpdateFrom<BdoPropertyAttribute>(propInfo);
 
             var propName = spec.Name ?? propInfo.Name;
@@ -97,7 +97,7 @@ namespace BindOpen.Data.Meta
             var outExpr = (MemberExpression)expr.Body;
             var propInfo = (PropertyInfo)outExpr.Member;
 
-            IBdoNodeSpec spec = BdoData.NewSpec();
+            IBdoSpec spec = BdoData.NewSpec();
             spec.UpdateFrom<BdoPropertyAttribute>(propInfo);
 
             var propName = spec.Name ?? propInfo.Name;

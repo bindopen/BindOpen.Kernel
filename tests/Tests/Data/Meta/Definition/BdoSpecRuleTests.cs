@@ -6,7 +6,7 @@ namespace BindOpen.Data.Meta
     [TestFixture, Order(100)]
     public class BdoSpecRuleTests
     {
-        private IBdoNodeSpec _spec;
+        private IBdoSpec _spec;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()

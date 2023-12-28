@@ -20,7 +20,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static SpecDto ToDto(this IBdoNodeSpec poco)
+        public static SpecDto ToDto(this IBdoSpec poco)
         {
             if (poco == null) return null;
 
@@ -68,7 +68,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="dto">The DTO to consider.</param>
         /// <returns>The poco object.</returns>
-        public static IBdoNodeSpec ToPoco(
+        public static IBdoSpec ToPoco(
             this SpecDto dto)
         {
             if (dto == null) return null;
@@ -81,7 +81,7 @@ namespace BindOpen.Data.Meta
                     .ForMember(q => q.AvailableDataModes, opt => opt.Ignore())
 
                     .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToPoco()))
-                    .ForMember(q => q.Items, opt => opt.Ignore())
+                    .ForMember(q => q.ItemSet, opt => opt.Ignore())
                     .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToPoco()))
                     .ForMember(q => q.DataType, opt => opt.Ignore())
                     .ForMember(q => q.Description, opt => opt.Ignore())
@@ -103,6 +103,8 @@ namespace BindOpen.Data.Meta
                 DefinitionUniqueName = dto.DefinitionUniqueName,
                 ValueType = dto.ValueType
             };
+
+            poco.ItemSet = BdoData.NewSpecSet(dto?.Items?.Select(q => q.ToPoco()).ToArray());
 
             poco.WithRules(dto?.Rules == null ? null : dto.Rules.Select(q => q.ToPoco()).ToArray());
 

@@ -167,7 +167,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Specification of this instance.
         /// </summary>
-        public IBdoNodeSpec Spec { get; set; }
+        public IBdoSpec Spec { get; set; }
 
         /// <summary>
         /// Returns the item object of this instance.

@@ -84,7 +84,7 @@ namespace BindOpen.Data.Meta.Reflection
             this Type type,
             string name = null,
             bool onlyMetaAttributes = true)
-            where T : IBdoNodeSpec, new()
+            where T : IBdoSpec, new()
         {
             var obj = AssemblyHelper.CreateInstance(type);
 
@@ -98,7 +98,7 @@ namespace BindOpen.Data.Meta.Reflection
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static IBdoNodeSpec ToSpec(
+        public static IBdoSpec ToSpec(
             this Type type,
             string name = null,
             bool onlyMetaAttributes = true)

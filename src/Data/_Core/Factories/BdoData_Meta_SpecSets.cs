@@ -29,8 +29,8 @@ namespace BindOpen.Data
         /// <param key="metas">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
         public static BdoSpecSet NewSpecSet(
-        params IBdoNodeSpec[] metas)
-            => NewSpecSet<BdoSpecSet>(null, metas);
+        params IBdoSpec[] specs)
+            => NewSpecSet<BdoSpecSet>(null, specs);
 
         /// <summary>
         /// Defines the parameters of this instance.
@@ -39,8 +39,8 @@ namespace BindOpen.Data
         /// <returns>Return this instance.</returns>
         public static BdoSpecSet NewSpecSet(
             string name,
-        params IBdoNodeSpec[] metas)
-            => NewSpecSet<BdoSpecSet>(name, metas);
+            params IBdoSpec[] specs)
+            => NewSpecSet<BdoSpecSet>(name, specs);
 
         /// <summary>
         /// Defines the parameters of this instance.
@@ -69,7 +69,7 @@ namespace BindOpen.Data
         /// <returns>Return this instance.</returns>
         public static T NewSpecSet<T>()
             where T : class, IBdoSpecSet, new()
-            => NewItemSet<T, IBdoNodeSpec>();
+            => NewItemSet<T, IBdoSpec>();
 
         /// <summary>
         /// Defines the parameters of this instance.
@@ -87,7 +87,7 @@ namespace BindOpen.Data
         /// <returns>Return this instance.</returns>
         public static T NewSpecSet<T>(
             string name,
-            params IBdoNodeSpec[] metas)
+            params IBdoSpec[] metas)
             where T : class, IBdoSpecSet, new()
         {
             var list = NewSpecSet<T>();
@@ -104,9 +104,9 @@ namespace BindOpen.Data
         /// <param key="metas">The parameters to consider.</param>
         /// <returns>Return this instance.</returns>
         public static T NewSpecSet<T>(
-            params IBdoNodeSpec[] metas)
+            params IBdoSpec[] specs)
             where T : class, IBdoSpecSet, new()
-            => NewSpecSet<T>(null, metas);
+            => NewSpecSet<T>(null, specs);
 
         /// <summary>
         /// Defines the parameters of this instance.

@@ -47,7 +47,7 @@ namespace BindOpen.Data.Meta
             return meta;
         }
 
-        public static IBdoNodeSpec GetOrAddSpec(this IBdoMetaData meta)
+        public static IBdoSpec GetOrAddSpec(this IBdoMetaData meta)
         {
             if (meta != null)
             {
@@ -144,9 +144,9 @@ namespace BindOpen.Data.Meta
             return null;
         }
 
-        public static IBdoNodeSpec FindChildSpec(
+        public static IBdoSpec FindChildSpec(
             this IBdoMetaData meta,
-            IBdoNodeSpec parent,
+            IBdoSpec parent,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
@@ -176,7 +176,7 @@ namespace BindOpen.Data.Meta
 
         public static T FindChildSpec<T>(
             this IBdoMetaData meta,
-            IBdoNodeSpec parent,
+            IBdoSpec parent,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)

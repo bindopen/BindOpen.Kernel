@@ -15,7 +15,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <returns>The new instance of the NewResultItem class.</returns>
         public static BdoMetaDataValidator CreateValidator(this IBdoScope scope)
-            => scope.CreateValidator<BdoMetaDataValidator, IBdoMetaData, IBdoNodeSpec>();
+            => scope.CreateValidator<BdoMetaDataValidator, IBdoMetaData, IBdoSpec>();
 
         /// <summary>
         /// Instantiates a new instance of the NewResultItem class.
@@ -24,7 +24,7 @@ namespace BindOpen.Data
         public static BdoMetaDataValidator CreateValidator<T, TSpecified, TSpec>(this IBdoScope scope)
             where T : ITBdoDataValidator<TSpecified, TSpec>, new()
             where TSpecified : IBdoSpecified, IReferenced
-            where TSpec : IBdoNodeSpec
+            where TSpec : IBdoSpec
         {
             var result = new BdoMetaDataValidator()
                 .WithScope(scope);
