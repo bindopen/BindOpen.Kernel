@@ -43,6 +43,13 @@ namespace BindOpen.Data.Meta
         public List<SpecDto> Children { get; set; }
 
         /// <summary>
+        /// THe items of this instance.
+        /// </summary>
+        [JsonPropertyName("items")]
+        [XmlElement("item", Type = typeof(SpecDto))]
+        public List<SpecDto> Items { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [JsonIgnore()]

@@ -12,7 +12,7 @@ namespace BindOpen.Kernel.Tests
         public static IBdoSpec CreateSpecWithReference()
         {
             var spec = BdoData.NewSpec<BdoSpec>()
-                .WithReference(BdoData.NewRef(BdoScript.Eq(1, 0)));
+                .WithReference(BdoScript.Eq(1, 0));
 
             return spec;
         }
@@ -20,20 +20,20 @@ namespace BindOpen.Kernel.Tests
         public static IBdoSpec CreateSpec()
         {
             var spec = BdoData.NewSpec<BdoSpec>()
-                .WithCondition((BdoExpression)BdoScript.Eq(BdoScript.This<IBdoMetaData>()._Descendant("title")._Value(), "myTitle"))
-                .WithProperties(BdoData.NewSpec("stringValue", DataValueTypes.Text))
+                .WithCondition(
+                    BdoScript.NewCondition<IBdoMetaData>(q => BdoScript.Eq(BdoScript.This<IBdoMetaData>()._Descendant("title")._Value(), "myTitle")))
                 .WithChildren(
                     BdoData.NewSpec<BdoSpec>("default"),
                     BdoData.NewSpec<BdoSpec>()
                         .WithCondition((BdoExpression)BdoScript.Eq(BdoScript.This<IBdoMetaData>()._Descendant("description")._Value(), "myDescription"))
                 )
-                .With(
+                .WithRules(
                     BdoData.NewRequirement(BdoMetaDataProperties.Property("title"), "myTitle")
                 )
                 .AsRequired((BdoCondition)BdoScript.This<IBdoMetaData>()._Has("title"))
                 .AsOptional()
                 .WithItemRequirement((RequirementLevels.Required,
-                    (BdoCondition)BdoScript.This<IBdoMetaData>()._Descendant("auto")._Value()));
+                    BdoScript.NewCondition<IBdoMetaData>(q => q._Descendant("auto")._Value())));
 
             return spec;
         }

@@ -48,7 +48,7 @@ namespace BindOpen.Data.Meta
 
                 // check requirement
 
-                var requirementLevel = spec.GetValue<RequirementLevels>(
+                var requirementLevel = spec.GetRuleValue<RequirementLevels>(
                     BdoMetaDataProperties.RequirementLevel,
                     BdoSpecRuleKinds.Requirement, Scope, varSet, log);
 
@@ -84,7 +84,7 @@ namespace BindOpen.Data.Meta
 
                 var data = meta?.GetData(Scope, varSet, log);
 
-                var itemRequirementLevel = spec.GetValue<RequirementLevels>(
+                var itemRequirementLevel = spec.GetRuleValue<RequirementLevels>(
                     BdoMetaDataProperties.ItemRequirementLevel,
                     BdoSpecRuleKinds.Requirement, Scope, varSet, log);
 
@@ -149,11 +149,11 @@ namespace BindOpen.Data.Meta
 
                 // check the rules
 
-                if (spec.Items != null)
+                if (spec.RuleSet != null)
                 {
                     // we check requirements
 
-                    var groupIds = spec.Where(q => q.Kind == BdoSpecRuleKinds.Requirement)
+                    var groupIds = spec.RuleSet.Where(q => q.Kind == BdoSpecRuleKinds.Requirement)
                         .OrderBy(q => q.GetIndexValue())
                         .Select(q => q.GroupId).Distinct();
 
@@ -184,7 +184,7 @@ namespace BindOpen.Data.Meta
 
                     // we check constraints
 
-                    var constraints = spec.Where(q => q.Kind == BdoSpecRuleKinds.Constraint);
+                    var constraints = spec.RuleSet?.Where(q => q.Kind == BdoSpecRuleKinds.Constraint);
 
                     foreach (var constraint in constraints)
                     {
@@ -222,7 +222,7 @@ namespace BindOpen.Data.Meta
                     {
                         var requiredSpecs = spec._Children.Where(q =>
                         {
-                            var requirementLevel = q.GetValue<RequirementLevels>(
+                            var requirementLevel = q.GetRuleValue<RequirementLevels>(
                                 BdoMetaDataProperties.RequirementLevel, BdoSpecRuleKinds.Requirement,
                                 Scope, varSet, log);
                             return requirementLevel == RequirementLevels.Required;

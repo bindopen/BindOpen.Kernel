@@ -15,7 +15,7 @@ namespace BindOpen.Scoping.Functions
 
         #region Properties
 
-        public ITBdoSet<IBdoBaseSpec> AdditionalSpecs { get; set; }
+        public ITBdoSet<IBdoSpec> AdditionalSpecs { get; set; }
 
         /// <summary>
         /// 

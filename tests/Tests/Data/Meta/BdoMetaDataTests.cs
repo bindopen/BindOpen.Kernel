@@ -1,7 +1,6 @@
-﻿using BindOpen.Scoping.Script;
-using BindOpen.Kernel.Tests;
+﻿using BindOpen.Kernel.Tests;
+using BindOpen.Scoping.Script;
 using NUnit.Framework;
-using System.Reflection.Emit;
 
 namespace BindOpen.Data.Meta
 {

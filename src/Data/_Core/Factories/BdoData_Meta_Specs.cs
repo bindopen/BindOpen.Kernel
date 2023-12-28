@@ -52,7 +52,7 @@ namespace BindOpen.Data
             string name = null,
             DataValueTypes valueType = DataValueTypes.Any,
             object defaultData = null)
-            where T : IBdoBaseSpec, new()
+            where T : IBdoSpec, new()
         {
             var spec = new T();
             spec.WithName(name)
@@ -65,7 +65,7 @@ namespace BindOpen.Data
         public static T NewSpec<T>(
             string name,
             Type type)
-            where T : IBdoBaseSpec, new()
+            where T : IBdoSpec, new()
         {
             if (type == null) return default;
 
@@ -83,44 +83,8 @@ namespace BindOpen.Data
         /// <param key="type">The value type to consider.</param>
         public static T NewSpec<T>(
             Type type)
-            where T : IBdoBaseSpec, new()
+            where T : IBdoSpec, new()
             => NewSpec<T>(null, type);
-
-        // AsType
-
-        /// <summary>
-        /// Creates a data element of the specified kind.
-        /// </summary>
-        /// <param key="name">The name to consider.</param>
-        /// <param key="type">The value type to consider.</param>
-        public static T AsType<T>(
-            this T spec,
-            Type type)
-            where T : IBdoBaseSpec
-        {
-            if (spec != null)
-            {
-                //if (spec.GetType().IsAssignableFrom(typeof(IBdoObjectSpec)))
-                //{
-                //    var objectSpec = spec as IBdoObjectSpec;
-                //    objectSpec.ClassFilter.AddedValues.Add(spec.GetType().ToString());
-                //}
-
-                if (type.IsArray)
-                {
-                    spec.WithMaxDataItemNumber();
-                }
-                else if (type.IsEnum)
-                {
-                    //spec.Add(
-                    //    NewSpecRule(
-                    //        nameof(BdoMetaSpecRuleGroupIds.ItemMustBeInList),
-                    //        NewCondition("$eq($item, true)"),
-                    //        BdoMetaSpecRuleResultCodes.BadItem));
-                }
-            }
-            return spec;
-        }
 
         // with children
 
@@ -147,7 +111,7 @@ namespace BindOpen.Data
         /// <returns>Return this instance.</returns>
         public static BdoSpec NewSpec(
             params IBdoSpec[] specs)
-            => NewSpec<BdoSpec, IBdoSpec>(specs);
+            => NewSpec(null, specs);
 
         /// <summary>
         /// Defines the parameters of this instance.
@@ -158,7 +122,7 @@ namespace BindOpen.Data
             string name,
             params (string Name, DataValueTypes ValueType)[] pairs)
         {
-            var spec = NewSpec<BdoSpec, IBdoSpec>(
+            var spec = NewSpec(
                 pairs.Select(q => NewSpec<BdoSpec>(q.Name, q.ValueType)).ToArray())
                 .WithName(name);
 
@@ -186,7 +150,13 @@ namespace BindOpen.Data
             string name,
             params IBdoSpec[] specs)
             where T : IBdoSpec, new()
-            => NewSpec<T, IBdoSpec>(name, specs);
+        {
+            var spec = NewSpec<T>()
+                .WithChildren(specs)
+                .WithName(name);
+
+            return spec;
+        }
 
         /// <summary>
         /// Defines the parameters of this instance.
@@ -225,66 +195,41 @@ namespace BindOpen.Data
             where T : IBdoSpec, new()
             => NewSpec<T>(null, pairs);
 
-        // Static TParent, TChild creators -------------------------
-        // with children
+        // AsType
 
         /// <summary>
-        /// Defines the parameters of this instance.
+        /// Creates a data element of the specified kind.
         /// </summary>
-        /// <param key="specs">The parameters to consider.</param>
-        /// <returns>Return this instance.</returns>
-        public static TParent NewSpec<TParent, TChild>(
-            string name,
-            params TChild[] specs)
-            where TParent : ITBdoSpec<TChild>, new()
-            where TChild : IBdoBaseSpec
+        /// <param key="name">The name to consider.</param>
+        /// <param key="type">The value type to consider.</param>
+        public static T AsType<T>(
+            this T spec,
+            Type type)
+            where T : IBdoSpec
         {
-            var spec = NewSpec<TParent>()
-                .WithChildren(specs.ToArray())
-                .WithName(name);
+            if (spec != null)
+            {
+                //if (spec.GetType().IsAssignableFrom(typeof(IBdoObjectSpec)))
+                //{
+                //    var objectSpec = spec as IBdoObjectSpec;
+                //    objectSpec.ClassFilter.AddedValues.Add(spec.GetType().ToString());
+                //}
 
+                if (type.IsArray)
+                {
+                    spec.WithMaxDataItemNumber();
+                }
+                else if (type.IsEnum)
+                {
+                    //spec.Add(
+                    //    NewSpecRule(
+                    //        nameof(BdoMetaSpecRuleGroupIds.ItemMustBeInList),
+                    //        NewCondition("$eq($item, true)"),
+                    //        BdoMetaSpecRuleResultCodes.BadItem));
+                }
+            }
             return spec;
         }
-
-        /// <summary>
-        /// Defines the parameters of this instance.
-        /// </summary>
-        /// <param key="specs">The parameters to consider.</param>
-        /// <returns>Return this instance.</returns>
-        public static TParent NewSpec<TParent, TChild>(
-            params TChild[] specs)
-            where TParent : ITBdoSpec<TChild>, new()
-            where TChild : IBdoBaseSpec
-            => NewSpec<TParent, TChild>(null, specs);
-
-        /// <summary>
-        /// Defines the parameters of this instance.
-        /// </summary>
-        /// <param key="pairs">The pairs to consider.</param>
-        /// <returns>Return this instance.</returns>
-        public static TParent NewSpec<TParent, TChild>(
-            string name,
-            params (string Name, DataValueTypes ValueType)[] pairs)
-            where TParent : ITBdoSpec<TChild>, new()
-            where TChild : IBdoBaseSpec, new()
-        {
-            var spec = NewSpec<TParent, TChild>(
-                pairs.Select(q => NewSpec<TChild>(q.Name, q.ValueType)).ToArray())
-                .WithName(name);
-
-            return spec;
-        }
-
-        /// <summary>
-        /// Defines the parameters of this instance.
-        /// </summary>
-        /// <param key="pairs">The pairs to consider.</param>
-        /// <returns>Return this instance.</returns>
-        public static TParent NewSpec<TParent, TChild>(
-            params (string Name, DataValueTypes ValueType)[] pairs)
-            where TParent : ITBdoSpec<TChild>, new()
-            where TChild : IBdoBaseSpec, new()
-            => NewSpec<TParent, TChild>(null, pairs);
 
         // From
 
