@@ -3,6 +3,7 @@ using BindOpen.Data.Meta;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BindOpen.Data
 {
@@ -116,6 +117,27 @@ namespace BindOpen.Data
             }
 
             return set;
+        }
+
+        /// <summary>
+        /// Executes the specified action if the specified value is true.
+        /// </summary>
+        /// <param key="value">The value to consider.</param>
+        /// <param key="action">The action to consider.</param>
+        public static void Invoke<T>(this T obj, Predicate<T> fun, Action action)
+        {
+            if (fun?.Invoke(obj) == true)
+            {
+                action?.Invoke();
+            }
+        }
+
+        public static async Task InvokeAsync<T>(this T obj, Predicate<T> fun, Func<Task> action)
+        {
+            if (fun?.Invoke(obj) == true)
+            {
+                await action();
+            }
         }
     }
 }
