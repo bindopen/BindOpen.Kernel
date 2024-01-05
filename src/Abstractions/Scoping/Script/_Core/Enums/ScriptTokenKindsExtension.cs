@@ -3,16 +3,16 @@
     /// <summary>
     /// This class represents an specification level extension.
     /// </summary>
-    public static class ScriptItemKindsExtension
+    public static class ScriptTokenKindsExtension
     {
         /// <summary>
         /// Indicates whether the specified element kind is a script word kind.
         /// </summary>
-        /// <param key="scriptItemKind">The kind to consider.</param>
+        /// <param key="scriptElementKind">The kind to consider.</param>
         /// <returns>Returns true if the specified element is a script word kind.</returns>
-        public static bool IsFunctionOrVariable(this ScriptItemKinds scriptItemKind)
+        public static bool IsFunctionOrVariable(this ScriptTokenKinds scriptElementKind)
         {
-            return scriptItemKind == ScriptItemKinds.Function | scriptItemKind == ScriptItemKinds.Variable;
+            return scriptElementKind == ScriptTokenKinds.Function | scriptElementKind == ScriptTokenKinds.Variable;
         }
     }
 }

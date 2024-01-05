@@ -47,7 +47,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         [JsonPropertyName("metakind")]
         [XmlAttribute("metakind")]
-        public MetaDataKind Kind { get; set; }
+        public MetaDataKind MetaKind { get; set; }
 
         // IIndexedDataItem -------------------------------
 

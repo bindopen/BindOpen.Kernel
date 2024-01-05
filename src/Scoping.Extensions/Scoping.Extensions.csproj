@@ -6,7 +6,7 @@
     <PackageId>BindOpen.Kernel.Scoping.Extensions</PackageId>
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
-    <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
+    <Copyright>Copyright ©BindOpen 2011-2024</Copyright>
     <Description>This package defines BindOpen extensions such as connectors, entities functions and tasks.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Scoping</RootNamespace>

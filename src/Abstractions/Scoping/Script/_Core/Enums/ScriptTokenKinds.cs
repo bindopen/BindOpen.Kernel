@@ -6,7 +6,7 @@ namespace BindOpen.Scoping.Script
     /// This enumeration lists the possible kinds of script items.
     /// </summary>
     [Flags]
-    public enum ScriptItemKinds
+    public enum ScriptTokenKinds
     {
         /// <summary>
         /// None.

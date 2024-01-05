@@ -33,7 +33,7 @@ namespace BindOpen.Data.Meta
 
             dto.ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDto() : null;
             dto.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
-            dto.Kind = MetaDataKind.Scalar;
+            dto.MetaKind = MetaDataKind.Scalar;
 
             var dataList = poco.GetDataList<object>()?.Select(q => q.ToString(dto.ValueType)).ToList();
             if (dataList?.Count > 1)

@@ -1,6 +1,4 @@
-﻿using BindOpen.Scoping.Script;
-
-namespace BindOpen.Data
+﻿namespace BindOpen.Data
 {
     /// <summary>
     /// 
@@ -23,7 +21,7 @@ namespace BindOpen.Data
                 exp.Text = text;
                 if (kind != BdoExpressionKind.Any)
                 {
-                    exp.Kind = kind;
+                    exp.ExpressionKind = kind;
                 }
             }
 
@@ -36,7 +34,7 @@ namespace BindOpen.Data
         {
             if (exp != null)
             {
-                exp.Kind = BdoExpressionKind.Script;
+                exp.ExpressionKind = BdoExpressionKind.Script;
             }
 
             return exp;
@@ -49,7 +47,7 @@ namespace BindOpen.Data
         {
             if (exp != null)
             {
-                exp.Kind = BdoExpressionKind.Literal;
+                exp.ExpressionKind = BdoExpressionKind.Literal;
             }
 
             return exp;
@@ -61,25 +59,7 @@ namespace BindOpen.Data
         {
             if (exp != null)
             {
-                exp.Kind = BdoExpressionKind.Auto;
-            }
-
-            return exp;
-        }
-
-        /// <summary>
-        /// Removes the item with the specified name.
-        /// </summary>
-        /// <param key="keys">The keys of the item to remove.</param>
-        public static T WithWord<T>(
-            this T exp,
-            IBdoScriptword word)
-            where T : IBdoExpression
-        {
-            if (exp != null)
-            {
-                exp.Kind = BdoExpressionKind.Word;
-                exp.Word = word;
+                exp.ExpressionKind = BdoExpressionKind.Auto;
             }
 
             return exp;

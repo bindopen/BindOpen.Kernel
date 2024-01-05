@@ -10,7 +10,7 @@ namespace BindOpen.Scoping.Script
         /// <summary>
         /// The kind.
         /// </summary>
-        ScriptItemKinds Kind { get; set; }
+        ScriptTokenKinds Kind { get; set; }
 
     }
 }

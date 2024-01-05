@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Meta;
 using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 

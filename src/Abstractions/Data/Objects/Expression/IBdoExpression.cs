@@ -1,6 +1,4 @@
-﻿using BindOpen.Scoping.Script;
-
-namespace BindOpen.Data
+﻿namespace BindOpen.Data
 {
     /// <summary>
     /// This interface defines a data expression.
@@ -10,12 +8,7 @@ namespace BindOpen.Data
         /// <summary>
         /// The kind.
         /// </summary>
-        BdoExpressionKind Kind { get; set; }
-
-        /// <summary>
-        /// The script word.
-        /// </summary>
-        IBdoScriptword Word { get; set; }
+        BdoExpressionKind ExpressionKind { get; set; }
 
         /// <summary>
         /// The text.
