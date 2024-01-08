@@ -74,7 +74,6 @@ namespace BindOpen.Data.Meta
         /// </summary>
         public BdoSpecRule()
         {
-            this.WithId();
         }
 
         #endregion

@@ -29,7 +29,7 @@ namespace BindOpen.Data.Meta
         /// The kind of this instance.
         /// </summary>
         [JsonPropertyName("kind")]
-        [XmlElement("kind")]
+        [XmlAttribute("kind")]
         public BdoSpecRuleKinds Kind { get; set; }
 
         /// <summary>

@@ -14,7 +14,8 @@
         public static BdoExpression NewExpression(
             string text,
             BdoExpressionKind kind = BdoExpressionKind.Script)
-            => new()
+            => kind == BdoExpressionKind.Word ? null :
+            new()
             {
                 ExpressionKind = kind,
                 Text = text

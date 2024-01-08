@@ -22,7 +22,10 @@ namespace BindOpen.Data
             {
                 Literal = f.Random.Word(),
                 ScriptwordName = "func1",
-                ExpressionKind = f.PickRandom<BdoExpressionKind>()
+                ExpressionKind = f.PickRandom(
+                    BdoExpressionKind.Literal,
+                    BdoExpressionKind.Script,
+                    BdoExpressionKind.Auto)
             };
         }
 
