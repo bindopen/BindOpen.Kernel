@@ -20,7 +20,7 @@ namespace BindOpen.Data.Meta
         [Test, Order(2)]
         public void AggregateSpecTest()
         {
-            Assert.That(_spec._Children?.Count == 2, "Aggregate specification error");
+            Assert.That(_spec._Children?.Count == 3, "Aggregate specification error");
         }
 
         [Test, Order(3)]
@@ -73,8 +73,18 @@ namespace BindOpen.Data.Meta
                     BdoData.NewMeta("auto", true),
                     BdoData.NewMeta("title", "myTitle"));
 
-            var ok = validator.Check(meta1);
-            Assert.That(ok, "Check rules - Error");
+            var ok1 = validator.Check(meta1);
+            Assert.That(ok1, "Check rules - Error");
+
+            var meta2 = BdoData.NewNode("meta-test")
+                .WithSpec(_spec)
+                .With(
+                    BdoData.NewMeta("auto", true),
+                    BdoData.NewMeta("label", true),     // should be forbidden
+                    BdoData.NewMeta("title", "myTitle"));
+
+            var ok2 = validator.Check(meta2);
+            Assert.That(!ok2, "Check rules - Error");
         }
     }
 }

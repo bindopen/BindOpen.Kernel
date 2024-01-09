@@ -1,6 +1,4 @@
 ﻿using BindOpen.Data.Helpers;
-using BindOpen.Data.Meta;
-using System.Text.RegularExpressions;
 
 namespace BindOpen.Data
 {

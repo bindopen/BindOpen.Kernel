@@ -55,7 +55,7 @@ namespace BindOpen.Data.Meta
 
                     var requirementLevel = spec.GetRuleValue<RequirementLevels>(
                         BdoMetaDataProperties.RequirementLevel,
-                        BdoSpecRuleKinds.Requirement, Scope, varSet, log);
+                        BdoSpecRuleKinds.Requirement, Scope, localVarSet, log);
 
                     switch (requirementLevel)
                     {
@@ -87,11 +87,11 @@ namespace BindOpen.Data.Meta
 
                     // check item requirement
 
-                    var data = meta?.GetData(Scope, varSet, log);
+                    var data = meta?.GetData(Scope, localVarSet, log);
 
                     var itemRequirementLevel = spec.GetRuleValue<RequirementLevels>(
                         BdoMetaDataProperties.ItemRequirementLevel,
-                        BdoSpecRuleKinds.Requirement, Scope, varSet, log);
+                        BdoSpecRuleKinds.Requirement, Scope, localVarSet, log);
 
                     switch (itemRequirementLevel)
                     {
@@ -164,7 +164,7 @@ namespace BindOpen.Data.Meta
 
                         foreach (var groupId in groupIds)
                         {
-                            var rule = meta.GetSpecRule(groupId, BdoSpecRuleKinds.Requirement, Scope, varSet, log);
+                            var rule = meta.GetSpecRule(groupId, BdoSpecRuleKinds.Requirement, Scope, localVarSet, log);
 
                             if (rule != null)
                             {
@@ -223,9 +223,43 @@ namespace BindOpen.Data.Meta
                     }
                 }
 
+                // we check the sub specification for requirement
+
+                var metaSet = meta as ITBdoSet<IBdoMetaData>;
+
+                if (spec?._Children != null)
+                {
+                    foreach (var childSpec in spec._Children)
+                    {
+                        localVarSet.Add(BdoData.__VarName_This, childSpec);
+
+                        var requirementLevel = childSpec.GetRuleValue<RequirementLevels>(
+                            BdoMetaDataProperties.RequirementLevel, BdoSpecRuleKinds.Requirement,
+                            Scope, localVarSet, log);
+
+                        switch (requirementLevel)
+                        {
+                            case RequirementLevels.Required:
+                                if (metaSet?.Has(childSpec.Name) != true)
+                                {
+                                    isOk = false;
+                                    log?.AddEvent(EventKinds.Error, "Option '" + spec.Name + "' missing");
+                                }
+                                break;
+                            case RequirementLevels.Forbidden:
+                                if (metaSet?.Has(childSpec.Name) == true)
+                                {
+                                    isOk = false;
+                                    log?.AddEvent(EventKinds.Error, "Option '" + spec.Name + "' missing");
+                                }
+                                break;
+                        }
+                    }
+                }
+
                 // we check sub meta data items
 
-                if (meta is ITBdoSet<IBdoMetaData> metaSet)
+                if (metaSet != null)
                 {
                     // we check the sub meta elements
 
