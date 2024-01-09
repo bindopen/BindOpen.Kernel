@@ -24,7 +24,9 @@ namespace BindOpen.Kernel.Tests
                 .WithChildren(
                     BdoData.NewSpec<BdoSpec>("default"),
                     BdoData.NewSpec<BdoSpec>()
-                        .WithCondition(BdoScript.Eq(BdoScript.This<IBdoMetaData>()._Descendant("description")._Value(), "myDescription"))
+                        .WithCondition(BdoScript.Eq(BdoScript.This<IBdoMetaData>()._Descendant("description")._Value(), "myDescription")),
+                    BdoData.NewSpec<BdoSpec>("label")
+                        .AsForbidden(BdoScript.This<IBdoMetaData>()._Parent()._Has("auto").ToCondition())
                 )
                 .WithRules(
                     BdoData.NewRequirement(BdoMetaDataProperties.Property("title"), "myTitle")
