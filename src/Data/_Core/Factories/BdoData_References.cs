@@ -131,15 +131,8 @@ namespace BindOpen.Data
         {
             var valueType = type.GetValueType();
 
-            if (valueType.IsScalar() || valueType == DataValueTypes.MetaData)
-            {
-                return NewDataType(valueType);
-            }
-            else
-            {
-                return new BdoDataType(Class(type))
-                    .WithValueType(valueType);
-            }
+            return new BdoDataType(Class(type))
+                .WithValueType(valueType);
         }
 
         /// <summary>

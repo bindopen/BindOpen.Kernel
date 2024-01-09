@@ -52,6 +52,11 @@ namespace BindOpen.Scoping.Script
             object obj2)
             => Func<bool>("eq", obj1, obj2);
 
+        public static ITBdoScriptword<bool> InEnum(
+            this object obj1,
+            string typeName)
+            => Func<bool>("inEnum", obj1, typeName);
+
         public static ITBdoScriptword<bool> Ne(
             this object obj1,
             object obj2)

@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// This enumeration represents the meta data kinds.
 /// </summary>
-export enum MetaDataKinds
+export enum BdoMetaDataKinds
 {
     /// <summary>
     /// None.

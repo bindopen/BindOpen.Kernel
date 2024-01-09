@@ -11,36 +11,31 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// None.
         /// </summary>
-        None,
+        None = 0,
 
         /// <summary>
         /// Any.
         /// </summary>
-        Any,
-
-        /// <summary>
-        /// Entity.
-        /// </summary>
-        Entity,
-
-        /// <summary>
-        /// Object.
-        /// </summary>
-        Object,
+        Any = Scalar | Node | Object | Scriptword,
 
         /// <summary>
         /// Scalar.
         /// </summary>
-        Scalar,
+        Scalar = 0x01 << 0,
 
         /// <summary>
-        /// Collection.
+        /// Node.
         /// </summary>
-        Collection,
+        Node = 0x01 << 1,
 
         /// <summary>
-        /// Set.
+        /// Object.
         /// </summary>
-        Set
+        Object = 0x01 << 2,
+
+        /// <summary>
+        /// Scriptword.
+        /// </summary>
+        Scriptword = 0x01 << 3
     }
 }

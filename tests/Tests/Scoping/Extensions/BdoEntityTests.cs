@@ -42,7 +42,7 @@ namespace BindOpen.Scoping.Entities
                 BoolValue = BdoData.NewScalar<bool?>(_testData.boolValue as bool?),
                 EnumValue = (AccessibilityLevels)_testData.enumValue,
                 IntValue = (int)_testData.intValue,
-                StringValue = _testData.stringValue as string,
+                StringValue = _testData.stringValue as string
             };
 
             var config = entity.ToMeta(SystemData.Scope);
