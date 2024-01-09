@@ -39,7 +39,10 @@ namespace BindOpen.Kernel.Tests
                     BdoData.NewScalar("boolValue", data.boolValue as bool?),
                     BdoData.NewScalar("enumValue", data.enumValue as AccessibilityLevels?),
                     BdoData.NewScalar("intValue", data.intValue as int?),
-                    BdoData.NewScalar("stringValue", data.stringValue as string));
+                    BdoData.NewScalar("stringValue", data.stringValue as string),
+                    BdoData.NewNode("inputs",
+                        ("bool1", data.boolValue as bool?),
+                        ("int1", (int)data.intValue)));
 
             return meta;
         }

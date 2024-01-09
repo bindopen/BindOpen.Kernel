@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Conditions;
+using System;
 
 namespace BindOpen.Data.Meta
 {
@@ -183,6 +184,27 @@ namespace BindOpen.Data.Meta
             where T : IBdoSpec
         {
             spec?.AddItemRequirement(RequirementLevels.Forbidden, condition);
+            return spec;
+        }
+
+        public static IBdoSpec MustBeInList<T>(this IBdoSpec spec)
+            where T : struct, IConvertible
+        {
+            return spec.MustBeInList<IBdoSpec, T>();
+        }
+
+        public static TSpec MustBeInList<TSpec, T>(this TSpec spec)
+            where TSpec : IBdoSpec
+            where T : struct, IConvertible
+        {
+            var set = spec.GetOrNewRuleSet();
+            set.RemoveOfGroup(BdoMetaDataProperties.Value);
+            set.Add(
+                BdoData.NewConstraint(
+                    BdoMetaDataProperties.Value,
+                    null,
+                    BdoData.NewCondition(@"$inEnum($(this).value(), '" + typeof(RequirementLevels).AssemblyQualifiedName + @"'"))
+            );
 
             return spec;
         }

@@ -27,7 +27,7 @@ namespace BindOpen.Scoping.Script
         /// <param key="name">The name of the instance.</param>
         /// <param key="index">The index of the instance.</param>
         public ScriptItem(
-            ScriptItemKinds kind,
+            ScriptTokenKinds kind,
             string name,
             int index)
         {
@@ -48,7 +48,7 @@ namespace BindOpen.Scoping.Script
         /// Kind of this instance.
         /// </summary>
         /// <example>Script word, syntax, text...</example>
-        public ScriptItemKinds Kind { get; set; } = ScriptItemKinds.None;
+        public ScriptTokenKinds Kind { get; set; } = ScriptTokenKinds.None;
 
         #endregion
 

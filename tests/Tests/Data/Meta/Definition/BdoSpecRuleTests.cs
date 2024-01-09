@@ -70,5 +70,21 @@ namespace BindOpen.Data.Meta
             var requirementLevel2 = meta2.GetItemRequirementLevel(SystemData.Scope);
             Assert.That(requirementLevel2 == RequirementLevels.Optional, "Statement - Error");
         }
+
+        [Test, Order(4)]
+        public void InEnumTest()
+        {
+            var spec = BdoData.NewSpec();
+
+            var meta0 = BdoData.NewNode("meta-test")
+                .With(
+                    BdoData.NewMeta("level", "RequirementLevels.Optional")
+                        .WithSpec(BdoData.NewSpec().MustBeInList<RequirementLevels>())
+                );
+
+            var validator = SystemData.Scope.CreateValidator();
+            var isChecked = validator.Check(meta0);
+            Assert.That(!isChecked, "Constraint validation failed");
+        }
     }
 }

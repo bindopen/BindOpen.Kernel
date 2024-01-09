@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Conditions;
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
 using System.Linq;
@@ -22,6 +21,7 @@ namespace BindOpen.Scoping.Script
         /// </summary>
         public BdoScriptword() : base()
         {
+            ExpressionKind = BdoExpressionKind.Word;
             this.WithDataType(DataValueTypes.Scriptword);
         }
 
@@ -32,24 +32,6 @@ namespace BindOpen.Scoping.Script
         // -----------------------------------------------
 
         #region Converters
-
-        /// <summary>
-        /// Converts from string.
-        /// </summary>
-        /// <param key="st">The string to consider.</param>
-        public static implicit operator BdoExpression(BdoScriptword word)
-        {
-            return BdoData.NewExp(word);
-        }
-
-        /// <summary>
-        /// Converts from string.
-        /// </summary>
-        /// <param key="st">The string to consider.</param>
-        public static explicit operator BdoCondition(BdoScriptword word)
-        {
-            return BdoData.NewCondition((BdoExpression)word);
-        }
 
         /// <summary>
         /// Converts from word.
@@ -78,14 +60,23 @@ namespace BindOpen.Scoping.Script
         public static string operator +(BdoScriptword word, string st)
             => "{{" + word?.ToString() + "}}" + st;
 
+        #endregion
+
+        // ------------------------------------------
+        // IBdoExpression Implementation
+        // ------------------------------------------
+
+        #region Properties
+
         /// <summary>
-        /// Converts from string.
+        /// The value of this instance.
         /// </summary>
-        /// <param key="st">The string to consider.</param>
-        public static explicit operator BdoReference(BdoScriptword word)
-        {
-            return BdoData.NewRef(word);
-        }
+        public string Text { get; set; }
+
+        /// <summary>
+        /// The kind of this instance.
+        /// </summary>
+        public BdoExpressionKind ExpressionKind { get; set; } = BdoExpressionKind.Auto;
 
         #endregion
 
@@ -99,7 +90,7 @@ namespace BindOpen.Scoping.Script
         /// Kind of this instance.
         /// </summary>
         /// <example>Script word, syntax, text...</example>
-        public ScriptItemKinds Kind { get; set; } = ScriptItemKinds.None;
+        public ScriptTokenKinds TokenKind { get; set; } = ScriptTokenKinds.None;
 
         // Tree ----------------------------------
 
@@ -140,9 +131,9 @@ namespace BindOpen.Scoping.Script
             }
 
             string script;
-            switch (current.Kind)
+            switch (current.TokenKind)
             {
-                case ScriptItemKinds.Function:
+                case ScriptTokenKinds.Function:
                     script = string.Join(", ", current.Select(p => p.ToString(DataValueTypes.Any, true)).ToArray());
                     script = (current.Parent == null ? BdoScriptHelper.Symbol_Fun : "")
                         + current.Name + "(" + script + ")";
@@ -151,7 +142,7 @@ namespace BindOpen.Scoping.Script
                         script = subFunScriptWord?.ToString(false) + "." + script;
                     }
                     return script;
-                case ScriptItemKinds.Variable:
+                case ScriptTokenKinds.Variable:
                     script = (current.Parent == null ? BdoScriptHelper.Symbol_Fun : "")
                         + "('" + current.Name?.Replace("'", "''") + "')";
                     if (current.Parent is BdoScriptword subVarScriptWord)
@@ -159,12 +150,12 @@ namespace BindOpen.Scoping.Script
                         script = subVarScriptWord?.ToString(false) + "." + script;
                     }
                     return script;
-                case ScriptItemKinds.None:
+                case ScriptTokenKinds.None:
                     return string.Empty;
-                case ScriptItemKinds.Text:
-                case ScriptItemKinds.Syntax:
-                case ScriptItemKinds.Literal:
-                case ScriptItemKinds.Any:
+                case ScriptTokenKinds.Text:
+                case ScriptTokenKinds.Syntax:
+                case ScriptTokenKinds.Literal:
+                case ScriptTokenKinds.Any:
                 default:
                     return Name;
             }

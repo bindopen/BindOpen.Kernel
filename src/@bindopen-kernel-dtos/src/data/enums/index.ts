@@ -6,6 +6,7 @@ export * from './BdoCompositeConditionKind';
 export * from './BdoConditionKind';
 export * from './BdoConstraintModes';
 export * from './BdoExpressionKind';
+export * from './BdoItemKinds';
 export * from './BdoReferenceKind';
 export * from './Criticalities';
 export * from './DataAreaKind';

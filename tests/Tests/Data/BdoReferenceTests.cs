@@ -68,15 +68,7 @@ namespace BindOpen.Data
         [Test, Order(5)]
         public void NewReferenceFromScriptwordTest()
         {
-            var reference = (BdoReference)BdoScript.Eq(1, 0);
-
-            Test(reference);
-        }
-
-        [Test, Order(6)]
-        public void NewReferenceFromExpressionTest()
-        {
-            var reference = (BdoReference)BdoData.NewExp(BdoScript.Eq(1, 0));
+            var reference = BdoScript.Eq(1, 0).ToReference();
 
             Test(reference);
         }

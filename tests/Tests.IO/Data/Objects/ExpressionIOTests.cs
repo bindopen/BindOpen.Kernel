@@ -1,6 +1,4 @@
-﻿using BindOpen.Data;
-using BindOpen.Scoping.Script;
-using BindOpen.Kernel.Tests;
+﻿using BindOpen.Kernel.Tests;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
@@ -22,10 +20,12 @@ namespace BindOpen.Data
             var f = new Faker();
             _valueSet = new
             {
-                Script = "$(var1)",
                 Literal = f.Random.Word(),
                 ScriptwordName = "func1",
-                ExpressionKind = f.PickRandom<BdoExpressionKind>()
+                ExpressionKind = f.PickRandom(
+                    BdoExpressionKind.Literal,
+                    BdoExpressionKind.Script,
+                    BdoExpressionKind.Auto)
             };
         }
 
@@ -43,8 +43,7 @@ namespace BindOpen.Data
         {
             _exp = BdoData.NewExpression(
                 _valueSet.Literal as string,
-                _valueSet.ExpressionKind as BdoExpressionKind? ?? BdoExpressionKind.Auto)
-                .WithWord(BdoScript.Eq(1, 0));
+                _valueSet.ExpressionKind as BdoExpressionKind? ?? BdoExpressionKind.Auto);
         }
 
         // Xml

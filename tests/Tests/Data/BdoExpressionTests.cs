@@ -24,7 +24,7 @@ namespace BindOpen.Data
 
         public void Test(IBdoExpression exp)
         {
-            switch (exp.Kind)
+            switch (exp.ExpressionKind)
             {
                 case BdoExpressionKind.Literal:
                     Assert.That(exp.Text == _valueSet.Literal);
@@ -57,8 +57,7 @@ namespace BindOpen.Data
         [Test, Order(3)]
         public void Create3Test()
         {
-            _exp = BdoData.NewExp(
-                BdoScript.Func(_valueSet.ScriptwordName as string));
+            _exp = BdoScript.Func(_valueSet.ScriptwordName as string);
 
             Test(_exp);
         }

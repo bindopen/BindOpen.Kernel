@@ -3,12 +3,12 @@
 import { ReferenceDto } from "../objects/reference/ReferenceDto";
 import { SpecDto } from "./definition/SpecDto";
 import { IBdoTypedDto } from "../assemblies/IBdoTyped";
-import { MetaDataKinds } from "../enums/MetaDataKind";
+import { BdoMetaDataKinds } from "./enums/BdoMetaDataKinds";
 
 export interface MetaDataDto extends IBdoTypedDto {
     id: string;
     parentId: string;
-    metakind: MetaDataKinds;
+    metaKind: BdoMetaDataKinds;
     name: string;
     index?: number;
     reference: ReferenceDto;

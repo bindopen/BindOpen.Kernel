@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
+using System;
 
 namespace BindOpen.Scoping.Script
 {
@@ -13,7 +14,7 @@ namespace BindOpen.Scoping.Script
         {
             var toWord = BdoData.New<T>()
                 .WithName(word?.Name)
-                .WithKind(word?.Kind ?? ScriptItemKinds.None)
+                .WithTokenKind(word?.TokenKind ?? ScriptTokenKinds.None)
                 .WithChild(word?.Child)
                 .WithParent(word?.Parent as IBdoScriptword);
 
@@ -27,14 +28,14 @@ namespace BindOpen.Scoping.Script
 
         // Word
 
-        public static TBdoScriptword<T> NewWord<T>(
-            ScriptItemKinds kind,
+        public static ITBdoScriptword<T> NewWord<T>(
+            ScriptTokenKinds kind,
             string name = null)
             => new TBdoScriptword<T>()
                 .WithName(name)
-                .WithKind(kind);
+                .WithTokenKind(kind);
 
-        public static TBdoScriptword<T> NewWord<T>(
+        public static ITBdoScriptword<T> NewWord<T>(
             IBdoMetaObject meta)
         {
             var word = new TBdoScriptword<T>();
@@ -46,14 +47,14 @@ namespace BindOpen.Scoping.Script
             return word;
         }
 
-        public static BdoScriptword NewWord(
-            ScriptItemKinds kind,
+        public static IBdoScriptword NewWord(
+            ScriptTokenKinds kind,
             string name = null)
             => new BdoScriptword()
                 .WithName(name)
-                .WithKind(kind);
+                .WithTokenKind(kind);
 
-        public static BdoScriptword NewWord(
+        public static IBdoScriptword NewWord(
             IBdoMetaObject meta)
         {
             var word = new BdoScriptword();
@@ -61,6 +62,18 @@ namespace BindOpen.Scoping.Script
             word
                 .WithDataType(BdoExtensionKinds.Scriptword, meta?.DataType?.DefinitionUniqueName)
                 .With(meta.Items?.ToArray());
+
+            return word;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="func"></param>
+        /// <returns></returns>
+        public static IBdoScriptword NewWord<T>(Func<ITBdoScriptword<T>, IBdoScriptword> func)
+        {
+            var word = func?.Invoke(This<T>());
 
             return word;
         }
@@ -72,15 +85,15 @@ namespace BindOpen.Scoping.Script
         /// </summary>
         /// <param key="name"></param>
         /// <returns></returns>
-        public static BdoScriptword Variable(string name)
+        public static IBdoScriptword Variable(string name)
         {
-            var word = NewWord(ScriptItemKinds.Variable)
+            var word = NewWord(ScriptTokenKinds.Variable)
                 .WithName(name);
 
             return word;
         }
 
-        public static BdoScriptword Var(string name)
+        public static IBdoScriptword Var(string name)
             => Variable(name);
 
         /// <summary>
@@ -88,14 +101,14 @@ namespace BindOpen.Scoping.Script
         /// </summary>
         /// <param key="name"></param>
         /// <returns></returns>
-        public static BdoScriptword Variable(
+        public static IBdoScriptword Variable(
             this IBdoScriptword word,
             string name)
         {
             return Variable(name).WithParent(word);
         }
 
-        public static BdoScriptword Var(
+        public static IBdoScriptword Var(
             this IBdoScriptword word,
             string name)
             => word.Variable(name);
@@ -105,15 +118,15 @@ namespace BindOpen.Scoping.Script
         /// </summary>
         /// <param key="name"></param>
         /// <returns></returns>
-        public static TBdoScriptword<T> Variable<T>(string name)
+        public static ITBdoScriptword<T> Variable<T>(string name)
         {
-            var word = NewWord<T>(ScriptItemKinds.Variable)
+            var word = NewWord<T>(ScriptTokenKinds.Variable)
                 .WithName(name);
 
             return word;
         }
 
-        public static TBdoScriptword<T> Var<T>(string name)
+        public static ITBdoScriptword<T> Var<T>(string name)
             => Variable<T>(name);
 
         /// <summary>
@@ -121,14 +134,14 @@ namespace BindOpen.Scoping.Script
         /// </summary>
         /// <param key="name"></param>
         /// <returns></returns>
-        public static TBdoScriptword<T> Variable<T>(
+        public static ITBdoScriptword<T> Variable<T>(
             this IBdoScriptword word,
             string name)
         {
             return Variable<T>(name).WithParent(word);
         }
 
-        public static TBdoScriptword<T> Var<T>(
+        public static ITBdoScriptword<T> Var<T>(
             this IBdoScriptword word,
             string name)
             => word.Variable<T>(name);
@@ -141,11 +154,11 @@ namespace BindOpen.Scoping.Script
         /// <param key="name"></param>
         /// <param key="parameters"></param>
         /// <returns></returns>
-        public static TBdoScriptword<T> Function<T>(
+        public static ITBdoScriptword<T> Function<T>(
             string name,
             params object[] parameters)
         {
-            var word = NewWord<T>(ScriptItemKinds.Function)
+            var word = NewWord<T>(ScriptTokenKinds.Function)
                 .WithName(name);
 
             var index = 0;
@@ -158,11 +171,11 @@ namespace BindOpen.Scoping.Script
             return word;
         }
 
-        public static BdoScriptword Function(
+        public static IBdoScriptword Function(
             string name,
             params object[] parameters)
         {
-            var word = NewWord(ScriptItemKinds.Function)
+            var word = NewWord(ScriptTokenKinds.Function)
                 .WithName(name);
 
             var index = 0;
@@ -175,12 +188,12 @@ namespace BindOpen.Scoping.Script
             return word;
         }
 
-        public static BdoScriptword Func(
+        public static IBdoScriptword Func(
             string name,
             params object[] parameters)
             => Function(name, parameters);
 
-        public static TBdoScriptword<T> Func<T>(
+        public static ITBdoScriptword<T> Func<T>(
             string name,
             params object[] parameters)
             => Function<T>(name, parameters);
@@ -192,7 +205,7 @@ namespace BindOpen.Scoping.Script
         /// <param key="name"></param>
         /// <param key="parameters"></param>
         /// <returns></returns>
-        public static BdoScriptword Function(
+        public static IBdoScriptword Function(
             this IBdoScriptword word,
             string name,
             params object[] parameters)
@@ -200,7 +213,7 @@ namespace BindOpen.Scoping.Script
             return Function(name, parameters).WithParent(word);
         }
 
-        public static BdoScriptword Func(
+        public static IBdoScriptword Func(
             this IBdoScriptword word,
             string name,
             params object[] parameters)
@@ -213,7 +226,7 @@ namespace BindOpen.Scoping.Script
         /// <param key="name"></param>
         /// <param key="parameters"></param>
         /// <returns></returns>
-        public static TBdoScriptword<T> Function<T>(
+        public static ITBdoScriptword<T> Function<T>(
             this IBdoScriptword word,
             string name,
             params object[] parameters)
@@ -221,7 +234,7 @@ namespace BindOpen.Scoping.Script
             return Function<T>(name, parameters).WithParent(word);
         }
 
-        public static TBdoScriptword<T> Func<T>(
+        public static ITBdoScriptword<T> Func<T>(
             this IBdoScriptword word,
             string name,
             params object[] parameters)
@@ -229,10 +242,10 @@ namespace BindOpen.Scoping.Script
 
         // This
 
-        public static TBdoScriptword<T> This<T>()
+        public static ITBdoScriptword<T> This<T>()
             => Var<T>(BdoData.__VarName_This);
 
-        public static TBdoScriptword<T> _Parent<T>()
+        public static ITBdoScriptword<T> _Parent<T>()
             => Var(BdoData.__VarName_This).Var<T>("parent");
 
         /// <summary>

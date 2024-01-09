@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// This enumeration represents the meta data kinds.
 /// </summary>
-export enum MetaDataKinds
+export enum BdoItemKinds
 {
     /// <summary>
     /// None.
@@ -9,27 +9,22 @@ export enum MetaDataKinds
     None = "None",
 
     /// <summary>
-    /// Any.
+    /// Dictionary.
     /// </summary>
-    Any = "Any",
+    Dictionary = "Dictionary",
 
     /// <summary>
-    /// Scalar.
+    /// Expression.
     /// </summary>
-    Scalar = "Scalar",
+    Expression = "Expression",
 
     /// <summary>
-    /// Node.
+    /// Merger.
     /// </summary>
-    Node = "Node",
+    Merger = "Merger",
 
     /// <summary>
-    /// Object.
+    /// Reference.
     /// </summary>
-    Object = "Object",
-    
-    /// <summary>
-    /// Scriptword.
-    /// </summary>
-    Scriptword = "Scriptword"
+    Reference = "Reference"
 }

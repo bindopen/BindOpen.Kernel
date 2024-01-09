@@ -32,7 +32,7 @@ namespace BindOpen.Scoping.Functions
         /// </summary>
         [JsonPropertyName("kind")]
         [XmlElement("kind")]
-        public ScriptItemKinds Kind { get; set; } = ScriptItemKinds.None;
+        public ScriptTokenKinds Kind { get; set; } = ScriptTokenKinds.None;
 
         /// <summary>
         /// The maximum number of parameters of this instance.

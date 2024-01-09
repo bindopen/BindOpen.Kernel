@@ -12,10 +12,11 @@ namespace BindOpen.Data
     [XmlInclude(typeof(MergerDto))]
     [XmlInclude(typeof(ReferenceDto))]
 
-    [JsonDerivedType(typeof(StringDictionaryDto), "dictonary")]
-    [JsonDerivedType(typeof(ExpressionDto), "expression")]
-    [JsonDerivedType(typeof(MergerDto), "merger")]
-    [JsonDerivedType(typeof(ReferenceDto), "reference")]
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "itemKind")]
+    [JsonDerivedType(typeof(StringDictionaryDto), "Dictionary")]
+    [JsonDerivedType(typeof(ExpressionDto), "Expression")]
+    [JsonDerivedType(typeof(MergerDto), "Merger")]
+    [JsonDerivedType(typeof(ReferenceDto), "Reference")]
 
     public class BdoItemDto : IBdoDto
     {

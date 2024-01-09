@@ -6,12 +6,12 @@ namespace BindOpen.Scoping.Script
     /// <summary>
     /// This interface represents a script word.
     /// </summary>
-    public interface IBdoScriptword : IBdoMetaObject, IBdoObjectNotMetable, ITSingleChildParent<IBdoScriptword>
+    public interface IBdoScriptword : IBdoMetaObject, ITSingleChildParent<IBdoScriptword>, IBdoExpression
     {
         /// <summary>
         /// The kind of this instance.
         /// </summary>
-        ScriptItemKinds Kind { get; set; }
+        ScriptTokenKinds TokenKind { get; set; }
 
         /// <summary>
         /// Gets the last script word of this instance considering the specified maximum level.

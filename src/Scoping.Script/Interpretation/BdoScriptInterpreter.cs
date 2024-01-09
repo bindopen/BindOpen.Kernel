@@ -74,7 +74,7 @@ namespace BindOpen.Scoping.Script
             int scriptwordBeginIndex;
 
             var script = exp?.Text ?? string.Empty;
-            switch (exp?.Kind)
+            switch (exp?.ExpressionKind)
             {
                 case BdoExpressionKind.Auto:
                     if (!string.IsNullOrEmpty(script))
@@ -132,7 +132,7 @@ namespace BindOpen.Scoping.Script
                     }
                     break;
                 case BdoExpressionKind.Word:
-                    return Evaluate(exp?.Word, varSet, log);
+                    return Evaluate(exp as IBdoScriptword, varSet, log);
             }
 
             return exp?.Text;
@@ -160,21 +160,20 @@ namespace BindOpen.Scoping.Script
 
             if (word != null)
             {
-                var cloned = BdoScript.NewWord(word.Kind, word.Name)
+                var cloned = BdoScript.NewWord(word.TokenKind, word.Name)
                     .WithDataType(BdoExtensionKinds.Scriptword, word.DataType?.DefinitionUniqueName)
                     .WithParent(parent ?? word.Parent as IBdoScriptword);
 
-                switch (word.Kind)
+                switch (word.TokenKind)
                 {
-                    case ScriptItemKinds.Function:
+                    case ScriptTokenKinds.Function:
                         if (word.Count > 0)
                         {
                             foreach (var paramValue in word)
                             {
                                 if (paramValue is IBdoScriptword scriptwordParam)
                                 {
-                                    var expParam = BdoData.NewExp(scriptwordParam);
-                                    var obj = Evaluate(expParam, varSet, log);
+                                    var obj = Evaluate(scriptwordParam, varSet, log);
 
                                     cloned.InsertData(obj);
                                 }
@@ -324,7 +323,7 @@ namespace BindOpen.Scoping.Script
             IBdoScriptword scriptword = null;
 
             // we retrieve the type of the next script word
-            ScriptItemKinds scriptItemKind = ScriptItemKinds.None;
+            ScriptTokenKinds scriptElementKind = ScriptTokenKinds.None;
             int nextIndex = -1;
 
             script = script.Trim();
@@ -338,13 +337,13 @@ namespace BindOpen.Scoping.Script
             {
                 index += 2;
 
-                scriptItemKind = ScriptItemKinds.Variable;
+                scriptElementKind = ScriptTokenKinds.Variable;
             }
             // else if the next word is a sub function
             else if (parentScriptword != null && script.ToSubstring(index, index) == ".")
             {
                 index++;
-                scriptItemKind = ScriptItemKinds.Function;
+                scriptElementKind = ScriptTokenKinds.Function;
             }
             else
             {
@@ -357,12 +356,12 @@ namespace BindOpen.Scoping.Script
                         script.Substring(nextFuncIndex, 2) == BdoScriptHelper.Symbol_Var)
                     {
                         index = nextFuncIndex + 2;
-                        scriptItemKind = ScriptItemKinds.Variable;
+                        scriptElementKind = ScriptTokenKinds.Variable;
                     }
                     else
                     {
                         index = nextFuncIndex + 1;
-                        scriptItemKind = ScriptItemKinds.Function;
+                        scriptElementKind = ScriptTokenKinds.Function;
                     }
                 }
                 else
@@ -372,11 +371,11 @@ namespace BindOpen.Scoping.Script
             }
 
             // if a next script word has been found then
-            if (scriptItemKind != ScriptItemKinds.None)
+            if (scriptElementKind != ScriptTokenKinds.None)
             {
-                switch (scriptItemKind)
+                switch (scriptElementKind)
                 {
-                    case ScriptItemKinds.Function:
+                    case ScriptTokenKinds.Function:
                         // we look for the next "(" character.
                         nextIndex = script.IndexOfScript("(", index);
                         if (nextIndex >= script.Length)
@@ -392,7 +391,7 @@ namespace BindOpen.Scoping.Script
 
                         // we instantiate the script word
                         scriptword = BdoScript.NewWord(
-                            ScriptItemKinds.Function,
+                            ScriptTokenKinds.Function,
                             script.ToSubstring(index, nextIndex - 1).Trim());
                         index = nextIndex;
 
@@ -452,7 +451,7 @@ namespace BindOpen.Scoping.Script
                             }
                         }
                         break;
-                    case ScriptItemKinds.Variable:
+                    case ScriptTokenKinds.Variable:
                         // we look for the next ")" character.
                         nextIndex = script.IndexOfScript(")", index);
                         if (nextIndex >= script.Length)
@@ -477,7 +476,7 @@ namespace BindOpen.Scoping.Script
                         }
 
                         // we instantiate the script word
-                        scriptword = BdoScript.NewWord(ScriptItemKinds.Variable, varName);
+                        scriptword = BdoScript.NewWord(ScriptTokenKinds.Variable, varName);
                         index = nextIndex;
                         break;
                 }
@@ -522,11 +521,11 @@ namespace BindOpen.Scoping.Script
         {
             if (_scope == null || scriptword == null) return null;
 
-            switch (scriptword.Kind)
+            switch (scriptword.TokenKind)
             {
-                case ScriptItemKinds.Function:
+                case ScriptTokenKinds.Function:
                     return _scope.CallFunction(scriptword, varSet, log);
-                case ScriptItemKinds.Variable:
+                case ScriptTokenKinds.Variable:
                     if (scriptword.Parent == null)
                     {
                         return varSet?.GetData(scriptword?.Name, _scope, varSet, log);

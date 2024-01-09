@@ -9,14 +9,14 @@
         /// 
         /// </summary>
         /// <param key="name"></param>
-        public static T WithKind<T>(
+        public static T WithTokenKind<T>(
             this T word,
-            ScriptItemKinds kind)
+            ScriptTokenKinds kind)
             where T : IBdoScriptword
         {
             if (word != null)
             {
-                word.Kind = kind;
+                word.TokenKind = kind;
             }
 
             return word;

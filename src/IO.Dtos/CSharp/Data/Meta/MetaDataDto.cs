@@ -15,10 +15,11 @@ namespace BindOpen.Data.Meta
     [XmlInclude(typeof(MetaObjectDto))]
     [XmlInclude(typeof(MetaScalarDto))]
     [XmlInclude(typeof(ScriptwordDto))]
-    [JsonDerivedType(typeof(MetaNodeDto), "set")]
-    [JsonDerivedType(typeof(MetaObjectDto), "object")]
-    [JsonDerivedType(typeof(MetaScalarDto), "scalar")]
-    [JsonDerivedType(typeof(ScriptwordDto), "scripword")]
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "metaKind")]
+    [JsonDerivedType(typeof(MetaNodeDto), "Node")]
+    [JsonDerivedType(typeof(MetaObjectDto), "Object")]
+    [JsonDerivedType(typeof(MetaScalarDto), "Scalar")]
+    [JsonDerivedType(typeof(ScriptwordDto), "Scripword")]
     public class MetaDataDto : IBdoDto, IIdentified
     {
         // --------------------------------------------------
@@ -41,13 +42,6 @@ namespace BindOpen.Data.Meta
         [XmlAttribute("name")]
         [DefaultValue(null)]
         public string Name { get; set; }
-
-        /// <summary>
-        /// Kind of this instance.
-        /// </summary>
-        [JsonPropertyName("metakind")]
-        [XmlAttribute("metakind")]
-        public MetaDataKind Kind { get; set; }
 
         // IIndexedDataItem -------------------------------
 

@@ -7,19 +7,19 @@ namespace BindOpen.Scoping.Script
     /// </summary>
     public static partial class BdoScript
     {
-        public static TBdoScriptword<IBdoSpec> _Parent(this TBdoScriptword<IBdoSpec> spec)
+        public static ITBdoScriptword<IBdoSpec> _Parent(this ITBdoScriptword<IBdoSpec> spec)
             => spec.Var<IBdoSpec>("parent");
 
-        public static TBdoScriptword<string> _Name(this TBdoScriptword<IBdoSpec> spec)
+        public static ITBdoScriptword<string> _Name(this ITBdoScriptword<IBdoSpec> spec)
             => spec.Var<string>("name");
 
-        public static TBdoScriptword<bool> Value(this TBdoScriptword<IBdoSpec> spec)
+        public static ITBdoScriptword<bool> Value(this ITBdoScriptword<IBdoSpec> spec)
             => spec.Func<bool>("value");
 
-        public static TBdoScriptword<bool> _Has(this TBdoScriptword<IBdoSpec> spec, string name)
+        public static ITBdoScriptword<bool> _Has(this ITBdoScriptword<IBdoSpec> spec, string name)
             => spec.Func<bool>("has", name);
 
-        public static TBdoScriptword<IBdoSpec> _Descendant(this TBdoScriptword<IBdoSpec> spec, params object[] tokens)
+        public static ITBdoScriptword<IBdoSpec> _Descendant(this ITBdoScriptword<IBdoSpec> spec, params object[] tokens)
             => spec.Func<IBdoSpec>("descendant", tokens);
 
         ///// <summary>

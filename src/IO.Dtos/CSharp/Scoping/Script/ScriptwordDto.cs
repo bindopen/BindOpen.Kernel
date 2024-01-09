@@ -1,4 +1,6 @@
-﻿using BindOpen.Data.Meta;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
+using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -21,9 +23,9 @@ namespace BindOpen.Scoping.Script
         /// The kind of this instance.
         /// </summary>
         /// <example>Script word, syntax, text...</example>
-        [JsonPropertyName("kind")]
-        [XmlAttribute("kind")]
-        public ScriptItemKinds WordKind { get; set; } = ScriptItemKinds.None;
+        [JsonPropertyName("tokenKind")]
+        [XmlAttribute("tokenKind")]
+        public ScriptTokenKinds TokenKind { get; set; } = ScriptTokenKinds.None;
 
         // Tree ----------------------------------
 
@@ -33,6 +35,23 @@ namespace BindOpen.Scoping.Script
         [JsonPropertyName("child")]
         [XmlElement("child")]
         public ScriptwordDto Child { get; set; }
+
+        // Expression
+
+        /// <summary>
+        /// The text of this instance.
+        /// </summary>
+        [JsonPropertyName("text")]
+        [XmlText()]
+        public string Text { get; set; }
+
+        /// <summary>
+        /// The kind of this instance.
+        /// </summary>
+        [JsonPropertyName("kind")]
+        [XmlAttribute("kind")]
+        [DefaultValue(BdoExpressionKind.Auto)]
+        public BdoExpressionKind ExpressionKind { get; set; } = BdoExpressionKind.Auto;
 
         #endregion
 

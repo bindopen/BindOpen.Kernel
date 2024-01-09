@@ -178,14 +178,14 @@ namespace BindOpen.Scoping.Script
                     {
                         // we declare this something as a none-kind script item
                         scriptItemName = script[lastNoneIndex..index];
-                        if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == ScriptItemKinds.None))
+                        if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == ScriptTokenKinds.None))
                         {
                             scriptItems[^1].WithName(scriptItems[^1].Name + scriptItemName);
                         }
                         else
                         {
                             scriptItems.Add(new ScriptItem(
-                               ScriptItemKinds.None,
+                               ScriptTokenKinds.None,
                                scriptItemName,
                                index));
                         }
@@ -214,21 +214,21 @@ namespace BindOpen.Scoping.Script
                     nextIndex = script.IndexOfScript("(", index);
                     string scriptItemName = script.Substring(index, nextIndex - index + 1);
                     scriptItem = scriptItemName.FindScriptItem(index);
-                    if (scriptItem.Kind == ScriptItemKinds.Variable)
+                    if (scriptItem.Kind == ScriptTokenKinds.Variable)
                     {
                         // if something between the last none index and the current then
                         if (lastNoneIndex != index)
                         {
                             // we declare this something as a none-kind script item
                             scriptItemName = script[lastNoneIndex..index];
-                            if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == ScriptItemKinds.None))
+                            if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == ScriptTokenKinds.None))
                             {
                                 scriptItems[^1].WithName(scriptItems[^1].Name + scriptItemName);
                             }
                             else
                             {
                                 scriptItems.Add(new ScriptItem(
-                               ScriptItemKinds.None,
+                               ScriptTokenKinds.None,
                                scriptItemName,
                                index));
                             }
@@ -243,7 +243,7 @@ namespace BindOpen.Scoping.Script
                         lastNoneIndex = index;
                     }
                     // if it is a literal script word then
-                    else if (scriptItem.Kind == ScriptItemKinds.Literal)
+                    else if (scriptItem.Kind == ScriptTokenKinds.Literal)
                     {
                         // we insert "()" in the item name and we update the index
                         scriptItem.WithName("()");
@@ -254,7 +254,7 @@ namespace BindOpen.Scoping.Script
                         {
                             // we declare this something as a none-kind script item
                             scriptItemName = script[lastNoneIndex..index];
-                            if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == ScriptItemKinds.None))
+                            if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == ScriptTokenKinds.None))
                             {
                                 scriptItems[^1].WithName(scriptItems[^1].Name + scriptItemName);
                             }
@@ -262,7 +262,7 @@ namespace BindOpen.Scoping.Script
                             {
                                 scriptItems.Add(
                                    new ScriptItem(
-                                       ScriptItemKinds.None,
+                                       ScriptTokenKinds.None,
                                        scriptItemName,
                                        index));
                             }
@@ -289,7 +289,7 @@ namespace BindOpen.Scoping.Script
                     scriptItem = currentChar.FindScriptItem(index);
 
                     // if it is a syntax item
-                    if (scriptItem.Kind == ScriptItemKinds.Syntax)
+                    if (scriptItem.Kind == ScriptTokenKinds.Syntax)
                     {
 
                         // if something between the last none index and the current then
@@ -297,7 +297,7 @@ namespace BindOpen.Scoping.Script
                         {
                             // we declare this something as a none-kind script item
                             string scriptItemName = script[lastNoneIndex..index];
-                            if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == ScriptItemKinds.None))
+                            if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == ScriptTokenKinds.None))
                             {
                                 scriptItems[^1].WithName(scriptItems[^1].Name + scriptItemName);
                             }
@@ -305,7 +305,7 @@ namespace BindOpen.Scoping.Script
                             {
                                 scriptItems.Add(
                                    new ScriptItem(
-                                       ScriptItemKinds.None,
+                                       ScriptTokenKinds.None,
                                        scriptItemName,
                                        index));
                             }
@@ -333,7 +333,7 @@ namespace BindOpen.Scoping.Script
             {
                 // we declare this something as a none-kind script item
                 string scriptItemName = script[lastNoneIndex..index];
-                if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == ScriptItemKinds.None))
+                if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == ScriptTokenKinds.None))
                 {
                     scriptItems[^1].WithName(scriptItems[^1].Name + scriptItemName);
                 }
@@ -341,7 +341,7 @@ namespace BindOpen.Scoping.Script
                 {
                     scriptItems.Add(
                        new ScriptItem(
-                           ScriptItemKinds.None,
+                           ScriptTokenKinds.None,
                            scriptItemName,
                            index));
                 }
@@ -357,7 +357,7 @@ namespace BindOpen.Scoping.Script
 
             // we define the default script item to return
             ScriptItem scriptItem = new(
-                ScriptItemKinds.None,
+                ScriptTokenKinds.None,
                 name,
                 index);
 
@@ -365,7 +365,7 @@ namespace BindOpen.Scoping.Script
             if ((name.Length >= 1) && (name[0] == '\''))
             {
                 scriptItem.Index = index;
-                scriptItem.Kind = ScriptItemKinds.Text;
+                scriptItem.Kind = ScriptTokenKinds.Text;
                 scriptItem.WithName(name);
             }
             // else if it is a variable
@@ -385,9 +385,9 @@ namespace BindOpen.Scoping.Script
                     scriptItem.WithName(name[0..^1]);
                     // we indentify the literal script functions
                     if (scriptItem.Name.ToUpper()[.."$LITERAL_".Length] == "$LITERAL_")
-                        scriptItem.Kind = ScriptItemKinds.Literal;
+                        scriptItem.Kind = ScriptTokenKinds.Literal;
                     else
-                        scriptItem.Kind = ScriptItemKinds.Variable;
+                        scriptItem.Kind = ScriptTokenKinds.Variable;
                 }
             }
             // else if it is a function
@@ -404,7 +404,7 @@ namespace BindOpen.Scoping.Script
                 if (isGood)
                 {
                     scriptItem.Index = index;
-                    scriptItem.Kind = ScriptItemKinds.Function;
+                    scriptItem.Kind = ScriptTokenKinds.Function;
                     scriptItem.WithName(name[0..^1]);
                 }
             }
@@ -412,7 +412,7 @@ namespace BindOpen.Scoping.Script
             else if (SyntaxItems.Contains(name))
             {
                 scriptItem.Index = index;
-                scriptItem.Kind = ScriptItemKinds.Syntax;
+                scriptItem.Kind = ScriptTokenKinds.Syntax;
                 scriptItem.WithName(name);
             }
             return scriptItem;

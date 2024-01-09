@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Conditions;
 using BindOpen.Data.Meta;
 using BindOpen.Scoping.Script;
 
@@ -25,12 +24,12 @@ namespace BindOpen.Kernel.Tests
                 .WithChildren(
                     BdoData.NewSpec<BdoSpec>("default"),
                     BdoData.NewSpec<BdoSpec>()
-                        .WithCondition((BdoExpression)BdoScript.Eq(BdoScript.This<IBdoMetaData>()._Descendant("description")._Value(), "myDescription"))
+                        .WithCondition(BdoScript.Eq(BdoScript.This<IBdoMetaData>()._Descendant("description")._Value(), "myDescription"))
                 )
                 .WithRules(
                     BdoData.NewRequirement(BdoMetaDataProperties.Property("title"), "myTitle")
                 )
-                .AsRequired((BdoCondition)BdoScript.This<IBdoMetaData>()._Has("title"))
+                .AsRequired(BdoScript.This<IBdoMetaData>()._Has("title").ToCondition())
                 .AsOptional()
                 .WithItemRequirement((RequirementLevels.Required,
                     BdoScript.NewCondition<IBdoMetaData>(q => q._Descendant("auto")._Value())));

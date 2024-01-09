@@ -12,7 +12,7 @@ namespace BindOpen.Scoping.Script
     {
         private readonly string _scriptA = "$eq('MYTABLE', $text('MYTABLE'))";
 
-        private readonly BdoScriptword _scriptwordA =
+        private readonly IBdoScriptword _scriptwordA =
             BdoScript.Function("eq", "MYTABLE", BdoScript.Function("text", "mytable"));
 
         private readonly IBdoScriptword _scriptword1 =
