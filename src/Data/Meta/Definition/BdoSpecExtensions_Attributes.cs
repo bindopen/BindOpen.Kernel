@@ -129,8 +129,12 @@ namespace BindOpen.Data.Meta
                 spec.Name ??= info.Name;
 
                 var type = info.PropertyType;
-                spec.WithDataType(spec.DataType.ValueType == DataValueTypes.Any ? type.GetValueType() : DataValueTypes.None);
-                spec.AsType(type);
+                var valueType = spec.DataType.ValueType == DataValueTypes.Any ? type.GetValueType() : DataValueTypes.None;
+                spec.WithDataType(valueType);
+                if (valueType == DataValueTypes.Object)
+                {
+                    spec.AsType(type);
+                }
             }
 
             return change;

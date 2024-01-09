@@ -17,13 +17,25 @@ namespace BindOpen.Data
         {
             if (poco == null) return null;
 
-            var config = new MapperConfiguration(
-                cfg => cfg.CreateMap<BdoExpression, ExpressionDto>()
-                    .ForMember(q => q.Word, opt => opt.MapFrom(q => q.Word.ToDto(true)))
-            );
+            ExpressionDto dto;
 
-            var mapper = new Mapper(config);
-            var dto = mapper.Map<ExpressionDto>(poco);
+            if (poco is IBdoScriptword wordPoco)
+            {
+                dto = new ExpressionDto()
+                {
+                    ExpressionKind = BdoExpressionKind.Word,
+                    Word = ScriptwordConverter.ToDto(wordPoco)
+                };
+            }
+            else
+            {
+                var config = new MapperConfiguration(
+                    cfg => cfg.CreateMap<BdoExpression, ExpressionDto>()
+                );
+
+                var mapper = new Mapper(config);
+                dto = mapper.Map<ExpressionDto>(poco);
+            }
 
             return dto;
         }
@@ -38,12 +50,20 @@ namespace BindOpen.Data
         {
             if (dto == null) return null;
 
-            var poco = new BdoExpression()
+            IBdoExpression poco;
+
+            if (dto.ExpressionKind == BdoExpressionKind.Word)
             {
-                Kind = dto.Kind,
-                Text = dto.Text,
-                Word = dto.Word.ToPoco()
-            };
+                poco = dto.Word.ToPoco();
+            }
+            else
+            {
+                poco = new BdoExpression()
+                {
+                    ExpressionKind = dto.ExpressionKind,
+                    Text = dto.Text
+                };
+            }
 
             return poco;
         }

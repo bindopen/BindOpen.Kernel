@@ -210,8 +210,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public BdoMetaDataKind MetaDataKind
-            => BdoMetaDataKind.Set;
+        public BdoMetaDataKind MetaDataKind => BdoMetaDataKind.Node;
 
         /// <summary>
         /// 

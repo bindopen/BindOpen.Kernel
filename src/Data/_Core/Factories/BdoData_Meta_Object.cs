@@ -35,8 +35,7 @@ namespace BindOpen.Data
         public static BdoMetaObject NewObject(
             string name,
             Type type,
-            object item,
-            DataValueTypes valueType = DataValueTypes.Object)
+            object item)
         {
             var el = new BdoMetaObject();
 

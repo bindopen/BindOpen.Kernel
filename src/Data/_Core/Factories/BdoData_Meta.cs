@@ -108,7 +108,7 @@ namespace BindOpen.Data
             }
             else
             {
-                var metaObj = NewObject(name, type, data, valueType);
+                var metaObj = NewObject(name, type, data);
                 return metaObj;
             }
         }

@@ -11,9 +11,10 @@ namespace BindOpen.Data.Conditions
     [XmlInclude(typeof(BasicConditionDto))]
     [XmlInclude(typeof(CompositeConditionDto))]
     [XmlInclude(typeof(ExpressionConditionDto))]
-    [JsonDerivedType(typeof(BasicConditionDto), "condition")]
-    [JsonDerivedType(typeof(CompositeConditionDto), "composite")]
-    [JsonDerivedType(typeof(ExpressionConditionDto), "reference")]
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "kind")]
+    [JsonDerivedType(typeof(BasicConditionDto), "Condition")]
+    [JsonDerivedType(typeof(CompositeConditionDto), "Composite")]
+    [JsonDerivedType(typeof(ExpressionConditionDto), "Reference")]
     public abstract class ConditionDto : IBdoDto, IIdentified
     {
         // ------------------------------------------
@@ -42,13 +43,6 @@ namespace BindOpen.Data.Conditions
         [JsonPropertyName("parentId")]
         [XmlAttribute("parentId")]
         public string ParentId { get; set; }
-
-        /// <summary>
-        /// The kind of this instance.
-        /// </summary>
-        [JsonPropertyName("kind")]
-        [XmlAttribute("kind")]
-        public BdoConditionKind Kind { get; set; }
 
         #endregion
 

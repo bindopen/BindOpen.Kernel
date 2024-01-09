@@ -10,8 +10,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a data element.
     /// </summary>
-    public abstract partial class BdoMetaData : BdoObject,
-        IBdoMetaData
+    public abstract partial class BdoMetaData : BdoObject, IBdoMetaData
     {
         // --------------------------------------------------
         // VARIABLES
@@ -128,22 +127,6 @@ namespace BindOpen.Data.Meta
 
         // Items --------------------------------------------
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public BdoMetaDataKind MetaDataKind
-        {
-            get
-            {
-                if (this is IBdoMetaObject)
-                    return BdoMetaDataKind.Object;
-                else if (this is IBdoMetaScalar)
-                    return BdoMetaDataKind.Scalar;
-                else if (this is IBdoMetaNode)
-                    return BdoMetaDataKind.Set;
-                return BdoMetaDataKind.None;
-            }
-        }
         public DataMode DataMode { get; set; }
 
         /// <summary>

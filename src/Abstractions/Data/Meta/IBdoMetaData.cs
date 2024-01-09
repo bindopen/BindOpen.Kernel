@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Assemblies;
-using BindOpen.Logging;
+﻿using BindOpen.Logging;
 using BindOpen.Scoping;
 using System.Collections.Generic;
 
@@ -14,11 +13,6 @@ namespace BindOpen.Data.Meta
         ITChild<IBdoMetaData>, IBdoSpecified,
         IUpdatable
     {
-        /// <summary>
-        /// The kind of meta data of this instance.
-        /// </summary>
-        BdoMetaDataKind MetaDataKind { get; }
-
         /// <summary>
         /// 
         /// </summary>

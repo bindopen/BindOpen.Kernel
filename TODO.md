@@ -3,29 +3,12 @@ Todo list for BindOpen
 
 ## Next tasks
 
-- [ ] Data wrapper: Detail must inherit Name, DataType, Id in both ways
-- [ ] Extension store : improve package loading
-- [ ] Apply cloning when needed (ie. in ToMetaData method)
-- [ ] Implementing Clone methods
+- [ ] Make constraint easier
+- [ ] Checking Clone methods
 - [ ] Implementing XSD files
-- [ ] Updating ByteArray scalar to Binary object meta data
-- [ ] Fixing BdoStringSetTests 
-- [ ] Implementing IO of specs
 - [ ] Cleaning comments
-- [ ] Making meta data easier: Class vs Entity, Config vs Object
-- [X] Dictionaries are now generic
-- [ ] Constrainsts of specification
-- [ ] Solve the issue of meta data valueType with ITMetaData<> type
-- [ ] Solve Child/Parent issue with script word
-- [ ] Check Descendant when set is null or requested item does not exist
-- [ ] Update detail children of meta wrapper if detail is a config
-- [ ] Update Children and Child and HasChild methods
-- [ ] StringHelper - Format string from tokens
-- [ ] Add _If script function
-- [ ] Add Has(tokens) script function
 - [ ] Interpreter: Returns null if any interpretation error
 - [ ] Allow script word polymorphism
-- [ ] Check meta data
 - [ ] Limit level depth
 - [ ] Improve filter path (**/item, /item)
 

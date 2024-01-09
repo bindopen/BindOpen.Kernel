@@ -129,8 +129,10 @@ namespace BindOpen.Data
 
         public static BdoDataType NewDataType(Type type)
         {
+            var valueType = type.GetValueType();
+
             return new BdoDataType(Class(type))
-                .WithValueType(type.GetValueType());
+                .WithValueType(valueType);
         }
 
         /// <summary>

@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Helpers;
-using BindOpen.Scoping.Script;
 
 namespace BindOpen.Data
 {
@@ -20,14 +19,9 @@ namespace BindOpen.Data
         public string Text { get; set; }
 
         /// <summary>
-        /// The script word of this instance.
-        /// </summary>
-        public IBdoScriptword Word { get; set; }
-
-        /// <summary>
         /// The kind of this instance.
         /// </summary>
-        public BdoExpressionKind Kind { get; set; } = BdoExpressionKind.Auto;
+        public BdoExpressionKind ExpressionKind { get; set; } = BdoExpressionKind.Auto;
 
         #endregion
 
@@ -78,11 +72,7 @@ namespace BindOpen.Data
         /// <returns></returns>
         public override string ToString()
         {
-            return Kind switch
-            {
-                BdoExpressionKind.Word => Word?.ToString(),
-                _ => Text
-            };
+            return Text;
         }
 
         #endregion
@@ -100,8 +90,6 @@ namespace BindOpen.Data
         public override object Clone()
         {
             var obj = base.Clone().As<BdoExpression>();
-
-            obj.Word = Word?.Clone<IBdoScriptword>();
 
             return obj;
         }

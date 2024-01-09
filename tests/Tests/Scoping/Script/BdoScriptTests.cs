@@ -11,7 +11,7 @@ namespace BindOpen.Scoping.Script
         private readonly string _scriptA = "$eq('MYTABLE', $text('MYTABLE'))";
 
         private readonly BdoScriptword _scriptwordA =
-            BdoScript.Function("eq", "MYTABLE", BdoScript.Function("text", "mytable"));
+            (BdoScriptword)BdoScript.Function("eq", "MYTABLE", BdoScript.Function("text", "mytable"));
 
         private readonly string _stringA = "totomax";
 
@@ -19,7 +19,7 @@ namespace BindOpen.Scoping.Script
 
         private readonly string _scriptC = "$eq('i,np)ut''', 'i,np)ut'''))";
 
-        private readonly BdoScriptword _scriptwordB =
+        private readonly IBdoScriptword _scriptwordB =
             BdoScript.Variable("workflow")
             .Func("input", "input1")
             .Func("value", "value1");
@@ -55,9 +55,6 @@ namespace BindOpen.Scoping.Script
         {
             var script = _scriptwordA?.ToString();
             Assert.That(_scriptA.Equals(script, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
-
-            script = (string)_scriptwordA;
-            Assert.That(_scriptA.Equals(script, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
 
 
@@ -76,7 +73,7 @@ namespace BindOpen.Scoping.Script
         [Test, Order(4)]
         public void CompareSubwordStringTest()
         {
-            var script = (string)_scriptwordB;
+            var script = _scriptwordB.ToString();
             Assert.That(_scriptB.Equals(script, StringComparison.OrdinalIgnoreCase), "Bad script interpretation");
         }
 

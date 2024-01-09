@@ -6,7 +6,7 @@
     <PackageId>BindOpen.Kernel.IO.Dtos</PackageId>
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
-    <Copyright>Copyright ©BindOpen 2011-2023</Copyright>
+    <Copyright>Copyright ©BindOpen 2011-2024</Copyright>
     <Description>This package provides core DTO classes of BindOpen.Kernel.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Kernel.IO</RootNamespace>

@@ -178,6 +178,5 @@ namespace BindOpen.Data
 
             return default;
         }
-
     }
 }

@@ -38,7 +38,7 @@ namespace BindOpen.Data
         [JsonPropertyName("kind")]
         [XmlAttribute("kind")]
         [DefaultValue(BdoExpressionKind.Auto)]
-        public BdoExpressionKind Kind { get; set; } = BdoExpressionKind.Auto;
+        public BdoExpressionKind ExpressionKind { get; set; } = BdoExpressionKind.Auto;
 
         #endregion
 

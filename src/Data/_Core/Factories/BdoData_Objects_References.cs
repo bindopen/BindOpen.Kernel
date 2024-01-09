@@ -45,7 +45,7 @@ namespace BindOpen.Data
             => new()
             {
                 Kind = BdoReferenceKind.Expression,
-                Expression = NewExp(word)
+                Expression = word
             };
 
         /// <summary>

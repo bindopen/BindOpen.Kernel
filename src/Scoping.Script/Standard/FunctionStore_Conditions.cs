@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Meta;
+using System;
 using System.Linq;
 
 namespace BindOpen.Scoping.Script
@@ -39,5 +40,22 @@ namespace BindOpen.Scoping.Script
             [BdoParameter(Title = "First object")] object obj1,
             [BdoParameter(Title = "Second object")] object obj2)
             => (obj1 == null && obj2 != null) || obj1?.Equals(obj2) == false;
+
+        [BdoFunction(Name = "inEnum")]
+        public static bool InEnum(
+            [BdoParameter(Title = "First object")] object obj1,
+            [BdoParameter(Title = "Type name")] string fullyQualifiedName)
+        {
+            if (obj1 == null || string.IsNullOrEmpty(fullyQualifiedName)) return false;
+
+            Type type = Type.GetType(fullyQualifiedName);
+
+            if (type != null)
+            {
+                return Enum.GetNames(type).Any(q => q == obj1?.ToString());
+            }
+
+            return false;
+        }
     }
 }

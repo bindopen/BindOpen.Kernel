@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Conditions;
 using BindOpen.Logging;
+using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -29,7 +30,8 @@ namespace BindOpen.Data.Meta
         /// The kind of this instance.
         /// </summary>
         [JsonPropertyName("kind")]
-        [XmlElement("kind")]
+        [XmlAttribute("kind")]
+        [DefaultValue(BdoSpecRuleKinds.None)]
         public BdoSpecRuleKinds Kind { get; set; }
 
         /// <summary>
@@ -71,6 +73,7 @@ namespace BindOpen.Data.Meta
 
         [JsonPropertyName("resultEventKind")]
         [XmlElement("resultEventKind")]
+        [DefaultValue(EventKinds.None)]
         public EventKinds ResultEventKind { get; set; }
 
         [JsonPropertyName("resultTitle")]

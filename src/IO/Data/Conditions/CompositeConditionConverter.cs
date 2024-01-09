@@ -20,7 +20,6 @@ namespace BindOpen.Data.Conditions
             {
                 CompositionKind = poco.CompositionKind,
                 Conditions = poco.Conditions?.Select(q => q.ToDto()).ToList(),
-                Kind = BdoConditionKind.Composite,
                 Id = poco.Id,
                 Name = poco.Name,
                 ParentId = poco.Parent?.Id
