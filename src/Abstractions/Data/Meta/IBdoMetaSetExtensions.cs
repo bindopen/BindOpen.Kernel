@@ -124,20 +124,24 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="value">The value to consider.</param>
         /// <param key="action">The action to consider.</param>
-        public static void Invoke<T>(this T obj, Predicate<T> fun, Action action)
+        public static T Invoke<T>(this T obj, Predicate<T> fun, Action action)
         {
             if (fun?.Invoke(obj) == true)
             {
                 action?.Invoke();
             }
+
+            return obj;
         }
 
-        public static async Task InvokeAsync<T>(this T obj, Predicate<T> fun, Func<Task> action)
+        public static async Task<T> InvokeAsync<T>(this T obj, Predicate<T> fun, Func<Task> action)
         {
             if (fun?.Invoke(obj) == true)
             {
                 await action();
             }
+
+            return obj;
         }
     }
 }
