@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Conditions;
+using System;
 
 namespace BindOpen.Data.Meta
 {
@@ -7,6 +8,27 @@ namespace BindOpen.Data.Meta
     /// </summary>
     public static class IBdoSpecifiedExtensions
     {
+        public static T WithSpec<T, TSpec>(
+            this T obj,
+            Action<IBdoSpec> action)
+            where T : IBdoSpecified
+            where TSpec : IBdoSpec, new()
+        {
+            if (obj != null)
+            {
+                obj.Spec ??= BdoData.NewSpec<TSpec>();
+                action?.Invoke(obj.Spec);
+            }
+
+            return obj;
+        }
+
+        public static T WithSpec<T>(
+            this T obj,
+            Action<IBdoSpec> action)
+            where T : IBdoSpecified
+            => obj.WithSpec<T, BdoSpec>(action);
+
         public static T WithSpecRules<T>(
             this T obj,
             params IBdoSpecRule[] rules)

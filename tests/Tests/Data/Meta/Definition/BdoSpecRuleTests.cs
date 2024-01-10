@@ -79,7 +79,7 @@ namespace BindOpen.Data.Meta
             var meta0 = BdoData.NewNode("meta-test")
                 .With(
                     BdoData.NewMeta("level", "RequirementLevels.Optional")
-                        .WithSpec(BdoData.NewSpec().MustBeInList<RequirementLevels>())
+                        .WithSpec(q => q.MustBeInList<RequirementLevels>())
                 );
 
             var validator = SystemData.Scope.CreateValidator();
