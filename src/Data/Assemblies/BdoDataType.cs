@@ -174,10 +174,17 @@ namespace BindOpen.Data
 
             if (b && leftValueType != DataValueTypes.Any)
             {
+                if (leftValueType.IsScalar())
+                {
+                    return rightValueType == DataValueTypes.Any
+                        || leftValueType == rightValueType;
+                }
+
                 var rightRuntimeType = right?.GetRuntimeType();
                 var leftRuntimeType = left?.GetRuntimeType();
 
-                b = rightRuntimeType?.IsAssignableFrom(leftRuntimeType) == true;
+                b = rightValueType == DataValueTypes.Any
+                    || rightRuntimeType?.IsAssignableFrom(leftRuntimeType) == true;
             }
 
             return b;
@@ -198,10 +205,17 @@ namespace BindOpen.Data
 
             if (b && rightValueType != DataValueTypes.Any)
             {
+                if (rightValueType.IsScalar())
+                {
+                    return leftValueType == DataValueTypes.Any
+                        || leftValueType == rightValueType;
+                }
+
                 var rightRuntimeType = right?.GetRuntimeType();
                 var leftRuntimeType = left?.GetRuntimeType();
 
-                b = leftRuntimeType?.IsAssignableFrom(rightRuntimeType) == true;
+                b = leftValueType == DataValueTypes.Any
+                    || leftRuntimeType?.IsAssignableFrom(rightRuntimeType) == true;
             }
 
             return b;
