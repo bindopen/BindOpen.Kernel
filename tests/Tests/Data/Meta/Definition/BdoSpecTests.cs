@@ -63,7 +63,7 @@ namespace BindOpen.Data.Meta
         }
 
         [Test, Order(7)]
-        public void CheckSpecRulesTest()
+        public void CheckWithSpecTest()
         {
             var validator = SystemData.Scope.CreateValidator();
 
@@ -85,6 +85,41 @@ namespace BindOpen.Data.Meta
 
             var ok2 = validator.Check(meta2);
             Assert.That(!ok2, "Check rules - Error");
+        }
+
+        [Test, Order(8)]
+        public void CheckWithoutSpecTest()
+        {
+            var validator = SystemData.Scope.CreateValidator();
+
+            var meta1 = BdoData.NewNode("meta-test")
+                .With(
+                    BdoData.NewMeta("auto", true),  // should be ok
+                    BdoData.NewMeta("label", true),
+                    BdoData.NewMeta("title", "myTitle"));
+
+            var ok1 = validator.Check(meta1);
+            Assert.That(ok1, "Check rules - Error");
+
+            var meta2 = BdoData.NewNode("meta-test")
+                .With(
+                    BdoData.NewMeta("auto", true)   // should raise a value type error
+                        .WithSpec(BdoData.NewSpec().WithDataType(DataValueTypes.Integer)),
+                    BdoData.NewMeta("label", true),
+                    BdoData.NewMeta("title", "myTitle"));
+
+            var ok2 = validator.Check(meta2);
+            Assert.That(!ok2, "Check rules - Error");
+
+            var meta3 = BdoData.NewNode("meta-test")
+                .With(
+                    BdoData.NewMeta("auto", "true")   // should be ok
+                        .WithSpec(BdoData.NewSpec().WithDataType(DataValueTypes.Text)),
+                    BdoData.NewMeta("label", true),
+                    BdoData.NewMeta("title", "myTitle"));
+
+            var ok3 = validator.Check(meta3);
+            Assert.That(ok3, "Check rules - Error");
         }
     }
 }
