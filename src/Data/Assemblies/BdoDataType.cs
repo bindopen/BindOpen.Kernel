@@ -83,6 +83,15 @@ namespace BindOpen.Data
             return null;
         }
 
+        public override string ToString()
+        {
+            var baseKey = base.Key();
+
+            return ValueType.ToString()
+                .ConcatenateIf(!string.IsNullOrEmpty(baseKey), ", " + baseKey)
+                .ConcatenateIf(!string.IsNullOrEmpty(DefinitionUniqueName), ", Definition=" + DefinitionUniqueName);
+        }
+
         // --------------------------------------------------
         // Converts
         // --------------------------------------------------

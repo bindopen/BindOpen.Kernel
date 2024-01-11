@@ -26,7 +26,7 @@ namespace BindOpen.Data
         Forbidden = 0x01 << 1,
 
         /// <summary>
-        /// Optional.
+        /// Optional. At least one optional item is required.
         /// </summary>
         Optional = 0x01 << 2,
 

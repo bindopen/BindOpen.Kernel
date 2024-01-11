@@ -43,6 +43,20 @@ namespace BindOpen.Data.Meta
         }
 
         [Test, Order(3)]
+        public void RequirementCheckTest()
+        {
+            var meta0 = BdoData.NewNode("meta-test")
+                .WithSpec(spec => spec.AddItemRequirement(RequirementLevels.Optional).WithName("toto"))
+                .With(
+                    BdoData.NewMeta("title", "A")
+                        .WithSpec(spec => spec.AddRequirement(RequirementLevels.Optional)));
+
+            var validator = SystemData.Scope.CreateValidator();
+            var valid = validator.Check(meta0);
+            Assert.That(valid, "Statement - Error");
+        }
+
+        [Test, Order(4)]
         public void ItemRequirementTest()
         {
             var meta0 = BdoData.NewNode("meta-test")
@@ -71,7 +85,7 @@ namespace BindOpen.Data.Meta
             Assert.That(requirementLevel2 == RequirementLevels.Optional, "Statement - Error");
         }
 
-        [Test, Order(4)]
+        [Test, Order(6)]
         public void InEnumTest()
         {
             var spec = BdoData.NewSpec();
