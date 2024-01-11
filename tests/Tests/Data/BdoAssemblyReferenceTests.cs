@@ -21,13 +21,13 @@ namespace BindOpen.Data
         }
 
         [Test, Order(1)]
-        public void AssemblyRefEquals()
+        public void AssemblyRefEqualsTest()
         {
             Assert.That(_assemblyRef1 != _assemblyRef2, "Bad assembly reference");
         }
 
         [Test, Order(2)]
-        public void ClassRefEquals()
+        public void ClassRefEqualsTest()
         {
             Assert.That(_classRef1 != _classRef2, "Bad class reference");
         }

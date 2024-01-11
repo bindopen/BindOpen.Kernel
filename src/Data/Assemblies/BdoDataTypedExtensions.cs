@@ -75,13 +75,79 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        public static T WithNullValue<T>(
+        public static T AsNullValue<T>(
             this T dataTyped)
             where T : IBdoDataTyped
         {
             if (dataTyped != null)
             {
                 dataTyped.DataType = BdoData.NewDataType(DataValueTypes.Null);
+            }
+
+            return dataTyped;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T AsText<T>(
+            this T dataTyped)
+            where T : IBdoDataTyped
+        {
+            if (dataTyped != null)
+            {
+                dataTyped.DataType = BdoData.NewDataType(DataValueTypes.Text);
+            }
+
+            return dataTyped;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static T AsBinary<T>(
+            this T dataTyped)
+            where T : IBdoDataTyped
+        {
+            if (dataTyped != null)
+            {
+                dataTyped.DataType = BdoData.NewDataType(DataValueTypes.Binary);
+            }
+
+            return dataTyped;
+        }
+
+        public static T AsBoolean<T>(
+            this T dataTyped)
+            where T : IBdoDataTyped
+        {
+            if (dataTyped != null)
+            {
+                dataTyped.DataType = BdoData.NewDataType(DataValueTypes.Boolean);
+            }
+
+            return dataTyped;
+        }
+
+        public static T AsInteger<T>(
+            this T dataTyped)
+            where T : IBdoDataTyped
+        {
+            if (dataTyped != null)
+            {
+                dataTyped.DataType = BdoData.NewDataType(DataValueTypes.Integer);
+            }
+
+            return dataTyped;
+        }
+
+        public static T AsNumber<T>(
+            this T dataTyped)
+            where T : IBdoDataTyped
+        {
+            if (dataTyped != null)
+            {
+                dataTyped.DataType = BdoData.NewDataType(DataValueTypes.Number);
             }
 
             return dataTyped;
