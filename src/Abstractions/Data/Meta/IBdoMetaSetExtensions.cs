@@ -126,7 +126,7 @@ namespace BindOpen.Data
         /// <param key="action">The action to consider.</param>
         public static T Invoke<T>(this T obj, Predicate<T> fun, Action action)
         {
-            if (fun?.Invoke(obj) == true)
+            if (obj != null && fun?.Invoke(obj) == true)
             {
                 action?.Invoke();
             }
@@ -136,7 +136,7 @@ namespace BindOpen.Data
 
         public static async Task<T> InvokeAsync<T>(this T obj, Predicate<T> fun, Func<Task> action)
         {
-            if (fun?.Invoke(obj) == true)
+            if (obj != null && fun?.Invoke(obj) == true)
             {
                 await action();
             }

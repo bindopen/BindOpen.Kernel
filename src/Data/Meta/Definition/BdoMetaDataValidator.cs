@@ -59,6 +59,18 @@ namespace BindOpen.Data.Meta
 
                     switch (requirementLevel)
                     {
+                        case RequirementLevels.Forbidden:
+                            if (meta != null)
+                            {
+                                log?.AddEvent(
+                                    EventKinds.Error,
+                                    "Element forbidden",
+                                    string.Format("The element '{0}' is forbidden", meta.Name),
+                                    resultCode: BdoSpecRuleResultCodes.ElementForbidden);
+
+                                return false;
+                            }
+                            break;
                         case RequirementLevels.Required:
                             if (meta == null)
                             {
@@ -67,18 +79,6 @@ namespace BindOpen.Data.Meta
                                     "Element missing",
                                     string.Format("The required element '{0}' is missing", spec.Name),
                                     resultCode: BdoSpecRuleResultCodes.ElementMissing);
-
-                                return false;
-                            }
-                            break;
-                        case RequirementLevels.Forbidden:
-                            if (meta != null)
-                            {
-                                log?.AddEvent(
-                                    EventKinds.Error,
-                                    "Element forbidden",
-                                    string.Format("The element '{0}' is forbidden", spec.Name),
-                                    resultCode: BdoSpecRuleResultCodes.ElementForbidden);
 
                                 return false;
                             }
@@ -101,7 +101,7 @@ namespace BindOpen.Data.Meta
                                 log?.AddEvent(
                                     EventKinds.Error,
                                     "Value missing",
-                                    string.Format("The value of the element '{0}' is missing", spec.Name),
+                                    string.Format("The value of the element '{0}' is missing", meta.Name),
                                     resultCode: BdoSpecRuleResultCodes.ElementMissing);
 
                                 return false;
@@ -113,7 +113,7 @@ namespace BindOpen.Data.Meta
                                 log?.AddEvent(
                                     EventKinds.Error,
                                     "Value forbidden",
-                                    string.Format("Any value of element '{0}' is forbidden", spec.Name),
+                                    string.Format("Any value of element '{0}' is forbidden", meta.Name),
                                     resultCode: BdoSpecRuleResultCodes.ElementForbidden);
 
                                 return false;
@@ -130,7 +130,7 @@ namespace BindOpen.Data.Meta
                             EventKinds.Error,
                             "Bad value type",
                             string.Format("The value of element '{0}' is not compatible with '{1}' type",
-                                spec.Name,
+                                meta.Name,
                                 spec.DataType.ToString()),
                             resultCode: BdoSpecRuleResultCodes.InvalidData);
                     }
@@ -139,16 +139,19 @@ namespace BindOpen.Data.Meta
 
                     var itemNumber = data.ToObjectList()?.Count ?? 0;
                     var maxNumber = spec.MaxDataItemNumber ?? int.MaxValue;
-                    if ((itemNumber > maxNumber)
-                        || (itemNumber < spec.MinDataItemNumber))
+                    if (spec.DataType.ValueType != DataValueTypes.Null
+                        && ((itemNumber > maxNumber)
+                        || (itemNumber < spec.MinDataItemNumber)))
                     {
                         isOk = false;
                         log?.AddEvent(
                             EventKinds.Error,
                             "Invalid data item number",
-                            string.Format("The element '{0}' must have between {0} and {1} data items",
+                            string.Format("The element '{0}' must have between {1} and {2} data items ({3} found)",
+                                meta.Name,
                                 spec.MinDataItemNumber,
-                                maxNumber),
+                                maxNumber,
+                                itemNumber),
                             resultCode: BdoSpecRuleResultCodes.BadItemNumber);
                     }
 
@@ -243,14 +246,20 @@ namespace BindOpen.Data.Meta
                                 if (metaSet?.Has(childSpec.Name) != true)
                                 {
                                     isOk = false;
-                                    log?.AddEvent(EventKinds.Error, "Option '" + spec.Name + "' missing");
+                                    log?.AddEvent(
+                                        EventKinds.Error,
+                                        "Child element missing",
+                                        "Option '" + childSpec.Name + "' missing");
                                 }
                                 break;
                             case RequirementLevels.Forbidden:
                                 if (metaSet?.Has(childSpec.Name) == true)
                                 {
                                     isOk = false;
-                                    log?.AddEvent(EventKinds.Error, "Option '" + spec.Name + "' missing");
+                                    log?.AddEvent(
+                                        EventKinds.Error,
+                                        "Child element forbidden",
+                                        "Option '" + childSpec.Name + "' missing");
                                 }
                                 break;
                         }
