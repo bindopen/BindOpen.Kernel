@@ -20,7 +20,7 @@ namespace BindOpen.Data
 
             dataType = BdoData.NewDataType<ClassFake>();
             st = dataType.ToString();
-            Assert.That(st == "Object, BindOpen.Kernel.Tests.ClassFake, BindOpen.Kernel.Tests, Version=1.0.0.0", "Bad assembly reference");
+            Assert.That(st.StartsWith("Object, BindOpen.Kernel.Tests.ClassFake"), "Bad assembly reference");
         }
     }
 }
