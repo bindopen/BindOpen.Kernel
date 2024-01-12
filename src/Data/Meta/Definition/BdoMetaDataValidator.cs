@@ -39,7 +39,7 @@ namespace BindOpen.Data.Meta
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            bool isOk = true;
+            bool valid = true;
 
             if (meta != null)
             {
@@ -123,9 +123,10 @@ namespace BindOpen.Data.Meta
 
                     // check the value type
 
-                    if (spec.DataType?.IsCompatibleWith(data?.GetType()) == false)
+                    if (meta.DataType.IsCompatibleWithData(spec.DataType)
+                        && meta.IsCompatibleWithData(data) == false)
                     {
-                        isOk = false;
+                        valid = false;
                         log?.AddEvent(
                             EventKinds.Error,
                             "Bad value type",
@@ -143,7 +144,7 @@ namespace BindOpen.Data.Meta
                         && ((itemNumber > maxNumber)
                         || (itemNumber < spec.MinDataItemNumber)))
                     {
-                        isOk = false;
+                        valid = false;
                         log?.AddEvent(
                             EventKinds.Error,
                             "Invalid data item number",
@@ -179,7 +180,7 @@ namespace BindOpen.Data.Meta
                                 if ((currentValue == null && expectedValue != null)
                                     || currentValue?.Equals(expectedValue) != true)
                                 {
-                                    isOk = false;
+                                    valid = false;
 
                                     log?.AddEvent(
                                         rule.ResultEventKind,
@@ -213,7 +214,7 @@ namespace BindOpen.Data.Meta
 
                                 if (conditionValue != true)
                                 {
-                                    isOk = false;
+                                    valid = false;
 
                                     log?.AddEvent(
                                         constraint.ResultEventKind,
@@ -245,7 +246,7 @@ namespace BindOpen.Data.Meta
                             case RequirementLevels.Required:
                                 if (metaSet?.Has(childSpec.Name) != true)
                                 {
-                                    isOk = false;
+                                    valid = false;
                                     log?.AddEvent(
                                         EventKinds.Error,
                                         "Child element missing",
@@ -255,7 +256,7 @@ namespace BindOpen.Data.Meta
                             case RequirementLevels.Forbidden:
                                 if (metaSet?.Has(childSpec.Name) == true)
                                 {
-                                    isOk = false;
+                                    valid = false;
                                     log?.AddEvent(
                                         EventKinds.Error,
                                         "Child element forbidden",
@@ -275,12 +276,12 @@ namespace BindOpen.Data.Meta
                     foreach (var subMeta in metaSet)
                     {
                         var subSpec = spec.Child(subMeta?.Name);
-                        isOk &= Check(subMeta, subSpec, varSet, log);
+                        valid &= Check(subMeta, subSpec, varSet, log);
                     }
                 }
             }
 
-            return isOk;
+            return valid;
         }
     }
 }

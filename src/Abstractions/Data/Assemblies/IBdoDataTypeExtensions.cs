@@ -5,7 +5,7 @@ namespace BindOpen.Data
     /// <summary>
     /// This class represents a data element set.
     /// </summary>
-    public static partial class IBdoDataTypedExtensions
+    public static class IBdoDataTypeExtensions
     {
         /// <summary>
         /// 

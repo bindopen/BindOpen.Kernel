@@ -141,15 +141,15 @@ namespace BindOpen.Scoping
                                 object obj = null;
                                 if (spec.GetFlagValue(BdoSpecProperties.IsStatic))
                                     obj = (paramSet as IBdoScriptword)?.Parent?.GetData();
-                                else if (spec.DataType.IsCompatibleWith(typeof(IBdoScope)))
+                                else if (spec.IsCompatibleWithType(typeof(IBdoScope)))
                                     obj = scope;
-                                else if (spec.DataType.IsCompatibleWith(typeof(IBdoScriptDomain)))
+                                else if (spec.IsCompatibleWithType(typeof(IBdoScriptDomain)))
                                     obj = scope.NewScriptDomain(varSet, paramSet as IBdoScriptword, log);
-                                else if (spec.DataType.IsCompatibleWith(typeof(IBdoScriptword)))
+                                else if (spec.IsCompatibleWithType(typeof(IBdoScriptword)))
                                     obj = paramSet as IBdoScriptword;
-                                else if (spec.DataType.IsCompatibleWith(typeof(IBdoMetaSet)))
+                                else if (spec.IsCompatibleWithType(typeof(IBdoMetaSet)))
                                     obj = varSet;
-                                else if (spec.DataType.IsCompatibleWith(typeof(IBdoLog)))
+                                else if (spec.IsCompatibleWithType(typeof(IBdoLog)))
                                     obj = log;
 
                                 objs.Insert(int.Min(objs.Count, spec.Index ?? 0), obj);
@@ -214,7 +214,7 @@ namespace BindOpen.Scoping
                     {
                         var spec = BdoData.NewSpec().WithChildren(definition.Items?.ToArray());
 
-                        if ((parentDataType == null || parentDataType.IsCompatibleWith(definition?.ParentDataType) == true)
+                        if ((parentDataType == null || parentDataType.IsCompatibleWithType(definition?.ParentDataType) == true)
                             && (definition.RuntimeFunction != null || (validator?.Check(paramSet, spec, log: log) ?? false)))
                         {
                             functionDefinition = definition;
