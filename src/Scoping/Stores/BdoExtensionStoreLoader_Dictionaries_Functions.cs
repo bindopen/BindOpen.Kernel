@@ -113,7 +113,7 @@ namespace BindOpen.Scoping
 
                         if (isStatic || isScriptParameter ||
                             (spec.DataType?.ValueType != DataValueTypes.Any
-                            && spec.DataType.IsCompatibleWith(typeof(IBdoScriptDomain))))
+                            && spec.IsCompatibleWithType(typeof(IBdoScriptDomain))))
                         {
                             definition.AdditionalSpecs ??= BdoData.NewItemSet<IBdoSpec>();
                             definition.AdditionalSpecs.Insert(spec);

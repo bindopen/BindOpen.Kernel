@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Assemblies;
-using System;
 
 namespace BindOpen.Data
 {
@@ -13,8 +12,8 @@ namespace BindOpen.Data
         /// </summary>
         DataValueTypes ValueType { get; set; }
 
-        bool IsCompatibleWith(IBdoDataType dataType);
+        bool IsCompatibleWithType(IBdoDataType dataType);
 
-        bool IsCompatibleWith(Type type);
+        bool IsCompatibleWithData(object data);
     }
 }

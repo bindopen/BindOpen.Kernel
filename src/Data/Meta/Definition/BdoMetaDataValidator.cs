@@ -39,7 +39,7 @@ namespace BindOpen.Data.Meta
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            bool isOk = true;
+            bool valid = true;
 
             if (meta != null)
             {
@@ -48,6 +48,24 @@ namespace BindOpen.Data.Meta
 
                 var spec = meta.Spec ?? defaultSpec;
 
+                // we get the data
+
+                var data = meta.GetData(Scope, localVarSet, log);
+
+                // check the value type
+
+                if ((spec != null && !meta.DataType.IsCompatibleWithType(spec.DataType))
+                    || !meta.IsCompatibleWithData(data))
+                {
+                    valid = false;
+                    log?.AddEvent(
+                        EventKinds.Error,
+                        "Bad value type",
+                        string.Format("The value of element '{0}' is not compatible with '{1}' type",
+                            meta.Name,
+                            spec.DataType.ToString()),
+                        resultCode: BdoSpecRuleResultCodes.InvalidData);
+                }
 
                 if (spec != null)
                 {
@@ -87,8 +105,6 @@ namespace BindOpen.Data.Meta
 
                     // check item requirement
 
-                    var data = meta?.GetData(Scope, localVarSet, log);
-
                     var itemRequirementLevel = spec.GetRuleValue<RequirementLevels>(
                         BdoMetaDataProperties.ItemRequirementLevel,
                         BdoSpecRuleKinds.Requirement, Scope, localVarSet, log);
@@ -121,20 +137,6 @@ namespace BindOpen.Data.Meta
                             break;
                     }
 
-                    // check the value type
-
-                    if (spec.DataType?.IsCompatibleWith(data?.GetType()) == false)
-                    {
-                        isOk = false;
-                        log?.AddEvent(
-                            EventKinds.Error,
-                            "Bad value type",
-                            string.Format("The value of element '{0}' is not compatible with '{1}' type",
-                                meta.Name,
-                                spec.DataType.ToString()),
-                            resultCode: BdoSpecRuleResultCodes.InvalidData);
-                    }
-
                     // check the item number
 
                     var itemNumber = data.ToObjectList()?.Count ?? 0;
@@ -143,7 +145,7 @@ namespace BindOpen.Data.Meta
                         && ((itemNumber > maxNumber)
                         || (itemNumber < spec.MinDataItemNumber)))
                     {
-                        isOk = false;
+                        valid = false;
                         log?.AddEvent(
                             EventKinds.Error,
                             "Invalid data item number",
@@ -179,7 +181,7 @@ namespace BindOpen.Data.Meta
                                 if ((currentValue == null && expectedValue != null)
                                     || currentValue?.Equals(expectedValue) != true)
                                 {
-                                    isOk = false;
+                                    valid = false;
 
                                     log?.AddEvent(
                                         rule.ResultEventKind,
@@ -213,7 +215,7 @@ namespace BindOpen.Data.Meta
 
                                 if (conditionValue != true)
                                 {
-                                    isOk = false;
+                                    valid = false;
 
                                     log?.AddEvent(
                                         constraint.ResultEventKind,
@@ -245,7 +247,7 @@ namespace BindOpen.Data.Meta
                             case RequirementLevels.Required:
                                 if (metaSet?.Has(childSpec.Name) != true)
                                 {
-                                    isOk = false;
+                                    valid = false;
                                     log?.AddEvent(
                                         EventKinds.Error,
                                         "Child element missing",
@@ -255,7 +257,7 @@ namespace BindOpen.Data.Meta
                             case RequirementLevels.Forbidden:
                                 if (metaSet?.Has(childSpec.Name) == true)
                                 {
-                                    isOk = false;
+                                    valid = false;
                                     log?.AddEvent(
                                         EventKinds.Error,
                                         "Child element forbidden",
@@ -275,12 +277,12 @@ namespace BindOpen.Data.Meta
                     foreach (var subMeta in metaSet)
                     {
                         var subSpec = spec.Child(subMeta?.Name);
-                        isOk &= Check(subMeta, subSpec, varSet, log);
+                        valid &= Check(subMeta, subSpec, varSet, log);
                     }
                 }
             }
 
-            return isOk;
+            return valid;
         }
     }
 }
