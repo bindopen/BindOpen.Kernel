@@ -123,16 +123,28 @@ namespace BindOpen.Data.Meta
         }
 
         [Test, Order(8)]
-        public void CheckNullValueTest()
+        public void CheckValueTypeTest()
         {
             var validator = SystemData.Scope.CreateValidator();
 
             var meta1 = BdoData.NewScalar("name")
-                .AsNullValue()
-                .WithData("maria");
+                .AsNullValue();
+            Assert.That(validator.Check(meta1), "Check rules - Error");
 
-            var valid = validator.Check(meta1);
-            Assert.That(!valid, "Check rules - Error");
+            meta1.WithData("maria");
+            Assert.That(!validator.Check(meta1), "Check rules - Error");
+
+            var meta2 = BdoData.NewScalar("name")
+                .WithSpec(q => q.AsNullValue());
+            Assert.That(validator.Check(meta2), "Check rules - Error");
+
+            meta2.WithData("maria");
+            Assert.That(!validator.Check(meta2), "Check rules - Error");
+
+            var meta4 = BdoData.NewScalar("name")
+                .WithSpec(q => q.AsInteger())
+                .WithData("ABC");
+            Assert.That(!validator.Check(meta4), "Check rules - Error");
         }
     }
 }
