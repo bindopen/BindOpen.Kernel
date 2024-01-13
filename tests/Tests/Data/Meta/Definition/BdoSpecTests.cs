@@ -121,5 +121,18 @@ namespace BindOpen.Data.Meta
             var ok3 = validator.Check(meta3);
             Assert.That(ok3, "Check rules - Error");
         }
+
+        [Test, Order(8)]
+        public void CheckNullValueTest()
+        {
+            var validator = SystemData.Scope.CreateValidator();
+
+            var meta1 = BdoData.NewScalar("name")
+                .AsNullValue()
+                .WithData("maria");
+
+            var valid = validator.Check(meta1);
+            Assert.That(!valid, "Check rules - Error");
+        }
     }
 }

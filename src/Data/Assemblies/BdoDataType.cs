@@ -170,64 +170,12 @@ namespace BindOpen.Data
 
         public static bool operator >=(BdoDataType left, BdoDataType right)
         {
-            var leftValueType = left?.ValueType ?? DataValueTypes.Any;
-            var rightValueType = right?.ValueType ?? DataValueTypes.Any;
-
-            var b = leftValueType == DataValueTypes.Any
-                    || rightValueType == DataValueTypes.Any
-                    || leftValueType == DataValueTypes.Entity
-                    || leftValueType == DataValueTypes.Object
-                    || rightValueType == DataValueTypes.Entity
-                    || rightValueType == DataValueTypes.Object
-                    || leftValueType == right.ValueType;
-
-            if (b && leftValueType != DataValueTypes.Any)
-            {
-                if (leftValueType.IsScalar())
-                {
-                    return rightValueType == DataValueTypes.Any
-                        || leftValueType == rightValueType;
-                }
-
-                var rightRuntimeType = right?.GetRuntimeType();
-                var leftRuntimeType = left?.GetRuntimeType();
-
-                b = rightValueType == DataValueTypes.Any
-                    || rightRuntimeType?.IsAssignableFrom(leftRuntimeType) == true;
-            }
-
-            return b;
+            return left.IsCompatibleWithType(right);
         }
 
         public static bool operator <=(BdoDataType left, BdoDataType right)
         {
-            var leftValueType = left?.ValueType ?? DataValueTypes.Any;
-            var rightValueType = right?.ValueType ?? DataValueTypes.Any;
-
-            var b = leftValueType == DataValueTypes.Any
-                || rightValueType == DataValueTypes.Any
-                || leftValueType == DataValueTypes.Entity
-                || leftValueType == DataValueTypes.Object
-                || rightValueType == DataValueTypes.Entity
-                || rightValueType == DataValueTypes.Object
-                || leftValueType == right.ValueType;
-
-            if (b && rightValueType != DataValueTypes.Any)
-            {
-                if (rightValueType.IsScalar())
-                {
-                    return leftValueType == DataValueTypes.Any
-                        || leftValueType == rightValueType;
-                }
-
-                var rightRuntimeType = right?.GetRuntimeType();
-                var leftRuntimeType = left?.GetRuntimeType();
-
-                b = leftValueType == DataValueTypes.Any
-                    || leftRuntimeType?.IsAssignableFrom(rightRuntimeType) == true;
-            }
-
-            return b;
+            return right.IsCompatibleWithType(left);
         }
 
         public static bool operator <=(BdoDataType left, Type right)
@@ -240,16 +188,46 @@ namespace BindOpen.Data
             return left >= BdoData.NewDataType(right);
         }
 
-        public bool IsCompatibleWith(IBdoDataType dataType)
+        public bool IsCompatibleWithType(IBdoDataType dataType)
         {
-            return this >= (BdoDataType)dataType;
+            var leftValueType = ValueType;
+            var rightValueType = dataType?.ValueType ?? DataValueTypes.Any;
+
+            var b = leftValueType == DataValueTypes.Any
+                    || rightValueType == DataValueTypes.Any
+                    || leftValueType == DataValueTypes.Entity
+                    || leftValueType == DataValueTypes.Object
+                    || rightValueType == DataValueTypes.Entity
+                    || rightValueType == DataValueTypes.Object
+                    || leftValueType == rightValueType;
+
+            if (b && leftValueType != DataValueTypes.Any)
+            {
+                if (leftValueType.IsScalar())
+                {
+                    return rightValueType == DataValueTypes.Any
+                        || leftValueType == rightValueType;
+                }
+
+                var rightRuntimeType = dataType?.GetRuntimeType();
+                var leftRuntimeType = GetRuntimeType();
+
+                b = rightValueType == DataValueTypes.Any
+                    || rightRuntimeType?.IsAssignableFrom(leftRuntimeType) == true;
+            }
+
+            return b;
         }
 
-        public bool IsCompatibleWith(Type type)
+        public bool IsCompatibleWithData(object data)
         {
-            return this >= type;
-        }
+            if (ValueType == DataValueTypes.Null)
+            {
+                return data == null;
+            }
 
+            return data == null || IsCompatibleWithType(BdoData.NewDataType(data.GetType()));
+        }
 
         public override bool Equals(object obj)
         {

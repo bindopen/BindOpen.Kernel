@@ -72,6 +72,13 @@ namespace BindOpen.Data
             return dataTyped;
         }
 
+        public static bool IsCompatibleWithType(
+            this IBdoDataTyped dataTyped,
+            Type type)
+        {
+            return dataTyped?.DataType.IsCompatibleWithType(type) ?? false;
+        }
+
         /// <summary>
         /// 
         /// </summary>
