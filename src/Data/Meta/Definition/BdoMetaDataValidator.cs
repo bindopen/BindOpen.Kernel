@@ -54,14 +54,16 @@ namespace BindOpen.Data.Meta
 
                 // check the value type
 
-                if ((spec != null && !meta.DataType.IsCompatibleWithType(spec.DataType))
-                    || !meta.IsCompatibleWithData(data))
+                if ((spec != null
+                        && !(meta.DataType.IsCompatibleWithType(spec.DataType)
+                        && spec.IsCompatibleWithData(data)))
+                    || (spec == null && !meta.IsCompatibleWithData(data)))
                 {
                     valid = false;
                     log?.AddEvent(
                         EventKinds.Error,
                         "Bad value type",
-                        string.Format("The value of element '{0}' is not compatible with '{1}' type",
+                        string.Format("The type of data of element '{0}' is not compatible with '{1}' type",
                             meta.Name,
                             spec.DataType.ToString()),
                         resultCode: BdoSpecRuleResultCodes.InvalidData);
