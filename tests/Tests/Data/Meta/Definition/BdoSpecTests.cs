@@ -127,7 +127,7 @@ namespace BindOpen.Data.Meta
         {
             var validator = SystemData.Scope.CreateValidator();
 
-            var meta1 = BdoData.NewNode("name")
+            var meta1 = BdoData.NewScalar("name")
                 .AsNullValue()
                 .WithData("maria");
 

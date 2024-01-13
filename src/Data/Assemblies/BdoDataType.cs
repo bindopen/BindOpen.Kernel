@@ -221,9 +221,12 @@ namespace BindOpen.Data
 
         public bool IsCompatibleWithData(object data)
         {
-            return
-                (ValueType != DataValueTypes.Null || data != null)
-                && IsCompatibleWithType(BdoData.NewDataType(data.GetType()));
+            if (ValueType == DataValueTypes.Null)
+            {
+                return data == null;
+            }
+
+            return data == null || IsCompatibleWithType(BdoData.NewDataType(data.GetType()));
         }
 
         public override bool Equals(object obj)

@@ -48,6 +48,24 @@ namespace BindOpen.Data.Meta
 
                 var spec = meta.Spec ?? defaultSpec;
 
+                // we get the data
+
+                var data = meta.GetData(Scope, localVarSet, log);
+
+                // check the value type
+
+                if ((spec != null && !meta.DataType.IsCompatibleWithType(spec.DataType))
+                    || !meta.IsCompatibleWithData(data))
+                {
+                    valid = false;
+                    log?.AddEvent(
+                        EventKinds.Error,
+                        "Bad value type",
+                        string.Format("The value of element '{0}' is not compatible with '{1}' type",
+                            meta.Name,
+                            spec.DataType.ToString()),
+                        resultCode: BdoSpecRuleResultCodes.InvalidData);
+                }
 
                 if (spec != null)
                 {
@@ -87,8 +105,6 @@ namespace BindOpen.Data.Meta
 
                     // check item requirement
 
-                    var data = meta?.GetData(Scope, localVarSet, log);
-
                     var itemRequirementLevel = spec.GetRuleValue<RequirementLevels>(
                         BdoMetaDataProperties.ItemRequirementLevel,
                         BdoSpecRuleKinds.Requirement, Scope, localVarSet, log);
@@ -119,21 +135,6 @@ namespace BindOpen.Data.Meta
                                 return false;
                             }
                             break;
-                    }
-
-                    // check the value type
-
-                    if (meta.DataType.IsCompatibleWithData(spec.DataType)
-                        && meta.IsCompatibleWithData(data) == false)
-                    {
-                        valid = false;
-                        log?.AddEvent(
-                            EventKinds.Error,
-                            "Bad value type",
-                            string.Format("The value of element '{0}' is not compatible with '{1}' type",
-                                meta.Name,
-                                spec.DataType.ToString()),
-                            resultCode: BdoSpecRuleResultCodes.InvalidData);
                     }
 
                     // check the item number
