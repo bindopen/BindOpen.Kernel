@@ -98,7 +98,7 @@ namespace BindOpen.Data.Meta
                     BdoData.NewMeta("label", true),
                     BdoData.NewMeta("title", "myTitle"));
 
-            var ok1 = validator.Check(meta1);
+            var ok1 = meta1.Check(SystemData.Scope);
             Assert.That(ok1, "Check rules - Error");
 
             var meta2 = BdoData.NewNode("meta-test")
