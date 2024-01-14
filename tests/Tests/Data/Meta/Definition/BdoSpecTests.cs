@@ -131,6 +131,11 @@ namespace BindOpen.Data.Meta
                 .AsNullValue();
             Assert.That(validator.Check(meta1), "Check rules - Error");
 
+            meta1 = BdoData.NewScalar("name")
+                .WithSpec(q => q.AsNullValue())
+                .AsNullValue();
+            Assert.That(validator.Check(meta1), "Check rules - Error");
+
             meta1.WithData("maria");
             Assert.That(!validator.Check(meta1), "Check rules - Error");
 
