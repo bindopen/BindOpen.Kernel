@@ -203,7 +203,8 @@ namespace BindOpen.Data
 
             if (b && leftValueType != DataValueTypes.Any)
             {
-                if (leftValueType.IsScalar())
+                if (leftValueType == DataValueTypes.Null
+                    || leftValueType.IsScalar())
                 {
                     return rightValueType == DataValueTypes.Any
                         || leftValueType == rightValueType;

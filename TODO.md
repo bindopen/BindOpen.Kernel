@@ -3,6 +3,7 @@ Todo list for BindOpen
 
 ## Next tasks
 
+- [ ] Fix bug with 'has' script on object null (like parent)
 - [ ] Make constraint easier
 - [ ] Checking Clone methods
 - [ ] Implementing XSD files

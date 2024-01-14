@@ -111,7 +111,7 @@ namespace BindOpen.Data
         /// <returns>The result object.</returns>
         public static DataValueTypes GetValueType(this Type type)
         {
-            if (type == null) return DataValueTypes.None;
+            if (type == null) return DataValueTypes.Any;
 
             if (type == typeof(byte) || type == typeof(byte?) || type == typeof(byte[]))
                 return DataValueTypes.Binary;
