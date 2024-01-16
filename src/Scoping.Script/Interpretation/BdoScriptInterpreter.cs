@@ -171,14 +171,9 @@ namespace BindOpen.Scoping.Script
                         {
                             foreach (var paramValue in word)
                             {
-                                if (paramValue is IBdoReference reference)
+                                if (paramValue is IBdoScriptword wordParam)
                                 {
-                                    var obj = Evaluate(reference, varSet, log);
-                                    cloned.InsertData(obj);
-                                }
-                                else if (paramValue is IBdoExpression exp)
-                                {
-                                    var obj = Evaluate(exp, varSet, log);
+                                    var obj = Evaluate(wordParam, varSet, log);
                                     cloned.InsertData(obj);
                                 }
                                 else

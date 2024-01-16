@@ -127,8 +127,6 @@ namespace BindOpen.Data.Meta
 
         // Items --------------------------------------------
 
-        public DataMode DataMode { get; set; }
-
         /// <summary>
         /// 
         /// </summary>
