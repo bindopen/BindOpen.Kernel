@@ -1,10 +1,10 @@
-﻿using BindOpen.Data.Meta;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using BindOpen.Logging;
 using BindOpen.Scoping;
 using BindOpen.Scoping.Connectors;
 using BindOpen.Scoping.Entities;
 using Bogus;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -65,7 +65,7 @@ namespace BindOpen.Kernel.Tests
         /// <typeparam name="T">The BindOpen entity class to consider.</typeparam>
         /// <param name="paramSet">The set of meta parameters.</param>
         /// <returns>Returns the entity objects.</returns>
-        public override IEnumerable<T> Pull<T>(IBdoMetaSet paramSet = null)
+        public override IEnumerable<T> Pull<T>(IBdoMetaSet paramSet = null, IBdoLog log = null)
         {
             var f = new Faker();
 
@@ -88,17 +88,16 @@ namespace BindOpen.Kernel.Tests
         /// </summary>
         /// <param name="entities">The entity object to push.</param>
         /// <returns>Returns True whether the entities have been pushed.</returns>
-        public override bool Push(params IBdoEntity[] entities)
+        public override IEnumerable<IResultItem> Push(IBdoLog log = null, params IBdoEntity[] entities)
         {
-            if (entities?.Any()==true)
+            if (entities?.Any() == true)
             {
                 foreach (var entity in entities)
                 {
                     Debug.WriteLine(string.Format("Entity '{0}' pushed", entity.Id));
+                    yield return BdoData.NewResultItem(ResourceStatus.Created);
                 }
             }
-
-            return true;
         }
 
         #endregion

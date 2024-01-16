@@ -40,7 +40,7 @@ namespace BindOpen.Scoping.Connectors
         {
             var connector = new ConnectorFake
             {
-                ConnectionString = _testData.connecString,
+                ConnectionString = _testData.connectionString,
                 Host = _testData.host,
                 IsSslEnabled = _testData.isSslEnabled,
                 Port = BdoData.NewScalar<int?>(_testData.port as int?)
@@ -57,7 +57,7 @@ namespace BindOpen.Scoping.Connectors
         {
             var connector = new ConnectorFake
             {
-                ConnectionString = _testData.connecString,
+                ConnectionString = _testData.connectionString,
                 Host = _testData.host,
                 IsSslEnabled = _testData.isSslEnabled,
                 Port = BdoData.NewScalar<int?>(_testData.port as int?)
@@ -67,9 +67,9 @@ namespace BindOpen.Scoping.Connectors
             {
                 var paramSet = BdoData.NewSet(
                     BdoData.NewObject(nameof(BdoSpec.GroupId)));
-                var entities = conn.Pull(paramSet);
+                var entities = conn.Pull(paramSet, log);
 
-                conn.Push(entities?.ToArray());
+                conn.Push(null, entities?.ToArray());
             });
         }
     }
