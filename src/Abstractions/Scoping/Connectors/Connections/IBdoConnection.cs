@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Meta;
+﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using BindOpen.Logging;
 using BindOpen.Scoping.Entities;
 using System;
@@ -51,7 +52,7 @@ namespace BindOpen.Scoping.Connectors
         /// </summary>
         /// <param name="paramSet">The set of meta parameters.</param>
         /// <returns>Returns the entity objects.</returns>
-        IEnumerable<IBdoEntity> Pull(IBdoMetaSet paramSet = null);
+        IEnumerable<IBdoEntity> Pull(IBdoMetaSet paramSet = null, IBdoLog log = null);
 
         /// <summary>
         /// Pulls entity objects using the specified parameter set.
@@ -59,14 +60,16 @@ namespace BindOpen.Scoping.Connectors
         /// <typeparam name="T">The BindOpen entity class to consider.</typeparam>
         /// <param name="paramSet">The set of meta parameters.</param>
         /// <returns>Returns the entity objects.</returns>
-        IEnumerable<T> Pull<T>(IBdoMetaSet paramSet = null)
+        IEnumerable<T> Pull<T>(IBdoMetaSet paramSet = null, IBdoLog log = null)
             where T : IBdoEntity;
+
+        IEnumerable<IResultItem> Push(params IBdoEntity[] entities);
 
         /// <summary>
         /// Pushes the specified entity objects.
         /// </summary>
         /// <param name="entities">The entity object to push.</param>
         /// <returns>Returns True whether the entities have been pushed.</returns>
-        bool Push(params IBdoEntity[] entities);
+        IEnumerable<IResultItem> Push(IBdoLog log = null, params IBdoEntity[] entities);
     }
 }

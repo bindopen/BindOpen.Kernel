@@ -57,9 +57,9 @@ namespace BindOpen.Scoping.Connectors
         /// </summary>
         /// <param name="paramSet">The set of meta parameters.</param>
         /// <returns>Returns the entity objects.</returns>
-        public virtual IEnumerable<IBdoEntity> Pull(IBdoMetaSet paramSet = null)
+        public virtual IEnumerable<IBdoEntity> Pull(IBdoMetaSet paramSet = null, IBdoLog log = null)
         {
-            var entities = Pull<IBdoEntity>(paramSet);
+            var entities = Pull<IBdoEntity>(paramSet, log);
 
             return entities;
         }
@@ -70,7 +70,7 @@ namespace BindOpen.Scoping.Connectors
         /// <typeparam name="T">The BindOpen entity class to consider.</typeparam>
         /// <param name="paramSet">The set of meta parameters.</param>
         /// <returns>Returns the entity objects.</returns>
-        public abstract IEnumerable<T> Pull<T>(IBdoMetaSet paramSet = null)
+        public abstract IEnumerable<T> Pull<T>(IBdoMetaSet paramSet = null, IBdoLog log = null)
             where T : IBdoEntity;
 
         /// <summary>
@@ -78,7 +78,17 @@ namespace BindOpen.Scoping.Connectors
         /// </summary>
         /// <param name="entities">The entity object to push.</param>
         /// <returns>Returns True whether the entities have been pushed.</returns>
-        public abstract bool Push(params IBdoEntity[] entities);
+        public IEnumerable<IResultItem> Push(params IBdoEntity[] entities)
+        {
+            return Push(null, entities);
+        }
+
+        /// <summary>
+        /// Pushes the specified entity objects.
+        /// </summary>
+        /// <param name="entities">The entity object to push.</param>
+        /// <returns>Returns True whether the entities have been pushed.</returns>
+        public abstract IEnumerable<IResultItem> Push(IBdoLog log, params IBdoEntity[] entities);
 
         #endregion
 
