@@ -31,17 +31,12 @@ namespace BindOpen.Scoping.Connectors
 
         // Push
 
-        IEnumerable<IResultItem> Push(params TEntity[] entities);
-
         /// <summary>
         /// Pushes the specified entity objects.
         /// </summary>
         /// <param name="entities">The entity object to push.</param>
         /// <returns>Returns True whether the entities have been pushed.</returns>
         IEnumerable<IResultItem> Push(IBdoLog log = null, params TEntity[] entities);
-
-
-        Task<IEnumerable<IResultItem>> PushAsync(params TEntity[] entities);
 
         /// <summary>
         /// Pushes the specified entity objects.

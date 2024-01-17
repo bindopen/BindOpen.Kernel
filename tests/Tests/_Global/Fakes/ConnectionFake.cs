@@ -3,18 +3,18 @@ using BindOpen.Data.Meta;
 using BindOpen.Logging;
 using BindOpen.Scoping;
 using BindOpen.Scoping.Connectors;
-using BindOpen.Scoping.Entities;
 using Bogus;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BindOpen.Kernel.Tests
 {
     /// <summary>
     /// This class represents a database connection.
     /// </summary>
-    public class ConnectionFake : BdoConnection
+    public class ConnectionFake : BdoConnection, ITBdoConnection<EntityFake>
     {
         // ------------------------------------------
         // CONSTRUCTORS
@@ -59,13 +59,7 @@ namespace BindOpen.Kernel.Tests
 
         // Push / Pull -----------------------------
 
-        /// <summary>
-        /// Pulls entity objects using the specified parameter set.
-        /// </summary>
-        /// <typeparam name="T">The BindOpen entity class to consider.</typeparam>
-        /// <param name="paramSet">The set of meta parameters.</param>
-        /// <returns>Returns the entity objects.</returns>
-        public override IEnumerable<T> Pull<T>(IBdoMetaSet paramSet = null, IBdoLog log = null)
+        public IEnumerable<EntityFake> Pull(IBdoMetaSet paramSet = null, IBdoLog log = null)
         {
             var f = new Faker();
 
@@ -77,10 +71,16 @@ namespace BindOpen.Kernel.Tests
                         .WithGroupId(paramSet?.GetData<string>(nameof(BdoSpec.GroupId)));
                     var entity = SystemData.Scope.CreateEntity<EntityFake>(meta);
                     return entity;
-                })
-                .Cast<T>();
+                });
 
             return entities;
+        }
+
+        public Task<IEnumerable<EntityFake>> PullAsync(IBdoMetaSet paramSet = null, IBdoLog log = null)
+        {
+            var entities = Pull(paramSet, log);
+
+            return Task.FromResult(entities);
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace BindOpen.Kernel.Tests
         /// </summary>
         /// <param name="entities">The entity object to push.</param>
         /// <returns>Returns True whether the entities have been pushed.</returns>
-        public override IEnumerable<IResultItem> Push(IBdoLog log = null, params IBdoEntity[] entities)
+        public IEnumerable<IResultItem> Push(IBdoLog log = null, params EntityFake[] entities)
         {
             if (entities?.Any() == true)
             {
@@ -98,6 +98,13 @@ namespace BindOpen.Kernel.Tests
                     yield return BdoData.NewResultItem(ResourceStatus.Created);
                 }
             }
+        }
+
+        public Task<IEnumerable<IResultItem>> PushAsync(IBdoLog log = null, params EntityFake[] entities)
+        {
+            var results = Push(log, entities);
+
+            return Task.FromResult(results);
         }
 
         #endregion
