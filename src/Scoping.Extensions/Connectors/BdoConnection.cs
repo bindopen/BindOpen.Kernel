@@ -1,8 +1,5 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Meta;
 using BindOpen.Logging;
-using BindOpen.Scoping.Entities;
-using System.Collections.Generic;
 using System.Data;
 
 namespace BindOpen.Scoping.Connectors
@@ -49,46 +46,6 @@ namespace BindOpen.Scoping.Connectors
         /// Disconnects this instance.
         /// </summary>
         public abstract void Disconnect(IBdoLog log = null);
-
-        // Push / Pull -----------------------------
-
-        /// <summary>
-        /// Pulls entity objects using the specified parameter set.
-        /// </summary>
-        /// <param name="paramSet">The set of meta parameters.</param>
-        /// <returns>Returns the entity objects.</returns>
-        public virtual IEnumerable<IBdoEntity> Pull(IBdoMetaSet paramSet = null, IBdoLog log = null)
-        {
-            var entities = Pull<IBdoEntity>(paramSet, log);
-
-            return entities;
-        }
-
-        /// <summary>
-        /// Pulls entity objects using the specified parameter set.
-        /// </summary>
-        /// <typeparam name="T">The BindOpen entity class to consider.</typeparam>
-        /// <param name="paramSet">The set of meta parameters.</param>
-        /// <returns>Returns the entity objects.</returns>
-        public abstract IEnumerable<T> Pull<T>(IBdoMetaSet paramSet = null, IBdoLog log = null)
-            where T : IBdoEntity;
-
-        /// <summary>
-        /// Pushes the specified entity objects.
-        /// </summary>
-        /// <param name="entities">The entity object to push.</param>
-        /// <returns>Returns True whether the entities have been pushed.</returns>
-        public IEnumerable<IResultItem> Push(params IBdoEntity[] entities)
-        {
-            return Push(null, entities);
-        }
-
-        /// <summary>
-        /// Pushes the specified entity objects.
-        /// </summary>
-        /// <param name="entities">The entity object to push.</param>
-        /// <returns>Returns True whether the entities have been pushed.</returns>
-        public abstract IEnumerable<IResultItem> Push(IBdoLog log, params IBdoEntity[] entities);
 
         #endregion
 
