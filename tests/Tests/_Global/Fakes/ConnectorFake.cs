@@ -10,7 +10,7 @@ namespace BindOpen.Kernel.Tests
     /// </summary>
     [BdoConnector(Name = "bindopen.kernel.tests$testConnector")]
     [BdoConnector(CreationDate = "2023-02-25")]
-    public class ConnectorFake : BdoConnector
+    public class ConnectorFake : BdoConnector, ITBdoConnector<ConnectionFake>
     {
         public static string __DefinitionUniqueName = "bindopen.kernel.tests$testConnector";
 

@@ -49,34 +49,46 @@ namespace BindOpen.Scoping
         /// <param key="log">The log to consider.</param>
         /// <param key="autoConnect">Indicates whether the connection is automatically opened.</param>
         /// <returns></returns>
-        public static T UsingConnection<T>(
-            this T connector,
+        public static void UsingConnection(
+            this IBdoConnector connector,
             Action<IBdoConnection, IBdoLog> action,
             bool autoConnect = true,
             IBdoLog log = null)
-            where T : IBdoConnector
         {
-            using var connection = connector?.NewConnection(log);
-            if (connection != null)
+            if (connector != null)
             {
-                if (autoConnect)
+                using var connection = connector.NewConnection(log);
+                if (connection != null)
                 {
-                    try
+                    if (autoConnect)
                     {
-                        connection.Connect(log);
+                        try
+                        {
+                            connection.Connect(log);
+                        }
+                        catch (ExternalException ex)
+                        {
+                            log?.AddEvent(EventKinds.Exception,
+                                "An exception occured while trying to open connection",
+                                ex.ToString());
+                        }
                     }
-                    catch (ExternalException ex)
-                    {
-                        log?.AddEvent(EventKinds.Exception,
-                            "An exception occured while trying to open connection",
-                            ex.ToString());
-                    }
+
+                    action?.Invoke(connection, log);
                 }
-
-                action?.Invoke(connection, log);
             }
+        }
 
-            return connector;
+        public static void UsingConnection<TConnection>(
+            this ITBdoConnector<TConnection> connector,
+            Action<TConnection, IBdoLog> action,
+            bool autoConnect = true,
+            IBdoLog log = null)
+            where TConnection : IBdoConnection
+        {
+            UsingConnection(
+                connector, (connector, log) => action?.Invoke(connector, log),
+                autoConnect, log);
         }
 
     }
