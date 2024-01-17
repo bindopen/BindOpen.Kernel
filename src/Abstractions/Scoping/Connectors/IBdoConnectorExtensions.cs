@@ -86,8 +86,8 @@ namespace BindOpen.Scoping
             IBdoLog log = null)
             where TConnection : IBdoConnection
         {
-            UsingConnection(
-                connector, (connector, log) => action?.Invoke(connector, log),
+            (connector as IBdoConnector).UsingConnection(
+                (conn, log) => action?.Invoke((TConnection)conn, log),
                 autoConnect, log);
         }
 
