@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BindOpen.Tests.IO</name>
+    </assembly>
+    <members>
+        <member name="T:BindOpen.Scoping.GlobalSetUp">
+            <summary>
+            This class set the global setup.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.GlobalSetUp.OneTimeSetUp">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

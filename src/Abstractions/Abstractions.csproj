@@ -2,16 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <AssemblyName>BindOpen.Kernel.Abstractions</AssemblyName>
-    <PackageId>BindOpen.Kernel.Abstractions</PackageId>
+    <AssemblyName>BindOpen.Abstractions</AssemblyName>
+    <PackageId>BindOpen.Abstractions</PackageId>
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright ©BindOpen 2011-2024</Copyright>
-    <Description>This package provides the core abstractions of BindOpen.Kernel.</Description>
+    <Description>This package provides the core abstractions of BindOpen.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.Kernel.Abstractions</RootNamespace>
+    <RootNamespace>BindOpen.Abstractions</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.Kernel</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/bindopen/BindOpen.Kernel.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/bindopen/BindOpen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>bindopen_icon.png</PackageIcon>
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Kernel.Abstractions.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Abstractions.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
