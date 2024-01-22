@@ -2,7 +2,7 @@
 
 ![BindOpen logo](https://storage.bindopen.org/img/logos/logo_bindopen.png)
 
-![Github release version](https://img.shields.io/nuget/v/BindOpen.Kernel.Abstractions.svg?style=plastic)
+![Github release version](https://img.shields.io/nuget/v/BindOpen.Abstractions.svg?style=plastic)
 
 
 The solution layers are structured as followed:
