@@ -34,7 +34,7 @@ namespace BindOpen.Kernel.Tests
 
             var meta =
                 BdoData.NewObject()
-                .WithDataType(BdoExtensionKinds.Entity, "bindopen.kernel.tests$testEntity")
+                .WithDataType(BdoExtensionKinds.Entity, "bindopen.tests$testEntity")
                 .With(
                     BdoData.NewScalar("boolValue", data.boolValue as bool?),
                     BdoData.NewScalar("enumValue", data.enumValue as AccessibilityLevels?),

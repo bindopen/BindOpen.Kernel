@@ -68,7 +68,7 @@ namespace BindOpen.Data.Meta
                 .With(
                     BdoData.NewScalar("path", _testData.path1 as string));
 
-            var metaObj2 = BdoData.NewObject("object2", "bindopen.kernel.tests$testEntity")
+            var metaObj2 = BdoData.NewObject("object2", "bindopen.tests$testEntity")
                 .WithData(new EntityFake()
                 {
                     Path = _testData.path2 as string

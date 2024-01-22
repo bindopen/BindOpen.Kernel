@@ -20,7 +20,7 @@ namespace BindOpen.Data.Stores
             _metaNode =
                 BdoData.NewObject("testA")
                 .WithId()
-                .WithDataType(BdoExtensionKinds.Connector, "bindopen.kernel.tests$testConnector")
+                .WithDataType(BdoExtensionKinds.Connector, "bindopen.tests$testConnector")
                 .With(
                     BdoData.NewScalar("host", f.Random.Word()),
                     BdoData.NewScalar("port", f.Random.Int()),

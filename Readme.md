@@ -135,7 +135,7 @@ public class TaskFake : BdoTask
 ...
 
 var meta = BdoData.NewObject()
-    .WithDataType(BdoExtensionKinds.Task, "bindopen.kernel.tests$taskFake")
+    .WithDataType(BdoExtensionKinds.Task, "bindopen.tests$taskFake")
     .WithProperties(("boolValue", false))
     .WithInputs(BdoData.NewScalar("enumValue", ActionPriorities.Low))
     .WithOutputs(("stringValue", "test-out"));
