@@ -2,7 +2,7 @@
 
 ![BindOpen logo](https://storage.bindopen.org/img/logos/logo_bindopen.png)
 
-![Github release version](https://img.shields.io/nuget/v/BindOpen.Kernel.Abstractions.svg?style=plastic)
+![Github release version](https://img.shields.io/nuget/v/BindOpen.Abstractions.svg?style=plastic)
 
 
 BindOpen is a framework that enables the development of highly extensible applications. It allows you to enhance your .NET projects with custom script functions, connectors, entities, and tasks.
@@ -34,7 +34,7 @@ Note: We recommend that later on, you install only the package you need.
 |--------|-----|
 | [BindOpen.Data](https://www.nuget.org/packages/BindOpen.Data) | ```PM> Install-Package BindOpen.Data``` |
 | [BindOpen.Scoping](https://www.nuget.org/packages/BindOpen.Scoping) | ```PM> Install-Package BindOpen.Scoping``` |
-| [BindOpen.Kernel.IO](https://www.nuget.org/packages/BindOpen.Kernel.IO) | ```PM> Install-Package BindOpen.Kernel.IO``` |
+| [BindOpen.IO](https://www.nuget.org/packages/BindOpen.IO) | ```PM> Install-Package BindOpen.IO``` |
 
 ### From .NET CLI
 
@@ -42,7 +42,7 @@ Note: We recommend that later on, you install only the package you need.
 |--------|-----|
 | [BindOpen.Data](https://www.nuget.org/packages/BindOpen.Data) | ```> dotnet add package BindOpen.Data``` |
 | [BindOpen.Scoping](https://www.nuget.org/packages/BindOpen.Scoping) | ```> dotnet add package BindOpen.Scoping``` |
-| [BindOpen.Kernel.IO](https://www.nuget.org/packages/BindOpen.Kernel.IO) | ```> dotnet add package BindOpen.Kernel.IO``` |
+| [BindOpen.IO](https://www.nuget.org/packages/BindOpen.IO) | ```> dotnet add package BindOpen.IO``` |
 
 ## Get started
 
@@ -170,13 +170,13 @@ This repository contains the code of the following Nuget packages:
 
 | Package | Provision |
 |----------|-----|
-| [BindOpen.Kernel.Abstractions](https://www.nuget.org/packages/BindOpen.Kernel.Abstractions) | Interfaces and enumerations |
+| [BindOpen.Abstractions](https://www.nuget.org/packages/BindOpen.Abstractions) | Interfaces and enumerations |
 | [BindOpen.Data](https://www.nuget.org/packages/BindOpen.Data) | Core data model |
 | [BindOpen.Scoping](https://www.nuget.org/packages/BindOpen.Scoping) | Extension manager |
 | [BindOpen.Scoping.Extensions](https://www.nuget.org/packages/BindOpen.Scoping.Extensions) | Classes of extensions |
 | [BindOpen.Scoping.Script](https://www.nuget.org/packages/BindOpen.Scoping.Script) | Script interpreter |
-| [BindOpen.Kernel.IO](https://www.nuget.org/packages/BindOpen.Kernel.IO) | Serialization / Deserialization |
-| [BindOpen.Kernel.IO.Dtos](https://www.nuget.org/packages/BindOpen.Kernel.IO.Dtos) | Data transfer classes |
+| [BindOpen.IO](https://www.nuget.org/packages/BindOpen.IO) | Serialization / Deserialization |
+| [BindOpen.IO.Dtos](https://www.nuget.org/packages/BindOpen.IO.Dtos) | Data transfer classes |
 
 The atomicity of these packages allows you install only what you need respecting your solution's architecture.
 
@@ -185,11 +185,11 @@ All of our NuGet packages are available from [our NuGet.org profile page](https:
 
 ## Other repos and Projects
 
-[BindOpen.Kernel.Hosting](https://github.com/bindopen/BindOpen.Kernel.Hosting) enables you to integrate a BindOpen agent within the .NET service builder.
+[BindOpen.Hosting](https://github.com/bindopen/BindOpen.Hosting) enables you to integrate a BindOpen agent within the .NET service builder.
 
 [BindOpen.Logging](https://github.com/bindopen/BindOpen.Logging) provides a simple and multidimensional logging system, perfect to monitor nested task executions.
 
-[BindOpen.Labs](https://github.com/bindopen/BindOpen.Labs) is a collection of projects based on BindOpen.Kernel.
+[BindOpen.Labs](https://github.com/bindopen/BindOpen.Labs) is a collection of projects based on BindOpen.
 
 
 A [full list of all the repos](https://github.com/bindopen?tab=repositories) is available as well.
@@ -219,4 +219,5 @@ If you're having trouble with BindOpen, file a bug on the [BindOpen Issue Tracke
 You are welcome to support this project. All donations are optional but are greatly appreciated.
 
 [![Please donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=PHG3WSUFYSMH4)
+
 

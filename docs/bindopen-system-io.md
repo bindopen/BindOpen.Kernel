@@ -1,4 +1,4 @@
-# BindOpen.Kernel.IO
+# BindOpen.IO
 
 ![BindOpen logo](https://storage.bindopen.org/img/logos/logo_bindopen.png)
 
