@@ -23,7 +23,7 @@ namespace BindOpen.Scoping.Functions
         public void NewWordFromConfigTest()
         {
             var meta = BdoData.NewObject()
-                .WithDataType(BdoExtensionKinds.Function, "bindopen.kernel.tests$testEqual")
+                .WithDataType(BdoExtensionKinds.Function, "bindopen.tests$testEqual")
                 .With(
                     BdoData.NewScalar("stringValue", _testData.stringValue as string),
                     BdoData.NewScalar("intValue", _testData.intValue as int?));

@@ -19,7 +19,7 @@ namespace BindOpen.Kernel.Tests
     )]
     public class TaskFake : BdoTask
     {
-        public static string __DefinitionUniqueName = "bindopen.kernel.tests$taskFake";
+        public static string __DefinitionUniqueName = "bindopen.tests$taskFake";
 
         // ------------------------------------------
         // PROPERTIES

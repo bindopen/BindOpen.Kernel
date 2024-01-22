@@ -33,7 +33,7 @@ namespace BindOpen.Kernel.Tests
             data ??= NewData();
 
             var meta = BdoData.NewObject()
-                .WithDataType(BdoExtensionKinds.Task, "bindopen.kernel.tests$taskFake")
+                .WithDataType(BdoExtensionKinds.Task, "bindopen.tests$taskFake")
                 .WithProperties(
                     ("boolValue", data.boolValue as bool?),
                     ("intValue", data.intValue as int?))
