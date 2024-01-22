@@ -17,7 +17,7 @@ namespace BindOpen.Kernel.Tests
     )]
     public class EntityFake : BdoEntity, IEntityFake
     {
-        public static string __DefinitionUniqueName = "bindopen.kernel.tests$testEntity";
+        public static string __DefinitionUniqueName = "bindopen.tests$testEntity";
 
         // -----------------------------------------------
         // VARIABLES

@@ -34,7 +34,7 @@ namespace BindOpen.Kernel.Tests
 
             var config =
                 BdoData.NewObject()
-                .WithDataType(BdoExtensionKinds.Connector, "bindopen.kernel.tests$testConnector")
+                .WithDataType(BdoExtensionKinds.Connector, "bindopen.tests$testConnector")
                 .With(
                     BdoData.NewScalar("host", data.host as string),
                     BdoData.NewScalar("port", data.port as int?),

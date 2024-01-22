@@ -8,11 +8,11 @@ namespace BindOpen.Kernel.Tests
     /// <summary>
     /// This class represents a test connector.
     /// </summary>
-    [BdoConnector(Name = "bindopen.kernel.tests$testConnector")]
+    [BdoConnector(Name = "bindopen.tests$testConnector")]
     [BdoConnector(CreationDate = "2023-02-25")]
     public class ConnectorFake : BdoConnector, ITBdoConnector<ConnectionFake>
     {
-        public static string __DefinitionUniqueName = "bindopen.kernel.tests$testConnector";
+        public static string __DefinitionUniqueName = "bindopen.tests$testConnector";
 
         /// <summary>
         /// The host of this instance.
