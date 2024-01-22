@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>BindOpen.Kernel.Tests.IO</name>
+        <name>BindOpen.IO.Tests</name>
     </assembly>
     <members>
         <member name="T:BindOpen.Scoping.GlobalSetUp">

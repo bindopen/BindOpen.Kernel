@@ -25,10 +25,10 @@ BindOpen __Publication.Version__ Update - __Publication.Date__
 
 | Packages                 |                                Nuget command                            |
 |--------------------------|:-----------------------------------------------------------------------:|
-| BindOpen.Kernel.Abstractions            | Install-Package BindOpen.Kernel.Abstractions -Version __Publication.Version__              |
+| BindOpen.Abstractions            | Install-Package BindOpen.Abstractions -Version __Publication.Version__              |
 | BindOpen.Data            | Install-Package BindOpen.Data -Version __Publication.Version__              |
-| BindOpen.Kernel.IO            | Install-Package BindOpen.Kernel.IO -Version __Publication.Version__              |
-| BindOpen.Kernel.IO            | Install-Package BindOpen.Kernel.IO -Version __Publication.Version__              |
+| BindOpen.IO            | Install-Package BindOpen.IO -Version __Publication.Version__              |
+| BindOpen.IO            | Install-Package BindOpen.IO -Version __Publication.Version__              |
 | BindOpen.Scoping         | Install-Package BindOpen.Scoping -Version __Publication.Version__           |
 | BindOpen.Scoping.Extensions | Install-Package BindOpen.Scoping.Extensions -Version __Publication.Version__   |
 | BindOpen.Scoping.Script | Install-Package BindOpen.Scoping.Script -Version __Publication.Version__   |
@@ -37,10 +37,10 @@ BindOpen __Publication.Version__ Update - __Publication.Date__
 
 | Packages                 |                                      Command                            |
 |--------------------------|:-----------------------------------------------------------------------:|
-| BindOpen.Kernel.Abstractions            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.Kernel.Abstractions-__Publication.Version__.zip) |
+| BindOpen.Abstractions            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.Abstractions-__Publication.Version__.zip) |
 | BindOpen.Data            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.Data-__Publication.Version__.zip) |
-| BindOpen.Kernel.IO            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.Kernel.IO-__Publication.Version__.zip) |
-| BindOpen.Kernel.IO            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.Kernel.IO-__Publication.Version__.zip) |
+| BindOpen.IO            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.IO-__Publication.Version__.zip) |
+| BindOpen.IO            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.IO-__Publication.Version__.zip) |
 | BindOpen.Scoping         | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.extensions/BindOpen.Scoping-__Publication.Version__.zip) |
 | BindOpen.Scoping.Extensions | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.scopes/BindOpen.Scoping.Extensions-__Publication.Version__.zip) |
 | BindOpen.Scoping.Script | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.script/BindOpen.Scoping.Script-__Publication.Version__.zip) |
@@ -50,10 +50,10 @@ BindOpen __Publication.Version__ Update - __Publication.Date__
 
 | Packages                 |         Version       |
 |--------------------------|:---------------------:|
-| BindOpen.Kernel.Abstractions            | __Publication.Version__   |
+| BindOpen.Abstractions            | __Publication.Version__   |
 | BindOpen.Data            | __Publication.Version__   |
-| BindOpen.Kernel.IO            | __Publication.Version__   |
-| BindOpen.Kernel.IO            | __Publication.Version__   |
+| BindOpen.IO            | __Publication.Version__   |
+| BindOpen.IO            | __Publication.Version__   |
 | BindOpen.Scoping         | __Publication.Version__   |
 | BindOpen.Scoping.Extensions | __Publication.Version__   |
 | BindOpen.Scoping.Script | __Publication.Version__   |

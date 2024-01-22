@@ -188,5 +188,24 @@ namespace BindOpen.Data.Meta
 
             return default;
         }
+
+        public static ITBdoDictionary<TItem> ToDictionary<TItem>(
+            this IBdoMetaSet set,
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            if (set == null) return null;
+
+            var dictionary = BdoData.NewDictionary<TItem>();
+
+            foreach (var meta in set)
+            {
+                var data = meta.GetData<TItem>(scope, varSet, log);
+                dictionary.Add(meta.Name, data);
+            }
+
+            return dictionary;
+        }
     }
 }
