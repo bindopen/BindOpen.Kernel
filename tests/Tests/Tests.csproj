@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>BindOpen.Tests</AssemblyName>
     <PackageId>BindOpen.Tests</PackageId>
     <Product>BindOpen.Kernel</Product>
@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bogus" Version="35.0.1" />
+    <PackageReference Include="Bogus" Version="35.4.0" />
     <PackageReference Include="DeepEqual" Version="4.2.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="NUnit" Version="4.0.1" />
