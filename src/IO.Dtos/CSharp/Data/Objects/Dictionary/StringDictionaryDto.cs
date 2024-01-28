@@ -11,7 +11,7 @@ namespace BindOpen.Data
     /// <seealso cref="KeyValuePairDto"/>
     [XmlType("Dictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlRoot(ElementName = "dictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
-    public class StringDictionaryDto : BdoItemDto, IIdentified
+    public class StringDictionaryDto : BdoItemDto
     {
         // --------------------------------------------------
         // PROPERTIES
