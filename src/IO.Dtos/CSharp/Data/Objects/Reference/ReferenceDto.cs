@@ -11,7 +11,7 @@ namespace BindOpen.Data
     /// </summary>
     [XmlType("Reference", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlRoot(ElementName = "reference", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
-    public class ReferenceDto : IBdoDto
+    public class ReferenceDto : BdoItemDto
     {
         // ------------------------------------------
         // PROPERTIES
