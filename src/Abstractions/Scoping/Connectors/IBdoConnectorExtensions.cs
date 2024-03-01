@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 namespace BindOpen.Scoping
 {
     /// <summary>
-    /// This interface represents an named data item.
+    /// This interface defines an named data item.
     /// </summary>
     public static class IBdoConnectorExtensions
     {

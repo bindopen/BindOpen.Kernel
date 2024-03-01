@@ -3,7 +3,7 @@
 namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents an named data item.
+    /// This interface defines an named data item.
     /// </summary>
     public static class IBdoRuntimeTypedExtensions
     {

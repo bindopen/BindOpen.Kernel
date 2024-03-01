@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents a named data.
+    /// This interface defines a named data.
     /// </summary>
     public interface INamed
     {

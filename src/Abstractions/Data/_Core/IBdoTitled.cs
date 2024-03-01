@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents a globally titled data.
+    /// This interface defines a globally titled data.
     /// </summary>
     public interface IBdoTitled
     {

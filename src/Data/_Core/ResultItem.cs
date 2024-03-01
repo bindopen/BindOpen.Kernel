@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents a conditional object.
+    /// This interface defines a conditional object.
     /// </summary>
     public class ResultItem : IResultItem
     {

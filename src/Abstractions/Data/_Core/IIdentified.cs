@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents an identified object.
+    /// This interface defines an identified object.
     /// </summary>
     public interface IIdentified
     {

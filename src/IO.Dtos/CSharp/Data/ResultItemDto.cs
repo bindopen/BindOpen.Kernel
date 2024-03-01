@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents a result item DTO.
+    /// This interface defines a result item DTO.
     /// </summary>
     public class ResultItemDto
     {

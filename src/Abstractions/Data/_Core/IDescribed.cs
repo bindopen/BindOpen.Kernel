@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents a described object.
+    /// This interface defines a described object.
     /// </summary>
     public interface IDescribed
     {
