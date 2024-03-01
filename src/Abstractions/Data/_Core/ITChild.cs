@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents a child object.
+    /// This interface defines a child object.
     /// </summary>
     public interface ITChild<T> : IReferenced where T : IReferenced
     {

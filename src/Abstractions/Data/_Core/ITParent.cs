@@ -3,7 +3,7 @@
 namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents a parent object.
+    /// This interface defines a parent object.
     /// </summary>
     public interface ITParent<T> : IReferenced where T : IReferenced
     {

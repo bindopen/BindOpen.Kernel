@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents an indexed object.
+    /// This interface defines an indexed object.
     /// </summary>
     public interface IIndexed
     {

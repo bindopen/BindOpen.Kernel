@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents a indexed data.
+    /// This interface defines a indexed data.
     /// </summary>
     public static class IIndexedExtensions
     {

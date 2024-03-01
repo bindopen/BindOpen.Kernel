@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents a BindOpen DTO object.
+    /// This interface defines a BindOpen DTO object.
     /// </summary>
     public interface IBdoDto
     {

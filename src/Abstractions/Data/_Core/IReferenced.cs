@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents an referenced DTO.
+    /// This interface defines an referenced DTO.
     /// </summary>
     public interface IReferenced
     {

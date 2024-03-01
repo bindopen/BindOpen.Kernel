@@ -3,7 +3,7 @@
 namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents a reparaible object.
+    /// This interface defines a reparaible object.
     /// </summary>
     public interface IRepairable
     {

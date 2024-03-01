@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents an unique object.
+    /// This interface defines an unique object.
     /// </summary>
     public interface IUniqueNamed
     {

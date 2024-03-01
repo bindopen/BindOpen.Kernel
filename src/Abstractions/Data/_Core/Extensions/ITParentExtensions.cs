@@ -6,7 +6,7 @@ using System.Linq;
 namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents an described data item.
+    /// This interface defines an described data item.
     /// </summary>
     public static class ITParentExtensions
     {

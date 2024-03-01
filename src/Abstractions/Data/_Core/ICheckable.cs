@@ -3,7 +3,7 @@
 namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents an object that be checked.
+    /// This interface defines an object that be checked.
     /// </summary>
     public interface ICheckable
     {

@@ -4,7 +4,7 @@ using BindOpen.Data.Meta;
 namespace BindOpen.Scoping.Script
 {
     /// <summary>
-    /// This interface represents a script word.
+    /// This interface defines a script word.
     /// </summary>
     public interface IBdoScriptword : IBdoMetaObject, ITSingleChildParent<IBdoScriptword>, IBdoExpression
     {
