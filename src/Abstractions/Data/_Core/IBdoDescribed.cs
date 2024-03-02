@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents a globally-described data.
+    /// This interface defines a globally-described data.
     /// </summary>
     public interface IBdoDescribed
     {

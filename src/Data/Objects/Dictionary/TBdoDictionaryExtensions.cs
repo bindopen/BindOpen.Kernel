@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Data.Meta
+﻿using System.Xml.Linq;
+
+namespace BindOpen.Data.Meta
 {
     /// <summary>
     /// This class represents a meta data.
@@ -24,5 +26,31 @@
         public static IBdoMetaSet ToMetaset<TItem>(
             this ITBdoDictionary<TItem> dictionary)
             => ToMetaset<BdoMetaSet, TItem>(dictionary);
+
+        public static string ToHtml<TItem>(
+            this ITBdoDictionary<TItem> dictionary,
+            string className = null)
+        {
+            if (dictionary == null) return "";
+
+            var el = new XElement("table");
+
+            if (!string.IsNullOrEmpty(className))
+            {
+                el.Add(new XAttribute("class", className));
+            }
+
+            foreach (var item in dictionary)
+            {
+                el.Add(
+                    new XElement(
+                        "tr",
+                        new XElement("td", item.Key),
+                        new XElement("td", item.Value)));
+            }
+
+            var html = el.ToString();
+            return html;
+        }
     }
 }
