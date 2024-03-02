@@ -3,7 +3,7 @@
 namespace BindOpen.Data.Assemblies
 {
     /// <summary>
-    /// This class represents a data reference.
+    /// This interface defines a collection of assembly references.
     /// </summary>
     public interface IBdoAssemblyReferenceCollection : IList<IBdoAssemblyReference>
     {

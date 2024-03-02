@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents a group.
+    /// This interface defines a group.
     /// </summary>
     public interface ITBdoGroupsOf<T> : ITBdoSet<T>
         where T : IReferenced, IGrouped

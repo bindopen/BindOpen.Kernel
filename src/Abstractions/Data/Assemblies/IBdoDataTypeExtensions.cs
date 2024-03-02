@@ -3,13 +3,17 @@
 namespace BindOpen.Data
 {
     /// <summary>
-    /// This class represents a data element set.
+    /// This class provides extensions of IBdoDataType class.
     /// </summary>
     public static class IBdoDataTypeExtensions
     {
         /// <summary>
         /// 
         /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dataType"></param>
+        /// <param name="valueType"></param>
+        /// <returns></returns>
         public static T WithValueType<T>(
             this T dataType,
             DataValueTypes valueType)
@@ -26,23 +30,27 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        /// <param key="detail"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dataType"></param>
+        /// <param name="definitionExtensionKind"></param>
+        /// <param name="definitionUniqueName"></param>
+        /// <returns></returns>
         public static T WithDefinition<T>(
-            this T obj,
+            this T dataType,
             BdoExtensionKinds definitionExtensionKind,
             string definitionUniqueName = null)
             where T : IBdoDataType
         {
-            if (obj != null)
+            if (dataType != null)
             {
-                obj.ValueType = definitionExtensionKind.GetValueType();
+                dataType.ValueType = definitionExtensionKind.GetValueType();
 
                 if (definitionUniqueName != null)
                 {
-                    obj.WithDefinition(definitionUniqueName);
+                    dataType.WithDefinition(definitionUniqueName);
                 }
             }
-            return obj;
+            return dataType;
         }
 
         /// <summary>

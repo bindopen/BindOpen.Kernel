@@ -3,7 +3,7 @@
 namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents an updatable object by specifying the class of the object used for update.
+    /// This interface defines an updatable object by specifying the class of the object used for update.
     /// </summary>
     public interface IUpdatable
     {

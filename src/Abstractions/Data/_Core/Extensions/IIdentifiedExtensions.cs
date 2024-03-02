@@ -3,7 +3,7 @@
 namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents an identified data item.
+    /// This interface defines an identified data item.
     /// </summary>
     public static class IIdentifiedExtensions
     {

@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents a titled object.
+    /// This interface defines a titled object.
     /// </summary>
     public interface ITitled
     {

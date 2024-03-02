@@ -12,7 +12,7 @@ namespace BindOpen.Data
     public static class IBdoConditionExtensions
     {
         /// <summary>
-        /// Evaluate this instance.
+        /// Evaluates this instance.
         /// </summary>
         /// <param key="condition">The condition to consider.</param>
         /// <param key="scriptInterpreter">Script interpreter.</param>
@@ -41,7 +41,7 @@ namespace BindOpen.Data
         }
 
         /// <summary>
-        /// Evaluate this instance.
+        /// Evaluates this instance.
         /// </summary>
         /// <param key="condition">The condition to consider.</param>
         /// <param key="scriptInterpreter">Script interpreter.</param>
@@ -77,7 +77,7 @@ namespace BindOpen.Data
         }
 
         /// <summary>
-        /// Evaluate this instance.
+        /// Evaluates this instance.
         /// </summary>
         /// <param key="condition">The condition to consider.</param>
         /// <param key="scriptInterpreter">Script interpreter.</param>
@@ -111,7 +111,7 @@ namespace BindOpen.Data
         }
 
         /// <summary>
-        /// Evaluate this instance.
+        /// Evaluates this instance.
         /// </summary>
         /// <param key="condition">The condition to consider.</param>
         /// <param key="scriptInterpreter">Script interpreter.</param>

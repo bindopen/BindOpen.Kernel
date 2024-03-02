@@ -6,7 +6,7 @@ using BindOpen.Scoping;
 namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents a conditional object.
+    /// This interface defines an object that can be conditional.
     /// </summary>
     public interface IBdoConditional
     {

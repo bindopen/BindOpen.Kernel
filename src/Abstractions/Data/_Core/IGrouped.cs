@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents an object that can be grouped.
+    /// This interface defines an object that can be grouped.
     /// </summary>
     public interface IGrouped
     {

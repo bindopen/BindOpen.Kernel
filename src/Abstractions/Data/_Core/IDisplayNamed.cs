@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Data
 {
     /// <summary>
-    /// This interface represents a display named object.
+    /// This interface defines a display named object.
     /// </summary>
     public interface IDisplayNamed
     {
