@@ -146,6 +146,25 @@ namespace BindOpen.Scoping
         }
 
         /// <summary>
+        /// Creates a new connected service.
+        /// </summary>
+        /// <param key="scope"></param>
+        /// <param key="connector"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns>Returns the log of the operation.</returns>
+        public static T CreateConnected<T>(
+            this IBdoScope scope,
+            IBdoConnector connector)
+            where T : IBdoConnected, new()
+        {
+            var service = scope.CreateScoped<T>();
+
+            service.WithConnector(connector);
+
+            return service;
+        }
+
+        /// <summary>
         /// Creates a connector using the specified data module and connector unique name.
         /// </summary>
         /// <param key="scope">The scope to consider.</param>
