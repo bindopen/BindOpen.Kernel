@@ -17,22 +17,5 @@
 
             return scoped;
         }
-
-        public static T CreateScoped<T>(
-            this IBdoScope scope)
-            where T : IBdoScoped, new()
-        {
-            T scoped = default;
-
-            if (scope != null)
-            {
-                scoped = new()
-                {
-                    Scope = scope
-                };
-            }
-
-            return scoped;
-        }
     }
 }
