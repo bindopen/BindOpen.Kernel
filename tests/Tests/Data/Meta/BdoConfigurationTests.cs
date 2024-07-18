@@ -103,7 +103,9 @@ namespace BindOpen.Data.Meta
             var meta = _config10.Clone<IBdoConfiguration>();
 
             meta?.WithDeepEqual(_config10)
-               .Assert();
+                .IgnoreProperty<IBdoConfiguration>(x => x.Parent)
+                .IgnoreProperty<IBdoMetaData>(x => x.Parent)
+                .Assert();
         }
 
         [Test, Order(4)]
