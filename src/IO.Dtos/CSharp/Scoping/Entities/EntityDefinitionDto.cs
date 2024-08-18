@@ -2,6 +2,7 @@
 using BindOpen.Data.Meta;
 using BindOpen.Scoping.Script;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -23,9 +24,17 @@ namespace BindOpen.Scoping.Entities
         /// <summary>
         /// The item class of this instance.
         /// </summary>
+        [ForeignKey("ItemClassId")]
         [JsonPropertyName("itemClass")]
         [XmlElement("itemClass")]
         public ClassReferenceDto ItemClass { get; set; }
+
+        /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string ItemClassId { get; set; }
 
         /// <summary>
         /// The viewer class of this instance.
@@ -37,6 +46,7 @@ namespace BindOpen.Scoping.Entities
         /// <summary>
         /// The outputs of this instance.
         /// </summary>
+        [ForeignKey("MetaDataId")]
         [JsonPropertyName("outputs")]
         [XmlArray("outputs")]
         [XmlArrayItem("node", Type = typeof(MetaNodeDto))]
@@ -48,6 +58,7 @@ namespace BindOpen.Scoping.Entities
         /// <summary>
         /// Indicates whether the OutputSpecification property must be ignored.
         /// </summary>
+        [NotMapped]
         [JsonIgnore]
         [XmlIgnore]
         public bool OutputSpecificationSpecified => OutputSpecification?.Count > 0;

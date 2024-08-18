@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Meta.Reflection;
 using BindOpen.Kernel.Tests;
+using BindOpen.Scoping;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 

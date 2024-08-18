@@ -71,7 +71,7 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        public string Key() => Id;
+        public string Key() => Identifier;
 
         #endregion
 
@@ -84,7 +84,7 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        public string Id { get; set; }
+        public string Identifier { get; set; }
 
         #endregion
 

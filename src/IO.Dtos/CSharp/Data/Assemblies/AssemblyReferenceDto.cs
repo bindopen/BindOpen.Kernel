@@ -1,4 +1,6 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data.Assemblies
@@ -15,6 +17,15 @@ namespace BindOpen.Data.Assemblies
         // --------------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [Key]
+        [Column("AssemblyReferenceId")]
+        [JsonIgnore]
+        [XmlIgnore]
+        public string Identifier { get; set; }
 
         /// <summary>
         /// The assembly name of this instance.

@@ -18,7 +18,7 @@ namespace BindOpen.Data
         {
             if (obj != null)
             {
-                obj.Id = id ?? StringHelper.NewGuid();
+                obj.Identifier = id ?? StringHelper.NewGuid();
             }
 
             return obj;

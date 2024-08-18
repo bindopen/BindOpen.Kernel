@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Meta;
 using BindOpen.Scoping.Script;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -22,12 +23,20 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// The arugment 1 of this instance.
         /// </summary>
+        [ForeignKey("Argument1Id")]
         [JsonPropertyName("arg1")]
         [XmlElement("node1", Type = typeof(MetaNodeDto))]
         [XmlElement("object1", Type = typeof(MetaObjectDto))]
         [XmlElement("scalar1", Type = typeof(MetaScalarDto))]
         [XmlElement("word1", Type = typeof(ScriptwordDto))]
         public MetaDataDto Argument1 { get; set; }
+
+        /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string Argument1Id { get; set; }
 
         /// <summary>
         /// The operator of this instance.
@@ -39,12 +48,20 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// The arugment 2 of this instance.
         /// </summary>
+        [ForeignKey("Argument2Id")]
         [JsonPropertyName("arg2")]
         [XmlElement("node2", Type = typeof(MetaNodeDto))]
         [XmlElement("object2", Type = typeof(MetaObjectDto))]
         [XmlElement("scalar2", Type = typeof(MetaScalarDto))]
         [XmlElement("word2", Type = typeof(ScriptwordDto))]
         public MetaDataDto Argument2 { get; set; }
+
+        /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string Argument2Id { get; set; }
 
         #endregion
 

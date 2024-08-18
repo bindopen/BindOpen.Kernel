@@ -1,6 +1,8 @@
 ﻿using BindOpen.Data;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -18,6 +20,15 @@ namespace BindOpen.Scoping
         // ------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// The expression of this instance.
+        /// </summary>
+        [Key]
+        [Column("ExpressionId")]
+        [JsonIgnore]
+        [XmlIgnore]
+        public string Identifier { get; set; }
 
         /// <summary>
         /// Creation date of this instance.

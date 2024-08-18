@@ -53,7 +53,7 @@ namespace BindOpen.Scoping
 
             var loaded = true;
 
-            _loadOptions.Sources ??= new List<(DatasourceKind Kind, string Uri)>();
+            _loadOptions.Sources ??= [];
             if (_loadOptions.Sources.Any() != true)
             {
                 _loadOptions.AddSource(DatasourceKind.Memory);

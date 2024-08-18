@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -27,6 +28,7 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// THe conditions of this instance.
         /// </summary>
+        [ForeignKey("ParentId")]
         [JsonPropertyName("conditions")]
         [XmlArray("conditions")]
         [XmlArrayItem("condition")]

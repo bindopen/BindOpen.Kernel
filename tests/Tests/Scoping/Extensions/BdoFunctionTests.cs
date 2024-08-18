@@ -1,7 +1,6 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Meta;
-using BindOpen.Scoping.Script;
 using BindOpen.Kernel.Tests;
+using BindOpen.Scoping.Script;
 using NUnit.Framework;
 
 namespace BindOpen.Scoping.Functions

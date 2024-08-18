@@ -57,7 +57,7 @@ namespace BindOpen.Data
                 return set.Where(p => p.OfGroup(groupId));
             }
 
-            return Enumerable.Empty<IBdoMetaData>();
+            return [];
         }
 
         public static bool HasGroup(
@@ -87,7 +87,7 @@ namespace BindOpen.Data
         public static T Add<T>(
            this T set,
            params IBdoMetaData[] items)
-           where T : IBdoMetaSet
+           where T : IBdoMetaNode
         {
             if (set != null && items != null)
             {

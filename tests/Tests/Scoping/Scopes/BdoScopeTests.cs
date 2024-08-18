@@ -39,22 +39,21 @@ namespace BindOpen.Scoping
         [Test, Order(2)]
         public void CreateExtensionLoadOptions()
         {
-            var options = new ExtensionLoadOptions();
-            options.AddSource(DatasourceKind.Database, "<database>");
-            options.AddSource(DatasourceKind.Repository, "<repository>");
-            options.AddSource(DatasourceKind.Repository, "<repository>");
+            var options = new ExtensionLoadOptions()
+                .AddSource(DatasourceKind.Database, "<database>")
+                .AddSource(DatasourceKind.Repository, "<repository>")
+                .AddSource(DatasourceKind.Repository, "<repository>")
+                .AddSource(DatasourceKind.Repository, @"\\lib\");
 
             Assert.That(
-                options.Sources?.Count == 3, "Error with string set");
+                options.Sources?.Count == 4, "Error with string set");
 
             if (_scope == null)
             {
                 CreateScopeNewObjectTest();
             }
 
-            _scope.LoadExtensions(
-                q => q = options
-                    .AddSource(DatasourceKind.Repository, @"\\lib\"));
+            _scope.LoadExtensions(options);
 
             Assert.That(
                 options.Sources?.Count == 4, "Error with string set");

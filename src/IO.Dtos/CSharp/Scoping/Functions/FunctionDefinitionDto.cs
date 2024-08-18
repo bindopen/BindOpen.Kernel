@@ -2,6 +2,7 @@
 using BindOpen.Data.Meta;
 using BindOpen.Scoping.Script;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -71,9 +72,17 @@ namespace BindOpen.Scoping.Functions
         /// </summary>
         /// <seealso cref="IsRepeatedParameters"/>
         /// <seealso cref="RepeatedParameterName"/>
+        [ForeignKey("RepeatedParameterDescriptionId")]
         [JsonPropertyName("repeatedParameterDescription")]
         [XmlElement("repeatedParameterDescription")]
         public StringDictionaryDto RepeatedParameterDescription { get; set; }
+
+        /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string RepeatedParameterDescriptionId { get; set; }
 
         /// <summary>
         /// The rference unique name of this instance.
@@ -99,6 +108,7 @@ namespace BindOpen.Scoping.Functions
         /// <summary>
         /// The children of this instance.
         /// </summary>
+        [ForeignKey("RepeatedParameterDescriptionId")]
         [JsonPropertyName("children")]
         [XmlArray("children")]
         [XmlArrayItem("add.definition")]
@@ -118,6 +128,7 @@ namespace BindOpen.Scoping.Functions
         /// <summary>
         /// Indicates whether the ParameterSpecification property must be ignored.
         /// </summary>
+        [NotMapped]
         [JsonIgnore]
         [XmlIgnore]
         public bool ParameterSpecificationSpecified => ParameterSpecification?.Count > 0;

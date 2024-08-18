@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -36,6 +37,7 @@ namespace BindOpen.Scoping.Connectors
         /// <summary>
         /// The specifications of this instance.
         /// </summary>
+        [ForeignKey("SpecId")]
         [JsonPropertyName("specs")]
         [XmlElement("spec")]
         public List<SpecDto> Specs { get; set; }
@@ -43,9 +45,11 @@ namespace BindOpen.Scoping.Connectors
         /// <summary>
         /// Indicates whether the Specs property must be ignored.
         /// </summary>
+        [NotMapped]
         [JsonIgnore]
         [XmlIgnore]
         public bool SpecsSpecified => Specs?.Count > 0;
+
         #endregion
 
         // --------------------------------------------------

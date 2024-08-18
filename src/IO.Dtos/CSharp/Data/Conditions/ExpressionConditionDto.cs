@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data.Conditions
@@ -19,9 +20,17 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// The expression of this instance.
         /// </summary>
+        [ForeignKey("ExpressionId")]
         [JsonPropertyName("expression")]
         [XmlElement("expression")]
         public ExpressionDto Expression { get; set; }
+
+        /// <summary>
+        /// The expression of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string ExpressionId { get; set; }
 
         #endregion
 

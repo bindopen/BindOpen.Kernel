@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -34,20 +35,37 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The description DTO of this instance.
         /// </summary>
-        [JsonPropertyName("description")]
-        [XmlElement("description")]
-        public StringDictionaryDto Description { get; set; }
-
-        /// <summary>
-        /// The description DTO of this instance.
-        /// </summary>
+        [ForeignKey("TitleStringDictionaryId")]
         [JsonPropertyName("title")]
         [XmlElement("title")]
         public StringDictionaryDto Title { get; set; }
 
         /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string TitleStringDictionaryId { get; set; }
+
+        /// <summary>
+        /// The description DTO of this instance.
+        /// </summary>
+        [ForeignKey("DescriptionStringDictionaryId")]
+        [JsonPropertyName("description")]
+        [XmlElement("description")]
+        public StringDictionaryDto Description { get; set; }
+
+        /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string DescriptionStringDictionaryId { get; set; }
+
+        /// <summary>
         /// The children of this instance.
         /// </summary>
+        [ForeignKey("MetaSetId")]
         [JsonPropertyName("children")]
         [XmlElement("config")]
         public List<ConfigurationDto> Children { get; set; }
@@ -55,6 +73,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
+        [NotMapped]
         [JsonIgnore()]
         [XmlIgnore()]
         public bool ChildrenSpecficied => Children?.Count > 0;
@@ -70,6 +89,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
+        [NotMapped]
         [JsonIgnore()]
         [XmlIgnore()]
         public bool UsedItemIdsSpecified => UsedItemIds?.Count > 0;
@@ -77,6 +97,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
+        [NotMapped]
         [JsonIgnore()]
         [XmlIgnore()]
         public bool ShouldUsedItemIds => UsedItemIds?.Count > 0;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -20,6 +21,7 @@ namespace BindOpen.Scoping.Tasks
         /// <summary>
         /// Definitions of this instance.
         /// </summary>
+        [ForeignKey("ExtensionDefinitionId")]
         [JsonPropertyName("definitions")]
         [XmlArray("definitions")]
         [XmlArrayItem("add.definition")]

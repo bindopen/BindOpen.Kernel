@@ -148,7 +148,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public string Id { get; set; }
+        public string Identifier { get; set; }
 
         #endregion
 
@@ -331,9 +331,9 @@ namespace BindOpen.Data.Meta
         {
             var obj = base.Clone().As<BdoSpec>();
 
-            if (!string.IsNullOrEmpty(Id))
+            if (!string.IsNullOrEmpty(Identifier))
             {
-                obj.Id = StringHelper.NewGuid();
+                obj.Identifier = StringHelper.NewGuid();
             }
 
             obj._children = _children == null ? null : BdoData.NewItemSet(_children?.Select(q => q.Clone<IBdoSpec>()).ToArray());

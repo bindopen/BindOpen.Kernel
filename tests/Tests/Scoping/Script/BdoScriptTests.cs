@@ -42,8 +42,8 @@ namespace BindOpen.Scoping.Script
         public void CreateVariableSetTest()
         {
             var metaSet = BdoData.NewSet(
-                ((string Name, object Value))("var1", "sample1"),
-                ((string Name, object Value))("var2", 4.55));
+                ("var1", "sample1"),
+                ("var2", 4.55));
 
             Assert.That(metaSet.Count == 2, "Bad script interpretation");
             Assert.That(metaSet.GetData<string>("var1") == "sample1", "Bad script interpretation");

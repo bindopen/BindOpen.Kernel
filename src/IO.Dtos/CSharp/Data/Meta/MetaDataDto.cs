@@ -1,6 +1,8 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Scoping.Script;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
@@ -31,9 +33,11 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// ID of this instance.
         /// </summary>
+        [Key]
+        [Column("MetaDataId")]
         [JsonPropertyName("id")]
-        [XmlAttribute("id")]
-        public string Id { get; set; }
+        [XmlElement("id")]
+        public string Identifier { get; set; }
 
         /// <summary>
         /// Name of this instance.
@@ -55,6 +59,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
+        [NotMapped]
         [JsonIgnore()]
         [XmlIgnore()]
         public bool IndexSpecified => Index != null;

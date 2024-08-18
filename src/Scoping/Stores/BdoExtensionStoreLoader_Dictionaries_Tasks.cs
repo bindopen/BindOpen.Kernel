@@ -43,7 +43,7 @@ namespace BindOpen.Scoping
             {
                 var definition = new BdoTaskDefinition(null, packageDefinition)
                 {
-                    LibraryId = packageDefinition?.Id,
+                    LibraryId = packageDefinition?.Identifier,
                 };
 
                 definition.UpdateFrom(type);

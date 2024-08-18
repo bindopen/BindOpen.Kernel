@@ -1,5 +1,7 @@
 ﻿using BindOpen.Data;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -18,11 +20,13 @@ namespace BindOpen.Scoping
         #region Properties
 
         /// <summary>
-        /// ID of this instance.
+        /// The identifier of this instance.
         /// </summary>
+        [Key]
+        [Column("ExtensionDefinitionId")]
         [JsonPropertyName("id")]
-        [XmlAttribute("id")]
-        public string Id { get; set; }
+        [XmlElement("id")]
+        public string Identifier { get; set; }
 
         /// <summary>
         /// The index of this instance.

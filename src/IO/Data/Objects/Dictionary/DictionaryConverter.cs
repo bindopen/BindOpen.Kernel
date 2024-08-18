@@ -18,7 +18,7 @@ namespace BindOpen.Data
 
             StringDictionaryDto dto = new()
             {
-                Id = poco.Id,
+                Identifier = poco.Identifier,
                 Values = poco?.Select(q => q.ToDto()).ToList()
             };
 
@@ -35,7 +35,7 @@ namespace BindOpen.Data
             if (dto == null) return null;
 
             TBdoDictionary<TItem> poco = BdoData.NewDictionary(dto.Values?.Select(q => q.ToPoco<TItem>()).ToArray());
-            poco.WithId(dto.Id);
+            poco.WithId(dto.Identifier);
 
             return poco;
         }

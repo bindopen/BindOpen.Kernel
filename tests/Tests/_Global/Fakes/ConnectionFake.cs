@@ -94,7 +94,7 @@ namespace BindOpen.Kernel.Tests
             {
                 foreach (var entity in entities)
                 {
-                    Debug.WriteLine(string.Format("Entity '{0}' pushed", entity.Id));
+                    Debug.WriteLine(string.Format("Entity '{0}' pushed", entity.Identifier));
                     yield return BdoData.NewResultItem(ResourceStatus.Created);
                 }
             }

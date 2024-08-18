@@ -2,6 +2,7 @@
 using BindOpen.Scoping.Script;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -64,6 +65,7 @@ namespace BindOpen.Scoping.Tasks
         /// <summary>
         /// Indicates whether the input specification property must be ignored.
         /// </summary>
+        [NotMapped]
         [JsonIgnore]
         [XmlIgnore]
         public bool InputSpecificationSpecified => InputSpecification?.Count > 0;
@@ -82,6 +84,7 @@ namespace BindOpen.Scoping.Tasks
         /// <summary>
         /// Indicates whether the output specification property must be ignored.
         /// </summary>
+        [NotMapped]
         [JsonIgnore]
         [XmlIgnore]
         public bool OutputSpecificationSpecified => OutputSpecification?.Count > 0;

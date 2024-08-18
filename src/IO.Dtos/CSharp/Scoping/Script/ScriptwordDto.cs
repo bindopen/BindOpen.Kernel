@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -32,9 +33,17 @@ namespace BindOpen.Scoping.Script
         /// <summary>
         /// The script word child of this instance.
         /// </summary>
+        [ForeignKey("ChildWordId")]
         [JsonPropertyName("child")]
         [XmlElement("child")]
         public ScriptwordDto Child { get; set; }
+
+        /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string ChildWordId { get; set; }
 
         // Expression
 

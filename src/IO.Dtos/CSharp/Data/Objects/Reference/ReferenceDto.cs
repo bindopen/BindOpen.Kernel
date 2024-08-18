@@ -1,6 +1,8 @@
 ﻿using BindOpen.Data.Meta;
 using BindOpen.Scoping.Script;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -20,6 +22,15 @@ namespace BindOpen.Data
         #region Properties
 
         /// <summary>
+        /// The identifier of this instance.
+        /// </summary>
+        [Key]
+        [Column("ReferenceId")]
+        [JsonPropertyName("id")]
+        [XmlElement("id")]
+        public string Identifier { get; set; }
+
+        /// <summary>
         /// The kind of this instance.
         /// </summary>
         [JsonPropertyName("kind")]
@@ -28,28 +39,37 @@ namespace BindOpen.Data
         public BdoReferenceKind Kind { get; set; } = BdoReferenceKind.Expression;
 
         /// <summary>
-        /// The identifier of this instance.
-        /// </summary>
-        [JsonPropertyName("identifier")]
-        [XmlElement("identifier")]
-        public string Identifier { get; set; }
-
-        /// <summary>
         /// The expression of this instance.
         /// </summary>
+        [ForeignKey("ExpressionId")]
         [JsonPropertyName("expression")]
         [XmlElement("expression")]
         public ExpressionDto Expression { get; set; }
 
         /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string ExpressionId { get; set; }
+
+        /// <summary>
         /// The meta data  of this instance.
         /// </summary>
+        [ForeignKey("MetaDataId")]
         [JsonPropertyName("meta")]
         [XmlElement("set", Type = typeof(MetaNodeDto))]
         [XmlElement("object", Type = typeof(MetaObjectDto))]
         [XmlElement("scalar", Type = typeof(MetaScalarDto))]
         [XmlElement("scriptword", Type = typeof(ScriptwordDto))]
         public MetaDataDto MetaData { get; set; }
+
+        /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string MetaDataId { get; set; }
 
         #endregion
 

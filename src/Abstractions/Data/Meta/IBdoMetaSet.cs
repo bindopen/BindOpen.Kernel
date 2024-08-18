@@ -6,7 +6,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// 
     /// </summary>
-    public partial interface IBdoMetaSet : ITBdoSet<IBdoMetaData>, INamed
+    public partial interface IBdoMetaSet : ITBdoSet<IBdoMetaData>, INamed, IBdoScoped
     {
         /// <summary>
         /// 

@@ -88,7 +88,7 @@ namespace BindOpen.Data.Meta
                 metaObj1,
                 metaObj2,
                 metaObj3);
-            _metaObjSet.Add(metaObj4);
+            _metaObjSet.Insert(metaObj4);
 
             Test(_metaObjSet);
         }

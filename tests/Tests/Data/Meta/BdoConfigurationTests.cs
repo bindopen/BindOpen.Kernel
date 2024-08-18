@@ -13,7 +13,7 @@ namespace BindOpen.Data.Meta
         private readonly string _configName10a = "Child1a";
         private readonly string _configName20 = "Child2";
 
-        private IBdoMetaSet _config10 = null;
+        private IBdoConfiguration _config10 = null;
         private IBdoConfiguration _config10a = null;
 
         private IBdoConfiguration _config20 = null;

@@ -1,4 +1,6 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data.Conditions
@@ -26,9 +28,11 @@ namespace BindOpen.Data.Conditions
         /// <summary>
         /// The identifier of this instance.
         /// </summary>
+        [Key]
+        [Column("ConditionId")]
         [JsonPropertyName("id")]
         [XmlAttribute("id")]
-        public string Id { get; set; }
+        public string Identifier { get; set; }
 
         /// <summary>
         /// The name of this instance.

@@ -57,7 +57,7 @@ namespace BindOpen.Data.Meta
         /// <returns></returns>
         public virtual string Key()
         {
-            return Detail?.Id;
+            return Detail?.Identifier;
         }
 
         /// <summary>

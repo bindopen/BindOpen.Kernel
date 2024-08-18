@@ -20,10 +20,10 @@ namespace BindOpen.Data.Conditions
             {
                 Argument1 = poco.Argument1?.ToDto(),
                 Argument2 = poco.Argument2?.ToDto(),
-                Id = poco.Id,
+                Identifier = poco.Identifier,
                 Name = poco.Name,
                 Operator = poco.Operator,
-                ParentId = poco.Parent?.Id
+                ParentId = poco.Parent?.Identifier
             };
 
             return dto;
@@ -43,7 +43,7 @@ namespace BindOpen.Data.Conditions
             {
                 Argument1 = dto.Argument1?.ToPoco(),
                 Argument2 = dto.Argument2?.ToPoco(),
-                Id = dto.Id,
+                Identifier = dto.Identifier,
                 Operator = dto.Operator,
                 Name = dto.Name,
                 Parent = null

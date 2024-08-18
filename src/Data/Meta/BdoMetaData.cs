@@ -28,6 +28,19 @@ namespace BindOpen.Data.Meta
         #endregion
 
         // --------------------------------------------------
+        // PROPERTIES
+        // --------------------------------------------------
+
+        #region Properties
+
+        /// <summary>
+        /// The scope of the service.
+        /// </summary>
+        public IBdoScope Scope { get; set; }
+
+        #endregion
+
+        // --------------------------------------------------
         // CONSTRUCTORS
         // --------------------------------------------------
 
@@ -53,7 +66,7 @@ namespace BindOpen.Data.Meta
         {
             _namePreffix = namePreffix ?? "element_";
             this.WithName(name);
-            Id = id;
+            Identifier = id;
         }
 
         #endregion
@@ -115,7 +128,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public string Id { get; set; }
+        public string Identifier { get; set; }
 
         #endregion
 
@@ -158,7 +171,7 @@ namespace BindOpen.Data.Meta
         /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         protected virtual object DataObject(
-            IBdoScope scope = null,
+            IBdoScope scope,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
@@ -218,7 +231,7 @@ namespace BindOpen.Data.Meta
         /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         public object GetData(
-            IBdoScope scope = null,
+            IBdoScope scope,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
             => DataObject(scope, varSet, log);
@@ -230,11 +243,28 @@ namespace BindOpen.Data.Meta
         /// <param key="scope">The scope to consider.</param>
         /// <param key="varSet">The variable element set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
+        public object GetData(
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+            => DataObject(Scope, varSet, log);
+
+        /// <summary>
+        /// Returns the item object of this instance.
+        /// </summary>
+        /// <param key="log">The log to populate.</param>
+        /// <param key="scope">The scope to consider.</param>
+        /// <param key="varSet">The variable element set to use.</param>
+        /// <returns>Returns the items of this instance.</returns>
         public virtual T GetData<T>(
-            IBdoScope scope = null,
+            IBdoScope scope,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
             => DataObject(scope, varSet, log).As<T>();
+
+        public virtual T GetData<T>(
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+            => DataObject(Scope, varSet, log).As<T>();
 
         /// <summary>
         /// Returns the item TItem of this instance.
@@ -244,7 +274,7 @@ namespace BindOpen.Data.Meta
         /// <param key="metaSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         public virtual IList<object> GetDataList(
-            IBdoScope scope = null,
+            IBdoScope scope,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
@@ -254,6 +284,11 @@ namespace BindOpen.Data.Meta
             return list;
         }
 
+        public IList<object> GetDataList(
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+            => GetDataList(Scope, varSet, log);
+
         /// <summary>
         /// Returns the item TItem of this instance.
         /// </summary>
@@ -262,7 +297,7 @@ namespace BindOpen.Data.Meta
         /// <param key="metaSet">The variable meta set to use.</param>
         /// <returns>Returns the items of this instance.</returns>
         public virtual IList<Q> GetDataList<Q>(
-            IBdoScope scope = null,
+            IBdoScope scope,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
@@ -276,13 +311,18 @@ namespace BindOpen.Data.Meta
             }).ToList();
         }
 
+        public IList<Q> GetDataList<Q>(
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+            => GetDataList<Q>(Scope, varSet, log);
+
         /// <summary>
         /// The item requirement level of this instance.
         /// </summary>
         public IBdoSpecRule GetSpecRule(
+            IBdoScope scope,
             string groupId,
             BdoSpecRuleKinds ruleKind = BdoSpecRuleKinds.Requirement,
-            IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
@@ -298,6 +338,13 @@ namespace BindOpen.Data.Meta
 
             return null;
         }
+
+        public IBdoSpecRule GetSpecRule(
+            string groupId,
+            BdoSpecRuleKinds ruleKind = BdoSpecRuleKinds.Requirement,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+            => GetSpecRule(Scope, groupId, ruleKind, varSet, log);
 
         // Accessors --------------------------
 
@@ -326,9 +373,9 @@ namespace BindOpen.Data.Meta
         {
             var obj = base.Clone().As<BdoMetaData>();
 
-            if (!string.IsNullOrEmpty(Id))
+            if (!string.IsNullOrEmpty(Identifier))
             {
-                obj.Id = StringHelper.NewGuid();
+                obj.Identifier = StringHelper.NewGuid();
             }
 
             obj.Reference = Reference?.Clone<BdoReference>();
@@ -402,7 +449,7 @@ namespace BindOpen.Data.Meta
         /// The item requirement level of this instance.
         /// </summary>
         public bool GetConditionValue(
-            IBdoScope scope = null,
+            IBdoScope scope,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
@@ -418,6 +465,11 @@ namespace BindOpen.Data.Meta
 
             return true;
         }
+
+        public bool GetConditionValue(
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+            => GetConditionValue(Scope, varSet, log);
 
         #endregion
 

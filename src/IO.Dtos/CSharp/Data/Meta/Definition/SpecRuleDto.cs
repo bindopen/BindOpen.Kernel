@@ -1,6 +1,8 @@
 ﻿using BindOpen.Data.Conditions;
 using BindOpen.Logging;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -22,9 +24,11 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Identifier of this instance.
         /// </summary>
+        [Key]
+        [Column("SpecRuleId")]
         [JsonPropertyName("id")]
         [XmlAttribute("id")]
-        public string Id { get; set; }
+        public string Identifier { get; set; }
 
         /// <summary>
         /// The kind of this instance.

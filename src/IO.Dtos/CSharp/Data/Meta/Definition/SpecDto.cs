@@ -3,6 +3,8 @@ using BindOpen.Data.Conditions;
 using BindOpen.Scoping.Script;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -22,6 +24,22 @@ namespace BindOpen.Data.Meta
         #region Properties
 
         /// <summary>
+        /// ID of this instance.
+        /// </summary>
+        [Key]
+        [Column("SpecId")]
+        [JsonPropertyName("id")]
+        [XmlAttribute("id")]
+        public string Identifier { get; set; }
+
+        /// <summary>
+        /// The name of this instance.
+        /// </summary>
+        [JsonPropertyName("name")]
+        [XmlAttribute("name")]
+        public string Name { get; set; }
+
+        /// <summary>
         /// The rules of this instance.
         /// </summary>
         [JsonPropertyName("rules")]
@@ -31,6 +49,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Indicates whether the rule property must be ignored.
         /// </summary>
+        [NotMapped]
         [JsonIgnore]
         [XmlIgnore]
         public bool RulesSpecified => Rules?.Count > 0;
@@ -52,23 +71,10 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
+        [NotMapped]
         [JsonIgnore()]
         [XmlIgnore()]
         public bool ChildrenSpecficied => Children?.Count > 0;
-
-        /// <summary>
-        /// ID of this instance.
-        /// </summary>
-        [JsonPropertyName("id")]
-        [XmlAttribute("id")]
-        public string Id { get; set; }
-
-        /// <summary>
-        /// The name of this instance.
-        /// </summary>
-        [JsonPropertyName("name")]
-        [XmlAttribute("name")]
-        public string Name { get; set; }
 
         // General ------------------------------------------
 

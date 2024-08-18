@@ -21,7 +21,7 @@ namespace BindOpen.Data.Meta
             {
                 Condition = poco.Condition.ToDto(),
                 GroupId = poco.GroupId,
-                Id = poco.Id,
+                Identifier = poco.Identifier,
                 Kind = poco.Kind,
                 Reference = poco.Reference.ToDto(),
                 ResultCode = poco.ResultCode,
@@ -48,7 +48,7 @@ namespace BindOpen.Data.Meta
                 Condition = dto.Condition.ToPoco(),
                 GroupId = dto.GroupId,
                 Kind = dto.Kind,
-                Id = dto.Id,
+                Identifier = dto.Identifier,
                 Reference = dto.Reference.ToPoco(),
                 ResultCode = dto.ResultCode,
                 ResultDescription = dto.ResultDescription,
