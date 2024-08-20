@@ -77,18 +77,18 @@ namespace BindOpen.Data.Meta
             elSetA.Add(elAB);
             elSetB.Update(elSetA);
 
-            elSetA.Add((IBdoMetaData)null);
+            elSetA.Add<IBdoMetaData>(null);
             elSetB
-                .Add((IBdoMetaData)null)
+                .Add((IBdoMetaScalar)null)
                 .Add(("name1", typeof(string)))
-                .Add(BdoData.NewMeta("name3", typeof(int)))
+                .Add(BdoData.NewScalar("name3", typeof(int)))
                 .Add(("name4", typeof(double)))
-                .Add(BdoData.NewMeta("name5", DataValueTypes.Text));
+                .Add(BdoData.NewScalar("name5", DataValueTypes.Text));
             elSetA
-                .Add(BdoData.NewMeta("name1", typeof(string)))
-                .Add(BdoData.NewMeta("name2", null as EntityFake))
+                .Add(BdoData.NewScalar("name1", typeof(string)))
+                .Add(BdoData.NewObject("name2", null as EntityFake))
                 .Add(BdoData.NewScalar("name4", DataValueTypes.Text, null))
-                .Add(BdoData.NewMeta("name5", null as string));
+                .Add(BdoData.NewScalar("name5", null as string));
             elSetB.Update(elSetA);
         }
 

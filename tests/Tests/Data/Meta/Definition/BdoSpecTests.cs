@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Meta.Reflection;
 using BindOpen.Kernel.Tests;
 using NUnit.Framework;
 
@@ -41,8 +42,8 @@ public class BdoSpecTests
         var meta = BdoData.NewNode("meta-test")
             .WithSpec(_spec)
             .With(
-                BdoData.NewMeta("title", "myTitle"),
-                BdoData.NewMeta("description", "myDescription"));
+                BdoData.NewScalar("title", "myTitle"),
+                BdoData.NewScalar("description", "myDescription"));
 
         var subSpec = meta.FindChildSpec(_spec, SystemData.Scope);
         Assert.That(subSpec == _spec._Children[1], "Bad spec condition");
@@ -54,7 +55,7 @@ public class BdoSpecTests
         var meta = BdoData.NewNode("meta-test")
             .WithSpec(_spec)
             .With(
-                BdoData.NewMeta("title", "myTitle"));
+                BdoData.NewScalar("title", "myTitle"));
 
         var subSpec = meta.FindChildSpec(_spec, SystemData.Scope);
         Assert.That(subSpec == _spec._Children[0], "Bad spec condition");
@@ -68,8 +69,8 @@ public class BdoSpecTests
         var meta1 = BdoData.NewNode("meta-test")
             .WithSpec(_spec)
             .With(
-                BdoData.NewMeta("auto", true),
-                BdoData.NewMeta("title", "myTitle"));
+                BdoData.NewScalar("auto", true),
+                BdoData.NewScalar("title", "myTitle"));
 
         var ok1 = validator.Check(meta1);
         Assert.That(ok1, "Check rules - Error");
@@ -77,9 +78,9 @@ public class BdoSpecTests
         var meta2 = BdoData.NewNode("meta-test")
             .WithSpec(_spec)
             .With(
-                BdoData.NewMeta("auto", true),
-                BdoData.NewMeta("label", true),     // should be forbidden
-                BdoData.NewMeta("title", "myTitle"));
+                BdoData.NewScalar("auto", true),
+                BdoData.NewScalar("label", true),     // should be forbidden
+                BdoData.NewScalar("title", "myTitle"));
 
         var ok2 = validator.Check(meta2);
         Assert.That(!ok2, "Check rules - Error");
@@ -92,29 +93,29 @@ public class BdoSpecTests
 
         var meta1 = BdoData.NewNode("meta-test")
             .With(
-                BdoData.NewMeta("auto", true),  // should be ok
-                BdoData.NewMeta("label", true),
-                BdoData.NewMeta("title", "myTitle"));
+                BdoData.NewScalar("auto", true),  // should be ok
+                BdoData.NewScalar("label", true),
+                BdoData.NewScalar("title", "myTitle"));
 
         var ok1 = meta1.Check(SystemData.Scope);
         Assert.That(ok1, "Check rules - Error");
 
         var meta2 = BdoData.NewNode("meta-test")
             .With(
-                BdoData.NewMeta("auto", true)   // should raise a value type error
+                BdoData.NewScalar("auto", true)   // should raise a value type error
                     .WithSpec(BdoData.NewSpec().WithDataType(DataValueTypes.Integer)),
-                BdoData.NewMeta("label", true),
-                BdoData.NewMeta("title", "myTitle"));
+                BdoData.NewScalar("label", true),
+                BdoData.NewScalar("title", "myTitle"));
 
         var ok2 = validator.Check(meta2);
         Assert.That(!ok2, "Check rules - Error");
 
         var meta3 = BdoData.NewNode("meta-test")
             .With(
-                BdoData.NewMeta("auto", "true")   // should be ok
+                BdoData.NewScalar("auto", "true")   // should be ok
                     .WithSpec(BdoData.NewSpec().WithDataType(DataValueTypes.Text)),
-                BdoData.NewMeta("label", true),
-                BdoData.NewMeta("title", "myTitle"));
+                BdoData.NewScalar("label", true),
+                BdoData.NewScalar("title", "myTitle"));
 
         var ok3 = validator.Check(meta3);
         Assert.That(ok3, "Check rules - Error");

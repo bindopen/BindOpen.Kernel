@@ -48,7 +48,7 @@ namespace BindOpen.Data.Meta
             var meta0 = BdoData.NewNode("meta-test")
                 .WithSpec(BdoData.NewSpec())
                 .With(
-                    BdoData.NewMeta("title", "A"));
+                    BdoData.NewScalar("title", "A"));
 
             var existence0 = meta0.GetConditionValue(SystemData.Scope);
             Assert.That(existence0, "Statement - Error");
@@ -56,7 +56,7 @@ namespace BindOpen.Data.Meta
             var meta1 = BdoData.NewNode("meta-test")
                 .WithSpec(_spec)
                 .With(
-                    BdoData.NewMeta("title", "myTitle"));
+                    BdoData.NewScalar("title", "myTitle"));
 
             var existence1 = meta1.GetConditionValue(SystemData.Scope);
             Assert.That(existence1, "Statement - Error");
@@ -64,7 +64,7 @@ namespace BindOpen.Data.Meta
             var meta2 = BdoData.NewNode("meta-test")
                 .WithSpec(_spec)
                 .With(
-                    BdoData.NewMeta("title", "A"));
+                    BdoData.NewScalar("title", "A"));
 
             var existence2 = meta2.GetConditionValue(SystemData.Scope);
             Assert.That(!existence2, "Statement - Error");
