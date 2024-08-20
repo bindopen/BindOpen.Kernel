@@ -17,14 +17,14 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="pairs">The value to add.</param>
         public static T InsertData<T>(
-            this T set,
+            this T list,
             object obj)
             where T : IBdoMetaSet
         {
             IBdoMetaData meta = obj is IBdoMetaData data ? data : BdoData.NewMeta(obj);
-            set?.Insert(meta);
+            list?.Add(meta);
 
-            return set;
+            return list;
         }
 
         /// <summary>
@@ -65,19 +65,19 @@ namespace BindOpen.Data
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
         public static T Add<T>(
-            this T set,
+            this T list,
             params (string Name, object Value)[] pairs)
             where T : IBdoMetaSet
         {
-            if (set != null)
+            if (list != null)
             {
                 foreach (var (Name, Value) in pairs)
                 {
-                    set.Insert(BdoData.NewMeta(Name, Value));
+                    list.Add(BdoData.NewMeta(Name, Value));
                 }
             }
 
-            return set;
+            return list;
         }
 
         /// <summary>
@@ -86,19 +86,19 @@ namespace BindOpen.Data
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
         public static T Add<T>(
-            this T set,
+            this T list,
             params (string Name, DataValueTypes ValueType, object Value)[] pairs)
             where T : IBdoMetaSet
         {
-            if (set != null)
+            if (list != null)
             {
                 foreach (var (Name, ValueType, Value) in pairs)
                 {
-                    set.Insert(BdoData.NewMeta(Name, ValueType, Value));
+                    list.Add(BdoData.NewMeta(Name, ValueType, Value));
                 }
             }
 
-            return set;
+            return list;
         }
 
         // With
@@ -108,17 +108,17 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="pairs">The value to add.</param>
         public static T With<T>(
-            this T set,
+            this T list,
             params KeyValuePair<string, object>[] pairs)
             where T : IBdoMetaSet
         {
-            if (set != null)
+            if (list != null)
             {
                 var items = pairs.Select(q => BdoData.NewMeta(q.Key, DataValueTypes.Any, q.Value)).ToArray();
-                set.With(items);
+                list.With(items);
             }
 
-            return set;
+            return list;
         }
 
         /// <summary>
@@ -279,6 +279,7 @@ namespace BindOpen.Data
             if (metaSet?.Any() == true)
             {
                 int i = 0;
+                string tokenName = null;
 
                 while (i > -1)
                 {
@@ -290,12 +291,14 @@ namespace BindOpen.Data
 
                         if (j > -1)
                         {
-                            var meta = metaSet[null];
+                            tokenName = st.ToSubstring(i + 2, j - 1);
+
+                            var meta = metaSet[tokenName];
                             if (meta != null)
                             {
                                 var newSt = meta.GetData<string>();
                                 st = st[0..i] + newSt + st[(j + 2)..^0];
-                                j -= (((string)null).Length - (newSt?.Length ?? 0) + 3);
+                                j -= (tokenName.Length - (newSt?.Length ?? 0) + 3);
                             }
                         }
                         i = j + 1;
