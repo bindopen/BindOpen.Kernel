@@ -1,15 +1,15 @@
-﻿using BindOpen.Kernel.Tests;
+﻿using BindOpen.Tests;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Data.Json;
+namespace BindOpen.Data;
 
 [TestFixture, Order(210)]
 public class ReferenceJsonTests
 {
-    private readonly string _filePath_json = SystemData.WorkingFolder + "Reference.json";
+    private readonly string _filePath_json = GlobalTestData.WorkingFolder + "Reference.json";
     dynamic _valueSet;
     private IBdoReference _ref = null;
 

@@ -20,7 +20,7 @@ namespace BindOpen.Data
             params KeyValuePair<string, TItem>[] pairs)
             where T : ITBdoDictionary<TItem>
         {
-            if (dico != null)
+            if (dico != null && pairs != null)
             {
                 foreach (var value in pairs)
                 {

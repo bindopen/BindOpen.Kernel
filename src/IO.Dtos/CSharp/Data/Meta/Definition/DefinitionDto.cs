@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -17,6 +18,10 @@ namespace BindOpen.Data.Meta
 
         #region Properties
 
+        [JsonIgnore()]
+        [XmlIgnore()]
+        public string ParentId { get; set; }
+
         /// <summary>
         /// Creation date of this instance.
         /// </summary>
@@ -34,20 +39,37 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The description DTO of this instance.
         /// </summary>
-        [JsonPropertyName("description")]
-        [XmlElement("description")]
-        public StringDictionaryDto Description { get; set; }
-
-        /// <summary>
-        /// The description DTO of this instance.
-        /// </summary>
+        [ForeignKey(nameof(TitleStringDictionaryId))]
         [JsonPropertyName("title")]
         [XmlElement("title")]
         public StringDictionaryDto Title { get; set; }
 
         /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string TitleStringDictionaryId { get; set; }
+
+        /// <summary>
+        /// The description DTO of this instance.
+        /// </summary>
+        [ForeignKey(nameof(DescriptionStringDictionaryId))]
+        [JsonPropertyName("description")]
+        [XmlElement("description")]
+        public StringDictionaryDto Description { get; set; }
+
+        /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string DescriptionStringDictionaryId { get; set; }
+
+        /// <summary>
         /// The children of this instance.
         /// </summary>
+        [ForeignKey(nameof(ParentId))]
         [JsonPropertyName("children")]
         [XmlElement("config")]
         public List<DefinitionDto> Children { get; set; }

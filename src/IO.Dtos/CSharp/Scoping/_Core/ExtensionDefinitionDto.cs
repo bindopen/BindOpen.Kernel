@@ -1,6 +1,6 @@
-﻿using BindOpen.Data;
+﻿using BindOpen.Data.Meta;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -11,22 +11,13 @@ namespace BindOpen.Scoping
     /// This class represents the definition of BindOpen extension item.
     /// </summary>
     [XmlType("ExtensionDefinition", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
-    public abstract class ExtensionDefinitionDto : IBdoDto, IIdentified
+    public abstract class ExtensionDefinitionDto : DefinitionDto
     {
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
 
         #region Properties
-
-        /// <summary>
-        /// The identifier of this instance.
-        /// </summary>
-        [Key]
-        [Column("ExtensionDefinitionId")]
-        [JsonPropertyName("id")]
-        [XmlElement("id")]
-        public string Identifier { get; set; }
 
         /// <summary>
         /// The index of this instance.
@@ -57,6 +48,15 @@ namespace BindOpen.Scoping
         [XmlElement("isIndexed")]
         [DefaultValue(true)]
         public bool IsIndexed { get; set; } = true;
+
+        /// <summary>
+        /// Groups of this instance.
+        /// </summary>
+        [NotMapped]
+        [JsonPropertyName("groups")]
+        [XmlArray("groups")]
+        [XmlArrayItem("group")]
+        public List<ExtensionGroupDto> Groups { get; set; }
 
         #endregion
 

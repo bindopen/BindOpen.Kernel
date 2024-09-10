@@ -1,6 +1,4 @@
-﻿using BindOpen.Kernel.Tests;
-using NUnit.Framework;
-using System.IO;
+﻿using NUnit.Framework;
 
 namespace BindOpen.Scoping
 {
@@ -16,12 +14,12 @@ namespace BindOpen.Scoping
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            // we delete the working folder
+            //// we delete the working folder
 
-            if (Directory.Exists(SystemData.WorkingFolder))
-            {
-                Directory.Delete(SystemData.WorkingFolder, true);
-            }
+            //if (Directory.Exists(GlobalTestData.WorkingFolder))
+            //{
+            //    Directory.Delete(GlobalTestData.WorkingFolder, true);
+            //}
         }
     }
 }

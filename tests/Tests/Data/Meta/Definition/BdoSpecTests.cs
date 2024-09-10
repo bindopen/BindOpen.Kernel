@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta.Reflection;
-using BindOpen.Kernel.Tests;
+using BindOpen.Tests;
 using NUnit.Framework;
 
 namespace BindOpen.Data.Meta;
@@ -45,7 +45,7 @@ public class BdoSpecTests
                 BdoData.NewScalar("title", "myTitle"),
                 BdoData.NewScalar("description", "myDescription"));
 
-        var subSpec = meta.FindChildSpec(_spec, SystemData.Scope);
+        var subSpec = meta.FindChildSpec(_spec, GlobalTestData.Scope);
         Assert.That(subSpec == _spec._Children[1], "Bad spec condition");
     }
 
@@ -57,14 +57,14 @@ public class BdoSpecTests
             .With(
                 BdoData.NewScalar("title", "myTitle"));
 
-        var subSpec = meta.FindChildSpec(_spec, SystemData.Scope);
+        var subSpec = meta.FindChildSpec(_spec, GlobalTestData.Scope);
         Assert.That(subSpec == _spec._Children[0], "Bad spec condition");
     }
 
     [Test, Order(7)]
     public void CheckWithSpecTest()
     {
-        var validator = SystemData.Scope.CreateValidator();
+        var validator = GlobalTestData.Scope.CreateValidator();
 
         var meta1 = BdoData.NewNode("meta-test")
             .WithSpec(_spec)
@@ -89,7 +89,7 @@ public class BdoSpecTests
     [Test, Order(8)]
     public void CheckWithoutSpecTest()
     {
-        var validator = SystemData.Scope.CreateValidator();
+        var validator = GlobalTestData.Scope.CreateValidator();
 
         var meta1 = BdoData.NewNode("meta-test")
             .With(
@@ -97,7 +97,7 @@ public class BdoSpecTests
                 BdoData.NewScalar("label", true),
                 BdoData.NewScalar("title", "myTitle"));
 
-        var ok1 = meta1.Check(SystemData.Scope);
+        var ok1 = meta1.Check(GlobalTestData.Scope);
         Assert.That(ok1, "Check rules - Error");
 
         var meta2 = BdoData.NewNode("meta-test")
@@ -124,7 +124,7 @@ public class BdoSpecTests
     [Test, Order(8)]
     public void CheckValueTypeTest()
     {
-        var validator = SystemData.Scope.CreateValidator();
+        var validator = GlobalTestData.Scope.CreateValidator();
 
         var meta1 = BdoData.NewScalar("name")
             .AsNullValue();

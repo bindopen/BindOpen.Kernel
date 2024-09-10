@@ -1,4 +1,6 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
 namespace BindOpen.Data
@@ -20,6 +22,15 @@ namespace BindOpen.Data
 
     public class BdoItemDto : IBdoDto
     {
+        /// <summary>
+        /// The expression of this instance.
+        /// </summary>
+        [Key]
+        [Column("ItemId")]
+        [JsonPropertyName("id")]
+        [XmlElement("id")]
+        public string Identifier { get; set; }
+
         // --------------------------------------------------
         // CONSTRUCTORS
         // --------------------------------------------------

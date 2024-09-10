@@ -27,7 +27,7 @@ namespace BindOpen.Data.Meta
         [Column("SpecSetId")]
         [JsonPropertyName("id")]
         [XmlAttribute("id")]
-        public string Identifier { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Name of this instance.
@@ -40,6 +40,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The elements of this instance.
         /// </summary>
+        [NotMapped]
         [JsonPropertyName("items")]
         [XmlElement("spec", Type = typeof(SpecDto))]
         public List<SpecDto> Items { get; set; }

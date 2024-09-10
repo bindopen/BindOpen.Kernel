@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
-using BindOpen.Kernel.Tests;
+using BindOpen.Tests;
 using NUnit.Framework;
 using System.IO;
 
@@ -27,10 +27,10 @@ namespace BindOpen.Scoping.Entities
             if (_entity == null)
             {
                 IBdoMetaObject meta = BdoEntityFaker.NewMetaObject(_testData);
-                _entity = SystemData.Scope.CreateEntity<EntityFake>(meta);
+                _entity = GlobalTestData.Scope.CreateEntity<EntityFake>(meta);
             }
 
-            var isSaved = _entity.ToMeta(SystemData.Scope).ToDto().SaveXml(BdoEntityFaker.XmlFilePath);
+            var isSaved = _entity.ToMeta(GlobalTestData.Scope).ToDto().SaveXml(BdoEntityFaker.XmlFilePath);
 
             Assert.That(isSaved, "Entity saving failed");
         }
@@ -44,7 +44,7 @@ namespace BindOpen.Scoping.Entities
             }
 
             var meta = XmlHelper.LoadXml<MetaObjectDto>(BdoEntityFaker.XmlFilePath).ToPoco();
-            var entity = SystemData.Scope.CreateEntity(meta) as EntityFake;
+            var entity = GlobalTestData.Scope.CreateEntity(meta) as EntityFake;
 
             Assert.That(entity != null, "Entity loading failed");
 
@@ -59,10 +59,10 @@ namespace BindOpen.Scoping.Entities
             if (_entity == null)
             {
                 IBdoMetaObject meta = BdoEntityFaker.NewMetaObject(_testData);
-                _entity = SystemData.Scope.CreateEntity<EntityFake>(meta);
+                _entity = GlobalTestData.Scope.CreateEntity<EntityFake>(meta);
             }
 
-            var isSaved = _entity.ToMeta(SystemData.Scope).ToDto().SaveJson(BdoEntityFaker.JsonFilePath);
+            var isSaved = _entity.ToMeta(GlobalTestData.Scope).ToDto().SaveJson(BdoEntityFaker.JsonFilePath);
 
             Assert.That(isSaved, "Entity saving failed");
         }
@@ -76,7 +76,7 @@ namespace BindOpen.Scoping.Entities
             }
 
             var meta = JsonHelper.LoadJson<MetaObjectDto>(BdoEntityFaker.JsonFilePath).ToPoco();
-            var entity = SystemData.Scope.CreateEntity(meta) as EntityFake;
+            var entity = GlobalTestData.Scope.CreateEntity(meta) as EntityFake;
 
             Assert.That(entity != null, "Entity loading failed");
 

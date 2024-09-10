@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -20,6 +21,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The value of this instance.
         /// </summary>
+        [NotMapped]
         [JsonPropertyName("item")]
         [XmlText()]
         public string Item { get; set; }

@@ -1,15 +1,14 @@
-﻿using BindOpen.Kernel.Tests;
-using Bogus;
+﻿using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Data.Json;
+namespace BindOpen.Data;
 
 [TestFixture, Order(210)]
 public class ExpressionJsonTests
 {
-    private readonly string _filePath_json = SystemData.WorkingFolder + "Expression.json";
+    private readonly string _filePath_json = GlobalTestData.WorkingFolder + "Expression.json";
     dynamic _valueSet;
     private IBdoExpression _exp = null;
 

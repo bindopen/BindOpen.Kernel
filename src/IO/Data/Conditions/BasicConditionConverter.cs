@@ -1,4 +1,6 @@
-﻿using BindOpen.Data.Meta;
+﻿using AutoMapper;
+using BindOpen.Data.Assemblies;
+using BindOpen.Data.Meta;
 
 namespace BindOpen.Data.Conditions
 {
@@ -14,17 +16,26 @@ namespace BindOpen.Data.Conditions
         /// <returns>The DTO object.</returns>
         public static BasicConditionDto ToDto(this IBdoBasicCondition poco)
         {
-            if (poco == null) return null;
+            BasicConditionDto dto = new();
+            dto.UpdateFromPoco(poco);
 
-            BasicConditionDto dto = new()
-            {
-                Argument1 = poco.Argument1?.ToDto(),
-                Argument2 = poco.Argument2?.ToDto(),
-                Identifier = poco.Identifier,
-                Name = poco.Name,
-                Operator = poco.Operator,
-                ParentId = poco.Parent?.Identifier
-            };
+            return dto;
+        }
+
+        public static BasicConditionDto UpdateFromPoco(
+            this BasicConditionDto dto,
+            IBdoBasicCondition poco)
+        {
+            if (dto == null) return null;
+
+            if (poco == null) return dto;
+
+            var config = new MapperConfiguration(
+                cfg => cfg.CreateMap<BdoBasicCondition, BasicConditionDto>()
+            );
+
+            var mapper = new Mapper(config);
+            mapper.Map(poco, dto);
 
             return dto;
         }
@@ -41,8 +52,8 @@ namespace BindOpen.Data.Conditions
 
             BdoBasicCondition poco = new()
             {
-                Argument1 = dto.Argument1?.ToPoco(),
-                Argument2 = dto.Argument2?.ToPoco(),
+                Argument1 = dto.ArgumentMetaData1?.ToPoco(),
+                Argument2 = dto.ArgumentMetaData2?.ToPoco(),
                 Identifier = dto.Identifier,
                 Operator = dto.Operator,
                 Name = dto.Name,

@@ -1,6 +1,6 @@
 ﻿using BindOpen.Scoping.Script;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -21,15 +21,6 @@ namespace BindOpen.Data
         #region Properties
 
         /// <summary>
-        /// The expression of this instance.
-        /// </summary>
-        [Key]
-        [Column("ExpressionId")]
-        [JsonIgnore]
-        [XmlIgnore]
-        public string Identifier { get; set; }
-
-        /// <summary>
         /// The text of this instance.
         /// </summary>
         [JsonPropertyName("text")]
@@ -39,7 +30,7 @@ namespace BindOpen.Data
         /// <summary>
         /// The script word of this instance.
         /// </summary>
-        [ForeignKey("WordId")]
+        [ForeignKey(nameof(WordId))]
         [JsonPropertyName("word")]
         [XmlElement("word")]
         public ScriptwordDto Word { get; set; }

@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Conditions;
+﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Conditions;
 using BindOpen.Data.Helpers;
 using BindOpen.Logging;
 using BindOpen.Scoping;
@@ -35,19 +36,6 @@ namespace BindOpen.Data.Meta
         {
             return metaSet?.ToArray();
         }
-
-        #endregion
-
-        // --------------------------------------------------
-        // PROPERTIES
-        // --------------------------------------------------
-
-        #region Properties
-
-        /// <summary>
-        /// The scope of the service.
-        /// </summary>
-        public IBdoScope Scope { get; set; }
 
         #endregion
 

@@ -32,6 +32,14 @@ namespace BindOpen.Data.Meta
         [XmlAttribute("id")]
         public string Identifier { get; set; }
 
+        [JsonIgnore()]
+        [XmlIgnore()]
+        public string ParentId { get; set; }
+
+        [JsonIgnore()]
+        [XmlIgnore()]
+        public List<SpecDto> Supers { get; set; }
+
         /// <summary>
         /// The name of this instance.
         /// </summary>
@@ -42,6 +50,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The rules of this instance.
         /// </summary>
+        [ForeignKey(nameof(SpecRuleDto.SpecId))]
         [JsonPropertyName("rules")]
         [XmlElement("rule", Type = typeof(SpecRuleDto))]
         public List<SpecRuleDto> Rules { get; set; }
@@ -57,16 +66,10 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// THe children of this instance.
         /// </summary>
+        [ForeignKey(nameof(ParentId))]
         [JsonPropertyName("children")]
         [XmlElement("child", Type = typeof(SpecDto))]
         public List<SpecDto> Children { get; set; }
-
-        /// <summary>
-        /// THe items of this instance.
-        /// </summary>
-        [JsonPropertyName("items")]
-        [XmlElement("item", Type = typeof(SpecDto))]
-        public List<SpecDto> Items { get; set; }
 
         /// <summary>
         /// 
@@ -76,11 +79,19 @@ namespace BindOpen.Data.Meta
         [XmlIgnore()]
         public bool ChildrenSpecficied => Children?.Count > 0;
 
+        /// <summary>
+        /// THe items of this instance.
+        /// </summary>
+        [JsonPropertyName("items")]
+        [XmlElement("item", Type = typeof(SpecDto))]
+        public List<SpecDto> Items { get; set; }
+
         // General ------------------------------------------
 
         /// <summary>
         /// Default items of this instance.
         /// </summary>
+        [ForeignKey(nameof(ConditionId))]
         [JsonPropertyName("condition")]
         [XmlElement("condition", Type = typeof(BasicConditionDto))]
         [XmlElement("condition.composite", Type = typeof(CompositeConditionDto))]
@@ -88,32 +99,71 @@ namespace BindOpen.Data.Meta
         public ConditionDto Condition { get; set; }
 
         /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string ConditionId { get; set; }
+
+        /// <summary>
         /// The expression of this instance.
         /// </summary>
+        [ForeignKey(nameof(ReferenceId))]
         [JsonPropertyName("ref")]
         [XmlElement("ref")]
         public ReferenceDto Reference { get; set; }
 
         /// <summary>
-        /// The description DTO of this instance.
+        /// The class name of this instance.
         /// </summary>
-        [JsonPropertyName("description")]
-        [XmlElement("description")]
-        public StringDictionaryDto Description { get; set; }
+        [JsonIgnore]
+        [XmlIgnore]
+        public string ReferenceId { get; set; }
 
         /// <summary>
         /// The description DTO of this instance.
         /// </summary>
+        [ForeignKey(nameof(TitleStringDictionaryId))]
         [JsonPropertyName("title")]
         [XmlElement("title")]
         public StringDictionaryDto Title { get; set; }
 
         /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string TitleStringDictionaryId { get; set; }
+
+        /// <summary>
+        /// The description DTO of this instance.
+        /// </summary>
+        [ForeignKey(nameof(DescriptionStringDictionaryId))]
+        [JsonPropertyName("description")]
+        [XmlElement("description")]
+        public StringDictionaryDto Description { get; set; }
+
+        /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string DescriptionStringDictionaryId { get; set; }
+
+        /// <summary>
         /// ID of the group of this instance.
         /// </summary>
+        [ForeignKey(nameof(DetailMetaSetId))]
         [JsonPropertyName("detail")]
         [XmlElement("detail")]
         public MetaSetDto Detail { get; set; }
+
+        /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string DetailMetaSetId { get; set; }
 
         /// <summary>
         /// The value type of this instance.
@@ -136,6 +186,13 @@ namespace BindOpen.Data.Meta
         [JsonPropertyName("class")]
         [XmlElement("class")]
         public ClassReferenceDto ClassReference { get; set; }
+
+        /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string ClassReferenceId { get; set; }
 
         /// <summary>
         /// ID of the group of this instance.

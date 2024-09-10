@@ -1,33 +1,32 @@
 ﻿using System.Collections.Generic;
 
-namespace BindOpen.Data.Assemblies
+namespace BindOpen.Data.Assemblies;
+
+/// <summary>
+/// This class represents a data reference.
+/// </summary>
+public class BdoAssemblyReferenceCollection : List<IBdoAssemblyReference>, IBdoAssemblyReferenceCollection
 {
+    // ------------------------------------------
+    // CONSTRUCTORS
+    // ------------------------------------------
+
+    #region Constructors
+
     /// <summary>
-    /// This class represents a data reference.
+    /// Instantiates a new instance of the BdoAssemblyReferenceCollection class.
     /// </summary>
-    public class BdoAssemblyReferenceCollection : List<IBdoAssemblyReference>, IBdoAssemblyReferenceCollection
+    /// <param key="references">The references to consider.</param>
+    public BdoAssemblyReferenceCollection(IEnumerable<IBdoAssemblyReference> references = null)
     {
-        // ------------------------------------------
-        // CONSTRUCTORS
-        // ------------------------------------------
-
-        #region Constructors
-
-        /// <summary>
-        /// Instantiates a new instance of the BdoAssemblyReferenceCollection class.
-        /// </summary>
-        /// <param key="references">The references to consider.</param>
-        public BdoAssemblyReferenceCollection(IEnumerable<IBdoAssemblyReference> references = null)
+        if (references != null)
         {
-            if (references != null)
+            foreach (var reference in references)
             {
-                foreach (var reference in references)
-                {
-                    Add(reference);
-                }
+                Add(reference);
             }
         }
-
-        #endregion
     }
+
+    #endregion
 }

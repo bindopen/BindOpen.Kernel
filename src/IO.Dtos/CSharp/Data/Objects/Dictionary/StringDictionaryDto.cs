@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -22,18 +20,8 @@ namespace BindOpen.Data
         #region Properties
 
         /// <summary>
-        /// The identifier of this instance.
-        /// </summary>
-        [Key]
-        [Column("StringDictionaryId")]
-        [JsonPropertyName("id")]
-        [XmlElement("id")]
-        public string Identifier { get; set; }
-
-        /// <summary>
         /// The values of this instance.
         /// </summary>
-        [ForeignKey("Key")]
         [JsonPropertyName("values")]
         [XmlElement("add")]
         public List<KeyValuePairDto> Values { get; set; }

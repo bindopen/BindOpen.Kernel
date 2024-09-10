@@ -30,6 +30,10 @@ namespace BindOpen.Data.Meta
         [XmlAttribute("id")]
         public string Identifier { get; set; }
 
+        [JsonIgnore()]
+        [XmlIgnore()]
+        public string SpecId { get; set; }
+
         /// <summary>
         /// The kind of this instance.
         /// </summary>
@@ -48,25 +52,49 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Values of this instance.
         /// </summary>
+        [ForeignKey(nameof(ValueMetaDataId))]
         [JsonPropertyName("value")]
         [XmlElement("value")]
         public MetaScalarDto Value { get; set; }
 
         /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string ValueMetaDataId { get; set; }
+
+        /// <summary>
         /// The reference of this instance.
         /// </summary>
+        [ForeignKey(nameof(ReferenceId))]
         [JsonPropertyName("reference")]
         [XmlElement("reference")]
         public ReferenceDto Reference { get; set; }
 
         /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string ReferenceId { get; set; }
+
+        /// <summary>
         /// Default items of this instance.
         /// </summary>
+        [ForeignKey(nameof(ConditionId))]
         [JsonPropertyName("condition")]
         [XmlElement("condition", Type = typeof(BasicConditionDto))]
         [XmlElement("condition.composite", Type = typeof(CompositeConditionDto))]
         [XmlElement("condition.expression", Type = typeof(ExpressionConditionDto))]
         public ConditionDto Condition { get; set; }
+
+        /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string ConditionId { get; set; }
 
         /// <summary>
         /// The result code of this instance.

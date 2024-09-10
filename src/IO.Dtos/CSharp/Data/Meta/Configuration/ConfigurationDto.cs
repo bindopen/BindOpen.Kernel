@@ -18,6 +18,11 @@ namespace BindOpen.Data.Meta
 
         #region Properties
 
+        [NotMapped]
+        [JsonIgnore()]
+        [XmlIgnore()]
+        public string ParentId { get; set; }
+
         /// <summary>
         /// Creation date of this instance.
         /// </summary>
@@ -35,7 +40,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The description DTO of this instance.
         /// </summary>
-        [ForeignKey("TitleStringDictionaryId")]
+        [ForeignKey(nameof(TitleStringDictionaryId))]
         [JsonPropertyName("title")]
         [XmlElement("title")]
         public StringDictionaryDto Title { get; set; }
@@ -50,7 +55,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The description DTO of this instance.
         /// </summary>
-        [ForeignKey("DescriptionStringDictionaryId")]
+        [ForeignKey(nameof(DescriptionStringDictionaryId))]
         [JsonPropertyName("description")]
         [XmlElement("description")]
         public StringDictionaryDto Description { get; set; }
@@ -65,7 +70,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The children of this instance.
         /// </summary>
-        [ForeignKey("MetaSetId")]
+        [ForeignKey(nameof(ParentId))]
         [JsonPropertyName("children")]
         [XmlElement("config")]
         public List<ConfigurationDto> Children { get; set; }

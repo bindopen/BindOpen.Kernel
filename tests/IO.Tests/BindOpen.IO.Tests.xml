@@ -14,5 +14,25 @@
             
             </summary>
         </member>
+        <member name="M:BindOpen.GlobalIOTestData.GetDbFilePath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.GlobalIOTestData.CreateDbContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.GlobalIOTestSetup">
+            <summary>
+            This class set the global setup.
+            </summary>
+        </member>
+        <member name="M:BindOpen.GlobalIOTestSetup.OneTimeSetUp">
+            <summary>
+            
+            </summary>
+        </member>
     </members>
 </doc>

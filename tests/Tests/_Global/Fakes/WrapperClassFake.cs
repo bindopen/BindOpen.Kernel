@@ -1,37 +1,36 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
 
-namespace BindOpen.Kernel.Tests
+namespace BindOpen.Tests;
+
+/// <summary>
+/// This class represents a fake class.
+/// </summary>
+public class WrapperClassFake
 {
+    // ------------------------------------------
+    // PROPERTIES
+    // ------------------------------------------
+
+    #region Properties
+
     /// <summary>
-    /// This class represents a fake class.
+    /// The string value of this instance.
     /// </summary>
-    public class WrapperClassFake
-    {
-        // ------------------------------------------
-        // PROPERTIES
-        // ------------------------------------------
+    [BdoProperty(Name = "stringValue")]
+    public string StringValue { get; set; }
 
-        #region Properties
+    /// <summary>
+    /// The integer value of this instance.
+    /// </summary>
+    [BdoProperty(Name = "intValue")]
+    public int IntValue { get; set; }
 
-        /// <summary>
-        /// The string value of this instance.
-        /// </summary>
-        [BdoProperty(Name = "stringValue")]
-        public string StringValue { get; set; }
+    /// <summary>
+    /// Enumeration value of this instance.
+    /// </summary>
+    [BdoProperty(Name = "enumValue")]
+    public AccessibilityLevels EnumValue { get; set; }
 
-        /// <summary>
-        /// The integer value of this instance.
-        /// </summary>
-        [BdoProperty(Name = "intValue")]
-        public int IntValue { get; set; }
-
-        /// <summary>
-        /// Enumeration value of this instance.
-        /// </summary>
-        [BdoProperty(Name = "enumValue")]
-        public AccessibilityLevels EnumValue { get; set; }
-
-        #endregion
-    }
+    #endregion
 }

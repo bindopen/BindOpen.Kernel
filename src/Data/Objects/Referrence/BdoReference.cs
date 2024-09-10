@@ -21,11 +21,6 @@ namespace BindOpen.Data
         /// </summary>
         public IBdoExpression Expression { get; set; }
 
-        /// <summary>
-        /// The script word of this instance.
-        /// </summary>
-        public string Identifier { get; set; }
-
         public IBdoMetaData MetaData { get; set; }
 
         #endregion
@@ -87,6 +82,19 @@ namespace BindOpen.Data
             BdoReferenceKind.MetaData => MetaData?.Name,
             _ => null
         };
+
+        #endregion
+
+        // ------------------------------------------
+        // IIdentified Implementation
+        // ------------------------------------------
+
+        #region IIdentified Implementation
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Identifier { get; set; } = StringHelper.NewGuid();
 
         #endregion
 

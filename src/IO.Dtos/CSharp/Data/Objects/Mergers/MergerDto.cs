@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -18,15 +16,6 @@ namespace BindOpen.Data
         // ------------------------------------------
 
         #region Properties
-
-        /// <summary>
-        /// The expression of this instance.
-        /// </summary>
-        [Key]
-        [Column("MergerId")]
-        [JsonIgnore]
-        [XmlIgnore]
-        public string Identifier { get; set; }
 
         /// <summary>
         /// The added values of this instance.

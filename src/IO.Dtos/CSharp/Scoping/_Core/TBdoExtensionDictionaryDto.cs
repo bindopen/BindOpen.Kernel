@@ -1,5 +1,5 @@
 ﻿using BindOpen.Data;
-using System.Collections.Generic;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -25,7 +25,7 @@ namespace BindOpen.Scoping
         /// The expression of this instance.
         /// </summary>
         [Key]
-        [Column("ExpressionId")]
+        [Column("ExtensionDictionaryId")]
         [JsonIgnore]
         [XmlIgnore]
         public string Identifier { get; set; }
@@ -59,14 +59,6 @@ namespace BindOpen.Scoping
         [JsonPropertyName("library")]
         [XmlAttribute("library")]
         public string LibraryName { get; set; }
-
-        /// <summary>
-        /// Groups of this instance.
-        /// </summary>
-        [JsonPropertyName("groups")]
-        [XmlArray("groups")]
-        [XmlArrayItem("group")]
-        public List<ExtensionGroupDto> Groups { get; set; }
 
         #endregion
 

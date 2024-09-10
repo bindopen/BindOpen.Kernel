@@ -15,13 +15,22 @@ namespace BindOpen.Data
         /// <returns>The DTO object.</returns>
         public static KeyValuePairDto ToDto<TItem>(this KeyValuePair<string, TItem> poco)
         {
+            KeyValuePairDto dto = new();
+            dto.UpdateFromPoco(poco);
+
+            return dto;
+        }
+
+        public static KeyValuePairDto UpdateFromPoco<TItem>(
+            this KeyValuePairDto dto,
+            KeyValuePair<string, TItem> poco)
+        {
+            if (dto == null) return null;
+
             var valueType = typeof(TItem).GetValueType();
 
-            KeyValuePairDto dto = new()
-            {
-                Value = poco.Value.ToString(valueType),
-                Key = poco.Key
-            };
+            dto.Value = poco.Value.ToString(valueType);
+            dto.Key = poco.Key;
 
             return dto;
         }

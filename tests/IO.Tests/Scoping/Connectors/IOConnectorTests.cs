@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
-using BindOpen.Kernel.Tests;
+using BindOpen.Tests;
 using NUnit.Framework;
 using System.IO;
 
@@ -27,10 +27,10 @@ namespace BindOpen.Scoping.Connectors
             if (_connector == null)
             {
                 IBdoMetaObject meta = BdoConnectorFaker.NewMetaObject(_testData);
-                _connector = SystemData.Scope.CreateConnector<ConnectorFake>(meta);
+                _connector = GlobalTestData.Scope.CreateConnector<ConnectorFake>(meta);
             }
 
-            var isSaved = _connector.ToMeta(SystemData.Scope).ToDto().SaveXml(BdoConnectorFaker.XmlFilePath);
+            var isSaved = _connector.ToMeta(GlobalTestData.Scope).ToDto().SaveXml(BdoConnectorFaker.XmlFilePath);
 
             Assert.That(isSaved, "Connector saving failed");
         }
@@ -44,7 +44,7 @@ namespace BindOpen.Scoping.Connectors
             }
 
             var meta = XmlHelper.LoadXml<MetaObjectDto>(BdoConnectorFaker.XmlFilePath).ToPoco();
-            var connector = SystemData.Scope.CreateConnector<ConnectorFake>(meta);
+            var connector = GlobalTestData.Scope.CreateConnector<ConnectorFake>(meta);
 
             BdoConnectorFaker.AssertFake(connector, _testData);
         }
@@ -57,10 +57,10 @@ namespace BindOpen.Scoping.Connectors
             if (_connector == null)
             {
                 IBdoMetaObject meta = BdoConnectorFaker.NewMetaObject(_testData);
-                _connector = SystemData.Scope.CreateConnector<ConnectorFake>(meta);
+                _connector = GlobalTestData.Scope.CreateConnector<ConnectorFake>(meta);
             }
 
-            var isSaved = _connector.ToMeta(SystemData.Scope).ToDto().SaveJson(BdoConnectorFaker.JsonFilePath);
+            var isSaved = _connector.ToMeta(GlobalTestData.Scope).ToDto().SaveJson(BdoConnectorFaker.JsonFilePath);
 
             Assert.That(isSaved, "Connector saving failed");
         }
@@ -74,7 +74,7 @@ namespace BindOpen.Scoping.Connectors
             }
 
             var meta = JsonHelper.LoadJson<MetaObjectDto>(BdoConnectorFaker.JsonFilePath).ToPoco();
-            var connector = SystemData.Scope.CreateConnector<ConnectorFake>(meta);
+            var connector = GlobalTestData.Scope.CreateConnector<ConnectorFake>(meta);
 
             BdoConnectorFaker.AssertFake(connector, _testData);
         }

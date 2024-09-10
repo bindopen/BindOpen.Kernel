@@ -22,7 +22,7 @@ namespace BindOpen.Scoping.Connectors
         /// <summary>
         /// Definitions of this instance.
         /// </summary>
-        [ForeignKey("ExtensionDefinitionId")]
+        [ForeignKey("ExtensionDictionaryId")]
         [JsonPropertyName("definitions")]
         [XmlArray("definitions")]
         [XmlArrayItem("add.definition")]

@@ -1,15 +1,15 @@
-﻿using BindOpen.Kernel.Tests;
+﻿using BindOpen.Tests;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Data.Xml;
+namespace BindOpen.Data;
 
 [TestFixture, Order(210)]
 public class ReferenceXmlTests
 {
-    private readonly string _filePath_xml = SystemData.WorkingFolder + "Reference.xml";
+    private readonly string _filePath_xml = GlobalTestData.WorkingFolder + "Reference.xml";
     dynamic _valueSet;
     private IBdoReference _ref = null;
 

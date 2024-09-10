@@ -1,5 +1,7 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Scoping.Script;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -39,6 +41,10 @@ namespace BindOpen.Data.Meta
         [XmlElement("id")]
         public string Identifier { get; set; }
 
+        [JsonIgnore()]
+        [XmlIgnore()]
+        public List<MetaSetDto> Supers { get; set; }
+
         /// <summary>
         /// Name of this instance.
         /// </summary>
@@ -69,16 +75,32 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The expression of this instance.
         /// </summary>
+        [ForeignKey(nameof(ReferenceId))]
         [JsonPropertyName("ref")]
         [XmlElement("ref")]
         public ReferenceDto Reference { get; set; }
 
         /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string ReferenceId { get; set; }
+
+        /// <summary>
         /// The elements of this instance.
         /// </summary>
+        [ForeignKey(nameof(SpecId))]
         [JsonPropertyName("spec")]
         [XmlElement("spec")]
         public SpecDto Spec { get; set; }
+
+        /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string SpecId { get; set; }
 
         /// <summary>
         /// The value type of this instance.
@@ -98,9 +120,17 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The class reference of this instance.
         /// </summary>
+        [ForeignKey(nameof(ClassReferenceId))]
         [JsonPropertyName("class")]
         [XmlElement("class")]
         public ClassReferenceDto ClassReference { get; set; }
+
+        /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string ClassReferenceId { get; set; }
 
         #endregion
 

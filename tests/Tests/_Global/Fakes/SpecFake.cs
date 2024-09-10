@@ -1,25 +1,24 @@
 ﻿using BindOpen.Data.Meta;
 
-namespace BindOpen.Kernel.Tests
+namespace BindOpen.Tests;
+
+/// <summary>
+/// This class represents an option specification.
+/// </summary>
+public class SpecFake : BdoSpec
 {
+    // -------------------------------------------------------------
+    // CONSTRUCTORS
+    // -------------------------------------------------------------
+
+    #region Constructors
+
     /// <summary>
-    /// This class represents an option specification.
+    /// Instantiates a new instance of the SpecFake class.
     /// </summary>
-    public class SpecFake : BdoSpec
+    public SpecFake()
     {
-        // -------------------------------------------------------------
-        // CONSTRUCTORS
-        // -------------------------------------------------------------
-
-        #region Constructors
-
-        /// <summary>
-        /// Instantiates a new instance of the SpecFake class.
-        /// </summary>
-        public SpecFake()
-        {
-        }
-
-        #endregion
     }
+
+    #endregion
 }

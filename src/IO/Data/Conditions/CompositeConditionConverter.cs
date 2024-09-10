@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using AutoMapper;
+using System.Linq;
 
 namespace BindOpen.Data.Conditions
 {
@@ -24,6 +25,24 @@ namespace BindOpen.Data.Conditions
                 Name = poco.Name,
                 ParentId = poco.Parent?.Identifier
             };
+
+            return dto;
+        }
+
+        public static CompositeConditionDto UpdateFromPoco(
+            this CompositeConditionDto dto,
+            IBdoCompositeCondition poco)
+        {
+            if (dto == null) return null;
+
+            if (poco == null) return dto;
+
+            var config = new MapperConfiguration(
+                cfg => cfg.CreateMap<BdoCompositeCondition, CompositeConditionDto>()
+            );
+
+            var mapper = new Mapper(config);
+            mapper.Map(poco, dto);
 
             return dto;
         }

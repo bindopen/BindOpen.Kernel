@@ -1,61 +1,60 @@
 ﻿using AutoMapper;
 
-namespace BindOpen.Data.Assemblies
+namespace BindOpen.Data.Assemblies;
+
+/// <summary>
+/// This class represents a IO converter of assembly references.
+/// </summary>
+public static class ClassReferenceConverter
 {
     /// <summary>
-    /// This class represents a IO converter of class references.
+    /// Converts an assembly reference poco into a DTO one.
     /// </summary>
-    public static class ClassReferenceConverter
+    /// <param key="poco">The poco to consider.</param>
+    /// <returns>The DTO object.</returns>
+    public static ClassReferenceDto ToDto(this IBdoClassReference poco)
     {
-        /// <summary>
-        /// Converts a class reference poco into a DTO one.
-        /// </summary>
-        /// <param key="poco">The poco to consider.</param>
-        /// <returns>The DTO object.</returns>
-        public static ClassReferenceDto ToDto(this IBdoClassReference poco)
-        {
-            if (poco == null) return null;
+        ClassReferenceDto dto = new();
+        dto.UpdateFromPoco(poco);
 
-            var config = new MapperConfiguration(
-                cfg => cfg.CreateMap<BdoClassReference, ClassReferenceDto>()
-            );
+        return dto;
+    }
 
-            var mapper = new Mapper(config);
-            var dto = mapper.Map<ClassReferenceDto>(poco);
+    public static ClassReferenceDto UpdateFromPoco(
+        this ClassReferenceDto dto,
+        IBdoClassReference poco)
+    {
+        if (dto == null) return null;
 
-            return dto;
-        }
+        if (poco == null) return dto;
 
-        /// <summary>
-        /// Indicates whether the specified poco can be specified as DTO.
-        /// </summary>
-        /// <param key="poco">The poco to consider.</param>
-        /// <returns>True if the poco can be specified as DTO.</returns>
-        public static bool IsSpecified(this IBdoClassReference poco) =>
-            poco != null
-            && (poco?.AssemblyFileName != null
-            || poco?.AssemblyName != null
-            || poco?.AssemblyVersion != null
-            || poco?.ClassName != null);
+        var config = new MapperConfiguration(
+            cfg => cfg.CreateMap<BdoClassReference, ClassReferenceDto>()
+        );
 
-        /// <summary>
-        /// Converts a class reference DTO into a poco one.
-        /// </summary>
-        /// <param key="dto">The DTO to consider.</param>
-        /// <returns>The poco object.</returns>
-        public static IBdoClassReference ToPoco(
-            this ClassReferenceDto dto)
-        {
-            if (dto == null) return null;
+        var mapper = new Mapper(config);
+        mapper.Map(poco, dto);
 
-            var config = new MapperConfiguration(
-                cfg => cfg.CreateMap<ClassReferenceDto, BdoClassReference>()
-            );
+        return dto;
+    }
 
-            var mapper = new Mapper(config);
-            var poco = mapper.Map<BdoClassReference>(dto);
+    /// <summary>
+    /// Converts an assembly reference DTO into a poco one.
+    /// </summary>
+    /// <param key="dto">The DTO to consider.</param>
+    /// <returns>The poco object.</returns>
+    public static IBdoClassReference ToPoco(
+        this ClassReferenceDto dto)
+    {
+        if (dto == null) return null;
 
-            return poco;
-        }
+        var config = new MapperConfiguration(
+            cfg => cfg.CreateMap<ClassReferenceDto, BdoClassReference>()
+        );
+
+        var mapper = new Mapper(config);
+        var poco = mapper.Map<BdoClassReference>(dto);
+
+        return poco;
     }
 }

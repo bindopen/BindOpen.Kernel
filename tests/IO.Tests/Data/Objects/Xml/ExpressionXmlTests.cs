@@ -1,15 +1,15 @@
-﻿using BindOpen.Kernel.Tests;
+﻿using BindOpen.Tests;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
 
-namespace BindOpen.Data.Xml;
+namespace BindOpen.Data;
 
 [TestFixture, Order(210)]
 public class ExpressionXmlTests
 {
-    private readonly string _filePath_xml = SystemData.WorkingFolder + "Expression.xml";
+    private readonly string _filePath_xml = GlobalTestData.WorkingFolder + "Expression.xml";
     dynamic _valueSet;
     private IBdoExpression _exp = null;
 

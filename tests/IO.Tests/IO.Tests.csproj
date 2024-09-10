@@ -24,6 +24,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Global\**" />
+    <EmbeddedResource Remove="Global\**" />
+    <None Remove="Global\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\..\docs\img\bindopen_icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
@@ -45,13 +51,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\IO\IO.csproj" />
+    <ProjectReference Include="..\..\src\IO.Db\IO.Db.csproj" />
     <ProjectReference Include="..\Tests\Tests.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Objects\Db\" />
-    <Folder Include="Global\Fakes\" />
+    <Folder Include="Data\Conditions\" />
   </ItemGroup>
 
 </Project>

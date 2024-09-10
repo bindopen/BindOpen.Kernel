@@ -1,5 +1,6 @@
 ﻿using BindOpen.Scoping.Script;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -21,6 +22,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The elements of this instance.
         /// </summary>
+        [NotMapped]
         [JsonPropertyName("items")]
         [XmlElement("node", Type = typeof(MetaNodeDto))]
         [XmlElement("object", Type = typeof(MetaObjectDto))]

@@ -1,4 +1,4 @@
-﻿using BindOpen.Kernel.Tests;
+﻿using BindOpen.Tests;
 using NUnit.Framework;
 
 namespace BindOpen.Data.Meta;
@@ -14,7 +14,7 @@ public class BdoMetaWrapperTests
     [Test, Order(1)]
     public void CreateTest()
     {
-        var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>(
+        var obj = GlobalTestData.Scope.NewMetaWrapper<MetaWrapperFake>(
             BdoData.NewSet(("test1", "ABC")));
 
         var value1 = obj.Test1;
@@ -40,14 +40,14 @@ public class BdoMetaWrapperTests
         // null
 
         IBdoMetaSet metaSet = null;
-        var obj1 = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>(metaSet);
+        var obj1 = GlobalTestData.Scope.NewMetaWrapper<MetaWrapperFake>(metaSet);
         Assert.That(obj?.Test1 == "TEST1", "Bad meta wrapper");
     }
 
     [Test, Order(2)]
     public void DescendantTest()
     {
-        var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>(
+        var obj = GlobalTestData.Scope.NewMetaWrapper<MetaWrapperFake>(
             BdoData.NewConfig(
                 BdoData.NewScalar("test1", "ABC"))
                 .WithChildren(BdoData.NewConfig(
@@ -66,7 +66,7 @@ public class BdoMetaWrapperTests
     {
         var values = new[] { "daily", "month" };
 
-        var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>(
+        var obj = GlobalTestData.Scope.NewMetaWrapper<MetaWrapperFake>(
             BdoData.NewConfig(
                 BdoData.NewScalar("testList", values)));
 
@@ -76,7 +76,7 @@ public class BdoMetaWrapperTests
     [Test, Order(4)]
     public void DictionaryTest()
     {
-        var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>(
+        var obj = GlobalTestData.Scope.NewMetaWrapper<MetaWrapperFake>(
             BdoData.NewConfig(
                 BdoData.NewNode("testDico")
                     .With(
@@ -89,7 +89,7 @@ public class BdoMetaWrapperTests
     [Test, Order(5)]
     public void UpdateDetailTest()
     {
-        var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>();
+        var obj = GlobalTestData.Scope.NewMetaWrapper<MetaWrapperFake>();
         obj.UpdateDetail(
             BdoData.NewConfig(
                 BdoData.NewScalar("test1", "monthA")),
@@ -109,7 +109,7 @@ public class BdoMetaWrapperTests
     [Test, Order(6)]
     public void WithConfigurationTest()
     {
-        var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>();
+        var obj = GlobalTestData.Scope.NewMetaWrapper<MetaWrapperFake>();
         obj.UpdateDetail(
             BdoData.NewConfig(
                 BdoData.NewScalar("testListA", "monthA")),
@@ -132,7 +132,7 @@ public class BdoMetaWrapperTests
     [Test, Order(7)]
     public void WithObjectTest()
     {
-        var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>();
+        var obj = GlobalTestData.Scope.NewMetaWrapper<MetaWrapperFake>();
         obj.UpdateDetail(
             BdoData.NewConfig(
                 BdoData.NewScalar("testList", "monthA"),
@@ -155,7 +155,7 @@ public class BdoMetaWrapperTests
     {
         // Update properties
 
-        var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>();
+        var obj = GlobalTestData.Scope.NewMetaWrapper<MetaWrapperFake>();
         obj.UpdateDetail(
             BdoData.NewConfig(
                 BdoData.NewScalar("testListA", "monthA"),
@@ -182,7 +182,7 @@ public class BdoMetaWrapperTests
     [Test, Order(9)]
     public void ObjectInCOnfigTest()
     {
-        var obj = SystemData.Scope.NewMetaWrapper<MetaWrapperFake>();
+        var obj = GlobalTestData.Scope.NewMetaWrapper<MetaWrapperFake>();
         obj.UpdateDetail(
             BdoData.NewConfig(
                 BdoData.NewScalar("testList", "monthA"))

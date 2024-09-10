@@ -24,11 +24,37 @@ namespace BindOpen.Data
 
         #endregion
 
+        // ------------------------------------------
+        // IReferenced Implementation
+        // ------------------------------------------
+
+        #region IReferenced Implementation
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Key() => Identifier;
+
+        #endregion
+
+        // ------------------------------------------
+        // IIdentified Implementation
+        // ------------------------------------------
+
+        #region IIdentified Implementation
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Identifier { get; set; } = StringHelper.NewGuid();
+
+        #endregion
+
         // --------------------------------------------------
-        // IStringSet Implementation
+        // IBdoMerger Implementation
         // --------------------------------------------------
 
-        #region IStringSet
+        #region IBdoMerger
 
         /// <summary>
         /// The added values of this instance.
@@ -59,7 +85,7 @@ namespace BindOpen.Data
         /// <returns>Returns all the values allowed by this instance.</returns>
         public string[] ToArray()
         {
-            return ToList().ToArray();
+            return [.. ToList()];
         }
 
         /// <summary>

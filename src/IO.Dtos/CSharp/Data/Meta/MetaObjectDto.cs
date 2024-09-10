@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -22,11 +23,19 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The value of this instance.
         /// </summary>
+        [ForeignKey(nameof(ItemId))]
         [JsonPropertyName("item")]
         [XmlElement("item.dictionary", Type = typeof(StringDictionaryDto))]
         [XmlElement("item.expression", Type = typeof(ExpressionDto))]
         [XmlElement("item.merger", Type = typeof(MergerDto))]
         public BdoItemDto Item { get; set; }
+
+        /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string ItemId { get; set; }
 
         #endregion
 

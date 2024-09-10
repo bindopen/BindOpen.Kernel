@@ -28,12 +28,29 @@ namespace BindOpen.Scoping.Script
         [XmlAttribute("tokenKind")]
         public ScriptTokenKinds TokenKind { get; set; } = ScriptTokenKinds.None;
 
+        // Expression ----------------------------------
+
+        /// <summary>
+        /// The script word child of this instance.
+        /// </summary>
+        [ForeignKey(nameof(ExpressionId))]
+        [JsonIgnore]
+        [XmlIgnore]
+        public ExpressionDto Expression { get; set; }
+
+        /// <summary>
+        /// The class name of this instance.
+        /// </summary>
+        [JsonIgnore]
+        [XmlIgnore]
+        public string ExpressionId { get; set; }
+
         // Tree ----------------------------------
 
         /// <summary>
         /// The script word child of this instance.
         /// </summary>
-        [ForeignKey("ChildWordId")]
+        [ForeignKey(nameof(ChildWordId))]
         [JsonPropertyName("child")]
         [XmlElement("child")]
         public ScriptwordDto Child { get; set; }

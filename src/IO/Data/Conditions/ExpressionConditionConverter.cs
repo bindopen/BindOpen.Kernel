@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Data.Conditions
+﻿using AutoMapper;
+
+namespace BindOpen.Data.Conditions
 {
     /// <summary>
     /// This class represents a IO converter of expression conditions.
@@ -17,10 +19,28 @@
             ExpressionConditionDto dto = new()
             {
                 Identifier = poco.Identifier,
-                Expression = poco.Expression.ToDto(),
+                ExpressionItem = poco.Expression.ToDto(),
                 Name = poco.Name,
                 ParentId = poco.Parent?.Identifier
             };
+
+            return dto;
+        }
+
+        public static ExpressionConditionDto UpdateFromPoco(
+            this ExpressionConditionDto dto,
+            IBdoExpressionCondition poco)
+        {
+            if (dto == null) return null;
+
+            if (poco == null) return dto;
+
+            var config = new MapperConfiguration(
+                cfg => cfg.CreateMap<BdoExpressionCondition, ExpressionConditionDto>()
+            );
+
+            var mapper = new Mapper(config);
+            mapper.Map(poco, dto);
 
             return dto;
         }
@@ -37,7 +57,7 @@
 
             BdoExpressionCondition poco = new()
             {
-                Expression = dto.Expression.ToPoco(),
+                Expression = dto.ExpressionItem.ToPoco(),
                 Identifier = dto.Identifier,
                 Name = dto.Name,
                 Parent = null

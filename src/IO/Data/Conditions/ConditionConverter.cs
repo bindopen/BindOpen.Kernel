@@ -1,4 +1,7 @@
-﻿namespace BindOpen.Data.Conditions
+﻿using AutoMapper;
+using BindOpen.Data.Assemblies;
+
+namespace BindOpen.Data.Conditions
 {
     /// <summary>
     /// This abstract class represents a IO converter of conditions.
@@ -26,6 +29,24 @@
             }
 
             return null;
+        }
+
+        public static ClassReferenceDto UpdateFromPoco(
+            this ClassReferenceDto dto,
+            IBdoClassReference poco)
+        {
+            if (dto == null) return null;
+
+            if (poco == null) return dto;
+
+            var config = new MapperConfiguration(
+                cfg => cfg.CreateMap<BdoClassReference, ClassReferenceDto>()
+            );
+
+            var mapper = new Mapper(config);
+            mapper.Map(poco, dto);
+
+            return dto;
         }
 
         /// <summary>

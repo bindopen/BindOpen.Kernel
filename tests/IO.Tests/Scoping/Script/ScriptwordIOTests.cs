@@ -1,5 +1,5 @@
 ﻿using BindOpen.Data;
-using BindOpen.Kernel.Tests;
+using BindOpen.Tests;
 using NUnit.Framework;
 using System;
 using System.IO;
@@ -9,8 +9,8 @@ namespace BindOpen.Scoping.Script
     [TestFixture, Order(210)]
     public class ScriptwordIOTests
     {
-        private readonly string _filePath_xml = SystemData.WorkingFolder + "Scriptword.xml";
-        private readonly string _filePath_json = SystemData.WorkingFolder + "Scriptword.json";
+        private readonly string _filePath_xml = GlobalTestData.WorkingFolder + "Scriptword.xml";
+        private readonly string _filePath_json = GlobalTestData.WorkingFolder + "Scriptword.json";
         private IBdoScriptword _scriptword = null;
 
         [OneTimeSetUp]

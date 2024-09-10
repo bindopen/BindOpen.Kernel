@@ -5,51 +5,50 @@ using Bogus;
 using NUnit.Framework;
 using System.Dynamic;
 
-namespace BindOpen.Kernel.Tests
+namespace BindOpen.Tests;
+
+public static class BdoConnectorFaker
 {
-    public static class BdoConnectorFaker
+    public static readonly string XmlFilePath = GlobalTestData.WorkingFolder + "Connector.xml";
+    public static readonly string JsonFilePath = GlobalTestData.WorkingFolder + "Connector.json";
+
+    public static dynamic NewData()
     {
-        public static readonly string XmlFilePath = SystemData.WorkingFolder + "Connector.xml";
-        public static readonly string JsonFilePath = SystemData.WorkingFolder + "Connector.json";
+        var f = new Faker();
+        dynamic b = new ExpandoObject();
+        b.connectionString = f.Random.Word();
+        b.host = f.Internet.IpAddress().ToString();
+        b.port = f.Random.Int(800);
+        b.isSslEnabled = f.Random.Bool();
+        return b;
+    }
 
-        public static dynamic NewData()
-        {
-            var f = new Faker();
-            dynamic b = new ExpandoObject();
-            b.connectionString = f.Random.Word();
-            b.host = f.Internet.IpAddress().ToString();
-            b.port = f.Random.Int(800);
-            b.isSslEnabled = f.Random.Bool();
-            return b;
-        }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param key="data"></param>
+    /// <returns></returns>
+    public static IBdoMetaObject NewMetaObject(dynamic data = null)
+    {
+        data ??= NewData();
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="data"></param>
-        /// <returns></returns>
-        public static IBdoMetaObject NewMetaObject(dynamic data = null)
-        {
-            data ??= NewData();
+        var config =
+            BdoData.NewObject()
+            .WithDataType(BdoExtensionKinds.Connector, "bindopen.tests$testConnector")
+            .With(
+                BdoData.NewScalar("host", data.host as string),
+                BdoData.NewScalar("port", data.port as int?),
+                BdoData.NewScalar("isSslEnabled", data.isSslEnabled as bool?));
 
-            var config =
-                BdoData.NewObject()
-                .WithDataType(BdoExtensionKinds.Connector, "bindopen.tests$testConnector")
-                .With(
-                    BdoData.NewScalar("host", data.host as string),
-                    BdoData.NewScalar("port", data.port as int?),
-                    BdoData.NewScalar("isSslEnabled", data.isSslEnabled as bool?));
+        return config;
+    }
 
-            return config;
-        }
+    public static void AssertFake(ConnectorFake connector, dynamic reference)
+    {
+        Assert.That(connector != null, "Connector missing");
 
-        public static void AssertFake(ConnectorFake connector, dynamic reference)
-        {
-            Assert.That(connector != null, "Connector missing");
-
-            Assert.That(connector.Host == reference.host, "Bad connector");
-            Assert.That(connector.Port?.GetData<int?>() == reference.port, "Bad connector");
-            Assert.That((connector.IsSslEnabled ?? false) == reference.isSslEnabled, "Bad connector");
-        }
+        Assert.That(connector.Host == reference.host, "Bad connector");
+        Assert.That(connector.Port?.GetData<int?>() == reference.port, "Bad connector");
+        Assert.That((connector.IsSslEnabled ?? false) == reference.isSslEnabled, "Bad connector");
     }
 }
