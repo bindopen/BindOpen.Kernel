@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -33,7 +32,6 @@ namespace BindOpen.Scoping.Script
         /// <summary>
         /// The script word child of this instance.
         /// </summary>
-        [ForeignKey(nameof(ExpressionId))]
         [JsonIgnore]
         [XmlIgnore]
         public ExpressionDto Expression { get; set; }
@@ -41,9 +39,10 @@ namespace BindOpen.Scoping.Script
         /// <summary>
         /// The class name of this instance.
         /// </summary>
+        [Column("ExpressionItemId")]
         [JsonIgnore]
         [XmlIgnore]
-        public string ExpressionId { get; set; }
+        public string ExpressionIdentifier { get; set; }
 
         // Tree ----------------------------------
 
@@ -71,13 +70,13 @@ namespace BindOpen.Scoping.Script
         [XmlText()]
         public string Text { get; set; }
 
-        /// <summary>
-        /// The kind of this instance.
-        /// </summary>
-        [JsonPropertyName("kind")]
-        [XmlAttribute("kind")]
-        [DefaultValue(BdoExpressionKind.Auto)]
-        public BdoExpressionKind ExpressionKind { get; set; } = BdoExpressionKind.Auto;
+        ///// <summary>
+        ///// The kind of this instance.
+        ///// </summary>
+        //[JsonPropertyName("kind")]
+        //[XmlAttribute("kind")]
+        //[DefaultValue(BdoExpressionKind.Auto)]
+        //public BdoExpressionKind ExpressionKind { get; set; } = BdoExpressionKind.Auto;
 
         #endregion
 

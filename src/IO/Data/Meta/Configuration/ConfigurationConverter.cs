@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BindOpen.Data.Helpers;
-using BindOpen.Data.Meta.Reflection;
 using System.Linq;
 
 namespace BindOpen.Data.Meta
@@ -24,13 +23,26 @@ namespace BindOpen.Data.Meta
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static T ToDto<T>(this IBdoConfiguration poco)
-            where T : ConfigurationDto
+            where T : ConfigurationDto, new()
         {
             if (poco == null) return null;
 
-            poco.UpdateTrees();
+            T dto = new();
+            dto.UpdateFromPoco<T>(poco);
 
-            var config = new MapperConfiguration(
+            return dto;
+        }
+
+        public static T UpdateFromPoco<T>(
+            this T dto,
+            IBdoConfiguration poco)
+            where T : ConfigurationDto
+        {
+            if (poco == null) return dto;
+
+            MapperConfiguration config;
+
+            config = new MapperConfiguration(
                 cfg => cfg.CreateMap<IBdoConfiguration, T>()
                     .ForMember(q => q.CreationDate, opt => opt.MapFrom(q => StringHelper.ToString(q.CreationDate)))
                     .ForMember(q => q.Description, opt => opt.MapFrom(q => q.Description.ToDto()))
@@ -41,7 +53,7 @@ namespace BindOpen.Data.Meta
             );
 
             var mapper = new Mapper(config);
-            var dto = mapper.Map<T>(poco);
+            mapper.Map(poco, dto);
 
             dto.Children = poco._Children?.Select(q => q.ToDto()).ToList();
 

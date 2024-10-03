@@ -61,6 +61,20 @@ public class BdoConfigurationTests
             .WithChildren(_config20a);
     }
 
+    public static void AssertEquals(
+        IBdoConfiguration config1,
+        IBdoConfiguration config2)
+    {
+        if ((config1 != null && config2 == null) || (config1 == null && config2 != null))
+        {
+            Assert.That(Equals(config1, config2), "Unmatched objects");
+        }
+
+        var deepEq = config1.WithDeepEqual(config2)
+            .IgnoreProperty<BdoMetaData>(q => q.Parent);
+        deepEq.Assert();
+    }
+
     [Test, Order(1)]
     public void GetConfigurationItem1()
     {

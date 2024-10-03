@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using BindOpen.Data.Helpers;
+using System.Linq;
 
 namespace BindOpen.Data.Assemblies;
 
@@ -19,7 +20,9 @@ public static class ClassReferenceDbExtensions
         this DataDbContext context,
         IBdoClassReference poco)
     {
-        if (context == null || poco?.Identifier == null) return default;
+        if (context == null || poco == null) return default;
+
+        poco.Identifier ??= StringHelper.NewGuid();
 
         var dbItem = context.GetClassReference(poco.Identifier);
 

@@ -1,5 +1,6 @@
 ﻿using BindOpen.Scoping.Script;
 using Bogus;
+using DeepEqual.Syntax;
 using NUnit.Framework;
 
 namespace BindOpen.Data;
@@ -20,6 +21,19 @@ public class BdoExpressionTests
             Literal = f.Random.Word(),
             ScriptwordName = "func1"
         };
+    }
+
+    public static void AssertEquals(
+        IBdoExpression exp1,
+        IBdoExpression exp2)
+    {
+        if ((exp1 != null && exp2 == null) || (exp1 == null && exp2 != null))
+        {
+            Assert.That(Equals(exp1, exp2), "Unmatched objects");
+        }
+
+        var deepEq = exp1.WithDeepEqual(exp2);
+        deepEq.Assert();
     }
 
     public void Test(IBdoExpression exp)
@@ -61,5 +75,4 @@ public class BdoExpressionTests
 
         Test(_exp);
     }
-
 }

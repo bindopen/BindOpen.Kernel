@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BindOpen.Data.Helpers;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace BindOpen.Data;
@@ -13,15 +14,24 @@ public static class ExpressionDbExtensions
         string identifier)
     {
         return context.Expressions
-            .Include(q => q.Word)
+            .Include(q => q.Scriptword)
             .FirstOrDefault(q => q.Identifier == identifier);
+    }
+
+    private static IBdoExpression Repair(IBdoExpression poco)
+    {
+        poco.Identifier ??= StringHelper.NewGuid();
+
+        return poco;
     }
 
     public static ExpressionDto Upsert(
         this DataDbContext context,
         IBdoExpression poco)
     {
-        if (context == null || poco?.Identifier == null) return default;
+        if (context == null || poco == null) return default;
+
+        Repair(poco);
 
         var dbItem = context.GetExpression(poco.Identifier);
 

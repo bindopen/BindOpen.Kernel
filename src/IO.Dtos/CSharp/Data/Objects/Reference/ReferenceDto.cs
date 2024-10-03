@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data.Meta;
 using BindOpen.Scoping.Script;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
@@ -12,13 +13,22 @@ namespace BindOpen.Data
     /// </summary>
     [XmlType("Reference", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlRoot(ElementName = "reference", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
-    public class ReferenceDto : BdoItemDto
+    public class ReferenceDto : IBdoDto
     {
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// The expression of this instance.
+        /// </summary>
+        [Key]
+        [Column("ItemId")]
+        [JsonIgnore]
+        [XmlIgnore]
+        public string Identifier { get; set; }
 
         /// <summary>
         /// The kind of this instance.
@@ -31,17 +41,9 @@ namespace BindOpen.Data
         /// <summary>
         /// The expression of this instance.
         /// </summary>
-        [ForeignKey(nameof(ExpressionItemId))]
         [JsonPropertyName("expression")]
         [XmlElement("expression")]
         public ExpressionDto Expression { get; set; }
-
-        /// <summary>
-        /// The class name of this instance.
-        /// </summary>
-        [JsonIgnore]
-        [XmlIgnore]
-        public string ExpressionItemId { get; set; }
 
         /// <summary>
         /// The meta data  of this instance.

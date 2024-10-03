@@ -32,25 +32,30 @@ public static class ReferenceConverter
 
         var config = new MapperConfiguration(
             cfg => cfg.CreateMap<BdoReference, ReferenceDto>()
-                .ForMember(q => q.Expression, opt =>
-                {
-                    if (dto.Expression?.Identifier != poco.Expression?.Identifier)
-                    {
-                        opt.MapFrom(q => q.Expression.ToDto());
-                    }
-                    else
-                    {
-                        dto.Expression.UpdateFromPoco(poco.Expression);
-                        opt.MapFrom(q => dto.Expression);
-                    }
-                })
-                .ForMember(q => q.MetaData, opt => opt.MapFrom(q => q.MetaData.ToDto()))
+                .ForMember(q => q.Expression, opt => opt.Ignore())
+                .ForMember(q => q.MetaData, opt => opt.Ignore())
         );
 
         var mapper = new Mapper(config);
         mapper.Map(poco, dto);
 
-        dto.ExpressionItemId = dto.Expression?.Identifier;
+        // Expression
+
+        if (dto.Expression?.Identifier != poco?.Identifier)
+        {
+            dto.Expression = poco.Expression.ToDto();
+        }
+        else if (poco.Expression != null)
+        {
+            dto.Expression ??= new();
+            dto.Expression.UpdateFromPoco(poco.Expression);
+        }
+
+        if (dto.Expression != null)
+        {
+            dto.Expression.Reference = dto;
+            dto.Expression.ReferenceIdentifier = dto.Identifier;
+        }
 
         return dto;
     }

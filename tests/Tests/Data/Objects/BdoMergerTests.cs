@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Helpers;
 using Bogus;
+using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace BindOpen.Data;
 [TestFixture, Order(210)]
 public class BdoMergerTests
 {
-    List<string> _addList = new();
-    List<string> _removeList = new();
-    List<string> _list = new();
+    List<string> _addList = [];
+    List<string> _removeList = [];
+    List<string> _list = [];
 
     public BdoMerger _merger = null;
 
@@ -23,6 +24,28 @@ public class BdoMergerTests
         _addList = f.Random.WordsArray(5, 10)?.ToList();
         _removeList = f.Random.WordsArray(5, 10)?.ToList();
         _list = f.Random.WordsArray(5, 10)?.ToList();
+    }
+
+    public static void AssertEquals(
+        IBdoMerger exp1,
+        IBdoMerger exp2)
+    {
+        if ((exp1 != null && exp2 == null) || (exp1 == null && exp2 != null))
+        {
+            Assert.That(Equals(exp1, exp2), "Unmatched objects");
+        }
+
+        var deepEq = exp1.WithDeepEqual(exp2);
+
+        if (exp1?.AddedValues?.Any() != true && exp2?.AddedValues?.Any() != true)
+        {
+            deepEq.IgnoreProperty<IBdoMerger>(x => x.AddedValues);
+        }
+        if (exp1?.RemovedValues?.Any() != true && exp2?.RemovedValues?.Any() != true)
+        {
+            deepEq.IgnoreProperty<IBdoMerger>(x => x.RemovedValues);
+        }
+        deepEq.Assert();
     }
 
     [Test, Order(1)]

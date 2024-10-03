@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using BindOpen.Data.Helpers;
+using System.Linq;
 
 namespace BindOpen.Data;
 
@@ -15,11 +16,20 @@ public static class MergerDbExtensions
             .FirstOrDefault(q => q.Identifier == identifier);
     }
 
+    private static IBdoMerger Repair(IBdoMerger poco)
+    {
+        poco.Identifier ??= StringHelper.NewGuid();
+
+        return poco;
+    }
+
     public static MergerDto Upsert(
         this DataDbContext context,
         IBdoMerger poco)
     {
-        if (context == null || poco?.Identifier == null) return default;
+        if (context == null || poco == null) return default;
+
+        Repair(poco);
 
         var dbItem = context.GetMerger(poco.Identifier);
 

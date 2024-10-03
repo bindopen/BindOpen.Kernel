@@ -1,4 +1,5 @@
 ﻿using Bogus;
+using DeepEqual.Syntax;
 using NUnit.Framework;
 
 namespace BindOpen.Data.Assemblies;
@@ -11,6 +12,19 @@ public class BdoClassReferenceTests
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
+    }
+
+    public static void AssertEquals(
+        IBdoClassReference exp1,
+        IBdoClassReference exp2)
+    {
+        if ((exp1 != null && exp2 == null) || (exp1 == null && exp2 != null))
+        {
+            Assert.That(Equals(exp1, exp2), "Unmatched objects");
+        }
+
+        var deepEq = exp1.WithDeepEqual(exp2);
+        deepEq.Assert();
     }
 
     public void Create1Test()

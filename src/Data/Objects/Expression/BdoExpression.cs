@@ -81,7 +81,7 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        public string Identifier { get; set; } = StringHelper.NewGuid();
+        public string Identifier { get; set; }
 
         #endregion
 

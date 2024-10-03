@@ -12,32 +12,59 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static MetaDataDto ToDto(
-            this IBdoMetaData poco)
+        public static MetaDataDto ToDto(this IBdoMetaData poco)
         {
             if (poco == null) return null;
 
-            MetaDataDto dto = null;
-
             if (poco is IBdoScriptword script)
             {
-                dto = ScriptwordConverter.ToDto(script);
+                var dto = ScriptwordConverter.ToDto(script);
+                return dto;
             }
             else if (poco is IBdoMetaObject obj)
             {
-                dto = obj.ToDto();
+                var dto = obj.ToDto();
+                return dto;
             }
             else if (poco is IBdoMetaScalar scalar)
             {
-                dto = scalar.ToDto();
+                var dto = scalar.ToDto();
+                return dto;
             }
             else if (poco is IBdoMetaNode set)
             {
-                dto = set.ToDto();
+                var dto = set.ToDto();
+                return dto;
             }
 
-            return dto;
+            return null;
         }
+
+        //public static MetaDataDto UpdateFromPoco(
+        //    this MetaDataDto dto,
+        //    IBdoMetaData poco)
+        //{
+        //    if (poco == null) return null;
+
+        //    if (dto is ScriptwordDto scriptDto && poco is IBdoScriptword script)
+        //    {
+        //        scriptDto.UpdateFromPoco(script);
+        //    }
+        //    else if (poco is IBdoMetaObject obj)
+        //    {
+        //        dto.UpdateFromPoco(obj);
+        //    }
+        //    else if (poco is IBdoMetaScalar scalar)
+        //    {
+        //        dto.UpdateFromPoco(scalar);
+        //    }
+        //    else if (poco is IBdoMetaNode set)
+        //    {
+        //        dto.UpdateFromPoco(set);
+        //    }
+
+        //    return dto;
+        //}
 
         /// <summary>
         /// Converts a meta data DTO to a poco one.

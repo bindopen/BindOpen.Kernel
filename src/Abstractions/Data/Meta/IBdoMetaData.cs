@@ -9,7 +9,7 @@ namespace BindOpen.Data.Meta
     /// 
     /// </summary>
     public interface IBdoMetaData :
-        IBdoObjectNotMetable, IBdoReferenced, IBdoConditional, IBdoScoped,
+        IBdoObjectNotMetable, IBdoReferenced, IBdoConditional, IBdoScoped, IIdentified,
         INamed, IReferenced, IIndexed, IBdoDataTyped,
         ITChild<IBdoMetaData>, IBdoSpecified,
         IUpdatable

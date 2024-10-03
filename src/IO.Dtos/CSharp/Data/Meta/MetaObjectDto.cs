@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
-using System.Xml;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace BindOpen.Data.Meta
 {
@@ -18,24 +15,52 @@ namespace BindOpen.Data.Meta
 
         #region Properties
 
-        // --------------------------------------------------
+        //// --------------------------------------------------
 
-        /// <summary>
-        /// The value of this instance.
-        /// </summary>
-        [ForeignKey(nameof(ItemId))]
-        [JsonPropertyName("item")]
-        [XmlElement("item.dictionary", Type = typeof(StringDictionaryDto))]
-        [XmlElement("item.expression", Type = typeof(ExpressionDto))]
-        [XmlElement("item.merger", Type = typeof(MergerDto))]
-        public BdoItemDto Item { get; set; }
+        ///// <summary>
+        ///// The value of this instance.
+        ///// </summary>
+        //[ForeignKey(nameof(StringDictionaryItemId))]
+        //[JsonPropertyName("item.dictionary")]
+        //[XmlElement("item.dictionary", Type = typeof(StringDictionaryDto))]
+        //public StringDictionaryDto StringDictionaryItem { get; set; }
 
-        /// <summary>
-        /// The class name of this instance.
-        /// </summary>
-        [JsonIgnore]
-        [XmlIgnore]
-        public string ItemId { get; set; }
+        ///// <summary>
+        ///// The class name of this instance.
+        ///// </summary>
+        //[JsonIgnore]
+        //[XmlIgnore]
+        //public string StringDictionaryItemId { get; set; }
+
+        ///// <summary>
+        ///// The value of this instance.
+        ///// </summary>
+        //[ForeignKey(nameof(ExpressionItemId))]
+        //[JsonPropertyName("item.expression")]
+        //[XmlElement("item.expression", Type = typeof(ExpressionDto))]
+        //public StringDictionaryDto ExpressionItem { get; set; }
+
+        ///// <summary>
+        ///// The class name of this instance.
+        ///// </summary>
+        //[JsonIgnore]
+        //[XmlIgnore]
+        //public string ExpressionItemId { get; set; }
+
+        ///// <summary>
+        ///// The value of this instance.
+        ///// </summary>
+        //[ForeignKey(nameof(StringDictionaryItemId))]
+        //[JsonPropertyName("item.dictionary")]
+        //[XmlElement("item.dictionary", Type = typeof(StringDictionaryDto))]
+        //public StringDictionaryDto StringDictionaryItem { get; set; }
+
+        ///// <summary>
+        ///// The class name of this instance.
+        ///// </summary>
+        //[JsonIgnore]
+        //[XmlIgnore]
+        //public string StringDictionaryItemId { get; set; }
 
         #endregion
 

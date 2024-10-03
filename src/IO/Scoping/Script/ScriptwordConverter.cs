@@ -19,33 +19,41 @@ namespace BindOpen.Scoping.Script
         /// <returns>The DTO object.</returns>
         public static ScriptwordDto ToDto(this IBdoScriptword poco, bool root = true)
         {
-            if (poco == null) return null;
+            ScriptwordDto dto = new();
 
-            if (root) poco = poco.Root() as IBdoScriptword;
+            if (root) poco = poco?.Root() as IBdoScriptword;
+
+            dto.UpdateFromPoco(poco);
+
+            return dto;
+        }
+
+        public static ScriptwordDto UpdateFromPoco(
+            this ScriptwordDto dto,
+            IBdoScriptword poco)
+        {
+            if (dto == null) return null;
+
+            if (poco == null) return dto;
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<IBdoScriptword, ScriptwordDto>()
                     .ForMember(q => q.Child, opt => opt.MapFrom(q => q.Child.ToDto(false)))
                     .ForMember(q => q.ClassReference, opt => opt.Ignore())
                     .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDto()))
-                    .ForMember(q => q.Item, opt => opt.Ignore())
+                    //.ForMember(q => q.Item, opt => opt.Ignore())
                     .ForMember(q => q.MetaItems, opt => opt.Ignore())
                     .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.Spec.ToDto()))
                 );
 
             var mapper = new Mapper(config);
-            var dto = mapper.Map<ScriptwordDto>(poco);
+            mapper.Map(poco, dto);
 
             dto.ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDto() : null;
             dto.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
 
             dto.MetaItems = poco.Items?.Select(q => q.ToDto()).ToList();
-            dto.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;
-            if (poco.Spec?.DataType.ValueType == poco.DataType?.ValueType
-                || poco.DataType.ValueType == DataValueTypes.Scriptword)
-            {
-                dto.ValueType = DataValueTypes.Any;
-            }
+            dto.ValueType = DataValueTypes.Any;
 
             return dto;
         }
@@ -79,9 +87,10 @@ namespace BindOpen.Scoping.Script
             poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco())
             {
                 DefinitionUniqueName = dto.DefinitionUniqueName,
-                ValueType = dto.ValueType
+                ValueType = DataValueTypes.Scriptword
             };
             poco.Spec = dto.Spec.ToPoco();
+            poco.ExpressionKind = BdoExpressionKind.Word;
 
             poco.With(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
 

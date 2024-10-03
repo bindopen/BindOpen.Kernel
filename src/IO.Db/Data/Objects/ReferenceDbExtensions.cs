@@ -1,35 +1,39 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BindOpen.Data.Helpers;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace BindOpen.Data;
 
-/// <summary>
-/// This static class provides methods to create extension items.
-/// </summary>
-public static class ReferenceDbExtensions
+public partial class DataDbContext : DbContext
 {
-    public static ReferenceDto GetReference(
-        this DataDbContext context,
-        string identifier)
+    public ReferenceDto GetReference(string identifier)
     {
-        return context.References
+        return References
             .Include(q => q.Expression)
             .Include(q => q.MetaData)
             .FirstOrDefault(q => q.Identifier == identifier);
     }
 
-    public static ReferenceDto Upsert(
-        this DataDbContext context,
-        IBdoReference poco)
+    private IBdoReference Repair(IBdoReference poco)
     {
-        if (context == null || poco?.Identifier == null) return default;
+        poco.Identifier ??= StringHelper.NewGuid();
+        if (poco.Expression != null) poco.Expression.Identifier ??= poco.Identifier;
 
-        var dbItem = context.GetReference(poco.Identifier);
+        return poco;
+    }
+
+    public ReferenceDto Upsert(IBdoReference poco)
+    {
+        if (poco == null) return default;
+
+        Repair(poco);
+
+        var dbItem = GetReference(poco.Identifier);
 
         if (dbItem == null)
         {
             var dto = poco.ToDto();
-            context.Add(dto);
+            Add(dto);
         }
         else
         {
@@ -37,5 +41,19 @@ public static class ReferenceDbExtensions
         }
 
         return dbItem;
+    }
+
+    public IBdoReference Delete(IBdoReference poco)
+    {
+        if (poco == null) return null;
+
+        var dto = GetReference(poco.Identifier);
+
+        if (dto != null)
+        {
+            Remove(dto);
+        }
+
+        return poco;
     }
 }

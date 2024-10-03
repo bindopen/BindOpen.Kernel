@@ -1,43 +1,49 @@
-﻿//using Microsoft.EntityFrameworkCore;
-//using System.Linq;
+﻿using BindOpen.Data.Helpers;
 
-//namespace BindOpen.Data.Meta;
+namespace BindOpen.Data.Meta;
 
-///// <summary>
-///// This static class provides methods to create extension items.
-///// </summary>
-//public static class MetaDataDbExtensions
-//{
-//    public static MetaDataDto GetMetaData(
-//        this DataDbContext context,
-//        string identifier)
-//    {
-//        return context.MetaDatas
-//            .Include(q => q.ClassReference)
-//            .Include(q => q.Reference)
-//            .Include(q => q.Spec)
-//            .Include(q => q.Supers)
-//            .FirstOrDefault(q => q.Identifier == identifier);
-//    }
+/// <summary>
+/// This static class provides methods to create extension items.
+/// </summary>
+public static class MetaDataDbExtensions
+{
 
-//    public static MetaDataDto Upsert(
-//        this DataDbContext context,
-//        IBdoMetaData poco)
-//    {
-//        if (context == null || poco?.Name == null) return default;
+    public static IBdoMetaData Repair(IBdoMetaData poco)
+    {
+        poco.Identifier ??= StringHelper.NewGuid();
 
-//        var dbItem = context.GetMetaData(poco.Name);
+        return poco;
+    }
+    //public static MetaDataDto GetMetaData(
+    //    this DataDbContext context,
+    //    string identifier)
+    //{
+    //    return context.MetaDatas
+    //        .Include(q => q.ClassReference)
+    //        .Include(q => q.Reference)
+    //        .Include(q => q.Spec)
+    //        .Include(q => q.Supers)
+    //        .FirstOrDefault(q => q.Identifier == identifier);
+    //}
 
-//        if (dbItem == null)
-//        {
-//            var dto = poco.ToDto();
-//            context.Add(dto);
-//        }
-//        else
-//        {
-//            dbItem.UpdateFromPoco(poco);
-//        }
+    //public static MetaDataDto Upsert(
+    //    this DataDbContext context,
+    //    IBdoMetaData poco)
+    //{
+    //    if (context == null || poco?.Name == null) return default;
 
-//        return dbItem;
-//    }
-//}
+    //    var dbItem = context.GetMetaData(poco.Name);
+
+    //    if (dbItem == null)
+    //    {
+    //        var dto = poco.ToDto();
+    //        context.Add(dto);
+    //    }
+    //    else
+    //    {
+    //        dbItem.UpdateFromPoco(poco);
+    //    }
+
+    //    return dbItem;
+    //}
+}

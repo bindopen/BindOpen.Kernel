@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BindOpen.Data;
 
-public class DataDbContext : DbContext
+public partial class DataDbContext : DbContext
 {
     // Assemblies
 
@@ -146,8 +146,14 @@ public class DataDbContext : DbContext
 
         modelBuilder
             .Entity<ExpressionDto>()
-            .HasOne(e => e.Word)
+            .HasOne(e => e.Scriptword)
             .WithOne(e => e.Expression)
+            .OnDelete(DeleteBehavior.ClientCascade);
+
+        modelBuilder
+            .Entity<ReferenceDto>()
+            .HasOne(e => e.Expression)
+            .WithOne(e => e.Reference)
             .OnDelete(DeleteBehavior.ClientCascade);
 
         // table relationships

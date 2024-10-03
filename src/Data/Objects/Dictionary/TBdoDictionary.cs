@@ -84,7 +84,7 @@ public class TBdoDictionary<TItem> : Dictionary<string, TItem>, ITBdoDictionary<
     /// <summary>
     /// 
     /// </summary>
-    public string Identifier { get; set; } = StringHelper.NewGuid();
+    public string Identifier { get; set; }
 
     #endregion
 

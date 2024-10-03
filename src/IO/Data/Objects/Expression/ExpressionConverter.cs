@@ -32,39 +32,32 @@ public static class ExpressionConverter
 
         MapperConfiguration config;
 
-        if (poco is IBdoScriptword wordPoco)
-        {
-            config = new MapperConfiguration(
-                cfg => cfg.CreateMap<BdoExpression, ExpressionDto>()
-                    .ForMember(q => q.Word, opt =>
-                    {
-                        if (dto.Word?.Identifier != poco?.Identifier)
-                        {
-                            opt.MapFrom(q => q.ToDto());
-                        }
-                        else
-                        {
-                            dto.UpdateFromPoco(poco);
-                            opt.MapFrom(q => dto.Word);
-                        }
-
-                        dto.WordId = dto.Word.Identifier;
-                        dto.Word.Expression = dto;
-                        dto.Word.ExpressionId = dto.WordId;
-                    })
-            );
-
-            dto.ExpressionKind = BdoExpressionKind.Word;
-        }
-        else
-        {
-            config = new MapperConfiguration(
-                cfg => cfg.CreateMap<BdoExpression, ExpressionDto>()
-            );
-        }
+        config = new MapperConfiguration(
+            cfg => cfg.CreateMap<IBdoExpression, ExpressionDto>()
+                .ForMember(q => q.Scriptword, opt => opt.Ignore())
+        );
 
         var mapper = new Mapper(config);
         mapper.Map(poco, dto);
+
+        if (poco is IBdoScriptword wordPoco)
+        {
+            if (dto.Scriptword?.Identifier != poco?.Identifier)
+            {
+                dto.Scriptword = ScriptwordConverter.ToDto(wordPoco);
+            }
+            else if (wordPoco != null)
+            {
+                dto.Scriptword ??= new();
+                dto.Scriptword.UpdateFromPoco(wordPoco);
+            }
+
+            if (dto.Scriptword != null)
+            {
+                dto.Scriptword.Expression = dto;
+                dto.Scriptword.ExpressionIdentifier = dto.Identifier;
+            }
+        }
 
         return dto;
     }
@@ -83,7 +76,7 @@ public static class ExpressionConverter
 
         if (dto.ExpressionKind == BdoExpressionKind.Word)
         {
-            poco = dto.Word.ToPoco();
+            poco = dto.Scriptword.ToPoco();
         }
         else
         {

@@ -57,4 +57,16 @@ public static class ClassReferenceConverter
 
         return poco;
     }
+
+    /// <summary>
+    /// Indicates whether the specified poco can be specified as DTO.
+    /// </summary>
+    /// <param key="poco">The poco to consider.</param>
+    /// <returns>True if the poco can be specified as DTO.</returns>
+    public static bool IsSpecified(this IBdoClassReference poco) =>
+        poco != null
+        && (poco?.AssemblyFileName != null
+        || poco?.AssemblyName != null
+        || poco?.AssemblyVersion != null
+        || poco?.ClassName != null);
 }

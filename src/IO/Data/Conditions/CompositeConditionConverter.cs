@@ -15,16 +15,8 @@ namespace BindOpen.Data.Conditions
         /// <returns>The DTO object.</returns>
         public static CompositeConditionDto ToDto(this IBdoCompositeCondition poco)
         {
-            if (poco == null) return null;
-
-            CompositeConditionDto dto = new()
-            {
-                CompositionKind = poco.CompositionKind,
-                Conditions = poco.Conditions?.Select(q => q.ToDto()).ToList(),
-                Identifier = poco.Identifier,
-                Name = poco.Name,
-                ParentId = poco.Parent?.Identifier
-            };
+            CompositeConditionDto dto = new();
+            dto.UpdateFromPoco(poco);
 
             return dto;
         }
@@ -39,10 +31,15 @@ namespace BindOpen.Data.Conditions
 
             var config = new MapperConfiguration(
                 cfg => cfg.CreateMap<BdoCompositeCondition, CompositeConditionDto>()
+                    .ForMember(q => q.Conditions, opt => opt.Ignore())
             );
 
             var mapper = new Mapper(config);
             mapper.Map(poco, dto);
+
+            dto.CompositionKind = poco.CompositionKind;
+            dto.Conditions = poco.Conditions?.Select(q => q.ToDto()).ToList();
+            dto.ParentId = poco.Parent?.Identifier;
 
             return dto;
         }

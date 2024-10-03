@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -11,13 +13,22 @@ namespace BindOpen.Data
     /// <seealso cref="KeyValuePairDto"/>
     [XmlType("Dictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlRoot(ElementName = "dictionary", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
-    public class StringDictionaryDto : BdoItemDto
+    public class StringDictionaryDto : IBdoDto
     {
         // --------------------------------------------------
         // PROPERTIES
         // --------------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// The expression of this instance.
+        /// </summary>
+        [Key]
+        [Column("ItemId")]
+        [JsonIgnore]
+        [XmlIgnore]
+        public string Identifier { get; set; }
 
         /// <summary>
         /// The values of this instance.

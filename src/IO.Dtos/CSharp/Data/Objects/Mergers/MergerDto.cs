@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
@@ -9,13 +11,22 @@ namespace BindOpen.Data
     /// </summary>
     [XmlType("Merger", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlRoot(ElementName = "merger", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
-    public class MergerDto : BdoItemDto
+    public class MergerDto : IBdoDto
     {
         // ------------------------------------------
         // PROPERTIES
         // ------------------------------------------
 
         #region Properties
+
+        /// <summary>
+        /// The expression of this instance.
+        /// </summary>
+        [Key]
+        [Column("ItemId")]
+        [JsonIgnore]
+        [XmlIgnore]
+        public string Identifier { get; set; }
 
         /// <summary>
         /// The added values of this instance.

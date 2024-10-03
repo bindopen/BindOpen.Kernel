@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BindOpen.Data.Helpers;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,7 +23,9 @@ public static class StringDictionaryDbExtensions
         this DataDbContext context,
         ITBdoDictionary<TItem> poco)
     {
-        if (context == null || poco?.Identifier == null) return default;
+        if (context == null || poco == null) return default;
+
+        poco.Identifier ??= StringHelper.NewGuid();
 
         var dbItem = context.GetStringDictionary(poco.Identifier);
 

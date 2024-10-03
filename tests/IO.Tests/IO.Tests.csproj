@@ -57,6 +57,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Conditions\" />
+    <Folder Include="Data\Meta\Definition\" />
   </ItemGroup>
 
 </Project>

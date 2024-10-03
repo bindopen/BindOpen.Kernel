@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BindOpen.Data;
 using BindOpen.Data.Assemblies;
+using BindOpen.Scoping.Script;
 using System.Linq;
 
 namespace BindOpen.Data.Meta;
@@ -11,25 +12,39 @@ namespace BindOpen.Data.Meta;
 public static class MetaObjectConverter
 {
     /// <summary>
-    /// Converts a meta object poco into a DTO one.
+    /// Converts an expression poco into a DTO one.
     /// </summary>
     /// <param key="poco">The poco to consider.</param>
     /// <returns>The DTO object.</returns>
     public static MetaObjectDto ToDto(this IBdoMetaObject poco)
     {
-        if (poco == null) return null;
+        MetaObjectDto dto = new();
+        dto.UpdateFromPoco(poco);
 
-        var config = new MapperConfiguration(
-            cfg => cfg.CreateMap<BdoMetaObject, MetaObjectDto>()
+        return dto;
+    }
+
+    public static MetaObjectDto UpdateFromPoco(
+        this MetaObjectDto dto,
+        IBdoMetaObject poco)
+    {
+        if (dto == null) return null;
+
+        if (poco == null) return dto;
+
+        MapperConfiguration config;
+
+        config = new MapperConfiguration(
+            cfg => cfg.CreateMap<IBdoMetaObject, MetaObjectDto>()
                 .ForMember(q => q.ClassReference, opt => opt.Ignore())
                 .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDto()))
-                .ForMember(q => q.Item, opt => opt.Ignore())
+                //.ForMember(q => q.Item, opt => opt.Ignore())
                 .ForMember(q => q.MetaItems, opt => opt.Ignore())
                 .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.Spec.ToDto()))
         );
 
         var mapper = new Mapper(config);
-        var dto = mapper.Map<MetaObjectDto>(poco);
+        mapper.Map(poco, dto);
 
         dto.ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDto() : null;
         dto.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;

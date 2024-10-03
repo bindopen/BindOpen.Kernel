@@ -9,6 +9,7 @@ namespace BindOpen.Data.Meta;
 public class BdoMetaScalarSetTests
 {
     private dynamic _testData;
+    public IBdoMetaSet _metaSet;
 
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -38,21 +39,21 @@ public class BdoMetaScalarSetTests
         var el3 = BdoData.NewScalar("integer3", arrayInteger);
         var el4 = BdoData.NewScalar("byteArray4", arrayArrayByte);
 
-        var elSet = BdoData.NewNode(el1, el2, el3, el4);
+        _metaSet = BdoData.NewSet(el1, el2, el3, el4);
 
-        var itemList1 = elSet.GetDataList<double>("number1");
+        var itemList1 = _metaSet.GetDataList<double>("number1");
         Assert.That(
             itemList1?.Intersect(arrayNumber).Any() ?? false, "Bad scalar el - Number");
 
-        var itemList2 = elSet.GetDataList<string>("text2");
+        var itemList2 = _metaSet.GetDataList<string>("text2");
         Assert.That(
             itemList2?.Intersect(arrayString).Any() ?? false, "Bad scalar el - String");
 
-        var itemList3 = elSet.GetDataList<int>("integer3");
+        var itemList3 = _metaSet.GetDataList<int>("integer3");
         Assert.That(
             itemList3?.Intersect(arrayInteger).Any() ?? false, "Bad scalar el - Integer");
 
-        var item4 = elSet.GetDataList<byte[]>("byteArray4");
+        var item4 = _metaSet.GetDataList<byte[]>("byteArray4");
         Assert.That(
             item4[0]?.SequenceEqual(arrayArrayByte[0]) == true
             , "Bad scalar el - Byte array");
@@ -65,13 +66,13 @@ public class BdoMetaScalarSetTests
         var elAB = BdoData.NewScalar("name1", "Test1");
         elAA.Update(elAB);
 
-        var elSetA = BdoData.NewNode(elAA, elAB);
+        var elSetA = BdoData.NewSet(elAA, elAB);
 
         var elBA = BdoData.NewScalar("name1", "Test1");
         var elBB = BdoData.NewScalar("name1", null);
         elBA.Update(elBB);
 
-        var elSetB = BdoData.NewNode(elBA, elBB);
+        var elSetB = BdoData.NewSet(elBA, elBB);
 
         elSetB.Add(elBB);
         elSetA.Add(elAB);
@@ -80,9 +81,9 @@ public class BdoMetaScalarSetTests
         elSetA.Add<IBdoMetaData>(null);
         elSetB
             .Add((IBdoMetaScalar)null)
-            .Add(("name1", typeof(string)))
+            .Add(BdoData.NewScalar("name1", typeof(string)))
             .Add(BdoData.NewScalar("name3", typeof(int)))
-            .Add(("name4", typeof(double)))
+            .Add(BdoData.NewScalar("name4", typeof(double)))
             .Add(BdoData.NewScalar("name5", DataValueTypes.Text));
         elSetA
             .Add(BdoData.NewScalar("name1", typeof(string)))
@@ -90,6 +91,8 @@ public class BdoMetaScalarSetTests
             .Add(BdoData.NewScalar("name4", DataValueTypes.Text, null))
             .Add(BdoData.NewScalar("name5", null as string));
         elSetB.Update(elSetA);
+
+        _metaSet = elSetB;
     }
 
     [Test, Order(4)]
@@ -115,7 +118,7 @@ public class BdoMetaScalarSetTests
         var elAB = BdoData.NewScalar("name1", "Test1");
         elAA.Update(elAB);
 
-        var elSetA = BdoData.NewNode(("key1", elAA), (null, elAB), ("key2", this));
+        var elSetA = BdoData.NewSet(("key1", elAA), (null, elAB), ("key2", this));
 
         Assert.That(elSetA.Count == 3, "Bad scalar el - ToString");
 
