@@ -20,7 +20,10 @@ public static class ExpressionDbExtensions
 
     private static IBdoExpression Repair(IBdoExpression poco)
     {
-        poco.Identifier ??= StringHelper.NewGuid();
+        if (poco != null)
+        {
+            poco.Identifier ??= StringHelper.NewGuid();
+        }
 
         return poco;
     }

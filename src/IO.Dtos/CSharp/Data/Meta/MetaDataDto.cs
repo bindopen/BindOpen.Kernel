@@ -119,17 +119,9 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The class reference of this instance.
         /// </summary>
-        [ForeignKey(nameof(ClassReferenceId))]
         [JsonPropertyName("class")]
         [XmlElement("class")]
         public ClassReferenceDto ClassReference { get; set; }
-
-        /// <summary>
-        /// The class name of this instance.
-        /// </summary>
-        [JsonIgnore]
-        [XmlIgnore]
-        public string ClassReferenceId { get; set; }
 
         #endregion
 

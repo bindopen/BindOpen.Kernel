@@ -18,12 +18,16 @@ public static class MetaSetDbExtensions
 
     private static IBdoMetaSet Repair(IBdoMetaSet poco)
     {
-        poco.Identifier ??= StringHelper.NewGuid();
-        if (poco.Items != null)
+        if (poco != null)
         {
-            foreach (var item in poco.Items)
+            poco.Identifier ??= StringHelper.NewGuid();
+
+            if (poco.Items != null)
             {
-                item.Repair();
+                foreach (var item in poco.Items)
+                {
+                    MetaDataDbExtensions.Repair(item);
+                }
             }
         }
 

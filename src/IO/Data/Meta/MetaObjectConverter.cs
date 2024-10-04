@@ -89,6 +89,7 @@ public static class MetaObjectConverter
         poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco())
         {
             DefinitionUniqueName = dto.DefinitionUniqueName,
+            Identifier = dto.Identifier,
             ValueType = dto.ValueType
         };
         poco.Spec = dto.Spec.ToPoco();

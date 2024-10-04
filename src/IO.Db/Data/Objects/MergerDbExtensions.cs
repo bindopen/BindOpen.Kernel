@@ -18,7 +18,10 @@ public static class MergerDbExtensions
 
     private static IBdoMerger Repair(IBdoMerger poco)
     {
-        poco.Identifier ??= StringHelper.NewGuid();
+        if (poco != null)
+        {
+            poco.Identifier ??= StringHelper.NewGuid();
+        }
 
         return poco;
     }

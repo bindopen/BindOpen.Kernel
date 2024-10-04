@@ -87,6 +87,7 @@ namespace BindOpen.Scoping.Script
             poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco())
             {
                 DefinitionUniqueName = dto.DefinitionUniqueName,
+                Identifier = dto.Identifier,
                 ValueType = DataValueTypes.Scriptword
             };
             poco.Spec = dto.Spec.ToPoco();

@@ -30,11 +30,14 @@ public class MetaScalarSetDbTests
         dbContext.SaveChanges();
 
         var setDb = dbContext.GetMetaSet(set.Identifier).ToPoco();
+
+        set[0].ShouldDeepEqual(setDb[set[0].Name]);
+
         Assert.That(set.IsDeepEqual(setDb) == true, "Bad item storage");
     }
 
     [Test, Order(2)]
-    public void Update2Test()
+    public void UpdateTest()
     {
         if (_dataTests._metaSet == null)
         {

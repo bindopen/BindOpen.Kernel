@@ -101,6 +101,7 @@ namespace BindOpen.Data.Meta
             poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco())
             {
                 DefinitionUniqueName = dto.DefinitionUniqueName,
+                Identifier = dto.Identifier,
                 ValueType = dto.ValueType
             };
 

@@ -10,7 +10,12 @@ public static class MetaDataDbExtensions
 
     public static IBdoMetaData Repair(IBdoMetaData poco)
     {
-        poco.Identifier ??= StringHelper.NewGuid();
+        if (poco != null)
+        {
+            poco.Identifier ??= StringHelper.NewGuid();
+
+            poco.DataType.Identifier = poco.Identifier;
+        }
 
         return poco;
     }

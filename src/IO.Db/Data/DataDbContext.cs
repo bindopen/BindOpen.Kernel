@@ -156,6 +156,12 @@ public partial class DataDbContext : DbContext
             .WithOne(e => e.Reference)
             .OnDelete(DeleteBehavior.ClientCascade);
 
+        modelBuilder
+            .Entity<MetaDataDto>()
+            .HasOne(e => e.ClassReference)
+            .WithOne(e => e.MetaData)
+            .OnDelete(DeleteBehavior.ClientCascade);
+
         // table relationships
 
         modelBuilder.Entity<MetaSetDto>()

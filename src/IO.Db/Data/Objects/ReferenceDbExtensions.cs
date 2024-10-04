@@ -16,8 +16,11 @@ public partial class DataDbContext : DbContext
 
     private IBdoReference Repair(IBdoReference poco)
     {
-        poco.Identifier ??= StringHelper.NewGuid();
-        if (poco.Expression != null) poco.Expression.Identifier ??= poco.Identifier;
+        if (poco != null)
+        {
+            poco.Identifier ??= StringHelper.NewGuid();
+            if (poco.Expression != null) poco.Expression.Identifier ??= poco.Identifier;
+        }
 
         return poco;
     }

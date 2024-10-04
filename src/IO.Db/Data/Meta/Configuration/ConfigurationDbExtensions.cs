@@ -17,9 +17,12 @@ public partial class DataDbContext : DbContext
 
     private IBdoConfiguration Repair(IBdoConfiguration poco)
     {
-        poco.Identifier ??= StringHelper.NewGuid();
-        //if (poco.Expression != null) poco.Expression.Identifier ??= poco.Identifier;
-        //if (poco.MetaData != null) poco.MetaData.Identifier ??= poco.Identifier;
+        if (poco != null)
+        {
+            poco.Identifier ??= StringHelper.NewGuid();
+            //if (poco.Expression != null) poco.Expression.Identifier ??= poco.Identifier;
+            //if (poco.MetaData != null) poco.MetaData.Identifier ??= poco.Identifier;
+        }
 
         return poco;
     }

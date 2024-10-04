@@ -92,6 +92,23 @@ namespace BindOpen.Data.Meta
 
         #endregion
 
+        /// <summary>
+        /// Adds the specified item.
+        /// </summary>
+        /// <param key="item">The item of the item to add.</param>
+        /// <returns>Returns the new item that has been added.
+        /// Returns null if the new item is null or else its name is null.</returns>
+        /// <remarks>The new item must have a name.</remarks>
+        public override IBdoMetaData Insert(IBdoMetaData item)
+        {
+            if (item != null)
+            {
+                base.Insert(item);
+            }
+
+            return item;
+        }
+
         // --------------------------------------------------
         // IBdoMetaSet Implementation
         // --------------------------------------------------
