@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <AssemblyName>BindOpen.Tests</AssemblyName>
     <PackageId>BindOpen.Tests</PackageId>
     <Product>BindOpen.Kernel</Product>
@@ -39,11 +39,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bogus" Version="35.5.1" />
+    <PackageReference Include="Bogus" Version="35.6.1" />
     <PackageReference Include="DeepEqual" Version="5.1.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
-    <PackageReference Include="NUnit" Version="4.1.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0">
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="NUnit" Version="4.3.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.6.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -52,9 +52,4 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Scoping\Scoping.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\Conditions\" />
-  </ItemGroup>
-
 </Project>

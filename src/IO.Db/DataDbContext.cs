@@ -162,6 +162,12 @@ public partial class DataDbContext : DbContext
             .WithOne(e => e.MetaData)
             .OnDelete(DeleteBehavior.ClientCascade);
 
+        modelBuilder
+            .Entity<MetaScalarDto>()
+            .HasOne(e => e.MetaData)
+            .WithOne(e => e.MetaScalar)
+            .OnDelete(DeleteBehavior.ClientCascade);
+
         // table relationships
 
         modelBuilder.Entity<MetaSetDto>()
@@ -171,11 +177,13 @@ public partial class DataDbContext : DbContext
                 l => l.HasOne(typeof(MetaDataDto))
                     .WithMany()
                     .HasForeignKey($"{nameof(MetaDataDto)[0..^3]}Id")
-                    .HasPrincipalKey(nameof(MetaDataDto.Identifier)),
+                    .HasPrincipalKey(nameof(MetaDataDto.Identifier))
+                    .OnDelete(DeleteBehavior.ClientCascade),
                 r => r.HasOne(typeof(MetaSetDto))
                     .WithMany()
                     .HasForeignKey($"{nameof(MetaSetDto)[0..^3]}Id")
-                    .HasPrincipalKey(nameof(MetaSetDto.Identifier)),
+                    .HasPrincipalKey(nameof(MetaSetDto.Identifier))
+                    .OnDelete(DeleteBehavior.ClientCascade),
                 j => j.HasKey($"{nameof(MetaDataDto)[0..^3]}Id", $"{nameof(MetaSetDto)[0..^3]}Id"));
 
         modelBuilder.Entity<SpecDto>()

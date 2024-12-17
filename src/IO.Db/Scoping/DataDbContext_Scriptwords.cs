@@ -1,20 +1,16 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Helpers;
+using BindOpen.Scoping.Script;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace BindOpen.Scoping.Script;
+namespace BindOpen.Data;
 
-/// <summary>
-/// This static class provides methods to create extension items.
-/// </summary>
-public static class ScriptwordDbExtensions
+public partial class DataDbContext : DbContext
 {
-    public static ScriptwordDto GetScriptword(
-        this DataDbContext context,
-        string identifier)
+    public ScriptwordDto GetScriptword(string identifier)
     {
-        return context.Scriptwords
+        return Scriptwords
             .Include(q => q.Child)
             .Include(q => q.ClassReference)
             .Include(q => q.Expression)
@@ -22,20 +18,18 @@ public static class ScriptwordDbExtensions
             .FirstOrDefault(q => q.Identifier == identifier);
     }
 
-    public static ScriptwordDto Upsert(
-        this DataDbContext context,
-        IBdoScriptword poco)
+    public ScriptwordDto Upsert(IBdoScriptword poco)
     {
-        if (context == null || poco == null) return default;
+        if (poco == null) return default;
 
         poco.Identifier ??= StringHelper.NewGuid();
 
-        var dbItem = context.GetScriptword(poco.Identifier);
+        var dbItem = GetScriptword(poco.Identifier);
 
         if (dbItem == null)
         {
             var dto = poco.ToDto();
-            context.Add(dto);
+            Add(dto);
         }
         else
         {

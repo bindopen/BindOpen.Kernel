@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <AssemblyName>BindOpen.IO</AssemblyName>
     <PackageId>BindOpen.IO</PackageId>
     <Product>BindOpen.Kernel</Product>

@@ -1,4 +1,6 @@
-﻿using System.Xml.Serialization;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
+using System.Xml.Serialization;
 
 namespace BindOpen.Data.Meta
 {
@@ -16,6 +18,11 @@ namespace BindOpen.Data.Meta
         #region Properties
 
         //// --------------------------------------------------
+
+        [ForeignKey(nameof(Identifier))]
+        [JsonIgnore]
+        [XmlIgnore]
+        public MetaDataDto MetaData { get; set; }
 
         ///// <summary>
         ///// The value of this instance.

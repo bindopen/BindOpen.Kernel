@@ -62,14 +62,14 @@ public class BdoMetaScalarSetTests
     [Test, Order(3)]
     public void UpdateCheckRepairTest()
     {
-        var elAA = BdoData.NewScalar("name1", null);
+        var elAA = BdoData.NewScalar<int?>("name1", null);
         var elAB = BdoData.NewScalar("name1", "Test1");
         elAA.Update(elAB);
 
         var elSetA = BdoData.NewSet(elAA, elAB);
 
         var elBA = BdoData.NewScalar("name1", "Test1");
-        var elBB = BdoData.NewScalar("name1", null);
+        var elBB = BdoData.NewScalar<int?>("name1", null);
         elBA.Update(elBB);
 
         var elSetB = BdoData.NewSet(elBA, elBB);
@@ -87,7 +87,7 @@ public class BdoMetaScalarSetTests
             .Add(BdoData.NewScalar("name5", DataValueTypes.Text));
         elSetA
             .Add(BdoData.NewScalar("name1", typeof(string)))
-            .Add(BdoData.NewObject("name2", null as EntityFake))
+            .Add(BdoData.NewObject("name2", null as string))
             .Add(BdoData.NewScalar("name4", DataValueTypes.Text, null))
             .Add(BdoData.NewScalar("name5", null as string));
         elSetB.Update(elSetA);

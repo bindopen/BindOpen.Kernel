@@ -40,31 +40,31 @@ namespace BindOpen.Data.Meta
             return null;
         }
 
-        //public static MetaDataDto UpdateFromPoco(
-        //    this MetaDataDto dto,
-        //    IBdoMetaData poco)
-        //{
-        //    if (poco == null) return null;
+        public static MetaDataDto UpdateFromPoco(
+            this MetaDataDto dto,
+            IBdoMetaData poco)
+        {
+            if (poco == null) return null;
 
-        //    if (dto is ScriptwordDto scriptDto && poco is IBdoScriptword script)
-        //    {
-        //        scriptDto.UpdateFromPoco(script);
-        //    }
-        //    else if (poco is IBdoMetaObject obj)
-        //    {
-        //        dto.UpdateFromPoco(obj);
-        //    }
-        //    else if (poco is IBdoMetaScalar scalar)
-        //    {
-        //        dto.UpdateFromPoco(scalar);
-        //    }
-        //    else if (poco is IBdoMetaNode set)
-        //    {
-        //        dto.UpdateFromPoco(set);
-        //    }
+            if (dto is ScriptwordDto scriptDto && poco is IBdoScriptword script)
+            {
+                scriptDto.UpdateFromPoco(script);
+            }
+            else if (dto is MetaObjectDto metaObjectDto && poco is IBdoMetaObject obj)
+            {
+                metaObjectDto.UpdateFromPoco(obj);
+            }
+            else if (dto is MetaScalarDto scalarDto && poco is IBdoMetaScalar scalar)
+            {
+                scalarDto.UpdateFromPoco(scalar);
+            }
+            else if (dto is MetaNodeDto metaNodeDto && poco is IBdoMetaNode set)
+            {
+                metaNodeDto.UpdateFromPoco(set);
+            }
 
-        //    return dto;
-        //}
+            return dto;
+        }
 
         /// <summary>
         /// Converts a meta data DTO to a poco one.

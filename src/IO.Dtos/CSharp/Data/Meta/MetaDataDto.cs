@@ -23,7 +23,7 @@ namespace BindOpen.Data.Meta
     [JsonDerivedType(typeof(MetaObjectDto), "Object")]
     [JsonDerivedType(typeof(MetaScalarDto), "Scalar")]
     [JsonDerivedType(typeof(ScriptwordDto), "Scripword")]
-    public class MetaDataDto : IBdoDto, IIdentified
+    public abstract class MetaDataDto : IBdoDto, IIdentified
     {
         // --------------------------------------------------
         // PROPERTIES
@@ -39,10 +39,6 @@ namespace BindOpen.Data.Meta
         [JsonPropertyName("id")]
         [XmlElement("id")]
         public string Identifier { get; set; }
-
-        [JsonIgnore()]
-        [XmlIgnore()]
-        public List<MetaSetDto> Supers { get; set; }
 
         /// <summary>
         /// Name of this instance.
@@ -74,17 +70,9 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The expression of this instance.
         /// </summary>
-        [ForeignKey(nameof(ReferenceId))]
         [JsonPropertyName("ref")]
         [XmlElement("ref")]
         public ReferenceDto Reference { get; set; }
-
-        /// <summary>
-        /// The class name of this instance.
-        /// </summary>
-        [JsonIgnore]
-        [XmlIgnore]
-        public string ReferenceId { get; set; }
 
         /// <summary>
         /// The elements of this instance.
@@ -122,6 +110,26 @@ namespace BindOpen.Data.Meta
         [JsonPropertyName("class")]
         [XmlElement("class")]
         public ClassReferenceDto ClassReference { get; set; }
+
+        //[JsonIgnore]
+        //[XmlIgnore]
+        //public MetadataKind MetadataKind { get; set; }
+
+        [JsonIgnore()]
+        [XmlIgnore()]
+        public List<MetaSetDto> Supers { get; set; }
+
+        [JsonIgnore]
+        [XmlIgnore]
+        public MetaNodeDto MetaNode { get; set; }
+
+        [JsonIgnore]
+        [XmlIgnore]
+        public MetaObjectDto MetaObject { get; set; }
+
+        [JsonIgnore]
+        [XmlIgnore]
+        public MetaScalarDto MetaScalar { get; set; }
 
         #endregion
 

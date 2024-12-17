@@ -69,8 +69,7 @@ public class MetaScalarSetDbTests
         var set = _dataTests._metaSet;
 
         using var dbContext = GlobalIOTestData.CreateDbContext();
-        var dto = set.ToDto();
-        dbContext.Remove(dto);
+        dbContext.Delete(set);
         dbContext.SaveChanges();
 
         var setDb = dbContext.GetMetaSet(set.Identifier).ToPoco();

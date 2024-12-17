@@ -37,6 +37,11 @@ namespace BindOpen.Data.Meta
         [XmlIgnore]
         public bool MetaItemsSpecified => MetaItems?.Count > 0;
 
+        [ForeignKey(nameof(Identifier))]
+        [JsonIgnore]
+        [XmlIgnore]
+        public MetaDataDto MetaData { get; set; }
+
         #endregion
 
         // ------------------------------------------

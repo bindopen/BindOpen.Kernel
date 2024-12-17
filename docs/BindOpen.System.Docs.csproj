@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <AssemblyName>BindOpen.Docs</AssemblyName>
     <PackageId>BindOpen.Docs</PackageId>
     <Product>BindOpen.Kernel</Product>
@@ -23,12 +23,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>BindOpen.Docs.xml</DocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Scoping.Script\NewFolder\**" />
-    <EmbeddedResource Remove="Scoping.Script\NewFolder\**" />
-    <None Remove="Scoping.Script\NewFolder\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\docs\img\bindopen_icon.png">

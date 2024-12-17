@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <AssemblyName>BindOpen.IO.Db</AssemblyName>
     <PackageId>BindOpen.IO.Db</PackageId>
     <Product>BindOpen.Kernel</Product>
@@ -40,15 +40,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\IO\IO.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\Conditions\" />
-    <Folder Include="Data\Meta\Definition\" />
   </ItemGroup>
 </Project>

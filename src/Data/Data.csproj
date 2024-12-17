@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <AssemblyName>BindOpen.Data</AssemblyName>
     <PackageId>BindOpen.Data</PackageId>
     <Product>BindOpen.Kernel</Product>
@@ -42,5 +42,4 @@
   <ItemGroup>
     <ProjectReference Include="..\Abstractions\Abstractions.csproj" />
   </ItemGroup>
-
 </Project>
