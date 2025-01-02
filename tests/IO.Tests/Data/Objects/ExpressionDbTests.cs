@@ -89,7 +89,7 @@ public class ExpressionDbTests
         var exp = _dataTests._exp;
 
         using var dbContext = GlobalIOTestData.CreateDbContext();
-        var dto = exp.ToDto();
+        var dto = exp.ToDb();
         dbContext.Remove(dto);
         dbContext.SaveChanges();
 

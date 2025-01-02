@@ -61,7 +61,7 @@ public class ClassReferenceDbTests
         var reference = _dataTests._classRef1;
 
         using var dbContext = GlobalIOTestData.CreateDbContext();
-        var dto = reference.ToDto();
+        var dto = reference.ToDb();
         dbContext.Remove(dto);
         dbContext.SaveChanges();
 

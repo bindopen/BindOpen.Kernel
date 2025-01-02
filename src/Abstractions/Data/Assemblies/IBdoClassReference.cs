@@ -21,4 +21,10 @@ public interface IBdoClassReference : IBdoAssemblyReference
     /// <param name="log">The BindOpen log to consider.</param>
     /// <returns>Returns the runtime type.</returns>
     Type GetRuntimeType(IBdoScope scope = null, IBdoLog log = null);
+
+    /// <summary>
+    /// Indicates whether the specified poco can be specified as DTO.
+    /// </summary>
+    /// <returns>True if the poco can be specified as DTO.</returns>
+    bool IsSpecified();
 }

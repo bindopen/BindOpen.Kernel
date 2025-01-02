@@ -89,7 +89,7 @@ public class MergerDbTests
         var merger = _dataTests._merger;
 
         using var dbContext = GlobalIOTestData.CreateDbContext();
-        var dto = merger.ToDto();
+        var dto = merger.ToDb();
         dbContext.Remove(dto);
         dbContext.SaveChanges();
 

@@ -18,7 +18,7 @@ namespace BindOpen.Data.Meta
 
             if (poco is IBdoScriptword script)
             {
-                var dto = ScriptwordConverter.ToDto(script);
+                var dto = ScriptwordIOConverter.ToDto(script);
                 return dto;
             }
             else if (poco is IBdoMetaObject obj)
@@ -80,7 +80,7 @@ namespace BindOpen.Data.Meta
 
             if (dto is ScriptwordDto script)
             {
-                return ScriptwordConverter.ToPoco(script);
+                return ScriptwordIOConverter.ToPoco(script);
             }
             else if (dto is MetaObjectDto obj)
             {
