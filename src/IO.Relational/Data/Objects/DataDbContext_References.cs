@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Helpers;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace BindOpen.Data;
@@ -14,36 +13,23 @@ public partial class DataDbContext : DbContext
             .FirstOrDefault(q => q.Identifier == identifier);
     }
 
-    private IBdoReference Repair(IBdoReference poco)
-    {
-        if (poco != null)
-        {
-            poco.Identifier ??= StringHelper.NewGuid();
-            if (poco.Expression != null) poco.Expression.Identifier ??= poco.Identifier;
-        }
-
-        return poco;
-    }
-
     public ReferenceDb Upsert(IBdoReference poco)
     {
         if (poco == null) return default;
 
-        Repair(poco);
+        var dbItem = GetReference(poco.Identifier);
 
-        var dbItemItem = GetReference(poco.Identifier);
-
-        if (dbItemItem == null)
+        if (dbItem == null)
         {
-            var dbItem = poco.ToDb();
+            dbItem = poco.ToDb(this);
             Add(dbItem);
         }
         else
         {
-            dbItemItem.UpdateFromPoco(poco);
+            dbItem.UpdateFromPoco(poco, this);
         }
 
-        return dbItemItem;
+        return dbItem;
     }
 
     public IBdoReference Delete(IBdoReference poco)

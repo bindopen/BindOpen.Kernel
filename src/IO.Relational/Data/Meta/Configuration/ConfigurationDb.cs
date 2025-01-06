@@ -20,12 +20,12 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Creation date of this instance.
         /// </summary>
-        public DateTime CreationDate { get; set; }
+        public DateTime? CreationDate { get; set; }
 
         /// <summary>
         /// Last modification date of this instance.
         /// </summary>
-        public DateTime LastModificationDate { get; set; }
+        public DateTime? LastModificationDate { get; set; }
 
         /// <summary>
         /// The description database entity of this instance.

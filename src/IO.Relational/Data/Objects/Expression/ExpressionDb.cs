@@ -38,7 +38,6 @@ namespace BindOpen.Data
         /// <summary>
         /// The reference of this instance.
         /// </summary>
-        //[NotMapped]
         public ReferenceDb Reference { get; set; }
 
         // Word

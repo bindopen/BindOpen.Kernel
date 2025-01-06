@@ -60,8 +60,7 @@ public class StringDictionaryDbTests
         var dico = _dataTests._dico;
 
         using var dbContext = GlobalIOTestData.CreateDbContext();
-        var dbItem = dico.ToDb();
-        dbContext.Remove(dbItem);
+        dbContext.Delete(dico);
         dbContext.SaveChanges();
 
         var dicoDb = dbContext.GetExpression(dico.Identifier).ToPoco();

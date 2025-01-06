@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
 
 namespace BindOpen.Data;
@@ -13,21 +14,28 @@ public static class ReferenceDbConverter
     /// </summary>
     /// <param key="poco">The poco to consider.</param>
     /// <returns>The DTO object.</returns>
-    public static ReferenceDb ToDb(this IBdoReference poco)
+    public static ReferenceDb ToDb(
+        this IBdoReference poco,
+        DataDbContext context)
     {
+        if (poco == null) return null;
+
         ReferenceDb dbItem = new();
-        dbItem.UpdateFromPoco(poco);
+        dbItem.UpdateFromPoco(poco, context);
 
         return dbItem;
     }
 
     public static ReferenceDb UpdateFromPoco(
         this ReferenceDb dbItem,
-        IBdoReference poco)
+        IBdoReference poco,
+        DataDbContext context)
     {
         if (dbItem == null) return null;
 
         if (poco == null) return dbItem;
+
+        poco.Identifier ??= StringHelper.NewGuid();
 
         var config = new MapperConfiguration(
             cfg => cfg.CreateMap<BdoReference, ReferenceDb>()
@@ -40,14 +48,18 @@ public static class ReferenceDbConverter
 
         // Expression
 
-        if (dbItem.Expression?.Identifier != poco?.Identifier)
+        dbItem.Expression = context?.Upsert(poco.Expression);
+        if (dbItem.Expression != null)
         {
-            dbItem.Expression = poco.Expression.ToDb();
+            dbItem.Expression.Reference = dbItem;
+            dbItem.ExpressionId = dbItem.Expression.Identifier;
         }
-        else if (poco.Expression != null)
+
+        dbItem.MetaData = context?.Upsert(poco.MetaData);
+        if (dbItem.MetaData != null)
         {
-            dbItem.Expression ??= new();
-            dbItem.Expression.UpdateFromPoco(poco.Expression);
+            dbItem.MetaData.Reference = dbItem;
+            dbItem.MetaDataId = dbItem.MetaData.Identifier;
         }
 
         return dbItem;

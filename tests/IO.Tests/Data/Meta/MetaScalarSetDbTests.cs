@@ -56,6 +56,25 @@ public class MetaScalarSetDbTests
 
         var setDb = dbContext.GetMetaSet(set.Identifier).ToPoco();
         Assert.That(set.IsDeepEqual(setDb) == true, "Bad item storage");
+
+        // update a second time
+
+        set.Remove(set[0].Key());
+
+        dbContext.Upsert(set);
+        dbContext.SaveChanges();
+
+        setDb = dbContext.GetMetaSet(set.Identifier).ToPoco();
+        Assert.That(set.IsDeepEqual(setDb) == true, "Bad item storage");
+
+        // check removed items
+
+        set.Clear();
+        dbContext.Upsert(set);
+        dbContext.SaveChanges();
+
+        setDb = dbContext.GetMetaSet(set.Identifier).ToPoco();
+        Assert.That(set.IsDeepEqual(setDb) == true, "Bad item storage");
     }
 
     [Test, Order(4)]

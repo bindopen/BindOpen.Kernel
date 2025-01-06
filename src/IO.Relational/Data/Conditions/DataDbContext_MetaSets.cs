@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Conditions;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
@@ -6,18 +6,18 @@ namespace BindOpen.Data;
 
 public partial class DataDbContext : DbContext
 {
-    public MetaSetDb GetMetaSet(string identifier)
+    public ConditionDb GetCondition(string identifier)
     {
-        return MetaSets
-            .Include(q => q.Items)
+        return Conditions
+            .Include(q => q.Conditions)
             .FirstOrDefault(q => q.Identifier == identifier);
     }
 
-    public MetaSetDb Upsert(IBdoMetaSet poco)
+    public ConditionDb Upsert(IBdoCondition poco)
     {
         if (poco == null) return default;
 
-        var dbItem = GetMetaSet(poco.Identifier);
+        var dbItem = GetCondition(poco.Identifier);
 
         if (dbItem == null)
         {
@@ -32,25 +32,14 @@ public partial class DataDbContext : DbContext
         return dbItem;
     }
 
-    public IBdoMetaSet Delete(IBdoMetaSet poco, bool removeItems = true)
+    public IBdoCondition Delete(IBdoCondition poco)
     {
         if (poco == null) return null;
 
-        var dbItem = GetMetaSet(poco.Identifier);
+        var dbItem = GetCondition(poco.Identifier);
 
         if (dbItem != null)
         {
-            if (removeItems)
-            {
-                if (poco.Items != null)
-                {
-                    foreach (var item in poco.Items)
-                    {
-                        Delete(item);
-                    }
-                }
-            }
-
             Remove(dbItem);
         }
 

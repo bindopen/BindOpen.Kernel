@@ -77,7 +77,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         public ClassReferenceDb ClassReference { get; set; }
 
-        public List<MetaSetDb> Supers { get; set; }
+        public List<MetaSetDb> Sets { get; set; }
 
         // Node ------------------------
 

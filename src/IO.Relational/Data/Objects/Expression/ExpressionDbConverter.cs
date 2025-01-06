@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BindOpen.Data.Helpers;
 using BindOpen.Scoping.Script;
 
 namespace BindOpen.Data;
@@ -13,21 +14,28 @@ public static class ExpressionDbConverter
     /// </summary>
     /// <param key="poco">The poco to consider.</param>
     /// <returns>The DTO object.</returns>
-    public static ExpressionDb ToDb(this IBdoExpression poco)
+    public static ExpressionDb ToDb(
+        this IBdoExpression poco,
+        DataDbContext context)
     {
+        if (poco == null) return null;
+
         ExpressionDb dbItem = new();
-        dbItem.UpdateFromPoco(poco);
+        dbItem.UpdateFromPoco(poco, context);
 
         return dbItem;
     }
 
     public static ExpressionDb UpdateFromPoco(
         this ExpressionDb dbItem,
-        IBdoExpression poco)
+        IBdoExpression poco,
+        DataDbContext context)
     {
         if (dbItem == null) return null;
 
         if (poco == null) return dbItem;
+
+        poco.Identifier ??= StringHelper.NewGuid();
 
         MapperConfiguration config;
 
@@ -43,12 +51,12 @@ public static class ExpressionDbConverter
         {
             if (dbItem.Scriptword?.Identifier != poco?.Identifier)
             {
-                dbItem.Scriptword = ScriptwordDbConverter.ToDb(wordPoco);
+                dbItem.Scriptword = ScriptwordDbConverter.ToDb(wordPoco, context);
             }
             else if (wordPoco != null)
             {
                 dbItem.Scriptword ??= new();
-                dbItem.Scriptword.UpdateFromPoco(wordPoco);
+                dbItem.Scriptword.UpdateFromPoco(wordPoco, context);
             }
         }
 

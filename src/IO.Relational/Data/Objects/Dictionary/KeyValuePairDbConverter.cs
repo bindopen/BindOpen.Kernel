@@ -13,7 +13,8 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static KeyValuePairDb ToDb<TItem>(this KeyValuePair<string, TItem> poco)
+        public static KeyValuePairDb ToDb<TItem>(
+            this KeyValuePair<string, TItem> poco)
         {
             KeyValuePairDb dbItem = new();
             dbItem.UpdateFromPoco(poco);

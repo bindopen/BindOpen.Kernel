@@ -112,7 +112,7 @@ public partial class DataDbContext : DbContext
             var displayName = entityType.DisplayName();
             if (displayName.EndsWith("Db"))
             {
-                displayName = displayName[0..^3];
+                displayName = displayName[0..^2];
             }
 
             entityType.SetSchema("bdo");
@@ -154,19 +154,19 @@ public partial class DataDbContext : DbContext
 
         modelBuilder.Entity<MetaSetDb>()
             .HasMany(e => e.Items)
-            .WithMany(e => e.Supers)
+            .WithMany(e => e.Sets)
             .UsingEntity($"{nameof(MetaDataDb)}_{nameof(MetaSetDb)}".Replace("Db", ""),
                 l => l.HasOne(typeof(MetaDataDb))
                     .WithMany()
-                    .HasForeignKey($"{nameof(MetaDataDb)[0..^3]}Id")
+                    .HasForeignKey($"{nameof(MetaDataDb)[0..^2]}Id")
                     .HasPrincipalKey(nameof(MetaDataDb.Identifier))
                     .OnDelete(DeleteBehavior.ClientCascade),
                 r => r.HasOne(typeof(MetaSetDb))
                     .WithMany()
-                    .HasForeignKey($"{nameof(MetaSetDb)[0..^3]}Id")
+                    .HasForeignKey($"{nameof(MetaSetDb)[0..^2]}Id")
                     .HasPrincipalKey(nameof(MetaSetDb.Identifier))
                     .OnDelete(DeleteBehavior.ClientCascade),
-                j => j.HasKey($"{nameof(MetaDataDb)[0..^3]}Id", $"{nameof(MetaSetDb)[0..^3]}Id"));
+                j => j.HasKey($"{nameof(MetaDataDb)[0..^2]}Id", $"{nameof(MetaSetDb)[0..^2]}Id"));
 
         modelBuilder.Entity<SpecDb>()
             .HasMany(e => e.Items)
@@ -174,13 +174,13 @@ public partial class DataDbContext : DbContext
             .UsingEntity($"{nameof(SpecDb)}_{nameof(SpecDb)}".Replace("Db", ""),
                 l => l.HasOne(typeof(SpecDb))
                     .WithMany()
-                    .HasForeignKey($"{nameof(SpecDb)[0..^3]}ItemId")
+                    .HasForeignKey($"{nameof(SpecDb)[0..^2]}ItemId")
                     .HasPrincipalKey(nameof(SpecDb.Identifier)),
                 r => r.HasOne(typeof(SpecDb))
                     .WithMany()
-                    .HasForeignKey($"{nameof(SpecDb)[0..^3]}SetId")
+                    .HasForeignKey($"{nameof(SpecDb)[0..^2]}SetId")
                     .HasPrincipalKey(nameof(SpecDb.Identifier)),
-                j => j.HasKey($"{nameof(SpecDb)[0..^3]}ItemId", $"{nameof(SpecDb)[0..^3]}SetId"));
+                j => j.HasKey($"{nameof(SpecDb)[0..^2]}ItemId", $"{nameof(SpecDb)[0..^2]}SetId"));
 
         modelBuilder.Entity<ExtensionGroupDb>()
             .HasMany(e => e.SubGroups)
@@ -188,13 +188,13 @@ public partial class DataDbContext : DbContext
             .UsingEntity($"{nameof(ExtensionGroupDb)}_{nameof(ExtensionGroupDb)}".Replace("Db", ""),
                 l => l.HasOne(typeof(ExtensionGroupDb))
                     .WithMany()
-                    .HasForeignKey($"{nameof(ExtensionGroupDb)[0..^3]}SubId")
+                    .HasForeignKey($"{nameof(ExtensionGroupDb)[0..^2]}SubId")
                     .HasPrincipalKey(nameof(ExtensionGroupDb.Identifier)),
                 r => r.HasOne(typeof(ExtensionGroupDb))
                     .WithMany()
-                    .HasForeignKey($"{nameof(ExtensionGroupDb)[0..^3]}SetId")
+                    .HasForeignKey($"{nameof(ExtensionGroupDb)[0..^2]}SetId")
                     .HasPrincipalKey(nameof(ExtensionGroupDb.Identifier)),
-                j => j.HasKey($"{nameof(ExtensionGroupDb)[0..^3]}SubId", $"{nameof(ExtensionGroupDb)[0..^3]}SetId"));
+                j => j.HasKey($"{nameof(ExtensionGroupDb)[0..^2]}SubId", $"{nameof(ExtensionGroupDb)[0..^2]}SetId"));
 
         //modelBuilder.Entity<ExtensionDefinitionDb>()
         //    .HasMany(e => e.Groups)
@@ -202,12 +202,12 @@ public partial class DataDbContext : DbContext
         //    .UsingEntity($"{nameof(ExtensionDefinitionDb)}_{nameof(ExtensionGroupDb)}".Replace("Db", ""),
         //        l => l.HasOne(typeof(ExtensionDefinitionDb))
         //            .WithMany()
-        //            .HasForeignKey($"{nameof(ExtensionDefinitionDb)[0..^3]}Id")
+        //            .HasForeignKey($"{nameof(ExtensionDefinitionDb)[0..^2]}Id")
         //            .HasPrincipalKey(nameof(ExtensionDefinitionDb.Identifier)),
         //        r => r.HasOne(typeof(ExtensionGroupDb))
         //            .WithMany()
-        //            .HasForeignKey($"{nameof(ExtensionGroupDb)[0..^3]}Id")
+        //            .HasForeignKey($"{nameof(ExtensionGroupDb)[0..^2]}Id")
         //            .HasPrincipalKey(nameof(ExtensionGroupDb.Identifier)),
-        //        j => j.HasKey($"{nameof(ExtensionDefinitionDb)[0..^3]}Id", $"{nameof(ExtensionGroupDb)[0..^3]}Id"));
+        //        j => j.HasKey($"{nameof(ExtensionDefinitionDb)[0..^2]}Id", $"{nameof(ExtensionGroupDb)[0..^2]}Id"));
     }
 }

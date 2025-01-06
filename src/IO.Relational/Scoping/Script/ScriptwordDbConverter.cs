@@ -17,43 +17,42 @@ namespace BindOpen.Scoping.Script
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static ScriptwordDb ToDb(this IBdoScriptword poco, bool root = true)
+        public static ScriptwordDb ToDb(
+            this IBdoScriptword poco,
+            DataDbContext context,
+            bool root = true)
         {
+            if (poco == null) return null;
+
             ScriptwordDb dbItem = new();
 
             if (root) poco = poco?.Root() as IBdoScriptword;
 
-            dbItem.UpdateFromPoco(poco);
+            dbItem.UpdateFromPoco(poco, context);
 
             return dbItem;
         }
 
         public static ScriptwordDb UpdateFromPoco(
             this ScriptwordDb dbItem,
-            IBdoScriptword poco)
+            IBdoScriptword poco,
+            DataDbContext context)
         {
             if (dbItem == null) return null;
 
             if (poco == null) return dbItem;
 
-            var config = new MapperConfiguration(
-                cfg => cfg.CreateMap<IBdoScriptword, ScriptwordDb>()
-                    .ForMember(q => q.Child, opt => opt.MapFrom(q => q.Child.ToDb(false)))
-                    .ForMember(q => q.ClassReference, opt => opt.Ignore())
-                    .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDb()))
-                    //.ForMember(q => q.Item, opt => opt.Ignore())
-                    .ForMember(q => q.MetaItems, opt => opt.Ignore())
-                    .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.Spec.ToDb()))
-                );
-
-            var mapper = new Mapper(config);
-            mapper.Map(poco, dbItem);
-
-            dbItem.ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDb() : null;
-            dbItem.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
-
-            dbItem.MetaItems = poco.Items?.Select(q => q.ToDb()).ToList();
+            MetaDataDbConverter.UpdateFromPoco<MetaDataDb>(dbItem, poco, context);
             dbItem.ValueType = DataValueTypes.Any;
+
+            if (context == null)
+            {
+                dbItem.Child = poco.Child.ToDb(context, false);
+            }
+            else
+            {
+                dbItem.Child = context.Upsert(poco.Child);
+            }
 
             return dbItem;
         }

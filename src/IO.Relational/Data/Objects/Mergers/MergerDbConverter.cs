@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BindOpen.Data.Helpers;
+using System.Collections.Generic;
 
 namespace BindOpen.Data;
 
@@ -12,8 +13,11 @@ public static class MergerDbConverter
     /// </summary>
     /// <param key="poco">The poco to consider.</param>
     /// <returns>The DTO object.</returns>
-    public static MergerDb ToDb(this IBdoMerger poco)
+    public static MergerDb ToDb(
+        this IBdoMerger poco)
     {
+        if (poco == null) return null;
+
         MergerDb dbItem = new();
         dbItem.UpdateFromPoco(poco);
 
@@ -27,6 +31,8 @@ public static class MergerDbConverter
         if (dbItem == null) return null;
 
         if (poco == null) return dbItem;
+
+        poco.Identifier ??= StringHelper.NewGuid();
 
         dbItem.Identifier = poco.Identifier;
         dbItem.AddedValues = poco.AddedValues == null ? null : new List<string>(poco.AddedValues);

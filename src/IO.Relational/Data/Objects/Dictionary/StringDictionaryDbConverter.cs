@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using BindOpen.Data.Helpers;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BindOpen.Data;
 
@@ -12,30 +14,69 @@ public static class StringDictionaryDbConverter
     /// </summary>
     /// <param key="poco">The poco to consider.</param>
     /// <returns>The DTO object.</returns>
-    public static StringDictionaryDb ToDb<TItem>(this ITBdoDictionary<TItem> poco)
+    public static StringDictionaryDb ToDb<TItem>(
+        this ITBdoDictionary<TItem> poco,
+        DataDbContext context)
     {
+        if (poco == null) return null;
+
         StringDictionaryDb dbItem = new();
-        dbItem.UpdateFromPoco(poco);
+        dbItem.UpdateFromPoco(poco, context);
 
         return dbItem;
     }
 
     public static StringDictionaryDb UpdateFromPoco<TItem>(
         this StringDictionaryDb dbItem,
-        ITBdoDictionary<TItem> poco)
+        ITBdoDictionary<TItem> poco,
+        DataDbContext context)
     {
         if (dbItem == null) return null;
 
         if (poco == null) return dbItem;
 
+        poco.Identifier ??= StringHelper.NewGuid();
+
         dbItem.Identifier = poco.Identifier;
-        dbItem.Values = poco?.Select(value =>
+
+        if (context == null)
         {
-            var valueDb = value.ToDb();
-            valueDb.StringDictionary = dbItem;
-            valueDb.StringDictionaryId = dbItem?.Identifier;
-            return valueDb;
-        }).ToList();
+            dbItem.Values = poco?.Select(value =>
+            {
+                var valueDb = value.ToDb();
+                valueDb.StringDictionary = dbItem;
+                valueDb.StringDictionaryId = dbItem?.Identifier;
+
+                return valueDb;
+            }).ToList();
+        }
+        else
+        {
+            dbItem.Values ??= [];
+            dbItem.Values.RemoveAll(q => poco.Any(p => p.Key == q?.Key) != true);
+
+            if (poco?.Values?.Count > 0)
+            {
+                foreach (var key in poco.Keys)
+                {
+                    var keyExists = dbItem.Values.Any(q => q.Key == key);
+
+                    if (!keyExists)
+                    {
+                        var pairPoco = KeyValuePair.Create(key, poco[key]);
+                        var pairDb = pairPoco.ToDb();
+
+                        dbItem.Values.Add(pairDb);
+                    }
+                    else
+                    {
+                        var pairDb = dbItem.Values.FirstOrDefault(q => q.Key == key);
+                        var pairPoco = KeyValuePair.Create(key, poco[key]);
+                        pairDb.UpdateFromPoco(pairPoco);
+                    }
+                }
+            }
+        }
 
         return dbItem;
     }

@@ -16,13 +16,15 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static MetaDataDb ToDb(this IBdoMetaData poco)
+        public static MetaDataDb ToDb(
+            this IBdoMetaData poco,
+            DataDbContext context)
         {
             if (poco == null) return null;
 
             if (poco is IBdoScriptword script)
             {
-                var dbItem = ScriptwordDbConverter.ToDb(script);
+                var dbItem = ScriptwordDbConverter.ToDb(script, context);
                 return dbItem;
             }
             else
@@ -42,98 +44,98 @@ namespace BindOpen.Data.Meta
                     dbItem.Kind = BdoMetaDataKind.Node;
                 }
 
-                dbItem.UpdateFromPoco(poco);
+                dbItem.UpdateFromPoco(poco, context);
                 return dbItem;
             }
         }
 
-        public static MetaDataDb UpdateFromPoco(
-            this MetaDataDb dbItem,
-            IBdoMetaData poco)
+        public static T UpdateFromPoco<T>(
+            this T dbItem,
+            IBdoMetaData poco,
+            DataDbContext context)
+            where T : MetaDataDb
         {
             if (poco == null) return null;
+
+            poco.Identifier ??= StringHelper.NewGuid();
 
             MapperConfiguration config;
             Mapper mapper;
 
-            if (dbItem is ScriptwordDb scriptDb && poco is IBdoScriptword script)
+            if (typeof(T).IsAssignableFrom(typeof(ScriptwordDb))
+                && dbItem is ScriptwordDb scriptDb
+                && poco is IBdoScriptword script)
             {
-                ScriptwordDbConverter.UpdateFromPoco(scriptDb, script);
-            }
-            else if (poco is IBdoMetaObject obj)
-            {
-                config = new MapperConfiguration(
-                    cfg => cfg.CreateMap<IBdoMetaObject, MetaDataDb>()
-                        .ForMember(q => q.ClassReference, opt => opt.Ignore())
-                        .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDb()))
-                        //.ForMember(q => q.Item, opt => opt.Ignore())
-                        .ForMember(q => q.MetaItems, opt => opt.Ignore())
-                        .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.Spec.ToDb()))
-                );
+                ScriptwordDbConverter.UpdateFromPoco(scriptDb, script, context);
 
-                mapper = new Mapper(config);
-                mapper.Map(obj, dbItem);
-
-                dbItem.ClassReference = obj.DataType.IsSpecified() ? obj?.DataType.ToDb() : null;
-                dbItem.DefinitionUniqueName = obj?.DataType?.DefinitionUniqueName;
-
-                dbItem.MetaItems = obj.Items?.Select(q => q.ToDb()).ToList();
-                dbItem.ValueType = obj?.DataType.ValueType ?? DataValueTypes.Any;
-                if (obj.Spec?.DataType.ValueType == obj.DataType?.ValueType
-                    || obj.DataType.ValueType == DataValueTypes.Object)
-                {
-                    dbItem.ValueType = DataValueTypes.Any;
-                }
-                if (dbItem.Spec?.ValueType == DataValueTypes.Object)
-                {
-                    dbItem.Spec.ValueType = DataValueTypes.Any;
-                }
+                return dbItem;
             }
             else if (poco is IBdoMetaScalar scalar)
             {
                 config = new MapperConfiguration(
-                    cfg => cfg.CreateMap<IBdoMetaScalar, MetaDataDb>()
+                    cfg => cfg.CreateMap<IBdoMetaScalar, T>()
                         .ForMember(q => q.ClassReference, opt => opt.Ignore())
-                        .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDb()))
-                        .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.Spec.ToDb()))
+                        .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDb(context)))
+                        .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.Spec.ToDb(context)))
                 );
 
                 mapper = new Mapper(config);
                 mapper.Map(scalar, dbItem);
 
-                dbItem.ClassReference = scalar.DataType.IsSpecified() ? scalar?.DataType.ToDb() : null;
-                dbItem.DefinitionUniqueName = scalar?.DataType?.DefinitionUniqueName;
-
                 dbItem.Items = scalar.GetDataList<object>()?.Select(q => q.ToString(dbItem.ValueType)).ToList();
-
-                dbItem.ValueType = scalar?.DataType.ValueType ?? DataValueTypes.Any;
-                if (scalar.Spec?.DataType.ValueType == scalar.DataType?.ValueType)
-                {
-                    dbItem.ValueType = DataValueTypes.Any;
-                }
             }
-            else if (poco is IBdoMetaNode set)
+            else if (poco is IBdoMetaNode node)
             {
                 config = new MapperConfiguration(
-                    cfg => cfg.CreateMap<IBdoMetaNode, MetaDataDb>()
+                    cfg => cfg.CreateMap<IBdoMetaNode, T>()
                         .ForMember(q => q.ClassReference, opt => opt.Ignore())
-                        .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDb()))
+                        .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDb(context)))
                         .ForMember(q => q.MetaItems, opt => opt.Ignore())
-                        .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.Spec.ToDb()))
+                        .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.Spec.ToDb(context)))
                 );
 
                 mapper = new Mapper(config);
-                mapper.Map(set, dbItem);
+                mapper.Map(node, dbItem);
 
-                dbItem.ClassReference = set.DataType.IsSpecified() ? set?.DataType.ToDb() : null;
-                dbItem.DefinitionUniqueName = set?.DataType?.DefinitionUniqueName;
-
-                dbItem.MetaItems = set.Items?.Select(q => q.ToDb()).ToList();
-                dbItem.ValueType = set?.DataType.ValueType ?? DataValueTypes.Any;
-                if (set.Spec?.DataType.ValueType == set.DataType?.ValueType)
+                if (context != null)
                 {
-                    dbItem.ValueType = DataValueTypes.Any;
+                    dbItem.MetaItems ??= [];
+                    dbItem.MetaItems.RemoveAll(q => node.Items?.Any(p => p?.Identifier == q?.Identifier) != true);
+
+                    if (node?.Items?.Count > 0)
+                    {
+                        foreach (var subItem in node.Items)
+                        {
+                            var dbSubItem = context.Upsert(subItem);
+
+                            if (dbItem.MetaItems.Any(p => p?.Identifier == dbSubItem?.Identifier) != true)
+                            {
+                                dbItem.MetaItems.Add(dbSubItem);
+                            }
+                        }
+                    }
                 }
+            }
+
+            if (poco?.DataType != null)
+            {
+                poco.DataType.Identifier ??= poco.Identifier;
+            }
+
+            dbItem.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
+            dbItem.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;
+            if (poco.Spec?.DataType.ValueType == poco.DataType?.ValueType)
+            {
+                dbItem.ValueType = DataValueTypes.Any;
+            }
+
+            if (context == null)
+            {
+                dbItem.ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDb() : null;
+            }
+            else
+            {
+                dbItem.ClassReference = context.Upsert(poco.DataType);
             }
 
             return dbItem;

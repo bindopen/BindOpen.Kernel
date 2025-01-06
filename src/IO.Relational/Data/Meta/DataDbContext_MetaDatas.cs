@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Helpers;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Meta;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
@@ -7,19 +6,6 @@ namespace BindOpen.Data;
 
 public partial class DataDbContext : DbContext
 {
-
-    public IBdoMetaData Repair(IBdoMetaData poco)
-    {
-        if (poco != null)
-        {
-            poco.Identifier ??= StringHelper.NewGuid();
-
-            poco.DataType.Identifier = poco.Identifier;
-        }
-
-        return poco;
-    }
-
     public MetaDataDb GetMetaData(string identifier)
     {
         return MetaDatas
@@ -33,21 +19,19 @@ public partial class DataDbContext : DbContext
     {
         if (poco == null) return default;
 
-        Repair(poco);
+        var dbItem = GetMetaData(poco.Identifier);
 
-        var dbItemItem = GetMetaData(poco.Identifier);
-
-        if (dbItemItem == null)
+        if (dbItem == null)
         {
-            var dbItem = poco.ToDb();
+            dbItem = poco.ToDb(this);
             Add(dbItem);
         }
         else
         {
-            dbItemItem.UpdateFromPoco(poco);
+            dbItem.UpdateFromPoco(poco, this);
         }
 
-        return dbItemItem;
+        return dbItem;
     }
 
     public IBdoMetaData Delete(IBdoMetaData poco)
@@ -81,18 +65,18 @@ public partial class DataDbContext : DbContext
     //{
     //    if (context == null || poco?.Name == null) return default;
 
-    //    var dbItemItem = context.GetMetaData(poco.Name);
+    //    var dbItem = context.GetMetaData(poco.Name);
 
-    //    if (dbItemItem == null)
+    //    if (dbItem == null)
     //    {
-    //        var dbItem = poco.ToDb();
+    //        var dbItem = poco.ToDb(this);
     //        context.Add(dbItem);
     //    }
     //    else
     //    {
-    //        dbItemItem.UpdateFromPoco(poco);
+    //        dbItem.UpdateFromPoco(poco, this);
     //    }
 
-    //    return dbItemItem;
+    //    return dbItem;
     //}
 }

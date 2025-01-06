@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Helpers;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Meta;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
@@ -15,37 +14,23 @@ public partial class DataDbContext : DbContext
             .FirstOrDefault(q => q.Identifier == identifier);
     }
 
-    private IBdoConfiguration Repair(IBdoConfiguration poco)
-    {
-        if (poco != null)
-        {
-            poco.Identifier ??= StringHelper.NewGuid();
-            //if (poco.Expression != null) poco.Expression.Identifier ??= poco.Identifier;
-            //if (poco.MetaData != null) poco.MetaData.Identifier ??= poco.Identifier;
-        }
-
-        return poco;
-    }
-
     public ConfigurationDb Upsert(IBdoConfiguration poco)
     {
         if (poco == null) return default;
 
-        Repair(poco);
+        var dbItem = GetConfiguration(poco.Identifier);
 
-        var dbItemItem = GetConfiguration(poco.Identifier);
-
-        if (dbItemItem == null)
+        if (dbItem == null)
         {
-            var dbItem = poco.ToDb();
+            dbItem = poco.ToDb(this);
             Add(dbItem);
         }
         else
         {
-            dbItemItem.UpdateFromPoco(poco);
+            dbItem.UpdateFromPoco(poco, this);
         }
 
-        return dbItemItem;
+        return dbItem;
     }
 
     public IBdoConfiguration Delete(IBdoConfiguration poco)

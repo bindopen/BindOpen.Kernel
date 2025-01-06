@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Assemblies;
-using BindOpen.Data.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
@@ -17,20 +16,18 @@ public partial class DataDbContext : DbContext
     {
         if (poco == null) return default;
 
-        poco.Identifier ??= StringHelper.NewGuid();
+        var dbItem = GetClassReference(poco.Identifier);
 
-        var dbItemItem = GetClassReference(poco.Identifier);
-
-        if (dbItemItem == null)
+        if (dbItem == null)
         {
-            var dbItem = poco.ToDb();
+            dbItem = poco.ToDb();
             Add(dbItem);
         }
         else
         {
-            dbItemItem.UpdateFromPoco(poco);
+            dbItem.UpdateFromPoco(poco);
         }
 
-        return dbItemItem;
+        return dbItem;
     }
 }

@@ -20,7 +20,9 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static SpecDb ToDb(this IBdoSpec poco)
+        public static SpecDb ToDb(
+            this IBdoSpec poco,
+            DataDbContext context)
         {
             if (poco == null) return null;
 
@@ -31,13 +33,13 @@ namespace BindOpen.Data.Meta
 
                     .ForMember(q => q.Children, opt => opt.Ignore())
                     .ForMember(q => q.ClassReference, opt => opt.Ignore())
-                    .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToDb()))
+                    .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToDb(context)))
                     .ForMember(q => q.Rules, opt => opt.Ignore())
-                    .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDb()))
+                    .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDb(context)))
                     .ForMember(q => q.DefaultItems, opt => opt.Ignore())
-                    .ForMember(q => q.Description, opt => opt.MapFrom(q => q.Description.ToDb()))
-                    .ForMember(q => q.Detail, opt => opt.MapFrom(q => q.Detail.ToDb()))
-                    .ForMember(q => q.Title, opt => opt.MapFrom(q => q.Title.ToDb()))
+                    .ForMember(q => q.Description, opt => opt.MapFrom(q => q.Description.ToDb(context)))
+                    .ForMember(q => q.Detail, opt => opt.MapFrom(q => q.Detail.ToDb(context)))
+                    .ForMember(q => q.Title, opt => opt.MapFrom(q => q.Title.ToDb(context)))
             );
 
             var mapper = new Mapper(config);
@@ -46,10 +48,10 @@ namespace BindOpen.Data.Meta
             dbItem.Aliases = poco?.Aliases == null ? null : new List<string>(poco.Aliases);
             dbItem.AvailableDataModes = poco?.AvailableDataModes == null ? null : new List<DataMode>(poco.AvailableDataModes);
 
-            dbItem.Children = poco?._Children?.Select(q => q.ToDb()).ToList();
+            dbItem.Children = poco?._Children?.Select(q => q.ToDb(context)).ToList();
 
             dbItem.ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDb() : null;
-            dbItem.Rules = poco?.RuleSet == null ? null : poco?.RuleSet.Select(q => q.ToDb()).ToList();
+            dbItem.Rules = poco?.RuleSet == null ? null : poco?.RuleSet.Select(q => q.ToDb(context)).ToList();
             dbItem.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
 
             dbItem.MaxDataItemNumber = (int?)(poco?.MaxDataItemNumber == -1 ? null : poco?.MaxDataItemNumber);
@@ -57,7 +59,7 @@ namespace BindOpen.Data.Meta
 
             dbItem.ValueType = poco?.DataType?.ValueType ?? DataValueTypes.Any;
 
-            var dataList = poco.DefaultData?.ToObjectList().Select(q => q?.ToMeta().ToDb()).ToList();
+            var dataList = poco.DefaultData?.ToObjectList().Select(q => q?.ToMeta().ToDb(context)).ToList();
             dbItem.DefaultItems = dataList;
 
             return dbItem;

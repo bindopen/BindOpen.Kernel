@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
 using System.Linq;
@@ -15,35 +16,59 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static MetaSetDb ToDb(this IBdoMetaSet poco)
+        public static MetaSetDb ToDb(
+            this IBdoMetaSet poco,
+            DataDbContext context)
         {
+            if (poco == null) return null;
+
             MetaSetDb dbItem = new();
-            dbItem.UpdateFromPoco(poco);
+            dbItem.UpdateFromPoco(poco, context);
 
             return dbItem;
         }
 
-        public static MetaSetDb UpdateFromPoco(
-            this MetaSetDb dbItem,
-            IBdoMetaSet poco)
+        public static T UpdateFromPoco<T>(
+            this T dbItem,
+            IBdoMetaSet poco,
+            DataDbContext context)
+            where T : MetaSetDb
         {
             if (dbItem == null) return null;
 
             if (poco == null) return dbItem;
 
+            poco.Identifier ??= StringHelper.NewGuid();
             poco.UpdateTrees();
 
             MapperConfiguration config;
 
             config = new MapperConfiguration(
-                cfg => cfg.CreateMap<IBdoMetaSet, MetaSetDb>()
+                cfg => cfg.CreateMap<IBdoMetaSet, T>()
                     .ForMember(q => q.Items, opt => opt.Ignore())
             );
 
             var mapper = new Mapper(config);
             mapper.Map(poco, dbItem);
 
-            dbItem.Items = poco.Items?.Select(q => q.ToDb()).ToList();
+            if (context != null)
+            {
+                dbItem.Items ??= [];
+                dbItem.Items.RemoveAll(q => poco.Items?.Any(p => p?.Identifier == q?.Identifier) != true);
+
+                if (poco?.Items?.Count > 0)
+                {
+                    foreach (var subItem in poco.Items)
+                    {
+                        var dbSubItem = context.Upsert(subItem);
+
+                        if (dbItem.Items.Any(p => p?.Identifier == dbSubItem?.Identifier) != true)
+                        {
+                            dbItem.Items.Add(dbSubItem);
+                        }
+                    }
+                }
+            }
 
             return dbItem;
         }

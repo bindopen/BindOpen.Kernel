@@ -24,8 +24,12 @@ public class ConfigurationDbTests
         dbContext.Upsert(config);
         dbContext.SaveChanges();
 
-        var expDb = dbContext.GetConfiguration(config.Identifier).ToPoco();
-        Assert.That(config.IsDeepEqual(expDb) == true, "Bad item storage");
+        var configDb = dbContext.GetConfiguration(config.Identifier).ToPoco();
+
+        config.WithDeepEqual(configDb)
+            .SkipDefault<IBdoMetaData>()
+            .IgnoreProperty<IBdoMetaData>(x => x.Parent)
+            .Assert();
     }
 
     [Test, Order(2)]
@@ -45,8 +49,11 @@ public class ConfigurationDbTests
         dbContext.Upsert(config);
         dbContext.SaveChanges();
 
-        var expDb = dbContext.GetConfiguration(config.Identifier).ToPoco();
-        Assert.That(config.IsDeepEqual(expDb) == true, "Bad item storage");
+        var configDb = dbContext.GetConfiguration(config.Identifier).ToPoco();
+        config.WithDeepEqual(configDb)
+            .SkipDefault<IBdoMetaData>()
+            .IgnoreProperty<IBdoMetaData>(x => x.Parent)
+            .Assert();
     }
 
     [Test, Order(3)]
@@ -67,8 +74,11 @@ public class ConfigurationDbTests
         dbContext.SaveChanges();
 
 
-        var expDb = dbContext.GetConfiguration(config.Identifier).ToPoco();
-        Assert.That(config.IsDeepEqual(expDb) == true, "Bad item storage");
+        var configDb = dbContext.GetConfiguration(config.Identifier).ToPoco();
+        config.WithDeepEqual(configDb)
+            .SkipDefault<IBdoMetaData>()
+            .IgnoreProperty<IBdoMetaData>(x => x.Parent)
+            .Assert();
     }
 
     [Test, Order(4)]
@@ -82,11 +92,11 @@ public class ConfigurationDbTests
         var config = _dataTests._config10;
 
         using var dbContext = GlobalIOTestData.CreateDbContext();
-        var dto = config.ToDb();
+        var dto = config.ToDb(dbContext);
         dbContext.Remove(dto);
         dbContext.SaveChanges();
 
-        var expDb = dbContext.GetConfiguration(config.Identifier).ToPoco();
-        Assert.That(expDb == null, "Bad item storage");
+        var configDb = dbContext.GetConfiguration(config.Identifier).ToPoco();
+        Assert.That(configDb == null, "Bad item storage");
     }
 }

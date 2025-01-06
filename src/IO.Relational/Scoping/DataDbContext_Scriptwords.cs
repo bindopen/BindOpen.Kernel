@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Helpers;
 using BindOpen.Scoping.Script;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -22,20 +21,18 @@ public partial class DataDbContext : DbContext
     {
         if (poco == null) return default;
 
-        poco.Identifier ??= StringHelper.NewGuid();
+        var dbItem = GetScriptword(poco.Identifier);
 
-        var dbItemItem = GetScriptword(poco.Identifier);
-
-        if (dbItemItem == null)
+        if (dbItem == null)
         {
-            var dbItem = poco.ToDb();
+            dbItem = ScriptwordDbConverter.ToDb(poco, this);
             Add(dbItem);
         }
         else
         {
-            dbItemItem.UpdateFromPoco(poco);
+            dbItem.UpdateFromPoco(poco, this);
         }
 
-        return dbItemItem;
+        return dbItem;
     }
 }

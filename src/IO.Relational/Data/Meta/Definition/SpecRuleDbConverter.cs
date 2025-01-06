@@ -13,22 +13,24 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static SpecRuleDb ToDb(this IBdoSpecRule poco)
+        public static SpecRuleDb ToDb(
+            this IBdoSpecRule poco,
+            DataDbContext context)
         {
             if (poco == null) return null;
 
             var dbItem = new SpecRuleDb()
             {
-                Condition = poco.Condition.ToDb(),
+                Condition = poco.Condition.ToDb(context),
                 GroupId = poco.GroupId,
                 Identifier = poco.Identifier,
                 Kind = poco.Kind,
-                Reference = poco.Reference.ToDb(),
+                Reference = poco.Reference.ToDb(context),
                 ResultCode = poco.ResultCode,
                 ResultDescription = poco.ResultDescription,
                 ResultEventKind = poco.ResultEventKind,
                 ResultTitle = poco.ResultTitle,
-                Value = BdoData.NewScalar(poco.Value).ToDb()
+                Value = BdoData.NewScalar(poco.Value).ToDb(context)
             };
 
             return dbItem;

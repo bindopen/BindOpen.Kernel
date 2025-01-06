@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Helpers;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace BindOpen.Data;
@@ -13,34 +12,36 @@ public partial class DataDbContext : DbContext
             .FirstOrDefault(q => q.Identifier == identifier);
     }
 
-    public IBdoExpression Repair(IBdoExpression poco)
-    {
-        if (poco != null)
-        {
-            poco.Identifier ??= StringHelper.NewGuid();
-        }
-
-        return poco;
-    }
-
     public ExpressionDb Upsert(IBdoExpression poco)
     {
         if (poco == null) return default;
 
-        Repair(poco);
+        var dbItem = GetExpression(poco.Identifier);
 
-        var dbItemItem = GetExpression(poco.Identifier);
-
-        if (dbItemItem == null)
+        if (dbItem == null)
         {
-            var dbItem = poco.ToDb();
+            dbItem = poco.ToDb(this);
             Add(dbItem);
         }
         else
         {
-            dbItemItem.UpdateFromPoco(poco);
+            dbItem.UpdateFromPoco(poco, this);
         }
 
-        return dbItemItem;
+        return dbItem;
+    }
+
+    public ExpressionDb Delete(IBdoExpression poco)
+    {
+        if (poco == null) return null;
+
+        var dbItem = GetExpression(poco.Identifier);
+
+        if (dbItem != null)
+        {
+            Remove(dbItem);
+        }
+
+        return dbItem;
     }
 }

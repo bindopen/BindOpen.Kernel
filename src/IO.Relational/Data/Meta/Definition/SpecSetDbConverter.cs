@@ -14,7 +14,9 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
-        public static SpecSetDb ToDb(this IBdoSpecSet poco)
+        public static SpecSetDb ToDb(
+            this IBdoSpecSet poco,
+            DataDbContext context)
         {
             if (poco == null) return null;
 
@@ -26,7 +28,7 @@ namespace BindOpen.Data.Meta
             var mapper = new Mapper(config);
             var dbItem = mapper.Map<SpecSetDb>(poco);
 
-            dbItem.Items = poco.Items?.Select(q => q.ToDb()).ToList();
+            dbItem.Items = poco.Items?.Select(q => q.ToDb(context)).ToList();
 
             return dbItem;
         }

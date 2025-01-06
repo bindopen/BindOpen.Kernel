@@ -1,6 +1,4 @@
-﻿using BindOpen.Data.Helpers;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace BindOpen.Data;
@@ -18,46 +16,32 @@ public partial class DataDbContext : DbContext
     {
         if (poco == null) return default;
 
-        poco.Identifier ??= StringHelper.NewGuid();
+        var dbItem = GetStringDictionary(poco.Identifier);
 
-        var dbItemItem = GetStringDictionary(poco.Identifier);
-
-        if (dbItemItem == null)
+        if (dbItem == null)
         {
-            var dbItem = poco.ToDb();
+            dbItem = poco.ToDb(this);
             Add(dbItem);
         }
         else
         {
-            dbItemItem.UpdateFromPoco(poco);
-
-            dbItemItem.Values ??= [];
-
-            if (poco?.Keys.Count > 0)
-            {
-                dbItemItem.Values.RemoveAll(q => poco.Keys.Any(p => p == q.Key) != true);
-
-                foreach (var key in poco.Keys)
-                {
-                    var keyExists = dbItemItem.Values.Any(q => q.Key == key);
-
-                    if (!keyExists)
-                    {
-                        var pairPoco = KeyValuePair.Create(key, poco[key]);
-                        var pairDb = pairPoco.ToDb();
-
-                        dbItemItem.Values.Add(pairDb);
-                    }
-                    else
-                    {
-                        var pairDb = dbItemItem.Values.FirstOrDefault(q => q.Key == key);
-                        var pairPoco = KeyValuePair.Create(key, poco[key]);
-                        pairDb.UpdateFromPoco(pairPoco);
-                    }
-                }
-            }
+            dbItem.UpdateFromPoco(poco, this);
         }
 
-        return dbItemItem;
+        return dbItem;
+    }
+
+    public StringDictionaryDb Delete(ITBdoDictionary<string> poco)
+    {
+        if (poco == null) return null;
+
+        var dbItem = GetStringDictionary(poco.Identifier);
+
+        if (dbItem != null)
+        {
+            Remove(dbItem);
+        }
+
+        return dbItem;
     }
 }

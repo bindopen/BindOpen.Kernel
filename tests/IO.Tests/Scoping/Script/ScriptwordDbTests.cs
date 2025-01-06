@@ -82,8 +82,8 @@ public class ScriptwordDbTests
         var word = _dataTests._scriptwordA;
 
         using var dbContext = GlobalIOTestData.CreateDbContext();
-        var dto = word.ToDto();
-        dbContext.Remove(dto);
+        var dbItem = word.ToDb(dbContext);
+        dbContext.Remove(dbItem);
         dbContext.SaveChanges();
 
         var wordDb = dbContext.GetScriptword(word.Identifier).ToPoco();

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BindOpen.Data.Helpers;
 
 namespace BindOpen.Data.Assemblies;
 
@@ -12,8 +13,11 @@ public static class ClassReferenceDbConverter
     /// </summary>
     /// <param key="poco">The poco to consider.</param>
     /// <returns>The database entity object.</returns>
-    public static ClassReferenceDb ToDb(this IBdoClassReference poco)
+    public static ClassReferenceDb ToDb(
+        this IBdoClassReference poco)
     {
+        if (poco == null) return null;
+
         ClassReferenceDb dbItem = new();
         dbItem.UpdateFromPoco(poco);
 
@@ -27,6 +31,8 @@ public static class ClassReferenceDbConverter
         if (dbItem == null) return null;
 
         if (poco == null) return dbItem;
+
+        poco.Identifier ??= StringHelper.NewGuid();
 
         var config = new MapperConfiguration(
             cfg => cfg.CreateMap<BdoClassReference, ClassReferenceDb>()
