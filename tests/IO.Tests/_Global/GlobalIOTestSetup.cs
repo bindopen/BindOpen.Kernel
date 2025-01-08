@@ -15,7 +15,22 @@ public class GlobalIOTestSetup
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
-        File.Delete(GlobalIOTestData.GetDbFilePath());
+        try
+        {
+            // we create the working folder
+
+            if (!Directory.Exists(DataTestData.WorkingFolder))
+            {
+                Directory.CreateDirectory(DataTestData.WorkingFolder);
+            }
+
+            // we delete any existing database file
+
+            File.Delete(GlobalIOTestData.GetDbFilePath());
+        }
+        catch
+        {
+        }
 
         using var dbContext = GlobalIOTestData.CreateDbContext();
         dbContext.Database.EnsureCreated();
