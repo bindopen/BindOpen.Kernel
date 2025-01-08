@@ -4,7 +4,7 @@ using BindOpen.Tests;
 using NUnit.Framework;
 using System.Linq;
 
-namespace BindOpen.Scoping;
+namespace BindOpen.Scoping.Connectors;
 
 [TestFixture, Order(301)]
 public class BdoConnectorTests

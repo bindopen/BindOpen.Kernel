@@ -2,7 +2,7 @@
 using BindOpen.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.Scoping;
+namespace BindOpen.Scoping.Tasks;
 
 [TestFixture, Order(300)]
 public class BdoTaskTests

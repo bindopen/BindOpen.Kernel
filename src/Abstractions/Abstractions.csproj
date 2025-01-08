@@ -38,4 +38,8 @@
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Repositories\" />
+  </ItemGroup>
 </Project>

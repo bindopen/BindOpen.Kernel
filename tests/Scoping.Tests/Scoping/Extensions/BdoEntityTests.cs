@@ -3,7 +3,7 @@ using BindOpen.Data.Meta;
 using BindOpen.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.Scoping;
+namespace BindOpen.Scoping.Entities;
 
 [TestFixture, Order(300)]
 public class BdoEntityTests
