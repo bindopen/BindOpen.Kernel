@@ -3,7 +3,7 @@
     /// <summary>
     /// This interface defines a data expression.
     /// </summary>
-    public interface IBdoExpression : IBdoObjectNotMetable
+    public interface IBdoExpression : IBdoObjectNotMetable, IIdentified, IReferenced
     {
         /// <summary>
         /// The kind.

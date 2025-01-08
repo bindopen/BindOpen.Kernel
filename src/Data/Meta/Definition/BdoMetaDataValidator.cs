@@ -43,6 +43,8 @@ namespace BindOpen.Data.Meta
 
             if (meta != null)
             {
+                var scope = meta.Scope ?? Scope;
+
                 var localVarSet = BdoData.NewSet(varSet?.ToArray());
                 localVarSet.Add(BdoData.__VarName_This, meta);
 
@@ -171,7 +173,7 @@ namespace BindOpen.Data.Meta
 
                         foreach (var groupId in groupIds)
                         {
-                            var rule = meta.GetSpecRule(groupId, BdoSpecRuleKinds.Requirement, Scope, localVarSet, log);
+                            var rule = meta.GetSpecRule(scope, groupId, BdoSpecRuleKinds.Requirement, localVarSet, log);
 
                             if (rule != null)
                             {

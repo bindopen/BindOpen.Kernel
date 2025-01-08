@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Assemblies;
-using System.Collections.Generic;
 
 namespace BindOpen.Scoping
 {
@@ -16,7 +15,7 @@ namespace BindOpen.Scoping
         {
             if (obj != null)
             {
-                obj.References ??= new List<IBdoAssemblyReference>();
+                obj.References ??= [];
                 foreach (var reference in references)
                 {
                     obj.References.Add(reference);
@@ -25,12 +24,23 @@ namespace BindOpen.Scoping
             return obj;
         }
 
+        public static IExtensionLoadOptions AddClassFrom<Q>(
+            this IExtensionLoadOptions options)
+        {
+            if (options != null)
+            {
+                options.References ??= [];
+                options.References.Add(BdoData.Class<Q>());
+            }
+            return options;
+        }
+
         public static IExtensionLoadOptions AddAssemblyFrom<Q>(
             this IExtensionLoadOptions options)
         {
             if (options != null)
             {
-                options.References ??= new List<IBdoAssemblyReference>();
+                options.References ??= [];
                 options.References.Add(BdoData.AssemblyFrom<Q>());
             }
             return options;
@@ -42,7 +52,7 @@ namespace BindOpen.Scoping
         {
             if (obj != null)
             {
-                obj.References = new List<IBdoAssemblyReference>() { BdoData.AssemblyAsAll() };
+                obj.References = [BdoData.AssemblyAsAll()];
             }
             return obj;
         }

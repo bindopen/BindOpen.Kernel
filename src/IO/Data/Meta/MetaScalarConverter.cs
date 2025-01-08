@@ -2,6 +2,7 @@
 using BindOpen.Data;
 using BindOpen.Data.Assemblies;
 using BindOpen.Data.Helpers;
+using BindOpen.Scoping.Script;
 using System.Linq;
 
 namespace BindOpen.Data.Meta
@@ -12,16 +13,30 @@ namespace BindOpen.Data.Meta
     public static class MetaScalarConverter
     {
         /// <summary>
-        /// Converts a meta scalar poco into a DTO one.
+        /// Converts an expression poco into a DTO one.
         /// </summary>
         /// <param key="poco">The poco to consider.</param>
         /// <returns>The DTO object.</returns>
         public static MetaScalarDto ToDto(this IBdoMetaScalar poco)
         {
-            if (poco == null) return null;
+            MetaScalarDto dto = new();
+            dto.UpdateFromPoco(poco);
 
-            var config = new MapperConfiguration(
-                cfg => cfg.CreateMap<BdoMetaScalar, MetaScalarDto>()
+            return dto;
+        }
+
+        public static MetaScalarDto UpdateFromPoco(
+            this MetaScalarDto dto,
+            IBdoMetaScalar poco)
+        {
+            if (dto == null) return null;
+
+            if (poco == null) return dto;
+
+            MapperConfiguration config;
+
+            config = new MapperConfiguration(
+                cfg => cfg.CreateMap<IBdoMetaScalar, MetaScalarDto>()
                     .ForMember(q => q.ClassReference, opt => opt.Ignore())
                     .ForMember(q => q.Item, opt => opt.Ignore())
                     .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDto()))
@@ -29,7 +44,7 @@ namespace BindOpen.Data.Meta
             );
 
             var mapper = new Mapper(config);
-            var dto = mapper.Map<MetaScalarDto>(poco);
+            mapper.Map(poco, dto);
 
             dto.ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDto() : null;
             dto.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
@@ -77,6 +92,7 @@ namespace BindOpen.Data.Meta
             poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco())
             {
                 DefinitionUniqueName = dto.DefinitionUniqueName,
+                Identifier = dto.Identifier,
                 ValueType = dto.ValueType
             };
             poco.Spec = dto.Spec.ToPoco();

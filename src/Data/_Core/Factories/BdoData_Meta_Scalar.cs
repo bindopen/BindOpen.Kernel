@@ -40,7 +40,7 @@ namespace BindOpen.Data
             string name,
             params object[] items)
             => NewScalar<object, BdoMetaScalar>(
-                (string)name,
+                name,
                 DataValueTypes.Any,
                 items);
 
@@ -80,7 +80,7 @@ namespace BindOpen.Data
             string name,
             params object[] items)
             => NewScalar<TItem, TBdoMetaScalar<TItem>>(
-                null,
+                name,
                 DataValueTypes.Any,
                 items);
 

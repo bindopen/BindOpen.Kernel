@@ -5,7 +5,7 @@ namespace BindOpen.Data
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoMerger : IBdoObjectNotMetable
+    public interface IBdoMerger : IBdoObjectNotMetable, IIdentified, IReferenced
     {
         /// <summary>
         /// 

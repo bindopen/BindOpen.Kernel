@@ -4,12 +4,22 @@
         <name>BindOpen.IO.Tests</name>
     </assembly>
     <members>
-        <member name="T:BindOpen.Scoping.GlobalSetUp">
+        <member name="M:BindOpen.GlobalIOTestData.GetDbFilePath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.GlobalIOTestData.CreateDbContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.GlobalIOTestSetup">
             <summary>
             This class set the global setup.
             </summary>
         </member>
-        <member name="M:BindOpen.Scoping.GlobalSetUp.OneTimeSetUp">
+        <member name="M:BindOpen.GlobalIOTestSetup.OneTimeSetUp">
             <summary>
             
             </summary>

@@ -141,7 +141,7 @@ namespace BindOpen.Scoping
         /// <summary>
         /// 
         /// </summary>
-        public string Id { get; set; }
+        public string Identifier { get; set; }
 
         #endregion
 

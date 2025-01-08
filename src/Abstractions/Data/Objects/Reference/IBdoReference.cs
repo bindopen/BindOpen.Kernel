@@ -1,12 +1,11 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Meta;
 
 namespace BindOpen.Data
 {
     /// <summary>
     /// This interface defines a data expression.
     /// </summary>
-    public interface IBdoReference : IBdoObject, IReferenced
+    public interface IBdoReference : IBdoObject, IIdentified, IReferenced
     {
         /// <summary>
         /// The kind.
@@ -14,8 +13,6 @@ namespace BindOpen.Data
         BdoReferenceKind Kind { get; set; }
 
         IBdoExpression Expression { get; set; }
-
-        string Identifier { get; set; }
 
         IBdoMetaData MetaData { get; set; }
     }

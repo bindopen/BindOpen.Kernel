@@ -77,7 +77,7 @@ namespace BindOpen.Scoping
                 }
 
                 definition.FileName ??= definition.AssemblyName + ".dll";
-                definition.Id ??= StringHelper.NewGuid();
+                definition.Identifier ??= StringHelper.NewGuid();
                 definition.Name ??= resourceFullName ?? definition.AssemblyName;
                 definition.RootNamespace ??= resourceFullName ?? definition.AssemblyName;
 

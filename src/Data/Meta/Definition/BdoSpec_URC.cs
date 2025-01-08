@@ -1,4 +1,5 @@
-﻿using BindOpen.Data.Conditions;
+﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Conditions;
 using BindOpen.Logging;
 using System.Collections.Generic;
 

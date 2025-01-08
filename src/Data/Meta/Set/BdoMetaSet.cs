@@ -1,5 +1,4 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
 using BindOpen.Logging;
 using BindOpen.Scoping;
 using System.Collections.Generic;
@@ -35,6 +34,19 @@ namespace BindOpen.Data.Meta
         {
             return metaSet?.ToArray();
         }
+
+        #endregion
+
+        // --------------------------------------------------
+        // PROPERTIES
+        // --------------------------------------------------
+
+        #region Properties
+
+        /// <summary>
+        /// The scope of the service.
+        /// </summary>
+        public IBdoScope Scope { get; set; }
 
         #endregion
 
@@ -79,6 +91,23 @@ namespace BindOpen.Data.Meta
         public string Name { get; set; }
 
         #endregion
+
+        /// <summary>
+        /// Adds the specified item.
+        /// </summary>
+        /// <param key="item">The item of the item to add.</param>
+        /// <returns>Returns the new item that has been added.
+        /// Returns null if the new item is null or else its name is null.</returns>
+        /// <remarks>The new item must have a name.</remarks>
+        public override IBdoMetaData Insert(IBdoMetaData item)
+        {
+            if (item != null)
+            {
+                base.Insert(item);
+            }
+
+            return item;
+        }
 
         // --------------------------------------------------
         // IBdoMetaSet Implementation

@@ -15,33 +15,49 @@ namespace BindOpen.Data
         /// </summary>
         public static object GetSpecValue(
             this IBdoMetaData meta,
+            IBdoScope scope,
             string groupId,
             BdoSpecRuleKinds ruleKind = BdoSpecRuleKinds.Requirement,
-            IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            return meta?.GetSpecRule(groupId, ruleKind, scope, varSet, log)?.Value;
+            return meta?.GetSpecRule(scope, groupId, ruleKind, varSet, log)?.Value;
         }
+
+        public static object GetSpecValue(
+            this IBdoMetaData meta,
+            string groupId,
+            BdoSpecRuleKinds ruleKind = BdoSpecRuleKinds.Requirement,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+            => meta.GetSpecValue(meta?.Scope, groupId, ruleKind, varSet, log);
 
         /// <summary>
         /// The item requirement level of this instance.
         /// </summary>
         public static T GetSpecValue<T>(
             this IBdoMetaData meta,
+            IBdoScope scope,
             string groupId,
             BdoSpecRuleKinds ruleKind = BdoSpecRuleKinds.Requirement,
-            IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
             if (meta != null)
             {
-                return meta.GetSpecValue(groupId, ruleKind, scope, varSet, log).As<T>();
+                return meta.GetSpecValue(scope, groupId, ruleKind, varSet, log).As<T>();
             }
 
             return default;
         }
+
+        public static T GetSpecValue<T>(
+            this IBdoMetaData meta,
+            string groupId,
+            BdoSpecRuleKinds ruleKind = BdoSpecRuleKinds.Requirement,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+            => meta.GetSpecValue<T>(meta?.Scope, groupId, ruleKind, varSet, log);
 
         /// <summary>
         /// The requirement level of this instance.
@@ -49,16 +65,21 @@ namespace BindOpen.Data
         [BdoFunction("requirementLevel")]
         public static RequirementLevels GetRequirementLevel(
             this IBdoMetaData meta,
-            [BdoScriptParameter] IBdoScope scope = null,
+            [BdoScriptParameter] IBdoScope scope,
             [BdoScriptParameter] IBdoMetaSet varSet = null,
             [BdoScriptParameter] IBdoLog log = null)
         {
             var level = meta.GetSpecValue<RequirementLevels?>(
-                BdoMetaDataProperties.RequirementLevel, BdoSpecRuleKinds.Requirement, scope, varSet, log) ?? RequirementLevels.None;
+                scope, BdoMetaDataProperties.RequirementLevel, BdoSpecRuleKinds.Requirement, varSet, log) ?? RequirementLevels.None;
 
             return level;
         }
 
+        public static RequirementLevels GetRequirementLevel(
+            this IBdoMetaData meta,
+            [BdoScriptParameter] IBdoMetaSet varSet = null,
+            [BdoScriptParameter] IBdoLog log = null)
+            => meta.GetRequirementLevel(meta?.Scope, varSet, log);
 
         /// <summary>
         /// The item requirement level of this instance.
@@ -66,14 +87,14 @@ namespace BindOpen.Data
         [BdoFunction("itemRequirementLevel")]
         public static RequirementLevels GetItemRequirementLevel(
             this IBdoMetaData meta,
-            [BdoScriptParameter] IBdoScope scope = null,
+            [BdoScriptParameter] IBdoScope scope,
             [BdoScriptParameter] IBdoMetaSet varSet = null,
             [BdoScriptParameter] IBdoLog log = null)
         {
             if (meta?.Spec != null)
             {
                 var level = meta.GetSpecValue<RequirementLevels?>(
-                    BdoMetaDataProperties.ItemRequirementLevel, BdoSpecRuleKinds.Requirement, scope, varSet, log) ?? RequirementLevels.None;
+                    scope, BdoMetaDataProperties.ItemRequirementLevel, BdoSpecRuleKinds.Requirement, varSet, log) ?? RequirementLevels.None;
 
                 if (level == RequirementLevels.None)
                 {
@@ -96,5 +117,11 @@ namespace BindOpen.Data
 
             return RequirementLevels.None;
         }
+
+        public static RequirementLevels GetItemRequirementLevel(
+            this IBdoMetaData meta,
+            [BdoScriptParameter] IBdoMetaSet varSet = null,
+            [BdoScriptParameter] IBdoLog log = null)
+            => meta.GetItemRequirementLevel(meta?.Scope, varSet, log);
     }
 }

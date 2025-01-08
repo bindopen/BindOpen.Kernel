@@ -77,8 +77,8 @@ namespace BindOpen.Data
             IBdoLog log = null)
             where T : IReferenced
         {
-            areas ??= new[] { nameof(DataAreaKind.Any) };
-            updateModes ??= new[] { UpdateModes.Incremental_AddMissingInTarget, UpdateModes.Incremental_UpdateCommon };
+            areas ??= [nameof(DataAreaKind.Any)];
+            updateModes ??= [UpdateModes.Incremental_AddMissingInTarget, UpdateModes.Incremental_UpdateCommon];
 
             if (set != null)
             {
@@ -162,8 +162,8 @@ namespace BindOpen.Data
             IBdoLog log = null)
             where T : IReferenced
         {
-            areas ??= new[] { nameof(DataAreaKind.Any) };
-            updateModes ??= new[] { UpdateModes.Incremental_AddMissingInTarget, UpdateModes.Incremental_UpdateCommon };
+            areas ??= [nameof(DataAreaKind.Any)];
+            updateModes ??= [UpdateModes.Incremental_AddMissingInTarget, UpdateModes.Incremental_UpdateCommon];
 
             if (set != null)
             {

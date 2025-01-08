@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Helpers;
+using BindOpen.Scoping;
 using System;
 
 namespace BindOpen.Data.Meta.Reflection
@@ -18,6 +19,7 @@ namespace BindOpen.Data.Meta.Reflection
         /// <param key="items">The items to consider.</param>
         public static IBdoMetaData ToMeta(
             this object obj,
+            IBdoScope scope,
             Type type,
             string name = null,
             bool onlyMetaAttributes = false,
@@ -41,10 +43,20 @@ namespace BindOpen.Data.Meta.Reflection
                 meta = BdoData.NewMeta(name, type, obj);
             }
 
-            meta?.UpdateTree(onlyMetaAttributes, includeNullValues);
+            meta?
+                .WithScope(scope)
+                .UpdateTree(onlyMetaAttributes, includeNullValues);
 
             return meta;
         }
+
+        public static IBdoMetaData ToMeta(
+            this object obj,
+            Type type,
+            string name = null,
+            bool onlyMetaAttributes = false,
+            bool includeNullValues = true)
+            => obj.ToMeta(null, type, name, onlyMetaAttributes, includeNullValues);
 
         /// <summary>
         /// Creates a meta data of the specified object.
@@ -53,12 +65,20 @@ namespace BindOpen.Data.Meta.Reflection
         /// <param key="items">The items to consider.</param>
         public static IBdoMetaData ToMeta(
             this object obj,
+            IBdoScope scope,
             string name = null,
             bool onlyMetaAttributes = false,
             bool includeNullValues = true)
         {
-            return obj.ToMeta(null, name, onlyMetaAttributes, includeNullValues);
+            return obj.ToMeta(scope, null, name, onlyMetaAttributes, includeNullValues);
         }
+
+        public static IBdoMetaData ToMeta(
+            this object obj,
+            string name = null,
+            bool onlyMetaAttributes = false,
+            bool includeNullValues = true)
+            => obj.ToMeta(null as IBdoScope, name, onlyMetaAttributes, includeNullValues);
 
         /// <summary>
         /// Creates a meta data of the specified object.
@@ -67,11 +87,20 @@ namespace BindOpen.Data.Meta.Reflection
         /// <param key="items">The items to consider.</param>
         public static T ToMeta<T>(
             this object obj,
+            IBdoScope scope,
             string name = null,
             bool onlyMetaAttributes = false,
             bool includeNullValues = true)
             where T : IBdoMetaData
-            => obj.ToMeta(null, name, onlyMetaAttributes, includeNullValues).As<T>();
+            => obj.ToMeta(scope, null, name, onlyMetaAttributes, includeNullValues).As<T>();
+
+        public static T ToMeta<T>(
+            this object obj,
+            string name = null,
+            bool onlyMetaAttributes = false,
+            bool includeNullValues = true)
+            where T : IBdoMetaData
+            => obj.ToMeta(null, null, name, onlyMetaAttributes, includeNullValues).As<T>();
 
         // Specification
 

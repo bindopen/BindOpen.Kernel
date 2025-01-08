@@ -1,163 +1,163 @@
-﻿using BindOpen.Scoping;
+﻿using BindOpen.Data.Assemblies;
+using BindOpen.Scoping;
 using System;
 
-namespace BindOpen.Data
+namespace BindOpen.Data;
+
+/// <summary>
+/// This class represents a data element set.
+/// </summary>
+public static partial class BdoDataTypedExtensions
 {
     /// <summary>
-    /// This class represents a data element set.
+    /// 
     /// </summary>
-    public static partial class BdoDataTypedExtensions
+    public static T WithDataType<T>(
+        this T dataTyped,
+        DataValueTypes valueType)
+        where T : IBdoDataTyped
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T WithDataType<T>(
-            this T dataTyped,
-            DataValueTypes valueType)
-            where T : IBdoDataTyped
+        if (dataTyped != null)
         {
-            if (dataTyped != null)
-            {
-                dataTyped.DataType = BdoData.NewDataType(valueType);
-            }
-
-            return dataTyped;
+            dataTyped.DataType = BdoData.NewDataType(valueType);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T WithDataType<T>(
-            this T dataTyped,
-            Type type)
-            where T : IBdoDataTyped
-        {
-            if (dataTyped != null)
-            {
-                dataTyped.DataType = BdoData.NewDataType(type);
-            }
+        return dataTyped;
+    }
 
-            return dataTyped;
+    /// <summary>
+    /// 
+    /// </summary>
+    public static T WithDataType<T>(
+        this T dataTyped,
+        Type type)
+        where T : IBdoDataTyped
+    {
+        if (dataTyped != null)
+        {
+            dataTyped.DataType = BdoData.NewDataType(type);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T WithDataType<T>(
-            this T dataTyped)
-            where T : IBdoDataTyped
-        {
-            if (dataTyped != null)
-            {
-                dataTyped.DataType = BdoData.NewDataType<T>();
-            }
+        return dataTyped;
+    }
 
-            return dataTyped;
+    /// <summary>
+    /// 
+    /// </summary>
+    public static T WithDataType<T>(
+        this T dataTyped)
+        where T : IBdoDataTyped
+    {
+        if (dataTyped != null)
+        {
+            dataTyped.DataType = BdoData.NewDataType<T>();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T WithDataType<T>(
-            this T dataTyped,
-            BdoExtensionKinds definitionExtensionKind,
-            string definitionUniqueName = null)
-            where T : IBdoDataTyped
-        {
-            if (dataTyped != null)
-            {
-                dataTyped.DataType = BdoData.NewDataType(definitionExtensionKind, definitionUniqueName);
-            }
+        return dataTyped;
+    }
 
-            return dataTyped;
+    /// <summary>
+    /// 
+    /// </summary>
+    public static T WithDataType<T>(
+        this T dataTyped,
+        BdoExtensionKinds definitionExtensionKind,
+        string definitionUniqueName = null)
+        where T : IBdoDataTyped
+    {
+        if (dataTyped != null)
+        {
+            dataTyped.DataType = BdoData.NewDataType(definitionExtensionKind, definitionUniqueName);
         }
 
-        public static bool IsCompatibleWithType(
-            this IBdoDataTyped dataTyped,
-            Type type)
+        return dataTyped;
+    }
+
+    public static bool IsCompatibleWithType(
+        this IBdoDataTyped dataTyped,
+        Type type)
+    {
+        return dataTyped?.DataType.IsCompatibleWithType(type) ?? false;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public static T AsNullValue<T>(
+        this T dataTyped)
+        where T : IBdoDataTyped
+    {
+        if (dataTyped != null)
         {
-            return dataTyped?.DataType.IsCompatibleWithType(type) ?? false;
+            dataTyped.DataType = BdoData.NewDataType(DataValueTypes.Null);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T AsNullValue<T>(
-            this T dataTyped)
-            where T : IBdoDataTyped
-        {
-            if (dataTyped != null)
-            {
-                dataTyped.DataType = BdoData.NewDataType(DataValueTypes.Null);
-            }
+        return dataTyped;
+    }
 
-            return dataTyped;
+    /// <summary>
+    /// 
+    /// </summary>
+    public static T AsText<T>(
+        this T dataTyped)
+        where T : IBdoDataTyped
+    {
+        if (dataTyped != null)
+        {
+            dataTyped.DataType = BdoData.NewDataType(DataValueTypes.Text);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T AsText<T>(
-            this T dataTyped)
-            where T : IBdoDataTyped
-        {
-            if (dataTyped != null)
-            {
-                dataTyped.DataType = BdoData.NewDataType(DataValueTypes.Text);
-            }
+        return dataTyped;
+    }
 
-            return dataTyped;
+    /// <summary>
+    /// 
+    /// </summary>
+    public static T AsBinary<T>(
+        this T dataTyped)
+        where T : IBdoDataTyped
+    {
+        if (dataTyped != null)
+        {
+            dataTyped.DataType = BdoData.NewDataType(DataValueTypes.Binary);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static T AsBinary<T>(
-            this T dataTyped)
-            where T : IBdoDataTyped
-        {
-            if (dataTyped != null)
-            {
-                dataTyped.DataType = BdoData.NewDataType(DataValueTypes.Binary);
-            }
+        return dataTyped;
+    }
 
-            return dataTyped;
+    public static T AsBoolean<T>(
+        this T dataTyped)
+        where T : IBdoDataTyped
+    {
+        if (dataTyped != null)
+        {
+            dataTyped.DataType = BdoData.NewDataType(DataValueTypes.Boolean);
         }
 
-        public static T AsBoolean<T>(
-            this T dataTyped)
-            where T : IBdoDataTyped
-        {
-            if (dataTyped != null)
-            {
-                dataTyped.DataType = BdoData.NewDataType(DataValueTypes.Boolean);
-            }
+        return dataTyped;
+    }
 
-            return dataTyped;
+    public static T AsInteger<T>(
+        this T dataTyped)
+        where T : IBdoDataTyped
+    {
+        if (dataTyped != null)
+        {
+            dataTyped.DataType = BdoData.NewDataType(DataValueTypes.Integer);
         }
 
-        public static T AsInteger<T>(
-            this T dataTyped)
-            where T : IBdoDataTyped
-        {
-            if (dataTyped != null)
-            {
-                dataTyped.DataType = BdoData.NewDataType(DataValueTypes.Integer);
-            }
+        return dataTyped;
+    }
 
-            return dataTyped;
+    public static T AsNumber<T>(
+        this T dataTyped)
+        where T : IBdoDataTyped
+    {
+        if (dataTyped != null)
+        {
+            dataTyped.DataType = BdoData.NewDataType(DataValueTypes.Number);
         }
 
-        public static T AsNumber<T>(
-            this T dataTyped)
-            where T : IBdoDataTyped
-        {
-            if (dataTyped != null)
-            {
-                dataTyped.DataType = BdoData.NewDataType(DataValueTypes.Number);
-            }
-
-            return dataTyped;
-        }
+        return dataTyped;
     }
 }

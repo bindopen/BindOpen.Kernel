@@ -1,13 +1,12 @@
-﻿namespace BindOpen.Data.Conditions
+﻿namespace BindOpen.Data.Conditions;
+
+/// <summary>
+/// This interface defines an expression condition.
+/// </summary>
+public interface IBdoExpressionCondition : IBdoCondition
 {
     /// <summary>
-    /// This interface defines an expression condition.
+    /// The expression.
     /// </summary>
-    public interface IBdoExpressionCondition : IBdoCondition
-    {
-        /// <summary>
-        /// The expression.
-        /// </summary>
-        IBdoExpression Expression { get; set; }
-    }
+    IBdoExpression Expression { get; set; }
 }
