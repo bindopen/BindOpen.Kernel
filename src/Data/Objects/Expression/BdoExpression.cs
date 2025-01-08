@@ -59,6 +59,31 @@ namespace BindOpen.Data
 
         #endregion
 
+        // ------------------------------------------
+        // IReferenced Implementation
+        // ------------------------------------------
+
+        #region IReferenced Implementation
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Key() => Identifier;
+
+        #endregion
+
+        // ------------------------------------------
+        // IIdentified Implementation
+        // ------------------------------------------
+
+        #region IIdentified Implementation
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Identifier { get; set; }
+
+        #endregion
 
         // ------------------------------------------
         // ACCCESSORS

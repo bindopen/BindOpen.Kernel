@@ -15,9 +15,9 @@ BindOpen.Kernel is the kernel of the BindOpen framework. It is composed of the f
 * __Kernel.Scoping__ offers an effective mechanism for defining and managing your extensions.
 * [Kernel.Hosting](https://github.com/bindopen/BindOpen.Hosting) allows you to integrate a BindOpen agent within the .NET service builder.
 * [Kernel.Logging](https://github.com/bindopen/BindOpen.Logging) provides a straightforward and multi-dimensional logging system.
-* __Kernel.IO__ provides packages to serialize and deserialize BindOpen.Kernel objects.
+* __Kernel.Db__ provides packages to serialize and deserialize BindOpen.Kernel objects.
 
-This repository contains the Kernel.Data, Kernel.Scoping and Kernel.IO modules. The two other ones are separate repositories.
+This repository contains the Kernel.Data, Kernel.Scoping and Kernel.Db modules. The two other ones are separate repositories.
 
 A [full list of all the BindOpen repos](https://github.com/bindopen?tab=repositories) is available as well.
 
@@ -34,7 +34,7 @@ Note: We recommend that later on, you install only the package you need.
 |--------|-----|
 | [BindOpen.Data](https://www.nuget.org/packages/BindOpen.Data) | ```PM> Install-Package BindOpen.Data``` |
 | [BindOpen.Scoping](https://www.nuget.org/packages/BindOpen.Scoping) | ```PM> Install-Package BindOpen.Scoping``` |
-| [BindOpen.IO](https://www.nuget.org/packages/BindOpen.IO) | ```PM> Install-Package BindOpen.IO``` |
+| [BindOpen.Db](https://www.nuget.org/packages/BindOpen.Db) | ```PM> Install-Package BindOpen.Db``` |
 
 ### From .NET CLI
 
@@ -42,7 +42,7 @@ Note: We recommend that later on, you install only the package you need.
 |--------|-----|
 | [BindOpen.Data](https://www.nuget.org/packages/BindOpen.Data) | ```> dotnet add package BindOpen.Data``` |
 | [BindOpen.Scoping](https://www.nuget.org/packages/BindOpen.Scoping) | ```> dotnet add package BindOpen.Scoping``` |
-| [BindOpen.IO](https://www.nuget.org/packages/BindOpen.IO) | ```> dotnet add package BindOpen.IO``` |
+| [BindOpen.Db](https://www.nuget.org/packages/BindOpen.Db) | ```> dotnet add package BindOpen.Db``` |
 
 ## Get started
 
@@ -135,7 +135,7 @@ public class TaskFake : BdoTask
 ...
 
 var meta = BdoData.NewObject()
-    .WithDataType(BdoExtensionKinds.Task, "bindopen.tests$taskFake")
+    .WithDataType(BdoExtensionKinds.Task, "bindopen.scoping.tests$taskFake")
     .WithProperties(("boolValue", false))
     .WithInputs(BdoData.NewScalar("enumValue", ActionPriorities.Low))
     .WithOutputs(("stringValue", "test-out"));
@@ -145,19 +145,19 @@ var cancelToken = new CancellationTokenSource();
 task.Execute(cancelToken.Token, scope);
 ```
 
-### Kernel.IO
+### Kernel.Db
 
 #### Serialization
 
 ```csharp
 var metaSet = BdoData.NewSet("test-io").With(("host", "host-test"), ("address", "0.0.0.0"));
-metaSet.ToDto().SaveXml("output.xml");
+metaSet.ToDb().SaveXml("output.xml");
 ```
 
 #### Deserialization
 
 ```csharp
-var metaSet = JsonHelper.LoadJson<MetaSetDto>("output.xml").ToPoco();
+var metaSet = JsonHelper.LoadJson<MetaSetDb>("output.xml").ToPoco();
 ```
 
 ## License
@@ -175,8 +175,8 @@ This repository contains the code of the following Nuget packages:
 | [BindOpen.Scoping](https://www.nuget.org/packages/BindOpen.Scoping) | Extension manager |
 | [BindOpen.Scoping.Extensions](https://www.nuget.org/packages/BindOpen.Scoping.Extensions) | Classes of extensions |
 | [BindOpen.Scoping.Script](https://www.nuget.org/packages/BindOpen.Scoping.Script) | Script interpreter |
-| [BindOpen.IO](https://www.nuget.org/packages/BindOpen.IO) | Serialization / Deserialization |
-| [BindOpen.IO.Dtos](https://www.nuget.org/packages/BindOpen.IO.Dtos) | Data transfer classes |
+| [BindOpen.Db](https://www.nuget.org/packages/BindOpen.Db) | Serialization / Deserialization |
+| [BindOpen.Db.Dbs](https://www.nuget.org/packages/BindOpen.Db.Dbs) | Data transfer classes |
 
 The atomicity of these packages allows you install only what you need respecting your solution's architecture.
 
@@ -210,7 +210,7 @@ The BindOpen Docs are the ideal place to start if you are new to BindOpen. They 
 The BindOpen Blog is where we announce new features, write engineering blog posts, demonstrate proof-of-concepts and features under development.
 
 
-## Feedback
+## FeedbItemack
 
 If you're having trouble with BindOpen, file a bug on the [BindOpen Issue Tracker](https://github.com/bindopen/BindOpen/issues). 
 

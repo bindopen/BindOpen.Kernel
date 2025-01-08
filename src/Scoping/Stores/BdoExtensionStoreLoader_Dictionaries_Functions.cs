@@ -53,7 +53,7 @@ namespace BindOpen.Scoping
                     var definition = new BdoFunctionDefinition(null, packageDefinition)
                     {
                         RuntimeClassType = type,
-                        LibraryId = packageDefinition?.Id
+                        LibraryId = packageDefinition?.Identifier
                     };
 
                     definition.UpdateFrom(methodInfo);

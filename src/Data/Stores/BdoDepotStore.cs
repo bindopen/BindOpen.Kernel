@@ -94,7 +94,7 @@ namespace BindOpen.Data.Stores
                 if (depot != null)
                 {
                     depot.WithScope(scope);
-                    var childLog = log?.InsertChild(EventKinds.Message, "Loading depot '" + depot.Id + "'...");
+                    var childLog = log?.InsertChild(EventKinds.Message, "Loading depot '" + depot.Identifier + "'...");
                     loaded &= depot.LoadLazy(childLog);
 
                     if (childLog?.HasEvent(EventKinds.Error, EventKinds.Exception) == true)

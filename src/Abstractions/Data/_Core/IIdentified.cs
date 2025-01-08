@@ -8,6 +8,6 @@
         /// <summary>
         /// ID of this object.
         /// </summary>
-        string Id { get; set; }
+        string Identifier { get; set; }
     }
 }

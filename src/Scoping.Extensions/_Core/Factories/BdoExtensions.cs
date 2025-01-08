@@ -22,7 +22,8 @@ namespace BindOpen.Scoping
 
                 var meta = BdoData.NewObject(name)
                     .WithDataType(extensionKind, extensionDefinition?.UniqueName)
-                    .WithId(extension?.Id)
+                    .WithId(extension?.Identifier)
+                    .WithScope(scope)
                     .WithData(extension)
                     .UpdateTree(onlyMetaAttributes)
                     .WithName(name);

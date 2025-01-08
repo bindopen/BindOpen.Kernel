@@ -105,7 +105,7 @@ namespace BindOpen.Scoping.Script
         /// Returns a string that represents this instance.
         /// </summary>
         /// <returns>Retuns the string that represents this instance.</returns>
-        public override string Key() => Id;
+        public override string Key() => Identifier;
 
         /// <summary>
         /// Get the root script word of this instance.

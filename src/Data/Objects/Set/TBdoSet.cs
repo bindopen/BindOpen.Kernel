@@ -332,7 +332,7 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        public string Id { get; set; }
+        public string Identifier { get; set; }
 
         #endregion
 
@@ -345,7 +345,7 @@ namespace BindOpen.Data
         /// <summary>
         /// 
         /// </summary>
-        public virtual string Key() => Id;
+        public virtual string Key() => Identifier;
 
         #endregion
 
@@ -363,9 +363,9 @@ namespace BindOpen.Data
         {
             var obj = base.Clone().As<TBdoSet<T>>();
 
-            if (!string.IsNullOrEmpty(Id))
+            if (!string.IsNullOrEmpty(Identifier))
             {
-                obj.Id = StringHelper.NewGuid();
+                obj.Identifier = StringHelper.NewGuid();
             }
             obj._items = _items?.Select(p =>
             {
