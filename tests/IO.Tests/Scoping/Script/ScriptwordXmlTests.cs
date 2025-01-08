@@ -7,7 +7,7 @@ namespace BindOpen.Scoping.Script;
 [TestFixture, Order(210)]
 public class ScriptwordXmlTests
 {
-    private readonly string _filePath_xml = GlobalTestData.WorkingFolder + "Scriptword{0}.xml";
+    private readonly string _filePath_xml = DataTestData.WorkingFolder + "Scriptword{0}.xml";
     private BdoScriptwordTests _dataTests;
     private bool _isSaved1 = false;
     private bool _isSaved2 = false;

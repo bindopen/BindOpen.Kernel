@@ -11,6 +11,8 @@ public partial class DataDbContext : DbContext
         return Configurations
             .Include(q => q.Children)
             .Include(q => q.Description)
+            .Include(q => q.Items)
+            .Include(q => q.Title)
             .FirstOrDefault(q => q.Identifier == identifier);
     }
 
@@ -33,7 +35,7 @@ public partial class DataDbContext : DbContext
         return dbItem;
     }
 
-    public IBdoConfiguration Delete(IBdoConfiguration poco)
+    public IBdoConfiguration Delete(IBdoConfiguration poco, bool removeItems = true)
     {
         if (poco == null) return null;
 

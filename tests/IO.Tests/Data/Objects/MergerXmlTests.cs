@@ -6,7 +6,7 @@ namespace BindOpen.Data;
 [TestFixture, Order(210)]
 public class MergerXmlTests
 {
-    private readonly string _filePath_xml = GlobalTestData.WorkingFolder + "Merger{0}.xml";
+    private readonly string _filePath_xml = DataTestData.WorkingFolder + "Merger{0}.xml";
     private BdoMergerTests _dataTests;
     private bool _isSaved1 = false;
     private bool _isSaved2 = false;

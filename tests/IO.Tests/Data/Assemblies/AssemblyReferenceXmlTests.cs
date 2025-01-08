@@ -6,7 +6,7 @@ namespace BindOpen.Data.Assemblies;
 [TestFixture, Order(210)]
 public class AssemblyReferenceXmlTests
 {
-    private readonly string _filePath_xml = GlobalTestData.WorkingFolder + "AssemblyReference{0}.xml";
+    private readonly string _filePath_xml = DataTestData.WorkingFolder + "AssemblyReference{0}.xml";
     private BdoAssemblyReferenceTests _dataTests;
     private bool _isSaved1 = false;
     private bool _isSaved2 = false;

@@ -7,12 +7,16 @@ namespace BindOpen.Data;
 public class ReferenceDbTests
 {
     private BdoReferenceTests _dataTests;
+    private BdoScopingReferenceTests _scopingTests;
 
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
         _dataTests = new BdoReferenceTests();
         _dataTests.OneTimeSetUp();
+
+        _scopingTests = new BdoScopingReferenceTests();
+        _scopingTests.OneTimeSetUp();
     }
 
     [Test, Order(1)]
@@ -67,7 +71,7 @@ public class ReferenceDbTests
 
         using var dbContext = GlobalIOTestData.CreateDbContext();
         var id = _dataTests._reference?.Identifier;
-        _dataTests.Create3Test();
+        _scopingTests.Create3Test();
         _dataTests._reference.Identifier = id;
 
         dbContext.Upsert(reference);

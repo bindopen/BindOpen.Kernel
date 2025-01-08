@@ -9,7 +9,7 @@ public static class GlobalIOTestData
     /// </summary>
     public static string GetDbFilePath()
     {
-        return GlobalTestData.WorkingFolder + "database.db";
+        return DataTestData.WorkingFolder + "database.db";
     }
 
     /// <summary>

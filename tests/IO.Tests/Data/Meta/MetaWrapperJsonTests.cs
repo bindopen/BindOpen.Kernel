@@ -7,7 +7,7 @@ namespace BindOpen.Data.Meta;
 [TestFixture, Order(201)]
 public class MetaWrapperJsonTests
 {
-    private readonly string _filePath_json = GlobalTestData.WorkingFolder + "MetaWrapper.json";
+    private readonly string _filePath_json = DataTestData.WorkingFolder + "MetaWrapper.json";
 
     private MetaWrapperFake _wrapper;
 
@@ -57,7 +57,7 @@ public class MetaWrapperJsonTests
         }
 
         var config = JsonHelper.LoadJson<ConfigurationDto>(_filePath_json).ToPoco();
-        var wrapper = GlobalTestData.Scope.NewMetaWrapper<MetaWrapperFake>(config);
+        var wrapper = ScopingTestData.Scope.NewMetaWrapper<MetaWrapperFake>(config);
         Test(wrapper);
     }
 }

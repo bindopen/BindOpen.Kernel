@@ -8,7 +8,7 @@ namespace BindOpen.Data.Meta;
 [TestFixture, Order(201)]
 public class SpecJsonTests
 {
-    private readonly string _filePath_json = GlobalTestData.WorkingFolder + "Spec.json";
+    private readonly string _filePath_json = DataTestData.WorkingFolder + "Spec.json";
 
     private IBdoSpec _spec;
 

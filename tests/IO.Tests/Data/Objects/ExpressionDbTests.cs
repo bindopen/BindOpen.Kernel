@@ -7,12 +7,16 @@ namespace BindOpen.Data;
 public class ExpressionDbTests
 {
     private BdoExpressionTests _dataTests;
+    private BdoScopingExpressionTests _scopingTests;
 
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
         _dataTests = new BdoExpressionTests();
         _dataTests.OneTimeSetUp();
+
+        _scopingTests = new BdoScopingExpressionTests();
+        _scopingTests.OneTimeSetUp();
     }
 
     [Test, Order(1)]
@@ -66,7 +70,7 @@ public class ExpressionDbTests
         var id = _dataTests._exp?.Identifier;
 
         using var dbContext = GlobalIOTestData.CreateDbContext();
-        _dataTests.Create3Test();
+        _scopingTests.Create3Test();
         var exp = _dataTests._exp;
         exp.Identifier = id;
 

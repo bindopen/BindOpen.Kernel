@@ -6,8 +6,9 @@ namespace BindOpen.Data;
 [TestFixture, Order(210)]
 public class ReferenceJsonTests
 {
-    private readonly string _filePath_json = GlobalTestData.WorkingFolder + "Reference{0}.json";
+    private readonly string _filePath_json = DataTestData.WorkingFolder + "Reference{0}.json";
     private BdoReferenceTests _dataTests;
+    private BdoScopingReferenceTests _scopingTests;
     private bool _isSaved1 = false;
     private bool _isSaved2 = false;
     private bool _isSaved3 = false;
@@ -19,6 +20,9 @@ public class ReferenceJsonTests
 
         _dataTests = new BdoReferenceTests();
         _dataTests.OneTimeSetUp();
+
+        _scopingTests = new BdoScopingReferenceTests();
+        _scopingTests.OneTimeSetUp();
     }
 
     // Test 1
@@ -84,7 +88,7 @@ public class ReferenceJsonTests
     [Test, Order(30)]
     public void SaveJson3Test()
     {
-        _dataTests.Create3Test();
+        _scopingTests.Create3Test();
         var reference = _dataTests._reference;
 
         var filePath = string.Format(_filePath_json, 3);

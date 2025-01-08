@@ -12,7 +12,7 @@ namespace BindOpen.Data.Meta;
 [TestFixture, Order(202)]
 public class MetaScalarSetJsonTests
 {
-    private readonly string _filePath_json = GlobalTestData.WorkingFolder + "MetaScalarSet.json";
+    private readonly string _filePath_json = DataTestData.WorkingFolder + "MetaScalarSet.json";
 
     private dynamic _testData;
 

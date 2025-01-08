@@ -16,9 +16,9 @@ namespace BindOpen.Scoping
         {
             //// we delete the working folder
 
-            //if (Directory.Exists(GlobalTestData.WorkingFolder))
+            //if (Directory.Exists(DataTestData.WorkingFolder))
             //{
-            //    Directory.Delete(GlobalTestData.WorkingFolder, true);
+            //    Directory.Delete(DataTestData.WorkingFolder, true);
             //}
         }
     }

@@ -6,7 +6,7 @@ namespace BindOpen.Data.Assemblies;
 [TestFixture, Order(210)]
 public class AssemblyReferenceJsonTests
 {
-    private readonly string _filePath_json = GlobalTestData.WorkingFolder + "AssemblyReference{0}.json";
+    private readonly string _filePath_json = DataTestData.WorkingFolder + "AssemblyReference{0}.json";
     private BdoAssemblyReferenceTests _dataTests;
     private bool _isSaved1 = false;
     private bool _isSaved2 = false;

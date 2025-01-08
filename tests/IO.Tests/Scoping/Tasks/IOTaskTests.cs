@@ -27,10 +27,10 @@ namespace BindOpen.Scoping.Tasks
             if (_task == null)
             {
                 IBdoMetaObject meta = BdoTaskFaker.NewMetaObject(_testData);
-                _task = GlobalTestData.Scope.CreateTask<TaskFake>(meta);
+                _task = ScopingTestData.Scope.CreateTask<TaskFake>(meta);
             }
 
-            var isSaved = _task.ToMeta(GlobalTestData.Scope).ToDto().SaveXml(BdoTaskFaker.XmlFilePath);
+            var isSaved = _task.ToMeta(ScopingTestData.Scope).ToDto().SaveXml(BdoTaskFaker.XmlFilePath);
 
             Assert.That(isSaved, "Task saving failed");
         }
@@ -44,7 +44,7 @@ namespace BindOpen.Scoping.Tasks
             }
 
             var meta = XmlHelper.LoadXml<MetaObjectDto>(BdoTaskFaker.XmlFilePath).ToPoco();
-            var task = GlobalTestData.Scope.CreateTask<TaskFake>(meta);
+            var task = ScopingTestData.Scope.CreateTask<TaskFake>(meta);
 
             Assert.That(task != null, "Task loading failed");
 
@@ -59,10 +59,10 @@ namespace BindOpen.Scoping.Tasks
             if (_task == null)
             {
                 IBdoMetaObject meta = BdoTaskFaker.NewMetaObject(_testData);
-                _task = GlobalTestData.Scope.CreateTask<TaskFake>(meta);
+                _task = ScopingTestData.Scope.CreateTask<TaskFake>(meta);
             }
 
-            var isSaved = _task.ToMeta(GlobalTestData.Scope).ToDto().SaveJson(BdoTaskFaker.JsonFilePath);
+            var isSaved = _task.ToMeta(ScopingTestData.Scope).ToDto().SaveJson(BdoTaskFaker.JsonFilePath);
 
             Assert.That(isSaved, "Task saving failed");
         }
@@ -76,7 +76,7 @@ namespace BindOpen.Scoping.Tasks
             }
 
             var meta = JsonHelper.LoadJson<MetaObjectDto>(BdoTaskFaker.JsonFilePath).ToPoco();
-            var task = GlobalTestData.Scope.CreateTask<TaskFake>(meta);
+            var task = ScopingTestData.Scope.CreateTask<TaskFake>(meta);
 
             Assert.That(task != null, "Task loading failed");
 

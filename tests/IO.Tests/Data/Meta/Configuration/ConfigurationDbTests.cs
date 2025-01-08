@@ -92,8 +92,7 @@ public class ConfigurationDbTests
         var config = _dataTests._config10;
 
         using var dbContext = GlobalIOTestData.CreateDbContext();
-        var dto = config.ToDb(dbContext);
-        dbContext.Remove(dto);
+        dbContext.Delete(config);
         dbContext.SaveChanges();
 
         var configDb = dbContext.GetConfiguration(config.Identifier).ToPoco();

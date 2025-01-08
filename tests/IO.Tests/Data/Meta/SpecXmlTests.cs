@@ -8,7 +8,7 @@ namespace BindOpen.Data.Meta;
 [TestFixture, Order(201)]
 public class SpecXmlTests
 {
-    private readonly string _filePath_xml = GlobalTestData.WorkingFolder + "Spec.xml";
+    private readonly string _filePath_xml = DataTestData.WorkingFolder + "Spec.xml";
 
     private IBdoSpec _spec;
 

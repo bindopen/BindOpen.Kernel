@@ -6,7 +6,7 @@ namespace BindOpen.Data.Meta;
 [TestFixture, Order(210)]
 public class ConfigurationJsonTests
 {
-    private readonly string _filePath_json = GlobalTestData.WorkingFolder + "Configuration{0}.json";
+    private readonly string _filePath_json = DataTestData.WorkingFolder + "Configuration{0}.json";
     private BdoConfigurationTests _dataTests;
     private bool _isSaved1 = false;
     private bool _isSaved2 = false;

@@ -6,8 +6,9 @@ namespace BindOpen.Data;
 [TestFixture, Order(210)]
 public class ExpressionJsonTests
 {
-    private readonly string _filePath_json = GlobalTestData.WorkingFolder + "Expression{0}.json";
+    private readonly string _filePath_json = DataTestData.WorkingFolder + "Expression{0}.json";
     private BdoExpressionTests _dataTests;
+    private BdoScopingExpressionTests _scopingTests;
     private bool _isSaved1 = false;
     private bool _isSaved2 = false;
     private bool _isSaved3 = false;
@@ -19,6 +20,10 @@ public class ExpressionJsonTests
 
         _dataTests = new BdoExpressionTests();
         _dataTests.OneTimeSetUp();
+
+        _scopingTests = new BdoScopingExpressionTests();
+        _scopingTests.OneTimeSetUp();
+
     }
 
     // Test 1
@@ -84,7 +89,7 @@ public class ExpressionJsonTests
     [Test, Order(30)]
     public void SaveJson3Test()
     {
-        _dataTests.Create3Test();
+        _scopingTests.Create3Test();
         var exp = _dataTests._exp;
 
         var filePath = string.Format(_filePath_json, 3);

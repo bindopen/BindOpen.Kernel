@@ -12,7 +12,7 @@ namespace BindOpen.Data.Meta;
 [TestFixture, Order(202)]
 public class MetaScalarSetXmlTests
 {
-    private readonly string _filePath_xml = GlobalTestData.WorkingFolder + "MetaScalarSet.xml";
+    private readonly string _filePath_xml = DataTestData.WorkingFolder + "MetaScalarSet.xml";
 
     private dynamic _testData;
 

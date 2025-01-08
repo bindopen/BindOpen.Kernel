@@ -7,7 +7,7 @@ namespace BindOpen.Data;
 [TestFixture, Order(210)]
 public class StringDictionaryJsonTests
 {
-    private readonly string _filePath_json = GlobalTestData.WorkingFolder + "StringDictionary{0}.json";
+    private readonly string _filePath_json = DataTestData.WorkingFolder + "StringDictionary{0}.json";
     private BdoStringDictionaryTests _dataTests;
     private bool _isSaved1 = false;
     private bool _isSaved2 = false;

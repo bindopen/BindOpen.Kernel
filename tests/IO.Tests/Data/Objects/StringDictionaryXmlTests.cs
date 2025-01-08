@@ -7,7 +7,7 @@ namespace BindOpen.Data;
 [TestFixture, Order(210)]
 public class StringDictionaryXmlTests
 {
-    private readonly string _filePath_xml = GlobalTestData.WorkingFolder + "StringDictionary{0}.xml";
+    private readonly string _filePath_xml = DataTestData.WorkingFolder + "StringDictionary{0}.xml";
     private BdoStringDictionaryTests _dataTests;
     private bool _isSaved1 = false;
     private bool _isSaved2 = false;

@@ -7,7 +7,7 @@ namespace BindOpen.Data.Meta;
 [TestFixture, Order(201)]
 public class MetaWrapperXmlTests
 {
-    private readonly string _filePath_xml = GlobalTestData.WorkingFolder + "MetaWrapper.xml";
+    private readonly string _filePath_xml = DataTestData.WorkingFolder + "MetaWrapper.xml";
 
     private MetaWrapperFake _wrapper;
 
@@ -57,7 +57,7 @@ public class MetaWrapperXmlTests
         }
 
         var config = XmlHelper.LoadXml<ConfigurationDto>(_filePath_xml).ToPoco();
-        var wrapper = GlobalTestData.Scope.NewMetaWrapper<MetaWrapperFake>(config);
+        var wrapper = ScopingTestData.Scope.NewMetaWrapper<MetaWrapperFake>(config);
         Test(wrapper);
     }
 }

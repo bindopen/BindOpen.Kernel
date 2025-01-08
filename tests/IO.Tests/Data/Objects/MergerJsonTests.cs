@@ -6,7 +6,7 @@ namespace BindOpen.Data;
 [TestFixture, Order(210)]
 public class MergerJsonTests
 {
-    private readonly string _filePath_json = GlobalTestData.WorkingFolder + "Merger{0}.json";
+    private readonly string _filePath_json = DataTestData.WorkingFolder + "Merger{0}.json";
     private BdoMergerTests _dataTests;
     private bool _isSaved1 = false;
     private bool _isSaved2 = false;

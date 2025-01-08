@@ -6,7 +6,7 @@
     <PackageId>BindOpen.IO</PackageId>
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
-    <Copyright>Copyright ©BindOpen 2011-2024</Copyright>
+    <Copyright>Copyright © BindOpen 2011-2025</Copyright>
     <Description>This package allows to convert core classes from and to core DTOs.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.IO</RootNamespace>
