@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns="https://storage.bindopen.org/xsd/bindopen/kernel" elementFormDefault="qualified" targetNamespace="https://storage.bindopen.org/xsd/bindopen/kernel" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoExtensionDefinition.xsd" />
-  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/TBdoSet<IBdoSpec>.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/TBdoSet<IBdoSchema>.xsd" />
 
   <xs:complexType name="BdoTaskDefinition">
     <xs:complexContent mixed="false">
@@ -10,8 +10,8 @@
           <xs:element minOccurs="0" maxOccurs="1" name="itemClass" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="groupName" type="xs:string" />
           <xs:element minOccurs="1" maxOccurs="1" name="isExecutable" type="xs:boolean" />
-          <xs:element minOccurs="0" maxOccurs="1" name="input.detail" type="TBdoSet<IBdoSpec>" />
-          <xs:element minOccurs="0" maxOccurs="1" name="output.detail" type="TBdoSet<IBdoSpec>" />
+          <xs:element minOccurs="0" maxOccurs="1" name="input.detail" type="TBdoSet<IBdoSchema>" />
+          <xs:element minOccurs="0" maxOccurs="1" name="output.detail" type="TBdoSet<IBdoSchema>" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

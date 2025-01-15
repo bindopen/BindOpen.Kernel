@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BindOpen.Data.Assemblies;
 using BindOpen.Data.Helpers;
+using BindOpen.Data.Schema;
 using BindOpen.Scoping.Script;
 using System.Linq;
 
@@ -62,7 +63,7 @@ namespace BindOpen.Data.Meta
             MapperConfiguration config;
             Mapper mapper;
 
-            if (typeof(T).IsAssignableFrom(typeof(ScriptwordDb))
+            if (typeof(ScriptwordDb).IsAssignableFrom(typeof(T))
                 && dbItem is ScriptwordDb scriptDb
                 && poco is IBdoScriptword script)
             {
@@ -76,7 +77,7 @@ namespace BindOpen.Data.Meta
                     cfg => cfg.CreateMap<IBdoMetaScalar, T>()
                         .ForMember(q => q.ClassReference, opt => opt.Ignore())
                         .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDb(context)))
-                        .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.Spec.ToDb(context)))
+                        .ForMember(q => q.Schema, opt => opt.MapFrom(q => q.Schema.ToDb(context)))
                 );
 
                 mapper = new Mapper(config);
@@ -91,7 +92,7 @@ namespace BindOpen.Data.Meta
                         .ForMember(q => q.ClassReference, opt => opt.Ignore())
                         .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDb(context)))
                         .ForMember(q => q.MetaItems, opt => opt.Ignore())
-                        .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.Spec.ToDb(context)))
+                        .ForMember(q => q.Schema, opt => opt.MapFrom(q => q.Schema.ToDb(context)))
                 );
 
                 mapper = new Mapper(config);
@@ -124,7 +125,7 @@ namespace BindOpen.Data.Meta
 
             dbItem.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
             dbItem.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;
-            if (poco.Spec?.DataType.ValueType == poco.DataType?.ValueType)
+            if (poco.Schema?.DataType.ValueType == poco.DataType?.ValueType)
             {
                 dbItem.ValueType = DataValueTypes.Any;
             }
@@ -169,7 +170,7 @@ namespace BindOpen.Data.Meta
                                 .ForMember(q => q.DataType, opt => opt.Ignore())
                                 .ForMember(q => q.Items, opt => opt.Ignore())
                                 .ForMember(q => q.Parent, opt => opt.Ignore())
-                                .ForMember(q => q.Spec, opt => opt.Ignore())
+                                .ForMember(q => q.Schema, opt => opt.Ignore())
                             );
 
                         mapper = new Mapper(config);
@@ -181,7 +182,7 @@ namespace BindOpen.Data.Meta
                             Identifier = dbItem.Identifier,
                             ValueType = dbItem.ValueType
                         };
-                        obj.Spec = dbItem.Spec.ToPoco();
+                        obj.Schema = dbItem.Schema.ToPoco();
 
                         obj.With(dbItem.MetaItems?.Select(q => q.ToPoco()).ToArray());
                         return obj;
@@ -191,7 +192,7 @@ namespace BindOpen.Data.Meta
                             .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToPoco()))
                             .ForMember(q => q.DataType, opt => opt.Ignore())
                             .ForMember(q => q.Parent, opt => opt.Ignore())
-                            .ForMember(q => q.Spec, opt => opt.Ignore())
+                            .ForMember(q => q.Schema, opt => opt.Ignore())
                         );
 
                         mapper = new Mapper(config);
@@ -203,7 +204,7 @@ namespace BindOpen.Data.Meta
                             Identifier = dbItem.Identifier,
                             ValueType = dbItem.ValueType
                         };
-                        scalar.Spec = dbItem.Spec.ToPoco();
+                        scalar.Schema = dbItem.Schema.ToPoco();
 
                         var objects = dbItem.Items?.Select(q => q.ToObject(scalar.DataType.ValueType)).ToList();
                         scalar.WithData(objects);
@@ -216,7 +217,7 @@ namespace BindOpen.Data.Meta
                             .ForMember(q => q.DataType, opt => opt.Ignore())
                             .ForMember(q => q.Items, opt => opt.Ignore())
                             .ForMember(q => q.Parent, opt => opt.Ignore())
-                            .ForMember(q => q.Spec, opt => opt.Ignore())
+                            .ForMember(q => q.Schema, opt => opt.Ignore())
                         );
 
                         mapper = new Mapper(config);
@@ -228,7 +229,7 @@ namespace BindOpen.Data.Meta
                             Identifier = dbItem.Identifier,
                             ValueType = dbItem.ValueType
                         };
-                        node.Spec = dbItem.Spec.ToPoco();
+                        node.Schema = dbItem.Schema.ToPoco();
 
                         node.With(dbItem.MetaItems?.Select(q => q.ToPoco()).ToArray());
                         return node;

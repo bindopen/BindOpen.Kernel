@@ -63,7 +63,7 @@ namespace BindOpen.Scoping.Tasks
         public List<MetaDataDto> InputSpecification { get; set; }
 
         /// <summary>
-        /// Indicates whether the input specification property must be ignored.
+        /// Indicates whether the input schema property must be ignored.
         /// </summary>
         [NotMapped]
         [JsonIgnore]
@@ -82,7 +82,7 @@ namespace BindOpen.Scoping.Tasks
         public List<MetaDataDto> OutputSpecification { get; set; }
 
         /// <summary>
-        /// Indicates whether the output specification property must be ignored.
+        /// Indicates whether the output schema property must be ignored.
         /// </summary>
         [NotMapped]
         [JsonIgnore]

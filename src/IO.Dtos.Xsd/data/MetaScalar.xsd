@@ -8,7 +8,7 @@
     <xs:complexContent mixed="false">
       <xs:extension base="BdoElement" >
         <xs:sequence>
-          <xs:element minOccurs="0" maxOccurs="1" name="specification" type="ScalarElementSpec" />
+          <xs:element minOccurs="0" maxOccurs="1" name="schema" type="ScalarElementSpec" />
         </xs:sequence>
         <xs:attribute use="optional" name="valueType" type="DataValueType" />
         <xs:attribute use="optional" name="value" type="xs:string" />

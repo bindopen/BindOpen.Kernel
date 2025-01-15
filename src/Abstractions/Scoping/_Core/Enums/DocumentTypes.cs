@@ -3,7 +3,7 @@
 namespace BindOpen.Scoping
 {
     /// <summary>
-    /// This enumeration lists the possible kinds of script items.
+    /// This enumerates the possible kinds of script items.
     /// </summary>
     [Flags]
     public enum DocumentTypes

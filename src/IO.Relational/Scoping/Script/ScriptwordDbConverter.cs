@@ -2,6 +2,7 @@
 using BindOpen.Data;
 using BindOpen.Data.Assemblies;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Schema;
 using BindOpen.Scoping.Script;
 using System.Linq;
 
@@ -75,7 +76,7 @@ namespace BindOpen.Scoping.Script
                     .ForMember(q => q.Items, opt => opt.Ignore())
                     .ForMember(q => q.Parent, opt => opt.Ignore())
                     .ForMember(q => q.Reference, opt => opt.Ignore())
-                    .ForMember(q => q.Spec, opt => opt.Ignore())
+                    .ForMember(q => q.Schema, opt => opt.Ignore())
                 );
 
             var mapper = new Mapper(config);
@@ -89,7 +90,7 @@ namespace BindOpen.Scoping.Script
                 Identifier = dbItem.Identifier,
                 ValueType = DataValueTypes.Scriptword
             };
-            poco.Spec = dbItem.Spec.ToPoco();
+            poco.Schema = dbItem.Schema.ToPoco();
             poco.ExpressionKind = BdoExpressionKind.Word;
 
             poco.With(dbItem.MetaItems?.Select(q => q.ToPoco()).ToArray());

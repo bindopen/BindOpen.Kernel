@@ -46,6 +46,11 @@ namespace BindOpen.Scoping
         /// </summary>
         public string RootNamespace { get; set; }
 
+        /// <summary>
+        /// The alias of this instance.
+        /// </summary>
+        public string Alias { get; set; }
+
         // Files -------------------------------------
 
         /// <summary>

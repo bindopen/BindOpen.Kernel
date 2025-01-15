@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Schema;
 using BindOpen.Logging;
 using BindOpen.Scoping;
 using BindOpen.Scoping.Tasks;
@@ -51,26 +52,26 @@ namespace BindOpen.Scoping
                 foreach (var prop in type.GetProperties()
                     .Where(p => p.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any()))
                 {
-                    var spec = BdoData.NewSpec();
-                    spec.UpdateFrom(prop, typeof(BdoPropertyAttribute));
-                    definition.Add(spec);
+                    var schema = BdoData.NewSchema();
+                    schema.UpdateFrom(prop, typeof(BdoPropertyAttribute));
+                    definition.Add(schema);
                 }
 
                 foreach (var prop in type.GetProperties()
                     .Where(p => p.GetCustomAttributes(typeof(BdoInputAttribute)).Any()))
                 {
-                    var spec = BdoData.NewSpec();
-                    spec.UpdateFrom(prop, typeof(BdoInputAttribute));
-                    definition.Add(spec);
+                    var schema = BdoData.NewSchema();
+                    schema.UpdateFrom(prop, typeof(BdoInputAttribute));
+                    definition.Add(schema);
                 }
 
-                definition.OutputSpecs ??= BdoData.NewSpecSet();
+                definition.Outputs ??= BdoData.NewSchemaSet();
                 foreach (var prop in type.GetProperties()
                     .Where(p => p.GetCustomAttributes(typeof(BdoOutputAttribute)).Any()))
                 {
-                    var spec = BdoData.NewSpec();
-                    spec.UpdateFrom(prop, typeof(BdoOutputAttribute));
-                    definition.OutputSpecs.Add((IBdoSpec)spec);
+                    var schema = BdoData.NewSchema();
+                    schema.UpdateFrom(prop, typeof(BdoOutputAttribute));
+                    definition.Outputs.Add((IBdoSchema)schema);
                 }
 
                 // we build the runtime definition

@@ -24,8 +24,8 @@ namespace BindOpen.Data
             this IBdoMetaData meta,
             string groupId)
         {
-            var spec = meta?.Spec;
-            return spec == null || spec.OfGroup(groupId);
+            var schema = meta?.Schema;
+            return schema == null || schema.OfGroup(groupId);
         }
     }
 }

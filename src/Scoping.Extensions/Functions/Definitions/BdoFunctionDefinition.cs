@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Assemblies;
-using BindOpen.Data.Meta;
+using BindOpen.Data.Schema;
 using System;
 
 namespace BindOpen.Scoping.Functions
@@ -16,7 +16,7 @@ namespace BindOpen.Scoping.Functions
 
         #region Properties
 
-        public ITBdoSet<IBdoSpec> AdditionalSpecs { get; set; }
+        public ITBdoSet<IBdoSchema> AdditionalSchemas { get; set; }
 
         /// <summary>
         /// 

@@ -13,7 +13,7 @@ public partial class DataDbContext : DbContext
             .Include(q => q.Child)
             .Include(q => q.ClassReference)
             .Include(q => q.Expression)
-            .Include(q => q.Spec)
+            .Include(q => q.Schema)
             .FirstOrDefault(q => q.Identifier == identifier);
     }
 

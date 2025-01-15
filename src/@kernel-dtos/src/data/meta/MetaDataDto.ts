@@ -2,10 +2,10 @@
 
 import { ReferenceDto } from "../objects/reference/ReferenceDto";
 import { SpecDto } from "./definition/SpecDto";
-import { IBdoTypedDto } from "../assemblies/IBdoTyped";
+import { IBdoDataTyped } from "../assemblies/IBdoTyped";
 import { BdoMetaDataKinds } from "./enums/BdoMetaDataKinds";
 
-export interface MetaDataDto extends IBdoTypedDto {
+export interface MetaDataDto extends IBdoDataTyped {
     id: string;
     parentId: string;
     metaKind: BdoMetaDataKinds;

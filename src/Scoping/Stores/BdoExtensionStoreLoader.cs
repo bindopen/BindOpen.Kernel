@@ -39,11 +39,10 @@ namespace BindOpen.Scoping
         }
 
         /// <summary>
-        /// Loads the specified extensions into the specified scope.
+        /// Loads all the extensions from the specified application domain.
         /// </summary>
-        /// <param key="references">The library references to consider.</param>
         /// <param key="log">The log to consider.</param>
-        public bool LoadPackages(IBdoLog log = null)
+        public bool LoadAll(IBdoLog log = null)
         {
             if (_store == null) return false;
 
@@ -73,7 +72,7 @@ namespace BindOpen.Scoping
                 {
                     if (reference != null)
                     {
-                        loaded &= LoadPackage(reference, loadedAssemblyNames, childLog);
+                        loaded &= LoadAll(reference, loadedAssemblyNames, childLog);
 
                         if (log?.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning) == true)
                         {
@@ -91,12 +90,13 @@ namespace BindOpen.Scoping
         }
 
         /// <summary>
-        /// Loads the specified library.
+        /// Loads all the extensions from the specifeid reference.
         /// </summary>
-        /// <param key="libraryReference">The library reference to consider.</param>
+        /// <param key="reference">The assembly reference to consider.</param>
+        /// <param key="loadedAssemblyNames">The loaded assembly names to consider.</param>
         /// <param key="log">The log to consider.</param>
         /// <returns>Returns the loaded library.</returns>
-        private bool LoadPackage(
+        private bool LoadAll(
             IBdoAssemblyReference reference,
             List<string> loadedAssemblyNames,
             IBdoLog log = null)
@@ -189,6 +189,10 @@ namespace BindOpen.Scoping
                             // we get the extension definition
 
                             var packageDefinition = ExtractPackageDefinition(assembly, null, log);
+                            if (packageDefinition != null)
+                            {
+                                packageDefinition.Alias = reference.Alias;
+                            }
 
                             // we load the using assemblies
 
@@ -198,20 +202,20 @@ namespace BindOpen.Scoping
                                 {
                                     IBdoLog subChildLog = log?.NewLog()
                                         .WithTitle("Loading using extensions...");
-                                    loaded &= LoadPackage(usingReference, loadedAssemblyNames, subChildLog);
+                                    loaded &= LoadAll(usingReference, loadedAssemblyNames, subChildLog);
                                 }
                             }
 
                             // we load the item definition specifiying the extension definition
 
                             var extensionKinds = _loadOptions.ExtensionKinds?.ToArray()
-                                ?? new[]
-                                {
+                                ??
+                                [
                                     BdoExtensionKinds.Connector,
                                     BdoExtensionKinds.Entity,
                                     BdoExtensionKinds.Function,
                                     BdoExtensionKinds.Task
-                                };
+                                ];
 
                             foreach (var extensionKind in extensionKinds)
                             {

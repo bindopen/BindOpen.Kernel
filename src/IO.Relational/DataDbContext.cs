@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Conditions;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Schema;
 using BindOpen.Scoping;
 using BindOpen.Scoping.Connectors;
 using BindOpen.Scoping.Script;
@@ -34,11 +35,11 @@ public partial class DataDbContext : DbContext
 
     public DbSet<DefinitionDb> Definitions { get; set; }
 
-    public DbSet<SpecDb> Specs { get; set; }
+    public DbSet<SchemaDb> Specs { get; set; }
 
-    public DbSet<SpecRuleDb> SpecRules { get; set; }
+    public DbSet<SchemaRuleDb> SchemaRules { get; set; }
 
-    public DbSet<SpecSetDb> SpecSets { get; set; }
+    public DbSet<SchemaSetDb> SpecSets { get; set; }
 
     // Objects.Dictionary
 
@@ -168,19 +169,19 @@ public partial class DataDbContext : DbContext
                     .OnDelete(DeleteBehavior.ClientCascade),
                 j => j.HasKey($"{nameof(MetaDataDb)[0..^2]}Id", $"{nameof(MetaSetDb)[0..^2]}Id"));
 
-        modelBuilder.Entity<SpecDb>()
+        modelBuilder.Entity<SchemaDb>()
             .HasMany(e => e.Items)
             .WithMany(e => e.Supers)
-            .UsingEntity($"{nameof(SpecDb)}_{nameof(SpecDb)}".Replace("Db", ""),
-                l => l.HasOne(typeof(SpecDb))
+            .UsingEntity($"{nameof(SchemaDb)}_{nameof(SchemaSetDb)}".Replace("Db", ""),
+                l => l.HasOne(typeof(SchemaDb))
                     .WithMany()
-                    .HasForeignKey($"{nameof(SpecDb)[0..^2]}ItemId")
-                    .HasPrincipalKey(nameof(SpecDb.Identifier)),
-                r => r.HasOne(typeof(SpecDb))
+                    .HasForeignKey($"{nameof(SchemaDb)[0..^2]}Id")
+                    .HasPrincipalKey(nameof(SchemaDb.Identifier)),
+                r => r.HasOne(typeof(SchemaDb))
                     .WithMany()
-                    .HasForeignKey($"{nameof(SpecDb)[0..^2]}SetId")
-                    .HasPrincipalKey(nameof(SpecDb.Identifier)),
-                j => j.HasKey($"{nameof(SpecDb)[0..^2]}ItemId", $"{nameof(SpecDb)[0..^2]}SetId"));
+                    .HasForeignKey($"{nameof(SchemaSetDb)[0..^2]}Id")
+                    .HasPrincipalKey(nameof(SchemaSetDb.Identifier)),
+                j => j.HasKey($"{nameof(SchemaDb)[0..^2]}Id", $"{nameof(SchemaSetDb)[0..^2]}Id"));
 
         modelBuilder.Entity<ExtensionGroupDb>()
             .HasMany(e => e.SubGroups)

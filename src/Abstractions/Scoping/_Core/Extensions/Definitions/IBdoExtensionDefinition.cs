@@ -1,5 +1,5 @@
 ﻿using BindOpen.Data;
-using BindOpen.Data.Meta;
+using BindOpen.Data.Schema;
 
 namespace BindOpen.Scoping
 {

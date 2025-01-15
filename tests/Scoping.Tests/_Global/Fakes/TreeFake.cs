@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 
-namespace BindOpen.Tests;
+namespace BindOpen.Scoping.Tests;
 
 /// <summary>
 /// This class represents a fake class.

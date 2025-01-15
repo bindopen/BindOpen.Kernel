@@ -1,10 +1,9 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
-using BindOpen.Scoping;
 using Bogus;
 using System.Dynamic;
 
-namespace BindOpen.Tests;
+namespace BindOpen.Scoping.Tests;
 
 public static class BdoConnectorFaker
 {
@@ -30,7 +29,7 @@ public static class BdoConnectorFaker
 
         var config =
             BdoData.NewObject()
-            .WithDataType(BdoExtensionKinds.Connector, "bindopen.scoping.tests$testConnector")
+            .WithDataType(BdoExtensionKinds.Connector, "scoping.tests$testConnector")
             .With(
                 BdoData.NewScalar("host", data.host as string),
                 BdoData.NewScalar("port", data.port as int?),

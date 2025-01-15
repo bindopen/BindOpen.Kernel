@@ -31,7 +31,7 @@ namespace BindOpen.Scoping
         #region IBdoExtensionGroup
 
         /// <summary>
-        /// Area specifications of this instance.
+        /// Area schemas of this instance.
         /// </summary>
         public IList<IBdoExtensionGroup> SubGroups { get; set; }
 

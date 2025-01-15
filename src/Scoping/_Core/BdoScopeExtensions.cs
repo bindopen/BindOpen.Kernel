@@ -26,7 +26,7 @@ namespace BindOpen.Scoping
                 scope.ExtensionStore,
                 options);
 
-            var result = loader.LoadPackages(log);
+            var result = loader.LoadAll(log);
 
             return result;
         }

@@ -1,7 +1,7 @@
 ﻿namespace BindOpen.Scoping.Script
 {
     /// <summary>
-    /// This class represents an specification level extension.
+    /// This class represents an schema level extension.
     /// </summary>
     public static class ScriptTokenKindsExtension
     {

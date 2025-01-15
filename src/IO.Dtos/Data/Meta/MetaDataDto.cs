@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Schema;
 using BindOpen.Scoping.Script;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -73,9 +74,9 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The elements of this instance.
         /// </summary>
-        [JsonPropertyName("spec")]
-        [XmlElement("spec")]
-        public SpecDto Spec { get; set; }
+        [JsonPropertyName("schema")]
+        [XmlElement("schema")]
+        public SchemaDto Schema { get; set; }
 
         /// <summary>
         /// The value type of this instance.

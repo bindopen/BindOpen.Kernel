@@ -1,10 +1,9 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
-using BindOpen.Scoping;
 using Bogus;
 using System.Dynamic;
 
-namespace BindOpen.Tests;
+namespace BindOpen.Scoping.Tests;
 
 public static class BdoEntityFaker
 {
@@ -33,7 +32,7 @@ public static class BdoEntityFaker
 
         var meta =
             BdoData.NewObject()
-            .WithDataType(BdoExtensionKinds.Entity, "bindopen.scoping.tests$testEntity")
+            .WithDataType(BdoExtensionKinds.Entity, "scoping.tests$testEntity")
             .With(
                 BdoData.NewScalar("boolValue", data.boolValue as bool?),
                 BdoData.NewScalar("enumValue", data.enumValue as AccessibilityLevels?),

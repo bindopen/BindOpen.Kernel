@@ -1,7 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Schema;
 using BindOpen.Logging;
-using BindOpen.Scoping;
 using BindOpen.Scoping.Connectors;
 using Bogus;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BindOpen.Tests;
+namespace BindOpen.Scoping.Tests;
 
 /// <summary>
 /// This class represents a database connection.
@@ -68,7 +68,7 @@ public class ConnectionFake : BdoConnection, ITBdoConnection<EntityFake>
             .Select(q =>
             {
                 var meta = BdoEntityFaker.NewMetaObject()
-                    .WithGroupId(paramSet?.GetData<string>(nameof(BdoSpec.GroupId)));
+                    .WithGroupId(paramSet?.GetData<string>(nameof(BdoSchema.GroupId)));
                 var entity = ScopingTestData.Scope.CreateEntity<EntityFake>(meta);
                 return entity;
             });

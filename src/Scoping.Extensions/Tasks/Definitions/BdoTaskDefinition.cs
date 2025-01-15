@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Assemblies;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Schema;
 using System;
 
 namespace BindOpen.Scoping.Tasks
@@ -33,9 +34,9 @@ namespace BindOpen.Scoping.Tasks
         public float MaximumIndex { get; set; } = 100;
 
         /// <summary>
-        /// Output specification of this instance.
+        /// Output schema of this instance.
         /// </summary>
-        public ITBdoSet<IBdoSpec> OutputSpecs { get; set; }
+        public ITBdoSet<IBdoSchema> Outputs { get; set; }
 
         /// <summary>
         /// The runtime type of this instance.
@@ -128,7 +129,7 @@ namespace BindOpen.Scoping.Tasks
                 return;
             }
 
-            OutputSpecs?.Dispose();
+            Outputs?.Dispose();
 
             _isDisposed = true;
 

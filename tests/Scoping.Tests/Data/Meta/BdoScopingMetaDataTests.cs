@@ -1,4 +1,6 @@
-﻿using BindOpen.Scoping.Script;
+﻿using BindOpen.Data.Schema;
+using BindOpen.Scoping.Script;
+using BindOpen.Scoping.Tests;
 using BindOpen.Tests;
 using NUnit.Framework;
 
@@ -8,13 +10,13 @@ namespace BindOpen.Data.Meta;
 public class BdoScopingMetaDataTests
 {
     private object _obj;
-    private IBdoSpec _spec;
+    private IBdoSchema _schema;
 
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
         _obj = ClassObjectFaker.Fake();
-        _spec = BdoScopingSpecFaker.CreateSpec();
+        _schema = BdoScopingSchemaFaker.CreateSchema();
     }
 
     [Test, Order(1)]
@@ -46,7 +48,7 @@ public class BdoScopingMetaDataTests
     public void ConditionTest()
     {
         var meta0 = BdoData.NewNode("meta-test")
-            .WithSpec(BdoData.NewSpec())
+            .WithSchema(BdoData.NewSchema())
             .With(
                 BdoData.NewScalar("title", "A"));
 
@@ -54,7 +56,7 @@ public class BdoScopingMetaDataTests
         Assert.That(existence0, "Statement - Error");
 
         var meta1 = BdoData.NewNode("meta-test")
-            .WithSpec(_spec)
+            .WithSchema(_schema)
             .With(
                 BdoData.NewScalar("title", "myTitle"));
 
@@ -62,7 +64,7 @@ public class BdoScopingMetaDataTests
         Assert.That(existence1, "Statement - Error");
 
         var meta2 = BdoData.NewNode("meta-test")
-            .WithSpec(_spec)
+            .WithSchema(_schema)
             .With(
                 BdoData.NewScalar("title", "A"));
 

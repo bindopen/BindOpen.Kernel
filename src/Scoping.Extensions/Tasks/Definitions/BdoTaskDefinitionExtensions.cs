@@ -44,13 +44,13 @@ namespace BindOpen.Scoping.Tasks
                 var config = new MapperConfiguration(
                     cfg => cfg.CreateMap<IBdoTaskDefinition, IBdoTaskDefinition>()
                         .ForMember(q => q.Items, opt => opt.Ignore())
-                        .ForMember(q => q.OutputSpecs, opt => opt.Ignore())
+                        .ForMember(q => q.Outputs, opt => opt.Ignore())
                         .ForAllMembers(x => x.Condition(
                           (src, dest, sourceValue) => sourceValue != null))
                 );
 
                 definition.Update(refDef);
-                definition.OutputSpecs.Update(refDef.OutputSpecs);
+                definition.Outputs.Update(refDef.Outputs);
 
                 var mapper = new Mapper(config);
                 mapper.Map(definition, refDef);

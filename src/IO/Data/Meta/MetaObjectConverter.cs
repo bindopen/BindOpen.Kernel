@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BindOpen.Data;
 using BindOpen.Data.Assemblies;
+using BindOpen.Data.Schema;
 using BindOpen.Scoping.Script;
 using System.Linq;
 
@@ -40,7 +41,7 @@ public static class MetaObjectConverter
                 .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDto()))
                 //.ForMember(q => q.Item, opt => opt.Ignore())
                 .ForMember(q => q.MetaItems, opt => opt.Ignore())
-                .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.Spec.ToDto()))
+                .ForMember(q => q.Schema, opt => opt.MapFrom(q => q.Schema.ToDto()))
         );
 
         var mapper = new Mapper(config);
@@ -51,14 +52,14 @@ public static class MetaObjectConverter
 
         dto.MetaItems = poco.Items?.Select(q => q.ToDto()).ToList();
         dto.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;
-        if (poco.Spec?.DataType.ValueType == poco.DataType?.ValueType
+        if (poco.Schema?.DataType.ValueType == poco.DataType?.ValueType
             || poco.DataType.ValueType == DataValueTypes.Object)
         {
             dto.ValueType = DataValueTypes.Any;
         }
-        if (dto.Spec?.ValueType == DataValueTypes.Object)
+        if (dto.Schema?.ValueType == DataValueTypes.Object)
         {
-            dto.Spec.ValueType = DataValueTypes.Any;
+            dto.Schema.ValueType = DataValueTypes.Any;
         }
 
         return dto;
@@ -80,7 +81,7 @@ public static class MetaObjectConverter
                 .ForMember(q => q.DataType, opt => opt.Ignore())
                 .ForMember(q => q.Items, opt => opt.Ignore())
                 .ForMember(q => q.Parent, opt => opt.Ignore())
-                .ForMember(q => q.Spec, opt => opt.Ignore())
+                .ForMember(q => q.Schema, opt => opt.Ignore())
             );
 
         var mapper = new Mapper(config);
@@ -92,7 +93,7 @@ public static class MetaObjectConverter
             Identifier = dto.Identifier,
             ValueType = dto.ValueType
         };
-        poco.Spec = dto.Spec.ToPoco();
+        poco.Schema = dto.Schema.ToPoco();
 
         poco.With(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
 

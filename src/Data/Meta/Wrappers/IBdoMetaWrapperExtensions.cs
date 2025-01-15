@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Schema;
 using System;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -23,10 +24,10 @@ namespace BindOpen.Data.Meta
             var outExpr = (MemberExpression)expr.Body;
             var propInfo = (PropertyInfo)outExpr.Member;
 
-            IBdoSpec spec = BdoData.NewSpec();
-            spec.UpdateFrom<BdoPropertyAttribute>(propInfo);
+            IBdoSchema schema = BdoData.NewSchema();
+            schema.UpdateFrom<BdoPropertyAttribute>(propInfo);
 
-            var propName = spec.Name ?? propInfo.Name;
+            var propName = schema.Name ?? propInfo.Name;
 
             if (propName != null
                 && propName != nameof(IBdoMetaWrapper.Scope)
@@ -61,10 +62,10 @@ namespace BindOpen.Data.Meta
             var outExpr = (MemberExpression)expr.Body;
             var propInfo = (PropertyInfo)outExpr.Member;
 
-            IBdoSpec spec = BdoData.NewSpec();
-            spec.UpdateFrom<BdoPropertyAttribute>(propInfo);
+            IBdoSchema schema = BdoData.NewSchema();
+            schema.UpdateFrom<BdoPropertyAttribute>(propInfo);
 
-            var propName = spec.Name ?? propInfo.Name;
+            var propName = schema.Name ?? propInfo.Name;
 
             if (propName != null
                 && propName != nameof(IBdoMetaWrapper.Scope)
@@ -97,10 +98,10 @@ namespace BindOpen.Data.Meta
             var outExpr = (MemberExpression)expr.Body;
             var propInfo = (PropertyInfo)outExpr.Member;
 
-            IBdoSpec spec = BdoData.NewSpec();
-            spec.UpdateFrom<BdoPropertyAttribute>(propInfo);
+            IBdoSchema schema = BdoData.NewSchema();
+            schema.UpdateFrom<BdoPropertyAttribute>(propInfo);
 
-            var propName = spec.Name ?? propInfo.Name;
+            var propName = schema.Name ?? propInfo.Name;
 
             if (propName != null
                 && propName != nameof(IBdoMetaWrapper.Scope)
@@ -113,7 +114,7 @@ namespace BindOpen.Data.Meta
                 }
                 else
                 {
-                    obj.Detail.Add((propName, spec.DataType?.ValueType ?? DataValueTypes.Any, value));
+                    obj.Detail.Add((propName, schema.DataType?.ValueType ?? DataValueTypes.Any, value));
                 }
 
                 propInfo?.SetValue(obj, value);

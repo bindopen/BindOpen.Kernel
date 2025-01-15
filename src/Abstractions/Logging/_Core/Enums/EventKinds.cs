@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace BindOpen.Logging
 {
     /// <summary>
-    /// This enumeration lists the possible event kinds.
+    /// This enumerates the possible event kinds.
     /// </summary>
     [Flags()]
     [XmlType("EventKinds", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]

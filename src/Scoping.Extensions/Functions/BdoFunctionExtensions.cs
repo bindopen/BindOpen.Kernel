@@ -2,6 +2,7 @@
 using BindOpen.Data.Assemblies;
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Schema;
 using BindOpen.Logging;
 using BindOpen.Scoping.Functions;
 using BindOpen.Scoping.Script;
@@ -135,25 +136,25 @@ namespace BindOpen.Scoping
 
                         // if function is static
 
-                        if (definition.AdditionalSpecs != null)
+                        if (definition.AdditionalSchemas != null)
                         {
-                            foreach (var spec in definition.AdditionalSpecs)
+                            foreach (var schema in definition.AdditionalSchemas)
                             {
                                 object obj = null;
-                                if (spec.GetFlagValue(BdoSpecProperties.IsStatic))
+                                if (schema.GetFlagValue(BdoSchemaProperties.IsStatic))
                                     obj = (paramSet as IBdoScriptword)?.Parent?.GetData();
-                                else if (spec.IsCompatibleWithType(typeof(IBdoScope)))
+                                else if (schema.IsCompatibleWithType(typeof(IBdoScope)))
                                     obj = scope;
-                                else if (spec.IsCompatibleWithType(typeof(IBdoScriptDomain)))
+                                else if (schema.IsCompatibleWithType(typeof(IBdoScriptDomain)))
                                     obj = scope.NewScriptDomain(varSet, paramSet as IBdoScriptword, log);
-                                else if (spec.IsCompatibleWithType(typeof(IBdoScriptword)))
+                                else if (schema.IsCompatibleWithType(typeof(IBdoScriptword)))
                                     obj = paramSet as IBdoScriptword;
-                                else if (spec.IsCompatibleWithType(typeof(IBdoMetaSet)))
+                                else if (schema.IsCompatibleWithType(typeof(IBdoMetaSet)))
                                     obj = varSet;
-                                else if (spec.IsCompatibleWithType(typeof(IBdoLog)))
+                                else if (schema.IsCompatibleWithType(typeof(IBdoLog)))
                                     obj = log;
 
-                                objs.Insert(int.Min(objs.Count, spec.Index ?? 0), obj);
+                                objs.Insert(int.Min(objs.Count, schema.Index ?? 0), obj);
                             }
                         }
 
@@ -213,10 +214,10 @@ namespace BindOpen.Scoping
                     IBdoFunctionDefinition functionDefinition = null;
                     foreach (var definition in functionDefinitions)
                     {
-                        var spec = BdoData.NewSpec().WithChildren(definition.Items?.ToArray());
+                        var schema = BdoData.NewSchema().WithChildren(definition.Items?.ToArray());
 
                         if ((parentDataType == null || parentDataType.IsCompatibleWithType(definition?.ParentDataType) == true)
-                            && (definition.RuntimeFunction != null || (validator?.Check(paramSet, spec, log: log) ?? false)))
+                            && (definition.RuntimeFunction != null || (validator?.Check(paramSet, schema, log: log) ?? false)))
                         {
                             functionDefinition = definition;
                             break;

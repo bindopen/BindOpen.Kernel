@@ -24,6 +24,11 @@ namespace BindOpen.Scoping
         /// <summary>
         /// 
         /// </summary>
+        string Alias { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         string GetRootNamespace();
 

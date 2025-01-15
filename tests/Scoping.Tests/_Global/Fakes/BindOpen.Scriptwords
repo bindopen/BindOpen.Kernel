@@ -29,10 +29,10 @@
       </description>
       <kind>Function</kind>
       <functionName>Fun_Func1</functionName>
-      <parameter.specification>
+      <parameter.schema>
         <scalar name="value1" valueType="Any" />
         <scalar name="value2" valueType="Any" />
-      </parameter.specification>
+      </parameter.schema>
     </add.definition>
 
     <!-- $FUNC2(value1, value2) -->
@@ -44,10 +44,10 @@
       </description>
       <kind>Function</kind>
       <functionName>Fun_Func2</functionName>
-      <parameter.specification>
+      <parameter.schema>
         <scalar name="value1" valueType="Any" />
         <scalar name="value2" valueType="Any" />
-      </parameter.specification>
+      </parameter.schema>
     </add.definition>
 
     <!-- $FUNC3(value1, value2) -->
@@ -59,10 +59,10 @@
       </description>
       <kind>Function</kind>
       <functionName>Fun_Func3</functionName>
-      <parameter.specification>
+      <parameter.schema>
         <scalar name="value1" valueType="Any" />
         <scalar name="value2" valueType="Any" />
-      </parameter.specification>
+      </parameter.schema>
     </add.definition>
 
     <!-- $Func4(value1, value2...) -->

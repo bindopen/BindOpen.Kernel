@@ -2,7 +2,7 @@
 using Bogus;
 using System.Dynamic;
 
-namespace BindOpen.Tests;
+namespace BindOpen.Scoping.Tests;
 
 public static class BdoFunctionFaker
 {
