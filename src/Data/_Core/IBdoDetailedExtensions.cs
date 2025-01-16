@@ -87,14 +87,14 @@ namespace BindOpen.Data
         /// <param key="isAllocatable"></param>
         /// <returns></returns>
         public static T SetFlagValue<T>(
-            this T spec,
+            this T schema,
             string flagName,
             bool isFlag = true)
             where T : IBdoDetailed
         {
-            spec?.GetOrNewDetail().Add(flagName, isFlag);
+            schema?.GetOrNewDetail().Add(flagName, isFlag);
 
-            return spec;
+            return schema;
         }
     }
 }

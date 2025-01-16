@@ -3,7 +3,7 @@
 namespace BindOpen.Data
 {
     /// <summary>
-    /// This enumeration lists the possible criticalities.
+    /// This enumerates the possible criticalities.
     /// </summary>
     [XmlType("Criticalities", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     public enum Criticalities

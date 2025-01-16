@@ -19,7 +19,7 @@ namespace BindOpen.Scoping.Script
         public static ITBdoScriptword<bool> _Has(this ITBdoScriptword<IBdoMetaData> meta, string name)
             => meta.Func<bool>("has", name);
 
-        public static ITBdoScriptword<IBdoMetaData> _Descendant(this ITBdoScriptword<IBdoMetaData> spec, params object[] tokens)
-            => spec.Func<IBdoMetaData>("descendant", tokens);
+        public static ITBdoScriptword<IBdoMetaData> _Descendant(this ITBdoScriptword<IBdoMetaData> schema, params object[] tokens)
+            => schema.Func<IBdoMetaData>("descendant", tokens);
     }
 }

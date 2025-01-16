@@ -1,38 +1,37 @@
-﻿namespace BindOpen.Data
+﻿namespace BindOpen.Data;
+
+/// <summary>
+/// This enumerates the possible kinds of data area.
+/// </summary>
+public enum DataAreaKind
 {
     /// <summary>
-    /// This enumeration lists the possible kinds of data area.
+    /// None.
     /// </summary>
-    public enum DataAreaKind
-    {
-        /// <summary>
-        /// None.
-        /// </summary>
-        None,
+    None,
 
-        /// <summary>
-        /// Any.
-        /// </summary>
-        Any,
+    /// <summary>
+    /// Any.
+    /// </summary>
+    Any,
 
-        /// <summary>
-        /// SpecRule attributes.
-        /// </summary>
-        SpecRules,
+    /// <summary>
+    /// SchemaRule attributes.
+    /// </summary>
+    SchemaRules,
 
-        /// <summary>
-        /// Design attribute.
-        /// </summary>
-        Design,
+    /// <summary>
+    /// Design attribute.
+    /// </summary>
+    Design,
 
-        /// <summary>
-        /// Item attribute.
-        /// </summary>
-        Items,
+    /// <summary>
+    /// Item attribute.
+    /// </summary>
+    Items,
 
-        /// <summary>
-        /// Property attribute.
-        /// </summary>
-        Properties
-    }
+    /// <summary>
+    /// Property attribute.
+    /// </summary>
+    Properties
 }

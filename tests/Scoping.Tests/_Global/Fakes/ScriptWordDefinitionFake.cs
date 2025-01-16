@@ -3,7 +3,7 @@ using BindOpen.Scoping;
 using BindOpen.Scoping.Script;
 using System;
 
-namespace BindOpen.Tests;
+namespace BindOpen.Scoping.Tests;
 
 /// <summary>
 /// This class represents a script word definition fake.

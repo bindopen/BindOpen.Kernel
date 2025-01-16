@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Schema;
 
 namespace BindOpen.Scoping
 {
@@ -45,7 +45,7 @@ namespace BindOpen.Scoping
         /// <summary>
         /// The unique ID of this instance.
         /// </summary>
-        public string UniqueName { get => PackageDefinition?.Name + "$" + Name; }
+        public string UniqueName { get => (PackageDefinition?.Alias ?? PackageDefinition?.Name) + "$" + Name; }
 
         /// <summary>
         /// The identifier of the group of this instance.

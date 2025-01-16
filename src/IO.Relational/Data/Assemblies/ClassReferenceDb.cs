@@ -43,6 +43,11 @@ public class ClassReferenceDb : IBdoDb
     public string ClassName { get; set; }
 
     /// <summary>
+    /// The alias of this instance.
+    /// </summary>
+    public string Alias { get; set; }
+
+    /// <summary>
     /// The class reference of this instance.
     /// </summary>
     [ForeignKey(nameof(MetaDataId))]

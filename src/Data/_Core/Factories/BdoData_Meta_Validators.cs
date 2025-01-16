@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Meta;
+using BindOpen.Data.Schema;
 using BindOpen.Scoping;
 
 namespace BindOpen.Data
@@ -13,8 +14,8 @@ namespace BindOpen.Data
         /// Instantiates a new instance of the NewResultItem class.
         /// </summary>
         /// <returns>The new instance of the NewResultItem class.</returns>
-        public static BdoMetaDataValidator CreateValidator(this IBdoScope scope)
-            => scope.CreateValidator<BdoMetaDataValidator, IBdoMetaData, IBdoSpec>();
+        public static BdoDataValidator CreateValidator(this IBdoScope scope)
+            => scope.CreateValidator<BdoDataValidator, IBdoMetaData, IBdoSchema>();
 
         /// <summary>
         /// Instantiates a new instance of the NewResultItem class.
@@ -22,8 +23,8 @@ namespace BindOpen.Data
         /// <returns>The new instance of the NewResultItem class.</returns>
         public static T CreateValidator<T, TSpecified, TSpec>(this IBdoScope scope)
             where T : ITBdoDataValidator<TSpecified, TSpec>, new()
-            where TSpecified : IBdoSpecified, IReferenced
-            where TSpec : IBdoSpec
+            where TSpecified : IBdoSchematized, IReferenced
+            where TSpec : IBdoSchema
         {
             var result = new T()
                 .WithScope(scope);

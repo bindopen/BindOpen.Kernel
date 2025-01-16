@@ -1,10 +1,9 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
-using BindOpen.Scoping;
 using Bogus;
 using NUnit.Framework;
 
-namespace BindOpen.Tests;
+namespace BindOpen.Scoping.Tests;
 
 public static class BdoTaskFaker
 {
@@ -33,7 +32,7 @@ public static class BdoTaskFaker
         data ??= NewData();
 
         var meta = BdoData.NewObject()
-            .WithDataType(BdoExtensionKinds.Task, "bindopen.scoping.tests$taskFake")
+            .WithDataType(BdoExtensionKinds.Task, "scoping.tests$taskFake")
             .WithProperties(
                 ("boolValue", data.boolValue as bool?),
                 ("intValue", data.intValue as int?))

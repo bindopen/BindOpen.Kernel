@@ -1,5 +1,5 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Schema;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -70,11 +70,11 @@ namespace BindOpen.Data.Meta.Reflection
                             var hasMetaAttribute = propInfo.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any();
                             if (hasMetaAttribute || !onlyMetaAttributes)
                             {
-                                IBdoSpec spec = BdoData.NewSpec();
-                                var change = spec.UpdateFrom<BdoPropertyAttribute>(propInfo);
+                                IBdoSchema schema = BdoData.NewSchema();
+                                var change = schema.UpdateFrom<BdoPropertyAttribute>(propInfo);
 
-                                var propName = spec.Name ?? propInfo.Name;
-                                spec.Name = null;
+                                var propName = schema.Name ?? propInfo.Name;
+                                schema.Name = null;
                                 object propValue = propInfo.GetValue(obj);
 
                                 IBdoMetaData subMeta = metaObject[propName];
@@ -88,7 +88,7 @@ namespace BindOpen.Data.Meta.Reflection
                                     subMeta = propValue.ToMeta(propInfo.PropertyType, propName, onlyMetaAttributes, includeNullValues);
                                     if (change)
                                     {
-                                        subMeta.WithSpec(spec);
+                                        subMeta.WithSchema(schema);
                                     }
                                 }
 

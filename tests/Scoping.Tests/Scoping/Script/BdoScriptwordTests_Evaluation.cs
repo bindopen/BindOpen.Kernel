@@ -1,5 +1,5 @@
 ﻿using BindOpen.Data;
-using BindOpen.Tests;
+using BindOpen.Scoping.Tests;
 using NUnit.Framework;
 using System;
 

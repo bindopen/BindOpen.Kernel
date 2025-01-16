@@ -6,7 +6,7 @@ using System;
 namespace BindOpen.Data.Assemblies;
 
 /// <summary>
-/// This class represents a data element specification.
+/// This class represents a data element schema.
 /// </summary>
 public class BdoDataType : BdoClassReference, IBdoDataType
 {

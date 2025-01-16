@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Helpers;
+using BindOpen.Data.Schema;
 using BindOpen.Logging;
 using BindOpen.Scoping;
 using System.Collections.Generic;
@@ -48,12 +49,12 @@ namespace BindOpen.Data.Meta
             return meta;
         }
 
-        public static IBdoSpec GetOrAddSpec(this IBdoMetaData meta)
+        public static IBdoSchema GetOrAddSpec(this IBdoMetaData meta)
         {
             if (meta != null)
             {
-                var spec = meta.Spec ??= BdoData.NewSpec();
-                return spec;
+                var schema = meta.Schema ??= BdoData.NewSchema();
+                return schema;
             }
 
             return null;
@@ -145,9 +146,9 @@ namespace BindOpen.Data.Meta
             return null;
         }
 
-        public static IBdoSpec FindChildSpec(
+        public static IBdoSchema FindChildSpec(
             this IBdoMetaData meta,
-            IBdoSpec parent,
+            IBdoSchema parent,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
@@ -177,7 +178,7 @@ namespace BindOpen.Data.Meta
 
         public static T FindChildSpec<T>(
             this IBdoMetaData meta,
-            IBdoSpec parent,
+            IBdoSchema parent,
             IBdoScope scope = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)

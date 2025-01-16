@@ -55,7 +55,7 @@ public class MetaScalarSetJsonTests
             BdoData.NewScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[0]),
             BdoData.NewScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[1])
                 .WithReference(BdoData.NewExp("$sampleExp()", BdoExpressionKind.Auto))
-                //.WithSpecs(BdoMeta.NewSpec(), BdoMeta.NewSpec("spec1"))
+                //.WithSchemas(BdoMeta.NewSchema(), BdoMeta.NewSchema("spec1"))
         };
 
         _metaSet = BdoData.NewNode(metas.ToArray());

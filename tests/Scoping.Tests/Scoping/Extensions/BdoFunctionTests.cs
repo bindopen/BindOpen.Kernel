@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Scoping.Script;
-using BindOpen.Tests;
+using BindOpen.Scoping.Tests;
 using NUnit.Framework;
 
 namespace BindOpen.Scoping.Functions;
@@ -22,7 +22,7 @@ public class BdoFunctionTests
     public void NewWordFromConfigTest()
     {
         var meta = BdoData.NewObject()
-            .WithDataType(BdoExtensionKinds.Function, "bindopen.scoping.tests$testEqual")
+            .WithDataType(BdoExtensionKinds.Function, "scoping.tests$testEqual")
             .With(
                 BdoData.NewScalar("stringValue", _testData.stringValue as string),
                 BdoData.NewScalar("intValue", _testData.intValue as int?));

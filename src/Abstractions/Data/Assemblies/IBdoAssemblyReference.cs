@@ -8,19 +8,24 @@ namespace BindOpen.Data.Assemblies;
 public interface IBdoAssemblyReference : IBdoObject, IReferenced, IIdentified
 {
     /// <summary>
-    /// The library name.
+    /// The assembly name.
     /// </summary>
     string AssemblyName { get; set; }
 
     /// <summary>
-    /// The library version.
+    /// The assembly version.
     /// </summary>
     Version AssemblyVersion { get; set; }
 
     /// <summary>
-    /// The file name.
+    /// The assembly file name.
     /// </summary>
     string AssemblyFileName { get; set; }
+
+    /// <summary>
+    /// The alias.
+    /// </summary>
+    string Alias { get; set; }
 
     /// <summary>
     /// Indicates whether this object is empty.

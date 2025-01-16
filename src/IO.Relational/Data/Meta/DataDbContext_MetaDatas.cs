@@ -11,7 +11,7 @@ public partial class DataDbContext : DbContext
         return MetaDatas
             .Include(q => q.ClassReference)
             .Include(q => q.Reference)
-            .Include(q => q.Spec)
+            .Include(q => q.Schema)
             .FirstOrDefault(q => q.Identifier == identifier);
     }
 
@@ -54,7 +54,7 @@ public partial class DataDbContext : DbContext
     //    return context.MetaDatas
     //        .Include(q => q.ClassReference)
     //        .Include(q => q.Reference)
-    //        .Include(q => q.Spec)
+    //        .Include(q => q.Schema)
     //        .Include(q => q.Supers)
     //        .FirstOrDefault(q => q.Identifier == identifier);
     //}

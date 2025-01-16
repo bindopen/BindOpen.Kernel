@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Assemblies;
-using BindOpen.Data.Meta;
+using BindOpen.Data.Schema;
 
 namespace BindOpen.Scoping.Tasks
 {
@@ -15,9 +15,9 @@ namespace BindOpen.Scoping.Tasks
         IBdoClassReference ClassReference { get; set; }
 
         /// <summary>
-        /// The output specifications.
+        /// The output schemas.
         /// </summary>
-        ITBdoSet<IBdoSpec> OutputSpecs { get; set; }
+        ITBdoSet<IBdoSchema> Outputs { get; set; }
 
         /// <summary>
         /// The maximum index.

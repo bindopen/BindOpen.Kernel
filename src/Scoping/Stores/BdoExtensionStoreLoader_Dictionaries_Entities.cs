@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Schema;
 using BindOpen.Logging;
 using BindOpen.Scoping;
 using BindOpen.Scoping.Entities;
@@ -50,9 +51,9 @@ namespace BindOpen.Scoping
 
                 foreach (var prop in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any()))
                 {
-                    var spec = BdoData.NewSpec();
-                    spec.UpdateFrom(prop, typeof(BdoPropertyAttribute));
-                    definition.Add(spec);
+                    var schema = BdoData.NewSchema();
+                    schema.UpdateFrom(prop, typeof(BdoPropertyAttribute));
+                    definition.Add(schema);
                 }
 
                 // we build the runtime definition

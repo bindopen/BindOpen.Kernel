@@ -28,7 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abstractions", "src\Abstrac
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{8DC93F7F-9AA7-4A7F-8E20-E1886A3428EF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BindOpen.System.Docs", "docs\BindOpen.System.Docs.csproj", "{59E4CC66-E39E-4A37-8A70-DEA1EEB289C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BindOpen.Kernel.Docs", "docs\BindOpen.Kernel.Docs.csproj", "{59E4CC66-E39E-4A37-8A70-DEA1EEB289C0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IO", "IO", "{FB354C89-5C93-4EB7-97A2-7DB9BF2A8C4C}"
 EndProject

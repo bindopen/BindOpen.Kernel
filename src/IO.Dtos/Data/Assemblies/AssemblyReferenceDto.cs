@@ -37,6 +37,13 @@ public class AssemblyReferenceDto : IBdoDto
     [XmlElement("assemblyFileName")]
     public string AssemblyFileName { get; set; }
 
+    /// <summary>
+    /// The alias of this instance.
+    /// </summary>
+    [JsonPropertyName("alias")]
+    [XmlElement("alias")]
+    public string Alias { get; set; }
+
     #endregion
 
     // --------------------------------------------------

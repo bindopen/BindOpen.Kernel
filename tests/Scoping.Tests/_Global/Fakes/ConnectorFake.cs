@@ -1,18 +1,17 @@
 ﻿using BindOpen.Data.Meta;
 using BindOpen.Logging;
-using BindOpen.Scoping;
 using BindOpen.Scoping.Connectors;
 
-namespace BindOpen.Tests;
+namespace BindOpen.Scoping.Tests;
 
 /// <summary>
 /// This class represents a test connector.
 /// </summary>
-[BdoConnector(Name = "bindopen.scoping.tests$testConnector")]
+[BdoConnector(Name = "scoping.tests$testConnector")]
 [BdoConnector(CreationDate = "2023-02-25")]
 public class ConnectorFake : BdoConnector, ITBdoConnector<ConnectionFake>
 {
-    public static string __DefinitionUniqueName = "bindopen.scoping.tests$testConnector";
+    public static string __DefinitionUniqueName = "scoping.tests$testConnector";
 
     /// <summary>
     /// The host of this instance.

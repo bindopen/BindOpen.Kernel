@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Helpers;
+using BindOpen.Data.Schema;
 using BindOpen.Scoping;
 using System;
 
@@ -113,13 +114,13 @@ namespace BindOpen.Data.Meta.Reflection
             this Type type,
             string name = null,
             bool onlyMetaAttributes = true)
-            where T : IBdoSpec, new()
+            where T : IBdoSchema, new()
         {
             var obj = AssemblyHelper.CreateInstance(type);
 
-            var spec = obj.ToMeta(name, onlyMetaAttributes).ToSpec<T>();
+            var schema = obj.ToMeta(name, onlyMetaAttributes).ToSpec<T>();
 
-            return spec;
+            return schema;
         }
 
         /// <summary>
@@ -127,10 +128,10 @@ namespace BindOpen.Data.Meta.Reflection
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static IBdoSpec ToSpec(
+        public static IBdoSchema ToSpec(
             this Type type,
             string name = null,
             bool onlyMetaAttributes = true)
-            => type.ToSpec<BdoSpec>(name, onlyMetaAttributes);
+            => type.ToSpec<BdoSchema>(name, onlyMetaAttributes);
     }
 }
