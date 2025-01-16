@@ -48,24 +48,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scoping.Tests", "tests\Scop
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Tests", "tests\Data.Tests\Data.Tests.csproj", "{1805B385-A9CA-49B0-B80A-EC2AEDFAF45E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IO", "IO", "{FB354C89-5C93-4EB7-97A2-7DB9BF2A8C4C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scoping", "Scoping", "{00A1A3DE-DDEF-4179-9933-8BB1D324EB66}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{D03BF64E-80DF-4208-B7AF-3D1C8F605DC9}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IO", "src\IO\IO.csproj", "{7821A8BA-0D37-4FB5-B1AC-1E47AA13CCB4}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IO.Dtos", "src\IO.Dtos\IO.Dtos.csproj", "{913C0DA7-92F8-45A6-8EC3-B73EA2CEF1B2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IO.Dtos.Xsd", "src\IO.Dtos.Xsd\IO.Dtos.Xsd.csproj", "{0BC0D569-4BE7-49E3-ADBD-784CE8E712E9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IO.Relational", "src\IO.Relational\IO.Relational.csproj", "{5D5B0052-F558-4D4A-A2F4-BC3739F6C026}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scoping.Tests", "tests\Scoping.Tests\Scoping.Tests.csproj", "{9E756374-A083-495B-B85F-00F0D8382B8B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Tests", "tests\Data.Tests\Data.Tests.csproj", "{1805B385-A9CA-49B0-B80A-EC2AEDFAF45E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
