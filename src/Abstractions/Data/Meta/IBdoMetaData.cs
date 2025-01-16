@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Schema;
 using BindOpen.Logging;
 using BindOpen.Scoping;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace BindOpen.Data.Meta
     public interface IBdoMetaData :
         IBdoObjectNotMetable, IBdoReferenced, IBdoConditional, IBdoScoped, IIdentified,
         INamed, IReferenced, IIndexed, IBdoDataTyped,
-        ITChild<IBdoMetaData>, IBdoSpecified,
+        ITChild<IBdoMetaData>, IBdoSchematized,
         IUpdatable
     {
         /// <summary>
@@ -85,16 +86,16 @@ namespace BindOpen.Data.Meta
             IBdoMetaSet varSet = null,
             IBdoLog log = null);
 
-        IBdoSpecRule GetSpecRule(
+        IBdoSchemaRule GetSchemaRule(
             IBdoScope scope,
             string groupId,
-            BdoSpecRuleKinds ruleKind = BdoSpecRuleKinds.Requirement,
+            BdoSchemaRuleKinds ruleKind = BdoSchemaRuleKinds.Requirement,
             IBdoMetaSet varSet = null,
             IBdoLog log = null);
 
-        IBdoSpecRule GetSpecRule(
+        IBdoSchemaRule GetSchemaRule(
             string groupId,
-            BdoSpecRuleKinds ruleKind = BdoSpecRuleKinds.Requirement,
+            BdoSchemaRuleKinds ruleKind = BdoSchemaRuleKinds.Requirement,
             IBdoMetaSet varSet = null,
             IBdoLog log = null);
 

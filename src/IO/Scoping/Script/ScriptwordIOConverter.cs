@@ -2,6 +2,7 @@
 using BindOpen.Data;
 using BindOpen.Data.Assemblies;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Schema;
 using BindOpen.Scoping.Script;
 using System.Linq;
 
@@ -43,7 +44,7 @@ namespace BindOpen.Scoping.Script
                     .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDto()))
                     //.ForMember(q => q.Item, opt => opt.Ignore())
                     .ForMember(q => q.MetaItems, opt => opt.Ignore())
-                    .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.Spec.ToDto()))
+                    .ForMember(q => q.Schema, opt => opt.MapFrom(q => q.Schema.ToDto()))
                 );
 
             var mapper = new Mapper(config);
@@ -76,7 +77,7 @@ namespace BindOpen.Scoping.Script
                     .ForMember(q => q.Items, opt => opt.Ignore())
                     .ForMember(q => q.Parent, opt => opt.Ignore())
                     .ForMember(q => q.Reference, opt => opt.Ignore())
-                    .ForMember(q => q.Spec, opt => opt.Ignore())
+                    .ForMember(q => q.Schema, opt => opt.Ignore())
                 );
 
             var mapper = new Mapper(config);
@@ -90,7 +91,7 @@ namespace BindOpen.Scoping.Script
                 Identifier = dto.Identifier,
                 ValueType = DataValueTypes.Scriptword
             };
-            poco.Spec = dto.Spec.ToPoco();
+            poco.Schema = dto.Schema.ToPoco();
             poco.ExpressionKind = BdoExpressionKind.Word;
 
             poco.With(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());

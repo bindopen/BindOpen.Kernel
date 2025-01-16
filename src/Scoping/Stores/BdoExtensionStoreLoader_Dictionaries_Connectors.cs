@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Schema;
 using BindOpen.Logging;
 using BindOpen.Scoping;
 using BindOpen.Scoping.Connectors;
@@ -51,13 +52,13 @@ namespace BindOpen.Scoping
 
                     definition.UpdateFrom(type);
 
-                    // we create the detail specification from detail property attributes
+                    // we create the detail schema from detail property attributes
 
                     foreach (var prop in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any()))
                     {
-                        var spec = BdoData.NewSpec();
-                        spec.UpdateFrom(prop, typeof(BdoPropertyAttribute));
-                        definition.Add(spec);
+                        var schema = BdoData.NewSchema();
+                        schema.UpdateFrom(prop, typeof(BdoPropertyAttribute));
+                        definition.Add(schema);
                     }
 
                     // we build the runtime definition

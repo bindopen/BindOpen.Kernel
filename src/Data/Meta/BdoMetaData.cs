@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Conditions;
 using BindOpen.Data.Helpers;
+using BindOpen.Data.Schema;
 using BindOpen.Logging;
 using BindOpen.Scoping;
 using System.Collections.Generic;
@@ -162,7 +163,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// Specification of this instance.
         /// </summary>
-        public IBdoSpec Spec { get; set; }
+        public IBdoSchema Schema { get; set; }
 
         /// <summary>
         /// Returns the item object of this instance.
@@ -320,19 +321,19 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The item requirement level of this instance.
         /// </summary>
-        public IBdoSpecRule GetSpecRule(
+        public IBdoSchemaRule GetSchemaRule(
             IBdoScope scope,
             string groupId,
-            BdoSpecRuleKinds ruleKind = BdoSpecRuleKinds.Requirement,
+            BdoSchemaRuleKinds ruleKind = BdoSchemaRuleKinds.Requirement,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
-            if (Spec != null)
+            if (Schema != null)
             {
                 var localVarSet = BdoData.NewSet(varSet?.ToArray());
                 localVarSet.Add(BdoData.__VarName_This, this);
 
-                var rule = Spec?.GetRule(groupId, ruleKind, scope, localVarSet, log);
+                var rule = Schema?.GetRule(groupId, ruleKind, scope, localVarSet, log);
 
                 return rule;
             }
@@ -340,12 +341,12 @@ namespace BindOpen.Data.Meta
             return null;
         }
 
-        public IBdoSpecRule GetSpecRule(
+        public IBdoSchemaRule GetSchemaRule(
             string groupId,
-            BdoSpecRuleKinds ruleKind = BdoSpecRuleKinds.Requirement,
+            BdoSchemaRuleKinds ruleKind = BdoSchemaRuleKinds.Requirement,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
-            => GetSpecRule(Scope, groupId, ruleKind, varSet, log);
+            => GetSchemaRule(Scope, groupId, ruleKind, varSet, log);
 
         // Accessors --------------------------
 
@@ -381,7 +382,7 @@ namespace BindOpen.Data.Meta
 
             obj.Reference = Reference?.Clone<BdoReference>();
             obj.DataType = DataType?.Clone<BdoDataType>();
-            obj.Spec = Spec?.Clone<BdoSpec>();
+            obj.Schema = Schema?.Clone<BdoSchema>();
 
             return obj;
         }
@@ -439,7 +440,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         public IBdoCondition Condition
         {
-            get => Spec?.Condition;
+            get => Schema?.Condition;
             set
             {
                 this.GetOrAddSpec().Condition = value;

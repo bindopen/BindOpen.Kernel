@@ -1,11 +1,10 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
-using BindOpen.Scoping;
 using BindOpen.Scoping.Entities;
 using System;
 using System.ComponentModel;
 
-namespace BindOpen.Tests;
+namespace BindOpen.Scoping.Tests;
 
 /// <summary>
 /// This class represents a database data field.
@@ -17,7 +16,7 @@ namespace BindOpen.Tests;
 )]
 public class EntityFake : BdoEntity, IEntityFake
 {
-    public static string __DefinitionUniqueName = "bindopen.scoping.tests$testEntity";
+    public static string __DefinitionUniqueName = "scoping.tests$testEntity";
 
     // -----------------------------------------------
     // VARIABLES

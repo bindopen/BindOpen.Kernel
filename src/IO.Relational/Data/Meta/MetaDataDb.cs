@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Schema;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -52,15 +53,15 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The elements of this instance.
         /// </summary>
-        [ForeignKey(nameof(SpecId))]
-        public SpecDb Spec { get; set; }
+        [ForeignKey(nameof(SchemaId))]
+        public SchemaDb Schema { get; set; }
 
         /// <summary>
         /// The class name of this instance.
         /// </summary>
         [JsonIgnore]
         [XmlIgnore]
-        public string SpecId { get; set; }
+        public string SchemaId { get; set; }
 
         /// <summary>
         /// The value type of this instance.

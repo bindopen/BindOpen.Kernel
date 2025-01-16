@@ -1,5 +1,5 @@
 ﻿using BindOpen.Data.Meta.Reflection;
-using BindOpen.Tests;
+using BindOpen.Scoping.Tests;
 using Bogus;
 using NUnit.Framework;
 
@@ -68,7 +68,7 @@ public class BdoScopingMetaNodeTests_Object
             .With(
                 BdoData.NewScalar("path", _testData.path1 as string));
 
-        var metaObj2 = BdoData.NewObject("object2", "bindopen.scoping.tests$testEntity")
+        var metaObj2 = BdoData.NewObject("object2", "scoping.tests$testEntity")
             .WithData(new EntityFake()
             {
                 Path = _testData.path2 as string

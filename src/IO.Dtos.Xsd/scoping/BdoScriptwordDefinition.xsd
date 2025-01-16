@@ -2,7 +2,7 @@
 <xs:schema xmlns="https://storage.bindopen.org/xsd/bindopen/kernel" elementFormDefault="qualified" targetNamespace="https://storage.bindopen.org/xsd/bindopen/kernel" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoExtensionDefinition.xsd" />
   <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/ScriptItemKind.xsd" />
-  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/TBdoSet<IBdoSpec>.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/TBdoSet<IBdoSchema>.xsd" />
   <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/DataValueType.xsd" />
   <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/DictionaryDataItem.xsd" />
 
@@ -13,7 +13,7 @@
           <xs:element minOccurs="0" maxOccurs="1" name="callingClass" type="xs:string" />
           <xs:element minOccurs="0" maxOccurs="1" name="kind" type="ScriptItemKind" />
           <xs:element minOccurs="0" maxOccurs="1" name="functionName" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="parameter.specification" type="TBdoSet<IBdoSpec>" />
+          <xs:element minOccurs="0" maxOccurs="1" name="parameter.schema" type="TBdoSet<IBdoSchema>" />
           <xs:element minOccurs="0" maxOccurs="1" name="returnValueType" type="DataValueType" />
           <xs:element minOccurs="0" maxOccurs="1" name="isRepeatedParameters" type="xs:boolean" />
           <xs:element minOccurs="0" maxOccurs="1" name="repeatedParameterValueType" type="DataValueType" />

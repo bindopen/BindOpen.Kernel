@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Schema;
 using BindOpen.Logging;
 using BindOpen.Scoping;
 using BindOpen.Scoping.Functions;
@@ -98,12 +99,12 @@ namespace BindOpen.Scoping
                     int i = 0;
                     foreach (var paramInfo in paramInfos)
                     {
-                        var spec = BdoData.NewSpec();
-                        spec.UpdateFrom(paramInfo, typeof(BdoParameterAttribute));
-                        spec.Index = i;
+                        var schema = BdoData.NewSchema();
+                        schema.UpdateFrom(paramInfo, typeof(BdoParameterAttribute));
+                        schema.Index = i;
 
-                        var isStatic = spec.GetFlagValue(BdoSpecProperties.IsStatic);
-                        var isScriptParameter = spec.GetFlagValue(BdoSpecProperties.IsScriptParameter);
+                        var isStatic = schema.GetFlagValue(BdoSchemaProperties.IsStatic);
+                        var isScriptParameter = schema.GetFlagValue(BdoSchemaProperties.IsScriptParameter);
 
                         if (isStatic)
                         {
@@ -112,15 +113,15 @@ namespace BindOpen.Scoping
                         }
 
                         if (isStatic || isScriptParameter ||
-                            (spec.DataType?.ValueType != DataValueTypes.Any
-                            && spec.IsCompatibleWithType(typeof(IBdoScriptDomain))))
+                            (schema.DataType?.ValueType != DataValueTypes.Any
+                            && schema.IsCompatibleWithType(typeof(IBdoScriptDomain))))
                         {
-                            definition.AdditionalSpecs ??= BdoData.NewItemSet<IBdoSpec>();
-                            definition.AdditionalSpecs.Insert(spec);
+                            definition.AdditionalSchemas ??= BdoData.NewItemSet<IBdoSchema>();
+                            definition.AdditionalSchemas.Insert(schema);
                         }
                         else
                         {
-                            definition.Insert(spec);
+                            definition.Insert(schema);
                         }
 
                         i++;
@@ -134,13 +135,13 @@ namespace BindOpen.Scoping
                         var type1 = methodInfo.GetParameters()[0].ParameterType;
                         definition.ParentDataType = BdoData.NewDataType(type1);
 
-                        var spec = definition.FirstOrDefault().SetFlagValue(BdoSpecProperties.IsStatic);
-                        if (definition.AdditionalSpecs?[0]?.Index != 0)
+                        var schema = definition.FirstOrDefault().SetFlagValue(BdoSchemaProperties.IsStatic);
+                        if (definition.AdditionalSchemas?[0]?.Index != 0)
                         {
-                            definition.Remove(spec?.Key());
+                            definition.Remove(schema?.Key());
                         }
-                        definition.AdditionalSpecs ??= BdoData.NewItemSet<IBdoSpec>();
-                        definition.AdditionalSpecs.Insert(spec);
+                        definition.AdditionalSchemas ??= BdoData.NewItemSet<IBdoSchema>();
+                        definition.AdditionalSchemas.Insert(schema);
                     }
 
                     definition.OutputDataType = BdoData.NewDataType(methodInfo.ReturnType);

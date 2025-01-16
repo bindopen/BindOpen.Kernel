@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BindOpen.Data.Schema;
+using System;
 using System.Linq;
 
 namespace BindOpen.Data.Meta.Reflection
@@ -24,10 +25,10 @@ namespace BindOpen.Data.Meta.Reflection
             {
                 var propertyInfo = obj.GetType().GetProperties().FirstOrDefault(q =>
                 {
-                    var spec = BdoData.NewSpec();
-                    spec.UpdateFrom(q, attributeType);
+                    var schema = BdoData.NewSchema();
+                    schema.UpdateFrom(q, attributeType);
 
-                    return spec.Name.Equals(propertyName, StringComparison.OrdinalIgnoreCase);
+                    return schema.Name.Equals(propertyName, StringComparison.OrdinalIgnoreCase);
                 });
 
                 return propertyInfo?.GetValue(obj);

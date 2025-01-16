@@ -1,7 +1,6 @@
 ﻿using BindOpen.Data.Meta;
-using BindOpen.Scoping;
 
-namespace BindOpen.Tests;
+namespace BindOpen.Scoping.Tests;
 
 /// <summary>
 /// This class represents a database data field.

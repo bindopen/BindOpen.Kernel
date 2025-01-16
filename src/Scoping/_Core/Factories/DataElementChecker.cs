@@ -24,7 +24,7 @@
         //    var log = new BdoLog();
         //    if (item != null && dataElement != null)
         //    {
-        //        if (dataElement.Specification?.SpecRuleStatement != null)
+        //        if (dataElement.Schemaification?.SchemaRuleStatement != null)
         //        {
         //            log.AddEvents(_ruleStatement.CheckItem(item, dataElement, true));
         //        }
@@ -37,21 +37,21 @@
         ///// Check the specified item.
         ///// </summary>
         ///// <param key="dataElement">The element to consider.</param>
-        ///// <param key="specificationAreas">The specification areas to consider.</param>
+        ///// <param key="schemaAreas">The schema areas to consider.</param>
         ///// <returns>The log of check log.</returns>
         //public virtual IBdoLog CheckElement(
         //    IBdoElement dataElement,
-        //    string[] specificationAreas = null)
+        //    string[] schemaAreas = null)
         //{
         //    var log = new BdoLog();
 
         //    if (dataElement == null)
         //        return log;
 
-        //    if (specificationAreas == null)
-        //        specificationAreas = new[] { nameof(DataAreaKind.Any) };
+        //    if (schemaAreas == null)
+        //        schemaAreas = new[] { nameof(DataAreaKind.Any) };
 
-        //    if (specificationAreas.Contains(nameof(DataAreaKind.Any)) || specificationAreas.Contains("element"))
+        //    if (schemaAreas.Contains(nameof(DataAreaKind.Any)) || schemaAreas.Contains("element"))
         //    {
         //        if (!_availableValueModes.Contains(DataValueMode.Any) && !_availableValueModes.Contains(dataElement.ValueMode))
         //        {
@@ -138,7 +138,7 @@
         //                        case RequirementLevels.Forbidden:
         //                            if (dataElement.ItemReference != null)
         //                                log.AddWarning(
-        //                                    title: "Item specification allows reference forbidden",
+        //                                    title: "Item schema allows reference forbidden",
         //                                    description: "No item reference.");
         //                            break;
         //                        case RequirementLevels.Required:
@@ -153,7 +153,7 @@
         //        }
         //    }
 
-        //    if (specificationAreas.Contains(nameof(DataAreaKind.Any)) || specificationAreas.Contains(nameof(DataAreaKind.Items)))
+        //    if (schemaAreas.Contains(nameof(DataAreaKind.Any)) || schemaAreas.Contains(nameof(DataAreaKind.Items)))
         //    {
         //        if (IsValueList)
         //        {

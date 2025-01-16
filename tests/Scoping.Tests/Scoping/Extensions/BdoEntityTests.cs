@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
-using BindOpen.Tests;
+using BindOpen.Scoping.Tests;
 using NUnit.Framework;
 
 namespace BindOpen.Scoping.Entities;

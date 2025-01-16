@@ -75,7 +75,7 @@ namespace BindOpen.Data.Helpers
         }
 
         /// <summary>
-        /// Returns the string value from an object based on this instance's specification.
+        /// Returns the string value from an object based on this instance's schema.
         /// </summary>
         /// <param key="obj">The object value to convert.</param>
         /// <param key="valueType">The value type to consider.</param>
@@ -294,7 +294,7 @@ namespace BindOpen.Data.Helpers
         /// 
         /// </summary>
         /// <param key="obj"></param>
-        /// <param key="spec"></param>
+        /// <param key="schema"></param>
         /// <returns></returns>
         public static object ToBdoData(
             this object obj)

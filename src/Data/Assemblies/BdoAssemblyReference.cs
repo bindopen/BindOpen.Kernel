@@ -62,6 +62,11 @@ public class BdoAssemblyReference : BdoObject, IBdoAssemblyReference
     /// </summary>
     public string AssemblyFileName { get; set; }
 
+    /// <summary>
+    /// The alias of this instance.
+    /// </summary>
+    public string Alias { get; set; }
+
     public virtual string Key()
         => AssemblyName == StringHelper.__Star ?
         StringHelper.__Star :

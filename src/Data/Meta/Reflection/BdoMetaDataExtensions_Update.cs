@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Helpers;
+using BindOpen.Data.Schema;
 using BindOpen.Logging;
 using BindOpen.Scoping;
 using System;
@@ -60,17 +61,17 @@ namespace BindOpen.Data.Meta.Reflection
                 var hasMetaAttribute = propInfo.GetCustomAttributes(typeof(T)).Any();
                 if (hasMetaAttribute || !onlyMetaAttributes)
                 {
-                    IBdoSpec spec = BdoData.NewSpec();
-                    spec.UpdateFrom<T>(propInfo);
+                    IBdoSchema schema = BdoData.NewSchema();
+                    schema.UpdateFrom<T>(propInfo);
 
-                    var name = spec?.Name ?? propInfo.Name;
+                    var name = schema?.Name ?? propInfo.Name;
 
                     Type itemType = null;
 
                     try
                     {
-                        var meta = spec.Reference?.Kind == BdoReferenceKind.Identifier ?
-                            set.Descendant<IBdoMetaData>(spec.Reference.Identifier?.Split('/')) : set.GetOfGroup(name, groupId);
+                        var meta = schema.Reference?.Kind == BdoReferenceKind.Identifier ?
+                            set.Descendant<IBdoMetaData>(schema.Reference.Identifier?.Split('/')) : set.GetOfGroup(name, groupId);
 
                         if (meta != null)
                         {

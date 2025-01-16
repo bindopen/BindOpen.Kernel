@@ -76,7 +76,7 @@ namespace BindOpen.Data.Meta
         public uint? MaxDataItemNumber { get; set; }
 
         /// <summary>
-        /// Levels of specification of this instance.
+        /// Levels of schema of this instance.
         /// </summary>
         public SpecificationLevels[] SpecLevels { get; set; }
 

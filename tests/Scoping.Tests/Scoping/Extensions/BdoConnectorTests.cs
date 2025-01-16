@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
-using BindOpen.Tests;
+using BindOpen.Data.Schema;
+using BindOpen.Scoping.Tests;
 using NUnit.Framework;
 using System.Linq;
 
@@ -79,7 +80,7 @@ public class BdoConnectorTests
         connector.UsingConnection((conn, log) =>
         {
             var paramSet = BdoData.NewSet(
-                BdoData.NewObject(nameof(BdoSpec.GroupId)));
+                BdoData.NewObject(nameof(BdoSchema.GroupId)));
             var entities = conn.Pull(paramSet, log);
 
             conn.Push(null, entities?.ToArray());

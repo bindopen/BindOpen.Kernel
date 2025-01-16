@@ -70,6 +70,13 @@ namespace BindOpen.Scoping
         public string FileName { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        [JsonPropertyName("alias")]
+        [XmlElement("alias")]
+        string Alias { get; set; }
+
+        /// <summary>
         /// Names of the using assembly files of this instance.
         /// </summary>
         [JsonPropertyName("using")]

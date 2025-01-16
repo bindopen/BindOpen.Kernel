@@ -8,7 +8,7 @@
       <xs:extension base="BdoElement">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="connector" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="specification" type="SourceElementSpec" />
+          <xs:element minOccurs="0" maxOccurs="1" name="schema" type="SourceElementSpec" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

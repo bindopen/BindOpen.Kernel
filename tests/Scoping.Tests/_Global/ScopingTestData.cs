@@ -19,7 +19,7 @@ public static class ScopingTestData
                 _appScope = BdoScoping.NewScope();
                 _appScope.LoadExtensions(q => q
                     .AddAssemblyFrom<DataTestSetup>()
-                    .AddAssemblyFrom<ScopingTestSetup>());
+                    .AddAssemblyFrom<ScopingTestSetup>("scoping.tests"));
             }
 
             return _appScope;

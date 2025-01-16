@@ -2,6 +2,7 @@
 using BindOpen.Data;
 using BindOpen.Data.Assemblies;
 using BindOpen.Data.Helpers;
+using BindOpen.Data.Schema;
 using BindOpen.Scoping.Script;
 using System.Linq;
 
@@ -40,7 +41,7 @@ namespace BindOpen.Data.Meta
                     .ForMember(q => q.ClassReference, opt => opt.Ignore())
                     .ForMember(q => q.Item, opt => opt.Ignore())
                     .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDto()))
-                    .ForMember(q => q.Spec, opt => opt.MapFrom(q => q.Spec.ToDto()))
+                    .ForMember(q => q.Schema, opt => opt.MapFrom(q => q.Schema.ToDto()))
             );
 
             var mapper = new Mapper(config);
@@ -60,7 +61,7 @@ namespace BindOpen.Data.Meta
             }
 
             dto.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;
-            if (poco.Spec?.DataType.ValueType == poco.DataType?.ValueType)
+            if (poco.Schema?.DataType.ValueType == poco.DataType?.ValueType)
             {
                 dto.ValueType = DataValueTypes.Any;
             }
@@ -83,7 +84,7 @@ namespace BindOpen.Data.Meta
                     .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToPoco()))
                     .ForMember(q => q.DataType, opt => opt.Ignore())
                     .ForMember(q => q.Parent, opt => opt.Ignore())
-                    .ForMember(q => q.Spec, opt => opt.Ignore())
+                    .ForMember(q => q.Schema, opt => opt.Ignore())
                 );
 
             var mapper = new Mapper(config);
@@ -95,7 +96,7 @@ namespace BindOpen.Data.Meta
                 Identifier = dto.Identifier,
                 ValueType = dto.ValueType
             };
-            poco.Spec = dto.Spec.ToPoco();
+            poco.Schema = dto.Schema.ToPoco();
 
             if (!string.IsNullOrEmpty(dto.Item))
             {

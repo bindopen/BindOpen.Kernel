@@ -11,7 +11,7 @@
       <xs:extension base="BdoExtensionDefinition">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" name="itemClass" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="1" name="dataSource.specification" type="SourceElementSpec" />
+          <xs:element minOccurs="0" maxOccurs="1" name="dataSource.schema" type="SourceElementSpec" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
