@@ -4,6 +4,8 @@ Todo list for BindOpen
 ## Next tasks
 
 - [ ] Load extensions using regex for assemblies
+- [ ] Upgrade XSD files
+- [ ] Upgrade documentation
 
 - [ ] Fix bug with 'has' script on object null (like parent)
 - [ ] Make constraint easier
