@@ -4,7 +4,7 @@ import { DictionaryDto } from "../../objects/dictionary/DictionaryDto";
 import { MetaSetDto } from "../MetaSetDto";
 import { SpecRuleDto } from "./SpecRuleDto";
 import { DataMode } from "../../enums/DataMode";
-import { IBdoDataTyped } from "../../assemblies/IBdoTyped";
+import { IBdoDataTyped } from "../../assemblies/IBdoDataTyped";
 
 export interface SpecDto extends IBdoDataTyped {
     children: SpecDto[];
