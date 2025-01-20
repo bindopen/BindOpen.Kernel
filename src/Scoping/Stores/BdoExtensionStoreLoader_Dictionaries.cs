@@ -74,7 +74,7 @@ namespace BindOpen.Scoping
                 Stream stream = null;
                 if (resourceFullName == null)
                 {
-                    log?.AddEvent(EventKinds.Warning, "No dictionary named '" + resourceFileName + "' found in assembly");
+                    log?.AddEvent(BdoEventLevels.Warning, "No dictionary named '" + resourceFileName + "' found in assembly");
                 }
                 else
                 {
@@ -83,7 +83,7 @@ namespace BindOpen.Scoping
                         stream = assembly.GetManifestResourceStream(resourceFullName);
                         if (stream == null)
                         {
-                            log?.AddEvent(EventKinds.Error,
+                            log?.AddEvent(BdoEventLevels.Error,
                                 "Could not open the item dictionary named '" + resourceFullName + "' in assembly");
                         }
                         else

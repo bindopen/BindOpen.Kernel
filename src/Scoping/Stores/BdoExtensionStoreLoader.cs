@@ -62,7 +62,7 @@ namespace BindOpen.Scoping
 
             if (_loadOptions?.References?.Any() != true)
             {
-                childLog?.AddEvent(EventKinds.Message, "No extensions found");
+                childLog?.AddEvent(BdoEventLevels.Information, "No extensions found");
             }
             else
             {
@@ -74,13 +74,13 @@ namespace BindOpen.Scoping
                     {
                         loaded &= LoadAll(reference, loadedAssemblyNames, childLog);
 
-                        if (log?.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning) == true)
+                        if (log?.HasEvent(BdoEventLevels.Error, BdoEventLevels.Fatal, BdoEventLevels.Warning) == true)
                         {
                             log?.AddChild(childLog, title: "Loading extension '" + (reference?.AssemblyName ?? "?") + "'");
                         }
                         else
                         {
-                            log?.AddEvent(EventKinds.Message, "Extension '" + (reference?.AssemblyName ?? "?") + "' loaded");
+                            log?.AddEvent(BdoEventLevels.Information, "Extension '" + (reference?.AssemblyName ?? "?") + "' loaded");
                         }
                     }
                 }
@@ -125,7 +125,7 @@ namespace BindOpen.Scoping
                         foreach (var source in _loadOptions?.Sources)
                         {
                             IBdoLog childLog = newLog?.InsertChild(
-                                EventKinds.Message,
+                                BdoEventLevels.Information,
                                 title: "Loading assembly from '" + source.Kind.ToString() + "'");
 
                             switch (source.Kind)
@@ -143,7 +143,7 @@ namespace BindOpen.Scoping
                                     string filePath = source.Uri.EndingWith(@"\").ToPath() + fileName;
                                     if (!File.Exists(filePath))
                                     {
-                                        childLog?.AddEvent(EventKinds.Error, "Could not find the assembly file path '" + filePath + "'");
+                                        childLog?.AddEvent(BdoEventLevels.Error, "Could not find the assembly file path '" + filePath + "'");
                                         loaded = false;
                                     }
                                     else
@@ -152,12 +152,12 @@ namespace BindOpen.Scoping
 
                                         if (assembly == null)
                                         {
-                                            childLog?.AddEvent(EventKinds.Error, "Could not load assembly '" + filePath + "'");
+                                            childLog?.AddEvent(BdoEventLevels.Error, "Could not load assembly '" + filePath + "'");
                                             loaded = false;
                                         }
                                         else
                                         {
-                                            childLog?.AddEvent(EventKinds.Checkpoint, "Loading assembly from file '" + filePath + "'");
+                                            childLog?.AddEvent(BdoEventLevels.Verbose, "Loading assembly from file '" + filePath + "'");
                                             assembly = Assembly.LoadFrom(filePath);
                                         }
                                     }
@@ -168,7 +168,7 @@ namespace BindOpen.Scoping
 
                             if (assembly != null)
                             {
-                                childLog?.AddEvent(EventKinds.Message, "Assembly '" + reference.ToString() + " loaded");
+                                childLog?.AddEvent(BdoEventLevels.Information, "Assembly '" + reference.ToString() + " loaded");
                                 break;
                             }
                         }
@@ -177,7 +177,7 @@ namespace BindOpen.Scoping
 
                         if (assembly == null)
                         {
-                            if (log.HasEvent(EventKinds.Error, EventKinds.Exception, EventKinds.Warning))
+                            if (log.HasEvent(BdoEventLevels.Error, BdoEventLevels.Fatal, BdoEventLevels.Warning))
                             {
                                 log?.AddChild(newLog);
                             }
@@ -224,9 +224,9 @@ namespace BindOpen.Scoping
                                 int count = LoadDictionary(assembly, extensionKind, packageDefinition, subChildLog);
 
                                 if (subChildLog?.HasEvent(
-                                    EventKinds.Error,
-                                    EventKinds.Exception,
-                                    EventKinds.Warning) == true)
+                                    BdoEventLevels.Error,
+                                    BdoEventLevels.Fatal,
+                                    BdoEventLevels.Warning) == true)
                                 {
                                     log?.AddChild(
                                         subChildLog,
@@ -234,7 +234,7 @@ namespace BindOpen.Scoping
                                 }
                                 else
                                 {
-                                    log?.AddEvent(EventKinds.Message, "Dictionary '" + extensionKind.ToString() + "' loaded (" + count.ToString() + " items added)");
+                                    log?.AddEvent(BdoEventLevels.Information, "Dictionary '" + extensionKind.ToString() + "' loaded (" + count.ToString() + " items added)");
                                 }
                             }
                         }

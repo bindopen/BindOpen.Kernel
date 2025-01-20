@@ -8,11 +8,14 @@ public partial class DataDbContext : DbContext
 {
     public MetaDataDb GetMetaData(string identifier)
     {
-        return MetaDatas
+        var metaData = MetaDatas
             .Include(q => q.ClassReference)
             .Include(q => q.Reference)
             .Include(q => q.Schema)
+            .Include(q => q.MetaItems)
             .FirstOrDefault(q => q.Identifier == identifier);
+
+        return metaData;
     }
 
     public MetaDataDb Upsert(IBdoMetaData poco)

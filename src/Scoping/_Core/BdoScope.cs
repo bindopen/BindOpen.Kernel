@@ -88,13 +88,13 @@ namespace BindOpen.Scoping
         {
             if (checkExtensionStore && ExtensionStore == null)
             {
-                log?.AddEvent(EventKinds.Error,
+                log?.AddEvent(BdoEventLevels.Error,
                     "Application extension missing", description: "No extension item definition store specified.");
                 return false;
             }
             if (checkDataStore && DepotStore == null)
             {
-                log?.AddEvent(EventKinds.Error,
+                log?.AddEvent(BdoEventLevels.Error,
                     "Depot set missing", description: "No depot set specified.");
                 return false;
             }

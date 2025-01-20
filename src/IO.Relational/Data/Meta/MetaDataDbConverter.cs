@@ -50,6 +50,13 @@ namespace BindOpen.Data.Meta
             }
         }
 
+        public static MetaDataDb ToDb(
+            this IBdoMetaObject poco,
+            DataDbContext context)
+        {
+            return ToDb(poco as IBdoMetaData, context);
+        }
+
         public static T UpdateFromPoco<T>(
             this T dbItem,
             IBdoMetaData poco,
@@ -76,6 +83,10 @@ namespace BindOpen.Data.Meta
                 config = new MapperConfiguration(
                     cfg => cfg.CreateMap<IBdoMetaScalar, T>()
                         .ForMember(q => q.ClassReference, opt => opt.Ignore())
+                        .ForMember(q => q.Items, opt => opt.Ignore())
+                        .ForMember(q => q.MetaItems, opt => opt.Ignore())
+                        .ForMember(q => q.MetaParent, opt => opt.Ignore())
+                        .ForMember(q => q.Parent, opt => opt.Ignore())
                         .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDb(context)))
                         .ForMember(q => q.Schema, opt => opt.MapFrom(q => q.Schema.ToDb(context)))
                 );
@@ -90,8 +101,11 @@ namespace BindOpen.Data.Meta
                 config = new MapperConfiguration(
                     cfg => cfg.CreateMap<IBdoMetaNode, T>()
                         .ForMember(q => q.ClassReference, opt => opt.Ignore())
-                        .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDb(context)))
+                        .ForMember(q => q.Items, opt => opt.Ignore())
                         .ForMember(q => q.MetaItems, opt => opt.Ignore())
+                        .ForMember(q => q.MetaParent, opt => opt.Ignore())
+                        .ForMember(q => q.Parent, opt => opt.Ignore())
+                        .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDb(context)))
                         .ForMember(q => q.Schema, opt => opt.MapFrom(q => q.Schema.ToDb(context)))
                 );
 
@@ -111,6 +125,8 @@ namespace BindOpen.Data.Meta
 
                             if (dbItem.MetaItems.Any(p => p?.Identifier == dbSubItem?.Identifier) != true)
                             {
+                                dbSubItem.MetaParent = dbItem;
+                                dbSubItem.MetaParentId = dbItem?.Identifier;
                                 dbItem.MetaItems.Add(dbSubItem);
                             }
                         }
@@ -184,7 +200,15 @@ namespace BindOpen.Data.Meta
                         };
                         obj.Schema = dbItem.Schema.ToPoco();
 
-                        obj.With(dbItem.MetaItems?.Select(q => q.ToPoco()).ToArray());
+                        obj.With(dbItem.MetaItems?.Select(q =>
+                        {
+                            var item = q.ToPoco();
+                            if (item != null)
+                            {
+                                item.Parent = obj;
+                            }
+                            return item;
+                        }).ToArray());
                         return obj;
                     case BdoMetaDataKind.Scalar:
                         config = new MapperConfiguration(
@@ -231,7 +255,15 @@ namespace BindOpen.Data.Meta
                         };
                         node.Schema = dbItem.Schema.ToPoco();
 
-                        node.With(dbItem.MetaItems?.Select(q => q.ToPoco()).ToArray());
+                        node.With(dbItem.MetaItems?.Select(q =>
+                        {
+                            var item = q.ToPoco();
+                            if (item != null)
+                            {
+                                item.Parent = node;
+                            }
+                            return item;
+                        }).ToArray());
                         return node;
                 }
             }

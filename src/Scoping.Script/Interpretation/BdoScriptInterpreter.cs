@@ -118,7 +118,7 @@ namespace BindOpen.Scoping.Script
                         var childLog = log?.NewLog();
                         var result = Evaluate(script, ref index, 0, varSet, childLog);
 
-                        if (childLog?.HasEvent(EventKinds.Error, EventKinds.Exception) == true)
+                        if (childLog?.HasEvent(BdoEventLevels.Error, BdoEventLevels.Fatal) == true)
                         {
                             log?.AddChild(
                                 childLog,
@@ -379,7 +379,7 @@ namespace BindOpen.Scoping.Script
                         nextIndex = script.IndexOfScript("(", index);
                         if (nextIndex >= script.Length)
                         {
-                            log?.AddEvent(EventKinds.Error,
+                            log?.AddEvent(BdoEventLevels.Error,
                                 "Syntax Error: Required character '(' for functions missing. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR")
                                 .WithDetail(
@@ -403,7 +403,7 @@ namespace BindOpen.Scoping.Script
                             // if the next index is out of range
                             if (nextIndex >= script.Length)
                             {
-                                log?.AddEvent(EventKinds.Error,
+                                log?.AddEvent(BdoEventLevels.Error,
                                     "Syntax Error: Character ')' not found for function. Position " + (index + offsetIndex),
                                     resultCode: "SCRIPT_SYNTAXERROR")
                                     .WithDetail(
@@ -455,7 +455,7 @@ namespace BindOpen.Scoping.Script
                         nextIndex = script.IndexOfScript(")", index);
                         if (nextIndex >= script.Length)
                         {
-                            log?.AddEvent(EventKinds.Error,
+                            log?.AddEvent(BdoEventLevels.Error,
                                 "Syntax Error: Character ')' needed for function has not been found. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR")
                                 .WithDetail(

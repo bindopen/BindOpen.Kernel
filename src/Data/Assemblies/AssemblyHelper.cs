@@ -87,7 +87,7 @@ public static class AssemblyHelper
     {
         if (type == null)
         {
-            log?.AddEvent(EventKinds.Error, "Unknown type");
+            log?.AddEvent(BdoEventLevels.Error, "Unknown type");
             return null;
         }
 

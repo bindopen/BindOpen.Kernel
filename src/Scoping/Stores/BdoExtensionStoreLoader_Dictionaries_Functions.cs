@@ -81,7 +81,7 @@ namespace BindOpen.Scoping
                     }
                     catch (ArgumentException)
                     {
-                        log?.AddEvent(EventKinds.Error,
+                        log?.AddEvent(BdoEventLevels.Error,
                             "Function ('" + definition.Name + "') with unexpected parameters");
                     }
 
@@ -89,7 +89,7 @@ namespace BindOpen.Scoping
                         && definition.RuntimeScopedFunction == null
                         && definition.RuntimeFunction == null)
                     {
-                        log?.AddEvent(EventKinds.Error,
+                        log?.AddEvent(BdoEventLevels.Error,
                             "Invalid function: Method not defined for function called '" + definition.UniqueName + "'",
                             resultCode: "SCRIPT_DEFINITION");
                     }

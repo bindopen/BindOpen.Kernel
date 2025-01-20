@@ -6,7 +6,7 @@
   <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/Arrays.xsd" />
   <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoElementSpec.xsd" />
   <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/BdoElementSet.xsd" />
-  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/EventKind.xsd" />
+  <xs:include schemaLocation="https://storage.bindopen.org/xsd/bindopen/EventLevel.xsd" />
 
   <xs:complexType name="BdoElement" abstract="true">
     <xs:complexContent mixed="false">
@@ -15,7 +15,7 @@
           <xs:element minOccurs="0" maxOccurs="1" name="itemReference" type="Reference" />
           <xs:element minOccurs="0" maxOccurs="1" name="items" type="ArrayOfString" />
           <xs:element minOccurs="0" maxOccurs="1" name="propertyDetail" type="BdoElementSet" />
-          <xs:element minOccurs="0" maxOccurs="1" name="eventKind" type="EventKind" />
+          <xs:element minOccurs="0" maxOccurs="1" name="eventLevel" type="EventLevel" />
         </xs:sequence>
         <xs:attribute use="optional" name="valueMode" type="DataValueMode" />
         <xs:attribute use="optional" name="script" type="xs:string" />

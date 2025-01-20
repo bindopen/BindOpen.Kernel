@@ -34,7 +34,7 @@ namespace BindOpen.Data
             }
             catch (JsonException ex)
             {
-                log?.AddEvent(EventKinds.Exception,
+                log?.AddEvent(BdoEventLevels.Fatal,
                     "Exception occured while serializing object",
                     ex.ToString());
             }
@@ -75,7 +75,7 @@ namespace BindOpen.Data
                 }
                 catch (JsonException ex)
                 {
-                    log?.AddEvent(EventKinds.Exception,
+                    log?.AddEvent(BdoEventLevels.Fatal,
                         "Exception occured while serializing object",
                         ex.ToString());
                 }
@@ -104,7 +104,7 @@ namespace BindOpen.Data
             {
                 if (mustFileExist)
                 {
-                    log?.AddEvent(EventKinds.Error, "File not found");
+                    log?.AddEvent(BdoEventLevels.Error, "File not found");
                 }
             }
             else
@@ -122,7 +122,7 @@ namespace BindOpen.Data
                 }
                 catch (JsonException ex)
                 {
-                    log?.AddEvent(EventKinds.Exception,
+                    log?.AddEvent(BdoEventLevels.Fatal,
                         "Exception occured while deserializing file",
                         ex.ToString());
                 }
@@ -159,7 +159,7 @@ namespace BindOpen.Data
                 }
                 catch (JsonException ex)
                 {
-                    log?.AddEvent(EventKinds.Exception,
+                    log?.AddEvent(BdoEventLevels.Fatal,
                         "Exception occured while deserializing string",
                         ex.ToString());
                 }

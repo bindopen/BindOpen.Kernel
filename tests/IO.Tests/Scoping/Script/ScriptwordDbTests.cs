@@ -1,10 +1,11 @@
-﻿using DeepEqual.Syntax;
+﻿using BindOpen.Data.Meta;
+using DeepEqual.Syntax;
 using NUnit.Framework;
 
 namespace BindOpen.Scoping.Script;
 
 [TestFixture, Order(304)]
-public class ScriptwordDbTests
+public class ScriptwordFromDbTests
 {
     private BdoScriptwordTests _dataTests;
 
@@ -24,8 +25,10 @@ public class ScriptwordDbTests
         dbContext.Upsert(word);
         dbContext.SaveChanges();
 
-        var wordDb = dbContext.GetScriptword(word.Identifier).ToPoco();
-        Assert.That(word.IsDeepEqual(wordDb) == true, "Bad item storage");
+        var wordFromDb = dbContext.GetMetaData(word.Identifier).ToPoco();
+        wordFromDb.WithDeepEqual(word)
+            .IgnoreProperty<IBdoMetaData>(x => x.Parent)
+            .Assert();
     }
 
     [Test, Order(2)]
@@ -45,8 +48,10 @@ public class ScriptwordDbTests
         dbContext.Upsert(word);
         dbContext.SaveChanges();
 
-        var wordDb = dbContext.GetScriptword(word.Identifier).ToPoco();
-        Assert.That(word.IsDeepEqual(wordDb) == true, "Bad item storage");
+        var wordFromDb = dbContext.GetMetaData(word.Identifier).ToPoco();
+        wordFromDb.WithDeepEqual(word)
+            .IgnoreProperty<IBdoMetaData>(x => x.Parent)
+            .Assert();
     }
 
     [Test, Order(3)]
@@ -66,9 +71,10 @@ public class ScriptwordDbTests
         dbContext.Upsert(word);
         dbContext.SaveChanges();
 
-
-        var wordDb = dbContext.GetScriptword(word.Identifier).ToPoco();
-        Assert.That(word.IsDeepEqual(wordDb) == true, "Bad item storage");
+        var wordFromDb = dbContext.GetMetaData(word.Identifier).ToPoco();
+        wordFromDb.WithDeepEqual(word)
+            .IgnoreProperty<IBdoMetaData>(x => x.Parent)
+            .Assert();
     }
 
     [Test, Order(4)]
@@ -86,7 +92,7 @@ public class ScriptwordDbTests
         dbContext.Remove(dbItem);
         dbContext.SaveChanges();
 
-        var wordDb = dbContext.GetScriptword(word.Identifier).ToPoco();
-        Assert.That(wordDb == null, "Bad item storage");
+        var wordFromDb = dbContext.GetScriptword(word.Identifier).ToPoco();
+        Assert.That(wordFromDb == null, "Bad item storage");
     }
 }

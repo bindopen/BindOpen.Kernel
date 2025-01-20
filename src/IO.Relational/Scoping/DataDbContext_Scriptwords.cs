@@ -9,12 +9,17 @@ public partial class DataDbContext : DbContext
 {
     public ScriptwordDb GetScriptword(string identifier)
     {
-        return Scriptwords
+        var scriptword = Scriptwords
             .Include(q => q.Child)
+            .Include(q => q.MetaItems)
             .Include(q => q.ClassReference)
             .Include(q => q.Expression)
             .Include(q => q.Schema)
             .FirstOrDefault(q => q.Identifier == identifier);
+
+        scriptword?.UpdateTree();
+
+        return scriptword;
     }
 
     public ScriptwordDb Upsert(IBdoScriptword poco)
