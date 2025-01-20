@@ -45,6 +45,8 @@ namespace BindOpen.Scoping.Script
 
             MetaDataDbConverter.UpdateFromPoco<MetaDataDb>(dbItem, poco, context);
             dbItem.ValueType = DataValueTypes.Any;
+            dbItem.TokenKind = poco.TokenKind;
+            dbItem.Text = poco.Text;
 
             if (context == null)
             {
@@ -53,6 +55,12 @@ namespace BindOpen.Scoping.Script
             else
             {
                 dbItem.Child = context.Upsert(poco.Child);
+            }
+
+            if (dbItem.Child != null)
+            {
+                dbItem.Child.Parent = dbItem;
+                dbItem.Child.ParentId = dbItem.Identifier;
             }
 
             return dbItem;
@@ -93,7 +101,16 @@ namespace BindOpen.Scoping.Script
             poco.Schema = dbItem.Schema.ToPoco();
             poco.ExpressionKind = BdoExpressionKind.Word;
 
-            poco.With(dbItem.MetaItems?.Select(q => q.ToPoco()).ToArray());
+            poco.With(dbItem.MetaItems?.Select(
+                q =>
+                {
+                    var item = q.ToPoco();
+                    if (item != null)
+                    {
+                        item.Parent = poco;
+                    }
+                    return item;
+                }).ToArray());
 
             return poco;
         }

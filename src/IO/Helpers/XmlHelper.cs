@@ -33,7 +33,7 @@ namespace BindOpen.Data
             }
             catch (JsonException ex)
             {
-                log?.AddEvent(EventKinds.Exception,
+                log?.AddEvent(BdoEventLevels.Fatal,
                     "Exception occured while serializing object",
                     ex.ToString());
             }
@@ -67,7 +67,7 @@ namespace BindOpen.Data
                 }
                 catch (JsonException ex)
                 {
-                    log?.AddEvent(EventKinds.Exception,
+                    log?.AddEvent(BdoEventLevels.Fatal,
                         "Exception occured while serializing object",
                         ex.ToString());
                 }
@@ -101,7 +101,7 @@ namespace BindOpen.Data
             {
                 if (mustFileExist)
                 {
-                    log?.AddEvent(EventKinds.Error, "File not found");
+                    log?.AddEvent(BdoEventLevels.Error, "File not found");
                 }
             }
             else
@@ -109,7 +109,7 @@ namespace BindOpen.Data
                 if (xmlSchemaSet != null)
                 {
                     XDocument document = XDocument.Load(filePath);
-                    document?.Validate(xmlSchemaSet, (o, e) => log?.AddEvent(EventKinds.Error, "Invalid file"));
+                    document?.Validate(xmlSchemaSet, (o, e) => log?.AddEvent(BdoEventLevels.Error, "Invalid file"));
                 }
 
                 try
@@ -120,7 +120,7 @@ namespace BindOpen.Data
                 }
                 catch (JsonException ex)
                 {
-                    log?.AddEvent(EventKinds.Exception,
+                    log?.AddEvent(BdoEventLevels.Fatal,
                         "Exception occured while deserializing file",
                         ex.ToString());
                 }
@@ -152,7 +152,7 @@ namespace BindOpen.Data
                     XDocument document = XDocument.Parse(xmlString);
                     document.Validate(xmlSchemaSet, (o, e) =>
                     {
-                        log?.AddEvent(EventKinds.Error,
+                        log?.AddEvent(BdoEventLevels.Error,
                             "Invalid Xml string",
                             e.Message);
                     });
@@ -166,7 +166,7 @@ namespace BindOpen.Data
                 }
                 catch (JsonException ex)
                 {
-                    log?.AddEvent(EventKinds.Exception,
+                    log?.AddEvent(BdoEventLevels.Fatal,
                         "Exception occured while deserializing string",
                         ex.ToString());
                 }

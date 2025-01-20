@@ -4,59 +4,63 @@ using System.Linq;
 namespace BindOpen.Logging
 {
     /// <summary>
-    /// This class represents a event kind extension.
+    /// This class represents a event level extension.
     /// </summary>
-    public static class EventKindExtensions
+    public static class EventLevelExtensions
     {
 
         // Gets -------------------------
 
         /// <summary>
-        /// Gets the maximum kind of events of the specified event kinds.
+        /// Gets the maximum kind of events of the specified event levels.
         /// </summary>
-        /// <param key="eventKinds">The event kinds to consider.</param>
+        /// <param key="eventLevels">The event levels to consider.</param>
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
-        public static EventKinds Max(this IEnumerable<EventKinds> eventKinds)
+        public static BdoEventLevels Max(this IEnumerable<BdoEventLevels> eventLevels)
         {
-            EventKinds eventKind = EventKinds.None;
-            if (eventKinds != null)
-                foreach (EventKinds currentEventKind in eventKinds)
-                    eventKind = currentEventKind.Max(eventKind);
+            BdoEventLevels eventLevel = BdoEventLevels.None;
+            if (eventLevels != null)
+            {
+                foreach (BdoEventLevels currentEventLevel in eventLevels)
+                {
+                    eventLevel = currentEventLevel.Max(eventLevel);
+                }
+            }
 
-            return eventKind;
+            return eventLevel;
         }
 
         /// <summary>
-        /// Gets the maximum kind of events of the specified event kinds.
+        /// Gets the maximum kind of events of the specified event levels.
         /// </summary>
-        /// <param key="eventKinds">The event kinds to consider.</param>
+        /// <param key="eventLevels">The event levels to consider.</param>
         /// <returns>True if this instance has the specified events. False otherwise.</returns>
-        public static bool Has(this IEnumerable<EventKinds> eventKinds, EventKinds kind)
+        public static bool Has(this IEnumerable<BdoEventLevels> eventLevels, BdoEventLevels kind)
         {
-            return kind == EventKinds.Any
-                || eventKinds.Any(q => q == EventKinds.Any || q == kind);
+            return kind == BdoEventLevels.Any
+                || eventLevels.Any(q => q == BdoEventLevels.Any || q == kind);
         }
 
         /// <summary>
-        /// Gets the maximum between the two specified event kinds.
+        /// Gets the maximum between the two specified event levels.
         /// </summary>
-        /// <param key="eventKind1">The first event kind to consider.</param>
-        /// <param key="eventKind2">The second event kind to consider.</param>
-        /// <returns>True if the first event kind is greater than the second one.</returns>
-        public static EventKinds Max(this EventKinds eventKind1, EventKinds eventKind2)
+        /// <param key="eventLevel1">The first event level to consider.</param>
+        /// <param key="eventLevel2">The second event level to consider.</param>
+        /// <returns>True if the first event level is greater than the second one.</returns>
+        public static BdoEventLevels Max(this BdoEventLevels eventLevel1, BdoEventLevels eventLevel2)
         {
-            return eventKind2 == EventKinds.Any ? eventKind1 : eventKind1 > eventKind2 ? eventKind1 : eventKind2;
+            return eventLevel2 == BdoEventLevels.Any ? eventLevel1 : eventLevel1 > eventLevel2 ? eventLevel1 : eventLevel2;
         }
 
         /// <summary>
-        /// Indicates whether the first event kind is greater than the second one.
+        /// Indicates whether the first event level is greater than the second one.
         /// </summary>
-        /// <param key="eventKind1">The first event kind to consider.</param>
-        /// <param key="eventKind2">The second event kind to consider.</param>
-        /// <returns>True if the first event kind is greater than the second one.</returns>
-        public static bool IsGreaterThan(this EventKinds eventKind1, EventKinds eventKind2)
+        /// <param key="eventLevel1">The first event level to consider.</param>
+        /// <param key="eventLevel2">The second event level to consider.</param>
+        /// <returns>True if the first event level is greater than the second one.</returns>
+        public static bool IsGreaterThan(this BdoEventLevels eventLevel1, BdoEventLevels eventLevel2)
         {
-            return eventKind1 > eventKind2;
+            return eventLevel1 > eventLevel2;
         }
 
     }

@@ -6,7 +6,7 @@ namespace BindOpen.Logging
     /// <summary>
     /// 
     /// </summary>
-    public interface IBdoProcessExecution : IBdoObject
+    public interface IBdoProcessExecution : IBdoObject, IIdentified
     {
         /// <summary>
         /// 

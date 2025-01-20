@@ -64,7 +64,7 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
             {
                 valid = false;
                 log?.AddEvent(
-                    EventKinds.Error,
+                    BdoEventLevels.Error,
                     "Bad value type",
                     string.Format("The type of data of element '{0}' is not compatible with '{1}' type",
                         meta.Name,
@@ -86,7 +86,7 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
                         if (meta != null)
                         {
                             log?.AddEvent(
-                                EventKinds.Error,
+                                BdoEventLevels.Error,
                                 "Element forbidden",
                                 string.Format("The element '{0}' is forbidden", meta.Name),
                                 resultCode: BdoSchemaRuleResultCodes.ElementForbidden);
@@ -98,7 +98,7 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
                         if (meta == null)
                         {
                             log?.AddEvent(
-                                EventKinds.Error,
+                                BdoEventLevels.Error,
                                 "Element missing",
                                 string.Format("The required element '{0}' is missing", schema.Name),
                                 resultCode: BdoSchemaRuleResultCodes.ElementMissing);
@@ -120,7 +120,7 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
                         if (meta == null)
                         {
                             log?.AddEvent(
-                                EventKinds.Error,
+                                BdoEventLevels.Error,
                                 "Value missing",
                                 string.Format("The value of the element '{0}' is missing", meta.Name),
                                 resultCode: BdoSchemaRuleResultCodes.ElementMissing);
@@ -132,7 +132,7 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
                         if (meta != null)
                         {
                             log?.AddEvent(
-                                EventKinds.Error,
+                                BdoEventLevels.Error,
                                 "Value forbidden",
                                 string.Format("Any value of element '{0}' is forbidden", meta.Name),
                                 resultCode: BdoSchemaRuleResultCodes.ElementForbidden);
@@ -152,7 +152,7 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
                 {
                     valid = false;
                     log?.AddEvent(
-                        EventKinds.Error,
+                        BdoEventLevels.Error,
                         "Invalid data item number",
                         string.Format("The element '{0}' must have between {1} and {2} data items ({3} found)",
                             meta.Name,
@@ -189,7 +189,7 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
                                 valid = false;
 
                                 log?.AddEvent(
-                                    rule.ResultEventKind,
+                                    rule.ResultEventLevel,
                                     rule.ResultTitle,
                                     rule.ResultDescription,
                                     resultCode: rule.ResultCode);
@@ -223,7 +223,7 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
                                 valid = false;
 
                                 log?.AddEvent(
-                                    constraint.ResultEventKind,
+                                    constraint.ResultEventLevel,
                                     constraint.ResultTitle,
                                     constraint.ResultDescription,
                                     resultCode: constraint.ResultCode);
@@ -254,7 +254,7 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
                             {
                                 valid = false;
                                 log?.AddEvent(
-                                    EventKinds.Error,
+                                    BdoEventLevels.Error,
                                     "Child element missing",
                                     "Option '" + childSpec.Name + "' missing");
                             }
@@ -264,7 +264,7 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
                             {
                                 valid = false;
                                 log?.AddEvent(
-                                    EventKinds.Error,
+                                    BdoEventLevels.Error,
                                     "Child element forbidden",
                                     "Option '" + childSpec.Name + "' missing");
                             }

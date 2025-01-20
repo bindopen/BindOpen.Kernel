@@ -40,7 +40,7 @@ namespace BindOpen.Scoping
 
                 if (resourceFullName == null)
                 {
-                    log?.AddEvent(EventKinds.Warning,
+                    log?.AddEvent(BdoEventLevels.Warning,
                         "Could not find any library definition in assembly (default named '" + __DefaultResourceFileName.ToLower() + "')");
                 }
                 else

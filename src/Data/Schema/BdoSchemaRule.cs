@@ -36,7 +36,7 @@ public class BdoSchemaRule : BdoObject, IBdoSchemaRule
     /// </summary>
     public string ResultCode { get; set; }
 
-    public EventKinds ResultEventKind { get; set; }
+    public BdoEventLevels ResultEventLevel { get; set; }
 
     public string ResultTitle { get; set; }
 

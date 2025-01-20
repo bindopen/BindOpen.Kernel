@@ -183,13 +183,13 @@ namespace BindOpen.Data.Meta
             {
                 if (scope == null)
                 {
-                    log?.AddEvent(EventKinds.Error, "Application scope missing");
+                    log?.AddEvent(BdoEventLevels.Error, "Application scope missing");
                 }
                 else
                 {
                     if (Reference == null)
                     {
-                        log?.AddEvent(EventKinds.Warning, "Script missing");
+                        log?.AddEvent(BdoEventLevels.Warning, "Script missing");
                     }
 
                     obj = scope.Interpreter.Evaluate<object>(Reference, varSet, log);

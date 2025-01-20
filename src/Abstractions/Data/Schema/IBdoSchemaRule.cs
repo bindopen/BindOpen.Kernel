@@ -15,9 +15,9 @@ public interface IBdoSchemaRule :
     BdoSchemaRuleKinds Kind { get; set; }
 
     /// <summary>
-    /// The result event kind.
+    /// The result event level.
     /// </summary>
-    EventKinds ResultEventKind { get; set; }
+    BdoEventLevels ResultEventLevel { get; set; }
 
     /// <summary>
     /// The result title.

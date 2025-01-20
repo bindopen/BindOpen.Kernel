@@ -27,7 +27,7 @@ public class ConfigurationDbTests
         var configDb = dbContext.GetConfiguration(config.Identifier).ToPoco();
 
         config.WithDeepEqual(configDb)
-            .SkipDefault<IBdoMetaData>()
+            //.SkipDefault<IBdoMetaData>()
             .IgnoreProperty<IBdoMetaData>(x => x.Parent)
             .Assert();
     }
@@ -51,7 +51,7 @@ public class ConfigurationDbTests
 
         var configDb = dbContext.GetConfiguration(config.Identifier).ToPoco();
         config.WithDeepEqual(configDb)
-            .SkipDefault<IBdoMetaData>()
+            //.SkipDefault<IBdoMetaData>()
             .IgnoreProperty<IBdoMetaData>(x => x.Parent)
             .Assert();
     }
@@ -73,10 +73,9 @@ public class ConfigurationDbTests
         dbContext.Upsert(config);
         dbContext.SaveChanges();
 
-
         var configDb = dbContext.GetConfiguration(config.Identifier).ToPoco();
         config.WithDeepEqual(configDb)
-            .SkipDefault<IBdoMetaData>()
+            //.SkipDefault<IBdoMetaData>()
             .IgnoreProperty<IBdoMetaData>(x => x.Parent)
             .Assert();
     }

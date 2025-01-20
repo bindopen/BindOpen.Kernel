@@ -28,7 +28,7 @@ public static class SchemaRuleDbConverter
             Reference = poco.Reference.ToDb(context),
             ResultCode = poco.ResultCode,
             ResultDescription = poco.ResultDescription,
-            ResultEventKind = poco.ResultEventKind,
+            ResultEventLevel = poco.ResultEventLevel,
             ResultTitle = poco.ResultTitle,
             Value = BdoData.NewScalar(poco.Value).ToDb(context)
         };
@@ -54,7 +54,7 @@ public static class SchemaRuleDbConverter
             Reference = dbItem.Reference.ToPoco(),
             ResultCode = dbItem.ResultCode,
             ResultDescription = dbItem.ResultDescription,
-            ResultEventKind = dbItem.ResultEventKind,
+            ResultEventLevel = dbItem.ResultEventLevel,
             ResultTitle = dbItem.ResultTitle,
             Value = dbItem.Value
         };

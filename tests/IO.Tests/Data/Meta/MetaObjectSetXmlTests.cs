@@ -39,20 +39,6 @@ public class MetaObjectSetXmlTests
     [Test, Order(1)]
     public void CreateTest()
     {
-        //        var metaEntity1 = BdoMeta.NewEntity(
-        //"entity1",
-        //        BdoConfig.New(
-        //    "bindopen.scoping.tests$testEntity",
-        //    BdoMeta.NewScalar("path", _testData.path1)));
-
-        //        var metaEntity2 = BdoMeta.NewEntity("entity2", "bindopen.scoping.tests$testEntity")
-        //            .With(new { path = _testData.path2 }).ToMetaSet<BdoConfiguration>());
-        //        var metaEntity3 = new EntityFake(_testData.path3, _testData.folderPath3)?.ToMeta();
-
-        //        var metaEntity4 = BdoExt.NewEntity<EntityFake>(
-        //        BdoConfig.New("bindopen.scoping.tests$testEntity")
-        //                .With(new { path = _testData.path4 }).ToMetaArray()))?.ToMeta();
-
         var meta1 = BdoData.NewObject("object1", _obj1);
         var meta2 = BdoData.NewObject("object2", _obj2);
         var meta3 = BdoData.NewObject("object3", _obj3);
