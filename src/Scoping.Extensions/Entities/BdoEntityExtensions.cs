@@ -42,7 +42,7 @@ namespace BindOpen.Scoping
                 {
                     object item = type.CreateInstance(log);
 
-                    if (log?.HasEvent(EventKinds.Error, EventKinds.Exception) != false)
+                    if (log?.HasEvent(BdoEventLevels.Error, BdoEventLevels.Fatal) != false)
                     {
                         if ((entity = item as IBdoEntity) != null)
                         {

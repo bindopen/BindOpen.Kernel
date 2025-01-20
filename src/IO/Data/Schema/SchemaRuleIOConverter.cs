@@ -26,7 +26,7 @@ public static class SchemaRuleIOConverter
             Reference = poco.Reference.ToDto(),
             ResultCode = poco.ResultCode,
             ResultDescription = poco.ResultDescription,
-            ResultEventKind = poco.ResultEventKind,
+            ResultEventLevel = poco.ResultEventLevel,
             ResultTitle = poco.ResultTitle,
             Value = BdoData.NewScalar(poco.Value).ToDto()
         };
@@ -52,7 +52,7 @@ public static class SchemaRuleIOConverter
             Reference = dto.Reference.ToPoco(),
             ResultCode = dto.ResultCode,
             ResultDescription = dto.ResultDescription,
-            ResultEventKind = dto.ResultEventKind,
+            ResultEventLevel = dto.ResultEventLevel,
             ResultTitle = dto.ResultTitle,
             Value = dto.Value
         };

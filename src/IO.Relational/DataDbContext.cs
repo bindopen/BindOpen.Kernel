@@ -100,9 +100,9 @@ public partial class DataDbContext : DbContext
         _connectionString = connectionString;
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    => optionsBuilder
-        .AddInterceptors(new DataDbContextInterceptor());
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //=> optionsBuilder
+    //    .AddInterceptors(new DataDbContextInterceptor());
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -151,6 +151,18 @@ public partial class DataDbContext : DbContext
             .WithOne(e => e.MetaData)
             .OnDelete(DeleteBehavior.ClientCascade);
 
+        modelBuilder
+            .Entity<MetaDataDb>()
+            .HasMany(e => e.MetaItems)
+            .WithOne(e => e.MetaParent)
+            .OnDelete(DeleteBehavior.ClientCascade);
+
+        modelBuilder
+            .Entity<ScriptwordDb>()
+            .HasOne(e => e.Child)
+            .WithOne(e => e.Parent as ScriptwordDb)
+            .OnDelete(DeleteBehavior.ClientCascade);
+
         // table relationships
 
         modelBuilder.Entity<MetaSetDb>()
@@ -196,19 +208,5 @@ public partial class DataDbContext : DbContext
                     .HasForeignKey($"{nameof(ExtensionGroupDb)[0..^2]}SetId")
                     .HasPrincipalKey(nameof(ExtensionGroupDb.Identifier)),
                 j => j.HasKey($"{nameof(ExtensionGroupDb)[0..^2]}SubId", $"{nameof(ExtensionGroupDb)[0..^2]}SetId"));
-
-        //modelBuilder.Entity<ExtensionDefinitionDb>()
-        //    .HasMany(e => e.Groups)
-        //    .WithMany(e => e.Definitions)
-        //    .UsingEntity($"{nameof(ExtensionDefinitionDb)}_{nameof(ExtensionGroupDb)}".Replace("Db", ""),
-        //        l => l.HasOne(typeof(ExtensionDefinitionDb))
-        //            .WithMany()
-        //            .HasForeignKey($"{nameof(ExtensionDefinitionDb)[0..^2]}Id")
-        //            .HasPrincipalKey(nameof(ExtensionDefinitionDb.Identifier)),
-        //        r => r.HasOne(typeof(ExtensionGroupDb))
-        //            .WithMany()
-        //            .HasForeignKey($"{nameof(ExtensionGroupDb)[0..^2]}Id")
-        //            .HasPrincipalKey(nameof(ExtensionGroupDb.Identifier)),
-        //        j => j.HasKey($"{nameof(ExtensionDefinitionDb)[0..^2]}Id", $"{nameof(ExtensionGroupDb)[0..^2]}Id"));
     }
 }

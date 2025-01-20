@@ -32,6 +32,28 @@ namespace BindOpen.Data.Meta
         public BdoMetaDataKind Kind { get; set; } = BdoMetaDataKind.None;
 
         /// <summary>
+        /// The parent identifier of this instance.
+        /// </summary>
+        public string ParentId { get; set; }
+
+        /// <summary>
+        /// The parent identifier of this instance.
+        /// </summary>
+        [ForeignKey(nameof(ParentId))]
+        public MetaDataDb Parent { get; set; }
+
+        /// <summary>
+        /// The parent identifier of this instance.
+        /// </summary>
+        public string MetaParentId { get; set; }
+
+        /// <summary>
+        /// The parent identifier of this instance.
+        /// </summary>
+        [ForeignKey(nameof(MetaParentId))]
+        public MetaDataDb MetaParent { get; set; }
+
+        /// <summary>
         /// Name of this instance.
         /// </summary>
         public string Name { get; set; }

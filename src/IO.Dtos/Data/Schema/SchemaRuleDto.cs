@@ -72,10 +72,10 @@ public class SchemaRuleDto
     [XmlElement("resultCode")]
     public string ResultCode { get; set; }
 
-    [JsonPropertyName("resultEventKind")]
-    [XmlElement("resultEventKind")]
-    [DefaultValue(EventKinds.None)]
-    public EventKinds ResultEventKind { get; set; }
+    [JsonPropertyName("resultEventLevel")]
+    [XmlElement("resultEventLevel")]
+    [DefaultValue(BdoEventLevels.None)]
+    public BdoEventLevels ResultEventLevel { get; set; }
 
     [JsonPropertyName("resultTitle")]
     [XmlElement("resultTitle")]

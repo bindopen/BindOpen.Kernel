@@ -75,5 +75,17 @@ namespace BindOpen.Scoping.Script
         }
 
         #endregion
+
+        public MetaDataDb UpdateTree()
+        {
+            if (Child != null)
+            {
+                Child.Parent = this;
+                Child.UpdateTree();
+            }
+
+            return this;
+        }
+
     }
 }

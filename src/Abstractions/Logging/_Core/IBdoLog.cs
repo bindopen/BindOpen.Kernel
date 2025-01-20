@@ -31,7 +31,7 @@ namespace BindOpen.Logging
         IBdoLog NewLog();
 
         IBdoLog InsertChild(
-            EventKinds kind,
+            BdoEventLevels kind,
             string title,
             string description = null,
             DateTime? date = null,
@@ -42,7 +42,7 @@ namespace BindOpen.Logging
         /// </summary>
         /// <param key="childLog"></param>
         /// <param key="logFinder"></param>
-        /// <param key="eventKind"></param>
+        /// <param key="eventLevel"></param>
         /// <param key="title"></param>
         /// <param key="criticality"></param>
         /// <param key="description"></param>
@@ -52,7 +52,7 @@ namespace BindOpen.Logging
         /// <returns></returns>
         IBdoLog AddChild(
             IBdoLog childLog = null,
-            EventKinds kind = EventKinds.Any,
+            BdoEventLevels kind = BdoEventLevels.Any,
             string title = null,
             string description = null,
             DateTime? date = null,
@@ -74,7 +74,7 @@ namespace BindOpen.Logging
         /// <param key="logFinder"></param>
         /// <returns></returns>
         IBdoLog AddEvent(
-            EventKinds kind,
+            BdoEventLevels kind,
             string title,
             string description = null,
             DateTime? date = null,
@@ -86,14 +86,14 @@ namespace BindOpen.Logging
         /// <param key="isRecursive"></param>
         /// <param key="kinds"></param>
         /// <returns></returns>
-        bool HasEvent(bool isRecursive = true, params EventKinds[] kinds);
+        bool HasEvent(bool isRecursive = true, params BdoEventLevels[] kinds);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param key="isRecursive"></param>
         /// <param key="kinds"></param>
-        int RemoveEvents(bool isRecursive = true, params EventKinds[] kinds);
+        int RemoveEvents(bool isRecursive = true, params BdoEventLevels[] kinds);
 
         // Logs
 

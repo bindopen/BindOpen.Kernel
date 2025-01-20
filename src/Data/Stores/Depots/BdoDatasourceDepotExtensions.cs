@@ -44,9 +44,9 @@ namespace BindOpen.Data.Stores
 
                         number = datasourceDepot.Count;
 
-                        if (log?.HasEvent(EventKinds.Error, EventKinds.Exception) == false)
+                        if (log?.HasEvent(BdoEventLevels.Error, BdoEventLevels.Fatal) == false)
                         {
-                            log.AddEvent(EventKinds.Message, "Depot loaded (" + number + " data sources added)");
+                            log.AddEvent(BdoEventLevels.Information, "Depot loaded (" + number + " data sources added)");
                         }
                     }
 

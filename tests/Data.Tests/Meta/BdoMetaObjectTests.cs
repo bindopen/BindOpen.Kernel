@@ -1,5 +1,4 @@
 ﻿using BindOpen.Data.Meta.Reflection;
-using BindOpen.Scoping;
 using BindOpen.Tests;
 using DeepEqual.Syntax;
 using NUnit.Framework;
@@ -10,6 +9,7 @@ namespace BindOpen.Data.Meta;
 public class BdoMetaObjectTests
 {
     private object _obj = null;
+    public IBdoMetaObject _metaObject;
 
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -17,27 +17,27 @@ public class BdoMetaObjectTests
         _obj = ClassObjectFaker.Fake();
     }
 
-    private void Test(IBdoMetaData meta)
+    private void Test()
     {
-        var obj = meta?.GetData();
+        var obj = _metaObject?.GetData();
         Assert.That(obj?.IsDeepEqual(_obj) == true, "Bad obj element set - Count");
     }
 
     [Test, Order(1)]
     public void ToMetaTest()
     {
-        var meta = _obj.ToMeta();
-        Test(meta);
+        _metaObject = _obj.ToMeta<BdoMetaObject>();
+        Test();
     }
 
     [Test, Order(2)]
     public void NewTest()
     {
-        var meta1 = BdoData.NewObject(_obj);
-        Test(meta1);
+        _metaObject = BdoData.NewObject(_obj);
+        Test();
 
-        var meta2 = BdoData.NewObject()
+        _metaObject = BdoData.NewObject()
             .WithData(_obj);
-        Test(meta2);
+        Test();
     }
 }

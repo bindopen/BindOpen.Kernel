@@ -3,7 +3,7 @@
 namespace BindOpen.Logging
 {
     /// <summary>
-    /// This class represents a event kind extension.
+    /// This class represents a event level extension.
     /// </summary>
     public static class ProcessExeuctionStateExtensions
     {

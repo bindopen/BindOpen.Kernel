@@ -52,7 +52,7 @@ namespace BindOpen.Scoping
                     }
                     catch (Exception ex)
                     {
-                        log?.AddEvent(EventKinds.Exception,
+                        log?.AddEvent(BdoEventLevels.Fatal,
                             "Error while attempting to load assembly from file '" + filePath + "'",
                             ex.ToString());
                     }
@@ -78,7 +78,7 @@ namespace BindOpen.Scoping
 
             if (reference?.IsEmpty() != false)
             {
-                log?.AddEvent(EventKinds.Warning, "Assembly name missing");
+                log?.AddEvent(BdoEventLevels.Warning, "Assembly name missing");
                 return null;
             }
 
@@ -99,11 +99,11 @@ namespace BindOpen.Scoping
                     }
                     catch (FileNotFoundException)
                     {
-                        log?.AddEvent(EventKinds.Error, "Could not find the assembly '" + reference.ToString() + "'");
+                        log?.AddEvent(BdoEventLevels.Error, "Could not find the assembly '" + reference.ToString() + "'");
                     }
                     catch (Exception ex)
                     {
-                        log?.AddEvent(EventKinds.Exception,
+                        log?.AddEvent(BdoEventLevels.Fatal,
                             "Error while attempting to load assembly '" + reference.ToString() + "'",
                             ex.ToString());
                     }
