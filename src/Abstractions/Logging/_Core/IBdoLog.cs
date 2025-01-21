@@ -31,7 +31,7 @@ namespace BindOpen.Logging
         IBdoLog NewLog();
 
         IBdoLog InsertChild(
-            BdoEventLevels kind,
+            BdoEventKinds kind,
             string title,
             string description = null,
             DateTime? date = null,
@@ -52,7 +52,7 @@ namespace BindOpen.Logging
         /// <returns></returns>
         IBdoLog AddChild(
             IBdoLog childLog = null,
-            BdoEventLevels kind = BdoEventLevels.Any,
+            BdoEventKinds kind = BdoEventKinds.Any,
             string title = null,
             string description = null,
             DateTime? date = null,
@@ -74,7 +74,7 @@ namespace BindOpen.Logging
         /// <param key="logFinder"></param>
         /// <returns></returns>
         IBdoLog AddEvent(
-            BdoEventLevels kind,
+            BdoEventKinds kind,
             string title,
             string description = null,
             DateTime? date = null,
@@ -86,14 +86,14 @@ namespace BindOpen.Logging
         /// <param key="isRecursive"></param>
         /// <param key="kinds"></param>
         /// <returns></returns>
-        bool HasEvent(bool isRecursive = true, params BdoEventLevels[] kinds);
+        bool HasEvent(bool isRecursive = true, params BdoEventKinds[] kinds);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param key="isRecursive"></param>
         /// <param key="kinds"></param>
-        int RemoveEvents(bool isRecursive = true, params BdoEventLevels[] kinds);
+        int RemoveEvents(bool isRecursive = true, params BdoEventKinds[] kinds);
 
         // Logs
 

@@ -43,7 +43,7 @@ namespace BindOpen.Scoping
                 {
                     object item = type.CreateInstance(log);
 
-                    if (log?.HasEvent(BdoEventLevels.Error, BdoEventLevels.Fatal) != false)
+                    if (log?.HasEvent(BdoEventKinds.Error, BdoEventKinds.Exception) != false)
                     {
                         if ((connector = item as IBdoConnector) != null)
                         {
@@ -179,7 +179,7 @@ namespace BindOpen.Scoping
         {
             if (meta == null)
             {
-                log?.AddEvent(BdoEventLevels.Error, "Connection missing");
+                log?.AddEvent(BdoEventKinds.Error, "Connection missing");
             }
             else if (scope?.Check(true, log: log) == true)
             {
