@@ -32,7 +32,7 @@ namespace BindOpen.Scoping
 
             if (definition == null)
             {
-                log?.AddEvent(BdoEventLevels.Error,
+                log?.AddEvent(BdoEventKinds.Error,
                     "Function named '" + functionName + "' not defined",
                     "Syntax error: Function named '" + functionName + "' not defined",
                     resultCode: "SCRIPT_NOTEXISTINGWORD");
@@ -81,7 +81,7 @@ namespace BindOpen.Scoping
             {
                 var functionName = definitionUniqueName ?? word?.Name;
 
-                log?.AddEvent(BdoEventLevels.Error,
+                log?.AddEvent(BdoEventKinds.Error,
                     "Function named '" + functionName + "' not defined",
                     "Syntax error: Function named '" + functionName + "' not defined",
                     resultCode: "SCRIPT_NOTEXISTINGWORD");
@@ -178,14 +178,14 @@ namespace BindOpen.Scoping
                 }
                 catch (ApplicationException ex)
                 {
-                    log?.AddEvent(BdoEventLevels.Error,
+                    log?.AddEvent(BdoEventKinds.Error,
                         "Bad argument",
                         ex.ToString(),
                         resultCode: "SCRIPT_BADARGUMENT");
                 }
                 catch (ArgumentException ex)
                 {
-                    log?.AddEvent(BdoEventLevels.Error,
+                    log?.AddEvent(BdoEventKinds.Error,
                         "Bad argument",
                         ex.ToString(),
                         resultCode: "SCRIPT_BADARGUMENT");

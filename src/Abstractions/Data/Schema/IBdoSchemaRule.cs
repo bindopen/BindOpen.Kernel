@@ -17,7 +17,7 @@ public interface IBdoSchemaRule :
     /// <summary>
     /// The result event level.
     /// </summary>
-    BdoEventLevels ResultEventLevel { get; set; }
+    BdoEventKinds ResultEventLevel { get; set; }
 
     /// <summary>
     /// The result title.

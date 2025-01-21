@@ -42,7 +42,7 @@ namespace BindOpen.Scoping
                 {
                     object item = type.CreateInstance(log);
 
-                    if (log?.HasEvent(BdoEventLevels.Error, BdoEventLevels.Fatal) != false)
+                    if (log?.HasEvent(BdoEventKinds.Error, BdoEventKinds.Exception) != false)
                     {
                         if ((task = item as IBdoTask) != null)
                         {

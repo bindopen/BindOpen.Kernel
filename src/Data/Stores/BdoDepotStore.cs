@@ -94,12 +94,12 @@ namespace BindOpen.Data.Stores
                 if (depot != null)
                 {
                     depot.WithScope(scope);
-                    var childLog = log?.InsertChild(BdoEventLevels.Information, "Loading depot '" + depot.Identifier + "'...");
+                    var childLog = log?.InsertChild(BdoEventKinds.Message, "Loading depot '" + depot.Identifier + "'...");
                     loaded &= depot.LoadLazy(childLog);
 
-                    if (childLog?.HasEvent(BdoEventLevels.Error, BdoEventLevels.Fatal) == true)
+                    if (childLog?.HasEvent(BdoEventKinds.Error, BdoEventKinds.Exception) == true)
                     {
-                        childLog.AddEvent(BdoEventLevels.Information, "Could not load depot");
+                        childLog.AddEvent(BdoEventKinds.Message, "Could not load depot");
                     }
                 }
             }

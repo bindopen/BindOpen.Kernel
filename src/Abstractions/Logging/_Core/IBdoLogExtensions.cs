@@ -62,7 +62,7 @@ namespace BindOpen.Logging
         /// </summary>
         public static bool HasEvent<T>(
             this T log,
-            params BdoEventLevels[] kinds)
+            params BdoEventKinds[] kinds)
             where T : IBdoLog
         {
             return log?.HasEvent(true, kinds) ?? false;
@@ -75,7 +75,7 @@ namespace BindOpen.Logging
             string resultCode = null)
             where T : IBdoLog
         {
-            log?.AddEvent(BdoEventLevels.Fatal, exception?.Message, exception?.ToString(), date, resultCode);
+            log?.AddEvent(BdoEventKinds.Exception, exception?.Message, exception?.ToString(), date, resultCode);
 
             return log;
         }
