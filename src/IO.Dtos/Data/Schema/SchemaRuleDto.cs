@@ -74,8 +74,8 @@ public class SchemaRuleDto
 
     [JsonPropertyName("resultEventLevel")]
     [XmlElement("resultEventLevel")]
-    [DefaultValue(BdoEventLevels.None)]
-    public BdoEventLevels ResultEventLevel { get; set; }
+    [DefaultValue(BdoEventKinds.None)]
+    public BdoEventKinds ResultEventLevel { get; set; }
 
     [JsonPropertyName("resultTitle")]
     [XmlElement("resultTitle")]

@@ -68,7 +68,7 @@ namespace BindOpen.Scoping
                         }
                         catch (ExternalException ex)
                         {
-                            log?.AddEvent(BdoEventLevels.Fatal,
+                            log?.AddEvent(BdoEventKinds.Exception,
                                 "An exception occured while trying to open connection",
                                 ex.ToString());
                         }
