@@ -47,7 +47,8 @@ namespace BindOpen.Scoping
                     cfg => cfg.CreateMap<IBdoEntityDefinition, IBdoEntityDefinition>()
                         .ForMember(q => q.Items, opt => opt.Ignore())
                         .ForAllMembers(x => x.Condition(
-                          (src, dest, sourceValue) => sourceValue != null))
+                          (src, dest, sourceValue) => sourceValue != null)),
+                    null
                 );
 
                 definition.Update(refDef);

@@ -46,7 +46,8 @@ namespace BindOpen.Scoping.Tasks
                         .ForMember(q => q.Items, opt => opt.Ignore())
                         .ForMember(q => q.Outputs, opt => opt.Ignore())
                         .ForAllMembers(x => x.Condition(
-                          (src, dest, sourceValue) => sourceValue != null))
+                          (src, dest, sourceValue) => sourceValue != null)),
+                    null
                 );
 
                 definition.Update(refDef);

@@ -1,7 +1,4 @@
-﻿using BindOpen.Data.Meta;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 
 namespace BindOpen.Data.Conditions
 {
@@ -20,11 +17,6 @@ namespace BindOpen.Data.Conditions
         /// Kind of this instance.
         /// </summary>
         public BdoCompositeConditionKind CompositionKind { get; set; } = BdoCompositeConditionKind.And;
-
-        /// <summary>
-        /// Conditions of this instance.
-        /// </summary>
-        public IList<IBdoCondition> Conditions { get; set; }
 
         #endregion
 
@@ -49,7 +41,7 @@ namespace BindOpen.Data.Conditions
             BdoCompositeConditionKind kind,
             params IBdoCondition[] conditions)
         {
-            Conditions = conditions?.ToList();
+            _children = new TBdoSet<IBdoCondition>(conditions);
         }
 
         #endregion
