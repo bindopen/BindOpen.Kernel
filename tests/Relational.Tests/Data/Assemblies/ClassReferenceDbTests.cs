@@ -25,8 +25,10 @@ public class ClassReferenceDbTests
         dbContext.Upsert(reference);
         dbContext.SaveChanges();
 
-        var expDb = dbContext.GetClassReference(reference.Identifier).ToPoco();
-        Assert.That(reference.IsDeepEqual(expDb) == true, "Bad item storage");
+        var referenceDb = dbContext.GetClassReference(reference.Identifier).ToPoco();
+
+        var deepEq = reference.WithDeepEqual(referenceDb);
+        deepEq.Assert();
     }
 
     [Test, Order(2)]
@@ -38,16 +40,18 @@ public class ClassReferenceDbTests
         }
 
         _dataTests.Create2Test();
-        var exp = _dataTests._classRef2;
+        var reference = _dataTests._classRef2;
         var id = _dataTests._classRef1?.Identifier;
         _dataTests._classRef2.Identifier = id;
 
         using var dbContext = GlobalRelationalTestData.CreateDbContext();
-        dbContext.Upsert(exp);
+        dbContext.Upsert(reference);
         dbContext.SaveChanges();
 
-        var expDb = dbContext.GetClassReference(exp.Identifier).ToPoco();
-        Assert.That(exp.IsDeepEqual(expDb) == true, "Bad item storage");
+        var referenceDb = dbContext.GetClassReference(reference.Identifier).ToPoco();
+
+        var deepEq = reference.WithDeepEqual(referenceDb);
+        deepEq.Assert();
     }
 
     [Test, Order(4)]
@@ -65,7 +69,7 @@ public class ClassReferenceDbTests
         dbContext.Remove(dto);
         dbContext.SaveChanges();
 
-        var expDb = dbContext.GetClassReference(reference.Identifier).ToPoco();
-        Assert.That(expDb == null, "Bad item storage");
+        var referenceDb = dbContext.GetClassReference(reference.Identifier).ToPoco();
+        Assert.That(referenceDb == null, "Bad item storage");
     }
 }

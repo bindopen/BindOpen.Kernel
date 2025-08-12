@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using BindOpen.Data.Helpers;
-using System.Linq;
+﻿using System.Linq;
 
 namespace BindOpen.Data.Schema;
 
@@ -27,23 +25,19 @@ public static class DefinitionDbConverter
     public static T ToDb<T>(
         this IBdoDefinition poco,
         DataDbContext context)
-        where T : DefinitionDb
+        where T : DefinitionDb, new()
     {
         if (poco == null) return null;
 
-        var config = new MapperConfiguration(
-            cfg => cfg.CreateMap<IBdoDefinition, T>()
-                .ForMember(q => q.CreationDate, opt => opt.MapFrom(q => StringHelper.ToString(q.CreationDate)))
-                .ForMember(q => q.Description, opt => opt.MapFrom(q => q.Description.ToDb(context)))
-                .ForMember(q => q.Items, opt => opt.MapFrom(q => q.Items == null ? null : q.Items.Select(q => q.ToDb(context)).ToList()))
-                .ForMember(q => q.LastModificationDate, opt => opt.MapFrom(q => StringHelper.ToString(q.CreationDate)))
-                .ForMember(q => q.Title, opt => opt.MapFrom(q => q.Title.ToDb(context)))
-                .ForMember(q => q.UsedItemIds, opt => opt.MapFrom(q => q.UsedItemIds == null ? null : q.UsedItemIds.Select(q => q).ToList())),
-            null
-        );
-
-        var mapper = new Mapper(config);
-        var dbItem = mapper.Map<T>(poco);
+        T dbItem = new()
+        {
+            CreationDate = poco.CreationDate ?? new(),
+            Description = poco.Description.ToDb(context),
+            Items = poco.Items == null ? null : poco.Items.Select(q => q.ToDb(context)).ToList(),
+            LastModificationDate = poco.LastModificationDate ?? new(),
+            Title = poco.Title.ToDb(context),
+            UsedItemIds = poco.UsedItemIds == null ? null : poco.UsedItemIds.Select(q => q).ToList()
+        };
 
         return dbItem;
     }
@@ -64,23 +58,17 @@ public static class DefinitionDbConverter
     /// <returns>The poco object.</returns>
     public static T ToPoco<T>(
         this DefinitionDb dbItem)
-        where T : IBdoDefinition
+        where T : IBdoDefinition, new()
     {
         if (dbItem == null) return default;
 
-        var config = new MapperConfiguration(
-            cfg => cfg.CreateMap<DefinitionDb, T>()
-                .ForMember(q => q.CreationDate, opt => opt.MapFrom(q => q.CreationDate))
-                .ForMember(q => q.Description, opt => opt.Ignore())
-                .ForMember(q => q.Items, opt => opt.Ignore())
-                .ForMember(q => q.LastModificationDate, opt => opt.MapFrom(q => q.LastModificationDate))
-                .ForMember(q => q.Title, opt => opt.Ignore())
-                .ForMember(q => q.UsedItemIds, opt => opt.MapFrom(q => q.UsedItemIds == null ? null : q.UsedItemIds.Select(q => q).ToList())),
-            null
-        );
+        T poco = new()
+        {
+            CreationDate = dbItem.CreationDate,
+            LastModificationDate = dbItem.LastModificationDate,
+            UsedItemIds = dbItem.UsedItemIds == null ? null : dbItem.UsedItemIds.Select(q => q).ToList()
+        };
 
-        var mapper = new Mapper(config);
-        var poco = mapper.Map<T>(dbItem);
         poco
             .WithTitle(dbItem.Title.ToPoco<string>())
             .WithDescription(dbItem.Description.ToPoco<string>())

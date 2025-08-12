@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
 using System.Linq;
@@ -41,16 +40,8 @@ namespace BindOpen.Data.Meta
             poco.Identifier ??= StringHelper.NewGuid();
             poco.UpdateTrees();
 
-            MapperConfiguration config;
-
-            config = new MapperConfiguration(
-                cfg => cfg.CreateMap<IBdoMetaSet, T>()
-                    .ForMember(q => q.Items, opt => opt.Ignore()),
-                null
-            );
-
-            var mapper = new Mapper(config);
-            mapper.Map(poco, dbItem);
+            dbItem.Identifier = dbItem.Identifier;
+            dbItem.Name = dbItem.Name;
 
             if (context != null)
             {
@@ -84,15 +75,9 @@ namespace BindOpen.Data.Meta
         {
             if (dbItem == null) return null;
 
-            var config = new MapperConfiguration(
-                cfg => cfg.CreateMap<MetaSetDb, BdoMetaSet>()
-                    .ForMember(q => q.Items, opt => opt.Ignore()),
-                null
-            );
-
-            var mapper = new Mapper(config);
-            var poco = mapper.Map<BdoMetaSet>(dbItem);
-
+            BdoMetaSet poco = [];
+            poco.Identifier = dbItem.Identifier;
+            poco.Name = dbItem.Name;
             poco.With(dbItem.Items?.Select(q => q.ToPoco()).ToArray());
 
             return poco;

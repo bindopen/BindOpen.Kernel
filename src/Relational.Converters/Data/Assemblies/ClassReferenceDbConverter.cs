@@ -37,6 +37,7 @@ public static class ClassReferenceDbConverter
         dbItem.AssemblyFileName = poco.AssemblyFileName;
         dbItem.AssemblyName = poco.AssemblyName;
         dbItem.AssemblyVersion = poco.AssemblyVersion?.ToString();
+        dbItem.ClassName = poco.ClassName;
         dbItem.Identifier = poco.Identifier;
 
         return dbItem;

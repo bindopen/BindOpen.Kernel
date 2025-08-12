@@ -80,39 +80,14 @@ namespace BindOpen.Data.Meta
             }
             else if (poco is IBdoMetaScalar scalar)
             {
-                config = new MapperConfiguration(
-                    cfg => cfg.CreateMap<IBdoMetaScalar, T>()
-                        .ForMember(q => q.ClassReference, opt => opt.Ignore())
-                        .ForMember(q => q.Items, opt => opt.Ignore())
-                        .ForMember(q => q.MetaItems, opt => opt.Ignore())
-                        .ForMember(q => q.MetaParent, opt => opt.Ignore())
-                        .ForMember(q => q.Parent, opt => opt.Ignore())
-                        .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDb(context)))
-                        .ForMember(q => q.Schema, opt => opt.MapFrom(q => q.Schema.ToDb(context))),
-                    null
-                );
-
-                mapper = new Mapper(config);
-                mapper.Map(scalar, dbItem);
-
+                dbItem.Reference = scalar.Reference.ToDb(context);
+                dbItem.Schema = scalar.Schema.ToDb(context);
                 dbItem.Items = scalar.GetDataList<object>()?.Select(q => q.ToString(dbItem.ValueType)).ToList();
             }
             else if (poco is IBdoMetaNode node)
             {
-                config = new MapperConfiguration(
-                    cfg => cfg.CreateMap<IBdoMetaNode, T>()
-                        .ForMember(q => q.ClassReference, opt => opt.Ignore())
-                        .ForMember(q => q.Items, opt => opt.Ignore())
-                        .ForMember(q => q.MetaItems, opt => opt.Ignore())
-                        .ForMember(q => q.MetaParent, opt => opt.Ignore())
-                        .ForMember(q => q.Parent, opt => opt.Ignore())
-                        .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDb(context)))
-                        .ForMember(q => q.Schema, opt => opt.MapFrom(q => q.Schema.ToDb(context))),
-                    null
-                );
-
-                mapper = new Mapper(config);
-                mapper.Map(node, dbItem);
+                dbItem.Reference = node.Reference.ToDb(context);
+                dbItem.Schema = node.Schema.ToDb(context);
 
                 if (context != null)
                 {
@@ -170,9 +145,6 @@ namespace BindOpen.Data.Meta
         {
             if (dbItem == null) return null;
 
-            MapperConfiguration config;
-            Mapper mapper;
-
             if (dbItem is ScriptwordDb script)
             {
                 return ScriptwordDbConverter.ToPoco(script);
@@ -182,26 +154,18 @@ namespace BindOpen.Data.Meta
                 switch (dbItem.Kind)
                 {
                     case BdoMetaDataKind.Object:
-                        config = new MapperConfiguration(
-                            cfg => cfg.CreateMap<MetaDataDb, BdoMetaObject>()
-                                .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToPoco()))
-                                .ForMember(q => q.DataType, opt => opt.Ignore())
-                                .ForMember(q => q.Items, opt => opt.Ignore())
-                                .ForMember(q => q.Parent, opt => opt.Ignore())
-                                .ForMember(q => q.Schema, opt => opt.Ignore()),
-                            null
-                        );
-
-                        mapper = new Mapper(config);
-                        var obj = mapper.Map<BdoMetaObject>(dbItem);
-
-                        obj.DataType = new BdoDataType(dbItem?.ClassReference?.ToPoco())
+                        BdoMetaObject obj = new()
                         {
-                            DefinitionUniqueName = dbItem.DefinitionUniqueName,
-                            Identifier = dbItem.Identifier,
-                            ValueType = dbItem.ValueType
+                            Reference = dbItem?.Reference.ToPoco(),
+
+                            DataType = new BdoDataType(dbItem?.ClassReference?.ToPoco())
+                            {
+                                DefinitionUniqueName = dbItem.DefinitionUniqueName,
+                                Identifier = dbItem.Identifier,
+                                ValueType = dbItem.ValueType
+                            },
+                            Schema = dbItem.Schema.ToPoco()
                         };
-                        obj.Schema = dbItem.Schema.ToPoco();
 
                         obj.With(dbItem.MetaItems?.Select(q =>
                         {
@@ -214,51 +178,33 @@ namespace BindOpen.Data.Meta
                         }).ToArray());
                         return obj;
                     case BdoMetaDataKind.Scalar:
-                        config = new MapperConfiguration(
-                            cfg => cfg.CreateMap<MetaDataDb, BdoMetaScalar>()
-                                .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToPoco()))
-                                .ForMember(q => q.DataType, opt => opt.Ignore())
-                                .ForMember(q => q.Parent, opt => opt.Ignore())
-                                .ForMember(q => q.Schema, opt => opt.Ignore()),
-                            null
-                        );
-
-                        mapper = new Mapper(config);
-                        var scalar = mapper.Map<BdoMetaScalar>(dbItem);
-
-                        scalar.DataType = new BdoDataType(dbItem?.ClassReference?.ToPoco())
+                        BdoMetaScalar scalar = new()
                         {
-                            DefinitionUniqueName = dbItem.DefinitionUniqueName,
-                            Identifier = dbItem.Identifier,
-                            ValueType = dbItem.ValueType
+                            Reference = dbItem?.Reference.ToPoco(),
+                            DataType = new BdoDataType(dbItem?.ClassReference?.ToPoco())
+                            {
+                                DefinitionUniqueName = dbItem.DefinitionUniqueName,
+                                Identifier = dbItem.Identifier,
+                                ValueType = dbItem.ValueType
+                            },
+                            Schema = dbItem.Schema.ToPoco()
                         };
-                        scalar.Schema = dbItem.Schema.ToPoco();
 
                         var objects = dbItem.Items?.Select(q => q.ToObject(scalar.DataType.ValueType)).ToList();
                         scalar.WithData(objects);
                         return scalar;
                     case BdoMetaDataKind.Node:
-
-                        config = new MapperConfiguration(
-                            cfg => cfg.CreateMap<MetaDataDb, BdoMetaNode>()
-                                .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToPoco()))
-                                .ForMember(q => q.DataType, opt => opt.Ignore())
-                                .ForMember(q => q.Items, opt => opt.Ignore())
-                                .ForMember(q => q.Parent, opt => opt.Ignore())
-                                .ForMember(q => q.Schema, opt => opt.Ignore()),
-                            null
-                        );
-
-                        mapper = new Mapper(config);
-                        var node = mapper.Map<BdoMetaNode>(dbItem);
-
-                        node.DataType = new BdoDataType(dbItem?.ClassReference?.ToPoco())
+                        BdoMetaNode node = new()
                         {
-                            DefinitionUniqueName = dbItem.DefinitionUniqueName,
-                            Identifier = dbItem.Identifier,
-                            ValueType = dbItem.ValueType
+                            Reference = dbItem?.Reference.ToPoco(),
+                            DataType = new BdoDataType(dbItem?.ClassReference?.ToPoco())
+                            {
+                                DefinitionUniqueName = dbItem.DefinitionUniqueName,
+                                Identifier = dbItem.Identifier,
+                                ValueType = dbItem.ValueType
+                            },
+                            Schema = dbItem.Schema.ToPoco()
                         };
-                        node.Schema = dbItem.Schema.ToPoco();
 
                         node.With(dbItem.MetaItems?.Select(q =>
                         {

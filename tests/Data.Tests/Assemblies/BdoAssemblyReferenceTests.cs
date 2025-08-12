@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
+using System;
 
 namespace BindOpen.Data.Assemblies;
 
@@ -35,7 +36,12 @@ public class BdoAssemblyReferenceTests
     public void Create2Test()
     {
         var f = new Faker();
-        _reference2 = BdoData.Assembly(f.Random.Word());
+        _reference2 = BdoData.Assembly(
+            f.Random.Word(),
+            new System.Version(f.Random.Int(1000), f.Random.Int(1000), f.Random.Int(1000), f.Random.Int(1000)));
+        _reference2.Alias = f.Lorem.Word();
+        _reference2.AssemblyFileName = f.Lorem.Word();
+        _reference2.Identifier = Guid.NewGuid().ToString();
     }
 
     [Test, Order(1)]

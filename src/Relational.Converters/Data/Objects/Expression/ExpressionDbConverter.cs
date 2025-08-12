@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
 using BindOpen.Scoping.Script;
 
 namespace BindOpen.Data;
@@ -37,16 +36,9 @@ public static class ExpressionDbConverter
 
         poco.Identifier ??= StringHelper.NewGuid();
 
-        MapperConfiguration config;
-
-        config = new MapperConfiguration(
-            cfg => cfg.CreateMap<IBdoExpression, ExpressionDb>()
-                .ForMember(q => q.Scriptword, opt => opt.Ignore()),
-            null
-        );
-
-        var mapper = new Mapper(config);
-        mapper.Map(poco, dbItem);
+        dbItem.ExpressionKind = poco.ExpressionKind;
+        dbItem.Identifier = poco.Identifier;
+        dbItem.Text = poco.Text;
 
         if (poco is IBdoScriptword wordPoco)
         {

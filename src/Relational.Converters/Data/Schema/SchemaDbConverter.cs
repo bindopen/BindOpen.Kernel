@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using BindOpen.Data;
+﻿using BindOpen.Data;
 using BindOpen.Data.Assemblies;
 using BindOpen.Data.Conditions;
 using BindOpen.Data.Helpers;
@@ -24,41 +23,28 @@ public static class SchemaDbConverter
         this IBdoSchema poco,
         DataDbContext context)
     {
-        if (poco == null) return null;
+        SchemaDb dbItem = new()
+        {
+            Condition = poco.Condition.ToDb(context),
+            Reference = poco.Reference.ToDb(context),
+            Description = poco.Description.ToDb(context),
+            Detail = poco.Detail.ToDb(context),
+            Title = poco.Title.ToDb(context),
 
-        var config = new MapperConfiguration(
-            cfg => cfg.CreateMap<BdoSchema, SchemaDb>()
-                .ForMember(q => q.Aliases, opt => opt.Ignore())
-                .ForMember(q => q.AvailableDataModes, opt => opt.Ignore())
+            Aliases = poco?.Aliases == null ? null : new List<string>(poco.Aliases),
+            AvailableDataModes = poco?.AvailableDataModes == null ? null : new List<DataMode>(poco.AvailableDataModes),
 
-                .ForMember(q => q.Children, opt => opt.Ignore())
-                .ForMember(q => q.ClassReference, opt => opt.Ignore())
-                .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToDb(context)))
-                .ForMember(q => q.Rules, opt => opt.Ignore())
-                .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToDb(context)))
-                .ForMember(q => q.DefaultItems, opt => opt.Ignore())
-                .ForMember(q => q.Description, opt => opt.MapFrom(q => q.Description.ToDb(context)))
-                .ForMember(q => q.Detail, opt => opt.MapFrom(q => q.Detail.ToDb(context)))
-                .ForMember(q => q.Title, opt => opt.MapFrom(q => q.Title.ToDb(context))),
-            null
-        );
+            Children = poco?._Children?.Select(q => q.ToDb(context)).ToList(),
 
-        var mapper = new Mapper(config);
-        var dbItem = mapper.Map<SchemaDb>(poco);
+            ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDb() : null,
+            Rules = poco?.RuleSet == null ? null : poco?.RuleSet.Select(q => q.ToDb(context)).ToList(),
+            DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName,
 
-        dbItem.Aliases = poco?.Aliases == null ? null : new List<string>(poco.Aliases);
-        dbItem.AvailableDataModes = poco?.AvailableDataModes == null ? null : new List<DataMode>(poco.AvailableDataModes);
+            MaxDataItemNumber = (int?)(poco?.MaxDataItemNumber == -1 ? null : poco?.MaxDataItemNumber),
+            MinDataItemNumber = (int?)(poco?.MinDataItemNumber == 0 ? null : poco?.MinDataItemNumber),
 
-        dbItem.Children = poco?._Children?.Select(q => q.ToDb(context)).ToList();
-
-        dbItem.ClassReference = poco.DataType.IsSpecified() ? poco?.DataType.ToDb() : null;
-        dbItem.Rules = poco?.RuleSet == null ? null : poco?.RuleSet.Select(q => q.ToDb(context)).ToList();
-        dbItem.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
-
-        dbItem.MaxDataItemNumber = (int?)(poco?.MaxDataItemNumber == -1 ? null : poco?.MaxDataItemNumber);
-        dbItem.MinDataItemNumber = (int?)(poco?.MinDataItemNumber == 0 ? null : poco?.MinDataItemNumber);
-
-        dbItem.ValueType = poco?.DataType?.ValueType ?? DataValueTypes.Any;
+            ValueType = poco?.DataType?.ValueType ?? DataValueTypes.Any
+        };
 
         var dataList = poco.DefaultData?.ToObjectList().Select(q => q?.ToMeta().ToDb(context)).ToList();
         dbItem.DefaultItems = dataList;
@@ -76,40 +62,23 @@ public static class SchemaDbConverter
     {
         if (dbItem == null) return null;
 
-        var config = new MapperConfiguration(
-            cfg => cfg.CreateMap<SchemaDb, BdoSchema>()
-                .ForMember(q => q._Children, opt => opt.Ignore())
-
-                .ForMember(q => q.Aliases, opt => opt.Ignore())
-                .ForMember(q => q.AvailableDataModes, opt => opt.Ignore())
-
-                .ForMember(q => q.Condition, opt => opt.MapFrom(q => q.Condition.ToPoco()))
-                .ForMember(q => q.ItemSet, opt => opt.Ignore())
-                .ForMember(q => q.Reference, opt => opt.MapFrom(q => q.Reference.ToPoco()))
-                .ForMember(q => q.DataType, opt => opt.Ignore())
-                .ForMember(q => q.Description, opt => opt.Ignore())
-                .ForMember(q => q.DefaultData, opt => opt.Ignore())
-                .ForMember(q => q.Detail, opt => opt.Ignore())
-                .ForMember(q => q.Title, opt => opt.Ignore()),
-                null
-            );
-
-        var mapper = new Mapper(config);
-        var poco = mapper.Map<BdoSchema>(dbItem);
-
-        poco._Children = BdoData.NewItemSet(dbItem?.Children?.Select(q => q.ToPoco()).ToArray());
-
-        poco.Aliases = dbItem?.Aliases == null ? null : new List<string>(dbItem.Aliases);
-        poco.AvailableDataModes = dbItem?.AvailableDataModes == null ? null : new List<DataMode>(dbItem.AvailableDataModes);
-
-        poco.DataType = new BdoDataType(dbItem?.ClassReference?.ToPoco())
+        BdoSchema poco = new()
         {
-            DefinitionUniqueName = dbItem.DefinitionUniqueName,
-            Identifier = dbItem.Identifier,
-            ValueType = dbItem.ValueType
-        };
+            _Children = BdoData.NewItemSet(dbItem?.Children?.Select(q => q.ToPoco()).ToArray()),
 
-        poco.ItemSet = BdoData.NewSchemaSet(dbItem?.Items?.Select(q => q.ToPoco()).ToArray());
+            Aliases = dbItem?.Aliases == null ? null : new List<string>(dbItem.Aliases),
+            AvailableDataModes = dbItem?.AvailableDataModes == null ? null : new List<DataMode>(dbItem.AvailableDataModes),
+            Condition = dbItem.Condition.ToPoco(),
+            DataType = new BdoDataType(dbItem?.ClassReference?.ToPoco())
+            {
+                DefinitionUniqueName = dbItem.DefinitionUniqueName,
+                Identifier = dbItem.Identifier,
+                ValueType = dbItem.ValueType
+            },
+
+            ItemSet = BdoData.NewSchemaSet(dbItem?.Items?.Select(q => q.ToPoco()).ToArray()),
+            Reference = dbItem.Reference.ToPoco()
+        };
 
         poco.WithRules(dbItem?.Rules == null ? null : dbItem.Rules.Select(q => q.ToPoco()).ToArray());
 

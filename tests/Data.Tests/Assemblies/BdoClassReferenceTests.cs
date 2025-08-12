@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
+using System;
 
 namespace BindOpen.Data.Assemblies;
 
@@ -43,6 +44,7 @@ public class BdoClassReferenceTests
 
         var f = new Faker();
         _classRef2 = BdoData.Class(tests._reference2, f.Random.Word());
+        _classRef2.Identifier = Guid.NewGuid().ToString();
     }
 
     [Test, Order(1)]

@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Meta;
 using System.Linq;
 
 namespace BindOpen.Data.Schema;
@@ -20,16 +19,12 @@ public static class SchemaSetDbConverter
     {
         if (poco == null) return null;
 
-        var config = new MapperConfiguration(
-            cfg => cfg.CreateMap<BdoSchemaSet, SchemaSetDb>()
-                .ForMember(q => q.Items, opt => opt.Ignore()),
-            null
-        );
-
-        var mapper = new Mapper(config);
-        var dbItem = mapper.Map<SchemaSetDb>(poco);
-
-        dbItem.Items = poco.Items?.Select(q => q.ToDb(context)).ToList();
+        SchemaSetDb dbItem = new()
+        {
+            Name = poco.Name,
+            Identifier = poco.Identifier,
+            Items = poco.Items?.Select(q => q.ToDb(context)).ToList()
+        };
 
         return dbItem;
     }
@@ -44,15 +39,11 @@ public static class SchemaSetDbConverter
     {
         if (dbItem == null) return null;
 
-        var config = new MapperConfiguration(
-            cfg => cfg.CreateMap<SchemaSetDb, BdoSchemaSet>()
-                .ForMember(q => q.Items, opt => opt.Ignore()),
-            null
-        );
-
-        var mapper = new Mapper(config);
-        var poco = mapper.Map<BdoSchemaSet>(dbItem);
-
+        BdoSchemaSet poco = new()
+        {
+            Name = dbItem.Name,
+            Identifier = dbItem.Identifier
+        };
         poco.With(dbItem.Items?.Select(q => q.ToPoco()).ToArray());
 
         return poco;

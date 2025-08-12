@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
 
 namespace BindOpen.Data;
@@ -37,15 +36,9 @@ public static class ReferenceDbConverter
 
         poco.Identifier ??= StringHelper.NewGuid();
 
-        var config = new MapperConfiguration(
-            cfg => cfg.CreateMap<BdoReference, ReferenceDb>()
-                .ForMember(q => q.Expression, opt => opt.Ignore())
-                .ForMember(q => q.MetaData, opt => opt.Ignore()),
-            null
-        );
-
-        var mapper = new Mapper(config);
-        mapper.Map(poco, dbItem);
+        dbItem.Identifier = poco.Identifier;
+        dbItem.Kind = poco.Kind;
+        dbItem.MetaData = poco.MetaData.ToDb(context);
 
         // Expression
 
@@ -76,15 +69,13 @@ public static class ReferenceDbConverter
     {
         if (dbItem == null) return null;
 
-        var config = new MapperConfiguration(
-            cfg => cfg.CreateMap<ReferenceDb, BdoReference>()
-                .ForMember(q => q.Expression, opt => opt.MapFrom(q => q.Expression.ToPoco()))
-                .ForMember(q => q.MetaData, opt => opt.MapFrom(q => q.MetaData.ToPoco())),
-            null
-        );
-
-        var mapper = new Mapper(config);
-        var poco = mapper.Map<BdoReference>(dbItem);
+        BdoReference poco = new()
+        {
+            Identifier = dbItem.Identifier,
+            Expression = dbItem.Expression.ToPoco(),
+            Kind = dbItem.Kind,
+            MetaData = dbItem.MetaData.ToPoco()
+        };
 
         return poco;
     }
