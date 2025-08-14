@@ -23,6 +23,8 @@ public static class SchemaDbConverter
         this IBdoSchema poco,
         DataDbContext context)
     {
+        if (poco == null) return null;
+
         SchemaDb dbItem = new()
         {
             Condition = poco.Condition.ToDb(context),

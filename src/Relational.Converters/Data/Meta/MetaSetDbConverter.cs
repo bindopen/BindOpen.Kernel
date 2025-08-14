@@ -40,8 +40,8 @@ namespace BindOpen.Data.Meta
             poco.Identifier ??= StringHelper.NewGuid();
             poco.UpdateTrees();
 
-            dbItem.Identifier = dbItem.Identifier;
-            dbItem.Name = dbItem.Name;
+            dbItem.Identifier = poco.Identifier;
+            dbItem.Name = poco.Name;
 
             if (context != null)
             {

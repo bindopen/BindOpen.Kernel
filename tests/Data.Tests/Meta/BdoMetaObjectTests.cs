@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data.Meta.Reflection;
 using BindOpen.Tests;
-using DeepEqual.Syntax;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace BindOpen.Data.Meta;
@@ -20,7 +20,8 @@ public class BdoMetaObjectTests
     private void Test()
     {
         var obj = _metaObject?.GetData();
-        Assert.That(obj?.IsDeepEqual(_obj) == true, "Bad obj element set - Count");
+
+        obj.Should().BeEquivalentTo(_obj);
     }
 
     [Test, Order(1)]

@@ -14,6 +14,8 @@ public static class StringDictionaryIOConverter
     /// <returns>The DTO object.</returns>
     public static StringDictionaryDto ToDto<TItem>(this ITBdoDictionary<TItem> poco)
     {
+        if (poco == null) return null;
+
         StringDictionaryDto dto = new();
         dto.UpdateFromPoco(poco);
 

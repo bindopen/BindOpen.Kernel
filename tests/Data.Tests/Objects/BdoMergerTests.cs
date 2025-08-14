@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data.Helpers;
 using Bogus;
-using DeepEqual.Syntax;
+using FluentAssertions;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,25 +27,29 @@ public class BdoMergerTests
     }
 
     public static void AssertEquals(
-        IBdoMerger exp1,
-        IBdoMerger exp2)
+        IBdoMerger merger1,
+        IBdoMerger merger2)
     {
-        if ((exp1 != null && exp2 == null) || (exp1 == null && exp2 != null))
+        if ((merger1 != null && merger2 == null) || (merger1 == null && merger2 != null))
         {
-            Assert.That(Equals(exp1, exp2), "Unmatched objects");
+            Assert.That(Equals(merger1, merger2), "Unmatched objects");
         }
 
-        var deepEq = exp1.WithDeepEqual(exp2);
+        merger1.Should().BeEquivalentTo(
+            merger2,
+            options =>
+            {
+                if (merger1?.AddedValues?.Any() != true && merger2?.AddedValues?.Any() != true)
+                {
+                    options = options.Excluding(x => x.AddedValues);
+                }
+                if (merger1?.RemovedValues?.Any() != true && merger2?.RemovedValues?.Any() != true)
+                {
+                    options = options.Excluding(x => x.RemovedValues);
+                }
 
-        if (exp1?.AddedValues?.Any() != true && exp2?.AddedValues?.Any() != true)
-        {
-            deepEq.IgnoreProperty<IBdoMerger>(x => x.AddedValues);
-        }
-        if (exp1?.RemovedValues?.Any() != true && exp2?.RemovedValues?.Any() != true)
-        {
-            deepEq.IgnoreProperty<IBdoMerger>(x => x.RemovedValues);
-        }
-        deepEq.Assert();
+                return options;
+            });
     }
 
     [Test, Order(1)]

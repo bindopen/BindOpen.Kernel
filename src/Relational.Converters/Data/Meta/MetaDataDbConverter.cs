@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using BindOpen.Data.Assemblies;
+﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Schema;
 using BindOpen.Scoping.Script;
@@ -63,12 +62,14 @@ namespace BindOpen.Data.Meta
             DataDbContext context)
             where T : MetaDataDb
         {
-            if (poco == null) return null;
+            if (dbItem == null) return null;
+
+            if (poco == null) return dbItem;
 
             poco.Identifier ??= StringHelper.NewGuid();
 
-            MapperConfiguration config;
-            Mapper mapper;
+            dbItem.Identifier = poco.Identifier;
+            dbItem.Name = poco.Name;
 
             if (typeof(ScriptwordDb).IsAssignableFrom(typeof(T))
                 && dbItem is ScriptwordDb scriptDb
@@ -164,6 +165,8 @@ namespace BindOpen.Data.Meta
                                 Identifier = dbItem.Identifier,
                                 ValueType = dbItem.ValueType
                             },
+                            Identifier = dbItem.Identifier,
+                            Name = dbItem.Name,
                             Schema = dbItem.Schema.ToPoco()
                         };
 
@@ -187,6 +190,8 @@ namespace BindOpen.Data.Meta
                                 Identifier = dbItem.Identifier,
                                 ValueType = dbItem.ValueType
                             },
+                            Identifier = dbItem.Identifier,
+                            Name = dbItem.Name,
                             Schema = dbItem.Schema.ToPoco()
                         };
 
@@ -203,6 +208,8 @@ namespace BindOpen.Data.Meta
                                 Identifier = dbItem.Identifier,
                                 ValueType = dbItem.ValueType
                             },
+                            Identifier = dbItem.Identifier,
+                            Name = dbItem.Name,
                             Schema = dbItem.Schema.ToPoco()
                         };
 

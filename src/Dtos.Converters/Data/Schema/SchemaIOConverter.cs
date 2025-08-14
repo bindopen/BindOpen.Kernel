@@ -53,7 +53,7 @@ public static class SchemaIOConverter
         var dataList = poco.DefaultData?.ToObjectList().Select(q => q?.ToMeta().ToDto()).ToList();
         dto.DefaultItems = dataList;
 
-        dto.Index = poco.Index ?? -1;
+        dto.Index = poco.Index == -1 ? null : poco.Index;
         dto.Identifier = poco.Identifier;
         dto.MaxDataItemNumber = (int?)(poco?.MaxDataItemNumber == -1 ? null : poco?.MaxDataItemNumber);
         dto.MinDataItemNumber = (int?)(poco?.MinDataItemNumber == 0 ? null : poco?.MinDataItemNumber);

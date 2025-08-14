@@ -41,8 +41,17 @@ public class SchemaDto : IBdoDto, IIdentified
     /// The index of this instance.
     /// </summary>
     [JsonPropertyName("index")]
-    [XmlAttribute("index")]
-    public int Index { get; set; }
+    [XmlElement("index")]
+    [DefaultValue(null)]
+    public int? Index { get; set; }
+
+    /// <summary>
+    /// Indicates whether the Index property must be ignored.
+    /// </summary>
+    [NotMapped]
+    [JsonIgnore]
+    [XmlIgnore]
+    public bool IndexSpecified => Index != null;
 
     /// <summary>
     /// The rules of this instance.
@@ -52,7 +61,7 @@ public class SchemaDto : IBdoDto, IIdentified
     public List<SchemaRuleDto> Rules { get; set; }
 
     /// <summary>
-    /// Indicates whether the rule property must be ignored.
+    /// Indicates whether the Rules property must be ignored.
     /// </summary>
     [NotMapped]
     [JsonIgnore]

@@ -32,7 +32,7 @@ namespace BindOpen.Data
         {
             if (obj != null)
             {
-                obj.Title = BdoData.NewDictionary<string>(st);
+                obj.Title = BdoData.NewDictionary(st);
             }
 
             return obj;
@@ -49,7 +49,7 @@ namespace BindOpen.Data
         {
             if (obj != null)
             {
-                obj.Title = BdoData.NewDictionary<string>(pairs);
+                obj.Title = BdoData.NewDictionary(pairs);
             }
 
             return obj;
@@ -66,7 +66,7 @@ namespace BindOpen.Data
         {
             if (obj != null)
             {
-                obj.Title = BdoData.NewDictionary<string>(pairs);
+                obj.Title = BdoData.NewDictionary(pairs);
             }
 
             return obj;
