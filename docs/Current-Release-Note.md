@@ -27,8 +27,8 @@ BindOpen __Publication.Version__ Update - __Publication.Date__
 |--------------------------|:-----------------------------------------------------------------------:|
 | BindOpen.Abstractions            | Install-Package BindOpen.Abstractions -Version __Publication.Version__              |
 | BindOpen.Data            | Install-Package BindOpen.Data -Version __Publication.Version__              |
-| BindOpen.IO            | Install-Package BindOpen.IO -Version __Publication.Version__              |
-| BindOpen.IO            | Install-Package BindOpen.IO -Version __Publication.Version__              |
+| BindOpen.Dtos            | Install-Package BindOpen.Dtos -Version __Publication.Version__              |
+| BindOpen.Dtos            | Install-Package BindOpen.Dtos -Version __Publication.Version__              |
 | BindOpen.Scoping         | Install-Package BindOpen.Scoping -Version __Publication.Version__           |
 | BindOpen.Scoping.Extensions | Install-Package BindOpen.Scoping.Extensions -Version __Publication.Version__   |
 | BindOpen.Scoping.Script | Install-Package BindOpen.Scoping.Script -Version __Publication.Version__   |
@@ -39,8 +39,10 @@ BindOpen __Publication.Version__ Update - __Publication.Date__
 |--------------------------|:-----------------------------------------------------------------------:|
 | BindOpen.Abstractions            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.Abstractions-__Publication.Version__.zip) |
 | BindOpen.Data            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.Data-__Publication.Version__.zip) |
-| BindOpen.IO            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.IO-__Publication.Version__.zip) |
-| BindOpen.IO            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.IO-__Publication.Version__.zip) |
+| BindOpen.Dtos            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.Dtos-__Publication.Version__.zip) |
+| BindOpen.Dtos.Converters | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.Dtos.Converters-__Publication.Version__.zip) |
+| BindOpen.Relational            | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.Relational-__Publication.Version__.zip) |
+| BindOpen.Relational.Converters | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.data/BindOpen.Relational.Converters-__Publication.Version__.zip) |
 | BindOpen.Scoping         | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.extensions/BindOpen.Scoping-__Publication.Version__.zip) |
 | BindOpen.Scoping.Extensions | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.scopes/BindOpen.Scoping.Extensions-__Publication.Version__.zip) |
 | BindOpen.Scoping.Script | [v__Publication.Version__ (zip)](https://storage.bindopen.org/releases/packages/bindopen.script/BindOpen.Scoping.Script-__Publication.Version__.zip) |
@@ -52,8 +54,11 @@ BindOpen __Publication.Version__ Update - __Publication.Date__
 |--------------------------|:---------------------:|
 | BindOpen.Abstractions            | __Publication.Version__   |
 | BindOpen.Data            | __Publication.Version__   |
-| BindOpen.IO            | __Publication.Version__   |
-| BindOpen.IO            | __Publication.Version__   |
+| BindOpen.Dtos            | __Publication.Version__   |
+| BindOpen.Dtos.Converters            | __Publication.Version__   |
+| BindOpen.Relational            | __Publication.Version__   |
+| BindOpen.Relational.Converters            | __Publication.Version__   |
 | BindOpen.Scoping         | __Publication.Version__   |
 | BindOpen.Scoping.Extensions | __Publication.Version__   |
 | BindOpen.Scoping.Script | __Publication.Version__   |
+
