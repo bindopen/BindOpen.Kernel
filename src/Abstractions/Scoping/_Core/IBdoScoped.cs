@@ -1,13 +1,12 @@
-﻿namespace BindOpen.Scoping
+﻿namespace BindOpen.Scoping;
+
+/// <summary>
+/// This interfaces represents a scoped service.
+/// </summary>
+public interface IBdoScoped
 {
     /// <summary>
-    /// This interfaces represents a scoped service.
+    /// The scope of the service.
     /// </summary>
-    public interface IBdoScoped
-    {
-        /// <summary>
-        /// The scope of the service.
-        /// </summary>
-        IBdoScope Scope { get; set; }
-    }
+    IBdoScope Scope { get; set; }
 }

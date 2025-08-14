@@ -1,4 +1,4 @@
-﻿import { BdoReferenceKind } from "../../enums/BdoReferenceKind";
+﻿import { BdoReferenceKind } from "../../_core/enums/BdoReferenceKind";
 import { MetaDataDto } from "../../meta/MetaDataDto";
 
 

@@ -56,7 +56,7 @@ public static class IBdoConditionExtensions
         if (condition == null) return false;
 
         var b = true;
-        foreach (var subCondition in condition.Conditions)
+        foreach (var subCondition in condition._Children)
         {
             var value = interpreter.Evaluate(subCondition, varSet, log);
 

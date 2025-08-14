@@ -1,6 +1,6 @@
 ﻿
 
-import { DataValueTypes } from "../../data/enums/DataValueTypes";
+import { DataValueTypes } from "../../data/_core/enums/DataValueTypes";
 import { DictionaryDto } from "../../data/objects/dictionary/DictionaryDto";
 import { ExtensionDefinitionDto } from "./../ExtensionDefinitionDto";
 
@@ -15,6 +15,6 @@ export interface FunctionDefinitionDto extends ExtensionDefinitionDto {
     returnValueType: any;
     runtimeFunctionName: string;
     children: any[];
-    parameterSpecification: any[];
+    parameterSchemaification: any[];
     repeatedParameterDescription: DictionaryDto;
 }

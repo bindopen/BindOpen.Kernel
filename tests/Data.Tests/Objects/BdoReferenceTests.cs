@@ -1,5 +1,5 @@
 ﻿using BindOpen.Tests;
-using DeepEqual.Syntax;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace BindOpen.Data;
@@ -25,8 +25,7 @@ public class BdoReferenceTests
             Assert.That(Equals(ref1, ref2), "Unmatched objects");
         }
 
-        var deepEq = ref1.WithDeepEqual(ref2);
-        deepEq.Assert();
+        ref1.Should().BeEquivalentTo(ref2);
     }
 
     [Test, Order(1)]

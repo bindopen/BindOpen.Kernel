@@ -1,5 +1,5 @@
 ﻿using BindOpen.Tests;
-using DeepEqual.Syntax;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace BindOpen.Data;
@@ -25,8 +25,7 @@ public class BdoExpressionTests
             Assert.That(Equals(exp1, exp2), "Unmatched objects");
         }
 
-        var deepEq = exp1.WithDeepEqual(exp2);
-        deepEq.Assert();
+        exp1.Should().BeEquivalentTo(exp2);
     }
 
     public void Test(IBdoExpression exp)

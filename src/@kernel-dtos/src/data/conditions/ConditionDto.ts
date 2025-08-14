@@ -1,4 +1,4 @@
-﻿import { BdoConditionKind } from "../enums/BdoConditionKind";
+﻿import { BdoConditionKind } from "./_enums/BdoConditionKind";
 
 
 export interface ConditionDto {

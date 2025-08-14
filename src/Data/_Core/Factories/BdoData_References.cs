@@ -86,7 +86,11 @@ namespace BindOpen.Data
         {
             var assemblyName = assemblyReference?.AssemblyName;
             var assemblyVersion = assemblyReference?.AssemblyVersion;
-            return new(assemblyName, assemblyVersion, className);
+            var reference = new BdoClassReference(assemblyName, assemblyVersion, className)
+                .WithAlias(assemblyReference?.Alias)
+                .WithAssemblyFileName(assemblyReference?.AssemblyFileName);
+
+            return reference;
         }
 
         /// <summary>

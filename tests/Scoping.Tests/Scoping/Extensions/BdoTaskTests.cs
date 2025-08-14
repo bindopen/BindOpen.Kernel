@@ -19,24 +19,24 @@ public class BdoTaskTests
     public void CreateTaskTest_FromMetaSet()
     {
         IBdoMetaObject meta = BdoTaskFaker.NewMetaObject(_testData);
-        var connector = ScopingTestData.Scope.CreateTask<TaskFake>(meta);
+        var task = ScopingTestData.Scope.CreateTask<TaskFake>(meta);
 
-        BdoTaskFaker.AssertFake(connector, _testData);
+        BdoTaskFaker.AssertFake(task, _testData);
     }
 
     [Test, Order(2)]
     public void CreateTaskTest_FromConfig()
     {
         IBdoMetaObject meta = BdoTaskFaker.NewMetaObject(_testData);
-        var connector = ScopingTestData.Scope.CreateTask(meta) as TaskFake;
+        var task = ScopingTestData.Scope.CreateTask(meta) as TaskFake;
 
-        BdoTaskFaker.AssertFake(connector, _testData);
+        BdoTaskFaker.AssertFake(task, _testData);
     }
 
     [Test, Order(3)]
     public void CreateTaskTest_FromObject()
     {
-        var connector = new TaskFake
+        var task = new TaskFake
         {
             BoolValue = _testData.boolValue,
             EnumValue = _testData.enumValue,
@@ -44,9 +44,9 @@ public class BdoTaskTests
             StringValue = _testData.stringValue,
         };
 
-        var config = connector.ToMeta(ScopingTestData.Scope, "testConfig");
-        connector = ScopingTestData.Scope.CreateTask(config) as TaskFake;
+        var config = task.ToMeta(ScopingTestData.Scope, "testConfig");
+        task = ScopingTestData.Scope.CreateTask(config) as TaskFake;
 
-        BdoTaskFaker.AssertFake(connector, _testData);
+        BdoTaskFaker.AssertFake(task, _testData);
     }
 }
