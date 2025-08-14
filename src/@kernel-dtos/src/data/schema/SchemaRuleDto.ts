@@ -1,11 +1,11 @@
-﻿import { EventKinds } from "../../../logging/enums/EventKinds";
-import { ConditionDto } from "../../conditions/ConditionDto";
-import { SpecRuleKinds } from "../../enums/SpecRuleKinds";
-import { ReferenceDto } from "../../objects/reference/ReferenceDto";
-import { MetaScalarDto } from "../MetaScalarDto";
+﻿import { EventKinds } from "../../logging/enums/EventKinds";
+import { ConditionDto } from "../conditions/ConditionDto";
+import { SchemaRuleKinds } from "./enums/SchemaRuleKinds";
+import { ReferenceDto } from "../objects/reference/ReferenceDto";
+import { MetaScalarDto } from "../meta/MetaScalarDto";
 
 /// </summary>
-export interface SpecRuleDto
+export interface SchemaRuleDto
 {
     /// <summary>
     /// Identifier of this instance.
@@ -13,7 +13,7 @@ export interface SpecRuleDto
     id: string;
 
     //
-    kind: SpecRuleKinds;
+    kind: SchemaRuleKinds;
 
     /// <summary>
     /// The group identifier of this instance.

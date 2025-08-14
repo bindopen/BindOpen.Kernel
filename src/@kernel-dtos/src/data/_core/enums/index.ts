@@ -2,10 +2,7 @@
 
 export * from './AccessibilityLevels';
 export * from './ActionPriorities';
-export * from './BdoCompositeConditionKind';
-export * from './BdoConditionKind';
 export * from './BdoConstraintModes';
-export * from './BdoExpressionKind';
 export * from './BdoItemKinds';
 export * from './BdoReferenceKind';
 export * from './Criticalities';
@@ -22,7 +19,6 @@ export * from './PersistenceLevels';
 export * from './QueryResultModes';
 export * from './RequirementLevels';
 export * from './ResourceStatus';
-export * from './SpecRuleKinds';
 export * from './SpecificationLevels';
 export * from './TextFormatKind';
 export * from './UpdateModes';

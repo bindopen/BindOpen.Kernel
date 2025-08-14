@@ -7,6 +7,6 @@ export interface TaskDefinitionDto extends ExtensionDefinitionDto {
     isExecutable: boolean;
     itemClass: string;
     maximumIndex: number;
-    inputSpecification: any[];
-    outputSpecification: any[];
+    inputSchemaification: any[];
+    outputSchemaification: any[];
 }

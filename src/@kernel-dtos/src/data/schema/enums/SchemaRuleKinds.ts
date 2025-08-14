@@ -1,7 +1,7 @@
 ﻿/// <summary>
-/// This enumeration represents the possible specification rule kinds.
+/// This enumeration represents the possible schemaification rule kinds.
 /// </summary>
-export enum SpecRuleKinds
+export enum SchemaRuleKinds
 {
     /// <summary>
     /// None.

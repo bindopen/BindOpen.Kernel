@@ -15,7 +15,7 @@ export enum TextFormatKind
 
     /// <summary>
     /// Strong password (Must be at least 10 characters,
-    /// Must contain at least one one lower case letter, one upper case letter, one digit and one special character
+    /// Must contain at least one one lower case letter, one upper case letter, one digit and one schemaial character
     /// </summary>
     StrongPassword = "StrongPassword"
 }

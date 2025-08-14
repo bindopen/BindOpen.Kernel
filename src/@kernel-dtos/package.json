@@ -5,22 +5,37 @@
   "main": "data/index.js",
   "scripts": {
     "build": "tsup",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test schemaified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bindopen/BindOpen.Kernel.git"
   },
   "exports": {
-    "./data": ["./data/index.js", "./data/index.mjs"],
-    "./logging": ["./logging/index.js", "./logging/index.mjs"],
-    "./scoping": ["./scoping/index.js", "./scoping/index.mjs"]
+    "./data": [
+      "./data/index.js",
+      "./data/index.mjs"
+    ],
+    "./logging": [
+      "./logging/index.js",
+      "./logging/index.mjs"
+    ],
+    "./scoping": [
+      "./scoping/index.js",
+      "./scoping/index.mjs"
+    ]
   },
   "typesVersions": {
     "*": {
-      "data": ["data/index.d.ts"],
-      "logging": ["logging/index.d.ts"],
-      "scoping": ["scoping/index.d.ts"]
+      "data": [
+        "data/index.d.ts"
+      ],
+      "logging": [
+        "logging/index.d.ts"
+      ],
+      "scoping": [
+        "scoping/index.d.ts"
+      ]
     }
   },
   "keywords": [
@@ -36,7 +51,7 @@
   },
   "homepage": "https://github.com/bindopen/BindOpen.Kernel#readme",
   "devDependencies": {
-    "tsup": "^7.2.0"
+    "tsup": "^8.5.0"
   },
   "dependencies": {
     "typescript": "^5.2.2"

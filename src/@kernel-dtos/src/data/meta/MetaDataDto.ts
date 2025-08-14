@@ -1,7 +1,7 @@
 ﻿
 
 import { ReferenceDto } from "../objects/reference/ReferenceDto";
-import { SpecDto } from "./definition/SpecDto";
+import { SchemaDto } from "../schema/SchemaDto";
 import { IBdoDataTyped } from "../assemblies/IBdoDataTyped";
 import { BdoMetaDataKinds } from "./enums/BdoMetaDataKinds";
 
@@ -12,5 +12,5 @@ export interface MetaDataDto extends IBdoDataTyped {
     name: string;
     index?: number;
     reference: ReferenceDto;
-    spec: SpecDto;
+    schema: SchemaDto;
 }

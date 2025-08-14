@@ -1,6 +1,6 @@
 ﻿
 
-import { DataOperators } from "../enums/DataOperators";
+import { DataOperators } from "../_core/enums/DataOperators";
 import { ConditionDto } from "./ConditionDto";
 
 export interface BasicConditionDto extends ConditionDto {

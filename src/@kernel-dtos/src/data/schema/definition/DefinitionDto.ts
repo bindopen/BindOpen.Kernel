@@ -1,9 +1,9 @@
 ﻿
 
-import { SpecSetDto } from "./SpecSetDto";
+import { SchemaSetDto } from "../SchemaSetDto";
 import { DictionaryDto } from "../../objects/dictionary/DictionaryDto";
 
-export interface DefinitionDto extends SpecSetDto {
+export interface DefinitionDto extends SchemaSetDto {
     parentId: string;
     creationDate: string;
     lastModificationDate: string;

@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// This enumeration represents the possible levels of specification.
+/// This enumeration represents the possible levels of schemaification.
 /// </summary>
 export enum SpecificationLevels
 {
@@ -34,7 +34,7 @@ export enum SpecificationLevels
     Runtime = "Runtime",
 
     /// <summary>
-    /// Any specification level.
+    /// Any schemaification level.
     /// </summary>
     Any = "Any"
 }
