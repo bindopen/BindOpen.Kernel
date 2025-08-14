@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BindOpen.Kernel.Relational.Tests</name>
+    </assembly>
+    <members>
+        <member name="M:BindOpen.GlobalRelationalTestData.GetDbFilePath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BindOpen.GlobalRelationalTestData.CreateDbContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:BindOpen.GlobalRelationalTestSetup">
+            <summary>
+            This class set the global setup.
+            </summary>
+        </member>
+        <member name="M:BindOpen.GlobalRelationalTestSetup.OneTimeSetUp">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

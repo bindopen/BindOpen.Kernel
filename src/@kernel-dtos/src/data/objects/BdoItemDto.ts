@@ -1,4 +1,4 @@
-﻿import { BdoItemKinds } from "../enums/BdoItemKinds";
+﻿import { BdoItemKinds } from "../_core/enums/BdoItemKinds";
 
 
 export interface BdoItemDto {

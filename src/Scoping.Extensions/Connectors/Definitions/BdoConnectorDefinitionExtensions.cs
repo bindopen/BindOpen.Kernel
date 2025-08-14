@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using BindOpen.Data;
+﻿using BindOpen.Data;
 using BindOpen.Scoping.Connectors;
 using System;
 using System.Reflection;
@@ -42,17 +41,7 @@ namespace BindOpen.Scoping
         {
             if (definition != null && refDef != null)
             {
-                var config = new MapperConfiguration(
-                    cfg => cfg.CreateMap<IBdoConnectorDefinition, IBdoConnectorDefinition>()
-                        .ForMember(q => q.Items, opt => opt.Ignore())
-                        .ForAllMembers(x => x.Condition(
-                          (src, dest, sourceValue) => sourceValue != null))
-                );
-
                 definition.Update(refDef);
-
-                var mapper = new Mapper(config);
-                mapper.Map(definition, refDef);
             }
         }
     }

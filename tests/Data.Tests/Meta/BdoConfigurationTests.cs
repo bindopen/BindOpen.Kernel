@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data.Meta;
 using Bogus;
-using DeepEqual.Syntax;
+using FluentAssertions;
 using NUnit.Framework;
 using System.Linq;
 
@@ -70,9 +70,8 @@ public class BdoConfigurationTests
             Assert.That(Equals(config1, config2), "Unmatched objects");
         }
 
-        var deepEq = config1.WithDeepEqual(config2)
-            .IgnoreProperty<BdoMetaData>(q => q.Parent);
-        deepEq.Assert();
+        config1.Should().BeEquivalentTo(config2,
+            options => options.Excluding(x => x.Parent));
     }
 
     [Test, Order(1)]
@@ -116,10 +115,8 @@ public class BdoConfigurationTests
     {
         var meta = _config10.Clone<IBdoConfiguration>();
 
-        meta?.WithDeepEqual(_config10)
-            .IgnoreProperty<IBdoConfiguration>(x => x.Parent)
-            .IgnoreProperty<IBdoMetaData>(x => x.Parent)
-            .Assert();
+        meta.Should().BeEquivalentTo(_config10,
+            options => options.Excluding(x => x.Parent));
     }
 
     [Test, Order(4)]

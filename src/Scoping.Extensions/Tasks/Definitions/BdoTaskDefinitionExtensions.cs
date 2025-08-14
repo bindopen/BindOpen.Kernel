@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using BindOpen.Data;
+﻿using BindOpen.Data;
 using System;
 using System.Reflection;
 
@@ -41,19 +40,8 @@ namespace BindOpen.Scoping.Tasks
         {
             if (definition != null && refDef != null)
             {
-                var config = new MapperConfiguration(
-                    cfg => cfg.CreateMap<IBdoTaskDefinition, IBdoTaskDefinition>()
-                        .ForMember(q => q.Items, opt => opt.Ignore())
-                        .ForMember(q => q.Outputs, opt => opt.Ignore())
-                        .ForAllMembers(x => x.Condition(
-                          (src, dest, sourceValue) => sourceValue != null))
-                );
-
                 definition.Update(refDef);
                 definition.Outputs.Update(refDef.Outputs);
-
-                var mapper = new Mapper(config);
-                mapper.Map(definition, refDef);
             }
         }
     }

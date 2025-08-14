@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BindOpen.Kernel.Dtos.Tests</name>
+    </assembly>
+    <members>
+        <member name="T:BindOpen.GlobalDtosTestSetup">
+            <summary>
+            This class set the global setup.
+            </summary>
+        </member>
+        <member name="M:BindOpen.GlobalDtosTestSetup.OneTimeSetUp">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

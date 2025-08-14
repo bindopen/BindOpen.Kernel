@@ -43,6 +43,15 @@ namespace BindOpen.Data
         {
         }
 
+        /// <summary>
+        /// Instantiates a new instance of the DataList class.
+        /// </summary>
+        /// <param name="items">The items to consider.</param>
+        public TBdoSet(IEnumerable<T> items) : base()
+        {
+            _items = items?.ToList();
+        }
+
         #endregion
 
         // ------------------------------------------

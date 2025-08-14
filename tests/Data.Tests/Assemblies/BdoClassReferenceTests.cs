@@ -1,6 +1,7 @@
 ﻿using Bogus;
-using DeepEqual.Syntax;
+using FluentAssertions;
 using NUnit.Framework;
+using System;
 
 namespace BindOpen.Data.Assemblies;
 
@@ -15,16 +16,15 @@ public class BdoClassReferenceTests
     }
 
     public static void AssertEquals(
-        IBdoClassReference exp1,
-        IBdoClassReference exp2)
+        IBdoClassReference reference1,
+        IBdoClassReference reference2)
     {
-        if ((exp1 != null && exp2 == null) || (exp1 == null && exp2 != null))
+        if ((reference1 != null && reference2 == null) || (reference1 == null && reference2 != null))
         {
-            Assert.That(Equals(exp1, exp2), "Unmatched objects");
+            Assert.That(Equals(reference1, reference2), "Unmatched objects");
         }
 
-        var deepEq = exp1.WithDeepEqual(exp2);
-        deepEq.Assert();
+        reference1.Should().BeEquivalentTo(reference2);
     }
 
     public void Create1Test()
@@ -43,6 +43,7 @@ public class BdoClassReferenceTests
 
         var f = new Faker();
         _classRef2 = BdoData.Class(tests._reference2, f.Random.Word());
+        _classRef2.Identifier = Guid.NewGuid().ToString();
     }
 
     [Test, Order(1)]
