@@ -46,9 +46,4 @@
   <ItemGroup>
     <ProjectReference Include="..\Relational\Relational.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Scoping\Tasks\" />
-    <Folder Include="Scoping\Entities\" />
-  </ItemGroup>
 </Project>
