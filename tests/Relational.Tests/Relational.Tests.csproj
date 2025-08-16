@@ -45,8 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Dtos.Converters\Dtos.Converters.csproj" />
-    <ProjectReference Include="..\..\src\Relational.Converters\Relational.Converters.csproj" />
+    <ProjectReference Include="..\..\src\Relational\Relational.csproj" />
     <ProjectReference Include="..\Data.Tests\Data.Tests.csproj" />
     <ProjectReference Include="..\Scoping.Tests\Scoping.Tests.csproj" />
   </ItemGroup>

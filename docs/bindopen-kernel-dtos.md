@@ -1,4 +1,4 @@
-# BindOpen.Data
+# BindOpen.Dtos
 
 ![BindOpen logo](https://storage.bindopen.org/img/logos/logo_bindopen.png)
 
