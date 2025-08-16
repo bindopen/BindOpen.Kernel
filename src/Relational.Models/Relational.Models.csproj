@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <AssemblyName>BindOpen.Relational.Converters</AssemblyName>
-    <PackageId>BindOpen.Relational.Converters</PackageId>
+    <AssemblyName>BindOpen.Relational.Models</AssemblyName>
+    <PackageId>BindOpen.Relational.Models</PackageId>
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright © BindOpen 2011-2025</Copyright>
     <Description>This package provides core database entity classes of BindOpen.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.Relational.Converters</RootNamespace>
+    <RootNamespace>BindOpen.Relational.Models</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.Kernel</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Relational.Converters.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Relational.Models.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,10 +40,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="15.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.8" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Relational\Relational.csproj" />
+    <ProjectReference Include="..\Scoping.Script\Scoping.Script.csproj" />
   </ItemGroup>
 </Project>

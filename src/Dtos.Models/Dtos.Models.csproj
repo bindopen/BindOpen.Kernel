@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <AssemblyName>BindOpen.Dtos.Converters</AssemblyName>
-    <PackageId>BindOpen.Dtos.Converters</PackageId>
+    <AssemblyName>BindOpen.Dtos.Models</AssemblyName>
+    <PackageId>BindOpen.Dtos.Models</PackageId>
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
     <Copyright>Copyright © BindOpen 2011-2025</Copyright>
-    <Description>This package allows to convert core classes from and to core DTOs.</Description>
+    <Description>This package provides core DTO classes of BindOpen.</Description>
     <Authors>Sumer Team</Authors>
-    <RootNamespace>BindOpen.Dtos.Converters</RootNamespace>
+    <RootNamespace>BindOpen.Dtos.Models</RootNamespace>
     <PackageProjectUrl>https://github.com/bindopen/BindOpen.Kernel</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bindopen/BindOpen.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>BindOpen.Dtos.Converters.xml</DocumentationFile>
+    <DocumentationFile>BindOpen.Dtos.Models.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,7 +40,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Dtos\Dtos.csproj" />
-    <ProjectReference Include="..\Scoping.Script\Scoping.Script.csproj" />
+    <ProjectReference Include="..\Abstractions\Abstractions.csproj" />
   </ItemGroup>
 </Project>
