@@ -9,138 +9,131 @@ using System.IO;
 using System.Reflection;
 using System.Xml.Serialization;
 
-namespace BindOpen.Scoping
+namespace BindOpen.Scoping;
+
+/// <summary>
+/// This partial class handles the extraction and loading of extension dictionaries from assemblies.
+/// </summary>
+internal partial class BdoExtensionStoreLoader : BdoObject, IBdoExtensionStoreLoader
 {
+    // ------------------------------------------
+    // PRIVATE METHODS
+    // ------------------------------------------
+
+    #region Private Methods
+
     /// <summary>
-    /// This class represents a extension scope loader.
+    /// Loads the extension dictionary of the specified kind from the given assembly.
     /// </summary>
-    internal partial class BdoExtensionStoreLoader :
-        BdoObject, IBdoExtensionStoreLoader
+    /// <param name="assembly">The assembly to scan.</param>
+    /// <param name="kind">The kind of extensions to load (Connector, Entity, etc.).</param>
+    /// <param name="packageDefinition">The package definition associated with the assembly.</param>
+    /// <param name="log">The log to populate with loading events.</param>
+    /// <returns>Returns the number of loaded items; -1 if an error occurred.</returns>
+    private int LoadDictionary(
+        Assembly assembly,
+        BdoExtensionKinds kind,
+        IBdoPackageDefinition packageDefinition = null,
+        IBdoLog log = null)
     {
-        /// <summary>
-        /// Loads the extension dico of the specified kind from the specified assembly.
-        /// </summary>
-        /// <param key="assembly">The assembly to consider.</param>
-        /// <param key="kind">The kind of item to consider.</param>
-        /// <param key="packageDefinition">The extension definition to consider.</param>
-        /// <param key="log">The log to consider.</param>
-        /// <returns></returns>
-        private int LoadDictionary(
-            Assembly assembly,
-            BdoExtensionKinds kind,
-            IBdoPackageDefinition packageDefinition = null,
-            IBdoLog log = null)
+        if (assembly == null) return -1;
+
+        // Route to the specific loader based on the extension kind
+        return kind switch
         {
-            if (assembly == null)
-            {
-                return -1;
-            }
-
-            switch (kind)
-            {
-                case BdoExtensionKinds.Connector:
-                    return LoadConnectorDictionaryFromAssembly(assembly, packageDefinition, log);
-                case BdoExtensionKinds.Entity:
-                    return LoadEntityDictionaryFromAssembly(assembly, packageDefinition, log);
-                case BdoExtensionKinds.Function:
-                    return LoadFunctionDictionaryFromAssembly(assembly, packageDefinition, log);
-                case BdoExtensionKinds.Task:
-                    return LoadTaskDictionaryFromAssembly(assembly, packageDefinition, log);
-                default:
-                    break;
-            }
-            return -1;
-        }
-
-        /// <summary>
-        /// Loads the specified BindOpen extension dico.
-        /// </summary>
-        /// <param key="assembly">The assembly to consider.</param>
-        /// <param key="log">The log to consider.</param>
-        /// <returns>The created library.</returns>
-        private static ITBdoExtensionDictionary<T> ExtractDictionaryFromAssembly<T>(
-            Assembly assembly,
-            IBdoLog log = null) where T : IBdoExtensionDefinition
-        {
-            ITBdoExtensionDictionary<T> dico = default;
-
-            if (assembly != null)
-            {
-                string resourceFileName = GetDictionaryResourceName<T>();
-
-                string resourceFullName = Array.Find(
-                    assembly.GetManifestResourceNames(), p => p.EndsWith(resourceFileName, StringComparison.OrdinalIgnoreCase));
-
-                Stream stream = null;
-                if (resourceFullName == null)
-                {
-                    log?.AddEvent(BdoEventKinds.Warning, "No dictionary named '" + resourceFileName + "' found in assembly");
-                }
-                else
-                {
-                    try
-                    {
-                        stream = assembly.GetManifestResourceStream(resourceFullName);
-                        if (stream == null)
-                        {
-                            log?.AddEvent(BdoEventKinds.Error,
-                                "Could not open the item dictionary named '" + resourceFullName + "' in assembly");
-                        }
-                        else
-                        {
-                            Type type = GetDictionaryType<T>();
-                            XmlSerializer serializer = new(type);
-                            dico = (TBdoExtensionDictionary<T>)serializer.Deserialize(stream);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        log?.AddException(ex);
-                    }
-                    finally
-                    {
-                        stream?.Close();
-                    }
-                }
-            }
-
-            return dico;
-        }
-
-        /// <summary>
-        /// Gets the dico resource name.
-        /// </summary>
-        /// <returns>Returns the class of the specified dico.</returns>
-        private static string GetDictionaryResourceName<T>() where T : IBdoExtensionDefinition
-        {
-            BdoExtensionKinds itemKind = typeof(T).GetExtensionKind();
-
-            return itemKind switch
-            {
-                BdoExtensionKinds.Connector => "BindOpen.Connectors",
-                BdoExtensionKinds.Entity => "BindOpen.Entities",
-                BdoExtensionKinds.Function => "BindOpen.Functions",
-                BdoExtensionKinds.Task => "BindOpen.Tasks",
-                _ => null,
-            };
-        }
-
-        /// <summary>
-        /// Gets the item definition file name of the TO specified extension item definition class.
-        /// </summary>
-        /// <returns>Returns the class of the specified dico.</returns>
-        private static Type GetDictionaryType<T>() where T : IBdoExtensionDefinition
-        {
-            BdoExtensionKinds itemKind = typeof(T).GetExtensionKind();
-
-            return itemKind switch
-            {
-                BdoExtensionKinds.Connector => typeof(BdoConnectorDictionary),
-                BdoExtensionKinds.Entity => typeof(BdoEntityDictionary),
-                BdoExtensionKinds.Function => typeof(BdoFunctionDictionary),
-                BdoExtensionKinds.Task => typeof(BdoTaskDictionary),
-                _ => null,
-            };
-        }
+            BdoExtensionKinds.Connector => LoadConnectorDictionaryFromAssembly(assembly, packageDefinition, log),
+            BdoExtensionKinds.Entity => LoadEntityDictionaryFromAssembly(assembly, packageDefinition, log),
+            BdoExtensionKinds.Function => LoadFunctionDictionaryFromAssembly(assembly, packageDefinition, log),
+            BdoExtensionKinds.Task => LoadTaskDictionaryFromAssembly(assembly, packageDefinition, log),
+            _ => -1
+        };
     }
+
+    /// <summary>
+    /// Extracts a dictionary of the specified type from an assembly's manifest resources.
+    /// </summary>
+    /// <typeparam name="T">The type of extension definition.</typeparam>
+    /// <param name="assembly">The assembly containing the resources.</param>
+    /// <param name="log">The log to populate with diagnostic information.</param>
+    /// <returns>Returns the deserialized dictionary if successful; otherwise, default.</returns>
+    private static ITBdoExtensionDictionary<T> ExtractDictionaryFromAssembly<T>(
+        Assembly assembly,
+        IBdoLog log = null) where T : IBdoExtensionDefinition
+    {
+        if (assembly == null) return default;
+
+        ITBdoExtensionDictionary<T> dico = default;
+        string resourceFileName = GetDictionaryResourceName<T>();
+
+        // Find the resource that matches our expected dictionary name
+        string resourceFullName = Array.Find(
+            assembly.GetManifestResourceNames(),
+            p => p.EndsWith(resourceFileName, StringComparison.OrdinalIgnoreCase));
+
+        if (resourceFullName == null)
+        {
+            log?.AddEvent(BdoEventKinds.Warning, $"No dictionary resource named '{resourceFileName}' found in assembly.");
+            return default;
+        }
+
+        try
+        {
+            using Stream stream = assembly.GetManifestResourceStream(resourceFullName);
+            if (stream == null)
+            {
+                log?.AddEvent(BdoEventKinds.Error, $"Could not open the resource stream '{resourceFullName}'.");
+            }
+            else
+            {
+                Type type = GetDictionaryType<T>();
+                if (type != null)
+                {
+                    XmlSerializer serializer = new(type);
+                    dico = (TBdoExtensionDictionary<T>)serializer.Deserialize(stream);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            log?.AddException(ex);
+        }
+
+        return dico;
+    }
+
+    /// <summary>
+    /// Gets the standard resource name for the specified extension definition kind.
+    /// </summary>
+    private static string GetDictionaryResourceName<T>() where T : IBdoExtensionDefinition
+    {
+        BdoExtensionKinds itemKind = typeof(T).GetExtensionKind();
+
+        return itemKind switch
+        {
+            BdoExtensionKinds.Connector => "BindOpen.Connectors",
+            BdoExtensionKinds.Entity => "BindOpen.Entities",
+            BdoExtensionKinds.Function => "BindOpen.Functions",
+            BdoExtensionKinds.Task => "BindOpen.Tasks",
+            _ => null
+        };
+    }
+
+    /// <summary>
+    /// Gets the concrete dictionary type associated with the extension definition kind.
+    /// </summary>
+    private static Type GetDictionaryType<T>() where T : IBdoExtensionDefinition
+    {
+        BdoExtensionKinds itemKind = typeof(T).GetExtensionKind();
+
+        return itemKind switch
+        {
+            BdoExtensionKinds.Connector => typeof(BdoConnectorDictionary),
+            BdoExtensionKinds.Entity => typeof(BdoEntityDictionary),
+            BdoExtensionKinds.Function => typeof(BdoFunctionDictionary),
+            BdoExtensionKinds.Task => typeof(BdoTaskDictionary),
+            _ => null
+        };
+    }
+
+    #endregion
 }

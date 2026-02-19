@@ -8,6 +8,11 @@ namespace BindOpen.Data.Meta
     /// </summary>
     public interface IBdoMetaScalar : IBdoMetaData
     {
+        int Count(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null);
+
         /// <summary>
         /// 
         /// </summary>

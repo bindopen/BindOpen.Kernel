@@ -71,11 +71,17 @@ namespace BindOpen.Logging
         public static T AddException<T>(
             this T log,
             Exception exception,
+            string title = null,
             DateTime? date = null,
             string resultCode = null)
             where T : IBdoLog
         {
-            log?.AddEvent(BdoEventKinds.Exception, exception?.Message, exception?.ToString(), date, resultCode);
+            log?.AddEvent(
+                BdoEventKinds.Exception,
+                exception?.Message,
+                title ?? exception?.ToString(),
+                date,
+                resultCode);
 
             return log;
         }

@@ -22,7 +22,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="index">The index to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public IBdoMetaObject Object(
+        IBdoMetaObject Object(
             int index);
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public IBdoMetaScalar Scalar(
+        IBdoMetaScalar Scalar(
             string key = null);
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="index">The index to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public IBdoMetaScalar Scalar(
+        IBdoMetaScalar Scalar(
             int index);
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public IBdoMetaNode Composite(
+        IBdoMetaNode Composite(
             string key = null);
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="index">The index to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public IBdoMetaNode Composite(
+        IBdoMetaNode Composite(
             int index);
 
         // Data

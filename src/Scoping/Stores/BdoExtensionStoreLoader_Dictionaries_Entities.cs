@@ -2,74 +2,79 @@
 using BindOpen.Data.Meta;
 using BindOpen.Data.Schema;
 using BindOpen.Logging;
-using BindOpen.Scoping;
 using BindOpen.Scoping.Entities;
 using System.Linq;
 using System.Reflection;
 
-namespace BindOpen.Scoping
+namespace BindOpen.Scoping;
+
+/// <summary>
+/// This partial class provides methods to load entity definitions from assemblies.
+/// </summary>
+internal partial class BdoExtensionStoreLoader : BdoObject, IBdoExtensionStoreLoader
 {
     /// <summary>
-    /// This class represents a extension scope loader.
+    /// Loads the entity dictionary from the specified assembly.
     /// </summary>
-    internal partial class BdoExtensionStoreLoader : BdoObject, IBdoExtensionStoreLoader
+    /// <param name="assembly">The assembly to scan.</param>
+    /// <param name="packageDefinition">The package definition to associate with discovered entities.</param>
+    /// <param name="log">The log to populate with loading events.</param>
+    /// <returns>Returns the number of entities successfully loaded; -1 if the assembly is null.</returns>
+    private int LoadEntityDictionaryFromAssembly(
+        Assembly assembly,
+        IBdoPackageDefinition packageDefinition,
+        IBdoLog log = null)
     {
-        /// <summary>
-        /// Loads the entity dico from the specified assembly.
-        /// </summary>
-        /// <param key="assembly">The assembly to consider.</param>
-        /// <param key="packageDefinition">The extension definition to consider.</param>
-        /// <param key="log">The log to consider.</param>
-        /// <returns></returns>
-        private int LoadEntityDictionaryFromAssembly(
-            Assembly assembly,
-            IBdoPackageDefinition packageDefinition,
-            IBdoLog log = null)
+        if (assembly == null) return -1;
+
+        // 1. Extract the entity dictionary from the assembly resources (XML metadata)
+        var dictionary = ExtractDictionaryFromAssembly<IBdoEntityDefinition>(assembly, log);
+
+        // 2. Fetch concrete entity classes implementing IBdoEntity
+        var entityTypes = assembly.GetTypes()
+            .Where(p => typeof(IBdoEntity).IsAssignableFrom(p) && !p.IsInterface && !p.IsAbstract)
+            .ToList();
+
+        int count = 0;
+
+        foreach (var type in entityTypes)
         {
-            if (assembly == null)
+            // 3. Initialize the definition with its runtime context
+            var definition = new BdoEntityDefinition(null, packageDefinition)
             {
-                return -1;
+                LibraryId = packageDefinition?.Identifier,
+                RuntimeType = type
+            };
+
+            // 4. Extract metadata from class-level attributes
+            definition.UpdateFrom(type);
+
+            // 5. Scan properties for BindOpen schema attributes
+            var propertyInfos = type.GetProperties()
+                .Where(p => p.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any());
+
+            foreach (var prop in propertyInfos)
+            {
+                var schema = BdoData.NewSchema();
+                schema.UpdateFrom(prop, typeof(BdoPropertyAttribute));
+                definition.Add(schema);
             }
 
-            // we load the entity dico from the assembly
-
-            var dico = ExtractDictionaryFromAssembly<IBdoEntityDefinition>(assembly, log);
-
-            // we feach entity classes
-
-            var types = assembly.GetTypes().Where(p => typeof(IBdoEntity).IsAssignableFrom(p));
-            int count = 0;
-
-            foreach (var type in types)
+            // 6. Enrich the definition with indexed XML metadata if available
+            if (dictionary != null)
             {
-                var definition = new BdoEntityDefinition(null, packageDefinition)
+                var indexDefinition = dictionary.Get(definition.Name);
+                if (indexDefinition != null)
                 {
-                    LibraryId = packageDefinition?.Identifier,
-                };
-
-                definition.UpdateFrom(type);
-
-                foreach (var prop in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any()))
-                {
-                    var schema = BdoData.NewSchema();
-                    schema.UpdateFrom(prop, typeof(BdoPropertyAttribute));
-                    definition.Add(schema);
-                }
-
-                // we build the runtime definition
-
-                if (dico != null)
-                {
-                    var indexDefinition = dico.Get(definition.Name);
                     definition.Update(indexDefinition);
                 }
-
-                _store.Add(definition);
-
-                count++;
             }
 
-            return count;
+            // 7. Register the entity in the global store
+            _store?.Add(definition);
+            count++;
         }
+
+        return count;
     }
 }

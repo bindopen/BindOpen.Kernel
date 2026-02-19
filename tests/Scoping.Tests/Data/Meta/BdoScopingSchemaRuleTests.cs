@@ -2,103 +2,129 @@
 using BindOpen.Scoping.Tests;
 using NUnit.Framework;
 
-namespace BindOpen.Data.Meta;
-
-[TestFixture, Order(100)]
-public class BdoScopingSchemaRuleTests
+namespace BindOpen.Data.Meta
 {
-    private IBdoSchema _schema;
-
-    [OneTimeSetUp]
-    public void OneTimeSetUp()
+    /// <summary>
+    /// This class provides unit tests for schema rules, specifically focusing on 
+    /// requirement levels and constraint validation within the BindOpen scoping engine.
+    /// </summary>
+    [TestFixture, Order(100)]
+    public class BdoScopingSchemaRuleTests
     {
-        _schema = BdoScopingSchemaFaker.CreateSchema();
-    }
+        private IBdoSchema _schema;
 
-    [Test, Order(2)]
-    public void RequirementTest()
-    {
-        var meta0 = BdoData.NewNode("meta-test")
-            .WithSchema(BdoData.NewSchema())
-            .With(
-                BdoData.NewScalar("title", "A"));
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            // Initialize the shared schema from the faker
+            _schema = BdoScopingSchemaFaker.CreateSchema();
+        }
 
-        var requirementLevel0 = meta0.GetRequirementLevel(ScopingTestData.Scope);
-        Assert.That(requirementLevel0 == RequirementLevels.None, "Statement - Error");
+        /// <summary>
+        /// Tests the retrieval of requirement levels based on the current data context and schema.
+        /// </summary>
+        [Test, Order(2)]
+        public void RequirementTest()
+        {
+            // 1. Meta with empty schema: Requirement should be None
+            var meta0 = BdoData.NewNode("meta-test")
+                .WithSchema(BdoData.NewSchema())
+                .With(BdoData.NewScalar("title", "A"));
 
-        var meta1 = BdoData.NewNode("meta-test")
-            .WithSchema(_schema)
-            .With(
-                BdoData.NewScalar("auto", true),
-                BdoData.NewScalar("title", "This is my title"));
+            var requirementLevel0 = meta0.GetRequirementLevel(ScopingTestData.Scope);
+            Assert.That(requirementLevel0, Is.EqualTo(RequirementLevels.None), "Default requirement level failed.");
 
-        var requirementLevel1 = meta1.GetRequirementLevel(ScopingTestData.Scope);
-        Assert.That(requirementLevel1 == RequirementLevels.Required, "Statement - Error");
+            // 2. Meta matching a schema rule where 'title' makes it 'Required'
+            var meta1 = BdoData.NewNode("meta-test")
+                .WithSchema(_schema)
+                .With(
+                    BdoData.NewScalar("auto", true),
+                    BdoData.NewScalar("title", "This is my title"));
 
-        var meta2 = BdoData.NewNode("meta-test")
-            .WithSchema(_schema)
-            .With(("auto", true));
+            var requirementLevel1 = meta1.GetRequirementLevel(ScopingTestData.Scope);
+            Assert.That(requirementLevel1, Is.EqualTo(RequirementLevels.Required), "Requirement level evaluation failed for 'Required' context.");
 
-        var requirementLevel2 = meta2.GetRequirementLevel(ScopingTestData.Scope);
-        Assert.That(requirementLevel2 == RequirementLevels.Optional, "Statement - Error");
-    }
+            // 3. Meta matching a schema rule where it remains 'Optional'
+            var meta2 = BdoData.NewNode("meta-test")
+                .WithSchema(_schema)
+                .With(("auto", true));
 
-    [Test, Order(3)]
-    public void RequirementCheckTest()
-    {
-        var meta0 = BdoData.NewNode("meta-test")
-            .WithSchema(schema => schema.AddItemRequirement(RequirementLevels.Optional).WithName("toto"))
-            .With(
-                BdoData.NewScalar("title", "A")
-                    .WithSchema(schema => schema.AddRequirement(RequirementLevels.Optional)));
+            var requirementLevel2 = meta2.GetRequirementLevel(ScopingTestData.Scope);
+            Assert.That(requirementLevel2, Is.EqualTo(RequirementLevels.Optional), "Requirement level evaluation failed for 'Optional' context.");
+        }
 
-        var validator = ScopingTestData.Scope.CreateValidator();
-        var valid = validator.Check(meta0);
-        Assert.That(valid, "Statement - Error");
-    }
+        /// <summary>
+        /// Tests the validator's ability to check a meta-node against requirement levels.
+        /// </summary>
+        [Test, Order(3)]
+        public void RequirementCheckTest()
+        {
+            // Creating a meta node with inline schema requirements
+            var meta0 = BdoData.NewNode("meta-test")
+                .WithSchema(schema => schema.AddItemRequirement(RequirementLevels.Optional).WithName("toto"))
+                .With(
+                    BdoData.NewScalar("title", "A")
+                        .WithSchema(schema => schema.AddRequirement(RequirementLevels.Optional)));
 
-    [Test, Order(4)]
-    public void ItemRequirementTest()
-    {
-        var meta0 = BdoData.NewNode("meta-test")
-            .WithSchema(BdoData.NewSchema())
-            .With(
-                BdoData.NewScalar("title", "A"));
+            var validator = ScopingTestData.Scope.CreateValidator();
+            var valid = validator.Check(meta0);
 
-        var requirementLevel0 = meta0.GetItemRequirementLevel(ScopingTestData.Scope);
-        Assert.That(requirementLevel0 == RequirementLevels.Optional, "Statement - Error");
+            Assert.That(valid, Is.True, "Validation check failed for optional requirements.");
+        }
 
-        var meta1 = BdoData.NewNode("meta-test")
-            .WithSchema(_schema)
-            .With(
-                BdoData.NewScalar("auto", true),
-                BdoData.NewScalar("title", "This is my title"));
+        /// <summary>
+        /// Tests the retrieval of requirement levels specifically for child items.
+        /// </summary>
+        [Test, Order(4)]
+        public void ItemRequirementTest()
+        {
+            // 1. Basic schema: Item requirement should be Optional by default
+            var meta0 = BdoData.NewNode("meta-test")
+                .WithSchema(BdoData.NewSchema())
+                .With(BdoData.NewScalar("title", "A"));
 
-        var requirementLevel1 = meta1.GetItemRequirementLevel(ScopingTestData.Scope);
-        Assert.That(requirementLevel1 == RequirementLevels.Required, "Statement - Error");
+            var requirementLevel0 = meta0.GetItemRequirementLevel(ScopingTestData.Scope);
+            Assert.That(requirementLevel0, Is.EqualTo(RequirementLevels.Optional), "Default item requirement failed.");
 
-        var meta2 = BdoData.NewNode("meta-test")
-            .WithSchema(_schema)
-            .With(
-                BdoData.NewScalar("auto", false));
+            // 2. Schema rule: Required item
+            var meta1 = BdoData.NewNode("meta-test")
+                .WithSchema(_schema)
+                .With(
+                    BdoData.NewScalar("auto", true),
+                    BdoData.NewScalar("title", "This is my title"));
 
-        var requirementLevel2 = meta2.GetItemRequirementLevel(ScopingTestData.Scope);
-        Assert.That(requirementLevel2 == RequirementLevels.Optional, "Statement - Error");
-    }
+            var requirementLevel1 = meta1.GetItemRequirementLevel(ScopingTestData.Scope);
+            Assert.That(requirementLevel1, Is.EqualTo(RequirementLevels.Required), "Item requirement evaluation failed for 'Required' state.");
 
-    [Test, Order(6)]
-    public void InEnumTest()
-    {
-        var schema = BdoData.NewSchema();
+            // 3. Schema rule: Optional item (auto is false)
+            var meta2 = BdoData.NewNode("meta-test")
+                .WithSchema(_schema)
+                .With(BdoData.NewScalar("auto", false));
 
-        var meta0 = BdoData.NewNode("meta-test")
-            .With(
-                BdoData.NewScalar("level", "RequirementLevels.Optional")
-                    .WithSchema(q => q.MustBeInList<RequirementLevels>())
-            );
+            var requirementLevel2 = meta2.GetItemRequirementLevel(ScopingTestData.Scope);
+            Assert.That(requirementLevel2, Is.EqualTo(RequirementLevels.Optional), "Item requirement evaluation failed for 'Optional' state.");
+        }
 
-        var validator = ScopingTestData.Scope.CreateValidator();
-        var isChecked = validator.Check(meta0);
-        Assert.That(!isChecked, "Constraint validation failed");
+        /// <summary>
+        /// Tests the Enum constraint validation (MustBeInList).
+        /// </summary>
+        [Test, Order(6)]
+        public void InEnumTest()
+        {
+            // meta0 uses a string value that is technically the name of the Enum, 
+            // but validator check might fail if it's not strictly formatted or handled.
+            var meta0 = BdoData.NewNode("meta-test")
+                .With(
+                    BdoData.NewScalar("level", "RequirementLevels.Optional")
+                        .WithSchema(q => q.MustBeInList<RequirementLevels>())
+                );
+
+            var validator = ScopingTestData.Scope.CreateValidator();
+            var isChecked = validator.Check(meta0);
+
+            // Asserting false: depending on implementation, a string "EnumName.Value" 
+            // might fail if the validator expects just "Optional" or the numeric value.
+            Assert.That(isChecked, Is.False, "Constraint validation should have rejected the invalid enum string format.");
+        }
     }
 }

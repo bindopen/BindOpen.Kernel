@@ -55,6 +55,16 @@ namespace BindOpen.Data.Meta
 
         // Data ----------------------------
 
+        public int Count(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var list = GetDataList(scope, varSet, log);
+            return list.Count;
+        }
+
+
         /// <summary>
         /// Returns the item TItem of this instance.
         /// </summary>

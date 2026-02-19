@@ -1,24 +1,28 @@
 ﻿using BindOpen.Data.Schema;
 
-namespace BindOpen.Scoping.Tests;
-
-/// <summary>
-/// This class represents an option schema.
-/// </summary>
-public class SchemaFake : BdoSchema
+namespace BindOpen.Scoping.Tests
 {
-    // -------------------------------------------------------------
-    // CONSTRUCTORS
-    // -------------------------------------------------------------
-
-    #region Constructors
-
     /// <summary>
-    /// Instantiates a new instance of the SpecFake class.
+    /// This class represents a fake option schema used for testing metadata 
+    /// specifications and validation rules within the BindOpen scoping engine.
     /// </summary>
-    public SchemaFake()
+    public class SchemaFake : BdoSchema
     {
-    }
+        // -------------------------------------------------------------
+        // CONSTRUCTORS
+        // -------------------------------------------------------------
 
-    #endregion
+        #region Constructors
+
+        /// <summary>
+        /// Instantiates a new instance of the SchemaFake class.
+        /// </summary>
+        public SchemaFake() : base()
+        {
+            // Initializing with the base constructor ensures that 
+            // internal collections (Requirements, Constraints) are ready.
+        }
+
+        #endregion
+    }
 }

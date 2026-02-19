@@ -1,28 +1,47 @@
 ﻿using NUnit.Framework;
 
-namespace BindOpen.Data.Stores;
-
-[TestFixture, Order(210)]
-public class BdoScopingDatasourceTests
+namespace BindOpen.Data.Stores
 {
-    public BdoDatasourceTests _dataTests;
-
-
-    [OneTimeSetUp]
-    public void OneTimeSetUp()
+    /// <summary>
+    /// This class provides unit tests for data source management within the scoping engine,
+    /// focusing on the creation and metadata wrapping of datasource instances.
+    /// </summary>
+    [TestFixture, Order(210)]
+    public class BdoScopingDatasourceTests
     {
-        _dataTests = new();
-        _dataTests.OneTimeSetUp();
-    }
+        /// <summary>
+        /// Shared data test instance providing pre-configured metadata nodes.
+        /// </summary>
+        public BdoDatasourceTests _dataTests;
 
-    [Test, Order(1)]
-    public void Create1Test()
-    {
-        var source = ScopingTestData.Scope.NewMetaWrapper<BdoDatasource>(_dataTests._metaNode)
-            .WithName(_dataTests._metaNode.Name)
-            .WithDataType(_dataTests._metaNode.DataType);
+        /// <summary>
+        /// Initializes the test environment by preparing shared data sources.
+        /// </summary>
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            _dataTests = new BdoDatasourceTests();
+            _dataTests.OneTimeSetUp();
+        }
 
-        Assert.That(source.DataType == _dataTests._metaNode.DataType, "Bad data type");
-        Assert.That(source.Name == _dataTests._metaNode.Name, "Bad data type");
+        /// <summary>
+        /// Tests the creation of a BdoDatasource using the scope's MetaWrapper factory.
+        /// </summary>
+        [Test, Order(1)]
+        public void Create1Test()
+        {
+            // 1. Create a BdoDatasource wrapper from a raw MetaNode.
+            // This verifies that the scoping engine can map a MetaNode to the concrete BdoDatasource class.
+            var source = ScopingTestData.Scope.NewMetaWrapper<BdoDatasource>(_dataTests._metaNode)
+                .WithName(_dataTests._metaNode.Name)
+                .WithDataType(_dataTests._metaNode.DataType);
+
+            // 2. Verify identity mapping
+            Assert.That(source.DataType, Is.EqualTo(_dataTests._metaNode.DataType),
+                "The wrapped datasource failed to maintain the original DataType.");
+
+            Assert.That(source.Name, Is.EqualTo(_dataTests._metaNode.Name),
+                "The wrapped datasource failed to maintain the original Name.");
+        }
     }
 }
