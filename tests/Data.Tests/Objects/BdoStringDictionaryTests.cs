@@ -1,16 +1,30 @@
 ﻿using BindOpen.Data.Helpers;
 using Bogus;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace BindOpen.Data;
 
+/// <summary>
+/// Contains unit tests for <see cref="TBdoDictionary{T}"/>, focusing on specialized string key access.
+/// </summary>
+/// <remarks>
+/// These tests verify advanced dictionary features such as wildcard keys ("*"), 
+/// implicit conversions, and fallback value resolution.
+/// </remarks>
 [TestFixture, Order(210)]
 public class BdoStringDictionaryTests
 {
-    dynamic _valueSet;
+    private dynamic _valueSet;
+
+    /// <summary>
+    /// The string dictionary instance currently being tested.
+    /// </summary>
     public TBdoDictionary<string> _dico = null;
 
-
+    /// <summary>
+    /// Initializes randomized string values for dictionary testing.
+    /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
@@ -24,17 +38,24 @@ public class BdoStringDictionaryTests
         };
     }
 
+    /// <summary>
+    /// Validates the core content of the dictionary against the expected value set.
+    /// </summary>
+    /// <param name="dico">The dictionary to validate.</param>
     public void Test(ITBdoDictionary<string> dico)
     {
-        Assert.That(
-            dico["value1"] == _valueSet.value1
-            && dico["value2"] == _valueSet.value2
-            && dico["value3"] == _valueSet.value3, "Bad dictionary creation");
+        dico["value1"].Should().Be((string)_valueSet.value1);
+        dico["value2"].Should().Be((string)_valueSet.value2);
+        dico["value3"].Should().Be((string)_valueSet.value3);
     }
 
+    /// <summary>
+    /// Tests dictionary creation using the factory method with tuple arrays.
+    /// </summary>
     [Test, Order(1)]
     public void Create1Test()
     {
+        // Tests duplicate key handling and standard initialization
         _dico = BdoData.NewDictionary<string>(
             ("value1", _valueSet.value1),
             ("value1", _valueSet.value1),
@@ -44,6 +65,9 @@ public class BdoStringDictionaryTests
         Test(_dico);
     }
 
+    /// <summary>
+    /// Tests dictionary creation via implicit conversion from a tuple array.
+    /// </summary>
     [Test, Order(2)]
     public void Create2Test()
     {
@@ -55,17 +79,21 @@ public class BdoStringDictionaryTests
         Test(_dico);
     }
 
+    /// <summary>
+    /// Tests implicit conversion from a single string to a wildcard dictionary entry.
+    /// </summary>
     [Test, Order(3)]
     public void Create3Test()
     {
         _dico = _valueSet.valueStar as string;
 
-        Assert.That(
-            _dico[StringHelper.__Star] == _valueSet.valueStar as string, "Bad dictionary creation");
-        Assert.That(
-            _dico.Get() == _valueSet.valueStar as string, "Bad dictionary creation");
+        _dico[StringHelper.__Star].Should().Be((string)_valueSet.valueStar);
+        _dico.Get().Should().Be((string)_valueSet.valueStar);
     }
 
+    /// <summary>
+    /// Verifies the custom equality logic for dictionaries.
+    /// </summary>
     [Test, Order(4)]
     public void EqualsTest()
     {
@@ -74,10 +102,12 @@ public class BdoStringDictionaryTests
             ("value2", _valueSet.value2),
             ("value3", _valueSet.value3));
 
-        Assert.That(
-            dico1.Equals(dico1), "Bad dictionary equal funtion");
+        dico1.Equals(dico1).Should().BeTrue("A dictionary must be equal to itself.");
     }
 
+    /// <summary>
+    /// Tests advanced fallback resolution using wildcards and multiple keys.
+    /// </summary>
     [Test, Order(5)]
     public void Create5Test()
     {
@@ -87,24 +117,19 @@ public class BdoStringDictionaryTests
             ("value2", _valueSet.value2 as string),
             ("value3", _valueSet.value3 as string) };
 
-        var valueStar = _dico[StringHelper.__Star];
-        var value1 = _dico["value1"];
-        var value2 = _dico["hgh", "value2"];
-        var value3 = _dico["value3"];
-        var value4 = _dico["value4"];
-        var value5 = _dico["value5", StringHelper.__Star];
+        // Test wildcard access
+        _dico[StringHelper.__Star].Should().Be((string)_valueSet.valueStar);
 
-        Assert.That(
-            valueStar == _valueSet.valueStar as string, "Bad dictionary creation");
-        Assert.That(
-            value1 == _valueSet.value1 as string, "Bad dictionary creation");
-        Assert.That(
-            value2 == _valueSet.value2 as string, "Bad dictionary creation");
-        Assert.That(
-            value3 == _valueSet.value3 as string, "Bad dictionary creation");
-        Assert.That(
-            value4 == null, "Bad dictionary creation");
-        Assert.That(
-            value5 == _valueSet.valueStar as string, "Bad dictionary creation");
+        // Test direct access
+        _dico["value1"].Should().Be((string)_valueSet.value1);
+
+        // Test fallback: find 'value2' even if a prefix/context is provided
+        _dico["hgh", "value2"].Should().Be((string)_valueSet.value2);
+
+        // Test missing key: should be null
+        _dico["value4"].Should().BeNull();
+
+        // Test wildcard fallback: if 'value5' is missing, use the star value
+        _dico["value5", StringHelper.__Star].Should().Be((string)_valueSet.valueStar);
     }
 }

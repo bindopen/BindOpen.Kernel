@@ -1,31 +1,48 @@
 ﻿using BindOpen.Tests;
+using FluentAssertions;
 using NUnit.Framework;
-using System;
-using System.Linq;
 
 namespace BindOpen.Data.Meta;
 
+/// <summary>
+/// Contains unit tests for sets of scalar metadata, focusing on collection management and data updates.
+/// </summary>
+/// <remarks>
+/// These tests ensure that <see cref="IBdoMetaSet"/> correctly handles multiple <see cref="IBdoMetaScalar"/> elements,
+/// supports complex update/repair scenarios, and allows access via both names and custom keys.
+/// </remarks>
 [TestFixture, Order(202)]
 public class BdoMetaScalarSetTests
 {
     private dynamic _testData;
+
+    /// <summary>
+    /// The global meta set used across tests to verify state persistence.
+    /// </summary>
     public IBdoMetaSet _metaSet;
 
+    /// <summary>
+    /// Initializes randomized test data.
+    /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
         _testData = BdoMetaScalarFaker.Fake();
     }
 
+    /// <summary>
+    /// Verifies that a scalar can be created even with null data.
+    /// </summary>
     [Test, Order(1)]
     public void NewTest_WithNull()
     {
         var el1 = BdoData.NewScalar("null1", null);
-
-        Assert.That(
-            el1 != null, "Bad scalar el creation");
+        el1.Should().NotBeNull("A scalar element should be instantiable even with a null value.");
     }
 
+    /// <summary>
+    /// Tests the population of a meta set with various scalar types (Number, String, Integer, Binary).
+    /// </summary>
     [Test, Order(2)]
     public void NewTest()
     {
@@ -41,24 +58,18 @@ public class BdoMetaScalarSetTests
 
         _metaSet = BdoData.NewSet(el1, el2, el3, el4);
 
-        var itemList1 = _metaSet.GetDataList<double>("number1");
-        Assert.That(
-            itemList1?.Intersect(arrayNumber).Any() ?? false, "Bad scalar el - Number");
-
-        var itemList2 = _metaSet.GetDataList<string>("text2");
-        Assert.That(
-            itemList2?.Intersect(arrayString).Any() ?? false, "Bad scalar el - String");
-
-        var itemList3 = _metaSet.GetDataList<int>("integer3");
-        Assert.That(
-            itemList3?.Intersect(arrayInteger).Any() ?? false, "Bad scalar el - Integer");
+        // Validation of data retrieval by key
+        _metaSet.GetDataList<double>("number1").Should().Contain(arrayNumber);
+        _metaSet.GetDataList<string>("text2").Should().Contain(arrayString);
+        _metaSet.GetDataList<int>("integer3").Should().Contain(arrayInteger);
 
         var item4 = _metaSet.GetDataList<byte[]>("byteArray4");
-        Assert.That(
-            item4[0]?.SequenceEqual(arrayArrayByte[0]) == true
-            , "Bad scalar el - Byte array");
+        item4[0].Should().Equal(arrayArrayByte[0], "Byte arrays must maintain sequence integrity within a set.");
     }
 
+    /// <summary>
+    /// Tests complex update and repair scenarios between meta sets, including null handling and type switching.
+    /// </summary>
     [Test, Order(3)]
     public void UpdateCheckRepairTest()
     {
@@ -78,6 +89,7 @@ public class BdoMetaScalarSetTests
         elSetA.Add(elAB);
         elSetB.Update(elSetA);
 
+        // Advanced repair testing: adding nulls and type-based placeholders
         elSetA.Add<IBdoMetaData>(null);
         elSetB
             .Add((IBdoMetaScalar)null)
@@ -85,32 +97,37 @@ public class BdoMetaScalarSetTests
             .Add(BdoData.NewScalar("name3", typeof(int)))
             .Add(BdoData.NewScalar("name4", typeof(double)))
             .Add(BdoData.NewScalar("name5", DataValueTypes.Text));
+
         elSetA
             .Add(BdoData.NewScalar("name1", typeof(string)))
             .Add(BdoData.NewObject("name2", null as string))
             .Add(BdoData.NewScalar("name4", DataValueTypes.Text, null))
             .Add(BdoData.NewScalar("name5", null as string));
+
         elSetB.Update(elSetA);
 
         _metaSet = elSetB;
+        _metaSet.Should().NotBeNull("The meta set should remain valid after multiple update/repair operations.");
     }
 
+    /// <summary>
+    /// Validates the string conversion of scalars within a set for different data types.
+    /// </summary>
     [Test, Order(4)]
     public void ToStringTest()
     {
         string[] arrayString = _testData.arrayString;
-
         var el = BdoData.NewScalar(DataValueTypes.Text, arrayString[0]);
-        var st = el.ToString();
-        Assert.That(st == arrayString[0], "Bad scalar el - ToString");
+        el.ToString().Should().Be(arrayString[0]);
 
         int[] arrayInteger = _testData.arrayInteger;
-
-        el = BdoData.NewScalar(DataValueTypes.Text, _testData.arrayInteger[0]);
-        st = el.ToString();
-        Assert.That(st == arrayInteger[0].ToString(), "Bad scalar el - ToString");
+        el = BdoData.NewScalar(DataValueTypes.Text, arrayInteger[0]);
+        el.ToString().Should().Be(arrayInteger[0].ToString());
     }
 
+    /// <summary>
+    /// Tests the ability to add elements to a set using explicit keys and retrieving them.
+    /// </summary>
     [Test, Order(5)]
     public void AddMetaSetWithKeys()
     {
@@ -118,15 +135,12 @@ public class BdoMetaScalarSetTests
         var elAB = BdoData.NewScalar("name1", "Test1");
         elAA.Update(elAB);
 
+        // Mix of keys, nulls, and direct object references
         var elSetA = BdoData.NewSet(("key1", elAA), (null, elAB), ("key2", this));
 
-        Assert.That(elSetA.Count == 3, "Bad scalar el - ToString");
-
-        var el1 = elSetA.Get("key1");
-        Assert.That(el1 != null, "Bad scalar el - ToString");
-        var el2 = elSetA.Get("name1");
-        Assert.That(el2 != null, "Bad scalar el - ToString");
-        var el3 = elSetA.GetData("key2");
-        Assert.That(el3 == this, "Bad scalar el - ToString");
+        elSetA.Count.Should().Be(3);
+        elSetA.Get("key1").Should().NotBeNull("Retrieval by custom key 'key1' should work.");
+        elSetA.Get("name1").Should().NotBeNull("Retrieval by element name 'name1' should work.");
+        elSetA.GetData("key2").Should().Be(this, "Retrieval of raw data via key should return the original object.");
     }
 }
