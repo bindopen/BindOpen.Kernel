@@ -3,6 +3,7 @@ using Bogus;
 using FluentAssertions;
 using NUnit.Framework;
 using System.Linq;
+using static BindOpen.Data.BdoData;
 
 namespace BindOpen.Data.Meta;
 
@@ -24,40 +25,40 @@ public class BdoConfigurationTests
     {
         var f = new Faker();
 
-        _config10a = BdoData.NewConfig(
+        _config10a = NewConfig(
             _configName10a,
-            BdoData.NewScalar("float1", DataValueTypes.Number, f.Random.Float()))
+            NewScalar("float1", DataValueTypes.Number, f.Random.Float()))
             .Using(_configName10, _configName20);
 
-        _config10 = BdoData.NewConfig(_configName10)
+        _config10 = NewConfig(_configName10)
             .WithTitle("myConfiguration")
             .WithDescription(("en", "Sample of description"))
             .WithChildren(_config10a)
             .With(
-                BdoData.NewScalar("float1", DataValueTypes.Number, f.Random.Float()),
-                BdoData.NewScalar("text1", f.Lorem.Words(10)),
-                BdoData.NewScalar("integer1", DataValueTypes.Integer, Enumerable.Range(0, 10).Select(p => f.Random.Int(5000))),
-                BdoData.NewScalar("byteArray1", DataValueTypes.Binary, Enumerable.Range(1, 2).Select(p => f.Random.Bytes(5000)).ToArray()),
-                BdoData.NewNode(
+                NewScalar("float1", DataValueTypes.Number, f.Random.Float()),
+                NewScalar("text1", f.Lorem.Words(10)),
+                NewScalar("integer1", DataValueTypes.Integer, Enumerable.Range(0, 10).Select(p => f.Random.Int(5000))),
+                NewScalar("byteArray1", DataValueTypes.Binary, Enumerable.Range(1, 2).Select(p => f.Random.Bytes(5000)).ToArray()),
+                NewNode(
                     "$node1",
-                    BdoData.NewScalar("textB1", DataValueTypes.Text, f.Lorem.Words(10)),
-                    BdoData.NewScalar("textB2", DataValueTypes.Integer, f.Random.Int(5000)))
+                    NewScalar("textB1", DataValueTypes.Text, f.Lorem.Words(10)),
+                    NewScalar("textB2", DataValueTypes.Integer, f.Random.Int(5000)))
             );
 
-        _config20a = BdoData.NewConfig(
+        _config20a = NewConfig(
             _configName10a,
-            BdoData.NewScalar("float1", DataValueTypes.Number, f.Random.Float()),
-            BdoData.NewScalar("text1", f.Lorem.Words(10)))
+            NewScalar("float1", f.Random.Float()),
+            NewScalar("text1", f.Lorem.Words(10)))
             .Using(_configName10, _configName20);
 
-        _config20 = BdoData.NewConfig(
+        _config20 = NewConfig(
             _configName20,
-            BdoData.NewScalar("float2", DataValueTypes.Number, 1.1, 1.2, 1.3),
-            BdoData.NewScalar("float1", DataValueTypes.Number, f.Random.Float()),
-            BdoData.NewNode(
+            NewScalar("float2", DataValueTypes.Number, 1.1, 1.2, 1.3),
+            NewScalar("float1", DataValueTypes.Number, f.Random.Float()),
+            NewNode(
                 "$node1",
-                BdoData.NewScalar("textB1", DataValueTypes.Text, f.Lorem.Words(10)),
-                BdoData.NewScalar("coolB1", DataValueTypes.Boolean, f.Random.Bool())))
+                NewScalar("textB1", DataValueTypes.Text, f.Lorem.Words(10)),
+                NewScalar("coolB1", DataValueTypes.Boolean, f.Random.Bool())))
             .WithChildren(_config20a);
     }
 
