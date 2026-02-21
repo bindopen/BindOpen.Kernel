@@ -15,7 +15,7 @@ namespace BindOpen.Data
         /// <returns>Returns the new item that has been added.
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
-        public static ITBdoSet<T> Add<T>(
+        public static ITBdoSet<T> WithItems<T>(
             this ITBdoSet<T> set,
             params T[] items)
             where T : IReferenced
@@ -38,31 +38,12 @@ namespace BindOpen.Data
         /// <returns>Returns the new item that has been added.
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
-        public static ITBdoSet<T> AddRange<T>(
+        public static ITBdoSet<T> WithItems<T>(
             this ITBdoSet<T> set,
             ITBdoSet<T> list)
             where T : IReferenced
         {
-            set?.Add(list?.Items?.ToArray());
-
-            return set;
-        }
-
-        /// <summary>
-        /// Sets the specified single item of this instance.
-        /// </summary>
-        /// <param key="items">The items to apply to this instance.</param>
-        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public static ITBdoSet<T> With<T>(
-            this ITBdoSet<T> set,
-            params T[] items)
-            where T : IReferenced
-        {
-            if (set != null)
-            {
-                set.Clear();
-                set.Add(items);
-            }
+            set?.WithItems(list?.Items?.ToArray());
 
             return set;
         }
@@ -84,7 +65,7 @@ namespace BindOpen.Data
             {
                 if (updateModes.Has(UpdateModes.Full))
                 {
-                    set.With(refSet?.ToArray());
+                    set.WithItems(refSet?.ToArray());
                 }
                 else
                 {
@@ -138,11 +119,11 @@ namespace BindOpen.Data
                                     if (refSetItem is IClonable clonable)
                                     {
                                         var newSubItem = clonable.Clone().As<T>();
-                                        set.Add(newSubItem);
+                                        set.WithItems(newSubItem);
                                     }
                                     else
                                     {
-                                        set.Add(refSetItem);
+                                        set.WithItems(refSetItem);
                                     }
                                 }
                             }
@@ -169,7 +150,7 @@ namespace BindOpen.Data
             {
                 if (updateModes.Has(UpdateModes.Full))
                 {
-                    set.With(item);
+                    set.WithItems(item);
                 }
                 else
                 {
@@ -196,11 +177,11 @@ namespace BindOpen.Data
                             if (item is IClonable clonable)
                             {
                                 var newSubItem = clonable.Clone().As<T>();
-                                set.Add(newSubItem);
+                                set.WithItems(newSubItem);
                             }
                             else
                             {
-                                set.Add(item);
+                                set.WithItems(item);
                             }
                         }
                     }

@@ -44,7 +44,7 @@ public static class SchemaSetDbConverter
             Name = dbItem.Name,
             Identifier = dbItem.Identifier
         };
-        poco.With(dbItem.Items?.Select(q => q.ToPoco()).ToArray());
+        TBdoSetExtensions.WithItems(poco, dbItem.Items?.Select(q => q.ToPoco()).ToArray());
 
         return poco;
     }

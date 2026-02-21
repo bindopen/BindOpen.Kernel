@@ -92,7 +92,7 @@ namespace BindOpen.Data.Stores
             IBdoDatasource source)
             where T : IBdoDatasourceDepot
         {
-            depot?.Add<IBdoDatasourceDepot, IBdoDatasource>(source);
+            depot?.WithItems<IBdoDatasourceDepot, IBdoDatasource>(source);
 
             return depot;
         }

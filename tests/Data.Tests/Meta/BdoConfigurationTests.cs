@@ -47,14 +47,14 @@ public class BdoConfigurationTests
             .WithDescription(("en", "Sample of description"))
             .WithChildren(_config10a)
             .With(
-                NewScalar("float1", DataValueTypes.Number, f.Random.Float()),
-                NewScalar("text1", f.Lorem.Words(10)),
-                NewScalar("integer1", DataValueTypes.Integer, Enumerable.Range(0, 10).Select(p => f.Random.Int(5000))),
-                NewScalar("byteArray1", DataValueTypes.Binary, Enumerable.Range(1, 2).Select(p => f.Random.Bytes(5000)).ToArray()),
-                NewNode(
-                    "$node1",
-                    NewScalar("textB1", DataValueTypes.Text, f.Lorem.Words(10)),
-                    NewScalar("textB2", DataValueTypes.Integer, f.Random.Int(5000)))
+                ("float1", f.Random.Float()),
+                ("text1", f.Lorem.Words(10)),
+                ("integer1", Enumerable.Range(0, 10).Select(p => f.Random.Int(5000))),
+                ("byteArray1", Enumerable.Range(1, 2).Select(p => f.Random.Bytes(5000)).ToArray()),
+                NewNode("$node1")
+                    .With(
+                        ("textB1", f.Lorem.Words(10)),
+                        (object)("textB2", f.Random.Int(5000)))
             );
 
         // Sub-configuration 20a

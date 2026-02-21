@@ -112,7 +112,7 @@ namespace BindOpen.Data
         {
             var list = NewNode<T>();
             list
-                .With(metas)
+                .WithItems(metas)
                 .WithName(name);
 
             return list;
@@ -139,7 +139,7 @@ namespace BindOpen.Data
             where T : class, IBdoMetaNode, new()
         {
             var list = NewNode<T>()
-                .With(pairs)
+                .With((object)pairs)
                 .WithName(name);
 
             return list;

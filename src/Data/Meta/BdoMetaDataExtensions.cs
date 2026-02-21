@@ -104,7 +104,7 @@ namespace BindOpen.Data.Meta
             if (meta != null)
             {
                 varSet ??= BdoData.NewSet();
-                varSet.Add((BdoData.__VarName_This, meta));
+                varSet.With((BdoData.__VarName_This, meta));
 
                 var exp = meta.GetOrAddSpec().Label.ToExpression();
                 var label = scope?.Interpreter?.Evaluate<string>(exp, varSet, log);
@@ -157,7 +157,7 @@ namespace BindOpen.Data.Meta
                 if (parent?._Children != null)
                 {
                     var localVarSet = BdoData.NewSet(varSet?.ToArray());
-                    localVarSet.Add(BdoData.__VarName_This, meta);
+                    localVarSet.With(BdoData.__VarName_This, meta);
 
                     foreach (var child in parent._Children)
                     {

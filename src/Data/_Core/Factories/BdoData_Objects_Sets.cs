@@ -20,7 +20,7 @@ namespace BindOpen.Data
             where TItem : IReferenced
         {
             var q = new TSet();
-            q.With(items);
+            TBdoSetExtensions.WithItems(q, items);
             return q;
         }
 

@@ -41,6 +41,39 @@
 - [ ] **Recursive Tree Validation**: Add regression tests for deep hierarchical structures (5+ levels) in `TreeFake`.
 - [ ] **Runtime Mode Simulation**: Validate that tasks behave correctly in `RuntimeModes.Simulation`, ensuring logs are populated without data side effects.
 
+### Metadata Management
+
+- [ ] Tuple dictionary approach.
+```csharp
+var config = NewConfig("test-config",
+    ("comment", "Sunny day"),
+    ("temperature", new[] { 25, 26, 26 }), // Tableau = Multi-scalar
+    ("date", DateTime.Now),
+    NewNode("subscriber",
+        ("name", "Ernest E."),
+        ("code", 1560)
+    )
+)
+```
+- [ ] Anonymous Object
+```csharp
+var config = NewConfig("test-config", new {
+    comment = "Sunny day",
+    temperature = new[] { 25, 26, 26 },
+    date = DateTime.Now,
+    subscriber = NewNode(new {
+        name = "Ernest E.",
+        code = 1560
+    })
+})
+```
+- [ ] "String-Driven" Approach
+```csharp
+var config = NewConfig("test-config")
+    .With("comment:Sunny day", "temperature:25,26,26")
+    .With("date:" + DateTime.Now)
+    .WithNode("subscriber", "name:Ernest E.", "code:1560")
+```
 ## Stuff to check out later on
 
 ### v.1.3

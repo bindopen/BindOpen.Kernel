@@ -42,7 +42,7 @@ namespace BindOpen.Scoping.Script
 
             word
                 .WithDataType(BdoExtensionKinds.Scriptword, meta?.DataType?.DefinitionUniqueName)
-                .With(meta.Items?.ToArray());
+                .WithItems(meta.Items?.ToArray());
 
             return word;
         }
@@ -61,7 +61,7 @@ namespace BindOpen.Scoping.Script
 
             word
                 .WithDataType(BdoExtensionKinds.Scriptword, meta?.DataType?.DefinitionUniqueName)
-                .With(meta.Items?.ToArray());
+                .WithItems(meta.Items?.ToArray());
 
             return word;
         }

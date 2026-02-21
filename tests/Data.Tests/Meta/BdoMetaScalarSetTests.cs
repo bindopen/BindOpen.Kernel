@@ -85,24 +85,24 @@ public class BdoMetaScalarSetTests
 
         var elSetB = BdoData.NewSet(elBA, elBB);
 
-        elSetB.Add(elBB);
-        elSetA.Add(elAB);
+        TBdoSetExtensions.WithItems(elSetB, elBB);
+        TBdoSetExtensions.WithItems(elSetA, elAB);
         elSetB.Update(elSetA);
 
         // Advanced repair testing: adding nulls and type-based placeholders
-        elSetA.Add<IBdoMetaData>(null);
-        elSetB
-            .Add((IBdoMetaScalar)null)
-            .Add(BdoData.NewScalar("name1", typeof(string)))
-            .Add(BdoData.NewScalar("name3", typeof(int)))
-            .Add(BdoData.NewScalar("name4", typeof(double)))
-            .Add(BdoData.NewScalar("name5", DataValueTypes.Text));
+        TBdoSetExtensions.WithItems(elSetA, (IBdoMetaData[])null);
+        TBdoSetExtensions.WithItems(elSetB
+, (IBdoMetaScalar)null)
+            .WithItems(BdoData.NewScalar("name1", typeof(string)))
+            .WithItems(BdoData.NewScalar("name3", typeof(int)))
+            .WithItems(BdoData.NewScalar("name4", typeof(double)))
+            .WithItems(BdoData.NewScalar("name5", DataValueTypes.Text));
 
-        elSetA
-            .Add(BdoData.NewScalar("name1", typeof(string)))
-            .Add(BdoData.NewObject("name2", null as string))
-            .Add(BdoData.NewScalar("name4", DataValueTypes.Text, null))
-            .Add(BdoData.NewScalar("name5", null as string));
+        TBdoSetExtensions.WithItems(elSetA
+, BdoData.NewScalar("name1", typeof(string)))
+            .WithItems((IBdoMetaData)BdoData.NewObject("name2", null as string))
+            .WithItems(BdoData.NewScalar("name4", DataValueTypes.Text, null))
+            .WithItems(BdoData.NewScalar("name5", null as string));
 
         elSetB.Update(elSetA);
 

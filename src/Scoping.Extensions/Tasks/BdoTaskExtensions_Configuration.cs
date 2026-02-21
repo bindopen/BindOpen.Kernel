@@ -128,7 +128,7 @@ namespace BindOpen.Data.Meta
             {
 
                 Array.ForEach(props, q => { q.AsProperty(); });
-                obj.Add(props);
+                obj.WithItems(props);
             }
 
             return obj;
@@ -247,7 +247,7 @@ namespace BindOpen.Data.Meta
             {
 
                 Array.ForEach(inputs, q => { q.AsInput(); });
-                obj.Add(inputs);
+                obj.WithItems(inputs);
             }
 
             return obj;
@@ -365,7 +365,7 @@ namespace BindOpen.Data.Meta
             if (obj != null)
             {
                 Array.ForEach(outputs, q => { q.AsOutput(); });
-                obj.Add(outputs);
+                obj.WithItems(outputs);
             }
 
             return obj;

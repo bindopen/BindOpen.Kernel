@@ -114,7 +114,7 @@ namespace BindOpen.Data.Meta
                 }
                 else
                 {
-                    obj.Detail.Add((propName, schema.DataType?.ValueType ?? DataValueTypes.Any, value));
+                    obj.Detail.With((propName, schema.DataType?.ValueType ?? DataValueTypes.Any, value));
                 }
 
                 propInfo?.SetValue(obj, value);

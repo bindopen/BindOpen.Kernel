@@ -37,9 +37,9 @@ namespace BindOpen.Data
         /// 
         /// </summary>
         /// <param key="key"></param>
-        /// <param key="alternateKey"></param>
+        /// <param key="alternateName"></param>
         /// <returns></returns>
-        T Get(string key = StringHelper.__Star, string alternateKey = null);
+        T Get(string key = StringHelper.__Star, string alternateName = null);
 
         /// <summary>
         /// 

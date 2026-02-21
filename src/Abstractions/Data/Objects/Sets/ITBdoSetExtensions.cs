@@ -12,7 +12,7 @@ public static class ITBdoSetExtensions
     /// <returns>Returns the new item that has been added.
     /// Returns null if the new item is null or else its name is null.</returns>
     /// <remarks>The new item must have a name.</remarks>
-    public static Q Add<Q, T>(
+    public static Q WithItems<Q, T>(
         this Q set,
         params T[] items)
         where Q : ITBdoSet<T>
@@ -36,33 +36,13 @@ public static class ITBdoSetExtensions
     /// <returns>Returns the new item that has been added.
     /// Returns null if the new item is null or else its name is null.</returns>
     /// <remarks>The new item must have a name.</remarks>
-    public static Q AddRange<Q, T>(
+    public static Q WithRange<Q, T>(
         this Q set,
         ITBdoSet<T> list)
         where Q : ITBdoSet<T>
         where T : IReferenced
     {
-        set?.Add(list?.Items?.ToArray());
-
-        return set;
-    }
-
-    /// <summary>
-    /// Sets the specified single item of this instance.
-    /// </summary>
-    /// <param key="items">The items to apply to this instance.</param>
-    /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-    public static Q With<Q, T>(
-        this Q set,
-        params T[] items)
-        where Q : ITBdoSet<T>
-        where T : IReferenced
-    {
-        if (set != null)
-        {
-            set.Clear();
-            set.Add(items);
-        }
+        set?.WithItems(list?.Items?.ToArray());
 
         return set;
     }

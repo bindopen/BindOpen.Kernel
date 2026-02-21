@@ -1,7 +1,9 @@
 ﻿using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace BindOpen.Data
 {
@@ -10,6 +12,131 @@ namespace BindOpen.Data
     /// </summary>
     public static partial class BdoMetaSetExtensions
     {
+        public static T WithNode<T>(this T set, string name, params object[] children)
+            where T : class, IBdoMetaSet
+        {
+            var node = BdoData.NewNode(name).With(children);
+            set.With(node);
+
+            return set;
+        }
+
+        /// <summary>
+        /// Sets the specified single item of this instance.
+        /// </summary>
+        /// <param key="items">The items to apply to this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
+        public static T With<T>(
+            this T set,
+            params object[] items)
+            where T : class, IBdoMetaSet
+        {
+            if (set != null && items != null)
+            {
+                foreach (var item in items)
+                {
+                    var meta = ConvertToMeta(item);
+                    set.WithItems(meta);
+                }
+            }
+            return set;
+        }
+
+        private static IBdoMetaData ConvertToMeta(object item)
+        {
+            // 1. Déjà un MetaData : on retourne tel quel
+            if (item is IBdoMetaData existingMeta) return existingMeta;
+
+            // 2. Gestion via ITuple (couvre (name, value) et (name, val1, val2...))
+            if (item is ITuple tuple && tuple.Length >= 2 && tuple[0] is string name)
+            {
+                // --- Analyse du préfixe et du mode ---
+                // On ne déclenche le mode spécial que s'il y a un caractère après le préfixe
+                char prefix = (name.Length > 1 && (name[0] == '$' || name[0] == '#' || name[0] == '@'))
+                              ? name[0] : '\0';
+
+                // Gestion de l'échappement (ex: "$$name" -> nom réel "$name")
+                if (name.Length > 1 && name[0] == name[1] && prefix != '\0')
+                {
+                    prefix = '\0';
+                    name = name[1..];
+                }
+
+                string cleanName = (prefix != '\0') ? name[1..] : name;
+                object value = tuple[1];
+
+                // --- Création selon le mode identifié ---
+                switch (prefix)
+                {
+                    case '$': // Mode NODE
+                        var node = BdoData.NewNode(cleanName);
+                        // Si le tuple a plus de 2 éléments, on traite le reste comme des enfants
+                        if (tuple.Length > 2)
+                        {
+                            for (int i = 1; i < tuple.Length; i++)
+                                node.With(ConvertToMeta(tuple[i]));
+                        }
+                        else if (IsTupleEnumerable(value))
+                        {
+                            node.With((value as IEnumerable<object>).Select(ConvertToMeta).ToArray());
+                        }
+                        else
+                        {
+                            node.With(value);
+                        }
+                        return node;
+
+                    case '@': // Mode REFERENCE
+                        return BdoData.NewReference(value?.ToString()).WithId(cleanName);
+
+                    case '#': // Mode OBJECT
+                        return BdoData.NewObject(cleanName).WithData(value);
+
+                    default: // Mode SCALAR (ou nom spécial comme "#")
+                             // Si la valeur est un tableau de tuples sans préfixe $, 
+                             // on peut soit créer un Node auto, soit rester sur un Scalar Multi-Value.
+                             // Ici, on suit ta logique : Enumerable de tuples = Node.
+                        if (IsTupleEnumerable(value))
+                        {
+                            return BdoData.NewNode(cleanName).WithData(value as object[]);
+                        }
+                        return BdoData.NewScalar(cleanName, value);
+                }
+            }
+
+            return null;
+        }
+
+        private static bool IsTupleEnumerable(object value)
+        {
+            if (value == null) return false;
+
+            // Gestion des listes génériques et tableaux
+            if (value is IEnumerable<object> enumerable)
+            {
+                var first = enumerable.FirstOrDefault();
+                return first != null && IsSingleTuple(first);
+            }
+
+            var type = value.GetType();
+            if (type.IsGenericType && typeof(IEnumerable).IsAssignableFrom(type))
+            {
+                var itemType = type.GetGenericArguments().FirstOrDefault();
+                if (itemType != null)
+                {
+                    return itemType.Name.StartsWith("ValueTuple`2") || itemType.Name.StartsWith("Tuple`2");
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsSingleTuple(object item)
+        {
+            // On utilise ITuple pour être universel (ValueTuple et Tuple)
+            return item is ITuple tuple && tuple.Length >= 2 && tuple[0] is string;
+        }
+
         // Add
 
         /// <summary>
@@ -22,7 +149,7 @@ namespace BindOpen.Data
             where T : IBdoMetaSet
         {
             IBdoMetaData meta = obj is IBdoMetaData data ? data : BdoData.NewMeta(obj);
-            list?.Add(meta);
+            list?.WithItems(meta);
 
             return list;
         }
@@ -34,13 +161,13 @@ namespace BindOpen.Data
         /// <returns>Returns the new item that has been added.
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
-        public static T Add<T>(
+        public static T With<T>(
            this T set,
            string key,
            object value)
            where T : IBdoMetaSet
         {
-            set.Add((key, value));
+            set.With((key, value));
 
             return set;
         }
@@ -49,12 +176,12 @@ namespace BindOpen.Data
         /// Adds a new value to this instance.
         /// </summary>
         /// <param key="pairs">The value to add.</param>
-        public static T Add<T>(
+        public static T With<T>(
             this T list,
             params KeyValuePair<string, object>[] pairs)
             where T : IBdoMetaSet
         {
-            list.Add(pairs.Select(q => (q.Key, q.Value)).ToArray());
+            list.With(pairs.Select(q => (q.Key, q.Value)).ToArray());
 
             return list;
         }
@@ -64,7 +191,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
-        public static T Add<T>(
+        public static T With<T>(
             this T list,
             params (string Name, object Value)[] pairs)
             where T : IBdoMetaSet
@@ -73,68 +200,8 @@ namespace BindOpen.Data
             {
                 foreach (var (Name, Value) in pairs)
                 {
-                    list.Add(BdoData.NewMeta(Name, Value));
+                    list.WithItems(BdoData.NewMeta(Name, Value));
                 }
-            }
-
-            return list;
-        }
-
-        /// <summary>
-        /// Adds a new value to this instance with the specified key and text.
-        /// </summary>
-        /// <param key="text">The text to consider.</param>
-        /// <returns>Returns the added data key value.</returns>
-        public static T Add<T>(
-            this T list,
-            params (string Name, DataValueTypes ValueType, object Value)[] pairs)
-            where T : IBdoMetaSet
-        {
-            if (list != null)
-            {
-                foreach (var (Name, ValueType, Value) in pairs)
-                {
-                    list.Add(BdoData.NewMeta(Name, ValueType, Value));
-                }
-            }
-
-            return list;
-        }
-
-        // With
-
-        /// <summary>
-        /// Withs a new value to this instance.
-        /// </summary>
-        /// <param key="pairs">The value to add.</param>
-        public static T With<T>(
-            this T list,
-            params KeyValuePair<string, object>[] pairs)
-            where T : IBdoMetaSet
-        {
-            if (list != null)
-            {
-                var items = pairs.Select(q => BdoData.NewMeta(q.Key, DataValueTypes.Any, q.Value)).ToArray();
-                list.With(items);
-            }
-
-            return list;
-        }
-
-        /// <summary>
-        /// Adds a new value to this instance with the specified key and text.
-        /// </summary>
-        /// <param key="text">The text to consider.</param>
-        /// <returns>Returns the added data key value.</returns>
-        public static T With<T>(
-            this T list,
-            params (string Name, object Value)[] pairs)
-            where T : IBdoMetaSet
-        {
-            if (list != null)
-            {
-                var items = pairs.Select(q => BdoData.NewMeta(q.Name, DataValueTypes.Any, q.Value)).ToArray();
-                list.With(items);
             }
 
             return list;
@@ -152,8 +219,10 @@ namespace BindOpen.Data
         {
             if (list != null)
             {
-                var items = pairs.Select(q => BdoData.NewMeta(q.Name, q.ValueType, q.Value)).ToArray();
-                list.With(items);
+                foreach (var (Name, ValueType, Value) in pairs)
+                {
+                    list.WithItems(BdoData.NewMeta(Name, ValueType, Value));
+                }
             }
 
             return list;
@@ -198,7 +267,7 @@ namespace BindOpen.Data
                         if (jj > -1)
                         {
                             var tokenValue = st.ToSubstring(ji, jj - 1).ToUnquoted(quote);
-                            set.Add((tokenName, tokenValue));
+                            set.With((tokenName, tokenValue));
                         }
                         ji = jj + word.Length;
                     }

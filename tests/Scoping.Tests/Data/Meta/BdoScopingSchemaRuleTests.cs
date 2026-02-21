@@ -47,7 +47,7 @@ public class BdoScopingSchemaRuleTests
         // 3. Meta matching a schema rule where it remains 'Optional'
         var meta2 = BdoData.NewNode("meta-test")
             .WithSchema(_schema)
-            .With(("auto", true));
+            .With((object)("auto", true));
 
         var requirementLevel2 = meta2.GetRequirementLevel(ScopingTestData.Scope);
         Assert.That(requirementLevel2, Is.EqualTo(RequirementLevels.Optional), "Requirement level evaluation failed for 'Optional' context.");

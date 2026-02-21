@@ -15,7 +15,7 @@ namespace BindOpen.Data
         /// Adds a new value to this instance.
         /// </summary>
         /// <param key="pairs">The value to add.</param>
-        public static T Add<T, TItem>(
+        public static T With<T, TItem>(
             this T dico,
             params KeyValuePair<string, TItem>[] pairs)
             where T : ITBdoDictionary<TItem>
@@ -36,44 +36,12 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
-        public static T Add<T, TItem>(
+        public static T With<T, TItem>(
             this T dico,
             TItem item)
             where T : ITBdoDictionary<TItem>
         {
             dico.Add(StringHelper.__Star, item);
-
-            return dico;
-        }
-
-        /// <summary>
-        /// Adds a new value to this instance.
-        /// </summary>
-        /// <param key="pairs">The value to add.</param>
-        public static T With<T, TItem>(
-            this T dico,
-            params KeyValuePair<string, TItem>[] pairs)
-            where T : ITBdoDictionary<TItem>
-        {
-            if (dico != null)
-            {
-                dico.Clear();
-                dico.Add(pairs);
-            }
-
-            return dico;
-        }
-
-        /// <summary>
-        /// Sets the text of the default value.
-        /// </summary>
-        /// <param key="text">The text of the value to add.</param>
-        public static T With<T, TItem>(
-            this T dico,
-            TItem item)
-            where T : ITBdoDictionary<TItem>
-        {
-            dico.With(StringHelper.__Star, item);
 
             return dico;
         }
@@ -89,11 +57,7 @@ namespace BindOpen.Data
             TItem item)
             where T : ITBdoDictionary<TItem>
         {
-            if (dico != null)
-            {
-                dico.Clear();
-                dico.Add(item);
-            }
+            dico?.With(item);
 
             return dico;
         }

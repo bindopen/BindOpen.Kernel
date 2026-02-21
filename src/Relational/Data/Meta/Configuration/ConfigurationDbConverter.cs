@@ -77,7 +77,7 @@ public static class ConfigurationDbConverter
         poco
             .WithTitle(db.Title.ToPoco<string>())
             .WithDescription(db.Description.ToPoco<string>())
-            .With(db.Items.Select(q => q.ToPoco()).ToArray())
+            .WithItems(db.Items.Select(q => q.ToPoco()).ToArray())
             .WithChildren(db.Children?.Select(q => q.ToPoco()).ToArray());
 
         return poco;

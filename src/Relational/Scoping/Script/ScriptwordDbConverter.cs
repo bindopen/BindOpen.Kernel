@@ -88,7 +88,7 @@ public static class ScriptwordDbConverter
         };
 
         poco.WithChild(dbItem.Child.ToPoco());
-        poco.With(dbItem.MetaItems?.Select(
+        poco.WithItems(dbItem.MetaItems?.Select(
             q =>
             {
                 var item = q.ToPoco();

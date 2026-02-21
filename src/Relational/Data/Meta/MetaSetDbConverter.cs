@@ -78,7 +78,7 @@ namespace BindOpen.Data.Meta
             BdoMetaSet poco = [];
             poco.Identifier = dbItem.Identifier;
             poco.Name = dbItem.Name;
-            poco.With(dbItem.Items?.Select(q => q.ToPoco()).ToArray());
+            poco.WithItems(dbItem.Items?.Select(q => q.ToPoco()).ToArray());
 
             return poco;
         }

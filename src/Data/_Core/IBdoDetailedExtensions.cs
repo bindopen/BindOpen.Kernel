@@ -30,7 +30,7 @@ namespace BindOpen.Data
             if (obj != null)
             {
                 obj.GetOrNewDetail().Clear();
-                obj.Detail.Add(metas);
+                obj.Detail.WithItems(metas);
             }
             return obj;
         }
@@ -92,7 +92,7 @@ namespace BindOpen.Data
             bool isFlag = true)
             where T : IBdoDetailed
         {
-            schema?.GetOrNewDetail().Add(flagName, isFlag);
+            schema?.GetOrNewDetail().With(flagName, isFlag);
 
             return schema;
         }

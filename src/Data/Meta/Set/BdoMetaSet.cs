@@ -65,6 +65,18 @@ namespace BindOpen.Data.Meta
 
         #endregion
 
+        /// <summary>
+        /// Returns the element with the specified name.
+        /// </summary>
+        public new IBdoMetaData this[string key]
+        {
+            get => Get(key);
+            set
+            {
+                Insert(value.WithName(key));
+            }
+        }
+
         // ------------------------------------------
         // IReferenced Implementation
         // ------------------------------------------

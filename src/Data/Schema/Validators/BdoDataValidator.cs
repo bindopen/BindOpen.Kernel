@@ -47,7 +47,7 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
             var scope = meta.Scope ?? Scope;
 
             var localVarSet = BdoData.NewSet(varSet?.ToArray());
-            localVarSet.Add(BdoData.__VarName_This, meta);
+            localVarSet.With(BdoData.__VarName_This, meta);
 
             var schema = meta.Schema ?? defaultSpec;
 
@@ -208,11 +208,11 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
                             if (constraint.Reference != null)
                             {
                                 var referenceObj = Scope?.Interpreter.Evaluate(constraint.Reference, localVarSet, log);
-                                localVarSet.Add(BdoData.__VarName_This, referenceObj);
+                                localVarSet.With(BdoData.__VarName_This, referenceObj);
                             }
                             else
                             {
-                                localVarSet.Add(BdoData.__VarName_This, meta);
+                                localVarSet.With(BdoData.__VarName_This, meta);
                             }
 
                             var conditionValue = Scope?.Interpreter.Evaluate(
@@ -241,7 +241,7 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
             {
                 foreach (var childSpec in schema._Children)
                 {
-                    localVarSet.Add(BdoData.__VarName_This, childSpec);
+                    localVarSet.With(BdoData.__VarName_This, childSpec);
 
                     var requirementLevel = childSpec.GetRuleValue<RequirementLevels>(
                         BdoMetaDataProperties.RequirementLevel, BdoSchemaRuleKinds.Requirement,

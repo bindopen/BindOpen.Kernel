@@ -43,7 +43,7 @@ namespace BindOpen.Data
         /// <param key="key">The key to consider.</param>
         /// <param key="defaultKey">The default key to consider.</param>
         /// <returns>Returns the specified text.</returns>
-        T this[string key, string alternateKey] { get; }
+        T this[string key, string alternateName] { get; }
 
         /// <summary>
         /// Returns the specified item of this instance.
@@ -57,7 +57,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        T Get(string key, string alternateKey = null);
+        T Get(string key, string alternateName = null);
 
         /// <summary>
         /// Returns the specified item of this instance.
@@ -78,7 +78,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        Q Get<Q>(string key, string alternateKey = null) where Q : T;
+        Q Get<Q>(string key, string alternateName = null) where Q : T;
 
         /// <summary>
         /// Returns the specified item of this instance.

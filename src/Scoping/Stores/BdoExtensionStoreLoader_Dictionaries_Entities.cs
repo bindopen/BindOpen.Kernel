@@ -57,7 +57,7 @@ internal partial class BdoExtensionStoreLoader : BdoObject, IBdoExtensionStoreLo
             {
                 var schema = BdoData.NewSchema();
                 schema.UpdateFrom(prop, typeof(BdoPropertyAttribute));
-                definition.Add(schema);
+                definition.WithItems(schema);
             }
 
             // 6. Enrich the definition with indexed XML metadata if available

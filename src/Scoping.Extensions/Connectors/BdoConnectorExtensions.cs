@@ -207,7 +207,7 @@ namespace BindOpen.Scoping
             string connectionString)
             where T : IBdoMetaSet
         {
-            metaSet?.Add(("connectionString", connectionString));
+            metaSet?.With(("connectionString", connectionString));
             return metaSet;
         }
 

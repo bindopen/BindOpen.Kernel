@@ -51,8 +51,8 @@ public class BdoScopeTests
 
         // 1. Add host references to the DataStore. 
         // The store should handle duplicates gracefully if the key and object match.
-        _scope.DataStore.Add(("$host", this));
-        _scope.DataStore.Add("$host", this);
+        _scope.DataStore.With(("$host", this));
+        _scope.DataStore.With("$host", this);
 
         Assert.That(_scope.DataStore.Count, Is.EqualTo(1), "DataStore failed to handle duplicate host entries correctly.");
     }

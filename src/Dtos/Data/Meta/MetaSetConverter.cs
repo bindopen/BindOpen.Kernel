@@ -76,7 +76,7 @@ public static class MetaSetConverter
 
         poco.Name = dto.Name;
         poco.Identifier = dto.Identifier;
-        poco.With(dto.Items?.Select(q => q.ToPoco()).ToArray());
+        poco.WithItems(dto.Items?.Select(q => q.ToPoco()).ToArray());
 
         return poco;
     }

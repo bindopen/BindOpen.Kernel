@@ -83,7 +83,7 @@ public class BdoScriptwordTests_Fluid
 
         // 3. Broken hierarchy test (Parent is null)
         BdoMetaData meta1 = ("toto", 123); // No parent assigned
-        varSet.Add(BdoData.__VarName_This, meta1);
+        varSet.With(BdoData.__VarName_This, meta1);
 
         result = interpreter.Evaluate<int?>(exp, varSet);
 

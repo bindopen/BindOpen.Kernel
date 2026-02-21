@@ -331,7 +331,7 @@ namespace BindOpen.Data.Meta
             if (Schema != null)
             {
                 var localVarSet = BdoData.NewSet(varSet?.ToArray());
-                localVarSet.Add(BdoData.__VarName_This, this);
+                localVarSet.With(BdoData.__VarName_This, this);
 
                 var rule = Schema?.GetRule(groupId, ruleKind, scope, localVarSet, log);
 
@@ -458,7 +458,7 @@ namespace BindOpen.Data.Meta
             if (Condition != null)
             {
                 var localVarSet = BdoData.NewSet(varSet?.ToArray());
-                localVarSet.Add(BdoData.__VarName_This, this);
+                localVarSet.With(BdoData.__VarName_This, this);
 
                 var b = scope?.Interpreter?.Evaluate(Condition, localVarSet, log) == true;
 
