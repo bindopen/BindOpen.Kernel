@@ -50,7 +50,7 @@ public interface IEntityFake
     /// </summary>
     [BdoProperty(Name = "inputs")]
     [BdoFunction(Name = "input")]
-    BdoMetaNode Inputs { get; set; }
+    BdoMetaSet Inputs { get; set; }
 
     /// <summary>
     /// A sub-entity property demonstrating nested object hierarchies.

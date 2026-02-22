@@ -8,7 +8,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a Db converter of meta sets.
     /// </summary>
-    public static class MetaSetDbConverter
+    public static class MetaNodeDbConverter
     {
         /// <summary>
         /// Converts an expression poco into a DTO one.
@@ -45,8 +45,8 @@ namespace BindOpen.Data.Meta
 
             if (context != null)
             {
-                dbItem.Items ??= [];
-                dbItem.Items.RemoveAll(q => poco.Items?.Any(p => p?.Identifier == q?.Identifier) != true);
+                dbItem.MetaItems ??= [];
+                dbItem.MetaItems.RemoveAll(q => poco.Items?.Any(p => p?.Identifier == q?.Identifier) != true);
 
                 if (poco?.Items?.Count > 0)
                 {
@@ -54,9 +54,9 @@ namespace BindOpen.Data.Meta
                     {
                         var dbSubItem = context.Upsert(subItem);
 
-                        if (dbItem.Items.Any(p => p?.Identifier == dbSubItem?.Identifier) != true)
+                        if (dbItem.MetaItems.Any(p => p?.Identifier == dbSubItem?.Identifier) != true)
                         {
-                            dbItem.Items.Add(dbSubItem);
+                            dbItem.MetaItems.Add(dbSubItem);
                         }
                     }
                 }
@@ -78,7 +78,7 @@ namespace BindOpen.Data.Meta
             BdoMetaSet poco = [];
             poco.Identifier = dbItem.Identifier;
             poco.Name = dbItem.Name;
-            poco.WithItems(dbItem.Items?.Select(q => q.ToPoco()).ToArray());
+            poco.WithItems(dbItem.MetaItems?.Select(q => q.ToPoco()).ToArray());
 
             return poco;
         }

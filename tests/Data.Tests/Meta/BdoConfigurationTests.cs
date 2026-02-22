@@ -51,7 +51,7 @@ public class BdoConfigurationTests
                 ("text1", f.Lorem.Words(10)),
                 ("integer1", Enumerable.Range(0, 10).Select(p => f.Random.Int(5000))),
                 ("byteArray1", Enumerable.Range(1, 2).Select(p => f.Random.Bytes(5000)).ToArray()),
-                NewNode("$node1")
+                NewSet("$node1")
                     .With(
                         ("textB1", f.Lorem.Words(10)),
                         (object)("textB2", f.Random.Int(5000)))
@@ -69,7 +69,7 @@ public class BdoConfigurationTests
             _configName20,
             NewScalar("float2", DataValueTypes.Number, 1.1, 1.2, 1.3),
             NewScalar("float1", DataValueTypes.Number, f.Random.Float()),
-            NewNode(
+            NewSet(
                 "$node1",
                 NewScalar("textB1", DataValueTypes.Text, f.Lorem.Words(10)),
                 NewScalar("coolB1", DataValueTypes.Boolean, f.Random.Bool())))
@@ -145,7 +145,7 @@ public class BdoConfigurationTests
         meta.Descendant<IBdoMetaScalar>("float1")?.GetData().Should().Be(_config20["float1"]?.GetData());
 
         // Node merging check ($node1 should now have 3 sub-items: textB1, textB2 from config10 + coolB1 from config20)
-        meta.Descendant<IBdoMetaNode>("$node1")?.Count.Should().Be(3, "The node should contain merged scalars from both configurations.");
+        meta.Descendant<IBdoMetaSet>("$node1")?.Count.Should().Be(3, "The node should contain merged scalars from both configurations.");
 
         // Sub-configuration update check
         meta.Descendant<IBdoConfiguration>("^" + _configName10a)?.Count.Should().Be(2);

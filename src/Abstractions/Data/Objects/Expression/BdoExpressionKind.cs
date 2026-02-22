@@ -1,39 +1,39 @@
-﻿namespace BindOpen.Data
+﻿namespace BindOpen.Data;
+
+/// <summary>
+/// Specifies the possible kinds of expressions within the BindOpen framework.
+/// </summary>
+public enum BdoExpressionKind
 {
     /// <summary>
-    /// This enumeration represents the possible kinds of expression.
+    /// Any kind of expression. Used for filtering or broad definitions.
     /// </summary>
-    public enum BdoExpressionKind
-    {
-        /// <summary>
-        /// Literal expression that can include scripts embedded in braces.
-        /// </summary>
-        Auto,
+    Any,
 
-        /// <summary>
-        /// Literal expression is considered as default. A literal mode can then be applied.
-        /// </summary>
-        Literal,
+    /// <summary>
+    /// Automatic expression. Typically a literal string that may contain 
+    /// embedded scripts within curly braces (e.g., "Hello {{user.name}}").
+    /// </summary>
+    Auto,
 
-        /// <summary>
-        /// Script expression is considered as default.
-        /// </summary>
-        Script,
+    /// <summary>
+    /// Pure literal expression. The content is treated as raw text and is not parsed for scripts.
+    /// </summary>
+    Literal,
 
-        /// <summary>
-        /// Word.
-        /// </summary>
-        Word,
+    /// <summary>
+    /// Script expression. The content is treated as a functional script or instruction 
+    /// to be executed by the interpreter.
+    /// </summary>
+    Script,
 
-        /// <summary>
-        /// None. Such as script word.
-        /// </summary>
-        None,
+    /// <summary>
+    /// A single word expression. Often used for keyword-based resolution or simple identifiers.
+    /// </summary>
+    Word,
 
-        /// <summary>
-        /// Any.
-        /// </summary>
-        Any
-    }
-
+    /// <summary>
+    /// No specific expression kind. Used for base script words or undefined states.
+    /// </summary>
+    None
 }

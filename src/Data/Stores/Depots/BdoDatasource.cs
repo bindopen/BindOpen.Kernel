@@ -6,7 +6,7 @@ namespace BindOpen.Data.Stores
     /// <summary>
     /// This class represents a data source.
     /// </summary>
-    public class BdoDatasource : TBdoMetaWrapper<BdoMetaNode>, IBdoDatasource
+    public class BdoDatasource : TBdoMetaWrapper<BdoMetaSet>, IBdoDatasource
     {
         // ------------------------------------------
         // PROPERTIES
@@ -24,7 +24,7 @@ namespace BindOpen.Data.Stores
         [BdoProperty("connectionString")]
         public string ConnectionString { get; set; }
 
-        public new IBdoMetaNode Detail { get => base.Detail; set { base.Detail = value as BdoMetaNode; } }
+        public new IBdoMetaSet Detail { get => base.Detail; set { base.Detail = value as BdoMetaSet; } }
 
         #endregion
 

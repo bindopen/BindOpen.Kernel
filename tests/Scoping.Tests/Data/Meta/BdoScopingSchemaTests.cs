@@ -60,7 +60,7 @@ public class BdoScopingSchemaTests
     [Test, Order(5)]
     public void SatisfiedSubTest()
     {
-        var meta = BdoData.NewNode("meta-test")
+        var meta = BdoData.NewSet("meta-test")
             .WithSchema(_schema)
             .With(
                 BdoData.NewScalar("title", "myTitle"),
@@ -77,7 +77,7 @@ public class BdoScopingSchemaTests
     [Test, Order(6)]
     public void DefaultSubTest()
     {
-        var meta = BdoData.NewNode("meta-test")
+        var meta = BdoData.NewSet("meta-test")
             .WithSchema(_schema)
             .With(
                 BdoData.NewScalar("title", "myTitle"));
@@ -95,7 +95,7 @@ public class BdoScopingSchemaTests
         var validator = ScopingTestData.Scope.CreateValidator();
 
         // 1. Valid data node
-        var meta1 = BdoData.NewNode("meta-test")
+        var meta1 = BdoData.NewSet("meta-test")
             .WithSchema(_schema)
             .With(
                 BdoData.NewScalar("auto", true),
@@ -104,7 +104,7 @@ public class BdoScopingSchemaTests
         Assert.That(validator.Check(meta1), "Validation failed for a valid meta node.");
 
         // 2. Node with forbidden 'label' scalar
-        var meta2 = BdoData.NewNode("meta-test")
+        var meta2 = BdoData.NewSet("meta-test")
             .WithSchema(_schema)
             .With(
                 BdoData.NewScalar("auto", true),
@@ -123,7 +123,7 @@ public class BdoScopingSchemaTests
         var validator = ScopingTestData.Scope.CreateValidator();
 
         // 1. Node without schema should pass basic checks
-        var meta1 = BdoData.NewNode("meta-test")
+        var meta1 = BdoData.NewSet("meta-test")
             .With(
                 BdoData.NewScalar("auto", true),
                 BdoData.NewScalar("label", true),
@@ -132,7 +132,7 @@ public class BdoScopingSchemaTests
         Assert.That(meta1.Check(ScopingTestData.Scope), "Standard node check failed.");
 
         // 2. Conflict: Boolean data provided for an Integer schema
-        var meta2 = BdoData.NewNode("meta-test")
+        var meta2 = BdoData.NewSet("meta-test")
             .With(
                 BdoData.NewScalar("auto", true)
                     .WithSchema(BdoData.NewSchema().WithDataType(DataValueTypes.Integer)),

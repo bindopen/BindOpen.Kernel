@@ -16,7 +16,7 @@ public class MetaScalarSetXmlTests
 
     private dynamic _testData;
 
-    private IBdoMetaNode _metaSet = null;
+    private IBdoMetaSet _metaSet = null;
 
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -32,8 +32,8 @@ public class MetaScalarSetXmlTests
     }
 
     public static void Test(
-        IBdoMetaNode list1,
-        IBdoMetaNode list2)
+        IBdoMetaSet list1,
+        IBdoMetaSet list2)
     {
         Assert.That(list1 != null && list2 != null, "Meta list saving failed. ");
 
@@ -81,7 +81,7 @@ public class MetaScalarSetXmlTests
             SaveXmlTest();
         }
 
-        var metaSet = XmlHelper.LoadXml<MetaNodeDto>(_filePath_xml).ToPoco();
+        var metaSet = XmlHelper.LoadXml<MetaSetDto>(_filePath_xml).ToPoco();
         Test(metaSet, _metaSet);
     }
 }

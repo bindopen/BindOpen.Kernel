@@ -34,7 +34,7 @@ public static partial class BdoSchemaExtensions
 
         if (meta != null)
         {
-            var metaComposite = meta as IBdoMetaNode;
+            var metaComposite = meta as IBdoMetaSet;
             schema = BdoData.NewSchema<T>();
 
             if (schema != null)

@@ -49,7 +49,7 @@ public class BdoScriptwordTests_Fluid
         var interpreter = ScopingTestData.Scope.Interpreter;
 
         // 2. Set up a node set (parent) containing two children (toto and titi)
-        var set = BdoData.NewNode(("toto", 123), ("titi", 125));
+        var set = BdoData.NewSet(("toto", 123), ("titi", 125));
         var meta = set[0]; // 'this' will be 'toto'
 
         var metaSet = BdoData.NewSet((BdoData.__VarName_This, meta));
@@ -73,7 +73,7 @@ public class BdoScriptwordTests_Fluid
         var interpreter = ScopingTestData.Scope.Interpreter;
 
         // 2. Valid hierarchy test
-        var set = BdoData.NewNode(("toto", 123), ("titi", 125));
+        var set = BdoData.NewSet(("toto", 123), ("titi", 125));
         var meta = set[0];
 
         var varSet = BdoData.NewSet((BdoData.__VarName_This, meta));

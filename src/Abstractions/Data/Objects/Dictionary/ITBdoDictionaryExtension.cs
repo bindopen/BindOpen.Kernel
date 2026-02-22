@@ -1,65 +1,75 @@
 ﻿using BindOpen.Data.Helpers;
 using System.Collections.Generic;
 
-namespace BindOpen.Data
+namespace BindOpen.Data;
+
+/// <summary>
+/// This class provides extension methods for the ITBdoDictionary interface.
+/// It facilitates the fluent configuration of dictionaries such as Titles or Descriptions.
+/// </summary>
+public static class ITBdoDictionaryExtensions
 {
+    // Add -----------------------------
+
     /// <summary>
-    /// This class represents a dico data item extension.
+    /// Populates the dictionary with the specified key-value pairs.
     /// </summary>
-    /// <example>Titles, Descriptions.</example>
-    public static class ITBdoDictionaryExtension
+    /// <typeparam name="T">The dictionary type.</typeparam>
+    /// <typeparam name="TItem">The item type.</typeparam>
+    /// <param name="dico">The dictionary to populate.</param>
+    /// <param name="pairs">The key-value pairs to add.</param>
+    /// <returns>Returns the dictionary instance for fluent chaining.</returns>
+    public static T With<T, TItem>(
+        this T dico,
+        params KeyValuePair<string, TItem>[] pairs)
+        where T : ITBdoDictionary<TItem>
     {
-        // Add -----------------------------
-
-        /// <summary>
-        /// Adds a new value to this instance.
-        /// </summary>
-        /// <param key="pairs">The value to add.</param>
-        public static T With<T, TItem>(
-            this T dico,
-            params KeyValuePair<string, TItem>[] pairs)
-            where T : ITBdoDictionary<TItem>
+        if (dico != null && pairs != null)
         {
-            if (dico != null && pairs != null)
+            foreach (var pair in pairs)
             {
-                foreach (var value in pairs)
-                {
-                    dico.Add(value.Key, value.Value);
-                }
+                dico.Add(pair.Key, pair.Value);
             }
-
-            return dico;
         }
 
-        /// <summary>
-        /// Adds a new value to this instance with the specified key and text.
-        /// </summary>
-        /// <param key="text">The text to consider.</param>
-        /// <returns>Returns the added data key value.</returns>
-        public static T With<T, TItem>(
-            this T dico,
-            TItem item)
-            where T : ITBdoDictionary<TItem>
-        {
-            dico.Add(StringHelper.__Star, item);
+        return dico;
+    }
 
-            return dico;
-        }
+    /// <summary>
+    /// Adds an item to the dictionary using the default wildcard key.
+    /// </summary>
+    /// <typeparam name="T">The dictionary type.</typeparam>
+    /// <typeparam name="TItem">The item type.</typeparam>
+    /// <param name="dico">The dictionary to populate.</param>
+    /// <param name="item">The item to add.</param>
+    /// <returns>Returns the dictionary instance for fluent chaining.</returns>
+    public static T With<T, TItem>(
+        this T dico,
+        TItem item)
+        where T : ITBdoDictionary<TItem>
+    {
+        dico?.Add(StringHelper.__Star, item);
 
-        /// <summary>
-        /// Sets the text of the default value.
-        /// </summary>
-        /// <param key="key">The key of the value to add.</param>
-        /// <param key="text">The text of the value to add.</param>
-        public static T With<T, TItem>(
-            this T dico,
-            string key,
-            TItem item)
-            where T : ITBdoDictionary<TItem>
-        {
-            dico?.With(item);
+        return dico;
+    }
 
-            return dico;
-        }
+    /// <summary>
+    /// Adds an item to the dictionary with the specified key.
+    /// </summary>
+    /// <typeparam name="T">The dictionary type.</typeparam>
+    /// <typeparam name="TItem">The item type.</typeparam>
+    /// <param name="dico">The dictionary to populate.</param>
+    /// <param name="key">The key to associate with the item.</param>
+    /// <param name="item">The item to add.</param>
+    /// <returns>Returns the dictionary instance for fluent chaining.</returns>
+    public static T With<T, TItem>(
+        this T dico,
+        string key,
+        TItem item)
+        where T : ITBdoDictionary<TItem>
+    {
+        dico?.Add(key, item);
+
+        return dico;
     }
 }

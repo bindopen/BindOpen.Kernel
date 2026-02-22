@@ -1,7 +1,6 @@
 ﻿using BindOpen.Data.Helpers;
 using BindOpen.Logging;
 using BindOpen.Scoping;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BindOpen.Data.Meta
@@ -23,7 +22,7 @@ namespace BindOpen.Data.Meta
         /// <param key="elems">The elems to consider.</param>
         public static explicit operator BdoMetaSet(IBdoMetaData[] elems)
         {
-            return BdoData.NewSet(elems);
+            return BdoData.NewNode(elems);
         }
 
         /// <summary>
@@ -104,23 +103,6 @@ namespace BindOpen.Data.Meta
 
         #endregion
 
-        /// <summary>
-        /// Adds the specified item.
-        /// </summary>
-        /// <param key="item">The item of the item to add.</param>
-        /// <returns>Returns the new item that has been added.
-        /// Returns null if the new item is null or else its name is null.</returns>
-        /// <remarks>The new item must have a name.</remarks>
-        public override IBdoMetaData Insert(IBdoMetaData item)
-        {
-            if (item != null)
-            {
-                base.Insert(item);
-            }
-
-            return item;
-        }
-
         // --------------------------------------------------
         // IBdoMetaSet Implementation
         // --------------------------------------------------
@@ -171,22 +153,22 @@ namespace BindOpen.Data.Meta
             return (Q)obj;
         }
 
-        /// <summary>
-        /// Returns the item object of this instance.
-        /// </summary>
-        /// <param key="log">The log to populate.</param>
-        /// <param key="scope">The scope to consider.</param>
-        /// <param key="varSet">The variable element set to use.</param>
-        /// <returns>Returns the items of this instance.</returns>
-        private IList<object> GetDataList(
-            IBdoScope scope = null,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            return Items?
-                .Select(q => q?.GetData(scope, varSet, log))
-                .ToList();
-        }
+        ///// <summary>
+        ///// Returns the item object of this instance.
+        ///// </summary>
+        ///// <param key="log">The log to populate.</param>
+        ///// <param key="scope">The scope to consider.</param>
+        ///// <param key="varSet">The variable element set to use.</param>
+        ///// <returns>Returns the items of this instance.</returns>
+        //private IList<object> GetDataList(
+        //    IBdoScope scope = null,
+        //    IBdoMetaSet varSet = null,
+        //    IBdoLog log = null)
+        //{
+        //    return Items?
+        //        .Select(q => q?.GetData(scope, varSet, log))
+        //        .ToList();
+        //}
 
         // Accessors --------------------------
 

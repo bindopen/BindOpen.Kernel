@@ -1,41 +1,44 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 
-namespace BindOpen.Data.Meta
+namespace BindOpen.Data.Meta;
+
+/// <summary>
+/// Specifies the various kinds of metadata supported by the BindOpen kernel.
+/// This enum uses a bitmask (Flags) to allow for easy filtering and grouping.
+/// </summary>
+[Flags]
+[XmlType("BdoMetaDataKind", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+public enum BdoMetaDataKind
 {
     /// <summary>
-    /// This enumeration represents the possible kinds of meta data.
+    /// No metadata kind specified.
     /// </summary>
-    [XmlType("BdoMetaDataKind", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
-    public enum BdoMetaDataKind
-    {
-        /// <summary>
-        /// None.
-        /// </summary>
-        None = 0,
+    None = 0,
 
-        /// <summary>
-        /// Any.
-        /// </summary>
-        Any = Scalar | Node | Object | Scriptword,
+    /// <summary>
+    /// Represents a scalar metadata (a single atomic value).
+    /// </summary>
+    Scalar = 1 << 0,
 
-        /// <summary>
-        /// Scalar.
-        /// </summary>
-        Scalar = 0x01 << 0,
+    /// <summary>
+    /// Represents a set metadata (formerly known as a Node). 
+    /// It contains a collection of other metadata.
+    /// </summary>
+    Set = 1 << 1,
 
-        /// <summary>
-        /// Node.
-        /// </summary>
-        Node = 0x01 << 1,
+    /// <summary>
+    /// Represents an object metadata. It encapsulates a complex typed object.
+    /// </summary>
+    Object = 1 << 2,
 
-        /// <summary>
-        /// Object.
-        /// </summary>
-        Object = 0x01 << 2,
+    /// <summary>
+    /// Represents a script word metadata. It defines a functional instruction or expression.
+    /// </summary>
+    Scriptword = 1 << 3,
 
-        /// <summary>
-        /// Scriptword.
-        /// </summary>
-        Scriptword = 0x01 << 3
-    }
+    /// <summary>
+    /// Represents any combination of the supported metadata kinds.
+    /// </summary>
+    Any = Scalar | Set | Object | Scriptword
 }

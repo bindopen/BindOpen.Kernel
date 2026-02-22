@@ -92,7 +92,7 @@ public class BdoScopingMetaWrapperTests
     {
         var obj = ScopingTestData.Scope.NewMetaWrapper<MetaWrapperFake>(
             BdoData.NewConfig(
-                BdoData.NewNode("testDico")
+                BdoData.NewSet("testDico")
                     .With(
                         BdoData.NewScalar("day", 120),
                         BdoData.NewScalar("month", 130))));

@@ -12,7 +12,7 @@ namespace BindOpen.Data.Meta;
 /// various data types (Number, Text, Integer, Binary) using randomized test data.
 /// </remarks>
 [TestFixture, Order(202)]
-public class BdoMetaNodeTests_Scalar
+public class BdoMetaSetTests_Scalar
 {
     private dynamic _testData;
 

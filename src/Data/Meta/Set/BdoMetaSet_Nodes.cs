@@ -12,63 +12,8 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a catalog el that is an el whose els are entities.
     /// </summary>
-    public partial class BdoMetaNode : BdoMetaSet, IBdoMetaNode
+    public partial class BdoMetaSet : IBdoMetaSet
     {
-        // ------------------------------------------
-        // CONVERTERS
-        // ------------------------------------------
-
-        #region Converters
-
-        /// <summary>
-        /// Converts from data element array.
-        /// </summary>
-        /// <param key="elems">The elems to consider.</param>
-        public static explicit operator BdoMetaNode(IBdoMetaData[] elems)
-        {
-            return BdoData.NewNode(elems);
-        }
-
-        /// <summary>
-        /// Converts from data element array.
-        /// </summary>
-        /// <param key="elems">The elems to consider.</param>
-        public static explicit operator IBdoMetaData[](BdoMetaNode metaSet)
-        {
-            return metaSet?.ToArray();
-        }
-
-        #endregion
-
-        // --------------------------------------------------
-        // CONSTRUCTORS
-        // --------------------------------------------------
-
-        #region Constructors
-
-        /// <summary>
-        /// Initializes a new instance of the BdoMetaNode class.
-        /// </summary>
-        public BdoMetaNode() : base()
-        {
-            DataType = BdoData.NewDataType(DataValueTypes.Any);
-        }
-
-        #endregion
-
-        // ------------------------------------------
-        // IReferenced Implementation
-        // ------------------------------------------
-
-        #region IReferenced
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public override string Key() => string.IsNullOrEmpty(Name) ? Reference?.Key() : Name;
-
-        #endregion
-
         // ------------------------------------------
         // IIndexed Implementation
         // ------------------------------------------
@@ -133,10 +78,10 @@ namespace BindOpen.Data.Meta
         #endregion
 
         // --------------------------------------------------
-        // IBdoMetaNode Implementation
+        // IBdoMetaSet Implementation
         // --------------------------------------------------
 
-        #region IBdoMetaNode
+        #region IBdoMetaSet
 
         /// <summary>
         /// The item requirement level of this instance.
@@ -150,7 +95,7 @@ namespace BindOpen.Data.Meta
         {
             if (Schema != null)
             {
-                var localVarSet = BdoData.NewSet(varSet?.ToArray());
+                var localVarSet = BdoData.NewNode(varSet?.ToArray());
                 localVarSet.With(BdoData.__VarName_This, this);
 
                 var rule = Schema?.GetRule(groupId, ruleKind, scope, localVarSet, log);
@@ -219,7 +164,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// 
         /// </summary>
-        public BdoMetaDataKind MetaDataKind => BdoMetaDataKind.Node;
+        public BdoMetaDataKind MetaDataKind => BdoMetaDataKind.Set;
 
         /// <summary>
         /// 
@@ -356,17 +301,6 @@ namespace BindOpen.Data.Meta
             IBdoLog log = null)
             => GetDataList<Q>(Scope, varSet, log);
 
-        // Accessors --------------------------
-
-        /// <summary>
-        /// Returns a text node representing this instance.
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            return string.Empty;
-        }
-
         #endregion
 
         // ------------------------------------------
@@ -397,7 +331,7 @@ namespace BindOpen.Data.Meta
         {
             if (Condition != null)
             {
-                var localVarSet = BdoData.NewSet(varSet?.ToArray());
+                var localVarSet = BdoData.NewNode(varSet?.ToArray());
                 localVarSet.With(BdoData.__VarName_This, this);
 
                 var b = scope?.Interpreter?.Evaluate(Condition, localVarSet, log) == true;
@@ -421,15 +355,15 @@ namespace BindOpen.Data.Meta
 
         #region Cloning
 
-        /// <summary>
-        /// Clones this instance.
-        /// </summary>
-        /// <returns>Returns a cloned instance.</returns>
-        public override object Clone()
-        {
-            var el = base.Clone().As<BdoMetaNode>();
-            return el;
-        }
+        ///// <summary>
+        ///// Clones this instance.
+        ///// </summary>
+        ///// <returns>Returns a cloned instance.</returns>
+        //public override object Clone()
+        //{
+        //    var el = base.Clone().As<BdoMetaSet>();
+        //    return el;
+        //}
 
         #endregion
 

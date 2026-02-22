@@ -1,17 +1,21 @@
 ﻿namespace BindOpen.Data;
 
 /// <summary>
-/// 
+/// This class provides extension methods for the ITBdoSet interface to facilitate
+/// fluent collection population and management.
 /// </summary>
 public static class ITBdoSetExtensions
 {
     /// <summary>
-    /// Adds the specified item.
+    /// Populates the specified set with the provided items.
     /// </summary>
-    /// <param key="items">The items of the item to add.</param>
-    /// <returns>Returns the new item that has been added.
-    /// Returns null if the new item is null or else its name is null.</returns>
-    /// <remarks>The new item must have a name.</remarks>
+    /// <typeparam name="Q">The type of the set.</typeparam>
+    /// <typeparam name="T">The type of the referenced items.</typeparam>
+    /// <param name="set">The set to populate.</param>
+    /// <param name="items">The items to add to the set.</param>
+    /// <returns>Returns the set instance for fluent chaining.</returns>
+    /// <remarks>The items should typically be named or uniquely identifiable depending on 
+    /// the set's implementation of the Insert method.</remarks>
     public static Q WithItems<Q, T>(
         this Q set,
         params T[] items)
@@ -30,18 +34,20 @@ public static class ITBdoSetExtensions
     }
 
     /// <summary>
-    /// Adds the specified item.
+    /// Adds a range of items from another set to the specified set.
     /// </summary>
-    /// <param key="items">The items of the item to add.</param>
-    /// <returns>Returns the new item that has been added.
-    /// Returns null if the new item is null or else its name is null.</returns>
-    /// <remarks>The new item must have a name.</remarks>
+    /// <typeparam name="Q">The type of the target set.</typeparam>
+    /// <typeparam name="T">The type of the referenced items.</typeparam>
+    /// <param name="set">The target set to populate.</param>
+    /// <param name="list">The source set containing items to add.</param>
+    /// <returns>Returns the target set instance for fluent chaining.</returns>
     public static Q WithRange<Q, T>(
         this Q set,
         ITBdoSet<T> list)
         where Q : ITBdoSet<T>
         where T : IReferenced
     {
+        // We extract items from the source list and pass them to WithItems
         set?.WithItems(list?.Items?.ToArray());
 
         return set;

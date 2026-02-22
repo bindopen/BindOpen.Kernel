@@ -3,7 +3,10 @@
 namespace BindOpen.Data.Meta
 {
     /// <summary>
-    /// This class represents a data element attribute.
+    /// Represents an attribute used to identify method parameters that are intended 
+    /// to be populated by script-based metadata.
+    /// This specialization allows the script interpreter to prioritize or 
+    /// pre-process these parameters before method invocation.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = true)]
     public class BdoScriptParameterAttribute : BdoParameterAttribute
@@ -15,7 +18,7 @@ namespace BindOpen.Data.Meta
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the BdoScriptParameterAttribute class.
+        /// Initializes a new instance of the BdoScriptParameterAttribute class.
         /// </summary>
         public BdoScriptParameterAttribute() : base()
         {

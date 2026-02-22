@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Assemblies;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
 using System;
 using System.Collections;
@@ -155,7 +154,7 @@ namespace BindOpen.Data.Meta
             _propertySet.Clear();
         }
 
-        public IBdoMetaNode Add(
+        public IBdoMetaSet Add(
             params IBdoMetaData[] items)
         {
             (this as ITBdoSet<IBdoMetaData>).WithItems(items);

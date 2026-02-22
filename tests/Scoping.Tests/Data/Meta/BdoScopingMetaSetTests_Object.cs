@@ -10,10 +10,10 @@ namespace BindOpen.Data.Meta;
 /// within a scoping context, including POCO-to-Meta conversion.
 /// </summary>
 [TestFixture, Order(200)]
-public class BdoScopingMetaNodeTests_Object
+public class BdoScopingMetaSetTests_Object
 {
     private dynamic _testData;
-    private IBdoMetaNode _metaObjSet = null;
+    private IBdoMetaSet _metaObjSet = null;
 
     /// <summary>
     /// Initializes randomized test data using the Bogus library.
@@ -36,7 +36,7 @@ public class BdoScopingMetaNodeTests_Object
     /// Shared validation logic to verify the integrity of a meta-node containing objects.
     /// </summary>
     /// <param name="metaSet">The meta-node to validate.</param>
-    public void Test(IBdoMetaNode metaSet)
+    public void Test(IBdoMetaSet metaSet)
     {
         // 1. Verify the total count of root objects
         Assert.That(metaSet?.Count, Is.EqualTo(4), "The meta-set should contain exactly 4 elements.");

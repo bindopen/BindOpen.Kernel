@@ -22,7 +22,7 @@ namespace BindOpen.Data
         /// 
         /// </summary>
         /// <param key="detail"></param>
-        public static T WithDetail<T>(
+        public static T WithDetailData<T>(
             this T obj,
             params IBdoMetaData[] metas)
             where T : IBdoDetailed
@@ -44,7 +44,7 @@ namespace BindOpen.Data
             params KeyValuePair<string, object>[] pairs)
             where T : IBdoDetailed
         {
-            obj?.WithDetail(pairs?.Select(q => BdoData.NewMeta(q.Key, q.Value)).ToArray());
+            obj?.WithDetailData(pairs?.Select(q => BdoData.NewMeta(q.Key, q.Value)).ToArray());
 
             return obj;
         }
@@ -59,7 +59,7 @@ namespace BindOpen.Data
             params (string Name, object Value)[] pairs)
             where T : IBdoDetailed
         {
-            obj?.WithDetail(pairs?.Select(q => BdoData.NewMeta(q.Name, q.Value)).ToArray());
+            obj?.WithDetailData(pairs?.Select(q => BdoData.NewMeta(q.Name, q.Value)).ToArray());
 
             return obj;
         }
@@ -74,7 +74,7 @@ namespace BindOpen.Data
             params (string Name, DataValueTypes ValueType, object Value)[] pairs)
             where T : IBdoDetailed
         {
-            obj?.WithDetail(pairs?.Select(q => BdoData.NewMeta(q.Name, q.ValueType, q.Value)).ToArray());
+            obj?.WithDetailData(pairs?.Select(q => BdoData.NewMeta(q.Name, q.ValueType, q.Value)).ToArray());
 
             return obj;
         }

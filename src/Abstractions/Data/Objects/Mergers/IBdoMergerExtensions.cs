@@ -1,54 +1,60 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Data
+namespace BindOpen.Data;
+
+/// <summary>
+/// Provides extension methods for the IBdoMerger interface to facilitate collection merging.
+/// </summary>
+public static class IBdoMergerExtensions
 {
     /// <summary>
-    /// 
+    /// Merges the specified values with the additions and removals defined in the merger.
     /// </summary>
-    public static class IBdoMergerExtensions
+    /// <param name="values">The base list of values to process.</param>
+    /// <param name="merger">The merger containing the delta (additions and removals).</param>
+    /// <returns>Returns a new list representing the result of the merge operation.</returns>
+    public static IList<string> Merge(
+        this IList<string> values,
+        IBdoMerger merger)
     {
-        /// <summary>
-        /// Gets the values allowed by this instance.
-        /// </summary>
-        /// <param key="all">All the values to consider.</param>
-        /// <returns>Returns all the values allowed by this instance.</returns>
-        public static IList<string> Merge(
-            this IList<string> values,
-            IBdoMerger set)
+        var all = new List<string>();
+
+        if (values != null)
         {
-            var all = new List<string>();
+            all.AddRange(values);
 
-            if (values != null)
+            // 1. Process Additions
+            if (merger?.AddedValues != null)
             {
-                all.AddRange(values);
-
-                if (set?.AddedValues != null)
-                {
-                    all.AddRange(set.AddedValues);
-                    all = all.Distinct()?.ToList();
-                }
-                if (set?.RemovedValues != null)
-                {
-                    all.RemoveAll(p => set.RemovedValues.Contains(p));
-                }
+                all.AddRange(merger.AddedValues);
+                // Ensure uniqueness after adding new values
+                all = all.Distinct()?.ToList();
             }
 
-            return all ?? new();
+            // 2. Process Removals
+            if (merger?.RemovedValues != null)
+            {
+                all.RemoveAll(p => merger.RemovedValues.Contains(p));
+            }
         }
 
-        /// <summary>
-        /// Indicates whether the value is allowed by this instance.
-        /// </summary>
-        /// <param key="value">The value to validate.</param>
-        /// <param key="all">All the values to consider.</param>
-        /// <returns>Returns True if the specified is validated by this instance.</returns>
-        public static bool Contains(
-            this IList<string> values,
-            string value,
-            IBdoMerger set)
-        {
-            return values?.Merge(set).Contains(value) ?? false;
-        }
+        return all ?? new List<string>();
+    }
+
+    /// <summary>
+    /// Determines whether a value is present in the collection after the merge operation is applied.
+    /// </summary>
+    /// <param name="values">The base list of values.</param>
+    /// <param name="value">The value to locate.</param>
+    /// <param name="merger">The merger defining the delta.</param>
+    /// <returns>True if the value exists in the resulting merged set; otherwise, false.</returns>
+    public static bool Contains(
+        this IList<string> values,
+        string value,
+        IBdoMerger merger)
+    {
+        // We evaluate the full merge to check for existence
+        return values?.Merge(merger).Contains(value) ?? false;
     }
 }

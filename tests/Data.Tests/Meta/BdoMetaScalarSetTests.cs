@@ -56,7 +56,7 @@ public class BdoMetaScalarSetTests
         var el3 = BdoData.NewScalar("integer3", arrayInteger);
         var el4 = BdoData.NewScalar("byteArray4", arrayArrayByte);
 
-        _metaSet = BdoData.NewSet(el1, el2, el3, el4);
+        _metaSet = BdoData.NewNode(el1, el2, el3, el4);
 
         // Validation of data retrieval by key
         _metaSet.GetDataList<double>("number1").Should().Contain(arrayNumber);
@@ -77,13 +77,13 @@ public class BdoMetaScalarSetTests
         var elAB = BdoData.NewScalar("name1", "Test1");
         elAA.Update(elAB);
 
-        var elSetA = BdoData.NewSet(elAA, elAB);
+        var elSetA = BdoData.NewNode(elAA, elAB);
 
         var elBA = BdoData.NewScalar("name1", "Test1");
         var elBB = BdoData.NewScalar<int?>("name1", null);
         elBA.Update(elBB);
 
-        var elSetB = BdoData.NewSet(elBA, elBB);
+        var elSetB = BdoData.NewNode(elBA, elBB);
 
         TBdoSetExtensions.WithItems(elSetB, elBB);
         TBdoSetExtensions.WithItems(elSetA, elAB);

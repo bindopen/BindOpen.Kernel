@@ -58,7 +58,7 @@ public class TaskFake : BdoTask
     /// A complex output node containing a set of metadata results.
     /// </summary>
     [BdoOutput(Name = "output")]
-    public BdoMetaNode Outputs { get; set; }
+    public BdoMetaSet Outputs { get; set; }
 
     /// <summary>
     /// A sub-task property demonstrating hierarchical task composition.

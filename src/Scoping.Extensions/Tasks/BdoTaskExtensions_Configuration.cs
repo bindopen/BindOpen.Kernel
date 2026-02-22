@@ -14,13 +14,13 @@ namespace BindOpen.Data.Meta
         // Get
 
         public static ITBdoSet<IBdoMetaData> Properties(this IBdoMetaSet set)
-            => BdoData.NewSet(set?.Where(q => q.IsProperty())?.ToArray());
+            => BdoData.NewNode(set?.Where(q => q.IsProperty())?.ToArray());
 
         public static ITBdoSet<IBdoMetaData> Inputs(this IBdoMetaSet set)
-            => BdoData.NewSet(set?.Where(q => q.IsInput())?.ToArray());
+            => BdoData.NewNode(set?.Where(q => q.IsInput())?.ToArray());
 
         public static ITBdoSet<IBdoMetaData> Outputs(this IBdoMetaSet set)
-            => BdoData.NewSet(set?.Where(q => q.IsOutput())?.ToArray());
+            => BdoData.NewNode(set?.Where(q => q.IsOutput())?.ToArray());
 
         // Is
 

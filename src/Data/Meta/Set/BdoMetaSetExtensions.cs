@@ -15,7 +15,7 @@ namespace BindOpen.Data
         public static T WithNode<T>(this T set, string name, params object[] children)
             where T : class, IBdoMetaSet
         {
-            var node = BdoData.NewNode(name).With(children);
+            var node = BdoData.NewSet(name).With(children);
             set.With(node);
 
             return set;
@@ -69,7 +69,7 @@ namespace BindOpen.Data
                 switch (prefix)
                 {
                     case '$': // Mode NODE
-                        var node = BdoData.NewNode(cleanName);
+                        var node = BdoData.NewSet(cleanName);
                         // Si le tuple a plus de 2 éléments, on traite le reste comme des enfants
                         if (tuple.Length > 2)
                         {
@@ -86,8 +86,8 @@ namespace BindOpen.Data
                         }
                         return node;
 
-                    case '@': // Mode REFERENCE
-                        return BdoData.NewReference(value?.ToString()).WithId(cleanName);
+                    //case '@': // Mode REFERENCE
+                    //    return BdoData.NewReference(value?.ToString()).WithId(cleanName);
 
                     case '#': // Mode OBJECT
                         return BdoData.NewObject(cleanName).WithData(value);
@@ -98,7 +98,7 @@ namespace BindOpen.Data
                              // Ici, on suit ta logique : Enumerable de tuples = Node.
                         if (IsTupleEnumerable(value))
                         {
-                            return BdoData.NewNode(cleanName).WithData(value as object[]);
+                            return BdoData.NewSet(cleanName).WithData(value as object[]);
                         }
                         return BdoData.NewScalar(cleanName, value);
                 }

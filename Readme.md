@@ -144,11 +144,11 @@ Serialize and deserialize BindOpen objects to/from JSON and XML.
 
 ```csharp
 // Serialization
-var metaSet = BdoData.NewSet("test-io").With(("host", "host-test"), ("address", "0.0.0.0"));
+var metaSet = BdoData.NewNode("test-io").With(("host", "host-test"), ("address", "0.0.0.0"));
 metaSet.ToDto().SaveXml("output.xml");
 
 // Deserialization
-var loadedSet = JsonHelper.LoadJson<MetaSetDto>("output.json").ToPoco();
+var loadedSet = JsonHelper.LoadJson<MetaNodeDto>("output.json").ToPoco();
 ```
 
 ---

@@ -68,7 +68,7 @@ public class BdoScopingMetaDataTests
     public void ConditionTest()
     {
         // 1. Basic test with an empty schema (should be valid/existent by default)
-        var meta0 = BdoData.NewNode("meta-test")
+        var meta0 = BdoData.NewSet("meta-test")
             .WithSchema(BdoData.NewSchema())
             .With(BdoData.NewScalar("title", "A"));
 
@@ -76,7 +76,7 @@ public class BdoScopingMetaDataTests
         Assert.That(existence0, Is.True, "The basic condition check failed.");
 
         // 2. Test with full schema and valid data
-        var meta1 = BdoData.NewNode("meta-test")
+        var meta1 = BdoData.NewSet("meta-test")
             .WithSchema(_schema)
             .With(BdoData.NewScalar("title", "myTitle"));
 
@@ -85,7 +85,7 @@ public class BdoScopingMetaDataTests
 
         // 3. Test with full schema but invalid data (Condition should fail)
         // Note: This assumes _schema has a rule stating 'title' cannot be 'A'
-        var meta2 = BdoData.NewNode("meta-test")
+        var meta2 = BdoData.NewSet("meta-test")
             .WithSchema(_schema)
             .With(BdoData.NewScalar("title", "A"));
 

@@ -166,7 +166,7 @@ public partial class DataDbContext : DbContext
         // table relationships
 
         modelBuilder.Entity<MetaSetDb>()
-            .HasMany(e => e.Items)
+            .HasMany(e => e.MetaItems)
             .WithMany(e => e.Sets)
             .UsingEntity($"{nameof(MetaDataDb)}_{nameof(MetaSetDb)}".Replace("Db", ""),
                 l => l.HasOne(typeof(MetaDataDb))

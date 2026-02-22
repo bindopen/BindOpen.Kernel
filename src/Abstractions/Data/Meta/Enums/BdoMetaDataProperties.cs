@@ -1,37 +1,39 @@
 ﻿using BindOpen.Data.Helpers;
 
-namespace BindOpen.Data.Meta
+namespace BindOpen.Data.Meta;
+
+/// <summary>
+/// Provides a set of standard script tokens for accessing metadata properties.
+/// These constants are used to build dynamic expressions that reference 
+/// the current metadata context.
+/// </summary>
+public static class BdoMetaDataProperties
 {
     /// <summary>
-    /// This enumeration represents the possible meta data properties.
+    /// Script token to access the name of the current metadata.
     /// </summary>
-    public static class BdoMetaDataProperties
-    {
-        /// <summary>
-        /// The name of this meta data.
-        /// </summary>
-        public static readonly string Name = "$(this).(name)";
+    public static readonly string Name = "$(this).(name)";
 
-        /// <summary>
-        /// The pattern empty value.
-        /// </summary>
-        public static readonly string Value = "$(this).value()";
+    /// <summary>
+    /// Script token to access the primary value of the current metadata.
+    /// </summary>
+    public static readonly string Value = "$(this).value()";
 
-        /// <summary>
-        /// Requirement.
-        /// </summary>
-        public static readonly string RequirementLevel = "$(this).requirementLevel()";
+    /// <summary>
+    /// Script token to access the requirement level of the current metadata.
+    /// </summary>
+    public static readonly string RequirementLevel = "$(this).requirementLevel()";
 
-        /// <summary>
-        /// Item requirement.
-        /// </summary>
-        public static readonly string ItemRequirementLevel = "$(this).itemRequirementLevel()";
+    /// <summary>
+    /// Script token to access the requirement level of the items within the current metadata.
+    /// </summary>
+    public static readonly string ItemRequirementLevel = "$(this).itemRequirementLevel()";
 
-        /// <summary>
-        /// Gets the script corresponding to the specified property.
-        /// </summary>
-        /// <param name="name">The name of the property to consider.</param>
-        /// <returns>Returns the specified script.</returns>
-        public static string Property(string name) => string.Format("$(this).descendant('{0}').value()", name.ToUnquoted());
-    }
+    /// <summary>
+    /// Generates a script to access the value of a specific descendant property.
+    /// </summary>
+    /// <param name="name">The name of the property to target.</param>
+    /// <returns>A script string formatted for the BindOpen interpreter.</returns>
+    public static string Property(string name)
+        => string.Format("$(this).descendant('{0}').value()", name.ToUnquoted());
 }

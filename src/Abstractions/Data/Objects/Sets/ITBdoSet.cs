@@ -1,123 +1,138 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BindOpen.Data
+namespace BindOpen.Data;
+
+/// <summary>
+/// Represents a strongly-typed set of referenced objects.
+/// This interface provides advanced methods for item retrieval, insertion, 
+/// and collection management.
+/// </summary>
+/// <typeparam name="T">The type of referenced items in the set.</typeparam>
+public interface ITBdoSet<T> : IEnumerable<T>, IBdoSet, IUpdatable
+    where T : IReferenced
 {
     /// <summary>
-    /// 
+    /// Gets the number of items contained in the set.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public interface ITBdoSet<T> : IEnumerable<T>, IBdoSet, IUpdatable
-        where T : IReferenced
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        int Count { get; }
+    int Count { get; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="key"></param>
-        /// <returns></returns>
-        List<T> Items { get; }
+    /// <summary>
+    /// Gets the underlying list of items.
+    /// </summary>
+    List<T> Items { get; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="index"></param>
-        /// <returns></returns>
-        new T this[int index] { get; }
+    /// <summary>
+    /// Gets the item at the specified index.
+    /// </summary>
+    /// <param name="index">The zero-based index of the item to retrieve.</param>
+    /// <returns>The item at the specified index.</returns>
+    new T this[int index] { get; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="key"></param>
-        /// <returns></returns>
-        new T this[string key] { get; }
+    /// <summary>
+    /// Gets the item associated with the specified key.
+    /// </summary>
+    /// <param name="key">The key of the item to retrieve.</param>
+    /// <returns>The item associated with the specified key.</returns>
+    new T this[string key] { get; }
 
-        /// <summary>
-        /// Returns the item of the specified key.
-        /// </summary>
-        /// <param key="key">The key to consider.</param>
-        /// <param key="defaultKey">The default key to consider.</param>
-        /// <returns>Returns the specified text.</returns>
-        T this[string key, string alternateName] { get; }
+    /// <summary>
+    /// Gets the item associated with the specified key or an alternate name.
+    /// </summary>
+    /// <param name="key">The primary key to search for.</param>
+    /// <param name="alternateName">The alternate name to check if the primary key is not found.</param>
+    /// <returns>The found item; otherwise, null.</returns>
+    T this[string key, string alternateName] { get; }
 
-        /// <summary>
-        /// Returns the specified item of this instance.
-        /// </summary>
-        /// <param key="key">The key to consider.</param>
-        /// <returns>Returns the item of this instance.</returns>
-        T Get(string key);
+    /// <summary>
+    /// Retrieves the item associated with the specified key.
+    /// </summary>
+    /// <param name="key">The key to search for.</param>
+    /// <returns>The found item.</returns>
+    T Get(string key);
 
-        /// <summary>
-        /// Returns the specified item of this instance.
-        /// </summary>
-        /// <param key="key">The key to consider.</param>
-        /// <returns>Returns the item of this instance.</returns>
-        T Get(string key, string alternateName = null);
+    /// <summary>
+    /// Retrieves the item associated with the specified key or an alternate name.
+    /// </summary>
+    /// <param name="key">The primary key to search for.</param>
+    /// <param name="alternateName">The alternate name to check if the primary key is not found.</param>
+    /// <returns>The found item.</returns>
+    T Get(string key, string alternateName = null);
 
-        /// <summary>
-        /// Returns the specified item of this instance.
-        /// </summary>
-        /// <param key="index">The index to consider.</param>
-        /// <returns>Returns the item of this instance.</returns>
-        T Get(int index = 0);
+    /// <summary>
+    /// Retrieves the item at the specified index.
+    /// </summary>
+    /// <param name="index">The zero-based index of the item.</param>
+    /// <returns>The item at the specified index.</returns>
+    T Get(int index = 0);
 
-        /// <summary>
-        /// Returns the specified item of this instance.
-        /// </summary>
-        /// <param key="key">The key to consider.</param>
-        /// <returns>Returns the item of this instance.</returns>
-        Q Get<Q>(string key) where Q : T;
+    /// <summary>
+    /// Retrieves and casts the item associated with the specified key.
+    /// </summary>
+    /// <typeparam name="Q">The type to cast the item to.</typeparam>
+    /// <param name="key">The key to search for.</param>
+    /// <returns>The found item cast to Q.</returns>
+    Q Get<Q>(string key) where Q : T;
 
-        /// <summary>
-        /// Returns the specified item of this instance.
-        /// </summary>
-        /// <param key="key">The key to consider.</param>
-        /// <returns>Returns the item of this instance.</returns>
-        Q Get<Q>(string key, string alternateName = null) where Q : T;
+    /// <summary>
+    /// Retrieves and casts the item associated with the specified key or alternate name.
+    /// </summary>
+    /// <typeparam name="Q">The type to cast the item to.</typeparam>
+    /// <param name="key">The primary key to search for.</param>
+    /// <param name="alternateName">The alternate name to check.</param>
+    /// <returns>The found item cast to Q.</returns>
+    Q Get<Q>(string key, string alternateName = null) where Q : T;
 
-        /// <summary>
-        /// Returns the specified item of this instance.
-        /// </summary>
-        /// <param key="index">The index to consider.</param>
-        /// <returns>Returns the item of this instance.</returns>
-        Q Get<Q>(int index = 0) where Q : T;
+    /// <summary>
+    /// Retrieves and casts the item at the specified index.
+    /// </summary>
+    /// <typeparam name="Q">The type to cast the item to.</typeparam>
+    /// <param name="index">The zero-based index of the item.</param>
+    /// <returns>The item at the specified index cast to Q.</returns>
+    Q Get<Q>(int index = 0) where Q : T;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="item"></param>
-        /// <returns></returns>
-        T Insert(T item);
+    /// <summary>
+    /// Inserts the specified item into the set.
+    /// </summary>
+    /// <param name="item">The item to insert.</param>
+    /// <returns>The inserted item.</returns>
+    T Insert(T item);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="key"></param>
-        /// <returns></returns>
-        bool Has(string key = null);
+    /// <summary>
+    /// Determines whether the set contains an item with the specified key.
+    /// </summary>
+    /// <param name="key">The key to check for. If null, checks if the set has any items.</param>
+    /// <returns>True if the item or any item exists; otherwise, false.</returns>
+    bool Has(string key = null);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        void Clear();
+    /// <summary>
+    /// Removes all items from the set.
+    /// </summary>
+    void Clear();
 
-        int Remove(params string[] keys);
+    /// <summary>
+    /// Removes the items associated with the specified keys.
+    /// </summary>
+    /// <param name="keys">The keys of the items to remove.</param>
+    /// <returns>The number of items removed.</returns>
+    int Remove(params string[] keys);
 
-        int Remove(Predicate<T> filter);
+    /// <summary>
+    /// Removes items that match the specified filter.
+    /// </summary>
+    /// <param name="filter">The predicate to filter items for removal.</param>
+    /// <returns>The number of items removed.</returns>
+    int Remove(Predicate<T> filter);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        T[] ToArray();
+    /// <summary>
+    /// Copies the items of the set to a new array.
+    /// </summary>
+    /// <returns>An array containing the items.</returns>
+    T[] ToArray();
 
-        /// <summary>
-        /// 
-        /// </summary>
-        IList<T> ToList();
-    }
+    /// <summary>
+    /// Copies the items of the set to a new list.
+    /// </summary>
+    /// <returns>A list containing the items.</returns>
+    IList<T> ToList();
 }

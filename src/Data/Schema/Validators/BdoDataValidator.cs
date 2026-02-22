@@ -46,7 +46,7 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
         {
             var scope = meta.Scope ?? Scope;
 
-            var localVarSet = BdoData.NewSet(varSet?.ToArray());
+            var localVarSet = BdoData.NewNode(varSet?.ToArray());
             localVarSet.With(BdoData.__VarName_This, meta);
 
             var schema = meta.Schema ?? defaultSpec;

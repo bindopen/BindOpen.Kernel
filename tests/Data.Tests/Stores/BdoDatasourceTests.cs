@@ -18,7 +18,7 @@ public class BdoDatasourceTests
     /// <summary>
     /// The meta node to consider.
     /// </summary>
-    public IBdoMetaNode _metaNode;
+    public IBdoMetaSet _metaNode;
 
     /// <summary>
     /// Initializes a mock metadata node representing connector settings.

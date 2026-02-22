@@ -42,7 +42,7 @@ public static class ConfigurationIOConverter
         dto.Description = poco.Description.ToDto();
         dto.Identifier = poco.Identifier;
         dto.Index = poco.Index ?? -1;
-        dto.Items = poco.Items?.Select(q => q.ToDto()).ToList();
+        dto.MetaItems = poco.Items?.Select(q => q.ToDto()).ToList();
         dto.LastModificationDate = StringHelper.ToString(poco.CreationDate);
         dto.Name = poco.Name;
         dto.Title = poco.Title.ToDto();
@@ -90,7 +90,7 @@ public static class ConfigurationIOConverter
         poco.Title = dto.Title.ToPoco<string>();
         poco.UsedItemIds = dto.UsedItemIds;
         poco.WithChildren(dto.Children?.Select(q => q.ToPoco()).ToArray());
-        poco.WithItems(dto.Items?.Select(q => q.ToPoco()).ToArray());
+        poco.WithItems(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
 
         return poco;
     }

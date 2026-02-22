@@ -381,7 +381,7 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
                         log?.AddEvent(BdoEventKinds.Error,
                             "Syntax Error: Required character '(' for functions missing. Position " + (index + offsetIndex),
                             resultCode: "SCRIPT_SYNTAXERROR")
-                            .WithDetail(
+                            .WithDetailData(
                                 BdoData.NewScalar("Position", (index + offsetIndex).ToString()));
 
                         return null;
@@ -405,7 +405,7 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
                             log?.AddEvent(BdoEventKinds.Error,
                                 "Syntax Error: Character ')' not found for function. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR")
-                                .WithDetail(
+                                .WithDetailData(
                                     BdoData.NewScalar("Position", (index + offsetIndex).ToString()));
 
                             return null;
@@ -457,7 +457,7 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
                         log?.AddEvent(BdoEventKinds.Error,
                             "Syntax Error: Character ')' needed for function has not been found. Position " + (index + offsetIndex),
                             resultCode: "SCRIPT_SYNTAXERROR")
-                            .WithDetail(
+                            .WithDetailData(
                                 BdoData.NewScalar("Position", (index + offsetIndex).ToString()));
 
                         return null;

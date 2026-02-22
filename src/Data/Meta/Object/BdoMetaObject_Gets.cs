@@ -52,18 +52,18 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public IBdoMetaNode Composite(
+        public IBdoMetaSet Composite(
             string key = null)
-            => Get<IBdoMetaNode>(key);
+            => Get<IBdoMetaSet>(key);
 
         /// <summary>
         /// Returns the specified item of this instance.
         /// </summary>
         /// <param key="index">The index to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public IBdoMetaNode Composite(
+        public IBdoMetaSet Composite(
             int index)
-            => Get<IBdoMetaNode>(index);
+            => Get<IBdoMetaSet>(index);
 
         // Data
 
@@ -129,7 +129,7 @@ namespace BindOpen.Data.Meta
                 return metaObject.GetData(scope, varSet, log);
             else if (meta is IBdoMetaScalar metaScalar)
                 return metaScalar.GetData(scope, varSet, log);
-            else if (meta is IBdoMetaNode metaSet)
+            else if (meta is IBdoMetaSet metaSet)
                 return metaSet.GetData(scope, varSet, log);
 
             return default;
@@ -154,7 +154,7 @@ namespace BindOpen.Data.Meta
                 return metaObject.GetData(scope, varSet, log);
             else if (meta is IBdoMetaScalar metaScalar)
                 return metaScalar.GetData(scope, varSet, log);
-            else if (meta is IBdoMetaNode metaSet)
+            else if (meta is IBdoMetaSet metaSet)
                 return metaSet.GetData(scope, varSet, log);
 
             return default;

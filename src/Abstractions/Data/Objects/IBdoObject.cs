@@ -1,12 +1,12 @@
 ﻿using System;
-using BindOpen.Data;
 
-namespace BindOpen.Data
+namespace BindOpen.Data;
+
+/// <summary>
+/// Represents the base object within the BindOpen ecosystem.
+/// This interface serves as the root contract, ensuring all components
+/// support life-cycle management and cloning.
+/// </summary>
+public interface IBdoObject : IDisposable, IClonable
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public interface IBdoObject : IDisposable, IClonable
-    {
-    }
 }

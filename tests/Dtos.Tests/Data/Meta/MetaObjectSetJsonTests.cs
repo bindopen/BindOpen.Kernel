@@ -10,7 +10,7 @@ public class MetaObjectSetJsonTests
 {
     private readonly string _filePath_json = DataTestData.WorkingFolder + "MetaObjectSet.json";
 
-    private BdoMetaNode _metaSet;
+    private BdoMetaSet _metaSet;
 
     private object _obj1 = null;
     private object _obj2 = null;
@@ -24,7 +24,7 @@ public class MetaObjectSetJsonTests
         _obj3 = ClassObjectFaker.Fake();
     }
 
-    private void Test(IBdoMetaNode metaSet)
+    private void Test(IBdoMetaSet metaSet)
     {
         var obj1 = metaSet.GetData("object1");
         var obj2 = metaSet.GetData("object2");
@@ -82,7 +82,7 @@ public class MetaObjectSetJsonTests
             SaveJsonTest();
         }
 
-        var metaSet = JsonHelper.LoadJson<MetaNodeDto>(_filePath_json).ToPoco();
+        var metaSet = JsonHelper.LoadJson<MetaSetDto>(_filePath_json).ToPoco();
         Equals(metaSet, _metaSet);
     }
 }

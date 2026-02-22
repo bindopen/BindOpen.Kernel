@@ -56,7 +56,7 @@ namespace BindOpen.Scoping.Tasks
         /// </summary>
         [JsonPropertyName("inputs")]
         [XmlArray("inputs")]
-        [XmlArrayItem("node", Type = typeof(MetaNodeDto))]
+        [XmlArrayItem("node", Type = typeof(MetaSetDto))]
         [XmlArrayItem("object", Type = typeof(MetaObjectDto))]
         [XmlArrayItem("scalar", Type = typeof(MetaScalarDto))]
         [XmlArrayItem("word", Type = typeof(ScriptwordDto))]
@@ -75,7 +75,7 @@ namespace BindOpen.Scoping.Tasks
         /// </summary>
         [JsonPropertyName("outputs")]
         [XmlArray("outputs")]
-        [XmlArrayItem("node", Type = typeof(MetaNodeDto))]
+        [XmlArrayItem("node", Type = typeof(MetaSetDto))]
         [XmlArrayItem("object", Type = typeof(MetaObjectDto))]
         [XmlArrayItem("scalar", Type = typeof(MetaScalarDto))]
         [XmlArrayItem("word", Type = typeof(ScriptwordDto))]

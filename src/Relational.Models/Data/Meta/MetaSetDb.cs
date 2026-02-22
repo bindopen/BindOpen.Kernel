@@ -30,7 +30,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The elements of this instance.
         /// </summary>
-        public List<MetaDataDb> Items { get; set; }
+        public List<MetaDataDb> MetaItems { get; set; }
 
         #endregion
 

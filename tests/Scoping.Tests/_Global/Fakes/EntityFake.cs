@@ -70,7 +70,7 @@ public class EntityFake : BdoEntity, IEntityFake
     /// </summary>
     [BdoProperty(Name = "inputs")]
     [BdoFunction(Name = "input")]
-    public BdoMetaNode Inputs { get; set; }
+    public BdoMetaSet Inputs { get; set; }
 
     /// <summary>
     /// A recursive property allowing for sub-entities.
