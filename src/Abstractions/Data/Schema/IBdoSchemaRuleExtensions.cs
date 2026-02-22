@@ -1,17 +1,18 @@
 ﻿namespace BindOpen.Data.Schema;
 
 /// <summary>
-/// This static class extends a schema rule.
+/// Provides extension methods for IBdoSchemaRule to facilitate fluent configuration 
+/// of validation logic and reporting.
 /// </summary>
 public static partial class IBdoSchemaRuleExtensions
 {
     /// <summary>
-    /// Sets the result code of the specified object.
+    /// Sets the result code of the specified schema rule.
     /// </summary>
-    /// <typeparam name="T">The IBdoSchemaRule type to consider.</typeparam>
-    /// <param name="obj">The object to consider.</param>
-    /// <param name="resultCode">The result code to set.</param>
-    /// <returns>Returns the object.</returns>
+    /// <typeparam name="T">The type of schema rule.</typeparam>
+    /// <param name="obj">The schema rule to update.</param>
+    /// <param name="resultCode">The result code to assign (e.g., from BdoSchemaRuleResultCodes).</param>
+    /// <returns>Returns the updated schema rule instance.</returns>
     public static T WithResultCode<T>(
         this T obj,
         string resultCode)
@@ -26,12 +27,12 @@ public static partial class IBdoSchemaRuleExtensions
     }
 
     /// <summary>
-    /// Sets the value of the specified object.
+    /// Sets the evaluation value of the specified schema rule.
     /// </summary>
-    /// <typeparam name="T">The IBdoSchemaRule type to consider.</typeparam>
-    /// <param name="obj">The object to consider.</param>
-    /// <param name="value">The value to set.</param>
-    /// <returns>Returns the object.</returns>
+    /// <typeparam name="T">The type of schema rule.</typeparam>
+    /// <param name="obj">The schema rule to update.</param>
+    /// <param name="value">The value to use for validation (e.g., a regex, a range, or an expression).</param>
+    /// <returns>Returns the updated schema rule instance.</returns>
     public static T WithValue<T>(
         this T obj,
         object value)
@@ -46,12 +47,12 @@ public static partial class IBdoSchemaRuleExtensions
     }
 
     /// <summary>
-    /// Sets the schema rule kind of the specified object.
+    /// Sets the kind of the specified schema rule.
     /// </summary>
-    /// <typeparam name="T">The IBdoSchemaRule type to consider.</typeparam>
-    /// <param name="obj">The object to consider.</param>
-    /// <param name="kind">The schema rule kind to set.</param>
-    /// <returns>Returns the object.</returns>
+    /// <typeparam name="T">The type of schema rule.</typeparam>
+    /// <param name="obj">The schema rule to update.</param>
+    /// <param name="kind">The rule kind (Requirement or Constraint).</param>
+    /// <returns>Returns the updated schema rule instance.</returns>
     public static T WithRuleKind<T>(
         this T obj,
         BdoSchemaRuleKinds kind)

@@ -3,22 +3,24 @@
 namespace BindOpen.Data.Conditions;
 
 /// <summary>
-/// This interface defines a basic condition.
+/// Defines a basic logical condition consisting of two metadata arguments 
+/// and a comparison operator.
 /// </summary>
 public interface IBdoBasicCondition : IBdoCondition
 {
     /// <summary>
-    /// The first argument.
+    /// Gets or sets the left-hand argument of the condition.
     /// </summary>
     IBdoMetaData Argument1 { get; set; }
 
     /// <summary>
-    /// The second argument.
+    /// Gets or sets the right-hand argument of the condition.
     /// </summary>
     IBdoMetaData Argument2 { get; set; }
 
     /// <summary>
-    /// The operator.
+    /// Gets or sets the logical operator (e.g., Equals, GreaterThan, Contains) 
+    /// used to evaluate the two arguments.
     /// </summary>
     DataOperators Operator { get; set; }
 }

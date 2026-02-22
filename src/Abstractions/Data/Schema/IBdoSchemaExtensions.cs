@@ -6,14 +6,14 @@ using BindOpen.Scoping;
 namespace BindOpen.Data.Schema;
 
 /// <summary>
-/// This static class extends the data schema.
+/// Provides extension methods for IBdoSchema to facilitate fluent configuration 
+/// of data blueprints and rule resolution.
 /// </summary>
 public static partial class IBdoSchemaExtensions
 {
     /// <summary>
-    /// 
+    /// Sets the available data modes for the schema.
     /// </summary>
-    /// <param key="aliases"></param>
     public static T WithAvailableDataModes<T>(
         this T schema,
         params DataMode[] modes)
@@ -27,9 +27,8 @@ public static partial class IBdoSchemaExtensions
     }
 
     /// <summary>
-    /// 
+    /// Adds alternative names (aliases) to the schema for backward compatibility.
     /// </summary>
-    /// <param key="aliases"></param>
     public static T WithAliases<T>(
         this T schema,
         params string[] aliases)
@@ -43,9 +42,8 @@ public static partial class IBdoSchemaExtensions
     }
 
     /// <summary>
-    /// 
+    /// Sets the default data. If the item is a reference, it configures it as a dynamic source.
     /// </summary>
-    /// <param key="item"></param>
     public static T WithDefaultData<T>(
         this T schema,
         object item)
@@ -66,9 +64,8 @@ public static partial class IBdoSchemaExtensions
     }
 
     /// <summary>
-    /// 
+    /// Sets the maximum number of items allowed for this data element.
     /// </summary>
-    /// <param key="number"></param>
     public static T WithMaxDataItemNumber<T>(
         this T schema,
         uint? number = null)
@@ -82,9 +79,8 @@ public static partial class IBdoSchemaExtensions
     }
 
     /// <summary>
-    /// 
+    /// Sets the minimum number of items required for this data element.
     /// </summary>
-    /// <param key="number"></param>
     public static T WithMinDataItemNumber<T>(
         this T schema,
         uint number)
@@ -98,9 +94,8 @@ public static partial class IBdoSchemaExtensions
     }
 
     /// <summary>
-    /// 
+    /// Sets the accessibility level for the schema (e.g., Private, Public).
     /// </summary>
-    /// <param key="level"></param>
     public static T WithAccessibilityLevel<T>(
         this T schema,
         AccessibilityLevels level)
@@ -110,14 +105,12 @@ public static partial class IBdoSchemaExtensions
         {
             schema.AccessibilityLevel = level;
         }
-
         return schema;
     }
 
     /// <summary>
-    /// 
+    /// Sets the inheritance behavior for the schema.
     /// </summary>
-    /// <param key="level"></param>
     public static T WithInheritanceLevel<T>(
         this T schema,
         InheritanceLevels level)
@@ -127,12 +120,11 @@ public static partial class IBdoSchemaExtensions
         {
             schema.InheritanceLevel = level;
         }
-
         return schema;
     }
 
     /// <summary>
-    /// 
+    /// Sets a custom string label for the schema.
     /// </summary>
     public static T WithLabel<T>(
         this T schema,
@@ -143,12 +135,11 @@ public static partial class IBdoSchemaExtensions
         {
             schema.Label = label;
         }
-
         return schema;
     }
 
     /// <summary>
-    /// 
+    /// Sets a label using a specific format script.
     /// </summary>
     public static T WithLabel<T>(
         this T schema,
@@ -159,10 +150,12 @@ public static partial class IBdoSchemaExtensions
         {
             schema.Label = label.GetScript();
         }
-
         return schema;
     }
 
+    /// <summary>
+    /// Retrieves and casts the value of a specific schema rule.
+    /// </summary>
     public static T GetRuleValue<T>(
         this IBdoSchema schema,
         string groupId,
@@ -173,9 +166,9 @@ public static partial class IBdoSchemaExtensions
     {
         if (schema != null)
         {
-            return schema.GetRuleValue(groupId, mode, scope, varSet, log).As<T>();
+            var value = schema.GetRuleValue(groupId, mode, scope, varSet, log);
+            return value.As<T>();
         }
-
         return default;
     }
 }

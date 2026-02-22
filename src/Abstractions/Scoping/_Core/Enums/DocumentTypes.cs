@@ -1,51 +1,54 @@
 ﻿using System;
 
-namespace BindOpen.Scoping
+namespace BindOpen.Scoping;
+
+/// <summary>
+/// Enumerates the standard types of documents and media formats.
+/// </summary>
+/// <remarks>
+/// This enumeration supports bitwise combinations, allowing for multi-type 
+/// filtering in document processing and scoping operations.
+/// </remarks>
+[Flags]
+public enum DocumentTypes
 {
     /// <summary>
-    /// This enumerates the possible kinds of script items.
+    /// No document type specified.
     /// </summary>
-    [Flags]
-    public enum DocumentTypes
-    {
-        /// <summary>
-        /// None.
-        /// </summary>
-        None = 0,
+    None = 0,
 
-        /// <summary>
-        /// Audio.
-        /// </summary>
-        Audio = 1 << 0,
+    /// <summary>
+    /// Audio files and streams.
+    /// </summary>
+    Audio = 1 << 0,
 
-        /// <summary>
-        /// Application.
-        /// </summary>
-        Application = 1 << 1,
+    /// <summary>
+    /// Binary files, executables, or application-specific data.
+    /// </summary>
+    Application = 1 << 1,
 
-        /// <summary>
-        /// Font.
-        /// </summary>
-        Font = 1 << 2,
+    /// <summary>
+    /// Digital font files.
+    /// </summary>
+    Font = 1 << 2,
 
-        /// <summary>
-        /// Image.
-        /// </summary>
-        Image = 1 << 3,
+    /// <summary>
+    /// Static images and graphics.
+    /// </summary>
+    Image = 1 << 3,
 
-        /// <summary>
-        /// Text.
-        /// </summary>
-        Text = 1 << 4,
+    /// <summary>
+    /// Plain text or formatted text documents.
+    /// </summary>
+    Text = 1 << 4,
 
-        /// <summary>
-        /// Video.
-        /// </summary>
-        Video = 1 << 5,
+    /// <summary>
+    /// Video files and multimedia streams.
+    /// </summary>
+    Video = 1 << 5,
 
-        /// <summary>
-        /// Any.
-        /// </summary>
-        Any = Audio | Application | Font | Image | Text | Video
-    }
+    /// <summary>
+    /// Represents a combination of all document types.
+    /// </summary>
+    Any = Audio | Application | Font | Image | Text | Video
 }

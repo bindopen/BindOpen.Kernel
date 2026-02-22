@@ -1,17 +1,24 @@
 ﻿using BindOpen.Logging;
 
-namespace BindOpen.Scoping
+namespace BindOpen.Scoping;
+
+/// <summary>
+/// Defines a loader responsible for discovering and registering extensions within the store.
+/// </summary>
+/// <remarks>
+/// The store loader handles the heavy lifting of assembly scanning and metadata extraction 
+/// during the application initialization phase.
+/// </remarks>
+public interface IBdoExtensionStoreLoader
 {
     /// <summary>
-    /// This interface defines an extension store loader.
+    /// Executes the discovery process to load all available extension packages and definitions.
     /// </summary>
-    public interface IBdoExtensionStoreLoader
-    {
-        /// <summary>
-        /// Loads the packages.
-        /// </summary>
-        /// <param key="log">The log to populate.</param>
-        /// <returns>Returns True whether this instance has loaded the packages.</returns>
-        bool LoadAll(IBdoLog log = null);
-    }
+    /// <param name="log">The log to use for tracking discovery progress and capturing any loading errors.</param>
+    /// <returns>Returns <c>true</c> if the loading process completed successfully; otherwise, <c>false</c>.</returns>
+    /// <remarks>
+    /// This method typically utilizes the <see cref="IExtensionLoadOptions"/> to determine 
+    /// which folders or assemblies to scan.
+    /// </remarks>
+    bool LoadAll(IBdoLog log = null);
 }

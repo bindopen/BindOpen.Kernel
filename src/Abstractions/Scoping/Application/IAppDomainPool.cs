@@ -1,23 +1,22 @@
 ﻿using System;
 
-namespace BindOpen.Scoping
+namespace BindOpen.Scoping;
+
+/// <summary>
+/// This interface defines an assembly pool.
+/// </summary>
+public interface IAppDomainPool
 {
+    // ------------------------------------------
+    // ACCESSORS
+    // ------------------------------------------
+
+    #region Accessors
+
     /// <summary>
-    /// This interface defines an assembly pool.
+    /// Gets the specified application domain.
     /// </summary>
-    public interface IAppDomainPool
-    {
-        // ------------------------------------------
-        // ACCESSORS
-        // ------------------------------------------
+    AppDomain GetAppDomain(string appDomainId);
 
-        #region Accessors
-
-        /// <summary>
-        /// Gets the specified application domain.
-        /// </summary>
-        AppDomain GetAppDomain(string appDomainId);
-
-        #endregion
-    }
+    #endregion
 }

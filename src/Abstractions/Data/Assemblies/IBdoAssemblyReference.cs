@@ -3,33 +3,34 @@
 namespace BindOpen.Data.Assemblies;
 
 /// <summary>
-/// This interface defines an assembly reference.
+/// Defines a reference to a .NET assembly within the BindOpen framework.
+/// This interface facilitates dynamic assembly loading and version management.
 /// </summary>
 public interface IBdoAssemblyReference : IBdoObject, IReferenced, IIdentified
 {
     /// <summary>
-    /// The assembly name.
+    /// Gets or sets the simple or full name of the assembly.
     /// </summary>
     string AssemblyName { get; set; }
 
     /// <summary>
-    /// The assembly version.
+    /// Gets or sets the version of the assembly to be referenced.
     /// </summary>
     Version AssemblyVersion { get; set; }
 
     /// <summary>
-    /// The assembly file name.
+    /// Gets or sets the physical file name or path of the assembly.
     /// </summary>
     string AssemblyFileName { get; set; }
 
     /// <summary>
-    /// The alias.
+    /// Gets or sets the alias for this assembly, used for simplified referencing in scripts or metadata.
     /// </summary>
     string Alias { get; set; }
 
     /// <summary>
-    /// Indicates whether this object is empty.
+    /// Determines whether the reference contains sufficient information to be resolved.
     /// </summary>
-    /// <returns>Returns True whether it is empty.</returns>
+    /// <returns>True if the reference is considered empty; otherwise, false.</returns>
     bool IsEmpty();
 }

@@ -4,17 +4,18 @@ using System;
 namespace BindOpen.Data;
 
 /// <summary>
-/// This class provides extensions of IBdoAssemblyReference class.
+/// Provides extension methods for IBdoAssemblyReference to facilitate fluent configuration 
+/// of assembly metadata.
 /// </summary>
 public static partial class IBdoAssemblyReferenceExtensions
 {
     /// <summary>
-    /// Sets the file name of the specified assembly reference.
+    /// Sets the alias for the specified assembly reference.
     /// </summary>
-    /// <typeparam name="T">The class of the specified reference.</typeparam>
-    /// <param name="reference">The reference to consider.</param>
-    /// <param name="alias">The alias to consider.</param>
-    /// <returns>Returns the reference.</returns>
+    /// <typeparam name="T">The type implementing IBdoAssemblyReference.</typeparam>
+    /// <param name="reference">The assembly reference instance.</param>
+    /// <param name="alias">The simplified name or alias to assign.</param>
+    /// <returns>Returns the reference instance for fluent chaining.</returns>
     public static T WithAlias<T>(
         this T reference,
         string alias)
@@ -28,12 +29,12 @@ public static partial class IBdoAssemblyReferenceExtensions
     }
 
     /// <summary>
-    /// Sets the assembly version of the specified assembly reference.
+    /// Sets the version for the specified assembly reference.
     /// </summary>
-    /// <typeparam name="T">The class of the specified reference.</typeparam>
-    /// <param name="reference">The reference to consider.</param>
-    /// <param name="assemblyVersion">The assembly version to consider.</param>
-    /// <returns>Returns the reference.</returns>
+    /// <typeparam name="T">The type implementing IBdoAssemblyReference.</typeparam>
+    /// <param name="reference">The assembly reference instance.</param>
+    /// <param name="assemblyVersion">The specific version to target.</param>
+    /// <returns>Returns the reference instance for fluent chaining.</returns>
     public static T WithAssemblyVersion<T>(
         this T reference,
         Version assemblyVersion)
@@ -47,12 +48,12 @@ public static partial class IBdoAssemblyReferenceExtensions
     }
 
     /// <summary>
-    /// Sets the assembly file name of the specified assembly reference.
+    /// Sets the physical file name or path for the specified assembly reference.
     /// </summary>
-    /// <typeparam name="T">The class of the specified reference.</typeparam>
-    /// <param name="reference">The reference to consider.</param>
-    /// <param name="assemblyFileName">The assembly file name to consider.</param>
-    /// <returns>Returns the reference.</returns>
+    /// <typeparam name="T">The type implementing IBdoAssemblyReference.</typeparam>
+    /// <param name="reference">The assembly reference instance.</param>
+    /// <param name="assemblyFileName">The file path or name (e.g., "MyPlugin.dll").</param>
+    /// <returns>Returns the reference instance for fluent chaining.</returns>
     public static T WithAssemblyFileName<T>(
         this T reference,
         string assemblyFileName)

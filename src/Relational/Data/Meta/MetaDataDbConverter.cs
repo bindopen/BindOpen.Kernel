@@ -83,7 +83,7 @@ namespace BindOpen.Data.Meta
             {
                 dbItem.Reference = scalar.Reference.ToDb(context);
                 dbItem.Schema = scalar.Schema.ToDb(context);
-                dbItem.Items = scalar.GetDataList<object>()?.Select(q => q.ToString(dbItem.ValueType)).ToList();
+                dbItem.Items = scalar.GetDataList<object>()?.Select(q => q.ToBdoString(dbItem.ValueType)).ToList();
             }
             else if (poco is IBdoMetaSet node)
             {

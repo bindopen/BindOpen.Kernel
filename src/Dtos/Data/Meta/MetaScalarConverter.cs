@@ -46,7 +46,7 @@ public static class MetaScalarConverter
         dto.Index = poco.Index;
         dto.Identifier = poco.Identifier;
 
-        var dataList = poco.GetDataList<object>()?.Select(q => q.ToString(dto.ValueType)).ToList();
+        var dataList = poco.GetDataList<object>()?.Select(q => q.ToBdoString(dto.ValueType)).ToList();
         if (dataList?.Count > 1)
         {
             dto.Items = dataList;

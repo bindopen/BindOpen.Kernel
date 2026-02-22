@@ -2,31 +2,36 @@
 using BindOpen.Data.Assemblies;
 using BindOpen.Data.Schema;
 
-namespace BindOpen.Scoping.Tasks
+namespace BindOpen.Scoping.Tasks;
+
+/// <summary>
+/// Defines the metadata and structural requirements for a BindOpen task.
+/// </summary>
+/// <remarks>
+/// Task definitions map logical execution units to physical classes and define 
+/// the expected data schemas for their outputs.
+/// </remarks>
+public interface IBdoTaskDefinition : IBdoExtensionDefinition, IBdoRuntimeTyped
 {
     /// <summary>
-    /// This interface defines a task definition.
+    /// Gets or sets the reference to the C# class that implements the task logic.
     /// </summary>
-    public interface IBdoTaskDefinition : IBdoExtensionDefinition, IBdoRuntimeTyped
-    {
-        /// <summary>
-        /// The class reference.
-        /// </summary>
-        IBdoClassReference ClassReference { get; set; }
+    IBdoClassReference ClassReference { get; set; }
 
-        /// <summary>
-        /// The output schemas.
-        /// </summary>
-        ITBdoSet<IBdoSchema> Outputs { get; set; }
+    /// <summary>
+    /// Gets or sets the collection of schemas defining the structure of the data 
+    /// produced by this task.
+    /// </summary>
+    ITBdoSet<IBdoSchema> Outputs { get; set; }
 
-        /// <summary>
-        /// The maximum index.
-        /// </summary>
-        float MaximumIndex { get; set; }
+    /// <summary>
+    /// Gets or sets the maximum index or priority level for this task.
+    /// </summary>
+    /// <remarks>Often used by schedulers to determine execution order or complexity limits.</remarks>
+    float MaximumIndex { get; set; }
 
-        /// <summary>
-        /// Indicates whether the instance is executable.
-        /// </summary>
-        bool IsExecutable { get; set; }
-    }
+    /// <summary>
+    /// Gets or sets a value indicating whether this task is currently executable in the host environment.
+    /// </summary>
+    bool IsExecutable { get; set; }
 }

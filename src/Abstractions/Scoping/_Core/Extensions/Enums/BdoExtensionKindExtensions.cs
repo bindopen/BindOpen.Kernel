@@ -5,78 +5,86 @@ using BindOpen.Scoping.Functions;
 using BindOpen.Scoping.Tasks;
 using System;
 
-namespace BindOpen.Scoping
+namespace BindOpen.Scoping;
+
+/// <summary>
+/// This static class provides extension methods to resolve the extension kind of various objects and types.
+/// </summary>
+public static class BdoExtensionKindExtensions
 {
     /// <summary>
-    /// This class represents an extension of the DataValueType enumeration.
+    /// Gets the extension kind corresponding to the specified extension definition.
     /// </summary>
-    public static class BdoExtensionKindExtensions
+    /// <param name="extensionDefinition">The extension definition to consider.</param>
+    /// <returns>Returns the corresponding BdoExtensionKinds.</returns>
+    public static BdoExtensionKinds GetExtensionKind(
+        this IBdoExtensionDefinition extensionDefinition)
     {
-        /// <summary>
-        /// Gets the extension item kind corresponding to the specified object.
-        /// </summary>
-        public static BdoExtensionKinds GetExtensionKind(
-            this IBdoExtensionDefinition extensionDefinition)
+        return extensionDefinition?.GetType().GetExtensionKind() ?? BdoExtensionKinds.None;
+    }
+
+    /// <summary>
+    /// Gets the extension kind corresponding to the specified extension instance.
+    /// </summary>
+    /// <param name="extension">The extension instance to consider.</param>
+    /// <returns>Returns the corresponding BdoExtensionKinds.</returns>
+    public static BdoExtensionKinds GetExtensionKind(
+        this IBdoExtension extension)
+    {
+        return extension?.GetType().GetExtensionKind() ?? BdoExtensionKinds.None;
+    }
+
+    /// <summary>
+    /// Gets the extension kind corresponding to the specified C# type.
+    /// </summary>
+    /// <param name="type">The type to consider.</param>
+    /// <returns>Returns the corresponding BdoExtensionKinds based on interface implementation.</returns>
+    public static BdoExtensionKinds GetExtensionKind(
+        this Type type)
+    {
+        if (type == null) return BdoExtensionKinds.None;
+
+        if (typeof(IBdoConnectorDefinition).IsAssignableFrom(type)
+            || typeof(IBdoConnector).IsAssignableFrom(type))
         {
-            return (extensionDefinition?.GetType()).GetExtensionKind();
+            return BdoExtensionKinds.Connector;
         }
 
-        /// <summary>
-        /// Gets the extension item kind corresponding to the specified object.
-        /// </summary>
-        public static BdoExtensionKinds GetExtensionKind(
-            this IBdoExtension extension)
+        if (typeof(IBdoEntityDefinition).IsAssignableFrom(type)
+            || typeof(IBdoEntity).IsAssignableFrom(type))
         {
-            return (extension?.GetType()).GetExtensionKind();
+            return BdoExtensionKinds.Entity;
         }
 
-        /// <summary>
-        /// Gets the extension item kind corresponding to the specified type.
-        /// </summary>
-        /// <param key="type">The type to consider.</param>
-        public static BdoExtensionKinds GetExtensionKind(
-            this Type type)
+        if (typeof(IBdoFunctionDefinition).IsAssignableFrom(type))
         {
-            if (typeof(IBdoConnectorDefinition).IsAssignableFrom(type)
-                || typeof(IBdoConnector).IsAssignableFrom(type))
-            {
-                return BdoExtensionKinds.Connector;
-            }
-            else if (typeof(IBdoEntityDefinition).IsAssignableFrom(type)
-                || typeof(IBdoEntity).IsAssignableFrom(type))
-            {
-                return BdoExtensionKinds.Entity;
-            }
-            else if (typeof(IBdoFunctionDefinition).IsAssignableFrom(type))
-            {
-                return BdoExtensionKinds.Function;
-            }
-            else if (typeof(IBdoTaskDefinition).IsAssignableFrom(type)
-                || typeof(IBdoTask).IsAssignableFrom(type))
-            {
-                return BdoExtensionKinds.Task;
-            }
-
-            return BdoExtensionKinds.None;
+            return BdoExtensionKinds.Function;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="valueType"></param>
-        /// <returns></returns>
-        public static BdoExtensionKinds GetExtensionKind(
-            this DataValueTypes valueType)
+        if (typeof(IBdoTaskDefinition).IsAssignableFrom(type)
+            || typeof(IBdoTask).IsAssignableFrom(type))
         {
-            return valueType
-                switch
-            {
-                DataValueTypes.Connector => BdoExtensionKinds.Connector,
-                DataValueTypes.Entity => BdoExtensionKinds.Entity,
-                DataValueTypes.Scriptword => BdoExtensionKinds.Scriptword,
-                DataValueTypes.Task => BdoExtensionKinds.Task,
-                _ => BdoExtensionKinds.None
-            };
+            return BdoExtensionKinds.Task;
         }
+
+        return BdoExtensionKinds.None;
+    }
+
+    /// <summary>
+    /// Maps a DataValueTypes enumeration value to its corresponding BdoExtensionKinds.
+    /// </summary>
+    /// <param name="valueType">The data value type to consider.</param>
+    /// <returns>Returns the mapped BdoExtensionKinds.</returns>
+    public static BdoExtensionKinds GetExtensionKind(
+        this DataValueTypes valueType)
+    {
+        return valueType switch
+        {
+            DataValueTypes.Connector => BdoExtensionKinds.Connector,
+            DataValueTypes.Entity => BdoExtensionKinds.Entity,
+            DataValueTypes.Scriptword => BdoExtensionKinds.Scriptword,
+            DataValueTypes.Task => BdoExtensionKinds.Task,
+            _ => BdoExtensionKinds.None
+        };
     }
 }

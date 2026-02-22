@@ -1,13 +1,12 @@
-﻿namespace BindOpen.Scoping.Connectors
+﻿namespace BindOpen.Scoping.Connectors;
+
+/// <summary>
+/// This interfaces represents a connected service.
+/// </summary>
+public interface IBdoConnected : IBdoScoped
 {
     /// <summary>
-    /// This interfaces represents a connected service.
+    /// The connector of the service.
     /// </summary>
-    public interface IBdoConnected : IBdoScoped
-    {
-        /// <summary>
-        /// The connector of the service.
-        /// </summary>
-        IBdoConnector Connector { get; set; }
-    }
+    IBdoConnector Connector { get; set; }
 }

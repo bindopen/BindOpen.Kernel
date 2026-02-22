@@ -1,153 +1,130 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Meta;
+﻿using BindOpen.Data.Meta;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Data.Helpers
+namespace BindOpen.Data.Helpers;
+
+/// <summary>
+/// This class represents a helper for objects.
+/// </summary>
+public static partial class ObjectHelper
 {
     /// <summary>
-    /// This class represents a helper for objects.
+    /// Gets the element at the specified index in a safe manner.
     /// </summary>
-    public static partial class ObjectHelper
+    /// <typeparam name="Q">The type of the elements.</typeparam>
+    /// <param name="obj">The list to consider.</param>
+    /// <param name="index">The index to retrieve.</param>
+    /// <returns>Returns the element if the index is valid; otherwise, the default value.</returns>
+    public static Q GetAt<Q>(
+        this IList<Q> obj,
+        int index)
+        => obj != null && index >= 0 && index < obj.Count ? obj[index] : default;
+
+    /// <summary>
+    /// Gets the element at the specified index in a safe manner for arrays.
+    /// </summary>
+    public static T GetAt<T>(
+        this T[] arr,
+        int index)
     {
-        /// <summary>
-        /// Returns the string representation of the specified object.
-        /// </summary>
-        /// <param key="obj">The object to consider.</param>
-        /// <param key="index">The index to consider.</param>
-        /// <returns></returns>
-        public static Q GetAt<Q>(
-            this IList<Q> obj,
-            int index)
-            => obj != null
-            && index >= 0
-            && index < obj.Count ? obj[index] : default;
+        return arr != null && index >= 0 && index < arr.Length ? arr[index] : default;
+    }
 
-        /// <summary>
-        /// Gets the string at the specified index from the specified index.
-        /// </summary>
-        /// <param key="arr">The objects to consider.</param>
-        /// <param key="index">The index to consider.</param>
-        /// <returns>Returns the normalized string.</returns>
-        public static T GetAt<T>(
-            this T[] arr,
-            int index)
+    /// <summary>
+    /// Gets the string representation of the object at the specified index.
+    /// </summary>
+    public static string GetString(
+        this IList<object> objects,
+        int index)
+    {
+        return objects?.GetAt(index).ToBdoString(DataValueTypes.Any);
+    }
+
+    /// <summary>
+    /// Gets and converts the object at the specified index.
+    /// </summary>
+    public static T Get<T>(
+        this IList<object> objects,
+        int index = 0,
+        Func<object, T> converter = null)
+    {
+        var obj = objects != null && index >= 0 && index < objects.Count ? objects[index] : default;
+
+        if (converter != null)
         {
-            return arr != null
-                && arr.Length > index
-                && arr[index] != null ? arr[index] : default;
+            return converter.Invoke(obj);
         }
 
-        /// <summary>
-        /// Gets the object at the specified index from the specified index.
-        /// </summary>
-        /// <param key="objects">The objects to consider.</param>
-        /// <param key="index">The index to consider.</param>
-        /// <returns>Returns the normalized string.</returns>
-        public static string GetString(
-            this IList<object> objects,
-            int index)
+        return obj.As<T>();
+    }
+
+    /// <summary>
+    /// Gets the object at the specified index from the specified index.
+    /// </summary>
+    /// <param key="objects">The objects to consider.</param>
+    /// <param key="index">The index to consider.</param>
+    /// <returns>Returns the normalized string.</returns>
+    public static T First<T>(
+        this IList<object> objects,
+        Func<object, T> converter = null)
+    {
+        var obj = objects?.FirstOrDefault();
+
+        if (converter != null)
         {
-            return objects?.GetAt(index).ToString(DataValueTypes.Any);
+            obj = converter.Invoke(obj);
         }
 
-        /// <summary>
-        /// Gets the object at the specified index from the specified index.
-        /// </summary>
-        /// <param key="objects">The objects to consider.</param>
-        /// <param key="index">The index to consider.</param>
-        /// <returns>Returns the normalized string.</returns>
-        public static T Get<T>(
-            this IList<object> objects,
-            int index = 0,
-            Func<object, T> converter = null)
+        return obj.As<T>();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param key="type"></param>
+    /// <returns></returns>
+    public static object[] ToObjectArray(this object obj)
+        => obj.ToObjectList()?.ToArray();
+
+    /// <summary>
+    /// Converts an object to a list of objects. If the object is not a list, returns a list containing it.
+    /// </summary>
+    public static IList<object> ToObjectList(this object obj)
+    {
+        if (obj == null) return null;
+
+        if (obj.IsList())
         {
-            var obj = objects != null && index >= 0 && objects.Count > index && objects[index] != null ?
-                objects[index] : default;
-
-            if (converter != null)
-            {
-                obj = converter.Invoke(obj);
-            }
-
-            return obj.As<T>();
+            return [.. (obj as IEnumerable).Cast<object>()];
         }
 
-        /// <summary>
-        /// Gets the object at the specified index from the specified index.
-        /// </summary>
-        /// <param key="objects">The objects to consider.</param>
-        /// <param key="index">The index to consider.</param>
-        /// <returns>Returns the normalized string.</returns>
-        public static T First<T>(
-            this IList<object> objects,
-            Func<object, T> converter = null)
-        {
-            var obj = objects?.FirstOrDefault();
+        return new List<object> { obj };
+    }
 
-            if (converter != null)
-            {
-                obj = converter.Invoke(obj);
-            }
+    /// <summary>
+    /// Indicates whether the specified object should be treated as a list.
+    /// </summary>
+    /// <param name="obj">The object to consider.</param>
+    /// <returns>True if the object is a collection (excluding strings, byte arrays, and meta sets); otherwise, false.</returns>
+    public static bool IsList(this object obj)
+        => obj?.GetType().IsList() ?? false;
 
-            return obj.As<T>();
-        }
+    /// <summary>
+    /// Determines if the specified type should be treated as a collection in the BindOpen system.
+    /// </summary>
+    /// <remarks>
+    /// Strings and byte arrays are excluded from being identified as lists. 
+    /// IBdoMetaSet is also excluded as it is handled as a single composite entity.
+    /// </remarks>
+    public static bool IsList(this Type type)
+    {
+        if (type == null || type == typeof(string) || type == typeof(byte[]))
+            return false;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="type"></param>
-        /// <returns></returns>
-        public static object[] ToObjectArray(this object obj)
-            => obj.ToObjectList()?.ToArray();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="type"></param>
-        /// <returns></returns>
-        public static IList<object> ToObjectList(this object obj)
-        {
-            IList<object> objList;
-            if (obj?.GetType().IsList() == true)
-            {
-                objList = (obj as IEnumerable).Cast<object>().ToList();
-            }
-            else
-            {
-                objList = obj == null ? null : new List<object>() { obj };
-            }
-
-            return objList;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="type"></param>
-        /// <returns></returns>
-        public static bool IsList(this object obj)
-            => obj?.GetType().IsList() ?? false;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="type"></param>
-        /// <returns></returns>
-        public static bool IsList(this Type type)
-        {
-            if (type == null) { return false; }
-
-            if (type == typeof(string)) { return false; }
-
-            if (type == typeof(byte[])) { return false; }
-
-            return !typeof(IBdoMetaSet).IsAssignableFrom(type)
-                && (typeof(Array).IsAssignableFrom(type)
-                || typeof(IEnumerable).IsAssignableFrom(type)
-                || type.IsArray);
-        }
+        return !typeof(IBdoMetaSet).IsAssignableFrom(type)
+            && (typeof(IEnumerable).IsAssignableFrom(type) || type.IsArray);
     }
 }

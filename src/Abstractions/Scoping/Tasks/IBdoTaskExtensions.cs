@@ -1,12 +1,19 @@
-﻿namespace BindOpen.Scoping
+﻿namespace BindOpen.Scoping;
+
+/// <summary>
+/// This static class provides extension methods and constants for <see cref="IBdoTask"/>.
+/// </summary>
+public static class IBdoTaskExtensions
 {
     /// <summary>
-    /// This static class extends the IBdoTask interface.
+    /// The token name for the input data set.
     /// </summary>
-    public static class IBdoTaskExtensions
-    {
-        public const string __Token_Input = "input";
+    public const string __Token_Input = "input";
 
-        public const string __Token_Output = "output";
-    }
+    /// <summary>
+    /// The token name for the output data set.
+    /// </summary>
+    public const string __Token_Output = "output";
+
+    // Extension methods would typically follow here...
 }

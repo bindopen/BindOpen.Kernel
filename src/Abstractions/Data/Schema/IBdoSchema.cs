@@ -7,7 +7,8 @@ using System.Collections.Generic;
 namespace BindOpen.Data.Schema;
 
 /// <summary>
-/// This interface defines a data schema.
+/// Defines a BindOpen schema, which serves as a detailed specification for metadata elements.
+/// It governs validation rules, cardinality, default values, and accessibility levels.
 /// </summary>
 public interface IBdoSchema :
     IBdoObject, ITTreeNode<IBdoSchema>,
@@ -16,69 +17,87 @@ public interface IBdoSchema :
     IBdoTitled, IBdoDescribed, IBdoDetailed,
     IUpdatable
 {
+    // ------------------------------------------
+    // STRUCTURE & RULES
+    // ------------------------------------------
+
     /// <summary>
-    /// The rule set.
+    /// Gets or sets the collection of schema rules organized by groups.
+    /// These rules define the requirements and constraints of the schema.
     /// </summary>
     ITBdoGroupsOf<IBdoSchemaRule> RuleSet { get; set; }
 
     /// <summary>
-    /// The schema item set.
+    /// Gets or sets the set of child schema items, allowing for nested specifications.
     /// </summary>
     IBdoSchemaSet ItemSet { get; set; }
 
     /// <summary>
-    /// The aliases.
+    /// Gets or sets the list of alternative names for this schema.
     /// </summary>
     IList<string> Aliases { get; set; }
 
+    // ------------------------------------------
+    // CARDINALITY
+    // ------------------------------------------
+
     /// <summary>
-    /// The minimum number of data items.
+    /// Gets or sets the minimum number of data items required by this schema.
     /// </summary>
     uint MinDataItemNumber { get; set; }
 
     /// <summary>
-    /// The maximum number of data items.
+    /// Gets or sets the maximum number of data items allowed by this schema.
+    /// A null value typically indicates no upper limit.
     /// </summary>
     uint? MaxDataItemNumber { get; set; }
 
-    // Data
+    // ------------------------------------------
+    // METADATA & DISPLAY
+    // ------------------------------------------
 
     /// <summary>
-    /// The label of this instance.
+    /// Gets or sets the display label of this instance.
     /// </summary>
     string Label { get; set; }
 
-    // Levels
+    // ------------------------------------------
+    // ACCESS & BEHAVIOR
+    // ------------------------------------------
 
     /// <summary>
-    /// The available data modes.
+    /// Gets or sets the list of supported data modes (e.g., Any, Scalar, Set).
     /// </summary>
     IList<DataMode> AvailableDataModes { get; set; }
 
     /// <summary>
-    /// The available accessibility levels.
+    /// Gets or sets the accessibility level, defining visibility and modification rights.
     /// </summary>
     AccessibilityLevels AccessibilityLevel { get; set; }
 
     /// <summary>
-    /// The inheritance levels.
+    /// Gets or sets the inheritance level, defining how this schema merges with parent or child schemas.
     /// </summary>
     InheritanceLevels InheritanceLevel { get; set; }
 
     /// <summary>
-    /// The default data.
+    /// Gets or sets the default data value to be used if no value is explicitly provided.
     /// </summary>
     object DefaultData { get; set; }
 
+    // ------------------------------------------
+    // RULE RESOLUTION
+    // ------------------------------------------
+
     /// <summary>
-    /// Gets the specified rule.
+    /// Resolves a specific schema rule based on a group ID and rule kind.
     /// </summary>
-    /// <param name="groupId">The identifier of the group to consider.</param>
-    /// <param name="ruleKind">The kind of rules to consider.</param>
-    /// <param name="scope">The scope to consider.</param>
-    /// <param name="varSet">The variable set to consider.</param>
-    /// <param name="log">The log to consider.</param>
-    /// <returns>Returns the schema rule.</returns>
+    /// <param name="groupId">The identifier of the group (e.g., "Requirement").</param>
+    /// <param name="ruleKind">The kind of rule to retrieve.</param>
+    /// <param name="scope">The resolution scope for dynamic evaluation.</param>
+    /// <param name="varSet">The set of variables available for resolution.</param>
+    /// <param name="log">The log for tracking the resolution process.</param>
+    /// <returns>Returns the matching schema rule; otherwise, null.</returns>
     IBdoSchemaRule GetRule(
         string groupId,
         BdoSchemaRuleKinds ruleKind = BdoSchemaRuleKinds.Requirement,
@@ -87,14 +106,14 @@ public interface IBdoSchema :
         IBdoLog log = null);
 
     /// <summary>
-    /// Gets the specified rule value.
+    /// Resolves and returns the actual value of a schema rule.
     /// </summary>
-    /// <param name="groupId">The identifier of the group to consider.</param>
-    /// <param name="ruleKind">The kind of rules to consider.</param>
-    /// <param name="scope">The scope to consider.</param>
-    /// <param name="varSet">The variable set to consider.</param>
-    /// <param name="log">The log to consider.</param>
-    /// <returns>Returns the schema rule value object.</returns>
+    /// <param name="groupId">The identifier of the group.</param>
+    /// <param name="ruleKind">The kind of rule.</param>
+    /// <param name="scope">The resolution scope.</param>
+    /// <param name="varSet">The variable set.</param>
+    /// <param name="log">The log for tracking.</param>
+    /// <returns>Returns the evaluated rule value.</returns>
     object GetRuleValue(
         string groupId,
         BdoSchemaRuleKinds ruleKind = BdoSchemaRuleKinds.Requirement,

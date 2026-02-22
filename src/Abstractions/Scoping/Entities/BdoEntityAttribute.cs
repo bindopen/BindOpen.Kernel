@@ -1,30 +1,38 @@
 ﻿using System;
 
-namespace BindOpen.Scoping
+namespace BindOpen.Scoping;
+
+/// <summary>
+/// This class represents a decorative attribute used to identify and configure 
+/// BindOpen entities via reflection.
+/// </summary>
+/// <remarks>
+/// Use this attribute to register business data models within the scoping system.
+/// This allows the Kernel to manage the class as a defined entity.
+/// </remarks>
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
+public class BdoEntityAttribute : MetaExtensionAttribute
 {
+    // ------------------------------------------
+    // CONSTRUCTORS
+    // ------------------------------------------
+
+    #region Constructors
+
     /// <summary>
-    /// This class represents a entity attribute.
+    /// Initializes a new instance of the <see cref="BdoEntityAttribute"/> class.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public class BdoEntityAttribute : MetaExtensionAttribute
+    public BdoEntityAttribute() : base()
     {
-        // ------------------------------------------
-        // CONSTRUCTORS
-        // ------------------------------------------
-
-        #region Constructors
-
-        /// <summary>
-        /// Instantiates a new instance of the EntityAttribute class.
-        /// </summary>
-        public BdoEntityAttribute() : base()
-        {
-        }
-
-        public BdoEntityAttribute(string name) : base(name)
-        {
-        }
-
-        #endregion
     }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="BdoEntityAttribute"/> class with a specified name.
+    /// </summary>
+    /// <param name="name">The unique name/ID of the entity (e.g., "company.project$invoice").</param>
+    public BdoEntityAttribute(string name) : base(name)
+    {
+    }
+
+    #endregion
 }

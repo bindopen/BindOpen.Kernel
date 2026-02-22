@@ -1,27 +1,29 @@
 ﻿using System.Xml.Serialization;
 
-namespace BindOpen.Logging
+namespace BindOpen.Logging;
+
+/// <summary>
+/// This enumeration represents the high-level states of a process execution.
+/// </summary>
+/// <remarks>
+/// Use this to determine if a process is still active (Pending) or has reached 
+/// a final state (Ended), regardless of whether it succeeded or failed.
+/// </remarks>
+[XmlType("ProcessExecutionState", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+public enum ProcessExecutionState
 {
     /// <summary>
-    /// This enumeration represents the possible process execution states.
+    /// The state is not specified or unknown.
     /// </summary>
-    [XmlType("ProcessExecutionState", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
-    public enum ProcessExecutionState
-    {
-        /// <summary>
-        /// None.
-        /// </summary>
-        None,
+    None,
 
-        /// <summary>
-        /// Pending.
-        /// </summary>
-        Pending,
+    /// <summary>
+    /// The process is currently active, queued, or waiting to run.
+    /// </summary>
+    Pending,
 
-        /// <summary>
-        /// Ended.
-        /// </summary>
-        Ended
-    }
-
+    /// <summary>
+    /// The process has finished its execution.
+    /// </summary>
+    Ended
 }

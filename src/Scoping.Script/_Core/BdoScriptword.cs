@@ -134,7 +134,7 @@ namespace BindOpen.Scoping.Script
             switch (current.TokenKind)
             {
                 case ScriptTokenKinds.Function:
-                    script = string.Join(", ", current.Select(p => p.ToString(DataValueTypes.Any, true)).ToArray());
+                    script = string.Join(", ", current.Select(p => p.ToBdoString(DataValueTypes.Any, true)).ToArray());
                     script = (current.Parent == null ? BdoScriptHelper.Symbol_Fun : "")
                         + current.Name + "(" + script + ")";
                     if (current.Parent is BdoScriptword subFunScriptWord)

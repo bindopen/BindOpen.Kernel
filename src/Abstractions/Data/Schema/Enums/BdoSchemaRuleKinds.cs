@@ -1,30 +1,34 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 
 namespace BindOpen.Data.Schema;
 
 /// <summary>
-/// This enumerates the possible schema rule modes.
+/// Specifies the various kinds of schema rules used to validate metadata.
+/// This enum allows the engine to categorize rules into structural requirements 
+/// or value-based constraints.
 /// </summary>
+[Flags]
 [XmlType("SchemaRuleKind", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
 public enum BdoSchemaRuleKinds
 {
     /// <summary>
-    /// None.
+    /// No rule kind specified.
     /// </summary>
     None = 0,
 
     /// <summary>
-    /// Any.
+    /// A rule defining structural necessity (e.g., Mandatory, Forbidden, Optional).
     /// </summary>
-    Any = Requirement | Constraint,
+    Requirement = 1 << 0,
 
     /// <summary>
-    /// Requirement.
+    /// A rule defining value limitations (e.g., Range, Format, Reference integrity).
     /// </summary>
-    Requirement = 1,
+    Constraint = 1 << 1,
 
     /// <summary>
-    /// Constraint.
+    /// Represents any combination of schema rule kinds.
     /// </summary>
-    Constraint = 2
-};
+    Any = Requirement | Constraint
+}

@@ -1,63 +1,78 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Scoping
+namespace BindOpen.Scoping;
+
+/// <summary>
+/// This static class provides extension methods for <see cref="IBdoExtensionDictionary"/>.
+/// </summary>
+public static class IBdoExtensionDictionaryExtensions
 {
     /// <summary>
-    /// 
+    /// Sets the groups of the specified dictionary, replacing any existing ones.
     /// </summary>
-    public static class IBdoExtensionDictionaryExtensions
+    /// <param name="groups">The extension groups to set.</param>
+    public static T WithGroups<T>(
+        this T obj,
+        params IBdoExtensionGroup[] groups)
+        where T : IBdoExtensionDictionary
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="detail"></param>
-        public static T WithGroups<T>(
-            this T obj,
-            params IBdoExtensionGroup[] groups)
-            where T : IBdoExtensionDictionary
+        if (obj != null)
         {
-            if (obj != null)
-            {
-                obj.Groups = groups?.ToList();
-            }
-            return obj;
+            obj.Groups = groups?.ToList() ?? new List<IBdoExtensionGroup>();
         }
+        return obj;
+    }
 
-        public static T AddGroups<T>(
-            this T obj,
-            params IBdoExtensionGroup[] groups)
-            where T : IBdoExtensionDictionary
+    /// <summary>
+    /// Adds the specified groups to the dictionary's existing groups.
+    /// </summary>
+    /// <param name="groups">The extension groups to add.</param>
+    public static T AddGroups<T>(
+        this T obj,
+        params IBdoExtensionGroup[] groups)
+        where T : IBdoExtensionDictionary
+    {
+        if (obj != null && groups != null)
         {
-            if (obj != null)
+            obj.Groups ??= new List<IBdoExtensionGroup>();
+            foreach (var group in groups)
             {
-                obj.Groups ??= new List<IBdoExtensionGroup>(groups);
+                obj.Groups.Add(group);
             }
-            return obj;
         }
+        return obj;
+    }
 
-        public static T WithLibraryId<T>(
-            this T obj,
-            string libraryId)
-            where T : IBdoExtensionDictionary
+    /// <summary>
+    /// Sets the library ID for the specified dictionary.
+    /// </summary>
+    /// <param name="libraryId">The library ID to set.</param>
+    public static T WithLibraryId<T>(
+        this T obj,
+        string libraryId)
+        where T : IBdoExtensionDictionary
+    {
+        if (obj != null)
         {
-            if (obj != null)
-            {
-                obj.LibraryId = libraryId;
-            }
-            return obj;
+            obj.LibraryId = libraryId;
         }
+        return obj;
+    }
 
-        public static T WithLibraryName<T>(
-            this T obj,
-            string libraryName)
-            where T : IBdoExtensionDictionary
+    /// <summary>
+    /// Sets the library name for the specified dictionary.
+    /// </summary>
+    /// <param name="libraryName">The library name to set.</param>
+    public static T WithLibraryName<T>(
+        this T obj,
+        string libraryName)
+        where T : IBdoExtensionDictionary
+    {
+        if (obj != null)
         {
-            if (obj != null)
-            {
-                obj.LibraryName = libraryName;
-            }
-            return obj;
+            obj.LibraryName = libraryName;
         }
+        return obj;
     }
 }

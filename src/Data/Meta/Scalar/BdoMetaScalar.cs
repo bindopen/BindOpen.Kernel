@@ -50,7 +50,7 @@ namespace BindOpen.Data.Meta
         /// <returns></returns>
         public override string ToString()
         {
-            return _data.ToString(DataType.ValueType);
+            return _data.ToBdoString(DataType.ValueType);
         }
 
         // Data ----------------------------

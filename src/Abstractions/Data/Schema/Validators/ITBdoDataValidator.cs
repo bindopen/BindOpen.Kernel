@@ -5,30 +5,35 @@ using BindOpen.Scoping;
 namespace BindOpen.Data.Schema;
 
 /// <summary>
-/// This interface defines a data validator.
+/// Defines a data validator responsible for verifying that a schematized object 
+/// adheres to its associated schema requirements and constraints.
 /// </summary>
+/// <typeparam name="TSpecified">The type of the schematized and referenced object to validate.</typeparam>
+/// <typeparam name="TSchema">The type of schema to validate against.</typeparam>
 public interface ITBdoDataValidator<TSpecified, TSchema> : IBdoScoped
     where TSpecified : IBdoSchematized, IReferenced
     where TSchema : IBdoSchema
 {
     /// <summary>
-    /// Checks the specified meta data.
+    /// Validates the specified object against its own internal schema.
     /// </summary>
-    /// <param name="meta">The meta data to check.</param>
-    /// <param name="log">The log to consider.</param>
-    /// <returns>Returns the check log./returns>
+    /// <param name="obj">The object to validate.</param>
+    /// <param name="varSet">The set of variables to use for dynamic rule resolution.</param>
+    /// <param name="log">The log used to track validation results and errors.</param>
+    /// <returns>Returns true if the object is valid; otherwise, false.</returns>
     bool Check(
         TSpecified obj,
         IBdoMetaSet varSet = null,
         IBdoLog log = null);
 
     /// <summary>
-    /// Checks the specified meta data corresponding to the meta schema.
+    /// Validates the specified object against an explicit external schema.
     /// </summary>
-    /// <param name="meta">The meta data to check.</param>
-    /// <param name="schema">The meta schema to consider.</param>
-    /// <param name="log">The log to consider.</param>
-    /// <returns>Returns the check log./returns>
+    /// <param name="obj">The object to validate.</param>
+    /// <param name="schema">The schema to validate against.</param>
+    /// <param name="varSet">The set of variables to use for dynamic rule resolution.</param>
+    /// <param name="log">The log used to track validation results and errors.</param>
+    /// <returns>Returns true if the object is valid; otherwise, false.</returns>
     bool Check(
         TSpecified obj,
         TSchema schema,
