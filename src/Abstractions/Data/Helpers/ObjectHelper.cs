@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data.Meta;
 using BindOpen.Scoping.Script;
 using System;
+using System.Globalization;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,19 @@ public static partial class ObjectHelper
                 key = (meta.GetData() as IReferenced)?.Key();
             }
             return key ?? string.Empty;
+        }
+
+        // Handle generic KeyValuePair<,> where the Key can be a string
+        var objType = obj.GetType();
+        if (objType.IsGenericType && objType.GetGenericTypeDefinition() == typeof(KeyValuePair<,>))
+        {
+            var keyProp = objType.GetProperty("Key");
+            if (keyProp != null)
+            {
+                var keyVal = keyProp.GetValue(obj);
+                if (keyVal != null)
+                    return keyVal.ToString() ?? string.Empty;
+            }
         }
 
         if (obj is KeyValuePair<string, string> kvp) return kvp.Key;
@@ -202,18 +216,18 @@ public static partial class ObjectHelper
     /// <exception cref="ArgumentException">Thrown if the expression does not refer to a property.</exception>
     public static PropertyInfo GetPropertyInfo<T>(this Expression<Func<T, object>> property)
     {
-        if (property == null) return null;
+        if (property == null) throw new ArgumentNullException(nameof(property));
 
-        MemberExpression memberExpression;
+        MemberExpression memberExpression = null;
 
         // Handle boxing/unboxing for value types (UnaryExpression)
         if (property.Body is UnaryExpression unaryExpression)
         {
             memberExpression = unaryExpression.Operand as MemberExpression;
         }
-        else
+        else if (property.Body is MemberExpression m)
         {
-            memberExpression = property.Body as MemberExpression;
+            memberExpression = m;
         }
 
         if (memberExpression?.Member is PropertyInfo propertyInfo)
@@ -221,7 +235,7 @@ public static partial class ObjectHelper
             return propertyInfo;
         }
 
-        throw new ArgumentException("The expression must refer to a valid class property.");
+        throw new ArgumentException("The expression must refer to a valid class property.", nameof(property));
     }
 
     /// <summary>
@@ -240,7 +254,8 @@ public static partial class ObjectHelper
     {
         if (str == null) return Array.Empty<byte>();
 
-        return (encoding ?? Encoding.Default).GetBytes(str);
+        // Default to UTF8 to have consistent behaviour across platforms
+        return (encoding ?? Encoding.UTF8).GetBytes(str);
     }
 
     /// <summary>

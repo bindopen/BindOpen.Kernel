@@ -15,20 +15,26 @@ public static class FileHelper
     /// </summary>
     public static bool CreateDirectory(string folderPath, IBdoLog log = null)
     {
-        var exists = false;
+        if (string.IsNullOrWhiteSpace(folderPath))
+        {
+            return false;
+        }
+
         try
         {
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
             }
-            exists = true;
+
+            return true;
         }
-        catch (IOException ex)
+        catch (Exception ex)
         {
+            // Log and return false if creation fails
             log?.AddException(ex);
+            return false;
         }
-        return exists;
     }
 
     /// <summary>
@@ -36,7 +42,12 @@ public static class FileHelper
     /// </summary>
     public static string ToPath(this string st)
     {
-        return st?.Replace('\\', Path.DirectorySeparatorChar);
+        if (string.IsNullOrEmpty(st))
+            return st;
+
+        // Normalize both forward and backward slashes to the platform directory separator
+        return st.Replace('\\', Path.DirectorySeparatorChar)
+                 .Replace('/', Path.DirectorySeparatorChar);
     }
 
     /// <summary>
@@ -99,35 +110,51 @@ public static class FileHelper
         int expirationDayNumber,
         string fileFormat)
     {
-        int i = 0;
-        if (expirationDayNumber > -1 && Directory.Exists(folderPath))
+        // expirationDayNumber == -1 -> no expiration
+        if (string.IsNullOrWhiteSpace(folderPath) || expirationDayNumber < 0 || !Directory.Exists(folderPath))
         {
-            if (fileFormat == null)
-            {
-                fileFormat = "*.*";
-            }
-            fileFormat = fileFormat.Replace("$(guid)", StringHelper.__Star, StringComparison.OrdinalIgnoreCase)
-                .Replace("$(timestamp)", StringHelper.__Star, StringComparison.OrdinalIgnoreCase);
+            return 0;
+        }
 
+        if (string.IsNullOrEmpty(fileFormat))
+        {
+            fileFormat = "*.*";
+        }
+
+        // Replace known tokens with simple wildcard
+        fileFormat = fileFormat.Replace("$(guid)", "*", StringComparison.OrdinalIgnoreCase)
+                               .Replace("$(timestamp)", "*", StringComparison.OrdinalIgnoreCase);
+
+        int deleted = 0;
+        try
+        {
             string[] files = Directory.GetFiles(folderPath, fileFormat);
-
+            var threshold = DateTime.Now.AddDays(-expirationDayNumber);
             foreach (string file in files)
             {
-                FileInfo fileInfo = new FileInfo(file);
-                if (fileInfo.LastAccessTime < DateTime.Now.AddDays(-expirationDayNumber))
+                try
                 {
-                    try
+                    var fileInfo = new FileInfo(file);
+                    if (!fileInfo.Exists)
+                        continue;
+
+                    if (fileInfo.LastAccessTime < threshold)
                     {
                         fileInfo.Delete();
-                        i++;
+                        deleted++;
                     }
-                    catch
-                    {
-                    }
+                }
+                catch
+                {
+                    // ignore per-file errors and continue
                 }
             }
         }
+        catch
+        {
+            // ignore directory enumeration errors
+        }
 
-        return i;
+        return deleted;
     }
 }

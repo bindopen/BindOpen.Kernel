@@ -14,7 +14,7 @@ public static partial class StringHelper
     /// <returns>Returns the quoted string.</returns>
     public static bool IsQuoted(this string st, char quote = '\'')
     {
-        return !string.IsNullOrEmpty(st) && st.StartsWith(quote) && st.EndsWith(quote);
+        return !string.IsNullOrEmpty(st) && st.StartsWith(quote.ToString()) && st.EndsWith(quote.ToString());
     }
 
     /// <summary>
@@ -37,11 +37,11 @@ public static partial class StringHelper
     public static string ToUnquoted(this string st, char quote = '\'')
     {
         if (st == null) return null;
-
-        if (st.Length > 2 && st.StartsWith(quote) && st.EndsWith(quote))
+        if (st.Length >= 2 && st.StartsWith(quote.ToString()) && st.EndsWith(quote.ToString()))
         {
             string quotes = string.Concat(quote, quote);
-            st = st[1..^1].Replace(quotes, quote.ToString());
+            var inner = st.Length > 2 ? st.Substring(1, st.Length - 2) : string.Empty;
+            st = inner.Replace(quotes, quote.ToString());
         }
         return st;
     }
@@ -109,37 +109,68 @@ public static partial class StringHelper
     /// <returns>The formated string.</returns>
     public static int IndexOfLastString(this string st, string stv, int startIndex)
     {
-        int index = startIndex;
-        bool b = false;
-        while (index >= 0 && !b)
+        if (string.IsNullOrEmpty(st) || string.IsNullOrEmpty(stv)) return -1;
+
+        int index = Math.Min(startIndex, st.Length - 1);
+
+        while (index >= 0)
         {
-            if (st.Substring(index, 1) == "\"" && stv != "\"")
+            char c = st[index];
+
+            // Skip double-quoted sections when searching for other tokens
+            if (c == '"' && stv != "\"")
             {
-                index = st.IndexOfLastString("\"", index - 1) - 1;
+                int prev = st.LastIndexOf('"', index - 1);
+                if (prev < 0) return -1;
+                index = prev - 1;
+                continue;
             }
-            if (st.Substring(index, 1) == "'" && stv != "'")
+
+            // Skip single-quoted sections when searching for other tokens
+            if (c == '\'' && stv != "'")
             {
-                index = st.IndexOfLastString("'", index - 1) - 1;
+                int prev = st.LastIndexOf('\'', index - 1);
+                if (prev < 0) return -1;
+                index = prev - 1;
+                continue;
             }
-            else if (st.Substring(index, 1) == ")" && stv == "(")
+
+            // Handle simple bracket/parenthesis backward search
+            if (c == ')' && stv == "(")
             {
-                index = st.IndexOfLastString("(", index - 1) - 1;
+                int prev = st.LastIndexOf('(', index - 1);
+                if (prev < 0) return -1;
+                index = prev - 1;
+                continue;
             }
-            else if (st.Substring(index, 1) == "}" && stv == "{")
+
+            if (c == '}' && stv == "{")
             {
-                index = st.IndexOfLastString("{", index - 1) - 1;
+                int prev = st.LastIndexOf('{', index - 1);
+                if (prev < 0) return -1;
+                index = prev - 1;
+                continue;
             }
-            else if (st.Substring(index, 1) == stv)
+
+            // Match single-char token
+            if (stv.Length == 1)
             {
-                b = true;
+                if (c == stv[0]) return index;
             }
             else
             {
-                index--;
+                int start = index - stv.Length + 1;
+                if (start >= 0)
+                {
+                    if (string.Equals(st.Substring(start, stv.Length), stv, StringComparison.Ordinal))
+                        return start;
+                }
             }
+
+            index--;
         }
 
-        return index;
+        return -1;
     }
 
     /// <summary>
@@ -173,49 +204,64 @@ public static partial class StringHelper
         {
             return -1;
         }
-
-        int index = startIndex;
-        bool b = false;
+        int index = Math.Max(0, startIndex);
         int st_l = st.Length;
         int stv_l = stv.Length;
-        while (index < st_l && index > -1 && !b)
+
+        while (index < st_l)
         {
-            if (st[index] == quote && (stv[0] != quote && st[index] == quote))
+            char c = st[index];
+
+            // Handle quoted sections
+            if (quote != '\0' && c == quote && stv.Length > 0 && stv[0] != quote)
             {
-                if (index < stv_l - 1 && st[index..(index + 2)] == string.Concat(quote, quote))
+                // handle doubled quotes ""
+                if (index + 1 < st_l && st[index + 1] == quote)
                 {
                     index += 2;
+                    continue;
                 }
-                else
-                {
-                    index = st.IndexOfNextString(quote.ToString(), index + 1);
-                    index = index == -1 ? -1 : (index + 1);
-                }
+
+                int next = st.IndexOf(quote, index + 1);
+                if (next == -1) return -1;
+                index = next + 1;
+                continue;
             }
-            else if (st[index] == '(' && stv == ")")
+
+            // Parenthesis and braces handling
+            if (c == '(' && stv == ")")
             {
-                index = st.IndexOfNextString(")", index + 1, quote: quote);
-                index = index == -1 ? -1 : (index + 1);
+                int next = st.IndexOf(')', index + 1);
+                if (next == -1) return -1;
+                index = next + 1;
+                continue;
             }
-            else if (stv == "}}" && index < stv_l - 1 && st[index..(index + 2)] == "{{")
+
+            if (stv == "}}" && index + 1 < st_l && st[index] == '{' && st[index + 1] == '{')
             {
-                index = st.IndexOfNextString("}}", index + 2, quote: quote);
-                index = index == -1 ? -1 : (index + 2);
+                int next = st.IndexOf("}}", index + 2, StringComparison.Ordinal);
+                if (next == -1) return -1;
+                index = next + 2;
+                continue;
             }
-            else if (stv == "}" && st[index] == '{')
+
+            if (stv == "}" && c == '{')
             {
-                index = st.IndexOfNextString("}", index + 1, quote: quote);
-                index = index == -1 ? -1 : (index + 1);
+                int next = st.IndexOf('}', index + 1);
+                if (next == -1) return -1;
+                index = next + 1;
+                continue;
             }
-            else if (index <= st_l - stv_l && string.Equals(st.Substring(index, stv_l), stv, stringComparison))
+
+            // Check for match at current position
+            if (index <= st_l - stv_l && string.Equals(st.Substring(index, stv_l), stv, stringComparison))
             {
-                b = true;
+                return index;
             }
-            else
-            {
-                index++;
-            }
+
+            index++;
         }
-        return index >= st_l ? -1 : index;
+
+        return -1;
     }
 }

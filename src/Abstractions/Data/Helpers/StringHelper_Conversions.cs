@@ -17,7 +17,7 @@ public static partial class StringHelper
     /// <returns>Returns the date string of this instance.</returns>
     public static string ToString(this DateTime date)
     {
-        return date.ToString(__DateTimeFormat);
+        return date.ToString(__DateTimeFormat, CultureInfo.InvariantCulture);
     }
 
     /// <summary>
@@ -27,7 +27,7 @@ public static partial class StringHelper
     /// <returns>Returns the date string of this instance.</returns>
     public static string ToString(this DateTime? date)
     {
-        return date?.ToString(__DateTimeFormat);
+        return date?.ToString(__DateTimeFormat, CultureInfo.InvariantCulture);
     }
 
     /// <summary>
@@ -39,10 +39,17 @@ public static partial class StringHelper
     /// <returns>Returns the specified string shorten.</returns>
     public static string ToShortString(this string st, int charNumber, string addedString = "...")
     {
-        string shortString = string.Empty;
-        if (st != null)
-            shortString = st.Length > charNumber ? st.ToSubstring(0, charNumber - 4) + addedString : st;
-        return shortString;
+        if (string.IsNullOrEmpty(st) || charNumber <= 0) return string.Empty;
+
+        if (st.Length <= charNumber) return st;
+
+        int suffixLength = addedString?.Length ?? 0;
+        int take = Math.Max(0, charNumber - suffixLength);
+
+        if (take == 0) return addedString ?? string.Empty;
+
+        // ToSubstring expects endIndex inclusive
+        return st.ToSubstring(0, take - 1) + (addedString ?? string.Empty);
     }
 
     /// <summary>
@@ -53,6 +60,7 @@ public static partial class StringHelper
     /// <remarks>The normalized string is a string in which only the alphanumeric characters and _ are allowed.</remarks>
     public static string ToNormalizedName(this string st)
     {
+        if (st == null) return null;
         return Regex.Replace(st, "[^0-9a-zA-Z_]", "_");
     }
 
@@ -64,6 +72,7 @@ public static partial class StringHelper
     /// <remarks>The normalized string is a string in which only the alphanumeric characters and _ are allowed.</remarks>
     public static string ToTitleCasedName(string st)
     {
+        if (string.IsNullOrEmpty(st)) return st;
         return Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(st);
     }
 
@@ -84,77 +93,65 @@ public static partial class StringHelper
         switch (valueType)
         {
             case DataValueTypes.Any:
-                object object1 = null;
-
-                if (st != null)
-                {
-                    object1 = st.ToObject(DataValueTypes.Integer);
-                    if (object1 == null)
-                    {
-                        object1 = st.ToObject(DataValueTypes.Long);
-                        if (object1 == null)
-                        {
-                            object1 = st.ToObject(DataValueTypes.ULong);
-                            if (object1 == null)
-                            {
-                                object1 = st.ToObject(DataValueTypes.Number);
-                                if (object1 == null)
-                                {
-                                    object1 = st.ToObject(DataValueTypes.Date);
-                                    if (object1 == null)
-                                    {
-                                        object1 = st.ToObject(DataValueTypes.Time);
-                                        if (object1 == null)
-                                        {
-                                            object1 = st;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                return object1;
+                // Try in order: integer, long, ulong, number, date, time, boolean, fallback to string
+                if (int.TryParse(st, NumberStyles.Integer, CultureInfo.InvariantCulture, out var ai))
+                    return ai;
+                if (long.TryParse(st, NumberStyles.Integer, CultureInfo.InvariantCulture, out var al))
+                    return al;
+                if (ulong.TryParse(st, NumberStyles.Integer, CultureInfo.InvariantCulture, out var aul))
+                    return aul;
+                if (double.TryParse(st, NumberStyles.Any, CultureInfo.InvariantCulture, out var ad))
+                    return ad;
+                if (DateTime.TryParseExact(st, new[] { __DateTimeFormat, __DateTimeFormatShort }, CultureInfo.InvariantCulture, DateTimeStyles.None, out var dt))
+                    return dt;
+                if (TimeSpan.TryParseExact(st, __TimeFormat, CultureInfo.InvariantCulture, out var ts))
+                    return ts;
+                if (bool.TryParse(st, out var ab))
+                    return ab;
+                return st;
             case DataValueTypes.Date:
                 if (string.IsNullOrEmpty(textFormat))
                 {
                     textFormat = st?.Trim().Length == 10 ? __DateTimeFormatShort : __DateTimeFormat;
                 }
-                DateTime dateTime;
-                if (!DateTime.TryParseExact(st, textFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime))
-                    return null;
-                return new DateTime?(dateTime);
+                if (DateTime.TryParseExact(st, textFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var dateTime))
+                    return dateTime;
+                return null;
             case DataValueTypes.Time:
                 if (string.IsNullOrEmpty(textFormat)) textFormat = __TimeFormat;
-                TimeSpan timeSpan;
-                if (!TimeSpan.TryParseExact(st, textFormat, CultureInfo.InvariantCulture, TimeSpanStyles.None, out timeSpan))
-                    return null;
-                return new TimeSpan?(timeSpan);
+                if (TimeSpan.TryParseExact(st, textFormat, CultureInfo.InvariantCulture, out var timeSpan))
+                    return timeSpan;
+                return null;
             case DataValueTypes.Boolean:
-                return st.Equals("true", StringComparison.OrdinalIgnoreCase);
+                if (bool.TryParse(st, out var boolVal)) return boolVal;
+                if (st == "1") return true;
+                if (st == "0") return false;
+                return false;
             case DataValueTypes.Number:
-                double aDouble;
-                if (!double.TryParse(st, NumberStyles.Any, new NumberFormatInfo() { NumberDecimalSeparator = "." }, out aDouble))
-                    return null;
-                return new double?(aDouble);
+                if (double.TryParse(st, NumberStyles.Any, CultureInfo.InvariantCulture, out var aDouble))
+                    return aDouble;
+                return null;
             case DataValueTypes.Integer:
-                int aInt;
-                if (!int.TryParse(st, out aInt))
-                    return null;
-                return new int?(aInt);
+                if (int.TryParse(st, NumberStyles.Integer, CultureInfo.InvariantCulture, out var aInt))
+                    return aInt;
+                return null;
             case DataValueTypes.Long:
-                long aLong;
-                if (!long.TryParse(st, out aLong))
-                    return null;
-                return new long?(aLong);
+                if (long.TryParse(st, NumberStyles.Integer, CultureInfo.InvariantCulture, out var aLong))
+                    return aLong;
+                return null;
             case DataValueTypes.ULong:
-                ulong aULong;
-                if (!ulong.TryParse(st, out aULong))
-                    return null;
-                return new ulong?(aULong);
+                if (ulong.TryParse(st, NumberStyles.Integer, CultureInfo.InvariantCulture, out var aULong))
+                    return aULong;
+                return null;
             case DataValueTypes.Binary:
-                byte[] aByteArray = Convert.FromBase64String(st);
-                return aByteArray;
+                try
+                {
+                    return Convert.FromBase64String(st);
+                }
+                catch
+                {
+                    return null;
+                }
             default:
                 return st;
         }

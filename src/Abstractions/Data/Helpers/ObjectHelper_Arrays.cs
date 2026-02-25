@@ -87,7 +87,7 @@ public static partial class ObjectHelper
     /// <param key="type"></param>
     /// <returns></returns>
     public static object[] ToObjectArray(this object obj)
-        => obj.ToObjectList()?.ToArray();
+        => obj.ToObjectList()?.ToArray() ?? Array.Empty<object>();
 
     /// <summary>
     /// Converts an object to a list of objects. If the object is not a list, returns a list containing it.
@@ -96,9 +96,25 @@ public static partial class ObjectHelper
     {
         if (obj == null) return null;
 
-        if (obj.IsList())
+        // If already an IList<object>, return it directly
+        if (obj is IList<object> listObj)
+            return listObj;
+
+        // If object is a collection (but not a string/byte[]/IBdoMetaSet), enumerate and cast
+        if (obj.IsList() && obj is IEnumerable enumerable)
         {
-            return [.. (obj as IEnumerable).Cast<object>()];
+            try
+            {
+                return enumerable.Cast<object>().ToList();
+            }
+            catch
+            {
+                // Fallback: build list manually
+                var result = new List<object>();
+                foreach (var item in enumerable)
+                    result.Add(item);
+                return result;
+            }
         }
 
         return new List<object> { obj };

@@ -23,7 +23,11 @@ public static partial class StringHelper
     /// <summary>
     /// The string that is returned when the instance is not found.
     /// </summary>
-    public static readonly string __DateTimeFormat = @"d";
+    /// <summary>
+    /// The default DateTime format used for serialization.
+    /// Uses the round-trip "o" format (ISO 8601) to ensure invariant, lossless representation.
+    /// </summary>
+    public static readonly string __DateTimeFormat = "o";
 
     /// <summary>
     /// The string that is returned when the instance is not found.

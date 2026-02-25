@@ -40,7 +40,7 @@ public static class MetaSetConverter
 
         if (poco == null) return dto;
 
-        dto.ClassReference = poco.DataType.IsSpecified() ? poco.DataType.ToDto() : null;
+        dto.ClassReference = poco.DataType?.IsSpecified() == true ? poco.DataType.ToDto() : null;
         dto.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
         dto.Index = poco.Index;
         dto.Identifier = poco.Identifier;
@@ -87,12 +87,13 @@ public static class MetaSetConverter
 
         if (dto == null) return poco;
 
-        poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco())
-        {
-            DefinitionUniqueName = dto.DefinitionUniqueName,
-            Identifier = dto.Identifier,
-            ValueType = dto.ValueType
-        };
+        poco.DataType = dto.ClassReference == null ? null :
+            new BdoDataType(dto.ClassReference?.ToPoco())
+            {
+                DefinitionUniqueName = dto.DefinitionUniqueName,
+                Identifier = dto.Identifier,
+                ValueType = dto.ValueType
+            };
         poco.Index = dto.Index;
         poco.Identifier = dto.Identifier;
         poco.Name = dto.Name;
