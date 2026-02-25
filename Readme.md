@@ -148,7 +148,7 @@ var metaSet = BdoData.NewNode("test-io").With(("host", "host-test"), ("address",
 metaSet.ToDto().SaveXml("output.xml");
 
 // Deserialization
-var loadedSet = JsonHelper.LoadJson<MetaNodeDto>("output.json").ToPoco();
+var loadedSet = JsonHelper.LoadJson<MetaSetDto>("output.json").ToPoco();
 ```
 
 ---

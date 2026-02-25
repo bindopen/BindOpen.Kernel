@@ -8,7 +8,7 @@ namespace BindOpen.Data.Meta
     /// <summary>
     /// This class represents a Db converter of meta sets.
     /// </summary>
-    public static class MetaNodeDbConverter
+    public static class MetaSetDbConverter
     {
         /// <summary>
         /// Converts an expression poco into a DTO one.

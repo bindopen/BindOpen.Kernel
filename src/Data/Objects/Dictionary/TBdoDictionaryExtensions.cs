@@ -7,13 +7,13 @@ namespace BindOpen.Data.Meta
     /// </summary>
     public static partial class TBdoDictionaryExtensions
     {
-        public static TMetaNode ToMetaNode<TMetaNode, TItem>(
+        public static TMetaSet ToMetaSet<TMetaSet, TItem>(
             this ITBdoDictionary<TItem> dictionary)
-            where TMetaNode : class, IBdoMetaSet, new()
+            where TMetaSet : class, IBdoMetaSet, new()
         {
             if (dictionary == null) return default;
 
-            var set = BdoData.NewSet<TMetaNode>();
+            var set = BdoData.NewSet<TMetaSet>();
 
             foreach (var item in dictionary)
             {
@@ -23,9 +23,9 @@ namespace BindOpen.Data.Meta
             return set;
         }
 
-        public static IBdoMetaSet ToMetaNode<TItem>(
+        public static IBdoMetaSet ToMetaSet<TItem>(
             this ITBdoDictionary<TItem> dictionary)
-            => ToMetaNode<BdoMetaSet, TItem>(dictionary);
+            => ToMetaSet<BdoMetaSet, TItem>(dictionary);
 
         public static string ToHtml<TItem>(
             this ITBdoDictionary<TItem> dictionary,

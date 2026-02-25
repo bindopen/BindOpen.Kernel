@@ -119,7 +119,7 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static IBdoMetaSet AsMetaNode(
+        public static IBdoMetaSet AsMetaSet(
             this IBdoMetaData meta)
             => meta as IBdoMetaSet;
 

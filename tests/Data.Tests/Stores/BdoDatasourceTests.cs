@@ -18,7 +18,7 @@ public class BdoDatasourceTests
     /// <summary>
     /// The meta node to consider.
     /// </summary>
-    public IBdoMetaSet _metaNode;
+    public IBdoMetaSet _metaSet;
 
     /// <summary>
     /// Initializes a mock metadata node representing connector settings.
@@ -29,7 +29,7 @@ public class BdoDatasourceTests
         var f = new Faker();
 
         // We simulate a connector configuration (e.g., SMTP or Database)
-        _metaNode = BdoData.NewObject("testA")
+        _metaSet = BdoData.NewObject("testA")
             .WithId()
             .WithDataType(BdoExtensionKinds.Connector, "bindopen.tests$testConnector")
             .With(
@@ -50,8 +50,8 @@ public class BdoDatasourceTests
     {
         // 1. Initialize the datasource with fluent API
         var source = BdoData.New<BdoDatasource>()
-            .WithName(_metaNode.Name)
-            .WithDataType(_metaNode.DataType)
+            .WithName(_metaSet.Name)
+            .WithDataType(_metaSet.DataType)
             .WithConnectionString("__connectionString__")
             .WithDatasourceKind(DatasourceKind.EmailServer);
 
@@ -59,8 +59,8 @@ public class BdoDatasourceTests
         source.UpdateDetail(null);
 
         // 3. Validations
-        Assert.That(source.DataType, Is.EqualTo(_metaNode.DataType), "The datasource DataType does not match the source meta-node.");
-        Assert.That(source.Name, Is.EqualTo(_metaNode.Name), "The datasource Name was not correctly assigned.");
+        Assert.That(source.DataType, Is.EqualTo(_metaSet.DataType), "The datasource DataType does not match the source meta-node.");
+        Assert.That(source.Name, Is.EqualTo(_metaSet.Name), "The datasource Name was not correctly assigned.");
 
         // Check if the internal Detail (metadata set) was automatically populated
         Assert.That(source.Detail?.GetData<string>("connectionString"), Is.EqualTo("__connectionString__"),

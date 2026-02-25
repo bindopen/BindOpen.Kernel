@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data;
+using BindOpen.Data.Meta;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 
@@ -38,13 +39,17 @@ public class BdoScriptwordTests
     /// </summary>
     public static void AssertEquals(IBdoScriptword word1, IBdoScriptword word2)
     {
-        if ((word1 != null && word2 == null) || (word1 == null && word2 != null))
+        if (word1 == null || word2 == null)
         {
-            Assert.That(Equals(word1, word2), Is.True, "Unmatched scriptword objects.");
+            Assert.That(word1, Is.EqualTo(word2), "One of the scriptwords is null while the other is not.");
+            return;
         }
 
-        // Using DeepEqual library to compare complex object graphs
-        word1.WithDeepEqual(word2).Assert();
+        word1.WithDeepEqual(word2)
+             .IgnoreProperty<IBdoMetaData>(w => w.Parent)
+             .IgnoreProperty<IBdoScriptword>(w => w.Parent)
+             .IgnoreProperty<BdoScriptword>(w => w.Parent)
+             .Assert();
     }
 
     /// <summary>

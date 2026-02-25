@@ -64,9 +64,9 @@ namespace BindOpen.Data.Meta
             {
                 scalarDto.UpdateFromPoco(scalar);
             }
-            else if (dto is MetaSetDto metaNodeDto && poco is IBdoMetaSet set)
+            else if (dto is MetaSetDto metaSetDto && poco is IBdoMetaSet set)
             {
-                metaNodeDto.UpdateFromPoco(set);
+                metaSetDto.UpdateFromPoco(set);
             }
 
             return dto;

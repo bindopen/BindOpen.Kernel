@@ -49,7 +49,7 @@ public static class BdoEntityFaker
                 BdoData.NewScalar("intValue", data.intValue as int?),
                 BdoData.NewScalar("stringValue", data.stringValue as string),
 
-                // Demonstration of a nested MetaNode for grouped properties
+                // Demonstration of a nested MetaSet for grouped properties
                 BdoData.NewSet("inputs",
                     BdoData.NewScalar("bool1", data.boolValue as bool?),
                     BdoData.NewScalar("int1", (int)data.intValue))

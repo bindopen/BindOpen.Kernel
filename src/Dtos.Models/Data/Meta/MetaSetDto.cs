@@ -44,7 +44,7 @@ namespace BindOpen.Data.Meta
         #region Constructors
 
         /// <summary>
-        /// Instantiates a new instance of the MetaNodeDto class.
+        /// Instantiates a new instance of the MetaSetDto class.
         /// </summary>
         public MetaSetDto() : base()
         {

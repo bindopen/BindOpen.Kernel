@@ -30,17 +30,17 @@ public class BdoScopingDatasourceTests
     [Test, Order(1)]
     public void Create1Test()
     {
-        // 1. Create a BdoDatasource wrapper from a raw MetaNode.
-        // This verifies that the scoping engine can map a MetaNode to the concrete BdoDatasource class.
-        var source = ScopingTestData.Scope.NewMetaWrapper<BdoDatasource>(_dataTests._metaNode)
-            .WithName(_dataTests._metaNode.Name)
-            .WithDataType(_dataTests._metaNode.DataType);
+        // 1. Create a BdoDatasource wrapper from a raw MetaSet.
+        // This verifies that the scoping engine can map a MetaSet to the concrete BdoDatasource class.
+        var source = ScopingTestData.Scope.NewMetaWrapper<BdoDatasource>(_dataTests._metaSet)
+            .WithName(_dataTests._metaSet.Name)
+            .WithDataType(_dataTests._metaSet.DataType);
 
         // 2. Verify identity mapping
-        Assert.That(source.DataType, Is.EqualTo(_dataTests._metaNode.DataType),
+        Assert.That(source.DataType, Is.EqualTo(_dataTests._metaSet.DataType),
             "The wrapped datasource failed to maintain the original DataType.");
 
-        Assert.That(source.Name, Is.EqualTo(_dataTests._metaNode.Name),
+        Assert.That(source.Name, Is.EqualTo(_dataTests._metaSet.Name),
             "The wrapped datasource failed to maintain the original Name.");
     }
 }

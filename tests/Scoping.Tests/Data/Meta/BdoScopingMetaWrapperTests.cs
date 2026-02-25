@@ -97,7 +97,7 @@ public class BdoScopingMetaWrapperTests
                         BdoData.NewScalar("day", 120),
                         BdoData.NewScalar("month", 130))));
 
-        Assert.That(obj?.Dico?.Count, Is.EqualTo(2), "Mapping of MetaNode to Dictionary failed.");
+        Assert.That(obj?.Dico?.Count, Is.EqualTo(2), "Mapping of MetaSet to Dictionary failed.");
     }
 
     /// <summary>
