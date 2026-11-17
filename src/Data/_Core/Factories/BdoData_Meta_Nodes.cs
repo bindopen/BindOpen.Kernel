@@ -112,7 +112,7 @@ namespace BindOpen.Data
         {
             var list = NewSet<T>();
             list
-                .WithItems(metas)
+                .With(metas)
                 .WithName(name);
 
             return list;

@@ -14,10 +14,7 @@
             string name)
             where T : INamed
         {
-            if (obj != null)
-            {
-                obj.Name = name;
-            }
+            obj?.Name = name;
 
             return obj;
         }

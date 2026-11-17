@@ -1,5 +1,4 @@
-﻿using BindOpen.Data.Schema.Definition;
-using System.Linq;
+﻿using System.Linq;
 
 namespace BindOpen.Data.Schema;
 

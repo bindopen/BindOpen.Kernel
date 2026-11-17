@@ -91,9 +91,9 @@ namespace BindOpen.Data
             params IBdoSchema[] metas)
             where T : class, IBdoSchemaSet, new()
         {
-            var list = NewSchemaSet<T>()
-                .WithName(name)
-                .WithItems(metas);
+            var list = NewSchemaSet<T>().WithName(name);
+
+            list.WithItems(metas);
 
             return list;
         }
