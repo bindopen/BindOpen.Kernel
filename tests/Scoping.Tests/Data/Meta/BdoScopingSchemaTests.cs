@@ -120,8 +120,6 @@ public class BdoScopingSchemaTests
     [Test, Order(8)]
     public void CheckWithoutSpecTest()
     {
-        var validator = ScopingTestData.Scope.CreateValidator();
-
         // 1. Node without schema should pass basic checks
         var meta1 = BdoData.NewSet("meta-test")
             .With(
@@ -129,9 +127,12 @@ public class BdoScopingSchemaTests
                 BdoData.NewScalar("label", true),
                 BdoData.NewScalar("title", "myTitle"));
 
-        Assert.That(meta1.Check(ScopingTestData.Scope), "Standard node check failed.");
+        Assert.That(ScopingTestData.Scope.Check(meta1), "Standard node check failed.");
 
         // 2. Conflict: Boolean data provided for an Integer schema
+
+        var validator = ScopingTestData.Scope.CreateValidator();
+
         var meta2 = BdoData.NewSet("meta-test")
             .With(
                 BdoData.NewScalar("auto", true)

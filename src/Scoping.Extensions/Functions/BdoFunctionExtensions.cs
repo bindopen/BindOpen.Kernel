@@ -173,7 +173,7 @@ namespace BindOpen.Scoping
                             }
                         }
 
-                        result = definition.RuntimeFunction.DynamicInvoke(objs.ToArray());
+                        result = definition.RuntimeFunction.DynamicInvoke([.. objs]);
                     }
                 }
                 catch (ApplicationException ex)

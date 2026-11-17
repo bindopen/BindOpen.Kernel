@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Objects.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -88,7 +89,7 @@ namespace BindOpen.Data.Meta
         /// <summary>
         /// The index of this instance.
         /// </summary>
-        public int? Index { get; set; }
+        public new int? Index { get; set; }
 
         #endregion
 
@@ -142,7 +143,7 @@ namespace BindOpen.Data.Meta
 
         #region ITParent
 
-        public IBdoConfiguration Parent { get; set; }
+        public new IBdoConfiguration Parent { get; set; }
 
         protected ITBdoSet<IBdoConfiguration> _children = null;
 

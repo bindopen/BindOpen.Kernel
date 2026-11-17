@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Objects.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -141,10 +142,17 @@ namespace BindOpen.Data.Meta
         public int Count
             => _propertySet?.Count ?? 0;
 
-        public IBdoMetaData Insert(IBdoMetaData item)
+        public virtual IBdoMetaData Insert(IBdoMetaData item)
         {
             _propertySet ??= BdoData.NewSet();
-            return _propertySet.Insert(item);
+            _propertySet.Insert(item);
+
+            if (item != null)
+            {
+                item.Parent = this;
+            }
+
+            return item;
         }
 
         public override void Clear()

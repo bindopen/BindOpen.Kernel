@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Objects.Interfaces;
 using Bogus;
 using FluentAssertions;
 using NUnit.Framework;

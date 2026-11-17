@@ -2,6 +2,7 @@
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
+using BindOpen.Data.Objects.Interfaces;
 using BindOpen.Logging;
 using System;
 
@@ -36,7 +37,6 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
     {
     }
 
-
     /// <summary>
     /// Instantiates a new instance of the BdoScriptInterpreter class.
     /// </summary>
@@ -47,7 +47,6 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
     }
 
     #endregion
-
 
     // ------------------------------------------
     // EVALUATION
@@ -88,19 +87,21 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
                         if (scriptwordBeginIndex > -1 && index > -1 && index < resultScript.Length)
                         {
                             var subScript = resultScript[(scriptwordBeginIndex + 2)..index];
-                            subScript = Evaluate(
+                            var subResult = Evaluate(
                                 subScript.ToExpression(BdoExpressionKind.Script),
                                 varSet,
-                                log)?.ToString();
+                                log);
 
+                            string replacement = subResult?.ToString() ?? string.Empty;
                             resultScript = resultScript[..scriptwordBeginIndex]
-                                + subScript
-                                + resultScript[(index + 2)..^0];
-                            scriptwordBeginIndex += (subScript?.Length ?? 0) + 1;
+                                + replacement
+                                + resultScript[(index + 2)..];
+
+                            scriptwordBeginIndex = resultScript.IndexOfNextString("{{", scriptwordBeginIndex + replacement.Length);
                         }
                         else
                         {
-                            scriptwordBeginIndex = index;
+                            scriptwordBeginIndex = -1;
                         }
                     }
 
@@ -110,10 +111,7 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
             case BdoExpressionKind.Script:
                 if (!string.IsNullOrEmpty(script))
                 {
-                    // we parse the text to interpretate
                     index = 0;
-
-                    // we get the next function or variable
                     var childLog = log?.NewLog();
                     var result = Evaluate(script, ref index, 0, varSet, childLog);
 
@@ -122,8 +120,7 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
                         log?.AddChild(
                             childLog,
                             title: "Error occured while interpreting script",
-                            description: "Error while interpreting the script '" + script + "'. " +
-                                "The result is '" + result?.ToString() + "'.",
+                            description: $"Error while interpreting the script '{script}'. The result is '{result}'.",
                             resultCode: "SCRIPTINTERPRETATIONERROR");
                     }
 
@@ -137,11 +134,21 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
         return exp?.Text;
     }
 
+    /// <summary>
+    /// Evaluates the specified script word.
+    /// </summary>
+    /// <param name="word">The script word to evaluate.</param>
+    /// <param name="varSet">The variable set to consider for resolution.</param>
+    /// <param name="log">The log to populate with execution events.</param>
+    /// <param name="root">Indicates whether to start evaluation from the root of the word chain.</param>
+    /// <returns>Returns the result of the evaluation.</returns>
     public object Evaluate(
         IBdoScriptword word,
         IBdoMetaSet varSet = null,
         IBdoLog log = null,
         bool root = true)
+        // Redirects to the private recursive method, 
+        // initializing 'child' to true and 'parent' to null.
         => Evaluate(word, varSet, log, root, true, null);
 
     private object Evaluate(
@@ -152,44 +159,67 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
         bool child,
         IBdoScriptword parent)
     {
-        if (root)
-        {
-            word = word?.Root() as IBdoScriptword;
-        }
+        if (word == null) return null;
 
-        if (word != null)
-        {
-            var cloned = BdoScript.NewWord(word.TokenKind, word.Name)
-                .WithDataType(BdoExtensionKinds.Scriptword, word.DataType?.DefinitionUniqueName)
-                .WithParent(parent ?? word.Parent as IBdoScriptword);
+        // 1. Navigation Logic
+        // Only climb to the root on the very first call. 
+        // This prevents infinite recursion when processing children or parameters.
+        IBdoScriptword currentWord = root ? (word.Root() as IBdoScriptword) : word;
 
-            switch (word.TokenKind)
+        if (currentWord != null)
+        {
+            // 2. Execution Context (Cloning)
+            // We create a runtime instance. The 'parent' here is the evaluation 
+            // result of the previous word in a fluent chain.
+            var cloned = BdoScript.NewWord(currentWord.TokenKind, currentWord.Name)
+                .WithDataType(BdoExtensionKinds.Scriptword, currentWord.DataType?.DefinitionUniqueName)
+                .WithParent(parent ?? currentWord.Parent as IBdoScriptword);
+
+            // 3. Parameter Evaluation
+            if (currentWord.TokenKind == ScriptTokenKinds.Function)
             {
-                case ScriptTokenKinds.Function:
-                    if (word.Count > 0)
+                foreach (var paramValue in currentWord)
+                {
+                    if (paramValue is IBdoScriptword wordParam)
                     {
-                        foreach (var paramValue in word)
-                        {
-                            if (paramValue is IBdoScriptword wordParam)
-                            {
-                                var obj = Evaluate(wordParam, varSet, log);
-                                cloned.InsertData(obj);
-                            }
-                            else
-                            {
-                                cloned.InsertData(paramValue);
-                            }
-                        }
+                        // Evaluate the parameter script. 
+                        // root: false because we want to start exactly at this wordParam.
+                        // child: true to ensure the entire nested chain is evaluated.
+                        var evaluatedParam = Evaluate(
+                            wordParam,
+                            varSet,
+                            log,
+                            root: false,
+                            child: true,
+                            parent: null);
+
+                        cloned.InsertData(evaluatedParam);
                     }
-                    break;
+                    else
+                    {
+                        // Literal values (strings, numbers, etc.)
+                        cloned.InsertData(paramValue);
+                    }
+                }
             }
 
+            // 4. Word Resolution
+            // EvaluateScriptword is the actual engine call (e.g., executing the C# method).
             var data = EvaluateScriptword(cloned, varSet, log);
             cloned.SetData(data);
 
-            if (child && word.Child != null)
+            // 5. Fluent Chain Continuation ($obj.func())
+            if (child && currentWord.Child != null)
             {
-                return Evaluate(word.Child, varSet, log, false, child, cloned);
+                // IMPORTANT: We pass 'cloned' as the parent for the next evaluation.
+                // This allows the next word to access the current 'data' via $this.
+                return Evaluate(
+                    currentWord.Child,
+                    varSet,
+                    log,
+                    root: false,
+                    child: child,
+                    parent: cloned);
             }
 
             return data;
@@ -198,19 +228,32 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
         return null;
     }
 
+    /// <summary>
+    /// Evaluates the specified data reference.
+    /// </summary>
+    /// <param name="reference">The data reference to evaluate.</param>
+    /// <param name="varSet">The variable set to consider for resolution.</param>
+    /// <param name="log">The log to populate with execution events.</param>
+    /// <returns>Returns the evaluated value based on the reference kind.</returns>
     public object Evaluate(
         IBdoReference reference,
         IBdoMetaSet varSet = null,
         IBdoLog log = null)
     {
+        // Check the kind of reference to determine the resolution strategy
         switch (reference?.Kind)
         {
+            // The reference is a script or an auto-expression
             case BdoReferenceKind.Expression:
                 return Evaluate(reference?.Expression, varSet, log);
+
+            // The reference is a direct identifier (variable name)
             case BdoReferenceKind.Identifier:
                 return varSet?[reference?.Identifier];
+
+            // The reference points to a meta-data object that needs extraction
             case BdoReferenceKind.MetaData:
-                return reference?.MetaData.GetData(_scope, varSet, log);
+                return reference?.MetaData?.GetData(_scope, varSet, log);
         }
 
         return null;
@@ -224,7 +267,6 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
 
     #region Private_Methods
 
-    // Returns the standard-interpretated text
     private object Evaluate(
         string script,
         ref int index,
@@ -234,43 +276,20 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
     {
         if (!string.IsNullOrEmpty(script))
         {
-            // we parse the text to interpretate
-            index = 0;
-            while (index < script.Length)
+            var scriptword = FindNextWord(script, null, ref index, offsetIndex, varSet, log);
+
+            if (scriptword != null)
             {
-                // we get the next function or variable
-                var scriptword = FindNextWord(
-                    script,
-                    null,
-                    ref index,
-                    offsetIndex,
-                    varSet,
-                    log);
+                return Evaluate(scriptword, varSet, log);
+            }
+            else
+            {
+                script = script.Trim();
+                var textValue = script.ToUnquoted();
+                if (script != textValue) return textValue;
 
-                // we increment the index
-                index++;
-
-                // if the script word has been found
-                if (scriptword != null)
-                {
-                    var obj = EvaluateScriptword(scriptword, varSet, log);
-
-                    // we replace the script word by its value
-                    return obj;
-                }
-                else
-                {
-                    script = script?.Trim();
-                    var textValue = script.ToUnquoted();
-                    if (script != textValue)
-                    {
-                        // that means that is a string value
-                        return textValue;
-                    }
-                    var value = script.ToObject();
-
-                    return value is string ? null : value;
-                }
+                var value = script.ToObject();
+                return value is string ? null : value;
             }
         }
 
@@ -278,24 +297,18 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
     }
 
     /// <summary>
-    /// 
+    /// Finds and parses the first script word found in the specified string.
     /// </summary>
-    /// <param key="script"></param>
-    /// <param key="log">The BindOpen log used for tracking.</param>
-    /// <returns></returns>
+    /// <param name="script">The script string to analyze.</param>
+    /// <param name="log">The log to populate with any parsing or syntax errors.</param>
+    /// <returns>Returns the identified <see cref="IBdoScriptword"/>; otherwise, returns null.</returns>
     public IBdoScriptword FindNextWord(
         string script,
         IBdoLog log = null)
     {
         var index = 0;
-        var offsetIndex = 0;
-
-        return FindNextWord(
-            script,
-            null,
-            ref index,
-            offsetIndex,
-            log: log);
+        // Initializes the recursive parsing process starting at index 0.
+        return FindNextWord(script, null, ref index, 0, null, log);
     }
 
     /// <summary>
@@ -381,8 +394,8 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
                         log?.AddEvent(BdoEventKinds.Error,
                             "Syntax Error: Required character '(' for functions missing. Position " + (index + offsetIndex),
                             resultCode: "SCRIPT_SYNTAXERROR")
-                            .WithDetailData(
-                                BdoData.NewScalar("Position", (index + offsetIndex).ToString()));
+                            .WithDetail(
+                                ("Position", (index + offsetIndex).ToString()));
 
                         return null;
                     }
@@ -405,8 +418,8 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
                             log?.AddEvent(BdoEventKinds.Error,
                                 "Syntax Error: Character ')' not found for function. Position " + (index + offsetIndex),
                                 resultCode: "SCRIPT_SYNTAXERROR")
-                                .WithDetailData(
-                                    BdoData.NewScalar("Position", (index + offsetIndex).ToString()));
+                                .WithDetail(
+                                    ("Position", (index + offsetIndex).ToString()));
 
                             return null;
                         }
@@ -457,8 +470,8 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
                         log?.AddEvent(BdoEventKinds.Error,
                             "Syntax Error: Character ')' needed for function has not been found. Position " + (index + offsetIndex),
                             resultCode: "SCRIPT_SYNTAXERROR")
-                            .WithDetailData(
-                                BdoData.NewScalar("Position", (index + offsetIndex).ToString()));
+                            .WithDetail(
+                                ("Position", (index + offsetIndex).ToString()));
 
                         return null;
                     }
@@ -511,7 +524,6 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
         return scriptword;
     }
 
-    // Returns the result of the script word scriptword with the specified parameter values
     private object EvaluateScriptword(
         IBdoScriptword scriptword,
         IBdoMetaSet varSet = null,
@@ -525,15 +537,10 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
                 return _scope.CallFunction(scriptword, varSet, log);
             case ScriptTokenKinds.Variable:
                 if (scriptword.Parent == null)
-                {
-                    return varSet?.GetData(scriptword?.Name, _scope, varSet, log);
-                }
-                else
-                {
-                    var obj = scriptword.Parent.GetData(_scope, varSet, log);
+                    return varSet?.GetData(scriptword.Name, _scope, varSet, log);
 
-                    return obj?.GetPropertyValue(scriptword?.Name, typeof(BdoPropertyAttribute));
-                }
+                var parentData = scriptword.Parent.GetData(_scope, varSet, log);
+                return parentData?.GetPropertyValue(scriptword.Name, typeof(BdoPropertyAttribute));
         }
 
         return null;
@@ -541,28 +548,33 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
 
     #endregion
 
-    // ------------------------------------------
-    // IDISPOSABLE METHODS
-    // ------------------------------------------
-
     #region IDisposable_Methods
 
     private bool _isDisposed = false;
 
     /// <summary>
-    /// Disposes this instance. 
+    /// Disposes of the resources used by the interpreter.
     /// </summary>
+    /// <param name="isDisposing">True to release both managed and unmanaged resources; 
+    /// false to release only unmanaged resources.</param>
+    /// <remarks>
+    /// This method follows the standard .NET disposal pattern to ensure that the 
+    /// associated scope is properly cleaned up and to prevent memory leaks.
+    /// </remarks>
     protected override void Dispose(bool isDisposing)
     {
-        if (_isDisposed)
-        {
-            return;
-        }
+        // Prevent multiple disposals
+        if (_isDisposed) return;
 
-        _scope?.Dispose();
+        if (isDisposing)
+        {
+            // Dispose of the managed scope as it may hold references to extensions or external resources
+            _scope?.Dispose();
+        }
 
         _isDisposed = true;
 
+        // Call the base class implementation to complete the disposal chain
         base.Dispose(isDisposing);
     }
 

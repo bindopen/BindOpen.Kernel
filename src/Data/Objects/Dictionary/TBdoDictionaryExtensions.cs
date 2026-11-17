@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using BindOpen.Data.Objects.Interfaces;
+using System.Xml.Linq;
 
 namespace BindOpen.Data.Meta
 {

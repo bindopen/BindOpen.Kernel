@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFramework>net11.0</TargetFramework>
     <AssemblyName>BindOpen.Scoping.Script</AssemblyName>
     <PackageId>BindOpen.Scoping.Script</PackageId>
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
-    <Copyright>Copyright © BindOpen 2011-2025</Copyright>
+    <Copyright>Copyright © BindOpen 2011-2026</Copyright>
     <Description>This package allows to interprete and manage BindOpen script.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Scoping.Script</RootNamespace>

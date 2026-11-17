@@ -43,6 +43,11 @@
 
 ### Metadata Management
 
+  - [ ] Meta schema should be null by default.
+  
+  Correct Validation so that the schema can be null and the meta set items can be inspected despite.
+
+
 - [ ] Tuple dictionary approach.
 ```csharp
 var config = NewConfig("test-config",

@@ -2,536 +2,242 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Scoping.Script
+namespace BindOpen.Scoping.Script;
+
+/// <summary>
+/// Provides utility methods for parsing, indexing, and identifying script tokens within raw strings.
+/// </summary>
+public static partial class BdoScriptHelper
 {
+    // ------------------------------------------
+    // CONSTANTS
+    // ------------------------------------------
+
+    #region Constants
+
+    /// <summary>The marker identifying the start of a variable (e.g., "$(").</summary>
+    public static readonly string Symbol_Var = "$(";
+
+    /// <summary>The marker identifying the start of a function or shorthand variable (e.g., "$").</summary>
+    public static readonly string Symbol_Fun = "$";
+
+    /// <summary>Standard syntax characters used to delimit script components.</summary>
+    public static readonly string[] SyntaxItems = { "-", ">", "(", ")", "," };
+
+    #endregion
+
+    // ------------------------------------------
+    // VALUE EXTRACTION
+    // ------------------------------------------
+
+    #region Values
+
     /// <summary>
-    /// This class represents a string parser.
+    /// Extracts the raw value from a script literal, handling single quotes and escaped characters.
     /// </summary>
-    public static partial class BdoScriptHelper
+    /// <param name="text">The raw text segment from the script.</param>
+    /// <returns>A cleaned string value.</returns>
+    public static string GetValueFromScript(this string text)
     {
-        // ------------------------------------------
-        // CONSTANTS
-        // ------------------------------------------
+        if (string.IsNullOrEmpty(text)) return string.Empty;
+        if (text == "''") return string.Empty;
 
-        #region Constants
+        // Unescape double-single quotes: '' -> '
+        text = text.Replace("''", "'");
 
-        /// <summary>
-        /// The leading character of the variable.
-        /// </summary>
-        public static readonly string Symbol_Var = "$(";
-
-        /// <summary>
-        /// The leading character of the function.
-        /// </summary>
-        public static readonly string Symbol_Fun = "$";
-
-        /// <summary>
-        /// The syntax items of this class.
-        /// </summary>
-        public static readonly string[] SyntaxItems = { "-", ">", "(", ")", "," };
-
-        #endregion
-
-        // ------------------------------------------
-        // VALUES
-        // ------------------------------------------
-
-        #region Values
-
-        /// <summary>
-        /// Returns the string value from a text.
-        /// </summary>
-        /// <param key="text">The text from which the string value is retrieved.</param>
-        /// <returns>The string value from a text</returns>
-        public static string GetValueFromScript(this string text)
+        // Remove surrounding single quotes if present
+        if (text.Length > 1 && text.StartsWith("'") && text.EndsWith("'"))
         {
-            if (text == "''")
-            {
-                text = string.Empty;
-            }
-            else
-            {
-                text = text?.Replace("''", "'");
-                if (text?.Length > 1)
-                {
-                    if ((text.Substring(0, 1) == "'") && (text.Substring(text.Length - 1, 1) == "'"))
-                    {
-                        text = text[1..^1];
-                    }
-                }
-            }
-            return text;
+            text = text[1..^1];
         }
+        return text;
+    }
 
-        #endregion
+    #endregion
 
-        // ------------------------------------------
-        // INDEXES
-        // ------------------------------------------
+    // ------------------------------------------
+    // SMART INDEXING (Context-Aware)
+    // ------------------------------------------
 
-        #region Indexes
+    #region Indexes
 
-        /// <summary>
-        /// Returns the position of stv in st from index taking in account the closing ponctuation (,{,[. 
-        /// </summary>
-        /// <param key="st">The string to parse.</param>
-        /// <param key="stv">The string to look for.</param>
-        /// <param key="indexDeb">The start index.</param>
-        /// <returns>The position of the next stv into st from index position.</returns>
-        public static int IndexOfScript(this string st, string stv, int indexDeb)
+    /// <summary>
+    /// Finds the index of a string while respecting BOSL punctuation (skipping over content inside quotes or parentheses).
+    /// </summary>
+    public static int IndexOfScript(this string st, string stv, int indexDeb)
+    {
+        int index = indexDeb;
+        while (index < st.Length)
         {
-            int index = indexDeb;
-            bool b = false;
-            while ((index < st.Length) && !b)
+            string current = st.Substring(index, 1);
+
+            // If we hit a quote, jump to the end of the string literal
+            if (current == "'" && stv != "'")
             {
-                if ((st.Substring(index, 1) == "'") && (stv != "'"))
-                {
-                    index = st.IndexOfScript("'", index + 1) + 1;
-                }
-                else if ((st.Substring(index, 1) == "(") && (stv != "("))
-                {
-                    index = st.IndexOfScript(")", index + 1) + 1;
-                }
-                else if (st.Substring(index, 1) == stv)
-                {
-                    b = true;
-                }
-                else if ((st.Substring(index, 1) == ")") && (stv == ","))
-                {
-                    b = true;
-                }
-                else
-                {
-                    index++;
-                }
+                index = st.IndexOfScript("'", index + 1) + 1;
             }
-            return index;
-        }
-
-        /// <summary>
-        /// Returns the last position of stv in st from index taking in account the closing ponctuation (,{,[. 
-        /// </summary>
-        /// <param key="st">The string to parse.</param>
-        /// <param key="stv">The string to look for.</param>
-        /// <param key="indexDeb">The start index.</param>
-        /// <returns>The position of the next stv into st from index position.</returns>
-        public static int LastIndexOfScript(this string st, string stv, int indexDeb)
-        {
-            int index = indexDeb;
-            bool b = false;
-            while ((index >= 0) && !b)
+            // If we hit a parenthesis, jump to the closing one
+            else if (current == "(" && stv != "(")
             {
-                if ((st.Substring(index, 1) == "'") && (stv != "'"))
-                {
-                    index = LastIndexOfScript(st, "'", index - 1) - 1;
-                }
-                else if ((st.Substring(index, 1) == ")") && (stv != ")"))
-                {
-                    index = LastIndexOfScript(st, "(", index - 1) - 1;
-                }
-                else if (st.Substring(index, 1) == stv)
-                {
-                    b = true;
-                }
-                else if ((st.Substring(index, 1) == ")") && (stv == ","))
-                {
-                    b = true;
-                }
-                else
-                    index--;
+                index = st.IndexOfScript(")", index + 1) + 1;
             }
-            return index;
+            // Match found
+            else if (current == stv) return index;
+            // Logical break for parameter lists
+            else if (current == ")" && stv == ",") return index;
+            else index++;
         }
+        return index;
+    }
 
-        #endregion
+    #endregion
 
-        // ------------------------------------------
-        // ITEMS
-        // ------------------------------------------
+    // ------------------------------------------
+    // ITEM DISCOVERY (Tokenization)
+    // ------------------------------------------
 
-        #region Items
+    #region Items
 
-        /// <summary>
-        /// Returns the items that are in the specified script.
-        /// </summary>
-        /// <param key="script">The script to analyse.</param>
-        /// <returns>The items that are in the specified script.</returns>
-        public static List<ScriptItem> FindScriptItems(this string script)
+    /// <summary>
+    /// Scans a script string and produces a flat list of <see cref="ScriptItem"/> tokens.
+    /// </summary>
+    public static List<ScriptItem> FindScriptItems(this string script)
+    {
+        List<ScriptItem> scriptItems = new();
+        int index = 0;
+        int lastNoneIndex = index;
+
+        while (index < script.Length)
         {
-            List<ScriptItem> scriptItems = new();
-            int index = 0;
-            int lastNoneIndex = index;
+            string currentChar = script.Substring(index, 1);
 
-            while (index < script.Length)
+            // 1. Handle String Literals
+            if (currentChar == "'")
             {
-                string currentChar = script.Substring(index, 1);
+                AddNoneItem(script, scriptItems, lastNoneIndex, index);
+                int nextIndex = script.IndexOfScript("'", index + 1);
+                string content = script.Substring(index, nextIndex - index + 1);
+                scriptItems.Add(content.FindScriptItem(index));
+                index = nextIndex + 1;
+                lastNoneIndex = index;
+            }
+            // 2. Handle Symbols ($ and #)
+            else if (currentChar == Symbol_Fun || currentChar == "#")
+            {
+                int nextIndex = script.IndexOfScript("(", index);
+                string content = script.Substring(index, nextIndex - index + 1);
+                ScriptItem item = content.FindScriptItem(index);
 
-                ScriptItem scriptItem;
-                int nextIndex;
-                // if the current char is double quote
-                if (currentChar == "'")
+                if (item.Kind != ScriptTokenKinds.None)
                 {
-                    string scriptItemName;
-
-                    // if something between the last none index and the current then
-                    if (lastNoneIndex != index)
-                    {
-                        // we declare this something as a none-kind script item
-                        scriptItemName = script[lastNoneIndex..index];
-                        if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == ScriptTokenKinds.None))
-                        {
-                            scriptItems[^1].WithName(scriptItems[^1].Name + scriptItemName);
-                        }
-                        else
-                        {
-                            scriptItems.Add(new ScriptItem(
-                               ScriptTokenKinds.None,
-                               scriptItemName,
-                               index));
-                        }
-                    }
-
-                    // then we look for the next double quote
-                    nextIndex = script.IndexOfScript("'", index + 1);
-                    scriptItemName = script.Substring(index, nextIndex - index + 1);
-                    scriptItem = scriptItemName.FindScriptItem(index);
-                    if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == scriptItem.Kind))
-                    {
-                        scriptItems[^1].WithName(scriptItems[^1].Name + scriptItemName);
-                    }
-                    else
-                    {
-                        scriptItems.Add(scriptItem);
-                    }
-
-                    index = nextIndex + 1;
+                    AddNoneItem(script, scriptItems, lastNoneIndex, index);
+                    scriptItems.Add(item);
+                    index = (item.Kind == ScriptTokenKinds.Literal) ? nextIndex + 2 : nextIndex;
                     lastNoneIndex = index;
                 }
-                // else if it is a "$" (start of variable item)
-                else if (currentChar == Symbol_Fun)
-                {
-                    // then we look for the next "(" (end of variable item)
-                    nextIndex = script.IndexOfScript("(", index);
-                    string scriptItemName = script.Substring(index, nextIndex - index + 1);
-                    scriptItem = scriptItemName.FindScriptItem(index);
-                    if (scriptItem.Kind == ScriptTokenKinds.Variable)
-                    {
-                        // if something between the last none index and the current then
-                        if (lastNoneIndex != index)
-                        {
-                            // we declare this something as a none-kind script item
-                            scriptItemName = script[lastNoneIndex..index];
-                            if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == ScriptTokenKinds.None))
-                            {
-                                scriptItems[^1].WithName(scriptItems[^1].Name + scriptItemName);
-                            }
-                            else
-                            {
-                                scriptItems.Add(new ScriptItem(
-                               ScriptTokenKinds.None,
-                               scriptItemName,
-                               index));
-                            }
-                        }
-
-                        // we record the script item
-                        if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == scriptItem.Kind))
-                            scriptItems[^1].WithName(scriptItems[^1].Name + scriptItemName);
-                        else
-                            scriptItems.Add(scriptItem);
-                        index = nextIndex;
-                        lastNoneIndex = index;
-                    }
-                    // if it is a literal script word then
-                    else if (scriptItem.Kind == ScriptTokenKinds.Literal)
-                    {
-                        // we insert "()" in the item name and we update the index
-                        scriptItem.WithName("()");
-                        nextIndex += 2;
-
-                        // if something between the last none index and the current then
-                        if (lastNoneIndex != index)
-                        {
-                            // we declare this something as a none-kind script item
-                            scriptItemName = script[lastNoneIndex..index];
-                            if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == ScriptTokenKinds.None))
-                            {
-                                scriptItems[^1].WithName(scriptItems[^1].Name + scriptItemName);
-                            }
-                            else
-                            {
-                                scriptItems.Add(
-                                   new ScriptItem(
-                                       ScriptTokenKinds.None,
-                                       scriptItemName,
-                                       index));
-                            }
-                        }
-
-                        // we record the script item
-                        if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == scriptItem.Kind))
-                            scriptItems[^1].WithName(scriptItems[^1].Name + scriptItemName);
-                        else
-                            scriptItems.Add(scriptItem);
-
-                        index = nextIndex;
-                        lastNoneIndex = index;
-                    }
-                    else
-                    {
-                        index += 1;
-                    }
-                }
-                // else
-                else
-                {
-                    // we retrieve the current item
-                    scriptItem = currentChar.FindScriptItem(index);
-
-                    // if it is a syntax item
-                    if (scriptItem.Kind == ScriptTokenKinds.Syntax)
-                    {
-
-                        // if something between the last none index and the current then
-                        if (lastNoneIndex != index)
-                        {
-                            // we declare this something as a none-kind script item
-                            string scriptItemName = script[lastNoneIndex..index];
-                            if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == ScriptTokenKinds.None))
-                            {
-                                scriptItems[^1].WithName(scriptItems[^1].Name + scriptItemName);
-                            }
-                            else
-                            {
-                                scriptItems.Add(
-                                   new ScriptItem(
-                                       ScriptTokenKinds.None,
-                                       scriptItemName,
-                                       index));
-                            }
-                        }
-
-                        scriptItem = currentChar.FindScriptItem(index);
-                        if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == scriptItem.Kind))
-                            scriptItems[^1].WithName(scriptItems[^1].Name + scriptItem.Name);
-                        else
-                            scriptItems.Add(scriptItem);
-
-                        index += scriptItem.Name.Length;
-                        lastNoneIndex = index;
-                    }
-                    else
-                    {
-                        // in any remaning case, we increment the index
-                        index++;
-                    }
-                }
+                else index++;
             }
-
-            // if something between the last none index and the current then
-            if (lastNoneIndex != index)
+            // 3. Handle Syntax
+            else if (SyntaxItems.Contains(currentChar))
             {
-                // we declare this something as a none-kind script item
-                string scriptItemName = script[lastNoneIndex..index];
-                if ((scriptItems.Count > 0) && (scriptItems[^1].Kind == ScriptTokenKinds.None))
-                {
-                    scriptItems[^1].WithName(scriptItems[^1].Name + scriptItemName);
-                }
-                else
-                {
-                    scriptItems.Add(
-                       new ScriptItem(
-                           ScriptTokenKinds.None,
-                           scriptItemName,
-                           index));
-                }
+                AddNoneItem(script, scriptItems, lastNoneIndex, index);
+                scriptItems.Add(currentChar.FindScriptItem(index));
+                index++;
+                lastNoneIndex = index;
             }
-
-            return scriptItems;
+            else index++;
         }
-
-        // Returns the script item with the specified name from the specified index.
-        private static ScriptItem FindScriptItem(this string name, int index)
-        {
-            name = name.Trim();
-
-            // we define the default script item to return
-            ScriptItem scriptItem = new(
-                ScriptTokenKinds.None,
-                name,
-                index);
-
-            // if it is a text
-            if ((name.Length >= 1) && (name[0] == '\''))
-            {
-                scriptItem.Index = index;
-                scriptItem.Kind = ScriptTokenKinds.Text;
-                scriptItem.WithName(name);
-            }
-            // else if it is a variable
-            else if ((name.Length >= 2) && ((name[..1] == Symbol_Fun) & (name[^1] == '(')))
-            {
-                // we check that the name has only letters, numbers and underscore
-                bool isGood = false;
-                foreach (char ch in name[1..^1])
-                {
-                    isGood = char.IsLetter(ch) || char.IsNumber(ch) || (ch == '_');
-                    if (!isGood)
-                        break;
-                }
-                if (isGood)
-                {
-                    scriptItem.Index = index;
-                    scriptItem.WithName(name[0..^1]);
-                    // we indentify the literal script functions
-                    if (scriptItem.Name.ToUpper()[.."$LITERAL_".Length] == "$LITERAL_")
-                        scriptItem.Kind = ScriptTokenKinds.Literal;
-                    else
-                        scriptItem.Kind = ScriptTokenKinds.Variable;
-                }
-            }
-            // else if it is a function
-            else if ((name.Length >= 2) && ((name[0] == '#') && (name[^1] == '(')))
-            {
-                // we check that the name has only letters, numbers and underscore
-                bool isGood = false;
-                foreach (char ch in name[1..^1])
-                {
-                    isGood = char.IsLetter(ch) || char.IsNumber(ch) || (ch == '_');
-                    if (!isGood)
-                        break;
-                }
-                if (isGood)
-                {
-                    scriptItem.Index = index;
-                    scriptItem.Kind = ScriptTokenKinds.Function;
-                    scriptItem.WithName(name[0..^1]);
-                }
-            }
-            // else if it is a syntax item
-            else if (SyntaxItems.Contains(name))
-            {
-                scriptItem.Index = index;
-                scriptItem.Kind = ScriptTokenKinds.Syntax;
-                scriptItem.WithName(name);
-            }
-            return scriptItem;
-        }
-
-        #endregion
-
-        // ------------------------------------------
-        // BLOCKS
-        // ------------------------------------------
-
-        #region Blocks
-
-        /// <summary>
-        /// Returns the first script block in the specified script from the specified index.
-        /// </summary>
-        /// <param key="script">The script to analyse.</param>
-        /// <param key="index">The index position to begin analyse.</param>
-        /// <returns></returns>
-        public static string GetScriptBlock(this string script, int index = 0)
-        {
-            int lastIndex = index;
-            bool isEndFound = false;
-
-            while (!isEndFound)
-            {
-                int prevSpaceIndex = script.LastIndexOfScript(" ", lastIndex);
-                int prevVarIndex = script.LastIndexOfScript(Symbol_Fun, lastIndex);
-                int prevFunIndex = (lastIndex == index ? script.LastIndexOfScript("#", lastIndex) : -1);
-                lastIndex = Math.Max(Math.Max(Math.Max(prevSpaceIndex, prevVarIndex), prevFunIndex), 0);
-                if ((lastIndex >= ("." + Symbol_Fun).Length)
-                    && (script.Substring(lastIndex - 3, (")." + Symbol_Fun).Length) == ")." + Symbol_Fun))
-                {
-                    isEndFound = false;
-                    lastIndex--;
-                }
-                else
-                {
-                    isEndFound = true;
-                }
-            }
-            string aLeftStringBlock = script.Substring(lastIndex, index - lastIndex + 1);
-
-            return aLeftStringBlock.Trim();
-        }
-
-        #endregion
-
-        //// ------------------------------------------
-        //// DEFINITIONS
-        //// ------------------------------------------
-
-        //#region Definitions
-
-        ///// <summary>
-        ///// Gets the possible definitions corresponding to the specified script.
-        ///// </summary>
-        ///// <param key="scriptInterpreter">The script interpreter to consider.</param>
-        ///// <param key="script">The script to analyse.</param>
-        ///// <param key="index">The index position of the parent script word.</param>
-        ///// <param key="isSuggest">False if all the child script words of the parent must be returned.
-        ///// <param key="varSet">The variable element set to use.</param>
-        ///// True if only the child script words similar to the child script word present in the script
-        ///// must be returned.</param>
-        ///// <returns>Returns the possible child script word definitions.</returns>
-        //public static ITBdoSet<IBdoFunctionDefinition> GetWordDefinitions(
-        //    this IBdoScriptInterpreter scriptInterpreter,
-        //    string script,
-        //    int index,
-        //    bool isSuggest,
-        //    IBdoMetaSet varSet = null,
-        //    IBdoLog log = null)
-        //{
-        //    if (scriptInterpreter == null) return new TBdoSet<IBdoFunctionDefinition>();
-
-        //    // first we retrieve the script block at the index index
-
-        //    string stringBlock = script.GetScriptBlock(index);
-
-        //    // we retrieve the root script word
-
-        //    string stringBlockToParse = stringBlock;
-        //    if (stringBlockToParse.Contains("." + Symbol_Fun))
-        //    {
-        //        stringBlockToParse = stringBlockToParse[..stringBlockToParse.IndexOf("." + Symbol_Fun)];
-        //    }
-        //    int tempIndex = 0;
-
-        //    IBdoScriptword rootScriptword = scriptInterpreter.FindNextWord(
-        //        stringBlockToParse,
-        //        null,
-        //        ref tempIndex,
-        //        0,
-        //        metaSet,
-        //        log);
-
-        //    // if it is not null
-        //    if (rootScriptword != null)
-        //    {
-        //        // we retrieve the last child script word
-
-        //        if (!isSuggest)
-        //        {
-        //            return default;
-        //        }
-        //        else
-        //        {
-        //            string currentScriptwordString = stringBlock.Contains('.')
-        //                ? stringBlock.Substring(stringBlock.IndexOf(".") + 1, stringBlock.Length - stringBlock.IndexOf(".") - 1)
-        //                    .Replace(Symbol_Fun, string.Empty)
-        //                : stringBlock;
-
-        //            return scriptInterpreter.GetDefinitionsWithName(currentScriptwordString, false);
-        //        }
-        //    }
-
-        //    return !isSuggest ? scriptInterpreter.GetDefinitions() : scriptInterpreter.GetDefinitionsWithName(stringBlock, false);
-        //}
-
-        //#endregion
+        AddNoneItem(script, scriptItems, lastNoneIndex, index);
+        return scriptItems;
     }
+
+    /// <summary>
+    /// Identifies and creates a script item from the specified string fragment.
+    /// </summary>
+    /// <param name="name">The string fragment to analyze.</param>
+    /// <param name="index">The character index where this fragment starts in the source script.</param>
+    /// <returns>Returns a <see cref="ScriptItem"/> identifying the token kind and its name.</returns>
+    /// <remarks>
+    /// This method uses pattern matching (symbols like $, #, or quotes) to categorize the 
+    /// string into tokens used by the parser.
+    /// </remarks>
+    private static ScriptItem FindScriptItem(this string name, int index)
+    {
+        name = name.Trim();
+
+        // Initialize the default script item as 'None'
+        ScriptItem scriptItem = new(
+            ScriptTokenKinds.None,
+            name,
+            index);
+
+        // 1. Check if it's a Text Literal (starts with a single quote)
+        if ((name.Length >= 1) && (name[0] == '\''))
+        {
+            scriptItem.Kind = ScriptTokenKinds.Text;
+            scriptItem.WithName(name);
+        }
+        // 2. Check if it's a Variable (starts with Symbol_Fun '$' and ends with an opening parenthesis for name capture)
+        // Note: In BOSL, variables are often identified as $(varName) or $varName
+        else if ((name.Length >= 2) && (name.StartsWith(Symbol_Fun) && name.EndsWith("(")))
+        {
+            // Validate that the inner content contains only alphanumeric characters or underscores
+            bool isValid = true;
+            foreach (char ch in name[1..^1])
+            {
+                isValid = char.IsLetterOrDigit(ch) || (ch == '_');
+                if (!isValid) break;
+            }
+
+            if (isValid)
+            {
+                scriptItem.WithName(name[0..^1]); // Remove the trailing '('
+
+                // Distinguish between standard variables and literal-prefixed functions
+                if (scriptItem.Name.ToUpper().StartsWith("$LITERAL_"))
+                    scriptItem.Kind = ScriptTokenKinds.Literal;
+                else
+                    scriptItem.Kind = ScriptTokenKinds.Variable;
+            }
+        }
+        // 3. Check if it's a Function (starts with '#' and ends with '(')
+        else if ((name.Length >= 2) && (name.StartsWith("#") && name.EndsWith("(")))
+        {
+            bool isValid = true;
+            foreach (char ch in name[1..^1])
+            {
+                isValid = char.IsLetterOrDigit(ch) || (ch == '_');
+                if (!isValid) break;
+            }
+
+            if (isValid)
+            {
+                scriptItem.Kind = ScriptTokenKinds.Function;
+                scriptItem.WithName(name[0..^1]);
+            }
+        }
+        // 4. Check if it's a Syntax Item (matches known operators or separators)
+        else if (SyntaxItems.Contains(name))
+        {
+            scriptItem.Kind = ScriptTokenKinds.Syntax;
+            scriptItem.WithName(name);
+        }
+
+        return scriptItem;
+    }
+
+    /// <summary>
+    /// Helper to capture text segments that aren't recognized as specific script tokens.
+    /// </summary>
+    private static void AddNoneItem(string script, List<ScriptItem> items, int start, int end)
+    {
+        if (start == end) return;
+        string name = script[start..end];
+        if (items.Count > 0 && items[^1].Kind == ScriptTokenKinds.None)
+            items[^1].WithName(items[^1].Name + name);
+        else
+            items.Add(new ScriptItem(ScriptTokenKinds.None, name, start));
+    }
+
+    #endregion
 }

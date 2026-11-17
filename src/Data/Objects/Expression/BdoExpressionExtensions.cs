@@ -1,4 +1,6 @@
-﻿namespace BindOpen.Data
+﻿using BindOpen.Data.Objects.Interfaces;
+
+namespace BindOpen.Data
 {
     /// <summary>
     /// This class represents a data exp that can contain a literal and script texts.

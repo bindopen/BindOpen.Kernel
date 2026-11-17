@@ -194,8 +194,8 @@ public static partial class IBdoSchemaExtensions
         return schema.MustBeInList<IBdoSchema, T>();
     }
 
-    public static TSpec MustBeInList<TSpec, T>(this TSpec schema)
-        where TSpec : IBdoSchema
+    public static TSchema MustBeInList<TSchema, T>(this TSchema schema)
+        where TSchema : IBdoSchema
         where T : struct, IConvertible
     {
         var set = schema.GetOrNewRuleSet();

@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Objects.Interfaces;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 
@@ -15,7 +16,7 @@ public class BdoScriptwordTests
     public readonly string _scriptA = "$eq('MYTABLE', $text('MYTABLE'))";
 
     public readonly BdoScriptword _scriptwordA =
-        (BdoScriptword)BdoScript.Function("eq", "MYTABLE", BdoScript.Function("text", "mytable"));
+        (BdoScriptword)BdoScript.Function("eq", "MYTABLE", BdoScript.Function("text", "MYTABLE"));
 
     public readonly string _stringA = "totomax";
 
@@ -112,6 +113,7 @@ public class BdoScriptwordTests
     public void CompareSubwordStringTest()
     {
         var script = _scriptwordB.ToString();
+
         Assert.That(script, Is.EqualTo(_scriptB).IgnoreCase, "Chained scriptword string representation mismatch.");
     }
 

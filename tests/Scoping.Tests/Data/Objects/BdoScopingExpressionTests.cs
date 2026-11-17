@@ -1,4 +1,5 @@
-﻿using BindOpen.Scoping.Script;
+﻿using BindOpen.Data.Objects.Interfaces;
+using BindOpen.Scoping.Script;
 using BindOpen.Tests;
 using NUnit.Framework;
 

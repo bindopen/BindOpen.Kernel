@@ -18,7 +18,7 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
     public IBdoScope Scope { get; set; }
 
     /// <summary>
-    /// Checks the specified meta data.
+    /// Checks the schemaified meta data.
     /// </summary>
     /// <param name="meta">The meta data to check.</param>
     /// <returns>Returns the check log./returns>
@@ -29,35 +29,35 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
         => Check(meta, meta?.Schema, varSet, log);
 
     /// <summary>
-    /// Checks the specified meta data corresponding to the meta schema.
+    /// Checks the schemaified meta data corresponding to the meta schema.
     /// </summary>
     /// <param name="meta">The meta data to check.</param>
-    /// <param name="defaultSpec">The meta schema to consider.</param>
+    /// <param name="defaultSchema">The meta schema to consider.</param>
     /// <returns>Returns the check log./returns>
     public virtual bool Check(
         IBdoMetaData meta,
-        IBdoSchema defaultSpec,
+        IBdoSchema defaultSchema,
         IBdoMetaSet varSet = null,
         IBdoLog log = null)
     {
         bool valid = true;
 
-        // Si meta est null, on vérifie si le schéma par défaut exige sa présence
-        if (meta == null)
-        {
-            if (defaultSpec != null)
-            {
-                var requirementLevel = defaultSpec.GetRuleValue<RequirementLevels>(
-                    BdoMetaDataProperties.RequirementLevel, BdoSchemaRuleKinds.Requirement, Scope, varSet, log);
+        var schema = defaultSchema ?? meta.Schema;
 
-                if (requirementLevel == RequirementLevels.Required)
-                {
-                    log?.AddEvent(BdoEventKinds.Error, "Element missing",
-                        $"The required element '{defaultSpec.Name}' is missing",
-                        resultCode: BdoSchemaRuleResultCodes.ElementMissing);
-                    return false;
-                }
+        // Si meta est null, on vérifie si le schéma par défaut exige sa présence
+        if (meta == null && schema != null)
+        {
+            var requirementLevel = schema.GetRuleValue<RequirementLevels>(
+                BdoMetaDataProperties.RequirementLevel, BdoSchemaRuleKinds.Requirement, Scope, varSet, log);
+
+            if (requirementLevel == RequirementLevels.Required)
+            {
+                log?.AddEvent(BdoEventKinds.Error, "Element missing",
+                    $"The required element '{schema.Name}' is missing",
+                    resultCode: BdoSchemaRuleResultCodes.ElementMissing);
+                return false;
             }
+
             return true;
         }
 
@@ -66,7 +66,7 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
         var localVarSet = BdoData.NewNode(varSet?.ToArray());
         localVarSet.With(BdoData.__VarName_This, meta);
 
-        var schema = meta.Schema ?? defaultSpec;
+        var metaSet = meta as BdoMetaSet;
 
         // 1. Vérification de la compatibilité des types
         var data = meta.GetData(scope, localVarSet, log);
@@ -152,7 +152,8 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
                     }
                 }
 
-                // Contraintes (Constraints)
+                // Constraints
+
                 var constraints = schema.RuleSet.Where(q => q.Kind == BdoSchemaRuleKinds.Constraint);
                 foreach (var constraint in constraints)
                 {
@@ -170,6 +171,29 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
                     }
                 }
             }
+
+            // 6. Validation récursive des enfants
+            if (schema._Children != null && metaSet!=null)
+            {
+                foreach (var childSchema in schema._Children)
+                {
+                    var childRequirement = childSchema.GetRuleValue<RequirementLevels>(
+                        BdoMetaDataProperties.RequirementLevel, BdoSchemaRuleKinds.Requirement, scope, localVarSet, log);
+
+                    bool hasChild = metaSet.Has(childSchema.Name) == true;
+
+                    if (childRequirement == RequirementLevels.Required && !hasChild)
+                    {
+                        valid = false;
+                        log?.AddEvent(BdoEventKinds.Error, "Child element missing", $"Option '{childSchema.Name}' missing");
+                    }
+                    else if (childRequirement == RequirementLevels.Forbidden && hasChild)
+                    {
+                        valid = false;
+                        log?.AddEvent(BdoEventKinds.Error, "Child element forbidden", $"Option '{childSchema.Name}' is forbidden here");
+                    }
+                }
+            }
         }
         else if (!meta.IsCompatibleWithData(data)) // Cas sans schéma
         {
@@ -178,37 +202,13 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
                 resultCode: BdoSchemaRuleResultCodes.InvalidData);
         }
 
-        // 6. Validation récursive des enfants
-        if (schema?._Children != null)
+        // Appel récursif pour valider le contenu des sous-éléments
+        if (metaSet != null)
         {
-            var metaSet = meta as ITBdoSet<IBdoMetaData>;
-            foreach (var childSpec in schema._Children)
+            foreach (var subMeta in metaSet)
             {
-                var childRequirement = childSpec.GetRuleValue<RequirementLevels>(
-                    BdoMetaDataProperties.RequirementLevel, BdoSchemaRuleKinds.Requirement, scope, localVarSet, log);
-
-                bool hasChild = metaSet?.Has(childSpec.Name) == true;
-
-                if (childRequirement == RequirementLevels.Required && !hasChild)
-                {
-                    valid = false;
-                    log?.AddEvent(BdoEventKinds.Error, "Child element missing", $"Option '{childSpec.Name}' missing");
-                }
-                else if (childRequirement == RequirementLevels.Forbidden && hasChild)
-                {
-                    valid = false;
-                    log?.AddEvent(BdoEventKinds.Error, "Child element forbidden", $"Option '{childSpec.Name}' is forbidden here");
-                }
-            }
-
-            // Appel récursif pour valider le contenu des sous-éléments
-            if (metaSet != null)
-            {
-                foreach (var subMeta in metaSet)
-                {
-                    var subSpec = schema.Child(subMeta?.Name);
-                    valid &= Check(subMeta, subSpec, varSet, log);
-                }
+                var subSchema = schema.Child(subMeta?.Name);
+                valid &= Check(subMeta, subSchema, varSet, log);
             }
         }
 

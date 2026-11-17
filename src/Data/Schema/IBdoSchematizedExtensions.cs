@@ -8,15 +8,15 @@ namespace BindOpen.Data.Schema;
 /// </summary>
 public static class IBdoSchematizedExtensions
 {
-    public static T WithSchema<T, TSpec>(
+    public static T WithSchema<T, TSchema>(
         this T obj,
         Action<IBdoSchema> action)
         where T : IBdoSchematized
-        where TSpec : IBdoSchema, new()
+        where TSchema : IBdoSchema, new()
     {
         if (obj != null)
         {
-            obj.Schema ??= BdoData.NewSchema<TSpec>();
+            obj.Schema ??= BdoData.NewSchema<TSchema>();
             action?.Invoke(obj.Schema);
         }
 

@@ -1,4 +1,5 @@
-﻿using BindOpen.Logging;
+﻿using BindOpen.Data.Objects.Interfaces;
+using BindOpen.Logging;
 using System.Linq;
 
 namespace BindOpen.Data.Meta

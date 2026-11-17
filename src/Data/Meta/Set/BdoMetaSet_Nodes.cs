@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Conditions;
 using BindOpen.Data.Helpers;
+using BindOpen.Data.Objects.Interfaces;
 using BindOpen.Data.Schema;
 using BindOpen.Logging;
 using BindOpen.Scoping;
@@ -123,11 +124,6 @@ namespace BindOpen.Data.Meta
         public override IBdoMetaData Insert(IBdoMetaData item)
         {
             base.Insert(item);
-
-            if (item != null)
-            {
-                item.Parent = this;
-            }
 
             return item;
         }
