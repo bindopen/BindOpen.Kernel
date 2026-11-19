@@ -1,0 +1,1103 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BindOpen.Scoping.Tests</name>
+    </assembly>
+    <members>
+        <member name="T:BindOpen.Data.Meta.BdoScopingMetaDataTests">
+            <summary>
+            This class provides unit tests for scoping-related metadata operations, 
+            including references, labels, and conditional evaluations.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingMetaDataTests.ReferenceTest">
+            <summary>
+            Tests the ability to resolve data through a script reference within a meta-object.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingMetaDataTests.LabelTest">
+            <summary>
+            Tests the automatic label generation using predefined formats and script-based templates.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingMetaDataTests.ConditionTest">
+            <summary>
+            Tests the conditional evaluation of metadata nodes based on their schema and data content.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Meta.BdoScopingMetaSetTests_Object">
+            <summary>
+            Tests the creation, manipulation, and data retrieval of Meta-Object nodes
+            within a scoping context, including POCO-to-Meta conversion.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingMetaSetTests_Object.OneTimeSetUp">
+            <summary>
+            Initializes randomized test data using the Bogus library.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingMetaSetTests_Object.Test(BindOpen.Data.Meta.IBdoMetaSet)">
+            <summary>
+            Shared validation logic to verify the integrity of a meta-node containing objects.
+            </summary>
+            <param name="metaSet">The meta-node to validate.</param>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingMetaSetTests_Object.NewTest">
+            <summary>
+            Tests the different ways to instantiate and populate Meta-Objects.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Meta.BdoScopingMetaWrapperTests">
+            <summary>
+            This class provides unit tests for the BdoMetaWrapper functionality,
+            ensuring that metadata sets can be mapped to and from strongly-typed C# objects.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingMetaWrapperTests.CreateTest">
+            <summary>
+            Tests the basic creation of a meta wrapper and its ability to sync 
+            property values with an underlying metadata set.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingMetaWrapperTests.DescendantTest">
+            <summary>
+            Tests the retrieval of deeply nested (descendant) metadata using path-based queries.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingMetaWrapperTests.ListTest">
+            <summary>
+            Tests the mapping of scalar arrays to C# lists within the wrapper.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingMetaWrapperTests.DictionaryTest">
+            <summary>
+            Tests the mapping of meta-nodes to C# dictionaries.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingMetaWrapperTests.UpdateDetailTest">
+            <summary>
+            Tests cumulative updates to the metadata detail.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingMetaWrapperTests.WithObjectTest">
+            <summary>
+            Tests the mapping of nested object entities inside the metadata.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingMetaWrapperTests.DescendantPropertiesTest">
+            <summary>
+            Tests the wrapper's ability to update properties located in descendant nodes.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Meta.BdoScopingSchemaRuleTests">
+            <summary>
+            This class provides unit tests for schema rules, specifically focusing on 
+            requirement levels and constraint validation within the BindOpen scoping engine.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingSchemaRuleTests.RequirementTest">
+            <summary>
+            Tests the retrieval of requirement levels based on the current data context and schema.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingSchemaRuleTests.RequirementCheckTest">
+            <summary>
+            Tests the validator's ability to check a meta-node against requirement levels.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingSchemaRuleTests.ItemRequirementTest">
+            <summary>
+            Tests the retrieval of requirement levels specifically for child items.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingSchemaRuleTests.InEnumTest">
+            <summary>
+            Tests the Enum constraint validation (MustBeInList).
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Meta.BdoScopingSchemaTests">
+            <summary>
+            This class provides unit tests for schema management, including schema generation 
+            from reflection and validation of metadata nodes.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingSchemaTests.OneTimeSetUp">
+            <summary>
+            Sets up the shared schema used across various validation tests.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingSchemaTests.AggregateSpecTest">
+            <summary>
+            Verifies that the aggregated schema contains the expected number of child rules.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingSchemaTests.CreateFromTypeTest">
+            <summary>
+            Tests the creation of a schema directly from a POCO type using the generic factory.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingSchemaTests.CreateFromTypeToSpecTest">
+            <summary>
+            Tests the creation of a specification (schema) using the ToSpec reflection extension.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingSchemaTests.SatisfiedSubTest">
+            <summary>
+            Verifies that the system can find the correct sub-schema when multiple metadata criteria are met.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingSchemaTests.DefaultSubTest">
+            <summary>
+            Verifies that the system falls back to the default sub-schema when only basic criteria are met.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingSchemaTests.CheckWithSchemaTest">
+            <summary>
+            Tests full metadata node validation against a schema, ensuring forbidden elements are rejected.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingSchemaTests.CheckWithoutSpecTest">
+            <summary>
+            Tests validation behavior when a global schema is missing but inline specifications are provided.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoScopingSchemaTests.CheckValueTypeTest">
+            <summary>
+            Tests specific value type constraints, including nullability and type casting checks.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.BdoScopingExpressionTests">
+            <summary>
+            This class provides unit tests for script-based expressions within the scoping engine.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoScopingExpressionTests.OneTimeSetUp">
+            <summary>
+            Initializes shared data tests and prepares the testing environment.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoScopingExpressionTests.Create3Test">
+            <summary>
+            Tests the creation of a script expression from a function name retrieved via a data faker.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.BdoScopingReferenceTests">
+            <summary>
+            This class provides unit tests for script-based references within the scoping engine,
+            verifying how metadata links to dynamic function results.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Data.BdoScopingReferenceTests._reference">
+            <summary>
+            The reference instance used across multiple tests.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoScopingReferenceTests.OneTimeSetUp">
+            <summary>
+            Initializes the test environment and shared reference data.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoScopingReferenceTests.Create3Test">
+            <summary>
+            Tests the creation of a reference from a scriptword name retrieved from a data faker.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoScopingReferenceTests.NewReferenceTest">
+            <summary>
+            Tests the creation and data resolution of metadata nodes using references.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoScopingReferenceTests.NewReferenceFromScriptwordTest">
+            <summary>
+            Tests the conversion of a standard scriptword into a reference object.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Stores.BdoScopingDatasourceTests">
+            <summary>
+            This class provides unit tests for data source management within the scoping engine,
+            focusing on the creation and metadata wrapping of datasource instances.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Data.Stores.BdoScopingDatasourceTests._dataTests">
+            <summary>
+            Shared data test instance providing pre-configured metadata nodes.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Stores.BdoScopingDatasourceTests.OneTimeSetUp">
+            <summary>
+            Initializes the test environment by preparing shared data sources.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Stores.BdoScopingDatasourceTests.Create1Test">
+            <summary>
+            Tests the creation of a BdoDatasource using the scope's MetaWrapper factory.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.BdoScopeTests">
+            <summary>
+            This class provides unit tests for the BdoScope component, verifying its ability 
+            to load extensions, manage global data stores, and handle configuration options.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoScopeTests.CreateScopeNewObjectTest">
+            <summary>
+            Tests the basic instantiation of a scope and the dynamic loading of extensions 
+            from an assembly.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoScopeTests.CreateScopeDataStore">
+            <summary>
+            Tests the Scope's global DataStore, ensuring it manages shared objects 
+            correctly and prevents duplicate key issues for identical references.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoScopeTests.CreateExtensionLoadOptions">
+            <summary>
+            Tests the configuration of ExtensionLoadOptions and verifies that the scope 
+            can process multiple sources (Databases, Repositories, Paths).
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Connectors.BdoConnectorTests">
+            <summary>
+            This class provides unit tests for BdoConnectors, verifying their instantiation 
+            from various metadata sources and their ability to execute Pull/Push operations.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.BdoConnectorTests.OneTimeSetUp">
+            <summary>
+            Initializes the test data using the connector faker.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.BdoConnectorTests.AssertFake(BindOpen.Scoping.Tests.ConnectorFake)">
+            <summary>
+            Standardized assertion logic to verify the properties of a fake connector.
+            </summary>
+            <param name="connector">The connector instance to validate.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.BdoConnectorTests.CreateConnectorTest_FromMetaSet">
+            <summary>
+            Tests the creation of a connector directly from a MetaSet using a typed factory method.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.BdoConnectorTests.CreateConnectorTest_FromConfig">
+            <summary>
+            Tests the creation of a connector from a generic meta-object using type casting.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.BdoConnectorTests.CreateConnectorTest_FromObject">
+            <summary>
+            Tests the conversion of a POCO connector to metadata and back into a scoped connector.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.BdoConnectorTests.CreateConnectorTest_Pull_Push">
+            <summary>
+            Tests the operational workflow of a connector, specifically its ability 
+            to open a connection and perform Pull (Read) and Push (Write) operations.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Entities.BdoEntityTests">
+            <summary>
+            This class provides unit tests for BdoEntities, verifying their instantiation 
+            from various metadata sources and the integrity of data mapping via the Scope.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Entities.BdoEntityTests.OneTimeSetUp">
+            <summary>
+            Initializes the randomized test data using the entity faker.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Entities.BdoEntityTests.AssertFake(BindOpen.Scoping.Tests.EntityFake)">
+            <summary>
+            Standardized assertion logic to verify the properties of a fake entity.
+            </summary>
+            <param name="entity">The entity instance to validate.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Entities.BdoEntityTests.CreateEntityTest_FromMetaSet">
+            <summary>
+            Tests the creation of an entity directly from a meta-object using a typed factory method.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Entities.BdoEntityTests.CreateEntityTest_FromConfig">
+            <summary>
+            Tests the creation of an entity from a generic meta-object using type casting.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Entities.BdoEntityTests.CreateEntityTest_FromObject">
+            <summary>
+            Tests the conversion of a POCO entity to metadata and its subsequent 
+            re-instantiation via the scoping engine.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Functions.BdoFunctionTests">
+            <summary>
+            This class provides unit tests for script functions, verifying their resolution 
+            and execution within the BindOpen scoping engine.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Functions.BdoFunctionTests.OneTimeSetUp">
+            <summary>
+            Initializes the test data using the function faker.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Functions.BdoFunctionTests.NewWordFromConfigTest">
+            <summary>
+            Tests the creation of a script word from a raw metadata configuration 
+            and its execution via the Scope.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Functions.BdoFunctionTests.NewFunTest">
+            <summary>
+            Tests the creation of a script function call using the fluent BdoScript API.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Tasks.BdoTaskTests">
+            <summary>
+            This class provides unit tests for BdoTasks, verifying their lifecycle, 
+            metadata-driven instantiation, and bidirectional state synchronization.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tasks.BdoTaskTests.OneTimeSetUp">
+            <summary>
+            Initializes the randomized test data using the task faker.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tasks.BdoTaskTests.CreateTaskTest_FromMetaSet">
+            <summary>
+            Tests the creation of a task directly from a MetaSet using the typed Scope factory.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tasks.BdoTaskTests.CreateTaskTest_FromConfig">
+            <summary>
+            Tests the creation of a task from a generic configuration using type casting.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tasks.BdoTaskTests.CreateTaskTest_FromObject">
+            <summary>
+            Tests the conversion of a POCO task into metadata and its subsequent 
+            reconstruction via the scoping engine.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Script.BdoScriptwordTests">
+            <summary>
+            This class provides unit tests for BdoScriptword operations, ensuring correct
+            string representation, concatenation, and interpretation of script logic.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests.AssertEquals(BindOpen.Scoping.Script.IBdoScriptword,BindOpen.Scoping.Script.IBdoScriptword)">
+            <summary>
+            Standardized deep equality assertion for scriptword objects.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests.EvaluateScriptNullTest">
+            <summary>
+            Tests that evaluating a null expression returns a null result.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests.CreateVariableSetTest">
+            <summary>
+            Tests the creation of a metadata set used for variable resolution within scripts.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests.WordToStringTest">
+            <summary>
+            Tests the string representation of a scriptword function.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests.WordConcatenationTest">
+            <summary>
+            Tests the automatic wrapping of scriptwords when concatenated with plain strings.
+            BindOpen scripts are wrapped in {{ }} when treated as templates.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests.CompareSubwordStringTest">
+            <summary>
+            Tests the string representation of a chained variable and function calls.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests.EvaluateExpressionTest">
+            <summary>
+            Tests the evaluation of a script expression containing escaped characters and delimiters.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests.EvaluateStringTest">
+            <summary>
+            Tests the evaluation of a raw string as a script.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Script.BdoScriptwordTests_Boolean">
+            <summary>
+            This class provides unit tests for Boolean-related scriptwords, ensuring that 
+            equality and comparison logic are correctly interpreted by the scoping engine.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests_Boolean.EqTest">
+            <summary>
+            Tests the basic equality function ($eq) between a literal string 
+            and the result of a nested script function ($text).
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests_Boolean.SubwordTest">
+            <summary>
+            Tests equality logic where one operand is a variable ($var) 
+            that must be resolved from a provided metadata set.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Script.BdoScriptwordTests_Evaluation">
+            <summary>
+            This class provides unit tests for script evaluation, verifying the interpreter's 
+            ability to process literals, variables, and nested functions within templates.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests_Evaluation.InterpreteWord1Test">
+            <summary>
+            Tests the interpretation of a direct scriptword object.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests_Evaluation.InterpreteScript2Test">
+            <summary>
+            Tests the interpretation of a raw script string using a script expression.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests_Evaluation.InterpreteScript3Test">
+            <summary>
+            Tests the interpretation of a chained function call.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests_Evaluation.InterpreteScript4Test">
+            <summary>
+            Tests variable resolution within a script.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests_Evaluation.InterpreteScript5Test">
+            <summary>
+            Tests an 'Auto' expression (template) containing static text and dynamic script zones.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests_Evaluation.InterpreteScript6Test">
+            <summary>
+            Tests the interpretation of a scriptword containing a complex entity object.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests_Evaluation.InterpreteScript7Test">
+            <summary>
+            Tests complex concatenation within a dynamic script zone.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests_Evaluation.VariableSetTest">
+            <summary>
+            Tests simple template evaluation with multiple variable injections.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests_Evaluation.CreateWordFromScriptTest">
+            <summary>
+            Tests the parser's ability to find and recreate a scriptword structure from a raw string.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Script.BdoScriptwordTests_Fluid">
+            <summary>
+            This class provides unit tests for fluid scriptword navigation, verifying the 
+            interpreter's ability to traverse metadata hierarchies using keywords like 'this' and 'parent'.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests_Fluid.InterpreteStringThisTest">
+            <summary>
+            Tests tree navigation using a raw script string. 
+            Path: current object -> parent -> value.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests_Fluid.InterpreteWordThisTest">
+            <summary>
+            Tests tree navigation using the fluent C# API to build the scriptword.
+            Path: current item -> parent -> find sibling 'titi' -> get value.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests_Fluid.InterpreteWordParentTest">
+            <summary>
+            Tests relative navigation starting directly from the parent context.
+            Also verifies that navigation safely returns null if the hierarchy is broken.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Script.BdoScriptwordTests_ToString">
+            <summary>
+            This class provides unit tests for the string representation of BdoScriptwords,
+            ensuring that fluently built script trees are correctly serialized into script strings.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordTests_ToString.ToStringTest">
+            <summary>
+            Tests the conversion of a fluidly constructed scriptword tree into its 
+            corresponding script string representation.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Tests.BdoConnectorFaker">
+            <summary>
+            This class provides factory methods to generate randomized data and meta-objects
+            for testing BdoConnectors.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.BdoConnectorFaker.NewData">
+            <summary>
+            Generates a randomized set of connector data using the Bogus library.
+            </summary>
+            <returns>A dynamic object containing connection properties.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.BdoConnectorFaker.NewMetaObject(System.Object)">
+            <summary>
+            Creates a new BdoMetaObject initialized with connector data.
+            </summary>
+            <param name="data">The dynamic data to use. If null, new data is generated.</param>
+            <returns>An IBdoMetaObject configured for a test connector.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Tests.BdoEntityFaker">
+            <summary>
+            This class provides factory methods to generate randomized data and meta-objects
+            for testing BdoEntities.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.BdoEntityFaker.NewData">
+            <summary>
+            Generates a randomized set of entity data using the Bogus library.
+            </summary>
+            <returns>A dynamic ExpandoObject containing entity properties.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.BdoEntityFaker.NewMetaObject(System.Object)">
+            <summary>
+            Creates a new BdoMetaObject initialized with entity data, including nested nodes.
+            </summary>
+            <param name="data">The dynamic data source. If null, fresh data is generated.</param>
+            <returns>An IBdoMetaObject configured for a test entity.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Tests.BdoFunctionFaker">
+            <summary>
+            This class provides factory methods to generate randomized data for testing 
+            BindOpen script functions and expressions.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.BdoFunctionFaker.Fake">
+            <summary>
+            Generates a randomized set of data used as arguments for script functions.
+            </summary>
+            <returns>A dynamic ExpandoObject containing mixed-type values.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Tests.BdoMetaScalarFaker">
+            <summary>
+            This class provides factory methods to generate randomized data and perform
+            assertions for IBdoMetaScalar elements.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.BdoMetaScalarFaker.Fake">
+            <summary>
+            Generates a randomized set of scalar arrays using the Bogus library.
+            </summary>
+            <returns>An anonymous object containing arrays of various primitive types.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.BdoMetaScalarFaker.AssertFake(BindOpen.Data.Meta.IBdoMetaScalar,BindOpen.Data.Meta.IBdoMetaScalar)">
+            <summary>
+            Validates that a generated MetaScalar element matches its reference.
+            </summary>
+            <param name="element">The MetaScalar to check.</param>
+            <param name="reference">The reference MetaScalar to compare against.</param>
+        </member>
+        <member name="T:BindOpen.Scoping.Tests.BdoScopingSchemaFaker">
+            <summary>
+            This class provides factory methods to create complex, conditional schemas 
+            for testing BindOpen's metadata validation and scoping rules.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.BdoScopingSchemaFaker.CreateSchema">
+            <summary>
+            Creates a highly conditional schema structure used to test 
+            requirement levels, forbidden states, and child satisfaction.
+            </summary>
+            <returns>A configured IBdoSchema instance.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Tests.BdoTaskFaker">
+            <summary>
+            This class provides factory methods to generate randomized data, 
+            create Meta-Objects, and perform assertions for Task testing.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.BdoTaskFaker.NewData">
+            <summary>
+            Generates a randomized data set using the Bogus library.
+            </summary>
+            <returns>An anonymous object containing randomized task parameters.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.BdoTaskFaker.NewMetaObject(System.Object)">
+            <summary>
+            Creates a new BdoMetaObject configured as a Task extension.
+            Distinguishes between Properties, Inputs, and Outputs for specialized task handling.
+            </summary>
+            <param name="data">The source data. If null, fresh data is generated.</param>
+            <returns>An IBdoMetaObject representing a Task.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.BdoTaskFaker.AssertFake(BindOpen.Scoping.Tests.TaskFake,System.Object)">
+            <summary>
+            Validates that a Task instance correctly matches the reference data.
+            </summary>
+            <param name="task">The instantiated task to validate.</param>
+            <param name="reference">The original data used for creation.</param>
+        </member>
+        <member name="T:BindOpen.Scoping.Tests.ClassFake">
+            <summary>
+            This class represents a fake POCO used for testing reflection and metadata mapping.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.ClassFake.StringProp">
+            <summary>
+            Gets or sets the string property. Mapped to DataValueTypes.Text.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.ClassFake.IntProp">
+            <summary>
+            Gets or sets the integer property. Mapped to DataValueTypes.Integer.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.ClassFake.DoubleProp">
+            <summary>
+            Gets or sets the double property. Mapped to DataValueTypes.Number.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.ClassFake.FloatProp">
+            <summary>
+            Gets or sets the float property. Mapped to DataValueTypes.Number.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.ClassFake.DateTimeProp">
+            <summary>
+            Gets or sets the date-time property. Mapped to DataValueTypes.Date.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.ClassFake.TimeSpanProp">
+            <summary>
+            Gets or sets the time-span property. Mapped to DataValueTypes.Time.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Tests.ConnectionFake">
+            <summary>
+            This class represents a fake database connection used to test Pull and Push operations
+            within the BindOpen scoping environment.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.ConnectionFake.#ctor(BindOpen.Scoping.Tests.ConnectorFake)">
+            <summary>
+            Instantiates a new instance of the ConnectionFake class.
+            </summary>
+            <param name="connector">The connector containing the configuration for this connection.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.ConnectionFake.Connect(BindOpen.Logging.IBdoLog)">
+            <summary>
+            Simulates connecting to a data source.
+            </summary>
+            <param name="log">The log to populate with execution details.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.ConnectionFake.Disconnect(BindOpen.Logging.IBdoLog)">
+            <summary>
+            Simulates disconnecting from a data source.
+            </summary>
+            <param name="log">The log to populate with execution details.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.ConnectionFake.Pull(BindOpen.Data.Meta.IBdoMetaSet,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Pulls a randomized list of fake entities from the "data source".
+            </summary>
+            <param name="paramSet">The parameters for the query (e.g., GroupId).</param>
+            <param name="log">The execution log.</param>
+            <returns>A collection of simulated entities.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.ConnectionFake.PullAsync(BindOpen.Data.Meta.IBdoMetaSet,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Asynchronously pulls entities.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.ConnectionFake.Push(BindOpen.Logging.IBdoLog,BindOpen.Scoping.Tests.EntityFake[])">
+            <summary>
+            Simulates pushing (Saving/Updating) entities to a data source.
+            </summary>
+            <param name="log">The execution log.</param>
+            <param name="entities">The entities to push.</param>
+            <returns>A collection of result items indicating the status of each push.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.ConnectionFake.PushAsync(BindOpen.Logging.IBdoLog,BindOpen.Scoping.Tests.EntityFake[])">
+            <summary>
+            Asynchronously pushes entities.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Tests.ConnectorFake">
+            <summary>
+            This class represents a fake connector used for testing metadata-to-object mapping
+            and connection instantiation within the BindOpen scoping framework.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Scoping.Tests.ConnectorFake.__DefinitionUniqueName">
+            <summary>
+            The unique name used by the scoping engine to identify this extension.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.ConnectorFake.Host">
+            <summary>
+            Gets or sets the host address. Mapped from the "host" metadata property.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.ConnectorFake.IsSslEnabled">
+            <summary>
+            Gets or sets whether SSL is enabled. Mapped from the "isSslEnabled" metadata property.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.ConnectorFake.Port">
+            <summary>
+            Gets or sets the port. Mapped as a MetaScalar to handle complex data states 
+            (e.g., scripts or requirements) within the port value.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.ConnectorFake.#ctor">
+            <summary>
+            Instantiates a new instance of the ConnectorFake class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.ConnectorFake.NewConnection(BindOpen.Logging.IBdoLog)">
+            <summary>
+            Creates a new active connection based on this connector's configuration.
+            </summary>
+            <param name="log">The log to consider for tracking instantiation.</param>
+            <returns>A new instance of ConnectionFake.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Tests.EntityFake">
+            <summary>
+            This class represents a fake database entity used to test complex property mapping,
+            nested nodes, and conditional script-based validation rules.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Scoping.Tests.EntityFake.__DefinitionUniqueName">
+            <summary>
+            The unique extension name used by the scoping engine.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.EntityFake.BoolValue">
+            <summary>
+            A boolean value with multiple aliases and a conditional requirement.
+            It is required only if 'stringValue' equals 'AA'.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.EntityFake.StringValue">
+            <summary>
+            A simple string property.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.EntityFake.IntValue">
+            <summary>
+            A simple integer property.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.EntityFake.EnumValue">
+            <summary>
+            An enumeration property mapping AccessibilityLevels.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.EntityFake.Inputs">
+            <summary>
+            A complex metadata node property. Also accessible as a function.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.EntityFake.SubEntity">
+            <summary>
+            A recursive property allowing for sub-entities.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.EntityFake.Path">
+            <summary>
+            The primary path of this entity.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.EntityFake.RelativePath">
+            <summary>
+            Gets or sets the relative path, automatically updating the primary Path.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.EntityFake.WithPath(System.String,System.String)">
+            <summary>
+            Updates the path and relative path of this instance.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Tests.FunctionFake">
+            <summary>
+            This class provides fake script function extensions used to test the 
+            BindOpen script interpreter and extension resolution logic.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.FunctionFake.GetTest(System.String,System.Int32)">
+            <summary>
+            A test function that checks if a string representation of an integer 
+            matches a provided string value.
+            </summary>
+            <param name="stringValue">The string value to compare.</param>
+            <param name="intValue">The integer value (defaults to 10).</param>
+            <returns>Returns True if the string matches the integer's string representation.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Tests.IEntityFake">
+            <summary>
+            This interface defines the contract for fake database entities, including 
+            the metadata mapping rules used by the BindOpen scoping engine.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.IEntityFake.BoolValue">
+            <summary>
+            The boolean value of this instance. 
+            Supports multiple aliases ("b", "bValue") and conditional requirements via script.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.IEntityFake.StringValue">
+            <summary>
+            The string value of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.IEntityFake.IntValue">
+            <summary>
+            The integer value of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.IEntityFake.EnumValue">
+            <summary>
+            Enumeration value of this instance mapping AccessibilityLevels.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.IEntityFake.Inputs">
+            <summary>
+            Metadata node representing inputs. Also accessible via the 'input' script function.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.IEntityFake.SubEntity">
+            <summary>
+            A sub-entity property demonstrating nested object hierarchies.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.IEntityFake.Path">
+            <summary>
+            The primary path of the instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.IEntityFake.RelativePath">
+            <summary>
+            The relative path of the instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.IEntityFake.CreationDate">
+            <summary>
+            The creation date of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.IEntityFake.Flag">
+            <summary>
+            Information flag for categorization or status.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.IEntityFake.IsReadonly">
+            <summary>
+            Indicates if the entity is read-only. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.IEntityFake.LastAccessDate">
+            <summary>
+            Timestamp of the last time this entity was accessed.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.IEntityFake.ParentPath">
+            <summary>
+            The parent path for hierarchical organization.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.IEntityFake.LastWriteDate">
+            <summary>
+            Timestamp of the last time this entity was modified.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Tests.SchemaFake">
+            <summary>
+            This class represents a fake option schema used for testing metadata 
+            specifications and validation rules within the BindOpen scoping engine.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.SchemaFake.#ctor">
+            <summary>
+            Instantiates a new instance of the SchemaFake class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Tests.ScriptWordDefinitionFake">
+            <summary>
+            This class provides complex script function extensions used to test the 
+            BindOpen interpreter's ability to handle domains, parents, and chained calls.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.ScriptWordDefinitionFake.Fun_Func1(BindOpen.Scoping.Script.IBdoScriptDomain)">
+            <summary>
+            Evaluates 'Func1'. Illustrates direct argument access via the script domain.
+            Usage: $Func1('myValue')
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.ScriptWordDefinitionFake.Fun_Func2a(System.Object,System.String,BindOpen.Scoping.Script.IBdoScriptDomain)">
+            <summary>
+            Evaluates 'subFun'. Demonstrates a "chained" or "extension" function.
+            Usage: $FuncX().subFun('suffix')
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.ScriptWordDefinitionFake.Fun_Func2b(BindOpen.Scoping.Script.IBdoScriptDomain)">
+            <summary>
+            Evaluates 'Func2'. Checks for case-insensitive equality between two arguments.
+            Usage: $Func2('abc', 'ABC') -> returns true
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.ScriptWordDefinitionFake.Fun_Func3(System.Object,System.Object)">
+            <summary>
+            Evaluates 'Func3'. Demonstrates standard parameter mapping without using the domain.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.ScriptWordDefinitionFake.Fun_Func4(BindOpen.Scoping.Script.IBdoScriptDomain)">
+            <summary>
+            Evaluates 'Fun_Func4'. Demonstrates tree traversal by accessing the parent word's data.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.ScriptWordDefinitionFake.Concat(BindOpen.Scoping.Script.IBdoScriptDomain,System.Object[])">
+            <summary>
+            Evaluates 'concatTest'. Demonstrates handling of variable argument lengths (params).
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Tests.TaskFake">
+            <summary>
+            This class represents a fake task used to test execution logic, 
+            asynchronous processing, and automated metadata mapping in BindOpen.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Scoping.Tests.TaskFake.__DefinitionUniqueName">
+            <summary>
+            The unique extension name identified by the BindOpen Scope.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.TaskFake.BoolValue">
+            <summary>
+            A configuration property. Static throughout the task lifecycle.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.TaskFake.IntValue">
+            <summary>
+            A configuration property. Static throughout the task lifecycle.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.TaskFake.EnumValue">
+            <summary>
+            An input property. Usually provided at runtime before execution.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.TaskFake.StringValue">
+            <summary>
+            An output property. Populated during or after execution to return data.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.TaskFake.Outputs">
+            <summary>
+            A complex output node containing a set of metadata results.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.TaskFake.SubTask">
+            <summary>
+            A sub-task property demonstrating hierarchical task composition.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.TaskFake.Flag">
+            <summary>
+            A specialized output flag.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.TaskFake.WithFlag(System.String)">
+            <summary>
+            Fluent mutator to set the task flag.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.TaskFake.ExecuteAsync(System.Threading.CancellationToken,BindOpen.Scoping.IBdoScope,BindOpen.Data.Meta.IBdoMetaSet,BindOpen.Data.RuntimeModes,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Asynchronously executes the task logic.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <param name="scope">The execution scope.</param>
+            <param name="varSet">The variable set for script resolution.</param>
+            <param name="runtimeMode">The execution mode (Normal, Simulation, etc.).</param>
+            <param name="log">The execution log.</param>
+            <returns>Returns True if the task completed successfully.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Tests.TreeFake">
+            <summary>
+            This class represents a fake tree node used for testing hierarchical navigation, 
+            recursive operations, and set management within the BindOpen framework.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.TreeFake.#ctor">
+            <summary>
+            Instantiates a new instance of the TreeFake class.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.TreeFake._Children">
+            <summary>
+            Gets or sets the set of child nodes.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.TreeFake.Parent">
+            <summary>
+            Gets or sets the parent node of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Tests.TreeFake.Name">
+            <summary>
+            Gets or sets the name of the node.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.TreeFake.RemoveChildren(System.Predicate{BindOpen.Scoping.Tests.TreeFake},System.Boolean)">
+            <summary>
+            Removes children based on a filter, optionally processing the tree recursively.
+            </summary>
+            <param name="filter">The predicate to determine which nodes to remove.</param>
+            <param name="isRecursive">Indicates whether to apply the removal to all descendants.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.TreeFake.Key">
+            <summary>
+            Returns the unique key for this node, required by the INamed interface.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tests.TreeFake.InsertChild``1(System.Action{``0})">
+            <summary>
+            Inserts a new child node of a specific type and initializes it.
+            </summary>
+            <typeparam name="Q">The type of the child node (must inherit from TreeFake).</typeparam>
+            <param name="updater">The action to configure the new child node.</param>
+            <returns>The newly created child node.</returns>
+        </member>
+        <member name="T:BindOpen.ScopingTestData">
+            <summary>
+            This static class provides shared data and engine instances for all scoping tests.
+            It ensures that the BindOpen environment is initialized once per test run.
+            </summary>
+        </member>
+        <member name="P:BindOpen.ScopingTestData.Scope">
+            <summary>
+            Gets the global application scope. 
+            Initializes the scope and loads required test extensions upon first access.
+            </summary>
+        </member>
+        <member name="P:BindOpen.ScopingTestData.ScriptInterpreter">
+            <summary>
+            Gets the default script interpreter associated with the global scope.
+            </summary>
+        </member>
+        <member name="T:BindOpen.ScopingTestSetup">
+            <summary>
+            This class handles the global setup for all tests within the BindOpen namespace.
+            It ensures that shared resources and scoping engines are initialized before 
+            any specific test fixture is executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.ScopingTestSetup.OneTimeSetUp">
+            <summary>
+            Executes once for the entire test assembly. 
+            Triggers the static initialization of the global Scope and Extension Store.
+            </summary>
+        </member>
+    </members>
+</doc>

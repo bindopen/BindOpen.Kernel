@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>BindOpen.Kernel.Dtos.Tests</name>
+        <name>BindOpen.Dtos.Tests</name>
     </assembly>
     <members>
         <member name="T:BindOpen.GlobalDtosTestSetup">

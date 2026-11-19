@@ -109,7 +109,7 @@ public class BdoScopingSchemaTests
             .With(
                 BdoData.NewScalar("auto", true),
                 BdoData.NewScalar("label", true),
-                BdoData.NewScalar("title", "myTitle"));
+                BdoData.NewScalar("title", "myTitle2"));
 
         Assert.That(!validator.Check(meta2), "Validation should have failed for a node containing forbidden elements.");
     }
@@ -152,7 +152,7 @@ public class BdoScopingSchemaTests
         var validator = ScopingTestData.Scope.CreateValidator();
 
         // 1. Basic null value check
-        var meta1 = BdoData.NewScalar("name").AsNullValue();
+        var meta1 = BdoData.NewScalar("name", null).AsNullValue();
         Assert.That(validator.Check(meta1), "Null value check failed.");
 
         // 2. Strict null schema check

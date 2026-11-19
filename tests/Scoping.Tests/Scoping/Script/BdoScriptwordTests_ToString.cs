@@ -37,6 +37,6 @@ public class BdoScriptwordTests_ToString
 
         // 4. Verify the root part serialization
         script = word.Parent?.Parent?.ToString();
-        Assert.That(script, Is.EqualTo("$('$this').('parent').value()"), "The root scriptword serialization is incorrect.");
+        Assert.That(script, Is.EqualTo("$('$this')"), "The root scriptword serialization is incorrect.");
     }
 }

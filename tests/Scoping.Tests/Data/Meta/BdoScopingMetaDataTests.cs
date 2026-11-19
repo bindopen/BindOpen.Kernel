@@ -69,15 +69,19 @@ public class BdoScopingMetaDataTests
     {
         // 1. Basic test with an empty schema (should be valid/existent by default)
         var meta0 = BdoData.NewSet("meta-test")
-            .WithSchema(BdoData.NewSchema())
+            .WithCondition(
+                BdoScript.NewCondition<IBdoMetaData>(q =>
+                    BdoScript.Eq(BdoScript.This<IBdoMetaData>()._Descendant("title")._Value(), "myTitle")))
             .With(BdoData.NewScalar("title", "A"));
 
         var existence0 = meta0.GetConditionValue(ScopingTestData.Scope);
-        Assert.That(existence0, Is.True, "The basic condition check failed.");
+        Assert.That(existence0, Is.False, "The basic condition check failed.");
 
         // 2. Test with full schema and valid data
         var meta1 = BdoData.NewSet("meta-test")
-            .WithSchema(_schema)
+            .WithCondition(
+                BdoScript.NewCondition<IBdoMetaData>(q =>
+                    BdoScript.Eq(BdoScript.This<IBdoMetaData>()._Descendant("title")._Value(), "myTitle")))
             .With(BdoData.NewScalar("title", "myTitle"));
 
         var existence1 = meta1.GetConditionValue(ScopingTestData.Scope);

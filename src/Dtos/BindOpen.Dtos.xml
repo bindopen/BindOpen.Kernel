@@ -1,0 +1,826 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BindOpen.Dtos</name>
+    </assembly>
+    <members>
+        <member name="T:BindOpen.Data.Assemblies.AssemblyReferenceIOConverter">
+            <summary>
+            This class represents a IO converter of assembly references.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.AssemblyReferenceIOConverter.ToDto(BindOpen.Data.Assemblies.IBdoAssemblyReference)">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.AssemblyReferenceIOConverter.UpdateFromPoco(BindOpen.Data.Assemblies.AssemblyReferenceDto,BindOpen.Data.Assemblies.IBdoAssemblyReference)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <param name="poco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.AssemblyReferenceIOConverter.ToPoco(BindOpen.Data.Assemblies.AssemblyReferenceDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.AssemblyReferenceIOConverter.UpdateFromDto(BindOpen.Data.Assemblies.IBdoAssemblyReference,BindOpen.Data.Assemblies.AssemblyReferenceDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.Assemblies.ClassReferenceIOConverter">
+            <summary>
+            This class represents a IO converter of assembly references.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.ClassReferenceIOConverter.ToDto(BindOpen.Data.Assemblies.IBdoClassReference)">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.ClassReferenceIOConverter.UpdateFromPoco(BindOpen.Data.Assemblies.ClassReferenceDto,BindOpen.Data.Assemblies.IBdoClassReference)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <param name="poco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.ClassReferenceIOConverter.ToPoco(BindOpen.Data.Assemblies.ClassReferenceDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.ClassReferenceIOConverter.UpdateFromDto(BindOpen.Data.Assemblies.IBdoClassReference,BindOpen.Data.Assemblies.ClassReferenceDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.Conditions.BasicConditionIOConverter">
+            <summary>
+            This class represents a IO converter of assembly references.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Conditions.BasicConditionIOConverter.ToDto(BindOpen.Data.Conditions.IBdoBasicCondition)">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Conditions.BasicConditionIOConverter.UpdateFromPoco(BindOpen.Data.Conditions.BasicConditionDto,BindOpen.Data.Conditions.IBdoBasicCondition)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <param name="poco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.Conditions.BasicConditionIOConverter.ToPoco(BindOpen.Data.Conditions.BasicConditionDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Conditions.BasicConditionIOConverter.UpdateFromDto(BindOpen.Data.Conditions.IBdoBasicCondition,BindOpen.Data.Conditions.BasicConditionDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.Conditions.CompositeConditionIOConverter">
+            <summary>
+            This class represents a IO converter of assembly references.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Conditions.CompositeConditionIOConverter.ToDto(BindOpen.Data.Conditions.IBdoCompositeCondition)">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Conditions.CompositeConditionIOConverter.UpdateFromPoco(BindOpen.Data.Conditions.CompositeConditionDto,BindOpen.Data.Conditions.IBdoCompositeCondition)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <param name="poco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.Conditions.CompositeConditionIOConverter.ToPoco(BindOpen.Data.Conditions.CompositeConditionDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Conditions.CompositeConditionIOConverter.UpdateFromDto(BindOpen.Data.Conditions.IBdoCompositeCondition,BindOpen.Data.Conditions.CompositeConditionDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.Conditions.ConditionIOConverter">
+            <summary>
+            This abstract class represents a IO converter of conditions.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Conditions.ConditionIOConverter.ToDto(BindOpen.Data.Conditions.IBdoCondition)">
+            <summary>
+            Converts a condition poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Conditions.ConditionIOConverter.ToPoco(BindOpen.Data.Conditions.ConditionDto)">
+            <summary>
+            Converts a condition DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Conditions.ConditionIOConverter.UpdateFromDto(BindOpen.Data.Conditions.IBdoCompositeCondition,BindOpen.Data.Conditions.ConditionDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.Conditions.ExpressionConditionIOConverter">
+            <summary>
+            This class represents a IO converter of assembly references.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Conditions.ExpressionConditionIOConverter.ToDto(BindOpen.Data.Conditions.IBdoExpressionCondition)">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Conditions.ExpressionConditionIOConverter.UpdateFromPoco(BindOpen.Data.Conditions.ExpressionConditionDto,BindOpen.Data.Conditions.IBdoExpressionCondition)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <param name="poco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.Conditions.ExpressionConditionIOConverter.ToPoco(BindOpen.Data.Conditions.ExpressionConditionDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Conditions.ExpressionConditionIOConverter.UpdateFromDto(BindOpen.Data.Conditions.IBdoExpressionCondition,BindOpen.Data.Conditions.ExpressionConditionDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.Meta.ConfigurationIOConverter">
+            <summary>
+            This class represents a IO converter of configurations.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.ConfigurationIOConverter.ToDto(BindOpen.Data.Meta.IBdoConfiguration)">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Meta.ConfigurationIOConverter.UpdateFromPoco(BindOpen.Data.Meta.ConfigurationDto,BindOpen.Data.Meta.IBdoConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <param name="poco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.Meta.ConfigurationIOConverter.ToPoco(BindOpen.Data.Meta.ConfigurationDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Meta.ConfigurationIOConverter.UpdateFromDto(BindOpen.Data.Meta.IBdoConfiguration,BindOpen.Data.Meta.ConfigurationDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.Meta.MetaDataConverter">
+            <summary>
+            This class represents a IO converter of meta data items.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaDataConverter.ToDto(BindOpen.Data.Meta.IBdoMetaData)">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaDataConverter.UpdateFromPoco(BindOpen.Data.Meta.MetaDataDto,BindOpen.Data.Meta.IBdoMetaData)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <param name="poco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaDataConverter.ToPoco(BindOpen.Data.Meta.MetaDataDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaDataConverter.UpdateFromDto(BindOpen.Data.Meta.IBdoMetaData,BindOpen.Data.Meta.MetaDataDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.Meta.MetaObjectConverter">
+            <summary>
+            This class represents a IO converter of meta objects.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaObjectConverter.ToDto(BindOpen.Data.Meta.IBdoMetaObject)">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaObjectConverter.UpdateFromPoco(BindOpen.Data.Meta.MetaObjectDto,BindOpen.Data.Meta.IBdoMetaObject)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <param name="poco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaObjectConverter.ToPoco(BindOpen.Data.Meta.MetaObjectDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaObjectConverter.UpdateFromDto(BindOpen.Data.Meta.IBdoMetaObject,BindOpen.Data.Meta.MetaObjectDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.Meta.MetaScalarConverter">
+            <summary>
+            This class represents a IO converter of meta scalars.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaScalarConverter.ToDto(BindOpen.Data.Meta.IBdoMetaScalar)">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaScalarConverter.UpdateFromPoco(BindOpen.Data.Meta.MetaScalarDto,BindOpen.Data.Meta.IBdoMetaScalar)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <param name="poco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaScalarConverter.ToPoco(BindOpen.Data.Meta.MetaScalarDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaScalarConverter.UpdateFromDto(BindOpen.Data.Meta.IBdoMetaScalar,BindOpen.Data.Meta.MetaScalarDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.Meta.MetaSetConverter">
+            <summary>
+            This class represents a IO converter of meta nodes.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaSetConverter.ToDto(BindOpen.Data.Meta.IBdoMetaSet)">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaSetConverter.UpdateFromPoco(BindOpen.Data.Meta.MetaSetDto,BindOpen.Data.Meta.IBdoMetaSet)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <param name="poco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaSetConverter.ToPoco(BindOpen.Data.Meta.MetaSetDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaSetConverter.UpdateFromDto(BindOpen.Data.Meta.IBdoMetaSet,BindOpen.Data.Meta.MetaSetDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.ConfigurationXmlExtensions">
+            <summary>
+            This static class provides extension of.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ConfigurationXmlExtensions.LoadXml``2(System.String,BindOpen.Scoping.IBdoScope,BindOpen.Logging.IBdoLog,System.Xml.Schema.XmlSchemaSet,System.Boolean)">
+            <summary>
+            Instantiates a new instance of Configuration class from a xml file.
+            </summary>
+            <param key="filePath">The file path to consider.</param>
+            <param key="scope">The scope to consider.</param>
+            <param key="metaSet">The set of script variables to consider.</param>
+            <param key="log">The log to consider.</param>
+            <param key="xmlSchemaSet">The XML schema set to consider for checking.</param>
+            <param key="mustFileExist">Indicates whether the file must exist.</param>
+            <param key="isRuntimeUpdated">Indicates whether the runtime is updated.</param>
+            <returns>The Xml operation project defined in the Xml file.</returns>
+        </member>
+        <member name="T:BindOpen.Data.KeyValuePairIOConverter">
+            <summary>
+            This class represents a IO converter of key value pairs.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.KeyValuePairIOConverter.ToDto``1(System.Collections.Generic.KeyValuePair{System.String,``0})">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.KeyValuePairIOConverter.ToPoco``1(BindOpen.Data.KeyValuePairDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="T:BindOpen.Data.StringDictionaryIOConverter">
+            <summary>
+            This class represents a IO converter of dictionaries.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryIOConverter.ToDto``1(BindOpen.Data.Objects.Interfaces.ITBdoDictionary{``0})">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryIOConverter.UpdateFromPoco``1(BindOpen.Data.StringDictionaryDto,BindOpen.Data.Objects.Interfaces.ITBdoDictionary{``0})">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <param name="poco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryIOConverter.ToPoco``1(BindOpen.Data.StringDictionaryDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryIOConverter.UpdateFromDto``1(BindOpen.Data.Objects.Interfaces.ITBdoDictionary{``0},BindOpen.Data.StringDictionaryDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.ExpressionIOConverter">
+            <summary>
+            This class represents a IO converter of expressions.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ExpressionIOConverter.ToDto(BindOpen.Data.Objects.Interfaces.IBdoExpression)">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.ExpressionIOConverter.UpdateFromPoco(BindOpen.Data.ExpressionDto,BindOpen.Data.Objects.Interfaces.IBdoExpression)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <param name="poco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.ExpressionIOConverter.ToPoco(BindOpen.Data.ExpressionDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.ExpressionIOConverter.UpdateFromDto(BindOpen.Data.Objects.Interfaces.IBdoExpression,BindOpen.Data.ExpressionDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.MergerIOConverter">
+            <summary>
+            This class represents a IO converter of mergers.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.MergerIOConverter.ToDto(BindOpen.Data.Objects.Interfaces.IBdoMerger)">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.MergerIOConverter.UpdateFromPoco(BindOpen.Data.MergerDto,BindOpen.Data.Objects.Interfaces.IBdoMerger)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <param name="poco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.MergerIOConverter.ToPoco(BindOpen.Data.MergerDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.MergerIOConverter.UpdateFromDto(BindOpen.Data.Objects.Interfaces.IBdoMerger,BindOpen.Data.MergerDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.ReferenceIOConverter">
+            <summary>
+            This class represents a IO converter of references.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ReferenceIOConverter.ToDto(BindOpen.Data.IBdoReference)">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.ReferenceIOConverter.UpdateFromPoco(BindOpen.Data.ReferenceDto,BindOpen.Data.IBdoReference)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <param name="poco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.ReferenceIOConverter.ToPoco(BindOpen.Data.ReferenceDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.ReferenceIOConverter.UpdateFromDto(BindOpen.Data.IBdoReference,BindOpen.Data.ReferenceDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.Schema.DefinitionIOConverter">
+            <summary>
+            This class represents a IO converter of definitions.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Schema.DefinitionIOConverter.ToDto(BindOpen.Data.Schema.IBdoDefinition)">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Schema.DefinitionIOConverter.UpdateFromPoco(BindOpen.Data.Schema.DefinitionDto,BindOpen.Data.Schema.IBdoDefinition)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <param name="poco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.Schema.DefinitionIOConverter.ToPoco(BindOpen.Data.Schema.DefinitionDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Schema.DefinitionIOConverter.UpdateFromDto(BindOpen.Data.Schema.IBdoDefinition,BindOpen.Data.Schema.DefinitionDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.Schema.SchemaIOConverter">
+            <summary>
+            This class represents a IO converter of schemas.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaIOConverter.ToDto(BindOpen.Data.Schema.IBdoSchema)">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaIOConverter.UpdateFromPoco(BindOpen.Data.Schema.SchemaDto,BindOpen.Data.Schema.IBdoSchema)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <param name="poco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaIOConverter.ToPoco(BindOpen.Data.Schema.SchemaDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaIOConverter.UpdateFromDto(BindOpen.Data.Schema.IBdoSchema,BindOpen.Data.Schema.SchemaDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.Schema.SchemaRuleIOConverter">
+            <summary>
+            This class represents a rule converter.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaRuleIOConverter.ToDto(BindOpen.Data.Schema.IBdoSchemaRule)">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaRuleIOConverter.UpdateFromPoco(BindOpen.Data.Schema.SchemaRuleDto,BindOpen.Data.Schema.IBdoSchemaRule)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <param name="poco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaRuleIOConverter.ToPoco(BindOpen.Data.Schema.SchemaRuleDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaRuleIOConverter.UpdateFromDto(BindOpen.Data.Schema.IBdoSchemaRule,BindOpen.Data.Schema.SchemaRuleDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.Schema.SchemaSetIOConverter">
+            <summary>
+            This class represents a IO converter of schema sets.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaSetIOConverter.ToDto(BindOpen.Data.Schema.IBdoSchemaSet)">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaSetIOConverter.UpdateFromPoco(BindOpen.Data.Schema.SchemaSetDto,BindOpen.Data.Schema.IBdoSchemaSet)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <param name="poco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaSetIOConverter.ToPoco(BindOpen.Data.Schema.SchemaSetDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaSetIOConverter.UpdateFromDto(BindOpen.Data.Schema.IBdoSchemaSet,BindOpen.Data.Schema.SchemaSetDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BindOpen.Data.JsonHelper">
+            <summary>
+            This static class provides methods to serailize and deserialize objects into Json.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.JsonHelper.ToJson``1(``0,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Converts the specified DTO object to the JSON string.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <param key="log">The log to update.</param>
+            <returns>The Json string of this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Data.JsonHelper.SaveJson``1(``0,System.String,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Saves the specified DTO object to the specified file path.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <param key="filePath">The path of the file to save.</param>
+            <param key="log">The log to update.</param>
+            <returns>True if the saving operation has been done. False otherwise.</returns>
+        </member>
+        <member name="M:BindOpen.Data.JsonHelper.LoadJson``1(System.String,BindOpen.Logging.IBdoLog,System.Boolean)">
+            <summary>
+            Loads a data item from the specified file path.
+            </summary>
+            <param key="filePath">The path of the Json file to load.</param>
+            <param key="log">The output log of the method.</param>
+            <param key="mustFileExist">Indicates whether the file must exist.</param>
+            <returns>The loaded log.</returns>
+        </member>
+        <member name="M:BindOpen.Data.JsonHelper.LoadJsonFromString``1(System.String,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads the data item from the specified file path.
+            </summary>
+            <typeparam name="T">The data item class to consider.</typeparam>
+            <param key="jsonString">The Json string to load.</param>
+            <param key="log">The output log of the load method.</param>
+            <returns>The loaded log.</returns>
+            <remarks>If the XML schema set is null then the schema is not checked.</remarks>
+        </member>
+        <member name="M:BindOpen.Data.XmlHelper.ToXml(System.Object,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Saves the XML string of this instance.
+            </summary>
+            <param key="dto">The DTO to save.</param>
+            <param key="log">The saving log to consider.</param>
+            <returns>The Xml string of this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Data.XmlHelper.SaveXml(System.Object,System.String,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Saves this instance to the specified XML file path.
+            </summary>
+            <param key="dto">The DTO to save.</param>
+            <param key="filePath">Path of the file to save.</param>
+            <param key="log">The log to consider.</param>
+            <returns>True if the saving operation has been done. False otherwise.</returns>
+        </member>
+        <member name="M:BindOpen.Data.XmlHelper.LoadXml``1(System.String,BindOpen.Logging.IBdoLog,System.Xml.Schema.XmlSchemaSet,System.Boolean)">
+            <summary>
+            Loads a data item from the specified XML file path.
+            </summary>
+            <param key="filePath">The path of the file to load.</param>
+            <param key="log">The output log of the method.</param>
+            <param key="xmlSchemaSet">The XML schema set to consider for checking.</param>
+            <param key="mustFileExist">Indicates whether the file must exist.</param>
+            <returns>The loaded log.</returns>
+            <remarks>If the XML schema set is null then the schema is not checked.</remarks>
+        </member>
+        <member name="M:BindOpen.Data.XmlHelper.LoadXmlFromString``1(System.String,BindOpen.Logging.IBdoLog,System.Xml.Schema.XmlSchemaSet)">
+            <summary>
+            Loads the data item from the specified XML file path.
+            </summary>
+            <typeparam name="T">The data item class to consider.</typeparam>
+            <param key="xmlString">The XML string to load.</param>
+            <param key="log">The output log of the load method.</param>
+            <param key="xmlSchemaSet">The XML schema set to consider for checking.</param>
+            <returns>The loaded log.</returns>
+            <remarks>If the XML schema set is null then the schema is not checked.</remarks>
+        </member>
+        <member name="M:BindOpen.Data.XmlHelper.LoadXmlSchemaSet(System.Xml.Schema.XmlSchemaSet,System.Reflection.Assembly,System.Collections.Generic.List{System.String})">
+            <summary>
+            Loads the specified XML schema set.
+            </summary>
+            <param key="xmlSchemaSet">The XML schema set to consider.</param>
+            <param key="assembly">The assembly to consider.</param>
+            <param key="xsdResources">The XSD resources to consider.</param>
+            <returns>The XML schema set.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Script.ScriptwordIOConverter">
+            <summary>
+            This class represents a IO converter of script words.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptwordIOConverter.ToDto(BindOpen.Scoping.Script.IBdoScriptword)">
+            <summary>
+            Converts an assembly reference poco into a DTO one.
+            </summary>
+            <param key="poco">The poco to consider.</param>
+            <returns>The DTO object.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptwordIOConverter.UpdateFromPoco(BindOpen.Scoping.Script.ScriptwordDto,BindOpen.Scoping.Script.IBdoScriptword)">
+            <summary>
+            
+            </summary>
+            <param name="dto"></param>
+            <param name="poco"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptwordIOConverter.ToPoco(BindOpen.Scoping.Script.ScriptwordDto)">
+            <summary>
+            Converts an assembly reference DTO into a poco one.
+            </summary>
+            <param key="dto">The DTO to consider.</param>
+            <returns>The poco object.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptwordIOConverter.UpdateFromDto(BindOpen.Scoping.Script.IBdoScriptword,BindOpen.Scoping.Script.ScriptwordDto)">
+            <summary>
+            
+            </summary>
+            <param name="poco"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

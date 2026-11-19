@@ -134,41 +134,34 @@ public class BdoScriptword : BdoMetaObject, IBdoScriptword
     }
 
     /// <summary>
-    /// Returns a string that represents the current script word chain.
+    /// Returns a string that represents the script chain from the root up to this script word.
     /// </summary>
-    public override string ToString() => ToString(fromRoot: true);
+    public override string ToString() => ToString(fromRoot: true, endWord: this);
 
     /// <summary>
     /// Formats the script word.
     /// </summary>
     /// <param name="fromRoot">If true, climbs to the root. Set to false for internal recursion.</param>
-    public string ToString(bool fromRoot)
+    public string ToString(bool fromRoot) => ToString(fromRoot, endWord: null);
+
+    private string ToString(bool fromRoot, IBdoScriptword endWord)
     {
-        // 1. Navigation to Root (Entry point only)
-        // We climb up once to ensure the full script is generated.
         if (fromRoot && Parent is BdoScriptword rootCandidate)
         {
-            return rootCandidate.ToString(true);
+            return rootCandidate.ToString(true, endWord);
         }
 
         string script;
 
-        // 2. Prefix Resolution
-        // Prefix '$' is added if:
-        // - It's the root (Parent == null)
-        // - OR it's a parameter (not a fluent child of its parent).
         bool isFluentChild = Parent is BdoScriptword pWord && pWord.Child == this;
         string prefix = !isFluentChild ? BdoScriptHelper.Symbol_Fun : string.Empty;
 
         switch (TokenKind)
         {
             case ScriptTokenKinds.Function:
-                // 3. Enumerating parameters
-                // We use ToString(false) to ensure parameters start their own prefix logic ($).
                 var args = string.Join(", ", this.Select(p =>
                 {
-                    if (p is BdoScriptword sw) return sw.ToString(false);
-                    // For literals/meta, we wrap in single quotes and escape existing quotes.
+                    if (p is BdoScriptword sw) return sw.ToString(false, null);
                     var val = p?.GetData()?.ToString() ?? string.Empty;
                     return $"'{val.Replace("'", "''")}'";
                 }));
@@ -177,12 +170,10 @@ public class BdoScriptword : BdoMetaObject, IBdoScriptword
                 break;
 
             case ScriptTokenKinds.Variable:
-                // Specific variable syntax: $('varName')
                 script = $"{prefix}('{Name?.Replace("'", "''")}')";
                 break;
 
             case ScriptTokenKinds.Text:
-                // Simple text literal syntax: 'text'
                 script = $"'{Name?.Replace("'", "''")}'";
                 break;
 
@@ -194,16 +185,14 @@ public class BdoScriptword : BdoMetaObject, IBdoScriptword
                 break;
         }
 
-        // 4. Downward Fluent Chaining
-        // If the word has a child, we append it with a dot.
-        if (Child is BdoScriptword childWord)
+        if (this != endWord && Child is BdoScriptword childWord)
         {
-            script += "." + childWord.ToString(false);
+            script += "." + childWord.ToString(false, endWord);
         }
 
         return script;
     }
-    
+
     #endregion
 
     // --------------------------------------------------

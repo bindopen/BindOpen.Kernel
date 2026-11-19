@@ -1,0 +1,454 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BindOpen.Scoping</name>
+    </assembly>
+    <members>
+        <member name="T:BindOpen.Scoping.AppDomainPool">
+            <summary>
+            This class represents a pool of application domains, allowing for centralized 
+            management and retrieval of execution contexts.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Scoping.AppDomainPool._appDomains">
+            <summary>
+            The internal list of application domains.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.AppDomainPool.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:BindOpen.Scoping.AppDomainPool"/> class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.AppDomainPool.GetAppDomain(System.String)">
+            <summary>
+            Retrieves an application domain by its identifier (FriendlyName).
+            </summary>
+            <param name="appDomainId">The identifier of the application domain to find.</param>
+            <returns>Returns the matching <see cref="T:System.AppDomain"/> if found; otherwise, null.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.AppDomainPoolExtensions">
+            <summary>
+            This static class provides extension methods for <see cref="T:System.AppDomain"/> 
+            to handle assembly discovery and loading.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.AppDomainPoolExtensions.LoadAssemblyFromFile(System.AppDomain,System.String,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads or retrieves an assembly from the specified file path.
+            </summary>
+            <param name="appDomain">The application domain to use for loading.</param>
+            <param name="filePath">The full path to the assembly file.</param>
+            <param name="log">The log to populate with loading events.</param>
+            <returns>Returns the loaded <see cref="T:System.Reflection.Assembly"/>; otherwise, null.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.AppDomainPoolExtensions.LoadAssembly(System.AppDomain,BindOpen.Data.Assemblies.IBdoAssemblyReference,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads or retrieves an assembly based on a BindOpen assembly reference.
+            </summary>
+            <param name="appDomain">The application domain to use for loading.</param>
+            <param name="reference">The assembly reference containing name and version.</param>
+            <param name="log">The log to populate with loading events.</param>
+            <returns>Returns the loaded <see cref="T:System.Reflection.Assembly"/>; otherwise, null.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.AssemblyResolver">
+            <summary>
+            This class provides routines to resolve assembly loading failures.
+            </summary>
+            <remarks>
+            It hooks into the <see cref="E:System.AppDomain.AssemblyResolve"/> event to manually 
+            search for missing assemblies in custom locations.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Scoping.AssemblyResolver.Resolve(System.AppDomain)">
+            <summary>
+            Attaches the assembly resolving routine to the specified application domain.
+            </summary>
+            <param name="appDomain">The application domain to monitor.</param>
+            <returns>Returns the attached <see cref="T:System.ResolveEventHandler"/>.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.AssemblyResolver.AttachToDomain(System.AppDomain)">
+            <summary>
+            Attaches the resolve event handler to the domain.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.AssemblyResolver.BuildResolveEventHandler">
+            <summary>
+            Builds the delegate responsible for resolving assemblies.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.BdoExtensionStore">
+            <summary>
+            This class represents a BindOpen extension store, managing specialized dictionaries 
+            for connectors, entities, functions, and tasks.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoExtensionStore.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:BindOpen.Scoping.BdoExtensionStore"/> class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoExtensionStore.GetDefinitions(BindOpen.Scoping.BdoExtensionKinds)">
+            <summary>
+            Gets the definitions of the specified kind.
+            </summary>
+            <param name="kind">The kind of extensions to retrieve.</param>
+            <returns>An enumeration of extension definitions.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoExtensionStore.GetDefinition(BindOpen.Scoping.BdoExtensionKinds,System.String)">
+            <summary>
+            Gets the extension definition with the specified unique name.
+            </summary>
+            <param name="kind">The kind of extension.</param>
+            <param name="uniqueName">The unique name/ID of the definition.</param>
+            <returns>The matching definition if found; otherwise, null.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoExtensionStore.GetDefinitionFromType(System.Type)">
+            <summary>
+            Gets the extension definition associated with the specified runtime type.
+            </summary>
+            <param name="type">The runtime type to look for.</param>
+            <returns>The matching definition; otherwise, null.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoExtensionStore.Clear">
+            <summary>
+            Clears all stored definitions in this instance.
+            </summary>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoExtensionStore.Add(BindOpen.Scoping.IBdoExtensionDefinition)">
+            <summary>
+            Adds a definition to the store based on its type.
+            </summary>
+            <param name="definition">The definition to add.</param>
+            <returns>Returns this instance.</returns>
+        </member>
+        <member name="P:BindOpen.Scoping.BdoExtensionStore.Identifier">
+            <summary>
+            Gets or sets the identifier of this store.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.BdoExtensionStoreLoader">
+            <summary>
+            This class represents a specialized loader for the BindOpen extension store.
+            </summary>
+            <remarks>
+            It scans assemblies from various sources (Memory, File System) to discover 
+            and register extension definitions.
+            </remarks>
+            <summary>
+            This partial class handles the extraction and loading of extension dictionaries from assemblies.
+            </summary>
+            <summary>
+            This partial class handles the discovery and registration of connector definitions from assemblies.
+            </summary>
+            <summary>
+            This partial class provides methods to load entity definitions from assemblies.
+            </summary>
+            <summary>
+            This partial class handles the discovery and delegate creation for script functions within assemblies.
+            </summary>
+            <summary>
+            This partial class provides methods to load task definitions from assemblies.
+            </summary>
+            <summary>
+            This partial class handles the extraction of package definitions from assembly manifest resources.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoExtensionStoreLoader.#ctor(System.AppDomain,BindOpen.Scoping.IBdoExtensionStore,BindOpen.Scoping.IExtensionLoadOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BindOpen.Scoping.BdoExtensionStoreLoader"/> class.
+            </summary>
+            <param name="appDomain">The application domain to use for loading.</param>
+            <param name="store">The destination extension store.</param>
+            <param name="loadOptions">The options guiding the loading process.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoExtensionStoreLoader.LoadAll(BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads all configured extensions into the store.
+            </summary>
+            <param name="log">The log to populate with the loading report.</param>
+            <returns>Returns True if all extensions were loaded successfully; otherwise, False.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoExtensionStoreLoader.LoadAll(BindOpen.Data.Assemblies.IBdoAssemblyReference,System.Collections.Generic.List{System.String},BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads extensions from a specific assembly reference and its dependencies.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoExtensionStoreLoader.LoadDictionary(System.Reflection.Assembly,BindOpen.Scoping.BdoExtensionKinds,BindOpen.Scoping.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads the extension dictionary of the specified kind from the given assembly.
+            </summary>
+            <param name="assembly">The assembly to scan.</param>
+            <param name="kind">The kind of extensions to load (Connector, Entity, etc.).</param>
+            <param name="packageDefinition">The package definition associated with the assembly.</param>
+            <param name="log">The log to populate with loading events.</param>
+            <returns>Returns the number of loaded items; -1 if an error occurred.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoExtensionStoreLoader.ExtractDictionaryFromAssembly``1(System.Reflection.Assembly,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Extracts a dictionary of the specified type from an assembly's manifest resources.
+            </summary>
+            <typeparam name="T">The type of extension definition.</typeparam>
+            <param name="assembly">The assembly containing the resources.</param>
+            <param name="log">The log to populate with diagnostic information.</param>
+            <returns>Returns the deserialized dictionary if successful; otherwise, default.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoExtensionStoreLoader.GetDictionaryResourceName``1">
+            <summary>
+            Gets the standard resource name for the specified extension definition kind.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoExtensionStoreLoader.GetDictionaryType``1">
+            <summary>
+            Gets the concrete dictionary type associated with the extension definition kind.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoExtensionStoreLoader.LoadConnectorDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Scoping.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads connector definitions from the specified assembly into the store.
+            </summary>
+            <param name="assembly">The assembly to scan for connector classes.</param>
+            <param name="packageDefinition">The package definition to associate with discovered connectors.</param>
+            <param name="log">The log to populate with loading events.</param>
+            <returns>Returns the number of connectors successfully loaded; -1 if the assembly is null.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoExtensionStoreLoader.LoadEntityDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Scoping.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads the entity dictionary from the specified assembly.
+            </summary>
+            <param name="assembly">The assembly to scan.</param>
+            <param name="packageDefinition">The package definition to associate with discovered entities.</param>
+            <param name="log">The log to populate with loading events.</param>
+            <returns>Returns the number of entities successfully loaded; -1 if the assembly is null.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoExtensionStoreLoader.LoadFunctionDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Scoping.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads function definitions from the specified assembly.
+            </summary>
+            <param name="assembly">The assembly to scan.</param>
+            <param name="packageDefinition">The package definition to associate with functions.</param>
+            <param name="log">The log to populate with loading events.</param>
+            <returns>Returns the number of functions successfully loaded.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoExtensionStoreLoader.CreateDelegate(System.Reflection.MethodInfo)">
+            <summary>
+            Creates a generic delegate for a static method using expression trees.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoExtensionStoreLoader.LoadTaskDictionaryFromAssembly(System.Reflection.Assembly,BindOpen.Scoping.IBdoPackageDefinition,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads the task dictionary from the specified assembly.
+            </summary>
+            <param name="assembly">The assembly to scan for task classes.</param>
+            <param name="packageDefinition">The package definition to associate with discovered tasks.</param>
+            <param name="log">The log to populate with loading events.</param>
+            <returns>Returns the number of tasks successfully loaded; -1 if the assembly is null.</returns>
+        </member>
+        <member name="F:BindOpen.Scoping.BdoExtensionStoreLoader.__DefaultResourceFileName">
+            <summary>
+            The default resource file name prefix for library definitions.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoExtensionStoreLoader.ExtractPackageDefinition(System.Reflection.Assembly,System.String,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Extracts the extension package definition from the specified assembly.
+            </summary>
+            <param name="assembly">The assembly to scan.</param>
+            <param name="resourceFullName">The full name of the resource to consider. If null, searches for the default name.</param>
+            <param name="log">The log to populate with diagnostic events.</param>
+            <returns>Returns the extracted <see cref="T:BindOpen.Scoping.IBdoPackageDefinition"/>.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.BdoScope">
+            <summary>
+            This class represents a BindOpen application scope, acting as the central 
+            orchestration point for extensions, data, and scripts.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoScope.#ctor(System.AppDomain)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BindOpen.Scoping.BdoScope"/> class.
+            </summary>
+            <param name="appDomain">The application domain to use. If null, current domain is used.</param>
+        </member>
+        <member name="P:BindOpen.Scoping.BdoScope.AppDomain">
+            <summary>
+            Gets the application domain associated with this scope.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.BdoScope.ExtensionStore">
+            <summary>
+            Gets or sets the extension store where all definitions (Connectors, Tasks, etc.) are indexed.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.BdoScope.DepotStore">
+            <summary>
+            Gets or sets the depot store for managing data resources.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.BdoScope.DataStore">
+            <summary>
+            Gets the primary data store (MetaSet) of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.BdoScope.Interpreter">
+            <summary>
+            Gets the script interpreter associated with this scope.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoScope.Clear">
+            <summary>
+            Clears all stores within this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoScope.Check(System.Boolean,System.Boolean,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Validates the existence and integrity of required stores.
+            </summary>
+            <param name="checkExtensionStore">True if the extension store presence must be checked.</param>
+            <param name="checkDataStore">True if the depot store presence must be checked.</param>
+            <param name="log">The log to populate with check results.</param>
+            <returns>Returns True if all requested checks passed; otherwise, False.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoScope.NewScriptDomain(BindOpen.Data.Meta.IBdoMetaSet,BindOpen.Scoping.Script.IBdoScriptword,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Creates a new script domain for script evaluation.
+            </summary>
+            <param name="metaSet">The metadata set to associate with the domain.</param>
+            <param name="scriptword">The current script word being evaluated.</param>
+            <param name="log">The log to use during evaluation.</param>
+            <returns>A new instance of <see cref="T:BindOpen.Scoping.Script.IBdoScriptDomain"/>.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.BdoScopeExtensions">
+            <summary>
+            This static class provides extension methods for the <see cref="T:BindOpen.Scoping.IBdoScope"/> interface,
+            specifically for managing extension loading.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoScopeExtensions.LoadExtensions``1(``0,BindOpen.Scoping.IExtensionLoadOptions,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads extensions into the specified scope using the provided load options.
+            </summary>
+            <typeparam name="T">The type of the scope (must implement <see cref="T:BindOpen.Scoping.IBdoScope"/>).</typeparam>
+            <param name="scope">The scope to load extensions into.</param>
+            <param name="options">The options to use for loading extensions.</param>
+            <param name="log">The log to populate with loading events.</param>
+            <returns>Returns True if the loading process succeeded; otherwise, False.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoScopeExtensions.LoadExtensions``1(``0,System.Action{BindOpen.Scoping.IExtensionLoadOptions},BindOpen.Logging.IBdoLog)">
+            <summary>
+            Loads extensions into the specified scope using a configuration action for load options.
+            </summary>
+            <typeparam name="T">The type of the scope (must implement <see cref="T:BindOpen.Scoping.IBdoScope"/>).</typeparam>
+            <param name="scope">The scope to load extensions into.</param>
+            <param name="loadOptionsAction">The action used to configure the load options.</param>
+            <param name="log">The log to populate with loading events.</param>
+            <returns>Returns True if the loading process succeeded; otherwise, False.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.ExtensionLoadOptions">
+            <summary>
+            This class represents the options for loading extensions within the BindOpen kernel.
+            </summary>
+            <remarks>
+            It specifies which sources, assembly references, and kinds of extensions 
+            should be considered during the discovery process.
+            </remarks>
+        </member>
+        <member name="P:BindOpen.Scoping.ExtensionLoadOptions.Sources">
+            <summary>
+            Gets or sets the list of data source locations to scan.
+            </summary>
+            <value>A list of tuples containing the datasource kind and its URI.</value>
+        </member>
+        <member name="P:BindOpen.Scoping.ExtensionLoadOptions.ExtensionKinds">
+            <summary>
+            Gets or sets the specific extension kinds to filter during loading.
+            </summary>
+            <value>A list of <see cref="T:BindOpen.Scoping.BdoExtensionKinds"/> (e.g., Connector, Task, Function).</value>
+        </member>
+        <member name="P:BindOpen.Scoping.ExtensionLoadOptions.References">
+            <summary>
+            Gets or sets the assembly references to be loaded and scanned.
+            </summary>
+            <value>A list of <see cref="T:BindOpen.Data.Assemblies.IBdoAssemblyReference"/>.</value>
+        </member>
+        <member name="M:BindOpen.Scoping.ExtensionLoadOptions.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:BindOpen.Scoping.ExtensionLoadOptions"/> class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.ExtensionLoadOptionsExtensions">
+            <summary>
+            This static class provides extension methods for <see cref="T:BindOpen.Scoping.IExtensionLoadOptions"/> 
+            to enable a fluent configuration of extension loading.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.ExtensionLoadOptionsExtensions.AddSource``1(``0,BindOpen.Data.DatasourceKind,System.String)">
+            <summary>
+            Adds a data source to the specified load options.
+            </summary>
+            <typeparam name="T">The type of the load options.</typeparam>
+            <param name="options">The load options instance to update.</param>
+            <param name="kind">The kind of data source (e.g., Memory, File, etc.).</param>
+            <param name="uri">The URI of the data source.</param>
+            <returns>Returns the load options instance for fluent chaining.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.ExtensionLoadOptionsExtensions.WithExtensionKinds``1(``0,BindOpen.Scoping.BdoExtensionKinds[])">
+            <summary>
+            Sets the specific extension kinds to consider for the loading process.
+            </summary>
+            <typeparam name="T">The type of the load options.</typeparam>
+            <param name="options">The load options instance to update.</param>
+            <param name="extensionKinds">The array of extension kinds to consider.</param>
+            <returns>Returns the load options instance for fluent chaining.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.BdoScoping">
+            <summary>
+            This static class provides factory methods to create scoping objects and definitions.
+            </summary>
+            <summary>
+            This static class provides factory methods to create and initialize scoping objects.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoScoping.NewEntityDefinition(BindOpen.Scoping.IBdoPackageDefinition,System.String)">
+            <summary>
+            Creates a new instance of an entity definition.
+            </summary>
+            <param name="packageDefinition">The package definition to associate with this entity.</param>
+            <param name="name">The name of the entity definition.</param>
+            <returns>A new instance of <see cref="T:BindOpen.Scoping.Entities.BdoEntityDefinition"/>.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoScoping.NewConnectorDefinition(BindOpen.Scoping.IBdoPackageDefinition,System.String)">
+            <summary>
+            Creates a new instance of a connector definition.
+            </summary>
+            <param name="packageDefinition">The package definition to associate with this connector.</param>
+            <param name="name">The name of the connector definition.</param>
+            <returns>A new instance of <see cref="T:BindOpen.Scoping.Connectors.BdoConnectorDefinition"/>.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoScoping.NewTaskDefinition(BindOpen.Scoping.IBdoPackageDefinition,System.String)">
+            <summary>
+            Creates a new instance of a task definition.
+            </summary>
+            <param name="packageDefinition">The package definition to associate with this task.</param>
+            <param name="name">The name of the task definition.</param>
+            <returns>A new instance of <see cref="T:BindOpen.Scoping.Tasks.BdoTaskDefinition"/>.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.BdoScoping.NewScope(System.AppDomain)">
+            <summary>
+            Creates and initializes a new instance of a BindOpen scope.
+            </summary>
+            <param name="appDomain">The application domain to associate with the new scope.</param>
+            <returns>Returns a newly initialized <see cref="T:BindOpen.Scoping.IBdoScope"/> instance.</returns>
+            <remarks>
+            This method automatically loads basic script extensions by scanning 
+            the assembly containing <see cref="T:BindOpen.Scoping.Script.BdoScriptword"/>.
+            </remarks>
+        </member>
+        <member name="T:BindOpen.Scoping.BdoElementChecker">
+            <summary>
+            This static class provides methods to check data elements.
+            </summary>
+        </member>
+    </members>
+</doc>

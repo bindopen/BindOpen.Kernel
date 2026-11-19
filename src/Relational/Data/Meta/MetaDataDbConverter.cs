@@ -118,7 +118,7 @@ namespace BindOpen.Data.Meta
             }
 
             dbItem.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
-            dbItem.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;
+            dbItem.ValueType = poco?.DataType?.ValueType ?? DataValueTypes.Any;
             if (poco.Schema?.DataType.ValueType == poco.DataType?.ValueType)
             {
                 dbItem.ValueType = DataValueTypes.Any;

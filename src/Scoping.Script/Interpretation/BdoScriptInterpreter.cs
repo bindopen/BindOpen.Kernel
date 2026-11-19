@@ -172,8 +172,16 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
             // We create a runtime instance. The 'parent' here is the evaluation 
             // result of the previous word in a fluent chain.
             var cloned = BdoScript.NewWord(currentWord.TokenKind, currentWord.Name)
-                .WithDataType(BdoExtensionKinds.Scriptword, currentWord.DataType?.DefinitionUniqueName)
-                .WithParent(parent ?? currentWord.Parent as IBdoScriptword);
+                .WithDataType(BdoExtensionKinds.Scriptword, currentWord.DataType?.DefinitionUniqueName);
+
+            if (parent != null)
+            {
+                cloned.WithParent(parent);
+            }
+            else
+            {
+                cloned.Parent = currentWord.Parent;
+            }
 
             // 3. Parameter Evaluation
             if (currentWord.TokenKind == ScriptTokenKinds.Function)
@@ -189,7 +197,7 @@ public class BdoScriptInterpreter : BdoObject, IBdoScriptInterpreter
                             wordParam,
                             varSet,
                             log,
-                            root: false,
+                            root: true,
                             child: true,
                             parent: null);
 
