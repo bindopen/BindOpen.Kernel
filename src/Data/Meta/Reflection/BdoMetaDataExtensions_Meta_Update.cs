@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Objects.Interfaces;
 using BindOpen.Data.Schema;
 using System.Collections.Generic;
 using System.Linq;
@@ -97,9 +98,9 @@ namespace BindOpen.Data.Meta.Reflection
                         }
                     }
 
-                    metaObject.With(list?.ToArray());
+                    metaObject.WithItems(list?.ToArray());
                 }
-                else if (type.IsList() && meta is IBdoMetaNode metaSet)
+                else if (type.IsList() && meta is IBdoMetaSet metaSet)
                 {
                     list = new();
 
@@ -125,7 +126,7 @@ namespace BindOpen.Data.Meta.Reflection
                         i++;
                     }
 
-                    metaSet.With(list?.ToArray());
+                    metaSet.WithItems(list?.ToArray());
                 }
             }
 

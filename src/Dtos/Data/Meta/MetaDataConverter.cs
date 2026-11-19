@@ -31,7 +31,7 @@ namespace BindOpen.Data.Meta
                 var dto = scalar.ToDto();
                 return dto;
             }
-            else if (poco is IBdoMetaNode set)
+            else if (poco is IBdoMetaSet set)
             {
                 var dto = set.ToDto();
                 return dto;
@@ -64,9 +64,9 @@ namespace BindOpen.Data.Meta
             {
                 scalarDto.UpdateFromPoco(scalar);
             }
-            else if (dto is MetaNodeDto metaNodeDto && poco is IBdoMetaNode set)
+            else if (dto is MetaSetDto metaSetDto && poco is IBdoMetaSet set)
             {
-                metaNodeDto.UpdateFromPoco(set);
+                metaSetDto.UpdateFromPoco(set);
             }
 
             return dto;
@@ -96,7 +96,7 @@ namespace BindOpen.Data.Meta
             {
                 return scalar.ToPoco();
             }
-            else if (dto is MetaNodeDto list)
+            else if (dto is MetaSetDto list)
             {
                 return list.ToPoco();
             }
@@ -128,7 +128,7 @@ namespace BindOpen.Data.Meta
             {
                 return poco.UpdateFromDto(scalar);
             }
-            else if (dto is MetaNodeDto list)
+            else if (dto is MetaSetDto list)
             {
                 return poco.UpdateFromDto(list);
             }

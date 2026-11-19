@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using BindOpen.Data.Objects.Interfaces;
+using System.Xml.Linq;
 
 namespace BindOpen.Data.Meta
 {
@@ -7,7 +8,7 @@ namespace BindOpen.Data.Meta
     /// </summary>
     public static partial class TBdoDictionaryExtensions
     {
-        public static TMetaSet ToMetaset<TMetaSet, TItem>(
+        public static TMetaSet ToMetaSet<TMetaSet, TItem>(
             this ITBdoDictionary<TItem> dictionary)
             where TMetaSet : class, IBdoMetaSet, new()
         {
@@ -17,15 +18,15 @@ namespace BindOpen.Data.Meta
 
             foreach (var item in dictionary)
             {
-                set.Add(item.Key, item.Value);
+                set.With(item.Key, item.Value);
             }
 
             return set;
         }
 
-        public static IBdoMetaSet ToMetaset<TItem>(
+        public static IBdoMetaSet ToMetaSet<TItem>(
             this ITBdoDictionary<TItem> dictionary)
-            => ToMetaset<BdoMetaSet, TItem>(dictionary);
+            => ToMetaSet<BdoMetaSet, TItem>(dictionary);
 
         public static string ToHtml<TItem>(
             this ITBdoDictionary<TItem> dictionary,

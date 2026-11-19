@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Objects.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -149,13 +150,13 @@ public class TBdoDictionary<TItem> : Dictionary<string, TItem>, ITBdoDictionary<
     /// 
     /// </summary>
     /// <param key="key"></param>
-    /// <param key="alternateKey"></param>
+    /// <param key="alternateName"></param>
     /// <returns></returns>
-    public TItem Get(string key = StringHelper.__Star, string alternateKey = null)
+    public TItem Get(string key = StringHelper.__Star, string alternateName = null)
     {
         if (key == null) return default;
 
-        return this[key, alternateKey];
+        return this[key, alternateName];
     }
 
     /// <summary>
@@ -196,19 +197,19 @@ public class TBdoDictionary<TItem> : Dictionary<string, TItem>, ITBdoDictionary<
     /// Returns the content corresponding to the specified key.
     /// </summary>
     /// <param key="key">The key to consider.</param>
-    /// <param key="alternateKey">The alternate key to used if the key is not found.</param>
+    /// <param key="alternateName">The alternate key to used if the key is not found.</param>
     /// <returns>Returns the text corresponding to the specified user interface language ID.
     /// Returns empty if there is none.</returns>
-    private TItem GetValue(string key = StringHelper.__Star, string alternateKey = null)
+    private TItem GetValue(string key = StringHelper.__Star, string alternateName = null)
     {
         TryGetValue(key, out TItem item);
         if (item != null)
         {
             return item;
         }
-        else if (alternateKey != null)
+        else if (alternateName != null)
         {
-            return GetValue(alternateKey);
+            return GetValue(alternateName);
         }
 
         return default;

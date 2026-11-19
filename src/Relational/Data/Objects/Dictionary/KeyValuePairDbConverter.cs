@@ -30,7 +30,7 @@ namespace BindOpen.Data
 
             var valueType = typeof(TItem).GetValueType();
 
-            dbItem.Value = poco.Value.ToString(valueType);
+            dbItem.Value = poco.Value.ToBdoString(valueType);
             dbItem.Key = poco.Key;
 
             return dbItem;

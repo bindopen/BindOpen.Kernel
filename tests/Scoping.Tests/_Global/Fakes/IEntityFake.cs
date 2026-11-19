@@ -6,17 +6,24 @@ using System.ComponentModel;
 namespace BindOpen.Scoping.Tests;
 
 /// <summary>
-/// This class represents a database data field.
+/// This interface defines the contract for fake database entities, including 
+/// the metadata mapping rules used by the BindOpen scoping engine.
 /// </summary>
 public interface IEntityFake
 {
+    // ------------------------------------------
+    // PROPERTIES
+    // ------------------------------------------
+
+    #region Properties
+
     /// <summary>
-    /// The boolean value of this instance.
+    /// The boolean value of this instance. 
+    /// Supports multiple aliases ("b", "bValue") and conditional requirements via script.
     /// </summary>
     [BdoProperty("boolValue", "b", "bValue")]
     [BdoProperty(Description = "This is a boolean property")]
     [BdoProperty(RequirementLevels.Optional, @"$eq($this(""stringValue""), ""AA"")")]
-    [BdoProperty(0, 1)]
     [BdoProperty(SpecificationLevels.Configuration, SpecificationLevels.Definition)]
     ITBdoMetaScalar<bool?> BoolValue { get; set; }
 
@@ -33,36 +40,38 @@ public interface IEntityFake
     int IntValue { get; set; }
 
     /// <summary>
-    /// Enumeration value of this instance.
+    /// Enumeration value of this instance mapping AccessibilityLevels.
     /// </summary>
     [BdoProperty(Name = "enumValue")]
     AccessibilityLevels EnumValue { get; set; }
 
     /// <summary>
-    /// Enumeration value of this instance.
+    /// Metadata node representing inputs. Also accessible via the 'input' script function.
     /// </summary>
     [BdoProperty(Name = "inputs")]
     [BdoFunction(Name = "input")]
-    BdoMetaNode Inputs { get; set; }
+    BdoMetaSet Inputs { get; set; }
 
     /// <summary>
-    /// The sub entity of this instance.
+    /// A sub-entity property demonstrating nested object hierarchies.
     /// </summary>
     [BdoProperty(Name = "subEntity")]
     EntityFake SubEntity { get; set; }
 
-    // Path --------------------------
+    // Path Management --------------------------
 
     /// <summary>
-    /// Path of this instance.
+    /// The primary path of the instance.
     /// </summary>
     [BdoProperty("path")]
     string Path { get; set; }
 
     /// <summary>
-    /// The relative path of this instance.
+    /// The relative path of the instance.
     /// </summary>
     string RelativePath { get; set; }
+
+    // Metadata Tracking --------------------------
 
     /// <summary>
     /// The creation date of this instance.
@@ -71,33 +80,35 @@ public interface IEntityFake
     DateTime? CreationDate { get; set; }
 
     /// <summary>
-    /// The information flag of this instance.
+    /// Information flag for categorization or status.
     /// </summary>
     [BdoProperty("flag")]
     string Flag { get; set; }
 
     /// <summary>
-    /// Indicates whether this instance is read only.
+    /// Indicates if the entity is read-only. Defaults to false.
     /// </summary>
     [BdoProperty("isReadOnly")]
     [DefaultValue(false)]
     bool IsReadonly { get; set; }
 
     /// <summary>
-    /// The date of last access of this instance.
+    /// Timestamp of the last time this entity was accessed.
     /// </summary>
     [BdoProperty("lastAccessDate")]
     DateTime? LastAccessDate { get; set; }
 
     /// <summary>
-    /// The parent path of this instance.
+    /// The parent path for hierarchical organization.
     /// </summary>
     [BdoProperty("parentPath")]
     string ParentPath { get; set; }
 
     /// <summary>
-    /// The date of last write of this instance.
+    /// Timestamp of the last time this entity was modified.
     /// </summary>
     [BdoProperty("lastWriteDate")]
     DateTime? LastWriteDate { get; set; }
+
+    #endregion
 }

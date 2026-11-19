@@ -1,5 +1,5 @@
-﻿using BindOpen.Data;
-using BindOpen.Data.Assemblies;
+﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Objects.Interfaces;
 using System;
 
 namespace BindOpen.Scoping.Entities

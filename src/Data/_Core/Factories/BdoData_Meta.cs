@@ -96,7 +96,7 @@ namespace BindOpen.Data
             {
                 var objList = data.ToObjectArray();
 
-                var node = NewNode(name);
+                var node = NewSet(name);
                 if (objList != null)
                 {
                     foreach (var obj in objList)

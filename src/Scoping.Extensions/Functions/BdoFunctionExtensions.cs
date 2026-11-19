@@ -22,7 +22,7 @@ namespace BindOpen.Scoping
         public static object CallFunction(
             this IBdoScope scope,
             string functionName,
-            IBdoMetaNode paramSet = null,
+            IBdoMetaSet paramSet = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
@@ -48,7 +48,7 @@ namespace BindOpen.Scoping
         public static T CallFunction<T>(
             this IBdoScope scope,
             string functionName,
-            IBdoMetaNode paramSet = null,
+            IBdoMetaSet paramSet = null,
             IBdoMetaSet metaSet = null)
         {
             var result = scope?.CallFunction(functionName, paramSet, metaSet);
@@ -107,7 +107,7 @@ namespace BindOpen.Scoping
         private static object CallFunction(
             this IBdoScope scope,
             IBdoFunctionDefinition definition,
-            IBdoMetaNode paramSet = null,
+            IBdoMetaSet paramSet = null,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
@@ -173,7 +173,7 @@ namespace BindOpen.Scoping
                             }
                         }
 
-                        result = definition.RuntimeFunction.DynamicInvoke(objs.ToArray());
+                        result = definition.RuntimeFunction.DynamicInvoke([.. objs]);
                     }
                 }
                 catch (ApplicationException ex)
@@ -198,7 +198,7 @@ namespace BindOpen.Scoping
         private static IBdoFunctionDefinition GetFunctionDefinition(
             this IBdoScope scope,
             string functionName,
-            IBdoMetaNode paramSet,
+            IBdoMetaSet paramSet,
             IBdoDataType parentDataType = default,
             IBdoLog log = null)
         {

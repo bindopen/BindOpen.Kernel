@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Objects.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -96,12 +97,15 @@ namespace BindOpen.Data
         /// <param key="name">The name to consider.</param>
         /// <param key="defaultKey">The default name to consider.</param>
         /// <returns>Returns the specified text.</returns>
-        public T this[string name, string alternateKey] => Get(name, alternateKey);
+        public T this[string name, string alternateName] => Get(name, alternateName);
 
         /// <summary>
         /// Returns the element with the specified name.
         /// </summary>
-        public T this[string name] => Get(name);
+        public T this[string name]
+        {
+            get => Get(name);
+        }
 
         /// <summary>
         /// Returns the element with the specified name.
@@ -198,12 +202,12 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public T Get(string key, string alternateKey = null)
+        public T Get(string key, string alternateName = null)
         {
             if (_items == null)
                 return default;
 
-            var newKey = Has(key) ? key : alternateKey;
+            var newKey = Has(key) ? key : alternateName;
 
             return _items.FirstOrDefault(p => p.BdoKeyEquals(newKey));
         }
@@ -239,10 +243,10 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public Q Get<Q>(string key, string alternateKey = null)
+        public Q Get<Q>(string key, string alternateName = null)
             where Q : T
         {
-            return Get(key, alternateKey).As<Q>();
+            return Get(key, alternateName).As<Q>();
         }
 
         /// <summary>

@@ -2,47 +2,54 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Scoping
+namespace BindOpen.Scoping;
+
+/// <summary>
+/// This static class provides extension methods for <see cref="IExtensionLoadOptions"/> 
+/// to enable a fluent configuration of extension loading.
+/// </summary>
+public static partial class ExtensionLoadOptionsExtensions
 {
     /// <summary>
-    /// This class represents a data element set.
+    /// Adds a data source to the specified load options.
     /// </summary>
-    public static partial class ExtensionLoadOptionsExtensions
+    /// <typeparam name="T">The type of the load options.</typeparam>
+    /// <param name="options">The load options instance to update.</param>
+    /// <param name="kind">The kind of data source (e.g., Memory, File, etc.).</param>
+    /// <param name="uri">The URI of the data source.</param>
+    /// <returns>Returns the load options instance for fluent chaining.</returns>
+    public static T AddSource<T>(
+        this T options,
+        DatasourceKind kind,
+        string uri = null)
+        where T : IExtensionLoadOptions
     {
-        /// <summary>
-        /// Sets the source kinds of this instance.
-        /// </summary>
-        /// <param key="sourceKinds">The source kinds to consider.</param>
-        /// <returns>Returns this instance.</returns>
-        public static T AddSource<T>(
-            this T obj,
-            DatasourceKind kind,
-            string uri = null)
-            where T : IExtensionLoadOptions
+        if (options != null)
         {
-            if (obj != null)
-            {
-                obj.Sources ??= new List<(DatasourceKind Kind, string Uri)>();
-                obj.Sources.Add((kind, uri));
-            }
-            return obj;
+            // Ensure the list is initialized (Null-coalescing assignment)
+            options.Sources ??= new List<(DatasourceKind Kind, string Uri)>();
+            options.Sources.Add((kind, uri));
         }
+        return options;
+    }
 
-        /// <summary>
-        /// Sets the source kinds of this instance.
-        /// </summary>
-        /// <param key="sourceKinds">The source kinds to consider.</param>
-        /// <returns>Returns this instance.</returns>
-        public static T WithExtensionKinds<T>(
-            this T obj,
-            params BdoExtensionKinds[] extensionKinds)
-            where T : IExtensionLoadOptions
+    /// <summary>
+    /// Sets the specific extension kinds to consider for the loading process.
+    /// </summary>
+    /// <typeparam name="T">The type of the load options.</typeparam>
+    /// <param name="options">The load options instance to update.</param>
+    /// <param name="extensionKinds">The array of extension kinds to consider.</param>
+    /// <returns>Returns the load options instance for fluent chaining.</returns>
+    public static T WithExtensionKinds<T>(
+        this T options,
+        params BdoExtensionKinds[] extensionKinds)
+        where T : IExtensionLoadOptions
+    {
+        if (options != null)
         {
-            if (obj != null)
-            {
-                obj.ExtensionKinds = extensionKinds?.ToList();
-            }
-            return obj;
+            // Replace the existing list with a new one from the params array
+            options.ExtensionKinds = extensionKinds?.ToList() ?? new List<BdoExtensionKinds>();
         }
+        return options;
     }
 }

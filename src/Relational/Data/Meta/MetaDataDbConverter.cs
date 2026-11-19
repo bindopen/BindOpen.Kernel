@@ -39,9 +39,9 @@ namespace BindOpen.Data.Meta
                 {
                     dbItem.Kind = BdoMetaDataKind.Scalar;
                 }
-                else if (poco is IBdoMetaNode)
+                else if (poco is IBdoMetaSet)
                 {
-                    dbItem.Kind = BdoMetaDataKind.Node;
+                    dbItem.Kind = BdoMetaDataKind.Set;
                 }
 
                 dbItem.UpdateFromPoco(poco, context);
@@ -83,9 +83,9 @@ namespace BindOpen.Data.Meta
             {
                 dbItem.Reference = scalar.Reference.ToDb(context);
                 dbItem.Schema = scalar.Schema.ToDb(context);
-                dbItem.Items = scalar.GetDataList<object>()?.Select(q => q.ToString(dbItem.ValueType)).ToList();
+                dbItem.Items = scalar.GetDataList<object>()?.Select(q => q.ToBdoString(dbItem.ValueType)).ToList();
             }
-            else if (poco is IBdoMetaNode node)
+            else if (poco is IBdoMetaSet node)
             {
                 dbItem.Reference = node.Reference.ToDb(context);
                 dbItem.Schema = node.Schema.ToDb(context);
@@ -118,7 +118,7 @@ namespace BindOpen.Data.Meta
             }
 
             dbItem.DefinitionUniqueName = poco?.DataType?.DefinitionUniqueName;
-            dbItem.ValueType = poco?.DataType.ValueType ?? DataValueTypes.Any;
+            dbItem.ValueType = poco?.DataType?.ValueType ?? DataValueTypes.Any;
             if (poco.Schema?.DataType.ValueType == poco.DataType?.ValueType)
             {
                 dbItem.ValueType = DataValueTypes.Any;
@@ -170,7 +170,7 @@ namespace BindOpen.Data.Meta
                             Schema = dbItem.Schema.ToPoco()
                         };
 
-                        obj.With(dbItem.MetaItems?.Select(q =>
+                        obj.WithItems(dbItem.MetaItems?.Select(q =>
                         {
                             var item = q.ToPoco();
                             if (item != null)
@@ -198,8 +198,8 @@ namespace BindOpen.Data.Meta
                         var objects = dbItem.Items?.Select(q => q.ToObject(scalar.DataType.ValueType)).ToList();
                         scalar.WithData(objects);
                         return scalar;
-                    case BdoMetaDataKind.Node:
-                        BdoMetaNode node = new()
+                    case BdoMetaDataKind.Set:
+                        BdoMetaSet node = new()
                         {
                             Reference = dbItem?.Reference.ToPoco(),
                             DataType = new BdoDataType(dbItem?.ClassReference?.ToPoco())
@@ -213,7 +213,7 @@ namespace BindOpen.Data.Meta
                             Schema = dbItem.Schema.ToPoco()
                         };
 
-                        node.With(dbItem.MetaItems?.Select(q =>
+                        node.WithItems(dbItem.MetaItems?.Select(q =>
                         {
                             var item = q.ToPoco();
                             if (item != null)

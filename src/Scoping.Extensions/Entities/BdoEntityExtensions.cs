@@ -69,7 +69,7 @@ namespace BindOpen.Scoping
         /// <returns>Returns the created connector.</returns>
         public static IBdoEntity CreateEntity(
             this IBdoScope scope,
-            IBdoMetaNode meta,
+            IBdoMetaSet meta,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {

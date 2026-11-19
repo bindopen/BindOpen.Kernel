@@ -2,80 +2,82 @@
 using BindOpen.Data.Meta;
 using BindOpen.Data.Schema;
 using BindOpen.Logging;
-using BindOpen.Scoping;
 using BindOpen.Scoping.Connectors;
 using System.Linq;
 using System.Reflection;
 
-namespace BindOpen.Scoping
+namespace BindOpen.Scoping;
+
+/// <summary>
+/// This partial class handles the discovery and registration of connector definitions from assemblies.
+/// </summary>
+internal partial class BdoExtensionStoreLoader : BdoObject, IBdoExtensionStoreLoader
 {
     /// <summary>
-    /// This class represents a extension scope loader.
+    /// Loads connector definitions from the specified assembly into the store.
     /// </summary>
-    internal partial class BdoExtensionStoreLoader : BdoObject, IBdoExtensionStoreLoader
+    /// <param name="assembly">The assembly to scan for connector classes.</param>
+    /// <param name="packageDefinition">The package definition to associate with discovered connectors.</param>
+    /// <param name="log">The log to populate with loading events.</param>
+    /// <returns>Returns the number of connectors successfully loaded; -1 if the assembly is null.</returns>
+    private int LoadConnectorDictionaryFromAssembly(
+        Assembly assembly,
+        IBdoPackageDefinition packageDefinition,
+        IBdoLog log = null)
     {
-        /// <summary>
-        /// Loads the connector dico from the specified assembly.
-        /// </summary>
-        /// <param key="assembly">The assembly to consider.</param>
-        /// <param key="packageDefinition">The extension definition to consider.</param>
-        /// <param key="log">The log to consider.</param>
-        /// <returns></returns>
-        private int LoadConnectorDictionaryFromAssembly(
-            Assembly assembly,
-            IBdoPackageDefinition packageDefinition,
-            IBdoLog log = null)
+        if (assembly == null) return -1;
+
+        // 1. Fetch non-abstract classes that implement IBdoConnector
+        var connectorTypes = assembly.GetTypes()
+            .Where(p => typeof(IBdoConnector).IsAssignableFrom(p) && !p.IsAbstract)
+            .ToList();
+
+        int count = 0;
+
+        if (connectorTypes.Any())
         {
-            if (assembly == null)
+            // 2. Extract the connector dictionary resource from the assembly (XML metadata)
+            var dictionary = ExtractDictionaryFromAssembly<IBdoConnectorDefinition>(assembly, log);
+
+            foreach (var type in connectorTypes)
             {
-                return -1;
-            }
-
-            // we feach connector classes
-
-            var types = assembly.GetTypes().Where(p => typeof(IBdoConnector).IsAssignableFrom(p) && !p.IsAbstract);
-
-            int count = 0;
-
-            if (types?.Count() > 0)
-            {
-                // we load the entity dico from the assembly
-
-                var dico = ExtractDictionaryFromAssembly<IBdoConnectorDefinition>(assembly, log);
-
-                foreach (var type in types)
+                // 3. Initialize the runtime definition
+                var definition = new BdoConnectorDefinition(null, packageDefinition)
                 {
-                    var definition = new BdoConnectorDefinition(null, packageDefinition)
+                    LibraryId = packageDefinition?.Identifier,
+                    RuntimeType = type // Ensure the runtime type is tracked
+                };
+
+                // 4. Update metadata from class attributes (e.g., [BdoConnector])
+                definition.UpdateFrom(type);
+
+                // 5. Build schema from property attributes (discovery of configuration parameters)
+                var propertyInfos = type.GetProperties()
+                    .Where(p => p.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any());
+
+                foreach (var prop in propertyInfos)
+                {
+                    var schema = BdoData.NewSchema();
+                    schema.UpdateFrom(prop, typeof(BdoPropertyAttribute));
+                    definition.WithItems(schema);
+                }
+
+                // 6. Merge with XML dictionary metadata if available
+                if (dictionary != null)
+                {
+                    var indexDefinition = dictionary.Get(definition.Name);
+                    if (indexDefinition != null)
                     {
-                        LibraryId = packageDefinition?.Identifier,
-                    };
-
-                    definition.UpdateFrom(type);
-
-                    // we create the detail schema from detail property attributes
-
-                    foreach (var prop in type.GetProperties().Where(p => p.GetCustomAttributes(typeof(BdoPropertyAttribute)).Any()))
-                    {
-                        var schema = BdoData.NewSchema();
-                        schema.UpdateFrom(prop, typeof(BdoPropertyAttribute));
-                        definition.Add(schema);
-                    }
-
-                    // we build the runtime definition
-
-                    if (dico != null)
-                    {
-                        var indexDefinition = dico.Get(definition.Name);
                         definition.Update(indexDefinition);
                     }
-
-                    _store.Add(definition);
-
-                    count++;
                 }
-            }
 
-            return count;
+                // 7. Register the final definition in the store
+                _store?.Add(definition);
+                count++;
+            }
         }
+
+        return count;
     }
 }

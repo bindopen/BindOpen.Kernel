@@ -16,7 +16,7 @@
         /// </summary>
         protected BdoEntity() : base()
         {
-            this.WithDefinition(BdoExtensionKinds.Entity);
+            ExtensionKind = BdoExtensionKinds.Entity;
         }
 
         #endregion

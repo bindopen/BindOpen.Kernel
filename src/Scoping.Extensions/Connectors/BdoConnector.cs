@@ -19,7 +19,7 @@ namespace BindOpen.Scoping.Connectors
         /// </summary>
         protected BdoConnector() : base()
         {
-            this.WithDefinition(BdoExtensionKinds.Connector);
+            ExtensionKind = BdoExtensionKinds.Connector;
         }
 
         #endregion

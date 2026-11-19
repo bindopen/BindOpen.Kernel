@@ -1,4 +1,5 @@
-﻿using DeepEqual.Syntax;
+﻿using BindOpen.Data.Objects.Interfaces;
+using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
 

@@ -19,7 +19,7 @@ public static class KeyValuePairIOConverter
 
         var dto = new KeyValuePairDto()
         {
-            Value = poco.Value.ToString(valueType),
+            Value = poco.Value.ToBdoString(valueType),
             Key = poco.Key
         };
 

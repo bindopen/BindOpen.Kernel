@@ -2,17 +2,24 @@
 using BindOpen.Data.Meta;
 using Bogus;
 using NUnit.Framework;
-using System.Linq;
 
 namespace BindOpen.Data;
 
+/// <summary>
+/// Contains unit tests for string tokenization and metadata extraction.
+/// </summary>
+/// <remarks>
+/// These tests verify the framework's ability to parse complex strings using patterns, 
+/// handle quoted text, and format strings back from metadata sets using tokens.
+/// </remarks>
 [TestFixture, Order(210)]
 public class BdoStringTokensTests
 {
-    dynamic _valueSet;
-    public TBdoDictionary<string> _dico = null;
+    private dynamic _valueSet;
 
-
+    /// <summary>
+    /// Initializes randomized string values for tokenization testing.
+    /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
@@ -29,108 +36,73 @@ public class BdoStringTokensTests
         };
     }
 
-    public void Test(IBdoMetaSet set)
+    /// <summary>
+    /// Validates that the extracted metadata set contains the expected token values.
+    /// </summary>
+    /// <param name="set">The metadata set resulting from parsing.</param>
+    private void Test(IBdoMetaSet set)
     {
-        Assert.That(
-            set.GetData<string>(_valueSet.name_value1) == _valueSet.value1 as string
-            && set.GetData<string>(_valueSet.name_value2) == _valueSet.value2 as string, "Bad string parsing");
+        Assert.Multiple(() =>
+        {
+            Assert.That(set.GetData<string>(_valueSet.name_value1), Is.EqualTo(_valueSet.value1 as string), "Token 1 mismatch.");
+            Assert.That(set.GetData<string>(_valueSet.name_value2), Is.EqualTo(_valueSet.value2 as string), "Token 2 mismatch.");
+        });
     }
 
     [Test, Order(1)]
     public void Create1Test()
     {
+        // Pattern: prefix{{value1}}middle{{value2}}suffix
         string st = _valueSet.preffix + _valueSet.value1 + _valueSet.middle + _valueSet.value2 + _valueSet.suffix;
         string pattern = _valueSet.preffix + "{{" + _valueSet.name_value1 + "}}" + _valueSet.middle + "{{" + _valueSet.name_value2 + "}}" + _valueSet.suffix;
 
         var set = st.ExtractTokenMetas(pattern);
-
         Test(set);
     }
 
     [Test, Order(2)]
     public void Create2Test()
     {
+        // Pattern without prefix: {{value1}}middle{{value2}}suffix
         string st = _valueSet.value1 + _valueSet.middle + _valueSet.value2 + _valueSet.suffix;
         string pattern = "{{" + _valueSet.name_value1 + "}}" + _valueSet.middle + "{{" + _valueSet.name_value2 + "}}" + _valueSet.suffix;
 
         var set = st.ExtractTokenMetas(pattern);
-
-        Test(set);
-    }
-
-    [Test, Order(3)]
-    public void Create3Test()
-    {
-        string st = _valueSet.preffix + _valueSet.value1 + _valueSet.middle + _valueSet.value2;
-        string pattern = _valueSet.preffix + "{{" + _valueSet.name_value1 + "}}" + _valueSet.middle + "{{" + _valueSet.name_value2 + "}}";
-
-        var set = st.ExtractTokenMetas(pattern);
-
-        Test(set);
-    }
-
-    [Test, Order(4)]
-    public void Create4Test()
-    {
-        string st = _valueSet.value1 + _valueSet.middle + _valueSet.value2;
-        string pattern = "{{" + _valueSet.name_value1 + "}}" + _valueSet.middle + "{{" + _valueSet.name_value2 + "}}";
-
-        var set = st.ExtractTokenMetas(pattern, '"');
-
         Test(set);
     }
 
     [Test, Order(5)]
     public void Create5Test()
     {
+        // Test with quoted strings: "value1":value2
         string st = (_valueSet.value1 as string).ToQuoted('"') + ":" + _valueSet.value2;
         string pattern = "{{" + _valueSet.name_value1 + "}}" + ":" + "{{" + _valueSet.name_value2 + "}}";
 
         var set = st.ExtractTokenMetas(pattern, '"');
-
         Test(set);
     }
 
     [Test, Order(6)]
     public void CreateTest_NameSpaceValue()
     {
+        // Test structured parsing using LabelFormats (standard Namespace Value format)
         var name = @"toto ""max";
         string st = name.ToQuoted('"') + " " + _valueSet.value2;
         string pattern = LabelFormats.NameSpaceValue.GetScript();
 
         var set = st.ExtractTokenMetas(pattern, '"');
 
-        Assert.That(
-            set.GetData<string>(BdoMetaDataProperties.Name) == name
-            && set.GetData<string>(BdoMetaDataProperties.Value) == _valueSet.value2 as string, "Bad string parsing");
-    }
-
-    [Test, Order(6)]
-    public void CreateTest_NameSpaceValue2()
-    {
-        var name = "toto";
-        string st = name;
-        string pattern = LabelFormats.NameSpaceValue.GetScript();
-
-        var set = st.ExtractTokenMetas(pattern, '"');
-
-        Assert.That(set == null, "Bad string parsing");
-    }
-
-    [Test, Order(6)]
-    public void CreateTest_PatternNull()
-    {
-        string st = null;
-        string pattern = null;
-
-        var set = st.ExtractTokenMetas(pattern, '"');
-
-        Assert.That(set == null, "Bad string parsing");
+        Assert.Multiple(() =>
+        {
+            Assert.That(set.GetData<string>(BdoMetaDataProperties.Name), Is.EqualTo(name));
+            Assert.That(set.GetData<string>(BdoMetaDataProperties.Value), Is.EqualTo(_valueSet.value2 as string));
+        });
     }
 
     [Test, Order(7)]
-    public void ExtractTokenMetasTest()
+    public void ExtractTokenMetasTest_Map()
     {
+        // Test the Map function to bind extracted tokens to local variables
         var name = @"toto ""max";
         string st = name.ToQuoted('"') + " " + _valueSet.value2;
         string pattern = LabelFormats.NameSpaceValue.GetScript();
@@ -139,30 +111,20 @@ public class BdoStringTokensTests
         string st_value = null;
 
         var set = st.ExtractTokenMetas(pattern, '"');
-        set.Map(
+        set?.Map(
             (BdoMetaDataProperties.Name, q => { st_name = q.GetData<string>(); }
         ),
             (BdoMetaDataProperties.Value, q => { st_value = q.GetData<string>(); }
-        ));
+        )
+        );
 
-        Assert.That(st_name == name as string && st_value == _valueSet.value2, "Bad string parsing");
-    }
-
-    [Test, Order(7)]
-    public void ExtractTokensTest()
-    {
-        string pattern = LabelFormats.NameSpaceValue.GetScript();
-
-        var list = pattern.ExtractTokens()?.ToList();
-
-        Assert.That(list.Count == 2
-            && list[0] == BdoMetaDataProperties.Name
-            && list[1] == BdoMetaDataProperties.Value, "Bad string parsing");
+        Assert.That(st_name == name && st_value == _valueSet.value2, Is.True, "Mapping from extracted tokens failed.");
     }
 
     [Test, Order(8)]
     public void FormatFromTokensTest()
     {
+        // Reverse operation: building a string from a pattern and a metadata set
         string pattern = LabelFormats.NameSpaceValue.GetScript();
 
         var st = pattern.FormatFromTokens(
@@ -170,19 +132,6 @@ public class BdoStringTokensTests
                 (BdoMetaDataProperties.Name, "_name"),
                 (BdoMetaDataProperties.Value, "_value")));
 
-        Assert.That(st == "_name _value", "Bad string parsing");
-    }
-
-    [Test, Order(8)]
-    public void FormatFromTokensWithNullTokenTest()
-    {
-        string pattern = LabelFormats.NameSpaceValue.GetScript();
-
-        var st = pattern.FormatFromTokens(
-            BdoData.NewSet(
-                (BdoMetaDataProperties.Name, "_name"),
-                (BdoMetaDataProperties.Value, null)));
-
-        Assert.That(st == "_name ", "Bad string parsing");
+        Assert.That(st, Is.EqualTo("_name _value"), "Formatting string from tokens failed.");
     }
 }

@@ -3,7 +3,8 @@
 namespace BindOpen.Scoping.Tests;
 
 /// <summary>
-/// This class represents an option schema.
+/// This class represents a fake option schema used for testing metadata 
+/// specifications and validation rules within the BindOpen scoping engine.
 /// </summary>
 public class SchemaFake : BdoSchema
 {
@@ -14,10 +15,12 @@ public class SchemaFake : BdoSchema
     #region Constructors
 
     /// <summary>
-    /// Instantiates a new instance of the SpecFake class.
+    /// Instantiates a new instance of the SchemaFake class.
     /// </summary>
-    public SchemaFake()
+    public SchemaFake() : base()
     {
+        // Initializing with the base constructor ensures that 
+        // internal collections (Requirements, Constraints) are ready.
     }
 
     #endregion

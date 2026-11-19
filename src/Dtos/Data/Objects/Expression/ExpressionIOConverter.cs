@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Meta;
+using BindOpen.Data.Objects.Interfaces;
 using BindOpen.Scoping.Script;
 
 namespace BindOpen.Data;

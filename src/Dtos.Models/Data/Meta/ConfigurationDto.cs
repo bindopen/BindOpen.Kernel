@@ -85,13 +85,6 @@ namespace BindOpen.Data.Meta
         [XmlIgnore()]
         public bool ShouldUsedItemIds => UsedItemIds?.Count > 0;
 
-        /// <summary>
-        /// The index of this instance.
-        /// </summary>
-        [JsonPropertyName("index")]
-        [XmlAttribute("index")]
-        public int Index { get; set; }
-
         #endregion
 
         // -------------------------------------------------------------

@@ -169,7 +169,7 @@ __Dtos.Converters__ provides packages to serialize and deserialize BindOpen.Kern
 Serialize your models to JSON and XML with minimal configuration.
 
 ```csharp
-var metaSet = BdoData.NewSet("test-io").With(("host", "host-test"), ("address", "0.0.0.0"));
+var metaSet = BdoData.NewNode("test-io").With(("host", "host-test"), ("address", "0.0.0.0"));
 metaSet.ToDto().SaveXml("output.xml");
 ```
 

@@ -50,10 +50,20 @@ namespace BindOpen.Data.Meta
         /// <returns></returns>
         public override string ToString()
         {
-            return _data.ToString(DataType.ValueType);
+            return _data.ToBdoString(DataType.ValueType);
         }
 
         // Data ----------------------------
+
+        public int Count(
+            IBdoScope scope = null,
+            IBdoMetaSet varSet = null,
+            IBdoLog log = null)
+        {
+            var list = GetDataList(scope, varSet, log);
+            return list.Count;
+        }
+
 
         /// <summary>
         /// Returns the item TItem of this instance.

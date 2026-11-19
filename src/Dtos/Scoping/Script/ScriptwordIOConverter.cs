@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Assemblies;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Objects.Interfaces;
 using BindOpen.Data.Schema;
 using BindOpen.Scoping.Script;
 using System.Linq;
@@ -99,7 +100,7 @@ public static class ScriptwordIOConverter
         poco.Schema = dto.Schema.ToPoco();
         poco.Text = dto.Text;
         poco.WithChild(dto.Child.ToPoco());
-        poco.With(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
+        poco.WithItems(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
 
         return poco;
     }

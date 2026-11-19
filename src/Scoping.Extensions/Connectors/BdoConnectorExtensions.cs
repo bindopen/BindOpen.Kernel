@@ -70,7 +70,7 @@ namespace BindOpen.Scoping
         /// <returns>Returns the created connector.</returns>
         public static IBdoConnector CreateConnector(
             this IBdoScope scope,
-            IBdoMetaNode meta,
+            IBdoMetaSet meta,
             IBdoMetaSet varSet = null,
             IBdoLog log = null)
         {
@@ -173,7 +173,7 @@ namespace BindOpen.Scoping
         /// <returns>Returns True if the connector has been opened. False otherwise.</returns>
         public static T Open<T>(
             this IBdoScope scope,
-            IBdoMetaNode meta,
+            IBdoMetaSet meta,
             IBdoLog log = null)
             where T : class, IBdoConnection
         {
@@ -207,7 +207,7 @@ namespace BindOpen.Scoping
             string connectionString)
             where T : IBdoMetaSet
         {
-            metaSet?.Add(("connectionString", connectionString));
+            metaSet?.With(("connectionString", connectionString));
             return metaSet;
         }
 

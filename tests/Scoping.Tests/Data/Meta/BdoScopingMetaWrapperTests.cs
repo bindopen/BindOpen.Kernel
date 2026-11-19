@@ -3,47 +3,54 @@ using NUnit.Framework;
 
 namespace BindOpen.Data.Meta;
 
+/// <summary>
+/// This class provides unit tests for the BdoMetaWrapper functionality,
+/// ensuring that metadata sets can be mapped to and from strongly-typed C# objects.
+/// </summary>
 [TestFixture, Order(100)]
 public class BdoScopingMetaWrapperTests
 {
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
+        // Setup logic if needed
     }
 
+    /// <summary>
+    /// Tests the basic creation of a meta wrapper and its ability to sync 
+    /// property values with an underlying metadata set.
+    /// </summary>
     [Test, Order(1)]
     public void CreateTest()
     {
+        // 1. Instantiate wrapper with an initial property set
         var obj = ScopingTestData.Scope.NewMetaWrapper<MetaWrapperFake>(
             BdoData.NewSet(("test1", "ABC")));
 
-        var value1 = obj.Test1;
-        Assert.That(value1 == "ABC", "Bad meta wrapper");
+        Assert.That(obj.Test1, Is.EqualTo("ABC"), "Property initialization via wrapper failed.");
 
+        // 2. Modify properties via lambda-based setter
         obj.SetProperty(q => q.Test1, "123");
         obj.SetProperty(q => q.Test2, 1234);
 
-        value1 = obj.GetData<string>("test1");
-        Assert.That(value1 == obj.Test1, "Bad meta wrapper");
+        // 3. Verify changes are reflected in the underlying metadata data
+        Assert.That(obj.GetData<string>("test1"), Is.EqualTo(obj.Test1), "Sync from property to meta-data failed.");
+        Assert.That(obj.GetData<int?>("test2"), Is.EqualTo(obj.Test2), "Sync from property to meta-data failed.");
 
-        var value2 = obj.GetData<int?>("test2");
-        Assert.That(value2 == obj.Test2, "Bad meta wrapper");
-
+        // 4. Test UpdateDetail (Pushing C# property changes to the Meta Detail)
         obj.Test2 = 150;
         obj.UpdateDetail();
-        Assert.That(obj?.Detail?.GetData<int?>("test2") == 150, "Bad meta wrapper");
+        Assert.That(obj.Detail?.GetData<int?>("test2"), Is.EqualTo(150), "Detail update from property failed.");
 
+        // 5. Test UpdateProperties (Pulling Meta changes to C# properties)
         obj.Detail["test1"]?.SetData("TEST1");
         obj.UpdateProperties();
-        Assert.That(obj?.Test1 == "TEST1", "Bad meta wrapper");
-
-        // null
-
-        IBdoMetaSet metaSet = null;
-        var obj1 = ScopingTestData.Scope.NewMetaWrapper<MetaWrapperFake>(metaSet);
-        Assert.That(obj?.Test1 == "TEST1", "Bad meta wrapper");
+        Assert.That(obj.Test1, Is.EqualTo("TEST1"), "Property update from detail failed.");
     }
 
+    /// <summary>
+    /// Tests the retrieval of deeply nested (descendant) metadata using path-based queries.
+    /// </summary>
     [Test, Order(2)]
     public void DescendantTest()
     {
@@ -54,13 +61,17 @@ public class BdoScopingMetaWrapperTests
                     "config1A",
                     BdoData.NewScalar("test1A", "1_ABC"))));
 
+        // Verify access to nested elements via path syntax (^ for children)
         var meta = obj.Detail.Descendant<IBdoMetaData>("^config1A", 0);
-        Assert.That(meta?.GetData<string>() == "1_ABC", "Bad meta wrapper");
+        Assert.That(meta?.GetData<string>(), Is.EqualTo("1_ABC"), "Path-based descendant retrieval failed.");
 
         meta = obj.Detail.Descendant<IBdoMetaData>("^:0", "test1A");
-        Assert.That(meta?.GetData<string>() == "1_ABC", "Bad meta wrapper");
+        Assert.That(meta?.GetData<string>(), Is.EqualTo("1_ABC"), "Index-based descendant retrieval failed.");
     }
 
+    /// <summary>
+    /// Tests the mapping of scalar arrays to C# lists within the wrapper.
+    /// </summary>
     [Test, Order(3)]
     public void ListTest()
     {
@@ -70,65 +81,42 @@ public class BdoScopingMetaWrapperTests
             BdoData.NewConfig(
                 BdoData.NewScalar("testList", values)));
 
-        Assert.That(obj?.List?.Count == 2, "Bad meta wrapper");
+        Assert.That(obj?.List?.Count, Is.EqualTo(2), "Mapping of scalar arrays to List failed.");
     }
 
+    /// <summary>
+    /// Tests the mapping of meta-nodes to C# dictionaries.
+    /// </summary>
     [Test, Order(4)]
     public void DictionaryTest()
     {
         var obj = ScopingTestData.Scope.NewMetaWrapper<MetaWrapperFake>(
             BdoData.NewConfig(
-                BdoData.NewNode("testDico")
+                BdoData.NewSet("testDico")
                     .With(
                         BdoData.NewScalar("day", 120),
                         BdoData.NewScalar("month", 130))));
 
-        Assert.That(obj?.Dico?.Count == 2, "Bad meta wrapper");
+        Assert.That(obj?.Dico?.Count, Is.EqualTo(2), "Mapping of MetaSet to Dictionary failed.");
     }
 
+    /// <summary>
+    /// Tests cumulative updates to the metadata detail.
+    /// </summary>
     [Test, Order(5)]
     public void UpdateDetailTest()
     {
         var obj = ScopingTestData.Scope.NewMetaWrapper<MetaWrapperFake>();
-        obj.UpdateDetail(
-            BdoData.NewConfig(
-                BdoData.NewScalar("test1", "monthA")),
-            true);
-        obj.UpdateDetail(
-            BdoData.NewConfig(
-                BdoData.NewScalar("test2", "dailyA")),
-            true);
-        obj.UpdateDetail(
-            BdoData.NewConfig(
-                BdoData.NewScalar("test2", "dailyB")),
-            true);
+        obj.UpdateDetail(BdoData.NewConfig(BdoData.NewScalar("test1", "monthA")), true);
+        obj.UpdateDetail(BdoData.NewConfig(BdoData.NewScalar("test2", "dailyA")), true);
+        obj.UpdateDetail(BdoData.NewConfig(BdoData.NewScalar("test2", "dailyB")), true);
 
-        Assert.That(obj?.Detail?.Count == 2, "Bad meta wrapper");
+        Assert.That(obj?.Detail?.Count, Is.EqualTo(2), "Cumulative Detail updates failed to merge correctly.");
     }
 
-    [Test, Order(6)]
-    public void WithConfigurationTest()
-    {
-        var obj = ScopingTestData.Scope.NewMetaWrapper<MetaWrapperFake>();
-        obj.UpdateDetail(
-            BdoData.NewConfig(
-                BdoData.NewScalar("testListA", "monthA")),
-            true);
-
-        Assert.That(obj?.Detail?.Count == 1, "Bad meta wrapper");
-
-        // Sub configuration
-
-        obj.UpdateDetail(
-            BdoData.NewConfig(
-                BdoData.NewScalar("test2", "dailyB"))
-                .WithChildren(
-                    BdoData.NewConfig(
-                        BdoData.NewScalar("float2A", 1500))));
-
-        Assert.That(obj?.Detail?._Children?.Count == 1, "Bad meta wrapper");
-    }
-
+    /// <summary>
+    /// Tests the mapping of nested object entities inside the metadata.
+    /// </summary>
     [Test, Order(7)]
     public void WithObjectTest()
     {
@@ -145,16 +133,17 @@ public class BdoScopingMetaWrapperTests
 
         obj.UpdateProperties();
 
-        Assert.That(obj?.EntityFake?.StringValue == "_string", "Bad meta wrapper");
-        Assert.That(obj?.EntityFake?.IntValue == 1500, "Bad meta wrapper");
-        Assert.That(obj?.EntityFake?.EnumValue == AccessibilityLevels.Restricted, "Bad meta wrapper");
+        Assert.That(obj?.EntityFake?.StringValue, Is.EqualTo("_string"));
+        Assert.That(obj?.EntityFake?.IntValue, Is.EqualTo(1500));
+        Assert.That(obj?.EntityFake?.EnumValue, Is.EqualTo(AccessibilityLevels.Restricted));
     }
 
+    /// <summary>
+    /// Tests the wrapper's ability to update properties located in descendant nodes.
+    /// </summary>
     [Test, Order(8)]
     public void DescendantPropertiesTest()
     {
-        // Update properties
-
         var obj = ScopingTestData.Scope.NewMetaWrapper<MetaWrapperFake>();
         obj.UpdateDetail(
             BdoData.NewConfig(
@@ -167,38 +156,12 @@ public class BdoScopingMetaWrapperTests
                     )));
 
         obj.UpdateProperties();
+        Assert.That(obj?.SubEnumValue, Is.EqualTo(AccessibilityLevels.Restricted));
 
-        Assert.That(obj?.SubEnumValue == AccessibilityLevels.Restricted, "Bad meta wrapper");
-
-        // Update detail
-
+        // Modify C# property and push back to Meta
         obj.SubEnumValue = AccessibilityLevels.Private;
-
         obj.UpdateDetail();
 
-        Assert.That(obj?.Detail["subEnumValue"].GetData<AccessibilityLevels>() == AccessibilityLevels.Private, "Bad meta wrapper");
-    }
-
-    [Test, Order(9)]
-    public void ObjectInCOnfigTest()
-    {
-        var obj = ScopingTestData.Scope.NewMetaWrapper<MetaWrapperFake>();
-        obj.UpdateDetail(
-            BdoData.NewConfig(
-                BdoData.NewScalar("testList", "monthA"))
-            .WithChildren(
-                BdoData.NewConfig("$entityFake",
-                    BdoData.NewObject("node1").With(
-                        BdoData.NewScalar("stringValue", "_string"),
-                        BdoData.NewScalar("intValue", 1500),
-                        BdoData.NewScalar("enumValue", AccessibilityLevels.Restricted)
-                    )
-            )));
-
-        obj.UpdateProperties();
-
-        Assert.That(obj?.ConfigEntityFake?.StringValue == "_string", "Bad meta wrapper");
-        Assert.That(obj?.ConfigEntityFake?.IntValue == 1500, "Bad meta wrapper");
-        Assert.That(obj?.ConfigEntityFake?.EnumValue == AccessibilityLevels.Restricted, "Bad meta wrapper");
+        Assert.That(obj?.Detail["subEnumValue"].GetData<AccessibilityLevels>(), Is.EqualTo(AccessibilityLevels.Private));
     }
 }

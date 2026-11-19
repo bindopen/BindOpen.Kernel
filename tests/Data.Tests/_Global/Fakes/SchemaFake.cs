@@ -3,8 +3,12 @@
 namespace BindOpen.Tests;
 
 /// <summary>
-/// This class represents an option schema.
+/// Represents a fake schema used for testing schema-based validation and metadata definitions.
 /// </summary>
+/// <remarks>
+/// This class inherits from <see cref="BdoSchema"/> to simulate custom data contract 
+/// definitions within the BindOpen Kernel unit tests.
+/// </remarks>
 public class SchemaFake : BdoSchema
 {
     // -------------------------------------------------------------
@@ -14,7 +18,7 @@ public class SchemaFake : BdoSchema
     #region Constructors
 
     /// <summary>
-    /// Instantiates a new instance of the SpecFake class.
+    /// Initializes a new instance of the <see cref="SchemaFake"/> class.
     /// </summary>
     public SchemaFake()
     {

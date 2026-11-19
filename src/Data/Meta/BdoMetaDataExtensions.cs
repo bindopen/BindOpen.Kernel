@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Helpers;
+using BindOpen.Data.Objects.Interfaces;
 using BindOpen.Data.Schema;
 using BindOpen.Logging;
 using BindOpen.Scoping;
@@ -104,7 +105,7 @@ namespace BindOpen.Data.Meta
             if (meta != null)
             {
                 varSet ??= BdoData.NewSet();
-                varSet.Add((BdoData.__VarName_This, meta));
+                varSet.With((BdoData.__VarName_This, meta));
 
                 var exp = meta.GetOrAddSpec().Label.ToExpression();
                 var label = scope?.Interpreter?.Evaluate<string>(exp, varSet, log);
@@ -119,9 +120,9 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="name">The name to consider.</param>
         /// <param key="items">The items to consider.</param>
-        public static IBdoMetaNode AsMetaNode(
+        public static IBdoMetaSet AsMetaSet(
             this IBdoMetaData meta)
-            => meta as IBdoMetaNode;
+            => meta as IBdoMetaSet;
 
         /// <summary>
         /// Creates a data element list from a dynamic object.
@@ -138,7 +139,7 @@ namespace BindOpen.Data.Meta
         public static IList<IBdoMetaData> ToList(
             this IBdoMetaData meta)
         {
-            if (meta is IBdoMetaNode metaSet)
+            if (meta is IBdoMetaSet metaSet)
             {
                 return metaSet.ToList();
             }
@@ -156,8 +157,8 @@ namespace BindOpen.Data.Meta
             {
                 if (parent?._Children != null)
                 {
-                    var localVarSet = BdoData.NewSet(varSet?.ToArray());
-                    localVarSet.Add(BdoData.__VarName_This, meta);
+                    var localVarSet = BdoData.NewNode(varSet?.ToArray());
+                    localVarSet.With(BdoData.__VarName_This, meta);
 
                     foreach (var child in parent._Children)
                     {

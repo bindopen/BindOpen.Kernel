@@ -9,27 +9,8 @@ public partial class DataDbContext : DbContext
     public MetaSetDb GetMetaSet(string identifier)
     {
         return MetaSets
-            .Include(q => q.Items)
+            .Include(q => q.MetaItems)
             .FirstOrDefault(q => q.Identifier == identifier);
-    }
-
-    public MetaSetDb Upsert(IBdoMetaSet poco)
-    {
-        if (poco == null) return default;
-
-        var dbItem = GetMetaSet(poco.Identifier);
-
-        if (dbItem == null)
-        {
-            dbItem = poco.ToDb(this);
-            Add(dbItem);
-        }
-        else
-        {
-            dbItem.UpdateFromPoco(poco, this);
-        }
-
-        return dbItem;
     }
 
     public IBdoMetaSet Delete(IBdoMetaSet poco, bool removeItems = true)

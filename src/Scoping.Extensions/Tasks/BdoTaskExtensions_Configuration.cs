@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Meta;
+using BindOpen.Data.Objects.Interfaces;
 using BindOpen.Scoping;
 using System;
 using System.Collections.Generic;
@@ -14,13 +15,13 @@ namespace BindOpen.Data.Meta
         // Get
 
         public static ITBdoSet<IBdoMetaData> Properties(this IBdoMetaSet set)
-            => BdoData.NewSet(set?.Where(q => q.IsProperty())?.ToArray());
+            => BdoData.NewNode(set?.Where(q => q.IsProperty())?.ToArray());
 
         public static ITBdoSet<IBdoMetaData> Inputs(this IBdoMetaSet set)
-            => BdoData.NewSet(set?.Where(q => q.IsInput())?.ToArray());
+            => BdoData.NewNode(set?.Where(q => q.IsInput())?.ToArray());
 
         public static ITBdoSet<IBdoMetaData> Outputs(this IBdoMetaSet set)
-            => BdoData.NewSet(set?.Where(q => q.IsOutput())?.ToArray());
+            => BdoData.NewNode(set?.Where(q => q.IsOutput())?.ToArray());
 
         // Is
 
@@ -128,7 +129,7 @@ namespace BindOpen.Data.Meta
             {
 
                 Array.ForEach(props, q => { q.AsProperty(); });
-                obj.Add(props);
+                obj.WithItems(props);
             }
 
             return obj;
@@ -247,7 +248,7 @@ namespace BindOpen.Data.Meta
             {
 
                 Array.ForEach(inputs, q => { q.AsInput(); });
-                obj.Add(inputs);
+                obj.WithItems(inputs);
             }
 
             return obj;
@@ -365,7 +366,7 @@ namespace BindOpen.Data.Meta
             if (obj != null)
             {
                 Array.ForEach(outputs, q => { q.AsOutput(); });
-                obj.Add(outputs);
+                obj.WithItems(outputs);
             }
 
             return obj;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BindOpen.Data.Objects.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace BindOpen.Data

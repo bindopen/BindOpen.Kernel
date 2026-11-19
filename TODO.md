@@ -1,22 +1,84 @@
-Todo list for BindOpen
-====
+﻿
+# Todo list for BindOpen
 
 ## Next tasks
 
-- [ ] Load extensions using regex for assemblies
-- [ ] Upgrade XSD files
-- [ ] Upgrade documentation
+### 🚀 Performance & AOT Readiness
 
-- [ ] Fix bug with 'has' script on object null (like parent)
-- [ ] Make constraint easier
-- [ ] Checking Clone methods
-- [ ] Implementing XSD files
-- [ ] Cleaning comments
-- [ ] Interpreter: Returns null if any interpretation error
-- [ ] Allow script word polymorphism
-- [ ] Limit level depth
-- [ ] Improve filter path (**/item, /item)
+- [ ] **Switch to Manual Extension Registration**: Replace expensive assembly scanning (`AddAssemblyFrom`) with explicit registration to eliminate startup latency and ensure Native AOT compatibility.
+    * Example:
+        ```csharp
+        scope.ExtensionStore.Add(BdoData.NewTaskDefinition<TaskFake>("tests.task"));
+        ```
+- [ ] **Implement Creation Delegates**: Avoid `Activator.CreateInstance` by providing direct instantiation logic.
+    * Example:
+        ```csharp
+        .WithCreationDelegate(() => new TaskFake())
+        ```
+- [ ] **Develop Source Generators**: Automate the mapping logic between `BdoMetaObject` and POCOs to remove runtime Reflection (`GetValue`/`SetValue`).
 
+### 🛡️ Scripting & Robustness
+
+- [ ] **Static Script Validation**: Create a utility to pre-compile and validate script syntax in configuration files before runtime.
+    * Example:* Running `interpreter.Evaluate(script)` against a mock context during unit tests.
+- [ ] **Standardize Serialization Syntax**: Ensure consistency between `$this` (keyword) and function calls to avoid "Magic String" mismatches in `ToString()` output.
+- [ ] **Strongly-Typed Script Functions**: Map function names to constants instead of hardcoded strings.
+    * *Example:* Use `public const string Name = "testEqual";` in your function classes.
+
+### 🏗️ Architecture & DX (Developer Experience)
+
+- [ ] **Fluent Encapsulation Wrappers**: Hide BindOpen complexity behind simple service interfaces.
+    * Example:
+        ```csharp
+        public void RunFakeTask(bool val) => _scope.Execute(new TaskFake { BoolValue = val });
+        ```
+- [ ] **Manual Mapping Interface**: Implement a "Fast-Path" mapping interface to bypass the automatic Reflection-based mapper.
+    * *Example:* Adding a `Map(IBdoMetaObject meta)` method to your Entities for direct assignment.
+- [ ] **Schema-Driven Documentation**: Use `BdoSchema` to enforce data contracts and generate human-readable error logs automatically.
+
+### 🧪 Advanced Testing
+
+- [ ] **Recursive Tree Validation**: Add regression tests for deep hierarchical structures (5+ levels) in `TreeFake`.
+- [ ] **Runtime Mode Simulation**: Validate that tasks behave correctly in `RuntimeModes.Simulation`, ensuring logs are populated without data side effects.
+
+### Metadata Management
+
+  - [ ] Meta schema should be null by default.
+  
+  Correct Validation so that the schema can be null and the meta set items can be inspected despite.
+
+
+- [ ] Tuple dictionary approach.
+```csharp
+var config = NewConfig("test-config",
+    ("comment", "Sunny day"),
+    ("temperature", new[] { 25, 26, 26 }), // Tableau = Multi-scalar
+    ("date", DateTime.Now),
+    NewNode("subscriber",
+        ("name", "Ernest E."),
+        ("code", 1560)
+    )
+)
+```
+- [ ] Anonymous Object
+```csharp
+var config = NewConfig("test-config", new {
+    comment = "Sunny day",
+    temperature = new[] { 25, 26, 26 },
+    date = DateTime.Now,
+    subscriber = NewNode(new {
+        name = "Ernest E.",
+        code = 1560
+    })
+})
+```
+- [ ] "String-Driven" Approach
+```csharp
+var config = NewConfig("test-config")
+    .With("comment:Sunny day", "temperature:25,26,26")
+    .With("date:" + DateTime.Now)
+    .WithNode("subscriber", "name:Ernest E.", "code:1560")
+```
 ## Stuff to check out later on
 
 ### v.1.3
