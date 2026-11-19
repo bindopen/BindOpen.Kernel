@@ -7,15 +7,19 @@ using System.ComponentModel;
 namespace BindOpen.Scoping.Tests;
 
 /// <summary>
-/// This class represents a database data field.
+/// This class represents a fake database entity used to test complex property mapping,
+/// nested nodes, and conditional script-based validation rules.
 /// </summary>
 [BdoEntity(
     Name = "testEntity",
-    Description = "Database field.",
+    Description = "Database field simulation.",
     CreationDate = "2016-09-14"
 )]
 public class EntityFake : BdoEntity, IEntityFake
 {
+    /// <summary>
+    /// The unique extension name used by the scoping engine.
+    /// </summary>
     public static string __DefinitionUniqueName = "scoping.tests$testEntity";
 
     // -----------------------------------------------
@@ -35,189 +39,134 @@ public class EntityFake : BdoEntity, IEntityFake
     #region Properties
 
     /// <summary>
-    /// The boolean value of this instance.
+    /// A boolean value with multiple aliases and a conditional requirement.
+    /// It is required only if 'stringValue' equals 'AA'.
     /// </summary>
     [BdoProperty("boolValue", "b", "bValue")]
-    [BdoProperty(Description = "This is a boolean property")]
+    [BdoProperty(Description = "This is a boolean property with aliases.")]
     [BdoProperty(RequirementLevels.Optional, @"$eq($this(""stringValue""), ""AA"")")]
-    [BdoProperty(0, 1)]
-    [BdoProperty(SpecificationLevels.Configuration, SpecificationLevels.Definition)]
     public ITBdoMetaScalar<bool?> BoolValue { get; set; }
 
     /// <summary>
-    /// The string value of this instance.
+    /// A simple string property.
     /// </summary>
     [BdoProperty(Name = "stringValue")]
     public string StringValue { get; set; }
 
     /// <summary>
-    /// The integer value of this instance.
+    /// A simple integer property.
     /// </summary>
     [BdoProperty(Name = "intValue")]
     public int IntValue { get; set; }
 
     /// <summary>
-    /// Enumeration value of this instance.
+    /// An enumeration property mapping AccessibilityLevels.
     /// </summary>
     [BdoProperty(Name = "enumValue")]
     public AccessibilityLevels EnumValue { get; set; }
 
     /// <summary>
-    /// Enumeration value of this instance.
+    /// A complex metadata node property. Also accessible as a function.
     /// </summary>
     [BdoProperty(Name = "inputs")]
     [BdoFunction(Name = "input")]
-    public BdoMetaNode Inputs { get; set; }
+    public BdoMetaSet Inputs { get; set; }
 
     /// <summary>
-    /// The sub entity of this instance.
+    /// A recursive property allowing for sub-entities.
     /// </summary>
     [BdoProperty(Name = "subEntity")]
     public EntityFake SubEntity { get; set; }
 
-    // Path --------------------------
+    // Path Management --------------------------
 
     /// <summary>
-    /// Path of this instance.
+    /// The primary path of this entity.
     /// </summary>
     [BdoProperty("path")]
     public string Path { get; set; }
 
     /// <summary>
-    /// The relative path of this instance.
+    /// Gets or sets the relative path, automatically updating the primary Path.
     /// </summary>
     public string RelativePath
     {
-        get
-        {
-            return _relativePath;
-        }
-        set
-        {
-            WithPath(null, value);
-        }
+        get => _relativePath;
+        set => WithPath(null, value);
     }
+
     /// <summary>
-    /// Sets the path of this instance.
+    /// Updates the path and relative path of this instance.
     /// </summary>
-    /// <param key="path">The new path to consider. Null to update the existing one.</param>
-    /// <param key="relativePath">The new relative path to consider. Null to keep the existing one.</param>
-    /// <returns>Returns True if this instance exists. False otherwise.</returns>
     public virtual IBdoEntity WithPath(string path = null, string relativePath = null)
     {
-        string absolutePath = (path ?? Path);
+        string absolutePath = path ?? Path;
 
         if (!string.IsNullOrEmpty(relativePath))
         {
             _relativePath = relativePath;
         }
 
-        if ((!string.IsNullOrEmpty(_relativePath)) && (!string.IsNullOrEmpty(absolutePath)))
+        if (!string.IsNullOrEmpty(_relativePath) && !string.IsNullOrEmpty(absolutePath))
         {
-            string relativeFolder = _relativePath;
-
-            if (absolutePath.StartsWith(relativeFolder))
+            if (absolutePath.StartsWith(_relativePath))
             {
-                absolutePath = absolutePath[relativeFolder.Length..];
+                absolutePath = absolutePath[_relativePath.Length..];
             }
         }
 
         Path = absolutePath;
-
         return this;
     }
 
-    // General --------------------------
+    // Meta Metadata --------------------------
 
-    /// <summary>
-    /// The creation date of this instance.
-    /// </summary>
     [BdoProperty("creationDate")]
     public DateTime? CreationDate { get; set; }
 
-    /// <summary>
-    /// The information flag of this instance.
-    /// </summary>
     [BdoProperty("flag")]
     public string Flag { get; set; }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param key="flag"></param>
-    /// <returns></returns>
     public IBdoEntity WithFlag(string flag)
     {
         Flag = flag;
-
         return this;
     }
 
-    /// <summary>
-    /// Indicates whether this instance is read only.
-    /// </summary>
     [BdoProperty("isReadOnly")]
     [DefaultValue(false)]
     public bool IsReadonly { get; set; }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param key="readOnly"></param>
-    /// <returns></returns>
     public IBdoEntity AsReadonly(bool readOnly = false)
     {
         IsReadonly = readOnly;
-
         return this;
     }
 
-    /// <summary>
-    /// The date of last access of this instance.
-    /// </summary>
     [BdoProperty("lastAccessDate")]
     public DateTime? LastAccessDate { get; set; }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param key="date"></param>
-    /// <returns></returns>
     public IBdoEntity WithLastAccessDate(DateTime? date)
     {
         LastAccessDate = date;
-
         return this;
     }
 
-    /// <summary>
-    /// The parent path of this instance.
-    /// </summary>
     [BdoProperty("parentPath")]
     public string ParentPath { get; set; }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param key="path"></param>
-    /// <returns></returns>
     public IBdoEntity WithParentPath(string path)
     {
         ParentPath = path;
-
         return this;
     }
 
-    /// <summary>
-    /// The date of last write of this instance.
-    /// </summary>
     [BdoProperty("lastWriteDate")]
     public DateTime? LastWriteDate { get; set; }
 
     public IBdoEntity WithLastWriteDate(DateTime? date)
     {
         LastWriteDate = date;
-
         return this;
     }
 
@@ -229,31 +178,14 @@ public class EntityFake : BdoEntity, IEntityFake
 
     #region Constructors
 
-    /// <summary>
-    /// Instantiates a new instance of the EntityFake class.
-    /// </summary>
-    public EntityFake() : base()
-    {
-    }
+    public EntityFake() : base() { }
 
-    /// <summary>
-    /// Instantiates a new instance of the EntityFake class.
-    /// </summary>
-    /// <param key="path">The path of the instance.</param>
     public EntityFake(string path) : base()
     {
         WithPath(path);
     }
 
-    /// <summary>
-    /// Instantiates a new instance of the TestEntity class.
-    /// </summary>
-    /// <param key="fileName">The file name of the instance.</param>
-    /// <param key="folderPath">The folder path of the instance.</param>
-    public EntityFake(
-        string fileName,
-        string folderPath,
-        EntityFake subEntity = null) : base()
+    public EntityFake(string fileName, string folderPath, EntityFake subEntity = null) : base()
     {
         WithPath(fileName, folderPath);
         SubEntity = subEntity;
@@ -261,12 +193,5 @@ public class EntityFake : BdoEntity, IEntityFake
 
     #endregion
 
-    /// <summary>
-    /// Converts this instance to string.
-    /// </summary>
-    /// <returns>Returns this instance to string.</returns>
-    public override string ToString()
-    {
-        return Path;
-    }
+    public override string ToString() => Path ?? string.Empty;
 }

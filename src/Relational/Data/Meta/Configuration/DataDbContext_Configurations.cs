@@ -11,7 +11,7 @@ public partial class DataDbContext : DbContext
         return Configurations
             .Include(q => q.Children)
             .Include(q => q.Description)
-            .Include(q => q.Items)
+            .Include(q => q.MetaItems)
             .Include(q => q.Title)
             .FirstOrDefault(q => q.Identifier == identifier);
     }

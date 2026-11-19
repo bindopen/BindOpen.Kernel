@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Conditions;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Objects.Interfaces;
 using BindOpen.Logging;
 using System.Collections.Generic;
 

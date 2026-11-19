@@ -7,203 +7,170 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BindOpen.Scoping
+namespace BindOpen.Scoping;
+
+/// <summary>
+/// This class represents a BindOpen extension store, managing specialized dictionaries 
+/// for connectors, entities, functions, and tasks.
+/// </summary>
+public class BdoExtensionStore : BdoObject, IBdoExtensionStore
 {
+    // ------------------------------------------
+    // VARIABLES
+    // ------------------------------------------
+
+    #region Variables
+
+    private readonly Dictionary<string, IBdoConnectorDefinition> _connectorDictionary = new();
+    private readonly Dictionary<string, IBdoEntityDefinition> _entityDictionary = new();
+    private readonly Dictionary<string, IBdoFunctionDefinition> _functionDictionary = new();
+    private readonly Dictionary<string, IBdoTaskDefinition> _taskDictionary = new();
+
+    #endregion
+
+    // ------------------------------------------
+    // CONSTRUCTORS
+    // ------------------------------------------
+
+    #region Constructors
+
     /// <summary>
-    /// This class represents a BindOpen extension item store.
+    /// Initializes a new instance of the <see cref="BdoExtensionStore"/> class.
     /// </summary>
-    public class BdoExtensionStore : BdoObject, IBdoExtensionStore
+    public BdoExtensionStore() : base()
     {
-        // ------------------------------------------
-        // VARIABLES
-        // ------------------------------------------
-
-        #region Variables
-
-        private readonly Dictionary<string, IBdoConnectorDefinition> _connectorDictionary = new();
-        private readonly Dictionary<string, IBdoEntityDefinition> _entityDictionary = new();
-        private readonly Dictionary<string, IBdoFunctionDefinition> _functionDictionary = new();
-        private readonly Dictionary<string, IBdoTaskDefinition> _taskDictionary = new();
-
-        #endregion
-
-        // ------------------------------------------
-        // CONSTRUCTORS
-        // ------------------------------------------
-
-        #region Constructors
-
-        /// <summary>
-        /// Instantiates a new instance of the BdoExtensionStore class.
-        /// </summary>
-        public BdoExtensionStore()
-        {
-        }
-
-        #endregion
-
-        // ------------------------------------------
-        // IBdoExtensionStore Implementation
-        // ------------------------------------------
-
-        #region IBdoExtensionStore
-
-        // Item definitions ----------------------------------
-
-        /// <summary>
-        /// Returns the item definitions of this instance.
-        /// </summary>
-        /// <returns>The item words of specified library names.</returns>
-        public IEnumerable<IBdoExtensionDefinition> GetDefinitions(BdoExtensionKinds kind = BdoExtensionKinds.Any)
-        {
-            if (kind == BdoExtensionKinds.Connector || kind == BdoExtensionKinds.Any)
-            {
-                return _connectorDictionary.Select(q => q.Value);
-            }
-            if (kind == BdoExtensionKinds.Entity || kind == BdoExtensionKinds.Any)
-            {
-                return _entityDictionary.Select(q => q.Value);
-            }
-            if (kind == BdoExtensionKinds.Function || kind == BdoExtensionKinds.Any)
-            {
-                return _functionDictionary.Select(q => q.Value);
-            }
-            if (kind == BdoExtensionKinds.Task || kind == BdoExtensionKinds.Any)
-            {
-                return _taskDictionary.Select(q => q.Value);
-            }
-
-            return Enumerable.Empty<IBdoExtensionDefinition>();
-        }
-
-        /// <summary>
-        /// Returns the item definition with the specified unique name.
-        /// </summary>
-        /// <param key="uniqueName">The unique ID of item to return.</param>
-        /// <returns>The item with the specified unique name.</returns>
-        public IBdoExtensionDefinition GetDefinition(
-            BdoExtensionKinds kind,
-            string uniqueName)
-        {
-            string upperUniqueName = uniqueName?.ToUpper();
-
-            if (uniqueName != null)
-            {
-                switch (kind)
-                {
-                    case BdoExtensionKinds.Connector:
-                        {
-                            _connectorDictionary.TryGetValue(upperUniqueName, out IBdoConnectorDefinition connectorDefinition);
-                            return connectorDefinition;
-                        }
-                    case BdoExtensionKinds.Entity:
-                        {
-                            _entityDictionary.TryGetValue(upperUniqueName, out IBdoEntityDefinition entityDefinition);
-                            return entityDefinition;
-                        }
-                    case BdoExtensionKinds.Function:
-                        {
-                            _functionDictionary.TryGetValue(upperUniqueName, out IBdoFunctionDefinition functionDefinition);
-                            return functionDefinition;
-                        }
-                    case BdoExtensionKinds.Task:
-                        {
-                            _taskDictionary.TryGetValue(upperUniqueName, out IBdoTaskDefinition taskDefinition);
-                            return taskDefinition;
-                        }
-                    default:
-                        break;
-                }
-            }
-
-            return default;
-        }
-
-        public IBdoExtensionDefinition GetDefinitionFromType(Type type)
-        {
-            var extensionKind = type?.GetExtensionKind();
-
-            return extensionKind switch
-            {
-                BdoExtensionKinds.Connector =>
-                    _connectorDictionary.FirstOrDefault(q => q.Value?.RuntimeType == type).Value,
-                BdoExtensionKinds.Entity =>
-                    _entityDictionary.FirstOrDefault(q => q.Value?.RuntimeType == type).Value,
-                BdoExtensionKinds.Task =>
-                    _taskDictionary.FirstOrDefault(q => q.Value?.RuntimeType == type).Value,
-                _ => null,
-            };
-        }
-
-        /// <summary>
-        /// Clears this instance.
-        /// </summary>
-        public IBdoExtensionStore Clear()
-        {
-            _entityDictionary.Clear();
-            _connectorDictionary.Clear();
-            _entityDictionary.Clear();
-            _functionDictionary.Clear();
-            _taskDictionary.Clear();
-
-            return this;
-        }
-
-        /// <summary>
-        /// Adds the specified definition.
-        /// </summary>
-        /// <typeparam name="T">The BindOpen extension item definition class to consider.</typeparam>
-        /// <param key="definition">The definition to add.</param>
-        public IBdoExtensionStore Add(IBdoExtensionDefinition definition)
-        {
-            var uniqueName = definition?.UniqueName?.ToUpper();
-
-            if (definition is IBdoConnectorDefinition connector)
-            {
-                if (!_connectorDictionary.ContainsKey(uniqueName))
-                {
-                    _connectorDictionary.Add(uniqueName, connector);
-                }
-            }
-            else if (definition is IBdoEntityDefinition entity)
-            {
-                if (!_entityDictionary.ContainsKey(uniqueName))
-                {
-                    _entityDictionary.Add(uniqueName, entity);
-                }
-            }
-            else if (definition is IBdoFunctionDefinition function)
-            {
-                if (!_functionDictionary.ContainsKey(uniqueName))
-                {
-                    _functionDictionary.Add(uniqueName, function);
-                }
-            }
-            else if (definition is IBdoTaskDefinition task)
-            {
-                if (!_taskDictionary.ContainsKey(uniqueName))
-                {
-                    _taskDictionary.Add(uniqueName, task);
-                }
-            }
-
-            return this;
-        }
-
-        #endregion
-
-
-        // ------------------------------------------
-        // IIdentified Implementation
-        // ------------------------------------------
-
-        #region IIdentified
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Identifier { get; set; }
-
-        #endregion
     }
+
+    #endregion
+
+    // ------------------------------------------
+    // IBdoExtensionStore Implementation
+    // ------------------------------------------
+
+    #region IBdoExtensionStore
+
+    /// <summary>
+    /// Gets the definitions of the specified kind.
+    /// </summary>
+    /// <param name="kind">The kind of extensions to retrieve.</param>
+    /// <returns>An enumeration of extension definitions.</returns>
+    public IEnumerable<IBdoExtensionDefinition> GetDefinitions(BdoExtensionKinds kind = BdoExtensionKinds.Any)
+    {
+        var list = new List<IBdoExtensionDefinition>();
+
+        if (kind.HasFlag(BdoExtensionKinds.Connector) || kind == BdoExtensionKinds.Any)
+            list.AddRange(_connectorDictionary.Values);
+
+        if (kind.HasFlag(BdoExtensionKinds.Entity) || kind == BdoExtensionKinds.Any)
+            list.AddRange(_entityDictionary.Values);
+
+        if (kind.HasFlag(BdoExtensionKinds.Function) || kind == BdoExtensionKinds.Any)
+            list.AddRange(_functionDictionary.Values);
+
+        if (kind.HasFlag(BdoExtensionKinds.Task) || kind == BdoExtensionKinds.Any)
+            list.AddRange(_taskDictionary.Values);
+
+        return list;
+    }
+
+    /// <summary>
+    /// Gets the extension definition with the specified unique name.
+    /// </summary>
+    /// <param name="kind">The kind of extension.</param>
+    /// <param name="uniqueName">The unique name/ID of the definition.</param>
+    /// <returns>The matching definition if found; otherwise, null.</returns>
+    public IBdoExtensionDefinition GetDefinition(BdoExtensionKinds kind, string uniqueName)
+    {
+        if (string.IsNullOrEmpty(uniqueName)) return null;
+
+        string key = uniqueName.ToUpper();
+
+        return kind switch
+        {
+            BdoExtensionKinds.Connector => _connectorDictionary.TryGetValue(key, out var val) ? val : null,
+            BdoExtensionKinds.Entity => _entityDictionary.TryGetValue(key, out var val) ? val : null,
+            BdoExtensionKinds.Function => _functionDictionary.TryGetValue(key, out var val) ? val : null,
+            BdoExtensionKinds.Task => _taskDictionary.TryGetValue(key, out var val) ? val : null,
+            _ => null
+        };
+    }
+
+    /// <summary>
+    /// Gets the extension definition associated with the specified runtime type.
+    /// </summary>
+    /// <param name="type">The runtime type to look for.</param>
+    /// <returns>The matching definition; otherwise, null.</returns>
+    public IBdoExtensionDefinition GetDefinitionFromType(Type type)
+    {
+        if (type == null) return null;
+
+        var kind = type.GetExtensionKind();
+
+        return kind switch
+        {
+            BdoExtensionKinds.Connector => _connectorDictionary.Values.FirstOrDefault(q => q.RuntimeType == type),
+            BdoExtensionKinds.Entity => _entityDictionary.Values.FirstOrDefault(q => q.RuntimeType == type),
+            BdoExtensionKinds.Task => _taskDictionary.Values.FirstOrDefault(q => q.RuntimeType == type),
+            _ => null
+        };
+    }
+
+    /// <summary>
+    /// Clears all stored definitions in this instance.
+    /// </summary>
+    /// <returns>Returns this instance.</returns>
+    public IBdoExtensionStore Clear()
+    {
+        _connectorDictionary.Clear();
+        _entityDictionary.Clear();
+        _functionDictionary.Clear();
+        _taskDictionary.Clear();
+        return this;
+    }
+
+    /// <summary>
+    /// Adds a definition to the store based on its type.
+    /// </summary>
+    /// <param name="definition">The definition to add.</param>
+    /// <returns>Returns this instance.</returns>
+    public IBdoExtensionStore Add(IBdoExtensionDefinition definition)
+    {
+        if (definition == null) return this;
+
+        string key = definition.UniqueName?.ToUpper();
+        if (string.IsNullOrEmpty(key)) return this;
+
+        switch (definition)
+        {
+            case IBdoConnectorDefinition connector:
+                _connectorDictionary.TryAdd(key, connector);
+                break;
+            case IBdoEntityDefinition entity:
+                _entityDictionary.TryAdd(key, entity);
+                break;
+            case IBdoFunctionDefinition function:
+                _functionDictionary.TryAdd(key, function);
+                break;
+            case IBdoTaskDefinition task:
+                _taskDictionary.TryAdd(key, task);
+                break;
+        }
+
+        return this;
+    }
+
+    #endregion
+
+    // ------------------------------------------
+    // IIdentified Implementation
+    // ------------------------------------------
+
+    #region IIdentified
+
+    /// <summary>
+    /// Gets or sets the identifier of this store.
+    /// </summary>
+    public string Identifier { get; set; }
+
+    #endregion
 }

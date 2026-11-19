@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BindOpen.Data.Objects.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BindOpen.Data
@@ -20,7 +21,7 @@ namespace BindOpen.Data
             where TItem : IReferenced
         {
             var q = new TSet();
-            q.With(items);
+            TBdoSetExtensions.WithItems(q, items);
             return q;
         }
 

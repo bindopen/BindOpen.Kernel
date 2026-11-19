@@ -23,7 +23,7 @@ public class BasicConditionDto : ConditionDto
     /// The arugment 1 of this instance.
     /// </summary>
     [JsonPropertyName("arg1")]
-    [XmlElement("node1", Type = typeof(MetaNodeDto))]
+    [XmlElement("node1", Type = typeof(MetaSetDto))]
     [XmlElement("object1", Type = typeof(MetaObjectDto))]
     [XmlElement("scalar1", Type = typeof(MetaScalarDto))]
     [XmlElement("word1", Type = typeof(ScriptwordDto))]
@@ -40,7 +40,7 @@ public class BasicConditionDto : ConditionDto
     /// The arugment 2 of this instance.
     /// </summary>
     [JsonPropertyName("arg2")]
-    [XmlElement("node2", Type = typeof(MetaNodeDto))]
+    [XmlElement("node2", Type = typeof(MetaSetDto))]
     [XmlElement("object2", Type = typeof(MetaObjectDto))]
     [XmlElement("scalar2", Type = typeof(MetaScalarDto))]
     [XmlElement("word2", Type = typeof(ScriptwordDto))]

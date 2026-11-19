@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net11.0</TargetFramework>
     <AssemblyName>BindOpen.Data</AssemblyName>
     <PackageId>BindOpen.Data</PackageId>
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
-    <Copyright>Copyright © BindOpen 2011-2025</Copyright>
+    <Copyright>Copyright © BindOpen 2011-2026</Copyright>
     <Description>This package offers a comprehensive data model to easily manage business data and configuration.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Data</RootNamespace>
@@ -37,9 +37,5 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Abstractions\Abstractions.csproj" />
   </ItemGroup>
 </Project>

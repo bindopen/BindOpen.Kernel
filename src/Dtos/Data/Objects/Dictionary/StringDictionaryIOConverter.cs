@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using BindOpen.Data.Objects.Interfaces;
+using System.Linq;
 
 namespace BindOpen.Data;
 

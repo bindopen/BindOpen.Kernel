@@ -10,7 +10,7 @@ public class MetaObjectSetXmlTests
 {
     private readonly string _filePath_xml = DataTestData.WorkingFolder + "MetaObjectSet.xml";
 
-    private BdoMetaNode _metaSet;
+    private BdoMetaSet _metaSet;
 
     private object _obj1 = null;
     private object _obj2 = null;
@@ -24,7 +24,7 @@ public class MetaObjectSetXmlTests
         _obj3 = ClassObjectFaker.Fake();
     }
 
-    private void Test(IBdoMetaNode metaSet)
+    private void Test(IBdoMetaSet metaSet)
     {
         var obj1 = metaSet.GetData("object1");
         var obj2 = metaSet.GetData("object2");
@@ -68,7 +68,7 @@ public class MetaObjectSetXmlTests
             SaveXmlTest();
         }
 
-        var metaSet = XmlHelper.LoadXml<MetaNodeDto>(_filePath_xml).ToPoco();
+        var metaSet = XmlHelper.LoadXml<MetaSetDto>(_filePath_xml).ToPoco();
         Equals(metaSet, _metaSet);
     }
 }

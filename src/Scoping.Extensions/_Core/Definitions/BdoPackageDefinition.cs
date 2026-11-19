@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Assemblies;
 using BindOpen.Data.Helpers;
+using BindOpen.Data.Objects.Interfaces;
 using System.Collections.Generic;
 
 namespace BindOpen.Scoping

@@ -1,5 +1,6 @@
 ﻿using BindOpen.Data.Conditions;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Objects.Interfaces;
 
 namespace BindOpen.Data
 {

@@ -117,10 +117,10 @@ namespace BindOpen.Data.Meta.Reflection
                                 {
                                     metaValue = BdoData.NewObject(name);
                                 }
-                                else if (typeof(IBdoMetaNode).IsAssignableFrom(metaType))
+                                else if (typeof(IBdoMetaSet).IsAssignableFrom(metaType))
                                 {
-                                    var subSet = meta as IBdoMetaNode;
-                                    metaValue = BdoData.NewNode(name)
+                                    var subSet = meta as IBdoMetaSet;
+                                    metaValue = BdoData.NewSet(name)
                                         .With(subSet?.Items?.ToArray());
                                 }
 

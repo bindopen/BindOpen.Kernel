@@ -98,7 +98,7 @@ public static class MetaObjectConverter
         poco.Name = dto.Name;
         poco.Reference = dto.Reference.ToPoco();
         poco.Schema = dto.Schema.ToPoco();
-        poco.With(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
+        poco.WithItems(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
 
         return poco;
     }

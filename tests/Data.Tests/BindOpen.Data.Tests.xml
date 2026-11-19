@@ -1,0 +1,845 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BindOpen.Data.Tests</name>
+    </assembly>
+    <members>
+        <member name="T:BindOpen.Data.Assemblies.BdoAssemblyReferenceTests">
+            <summary>
+            Contains unit tests for assembly reference management within the BindOpen Kernel.
+            </summary>
+            <remarks>
+            These tests ensure that assembly identifiers, versions, and aliases are 
+            correctly handled and compared.
+            </remarks>
+        </member>
+        <member name="F:BindOpen.Data.Assemblies.BdoAssemblyReferenceTests._reference1">
+            <summary>
+            The first assembly reference used for comparison.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Data.Assemblies.BdoAssemblyReferenceTests._reference2">
+            <summary>
+            The second assembly reference used for comparison.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.BdoAssemblyReferenceTests.OneTimeSetUp">
+            <summary>
+            Performs one-time setup for the assembly reference tests.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.BdoAssemblyReferenceTests.AssertEquals(BindOpen.Data.Assemblies.IBdoAssemblyReference,BindOpen.Data.Assemblies.IBdoAssemblyReference)">
+            <summary>
+            Asserts that two assembly references are equivalent.
+            </summary>
+            <param name="reference1">The first assembly reference to compare.</param>
+            <param name="reference2">The second assembly reference to compare.</param>
+            <exception cref="T:NUnit.Framework.AssertionException">Thrown when the references are not equivalent.</exception>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.BdoAssemblyReferenceTests.Create1Test">
+            <summary>
+            Creates a default/null assembly reference for testing.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.BdoAssemblyReferenceTests.Create2Test">
+            <summary>
+            Creates a randomized assembly reference populated with fake data.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.BdoAssemblyReferenceTests.AssemblyRefEqualsTest">
+            <summary>
+            Tests that two different assembly references are not considered equal.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Assemblies.BdoClassReferenceTests">
+            <summary>
+            Contains unit tests for class reference management within the BindOpen Kernel.
+            </summary>
+            <remarks>
+            These tests verify that class references, which combine an assembly reference 
+            with a class name, are correctly instantiated and compared.
+            </remarks>
+        </member>
+        <member name="F:BindOpen.Data.Assemblies.BdoClassReferenceTests._classRef1">
+            <summary>
+            The first class reference used for comparison.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Data.Assemblies.BdoClassReferenceTests._classRef2">
+            <summary>
+            The second class reference used for comparison.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.BdoClassReferenceTests.OneTimeSetUp">
+            <summary>
+            Performs one-time setup for the class reference tests.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.BdoClassReferenceTests.AssertEquals(BindOpen.Data.Assemblies.IBdoClassReference,BindOpen.Data.Assemblies.IBdoClassReference)">
+            <summary>
+            Asserts that two class references are equivalent.
+            </summary>
+            <param name="reference1">The first class reference to compare.</param>
+            <param name="reference2">The second class reference to compare.</param>
+            <exception cref="T:NUnit.Framework.AssertionException">Thrown when the references are not equivalent.</exception>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.BdoClassReferenceTests.Create1Test">
+            <summary>
+            Creates a class reference using a default/null assembly reference.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.BdoClassReferenceTests.Create2Test">
+            <summary>
+            Creates a randomized class reference using a fully populated assembly reference.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.BdoClassReferenceTests.ClassRefEqualsTest">
+            <summary>
+            Tests that two different class references are not considered equal.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Assemblies.BdoDataValueTypeTests">
+            <summary>
+            Contains unit tests for data type management and string representation within the BindOpen Kernel.
+            </summary>
+            <remarks>
+            These tests verify that the framework correctly handles various data value types, 
+            including standard text and complex object types, and ensures their string representation 
+            is consistent for logging and serialization.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.BdoDataValueTypeTests.OneTimeSetUp">
+            <summary>
+            Performs one-time setup for the data value type tests.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.BdoDataValueTypeTests.ToStringTest">
+            <summary>
+            Tests the string representation of basic and complex data types.
+            </summary>
+            <remarks>
+            This test ensures that <see cref="F:BindOpen.Data.DataValueTypes.Text"/> and custom classes like <see cref="T:BindOpen.Tests.ClassFake"/> 
+            are correctly resolved to their expected string descriptors.
+            </remarks>
+        </member>
+        <member name="T:BindOpen.Data.Meta.BdoConfigurationTests">
+            <summary>
+            Provides comprehensive unit tests for <see cref="T:BindOpen.Data.Meta.IBdoConfiguration"/> management.
+            </summary>
+            <remarks>
+            These tests focus on configuration creation, hierarchical navigation (descendants), 
+            deep cloning, and merging/updating configurations.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoConfigurationTests.OneTimeSetUp">
+            <summary>
+            Initializes complex configuration trees for testing.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoConfigurationTests.AssertEquals(BindOpen.Data.Meta.IBdoConfiguration,BindOpen.Data.Meta.IBdoConfiguration)">
+            <summary>
+            Asserts that two configurations are equivalent, excluding their parent references.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoConfigurationTests.GetConfigurationItem1">
+            <summary>
+            Tests basic data retrieval from a configuration.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoConfigurationTests.DescendantTest">
+            <summary>
+            Tests the resolution of descendant metadata using path-based and index-based navigation.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoConfigurationTests.CloneTest">
+            <summary>
+            Tests the deep cloning capability of configurations.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoConfigurationTests.UpdateTest">
+            <summary>
+            Tests the merging and updating logic of two configurations.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Meta.BdoMetaObjectTests">
+            <summary>
+            Contains unit tests for <see cref="T:BindOpen.Data.Meta.IBdoMetaObject"/>, focusing on object-to-meta mapping and reflection.
+            </summary>
+            <remarks>
+            These tests ensure that POCO objects can be converted into BindOpen metadata objects 
+            and that the underlying data remains consistent throughout the transformation process.
+            </remarks>
+        </member>
+        <member name="F:BindOpen.Data.Meta.BdoMetaObjectTests._metaObject">
+            <summary>
+            The meta-object instance resulting from the conversion, accessible for cross-test validation.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoMetaObjectTests.OneTimeSetUp">
+            <summary>
+            Initializes the source POCO object using a faker.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoMetaObjectTests.Test">
+            <summary>
+            Internal validation method to ensure the data inside the meta-object 
+            matches the original source object.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoMetaObjectTests.ToMetaTest">
+            <summary>
+            Tests the conversion of a POCO to a meta-object using the extension method syntax.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoMetaObjectTests.NewTest">
+            <summary>
+            Tests the creation of a meta-object using different factory method patterns.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Meta.BdoMetaScalarSetTests">
+            <summary>
+            Contains unit tests for sets of scalar metadata, focusing on collection management and data updates.
+            </summary>
+            <remarks>
+            These tests ensure that <see cref="T:BindOpen.Data.Meta.IBdoMetaSet"/> correctly handles multiple <see cref="T:BindOpen.Data.Meta.IBdoMetaScalar"/> elements,
+            supports complex update/repair scenarios, and allows access via both names and custom keys.
+            </remarks>
+        </member>
+        <member name="F:BindOpen.Data.Meta.BdoMetaScalarSetTests._metaSet">
+            <summary>
+            The global meta set used across tests to verify state persistence.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoMetaScalarSetTests.OneTimeSetUp">
+            <summary>
+            Initializes randomized test data.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoMetaScalarSetTests.NewTest_WithNull">
+            <summary>
+            Verifies that a scalar can be created even with null data.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoMetaScalarSetTests.NewTest">
+            <summary>
+            Tests the population of a meta set with various scalar types (Number, String, Integer, Binary).
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoMetaScalarSetTests.UpdateCheckRepairTest">
+            <summary>
+            Tests complex update and repair scenarios between meta sets, including null handling and type switching.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoMetaScalarSetTests.ToStringTest">
+            <summary>
+            Validates the string conversion of scalars within a set for different data types.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoMetaScalarSetTests.AddMetaSetWithKeys">
+            <summary>
+            Tests the ability to add elements to a set using explicit keys and retrieving them.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Meta.BdoMetaSetTests_Scalar">
+            <summary>
+            Contains unit tests for scalar metadata nodes, focusing on data initialization and type resolution.
+            </summary>
+            <remarks>
+            These tests verify that <see cref="T:BindOpen.Data.Meta.IBdoMetaScalar"/> correctly stores and retrieves 
+            various data types (Number, Text, Integer, Binary) using randomized test data.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoMetaSetTests_Scalar.OneTimeSetUp">
+            <summary>
+            Initializes randomized test data for scalar testing.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoMetaSetTests_Scalar.NewTest_Number">
+            <summary>
+            Tests the creation of numeric scalar elements.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoMetaSetTests_Scalar.NewTest_String">
+            <summary>
+            Tests the creation of string scalar elements.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoMetaSetTests_Scalar.NewTest_Integer">
+            <summary>
+            Tests the creation of integer scalar elements.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoMetaSetTests_Scalar.NewTest_ArrayByte">
+            <summary>
+            Tests the creation of binary (byte array) scalar elements.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.BdoMetaSetTests_Scalar.ToStringTest">
+            <summary>
+            Verifies the string representation of scalar elements for logging and debugging.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.BdoExpressionTests">
+            <summary>
+            Contains unit tests for <see cref="T:BindOpen.Data.Objects.Interfaces.IBdoExpression"/>, focusing on the distinction between literals and scripts.
+            </summary>
+            <remarks>
+            These tests verify that expressions are correctly categorized and store their textual representation
+            according to their <see cref="T:BindOpen.Data.Objects.Interfaces.BdoExpressionKind"/>.
+            </remarks>
+        </member>
+        <member name="F:BindOpen.Data.BdoExpressionTests._exp">
+            <summary>
+            The expression instance currently being tested.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoExpressionTests.OneTimeSetUp">
+            <summary>
+            Initializes the test value set using the expression faker.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoExpressionTests.AssertEquals(BindOpen.Data.Objects.Interfaces.IBdoExpression,BindOpen.Data.Objects.Interfaces.IBdoExpression)">
+            <summary>
+            Asserts that two expressions are equivalent.
+            </summary>
+            <param name="exp1">The first expression to compare.</param>
+            <param name="exp2">The second expression to compare.</param>
+        </member>
+        <member name="M:BindOpen.Data.BdoExpressionTests.Test(BindOpen.Data.Objects.Interfaces.IBdoExpression)">
+            <summary>
+            Validates an expression based on its kind and expected value from the test data set.
+            </summary>
+            <param name="exp">The expression to validate.</param>
+        </member>
+        <member name="M:BindOpen.Data.BdoExpressionTests.Create1Test">
+            <summary>
+            Tests the creation of a literal expression using the short factory method.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoExpressionTests.Create2Test">
+            <summary>
+            Tests the creation of a script expression using the fluent API.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.BdoMergerTests">
+            <summary>
+            Contains unit tests for the <see cref="T:BindOpen.Data.BdoMerger"/> class, focusing on collection merging logic.
+            </summary>
+            <remarks>
+            These tests verify that the merger correctly applies differential updates (additions and removals) 
+            to existing string collections.
+            </remarks>
+        </member>
+        <member name="F:BindOpen.Data.BdoMergerTests._merger">
+            <summary>
+            The merger instance currently being tested.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoMergerTests.OneTimeSetUp">
+            <summary>
+            Initializes randomized string lists for testing merger operations.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoMergerTests.AssertEquals(BindOpen.Data.Objects.Interfaces.IBdoMerger,BindOpen.Data.Objects.Interfaces.IBdoMerger)">
+            <summary>
+            Asserts that two merger instances are equivalent, handling empty collections gracefully.
+            </summary>
+            <param name="merger1">The first merger to compare.</param>
+            <param name="merger2">The second merger to compare.</param>
+        </member>
+        <member name="M:BindOpen.Data.BdoMergerTests.Create1Test">
+            <summary>
+            Tests a merger initialized with both addition and removal lists in the constructor.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoMergerTests.Create2Test">
+            <summary>
+            Tests a merger using the fluent API to specify removals only.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoMergerTests.Create3Test">
+            <summary>
+            Tests a merger using the fluent API for both additions and removals.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.BdoReferenceTests">
+            <summary>
+            Contains unit tests for <see cref="T:BindOpen.Data.IBdoReference"/>, verifying the encapsulation of data pointers.
+            </summary>
+            <remarks>
+            References in BindOpen allow for pointing to metadata or resources using either literal paths 
+            or dynamic script-based expressions.
+            </remarks>
+        </member>
+        <member name="F:BindOpen.Data.BdoReferenceTests._reference">
+            <summary>
+            The reference instance currently being tested.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoReferenceTests.OneTimeSetUp">
+            <summary>
+            Initializes the test value set using the reference faker.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoReferenceTests.AssertEquals(BindOpen.Data.IBdoReference,BindOpen.Data.IBdoReference)">
+            <summary>
+            Asserts that two reference objects are equivalent.
+            </summary>
+            <param name="ref1">The first reference to compare.</param>
+            <param name="ref2">The second reference to compare.</param>
+        </member>
+        <member name="M:BindOpen.Data.BdoReferenceTests.Create1Test">
+            <summary>
+            Tests the creation of a reference based on a literal expression.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoReferenceTests.Create2Test">
+            <summary>
+            Tests the creation of a reference based on a script expression.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.BdoStringDictionaryTests">
+            <summary>
+            Contains unit tests for <see cref="T:BindOpen.Data.TBdoDictionary`1"/>, focusing on specialized string key access.
+            </summary>
+            <remarks>
+            These tests verify advanced dictionary features such as wildcard keys ("*"), 
+            implicit conversions, and fallback value resolution.
+            </remarks>
+        </member>
+        <member name="F:BindOpen.Data.BdoStringDictionaryTests._dico">
+            <summary>
+            The string dictionary instance currently being tested.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoStringDictionaryTests.OneTimeSetUp">
+            <summary>
+            Initializes randomized string values for dictionary testing.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoStringDictionaryTests.Test(BindOpen.Data.Objects.Interfaces.ITBdoDictionary{System.String})">
+            <summary>
+            Validates the core content of the dictionary against the expected value set.
+            </summary>
+            <param name="dico">The dictionary to validate.</param>
+        </member>
+        <member name="M:BindOpen.Data.BdoStringDictionaryTests.Create1Test">
+            <summary>
+            Tests dictionary creation using the factory method with tuple arrays.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoStringDictionaryTests.Create2Test">
+            <summary>
+            Tests dictionary creation via implicit conversion from a tuple array.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoStringDictionaryTests.Create3Test">
+            <summary>
+            Tests implicit conversion from a single string to a wildcard dictionary entry.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoStringDictionaryTests.EqualsTest">
+            <summary>
+            Verifies the custom equality logic for dictionaries.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoStringDictionaryTests.Create5Test">
+            <summary>
+            Tests advanced fallback resolution using wildcards and multiple keys.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.BdoStringTokensTests">
+            <summary>
+            Contains unit tests for string tokenization and metadata extraction.
+            </summary>
+            <remarks>
+            These tests verify the framework's ability to parse complex strings using patterns, 
+            handle quoted text, and format strings back from metadata sets using tokens.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.BdoStringTokensTests.OneTimeSetUp">
+            <summary>
+            Initializes randomized string values for tokenization testing.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.BdoStringTokensTests.Test(BindOpen.Data.Meta.IBdoMetaSet)">
+            <summary>
+            Validates that the extracted metadata set contains the expected token values.
+            </summary>
+            <param name="set">The metadata set resulting from parsing.</param>
+        </member>
+        <member name="T:BindOpen.Data.TreeTests">
+            <summary>
+            Provides unit tests for hierarchical tree structures and traversal algorithms.
+            </summary>
+            <remarks>
+            These tests verify the ability of the Kernel to navigate parent-child relationships,
+            perform recursive searches, and filter nodes across multiple levels.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.TreeTests.OneTimeSetUp">
+            <summary>
+            Initializes a test tree with 10 children, each containing 10 sub-children (111 nodes total including root).
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.TreeTests.ChildrenTest">
+            <summary>
+            Tests the retrieval and counting of children at different depths.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.TreeTests.HasChildTest">
+            <summary>
+            Tests the existence checks for nodes using predicates and recursive flags.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.TreeTests.ChildTest">
+            <summary>
+            Tests the retrieval of specific child nodes via predicates.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Stores.BdoDatasourceTests">
+            <summary>
+            Contains unit tests for <see cref="T:BindOpen.Data.Stores.IBdoDatasource"/>, focusing on datasource initialization and metadata updates.
+            </summary>
+            <remarks>
+            These tests verify that datasource objects correctly store connection information, 
+            extension types, and that their internal metadata details are properly synchronized.
+            </remarks>
+        </member>
+        <member name="F:BindOpen.Data.Stores.BdoDatasourceTests._metaSet">
+            <summary>
+            The meta node to consider.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Stores.BdoDatasourceTests.OneTimeSetUp">
+            <summary>
+            Initializes a mock metadata node representing connector settings.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Stores.BdoDatasourceTests.Create2Test">
+            <summary>
+            Tests the creation of a datasource and the automatic synchronization of its detail metadata.
+            </summary>
+            <remarks>
+            This test ensures that when a connection string or a datasource kind is set, 
+            the internal <see cref="T:BindOpen.Data.Meta.IBdoMetaSet"/> (Detail) reflects these values.
+            </remarks>
+        </member>
+        <member name="T:BindOpen.DataTestData">
+            <summary>
+            Provides global static data and path management for the BindOpen test suite.
+            </summary>
+        </member>
+        <member name="P:BindOpen.DataTestData.WorkingFolder">
+            <summary>
+            Gets the global working folder path used for test outputs and temporary files.
+            </summary>
+            <value>The absolute path to the temporary working directory.</value>
+            <remarks>
+            This property uses lazy initialization. It automatically resolves the application root 
+            folder and appends a 'temp' directory, ensuring the path is properly formatted 
+            using the <see cref="!:StringHelper.ToPath"/> extension.
+            </remarks>
+        </member>
+        <member name="T:BindOpen.DataTestSetup">
+            <summary>
+            This class manages the global setup and teardown for the entire test assembly.
+            </summary>
+            <remarks>
+            Being decorated with <see cref="T:NUnit.Framework.SetUpFixtureAttribute"/>, this class ensures that 
+            the initialization logic runs once before any tests in the namespace are executed.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.DataTestSetup.OneTimeSetUp">
+            <summary>
+            Performs one-time initialization for the test assembly.
+            </summary>
+            <remarks>
+            This is the ideal place to initialize global resources, such as the 
+            <see cref="P:BindOpen.DataTestData.WorkingFolder"/> or shared framework configurations.
+            </remarks>
+        </member>
+        <member name="T:BindOpen.Tests.BdoExpressionFaker">
+            <summary>
+            Provides fake data generation for BindOpen expression tests.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Tests.BdoExpressionFaker.GetValueSet">
+            <summary>
+            Generates a dynamic object containing common script and literal values for testing.
+            </summary>
+            <returns>A dynamic <see cref="T:System.Dynamic.ExpandoObject"/> containing test data.</returns>
+            <remarks>
+            This dynamic object is typically used to test the framework's ability 
+            to resolve values from non-static data sources.
+            </remarks>
+        </member>
+        <member name="T:BindOpen.Tests.BdoMetaScalarFaker">
+            <summary>
+            Provides fake data generation and assertion methods for <see cref="T:BindOpen.Data.Meta.IBdoMetaScalar"/> objects.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Tests.BdoMetaScalarFaker.XmlFilePath">
+            <summary>
+            The path to the XML file used for meta-scalar list testing.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Tests.BdoMetaScalarFaker.Fake">
+            <summary>
+            Generates a dynamic object containing various arrays of random data.
+            </summary>
+            <returns>Returns a dynamic object with numeric, string, integer, and byte array properties.</returns>
+            <remarks>
+            This method uses <see cref="N:Bogus"/> to generate realistic randomized data sets 
+            for meta-scalar value validation.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Tests.BdoMetaScalarFaker.AssertFake(BindOpen.Data.Meta.IBdoMetaScalar,BindOpen.Data.Meta.IBdoMetaScalar)">
+            <summary>
+            Validates that two <see cref="T:BindOpen.Data.Meta.IBdoMetaScalar"/> elements are identical based on their names.
+            </summary>
+            <param name="element">The meta-scalar element to check.</param>
+            <param name="reference">The reference meta-scalar to compare against.</param>
+            <exception cref="T:NUnit.Framework.AssertionException">Thrown when the names of the elements do not match.</exception>
+        </member>
+        <member name="T:BindOpen.Tests.BdoReferenceFaker">
+            <summary>
+            Provides fake data generation for BindOpen reference and scriptword tests.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Tests.BdoReferenceFaker.GetValueSet">
+            <summary>
+            Generates a dynamic object containing sample script references and literal values.
+            </summary>
+            <returns>Returns a dynamic <see cref="T:System.Dynamic.ExpandoObject"/> containing test data.</returns>
+            <remarks>
+            This dynamic object is used to verify that the BindOpen kernel can correctly 
+            resolve values and scripts from dynamic or untyped data sources.
+            </remarks>
+        </member>
+        <member name="T:BindOpen.Tests.BdoSchemaFaker">
+            <summary>
+            Provides factory methods to create fake <see cref="T:BindOpen.Data.Schema.IBdoSchema"/> instances for unit testing.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Tests.BdoSchemaFaker.XmlFilePath">
+            <summary>
+            The local file path used for XML schema serialization tests.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Tests.BdoSchemaFaker.CreateSpecWithReference">
+            <summary>
+            Creates a new schema instance configured with a script-based reference.
+            </summary>
+            <returns>Returns an initialized <see cref="T:BindOpen.Data.Schema.IBdoSchema"/> object.</returns>
+            <remarks>
+            The schema is initialized with an expression reference ($eq(1, 0)) to test 
+            conditional schema resolution and validation logic.
+            </remarks>
+        </member>
+        <member name="T:BindOpen.Tests.ClassObjectFaker">
+            <summary>
+            Provides factory methods for generating randomized <see cref="T:BindOpen.Tests.ClassFake"/> instances.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Tests.ClassObjectFaker._faker">
+            <summary>
+            Static instance of the Bogus Faker to ensure consistent random seed management.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Tests.ClassObjectFaker.Fake">
+            <summary>
+            Creates a new instance of <see cref="T:BindOpen.Tests.ClassFake"/> populated with randomized data.
+            </summary>
+            <returns>Returns a new <see cref="T:BindOpen.Tests.ClassFake"/> object with initialized properties.</returns>
+            <remarks>
+            This method is used to test POCO (Plain Old CLR Object) mapping and property resolution 
+            within the BindOpen Kernel.
+            </remarks>
+        </member>
+        <member name="T:BindOpen.Tests.ClassFake">
+            <summary>
+            Represents a mock POCO class used for testing property mapping and data type resolution.
+            </summary>
+            <remarks>
+            This class includes various standard .NET types to ensure the BindOpen Kernel 
+            correctly handles diverse data conversions during object-to-meta mapping.
+            </remarks>
+        </member>
+        <member name="P:BindOpen.Tests.ClassFake.StringProp">
+            <summary>
+            Gets or sets the string test property.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Tests.ClassFake.IntProp">
+            <summary>
+            Gets or sets the integer test property.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Tests.ClassFake.DoubleProp">
+            <summary>
+            Gets or sets the double-precision floating-point test property.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Tests.ClassFake.FloatProp">
+            <summary>
+            Gets or sets the single-precision floating-point test property.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Tests.ClassFake.DateTimeProp">
+            <summary>
+            Gets or sets the date and time test property.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Tests.ClassFake.TimeSpanProp">
+            <summary>
+            Gets or sets the time interval test property.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Tests.MetaWrapperFake">
+            <summary>
+            This class represents a fake meta wrapper used for testing configuration mapping.
+            </summary>
+            <remarks>
+            It inherits from <see cref="T:BindOpen.Data.Meta.BdoConfigurationMetaWrapper"/> to test the framework's 
+            ability to sync properties between an object and a metadata set.
+            </remarks>
+        </member>
+        <member name="P:BindOpen.Tests.MetaWrapperFake.Test1">
+            <summary>
+            Gets or sets the first test string property.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Tests.MetaWrapperFake.Test2">
+            <summary>
+            Gets or sets the second test integer property.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Tests.MetaWrapperFake.Dico">
+            <summary>
+            Gets or sets the dictionary of integers for testing collection mapping.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Tests.MetaWrapperFake.List">
+            <summary>
+            Gets or sets the list of strings for testing list mapping.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Tests.MetaWrapperFake.EntityFake">
+            <summary>
+            Gets or sets the fake entity wrapper for testing nested object mapping.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Tests.MetaWrapperFake.SubEnumValue">
+            <summary>
+            Gets or sets an enumeration value resolved via a relative reference.
+            </summary>
+            <remarks>
+            This property tests the "Reference" capability of the BdoProperty attribute, 
+            pointing to a sub-property of another entity.
+            </remarks>
+        </member>
+        <member name="P:BindOpen.Tests.MetaWrapperFake.ConfigEntityFake">
+            <summary>
+            Gets or sets a configuration entity resolved via an absolute or parent reference.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Tests.MetaWrapperFake.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:BindOpen.Tests.MetaWrapperFake"/> class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Tests.SchemaFake">
+            <summary>
+            Represents a fake schema used for testing schema-based validation and metadata definitions.
+            </summary>
+            <remarks>
+            This class inherits from <see cref="T:BindOpen.Data.Schema.BdoSchema"/> to simulate custom data contract 
+            definitions within the BindOpen Kernel unit tests.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Tests.SchemaFake.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:BindOpen.Tests.SchemaFake"/> class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Tests.TreeFake">
+            <summary>
+            Represents a fake hierarchical node used for testing tree structures and recursive operations.
+            </summary>
+            <remarks>
+            This class implements <see cref="T:BindOpen.Data.ITTreeNode`1"/> to simulate complex parent-child 
+            relationships within the BindOpen Kernel.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Tests.TreeFake.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:BindOpen.Tests.TreeFake"/> class.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Tests.TreeFake._Children">
+            <summary>
+            Gets or sets the set of child nodes.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Tests.TreeFake.Parent">
+            <summary>
+            Gets or sets the parent node of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Tests.TreeFake.Name">
+            <summary>
+            Gets or sets the name of the node.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Tests.TreeFake.RemoveChildren(System.Predicate{BindOpen.Tests.TreeFake},System.Boolean)">
+            <summary>
+            Removes children from this node based on a filter, optionally performing a recursive cleanup.
+            </summary>
+            <param name="filter">The predicate used to filter which children should be removed.</param>
+            <param name="isRecursive">True if the removal should be applied to all descendants; otherwise, false.</param>
+        </member>
+        <member name="M:BindOpen.Tests.TreeFake.Key">
+            <summary>
+            Gets the unique key identifying this node, which corresponds to its name.
+            </summary>
+            <returns>The name of the node as a string.</returns>
+        </member>
+        <member name="M:BindOpen.Tests.TreeFake.InsertChild``1(System.Action{``0})">
+            <summary>
+            Inserts a new child node of a specific type and updates its properties.
+            </summary>
+            <typeparam name="Q">The type of the child node, which must inherit from <see cref="T:BindOpen.Tests.TreeFake"/>.</typeparam>
+            <param name="updater">An action to configure the newly created child node.</param>
+            <returns>The newly created and inserted child node.</returns>
+        </member>
+        <member name="T:BindOpen.Tests.WrapperClassFake">
+            <summary>
+            Represents a mock entity class used to test attribute-based metadata mapping.
+            </summary>
+            <remarks>
+            This class is used in conjunction with <see cref="T:BindOpen.Tests.MetaWrapperFake"/> to validate 
+            nested object resolution and property synchronization within the BindOpen Kernel.
+            </remarks>
+        </member>
+        <member name="P:BindOpen.Tests.WrapperClassFake.StringValue">
+            <summary>
+            Gets or sets the string value mapped via the "stringValue" metadata property.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Tests.WrapperClassFake.IntValue">
+            <summary>
+            Gets or sets the integer value mapped via the "intValue" metadata property.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Tests.WrapperClassFake.EnumValue">
+            <summary>
+            Gets or sets the accessibility level enumeration value.
+            </summary>
+            <remarks>
+            This property is often used as a target for reference-based mapping tests 
+            (e.g., "entityFake/enumValue").
+            </remarks>
+        </member>
+    </members>
+</doc>

@@ -16,7 +16,7 @@ public static partial class IBdoSchemaExtensions
 
     public static T WithRules<T>(this T schema, params IBdoSchemaRule[] rules) where T : IBdoSchema
     {
-        schema?.GetOrNewRuleSet().With(rules);
+        schema?.GetOrNewRuleSet().WithItems<IBdoSchemaRule>(rules);
 
         return schema;
     }
@@ -28,7 +28,7 @@ public static partial class IBdoSchemaExtensions
 
     public static T WithItems<T>(this T schema, params IBdoSchema[] items) where T : IBdoSchema
     {
-        schema?.GetOrNewItemSet().With(items);
+        schema?.GetOrNewItemSet().WithItems<IBdoSchema>(items);
 
         return schema;
     }
@@ -194,13 +194,13 @@ public static partial class IBdoSchemaExtensions
         return schema.MustBeInList<IBdoSchema, T>();
     }
 
-    public static TSpec MustBeInList<TSpec, T>(this TSpec schema)
-        where TSpec : IBdoSchema
+    public static TSchema MustBeInList<TSchema, T>(this TSchema schema)
+        where TSchema : IBdoSchema
         where T : struct, IConvertible
     {
         var set = schema.GetOrNewRuleSet();
         set.RemoveOfGroup(BdoMetaDataProperties.Value);
-        set.Add(
+        set.WithItems(
             BdoData.NewConstraint(
                 BdoMetaDataProperties.Value,
                 null,

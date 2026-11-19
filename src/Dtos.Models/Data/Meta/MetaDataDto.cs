@@ -13,12 +13,12 @@ namespace BindOpen.Data.Meta
     /// This class represents a data element.
     /// </summary>
     [XmlType("MetaData", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
-    [XmlInclude(typeof(MetaNodeDto))]
+    [XmlInclude(typeof(MetaSetDto))]
     [XmlInclude(typeof(MetaObjectDto))]
     [XmlInclude(typeof(MetaScalarDto))]
     [XmlInclude(typeof(ScriptwordDto))]
     [JsonPolymorphic(TypeDiscriminatorPropertyName = "metaKind")]
-    [JsonDerivedType(typeof(MetaNodeDto), "Node")]
+    [JsonDerivedType(typeof(MetaSetDto), "Node")]
     [JsonDerivedType(typeof(MetaObjectDto), "Object")]
     [JsonDerivedType(typeof(MetaScalarDto), "Scalar")]
     [JsonDerivedType(typeof(ScriptwordDto), "Scripword")]

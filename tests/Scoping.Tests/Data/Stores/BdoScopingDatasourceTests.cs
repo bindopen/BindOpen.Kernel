@@ -2,27 +2,45 @@
 
 namespace BindOpen.Data.Stores;
 
+/// <summary>
+/// This class provides unit tests for data source management within the scoping engine,
+/// focusing on the creation and metadata wrapping of datasource instances.
+/// </summary>
 [TestFixture, Order(210)]
 public class BdoScopingDatasourceTests
 {
+    /// <summary>
+    /// Shared data test instance providing pre-configured metadata nodes.
+    /// </summary>
     public BdoDatasourceTests _dataTests;
 
-
+    /// <summary>
+    /// Initializes the test environment by preparing shared data sources.
+    /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
-        _dataTests = new();
+        _dataTests = new BdoDatasourceTests();
         _dataTests.OneTimeSetUp();
     }
 
+    /// <summary>
+    /// Tests the creation of a BdoDatasource using the scope's MetaWrapper factory.
+    /// </summary>
     [Test, Order(1)]
     public void Create1Test()
     {
-        var source = ScopingTestData.Scope.NewMetaWrapper<BdoDatasource>(_dataTests._metaNode)
-            .WithName(_dataTests._metaNode.Name)
-            .WithDataType(_dataTests._metaNode.DataType);
+        // 1. Create a BdoDatasource wrapper from a raw MetaSet.
+        // This verifies that the scoping engine can map a MetaSet to the concrete BdoDatasource class.
+        var source = ScopingTestData.Scope.NewMetaWrapper<BdoDatasource>(_dataTests._metaSet)
+            .WithName(_dataTests._metaSet.Name)
+            .WithDataType(_dataTests._metaSet.DataType);
 
-        Assert.That(source.DataType == _dataTests._metaNode.DataType, "Bad data type");
-        Assert.That(source.Name == _dataTests._metaNode.Name, "Bad data type");
+        // 2. Verify identity mapping
+        Assert.That(source.DataType, Is.EqualTo(_dataTests._metaSet.DataType),
+            "The wrapped datasource failed to maintain the original DataType.");
+
+        Assert.That(source.Name, Is.EqualTo(_dataTests._metaSet.Name),
+            "The wrapped datasource failed to maintain the original Name.");
     }
 }

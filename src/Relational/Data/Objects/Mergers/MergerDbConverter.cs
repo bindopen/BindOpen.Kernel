@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Helpers;
+using BindOpen.Data.Objects.Interfaces;
 using System.Collections.Generic;
 
 namespace BindOpen.Data;

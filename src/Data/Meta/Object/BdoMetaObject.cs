@@ -1,6 +1,6 @@
-﻿using BindOpen.Data.Assemblies;
-using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Objects.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -133,8 +133,8 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="key"></param>
         /// <returns></returns>
-        public IBdoMetaData this[string key, string alternateKey]
-            => _propertySet?.Get(key, alternateKey);
+        public IBdoMetaData this[string key, string alternateName]
+            => _propertySet?.Get(key, alternateName);
 
         /// <summary>
         /// Returns the number of items.
@@ -142,10 +142,17 @@ namespace BindOpen.Data.Meta
         public int Count
             => _propertySet?.Count ?? 0;
 
-        public IBdoMetaData Insert(IBdoMetaData item)
+        public virtual IBdoMetaData Insert(IBdoMetaData item)
         {
             _propertySet ??= BdoData.NewSet();
-            return _propertySet.Insert(item);
+            _propertySet.Insert(item);
+
+            if (item != null)
+            {
+                item.Parent = this;
+            }
+
+            return item;
         }
 
         public override void Clear()
@@ -155,10 +162,10 @@ namespace BindOpen.Data.Meta
             _propertySet.Clear();
         }
 
-        public IBdoMetaNode Add(
+        public IBdoMetaSet Add(
             params IBdoMetaData[] items)
         {
-            (this as ITBdoSet<IBdoMetaData>).Add(items);
+            (this as ITBdoSet<IBdoMetaData>).WithItems(items);
             return this;
         }
 
@@ -192,8 +199,8 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public virtual IBdoMetaData Get(string key, string alternateKey = null)
-            => _propertySet?.Get(key, alternateKey);
+        public virtual IBdoMetaData Get(string key, string alternateName = null)
+            => _propertySet?.Get(key, alternateName);
 
         /// <summary>
         /// Returns the specified item of this instance.
@@ -224,12 +231,12 @@ namespace BindOpen.Data.Meta
         /// </summary>
         /// <param key="key">The key to consider.</param>
         /// <returns>Returns the item of this instance.</returns>
-        public virtual Q Get<Q>(string key, string alternateKey = null)
+        public virtual Q Get<Q>(string key, string alternateName = null)
             where Q : IBdoMetaData
         {
             if (_propertySet != null)
             {
-                return _propertySet.Get<Q>(key, alternateKey);
+                return _propertySet.Get<Q>(key, alternateName);
             }
 
             return default;

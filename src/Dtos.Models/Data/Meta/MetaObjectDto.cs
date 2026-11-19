@@ -7,7 +7,7 @@ namespace BindOpen.Data.Meta
     /// </summary>
     [XmlType("MetaObject", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
     [XmlRoot(ElementName = "object", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel", IsNullable = false)]
-    public class MetaObjectDto : MetaNodeDto
+    public class MetaObjectDto : MetaSetDto
     {
         // --------------------------------------------------
         // CONSTRUCTORS

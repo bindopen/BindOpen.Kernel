@@ -3,50 +3,59 @@ using BindOpen.Data.Assemblies;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace BindOpen.Scoping
+namespace BindOpen.Scoping;
+
+/// <summary>
+/// This class represents the options for loading extensions within the BindOpen kernel.
+/// </summary>
+/// <remarks>
+/// It specifies which sources, assembly references, and kinds of extensions 
+/// should be considered during the discovery process.
+/// </remarks>
+[XmlType("ExtensionLoadOptions", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
+public class ExtensionLoadOptions : BdoObject, IExtensionLoadOptions
 {
+    // --------------------------------------------------
+    // PROPERTIES
+    // --------------------------------------------------
+
+    #region Properties
+
     /// <summary>
-    /// This class represents the extension loading options.
+    /// Gets or sets the list of data source locations to scan.
     /// </summary>
-    [XmlType("ExtensionLoadOptions", Namespace = "https://storage.bindopen.org/xsd/bindopen/kernel")]
-    public class ExtensionLoadOptions : BdoObject, IExtensionLoadOptions
+    /// <value>A list of tuples containing the datasource kind and its URI.</value>
+    [XmlIgnore]
+    public IList<(DatasourceKind Kind, string Uri)> Sources { get; set; } = new List<(DatasourceKind Kind, string Uri)>();
+
+    /// <summary>
+    /// Gets or sets the specific extension kinds to filter during loading.
+    /// </summary>
+    /// <value>A list of <see cref="BdoExtensionKinds"/> (e.g., Connector, Task, Function).</value>
+    [XmlElement("extensionKind")]
+    public IList<BdoExtensionKinds> ExtensionKinds { get; set; } = new List<BdoExtensionKinds>();
+
+    /// <summary>
+    /// Gets or sets the assembly references to be loaded and scanned.
+    /// </summary>
+    /// <value>A list of <see cref="IBdoAssemblyReference"/>.</value>
+    [XmlElement("reference")]
+    public IList<IBdoAssemblyReference> References { get; set; } = new List<IBdoAssemblyReference>();
+
+    #endregion
+
+    // --------------------------------------------------
+    // CONSTRUCTORS
+    // --------------------------------------------------
+
+    #region Constructors
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ExtensionLoadOptions"/> class.
+    /// </summary>
+    public ExtensionLoadOptions() : base()
     {
-        // --------------------------------------------------
-        // PROPERTIES
-        // --------------------------------------------------
-
-        #region Properties
-
-        /// <summary>
-        /// The source kinds of this instance.
-        /// </summary>
-        public IList<(DatasourceKind Kind, string Uri)> Sources { get; set; }
-
-        /// <summary>
-        /// The extension kinds of this instance.
-        /// </summary>
-        public IList<BdoExtensionKinds> ExtensionKinds { get; set; }
-
-        /// <summary>
-        /// The assmbly references of this instance.
-        /// </summary>
-        public IList<IBdoAssemblyReference> References { get; set; }
-
-        #endregion
-
-        // --------------------------------------------------
-        // CONSTRUCTORS
-        // --------------------------------------------------
-
-        #region Constructors
-
-        /// <summary>
-        /// Instantiates a new instance of the ExtensionLoadOptions class.
-        /// </summary>
-        public ExtensionLoadOptions() : base()
-        {
-        }
-
-        #endregion
     }
+
+    #endregion
 }

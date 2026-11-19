@@ -5,7 +5,7 @@ namespace BindOpen.Data;
 
 public partial class DataDbContext : DbContext
 {
-    public MetaDataDb Upsert(IBdoMetaNode poco)
+    public MetaDataDb Upsert(IBdoMetaSet poco)
     {
         if (poco == null) return default;
 

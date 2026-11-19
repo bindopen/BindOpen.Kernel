@@ -28,10 +28,10 @@ public static class AssemblyHelper
 
         Assembly assembly = null;
 
-        if (appDomain != null && reference.IsEmpty() == false)
+        if (reference.IsEmpty() == false)
         {
             assembly = Array.Find(appDomain.GetAssemblies(),
-                q => BdoData.Assembly(q) == (BdoAssemblyReference)reference);
+                q => BdoData.Assembly(q) == reference);
         }
 
         return assembly;
@@ -53,14 +53,14 @@ public static class AssemblyHelper
         this Assembly[] assemblies)
     {
         return assemblies?.Select(q => BdoData.Assembly(q))
-            .Cast<IBdoAssemblyReference>();
+            .Cast<IBdoAssemblyReference>() ?? Enumerable.Empty<IBdoAssemblyReference>();
     }
 
     public static IEnumerable<IBdoAssemblyReference> ToReferences(
         this AssemblyName[] assemblies)
     {
         return assemblies?.Select(q => BdoData.Assembly(q.Name, q.Version))
-            .Cast<IBdoAssemblyReference>();
+            .Cast<IBdoAssemblyReference>() ?? Enumerable.Empty<IBdoAssemblyReference>();
     }
 
     // Create instance
@@ -120,7 +120,14 @@ public static class AssemblyHelper
         try
         {
             Type type = Type.GetType(fullyQualifiedName);
-            obj = type.CreateInstance();
+            if (type == null)
+            {
+                log?.AddEvent(BdoEventKinds.Error, "Unknown type");
+            }
+            else
+            {
+                obj = type.CreateInstance();
+            }
         }
         catch (Exception ex)
         {

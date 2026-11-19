@@ -1,0 +1,793 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BindOpen.Scoping.Script</name>
+    </assembly>
+    <members>
+        <member name="T:BindOpen.Scoping.Script.BdoScriptDomain">
+            <summary>
+            This class represents the execution domain for a script.
+            </summary>
+            <remarks>
+            The script domain provides the necessary environment—including scope, 
+            variables, and logging—to evaluate a specific <see cref="T:BindOpen.Scoping.Script.IBdoScriptword"/>.
+            </remarks>
+        </member>
+        <member name="P:BindOpen.Scoping.Script.BdoScriptDomain.Scope">
+            <summary>
+            Gets or sets the scope associated with this domain.
+            </summary>
+            <value>The scope providing access to function dictionaries and extensions.</value>
+        </member>
+        <member name="P:BindOpen.Scoping.Script.BdoScriptDomain.VariableSet">
+            <summary>
+            Gets or sets the set of variables available within this domain.
+            </summary>
+            <value>The metadata set containing variable definitions used during evaluation.</value>
+        </member>
+        <member name="P:BindOpen.Scoping.Script.BdoScriptDomain.Log">
+            <summary>
+            Gets or sets the log used to track events during script evaluation.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Script.BdoScriptDomain.Scriptword">
+            <summary>
+            Gets or sets the scriptword currently being evaluated within this domain.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptDomain.#ctor(BindOpen.Scoping.IBdoScope,BindOpen.Data.Meta.IBdoMetaSet,BindOpen.Scoping.Script.IBdoScriptword,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BindOpen.Scoping.Script.BdoScriptDomain"/> class.
+            </summary>
+            <param name="scope">The scope to utilize for function lookups.</param>
+            <param name="metaSet">The set of variables available for resolution.</param>
+            <param name="scriptword">The scriptword to be evaluated.</param>
+            <param name="log">The optional log for capturing execution events.</param>
+        </member>
+        <member name="T:BindOpen.Scoping.Script.BdoScriptHelper">
+            <summary>
+            This static class provides utility methods for formatting and cleaning script strings.
+            </summary>
+            <summary>
+            Provides utility methods for parsing, indexing, and identifying script tokens within raw strings.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptHelper.FormatScript(System.String,System.Int32)">
+            <summary>
+            Formats a script string by adding indentation and carriage returns for better readability.
+            </summary>
+            <param name="script">The raw script string to format.</param>
+            <param name="tabulationNumber">The initial number of tabulations to apply.</param>
+            <returns>Returns a formatted, indented script string.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptHelper.CleanScript(System.String)">
+            <summary>
+            Removes control characters (CR, LF, Tab) from the script to normalize it before formatting.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptHelper.AddCR(System.String,System.Int32,System.Int32@,System.Int32@,System.Int32)">
+            <summary>
+            Inserts a newline followed by the appropriate number of tabulations at the specified index.
+            </summary>
+        </member>
+        <member name="F:BindOpen.Scoping.Script.BdoScriptHelper.Symbol_Var">
+            <summary>The marker identifying the start of a variable (e.g., "$(").</summary>
+        </member>
+        <member name="F:BindOpen.Scoping.Script.BdoScriptHelper.Symbol_Fun">
+            <summary>The marker identifying the start of a function or shorthand variable (e.g., "$").</summary>
+        </member>
+        <member name="F:BindOpen.Scoping.Script.BdoScriptHelper.SyntaxItems">
+            <summary>Standard syntax characters used to delimit script components.</summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptHelper.GetValueFromScript(System.String)">
+            <summary>
+            Extracts the raw value from a script literal, handling single quotes and escaped characters.
+            </summary>
+            <param name="text">The raw text segment from the script.</param>
+            <returns>A cleaned string value.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptHelper.IndexOfScript(System.String,System.String,System.Int32)">
+            <summary>
+            Finds the index of a string while respecting BOSL punctuation (skipping over content inside quotes or parentheses).
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptHelper.FindScriptItems(System.String)">
+            <summary>
+            Scans a script string and produces a flat list of <see cref="T:BindOpen.Scoping.Script.ScriptItem"/> tokens.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptHelper.FindScriptItem(System.String,System.Int32)">
+            <summary>
+            Identifies and creates a script item from the specified string fragment.
+            </summary>
+            <param name="name">The string fragment to analyze.</param>
+            <param name="index">The character index where this fragment starts in the source script.</param>
+            <returns>Returns a <see cref="T:BindOpen.Scoping.Script.ScriptItem"/> identifying the token kind and its name.</returns>
+            <remarks>
+            This method uses pattern matching (symbols like $, #, or quotes) to categorize the 
+            string into tokens used by the parser.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptHelper.AddNoneItem(System.String,System.Collections.Generic.List{BindOpen.Scoping.Script.ScriptItem},System.Int32,System.Int32)">
+            <summary>
+            Helper to capture text segments that aren't recognized as specific script tokens.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Script.BdoScriptInterpreter">
+            <summary>
+            This class represents a script interpreter. A script interpreter allows to interpret a script
+            using script dictionnaries and data context, providing a log for the interpretation task.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptInterpreter.#ctor">
+            <summary>
+            Instantiates a new instance of the BdoScriptInterpreter class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptInterpreter.#ctor(BindOpen.Scoping.IBdoScope)">
+            <summary>
+            Instantiates a new instance of the BdoScriptInterpreter class.
+            </summary>
+            <param key="scope">The application scope used to interprete.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptInterpreter.Evaluate(BindOpen.Data.Objects.Interfaces.IBdoExpression,BindOpen.Data.Meta.IBdoMetaSet,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Evaluates the specified data reference.
+            </summary>
+            <param key="exp">The data exp to consider.</param>
+            <param key="metaSet">The variable element set to consider.</param>
+            <param key="log">The log to consider.</param>
+            <returns>Literal or script value according to the specified default mode.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptInterpreter.Evaluate(BindOpen.Scoping.Script.IBdoScriptword,BindOpen.Data.Meta.IBdoMetaSet,BindOpen.Logging.IBdoLog,System.Boolean)">
+            <summary>
+            Evaluates the specified script word.
+            </summary>
+            <param name="word">The script word to evaluate.</param>
+            <param name="varSet">The variable set to consider for resolution.</param>
+            <param name="log">The log to populate with execution events.</param>
+            <param name="root">Indicates whether to start evaluation from the root of the word chain.</param>
+            <returns>Returns the result of the evaluation.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptInterpreter.Evaluate(BindOpen.Data.IBdoReference,BindOpen.Data.Meta.IBdoMetaSet,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Evaluates the specified data reference.
+            </summary>
+            <param name="reference">The data reference to evaluate.</param>
+            <param name="varSet">The variable set to consider for resolution.</param>
+            <param name="log">The log to populate with execution events.</param>
+            <returns>Returns the evaluated value based on the reference kind.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptInterpreter.FindNextWord(System.String,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Finds and parses the first script word found in the specified string.
+            </summary>
+            <param name="script">The script string to analyze.</param>
+            <param name="log">The log to populate with any parsing or syntax errors.</param>
+            <returns>Returns the identified <see cref="T:BindOpen.Scoping.Script.IBdoScriptword"/>; otherwise, returns null.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptInterpreter.FindNextWord(System.String,BindOpen.Scoping.Script.IBdoScriptword,System.Int32@,System.Int32,BindOpen.Data.Meta.IBdoMetaSet,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Finds the next script words at the specified index.
+            </summary>
+            <param key="script">The script to consider.</param>
+            <param key="parentScriptword">The parent script word to consider.</param>
+            <param key="index">The index to consider.</param>
+            <param key="offsetIndex">The offset index to consider.</param>
+            <param key="metaSet">The variable element set to consider.</param>
+            <param key="log">The BindOpen log used for tracking.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptInterpreter.Dispose(System.Boolean)">
+            <summary>
+            Disposes of the resources used by the interpreter.
+            </summary>
+            <param name="isDisposing">True to release both managed and unmanaged resources; 
+            false to release only unmanaged resources.</param>
+            <remarks>
+            This method follows the standard .NET disposal pattern to ensure that the 
+            associated scope is properly cleaned up and to prevent memory leaks.
+            </remarks>
+        </member>
+        <member name="T:BindOpen.Scoping.Script.BdoScriptInterpreterExtension">
+            <summary>
+            This static class provides methods to create script elements.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptInterpreterExtension.Evaluate``1(BindOpen.Scoping.Script.IBdoScriptInterpreter,System.String,BindOpen.Data.Meta.IBdoMetaSet,BindOpen.Logging.IBdoLog)">
+            <summary>
+            Evaluates the specified script word using the defined script words of this instance
+            of the specified libraries.
+            </summary>
+            <param key="scriptword">The script word to consider.</param>
+            <param key="varSet">The variable element set to use.</param>
+            <param key="log">The log to consider.</param>
+            <returns>The log of the interpretation task.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Script.Standard.Functions">
+            <summary>
+            This static class contains the standard implementation of metadata-related script functions.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.Standard.Functions.BdoValue(BindOpen.Data.Meta.IBdoMetaData,BindOpen.Scoping.Script.IBdoScriptDomain)">
+            <summary>
+            Retrieves the data value of the specified metadata element within the current script domain.
+            </summary>
+            <param name="data">The metadata element to evaluate.</param>
+            <param name="scriptDomain">The current script execution domain providing context.</param>
+            <returns>Returns the evaluated data object.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.Standard.Functions.BdoDescendant(BindOpen.Data.Meta.IBdoMetaSet,System.Object[])">
+            <summary>
+            Retrieves a specific descendant from a metadata set based on a path of tokens.
+            </summary>
+            <param name="set">The metadata set to search.</param>
+            <param name="tokens">The path tokens (names or indexes) identifying the descendant.</param>
+            <returns>Returns the found <see cref="T:BindOpen.Data.Meta.IBdoMetaData"/>; otherwise, null.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.Standard.Functions.BdoHas(BindOpen.Data.Meta.IBdoMetaSet,System.Object[])">
+            <summary>
+            Checks for the existence of a descendant within a metadata set.
+            </summary>
+            <param name="set">The metadata set to check.</param>
+            <param name="tokens">The path tokens identifying the potential descendant.</param>
+            <returns>Returns <c>true</c> if the descendant exists; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Script.FunctionStore">
+            <summary>
+            Provides a collection of standard logical and comparison script functions.
+            </summary>
+            <remarks>
+            These methods are registered in the BindOpen scope to enable boolean logic 
+            and data validation within script expressions.
+            </remarks>
+            <summary>
+            Provides standard text and string manipulation functions for the scripting engine.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.FunctionStore.And(System.Boolean[])">
+            <summary>
+            Returns true if all provided conditions are true.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.FunctionStore.Or(System.Boolean[])">
+            <summary>
+            Returns true if at least one provided condition is true.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.FunctionStore.Xor(System.Boolean[])">
+            <summary>
+            Returns true if none of the provided conditions are true.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.FunctionStore.Not(System.Boolean)">
+            <summary>
+            Inverts the specified boolean condition.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.FunctionStore.Eq(System.Object,System.Object)">
+            <summary>
+            Determines whether two objects are equal.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.FunctionStore.Ne(System.Object,System.Object)">
+            <summary>
+            Determines whether two objects are not equal.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.FunctionStore.InEnum(System.Object,System.String)">
+            <summary>
+            Checks if a value is a valid member of a specific enumeration type.
+            </summary>
+            <param name="fullyQualifiedName">The assembly-qualified name of the Enum type.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.FunctionStore.Text(System.Object)">
+            <summary>
+            Converts the specified object into its string representation.
+            </summary>
+            <param name="obj1">The object to convert.</param>
+            <returns>Returns the string representation of the object, or null if the object is null.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.FunctionStore.Concat(System.Object[])">
+            <summary>
+            Concatenates the string representations of a list of objects.
+            </summary>
+            <param name="objs">The objects to concatenate.</param>
+            <returns>Returns a single concatenated string.</returns>
+            <remarks>
+            This function iterates through all provided arguments, converts them to strings, 
+            and joins them without separators.
+            </remarks>
+        </member>
+        <member name="T:BindOpen.Scoping.Script.BdoScriptword">
+            <summary>
+            This class represents a script word within the BindOpen Scripting Language (BOSL).
+            </summary>
+            <remarks>
+            A script word is an atomic unit of an expression (function, variable, or literal) 
+            that can be chained to other script words to form a fluent execution path.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptword.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:BindOpen.Scoping.Script.BdoScriptword"/> class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptword.op_Explicit(BindOpen.Scoping.Script.BdoScriptword)~System.String">
+            <summary>
+            Explicitly converts a <see cref="T:BindOpen.Scoping.Script.BdoScriptword"/> to its string representation.
+            </summary>
+            <param name="word">The script word to convert.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptword.op_Addition(System.String,BindOpen.Scoping.Script.BdoScriptword)">
+            <summary>
+            Concatenates a string with a script word wrapped in BOSL delimiters.
+            </summary>
+            <param name="st">The prefix string.</param>
+            <param name="word">The script word to append.</param>
+            <returns>A formatted string: "prefix{{script}}".</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptword.op_Addition(BindOpen.Scoping.Script.BdoScriptword,System.String)">
+            <summary>
+            Concatenates a script word wrapped in BOSL delimiters with a string.
+            </summary>
+            <param name="word">The script word prefix.</param>
+            <param name="st">The suffix string.</param>
+            <returns>A formatted string: "{{script}}suffix".</returns>
+        </member>
+        <member name="P:BindOpen.Scoping.Script.BdoScriptword.Text">
+            <summary>
+            Gets or sets the raw text value of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Script.BdoScriptword.ExpressionKind">
+            <summary>
+            Gets or sets the expression kind of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptword.Insert(BindOpen.Data.Meta.IBdoMetaData)">
+            <summary>
+            Adds the specified item.
+            </summary>
+            <param key="item">The item of the item to add.</param>
+            <returns>Returns the new item that has been added.
+            Returns null if the new item is null or else its name is null.</returns>
+            <remarks>The new item must have a name.</remarks>
+        </member>
+        <member name="P:BindOpen.Scoping.Script.BdoScriptword.TokenKind">
+            <summary>
+            Gets or sets the token kind of this script word (Function, Variable, Literal, etc.).
+            </summary>
+        </member>
+        <member name="P:BindOpen.Scoping.Script.BdoScriptword.Child">
+            <summary>
+            Gets or sets the child script word in the execution chain.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptword.Key">
+            <summary>
+            Returns the unique key identifying this instance.
+            </summary>
+            <returns>The identifier of the script word.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptword.Last(System.Int32)">
+            <summary>
+            Navigates to the last script word of the current chain.
+            </summary>
+            <param name="levelMax">The maximum recursion depth to prevent stack overflow.</param>
+            <returns>The final <see cref="T:BindOpen.Scoping.Script.IBdoScriptword"/> in the chain.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptword.ToString">
+            <summary>
+            Returns a string that represents the script chain from the root up to this script word.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptword.ToString(System.Boolean)">
+            <summary>
+            Formats the script word.
+            </summary>
+            <param name="fromRoot">If true, climbs to the root. Set to false for internal recursion.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptword.Clone">
+            <summary>
+            Creates a shallow copy of the current script word.
+            </summary>
+            <returns>A cloned instance of the script word.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptword.Dispose(System.Boolean)">
+            <summary>
+            Disposes the current instance, ensuring no circular references remain.
+            </summary>
+            <param name="isDisposing">Indicates whether the instance is being disposed.</param>
+        </member>
+        <member name="T:BindOpen.Scoping.Script.BdoScriptwordExtensions">
+            <summary>
+            This static class provides extension methods for <see cref="T:BindOpen.Scoping.Script.IBdoScriptword"/> 
+            to facilitate conversions to other BindOpen data structures.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordExtensions.ToReference(BindOpen.Scoping.Script.IBdoScriptword)">
+            <summary>
+            Converts the scriptword into a data reference.
+            </summary>
+            <param name="word">The scriptword to wrap.</param>
+            <returns>Returns a new <see cref="T:BindOpen.Data.IBdoReference"/> that points to the result of this scriptword.</returns>
+            <remarks>
+            This allows a script (e.g., "$env:Var1") to be treated as a source for data injection.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScriptwordExtensions.ToCondition(BindOpen.Scoping.Script.IBdoScriptword)">
+            <summary>
+            Converts the scriptword into a logical condition.
+            </summary>
+            <param name="word">The scriptword to wrap.</param>
+            <returns>Returns a new <see cref="T:BindOpen.Data.Conditions.IBdoCondition"/> based on the scriptword's evaluation.</returns>
+            <remarks>
+            This is typically used for workflow constraints or requirement checks where the script 
+            returns a boolean value.
+            </remarks>
+        </member>
+        <member name="T:BindOpen.Scoping.Script.BdoScript">
+            <summary>
+            This static class provides factory methods to create and manipulate script elements.
+            </summary>
+            <remarks>
+            It acts as the central hub for programmatically building scriptword chains 
+            (Functions, Variables, etc.) using a fluent API.
+            </remarks>
+            <summary>
+            This static class provides factory methods to create script-based conditions and logical operations.
+            </summary>
+            <summary>
+            This static class provides factory methods to create script elements and execution engines.
+            </summary>
+            <summary>
+            This static class provides factory methods to create and navigate script elements.
+            </summary>
+            <summary>
+            This static class provides factory methods to create and navigate script elements.
+            </summary>
+            <summary>
+            This static class provides factory methods to create script elements for text manipulation.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.To``1(BindOpen.Scoping.Script.IBdoScriptword)">
+            <summary>
+            Converts a generic script word to a specific implementation type.
+            </summary>
+            <typeparam name="T">The target script word implementation type.</typeparam>
+            <param name="word">The source script word to convert.</param>
+            <returns>Returns a new instance of T populated with the source word's data.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.NewWord``1(BindOpen.Scoping.Script.ScriptTokenKinds,System.String)">
+            <summary>
+            Creates a new strongly-typed script word.
+            </summary>
+            <typeparam name="T">The type of the item associated with the word.</typeparam>
+            <param name="kind">The token kind (Function, Variable, etc.).</param>
+            <param name="name">The name of the script word.</param>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.NewWord``1(BindOpen.Data.Meta.IBdoMetaObject)">
+            <summary>
+            Creates a new strongly-typed script word from a meta object.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.NewWord(BindOpen.Scoping.Script.ScriptTokenKinds,System.String)">
+            <summary>
+            Creates a new script word.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.NewWord(BindOpen.Data.Meta.IBdoMetaObject)">
+            <summary>
+            Creates a new script word from a meta object.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.NewWord``1(System.Func{BindOpen.Scoping.Script.ITBdoScriptword{``0},BindOpen.Scoping.Script.IBdoScriptword})">
+            <summary>
+            Creates a new script word using a functional builder.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Variable(System.String)">
+            <summary>
+            Creates a new script variable (e.g., $name).
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Variable(BindOpen.Scoping.Script.IBdoScriptword,System.String)">
+            <summary>
+            Appends a variable to an existing script word chain.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Variable``1(System.String)">
+            <summary>
+            Creates a new strongly-typed script variable.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Variable``1(BindOpen.Scoping.Script.IBdoScriptword,System.String)">
+            <summary>
+            Appends a strongly-typed variable to an existing script word chain.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Function``1(System.String,System.Object[])">
+            <summary>
+            Creates a new strongly-typed script function with parameters.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Function(System.String,System.Object[])">
+            <summary>
+            Creates a new script function with parameters.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Function(BindOpen.Scoping.Script.IBdoScriptword,System.String,System.Object[])">
+            <summary>
+            Appends a function to an existing script word chain.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Function``1(BindOpen.Scoping.Script.IBdoScriptword,System.String,System.Object[])">
+            <summary>
+            Appends a strongly-typed function to an existing script word chain.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.This``1">
+            <summary>
+            Creates a script word referring to the current context object ($this).
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript._Parent``1">
+            <summary>
+            Creates a script word chain referring to the parent of the current context ($this.parent).
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Property(BindOpen.Data.Objects.Interfaces.IBdoObject,System.String)">
+            <summary>
+            Retrieves a property value from a BindOpen object using reflection.
+            </summary>
+            <param name="obj">The object to inspect.</param>
+            <param name="propName">The name of the property to retrieve.</param>
+            <returns>Returns the value of the specified property.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.NewCondition``1(System.Func{BindOpen.Scoping.Script.ITBdoScriptword{``0},BindOpen.Scoping.Script.IBdoScriptword})">
+            <summary>
+            Creates a new script-based condition using a functional builder.
+            </summary>
+            <typeparam name="T">The type of the context object used in the builder.</typeparam>
+            <param name="func">The function defining the scriptword logic.</param>
+            <returns>Returns a new <see cref="T:BindOpen.Data.Conditions.IBdoCondition"/>.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.WithCondition``2(``0,System.Func{BindOpen.Scoping.Script.ITBdoScriptword{``1},BindOpen.Scoping.Script.IBdoScriptword})">
+            <summary>
+            Attaches a script-based condition to a conditional object.
+            </summary>
+            <typeparam name="T">The type of the conditional object.</typeparam>
+            <typeparam name="TThis">The type of the context used for the script building.</typeparam>
+            <param name="obj">The conditional object to update.</param>
+            <param name="func">The function defining the condition logic.</param>
+            <returns>Returns the updated conditional object.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.And(System.Object[])">
+            <summary>
+            Creates an 'And' logical scriptword.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Or(System.Object[])">
+            <summary>
+            Creates an 'Or' logical scriptword.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Not(System.Object)">
+            <summary>
+            Creates a 'Not' logical scriptword.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Xor(System.Object[])">
+            <summary>
+            Creates an 'Xor' logical scriptword.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Eq(System.Object,System.Object)">
+            <summary>
+            Creates an 'Equals' comparison scriptword.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.InEnum(System.Object,System.String)">
+            <summary>
+            Creates an 'InEnum' comparison scriptword to check if a value exists in an enumeration.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Ne(System.Object,System.Object)">
+            <summary>
+            Creates a 'Not Equals' comparison scriptword.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Gt(System.Object,System.Object)">
+            <summary>
+            Creates a 'Greater Than' comparison scriptword.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Gte(System.Object,System.Object)">
+            <summary>
+            Creates a 'Greater Than or Equal' comparison scriptword.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Lt(System.Object,System.Object)">
+            <summary>
+            Creates a 'Less Than' comparison scriptword.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Lte(System.Object,System.Object)">
+            <summary>
+            Creates a 'Less Than or Equal' comparison scriptword.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.NewInterpreter(BindOpen.Scoping.IBdoScope)">
+            <summary>
+            Initializes a new instance of the script interpreter for a specific scope.
+            </summary>
+            <param name="scope">The scope providing the functions and variables available for script resolution.</param>
+            <returns>Returns a new <see cref="T:BindOpen.Scoping.Script.IBdoScriptInterpreter"/> instance.</returns>
+            <remarks>
+            The interpreter is the core engine that transforms raw script strings 
+            or <see cref="T:BindOpen.Scoping.Script.IBdoScriptword"/> trees into evaluated data results.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript._Parent(BindOpen.Scoping.Script.ITBdoScriptword{BindOpen.Data.Meta.IBdoMetaData})">
+            <summary>
+            Navigates to the parent of the specified metadata scriptword.
+            </summary>
+            <param name="meta">The current metadata scriptword.</param>
+            <returns>Returns a scriptword representing the parent metadata.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript._Name(BindOpen.Scoping.Script.ITBdoScriptword{BindOpen.Data.Meta.IBdoMetaData})">
+            <summary>
+            Retrieves the name property of the specified metadata scriptword.
+            </summary>
+            <param name="meta">The current metadata scriptword.</param>
+            <returns>Returns a scriptword representing the metadata name as a string.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript._Value(BindOpen.Scoping.Script.ITBdoScriptword{BindOpen.Data.Meta.IBdoMetaData})">
+            <summary>
+            Evaluates the value of the specified metadata scriptword.
+            </summary>
+            <param name="meta">The current metadata scriptword.</param>
+            <returns>Returns a scriptword representing the boolean evaluation of the metadata value.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript._Has(BindOpen.Scoping.Script.ITBdoScriptword{BindOpen.Data.Meta.IBdoMetaData},System.String)">
+            <summary>
+            Checks if the specified metadata scriptword has a child with the given name.
+            </summary>
+            <param name="meta">The current metadata scriptword.</param>
+            <param name="name">The name of the child to check for.</param>
+            <returns>Returns a scriptword evaluating to true if the child exists.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript._Descendant(BindOpen.Scoping.Script.ITBdoScriptword{BindOpen.Data.Meta.IBdoMetaData},System.Object[])">
+            <summary>
+            Navigates to a specific descendant within the metadata or schema hierarchy.
+            </summary>
+            <param name="schema">The starting metadata or schema scriptword.</param>
+            <param name="tokens">The tokens identifying the path to the descendant.</param>
+            <returns>Returns a scriptword representing the target descendant metadata.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript._Parent(BindOpen.Scoping.Script.ITBdoScriptword{BindOpen.Data.Schema.IBdoSchema})">
+            <summary>
+            Navigates to the parent of the specified schema scriptword.
+            </summary>
+            <param name="schema">The current schema scriptword.</param>
+            <returns>Returns a scriptword representing the parent schema.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript._Name(BindOpen.Scoping.Script.ITBdoScriptword{BindOpen.Data.Schema.IBdoSchema})">
+            <summary>
+            Retrieves the name property of the specified schema scriptword.
+            </summary>
+            <param name="schema">The current schema scriptword.</param>
+            <returns>Returns a scriptword representing the schema name as a string.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Value(BindOpen.Scoping.Script.ITBdoScriptword{BindOpen.Data.Schema.IBdoSchema})">
+            <summary>
+            Evaluates the value associated with the specified schema scriptword.
+            </summary>
+            <param name="schema">The current schema scriptword.</param>
+            <returns>Returns a scriptword representing the boolean result of the schema value.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript._Has(BindOpen.Scoping.Script.ITBdoScriptword{BindOpen.Data.Schema.IBdoSchema},System.String)">
+            <summary>
+            Checks if the specified schema scriptword contains a sub-schema with the given name.
+            </summary>
+            <param name="schema">The current schema scriptword.</param>
+            <param name="name">The name of the sub-schema to look for.</param>
+            <returns>Returns a scriptword evaluating to true if the sub-schema exists.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript._Descendant(BindOpen.Scoping.Script.ITBdoScriptword{BindOpen.Data.Schema.IBdoSchema},System.Object[])">
+            <summary>
+            Navigates to a specific descendant within the schema hierarchy.
+            </summary>
+            <param name="schema">The starting schema scriptword.</param>
+            <param name="tokens">The path tokens to the descendant.</param>
+            <returns>Returns a scriptword representing the target descendant schema.</returns>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Text(System.Object)">
+            <summary>
+            Creates a scriptword that converts the specified object to its text representation.
+            </summary>
+            <param name="obj">The object to convert.</param>
+            <returns>Returns a scriptword representing the text conversion.</returns>
+            <remarks>
+            Often used to ensure that complex objects or numbers are treated as strings 
+            before further processing.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.BdoScript.Concat(System.Object[])">
+            <summary>
+            Creates a scriptword that concatenates multiple objects into a single string.
+            </summary>
+            <param name="parameters">The objects or scriptwords to concatenate.</param>
+            <returns>Returns a scriptword representing the joined string.</returns>
+            <example>
+            BdoScript.Concat("Hello ", BdoScript.Var("userName")) results in "{{concat('Hello ', $userName)}}"
+            </example>
+        </member>
+        <member name="T:BindOpen.Scoping.Script.ScriptItem">
+            <summary>
+            This class represents a script item, used primarily during the tokenization phase.
+            </summary>
+            <remarks>
+            A ScriptItem stores the raw components of a script (like delimiters, function names, or literals)
+            before they are parsed into a hierarchical <see cref="T:BindOpen.Scoping.Script.BdoScriptword"/>.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:BindOpen.Scoping.Script.ScriptItem"/> class.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptItem.#ctor(BindOpen.Scoping.Script.ScriptTokenKinds,System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BindOpen.Scoping.Script.ScriptItem"/> class with specified values.
+            </summary>
+            <param name="kind">The token kind (Function, Syntax, Text, etc.).</param>
+            <param name="name">The name or content of the token.</param>
+            <param name="index">The character index where this token was found in the source string.</param>
+        </member>
+        <member name="P:BindOpen.Scoping.Script.ScriptItem.Kind">
+            <summary>
+            Gets or sets the kind of this instance.
+            </summary>
+            <example>Scriptword, syntax, text, literal...</example>
+        </member>
+        <member name="P:BindOpen.Scoping.Script.ScriptItem.Index">
+            <summary>
+            Gets or sets the character index of this item in the source script.
+            </summary>
+            <remarks>
+            This is essential for error reporting, allowing the engine to point to the 
+            exact location of a syntax error.
+            </remarks>
+        </member>
+        <member name="P:BindOpen.Scoping.Script.ScriptItem.Name">
+            <summary>
+            Gets or sets the name or raw value of the script item.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptItem.WithName(System.String)">
+            <summary>
+            Sets the name of the script item using a standardized naming convention.
+            </summary>
+            <param name="name">The name to assign.</param>
+            <returns>Returns the current <see cref="T:BindOpen.Scoping.Script.IScriptItem"/> for fluent chaining.</returns>
+        </member>
+        <member name="T:BindOpen.Scoping.Script.TBdoScriptword`1">
+            <summary>
+            This class represents a strongly-typed script word.
+            </summary>
+            <typeparam name="T">The type of the item or value associated with this script word.</typeparam>
+            <remarks>
+            This class extends the standard <see cref="T:BindOpen.Scoping.Script.BdoScriptword"/> to provide type-specific 
+            context, allowing for better integration with strongly-typed data models and 
+            enhanced validation during script execution.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.TBdoScriptword`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:BindOpen.Scoping.Script.TBdoScriptword`1"/> class.
+            </summary>
+        </member>
+    </members>
+</doc>

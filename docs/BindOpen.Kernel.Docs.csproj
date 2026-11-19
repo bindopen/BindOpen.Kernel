@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net11.0</TargetFramework>
     <AssemblyName>BindOpen.Docs</AssemblyName>
     <PackageId>BindOpen.Docs</PackageId>
     <Product>BindOpen.Kernel</Product>
     <Company>BindOpen</Company>
-    <Copyright>Copyright © BindOpen 2011-2025</Copyright>
+    <Copyright>Copyright © BindOpen 2011-2026</Copyright>
     <Description>BindOpen is a framework that allows you to build widely-extended applications. This package provides core classes of the BindOpen.Scoping.</Description>
     <Authors>Sumer Team</Authors>
     <RootNamespace>BindOpen.Docs</RootNamespace>
