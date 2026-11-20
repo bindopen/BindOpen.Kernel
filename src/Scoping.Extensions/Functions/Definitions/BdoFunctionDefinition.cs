@@ -1,5 +1,5 @@
 ﻿using BindOpen.Data.Assemblies;
-using BindOpen.Data.Objects.Interfaces;
+using BindOpen.Data.Objects;
 using BindOpen.Data.Schema;
 using System;
 

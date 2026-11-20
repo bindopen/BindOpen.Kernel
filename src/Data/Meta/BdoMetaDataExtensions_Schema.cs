@@ -4,125 +4,124 @@ using BindOpen.Data.Schema;
 using BindOpen.Logging;
 using BindOpen.Scoping;
 
-namespace BindOpen.Data
+namespace BindOpen.Data;
+
+/// <summary>
+/// This class represents a data element set.
+/// </summary>
+public static partial class BdoMetaDataExtensions
 {
     /// <summary>
-    /// This class represents a data element set.
+    /// The item requirement level of this instance.
     /// </summary>
-    public static partial class BdoMetaDataExtensions
+    public static object GetSchemaValue(
+        this IBdoMetaData meta,
+        IBdoScope scope,
+        string groupId,
+        BdoSchemaRuleKinds ruleKind = BdoSchemaRuleKinds.Requirement,
+        IBdoMetaSet varSet = null,
+        IBdoLog log = null)
     {
-        /// <summary>
-        /// The item requirement level of this instance.
-        /// </summary>
-        public static object GetSchemaValue(
-            this IBdoMetaData meta,
-            IBdoScope scope,
-            string groupId,
-            BdoSchemaRuleKinds ruleKind = BdoSchemaRuleKinds.Requirement,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
+        return meta?.GetSchemaRule(scope, groupId, ruleKind, varSet, log)?.Value;
+    }
+
+    public static object GetSchemaValue(
+        this IBdoMetaData meta,
+        string groupId,
+        BdoSchemaRuleKinds ruleKind = BdoSchemaRuleKinds.Requirement,
+        IBdoMetaSet varSet = null,
+        IBdoLog log = null)
+        => meta.GetSchemaValue(meta?.Scope, groupId, ruleKind, varSet, log);
+
+    /// <summary>
+    /// The item requirement level of this instance.
+    /// </summary>
+    public static T GetSchemaValue<T>(
+        this IBdoMetaData meta,
+        IBdoScope scope,
+        string groupId,
+        BdoSchemaRuleKinds ruleKind = BdoSchemaRuleKinds.Requirement,
+        IBdoMetaSet varSet = null,
+        IBdoLog log = null)
+    {
+        if (meta != null)
         {
-            return meta?.GetSchemaRule(scope, groupId, ruleKind, varSet, log)?.Value;
+            return meta.GetSchemaValue(scope, groupId, ruleKind, varSet, log).As<T>();
         }
 
-        public static object GetSchemaValue(
-            this IBdoMetaData meta,
-            string groupId,
-            BdoSchemaRuleKinds ruleKind = BdoSchemaRuleKinds.Requirement,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-            => meta.GetSchemaValue(meta?.Scope, groupId, ruleKind, varSet, log);
+        return default;
+    }
 
-        /// <summary>
-        /// The item requirement level of this instance.
-        /// </summary>
-        public static T GetSchemaValue<T>(
-            this IBdoMetaData meta,
-            IBdoScope scope,
-            string groupId,
-            BdoSchemaRuleKinds ruleKind = BdoSchemaRuleKinds.Requirement,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-        {
-            if (meta != null)
-            {
-                return meta.GetSchemaValue(scope, groupId, ruleKind, varSet, log).As<T>();
-            }
+    public static T GetSchemaValue<T>(
+        this IBdoMetaData meta,
+        string groupId,
+        BdoSchemaRuleKinds ruleKind = BdoSchemaRuleKinds.Requirement,
+        IBdoMetaSet varSet = null,
+        IBdoLog log = null)
+        => meta.GetSchemaValue<T>(meta?.Scope, groupId, ruleKind, varSet, log);
 
-            return default;
-        }
+    /// <summary>
+    /// The requirement level of this instance.
+    /// </summary>
+    [BdoFunction("requirementLevel")]
+    public static RequirementLevels GetRequirementLevel(
+        this IBdoMetaData meta,
+        [BdoScriptParameter] IBdoScope scope,
+        [BdoScriptParameter] IBdoMetaSet varSet = null,
+        [BdoScriptParameter] IBdoLog log = null)
+    {
+        var level = meta.GetSchemaValue<RequirementLevels?>(
+            scope, BdoMetaDataProperties.RequirementLevel, BdoSchemaRuleKinds.Requirement, varSet, log) ?? RequirementLevels.None;
 
-        public static T GetSchemaValue<T>(
-            this IBdoMetaData meta,
-            string groupId,
-            BdoSchemaRuleKinds ruleKind = BdoSchemaRuleKinds.Requirement,
-            IBdoMetaSet varSet = null,
-            IBdoLog log = null)
-            => meta.GetSchemaValue<T>(meta?.Scope, groupId, ruleKind, varSet, log);
+        return level;
+    }
 
-        /// <summary>
-        /// The requirement level of this instance.
-        /// </summary>
-        [BdoFunction("requirementLevel")]
-        public static RequirementLevels GetRequirementLevel(
-            this IBdoMetaData meta,
-            [BdoScriptParameter] IBdoScope scope,
-            [BdoScriptParameter] IBdoMetaSet varSet = null,
-            [BdoScriptParameter] IBdoLog log = null)
+    public static RequirementLevels GetRequirementLevel(
+        this IBdoMetaData meta,
+        [BdoScriptParameter] IBdoMetaSet varSet = null,
+        [BdoScriptParameter] IBdoLog log = null)
+        => meta.GetRequirementLevel(meta?.Scope, varSet, log);
+
+    /// <summary>
+    /// The item requirement level of this instance.
+    /// </summary>
+    [BdoFunction("itemRequirementLevel")]
+    public static RequirementLevels GetItemRequirementLevel(
+        this IBdoMetaData meta,
+        [BdoScriptParameter] IBdoScope scope,
+        [BdoScriptParameter] IBdoMetaSet varSet = null,
+        [BdoScriptParameter] IBdoLog log = null)
+    {
+        if (meta?.Schema != null)
         {
             var level = meta.GetSchemaValue<RequirementLevels?>(
-                scope, BdoMetaDataProperties.RequirementLevel, BdoSchemaRuleKinds.Requirement, varSet, log) ?? RequirementLevels.None;
+                scope, BdoMetaDataProperties.ItemRequirementLevel, BdoSchemaRuleKinds.Requirement, varSet, log) ?? RequirementLevels.None;
+
+            if (level == RequirementLevels.None)
+            {
+                if (meta.Schema.MaxDataItemNumber == 0)
+                {
+                    return RequirementLevels.Forbidden;
+                }
+                else if (meta.Schema.MinDataItemNumber > 0)
+                {
+                    return RequirementLevels.Required;
+                }
+                else if (meta.Schema.MinDataItemNumber == 0)
+                {
+                    return RequirementLevels.Optional;
+                }
+            }
 
             return level;
         }
 
-        public static RequirementLevels GetRequirementLevel(
-            this IBdoMetaData meta,
-            [BdoScriptParameter] IBdoMetaSet varSet = null,
-            [BdoScriptParameter] IBdoLog log = null)
-            => meta.GetRequirementLevel(meta?.Scope, varSet, log);
-
-        /// <summary>
-        /// The item requirement level of this instance.
-        /// </summary>
-        [BdoFunction("itemRequirementLevel")]
-        public static RequirementLevels GetItemRequirementLevel(
-            this IBdoMetaData meta,
-            [BdoScriptParameter] IBdoScope scope,
-            [BdoScriptParameter] IBdoMetaSet varSet = null,
-            [BdoScriptParameter] IBdoLog log = null)
-        {
-            if (meta?.Schema != null)
-            {
-                var level = meta.GetSchemaValue<RequirementLevels?>(
-                    scope, BdoMetaDataProperties.ItemRequirementLevel, BdoSchemaRuleKinds.Requirement, varSet, log) ?? RequirementLevels.None;
-
-                if (level == RequirementLevels.None)
-                {
-                    if (meta.Schema.MaxDataItemNumber == 0)
-                    {
-                        return RequirementLevels.Forbidden;
-                    }
-                    else if (meta.Schema.MinDataItemNumber > 0)
-                    {
-                        return RequirementLevels.Required;
-                    }
-                    else if (meta.Schema.MinDataItemNumber == 0)
-                    {
-                        return RequirementLevels.Optional;
-                    }
-                }
-
-                return level;
-            }
-
-            return RequirementLevels.None;
-        }
-
-        public static RequirementLevels GetItemRequirementLevel(
-            this IBdoMetaData meta,
-            [BdoScriptParameter] IBdoMetaSet varSet = null,
-            [BdoScriptParameter] IBdoLog log = null)
-            => meta.GetItemRequirementLevel(meta?.Scope, varSet, log);
+        return RequirementLevels.None;
     }
+
+    public static RequirementLevels GetItemRequirementLevel(
+        this IBdoMetaData meta,
+        [BdoScriptParameter] IBdoMetaSet varSet = null,
+        [BdoScriptParameter] IBdoLog log = null)
+        => meta.GetItemRequirementLevel(meta?.Scope, varSet, log);
 }

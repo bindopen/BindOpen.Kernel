@@ -6,3 +6,5 @@ dotnet_diagnostic.CA2100.severity = none
 # CA2213: Review SQL queries for security vulnerabilities
 dotnet_diagnostic.CA2213.severity = none
 
+`# Disable IDE0130 warning (Namespace does not match folder structure)`
+dotnet_diagnostic.IDE0130.severity = none

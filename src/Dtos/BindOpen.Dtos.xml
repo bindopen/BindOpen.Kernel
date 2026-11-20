@@ -423,14 +423,14 @@
             This class represents a IO converter of dictionaries.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.StringDictionaryIOConverter.ToDto``1(BindOpen.Data.Objects.Interfaces.ITBdoDictionary{``0})">
+        <member name="M:BindOpen.Data.StringDictionaryIOConverter.ToDto``1(BindOpen.Data.Objects.ITBdoDictionary{``0})">
             <summary>
             Converts an assembly reference poco into a DTO one.
             </summary>
             <param key="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.StringDictionaryIOConverter.UpdateFromPoco``1(BindOpen.Data.StringDictionaryDto,BindOpen.Data.Objects.Interfaces.ITBdoDictionary{``0})">
+        <member name="M:BindOpen.Data.StringDictionaryIOConverter.UpdateFromPoco``1(BindOpen.Data.StringDictionaryDto,BindOpen.Data.Objects.ITBdoDictionary{``0})">
             <summary>
             
             </summary>
@@ -445,7 +445,7 @@
             <param key="dto">The DTO to consider.</param>
             <returns>The poco object.</returns>
         </member>
-        <member name="M:BindOpen.Data.StringDictionaryIOConverter.UpdateFromDto``1(BindOpen.Data.Objects.Interfaces.ITBdoDictionary{``0},BindOpen.Data.StringDictionaryDto)">
+        <member name="M:BindOpen.Data.StringDictionaryIOConverter.UpdateFromDto``1(BindOpen.Data.Objects.ITBdoDictionary{``0},BindOpen.Data.StringDictionaryDto)">
             <summary>
             
             </summary>
@@ -458,14 +458,14 @@
             This class represents a IO converter of expressions.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.ExpressionIOConverter.ToDto(BindOpen.Data.Objects.Interfaces.IBdoExpression)">
+        <member name="M:BindOpen.Data.ExpressionIOConverter.ToDto(BindOpen.Data.Objects.IBdoExpression)">
             <summary>
             Converts an assembly reference poco into a DTO one.
             </summary>
             <param key="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.ExpressionIOConverter.UpdateFromPoco(BindOpen.Data.ExpressionDto,BindOpen.Data.Objects.Interfaces.IBdoExpression)">
+        <member name="M:BindOpen.Data.ExpressionIOConverter.UpdateFromPoco(BindOpen.Data.ExpressionDto,BindOpen.Data.Objects.IBdoExpression)">
             <summary>
             
             </summary>
@@ -480,7 +480,7 @@
             <param key="dto">The DTO to consider.</param>
             <returns>The poco object.</returns>
         </member>
-        <member name="M:BindOpen.Data.ExpressionIOConverter.UpdateFromDto(BindOpen.Data.Objects.Interfaces.IBdoExpression,BindOpen.Data.ExpressionDto)">
+        <member name="M:BindOpen.Data.ExpressionIOConverter.UpdateFromDto(BindOpen.Data.Objects.IBdoExpression,BindOpen.Data.ExpressionDto)">
             <summary>
             
             </summary>
@@ -493,14 +493,14 @@
             This class represents a IO converter of mergers.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.MergerIOConverter.ToDto(BindOpen.Data.Objects.Interfaces.IBdoMerger)">
+        <member name="M:BindOpen.Data.MergerIOConverter.ToDto(BindOpen.Data.Objects.IBdoMerger)">
             <summary>
             Converts an assembly reference poco into a DTO one.
             </summary>
             <param key="poco">The poco to consider.</param>
             <returns>The DTO object.</returns>
         </member>
-        <member name="M:BindOpen.Data.MergerIOConverter.UpdateFromPoco(BindOpen.Data.MergerDto,BindOpen.Data.Objects.Interfaces.IBdoMerger)">
+        <member name="M:BindOpen.Data.MergerIOConverter.UpdateFromPoco(BindOpen.Data.MergerDto,BindOpen.Data.Objects.IBdoMerger)">
             <summary>
             
             </summary>
@@ -515,7 +515,7 @@
             <param key="dto">The DTO to consider.</param>
             <returns>The poco object.</returns>
         </member>
-        <member name="M:BindOpen.Data.MergerIOConverter.UpdateFromDto(BindOpen.Data.Objects.Interfaces.IBdoMerger,BindOpen.Data.MergerDto)">
+        <member name="M:BindOpen.Data.MergerIOConverter.UpdateFromDto(BindOpen.Data.Objects.IBdoMerger,BindOpen.Data.MergerDto)">
             <summary>
             
             </summary>

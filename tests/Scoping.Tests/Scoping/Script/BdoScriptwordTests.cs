@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Meta;
-using BindOpen.Data.Objects.Interfaces;
+using BindOpen.Data.Objects;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 
