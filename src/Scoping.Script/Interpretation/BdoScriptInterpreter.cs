@@ -2,7 +2,7 @@
 using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
 using BindOpen.Data.Meta.Reflection;
-using BindOpen.Data.Objects.Interfaces;
+using BindOpen.Data.Objects;
 using BindOpen.Logging;
 using System;
 

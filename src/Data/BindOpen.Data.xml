@@ -578,7 +578,7 @@
             Instantiates a new instance of the ExpressionCondition class.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Conditions.BdoExpressionCondition.#ctor(BindOpen.Data.Objects.Interfaces.IBdoExpression)">
+        <member name="M:BindOpen.Data.Conditions.BdoExpressionCondition.#ctor(BindOpen.Data.Objects.IBdoExpression)">
             <summary>
             Instantiates a new instance of the ExpressionCondition class.
             </summary>
@@ -743,7 +743,7 @@
             the fluent assignment of dynamic scripts to logical conditions.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.IBdoExpressionConditionExtensions.WithExpression``1(``0,BindOpen.Data.Objects.Interfaces.IBdoExpression)">
+        <member name="M:BindOpen.Data.IBdoExpressionConditionExtensions.WithExpression``1(``0,BindOpen.Data.Objects.IBdoExpression)">
             <summary>
             Sets the expression for the specified condition and returns the instance for chaining.
             </summary>
@@ -3122,7 +3122,7 @@
             This class provides extension methods for the IBdoReference interface.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.IBdoReferenceExtensions.WithExpression``1(``0,BindOpen.Data.Objects.Interfaces.IBdoExpression)">
+        <member name="M:BindOpen.Data.IBdoReferenceExtensions.WithExpression``1(``0,BindOpen.Data.Objects.IBdoExpression)">
             <summary>
             Sets the specified expression to this reference.
             </summary>
@@ -3390,7 +3390,7 @@
             <param key="alternateName"></param>
             <returns></returns>
         </member>
-        <member name="M:BindOpen.Data.TBdoDictionary`1.Equals(BindOpen.Data.Objects.Interfaces.ITBdoDictionary{`0})">
+        <member name="M:BindOpen.Data.TBdoDictionary`1.Equals(BindOpen.Data.Objects.ITBdoDictionary{`0})">
             <summary>
             Indicates whether this intance equals the specified dico.
             </summary>
@@ -3489,81 +3489,81 @@
             This class represents a data exp that can contain a literal and script texts.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.BdoExpressionExtensions.ToExpression(System.String,BindOpen.Data.Objects.Interfaces.BdoExpressionKind)">
+        <member name="M:BindOpen.Data.BdoExpressionExtensions.ToExpression(System.String,BindOpen.Data.Objects.BdoExpressionKind)">
             <summary>
             Creates a new literal exp into auto mode.
             </summary>
             <param key="text">The script text to consider.</param>
             <returns>Returns the script exp.</returns>
         </member>
-        <member name="M:BindOpen.Data.BdoExpressionExtensions.ToExp(System.String,BindOpen.Data.Objects.Interfaces.BdoExpressionKind)">
+        <member name="M:BindOpen.Data.BdoExpressionExtensions.ToExp(System.String,BindOpen.Data.Objects.BdoExpressionKind)">
             <summary>
             Creates a new literal exp into auto mode.
             </summary>
             <param key="text">The script text to consider.</param>
             <returns>Returns the script exp.</returns>
         </member>
-        <member name="T:BindOpen.Data.Objects.Interfaces.BdoExpressionKind">
+        <member name="T:BindOpen.Data.Objects.BdoExpressionKind">
             <summary>
             Specifies the possible kinds of expressions within the BindOpen framework.
             </summary>
         </member>
-        <member name="F:BindOpen.Data.Objects.Interfaces.BdoExpressionKind.Any">
+        <member name="F:BindOpen.Data.Objects.BdoExpressionKind.Any">
             <summary>
             Any kind of expression. Used for filtering or broad definitions.
             </summary>
         </member>
-        <member name="F:BindOpen.Data.Objects.Interfaces.BdoExpressionKind.Auto">
+        <member name="F:BindOpen.Data.Objects.BdoExpressionKind.Auto">
             <summary>
             Automatic expression. Typically a literal string that may contain 
             embedded scripts within curly braces (e.g., "Hello {{user.name}}").
             </summary>
         </member>
-        <member name="F:BindOpen.Data.Objects.Interfaces.BdoExpressionKind.Literal">
+        <member name="F:BindOpen.Data.Objects.BdoExpressionKind.Literal">
             <summary>
             Pure literal expression. The content is treated as raw text and is not parsed for scripts.
             </summary>
         </member>
-        <member name="F:BindOpen.Data.Objects.Interfaces.BdoExpressionKind.Script">
+        <member name="F:BindOpen.Data.Objects.BdoExpressionKind.Script">
             <summary>
             Script expression. The content is treated as a functional script or instruction 
             to be executed by the interpreter.
             </summary>
         </member>
-        <member name="F:BindOpen.Data.Objects.Interfaces.BdoExpressionKind.Word">
+        <member name="F:BindOpen.Data.Objects.BdoExpressionKind.Word">
             <summary>
             A single word expression. Often used for keyword-based resolution or simple identifiers.
             </summary>
         </member>
-        <member name="F:BindOpen.Data.Objects.Interfaces.BdoExpressionKind.None">
+        <member name="F:BindOpen.Data.Objects.BdoExpressionKind.None">
             <summary>
             No specific expression kind. Used for base script words or undefined states.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Objects.Interfaces.IBdoExpression">
+        <member name="T:BindOpen.Data.Objects.IBdoExpression">
             <summary>
             Defines a data expression within the BindOpen framework.
             An expression represents a text-based instruction or value that can be 
             parsed or executed based on its specific kind.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Objects.Interfaces.IBdoExpression.ExpressionKind">
+        <member name="P:BindOpen.Data.Objects.IBdoExpression.ExpressionKind">
             <summary>
             Gets or sets the kind of this expression.
             This determines how the expression text will be interpreted (e.g., as a script, a literal, etc.).
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Objects.Interfaces.IBdoExpression.Text">
+        <member name="P:BindOpen.Data.Objects.IBdoExpression.Text">
             <summary>
             Gets or sets the raw text of the expression.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Objects.Interfaces.IBdoExpressionExtensions">
+        <member name="T:BindOpen.Data.Objects.IBdoExpressionExtensions">
             <summary>
             This class provides extension methods for the IBdoExpression interface.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.IBdoExpressionExtensions.WithText``1(``0,System.String,BindOpen.Data.Objects.Interfaces.BdoExpressionKind)">
+        <member name="M:BindOpen.Data.Objects.IBdoExpressionExtensions.WithText``1(``0,System.String,BindOpen.Data.Objects.BdoExpressionKind)">
             <summary>
             Sets the text and optionally the kind of the specified expression.
             </summary>
@@ -3573,7 +3573,7 @@
             <param name="kind">The kind of the expression.</param>
             <returns>Returns the expression instance for fluent chaining.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.IBdoExpressionExtensions.AsScript``1(``0)">
+        <member name="M:BindOpen.Data.Objects.IBdoExpressionExtensions.AsScript``1(``0)">
             <summary>
             Sets the kind of the specified expression to Script.
             </summary>
@@ -3581,7 +3581,7 @@
             <param name="exp">The expression to configure.</param>
             <returns>Returns the expression instance for fluent chaining.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.IBdoExpressionExtensions.AsLiteral``1(``0)">
+        <member name="M:BindOpen.Data.Objects.IBdoExpressionExtensions.AsLiteral``1(``0)">
             <summary>
             Sets the kind of the specified expression to Literal.
             </summary>
@@ -3589,7 +3589,7 @@
             <param name="exp">The expression to configure.</param>
             <returns>Returns the expression instance for fluent chaining.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.IBdoExpressionExtensions.AsAuto``1(``0)">
+        <member name="M:BindOpen.Data.Objects.IBdoExpressionExtensions.AsAuto``1(``0)">
             <summary>
             Sets the kind of the specified expression to Auto.
             </summary>
@@ -3597,48 +3597,48 @@
             <param name="exp">The expression to configure.</param>
             <returns>Returns the expression instance for fluent chaining.</returns>
         </member>
-        <member name="T:BindOpen.Data.Objects.Interfaces.IBdoMerger">
+        <member name="T:BindOpen.Data.Objects.IBdoMerger">
             <summary>
             Defines a data merger used to manage the addition and removal of values.
             A merger tracks changes to a collection, allowing for sophisticated 
             synchronization and delta-processing.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Objects.Interfaces.IBdoMerger.AddedValues">
+        <member name="P:BindOpen.Data.Objects.IBdoMerger.AddedValues">
             <summary>
             Gets or sets the list of values to be added.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Objects.Interfaces.IBdoMerger.RemovedValues">
+        <member name="P:BindOpen.Data.Objects.IBdoMerger.RemovedValues">
             <summary>
             Gets or sets the list of values to be removed.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.IBdoMerger.ToList">
+        <member name="M:BindOpen.Data.Objects.IBdoMerger.ToList">
             <summary>
             Converts the resulting state of this merger into a list of strings.
             </summary>
             <returns>A list representing the merged result.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.IBdoMerger.ToArray">
+        <member name="M:BindOpen.Data.Objects.IBdoMerger.ToArray">
             <summary>
             Converts the resulting state of this merger into an array of strings.
             </summary>
             <returns>An array representing the merged result.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.IBdoMerger.Contains(System.String)">
+        <member name="M:BindOpen.Data.Objects.IBdoMerger.Contains(System.String)">
             <summary>
             Determines whether the specified value is contained within the resulting merged set.
             </summary>
             <param name="value">The value to locate.</param>
             <returns>True if the value is present in the merged result; otherwise, false.</returns>
         </member>
-        <member name="T:BindOpen.Data.Objects.Interfaces.IBdoMergerExtensions">
+        <member name="T:BindOpen.Data.Objects.IBdoMergerExtensions">
             <summary>
             Provides extension methods for the IBdoMerger interface to facilitate collection merging.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.IBdoMergerExtensions.Merge(System.Collections.Generic.IList{System.String},BindOpen.Data.Objects.Interfaces.IBdoMerger)">
+        <member name="M:BindOpen.Data.Objects.IBdoMergerExtensions.Merge(System.Collections.Generic.IList{System.String},BindOpen.Data.Objects.IBdoMerger)">
             <summary>
             Merges the specified values with the additions and removals defined in the merger.
             </summary>
@@ -3646,7 +3646,7 @@
             <param name="merger">The merger containing the delta (additions and removals).</param>
             <returns>Returns a new list representing the result of the merge operation.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.IBdoMergerExtensions.Contains(System.Collections.Generic.IList{System.String},System.String,BindOpen.Data.Objects.Interfaces.IBdoMerger)">
+        <member name="M:BindOpen.Data.Objects.IBdoMergerExtensions.Contains(System.Collections.Generic.IList{System.String},System.String,BindOpen.Data.Objects.IBdoMerger)">
             <summary>
             Determines whether a value is present in the collection after the merge operation is applied.
             </summary>
@@ -3655,42 +3655,42 @@
             <param name="merger">The merger defining the delta.</param>
             <returns>True if the value exists in the resulting merged set; otherwise, false.</returns>
         </member>
-        <member name="T:BindOpen.Data.Objects.Interfaces.IBdoObject">
+        <member name="T:BindOpen.Data.Objects.IBdoObject">
             <summary>
             Represents the base object within the BindOpen ecosystem.
             This interface serves as the root contract, ensuring all components
             support life-cycle management and cloning.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Objects.Interfaces.IBdoObjectNotMetable">
+        <member name="T:BindOpen.Data.Objects.IBdoObjectNotMetable">
             <summary>
             Represents a BindOpen object that cannot be converted into or treated as metadata.
             Use this interface for internal components or logic-heavy objects that should
             not be exposed within a metadata tree.
             </summary>
         </member>
-        <member name="T:BindOpen.Data.Objects.Interfaces.IBdoSet">
+        <member name="T:BindOpen.Data.Objects.IBdoSet">
             <summary>
             Defines a set of referenced and identified objects.
             This interface serves as the base contract for indexed collections 
             within the BindOpen framework.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Objects.Interfaces.IBdoSet.Item(System.String)">
+        <member name="P:BindOpen.Data.Objects.IBdoSet.Item(System.String)">
             <summary>
             Gets the item associated with the specified key.
             </summary>
             <param name="key">The key of the item to retrieve.</param>
             <returns>The referenced item associated with the key.</returns>
         </member>
-        <member name="P:BindOpen.Data.Objects.Interfaces.IBdoSet.Item(System.Int32)">
+        <member name="P:BindOpen.Data.Objects.IBdoSet.Item(System.Int32)">
             <summary>
             Gets the item at the specified index.
             </summary>
             <param name="index">The zero-based index of the item to retrieve.</param>
             <returns>The referenced item at the specified index.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.IBdoSet.Descendant``1(System.Object[])">
+        <member name="M:BindOpen.Data.Objects.IBdoSet.Descendant``1(System.Object[])">
             <summary>
             Retrieves a descendant item based on a sequence of tokens (path).
             </summary>
@@ -3698,7 +3698,7 @@
             <param name="tokens">The path tokens leading to the desired descendant.</param>
             <returns>The found descendant of the specified type.</returns>
         </member>
-        <member name="T:BindOpen.Data.Objects.Interfaces.ITBdoDictionary`1">
+        <member name="T:BindOpen.Data.Objects.ITBdoDictionary`1">
             <summary>
             Represents a generic BindOpen dictionary.
             As it is not metable, it is intended to be used as a technical container 
@@ -3706,7 +3706,7 @@
             </summary>
             <typeparam name="T">The type of elements in the dictionary.</typeparam>
         </member>
-        <member name="P:BindOpen.Data.Objects.Interfaces.ITBdoDictionary`1.Item(System.String,System.String)">
+        <member name="P:BindOpen.Data.Objects.ITBdoDictionary`1.Item(System.String,System.String)">
             <summary>
             Gets the item associated with the specified key. 
             If not found, returns the item associated with the default key.
@@ -3715,7 +3715,7 @@
             <param name="defaultKey">The default key to use if the primary key is missing.</param>
             <returns>The found item or the default item.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoDictionary`1.Add(System.String,`0)">
+        <member name="M:BindOpen.Data.Objects.ITBdoDictionary`1.Add(System.String,`0)">
             <summary>
             Adds the specified item to the dictionary.
             </summary>
@@ -3723,13 +3723,13 @@
             <param name="item">The item to add.</param>
             <returns>Returns this instance for fluent chaining.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoDictionary`1.Remove(System.String[])">
+        <member name="M:BindOpen.Data.Objects.ITBdoDictionary`1.Remove(System.String[])">
             <summary>
             Removes the items associated with the specified keys.
             </summary>
             <param name="keys">The keys of the items to remove.</param>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoDictionary`1.Get(System.String,System.String)">
+        <member name="M:BindOpen.Data.Objects.ITBdoDictionary`1.Get(System.String,System.String)">
             <summary>
             Gets the item associated with the specified key or alternate name.
             </summary>
@@ -3737,20 +3737,20 @@
             <param name="alternateName">The alternate name to check if the key is not found.</param>
             <returns>The found item.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoDictionary`1.Equals(BindOpen.Data.Objects.Interfaces.ITBdoDictionary{`0})">
+        <member name="M:BindOpen.Data.Objects.ITBdoDictionary`1.Equals(BindOpen.Data.Objects.ITBdoDictionary{`0})">
             <summary>
             Determines whether the specified dictionary is equal to the current one.
             </summary>
             <param name="dictionary">The dictionary to compare with.</param>
             <returns>True if the dictionaries are equal; otherwise, false.</returns>
         </member>
-        <member name="T:BindOpen.Data.Objects.Interfaces.ITBdoDictionaryExtensions">
+        <member name="T:BindOpen.Data.Objects.ITBdoDictionaryExtensions">
             <summary>
             This class provides extension methods for the ITBdoDictionary interface.
             It facilitates the fluent configuration of dictionaries such as Titles or Descriptions.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoDictionaryExtensions.With``2(``0,System.Collections.Generic.KeyValuePair{System.String,``1}[])">
+        <member name="M:BindOpen.Data.Objects.ITBdoDictionaryExtensions.With``2(``0,System.Collections.Generic.KeyValuePair{System.String,``1}[])">
             <summary>
             Populates the dictionary with the specified key-value pairs.
             </summary>
@@ -3760,7 +3760,7 @@
             <param name="pairs">The key-value pairs to add.</param>
             <returns>Returns the dictionary instance for fluent chaining.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoDictionaryExtensions.With``2(``0,``1)">
+        <member name="M:BindOpen.Data.Objects.ITBdoDictionaryExtensions.With``2(``0,``1)">
             <summary>
             Adds an item to the dictionary using the default wildcard key.
             </summary>
@@ -3770,7 +3770,7 @@
             <param name="item">The item to add.</param>
             <returns>Returns the dictionary instance for fluent chaining.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoDictionaryExtensions.With``2(``0,System.String,``1)">
+        <member name="M:BindOpen.Data.Objects.ITBdoDictionaryExtensions.With``2(``0,System.String,``1)">
             <summary>
             Adds an item to the dictionary with the specified key.
             </summary>
@@ -3781,7 +3781,7 @@
             <param name="item">The item to add.</param>
             <returns>Returns the dictionary instance for fluent chaining.</returns>
         </member>
-        <member name="T:BindOpen.Data.Objects.Interfaces.ITBdoSet`1">
+        <member name="T:BindOpen.Data.Objects.ITBdoSet`1">
             <summary>
             Represents a strongly-typed set of referenced objects.
             This interface provides advanced methods for item retrieval, insertion, 
@@ -3789,31 +3789,31 @@
             </summary>
             <typeparam name="T">The type of referenced items in the set.</typeparam>
         </member>
-        <member name="P:BindOpen.Data.Objects.Interfaces.ITBdoSet`1.Count">
+        <member name="P:BindOpen.Data.Objects.ITBdoSet`1.Count">
             <summary>
             Gets the number of items contained in the set.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Objects.Interfaces.ITBdoSet`1.Items">
+        <member name="P:BindOpen.Data.Objects.ITBdoSet`1.Items">
             <summary>
             Gets the underlying list of items.
             </summary>
         </member>
-        <member name="P:BindOpen.Data.Objects.Interfaces.ITBdoSet`1.Item(System.Int32)">
+        <member name="P:BindOpen.Data.Objects.ITBdoSet`1.Item(System.Int32)">
             <summary>
             Gets the item at the specified index.
             </summary>
             <param name="index">The zero-based index of the item to retrieve.</param>
             <returns>The item at the specified index.</returns>
         </member>
-        <member name="P:BindOpen.Data.Objects.Interfaces.ITBdoSet`1.Item(System.String)">
+        <member name="P:BindOpen.Data.Objects.ITBdoSet`1.Item(System.String)">
             <summary>
             Gets the item associated with the specified key.
             </summary>
             <param name="key">The key of the item to retrieve.</param>
             <returns>The item associated with the specified key.</returns>
         </member>
-        <member name="P:BindOpen.Data.Objects.Interfaces.ITBdoSet`1.Item(System.String,System.String)">
+        <member name="P:BindOpen.Data.Objects.ITBdoSet`1.Item(System.String,System.String)">
             <summary>
             Gets the item associated with the specified key or an alternate name.
             </summary>
@@ -3821,14 +3821,14 @@
             <param name="alternateName">The alternate name to check if the primary key is not found.</param>
             <returns>The found item; otherwise, null.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoSet`1.Get(System.String)">
+        <member name="M:BindOpen.Data.Objects.ITBdoSet`1.Get(System.String)">
             <summary>
             Retrieves the item associated with the specified key.
             </summary>
             <param name="key">The key to search for.</param>
             <returns>The found item.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoSet`1.Get(System.String,System.String)">
+        <member name="M:BindOpen.Data.Objects.ITBdoSet`1.Get(System.String,System.String)">
             <summary>
             Retrieves the item associated with the specified key or an alternate name.
             </summary>
@@ -3836,14 +3836,14 @@
             <param name="alternateName">The alternate name to check if the primary key is not found.</param>
             <returns>The found item.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoSet`1.Get(System.Int32)">
+        <member name="M:BindOpen.Data.Objects.ITBdoSet`1.Get(System.Int32)">
             <summary>
             Retrieves the item at the specified index.
             </summary>
             <param name="index">The zero-based index of the item.</param>
             <returns>The item at the specified index.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoSet`1.Get``1(System.String)">
+        <member name="M:BindOpen.Data.Objects.ITBdoSet`1.Get``1(System.String)">
             <summary>
             Retrieves and casts the item associated with the specified key.
             </summary>
@@ -3851,7 +3851,7 @@
             <param name="key">The key to search for.</param>
             <returns>The found item cast to Q.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoSet`1.Get``1(System.String,System.String)">
+        <member name="M:BindOpen.Data.Objects.ITBdoSet`1.Get``1(System.String,System.String)">
             <summary>
             Retrieves and casts the item associated with the specified key or alternate name.
             </summary>
@@ -3860,7 +3860,7 @@
             <param name="alternateName">The alternate name to check.</param>
             <returns>The found item cast to Q.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoSet`1.Get``1(System.Int32)">
+        <member name="M:BindOpen.Data.Objects.ITBdoSet`1.Get``1(System.Int32)">
             <summary>
             Retrieves and casts the item at the specified index.
             </summary>
@@ -3868,58 +3868,58 @@
             <param name="index">The zero-based index of the item.</param>
             <returns>The item at the specified index cast to Q.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoSet`1.Insert(`0)">
+        <member name="M:BindOpen.Data.Objects.ITBdoSet`1.Insert(`0)">
             <summary>
             Inserts the specified item into the set.
             </summary>
             <param name="item">The item to insert.</param>
             <returns>The inserted item.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoSet`1.Has(System.String)">
+        <member name="M:BindOpen.Data.Objects.ITBdoSet`1.Has(System.String)">
             <summary>
             Determines whether the set contains an item with the specified key.
             </summary>
             <param name="key">The key to check for. If null, checks if the set has any items.</param>
             <returns>True if the item or any item exists; otherwise, false.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoSet`1.Clear">
+        <member name="M:BindOpen.Data.Objects.ITBdoSet`1.Clear">
             <summary>
             Removes all items from the set.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoSet`1.Remove(System.String[])">
+        <member name="M:BindOpen.Data.Objects.ITBdoSet`1.Remove(System.String[])">
             <summary>
             Removes the items associated with the specified keys.
             </summary>
             <param name="keys">The keys of the items to remove.</param>
             <returns>The number of items removed.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoSet`1.Remove(System.Predicate{`0})">
+        <member name="M:BindOpen.Data.Objects.ITBdoSet`1.Remove(System.Predicate{`0})">
             <summary>
             Removes items that match the specified filter.
             </summary>
             <param name="filter">The predicate to filter items for removal.</param>
             <returns>The number of items removed.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoSet`1.ToArray">
+        <member name="M:BindOpen.Data.Objects.ITBdoSet`1.ToArray">
             <summary>
             Copies the items of the set to a new array.
             </summary>
             <returns>An array containing the items.</returns>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoSet`1.ToList">
+        <member name="M:BindOpen.Data.Objects.ITBdoSet`1.ToList">
             <summary>
             Copies the items of the set to a new list.
             </summary>
             <returns>A list containing the items.</returns>
         </member>
-        <member name="T:BindOpen.Data.Objects.Interfaces.ITBdoSetExtensions">
+        <member name="T:BindOpen.Data.Objects.ITBdoSetExtensions">
             <summary>
             This class provides extension methods for the ITBdoSet interface to facilitate
             fluent collection population and management.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoSetExtensions.WithItems``2(``0,``1[])">
+        <member name="M:BindOpen.Data.Objects.ITBdoSetExtensions.WithItems``2(``0,``1[])">
             <summary>
             Populates the specified set with the provided items.
             </summary>
@@ -3931,7 +3931,7 @@
             <remarks>The items should typically be named or uniquely identifiable depending on 
             the set's implementation of the Insert method.</remarks>
         </member>
-        <member name="M:BindOpen.Data.Objects.Interfaces.ITBdoSetExtensions.WithRange``2(``0,BindOpen.Data.Objects.Interfaces.ITBdoSet{``1})">
+        <member name="M:BindOpen.Data.Objects.ITBdoSetExtensions.WithRange``2(``0,BindOpen.Data.Objects.ITBdoSet{``1})">
             <summary>
             Adds a range of items from another set to the specified set.
             </summary>
@@ -4281,7 +4281,7 @@
             
             </summary>
         </member>
-        <member name="M:BindOpen.Data.TBdoSetExtensions.WithItems``1(BindOpen.Data.Objects.Interfaces.ITBdoSet{``0},``0[])">
+        <member name="M:BindOpen.Data.TBdoSetExtensions.WithItems``1(BindOpen.Data.Objects.ITBdoSet{``0},``0[])">
             <summary>
             Adds the specified item.
             </summary>
@@ -4290,7 +4290,7 @@
             Returns null if the new item is null or else its name is null.</returns>
             <remarks>The new item must have a name.</remarks>
         </member>
-        <member name="M:BindOpen.Data.TBdoSetExtensions.WithItems``1(BindOpen.Data.Objects.Interfaces.ITBdoSet{``0},BindOpen.Data.Objects.Interfaces.ITBdoSet{``0})">
+        <member name="M:BindOpen.Data.TBdoSetExtensions.WithItems``1(BindOpen.Data.Objects.ITBdoSet{``0},BindOpen.Data.Objects.ITBdoSet{``0})">
             <summary>
             Adds the specified item.
             </summary>
@@ -7315,7 +7315,7 @@
             </summary>
             <param key="values">The values to consider.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewExpression(System.String,BindOpen.Data.Objects.Interfaces.BdoExpressionKind)">
+        <member name="M:BindOpen.Data.BdoData.NewExpression(System.String,BindOpen.Data.Objects.BdoExpressionKind)">
             <summary>
             Creates the exp.
             </summary>
@@ -7323,7 +7323,7 @@
             <param key="text">The text to consider.</param>
             <returns>Returns the created exp.</returns>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewExp(System.String,BindOpen.Data.Objects.Interfaces.BdoExpressionKind)">
+        <member name="M:BindOpen.Data.BdoData.NewExp(System.String,BindOpen.Data.Objects.BdoExpressionKind)">
             <summary>
             Creates the exp.
             </summary>
@@ -7381,7 +7381,7 @@
             <param key="text">The text to consider.</param>
             <returns>Returns the created exp.</returns>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewReference(BindOpen.Data.Objects.Interfaces.IBdoExpression)">
+        <member name="M:BindOpen.Data.BdoData.NewReference(BindOpen.Data.Objects.IBdoExpression)">
             <summary>
             Creates the exp.
             </summary>
@@ -7410,7 +7410,7 @@
             <param key="word">The word of exp to consider.</param>
             <returns>Returns the created exp.</returns>
         </member>
-        <member name="M:BindOpen.Data.BdoData.NewRef(BindOpen.Data.Objects.Interfaces.IBdoExpression)">
+        <member name="M:BindOpen.Data.BdoData.NewRef(BindOpen.Data.Objects.IBdoExpression)">
             <summary>
             Creates the exp.
             </summary>
@@ -7973,7 +7973,7 @@
             This interface defines a storable data item.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.ReferencedExtensions.WithReference``1(``0,BindOpen.Data.Objects.Interfaces.IBdoExpression)">
+        <member name="M:BindOpen.Data.ReferencedExtensions.WithReference``1(``0,BindOpen.Data.Objects.IBdoExpression)">
             <summary>
             
             </summary>
@@ -9040,7 +9040,7 @@
             This interface defines the script interpreter.
             </summary>
         </member>
-        <member name="M:BindOpen.Scoping.Script.IBdoScriptInterpreter.Evaluate(BindOpen.Data.Objects.Interfaces.IBdoExpression,BindOpen.Data.Meta.IBdoMetaSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Scoping.Script.IBdoScriptInterpreter.Evaluate(BindOpen.Data.Objects.IBdoExpression,BindOpen.Data.Meta.IBdoMetaSet,BindOpen.Logging.IBdoLog)">
             <summary>
             
             </summary>
@@ -9247,7 +9247,7 @@
             This static class provides methods to create script elements.
             </summary>
         </member>
-        <member name="M:BindOpen.Scoping.IBdoScriptInterpreterExtension.Evaluate``1(BindOpen.Scoping.Script.IBdoScriptInterpreter,BindOpen.Data.Objects.Interfaces.IBdoExpression,BindOpen.Data.Meta.IBdoMetaSet,BindOpen.Logging.IBdoLog)">
+        <member name="M:BindOpen.Scoping.IBdoScriptInterpreterExtension.Evaluate``1(BindOpen.Scoping.Script.IBdoScriptInterpreter,BindOpen.Data.Objects.IBdoExpression,BindOpen.Data.Meta.IBdoMetaSet,BindOpen.Logging.IBdoLog)">
             <summary>
             Evaluates the specified script word using the defined script words of this instance
             of the specified libraries.

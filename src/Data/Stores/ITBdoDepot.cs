@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Objects.Interfaces;
+﻿using BindOpen.Data.Objects;
 
 namespace BindOpen.Data.Stores;
 

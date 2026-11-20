@@ -281,11 +281,11 @@
         </member>
         <member name="T:BindOpen.Data.BdoExpressionTests">
             <summary>
-            Contains unit tests for <see cref="T:BindOpen.Data.Objects.Interfaces.IBdoExpression"/>, focusing on the distinction between literals and scripts.
+            Contains unit tests for <see cref="T:BindOpen.Data.Objects.IBdoExpression"/>, focusing on the distinction between literals and scripts.
             </summary>
             <remarks>
             These tests verify that expressions are correctly categorized and store their textual representation
-            according to their <see cref="T:BindOpen.Data.Objects.Interfaces.BdoExpressionKind"/>.
+            according to their <see cref="T:BindOpen.Data.Objects.BdoExpressionKind"/>.
             </remarks>
         </member>
         <member name="F:BindOpen.Data.BdoExpressionTests._exp">
@@ -298,14 +298,14 @@
             Initializes the test value set using the expression faker.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.BdoExpressionTests.AssertEquals(BindOpen.Data.Objects.Interfaces.IBdoExpression,BindOpen.Data.Objects.Interfaces.IBdoExpression)">
+        <member name="M:BindOpen.Data.BdoExpressionTests.AssertEquals(BindOpen.Data.Objects.IBdoExpression,BindOpen.Data.Objects.IBdoExpression)">
             <summary>
             Asserts that two expressions are equivalent.
             </summary>
             <param name="exp1">The first expression to compare.</param>
             <param name="exp2">The second expression to compare.</param>
         </member>
-        <member name="M:BindOpen.Data.BdoExpressionTests.Test(BindOpen.Data.Objects.Interfaces.IBdoExpression)">
+        <member name="M:BindOpen.Data.BdoExpressionTests.Test(BindOpen.Data.Objects.IBdoExpression)">
             <summary>
             Validates an expression based on its kind and expected value from the test data set.
             </summary>
@@ -340,7 +340,7 @@
             Initializes randomized string lists for testing merger operations.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.BdoMergerTests.AssertEquals(BindOpen.Data.Objects.Interfaces.IBdoMerger,BindOpen.Data.Objects.Interfaces.IBdoMerger)">
+        <member name="M:BindOpen.Data.BdoMergerTests.AssertEquals(BindOpen.Data.Objects.IBdoMerger,BindOpen.Data.Objects.IBdoMerger)">
             <summary>
             Asserts that two merger instances are equivalent, handling empty collections gracefully.
             </summary>
@@ -417,7 +417,7 @@
             Initializes randomized string values for dictionary testing.
             </summary>
         </member>
-        <member name="M:BindOpen.Data.BdoStringDictionaryTests.Test(BindOpen.Data.Objects.Interfaces.ITBdoDictionary{System.String})">
+        <member name="M:BindOpen.Data.BdoStringDictionaryTests.Test(BindOpen.Data.Objects.ITBdoDictionary{System.String})">
             <summary>
             Validates the core content of the dictionary against the expected value set.
             </summary>

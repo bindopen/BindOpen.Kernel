@@ -1,5 +1,5 @@
 ﻿using BindOpen.Data.Meta;
-using BindOpen.Data.Objects.Interfaces;
+using BindOpen.Data.Objects;
 using BindOpen.Scoping;
 using System;
 using System.Collections.Generic;
