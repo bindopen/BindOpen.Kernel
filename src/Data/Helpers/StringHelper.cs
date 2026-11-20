@@ -65,12 +65,7 @@ public static partial class StringHelper
     {
         if (hashName == null) throw new ArgumentNullException(nameof(hashName));
 
-        using var hashAlgorithm = (HashAlgorithm?)CryptoConfig.CreateFromName(hashName);
-        if (hashAlgorithm == null)
-        {
-            throw new ArgumentException("Unrecognized hash name", nameof(hashName));
-        }
-
+        using var hashAlgorithm = (HashAlgorithm)CryptoConfig.CreateFromName(hashName) ?? throw new ArgumentException("Unrecognized hash name", nameof(hashName));
         byte[] input = Encoding.UTF8.GetBytes(st ?? string.Empty);
         byte[] bytes = hashAlgorithm.ComputeHash(input);
 

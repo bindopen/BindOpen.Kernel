@@ -1,7 +1,7 @@
 ﻿using BindOpen.Data;
 using BindOpen.Data.Assemblies;
 using BindOpen.Data.Meta;
-using BindOpen.Data.Objects.Interfaces;
+using BindOpen.Data.Objects;
 using BindOpen.Data.Schema;
 using BindOpen.Scoping.Script;
 using System.Linq;

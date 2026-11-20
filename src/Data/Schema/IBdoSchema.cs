@@ -1,6 +1,6 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Meta;
-using BindOpen.Data.Objects.Interfaces;
+using BindOpen.Data.Objects;
 using BindOpen.Logging;
 using BindOpen.Scoping;
 using System.Collections.Generic;
