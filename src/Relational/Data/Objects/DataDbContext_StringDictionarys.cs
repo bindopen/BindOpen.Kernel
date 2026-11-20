@@ -1,4 +1,4 @@
-﻿using BindOpen.Data.Objects.Interfaces;
+﻿using BindOpen.Data.Objects;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 

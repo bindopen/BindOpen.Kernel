@@ -1,5 +1,5 @@
 ﻿using BindOpen.Data.Helpers;
-using BindOpen.Data.Objects.Interfaces;
+using BindOpen.Data.Objects;
 using BindOpen.Scoping.Script;
 
 namespace BindOpen.Data;
