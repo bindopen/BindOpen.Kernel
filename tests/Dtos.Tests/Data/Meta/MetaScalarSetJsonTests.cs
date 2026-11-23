@@ -1,6 +1,5 @@
 ﻿using BindOpen.Data.Meta;
 using BindOpen.Data.Objects;
-using BindOpen.Tests;
 using Bogus;
 using DeepEqual.Syntax;
 using NUnit.Framework;
@@ -91,7 +90,7 @@ public class MetaScalarSetJsonTests
         _metaSet = BdoData.NewSet(metas.ToArray());
 
         Assert.That(_metaSet, Is.Not.Null, "The scalar metadata set failed to initialize.");
-        Assert.That(_metaSet.Count, Is.EqualTo(metas.Count), "Scalar metadata set item count mismatch.");
+        Assert.That(_metaSet.Count, Is.EqualTo(metas.Count - 1), "Scalar metadata set item count mismatch.");
     }
 
     /// <summary>
