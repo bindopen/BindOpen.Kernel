@@ -18,7 +18,7 @@ namespace BindOpen.Data.Meta
     [XmlInclude(typeof(MetaScalarDto))]
     [XmlInclude(typeof(ScriptwordDto))]
     [JsonPolymorphic(TypeDiscriminatorPropertyName = "metaKind")]
-    [JsonDerivedType(typeof(MetaSetDto), "Node")]
+    [JsonDerivedType(typeof(MetaSetDto), "Set")]
     [JsonDerivedType(typeof(MetaObjectDto), "Object")]
     [JsonDerivedType(typeof(MetaScalarDto), "Scalar")]
     [JsonDerivedType(typeof(ScriptwordDto), "Scripword")]

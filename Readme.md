@@ -9,37 +9,36 @@ BindOpen is a framework that enables the development of highly extensible applic
 
 ## About
 
-**BindOpen.Kernel** is the core module of the BindOpen framework. It enables you to easily model your business context, including data and operations, through a metadata-driven approach.
+**BindOpen.Kernel** is the core module of the BindOpen framework. It enables you to easily model your business context, including data and operations, through a metadata-driven approach, and seamlessly integrate it into standard .NET applications.
 
 BindOpen.Kernel is composed of the following modules:
 
-* **Data**: Offers a comprehensive data model based on metadata.
-* **Scoping**: Provides an effective mechanism for loading and using your extensions.
-* **Dtos.Converters**: Provides packages to serialize and deserialize BindOpen.Kernel objects.
-* [**Hosting**](https://github.com/bindopen/BindOpen.Hosting): (External) Allows you to integrate a BindOpen agent within the .NET service builder.
-* [**Logging**](https://github.com/bindopen/BindOpen.Logging): (External) Provides a straightforward and multi-dimensional logging system.
-
-This repository contains the **Data**, **Scoping**, and **Dtos.Converters** modules.
+- **Data**: Offers a comprehensive data model based on metadata.
+- **Hosting**: Provides full integration of BindOpen with the standard .NET configuration, dependency injection, and service builder mechanisms.
+- **Logging**: Provides a straightforward and multi-dimensional logging system, ideal for monitoring nested task executions.
+- **Scoping**: Provides an effective mechanism for loading and using your extensions.
 
 ## Install
 
-To get started, install the specific BindOpen.Kernel module you need.
+To get started, install only the specific BindOpen.Kernel module(s) you need.
 
 ### From Visual Studio (Package Manager)
 
 | Module | Instruction |
-|--------|-----|
+|--------|-------------|
 | [BindOpen.Data](https://www.nuget.org/packages/BindOpen.Data) | `PM> Install-Package BindOpen.Data` |
+| [BindOpen.Hosting](https://www.nuget.org/packages/BindOpen.Hosting) | `PM> Install-Package BindOpen.Hosting` |
+| [BindOpen.Logging](https://www.nuget.org/packages/BindOpen.Logging) | `PM> Install-Package BindOpen.Logging` |
 | [BindOpen.Scoping](https://www.nuget.org/packages/BindOpen.Scoping) | `PM> Install-Package BindOpen.Scoping` |
-| [BindOpen.Dtos.Converters](https://www.nuget.org/packages/BindOpen.Dtos.Converters) | `PM> Install-Package BindOpen.Dtos.Converters` |
 
 ### From .NET CLI
 
 | Module | Instruction |
-|--------|-----|
+|--------|-------------|
 | [BindOpen.Data](https://www.nuget.org/packages/BindOpen.Data) | `dotnet add package BindOpen.Data` |
+| [BindOpen.Hosting](https://www.nuget.org/packages/BindOpen.Hosting) | `dotnet add package BindOpen.Hosting` |
+| [BindOpen.Logging](https://www.nuget.org/packages/BindOpen.Logging) | `dotnet add package BindOpen.Logging` |
 | [BindOpen.Scoping](https://www.nuget.org/packages/BindOpen.Scoping) | `dotnet add package BindOpen.Scoping` |
-| [BindOpen.Dtos.Converters](https://www.nuget.org/packages/BindOpen.Dtos.Converters) | `dotnet add package BindOpen.Dtos.Converters` |
 
 ---
 
@@ -193,4 +192,3 @@ Support this project! Donations are optional but greatly appreciated.
 
 ## License
 This project is licensed under the terms of the MIT license. [See LICENSE](https://github.com/bindopen/BindOpen.Kernel/blob/master/LICENSE).
-

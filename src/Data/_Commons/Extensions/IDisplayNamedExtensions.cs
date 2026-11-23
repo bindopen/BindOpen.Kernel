@@ -1,25 +1,24 @@
-﻿namespace BindOpen.Data
+﻿namespace BindOpen.Data;
+
+/// <summary>
+/// This interface defines an named data item.
+/// </summary>
+public static class IDisplayNamedExtensions
 {
     /// <summary>
-    /// This interface defines an named data item.
+    /// 
     /// </summary>
-    public static class IDisplayNamedExtensions
+    /// <param key="name"></param>
+    public static T WithDisplayName<T>(
+        this T obj,
+        string displayName)
+        where T : IDisplayNamed
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="name"></param>
-        public static T WithDisplayName<T>(
-            this T obj,
-            string displayName)
-            where T : IDisplayNamed
+        if (obj != null)
         {
-            if (obj != null)
-            {
-                obj.DisplayName = displayName;
-            }
-
-            return obj;
+            obj.DisplayName = displayName;
         }
+
+        return obj;
     }
 }

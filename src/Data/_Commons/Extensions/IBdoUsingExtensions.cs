@@ -1,24 +1,23 @@
-﻿namespace BindOpen.Data
+﻿namespace BindOpen.Data;
+
+/// <summary>
+/// 
+/// </summary>
+public static class IBdoUsingExtensions
 {
     /// <summary>
     /// 
     /// </summary>
-    public static class IBdoUsingExtensions
+    /// <param key="detail"></param>
+    public static T Using<T>(
+        this T obj,
+        params string[] usedItemIds)
+        where T : IBdoUsing
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="detail"></param>
-        public static T Using<T>(
-            this T obj,
-            params string[] usedItemIds)
-            where T : IBdoUsing
+        if (obj != null)
         {
-            if (obj != null)
-            {
-                obj.UsedItemIds = usedItemIds;
-            }
-            return obj;
+            obj.UsedItemIds = usedItemIds;
         }
+        return obj;
     }
 }

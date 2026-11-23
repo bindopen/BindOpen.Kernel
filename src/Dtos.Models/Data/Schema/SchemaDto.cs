@@ -163,7 +163,7 @@ public class SchemaDto : IBdoDto, IIdentified
     /// </summary>
     [JsonPropertyName("default.items")]
     [XmlArray("default.items")]
-    [XmlArrayItem("node", Type = typeof(MetaSetDto))]
+    [XmlArrayItem("set", Type = typeof(MetaSetDto))]
     [XmlArrayItem("object", Type = typeof(MetaObjectDto))]
     [XmlArrayItem("scalar", Type = typeof(MetaScalarDto))]
     [XmlArrayItem("word", Type = typeof(ScriptwordDto))]

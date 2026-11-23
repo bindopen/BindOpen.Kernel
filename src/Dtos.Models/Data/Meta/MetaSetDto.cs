@@ -22,7 +22,7 @@ namespace BindOpen.Data.Meta
         /// The elements of this instance.
         /// </summary>
         [JsonPropertyName("items")]
-        [XmlElement("node", Type = typeof(MetaSetDto))]
+        [XmlElement("set", Type = typeof(MetaSetDto))]
         [XmlElement("object", Type = typeof(MetaObjectDto))]
         [XmlElement("scalar", Type = typeof(MetaScalarDto))]
         [XmlElement("word", Type = typeof(ScriptwordDto))]

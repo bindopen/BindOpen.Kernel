@@ -1,26 +1,25 @@
-﻿namespace BindOpen.Data
+﻿namespace BindOpen.Data;
+
+/// <summary>
+/// This static class extends IDefaultable interface.
+/// </summary>
+public static class IDefaultableExtensions
 {
     /// <summary>
-    /// This static class extends IDefaultable interface.
+    /// Indicates whether the specified defautable object.
     /// </summary>
-    public static class IDefaultableExtensions
+    /// <param key="isDefault">Indicates whether the specified object is default.</param>
+    /// <returns>Returns the specified defautable object.</returns>
+    public static T AsDefault<T>(
+        this T source,
+        bool isDefault = true)
+        where T : IDefaultable
     {
-        /// <summary>
-        /// Indicates whether the specified defautable object.
-        /// </summary>
-        /// <param key="isDefault">Indicates whether the specified object is default.</param>
-        /// <returns>Returns the specified defautable object.</returns>
-        public static T AsDefault<T>(
-            this T source,
-            bool isDefault = true)
-            where T : IDefaultable
+        if (source != null)
         {
-            if (source != null)
-            {
-                source.IsDefault = isDefault;
-            }
-
-            return source;
+            source.IsDefault = isDefault;
         }
+
+        return source;
     }
 }

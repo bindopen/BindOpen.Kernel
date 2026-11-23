@@ -1,24 +1,23 @@
-﻿namespace BindOpen.Scoping.Entities
+﻿namespace BindOpen.Scoping.Entities;
+
+/// <summary>
+/// This class represents a entity.
+/// </summary>
+public abstract class BdoEntity : BdoExtension, IBdoEntity
 {
+    // ------------------------------------------
+    // CONSTRUCTORS
+    // ------------------------------------------
+
+    #region Constructors
+
     /// <summary>
-    /// This class represents a entity.
+    /// Instantiates a new instance of the BdoEntity class.
     /// </summary>
-    public abstract class BdoEntity : BdoExtension, IBdoEntity
+    protected BdoEntity() : base()
     {
-        // ------------------------------------------
-        // CONSTRUCTORS
-        // ------------------------------------------
-
-        #region Constructors
-
-        /// <summary>
-        /// Instantiates a new instance of the BdoEntity class.
-        /// </summary>
-        protected BdoEntity() : base()
-        {
-            ExtensionKind = BdoExtensionKinds.Entity;
-        }
-
-        #endregion
+        ExtensionKind = BdoExtensionKinds.Entity;
     }
+
+    #endregion
 }

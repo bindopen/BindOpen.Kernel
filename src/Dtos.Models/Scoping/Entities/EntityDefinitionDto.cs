@@ -47,7 +47,7 @@ namespace BindOpen.Scoping.Entities
         /// </summary>
         [JsonPropertyName("outputs")]
         [XmlArray("outputs")]
-        [XmlArrayItem("node", Type = typeof(MetaSetDto))]
+        [XmlArrayItem("set", Type = typeof(MetaSetDto))]
         [XmlArrayItem("object", Type = typeof(MetaObjectDto))]
         [XmlArrayItem("scalar", Type = typeof(MetaScalarDto))]
         [XmlArrayItem("word", Type = typeof(ScriptwordDto))]
