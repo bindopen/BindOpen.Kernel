@@ -71,8 +71,8 @@ public class BdoScopingMetaSetTests_Object
     public void NewTest()
     {
         // A. Manual construction
-        var metaObj1 = BdoData.NewObject("object1")
-            .With(BdoData.NewScalar("path", _testData.path1 as string));
+        var metaObj1 = BdoMetaSetExtensions.Add(BdoData.NewObject("object1")
+, BdoData.NewScalar("path", _testData.path1 as string));
 
         // B. Construction from existing POCO with UpdateTree resolution
         var metaObj2 = BdoData.NewObject("object2", "scoping.tests$testEntity")
@@ -94,7 +94,7 @@ public class BdoScopingMetaSetTests_Object
         var metaObj4 = obj4?.ToMeta("object4");
 
         // E. Composite Node creation
-        _metaObjSet = BdoData.NewNode(
+        _metaObjSet = BdoData.NewSet(
             metaObj1,
             metaObj2,
             metaObj3);

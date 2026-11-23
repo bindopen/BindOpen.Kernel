@@ -56,7 +56,7 @@ public class BdoMetaScalarSetTests
         var el3 = BdoData.NewScalar("integer3", arrayInteger);
         var el4 = BdoData.NewScalar("byteArray4", arrayArrayByte);
 
-        _metaSet = BdoData.NewNode(el1, el2, el3, el4);
+        _metaSet = BdoData.NewSet(el1, el2, el3, el4);
 
         // Validation of data retrieval by key
         _metaSet.GetDataList<double>("number1").Should().Contain(arrayNumber);
@@ -77,32 +77,32 @@ public class BdoMetaScalarSetTests
         var elAB = BdoData.NewScalar("name1", "Test1");
         elAA.Update(elAB);
 
-        var elSetA = BdoData.NewNode(elAA, elAB);
+        var elSetA = BdoData.NewSet(elAA, elAB);
 
         var elBA = BdoData.NewScalar("name1", "Test1");
         var elBB = BdoData.NewScalar<int?>("name1", null);
         elBA.Update(elBB);
 
-        var elSetB = BdoData.NewNode(elBA, elBB);
+        var elSetB = BdoData.NewSet(elBA, elBB);
 
-        TBdoSetExtensions.WithItems(elSetB, elBB);
-        TBdoSetExtensions.WithItems(elSetA, elAB);
+        TBdoSetExtensions.AddItems(elSetB, elBB);
+        TBdoSetExtensions.AddItems(elSetA, elAB);
         elSetB.Update(elSetA);
 
         // Advanced repair testing: adding nulls and type-based placeholders
-        TBdoSetExtensions.WithItems(elSetA, (IBdoMetaData[])null);
-        TBdoSetExtensions.WithItems(elSetB
+        TBdoSetExtensions.AddItems(elSetA, (IBdoMetaData[])null);
+        TBdoSetExtensions.AddItems(elSetB
 , (IBdoMetaScalar)null)
-            .WithItems(BdoData.NewScalar("name1", typeof(string)))
-            .WithItems(BdoData.NewScalar("name3", typeof(int)))
-            .WithItems(BdoData.NewScalar("name4", typeof(double)))
-            .WithItems(BdoData.NewScalar("name5", DataValueTypes.Text));
+            .AddItems(BdoData.NewScalar("name1", typeof(string)))
+            .AddItems(BdoData.NewScalar("name3", typeof(int)))
+            .AddItems(BdoData.NewScalar("name4", typeof(double)))
+            .AddItems(BdoData.NewScalar("name5", DataValueTypes.Text));
 
-        TBdoSetExtensions.WithItems(elSetA
+        TBdoSetExtensions.AddItems(elSetA
 , BdoData.NewScalar("name1", typeof(string)))
-            .WithItems((IBdoMetaData)BdoData.NewObject("name2", null as string))
-            .WithItems(BdoData.NewScalar("name4", DataValueTypes.Text, null))
-            .WithItems(BdoData.NewScalar("name5", null as string));
+            .AddItems((IBdoMetaData)BdoData.NewObject("name2", null as string))
+            .AddItems(BdoData.NewScalar("name4", DataValueTypes.Text, null))
+            .AddItems(BdoData.NewScalar("name5", null as string));
 
         elSetB.Update(elSetA);
 

@@ -121,7 +121,7 @@ namespace BindOpen.Data.Meta.Reflection
                                 {
                                     var subSet = meta as IBdoMetaSet;
                                     metaValue = BdoData.NewSet(name)
-                                        .With(subSet?.Items?.ToArray());
+                                        .Add(subSet?.Items?.ToArray());
                                 }
 
                                 metaValue?.Update(meta);

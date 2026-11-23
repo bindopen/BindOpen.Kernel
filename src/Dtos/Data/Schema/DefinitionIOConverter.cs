@@ -89,7 +89,7 @@ public static class DefinitionIOConverter
         poco.Title = dto.Title.ToPoco<string>();
         poco.UsedItemIds = dto.UsedItemIds;
         poco.WithChildren(dto.Children?.Select(q => q.ToPoco()).ToArray());
-        TBdoSetExtensions.WithItems(poco, dto.Items?.Select(q => q.ToPoco()).ToArray());
+        TBdoSetExtensions.AddItems(poco, dto.Items?.Select(q => q.ToPoco()).ToArray());
 
         return poco;
     }

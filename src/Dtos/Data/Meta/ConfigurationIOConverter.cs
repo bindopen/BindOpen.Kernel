@@ -90,7 +90,7 @@ public static class ConfigurationIOConverter
         poco.Title = dto.Title.ToPoco<string>();
         poco.UsedItemIds = dto.UsedItemIds;
         poco.WithChildren(dto.Children?.Select(q => q.ToPoco()).ToArray());
-        poco.WithItems(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
+        poco.AddItems(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
 
         return poco;
     }

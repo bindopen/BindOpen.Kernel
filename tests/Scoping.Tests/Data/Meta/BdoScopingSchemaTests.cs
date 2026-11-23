@@ -62,7 +62,7 @@ public class BdoScopingSchemaTests
     {
         var meta = BdoData.NewSet("meta-test")
             .WithSchema(_schema)
-            .With(
+            .Add(
                 BdoData.NewScalar("title", "myTitle"),
                 BdoData.NewScalar("description", "myDescription"));
 
@@ -79,7 +79,7 @@ public class BdoScopingSchemaTests
     {
         var meta = BdoData.NewSet("meta-test")
             .WithSchema(_schema)
-            .With(
+            .Add(
                 BdoData.NewScalar("title", "myTitle"));
 
         var subSpec = meta.FindChildSpec(_schema, ScopingTestData.Scope);
@@ -97,7 +97,7 @@ public class BdoScopingSchemaTests
         // 1. Valid data node
         var meta1 = BdoData.NewSet("meta-test")
             .WithSchema(_schema)
-            .With(
+            .Add(
                 BdoData.NewScalar("auto", true),
                 BdoData.NewScalar("title", "myTitle"));
 
@@ -106,7 +106,7 @@ public class BdoScopingSchemaTests
         // 2. Node with forbidden 'label' scalar
         var meta2 = BdoData.NewSet("meta-test")
             .WithSchema(_schema)
-            .With(
+            .Add(
                 BdoData.NewScalar("auto", true),
                 BdoData.NewScalar("label", true),
                 BdoData.NewScalar("title", "myTitle2"));
@@ -122,7 +122,7 @@ public class BdoScopingSchemaTests
     {
         // 1. Node without schema should pass basic checks
         var meta1 = BdoData.NewSet("meta-test")
-            .With(
+            .Add(
                 BdoData.NewScalar("auto", true),
                 BdoData.NewScalar("label", true),
                 BdoData.NewScalar("title", "myTitle"));
@@ -134,7 +134,7 @@ public class BdoScopingSchemaTests
         var validator = ScopingTestData.Scope.CreateValidator();
 
         var meta2 = BdoData.NewSet("meta-test")
-            .With(
+            .Add(
                 BdoData.NewScalar("auto", true)
                     .WithSchema(BdoData.NewSchema().WithDataType(DataValueTypes.Integer)),
                 BdoData.NewScalar("label", true),

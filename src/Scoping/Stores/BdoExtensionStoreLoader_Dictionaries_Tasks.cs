@@ -59,7 +59,7 @@ internal partial class BdoExtensionStoreLoader : BdoObject, IBdoExtensionStoreLo
                 {
                     var schema = BdoData.NewSchema();
                     schema.UpdateFrom(prop, typeof(BdoPropertyAttribute));
-                    definition.WithItems(schema);
+                    definition.AddItems(schema);
                 }
 
                 // Handle input specific properties
@@ -67,7 +67,7 @@ internal partial class BdoExtensionStoreLoader : BdoObject, IBdoExtensionStoreLo
                 {
                     var schema = BdoData.NewSchema();
                     schema.UpdateFrom(prop, typeof(BdoInputAttribute));
-                    definition.WithItems(schema);
+                    definition.AddItems(schema);
                 }
 
                 // Handle output specific properties
@@ -76,7 +76,7 @@ internal partial class BdoExtensionStoreLoader : BdoObject, IBdoExtensionStoreLo
                     definition.Outputs ??= BdoData.NewSchemaSet();
                     var schema = BdoData.NewSchema();
                     schema.UpdateFrom(prop, typeof(BdoOutputAttribute));
-                    definition.Outputs.WithItems(schema);
+                    definition.Outputs.AddItems(schema);
                 }
             }
 

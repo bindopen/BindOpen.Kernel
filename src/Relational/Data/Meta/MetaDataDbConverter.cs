@@ -170,7 +170,7 @@ namespace BindOpen.Data.Meta
                             Schema = dbItem.Schema.ToPoco()
                         };
 
-                        obj.WithItems(dbItem.MetaItems?.Select(q =>
+                        obj.AddItems(dbItem.MetaItems?.Select(q =>
                         {
                             var item = q.ToPoco();
                             if (item != null)
@@ -213,7 +213,7 @@ namespace BindOpen.Data.Meta
                             Schema = dbItem.Schema.ToPoco()
                         };
 
-                        node.WithItems(dbItem.MetaItems?.Select(q =>
+                        node.AddItems(dbItem.MetaItems?.Select(q =>
                         {
                             var item = q.ToPoco();
                             if (item != null)

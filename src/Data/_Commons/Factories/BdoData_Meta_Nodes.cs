@@ -29,7 +29,7 @@ public static partial class BdoData
     /// </summary>
     /// <param key="metas">The parameters to consider.</param>
     /// <returns>Return this instance.</returns>
-    public static BdoMetaSet NewNode(
+    public static BdoMetaSet NewSet(
         params IBdoMetaData[] metas)
         => NewSet<BdoMetaSet>(null, metas);
 
@@ -112,7 +112,7 @@ public static partial class BdoData
     {
         var list = NewSet<T>();
         list
-            .With(metas)
+            .Add(metas)
             .WithName(name);
 
         return list;
@@ -139,7 +139,7 @@ public static partial class BdoData
         where T : class, IBdoMetaSet, new()
     {
         var list = NewSet<T>()
-            .With(pairs)
+            .Add(pairs)
             .WithName(name);
 
         return list;

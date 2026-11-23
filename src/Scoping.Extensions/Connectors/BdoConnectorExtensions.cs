@@ -207,7 +207,7 @@ public static partial class BdoConnectorExtensions
         string connectionString)
         where T : IBdoMetaSet
     {
-        metaSet?.With(("connectionString", connectionString));
+        metaSet?.Add(("connectionString", connectionString));
         return metaSet;
     }
 

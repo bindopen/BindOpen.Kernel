@@ -98,7 +98,7 @@ namespace BindOpen.Data.Meta.Reflection
                         }
                     }
 
-                    metaObject.WithItems(list?.ToArray());
+                    metaObject.AddItems(list?.ToArray());
                 }
                 else if (type.IsList() && meta is IBdoMetaSet metaSet)
                 {
@@ -126,7 +126,7 @@ namespace BindOpen.Data.Meta.Reflection
                         i++;
                     }
 
-                    metaSet.WithItems(list?.ToArray());
+                    metaSet.AddItems(list?.ToArray());
                 }
             }
 

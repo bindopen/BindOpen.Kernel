@@ -165,7 +165,7 @@ namespace BindOpen.Data.Meta
         public IBdoMetaSet Add(
             params IBdoMetaData[] items)
         {
-            (this as ITBdoSet<IBdoMetaData>).WithItems(items);
+            (this as ITBdoSet<IBdoMetaData>).AddItems(items);
             return this;
         }
 

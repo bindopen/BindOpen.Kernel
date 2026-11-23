@@ -76,7 +76,7 @@ public static class SchemaSetIOConverter
 
         poco.Name = dto.Name;
         poco.Identifier = dto.Identifier;
-        TBdoSetExtensions.WithItems(poco, dto.Items?.Select(q => q.ToPoco()).ToArray());
+        TBdoSetExtensions.AddItems(poco, dto.Items?.Select(q => q.ToPoco()).ToArray());
 
         return poco;
     }

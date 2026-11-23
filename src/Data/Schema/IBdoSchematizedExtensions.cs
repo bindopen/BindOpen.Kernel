@@ -73,7 +73,7 @@ public static class IBdoSchematizedExtensions
         if (obj != null)
         {
             obj.Schema ??= BdoData.NewSchema();
-            obj.Schema.GetOrNewRuleSet().WithItems(rule);
+            obj.Schema.GetOrNewRuleSet().AddItems(rule);
         }
 
         return obj;

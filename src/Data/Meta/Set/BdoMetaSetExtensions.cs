@@ -12,36 +12,6 @@ namespace BindOpen.Data
     /// </summary>
     public static partial class BdoMetaSetExtensions
     {
-        public static T WithNode<T>(this T set, string name, params object[] children)
-            where T : class, IBdoMetaSet
-        {
-            var node = BdoData.NewSet(name).With(children);
-            set.With(node);
-
-            return set;
-        }
-
-        /// <summary>
-        /// Sets the specified single item of this instance.
-        /// </summary>
-        /// <param key="items">The items to apply to this instance.</param>
-        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
-        public static T With<T>(
-            this T set,
-            params object[] items)
-            where T : class, IBdoMetaSet
-        {
-            if (set != null && items != null)
-            {
-                foreach (var item in items)
-                {
-                    var meta = ConvertToMeta(item);
-                    set.WithItems(meta);
-                }
-            }
-            return set;
-        }
-
         private static IBdoMetaData ConvertToMeta(object item)
         {
             // 1. Déjà un MetaData : on retourne tel quel
@@ -74,15 +44,15 @@ namespace BindOpen.Data
                         if (tuple.Length > 2)
                         {
                             for (int i = 1; i < tuple.Length; i++)
-                                node.With(ConvertToMeta(tuple[i]));
+                                node.Add(ConvertToMeta(tuple[i]));
                         }
                         else if (IsTupleEnumerable(value))
                         {
-                            node.With((value as IEnumerable<object>).Select(ConvertToMeta).ToArray());
+                            node.Add((value as IEnumerable<object>).Select(ConvertToMeta).ToArray());
                         }
                         else
                         {
-                            node.With(value);
+                            node.Add(value);
                         }
                         return node;
 
@@ -149,9 +119,30 @@ namespace BindOpen.Data
             where T : IBdoMetaSet
         {
             IBdoMetaData meta = obj is IBdoMetaData data ? data : BdoData.NewMeta(obj);
-            list?.WithItems(meta);
+            list?.AddItems(meta);
 
             return list;
+        }
+
+        /// <summary>
+        /// Sets the specified single item of this instance.
+        /// </summary>
+        /// <param key="items">The items to apply to this instance.</param>
+        /// <remarks>Items of this instance must be allowed and must not be forbidden. Otherwise, the values will be the default ones..</remarks>
+        public static T Add<T>(
+            this T set,
+            params object[] items)
+            where T : class, IBdoMetaSet
+        {
+            if (set != null && items != null)
+            {
+                foreach (var item in items)
+                {
+                    var meta = ConvertToMeta(item);
+                    set.AddItems(meta);
+                }
+            }
+            return set;
         }
 
         /// <summary>
@@ -161,13 +152,13 @@ namespace BindOpen.Data
         /// <returns>Returns the new item that has been added.
         /// Returns null if the new item is null or else its name is null.</returns>
         /// <remarks>The new item must have a name.</remarks>
-        public static T With<T>(
+        public static T Add<T>(
            this T set,
            string key,
            object value)
            where T : IBdoMetaSet
         {
-            set.With((key, value));
+            set.Add((key, value));
 
             return set;
         }
@@ -176,12 +167,12 @@ namespace BindOpen.Data
         /// Adds a new value to this instance.
         /// </summary>
         /// <param key="pairs">The value to add.</param>
-        public static T With<T>(
+        public static T Add<T>(
             this T list,
             params KeyValuePair<string, object>[] pairs)
             where T : IBdoMetaSet
         {
-            list.With(pairs.Select(q => (q.Key, q.Value)).ToArray());
+            list.Add(pairs.Select(q => (q.Key, q.Value)).ToArray());
 
             return list;
         }
@@ -191,7 +182,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
-        public static T With<T>(
+        public static T Add<T>(
             this T list,
             params (string Name, object Value)[] pairs)
             where T : IBdoMetaSet
@@ -200,7 +191,7 @@ namespace BindOpen.Data
             {
                 foreach (var (Name, Value) in pairs)
                 {
-                    list.WithItems(BdoData.NewMeta(Name, Value));
+                    list.AddItems(BdoData.NewMeta(Name, Value));
                 }
             }
 
@@ -212,7 +203,7 @@ namespace BindOpen.Data
         /// </summary>
         /// <param key="text">The text to consider.</param>
         /// <returns>Returns the added data key value.</returns>
-        public static T With<T>(
+        public static T Add<T>(
             this T list,
             params (string Name, DataValueTypes ValueType, object Value)[] pairs)
             where T : IBdoMetaSet
@@ -221,11 +212,20 @@ namespace BindOpen.Data
             {
                 foreach (var (Name, ValueType, Value) in pairs)
                 {
-                    list.WithItems(BdoData.NewMeta(Name, ValueType, Value));
+                    list.AddItems(BdoData.NewMeta(Name, ValueType, Value));
                 }
             }
 
             return list;
+        }
+
+        public static T AddSet<T>(this T set, string name, params object[] children)
+            where T : class, IBdoMetaSet
+        {
+            var node = BdoData.NewSet(name).Add(children);
+            set.Add(node);
+
+            return set;
         }
 
         // Tokens
@@ -267,7 +267,7 @@ namespace BindOpen.Data
                         if (jj > -1)
                         {
                             var tokenValue = st.ToSubstring(ji, jj - 1).ToUnquoted(quote);
-                            set.With((tokenName, tokenValue));
+                            set.Add((tokenName, tokenValue));
                         }
                         ji = jj + word.Length;
                     }

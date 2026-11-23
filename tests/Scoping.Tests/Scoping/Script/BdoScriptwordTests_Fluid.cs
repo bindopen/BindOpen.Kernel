@@ -49,7 +49,7 @@ public class BdoScriptwordTests_Fluid
         var interpreter = ScopingTestData.Scope.Interpreter;
 
         // 2. Set up a node set (parent) containing two children (toto and titi)
-        var set = BdoData.NewObject().With(("toto", 123), ("titi", 125));
+        var set = BdoData.NewObject().Add(("toto", 123), ("titi", 125));
         var meta = set[0]; // 'this' will be 'toto'
 
         var metaSet = BdoData.NewSet((BdoData.__VarName_This, meta));
@@ -74,7 +74,7 @@ public class BdoScriptwordTests_Fluid
 
         // 2. Valid hierarchy test
         var set = BdoData.NewObject()
-            .With(("toto", 123), ("titi", 125));
+            .Add(("toto", 123), ("titi", 125));
         var meta = set[0];
 
         var varSet = BdoData.NewSet((BdoData.__VarName_This, meta));
@@ -84,7 +84,7 @@ public class BdoScriptwordTests_Fluid
 
         // 3. Broken hierarchy test (Parent is null)
         BdoMetaData meta1 = ("toto", 123); // No parent assigned
-        varSet.With(BdoData.__VarName_This, meta1);
+        varSet.Add(BdoData.__VarName_This, meta1);
 
         result = interpreter.Evaluate<int?>(exp, varSet);
 

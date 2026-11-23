@@ -50,7 +50,7 @@ public class BdoScopingReferenceTests
     public void NewReferenceTest()
     {
         // Create a node set where each element uses a script-based reference
-        var set = BdoData.NewNode(
+        var set = BdoData.NewSet(
                 BdoData.NewMeta().WithReference(BdoData.NewReference(BdoScript.Func("eq", 1, 1))),
                 BdoData.NewMeta().WithReference(BdoScript.Func("eq", 1, 1))
             );

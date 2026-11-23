@@ -29,11 +29,11 @@ public class BdoDatasourceTests
         var f = new Faker();
 
         // We simulate a connector configuration (e.g., SMTP or Database)
-        _metaSet = BdoData.NewObject("testA")
+        _metaSet = BdoMetaSetExtensions.Add(
+BdoData.NewObject("testA")
             .WithId()
             .WithDataType(BdoExtensionKinds.Connector, "bindopen.tests$testConnector")
-            .With(
-                BdoData.NewScalar("host", f.Random.Word()),
+, BdoData.NewScalar("host", f.Random.Word()),
                 BdoData.NewScalar("port", f.Random.Int()),
                 BdoData.NewScalar("isSslEnabled", f.Random.Bool()));
     }

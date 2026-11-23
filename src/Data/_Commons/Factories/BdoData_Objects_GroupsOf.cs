@@ -20,7 +20,7 @@ public static partial class BdoData
         where TItem : IReferenced, IGrouped
     {
         var q = new TSet();
-        TBdoSetExtensions.WithItems(q, items);
+        TBdoSetExtensions.AddItems(q, items);
         return q;
     }
 

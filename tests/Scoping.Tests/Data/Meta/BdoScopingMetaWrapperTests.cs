@@ -93,7 +93,7 @@ public class BdoScopingMetaWrapperTests
         var obj = ScopingTestData.Scope.NewMetaWrapper<MetaWrapperFake>(
             BdoData.NewConfig(
                 BdoData.NewSet("testDico")
-                    .With(
+                    .Add(
                         BdoData.NewScalar("day", 120),
                         BdoData.NewScalar("month", 130))));
 
@@ -124,9 +124,9 @@ public class BdoScopingMetaWrapperTests
         obj.UpdateDetail(
             BdoData.NewConfig(
                 BdoData.NewScalar("testList", "monthA"),
-                BdoData.NewObject("entityFake")
-                    .With(
-                        BdoData.NewScalar("stringValue", "_string"),
+                BdoMetaSetExtensions.Add(
+BdoData.NewObject("entityFake")
+, BdoData.NewScalar("stringValue", "_string"),
                         BdoData.NewScalar("intValue", 1500),
                         BdoData.NewScalar("enumValue", AccessibilityLevels.Restricted)
                     )));
@@ -148,9 +148,9 @@ public class BdoScopingMetaWrapperTests
         obj.UpdateDetail(
             BdoData.NewConfig(
                 BdoData.NewScalar("testListA", "monthA"),
-                BdoData.NewObject("entityFake")
-                    .With(
-                        BdoData.NewScalar("stringValue", "_string"),
+                BdoMetaSetExtensions.Add(
+BdoData.NewObject("entityFake")
+, BdoData.NewScalar("stringValue", "_string"),
                         BdoData.NewScalar("intValue", 1500),
                         BdoData.NewScalar("enumValue", AccessibilityLevels.Restricted)
                     )));

@@ -38,10 +38,10 @@ public static class BdoConnectorFaker
         data ??= NewData();
 
         // Create the meta-object and assign the connector extension ID
-        var config = BdoData.NewObject()
+        var config = BdoMetaSetExtensions.Add(
+BdoData.NewObject()
             .WithDataType(BdoExtensionKinds.Connector, "scoping.tests$testConnector")
-            .With(
-                BdoData.NewScalar("host", data.host as string),
+, BdoData.NewScalar("host", data.host as string),
                 BdoData.NewScalar("port", data.port as int?),
                 BdoData.NewScalar("isSslEnabled", data.isSslEnabled as bool?));
 

@@ -69,7 +69,7 @@ public static class DefinitionDbConverter
             UsedItemIds = dbItem.UsedItemIds == null ? null : dbItem.UsedItemIds.Select(q => q).ToList()
         };
 
-        TBdoSetExtensions.WithItems(poco
+        TBdoSetExtensions.AddItems(poco
             .WithTitle(dbItem.Title.ToPoco<string>())
             .WithDescription(dbItem.Description.ToPoco<string>())
 , dbItem.Items.Select(q => q.ToPoco()).ToArray());

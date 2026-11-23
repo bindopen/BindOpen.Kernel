@@ -93,7 +93,7 @@ public static partial class BdoData
     {
         var list = NewSchemaSet<T>().WithName(name);
 
-        list.WithItems(metas);
+        list.AddItems(metas);
 
         return list;
     }

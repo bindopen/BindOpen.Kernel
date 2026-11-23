@@ -72,7 +72,7 @@ public class BdoScopingMetaDataTests
             .WithCondition(
                 BdoScript.NewCondition<IBdoMetaData>(q =>
                     BdoScript.Eq(BdoScript.This<IBdoMetaData>()._Descendant("title")._Value(), "myTitle")))
-            .With(BdoData.NewScalar("title", "A"));
+            .Add(BdoData.NewScalar("title", "A"));
 
         var existence0 = meta0.GetConditionValue(ScopingTestData.Scope);
         Assert.That(existence0, Is.False, "The basic condition check failed.");
@@ -82,7 +82,7 @@ public class BdoScopingMetaDataTests
             .WithCondition(
                 BdoScript.NewCondition<IBdoMetaData>(q =>
                     BdoScript.Eq(BdoScript.This<IBdoMetaData>()._Descendant("title")._Value(), "myTitle")))
-            .With(BdoData.NewScalar("title", "myTitle"));
+            .Add(BdoData.NewScalar("title", "myTitle"));
 
         var existence1 = meta1.GetConditionValue(ScopingTestData.Scope);
         Assert.That(existence1, Is.True, "The schema-based existence check failed for valid data.");
@@ -91,7 +91,7 @@ public class BdoScopingMetaDataTests
         // Note: This assumes _schema has a rule stating 'title' cannot be 'A'
         var meta2 = BdoData.NewSet("meta-test")
             .WithSchema(_schema)
-            .With(BdoData.NewScalar("title", "A"));
+            .Add(BdoData.NewScalar("title", "A"));
 
         var existence2 = meta2.GetConditionValue(ScopingTestData.Scope);
         Assert.That(existence2, Is.False, "The condition check should have failed for 'title=A'.");

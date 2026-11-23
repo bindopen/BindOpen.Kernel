@@ -29,7 +29,7 @@ public class BdoScopingSchemaRuleTests
         // 1. Meta with empty schema: Requirement should be None
         var meta0 = BdoData.NewSet("meta-test")
             .WithSchema(BdoData.NewSchema())
-            .With(BdoData.NewScalar("title", "A"));
+            .Add(BdoData.NewScalar("title", "A"));
 
         var requirementLevel0 = meta0.GetRequirementLevel(ScopingTestData.Scope);
         Assert.That(requirementLevel0, Is.EqualTo(RequirementLevels.None), "Default requirement level failed.");
@@ -37,7 +37,7 @@ public class BdoScopingSchemaRuleTests
         // 2. Meta matching a schema rule where 'title' makes it 'Required'
         var meta1 = BdoData.NewSet("meta-test")
             .WithSchema(_schema)
-            .With(
+            .Add(
                 BdoData.NewScalar("auto", true),
                 BdoData.NewScalar("title", "This is my title"));
 
@@ -47,7 +47,7 @@ public class BdoScopingSchemaRuleTests
         // 3. Meta matching a schema rule where it remains 'Optional'
         var meta2 = BdoData.NewSet("meta-test")
             .WithSchema(_schema)
-            .With(("auto", true));
+            .Add(("auto", true));
 
         var requirementLevel2 = meta2.GetRequirementLevel(ScopingTestData.Scope);
         Assert.That(requirementLevel2, Is.EqualTo(RequirementLevels.Optional), "Requirement level evaluation failed for 'Optional' context.");
@@ -62,7 +62,7 @@ public class BdoScopingSchemaRuleTests
         // Creating a meta node with inline schema requirements
         var meta0 = BdoData.NewSet("meta-test")
             .WithSchema(schema => schema.AddItemRequirement(RequirementLevels.Optional).WithName("toto"))
-            .With(
+            .Add(
                 BdoData.NewScalar("title", "A")
                     .WithSchema(schema => schema.AddRequirement(RequirementLevels.Optional)));
 
@@ -81,7 +81,7 @@ public class BdoScopingSchemaRuleTests
         // 1. Basic schema: Item requirement should be Optional by default
         var meta0 = BdoData.NewSet("meta-test")
             .WithSchema(BdoData.NewSchema())
-            .With(BdoData.NewScalar("title", "A"));
+            .Add(BdoData.NewScalar("title", "A"));
 
         var requirementLevel0 = meta0.GetItemRequirementLevel(ScopingTestData.Scope);
         Assert.That(requirementLevel0, Is.EqualTo(RequirementLevels.Optional), "Default item requirement failed.");
@@ -89,7 +89,7 @@ public class BdoScopingSchemaRuleTests
         // 2. Schema rule: Required item
         var meta1 = BdoData.NewSet("meta-test")
             .WithSchema(_schema)
-            .With(
+            .Add(
                 BdoData.NewScalar("auto", true),
                 BdoData.NewScalar("title", "This is my title"));
 
@@ -99,7 +99,7 @@ public class BdoScopingSchemaRuleTests
         // 3. Schema rule: Optional item (auto is false)
         var meta2 = BdoData.NewSet("meta-test")
             .WithSchema(_schema)
-            .With(BdoData.NewScalar("auto", false));
+            .Add(BdoData.NewScalar("auto", false));
 
         var requirementLevel2 = meta2.GetItemRequirementLevel(ScopingTestData.Scope);
         Assert.That(requirementLevel2, Is.EqualTo(RequirementLevels.Optional), "Item requirement evaluation failed for 'Optional' state.");
@@ -114,7 +114,7 @@ public class BdoScopingSchemaRuleTests
         // meta0 uses a string value that is technically the name of the Enum, 
         // but validator check might fail if it's not strictly formatted or handled.
         var meta0 = BdoData.NewSet("meta-test")
-            .With(
+            .Add(
                 BdoData.NewScalar("level", "RequirementLevels.Optional")
                     .WithSchema(q => q.MustBeInList<RequirementLevels>())
             );

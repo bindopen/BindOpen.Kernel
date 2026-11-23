@@ -15,13 +15,13 @@ public static class BdoTaskExtensions_Configuration
     // Get
 
     public static ITBdoSet<IBdoMetaData> Properties(this IBdoMetaSet set)
-        => BdoData.NewNode(set?.Where(q => q.IsProperty())?.ToArray());
+        => BdoData.NewSet(set?.Where(q => q.IsProperty())?.ToArray());
 
     public static ITBdoSet<IBdoMetaData> Inputs(this IBdoMetaSet set)
-        => BdoData.NewNode(set?.Where(q => q.IsInput())?.ToArray());
+        => BdoData.NewSet(set?.Where(q => q.IsInput())?.ToArray());
 
     public static ITBdoSet<IBdoMetaData> Outputs(this IBdoMetaSet set)
-        => BdoData.NewNode(set?.Where(q => q.IsOutput())?.ToArray());
+        => BdoData.NewSet(set?.Where(q => q.IsOutput())?.ToArray());
 
     // Is
 
@@ -129,7 +129,7 @@ public static class BdoTaskExtensions_Configuration
         {
 
             Array.ForEach(props, q => { q.AsProperty(); });
-            obj.WithItems(props);
+            obj.AddItems(props);
         }
 
         return obj;
@@ -248,7 +248,7 @@ public static class BdoTaskExtensions_Configuration
         {
 
             Array.ForEach(inputs, q => { q.AsInput(); });
-            obj.WithItems(inputs);
+            obj.AddItems(inputs);
         }
 
         return obj;
@@ -366,7 +366,7 @@ public static class BdoTaskExtensions_Configuration
         if (obj != null)
         {
             Array.ForEach(outputs, q => { q.AsOutput(); });
-            obj.WithItems(outputs);
+            obj.AddItems(outputs);
         }
 
         return obj;

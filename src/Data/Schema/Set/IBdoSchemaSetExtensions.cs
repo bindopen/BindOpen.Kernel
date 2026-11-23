@@ -92,7 +92,7 @@ public static partial class IBdoSchemaSetExtensions
         {
             foreach (var (Name, ValueType) in pairs)
             {
-                set.WithItems(BdoData.NewSchema(Name, ValueType));
+                set.AddItems(BdoData.NewSchema(Name, ValueType));
             }
         }
 

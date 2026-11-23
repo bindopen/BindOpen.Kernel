@@ -59,7 +59,7 @@ public class MetaScalarSetXmlTests
                 //.WithSchemas(BdoMeta.NewSchema(), BdoMeta.NewSchema("spec1"))
         };
 
-        _metaSet = BdoData.NewNode(metas.ToArray());
+        _metaSet = BdoData.NewSet(metas.ToArray());
     }
 
     [Test, Order(5)]

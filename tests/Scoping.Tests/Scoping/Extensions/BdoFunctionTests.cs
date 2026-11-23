@@ -33,10 +33,10 @@ public class BdoFunctionTests
     {
         // 1. Manually build the metadata for the function call
         // We specify the unique DataType that points to the 'testEqual' extension
-        var meta = BdoData.NewObject()
+        var meta = BdoMetaSetExtensions.Add(
+BdoData.NewObject()
             .WithDataType(BdoExtensionKinds.Function, "scoping.tests$testEqual")
-            .With(
-                BdoData.NewScalar("stringValue", _testData.stringValue as string),
+, BdoData.NewScalar("stringValue", _testData.stringValue as string),
                 BdoData.NewScalar("intValue", _testData.intValue as int?));
 
         // 2. Convert the metadata into a script word

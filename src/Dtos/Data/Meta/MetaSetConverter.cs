@@ -99,7 +99,7 @@ public static class MetaSetConverter
         poco.Name = dto.Name;
         poco.Reference = dto.Reference.ToPoco();
         poco.Schema = dto.Schema.ToPoco();
-        poco.WithItems(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
+        poco.AddItems(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
 
         return poco;
     }

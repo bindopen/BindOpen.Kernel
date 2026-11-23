@@ -57,7 +57,7 @@ public class MetaObjectSetJsonTests
         var meta2 = BdoData.NewObject("object2", _obj2);
         var meta3 = BdoData.NewObject("object3", _obj3);
 
-        _metaSet = BdoData.NewNode(meta1, meta2, meta3);
+        _metaSet = BdoData.NewSet(meta1, meta2, meta3);
 
         Test(_metaSet);
     }

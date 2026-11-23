@@ -109,7 +109,7 @@ public class BdoConnectorTests
         connector.UsingConnection((conn, log) =>
         {
             // 1. Pull data using a parameter set
-            var paramSet = BdoData.NewNode(
+            var paramSet = BdoData.NewSet(
                 BdoData.NewObject(nameof(BdoSchema.GroupId)));
 
             var entities = conn.Pull(paramSet, log);
