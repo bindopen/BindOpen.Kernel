@@ -7,28 +7,54 @@ using NUnit.Framework;
 namespace BindOpen.Scoping.Script;
 
 /// <summary>
-/// This class provides unit tests for BdoScriptword operations, ensuring correct
-/// string representation, concatenation, and interpretation of script logic.
+/// Contains unit tests for <see cref="BdoScriptword"/> operations, verifying string serialization,
+/// template concatenation, deep structural equality, and expression interpretation within the BindOpen scoping engine.
 /// </summary>
-[TestFixture, Order(401)]
+/// <remarks>
+/// These tests verify that nested and chained <see cref="IBdoScriptword"/> trees render valid BindOpen script syntax,
+/// automatically wrap themselves in <c>{{ }}</c> delimiters when concatenated with plain strings, and evaluate
+/// accurately when processed by <see cref="ScopingTestData.ScriptInterpreter"/>.
+/// </remarks>
+[TestFixture]
 public class BdoScriptwordTests
 {
+    /// <summary>
+    /// Gets the expected string representation for a nested <c>$eq</c> and <c>$text</c> script expression.
+    /// </summary>
     public readonly string _scriptA = "$eq('MYTABLE', $text('MYTABLE'))";
 
+    /// <summary>
+    /// Gets the programmatic <see cref="BdoScriptword"/> tree corresponding to <see cref="_scriptA"/>.
+    /// </summary>
     public readonly BdoScriptword _scriptwordA =
         (BdoScriptword)BdoScript.Function("eq", "MYTABLE", BdoScript.Function("text", "MYTABLE"));
 
+    /// <summary>
+    /// Gets a sample literal string used to test prefix and suffix concatenation with scriptwords.
+    /// </summary>
     public readonly string _stringA = "totomax";
 
+    /// <summary>
+    /// Gets the expected string representation for a chained variable and function call expression.
+    /// </summary>
     public readonly string _scriptB = "$('workflow').input('input1').value('value1')";
 
+    /// <summary>
+    /// Gets a complex script expression containing escaped quotes, commas, and parentheses.
+    /// </summary>
     public readonly string _scriptC = "$eq('i,np)ut''', 'i,np)ut'''))";
 
+    /// <summary>
+    /// Gets the programmatic chained <see cref="IBdoScriptword"/> instance corresponding to <see cref="_scriptB"/>.
+    /// </summary>
     public readonly IBdoScriptword _scriptwordB =
         BdoScript.Variable("workflow")
-        .Func("input", "input1")
-        .Func("value", "value1");
+            .Func("input", "input1")
+            .Func("value", "value1");
 
+    /// <summary>
+    /// Performs one-time setup before any tests in this fixture are executed.
+    /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
@@ -36,8 +62,11 @@ public class BdoScriptwordTests
     }
 
     /// <summary>
-    /// Standardized deep equality assertion for scriptword objects.
+    /// Performs a deep structural equality assertion between two <see cref="IBdoScriptword"/> instances,
+    /// ignoring circular <c>Parent</c> navigation references.
     /// </summary>
+    /// <param name="word1">The first scriptword instance to compare.</param>
+    /// <param name="word2">The second scriptword instance to compare.</param>
     public static void AssertEquals(IBdoScriptword word1, IBdoScriptword word2)
     {
         if (word1 == null || word2 == null)
@@ -54,9 +83,10 @@ public class BdoScriptwordTests
     }
 
     /// <summary>
-    /// Tests that evaluating a null expression returns a null result.
+    /// Verifies that evaluating a <see langword="null"/> <see cref="BdoExpression"/> via
+    /// <see cref="ScopingTestData.ScriptInterpreter"/> safely returns <see langword="null"/>.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void EvaluateScriptNullTest()
     {
         BdoExpression exp = null;
@@ -66,24 +96,29 @@ public class BdoScriptwordTests
     }
 
     /// <summary>
-    /// Tests the creation of a metadata set used for variable resolution within scripts.
+    /// Verifies that an <see cref="IBdoMetaSet"/> created from key-value tuples properly stores
+    /// and resolves typed script variables.
     /// </summary>
-    [Test, Order(2)]
+    [Test]
     public void CreateVariableSetTest()
     {
         var metaSet = BdoData.NewSet(
             ("var1", "sample1"),
             ("var2", 4.55));
 
-        Assert.That(metaSet.Count, Is.EqualTo(2), "Variable set count mismatch.");
-        Assert.That(metaSet.GetData<string>("var1"), Is.EqualTo("sample1"), "Variable 'var1' resolution failed.");
-        Assert.That(metaSet.GetData<double>("var2"), Is.EqualTo(4.55), "Variable 'var2' resolution failed.");
+        Assert.Multiple(() =>
+        {
+            Assert.That(metaSet.Count, Is.EqualTo(2), "Variable set count mismatch.");
+            Assert.That(metaSet.GetData<string>("var1"), Is.EqualTo("sample1"), "Variable 'var1' resolution failed.");
+            Assert.That(metaSet.GetData<double>("var2"), Is.EqualTo(4.55), "Variable 'var2' resolution failed.");
+        });
     }
 
     /// <summary>
-    /// Tests the string representation of a scriptword function.
+    /// Verifies that calling <c>ToString()</c> on a nested <see cref="BdoScriptword"/> function
+    /// produces the expected canonical script string.
     /// </summary>
-    [Test, Order(3)]
+    [Test]
     public void WordToStringTest()
     {
         var script = _scriptwordA?.ToString();
@@ -91,25 +126,29 @@ public class BdoScriptwordTests
     }
 
     /// <summary>
-    /// Tests the automatic wrapping of scriptwords when concatenated with plain strings.
-    /// BindOpen scripts are wrapped in {{ }} when treated as templates.
+    /// Verifies that concatenating a <see cref="BdoScriptword"/> before or after a plain string
+    /// automatically wraps the scriptword in <c>{{ }}</c> template delimiters.
     /// </summary>
-    [Test, Order(4)]
+    [Test]
     public void WordConcatenationTest()
     {
-        var st = _stringA + _scriptwordA;
-        var script = _stringA + "{{" + _scriptA + "}}";
-        Assert.That(st, Is.EqualTo(script).IgnoreCase, "Scriptword prefix concatenation failed.");
+        Assert.Multiple(() =>
+        {
+            var st = _stringA + _scriptwordA;
+            var script = _stringA + "{{" + _scriptA + "}}";
+            Assert.That(st, Is.EqualTo(script).IgnoreCase, "Scriptword prefix concatenation failed.");
 
-        st = _scriptwordA + _stringA;
-        script = "{{" + _scriptA + "}}" + _stringA;
-        Assert.That(st, Is.EqualTo(script).IgnoreCase, "Scriptword suffix concatenation failed.");
+            st = _scriptwordA + _stringA;
+            script = "{{" + _scriptA + "}}" + _stringA;
+            Assert.That(st, Is.EqualTo(script).IgnoreCase, "Scriptword suffix concatenation failed.");
+        });
     }
 
     /// <summary>
-    /// Tests the string representation of a chained variable and function calls.
+    /// Verifies that a chained variable and function call <see cref="IBdoScriptword"/> serializes
+    /// to the expected dot-notation script string.
     /// </summary>
-    [Test, Order(4)]
+    [Test]
     public void CompareSubwordStringTest()
     {
         var script = _scriptwordB.ToString();
@@ -118,9 +157,10 @@ public class BdoScriptwordTests
     }
 
     /// <summary>
-    /// Tests the evaluation of a script expression containing escaped characters and delimiters.
+    /// Verifies that <see cref="ScopingTestData.ScriptInterpreter"/> accurately parses and evaluates
+    /// a <see cref="BdoExpression"/> of kind <see cref="BdoExpressionKind.Script"/> containing escaped quotes and delimiters.
     /// </summary>
-    [Test, Order(5)]
+    [Test]
     public void EvaluateExpressionTest()
     {
         var script = BdoData.NewExp(_scriptC, BdoExpressionKind.Script);
@@ -130,9 +170,10 @@ public class BdoScriptwordTests
     }
 
     /// <summary>
-    /// Tests the evaluation of a raw string as a script.
+    /// Verifies that <see cref="ScopingTestData.ScriptInterpreter"/> accurately parses and evaluates
+    /// a raw script string containing escaped quotes and delimiters directly.
     /// </summary>
-    [Test, Order(6)]
+    [Test]
     public void EvaluateStringTest()
     {
         var result = ScopingTestData.ScriptInterpreter.Evaluate<bool?>(_scriptC);

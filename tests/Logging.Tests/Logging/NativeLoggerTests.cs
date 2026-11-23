@@ -6,7 +6,16 @@ using System.Linq;
 
 namespace BindOpen.Logging.Loggers;
 
-[TestFixture, Order(400)]
+/// <summary>
+/// Contains unit tests for external logging framework integration (Microsoft.Extensions.Logging and Serilog)
+/// within BindOpen Logging.
+/// </summary>
+/// <remarks>
+/// These tests verify that <see cref="BdoLogging"/> can wrap an <see cref="ILoggerFactory"/> configured
+/// with third-party providers such as Serilog, and accurately record and forward high-volume
+/// hierarchical logs without losing events or child entries.
+/// </remarks>
+[TestFixture]
 public class ExternalLoggerTests
 {
     private readonly string _filePath_serilog = GlobalVariables.WorkingFolder + "Serilog.txt";
@@ -15,6 +24,9 @@ public class ExternalLoggerTests
 
     private dynamic _testData;
 
+    /// <summary>
+    /// Initializes test parameters before any tests in this fixture are executed.
+    /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
@@ -24,16 +36,30 @@ public class ExternalLoggerTests
         };
     }
 
+    /// <summary>
+    /// Validates that the specified <see cref="IBdoCompleteLog"/> contains the expected number
+    /// of errors, exceptions, messages, warnings, and child log entries.
+    /// </summary>
+    /// <param name="log">The complete log instance to validate.</param>
     private void Test(IBdoCompleteLog log)
     {
-        Assert.That(log.Errors().Count() == _testData.itemNumber, string.Format("Bad insertion of errors ({0} expected; {1} found)", _testData.itemNumber, _log.Errors().Count()));
-        Assert.That(log.Exceptions().Count() == _testData.itemNumber, string.Format("Bad insertion of exceptions ({0} expected; {1} found)", _testData.itemNumber, _log.Exceptions().Count()));
-        Assert.That(log.Messages().Count() == _testData.itemNumber, string.Format("Bad insertion of messages ({0} expected; {1} found)", _testData.itemNumber, _log.Messages().Count()));
-        Assert.That(log.Warnings().Count() == _testData.itemNumber, string.Format("Bad insertion of warnings ({0} expected; {1} found)", _testData.itemNumber, _log.Warnings().Count()));
-        Assert.That(log.Children().Count() == _testData.itemNumber, string.Format("Bad insertion of sub logs ({0} expected; {1} found)", _testData.itemNumber, _log.Children().Count()));
+        int expectedCount = _testData.itemNumber;
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(log.Errors().Count(), Is.EqualTo(expectedCount), $"Bad insertion of errors ({expectedCount} expected; {log.Errors().Count()} found).");
+            Assert.That(log.Exceptions().Count(), Is.EqualTo(expectedCount), $"Bad insertion of exceptions ({expectedCount} expected; {log.Exceptions().Count()} found).");
+            Assert.That(log.Messages().Count(), Is.EqualTo(expectedCount), $"Bad insertion of messages ({expectedCount} expected; {log.Messages().Count()} found).");
+            Assert.That(log.Warnings().Count(), Is.EqualTo(expectedCount), $"Bad insertion of warnings ({expectedCount} expected; {log.Warnings().Count()} found).");
+            Assert.That(log.Children().Count(), Is.EqualTo(expectedCount), $"Bad insertion of sub-logs ({expectedCount} expected; {log.Children().Count()} found).");
+        });
     }
 
-    [Test, Order(1)]
+    /// <summary>
+    /// Verifies that a BindOpen logger backed by a Serilog-configured <see cref="ILoggerFactory"/>
+    /// processes and retains 1,000 entries of each event category and child log level.
+    /// </summary>
+    [Test]
     public void CreateTest()
     {
         Log.Logger = new LoggerConfiguration()

@@ -6,24 +6,25 @@ using NUnit.Framework;
 namespace BindOpen.Data.Meta;
 
 /// <summary>
-/// Contains unit tests for <see cref="IBdoMetaObject"/>, focusing on object-to-meta mapping and reflection.
+/// Contains unit tests for <see cref="IBdoMetaObject"/>, focusing on object-to-metadata mapping and reflection.
 /// </summary>
 /// <remarks>
-/// These tests ensure that POCO objects can be converted into BindOpen metadata objects 
-/// and that the underlying data remains consistent throughout the transformation process.
+/// These tests verify that POCO instances can be converted into BindOpen metadata objects
+/// via extension methods or factory builders, and that their underlying data remains intact
+/// throughout the transformation process.
 /// </remarks>
-[TestFixture, Order(201)]
+[TestFixture]
 public class BdoMetaObjectTests
 {
     private object _obj = null;
 
     /// <summary>
-    /// The meta-object instance resulting from the conversion, accessible for cross-test validation.
+    /// Gets or sets the <see cref="IBdoMetaObject"/> instance produced during test execution.
     /// </summary>
     public IBdoMetaObject _metaObject;
 
     /// <summary>
-    /// Initializes the source POCO object using a faker.
+    /// Initializes the source POCO instance with randomized test data before executing tests.
     /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -32,8 +33,8 @@ public class BdoMetaObjectTests
     }
 
     /// <summary>
-    /// Internal validation method to ensure the data inside the meta-object 
-    /// matches the original source object.
+    /// Validates that the data extracted from <see cref="_metaObject"/> is structurally equivalent
+    /// to the original <see cref="_obj"/> source instance.
     /// </summary>
     private void Test()
     {
@@ -44,9 +45,9 @@ public class BdoMetaObjectTests
     }
 
     /// <summary>
-    /// Tests the conversion of a POCO to a meta-object using the extension method syntax.
+    /// Verifies that a POCO can be converted into a <see cref="BdoMetaObject"/> using the <c>ToMeta</c> extension method.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void ToMetaTest()
     {
         _metaObject = _obj.ToMeta<BdoMetaObject>();
@@ -54,9 +55,9 @@ public class BdoMetaObjectTests
     }
 
     /// <summary>
-    /// Tests the creation of a meta-object using different factory method patterns.
+    /// Verifies that an <see cref="IBdoMetaObject"/> can be instantiated and populated using direct and fluent factory methods.
     /// </summary>
-    [Test, Order(2)]
+    [Test]
     public void NewTest()
     {
         // 1. Direct factory creation

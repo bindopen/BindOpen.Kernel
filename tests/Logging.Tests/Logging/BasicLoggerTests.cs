@@ -4,13 +4,24 @@ using NUnit.Framework;
 
 namespace BindOpen.Logging.Loggers;
 
-[TestFixture, Order(400)]
+/// <summary>
+/// Contains unit tests for basic logger implementations (<see cref="BdoTraceLogger"/> and <see cref="BdoConsoleLogger"/>)
+/// and root log lifecycle management within BindOpen Logging.
+/// </summary>
+/// <remarks>
+/// These tests verify root log singleton consistency per logger instance and validate
+/// high-volume hierarchical log population and output rendering.
+/// </remarks>
+[TestFixture]
 public class BasicLoggerTests
 {
     private readonly string _filePath_serilog = GlobalVariables.WorkingFolder + "Debug.txt";
 
     private dynamic _testData;
 
+    /// <summary>
+    /// Initializes test parameters before any tests in this fixture are executed.
+    /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
@@ -20,6 +31,11 @@ public class BasicLoggerTests
         };
     }
 
+    /// <summary>
+    /// Populates the specified <see cref="IBdoLog"/> with a structured hierarchy of errors,
+    /// exceptions, messages, warnings, and nested child log entries.
+    /// </summary>
+    /// <param name="log">The target log instance to populate.</param>
     private void PopulateLog(IBdoLog log)
     {
         if (log != null)
@@ -39,7 +55,11 @@ public class BasicLoggerTests
         }
     }
 
-    [Test, Order(1)]
+    /// <summary>
+    /// Verifies that consecutive calls to <see cref="IBdoLogger.NewRootLog"/> on the same logger
+    /// return the same root log instance identified by matching <see cref="IBdoLog.Identifier"/> values.
+    /// </summary>
+    [Test]
     public void RootLogTest()
     {
         var logger = BdoLogging.NewLogger<BdoTraceLogger>();
@@ -48,10 +68,14 @@ public class BasicLoggerTests
 
         var newLog = logger.NewRootLog();
 
-        Assert.That(log?.Identifier == newLog?.Identifier, "Root log must be the same");
+        Assert.That(log?.Identifier, Is.EqualTo(newLog?.Identifier), "Root log instances returned by the same logger must share the same identifier.");
     }
 
-    [Test, Order(2)]
+    /// <summary>
+    /// Verifies that <see cref="BdoTraceLogger"/> successfully processes and writes a large
+    /// multi-level hierarchy of log entries without errors.
+    /// </summary>
+    [Test]
     public void TraceLoggerTest()
     {
         var logger = BdoLogging.NewLogger<BdoTraceLogger>();
@@ -62,7 +86,11 @@ public class BasicLoggerTests
         logger.Log(log);
     }
 
-    [Test, Order(3)]
+    /// <summary>
+    /// Verifies that <see cref="BdoConsoleLogger"/> successfully processes and renders a large
+    /// multi-level hierarchy of log entries to the console output without errors.
+    /// </summary>
+    [Test]
     public void ConsoleLoggerTest()
     {
         var logger = BdoLogging.NewLogger<BdoConsoleLogger>();

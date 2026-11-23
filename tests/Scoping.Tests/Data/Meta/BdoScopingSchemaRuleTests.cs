@@ -5,14 +5,23 @@ using NUnit.Framework;
 namespace BindOpen.Data.Meta;
 
 /// <summary>
-/// This class provides unit tests for schema rules, specifically focusing on 
-/// requirement levels and constraint validation within the BindOpen scoping engine.
+/// Contains unit tests for schema rule evaluation, specifically focusing on
+/// <see cref="RequirementLevels"/> resolution and constraint validation within the BindOpen scoping engine.
 /// </summary>
-[TestFixture, Order(100)]
+/// <remarks>
+/// These tests verify that <see cref="IBdoSchema"/> rules dynamically evaluate node and child item
+/// requirement levels based on contextual data values, and enforce allowed-value constraints
+/// during metadata validation.
+/// </remarks>
+[TestFixture]
 public class BdoScopingSchemaRuleTests
 {
     private IBdoSchema _schema;
 
+    /// <summary>
+    /// Initializes the shared <see cref="IBdoSchema"/> test instance from <see cref="BdoScopingSchemaFaker"/>
+    /// before any tests in this fixture are executed.
+    /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
@@ -21,9 +30,11 @@ public class BdoScopingSchemaRuleTests
     }
 
     /// <summary>
-    /// Tests the retrieval of requirement levels based on the current data context and schema.
+    /// Verifies that <c>GetRequirementLevel</c> dynamically resolves <see cref="RequirementLevels.None"/>,
+    /// <see cref="RequirementLevels.Required"/>, and <see cref="RequirementLevels.Optional"/> based on
+    /// the active schema rules and current metadata values.
     /// </summary>
-    [Test, Order(2)]
+    [Test]
     public void RequirementTest()
     {
         // 1. Meta with empty schema: Requirement should be None
@@ -54,9 +65,10 @@ public class BdoScopingSchemaRuleTests
     }
 
     /// <summary>
-    /// Tests the validator's ability to check a meta-node against requirement levels.
+    /// Verifies that the scope validator successfully validates a metadata set configured
+    /// with inline <see cref="RequirementLevels.Optional"/> node and item requirements.
     /// </summary>
-    [Test, Order(3)]
+    [Test]
     public void RequirementCheckTest()
     {
         // Creating a meta node with inline schema requirements
@@ -73,9 +85,11 @@ public class BdoScopingSchemaRuleTests
     }
 
     /// <summary>
-    /// Tests the retrieval of requirement levels specifically for child items.
+    /// Verifies that <c>GetItemRequirementLevel</c> dynamically resolves child item requirement levels
+    /// (<see cref="RequirementLevels.Required"/> vs. <see cref="RequirementLevels.Optional"/>) according
+    /// to the parent set's schema rules and property values.
     /// </summary>
-    [Test, Order(4)]
+    [Test]
     public void ItemRequirementTest()
     {
         // 1. Basic schema: Item requirement should be Optional by default
@@ -106,9 +120,10 @@ public class BdoScopingSchemaRuleTests
     }
 
     /// <summary>
-    /// Tests the Enum constraint validation (MustBeInList).
+    /// Verifies that <c>MustBeInList&lt;RequirementLevels&gt;()</c> rejects improperly qualified
+    /// enumeration strings (such as <c>"RequirementLevels.Optional"</c>) during validation.
     /// </summary>
-    [Test, Order(6)]
+    [Test]
     public void InEnumTest()
     {
         // meta0 uses a string value that is technically the name of the Enum, 

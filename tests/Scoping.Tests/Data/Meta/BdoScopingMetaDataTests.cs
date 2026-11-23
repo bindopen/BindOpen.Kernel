@@ -7,15 +7,23 @@ using NUnit.Framework;
 namespace BindOpen.Data.Meta;
 
 /// <summary>
-/// This class provides unit tests for scoping-related metadata operations, 
-/// including references, labels, and conditional evaluations.
+/// Contains unit tests for scoping-related metadata operations,
+/// including script reference resolution, dynamic label generation, and conditional evaluations.
 /// </summary>
-[TestFixture, Order(201)]
+/// <remarks>
+/// These tests verify that <see cref="IBdoMetaData"/> elements properly interact with an
+/// <see cref="IBdoScope"/> to resolve variable references, format labels from templates,
+/// and evaluate existence conditions against schemas and metadata values.
+/// </remarks>
+[TestFixture]
 public class BdoScopingMetaDataTests
 {
     private object _obj;
     private IBdoSchema _schema;
 
+    /// <summary>
+    /// Initializes mock object and schema instances before any tests in this fixture are executed.
+    /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
@@ -25,9 +33,10 @@ public class BdoScopingMetaDataTests
     }
 
     /// <summary>
-    /// Tests the ability to resolve data through a script reference within a meta-object.
+    /// Verifies that an <see cref="IBdoMetaObject"/> configured with a <see cref="BdoScript.Var"/>
+    /// reference resolves its underlying data from the provided variable set within a scope.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void ReferenceTest()
     {
         var entity = BdoData.New<EntityFake>();
@@ -43,9 +52,10 @@ public class BdoScopingMetaDataTests
     }
 
     /// <summary>
-    /// Tests the automatic label generation using predefined formats and script-based templates.
+    /// Verifies automatic label script generation using <see cref="LabelFormats.NameColonValue"/>
+    /// and subsequent evaluation of the formatted label string within a scope.
     /// </summary>
-    [Test, Order(2)]
+    [Test]
     public void LabelTest()
     {
         var meta1 = BdoData.NewScalar("toto", 23);
@@ -62,12 +72,13 @@ public class BdoScopingMetaDataTests
     }
 
     /// <summary>
-    /// Tests the conditional evaluation of metadata nodes based on their schema and data content.
+    /// Verifies conditional existence evaluation (<c>GetConditionValue</c>) on metadata sets
+    /// using both inline <see cref="BdoScript"/> conditions and <see cref="IBdoSchema"/> rules.
     /// </summary>
-    [Test, Order(3)]
+    [Test]
     public void ConditionTest()
     {
-        // 1. Basic test with an empty schema (should be valid/existent by default)
+        // 1. Basic test with a non-matching condition (should evaluate to false)
         var meta0 = BdoData.NewSet("meta-test")
             .WithCondition(
                 BdoScript.NewCondition<IBdoMetaData>(q =>
@@ -77,7 +88,7 @@ public class BdoScopingMetaDataTests
         var existence0 = meta0.GetConditionValue(ScopingTestData.Scope);
         Assert.That(existence0, Is.False, "The basic condition check failed.");
 
-        // 2. Test with full schema and valid data
+        // 2. Test with matching condition and valid data
         var meta1 = BdoData.NewSet("meta-test")
             .WithCondition(
                 BdoScript.NewCondition<IBdoMetaData>(q =>

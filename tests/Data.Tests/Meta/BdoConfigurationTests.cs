@@ -11,24 +11,38 @@ namespace BindOpen.Data.Meta;
 /// Provides comprehensive unit tests for <see cref="IBdoConfiguration"/> management.
 /// </summary>
 /// <remarks>
-/// These tests focus on configuration creation, hierarchical navigation (descendants), 
-/// deep cloning, and merging/updating configurations.
+/// These tests verify configuration creation, hierarchical navigation (descendants),
+/// deep cloning, and merging/updating behaviors across nested configurations.
 /// </remarks>
-[TestFixture, Order(100)]
+[TestFixture]
 public class BdoConfigurationTests
 {
     private readonly string _configName10 = "Child1";
     private readonly string _configName10a = "Child1a";
     private readonly string _configName20 = "Child2";
 
+    /// <summary>
+    /// Gets or sets the primary parent configuration used across test cases.
+    /// </summary>
     public IBdoConfiguration _config10 = null;
+
+    /// <summary>
+    /// Gets or sets the child configuration nested under <see cref="_config10"/>.
+    /// </summary>
     public IBdoConfiguration _config10a = null;
 
+    /// <summary>
+    /// Gets or sets the secondary parent configuration used for merge and update tests.
+    /// </summary>
     public IBdoConfiguration _config20 = null;
+
+    /// <summary>
+    /// Gets or sets the child configuration nested under <see cref="_config20"/>.
+    /// </summary>
     public IBdoConfiguration _config20a = null;
 
     /// <summary>
-    /// Initializes complex configuration trees for testing.
+    /// Initializes complex configuration hierarchies with randomized test data before executing tests.
     /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -77,8 +91,14 @@ public class BdoConfigurationTests
     }
 
     /// <summary>
-    /// Asserts that two configurations are equivalent, excluding their parent references.
+    /// Asserts that two <see cref="IBdoConfiguration"/> instances are structurally equivalent,
+    /// excluding their parent references.
     /// </summary>
+    /// <param name="config1">The first configuration to compare.</param>
+    /// <param name="config2">The second configuration to compare.</param>
+    /// <exception cref="AssertionException">
+    /// Thrown when only one of the configurations is <see langword="null"/> or when their properties do not match.
+    /// </exception>
     public static void AssertEquals(IBdoConfiguration config1, IBdoConfiguration config2)
     {
         if ((config1 != null && config2 == null) || (config1 == null && config2 != null))
@@ -90,9 +110,9 @@ public class BdoConfigurationTests
     }
 
     /// <summary>
-    /// Tests basic data retrieval from a configuration.
+    /// Verifies basic typed data retrieval from a configuration by key.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void GetConfigurationItem1()
     {
         var text = _config10.GetData<string>("text1");
@@ -100,9 +120,9 @@ public class BdoConfigurationTests
     }
 
     /// <summary>
-    /// Tests the resolution of descendant metadata using path-based and index-based navigation.
+    /// Verifies descendant metadata resolution using empty, path-based, index-based, and invalid navigation paths.
     /// </summary>
-    [Test, Order(2)]
+    [Test]
     public void DescendantTest()
     {
         // 1. Null check
@@ -123,9 +143,9 @@ public class BdoConfigurationTests
     }
 
     /// <summary>
-    /// Tests the deep cloning capability of configurations.
+    /// Verifies that deep cloning produces an independent configuration structurally equivalent to the source.
     /// </summary>
-    [Test, Order(3)]
+    [Test]
     public void CloneTest()
     {
         var meta = _config10.Clone<IBdoConfiguration>();
@@ -133,9 +153,9 @@ public class BdoConfigurationTests
     }
 
     /// <summary>
-    /// Tests the merging and updating logic of two configurations.
+    /// Verifies that updating a configuration properly overwrites scalars and merges nested sets and sub-configurations.
     /// </summary>
-    [Test, Order(4)]
+    [Test]
     public void UpdateTest()
     {
         var meta = _config10.Clone<IBdoConfiguration>();

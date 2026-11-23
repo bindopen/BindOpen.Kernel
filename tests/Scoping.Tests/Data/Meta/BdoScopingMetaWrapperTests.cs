@@ -4,12 +4,19 @@ using NUnit.Framework;
 namespace BindOpen.Data.Meta;
 
 /// <summary>
-/// This class provides unit tests for the BdoMetaWrapper functionality,
-/// ensuring that metadata sets can be mapped to and from strongly-typed C# objects.
+/// Contains unit tests for <see cref="BdoMetaWrapper"/> functionality, ensuring that
+/// metadata sets can be bidirectionally mapped to and from strongly-typed C# wrapper objects.
 /// </summary>
-[TestFixture, Order(100)]
+/// <remarks>
+/// These tests verify property synchronization (<c>UpdateDetail</c> and <c>UpdateProperties</c>),
+/// collection and dictionary bindings, nested object hydration, and descendant property traversal.
+/// </remarks>
+[TestFixture]
 public class BdoScopingMetaWrapperTests
 {
+    /// <summary>
+    /// Performs one-time setup before any tests in this fixture are executed.
+    /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
@@ -17,10 +24,10 @@ public class BdoScopingMetaWrapperTests
     }
 
     /// <summary>
-    /// Tests the basic creation of a meta wrapper and its ability to sync 
-    /// property values with an underlying metadata set.
+    /// Verifies basic <see cref="MetaWrapperFake"/> instantiation and bidirectional synchronization
+    /// between strongly-typed C# properties and the underlying <see cref="IBdoMetaSet"/> detail.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void CreateTest()
     {
         // 1. Instantiate wrapper with an initial property set
@@ -49,9 +56,10 @@ public class BdoScopingMetaWrapperTests
     }
 
     /// <summary>
-    /// Tests the retrieval of deeply nested (descendant) metadata using path-based queries.
+    /// Verifies the retrieval of deeply nested descendant metadata elements using both
+    /// named path syntax (<c>^config1A</c>) and ordinal index syntax (<c>^:0</c>).
     /// </summary>
-    [Test, Order(2)]
+    [Test]
     public void DescendantTest()
     {
         var obj = ScopingTestData.Scope.NewMetaWrapper<MetaWrapperFake>(
@@ -70,9 +78,9 @@ public class BdoScopingMetaWrapperTests
     }
 
     /// <summary>
-    /// Tests the mapping of scalar arrays to C# lists within the wrapper.
+    /// Verifies that scalar array metadata entries map cleanly onto strongly-typed C# <see cref="System.Collections.Generic.IList{T}"/> properties.
     /// </summary>
-    [Test, Order(3)]
+    [Test]
     public void ListTest()
     {
         var values = new[] { "daily", "month" };
@@ -85,9 +93,9 @@ public class BdoScopingMetaWrapperTests
     }
 
     /// <summary>
-    /// Tests the mapping of meta-nodes to C# dictionaries.
+    /// Verifies that child <see cref="IBdoMetaSet"/> nodes map cleanly onto strongly-typed C# dictionary properties.
     /// </summary>
-    [Test, Order(4)]
+    [Test]
     public void DictionaryTest()
     {
         var obj = ScopingTestData.Scope.NewMetaWrapper<MetaWrapperFake>(
@@ -101,9 +109,10 @@ public class BdoScopingMetaWrapperTests
     }
 
     /// <summary>
-    /// Tests cumulative updates to the metadata detail.
+    /// Verifies that consecutive calls to <c>UpdateDetail</c> merge new entries and overwrite
+    /// duplicate keys cumulatively without duplicating existing elements.
     /// </summary>
-    [Test, Order(5)]
+    [Test]
     public void UpdateDetailTest()
     {
         var obj = ScopingTestData.Scope.NewMetaWrapper<MetaWrapperFake>();
@@ -115,9 +124,10 @@ public class BdoScopingMetaWrapperTests
     }
 
     /// <summary>
-    /// Tests the mapping of nested object entities inside the metadata.
+    /// Verifies that nested <see cref="IBdoMetaObject"/> nodes hydrate strongly-typed complex child properties
+    /// on the wrapper instance when <c>UpdateProperties</c> is invoked.
     /// </summary>
-    [Test, Order(7)]
+    [Test]
     public void WithObjectTest()
     {
         var obj = ScopingTestData.Scope.NewMetaWrapper<MetaWrapperFake>();
@@ -125,11 +135,11 @@ public class BdoScopingMetaWrapperTests
             BdoData.NewConfig(
                 BdoData.NewScalar("testList", "monthA"),
                 BdoMetaSetExtensions.Add(
-BdoData.NewObject("entityFake")
-, BdoData.NewScalar("stringValue", "_string"),
-                        BdoData.NewScalar("intValue", 1500),
-                        BdoData.NewScalar("enumValue", AccessibilityLevels.Restricted)
-                    )));
+                    BdoData.NewObject("entityFake"),
+                    BdoData.NewScalar("stringValue", "_string"),
+                    BdoData.NewScalar("intValue", 1500),
+                    BdoData.NewScalar("enumValue", AccessibilityLevels.Restricted)
+                )));
 
         obj.UpdateProperties();
 
@@ -139,9 +149,10 @@ BdoData.NewObject("entityFake")
     }
 
     /// <summary>
-    /// Tests the wrapper's ability to update properties located in descendant nodes.
+    /// Verifies that wrapper properties mapped to nested descendant paths accurately read from
+    /// and write back to the underlying metadata hierarchy during <c>UpdateProperties</c> and <c>UpdateDetail</c>.
     /// </summary>
-    [Test, Order(8)]
+    [Test]
     public void DescendantPropertiesTest()
     {
         var obj = ScopingTestData.Scope.NewMetaWrapper<MetaWrapperFake>();
@@ -149,11 +160,11 @@ BdoData.NewObject("entityFake")
             BdoData.NewConfig(
                 BdoData.NewScalar("testListA", "monthA"),
                 BdoMetaSetExtensions.Add(
-BdoData.NewObject("entityFake")
-, BdoData.NewScalar("stringValue", "_string"),
-                        BdoData.NewScalar("intValue", 1500),
-                        BdoData.NewScalar("enumValue", AccessibilityLevels.Restricted)
-                    )));
+                    BdoData.NewObject("entityFake"),
+                    BdoData.NewScalar("stringValue", "_string"),
+                    BdoData.NewScalar("intValue", 1500),
+                    BdoData.NewScalar("enumValue", AccessibilityLevels.Restricted)
+                )));
 
         obj.UpdateProperties();
         Assert.That(obj?.SubEnumValue, Is.EqualTo(AccessibilityLevels.Restricted));

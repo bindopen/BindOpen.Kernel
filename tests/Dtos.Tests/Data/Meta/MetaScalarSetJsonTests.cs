@@ -10,7 +10,16 @@ using System.Linq;
 
 namespace BindOpen.Data.Meta;
 
-[TestFixture, Order(202)]
+/// <summary>
+/// Contains unit tests for JSON serialization and deserialization of <see cref="IBdoMetaSet"/>
+/// collections populated with scalar metadata entries via <see cref="MetaSetDto"/> conversion.
+/// </summary>
+/// <remarks>
+/// These tests verify that scalar metadata entries—including arrays of numbers, strings, integers,
+/// binary buffers, and scalars with expression references—preserve deep structural equality when
+/// persisted to a JSON file and reloaded back into domain objects.
+/// </remarks>
+[TestFixture]
 public class MetaScalarSetJsonTests
 {
     private readonly string _filePath_json = DataTestData.WorkingFolder + "MetaScalarSet.json";
@@ -19,9 +28,15 @@ public class MetaScalarSetJsonTests
 
     private IBdoMetaSet _metaSet = null;
 
+    /// <summary>
+    /// Cleans up any leftover JSON output file and generates randomized scalar array datasets
+    /// using <see cref="Faker"/> before any tests in this fixture are executed.
+    /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
+        File.Delete(_filePath_json);
+
         var f = new Faker();
         _testData = new
         {
@@ -32,11 +47,21 @@ public class MetaScalarSetJsonTests
         };
     }
 
+    /// <summary>
+    /// Validates that both <see cref="IBdoMetaSet"/> instances are non-null and deeply equal,
+    /// ignoring circular <see cref="IBdoMetaData.Parent"/> references and default interface members.
+    /// </summary>
+    /// <param name="list1">The first metadata set to compare.</param>
+    /// <param name="list2">The second metadata set to compare.</param>
     public static void Test(
         IBdoMetaSet list1,
         IBdoMetaSet list2)
     {
-        Assert.That(list1 != null && list2 != null, "Meta list saving failed. ");
+        Assert.Multiple(() =>
+        {
+            Assert.That(list1, Is.Not.Null, "The first metadata set cannot be null.");
+            Assert.That(list2, Is.Not.Null, "The second metadata set cannot be null.");
+        });
 
         list1.WithDeepEqual(list2)
             .SkipDefault<IBdoMetaData>()
@@ -44,7 +69,12 @@ public class MetaScalarSetJsonTests
             .Assert();
     }
 
-    [Test, Order(2)]
+    /// <summary>
+    /// Verifies that an <see cref="IBdoMetaSet"/> can be constructed from heterogeneous
+    /// <see cref="IBdoMetaScalar"/> elements covering numeric, text, integer, binary, and
+    /// expression-referenced values.
+    /// </summary>
+    [Test]
     public void CreateTest()
     {
         var metas = new List<IBdoMetaData>
@@ -56,13 +86,19 @@ public class MetaScalarSetJsonTests
             BdoData.NewScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[0]),
             BdoData.NewScalar("float2", DataValueTypes.Number, (_testData.arrayNumber1 as double[])[1])
                 .WithReference(BdoData.NewExp("$sampleExp()", BdoExpressionKind.Auto))
-                //.WithSchemas(BdoMeta.NewSchema(), BdoMeta.NewSchema("spec1"))
         };
 
         _metaSet = BdoData.NewSet(metas.ToArray());
+
+        Assert.That(_metaSet, Is.Not.Null, "The scalar metadata set failed to initialize.");
+        Assert.That(_metaSet.Count, Is.EqualTo(metas.Count), "Scalar metadata set item count mismatch.");
     }
 
-    [Test, Order(7)]
+    /// <summary>
+    /// Verifies that the populated scalar <see cref="IBdoMetaSet"/> converts to a <see cref="MetaSetDto"/>
+    /// and saves cleanly to a JSON file on disk.
+    /// </summary>
+    [Test]
     public void SaveJsonTest()
     {
         if (_metaSet == null)
@@ -71,10 +107,14 @@ public class MetaScalarSetJsonTests
         }
 
         var isSaved = _metaSet.ToDto().SaveJson(_filePath_json);
-        Assert.That(isSaved, "Meta list saving failed. ");
+        Assert.That(isSaved, Is.True, "Meta list saving failed.");
     }
 
-    [Test, Order(8)]
+    /// <summary>
+    /// Verifies that the saved JSON file loads back into a <see cref="MetaSetDto"/>, converts to a POCO
+    /// via <c>ToPoco()</c>, and matches the original <see cref="IBdoMetaSet"/>.
+    /// </summary>
+    [Test]
     public void LoadJsonTest()
     {
         if (_metaSet == null || !File.Exists(_filePath_json))

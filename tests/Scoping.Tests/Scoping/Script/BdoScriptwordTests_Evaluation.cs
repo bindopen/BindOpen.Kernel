@@ -6,9 +6,15 @@ using NUnit.Framework;
 namespace BindOpen.Scoping.Script;
 
 /// <summary>
-/// This class provides unit tests for script evaluation, verifying the interpreter's 
-/// ability to process literals, variables, and nested functions within templates.
+/// Contains unit tests for script evaluation and parsing within the BindOpen scoping engine,
+/// verifying the interpreter's ability to process literals, variables, complex entities,
+/// chained function calls, and interpolated templates.
 /// </summary>
+/// <remarks>
+/// These tests cover direct <see cref="IBdoScriptword"/> evaluation, <see cref="BdoExpressionKind.Script"/>
+/// and <see cref="BdoExpressionKind.Auto"/> template rendering, variable set resolution, and AST extraction
+/// via <c>FindNextWord</c>.
+/// </remarks>
 [TestFixture]
 public class BdoScriptwordTests_Evaluation
 {
@@ -48,9 +54,10 @@ public class BdoScriptwordTests_Evaluation
     private readonly string _interpretedScript8 = "const-5500";
 
     /// <summary>
-    /// Tests the interpretation of a direct scriptword object.
+    /// Verifies the direct evaluation of a programmatic <see cref="IBdoScriptword"/> tree
+    /// representing <c>$eq('MYTABLE', $text('MYTABLE'))</c>.
     /// </summary>
-    [Test, Order(201)]
+    [Test]
     public void InterpreteWord1Test()
     {
         var interpreter = ScopingTestData.Scope.Interpreter;
@@ -60,9 +67,10 @@ public class BdoScriptwordTests_Evaluation
     }
 
     /// <summary>
-    /// Tests the interpretation of a raw script string using a script expression.
+    /// Verifies the evaluation of a raw <see cref="BdoExpressionKind.Script"/> expression string
+    /// against an empty variable set.
     /// </summary>
-    [Test, Order(202)]
+    [Test]
     public void InterpreteScript2Test()
     {
         var metaSet = BdoData.NewSet();
@@ -75,9 +83,9 @@ public class BdoScriptwordTests_Evaluation
     }
 
     /// <summary>
-    /// Tests the interpretation of a chained function call.
+    /// Verifies the evaluation of a chained script function call (<c>$eq('abc', 'efg').subFun('ijk')</c>).
     /// </summary>
-    [Test, Order(203)]
+    [Test]
     public void InterpreteScript3Test()
     {
         var exp = BdoData.NewExp(_script3, BdoExpressionKind.Script);
@@ -89,9 +97,10 @@ public class BdoScriptwordTests_Evaluation
     }
 
     /// <summary>
-    /// Tests variable resolution within a script.
+    /// Verifies variable lookup and equality comparison within a <see cref="BdoExpressionKind.Script"/>
+    /// expression (<c>$eq($('var1'), 'const')</c>).
     /// </summary>
-    [Test, Order(204)]
+    [Test]
     public void InterpreteScript4Test()
     {
         var metaSet = BdoData.NewSet(("var1", "const"));
@@ -104,9 +113,10 @@ public class BdoScriptwordTests_Evaluation
     }
 
     /// <summary>
-    /// Tests an 'Auto' expression (template) containing static text and dynamic script zones.
+    /// Verifies that a <see cref="BdoExpressionKind.Auto"/> template string containing static text
+    /// surrounding a <c>{{ ... }}</c> script block interpolates the evaluated result inline.
     /// </summary>
-    [Test, Order(205)]
+    [Test]
     public void InterpreteScript5Test()
     {
         var metaSet = BdoData.NewSet(("var1", "const"));
@@ -119,9 +129,10 @@ public class BdoScriptwordTests_Evaluation
     }
 
     /// <summary>
-    /// Tests the interpretation of a scriptword containing a complex entity object.
+    /// Verifies the evaluation of a scriptword passing a complex CLR object (<see cref="EntityFake"/>)
+    /// into <see cref="BdoScript.Function"/> (<c>$text</c>) for string conversion and comparison.
     /// </summary>
-    [Test, Order(206)]
+    [Test]
     public void InterpreteScript6Test()
     {
         var interpreter = ScopingTestData.Scope.Interpreter;
@@ -131,9 +142,10 @@ public class BdoScriptwordTests_Evaluation
     }
 
     /// <summary>
-    /// Tests complex concatenation within a dynamic script zone.
+    /// Verifies multi-argument string concatenation (<c>$concat</c>) combining evaluated boolean comparisons
+    /// and string literals inside a <c>{{ ... }}</c> script expression.
     /// </summary>
-    [Test, Order(207)]
+    [Test]
     public void InterpreteScript7Test()
     {
         var varSet = BdoData.NewSet(
@@ -147,9 +159,10 @@ public class BdoScriptwordTests_Evaluation
     }
 
     /// <summary>
-    /// Tests simple template evaluation with multiple variable injections.
+    /// Verifies template interpolation containing multiple adjacent variable placeholders
+    /// (<c>{{$(var1)}}-{{$(var2)}}</c>) resolved from an <see cref="IBdoMetaSet"/>.
     /// </summary>
-    [Test, Order(208)]
+    [Test]
     public void VariableSetTest()
     {
         var varSet = BdoData.NewSet(
@@ -163,16 +176,21 @@ public class BdoScriptwordTests_Evaluation
     }
 
     /// <summary>
-    /// Tests the parser's ability to find and recreate a scriptword structure from a raw string.
+    /// Verifies that <c>FindNextWord</c> parses a raw script string and reconstructs an
+    /// <see cref="IBdoScriptword"/> matching the expected root function name and argument count.
     /// </summary>
-    [Test, Order(4)]
+    [Test]
     public void CreateWordFromScriptTest()
     {
         var interpreter = ScopingTestData.Scope.Interpreter;
         var scriptword = interpreter.FindNextWord(_scriptA);
 
-        Assert.That(scriptword, Is.Not.Null);
-        Assert.That(scriptword.Name, Is.EqualTo(_scriptwordA.Name).IgnoreCase, "Parser failed to find the correct root function name.");
-        Assert.That(scriptword.Count, Is.EqualTo(_scriptwordA.Count), "Parser found an incorrect number of arguments.");
+        Assert.That(scriptword, Is.Not.Null, "Parser returned null instead of a scriptword instance.");
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(scriptword.Name, Is.EqualTo(_scriptwordA.Name).IgnoreCase, "Parser failed to find the correct root function name.");
+            Assert.That(scriptword.Count, Is.EqualTo(_scriptwordA.Count), "Parser found an incorrect number of arguments.");
+        });
     }
 }

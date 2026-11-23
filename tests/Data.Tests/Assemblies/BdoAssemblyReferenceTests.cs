@@ -9,24 +9,24 @@ namespace BindOpen.Data.Assemblies;
 /// Contains unit tests for assembly reference management within the BindOpen Kernel.
 /// </summary>
 /// <remarks>
-/// These tests ensure that assembly identifiers, versions, and aliases are 
-/// correctly handled and compared.
+/// These tests verify that assembly identifiers, versions, file names, and aliases
+/// are properly initialized, populated, and compared for equality.
 /// </remarks>
-[TestFixture, Order(210)]
+[TestFixture]
 public class BdoAssemblyReferenceTests
 {
     /// <summary>
-    /// The first assembly reference used for comparison.
+    /// Gets or sets the first assembly reference instance used in comparison tests.
     /// </summary>
     public IBdoAssemblyReference _reference1 = null;
 
     /// <summary>
-    /// The second assembly reference used for comparison.
+    /// Gets or sets the second assembly reference instance used in comparison tests.
     /// </summary>
     public IBdoAssemblyReference _reference2 = null;
 
     /// <summary>
-    /// Performs one-time setup for the assembly reference tests.
+    /// Performs one-time setup before any tests in this fixture are executed.
     /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -34,11 +34,13 @@ public class BdoAssemblyReferenceTests
     }
 
     /// <summary>
-    /// Asserts that two assembly references are equivalent.
+    /// Asserts that two <see cref="IBdoAssemblyReference"/> instances are structurally equivalent.
     /// </summary>
     /// <param name="reference1">The first assembly reference to compare.</param>
     /// <param name="reference2">The second assembly reference to compare.</param>
-    /// <exception cref="AssertionException">Thrown when the references are not equivalent.</exception>
+    /// <exception cref="AssertionException">
+    /// Thrown when only one of the references is <see langword="null"/> or when their properties do not match.
+    /// </exception>
     public static void AssertEquals(
         IBdoAssemblyReference reference1,
         IBdoAssemblyReference reference2)
@@ -53,7 +55,7 @@ public class BdoAssemblyReferenceTests
     }
 
     /// <summary>
-    /// Creates a default/null assembly reference for testing.
+    /// Initializes <see cref="_reference1"/> with <see langword="null"/> name and version values.
     /// </summary>
     public void Create1Test()
     {
@@ -61,7 +63,7 @@ public class BdoAssemblyReferenceTests
     }
 
     /// <summary>
-    /// Creates a randomized assembly reference populated with fake data.
+    /// Initializes <see cref="_reference2"/> with randomized fake data for name, version, alias, file name, and identifier.
     /// </summary>
     public void Create2Test()
     {
@@ -76,9 +78,9 @@ public class BdoAssemblyReferenceTests
     }
 
     /// <summary>
-    /// Tests that two different assembly references are not considered equal.
+    /// Verifies that two distinct assembly references (one empty, one populated) are not evaluated as equal.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void AssemblyRefEqualsTest()
     {
         Create1Test();

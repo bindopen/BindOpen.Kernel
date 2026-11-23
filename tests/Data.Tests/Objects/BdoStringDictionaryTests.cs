@@ -10,21 +10,21 @@ namespace BindOpen.Data;
 /// Contains unit tests for <see cref="TBdoDictionary{T}"/>, focusing on specialized string key access.
 /// </summary>
 /// <remarks>
-/// These tests verify advanced dictionary features such as wildcard keys ("*"), 
-/// implicit conversions, and fallback value resolution.
+/// These tests verify advanced dictionary features such as wildcard keys (<c>"*"</c>),
+/// implicit conversions from strings and tuple arrays, duplicate key handling, and multi-key fallback resolution.
 /// </remarks>
-[TestFixture, Order(210)]
+[TestFixture]
 public class BdoStringDictionaryTests
 {
     private dynamic _valueSet;
 
     /// <summary>
-    /// The string dictionary instance currently being tested.
+    /// Gets or sets the <see cref="TBdoDictionary{T}"/> string instance currently under test.
     /// </summary>
     public TBdoDictionary<string> _dico = null;
 
     /// <summary>
-    /// Initializes randomized string values for dictionary testing.
+    /// Initializes randomized string values for dictionary testing before any tests in this fixture are executed.
     /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -40,9 +40,9 @@ public class BdoStringDictionaryTests
     }
 
     /// <summary>
-    /// Validates the core content of the dictionary against the expected value set.
+    /// Validates that the core entries of the specified <see cref="ITBdoDictionary{T}"/> match the expected test dataset.
     /// </summary>
-    /// <param name="dico">The dictionary to validate.</param>
+    /// <param name="dico">The string dictionary instance to validate.</param>
     public void Test(ITBdoDictionary<string> dico)
     {
         dico["value1"].Should().Be((string)_valueSet.value1);
@@ -51,9 +51,10 @@ public class BdoStringDictionaryTests
     }
 
     /// <summary>
-    /// Tests dictionary creation using the factory method with tuple arrays.
+    /// Verifies dictionary instantiation using <see cref="BdoData.NewDictionary{T}"/> with tuple arguments,
+    /// ensuring duplicate keys are handled gracefully.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void Create1Test()
     {
         // Tests duplicate key handling and standard initialization
@@ -67,9 +68,9 @@ public class BdoStringDictionaryTests
     }
 
     /// <summary>
-    /// Tests dictionary creation via implicit conversion from a tuple array.
+    /// Verifies dictionary creation via implicit conversion from an array of key-value tuples.
     /// </summary>
-    [Test, Order(2)]
+    [Test]
     public void Create2Test()
     {
         _dico = new[] {
@@ -81,9 +82,9 @@ public class BdoStringDictionaryTests
     }
 
     /// <summary>
-    /// Tests implicit conversion from a single string to a wildcard dictionary entry.
+    /// Verifies implicit conversion from a single <see cref="string"/> into a dictionary containing a wildcard (<see cref="StringHelper.__Star"/>) entry.
     /// </summary>
-    [Test, Order(3)]
+    [Test]
     public void Create3Test()
     {
         _dico = _valueSet.valueStar as string;
@@ -93,9 +94,9 @@ public class BdoStringDictionaryTests
     }
 
     /// <summary>
-    /// Verifies the custom equality logic for dictionaries.
+    /// Verifies reflexive equality evaluation for <see cref="ITBdoDictionary{T}"/> instances.
     /// </summary>
-    [Test, Order(4)]
+    [Test]
     public void EqualsTest()
     {
         var dico1 = BdoData.NewDictionary(
@@ -107,9 +108,10 @@ public class BdoStringDictionaryTests
     }
 
     /// <summary>
-    /// Tests advanced fallback resolution using wildcards and multiple keys.
+    /// Verifies multi-key fallback resolution, missing key handling (<see langword="null"/> return),
+    /// and wildcard (<see cref="StringHelper.__Star"/>) fallback behavior.
     /// </summary>
-    [Test, Order(5)]
+    [Test]
     public void Create5Test()
     {
         _dico = new[] {

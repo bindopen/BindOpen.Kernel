@@ -5,14 +5,21 @@ using NUnit.Framework;
 namespace BindOpen.Scoping;
 
 /// <summary>
-/// This class provides unit tests for the BdoScope component, verifying its ability 
-/// to load extensions, manage global data stores, and handle configuration options.
+/// Contains unit tests for the <see cref="IBdoScope"/> component, verifying its instantiation,
+/// dynamic extension discovery, global data store deduplication, and <see cref="ExtensionLoadOptions"/> processing.
 /// </summary>
-[TestFixture, Order(300)]
+/// <remarks>
+/// These tests verify that scopes created via <see cref="BdoScoping.NewScope"/> properly load extensions
+/// from assemblies and configured datasources, and safely handle duplicate host entries in <see cref="IBdoScope.DataStore"/>.
+/// </remarks>
+[TestFixture]
 public class BdoScopeTests
 {
     private IBdoScope _scope;
 
+    /// <summary>
+    /// Performs one-time setup before any tests in this fixture are executed.
+    /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
@@ -20,10 +27,10 @@ public class BdoScopeTests
     }
 
     /// <summary>
-    /// Tests the basic instantiation of a scope and the dynamic loading of extensions 
-    /// from an assembly.
+    /// Verifies that <see cref="BdoScoping.NewScope"/> instantiates a valid <see cref="IBdoScope"/>
+    /// and dynamically loads extensions from the assembly containing <see cref="ScopingTestSetup"/>.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void CreateScopeNewObjectTest()
     {
         // 1. Create a fresh scope instance
@@ -37,10 +44,10 @@ public class BdoScopeTests
     }
 
     /// <summary>
-    /// Tests the Scope's global DataStore, ensuring it manages shared objects 
-    /// correctly and prevents duplicate key issues for identical references.
+    /// Verifies that <see cref="IBdoScope.DataStore"/> manages shared host references and gracefully
+    /// deduplicates identical key-value insertions without throwing or creating duplicate entries.
     /// </summary>
-    [Test, Order(2)]
+    [Test]
     public void CreateScopeDataStore()
     {
         // Lazy initialization of scope if tests are run out of order
@@ -49,7 +56,7 @@ public class BdoScopeTests
             CreateScopeNewObjectTest();
         }
 
-        // 1. Add host references to the DataStore. 
+        // 1. Add host references to the DataStore.
         // The store should handle duplicates gracefully if the key and object match.
         _scope.DataStore.Add(("$host", this));
         _scope.DataStore.Add("$host", this);
@@ -58,10 +65,10 @@ public class BdoScopeTests
     }
 
     /// <summary>
-    /// Tests the configuration of ExtensionLoadOptions and verifies that the scope 
-    /// can process multiple sources (Databases, Repositories, Paths).
+    /// Verifies that <see cref="ExtensionLoadOptions"/> records multiple datasource entries
+    /// (databases, repositories, and directory paths) and retains them when processed by <see cref="IBdoScope.LoadExtensions"/>.
     /// </summary>
-    [Test, Order(3)]
+    [Test]
     public void CreateExtensionLoadOptions()
     {
         // 1. Configure loading options with various sources

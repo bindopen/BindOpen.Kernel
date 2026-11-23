@@ -9,21 +9,21 @@ namespace BindOpen.Data;
 /// Contains unit tests for <see cref="IBdoExpression"/>, focusing on the distinction between literals and scripts.
 /// </summary>
 /// <remarks>
-/// These tests verify that expressions are correctly categorized and store their textual representation
-/// according to their <see cref="BdoExpressionKind"/>.
+/// These tests verify that expressions are properly instantiated, categorized according to their
+/// <see cref="BdoExpressionKind"/>, and preserve their underlying textual representation.
 /// </remarks>
-[TestFixture, Order(210)]
+[TestFixture]
 public class BdoExpressionTests
 {
     private dynamic _valueSet;
 
     /// <summary>
-    /// The expression instance currently being tested.
+    /// Gets or sets the <see cref="IBdoExpression"/> instance currently under test.
     /// </summary>
     public IBdoExpression _exp = null;
 
     /// <summary>
-    /// Initializes the test value set using the expression faker.
+    /// Initializes the test value set using <see cref="BdoExpressionFaker"/> before any tests are executed.
     /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -32,10 +32,13 @@ public class BdoExpressionTests
     }
 
     /// <summary>
-    /// Asserts that two expressions are equivalent.
+    /// Asserts that two <see cref="IBdoExpression"/> instances are structurally equivalent.
     /// </summary>
     /// <param name="exp1">The first expression to compare.</param>
     /// <param name="exp2">The second expression to compare.</param>
+    /// <exception cref="AssertionException">
+    /// Thrown when only one of the expressions is <see langword="null"/> or when their properties do not match.
+    /// </exception>
     public static void AssertEquals(
         IBdoExpression exp1,
         IBdoExpression exp2)
@@ -49,9 +52,10 @@ public class BdoExpressionTests
     }
 
     /// <summary>
-    /// Validates an expression based on its kind and expected value from the test data set.
+    /// Validates that the specified <see cref="IBdoExpression"/> matches the expected text
+    /// from the test dataset according to its <see cref="BdoExpressionKind"/>.
     /// </summary>
-    /// <param name="exp">The expression to validate.</param>
+    /// <param name="exp">The expression instance to validate.</param>
     public void Test(IBdoExpression exp)
     {
         switch (exp.ExpressionKind)
@@ -66,9 +70,10 @@ public class BdoExpressionTests
     }
 
     /// <summary>
-    /// Tests the creation of a literal expression using the short factory method.
+    /// Verifies the creation of a literal expression (<see cref="BdoExpressionKind.Literal"/>)
+    /// using the <see cref="BdoData.NewExp"/> factory method.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void Create1Test()
     {
         _exp = BdoData.NewExp(
@@ -79,9 +84,10 @@ public class BdoExpressionTests
     }
 
     /// <summary>
-    /// Tests the creation of a script expression using the fluent API.
+    /// Verifies the creation of a script expression (<see cref="BdoExpressionKind.Script"/>)
+    /// using the fluent <c>AsScript()</c> builder syntax.
     /// </summary>
-    [Test, Order(2)]
+    [Test]
     public void Create2Test()
     {
         _exp = BdoData.NewExpression(_valueSet.Script as string)

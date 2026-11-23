@@ -7,15 +7,15 @@ namespace BindOpen.Data.Assemblies;
 /// Contains unit tests for data type management and string representation within the BindOpen Kernel.
 /// </summary>
 /// <remarks>
-/// These tests verify that the framework correctly handles various data value types, 
-/// including standard text and complex object types, and ensures their string representation 
-/// is consistent for logging and serialization.
+/// These tests verify that the framework correctly resolves various <see cref="DataValueTypes"/>,
+/// including primitive text types and complex object types, and ensures their string
+/// representations remain consistent for logging and serialization.
 /// </remarks>
-[TestFixture, Order(210)]
+[TestFixture]
 public class BdoDataValueTypeTests
 {
     /// <summary>
-    /// Performs one-time setup for the data value type tests.
+    /// Performs one-time setup before any tests in this fixture are executed.
     /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -23,13 +23,13 @@ public class BdoDataValueTypeTests
     }
 
     /// <summary>
-    /// Tests the string representation of basic and complex data types.
+    /// Verifies the string representation generated for both primitive and complex data types.
     /// </summary>
     /// <remarks>
-    /// This test ensures that <see cref="DataValueTypes.Text"/> and custom classes like <see cref="ClassFake"/> 
-    /// are correctly resolved to their expected string descriptors.
+    /// Ensures that <see cref="DataValueTypes.Text"/> resolves to its enum identifier and that
+    /// custom object types such as <see cref="ClassFake"/> include their fully qualified type descriptor.
     /// </remarks>
-    [Test, Order(1)]
+    [Test]
     public void ToStringTest()
     {
         // 1. Testing standard Text type

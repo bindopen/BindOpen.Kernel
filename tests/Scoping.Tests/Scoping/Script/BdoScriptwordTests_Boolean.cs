@@ -4,17 +4,22 @@ using NUnit.Framework;
 namespace BindOpen.Scoping.Script;
 
 /// <summary>
-/// This class provides unit tests for Boolean-related scriptwords, ensuring that 
-/// equality and comparison logic are correctly interpreted by the scoping engine.
+/// Contains unit tests for Boolean-related scriptwords, verifying that equality and comparison
+/// expressions are accurately evaluated by the BindOpen script interpreter.
 /// </summary>
-[TestFixture, Order(401)]
+/// <remarks>
+/// These tests verify <see cref="BdoScript.Eq"/> evaluation across nested function calls
+/// (such as <see cref="BdoScript.Text"/>) and runtime variable lookups (<see cref="BdoScript.Var"/>)
+/// resolved against a contextual <see cref="IBdoMetaSet"/>.
+/// </remarks>
+[TestFixture]
 public class BdoScriptwordTests_Boolean
 {
     /// <summary>
-    /// Tests the basic equality function ($eq) between a literal string 
-    /// and the result of a nested script function ($text).
+    /// Verifies that <see cref="BdoScript.Eq"/> evaluates to <see langword="true"/> when comparing
+    /// a literal string operand against the output of a nested <see cref="BdoScript.Text"/> function call.
     /// </summary>
-    [Test, Order(201)]
+    [Test]
     public void EqTest()
     {
         // 1. Create a scriptword representing $eq('MYTABLE', $text('MYTABLE'))
@@ -31,10 +36,10 @@ public class BdoScriptwordTests_Boolean
     }
 
     /// <summary>
-    /// Tests equality logic where one operand is a variable ($var) 
-    /// that must be resolved from a provided metadata set.
+    /// Verifies that <see cref="BdoScript.Eq"/> resolves a <see cref="BdoScript.Var"/> operand
+    /// from the supplied <see cref="IBdoMetaSet"/> context and evaluates numeric equality accurately.
     /// </summary>
-    [Test, Order(202)]
+    [Test]
     public void SubwordTest()
     {
         // 1. Create a scriptword representing $eq($var('MYTABLE'), 135)
