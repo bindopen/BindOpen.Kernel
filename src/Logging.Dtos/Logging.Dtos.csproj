@@ -44,7 +44,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Logging.Dtos.Models\Logging.Dtos.Models.csproj" />
     <ProjectReference Include="..\Logging\Logging.csproj" />
   </ItemGroup>
 </Project>
