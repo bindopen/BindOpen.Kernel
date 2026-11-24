@@ -68,10 +68,11 @@ public class SchemaXmlTests
     {
         if (_schema == null || !File.Exists(_filePath_xml))
         {
-            SaveXmlTest();
+             SaveXmlTest();
         }
 
         var schema = XmlHelper.LoadXml<SchemaDto>(_filePath_xml).ToPoco();
-        Assert.That(Equals(schema, _schema), Is.True, "Loaded schema does not match the original schema.");
+        Assert.That(schema, Is.Not.Null, "Loaded schema cannot be null.");
+        Assert.That(schema.IsDeepEqualWithEmptyCollections(_schema), Is.True, "Loaded schema does not match the original schema.");
     }
 }

@@ -16,7 +16,14 @@ public static partial class IBdoSchemaExtensions
 
     public static T WithRules<T>(this T schema, params IBdoSchemaRule[] rules) where T : IBdoSchema
     {
-        schema?.GetOrNewRuleSet().AddItems<IBdoSchemaRule>(rules);
+        if (rules==null)
+        {
+            schema.RuleSet = null;
+        }
+        else
+        {
+            schema?.GetOrNewRuleSet().AddItems(rules);
+        }
 
         return schema;
     }
@@ -28,7 +35,14 @@ public static partial class IBdoSchemaExtensions
 
     public static T WithItems<T>(this T schema, params IBdoSchema[] items) where T : IBdoSchema
     {
-        schema?.GetOrNewItemSet().AddItems<IBdoSchema>(items);
+        if (items == null)
+        {
+            schema.ItemSet = null;
+        }
+        else
+        {
+            schema?.GetOrNewItemSet().AddItems<IBdoSchema>(items);
+        }
 
         return schema;
     }

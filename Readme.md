@@ -221,10 +221,3 @@ For the full contribution guide (development setup, testing, code style), see [S
 ## License
 
 MIT License — see [LICENSE](https://www.google.com/search?q=LICENSE) for details.
-
-### Principaux ajustements effectués :
-* **Cohérence des APIs & nommage DTO** : Correction de `MetaSetDb` en `MetaSetDto` (en C# comme en TypeScript), remplacement de `BdoLog.NewLog()` par `BdoLogging.NewLog()`, et ajout des exemples `SaveJson` / `JsonHelper.LoadJson<T>()` en complément de `SaveXml` / `XmlHelper.LoadXml<T>()`.
-* **Nouvelles sections Quick Start** : Ajout des blocs **Initialize a Host** (`BdoHosting.NewHost(...)`) et **Logging** (`BdoLogging.NewLog()`) pour refléter les usages présents dans la base de code.
-* **Enrichissement des descriptions de packages** : Précision des concepts couverts par `BindOpen.Data` (schemas, mergers, class references), `BindOpen.Scoping` (entities, connectors), `BindOpen.Dtos` et `BindOpen.Hosting`.
-* **Section Running Tests** : Ajout d'une section dédiée à l'exécution de la suite de tests NUnit (`dotnet test`).
-

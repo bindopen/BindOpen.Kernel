@@ -352,7 +352,7 @@
         <member name="M:BindOpen.Data.Meta.MetaScalarSetJsonTests.Test(BindOpen.Data.Meta.IBdoMetaSet,BindOpen.Data.Meta.IBdoMetaSet)">
             <summary>
             Validates that both <see cref="T:BindOpen.Data.Meta.IBdoMetaSet"/> instances are non-null and deeply equal,
-            ignoring circular <see cref="!:IBdoMetaData.Parent"/> references and default interface members.
+            ignoring circular parent references and default interface members.
             </summary>
             <param name="list1">The first metadata set to compare.</param>
             <param name="list2">The second metadata set to compare.</param>
@@ -396,7 +396,7 @@
         <member name="M:BindOpen.Data.Meta.MetaScalarSetXmlTests.Test(BindOpen.Data.Meta.IBdoMetaSet,BindOpen.Data.Meta.IBdoMetaSet)">
             <summary>
             Validates that both <see cref="T:BindOpen.Data.Meta.IBdoMetaSet"/> instances are non-null and deeply equal,
-            ignoring circular <see cref="!:IBdoMetaData.Parent"/> references and default interface members.
+            ignoring circular parent references and default interface members.
             </summary>
             <param name="list1">The first metadata set to compare.</param>
             <param name="list2">The second metadata set to compare.</param>
@@ -425,11 +425,6 @@
             Contains unit tests for JSON serialization and deserialization of <see cref="T:BindOpen.Tests.MetaWrapperFake"/>
             instances via <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/> conversion and scope-based hydration.
             </summary>
-            <remarks>
-            These tests verify that wrapper metadata synchronized via <c>UpdateDetail()</c> can be converted
-            to a <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/>, persisted to a JSON file, and re-instantiated through
-            <see cref="!:IBdoScope.NewMetaWrapper&lt;T&gt;"/> without losing nested entity or enumeration values.
-            </remarks>
         </member>
         <member name="M:BindOpen.Data.Meta.MetaWrapperJsonTests.OneTimeSetUp">
             <summary>
@@ -458,7 +453,7 @@
         <member name="M:BindOpen.Data.Meta.MetaWrapperJsonTests.LoadJsonTest">
             <summary>
             Verifies that the saved JSON file loads back into a <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/>, converts to a
-            configuration POCO, and hydrates a matching <see cref="T:BindOpen.Tests.MetaWrapperFake"/> via <see cref="!:IBdoScope.NewMetaWrapper&lt;T&gt;"/>.
+            configuration POCO, and hydrates a matching <see cref="T:BindOpen.Tests.MetaWrapperFake"/>.
             </summary>
         </member>
         <member name="T:BindOpen.Data.Meta.MetaWrapperXmlTests">
@@ -466,11 +461,6 @@
             Contains unit tests for XML serialization and deserialization of <see cref="T:BindOpen.Tests.MetaWrapperFake"/>
             instances via <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/> conversion and scope-based hydration.
             </summary>
-            <remarks>
-            These tests verify that wrapper metadata synchronized via <c>UpdateDetail()</c> can be converted
-            to a <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/>, persisted to an XML file, and re-instantiated through
-            <see cref="!:IBdoScope.NewMetaWrapper&lt;T&gt;"/> without losing nested entity or enumeration values.
-            </remarks>
         </member>
         <member name="M:BindOpen.Data.Meta.MetaWrapperXmlTests.OneTimeSetUp">
             <summary>
@@ -499,7 +489,7 @@
         <member name="M:BindOpen.Data.Meta.MetaWrapperXmlTests.LoadXmlTest">
             <summary>
             Verifies that the saved XML file loads back into a <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/>, converts to a
-            configuration POCO, and hydrates a matching <see cref="T:BindOpen.Tests.MetaWrapperFake"/> via <see cref="!:IBdoScope.NewMetaWrapper&lt;T&gt;"/>.
+            configuration POCO, and hydrates a matching <see cref="T:BindOpen.Tests.MetaWrapperFake"/>.
             </summary>
         </member>
         <member name="T:BindOpen.Data.ExpressionJsonTests">
@@ -1288,12 +1278,6 @@
             Contains unit tests for XML and JSON serialization and deserialization of <see cref="T:BindOpen.Scoping.Tests.TaskFake"/>
             instances via <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/> conversion and scope-based instantiation.
             </summary>
-            <remarks>
-            These tests verify that task instances initialized from faked metadata via <see cref="T:BindOpen.Scoping.Tests.BdoTaskFaker"/>
-            can be converted to <see cref="T:BindOpen.Data.Meta.IBdoMetaObject"/> representations, mapped to DTOs, persisted to XML
-            and JSON files on disk, and re-instantiated through <see cref="!:IBdoScope.CreateTask&lt;T&gt;"/> without
-            losing configuration or runtime property state.
-            </remarks>
         </member>
         <member name="M:BindOpen.Scoping.Tasks.IOTaskTests.OneTimeSetUp">
             <summary>
@@ -1323,6 +1307,16 @@
             <summary>
             Verifies that the saved JSON file loads back into a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/>, converts to a
             metadata object via <c>ToPoco()</c>, and creates a valid <see cref="T:BindOpen.Scoping.Tests.TaskFake"/> instance.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Tests.DeepEqualExtensions">
+            <summary>
+            Provides custom comparison helpers for DeepEqual assertions in unit tests.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Tests.DeepEqualExtensions.IsDeepEqualWithEmptyCollections``2(``0,``1)">
+            <summary>
+            Compares two objects for deep equality while treating <c>null</c> and empty collections as equivalent.
             </summary>
         </member>
         <member name="T:BindOpen.GlobalDtosTestSetup">

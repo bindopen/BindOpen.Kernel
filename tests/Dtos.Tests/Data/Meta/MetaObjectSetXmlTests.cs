@@ -1,4 +1,5 @@
-﻿using BindOpen.Tests;
+﻿using BindOpen.Data.Meta.Reflection;
+using BindOpen.Tests;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
@@ -86,6 +87,8 @@ public class MetaObjectSetXmlTests
             CreateTest();
         }
 
+        _metaSet.UpdateTree();
+
         var isSaved = _metaSet.ToDto().SaveXml(_filePath_xml);
         Assert.That(isSaved, Is.True, "Meta list saving failed.");
     }
@@ -103,6 +106,7 @@ public class MetaObjectSetXmlTests
         }
 
         var metaSet = XmlHelper.LoadXml<MetaSetDto>(_filePath_xml).ToPoco();
+
         Test(metaSet);
     }
 }

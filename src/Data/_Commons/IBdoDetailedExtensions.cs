@@ -18,10 +18,7 @@ namespace BindOpen.Data
             IBdoMetaSet detail)
             where T : IBdoDetailed
         {
-            if (obj != null)
-            {
-                obj.Detail = detail;
-            }
+            obj?.Detail = detail;
             return obj;
         }
 

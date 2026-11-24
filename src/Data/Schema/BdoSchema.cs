@@ -25,14 +25,14 @@ public partial class BdoSchema : BdoObject, IBdoSchema
     /// <summary>
     /// Names of the attribute areas of the TBdoSchema class.
     /// </summary>
-    public static readonly string[] __AreaNames = new[]
-    {
+    public static readonly string[] __AreaNames =
+    [
         nameof(DataAreaKind.Design),
         nameof(DataAreaKind.SchemaRules),
         nameof(DataAreaKind.Properties),
         nameof(BdoMetaDataAreaKind.Element),
         nameof(DataAreaKind.Items)
-    };
+    ];
 
     #endregion
 
@@ -239,14 +239,14 @@ public partial class BdoSchema : BdoObject, IBdoSchema
     public IList<string> Aliases { get; set; }
 
     /// <summary>
-    /// The script of this instance.
-    /// </summary>
-    public IBdoDataType DataType { get; set; }
-
-    /// <summary>
     /// The available itemization modes of this instance.
     /// </summary>
     public IList<DataMode> AvailableDataModes { get; set; }
+
+    /// <summary>
+    /// The script of this instance.
+    /// </summary>
+    public IBdoDataType DataType { get; set; }
 
     /// <summary>
     /// The default item of this instance.

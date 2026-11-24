@@ -10,12 +10,6 @@ namespace BindOpen.Scoping.Tasks;
 /// Contains unit tests for XML and JSON serialization and deserialization of <see cref="TaskFake"/>
 /// instances via <see cref="MetaObjectDto"/> conversion and scope-based instantiation.
 /// </summary>
-/// <remarks>
-/// These tests verify that task instances initialized from faked metadata via <see cref="BdoTaskFaker"/>
-/// can be converted to <see cref="IBdoMetaObject"/> representations, mapped to DTOs, persisted to XML
-/// and JSON files on disk, and re-instantiated through <see cref="IBdoScope.CreateTask{T}"/> without
-/// losing configuration or runtime property state.
-/// </remarks>
 [TestFixture]
 public class IOTaskTests
 {

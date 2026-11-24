@@ -41,7 +41,7 @@ public static partial class BdoData
 
         el
             .WithName(name)
-            .WithDataType(type)
+            .WithDataType(type ?? item?.GetType())
             .WithData(item);
 
         if (el?.DataType?.ValueType == DataValueTypes.None)

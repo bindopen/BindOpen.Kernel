@@ -133,16 +133,15 @@ public class BdoClassReference : BdoAssemblyReference, IBdoClassReference
             || string.IsNullOrEmpty(ClassName);
     }
 
-
     /// <summary>
     /// Indicates whether the specified poco can be specified as DTO.
     /// </summary>
     /// <returns>True if the poco can be specified as DTO.</returns>
-    public bool IsSpecified() =>
-        (AssemblyFileName != null
+    public virtual bool IsSpecified() =>
+        AssemblyFileName != null
         || AssemblyName != null
         || AssemblyVersion != null
-        || ClassName != null);
+        || ClassName != null;
 
     #endregion
 }

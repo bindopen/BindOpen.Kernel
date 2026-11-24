@@ -48,7 +48,7 @@ public class MetaScalarSetJsonTests
 
     /// <summary>
     /// Validates that both <see cref="IBdoMetaSet"/> instances are non-null and deeply equal,
-    /// ignoring circular <see cref="IBdoMetaData.Parent"/> references and default interface members.
+    /// ignoring circular parent references and default interface members.
     /// </summary>
     /// <param name="list1">The first metadata set to compare.</param>
     /// <param name="list2">The second metadata set to compare.</param>

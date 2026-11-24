@@ -9,11 +9,6 @@ namespace BindOpen.Data.Meta;
 /// Contains unit tests for JSON serialization and deserialization of <see cref="MetaWrapperFake"/>
 /// instances via <see cref="ConfigurationDto"/> conversion and scope-based hydration.
 /// </summary>
-/// <remarks>
-/// These tests verify that wrapper metadata synchronized via <c>UpdateDetail()</c> can be converted
-/// to a <see cref="ConfigurationDto"/>, persisted to a JSON file, and re-instantiated through
-/// <see cref="IBdoScope.NewMetaWrapper{T}"/> without losing nested entity or enumeration values.
-/// </remarks>
 [TestFixture]
 public class MetaWrapperJsonTests
 {
@@ -84,7 +79,7 @@ public class MetaWrapperJsonTests
 
     /// <summary>
     /// Verifies that the saved JSON file loads back into a <see cref="ConfigurationDto"/>, converts to a
-    /// configuration POCO, and hydrates a matching <see cref="MetaWrapperFake"/> via <see cref="IBdoScope.NewMetaWrapper{T}"/>.
+    /// configuration POCO, and hydrates a matching <see cref="MetaWrapperFake"/>.
     /// </summary>
     [Test]
     public void LoadJsonTest()

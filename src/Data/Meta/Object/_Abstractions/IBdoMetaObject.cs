@@ -7,7 +7,8 @@
 /// </summary>
 public interface IBdoMetaObject : IBdoMetaSet
 {
-    // This interface acts as a semantic marker to distinguish between
-    // a simple collection of data (MetaSet) and a structured object 
-    // representing a specific entity or class instance.
+    /// <summary>
+    /// Synchronizes the underlying CLR object data with the metadata object's child items.
+    /// </summary>
+    bool UpdateObjectData();
 }

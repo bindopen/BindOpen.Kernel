@@ -96,8 +96,14 @@ public static class SchemaIOConverter
 
         if (dto == null) return poco;
 
-        poco.Aliases = dto?.Aliases == null ? null : new List<string>(dto.Aliases);
-        poco.AvailableDataModes = dto?.AvailableDataModes == null ? null : new List<DataMode>(dto.AvailableDataModes);
+        var aliases = dto.Aliases?.Count > 0 ? dto.Aliases.ToArray() : null;
+        var availableDataModes = dto.AvailableDataModes?.Count > 0 ? dto.AvailableDataModes.ToArray() : null;
+        var children = dto.Children?.Count > 0 ? dto.Children.Select(q => q.ToPoco()).ToArray() : null;
+        var items = dto.Items?.Count > 0 ? dto.Items.Select(q => q.ToPoco()).ToArray() : null;
+        var rules = dto.Rules?.Count > 0 ? dto.Rules.Select(q => q.ToPoco()).ToArray() : null;
+
+        poco.Aliases = aliases;
+        poco.AvailableDataModes = availableDataModes;
         poco.DataType = new BdoDataType(dto?.ClassReference?.ToPoco())
         {
             DefinitionUniqueName = dto.DefinitionUniqueName,
@@ -106,11 +112,12 @@ public static class SchemaIOConverter
         };
 
         poco
-            .WithChildren(dto?.Children?.Select(q => q.ToPoco()).ToArray())
+            .WithChildren(children)
             .WithDescription(dto.Description.ToPoco<string>())
             .WithDetail(dto.Detail.ToPoco())
-            .WithItems(dto?.Items?.Select(q => q.ToPoco()).ToArray())
-            .WithRules(dto?.Rules == null ? null : [.. dto.Rules.Select(q => q.ToPoco())])
+            .WithItems(items)
+            .WithReference(dto?.Reference.ToPoco())
+            .WithRules(rules)
             .WithTitle(dto.Title.ToPoco<string>());
 
         return poco;

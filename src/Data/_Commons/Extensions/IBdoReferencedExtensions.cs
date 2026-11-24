@@ -17,10 +17,7 @@ public static class IBdoReferencedExtensions
         IBdoReference reference = null)
         where T : IBdoReferenced
     {
-        if (obj != null)
-        {
-            obj.Reference = reference;
-        }
+        obj?.Reference = reference;
 
         return obj;
     }
