@@ -166,65 +166,6 @@ metaSet.ToDto().SaveXml("output.xml");
 var loadedSet = JsonHelper.LoadJson<MetaSetDto>("output.json").ToPoco();
 ```
 
-### Initialize a Host
-
-`BdoHosting` bootstraps the application environment, known paths, and configuration:
-
-```csharp
-using BindOpen.Hosting;
-
-var host = BdoHosting.NewHost(
-    options => options.ThrowExceptionOnInitFailure());
-
-host.Start();
-
-```
-
-### Create a Scope and Load Extensions
-
-A *scope* is the runtime container in which BindOpen extensions (tasks, entities, connectors, converters...)
-are loaded and executed:
-
-```csharp
-using BindOpen.Data;
-using BindOpen.Scoping;
-using BindOpen.Scoping.Extensions;
-
-// 1. Create an empty scope.
-var scope = BdoScoping.NewScope();
-
-// 2. Load the BindOpen extensions into it.
-scope.LoadExtensions(opts => opts.AddAssemblyFrom<BdoScoping>());
-
-// ... or load all available BindOpen extension assemblies at once:
-scope.LoadExtensions(opts => opts.AddAllAssemblies());
-
-```
-
-### Create Data
-
-Data is described as *meta data* (meta sets, objects, scalars, dictionaries, schemas):
-
-```csharp
-using BindOpen.Data;
-
-// A simple scalar value.
-var host = BdoData.NewMeta("host", DataValueTypes.Text, "my-test-host");
-
-// A configuration block made of named scalars.
-var config = BdoData.NewConfig(
-    "app-config",
-    BdoData.NewScalar("comment", DataValueTypes.Text, "Sunny day"),
-    BdoData.NewScalar("temperature", DataValueTypes.Integer, 25));
-
-// A named set of named values.
-var users = BdoData.NewSet(
-    "users",
-    ("name", "Ernest E."),
-    ("code", 1560));
-
-```
-
 ### Logging
 
 Structured and hierarchical logs are created with `BdoLogging`:
@@ -242,44 +183,19 @@ log.AddError("Operation failed");
 
 ```
 
-### Run a Task
+### Hosting
 
-Tasks are BindOpen extensions instantiated inside a scope:
-
-```csharp
-using BindOpen.Data;
-using BindOpen.Logging;
-using BindOpen.Scoping.Extensions;
-
-var log = BdoLogging.NewLog();
-
-// By unique name of a previously loaded task extension.
-var task = scope.CreateTask("task-unique-name", config, log: log);
-
-// Or by strongly-typed task interface.
-IBdoTask typed = scope.CreateTask<IMyTask>(config, log: log);
-
-```
-
-### Serialize and Deserialize (XML & JSON)
-
-Domain objects convert cleanly to `*Dto` models and back via `ToDto()` and `ToPoco()`:
+`BdoHosting` bootstraps the application environment, known paths, and configuration:
 
 ```csharp
-using BindOpen.Data;
+using BindOpen.Hosting;
 
-// Meta model -> DTO -> XML / JSON file.
-users.ToDto().SaveXml("output.xml");
-users.ToDto().SaveJson("output.json");
+var host = BdoHosting.NewHost(
+    options => options.ThrowExceptionOnInitFailure());
 
-// XML / JSON file -> DTO -> meta model.
-var metaSetFromXml = XmlHelper.LoadXml<MetaSetDto>("output.xml").ToPoco();
-var metaSetFromJson = JsonHelper.LoadJson<MetaSetDto>("output.json").ToPoco();
+host.Start();
 
 ```
-
-See [bindopen-kernel-dtos](https://www.google.com/search?q=docs/bindopen-kernel-dtos.md) for the full DTO guide
-(JSON, XML and text formats).
 
 ### TypeScript
 
