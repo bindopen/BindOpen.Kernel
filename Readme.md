@@ -19,10 +19,8 @@ persistence, and the data transfer objects (DTOs) shared by all BindOpen modules
 | `BindOpen.Dtos.Xsd` | XSD schema generation for the DTO model. |
 | `BindOpen.Logging` | Event logging: `BdoLogging.NewLog()`, log events, hierarchical sub-logs, handlers and filters. |
 | `BindOpen.Logging.Dtos` | DTOs (`LogDto`) and JSON / XML serialization for logged events and log queries. |
-| `BindOpen.Relational` | Relational persistence of the core data model (Entity Framework Core). |
-| `BindOpen.Relational.Models` | Entity models and mapping for the relational layer. |
 | `BindOpen.Logging.Relational` | Relational persistence of logs (EF Core, AutoMapper). |
-| `BindOpen.Logging.Relational.Models` | Entity models for log persistence. |
+| `BindOpen.Relational` | Relational persistence of the core data model (Entity Framework Core). |
 | `BindOpen.Hosting` | Application hosting: `BdoHosting.NewHost(...)`, known host paths, and configuration binding. |
 
 A TypeScript package is also published from this repository:
@@ -48,10 +46,8 @@ dotnet add package BindOpen.Scoping.Script
 dotnet add package BindOpen.Dtos
 dotnet add package BindOpen.Logging
 dotnet add package BindOpen.Logging.Dtos
-dotnet add package BindOpen.Relational
-dotnet add package BindOpen.Relational.Models
 dotnet add package BindOpen.Logging.Relational
-dotnet add package BindOpen.Logging.Relational.Models
+dotnet add package BindOpen.Relational
 dotnet add package BindOpen.Hosting
 
 # JavaScript / TypeScript
