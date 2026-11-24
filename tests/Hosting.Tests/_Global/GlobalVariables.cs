@@ -2,6 +2,7 @@
 using BindOpen.Hosting.Settings;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.IO;
 
 namespace BindOpen.Hosting.Tests;
 
@@ -36,6 +37,18 @@ public static class GlobalVariables
                 _workingFolder = workingFolder =
                     ((_bdoHost?.GetKnownPath(BdoHostPathKind.RootFolder) ?? AppDomain.CurrentDomain.BaseDirectory)
                     .EndingWith(@"\") + @"bdo\temp\").ToPath();
+            }
+
+            try
+            {
+                // Create the working folder if it does not already exist
+                if (!Directory.Exists(_workingFolder))
+                {
+                    Directory.CreateDirectory(_workingFolder);
+                }
+            }
+            catch
+            {
             }
 
             return workingFolder;

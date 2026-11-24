@@ -1,4 +1,5 @@
 ﻿using BindOpen.Data.Helpers;
+using System.IO;
 
 namespace BindOpen.Logging.Tests;
 
@@ -13,9 +14,18 @@ public static class GlobalVariables
     {
         get
         {
-            if (_workingFolder == null)
+            _workingFolder ??= (FileHelper.GetAppRootFolderPath() + @"temp\").ToPath();
+
+            try
             {
-                _workingFolder = (FileHelper.GetAppRootFolderPath() + @"temp\").ToPath();
+                // Create the working folder if it does not already exist
+                if (!Directory.Exists(_workingFolder))
+                {
+                    Directory.CreateDirectory(_workingFolder);
+                }
+            }
+            catch
+            {
             }
 
             return _workingFolder;
