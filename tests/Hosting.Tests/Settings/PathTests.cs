@@ -54,7 +54,7 @@ public class PathTests
 
         Assert.That(bdoHost.State, Is.EqualTo(ProcessExecutionState.Pending), "Application host failed to reach the expected Pending state.");
 
-        rootFolderPath = bdoHost.GetKnownPath(BdoHostPathKind.RootFolder);
+        rootFolderPath = bdoHost.GetKnownPath(BdoHostPathKind.RootFolder).ToPath();
 
         Assert.That(rootFolderPath, Is.EqualTo(@"rootFolder\".ToPath()), "Root folder path did not fall back to the base root folder.");
     }
@@ -77,7 +77,7 @@ public class PathTests
 
         var rootFolderPath = bdoHost.GetKnownPath(BdoHostPathKind.RootFolder);
 
-        var path = Path.Combine(FileHelper.GetAppRootFolderPath(), @"default".ToPath()).EndingWith(@"\");
+        var path = Path.Combine(FileHelper.GetAppRootFolderPath(), @"default\").ToPath();
 
         Assert.That(rootFolderPath, Is.EqualTo(path), "Relative root folder path did not resolve against the application root directory.");
 
@@ -92,7 +92,7 @@ public class PathTests
 
         rootFolderPath = bdoHost.GetKnownPath(BdoHostPathKind.RootFolder);
 
-        path = FileHelper.GetAppRootFolderPath().EndingWith(@"\");
+        path = (FileHelper.GetAppRootFolderPath().EndingWith(@"\")).ToPath();
 
         Assert.That(rootFolderPath, Is.EqualTo(path), "Unset root folder did not default to the application root directory.");
     }
@@ -114,7 +114,7 @@ public class PathTests
 
         var libraryPath = bdoHost.GetKnownPath(BdoHostPathKind.LibraryFolder);
 
-        var path = Path.Combine(bdoHost.GetKnownPath(BdoHostPathKind.RootFolder), @"bdo\lib".ToPath()).EndingWith(@"\");
+        var path = Path.Combine(bdoHost.GetKnownPath(BdoHostPathKind.RootFolder), @"bdo\lib\").ToPath();
 
         Assert.That(libraryPath, Is.EqualTo(path), "Library folder path did not resolve properly relative to the root folder.");
     }
