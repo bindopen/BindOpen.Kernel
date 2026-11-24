@@ -153,7 +153,7 @@ var task = scope.CreateTask<TaskFake>(meta);
 task.Execute(new CancellationToken(), scope);
 ```
 
-### Dtos.Converters
+### Serialize and Deserialize (XML & JSON)
 
 Serialize and deserialize BindOpen objects to/from JSON and XML.
 
