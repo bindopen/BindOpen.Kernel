@@ -54,7 +54,7 @@ public class PathTests
 
         Assert.That(bdoHost.State, Is.EqualTo(ProcessExecutionState.Pending), "Application host failed to reach the expected Pending state.");
 
-        rootFolderPath = bdoHost.GetKnownPath(BdoHostPathKind.RootFolder).ToPath();
+        rootFolderPath = bdoHost.GetKnownPath(BdoHostPathKind.RootFolder);
 
         Assert.That(rootFolderPath, Is.EqualTo(@"rootFolder\".ToPath()), "Root folder path did not fall back to the base root folder.");
     }
@@ -92,7 +92,7 @@ public class PathTests
 
         rootFolderPath = bdoHost.GetKnownPath(BdoHostPathKind.RootFolder);
 
-        path = (FileHelper.GetAppRootFolderPath().EndingWith(@"\")).ToPath();
+        path = FileHelper.GetAppRootFolderPath();
 
         Assert.That(rootFolderPath, Is.EqualTo(path), "Unset root folder did not default to the application root directory.");
     }

@@ -94,7 +94,7 @@ public static class FileHelper
             rootFolderPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         }
 
-        return rootFolderPath?.EndingWith(@"\").ToPath();
+        return rootFolderPath?.EndingWith(Path.DirectorySeparatorChar.ToString()).ToPath();
     }
 
 
