@@ -1,7 +1,10 @@
 
 # BindOpen.Kernel
 
-[![Build](https://github.com/BindOpen/BindOpen.Kernel/actions/workflows/build-bindopen-kernel.yml/badge.svg?branch=main)](https://github.com/BindOpen/BindOpen.Kernel/actions/workflows/build-bindopen-kernel.yml)
+![BindOpen logo](https://storage.bindopen.org/img/logos/logo_bindopen.png)
+
+[![Nuget](https://img.shields.io/nuget/v/BindOpen.Abstractions.svg?style=flat-square)](https://www.nuget.org/packages/BindOpen.Abstractions)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://github.com/bindopen/BindOpen.Kernel/blob/master/LICENSE)
 
 **BindOpen.Kernel** is the foundational toolkit of the BindOpen platform. It defines the
 core data model, the scope & extension system, event logging, application hosting, relational
@@ -56,6 +59,112 @@ npm install @bindopen/kernel-dtos
 ```
 
 ## Quick Start
+
+### Data
+
+The **Data** package offers a metadata-driven model for defining configurations and objects.
+
+#### Metadata
+Define your data context using metadata.
+```csharp
+var meta = BdoData.NewMeta("host", DataValueTypes.Text, "my-test-host");
+```
+
+#### Configuration
+
+Define flexible, declarative setups with nested nodes and scalars.
+
+```csharp
+using static BindOpen.Data.BdoData;
+
+var config = NewConfig("test-config",
+        NewScalar("comment", "Sunny day"),
+        NewScalar("temperature", 25, 26, 26),
+        NewScalar("date", DateTime.Now),
+        NewNode("subscriber",
+            NewScalar("name", "Ernest E."),
+            NewScalar("code", 1560))
+    )
+    .WithTitle("Example of configuration")
+    .WithDescription(("en", "This is an example of description"));
+```
+
+### Scoping
+
+The Scoping package handles the loading and resolution of your extensions (Functions, Tasks, etc.).
+
+```csharp
+var scope = BdoScoping.NewScope()
+    .LoadExtensions(q => q.AddAllAssemblies());
+```
+
+#### Script
+
+Execute custom logic via BindOpen's scripting engine.
+
+```csharp
+[BdoFunction(
+    Name = "testFunction",
+    Description = "Returns true if second parameter matches first parameter + underscore")]
+public static object Fun_Func2a(this string st1, string st2)
+{
+    return st1 == st2 + "_";
+}
+
+// Evaluate script
+var exp = "$testFunction('MYTABLE', $text('MYTABLE_'))";
+var result = scope.Interpreter.Evaluate<bool?>(exp); // Result: True
+```
+
+#### Tasks
+
+Define and execute automated logic with automated property mapping.
+
+```csharp
+
+[BdoTask("taskFake")]
+public class TaskFake : BdoTask
+{
+    [BdoProperty(Name = "boolValue")]
+    public bool BoolValue { get; set; }
+
+    [BdoOutput(Name = "stringValue")]
+    public string StringValue { get; set; }
+
+    public override Task<bool> ExecuteAsync(
+        CancellationToken token,
+        IBdoScope scope = null,
+        IBdoMetaSet varSet = null,
+        RuntimeModes runtimeMode = RuntimeModes.Normal,
+        IBdoLog log = null)
+    {
+        Debug.WriteLine("Task completed");
+        return Task.FromResult(true);
+    }
+}
+
+// Instantiation and execution
+var meta = BdoData.NewObject()
+    .WithDataType(BdoExtensionKinds.Task, "scoping.tests$taskFake")
+    .WithProperties(("boolValue", false))
+    .WithOutputs(("stringValue", "test-out"));
+                    
+var task = scope.CreateTask<TaskFake>(meta);
+task.Execute(new CancellationToken(), scope);
+```
+
+### Dtos.Converters
+
+Serialize and deserialize BindOpen objects to/from JSON and XML.
+
+```csharp
+// Serialization
+var metaSet = BdoData.NewNode("test-io").With(("host", "host-test"), ("address", "0.0.0.0"));
+metaSet.ToDto().SaveXml("output.xml");
+
+// Deserialization
+var loadedSet = JsonHelper.LoadJson<MetaSetDto>("output.json").ToPoco();
+```
 
 ### Initialize a Host
 
@@ -198,22 +307,26 @@ dotnet test
 
 ```
 
-## Documentation
+## Documentation and Further Learning
 
-* [BindOpen.Kernel architecture](https://www.google.com/search?q=docs/bindopen-kernel-achitecture.md)
-* [BindOpen.Kernel Data](https://www.google.com/search?q=docs/bindopen-kernel-data.md)
-* [BindOpen.Kernel DTOs](https://www.google.com/search?q=docs/bindopen-kernel-dtos.md)
-* [BindOpen.Kernel Scoping](https://www.google.com/search?q=docs/bindopen-kernel-scoping.md)
-* [BindOpen.Kernel Relational](https://www.google.com/search?q=docs/bindopen-kernel-relational.md)
-* [API Reference (DocFX)](https://bindopen.github.io/BindOpen.Kernel/)
-* [SOLUTION.md](SOLUTION.md) — repository layout, solution projects and build workflow
+### [BindOpen Docs](https://docs.bindopen.org/)
+The BindOpen Docs are the ideal place to start. They are categorized into three broad topics:
+* [**Articles**](https://docs.bindopen.org/articles): Learn how to use BindOpen through tutorials.
+* [**Notes**](https://docs.bindopen.org/notes): Stay updated with our latest releases.
+* [**API Reference**](https://docs.bindopen.org/api): Explore the technical details of BindOpen APIs.
 
-## Contributing
+### [BindOpen Blog](https://www.bindopen.org/blog)
+The BindOpen Blog is where we announce new features, engineering deep dives, and proof-of-concepts.
 
-Contributions are welcome! To report bugs or request features, please
-[open an issue](https://github.com/BindOpen/BindOpen.Kernel/issues) on GitHub.
-For the full contribution guide (development setup, testing, code style), see [SOLUTION.md](SOLUTION.md).
+---
+
+## Feedback
+If you encounter any issues, please file a bug on the [BindOpen Issue Tracker](https://github.com/bindopen/BindOpen/issues).
+
+## Donation
+Support this project! Donations are optional but greatly appreciated.
+
+[![Please donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=PHG3WSUFYSMH4)
 
 ## License
-
-MIT License — see [LICENSE](https://www.google.com/search?q=LICENSE) for details.
+This project is licensed under the terms of the MIT license. [See LICENSE](https://github.com/bindopen/BindOpen.Kernel/blob/master/LICENSE).
