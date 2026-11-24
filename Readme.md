@@ -10,6 +10,8 @@
 core data model, the scope & extension system, event logging, application hosting, relational
 persistence, and the data transfer objects (DTOs) shared by all BindOpen modules.
 
+---
+
 ## What's Inside
 
 | Package | Description |
