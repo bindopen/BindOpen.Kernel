@@ -5,6 +5,7 @@ using BindOpen.Logging.Loggers;
 using BindOpen.Scoping;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace BindOpen.Hosting.Settings;
@@ -132,6 +133,7 @@ public class BdoHostOptions : BdoObject, IBdoHostOptions
     {
         var appRootFolderPath = FileHelper.GetAppRootFolderPath();
         var defaultConfifFilePath = @".\bindopen.xml";
+        var directorySeparator = Path.DirectorySeparatorChar.ToString();
 
         // Root path
 
@@ -147,7 +149,10 @@ public class BdoHostOptions : BdoObject, IBdoHostOptions
                 folderPath = appRootFolderPath;
             }
 
-            folderPath = folderPath.GetConcatenatedPath(appRootFolderPath).EndingWith(@"\").ToPath();
+            folderPath = folderPath
+                .GetConcatenatedPath(appRootFolderPath)
+                .EndingWith(directorySeparator)
+                .ToPath();
 
             assignments.Add((assignment.Predicate, folderPath));
         }
@@ -189,7 +194,14 @@ public class BdoHostOptions : BdoObject, IBdoHostOptions
 
         // Library paths
 
-        this.WithLibraryFolder(LibraryFolderPath.GetConcatenatedPath(_rootFolderPath).EndingWith(@"\").ToPath());
+        if (!string.IsNullOrEmpty(LibraryFolderPath))
+        {
+            this.WithLibraryFolder(
+                LibraryFolderPath
+                    .GetConcatenatedPath(_rootFolderPath)
+                    .EndingWith(directorySeparator)
+                    .ToPath());
+        }
 
         ExtensionLoadOptions?.AddSource(DatasourceKind.Repository, LibraryFolderPath);
     }

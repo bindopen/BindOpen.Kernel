@@ -60,13 +60,15 @@ public static class FileHelper
     {
         if (path == null) return null;
 
-        if (path?.StartsWith(@".\") == true || path?.StartsWith(@"./") == true)
+        var normalizedRoot = rootPath?.ToPath().EndingWith(Path.DirectorySeparatorChar.ToString());
+
+        if (path.StartsWith(@".\") || path.StartsWith(@"./"))
         {
-            path = (rootPath.EndingWith(@"\") + path.Substring(2)).ToPath();
+            path = (normalizedRoot + path.Substring(2)).ToPath();
         }
-        else if (path?.StartsWith(@"..\") == true || path?.StartsWith(@"../") == true)
+        else if (path.StartsWith(@"..\") || path.StartsWith(@"../"))
         {
-            path = (rootPath.EndingWith(@"\") + path).ToPath();
+            path = (normalizedRoot + path).ToPath();
         }
 
         return path.ToPath();
