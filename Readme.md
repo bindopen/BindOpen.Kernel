@@ -234,8 +234,6 @@ The BindOpen Docs are the ideal place to start. They are categorized into three 
 ### [BindOpen Blog](https://www.bindopen.org/blog)
 The BindOpen Blog is where we announce new features, engineering deep dives, and proof-of-concepts.
 
----
-
 ## Feedback
 If you encounter any issues, please file a bug on the [BindOpen Issue Tracker](https://github.com/bindopen/BindOpen/issues).
 
