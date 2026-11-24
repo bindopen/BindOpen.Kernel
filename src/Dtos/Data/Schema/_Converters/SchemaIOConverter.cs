@@ -115,7 +115,7 @@ public static class SchemaIOConverter
             .WithChildren(children)
             .WithDescription(dto.Description.ToPoco<string>())
             .WithDetail(dto.Detail.ToPoco())
-            .WithItems(items)
+            .AddItems(items)
             .WithReference(dto?.Reference.ToPoco())
             .WithRules(rules)
             .WithTitle(dto.Title.ToPoco<string>());

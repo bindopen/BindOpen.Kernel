@@ -65,7 +65,7 @@ public static class BdoDatasourceDepotExtensions
             {
                 foreach (var childMeta in subConfig)
                 {
-                    var set = BdoData.NewSet().With(childMeta?.ToArray());
+                    var set = BdoData.NewSet().Add(childMeta?.ToArray());
 
                     var source = depot.Scope.NewMetaWrapper<BdoDatasource>(set);
                     source.WithName(childMeta.Name);

@@ -16,7 +16,7 @@ public static class ITBdoSetExtensions
     /// <returns>Returns the set instance for fluent chaining.</returns>
     /// <remarks>The items should typically be named or uniquely identifiable depending on 
     /// the set's implementation of the Insert method.</remarks>
-    public static Q WithItems<Q, T>(
+    public static Q AddItems<Q, T>(
         this Q set,
         params T[] items)
         where Q : ITBdoSet<T>
@@ -41,14 +41,13 @@ public static class ITBdoSetExtensions
     /// <param name="set">The target set to populate.</param>
     /// <param name="list">The source set containing items to add.</param>
     /// <returns>Returns the target set instance for fluent chaining.</returns>
-    public static Q WithRange<Q, T>(
+    public static Q AddRange<Q, T>(
         this Q set,
         ITBdoSet<T> list)
         where Q : ITBdoSet<T>
         where T : IReferenced
     {
-        // We extract items from the source list and pass them to WithItems
-        set?.WithItems(list?.Items?.ToArray());
+        set?.AddItems(list?.Items?.ToArray());
 
         return set;
     }

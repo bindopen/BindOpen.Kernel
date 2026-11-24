@@ -34,7 +34,7 @@ public class DatasourcesTests
     public void CreateDatasourceTest()
     {
         var detail = BdoData.NewSet()
-            .With(
+            .Add(
                 (IBdoDatasource.__ConnectionString_Token, "test_connectionString"),
                 (IBdoDatasource.__ConnectionString_DatasourceKind, DatasourceKind.EmailServer));
 

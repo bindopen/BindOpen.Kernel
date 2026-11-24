@@ -100,7 +100,7 @@ public static class ScriptwordIOConverter
         poco.Schema = dto.Schema.ToPoco();
         poco.Text = dto.Text;
         poco.WithChild(dto.Child.ToPoco());
-        poco.WithItems(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
+        poco.AddItems(dto.MetaItems?.Select(q => q.ToPoco()).ToArray());
 
         return poco;
     }

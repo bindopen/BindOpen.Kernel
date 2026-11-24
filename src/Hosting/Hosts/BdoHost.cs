@@ -182,7 +182,7 @@ public partial class BdoHost : BdoScope, IBdoHost
 
         IBdoLog childLog = null;
 
-        DataStore.With(("$host", this));
+        DataStore.Add(("$host", this));
 
         try
         {

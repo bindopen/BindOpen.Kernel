@@ -51,4 +51,8 @@
     <ProjectReference Include="..\..\src\Dtos\Dtos.csproj" />
     <ProjectReference Include="..\Scoping.Tests\Scoping.Tests.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="temp\" />
+  </ItemGroup>
 </Project>

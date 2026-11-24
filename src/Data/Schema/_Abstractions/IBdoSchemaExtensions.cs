@@ -33,7 +33,7 @@ public static partial class IBdoSchemaExtensions
         return schema.ItemSet ??= BdoData.NewSchemaSet();
     }
 
-    public static T WithItems<T>(this T schema, params IBdoSchema[] items) where T : IBdoSchema
+    public static T AddItems<T>(this T schema, params IBdoSchema[] items) where T : IBdoSchema
     {
         if (items == null)
         {
