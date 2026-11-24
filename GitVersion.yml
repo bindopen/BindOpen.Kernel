@@ -1,10 +1,12 @@
-assembly-versioning-scheme: MajorMinorPatch
-commit-message-incrementing: Disabled
-tag-prefix: '[vV]'
-branches:
-  develop:
-    increment: Patch
-  feature:
-    increment: Patch
-  main:
-    increment: None
+calculation:
+  branches:
+    develop:
+      increment: Patch
+    feature:
+      increment: Patch
+    main:
+      increment: None
+  commit-message-incrementing: Disabled
+  tag-prefix: 'v'
+output:
+  assembly-versioning-scheme: MajorMinorPatch
