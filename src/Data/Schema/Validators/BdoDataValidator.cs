@@ -63,8 +63,8 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
 
         // Initialisation du contexte d'exécution local
         var scope = meta.Scope ?? Scope;
-        var localVarSet = BdoData.NewNode(varSet?.ToArray());
-        localVarSet.With(BdoData.__VarName_This, meta);
+        var localVarSet = BdoData.NewSet(varSet?.ToArray());
+        localVarSet.Add(BdoData.__VarName_This, meta);
 
         var metaSet = meta as BdoMetaSet;
 
@@ -161,8 +161,8 @@ public class BdoDataValidator : ITBdoDataValidator<IBdoMetaData, IBdoSchema>
                         ? scope?.Interpreter.Evaluate(constraint.Reference, localVarSet, log)
                         : meta;
 
-                    var constraintVarSet = BdoData.NewNode(localVarSet?.ToArray());
-                    constraintVarSet.With(BdoData.__VarName_This, refObj);
+                    var constraintVarSet = BdoData.NewSet(localVarSet?.ToArray());
+                    constraintVarSet.Add(BdoData.__VarName_This, refObj);
 
                     if (scope?.Interpreter.Evaluate(constraint.Condition, constraintVarSet, log) != true)
                     {

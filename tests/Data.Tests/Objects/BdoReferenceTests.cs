@@ -9,21 +9,21 @@ namespace BindOpen.Data;
 /// Contains unit tests for <see cref="IBdoReference"/>, verifying the encapsulation of data pointers.
 /// </summary>
 /// <remarks>
-/// References in BindOpen allow for pointing to metadata or resources using either literal paths 
-/// or dynamic script-based expressions.
+/// References in BindOpen allow pointing to metadata elements or external resources using either
+/// literal paths or dynamic script-based expressions.
 /// </remarks>
-[TestFixture, Order(210)]
+[TestFixture]
 public class BdoReferenceTests
 {
     private dynamic _valueSet;
 
     /// <summary>
-    /// The reference instance currently being tested.
+    /// Gets or sets the <see cref="IBdoReference"/> instance currently under test.
     /// </summary>
     public IBdoReference _reference = null;
 
     /// <summary>
-    /// Initializes the test value set using the reference faker.
+    /// Initializes the test dataset using <see cref="BdoReferenceFaker"/> before any tests in this fixture are executed.
     /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -32,10 +32,13 @@ public class BdoReferenceTests
     }
 
     /// <summary>
-    /// Asserts that two reference objects are equivalent.
+    /// Asserts that two <see cref="IBdoReference"/> instances are structurally equivalent.
     /// </summary>
-    /// <param name="ref1">The first reference to compare.</param>
-    /// <param name="ref2">The second reference to compare.</param>
+    /// <param name="ref1">The first reference instance to compare.</param>
+    /// <param name="ref2">The second reference instance to compare.</param>
+    /// <exception cref="AssertionException">
+    /// Thrown when only one of the references is <see langword="null"/> or when their properties do not match.
+    /// </exception>
     public static void AssertEquals(
         IBdoReference ref1,
         IBdoReference ref2)
@@ -49,24 +52,24 @@ public class BdoReferenceTests
     }
 
     /// <summary>
-    /// Tests the creation of a reference based on a literal expression.
+    /// Verifies the creation of an <see cref="IBdoReference"/> backed by a literal expression (<see cref="BdoExpressionKind.Literal"/>).
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void Create1Test()
     {
-        // We create a reference pointing to a literal path
+        // Create a reference pointing to a literal path
         _reference = BdoData.NewReference(BdoData.NewExp(_valueSet.Literal as string, BdoExpressionKind.Literal));
 
         _reference?.ToString().Should().Be((string)_valueSet.Literal, "The string representation of a literal reference should match its raw value.");
     }
 
     /// <summary>
-    /// Tests the creation of a reference based on a script expression.
+    /// Verifies the creation of an <see cref="IBdoReference"/> backed by a script expression (<see cref="BdoExpressionKind.Script"/>).
     /// </summary>
-    [Test, Order(2)]
+    [Test]
     public void Create2Test()
     {
-        // We create a reference pointing to a script-based expression
+        // Create a reference pointing to a script-based expression
         _reference = BdoData.NewReference(BdoData.NewExp(_valueSet.Script as string, BdoExpressionKind.Script));
 
         _reference?.ToString().Should().Be((string)_valueSet.Script, "The string representation of a script reference should match the script source.");

@@ -6,20 +6,37 @@ using NUnit.Framework;
 namespace BindOpen.Scoping.Entities;
 
 /// <summary>
-/// This class provides unit tests for BdoEntities, verifying their instantiation 
-/// from various metadata sources and the integrity of data mapping via the Scope.
+/// Contains unit tests for <see cref="IBdoEntity"/> implementations, verifying their instantiation
+/// from metadata objects or CLR instances and the bidirectional integrity of property mapping within a scope.
 /// </summary>
-[TestFixture, Order(300)]
+/// <remarks>
+/// These tests verify that <see cref="IBdoScope.CreateEntity"/> accurately hydrates strongly-typed entity
+/// properties (including scalar metadata properties, enumerations, and primitives) and supports round-trip
+/// serialization via <c>ToMeta</c>.
+/// </remarks>
+[TestFixture]
 public class BdoEntityTests
 {
     private dynamic _testData;
 
+    /// <summary>
+    /// Gets or sets the first test entity instance instantiated via generic factory creation.
+    /// </summary>
     public EntityFake _entity1;
+
+    /// <summary>
+    /// Gets or sets the second test entity instance instantiated via non-generic factory creation.
+    /// </summary>
     public EntityFake _entity2;
+
+    /// <summary>
+    /// Gets or sets the third test entity instance round-tripped from a CLR object through metadata conversion.
+    /// </summary>
     public EntityFake _entity3;
 
     /// <summary>
-    /// Initializes the randomized test data using the entity faker.
+    /// Initializes randomized entity property values using <see cref="BdoEntityFaker"/>
+    /// before any tests in this fixture are executed.
     /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -28,24 +45,30 @@ public class BdoEntityTests
     }
 
     /// <summary>
-    /// Standardized assertion logic to verify the properties of a fake entity.
+    /// Validates that the specified <see cref="EntityFake"/> instance is non-null and that its
+    /// <see cref="EntityFake.BoolValue"/>, <see cref="EntityFake.EnumValue"/>, <see cref="EntityFake.IntValue"/>,
+    /// and <see cref="EntityFake.StringValue"/> properties match the initialized test dataset.
     /// </summary>
     /// <param name="entity">The entity instance to validate.</param>
     public void AssertFake(EntityFake entity)
     {
         Assert.That(entity, Is.Not.Null, "The entity instance is missing.");
 
-        // Verifying specific data types mapped from metadata
-        Assert.That(entity.BoolValue?.GetData<bool?>(), Is.EqualTo(_testData.boolValue), "Boolean value mismatch.");
-        Assert.That(entity.EnumValue.ToString(), Is.EqualTo(_testData.enumValue.ToString()), "Enumeration value mismatch.");
-        Assert.That(entity.IntValue, Is.EqualTo(_testData.intValue), "Integer value mismatch.");
-        Assert.That(entity.StringValue, Is.EqualTo(_testData.stringValue), "String value mismatch.");
+        Assert.Multiple(() =>
+        {
+            // Verifying specific data types mapped from metadata
+            Assert.That(entity.BoolValue?.GetData<bool?>(), Is.EqualTo(_testData.boolValue), "Boolean value mismatch.");
+            Assert.That(entity.EnumValue.ToString(), Is.EqualTo(_testData.enumValue.ToString()), "Enumeration value mismatch.");
+            Assert.That(entity.IntValue, Is.EqualTo(_testData.intValue), "Integer value mismatch.");
+            Assert.That(entity.StringValue, Is.EqualTo(_testData.stringValue), "String value mismatch.");
+        });
     }
 
     /// <summary>
-    /// Tests the creation of an entity directly from a meta-object using a typed factory method.
+    /// Verifies that a strongly-typed <see cref="EntityFake"/> can be instantiated directly from an
+    /// <see cref="IBdoMetaObject"/> using <see cref="IBdoScope.CreateEntity{T}"/>.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void CreateEntityTest_FromMetaSet()
     {
         // 1. Generate meta-object from fake data
@@ -58,9 +81,10 @@ public class BdoEntityTests
     }
 
     /// <summary>
-    /// Tests the creation of an entity from a generic meta-object using type casting.
+    /// Verifies that an entity instantiated via the non-generic <see cref="IBdoScope.CreateEntity"/>
+    /// method resolves to <see cref="EntityFake"/> with all data properties populated.
     /// </summary>
-    [Test, Order(2)]
+    [Test]
     public void CreateEntityTest_FromConfig()
     {
         IBdoMetaObject meta = BdoEntityFaker.NewMetaObject(_testData);
@@ -72,10 +96,10 @@ public class BdoEntityTests
     }
 
     /// <summary>
-    /// Tests the conversion of a POCO entity to metadata and its subsequent 
-    /// re-instantiation via the scoping engine.
+    /// Verifies that a populated <see cref="EntityFake"/> CLR instance can be converted to metadata
+    /// via <c>ToMeta</c> and re-instantiated through <see cref="IBdoScope.CreateEntity"/> without data loss.
     /// </summary>
-    [Test, Order(3)]
+    [Test]
     public void CreateEntityTest_FromObject()
     {
         // 1. Manually create a POCO instance

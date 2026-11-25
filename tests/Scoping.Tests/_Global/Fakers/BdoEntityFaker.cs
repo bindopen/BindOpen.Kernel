@@ -41,10 +41,10 @@ public static class BdoEntityFaker
         data ??= NewData();
 
         // We define the meta-object as an Entity extension
-        var meta = BdoData.NewObject()
+        var meta = BdoMetaSetExtensions.Add(
+BdoData.NewObject()
             .WithDataType(BdoExtensionKinds.Entity, "scoping.tests$testEntity")
-            .With(
-                BdoData.NewScalar("boolValue", data.boolValue as bool?),
+, BdoData.NewScalar("boolValue", data.boolValue as bool?),
                 BdoData.NewScalar("enumValue", data.enumValue as AccessibilityLevels?),
                 BdoData.NewScalar("intValue", data.intValue as int?),
                 BdoData.NewScalar("stringValue", data.stringValue as string),

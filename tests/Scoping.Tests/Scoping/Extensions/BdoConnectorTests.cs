@@ -8,20 +8,37 @@ using System.Linq;
 namespace BindOpen.Scoping.Connectors;
 
 /// <summary>
-/// This class provides unit tests for BdoConnectors, verifying their instantiation 
-/// from various metadata sources and their ability to execute Pull/Push operations.
+/// Contains unit tests for <see cref="IBdoConnector"/> implementations, verifying their instantiation
+/// from metadata objects or CLR instances and their execution of connection-scoped Pull and Push operations.
 /// </summary>
-[TestFixture, Order(301)]
+/// <remarks>
+/// These tests verify that <see cref="IBdoScope.CreateConnector"/> properly hydrates connector properties
+/// (including scalar metadata properties) and that <c>UsingConnection</c> safely manages connection lifetimes
+/// during data retrieval and persistence workflows.
+/// </remarks>
+[TestFixture]
 public class BdoConnectorTests
 {
     private dynamic _testData;
 
+    /// <summary>
+    /// Gets or sets the first test connector instance instantiated via generic factory creation.
+    /// </summary>
     public ConnectorFake _connector1;
+
+    /// <summary>
+    /// Gets or sets the second test connector instance instantiated via non-generic factory creation.
+    /// </summary>
     public ConnectorFake _connector2;
+
+    /// <summary>
+    /// Gets or sets the third test connector instance round-tripped from a CLR object through metadata conversion.
+    /// </summary>
     public ConnectorFake _connector3;
 
     /// <summary>
-    /// Initializes the test data using the connector faker.
+    /// Initializes randomized connector configuration values using <see cref="BdoConnectorFaker"/>
+    /// before any tests in this fixture are executed.
     /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -30,25 +47,31 @@ public class BdoConnectorTests
     }
 
     /// <summary>
-    /// Standardized assertion logic to verify the properties of a fake connector.
+    /// Validates that the specified <see cref="ConnectorFake"/> instance is non-null and that its
+    /// <see cref="ConnectorFake.Host"/>, <see cref="ConnectorFake.Port"/>, and <see cref="ConnectorFake.IsSslEnabled"/>
+    /// properties match the initialized test dataset.
     /// </summary>
     /// <param name="connector">The connector instance to validate.</param>
     public void AssertFake(ConnectorFake connector)
     {
         Assert.That(connector, Is.Not.Null, "The connector instance is missing.");
 
-        Assert.That(connector.Host, Is.EqualTo(_testData.host), "Connector Host mismatch.");
+        Assert.Multiple(() =>
+        {
+            Assert.That(connector.Host, Is.EqualTo(_testData.host), "Connector Host mismatch.");
 
-        // Verifying the Port which is stored as a Meta Scalar
-        Assert.That(connector.Port?.GetData<int?>(), Is.EqualTo(_testData.port), "Connector Port mismatch.");
+            // Verifying the Port which is stored as a Meta Scalar
+            Assert.That(connector.Port?.GetData<int?>(), Is.EqualTo(_testData.port), "Connector Port mismatch.");
 
-        Assert.That(connector.IsSslEnabled ?? false, Is.EqualTo(_testData.isSslEnabled), "Connector SSL status mismatch.");
+            Assert.That(connector.IsSslEnabled ?? false, Is.EqualTo(_testData.isSslEnabled), "Connector SSL status mismatch.");
+        });
     }
 
     /// <summary>
-    /// Tests the creation of a connector directly from a MetaSet using a typed factory method.
+    /// Verifies that a strongly-typed <see cref="ConnectorFake"/> can be instantiated directly from an
+    /// <see cref="IBdoMetaObject"/> using <see cref="IBdoScope.CreateConnector{T}"/>.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void CreateConnectorTest_FromMetaSet()
     {
         IBdoMetaObject meta = BdoConnectorFaker.NewMetaObject(_testData);
@@ -58,9 +81,10 @@ public class BdoConnectorTests
     }
 
     /// <summary>
-    /// Tests the creation of a connector from a generic meta-object using type casting.
+    /// Verifies that a connector instantiated via the non-generic <see cref="IBdoScope.CreateConnector"/>
+    /// method resolves to <see cref="ConnectorFake"/> with all configuration properties populated.
     /// </summary>
-    [Test, Order(2)]
+    [Test]
     public void CreateConnectorTest_FromConfig()
     {
         IBdoMetaObject meta = BdoConnectorFaker.NewMetaObject(_testData);
@@ -70,9 +94,10 @@ public class BdoConnectorTests
     }
 
     /// <summary>
-    /// Tests the conversion of a POCO connector to metadata and back into a scoped connector.
+    /// Verifies that a populated <see cref="ConnectorFake"/> CLR instance can be serialized to metadata
+    /// via <c>ToMeta</c> and re-instantiated through <see cref="IBdoScope.CreateConnector"/> without data loss.
     /// </summary>
-    [Test, Order(3)]
+    [Test]
     public void CreateConnectorTest_FromObject()
     {
         var connector = new ConnectorFake
@@ -91,10 +116,10 @@ public class BdoConnectorTests
     }
 
     /// <summary>
-    /// Tests the operational workflow of a connector, specifically its ability 
-    /// to open a connection and perform Pull (Read) and Push (Write) operations.
+    /// Verifies the operational lifecycle of a connector using <c>UsingConnection</c> to open a connection,
+    /// execute a <c>Pull</c> query with a parameter set, and <c>Push</c> the retrieved entities back.
     /// </summary>
-    [Test, Order(4)]
+    [Test]
     public void CreateConnectorTest_Pull_Push()
     {
         var connector = new ConnectorFake
@@ -109,7 +134,7 @@ public class BdoConnectorTests
         connector.UsingConnection((conn, log) =>
         {
             // 1. Pull data using a parameter set
-            var paramSet = BdoData.NewNode(
+            var paramSet = BdoData.NewSet(
                 BdoData.NewObject(nameof(BdoSchema.GroupId)));
 
             var entities = conn.Pull(paramSet, log);

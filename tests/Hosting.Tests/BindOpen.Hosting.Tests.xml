@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BindOpen.Hosting.Tests</name>
+    </assembly>
+    <members>
+        <member name="T:BindOpen.Hosting.AppHostTests">
+            <summary>
+            Contains unit tests for application host initialization and execution state management within BindOpen Hosting.
+            </summary>
+            <remarks>
+            These tests verify that both the global application host and newly instantiated host instances
+            initialize and transition to the expected <see cref="T:BindOpen.Logging.ProcessExecutionState"/>.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Hosting.AppHostTests.Setup">
+            <summary>
+            Performs one-time setup before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Hosting.AppHostTests.TestAppHost">
+            <summary>
+            Verifies that the global application host (<see cref="P:BindOpen.Hosting.Tests.GlobalVariables.AppHost"/>)
+            is initialized in the <see cref="F:BindOpen.Logging.ProcessExecutionState.Pending"/> state.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Hosting.AppHostTests.TestAppHostWithNoOptions">
+            <summary>
+            Verifies that a host instantiated without explicit options via <see cref="M:BindOpen.Hosting.BdoHosting.NewHost(System.Action{BindOpen.Hosting.Settings.IBdoHostOptions})"/>
+            starts cleanly and reaches the <see cref="F:BindOpen.Logging.ProcessExecutionState.Pending"/> state.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Hosting.ConfigurationTests">
+            <summary>
+            Contains unit tests for host configuration loading, strongly-typed settings casting,
+            and multi-file XML configuration merging within BindOpen Hosting.
+            </summary>
+            <remarks>
+            These tests verify that host options properly apply programmatic settings, instantiate
+            custom settings types, and merge properties from single or multiple external configuration files.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Hosting.ConfigurationTests.Setup">
+            <summary>
+            Performs one-time setup before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Hosting.ConfigurationTests.DefaultConfigurationTest">
+            <summary>
+            Verifies that programmatic host settings configured via <c>SetSettings</c>
+            are applied and preserved once the host starts.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Hosting.ConfigurationTests.CastingConfigTest">
+            <summary>
+            Verifies that configuring the host with a custom strongly-typed settings class
+            (<see cref="T:BindOpen.Hosting.Tests.TestSettings"/>) properly instantiates and exposes that settings type.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Hosting.ConfigurationTests.KernelConfigFileTest">
+            <summary>
+            Verifies that the host loads and resolves strongly-typed <see cref="T:BindOpen.Hosting.Tests.TestSettings"/>
+            from the default kernel configuration file without initialization errors.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Hosting.ConfigurationTests.SeveralFilesTest">
+            <summary>
+            Verifies that loading multiple sequential configuration files (<c>appconfig.xml</c> and <c>appconfig2.xml</c>)
+            merges scalar properties and aggregates collection entries into <see cref="T:BindOpen.Hosting.Tests.TestSettings"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Hosting.DatasourcesTests">
+            <summary>
+            Contains unit tests for datasource instantiation, registration, and depot resolution
+            within BindOpen Hosting.
+            </summary>
+            <remarks>
+            These tests verify that datasources can be instantiated from metadata wrappers as well as
+            registered into the host's depot store from .NET Core configurations and BindOpen XML settings files.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Hosting.DatasourcesTests.Setup">
+            <summary>
+            Performs one-time setup before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Hosting.DatasourcesTests.CreateDatasourceTest">
+            <summary>
+            Verifies that a <see cref="T:BindOpen.Data.Stores.BdoDatasource"/> wrapper can be instantiated from an <see cref="T:BindOpen.Data.Meta.IBdoMetaSet"/>
+            and properly exposes its connection string and <see cref="T:BindOpen.Data.DatasourceKind"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Hosting.DatasourcesTests.AddFromConnectionStringsTest">
+            <summary>
+            Verifies that datasources defined in the .NET Core <see cref="P:BindOpen.Hosting.Tests.GlobalVariables.NetCoreConfiguration"/>
+            are registered into the host's datasource depot and retain their inferred types and connection strings.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Hosting.DatasourcesTests.AddFromSettingsTest">
+            <summary>
+            Verifies that datasources configured across multiple BindOpen XML settings files
+            (<c>appconfig.xml</c> and <c>appconfig2.xml</c>) are registered and merged into the host's datasource depot.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Hosting.Loggers.LoggersTests">
+            <summary>
+            Contains unit tests for logger configuration and registration within BindOpen Hosting.
+            </summary>
+            <remarks>
+            These tests verify that host instances can be configured with custom or built-in
+            <see cref="T:BindOpen.Logging.Loggers.IBdoLogger"/> implementations and start without initialization errors.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Hosting.Loggers.LoggersTests.Setup">
+            <summary>
+            Performs one-time setup before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Hosting.Loggers.LoggersTests.DefaultConfigurationTest">
+            <summary>
+            Verifies that a host configured with a <see cref="T:BindOpen.Logging.Loggers.BdoTraceLogger"/> via <c>SetLogger</c>
+            starts properly and reaches the <see cref="F:BindOpen.Logging.ProcessExecutionState.Pending"/> state.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Hosting.Settings.PathTests">
+            <summary>
+            Contains unit tests for host path resolution, including root and library folder configurations
+            within BindOpen Hosting.
+            </summary>
+            <remarks>
+            These tests verify that <see cref="T:BindOpen.Hosting.Settings.BdoHostPathKind"/> locations (such as the root folder and library folder)
+            are accurately resolved across conditional overrides, relative paths, and default application paths.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Hosting.Settings.PathTests.Setup">
+            <summary>
+            Performs one-time setup before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Hosting.Settings.PathTests.RootFolderTest">
+            <summary>
+            Verifies that conditional <c>AddRootFolder</c> predicates override the base root folder
+            only when their condition evaluates to <see langword="true"/>, falling back to the default root folder otherwise.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Hosting.Settings.PathTests.DefaultRootFolderTest">
+            <summary>
+            Verifies that relative root paths resolve against <see cref="M:BindOpen.Data.Helpers.FileHelper.GetAppRootFolderPath"/>
+            and that omitting <c>SetRootFolder</c> defaults directly to the application's root directory.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Hosting.Settings.PathTests.LibraryFolderTest">
+            <summary>
+            Verifies that the library folder (<see cref="F:BindOpen.Hosting.Settings.BdoHostPathKind.LibraryFolder"/>) resolves
+            relative to the host's configured root directory.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Hosting.Tests.TestSettings">
+            <summary>
+            This class represents a website application settings.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Hosting.Tests.TestSettings.FolderPath">
+            <summary>
+            The ReCaptcha public key of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Hosting.Tests.TestSettings.SecretKey">
+            <summary>
+            The ReCaptcha secret key of this instance.
+            </summary>
+        </member>
+        <member name="P:BindOpen.Hosting.Tests.TestSettings.NewsUris">
+            <summary>
+            The News URIs of this instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Hosting.Tests.TestSettings.#ctor">
+            <summary>
+            Instantiates a new instance of the WebsiteAppSettings class.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Hosting.Tests.GlobalSetUp">
+            <summary>
+            Provides assembly-level setup initialization for the <c>BindOpen.Hosting.Tests</c> test suite.
+            </summary>
+            <remarks>
+            Ensures that global hosting dependencies and shared application host state defined in
+            <see cref="T:BindOpen.Hosting.Tests.GlobalVariables"/> are initialized once prior to executing any test fixtures in the namespace.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Hosting.Tests.GlobalSetUp.Setup">
+            <summary>
+            Initializes global test variables and triggers lazy instantiation of <see cref="P:BindOpen.Hosting.Tests.GlobalVariables.AppHost"/>
+            before any tests in the assembly are executed.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Hosting.Tests.GlobalVariables">
+            <summary>
+            Provides centralized, lazily initialized global test state, configuration, and host instances
+            for the <c>BindOpen.Hosting.Tests</c> assembly.
+            </summary>
+            <remarks>
+            Exposes shared accessors for the temporary test working directory, the active <see cref="T:BindOpen.Hosting.IBdoHost"/>
+            instance, and the underlying .NET <see cref="T:Microsoft.Extensions.Configuration.IConfiguration"/> loaded from <c>appsettings.json</c>.
+            </remarks>
+        </member>
+        <member name="P:BindOpen.Hosting.Tests.GlobalVariables.WorkingFolder">
+            <summary>
+            Gets the normalized path to the temporary working folder (<c>bdo\temp\</c>) used for test artifacts.
+            </summary>
+            <value>
+            A platform-normalized directory path resolved from the host's root folder, or falling back
+            if the host has not been initialized.
+            </value>
+        </member>
+        <member name="P:BindOpen.Hosting.Tests.GlobalVariables.AppHost">
+            <summary>
+            Gets the shared <see cref="T:BindOpen.Hosting.IBdoHost"/> instance, initializing and starting it on first access.
+            </summary>
+            <value>
+            The started <see cref="T:BindOpen.Hosting.IBdoHost"/> configured to throw exceptions upon initialization failure.
+            </value>
+        </member>
+        <member name="P:BindOpen.Hosting.Tests.GlobalVariables.NetCoreConfiguration">
+            <summary>
+            Gets the shared <see cref="T:Microsoft.Extensions.Configuration.IConfiguration"/> built from <c>bdo\config\appsettings.json</c>
+            relative to the host root directory.
+            </summary>
+            <value>
+            The lazily constructed <see cref="T:Microsoft.Extensions.Configuration.IConfiguration"/> instance with optional file loading and reload-on-change enabled.
+            </value>
+        </member>
+    </members>
+</doc>

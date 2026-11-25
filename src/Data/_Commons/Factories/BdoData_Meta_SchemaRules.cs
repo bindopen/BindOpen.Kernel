@@ -1,47 +1,46 @@
 ﻿using BindOpen.Data.Conditions;
 using BindOpen.Data.Schema;
 
-namespace BindOpen.Data
+namespace BindOpen.Data;
+
+/// <summary>
+/// This class represents a data exp that can contain a literal and script texts.
+/// </summary>
+public static partial class BdoData
 {
     /// <summary>
-    /// This class represents a data exp that can contain a literal and script texts.
+    /// Creates a new rule.
     /// </summary>
-    public static partial class BdoData
+    /// <param key="kind">The kind of exp to consider.</param>
+    /// <param key="text">The text to consider.</param>
+    /// <returns>Returns the created exp.</returns>
+    public static BdoSchemaRule NewRequirement(
+        string groupId,
+        object value,
+        IBdoCondition condition = null,
+        string resultCode = null)
     {
-        /// <summary>
-        /// Creates a new rule.
-        /// </summary>
-        /// <param key="kind">The kind of exp to consider.</param>
-        /// <param key="text">The text to consider.</param>
-        /// <returns>Returns the created exp.</returns>
-        public static BdoSchemaRule NewRequirement(
-            string groupId,
-            object value,
-            IBdoCondition condition = null,
-            string resultCode = null)
-        {
-            var rule = New<BdoSchemaRule>()
-                .WithRuleKind(BdoSchemaRuleKinds.Requirement)
-                .WithGroupId(groupId)
-                .WithValue(value)
-                .WithCondition(condition)
-                .WithResultCode(resultCode);
+        var rule = New<BdoSchemaRule>()
+            .WithRuleKind(BdoSchemaRuleKinds.Requirement)
+            .WithGroupId(groupId)
+            .WithValue(value)
+            .WithCondition(condition)
+            .WithResultCode(resultCode);
 
-            return rule;
-        }
+        return rule;
+    }
 
-        public static BdoSchemaRule NewConstraint(
-            string groupId,
-            IBdoReference reference = null,
-            IBdoCondition condition = null)
-        {
-            var rule = New<BdoSchemaRule>()
-                .WithRuleKind(BdoSchemaRuleKinds.Constraint)
-                .WithGroupId(groupId)
-                .WithReference(reference)
-                .WithCondition(condition);
+    public static BdoSchemaRule NewConstraint(
+        string groupId,
+        IBdoReference reference = null,
+        IBdoCondition condition = null)
+    {
+        var rule = New<BdoSchemaRule>()
+            .WithRuleKind(BdoSchemaRuleKinds.Constraint)
+            .WithGroupId(groupId)
+            .WithReference(reference)
+            .WithCondition(condition);
 
-            return rule;
-        }
+        return rule;
     }
 }

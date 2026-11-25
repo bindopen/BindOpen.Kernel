@@ -95,7 +95,14 @@ namespace BindOpen.Data
         {
             if (parent != null)
             {
-                parent._Children = BdoData.NewItemSet(children?.Any() == true ? children : null);
+                if (children==null)
+                {
+                    parent._Children = null;
+                }
+                else
+                {
+                    parent._Children = BdoData.NewItemSet(children?.Any() == true ? children : null);
+                }
             }
 
             return parent;

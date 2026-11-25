@@ -1,23 +1,22 @@
 ﻿using BindOpen.Data.Conditions;
 
-namespace BindOpen.Data
-{
-    /// <summary>
-    /// This static class provides methods to handle conditions.
-    /// </summary>
-    public static class IBdoConditionalExtensions
-    {
-        public static T WithCondition<T>(
-            this T obj,
-            IBdoCondition condition)
-            where T : IBdoConditional
-        {
-            if (obj != null)
-            {
-                obj.Condition = condition;
-            }
+namespace BindOpen.Data;
 
-            return obj;
+/// <summary>
+/// This static class provides methods to handle conditions.
+/// </summary>
+public static class IBdoConditionalExtensions
+{
+    public static T WithCondition<T>(
+        this T obj,
+        IBdoCondition condition)
+        where T : IBdoConditional
+    {
+        if (obj != null)
+        {
+            obj.Condition = condition;
         }
+
+        return obj;
     }
 }

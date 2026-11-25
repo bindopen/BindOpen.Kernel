@@ -18,10 +18,7 @@ namespace BindOpen.Data
             IBdoMetaSet detail)
             where T : IBdoDetailed
         {
-            if (obj != null)
-            {
-                obj.Detail = detail;
-            }
+            obj?.Detail = detail;
             return obj;
         }
 
@@ -60,7 +57,7 @@ namespace BindOpen.Data
             if (obj != null)
             {
                 obj.GetOrNewDetail().Clear();
-                obj.Detail.WithItems(metas);
+                obj.Detail.AddItems(metas);
             }
             return obj;
         }
@@ -122,7 +119,7 @@ namespace BindOpen.Data
             bool isFlag = true)
             where T : IBdoDetailed
         {
-            schema?.GetOrNewDetail().With(flagName, isFlag);
+            schema?.GetOrNewDetail().Add(flagName, isFlag);
 
             return schema;
         }

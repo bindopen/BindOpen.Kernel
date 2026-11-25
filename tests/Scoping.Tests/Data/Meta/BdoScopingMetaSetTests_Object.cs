@@ -6,17 +6,23 @@ using NUnit.Framework;
 namespace BindOpen.Data.Meta;
 
 /// <summary>
-/// Tests the creation, manipulation, and data retrieval of Meta-Object nodes
-/// within a scoping context, including POCO-to-Meta conversion.
+/// Contains unit tests for the creation, manipulation, and data retrieval of <see cref="IBdoMetaObject"/>
+/// nodes within a scoping context, including POCO-to-metadata reflection conversions.
 /// </summary>
-[TestFixture, Order(200)]
+/// <remarks>
+/// These tests verify that meta-objects constructed manually, hydrated via <c>UpdateTree</c>,
+/// or converted from plain CLR objects via <c>ToMeta</c> maintain structural integrity and property accuracy
+/// when aggregated inside an <see cref="IBdoMetaSet"/>.
+/// </remarks>
+[TestFixture]
 public class BdoScopingMetaSetTests_Object
 {
     private dynamic _testData;
     private IBdoMetaSet _metaObjSet = null;
 
     /// <summary>
-    /// Initializes randomized test data using the Bogus library.
+    /// Initializes randomized file and folder path test data using <see cref="Faker"/>
+    /// before any tests in this fixture are executed.
     /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -33,9 +39,10 @@ public class BdoScopingMetaSetTests_Object
     }
 
     /// <summary>
-    /// Shared validation logic to verify the integrity of a meta-node containing objects.
+    /// Validates the structural integrity, element count, and property values of an <see cref="IBdoMetaSet"/>
+    /// containing <see cref="IBdoMetaObject"/> instances accessed by name, indexer, and ordinal position.
     /// </summary>
-    /// <param name="metaSet">The meta-node to validate.</param>
+    /// <param name="metaSet">The metadata set containing object nodes to validate.</param>
     public void Test(IBdoMetaSet metaSet)
     {
         // 1. Verify the total count of root objects
@@ -65,14 +72,17 @@ public class BdoScopingMetaSetTests_Object
     }
 
     /// <summary>
-    /// Tests the different ways to instantiate and populate Meta-Objects.
+    /// Verifies the various instantiation and population workflows for <see cref="IBdoMetaObject"/> instances
+    /// (manual scalar addition, <c>UpdateTree</c> hydration, and reflection-based <c>ToMeta</c> conversion)
+    /// and validates their aggregation within an <see cref="IBdoMetaSet"/>.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void NewTest()
     {
         // A. Manual construction
-        var metaObj1 = BdoData.NewObject("object1")
-            .With(BdoData.NewScalar("path", _testData.path1 as string));
+        var metaObj1 = BdoMetaSetExtensions.Add(
+            BdoData.NewObject("object1"),
+            BdoData.NewScalar("path", _testData.path1 as string));
 
         // B. Construction from existing POCO with UpdateTree resolution
         var metaObj2 = BdoData.NewObject("object2", "scoping.tests$testEntity")
@@ -94,7 +104,7 @@ public class BdoScopingMetaSetTests_Object
         var metaObj4 = obj4?.ToMeta("object4");
 
         // E. Composite Node creation
-        _metaObjSet = BdoData.NewNode(
+        _metaObjSet = BdoData.NewSet(
             metaObj1,
             metaObj2,
             metaObj3);

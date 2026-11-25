@@ -1,0 +1,15 @@
+﻿<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://storage.bindopen.org/xsd/bindopen/kernel">
+
+  <set name="uris">
+    <scalar name="daily">dailyA</scalar>
+    <scalar name="releases">releasesA</scalar>
+  </set>
+
+  <config name="$datasources">
+    <object name="db.testC" definition="database.mssqlserver$client">
+      <scalar name="datasourceKind">Database</scalar>
+      <scalar name="connectionString">connectionString_test2</scalar>
+    </object>
+  </config>
+
+</config>

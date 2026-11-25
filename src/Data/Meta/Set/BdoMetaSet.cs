@@ -22,7 +22,7 @@ namespace BindOpen.Data.Meta
         /// <param key="elems">The elems to consider.</param>
         public static explicit operator BdoMetaSet(IBdoMetaData[] elems)
         {
-            return BdoData.NewNode(elems);
+            return BdoData.NewSet(elems);
         }
 
         /// <summary>

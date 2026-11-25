@@ -18,7 +18,7 @@ namespace BindOpen.Data.Meta
 
             foreach (var item in dictionary)
             {
-                set.With(item.Key, item.Value);
+                set.Add(item.Key, item.Value);
             }
 
             return set;

@@ -1,23 +1,22 @@
-﻿namespace BindOpen.Scoping.Tasks
+﻿namespace BindOpen.Scoping.Tasks;
+
+/// <summary>
+/// This class represents a DTO task dico.
+/// </summary>
+public class BdoTaskDictionary : TBdoExtensionDictionary<IBdoTaskDefinition>, IBdoTaskDictionary
 {
+    // ------------------------------------------
+    // CONSTRUCTORS
+    // ------------------------------------------
+
+    #region Constructors
+
     /// <summary>
-    /// This class represents a DTO task dico.
+    /// Instantiates a new instance of the BdoTaskDictionary class.
     /// </summary>
-    public class BdoTaskDictionary : TBdoExtensionDictionary<IBdoTaskDefinition>, IBdoTaskDictionary
+    public BdoTaskDictionary()
     {
-        // ------------------------------------------
-        // CONSTRUCTORS
-        // ------------------------------------------
-
-        #region Constructors
-
-        /// <summary>
-        /// Instantiates a new instance of the BdoTaskDictionary class.
-        /// </summary>
-        public BdoTaskDictionary()
-        {
-        }
-
-        #endregion
     }
+
+    #endregion
 }

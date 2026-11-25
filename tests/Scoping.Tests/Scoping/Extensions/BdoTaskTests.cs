@@ -5,16 +5,22 @@ using NUnit.Framework;
 namespace BindOpen.Scoping.Tasks;
 
 /// <summary>
-/// This class provides unit tests for BdoTasks, verifying their lifecycle, 
-/// metadata-driven instantiation, and bidirectional state synchronization.
+/// Contains unit tests for <see cref="IBdoTask"/> implementations, verifying their lifecycle,
+/// metadata-driven instantiation, and bidirectional state synchronization within a scope.
 /// </summary>
-[TestFixture, Order(300)]
+/// <remarks>
+/// These tests verify that <see cref="IBdoScope.CreateTask"/> properly hydrates strongly-typed task
+/// instances from <see cref="IBdoMetaObject"/> configurations and supports round-trip serialization
+/// from plain CLR task objects via <c>ToMeta</c>.
+/// </remarks>
+[TestFixture]
 public class BdoTaskTests
 {
     private dynamic _testData;
 
     /// <summary>
-    /// Initializes the randomized test data using the task faker.
+    /// Initializes randomized task property values using <see cref="BdoTaskFaker"/>
+    /// before any tests in this fixture are executed.
     /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -23,9 +29,10 @@ public class BdoTaskTests
     }
 
     /// <summary>
-    /// Tests the creation of a task directly from a MetaSet using the typed Scope factory.
+    /// Verifies that a strongly-typed <see cref="TaskFake"/> can be instantiated directly from an
+    /// <see cref="IBdoMetaObject"/> using <see cref="IBdoScope.CreateTask{T}"/>.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void CreateTaskTest_FromMetaSet()
     {
         // 1. Generate a meta-object containing task configuration
@@ -39,9 +46,10 @@ public class BdoTaskTests
     }
 
     /// <summary>
-    /// Tests the creation of a task from a generic configuration using type casting.
+    /// Verifies that a task instantiated via the non-generic <see cref="IBdoScope.CreateTask"/>
+    /// method resolves to <see cref="TaskFake"/> with all configuration properties populated.
     /// </summary>
-    [Test, Order(2)]
+    [Test]
     public void CreateTaskTest_FromConfig()
     {
         IBdoMetaObject meta = BdoTaskFaker.NewMetaObject(_testData);
@@ -53,10 +61,10 @@ public class BdoTaskTests
     }
 
     /// <summary>
-    /// Tests the conversion of a POCO task into metadata and its subsequent 
-    /// reconstruction via the scoping engine.
+    /// Verifies that a populated <see cref="TaskFake"/> CLR instance can be serialized to metadata
+    /// via <c>ToMeta</c> and re-instantiated through <see cref="IBdoScope.CreateTask"/> without data loss.
     /// </summary>
-    [Test, Order(3)]
+    [Test]
     public void CreateTaskTest_FromObject()
     {
         // 1. Manually instantiate a POCO task

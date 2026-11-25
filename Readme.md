@@ -1,3 +1,4 @@
+
 # BindOpen.Kernel
 
 ![BindOpen logo](https://storage.bindopen.org/img/logos/logo_bindopen.png)
@@ -5,45 +6,61 @@
 [![Nuget](https://img.shields.io/nuget/v/BindOpen.Abstractions.svg?style=flat-square)](https://www.nuget.org/packages/BindOpen.Abstractions)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://github.com/bindopen/BindOpen.Kernel/blob/master/LICENSE)
 
-BindOpen is a framework that enables the development of highly extensible applications. It allows you to enhance your .NET projects with custom script functions, connectors, entities, and tasks.
-
-## About
-
-**BindOpen.Kernel** is the core module of the BindOpen framework. It enables you to easily model your business context, including data and operations, through a metadata-driven approach.
-
-BindOpen.Kernel is composed of the following modules:
-
-* **Data**: Offers a comprehensive data model based on metadata.
-* **Scoping**: Provides an effective mechanism for loading and using your extensions.
-* **Dtos.Converters**: Provides packages to serialize and deserialize BindOpen.Kernel objects.
-* [**Hosting**](https://github.com/bindopen/BindOpen.Hosting): (External) Allows you to integrate a BindOpen agent within the .NET service builder.
-* [**Logging**](https://github.com/bindopen/BindOpen.Logging): (External) Provides a straightforward and multi-dimensional logging system.
-
-This repository contains the **Data**, **Scoping**, and **Dtos.Converters** modules.
-
-## Install
-
-To get started, install the specific BindOpen.Kernel module you need.
-
-### From Visual Studio (Package Manager)
-
-| Module | Instruction |
-|--------|-----|
-| [BindOpen.Data](https://www.nuget.org/packages/BindOpen.Data) | `PM> Install-Package BindOpen.Data` |
-| [BindOpen.Scoping](https://www.nuget.org/packages/BindOpen.Scoping) | `PM> Install-Package BindOpen.Scoping` |
-| [BindOpen.Dtos.Converters](https://www.nuget.org/packages/BindOpen.Dtos.Converters) | `PM> Install-Package BindOpen.Dtos.Converters` |
-
-### From .NET CLI
-
-| Module | Instruction |
-|--------|-----|
-| [BindOpen.Data](https://www.nuget.org/packages/BindOpen.Data) | `dotnet add package BindOpen.Data` |
-| [BindOpen.Scoping](https://www.nuget.org/packages/BindOpen.Scoping) | `dotnet add package BindOpen.Scoping` |
-| [BindOpen.Dtos.Converters](https://www.nuget.org/packages/BindOpen.Dtos.Converters) | `dotnet add package BindOpen.Dtos.Converters` |
+**BindOpen.Kernel** is the foundational toolkit of the BindOpen platform. It defines the
+core data model, the scope & extension system, event logging, application hosting, relational
+persistence, and the data transfer objects (DTOs) shared by all BindOpen modules.
 
 ---
 
-## Get Started
+## What's Inside
+
+| Package | Description |
+|---------|-------------|
+| `BindOpen.Data` | Core data model: meta sets, meta objects, scalars, dictionaries, schemas, mergers, assemblies/class references, depots, references and conditions. |
+| `BindOpen.Scoping` | Scope management: `BdoScoping.NewScope()`, extension loading (`LoadExtensions`), entities, and connectors. |
+| `BindOpen.Scoping.Extensions` | Extension system: tasks (`scope.CreateTask(...)`), extension kinds and options. |
+| `BindOpen.Scoping.Script` | Scripting engine: `BdoScript`, scriptwords, interpreter and script tasks. |
+| `BindOpen.Dtos` | DTO classes (`*Dto`) and JSON / XML / text serialization (`ToDto`, `ToPoco`, `SaveJson`, `SaveXml`, `JsonHelper`, `XmlHelper`). |
+| `BindOpen.Dtos.Xsd` | XSD schema generation for the DTO model. |
+| `BindOpen.Logging` | Event logging: `BdoLogging.NewLog()`, log events, hierarchical sub-logs, handlers and filters. |
+| `BindOpen.Logging.Dtos` | DTOs (`LogDto`) and JSON / XML serialization for logged events and log queries. |
+| `BindOpen.Logging.Relational` | Relational persistence of logs (EF Core, AutoMapper). |
+| `BindOpen.Relational` | Relational persistence of the core data model (Entity Framework Core). |
+| `BindOpen.Hosting` | Application hosting: `BdoHosting.NewHost(...)`, known host paths, and configuration binding. |
+
+A TypeScript package is also published from this repository:
+
+| Package | Description |
+|---------|-------------|
+| `@bindopen/kernel-dtos` | Typed DTO classes for JavaScript/TypeScript consumers (ESM + CJS), with `./data`, `./logging` and `./scoping` subpath exports. |
+
+## Requirements
+
+- .NET **11.0** or later
+- [NuGet](https://www.nuget.org) package manager (or your SDK's equivalent)
+- [Node.js](https://nodejs.org) + [npm](https://www.npmjs.com) for the TypeScript package
+
+## Installation
+
+```bash
+# .NET (any project)
+dotnet add package BindOpen.Data
+dotnet add package BindOpen.Scoping
+dotnet add package BindOpen.Scoping.Extensions
+dotnet add package BindOpen.Scoping.Script
+dotnet add package BindOpen.Dtos
+dotnet add package BindOpen.Logging
+dotnet add package BindOpen.Logging.Dtos
+dotnet add package BindOpen.Logging.Relational
+dotnet add package BindOpen.Relational
+dotnet add package BindOpen.Hosting
+
+# JavaScript / TypeScript
+npm install @bindopen/kernel-dtos
+
+```
+
+## Quick Start
 
 ### Data
 
@@ -138,7 +155,7 @@ var task = scope.CreateTask<TaskFake>(meta);
 task.Execute(new CancellationToken(), scope);
 ```
 
-### Dtos.Converters
+### Serialize and Deserialize (XML & JSON)
 
 Serialize and deserialize BindOpen objects to/from JSON and XML.
 
@@ -151,24 +168,62 @@ metaSet.ToDto().SaveXml("output.xml");
 var loadedSet = JsonHelper.LoadJson<MetaSetDto>("output.json").ToPoco();
 ```
 
----
+### Logging
 
-## Nuget Packages
+Structured and hierarchical logs are created with `BdoLogging`:
 
-This repository contains the code for the following NuGet packages:
+```csharp
+using BindOpen.Data;
+using BindOpen.Logging;
 
-| Package | Provision |
-|----------|-----|
-| [BindOpen.Abstractions](https://www.nuget.org/packages/BindOpen.Abstractions) | Interfaces and enumerations |
-| [BindOpen.Data](https://www.nuget.org/packages/BindOpen.Data) | Core data model |
-| [BindOpen.Scoping](https://www.nuget.org/packages/BindOpen.Scoping) | Extension manager |
-| [BindOpen.Scoping.Script](https://www.nuget.org/packages/BindOpen.Scoping.Script) | Script interpreter |
-| [BindOpen.Dtos.Converters](https://www.nuget.org/packages/BindOpen.Dtos.Converters) | Serialization / Deserialization |
-| [BindOpen.Dtos](https://www.nuget.org/packages/BindOpen.Dtos) | Data transfer classes |
+var log = BdoLogging.NewLog()
+    .WithDetail(("environment", DataValueTypes.Text, "production"));
 
-The atomicity of these packages allows you to install only what you need, respecting your solution's architecture. All our NuGet packages are available on [our NuGet.org profile page](https://www.nuget.org/profiles/bindopen).
+log.AddMessage("Process started");
+log.AddWarning("Low disk space");
+log.AddError("Operation failed");
 
----
+```
+
+### Hosting
+
+`BdoHosting` bootstraps the application environment, known paths, and configuration:
+
+```csharp
+using BindOpen.Hosting;
+
+var host = BdoHosting.NewHost(
+    options => options.ThrowExceptionOnInitFailure());
+
+host.Start();
+
+```
+
+### TypeScript
+
+```ts
+import { MetaSetDto } from '@bindopen/kernel-dtos/data';
+
+const metaSet: MetaSetDto = {
+  name: 'users',
+  metas: [
+    { name: 'name', type: 'Text', values: ['Ernest E.'] },
+    { name: 'code', type: 'Integer', values: ['1560'] },
+  ],
+};
+
+```
+
+## Running Tests
+
+The solution uses **NUnit** across dedicated test projects (`BindOpen.Data.Tests`, `BindOpen.Scoping.Tests`,
+`BindOpen.Logging.Tests`, `BindOpen.Hosting.Tests`, `BindOpen.Dtos.Tests`, etc.) covering domain creation,
+JSON/XML round-trip serialization, and relational persistence:
+
+```bash
+dotnet test
+
+```
 
 ## Documentation and Further Learning
 
@@ -180,8 +235,6 @@ The BindOpen Docs are the ideal place to start. They are categorized into three 
 
 ### [BindOpen Blog](https://www.bindopen.org/blog)
 The BindOpen Blog is where we announce new features, engineering deep dives, and proof-of-concepts.
-
----
 
 ## Feedback
 If you encounter any issues, please file a bug on the [BindOpen Issue Tracker](https://github.com/bindopen/BindOpen/issues).

@@ -5,19 +5,19 @@ using NUnit.Framework;
 namespace BindOpen.Data.Meta;
 
 /// <summary>
-/// Contains unit tests for scalar metadata nodes, focusing on data initialization and type resolution.
+/// Contains unit tests for scalar metadata elements, focusing on data initialization and type resolution.
 /// </summary>
 /// <remarks>
-/// These tests verify that <see cref="IBdoMetaScalar"/> correctly stores and retrieves 
-/// various data types (Number, Text, Integer, Binary) using randomized test data.
+/// These tests verify that <see cref="IBdoMetaScalar"/> correctly stores, resolves, and retrieves
+/// various <see cref="DataValueTypes"/> (Number, Text, Integer, Binary) using randomized test data.
 /// </remarks>
-[TestFixture, Order(202)]
+[TestFixture]
 public class BdoMetaSetTests_Scalar
 {
     private dynamic _testData;
 
     /// <summary>
-    /// Initializes randomized test data for scalar testing.
+    /// Initializes randomized scalar test data before any tests in this fixture are executed.
     /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -26,9 +26,10 @@ public class BdoMetaSetTests_Scalar
     }
 
     /// <summary>
-    /// Tests the creation of numeric scalar elements.
+    /// Verifies the creation and type resolution of numeric (<see cref="DataValueTypes.Number"/>) scalar elements
+    /// using both explicit type definitions and generic type inference.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void NewTest_Number()
     {
         double[] items = _testData.arrayNumber;
@@ -49,9 +50,9 @@ public class BdoMetaSetTests_Scalar
     }
 
     /// <summary>
-    /// Tests the creation of string scalar elements.
+    /// Verifies the creation and type resolution of text (<see cref="DataValueTypes.Text"/>) scalar elements.
     /// </summary>
-    [Test, Order(2)]
+    [Test]
     public void NewTest_String()
     {
         string[] items = _testData.arrayString;
@@ -64,9 +65,9 @@ public class BdoMetaSetTests_Scalar
     }
 
     /// <summary>
-    /// Tests the creation of integer scalar elements.
+    /// Verifies the creation and type resolution of integer (<see cref="DataValueTypes.Integer"/>) scalar elements.
     /// </summary>
-    [Test, Order(3)]
+    [Test]
     public void NewTest_Integer()
     {
         int[] items = _testData.arrayInteger;
@@ -79,9 +80,9 @@ public class BdoMetaSetTests_Scalar
     }
 
     /// <summary>
-    /// Tests the creation of binary (byte array) scalar elements.
+    /// Verifies the creation, sequence integrity, and type resolution of binary (<see cref="DataValueTypes.Binary"/>) scalar elements.
     /// </summary>
-    [Test, Order(4)]
+    [Test]
     public void NewTest_ArrayByte()
     {
         byte[][] items = _testData.arrayArrayByte;
@@ -95,9 +96,9 @@ public class BdoMetaSetTests_Scalar
     }
 
     /// <summary>
-    /// Verifies the string representation of scalar elements for logging and debugging.
+    /// Verifies that <see cref="object.ToString"/> returns a valid non-null representation for integer and numeric scalar elements.
     /// </summary>
-    [Test, Order(5)]
+    [Test]
     public void ToStringTest()
     {
         int[] items_integer = _testData.arrayInteger;

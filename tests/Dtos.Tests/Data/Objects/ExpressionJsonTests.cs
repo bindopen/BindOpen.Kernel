@@ -1,9 +1,19 @@
-﻿using NUnit.Framework;
+﻿using BindOpen.Data.Objects;
+using NUnit.Framework;
 using System.IO;
 
 namespace BindOpen.Data;
 
-[TestFixture, Order(210)]
+/// <summary>
+/// Contains unit tests for JSON serialization and deserialization of <see cref="IBdoExpression"/>
+/// instances via <see cref="ExpressionDto"/> conversion.
+/// </summary>
+/// <remarks>
+/// These tests verify that standard and scoping expressions created by <see cref="BdoExpressionTests"/>
+/// and <see cref="BdoScopingExpressionTests"/> can be mapped to DTOs, persisted to JSON files on disk,
+/// and reloaded back into domain objects without losing structural or property equality.
+/// </remarks>
+[TestFixture]
 public class ExpressionJsonTests
 {
     private readonly string _filePath_json = DataTestData.WorkingFolder + "Expression{0}.json";
@@ -13,22 +23,31 @@ public class ExpressionJsonTests
     private bool _isSaved2 = false;
     private bool _isSaved3 = false;
 
+    /// <summary>
+    /// Cleans up previous test output files and initializes the shared <see cref="BdoExpressionTests"/>
+    /// and <see cref="BdoScopingExpressionTests"/> helpers before any tests in this fixture are executed.
+    /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
-        File.Delete(_filePath_json);
+        File.Delete(string.Format(_filePath_json, 1));
+        File.Delete(string.Format(_filePath_json, 2));
+        File.Delete(string.Format(_filePath_json, 3));
 
         _dataTests = new BdoExpressionTests();
         _dataTests.OneTimeSetUp();
 
         _scopingTests = new BdoScopingExpressionTests();
         _scopingTests.OneTimeSetUp();
-
     }
 
     // Test 1
 
-    [Test, Order(10)]
+    /// <summary>
+    /// Verifies that the first test <see cref="IBdoExpression"/> instance converts to an
+    /// <see cref="ExpressionDto"/> and saves cleanly to a JSON file.
+    /// </summary>
+    [Test]
     public void SaveJson1Test()
     {
         _dataTests.Create1Test();
@@ -37,10 +56,14 @@ public class ExpressionJsonTests
         var filePath = string.Format(_filePath_json, 1);
 
         _isSaved1 = exp.ToDto().SaveJson(filePath);
-        Assert.That(_isSaved1, "Expression saving failed");
+        Assert.That(_isSaved1, Is.True, "Expression saving failed.");
     }
 
-    [Test, Order(11)]
+    /// <summary>
+    /// Verifies that the first saved JSON file loads back into an <see cref="ExpressionDto"/>,
+    /// converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="IBdoExpression"/>.
+    /// </summary>
+    [Test]
     public void LoadJson1Test()
     {
         if (!_isSaved1)
@@ -57,7 +80,11 @@ public class ExpressionJsonTests
 
     // Test 2
 
-    [Test, Order(20)]
+    /// <summary>
+    /// Verifies that the second test <see cref="IBdoExpression"/> instance converts to an
+    /// <see cref="ExpressionDto"/> and saves cleanly to a JSON file.
+    /// </summary>
+    [Test]
     public void SaveJson2Test()
     {
         _dataTests.Create2Test();
@@ -66,10 +93,14 @@ public class ExpressionJsonTests
         var filePath = string.Format(_filePath_json, 2);
 
         _isSaved2 = exp.ToDto().SaveJson(filePath);
-        Assert.That(_isSaved2, "Expression saving failed");
+        Assert.That(_isSaved2, Is.True, "Expression saving failed.");
     }
 
-    [Test, Order(21)]
+    /// <summary>
+    /// Verifies that the second saved JSON file loads back into an <see cref="ExpressionDto"/>,
+    /// converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="IBdoExpression"/>.
+    /// </summary>
+    [Test]
     public void LoadJson2Test()
     {
         if (!_isSaved2)
@@ -86,7 +117,11 @@ public class ExpressionJsonTests
 
     // Test 3
 
-    [Test, Order(30)]
+    /// <summary>
+    /// Verifies that the third scoping test <see cref="IBdoExpression"/> instance converts to an
+    /// <see cref="ExpressionDto"/> and saves cleanly to a JSON file.
+    /// </summary>
+    [Test]
     public void SaveJson3Test()
     {
         _scopingTests.Create3Test();
@@ -95,10 +130,14 @@ public class ExpressionJsonTests
         var filePath = string.Format(_filePath_json, 3);
 
         _isSaved3 = exp.ToDto().SaveJson(filePath);
-        Assert.That(_isSaved3, "Expression saving failed");
+        Assert.That(_isSaved3, Is.True, "Expression saving failed.");
     }
 
-    [Test, Order(31)]
+    /// <summary>
+    /// Verifies that the third saved JSON file loads back into an <see cref="ExpressionDto"/>,
+    /// converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="IBdoExpression"/>.
+    /// </summary>
+    [Test]
     public void LoadJson3Test()
     {
         if (!_isSaved3)

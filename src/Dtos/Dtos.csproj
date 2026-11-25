@@ -40,7 +40,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Dtos.Models\Dtos.Models.csproj" />
     <ProjectReference Include="..\Scoping.Script\Scoping.Script.csproj" />
   </ItemGroup>
 </Project>

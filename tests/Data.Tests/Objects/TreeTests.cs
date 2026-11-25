@@ -9,15 +9,16 @@ namespace BindOpen.Data;
 /// </summary>
 /// <remarks>
 /// These tests verify the ability of the Kernel to navigate parent-child relationships,
-/// perform recursive searches, and filter nodes across multiple levels.
+/// perform recursive descendant queries, and filter nodes across multiple hierarchy levels.
 /// </remarks>
-[TestFixture, Order(210)]
+[TestFixture]
 public class TreeTests
 {
     private TreeFake _tree;
 
     /// <summary>
-    /// Initializes a test tree with 10 children, each containing 10 sub-children (111 nodes total including root).
+    /// Initializes a two-level test tree with 10 direct children, each containing 10 sub-children
+    /// (111 nodes total including the root), before any tests in this fixture are executed.
     /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -35,9 +36,9 @@ public class TreeTests
     }
 
     /// <summary>
-    /// Tests the retrieval and counting of children at different depths.
+    /// Verifies the retrieval and counting of direct and recursive descendant nodes across hierarchy levels.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void ChildrenTest()
     {
         // 1. Verify first level child name
@@ -55,9 +56,9 @@ public class TreeTests
     }
 
     /// <summary>
-    /// Tests the existence checks for nodes using predicates and recursive flags.
+    /// Verifies node existence checks using predicates with and without recursive traversal enabled.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void HasChildTest()
     {
         // 1. Check if any child exists
@@ -74,9 +75,9 @@ public class TreeTests
     }
 
     /// <summary>
-    /// Tests the retrieval of specific child nodes via predicates.
+    /// Verifies the retrieval of specific child nodes via predicates at both direct and nested levels.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void ChildTest()
     {
         // 1. Get the first available child

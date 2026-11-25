@@ -1,20 +1,19 @@
-﻿namespace BindOpen.Data
+﻿namespace BindOpen.Data;
+
+/// <summary>
+/// 
+/// </summary>
+public static class IBdoDefinableExtensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public static class IBdoDefinableExtensions
+    public static T WithDefinition<T>(
+        this T obj,
+        string definitionUniqueName)
+        where T : IBdoDefinable
     {
-        public static T WithDefinition<T>(
-            this T obj,
-            string definitionUniqueName)
-            where T : IBdoDefinable
+        if (obj != null)
         {
-            if (obj != null)
-            {
-                obj.DefinitionUniqueName = definitionUniqueName;
-            }
-            return obj;
+            obj.DefinitionUniqueName = definitionUniqueName;
         }
+        return obj;
     }
 }

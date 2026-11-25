@@ -1,5 +1,7 @@
-﻿using BindOpen.Data.Helpers;
+﻿using BindOpen.Data.Assemblies;
+using BindOpen.Data.Helpers;
 using BindOpen.Data.Meta;
+using BindOpen.Data.Meta.Reflection;
 using BindOpen.Data.Objects;
 using System;
 using System.Collections;
@@ -47,6 +49,33 @@ namespace BindOpen.Data.Meta
         // --------------------------------------------------
 
         #region IBdoMetaObject
+
+        /// <summary>
+        /// Synchronizes the underlying CLR object data with the metadata object's child items.
+        /// </summary>
+        /// <remarks>
+        /// If underlying object data is present, its properties are projected into the meta-object's items.
+        /// Otherwise, if a valid <see cref="IBdoMetaData.DataType"/> class reference is defined, a new CLR
+        /// instance is instantiated and hydrated from the existing meta items.
+        /// </remarks>
+        public bool UpdateObjectData()
+        {
+            if (DataType?.IsSpecified() == true)
+            {
+                var dataType = DataType.GetRuntimeType();
+
+                var obj = AssemblyHelper.CreateInstance(dataType);
+                if (obj != null)
+                {
+                    obj.UpdateFromMeta(this);
+                    SetData(obj);
+                }
+
+                return true;
+            }
+
+            return false;
+        }
 
         /// <summary>
         /// Returns the element with the specified name.
@@ -165,7 +194,7 @@ namespace BindOpen.Data.Meta
         public IBdoMetaSet Add(
             params IBdoMetaData[] items)
         {
-            (this as ITBdoSet<IBdoMetaData>).WithItems(items);
+            (this as ITBdoSet<IBdoMetaData>).AddItems(items);
             return this;
         }
 

@@ -1,29 +1,34 @@
 ﻿using BindOpen.Data.Assemblies;
 using BindOpen.Data.Helpers;
+using BindOpen.Data.Objects;
 using BindOpen.Data.Schema;
 using BindOpen.Logging;
 using BindOpen.Scoping;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
 namespace BindOpen.Data.Meta.Reflection
 {
     /// <summary>
-    /// 
+    /// Provides reflection-based extension methods for populating CLR objects from metadata sets.
     /// </summary>
     public static partial class BdoMetaDataExtensions
     {
         /// <summary>
-        /// Sets information of the specified prop.
+        /// Updates the public properties of the specified object from a metadata set
+        /// using <see cref="BdoPropertyAttribute"/> mappings.
         /// </summary>
-        /// <param key="obj">The object to update.</param>
-        /// <param key="list">The list of elements to return.</param>
-        /// <param key="scope">The scope to consider.</param>
-        /// <param key="metaSet">The variable element list to use.</param>
-        /// <param key="log">The log to consider.</param>
+        /// <param name="obj">The target object to update.</param>
+        /// <param name="set">The metadata set providing property values.</param>
+        /// <param name="onlyMetaAttributes">Indicates whether only properties decorated with <see cref="BdoPropertyAttribute"/> should be updated.</param>
+        /// <param name="groupId">Optional group identifier used to filter metadata items.</param>
+        /// <param name="scope">The scope used to resolve dynamic expressions or references.</param>
+        /// <param name="varSet">Optional variable set used during resolution.</param>
+        /// <param name="log">The log instance used to record exceptions.</param>
         public static void UpdateFromMeta(
             this object obj,
             IBdoMetaSet set,
@@ -36,14 +41,19 @@ namespace BindOpen.Data.Meta.Reflection
             obj.UpdateFromMeta<BdoPropertyAttribute>(
                 set, onlyMetaAttributes, groupId, scope, varSet, log);
         }
+
         /// <summary>
-        /// Sets information of the specified prop.
+        /// Updates the public properties of the specified object from a metadata set
+        /// using attribute mappings of type <typeparamref name="T"/>.
         /// </summary>
-        /// <param key="obj">The object to update.</param>
-        /// <param key="list">The list of elements to return.</param>
-        /// <param key="scope">The scope to consider.</param>
-        /// <param key="metaSet">The variable element list to use.</param>
-        /// <param key="log">The log to consider.</param>
+        /// <typeparam name="T">The attribute type inheriting from <see cref="BdoPropertyAttribute"/>.</typeparam>
+        /// <param name="obj">The target object to update.</param>
+        /// <param name="set">The metadata set providing property values.</param>
+        /// <param name="onlyMetaAttributes">Indicates whether only properties decorated with <typeparamref name="T"/> should be updated.</param>
+        /// <param name="groupId">Optional group identifier used to filter metadata items.</param>
+        /// <param name="scope">The scope used to resolve dynamic expressions or references.</param>
+        /// <param name="varSet">Optional variable set used during resolution.</param>
+        /// <param name="log">The log instance used to record exceptions.</param>
         public static void UpdateFromMeta<T>(
             this object obj,
             IBdoMetaSet set,
@@ -121,7 +131,7 @@ namespace BindOpen.Data.Meta.Reflection
                                 {
                                     var subSet = meta as IBdoMetaSet;
                                     metaValue = BdoData.NewSet(name)
-                                        .With(subSet?.Items?.ToArray());
+                                        .Add(subSet?.Items?.ToArray());
                                 }
 
                                 metaValue?.Update(meta);
@@ -142,38 +152,73 @@ namespace BindOpen.Data.Meta.Reflection
                                     }
                                     else if (
                                         type.IsGenericType
-                                        && typeof(TBdoDictionary<>).IsAssignableFrom(type.GetGenericTypeDefinition()))
+                                        && (typeof(ITBdoDictionary<>).IsAssignableFrom(metaType)
+                                            || typeof(TBdoDictionary<>).IsAssignableFrom(metaType)
+                                            || typeof(IDictionary<,>).IsAssignableFrom(metaType)
+                                            || typeof(Dictionary<,>).IsAssignableFrom(metaType)))
                                     {
-                                        //var itemType0 = type.GetGenericArguments()[0];
-                                        itemType = type.GetGenericArguments()[0];
+                                        var genericArgs = type.GetGenericArguments();
+                                        itemType = genericArgs.Length == 2 ? genericArgs[1] : genericArgs[0];
 
-                                        var dictionary = type.GetGenericTypeDefinition().MakeGenericType(itemType).CreateInstance();
-                                        var method = dictionary.GetType().GetMethod("Add", new Type[] { typeof(string), itemType });
+                                        var dictionaryType = type.IsInterface
+                                            ? (genericArgs.Length == 2
+                                                ? typeof(Dictionary<,>).MakeGenericType(genericArgs[0], itemType)
+                                                : typeof(TBdoDictionary<>).MakeGenericType(itemType))
+                                            : type;
+
+                                        var dictionary = dictionaryType.CreateInstance();
+                                        var method = dictionaryType.GetMethod("Add", new Type[] { typeof(string), itemType });
 
                                         if (meta is IBdoMetaSet metaSet)
                                         {
+                                            var targetItemType = Nullable.GetUnderlyingType(itemType) ?? itemType;
                                             foreach (var child in metaSet)
                                             {
                                                 var childValue = child?.GetData(scope, varSet, log);
-                                                method?.Invoke(dictionary, new object[] { child?.Name, Convert.ChangeType(childValue, itemType) });
+                                                var convertedChildValue = childValue != null && childValue.GetType() != targetItemType
+                                                    ? Convert.ChangeType(childValue, targetItemType, CultureInfo.InvariantCulture)
+                                                    : childValue;
+
+                                                method?.Invoke(dictionary, new object[] { child?.Name, convertedChildValue });
                                             }
                                         }
                                         value = dictionary;
                                     }
                                     else if (
                                         type.IsGenericType
-                                        && typeof(List<>).IsAssignableFrom(type.GetGenericTypeDefinition()))
+                                        && (typeof(IList<>).IsAssignableFrom(metaType)
+                                            || typeof(List<>).IsAssignableFrom(metaType)))
                                     {
                                         itemType = type.GetGenericArguments()[0];
 
-                                        var list = type.GetGenericTypeDefinition().MakeGenericType(itemType).CreateInstance();
-                                        var method = list.GetType().GetMethod("Add", new Type[] { itemType });
+                                        var listType = type.IsInterface
+                                            ? typeof(List<>).MakeGenericType(itemType)
+                                            : type;
 
-                                        foreach (var item in value as IEnumerable)
+                                        var list = listType.CreateInstance();
+                                        var method = listType.GetMethod("Add", new Type[] { itemType });
+
+                                        if (value is IEnumerable enumerable)
                                         {
-                                            method?.Invoke(list, new object[] { item });
+                                            var targetItemType = Nullable.GetUnderlyingType(itemType) ?? itemType;
+                                            foreach (var item in enumerable)
+                                            {
+                                                var convertedItem = item != null && item.GetType() != targetItemType
+                                                    ? Convert.ChangeType(item, targetItemType, CultureInfo.InvariantCulture)
+                                                    : item;
+
+                                                method?.Invoke(list, new object[] { convertedItem });
+                                            }
                                         }
                                         value = list;
+                                    }
+                                    else
+                                    {
+                                        var targetType = Nullable.GetUnderlyingType(type) ?? type;
+                                        if (targetType.IsScalar() && value.GetType() != targetType)
+                                        {
+                                            value = Convert.ChangeType(value, targetType, CultureInfo.InvariantCulture);
+                                        }
                                     }
                                 }
                                 else

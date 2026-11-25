@@ -1,6 +1,7 @@
 ﻿using BindOpen.Data.Helpers;
 using BindOpen.Logging;
 using BindOpen.Scoping;
+using Microsoft.Extensions.Hosting;
 using System;
 
 namespace BindOpen.Data.Assemblies;
@@ -59,6 +60,12 @@ public class BdoDataType : BdoClassReference, IBdoDataType
 
     #endregion
 
+    /// <summary>
+    /// Indicates whether the specified poco can be specified as DTO.
+    /// </summary>
+    /// <returns>True if the poco can be specified as DTO.</returns>
+    public override bool IsSpecified() => base.IsSpecified() || DefinitionUniqueName !=null;
+
     public override Type GetRuntimeType(IBdoScope scope = null, IBdoLog log = null)
     {
         if (!string.IsNullOrEmpty(DefinitionUniqueName))
@@ -81,6 +88,7 @@ public class BdoDataType : BdoClassReference, IBdoDataType
 
         return null;
     }
+
 
     public override string ToString()
     {
