@@ -246,3 +246,4 @@ Support this project! Donations are optional but greatly appreciated.
 
 ## License
 This project is licensed under the terms of the MIT license. [See LICENSE](https://github.com/bindopen/BindOpen.Kernel/blob/master/LICENSE).
+
