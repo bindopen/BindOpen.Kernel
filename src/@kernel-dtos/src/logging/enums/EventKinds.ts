@@ -6,40 +6,40 @@ export enum EventKinds
     /// <summary>
     /// None.
     /// </summary>
-    None,
+    None = 0,
 
     /// <summary>
     /// Message.
     /// </summary>
-    Message,
+    Message = 1,
 
     /// <summary>
     /// Checkpoint.
     /// </summary>
-    Checkpoint,
+    Checkpoint = 2,
 
     /// <summary>
     /// Warning.
     /// </summary>
-    Warning,
+    Warning = 4,
 
     /// <summary>
     /// Error.
     /// </summary>
-    Error,
+    Error = 8,
 
     /// <summary>
     /// Exception.
     /// </summary>
-    Exception,
+    Exception = 16,
 
     /// <summary>
     /// Other.
     /// </summary>
-    Other,
+    Other = 32,
 
     /// <summary>
     /// None.
     /// </summary>
-    Any
+    Any = 62
 }
