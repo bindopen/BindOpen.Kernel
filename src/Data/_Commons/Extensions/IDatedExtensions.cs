@@ -1,46 +1,45 @@
 ﻿using System;
 
-namespace BindOpen.Data
+namespace BindOpen.Data;
+
+/// <summary>
+/// This interface defines a storable data item.
+/// </summary>
+public static class IDatedExtensions
 {
     /// <summary>
-    /// This interface defines a storable data item.
+    /// 
     /// </summary>
-    public static class IDatedExtensions
+    /// <param key="date"></param>
+    /// <returns></returns>
+    public static T WithCreationDate<T>(
+        this T obj,
+        DateTime? date)
+        where T : IDated
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="date"></param>
-        /// <returns></returns>
-        public static T WithCreationDate<T>(
-            this T obj,
-            DateTime? date)
-            where T : IDated
+        if (obj != null)
         {
-            if (obj != null)
-            {
-                obj.CreationDate = date;
-            }
-
-            return obj;
+            obj.CreationDate = date;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param key="date"></param>
-        /// <returns></returns>
-        public static T WithLastModificationDate<T>(
-            this T obj,
-            DateTime? date)
-            where T : IDated
-        {
-            if (obj != null)
-            {
-                obj.LastModificationDate = date;
-            }
+        return obj;
+    }
 
-            return obj;
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param key="date"></param>
+    /// <returns></returns>
+    public static T WithLastModificationDate<T>(
+        this T obj,
+        DateTime? date)
+        where T : IDated
+    {
+        if (obj != null)
+        {
+            obj.LastModificationDate = date;
         }
+
+        return obj;
     }
 }

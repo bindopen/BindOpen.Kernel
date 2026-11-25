@@ -66,7 +66,7 @@ public static partial class BdoScript
     {
         var word = new TBdoScriptword<T>();
         word.WithDataType(BdoExtensionKinds.Scriptword, meta?.DataType?.DefinitionUniqueName)
-            .WithItems(meta?.Items?.ToArray());
+            .AddItems(meta?.Items?.ToArray());
         return word;
     }
 
@@ -87,7 +87,7 @@ public static partial class BdoScript
     {
         var word = new BdoScriptword();
         word.WithDataType(BdoExtensionKinds.Scriptword, meta?.DataType?.DefinitionUniqueName)
-            .WithItems(meta?.Items?.ToArray());
+            .AddItems(meta?.Items?.ToArray());
         return word;
     }
 

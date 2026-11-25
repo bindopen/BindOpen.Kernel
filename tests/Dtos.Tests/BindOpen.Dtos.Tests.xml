@@ -4,14 +4,1335 @@
         <name>BindOpen.Dtos.Tests</name>
     </assembly>
     <members>
+        <member name="T:BindOpen.Data.Assemblies.AssemblyReferenceJsonTests">
+            <summary>
+            Contains unit tests for JSON serialization and deserialization of <see cref="T:BindOpen.Data.Assemblies.IBdoAssemblyReference"/>
+            instances via <see cref="T:BindOpen.Data.Assemblies.AssemblyReferenceDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that assembly references created by <see cref="T:BindOpen.Data.Assemblies.BdoAssemblyReferenceTests"/> can be
+            mapped to DTOs, persisted to JSON files on disk, and reloaded back into domain objects without losing
+            structural or property equality.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.AssemblyReferenceJsonTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous test output files and initializes the shared <see cref="T:BindOpen.Data.Assemblies.BdoAssemblyReferenceTests"/>
+            helper before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.AssemblyReferenceJsonTests.SaveJson1Test">
+            <summary>
+            Verifies that the first test <see cref="T:BindOpen.Data.Assemblies.IBdoAssemblyReference"/> instance converts to an
+            <see cref="T:BindOpen.Data.Assemblies.AssemblyReferenceDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.AssemblyReferenceJsonTests.LoadJson1Test">
+            <summary>
+            Verifies that the first saved JSON file loads back into an <see cref="T:BindOpen.Data.Assemblies.AssemblyReferenceDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Assemblies.IBdoAssemblyReference"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.AssemblyReferenceJsonTests.SaveJson2Test">
+            <summary>
+            Verifies that the second test <see cref="T:BindOpen.Data.Assemblies.IBdoAssemblyReference"/> instance converts to an
+            <see cref="T:BindOpen.Data.Assemblies.AssemblyReferenceDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.AssemblyReferenceJsonTests.LoadJson2Test">
+            <summary>
+            Verifies that the second saved JSON file loads back into an <see cref="T:BindOpen.Data.Assemblies.AssemblyReferenceDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Assemblies.IBdoAssemblyReference"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Assemblies.AssemblyReferenceXmlTests">
+            <summary>
+            Contains unit tests for XML serialization and deserialization of <see cref="T:BindOpen.Data.Assemblies.IBdoAssemblyReference"/>
+            instances via <see cref="T:BindOpen.Data.Assemblies.AssemblyReferenceDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that assembly references created by <see cref="T:BindOpen.Data.Assemblies.BdoAssemblyReferenceTests"/> can be
+            mapped to DTOs, persisted to XML files on disk, and reloaded back into domain objects without losing
+            structural or property equality.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.AssemblyReferenceXmlTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous test output files and initializes the shared <see cref="T:BindOpen.Data.Assemblies.BdoAssemblyReferenceTests"/>
+            helper before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.AssemblyReferenceXmlTests.SaveXml1Test">
+            <summary>
+            Verifies that the first test <see cref="T:BindOpen.Data.Assemblies.IBdoAssemblyReference"/> instance converts to an
+            <see cref="T:BindOpen.Data.Assemblies.AssemblyReferenceDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.AssemblyReferenceXmlTests.LoadXml1Test">
+            <summary>
+            Verifies that the first saved XML file loads back into an <see cref="T:BindOpen.Data.Assemblies.AssemblyReferenceDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Assemblies.IBdoAssemblyReference"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.AssemblyReferenceXmlTests.SaveXml2Test">
+            <summary>
+            Verifies that the second test <see cref="T:BindOpen.Data.Assemblies.IBdoAssemblyReference"/> instance converts to an
+            <see cref="T:BindOpen.Data.Assemblies.AssemblyReferenceDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.AssemblyReferenceXmlTests.LoadXml2Test">
+            <summary>
+            Verifies that the second saved XML file loads back into an <see cref="T:BindOpen.Data.Assemblies.AssemblyReferenceDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Assemblies.IBdoAssemblyReference"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Assemblies.ClassReferenceJsonTests">
+            <summary>
+            Contains unit tests for JSON serialization and deserialization of <see cref="T:BindOpen.Data.Assemblies.IBdoClassReference"/>
+            instances via <see cref="T:BindOpen.Data.Assemblies.ClassReferenceDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that class references created by <see cref="T:BindOpen.Data.Assemblies.BdoClassReferenceTests"/> can be
+            mapped to DTOs, persisted to JSON files on disk, and reloaded back into domain objects without losing
+            structural or property equality.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.ClassReferenceJsonTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous test output files and initializes the shared <see cref="T:BindOpen.Data.Assemblies.BdoClassReferenceTests"/>
+            helper before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.ClassReferenceJsonTests.SaveJson1Test">
+            <summary>
+            Verifies that the first test <see cref="T:BindOpen.Data.Assemblies.IBdoClassReference"/> instance converts to a
+            <see cref="T:BindOpen.Data.Assemblies.ClassReferenceDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.ClassReferenceJsonTests.LoadJson1Test">
+            <summary>
+            Verifies that the first saved JSON file loads back into a <see cref="T:BindOpen.Data.Assemblies.ClassReferenceDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Assemblies.IBdoClassReference"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.ClassReferenceJsonTests.SaveJson2Test">
+            <summary>
+            Verifies that the second test <see cref="T:BindOpen.Data.Assemblies.IBdoClassReference"/> instance converts to a
+            <see cref="T:BindOpen.Data.Assemblies.ClassReferenceDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.ClassReferenceJsonTests.LoadJson2Test">
+            <summary>
+            Verifies that the second saved JSON file loads back into a <see cref="T:BindOpen.Data.Assemblies.ClassReferenceDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Assemblies.IBdoClassReference"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Assemblies.ClassReferenceXmlTests">
+            <summary>
+            Contains unit tests for XML serialization and deserialization of <see cref="T:BindOpen.Data.Assemblies.IBdoClassReference"/>
+            instances via <see cref="T:BindOpen.Data.Assemblies.ClassReferenceDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that class references created by <see cref="T:BindOpen.Data.Assemblies.BdoClassReferenceTests"/> can be
+            mapped to DTOs, persisted to XML files on disk, and reloaded back into domain objects without losing
+            structural or property equality.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.ClassReferenceXmlTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous test output files and initializes the shared <see cref="T:BindOpen.Data.Assemblies.BdoClassReferenceTests"/>
+            helper before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.ClassReferenceXmlTests.SaveXml1Test">
+            <summary>
+            Verifies that the first test <see cref="T:BindOpen.Data.Assemblies.IBdoClassReference"/> instance converts to a
+            <see cref="T:BindOpen.Data.Assemblies.ClassReferenceDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.ClassReferenceXmlTests.LoadXml1Test">
+            <summary>
+            Verifies that the first saved XML file loads back into a <see cref="T:BindOpen.Data.Assemblies.ClassReferenceDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Assemblies.IBdoClassReference"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.ClassReferenceXmlTests.SaveXml2Test">
+            <summary>
+            Verifies that the second test <see cref="T:BindOpen.Data.Assemblies.IBdoClassReference"/> instance converts to a
+            <see cref="T:BindOpen.Data.Assemblies.ClassReferenceDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Assemblies.ClassReferenceXmlTests.LoadXml2Test">
+            <summary>
+            Verifies that the second saved XML file loads back into a <see cref="T:BindOpen.Data.Assemblies.ClassReferenceDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Assemblies.IBdoClassReference"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Meta.ConfigurationJsonTests">
+            <summary>
+            Contains unit tests for JSON serialization and deserialization of <see cref="T:BindOpen.Data.Meta.IBdoConfiguration"/>
+            instances via <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that configurations created by <see cref="T:BindOpen.Data.Meta.BdoConfigurationTests"/> can be
+            mapped to DTOs, persisted to JSON files on disk, and reloaded back into domain objects without losing
+            structural or property equality.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.Meta.ConfigurationJsonTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous test output files and initializes the shared <see cref="T:BindOpen.Data.Meta.BdoConfigurationTests"/>
+            helper before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.ConfigurationJsonTests.SaveJson1Test">
+            <summary>
+            Verifies that the first test <see cref="T:BindOpen.Data.Meta.IBdoConfiguration"/> instance converts to a
+            <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.ConfigurationJsonTests.LoadJson1Test">
+            <summary>
+            Verifies that the first saved JSON file loads back into a <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Meta.IBdoConfiguration"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.ConfigurationJsonTests.SaveJson2Test">
+            <summary>
+            Verifies that the second test <see cref="T:BindOpen.Data.Meta.IBdoConfiguration"/> instance converts to a
+            <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.ConfigurationJsonTests.LoadJson2Test">
+            <summary>
+            Verifies that the second saved JSON file loads back into a <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Meta.IBdoConfiguration"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Meta.ConfigurationXmlTests">
+            <summary>
+            Contains unit tests for XML serialization and deserialization of <see cref="T:BindOpen.Data.Meta.IBdoConfiguration"/>
+            instances via <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that configurations created by <see cref="T:BindOpen.Data.Meta.BdoConfigurationTests"/> can be
+            mapped to DTOs, persisted to XML files on disk, and reloaded back into domain objects without losing
+            structural or property equality.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.Meta.ConfigurationXmlTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous test output files and initializes the shared <see cref="T:BindOpen.Data.Meta.BdoConfigurationTests"/>
+            helper before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.ConfigurationXmlTests.SaveXml1Test">
+            <summary>
+            Verifies that the first test <see cref="T:BindOpen.Data.Meta.IBdoConfiguration"/> instance converts to a
+            <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.ConfigurationXmlTests.LoadXml1Test">
+            <summary>
+            Verifies that the first saved XML file loads back into a <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Meta.IBdoConfiguration"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.ConfigurationXmlTests.SaveXml2Test">
+            <summary>
+            Verifies that the second test <see cref="T:BindOpen.Data.Meta.IBdoConfiguration"/> instance converts to a
+            <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.ConfigurationXmlTests.LoadXml2Test">
+            <summary>
+            Verifies that the second saved XML file loads back into a <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Meta.IBdoConfiguration"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Meta.MetaObjectSetJsonTests">
+            <summary>
+            Contains unit tests for JSON serialization and deserialization of <see cref="T:BindOpen.Data.Meta.BdoMetaSet"/>
+            collections containing complex CLR objects via <see cref="T:BindOpen.Data.Meta.MetaSetDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that metadata sets populated with faked object instances preserve deep object
+            equality when converted to DTOs, saved to a JSON file, and reloaded back into a domain <see cref="T:BindOpen.Data.Meta.IBdoMetaSet"/>.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaObjectSetJsonTests.OneTimeSetUp">
+            <summary>
+            Cleans up any leftover JSON output file and generates three faked object instances
+            using <see cref="T:BindOpen.Tests.ClassObjectFaker"/> before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaObjectSetJsonTests.Test(BindOpen.Data.Meta.IBdoMetaSet)">
+            <summary>
+            Validates that the specified <see cref="T:BindOpen.Data.Meta.IBdoMetaSet"/> contains all three expected object entries
+            and that each retrieved value is deeply equal to its original faked instance.
+            </summary>
+            <param name="metaSet">The metadata set to validate.</param>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaObjectSetJsonTests.CreateTest">
+            <summary>
+            Verifies that a <see cref="T:BindOpen.Data.Meta.BdoMetaSet"/> created from three named <see cref="T:BindOpen.Data.Meta.IBdoMetaObject"/>
+            instances accurately stores and exposes each underlying CLR object.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaObjectSetJsonTests.SaveJsonTest">
+            <summary>
+            Verifies that the populated <see cref="T:BindOpen.Data.Meta.BdoMetaSet"/> converts to a <see cref="T:BindOpen.Data.Meta.MetaSetDto"/>
+            and saves cleanly to a JSON file on disk.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaObjectSetJsonTests.LoadJsonTest">
+            <summary>
+            Verifies that the saved JSON file loads back into a <see cref="T:BindOpen.Data.Meta.MetaSetDto"/>, converts to a POCO
+            via <c>ToPoco()</c>, and retains all expected object entries and values.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Meta.MetaObjectSetXmlTests">
+            <summary>
+            Contains unit tests for XML serialization and deserialization of <see cref="T:BindOpen.Data.Meta.BdoMetaSet"/>
+            collections containing complex CLR objects via <see cref="T:BindOpen.Data.Meta.MetaSetDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that metadata sets populated with faked object instances preserve deep object
+            equality when converted to DTOs, saved to an XML file, and reloaded back into a domain <see cref="T:BindOpen.Data.Meta.IBdoMetaSet"/>.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaObjectSetXmlTests.OneTimeSetUp">
+            <summary>
+            Cleans up any leftover XML output file and generates three faked object instances
+            using <see cref="T:BindOpen.Tests.ClassObjectFaker"/> before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaObjectSetXmlTests.Test(BindOpen.Data.Meta.IBdoMetaSet)">
+            <summary>
+            Validates that the specified <see cref="T:BindOpen.Data.Meta.IBdoMetaSet"/> contains all three expected object entries
+            and that each retrieved value is deeply equal to its original faked instance.
+            </summary>
+            <param name="metaSet">The metadata set to validate.</param>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaObjectSetXmlTests.CreateTest">
+            <summary>
+            Verifies that a <see cref="T:BindOpen.Data.Meta.BdoMetaSet"/> created from three named <see cref="T:BindOpen.Data.Meta.IBdoMetaObject"/>
+            instances accurately stores and exposes each underlying CLR object.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaObjectSetXmlTests.SaveXmlTest">
+            <summary>
+            Verifies that the populated <see cref="T:BindOpen.Data.Meta.BdoMetaSet"/> converts to a <see cref="T:BindOpen.Data.Meta.MetaSetDto"/>
+            and saves cleanly to an XML file on disk.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaObjectSetXmlTests.LoadXmlTest">
+            <summary>
+            Verifies that the saved XML file loads back into a <see cref="T:BindOpen.Data.Meta.MetaSetDto"/>, converts to a POCO
+            via <c>ToPoco()</c>, and retains all expected object entries and values.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Meta.MetaScalarSetJsonTests">
+            <summary>
+            Contains unit tests for JSON serialization and deserialization of <see cref="T:BindOpen.Data.Meta.IBdoMetaSet"/>
+            collections populated with scalar metadata entries via <see cref="T:BindOpen.Data.Meta.MetaSetDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that scalar metadata entries—including arrays of numbers, strings, integers,
+            binary buffers, and scalars with expression references—preserve deep structural equality when
+            persisted to a JSON file and reloaded back into domain objects.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaScalarSetJsonTests.OneTimeSetUp">
+            <summary>
+            Cleans up any leftover JSON output file and generates randomized scalar array datasets
+            using <see cref="T:Bogus.Faker"/> before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaScalarSetJsonTests.Test(BindOpen.Data.Meta.IBdoMetaSet,BindOpen.Data.Meta.IBdoMetaSet)">
+            <summary>
+            Validates that both <see cref="T:BindOpen.Data.Meta.IBdoMetaSet"/> instances are non-null and deeply equal,
+            ignoring circular parent references and default interface members.
+            </summary>
+            <param name="list1">The first metadata set to compare.</param>
+            <param name="list2">The second metadata set to compare.</param>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaScalarSetJsonTests.CreateTest">
+            <summary>
+            Verifies that an <see cref="T:BindOpen.Data.Meta.IBdoMetaSet"/> can be constructed from heterogeneous
+            <see cref="T:BindOpen.Data.Meta.IBdoMetaScalar"/> elements covering numeric, text, integer, binary, and
+            expression-referenced values.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaScalarSetJsonTests.SaveJsonTest">
+            <summary>
+            Verifies that the populated scalar <see cref="T:BindOpen.Data.Meta.IBdoMetaSet"/> converts to a <see cref="T:BindOpen.Data.Meta.MetaSetDto"/>
+            and saves cleanly to a JSON file on disk.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaScalarSetJsonTests.LoadJsonTest">
+            <summary>
+            Verifies that the saved JSON file loads back into a <see cref="T:BindOpen.Data.Meta.MetaSetDto"/>, converts to a POCO
+            via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Meta.IBdoMetaSet"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Meta.MetaScalarSetXmlTests">
+            <summary>
+            Contains unit tests for XML serialization and deserialization of <see cref="T:BindOpen.Data.Meta.IBdoMetaSet"/>
+            collections populated with scalar metadata entries via <see cref="T:BindOpen.Data.Meta.MetaSetDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that scalar metadata entries—including arrays of numbers, strings, integers,
+            binary buffers, and scalars with expression references—preserve deep structural equality when
+            persisted to an XML file and reloaded back into domain objects.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaScalarSetXmlTests.OneTimeSetUp">
+            <summary>
+            Cleans up any leftover XML output file and generates randomized scalar array datasets
+            using <see cref="T:Bogus.Faker"/> before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaScalarSetXmlTests.Test(BindOpen.Data.Meta.IBdoMetaSet,BindOpen.Data.Meta.IBdoMetaSet)">
+            <summary>
+            Validates that both <see cref="T:BindOpen.Data.Meta.IBdoMetaSet"/> instances are non-null and deeply equal,
+            ignoring circular parent references and default interface members.
+            </summary>
+            <param name="list1">The first metadata set to compare.</param>
+            <param name="list2">The second metadata set to compare.</param>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaScalarSetXmlTests.CreateTest">
+            <summary>
+            Verifies that an <see cref="T:BindOpen.Data.Meta.IBdoMetaSet"/> can be constructed from heterogeneous
+            <see cref="T:BindOpen.Data.Meta.IBdoMetaScalar"/> elements covering numeric, text, integer, binary, and
+            expression-referenced values.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaScalarSetXmlTests.SaveXmlTest">
+            <summary>
+            Verifies that the populated scalar <see cref="T:BindOpen.Data.Meta.IBdoMetaSet"/> converts to a <see cref="T:BindOpen.Data.Meta.MetaSetDto"/>
+            and saves cleanly to an XML file on disk.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaScalarSetXmlTests.LoadXmlTest">
+            <summary>
+            Verifies that the saved XML file loads back into a <see cref="T:BindOpen.Data.Meta.MetaSetDto"/>, converts to a POCO
+            via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Meta.IBdoMetaSet"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Meta.MetaWrapperJsonTests">
+            <summary>
+            Contains unit tests for JSON serialization and deserialization of <see cref="T:BindOpen.Tests.MetaWrapperFake"/>
+            instances via <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/> conversion and scope-based hydration.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaWrapperJsonTests.OneTimeSetUp">
+            <summary>
+            Cleans up any leftover JSON output file before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaWrapperJsonTests.Test(BindOpen.Tests.MetaWrapperFake)">
+            <summary>
+            Validates that the specified <see cref="T:BindOpen.Tests.MetaWrapperFake"/> instance is non-null and
+            preserves its expected enumeration and nested entity property values.
+            </summary>
+            <param name="wrapper">The metadata wrapper instance to validate.</param>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaWrapperJsonTests.CreateTest">
+            <summary>
+            Verifies that a <see cref="T:BindOpen.Tests.MetaWrapperFake"/> instance initializes properly with a populated
+            <see cref="T:BindOpen.Tests.WrapperClassFake"/> nested entity.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaWrapperJsonTests.SaveJsonTest">
+            <summary>
+            Verifies that calling <c>UpdateDetail()</c> on <see cref="T:BindOpen.Tests.MetaWrapperFake"/> produces a
+            detail configuration that converts to a <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/> and saves cleanly to JSON.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaWrapperJsonTests.LoadJsonTest">
+            <summary>
+            Verifies that the saved JSON file loads back into a <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/>, converts to a
+            configuration POCO, and hydrates a matching <see cref="T:BindOpen.Tests.MetaWrapperFake"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Meta.MetaWrapperXmlTests">
+            <summary>
+            Contains unit tests for XML serialization and deserialization of <see cref="T:BindOpen.Tests.MetaWrapperFake"/>
+            instances via <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/> conversion and scope-based hydration.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaWrapperXmlTests.OneTimeSetUp">
+            <summary>
+            Cleans up any leftover XML output file before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaWrapperXmlTests.Test(BindOpen.Tests.MetaWrapperFake)">
+            <summary>
+            Validates that the specified <see cref="T:BindOpen.Tests.MetaWrapperFake"/> instance is non-null and
+            preserves its expected enumeration and nested entity property values.
+            </summary>
+            <param name="wrapper">The metadata wrapper instance to validate.</param>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaWrapperXmlTests.CreateTest">
+            <summary>
+            Verifies that a <see cref="T:BindOpen.Tests.MetaWrapperFake"/> instance initializes properly with a populated
+            <see cref="T:BindOpen.Tests.WrapperClassFake"/> nested entity.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaWrapperXmlTests.SaveXmlTest">
+            <summary>
+            Verifies that calling <c>UpdateDetail()</c> on <see cref="T:BindOpen.Tests.MetaWrapperFake"/> produces a
+            detail configuration that converts to a <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/> and saves cleanly to XML.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Meta.MetaWrapperXmlTests.LoadXmlTest">
+            <summary>
+            Verifies that the saved XML file loads back into a <see cref="T:BindOpen.Data.Meta.ConfigurationDto"/>, converts to a
+            configuration POCO, and hydrates a matching <see cref="T:BindOpen.Tests.MetaWrapperFake"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.ExpressionJsonTests">
+            <summary>
+            Contains unit tests for JSON serialization and deserialization of <see cref="T:BindOpen.Data.Objects.IBdoExpression"/>
+            instances via <see cref="T:BindOpen.Data.ExpressionDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that standard and scoping expressions created by <see cref="T:BindOpen.Data.BdoExpressionTests"/>
+            and <see cref="T:BindOpen.Data.BdoScopingExpressionTests"/> can be mapped to DTOs, persisted to JSON files on disk,
+            and reloaded back into domain objects without losing structural or property equality.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.ExpressionJsonTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous test output files and initializes the shared <see cref="T:BindOpen.Data.BdoExpressionTests"/>
+            and <see cref="T:BindOpen.Data.BdoScopingExpressionTests"/> helpers before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ExpressionJsonTests.SaveJson1Test">
+            <summary>
+            Verifies that the first test <see cref="T:BindOpen.Data.Objects.IBdoExpression"/> instance converts to an
+            <see cref="T:BindOpen.Data.ExpressionDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ExpressionJsonTests.LoadJson1Test">
+            <summary>
+            Verifies that the first saved JSON file loads back into an <see cref="T:BindOpen.Data.ExpressionDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Objects.IBdoExpression"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ExpressionJsonTests.SaveJson2Test">
+            <summary>
+            Verifies that the second test <see cref="T:BindOpen.Data.Objects.IBdoExpression"/> instance converts to an
+            <see cref="T:BindOpen.Data.ExpressionDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ExpressionJsonTests.LoadJson2Test">
+            <summary>
+            Verifies that the second saved JSON file loads back into an <see cref="T:BindOpen.Data.ExpressionDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Objects.IBdoExpression"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ExpressionJsonTests.SaveJson3Test">
+            <summary>
+            Verifies that the third scoping test <see cref="T:BindOpen.Data.Objects.IBdoExpression"/> instance converts to an
+            <see cref="T:BindOpen.Data.ExpressionDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ExpressionJsonTests.LoadJson3Test">
+            <summary>
+            Verifies that the third saved JSON file loads back into an <see cref="T:BindOpen.Data.ExpressionDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Objects.IBdoExpression"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.ExpressionXmlTests">
+            <summary>
+            Contains unit tests for Xml serialization and deserialization of <see cref="T:BindOpen.Data.Objects.IBdoExpression"/>
+            instances via <see cref="T:BindOpen.Data.ExpressionDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that standard and scoping expressions created by <see cref="T:BindOpen.Data.BdoExpressionTests"/>
+            and <see cref="T:BindOpen.Data.BdoScopingExpressionTests"/> can be mapped to DTOs, persisted to Xml files on disk,
+            and reloaded back into domain objects without losing structural or property equality.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.ExpressionXmlTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous test output files and initializes the shared <see cref="T:BindOpen.Data.BdoExpressionTests"/>
+            and <see cref="T:BindOpen.Data.BdoScopingExpressionTests"/> helpers before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ExpressionXmlTests.SaveXml1Test">
+            <summary>
+            Verifies that the first test <see cref="T:BindOpen.Data.Objects.IBdoExpression"/> instance converts to an
+            <see cref="T:BindOpen.Data.ExpressionDto"/> and saves cleanly to a Xml file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ExpressionXmlTests.LoadXml1Test">
+            <summary>
+            Verifies that the first saved Xml file loads back into an <see cref="T:BindOpen.Data.ExpressionDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Objects.IBdoExpression"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ExpressionXmlTests.SaveXml2Test">
+            <summary>
+            Verifies that the second test <see cref="T:BindOpen.Data.Objects.IBdoExpression"/> instance converts to an
+            <see cref="T:BindOpen.Data.ExpressionDto"/> and saves cleanly to a Xml file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ExpressionXmlTests.LoadXml2Test">
+            <summary>
+            Verifies that the second saved Xml file loads back into an <see cref="T:BindOpen.Data.ExpressionDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Objects.IBdoExpression"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ExpressionXmlTests.SaveXml3Test">
+            <summary>
+            Verifies that the third scoping test <see cref="T:BindOpen.Data.Objects.IBdoExpression"/> instance converts to an
+            <see cref="T:BindOpen.Data.ExpressionDto"/> and saves cleanly to a Xml file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ExpressionXmlTests.LoadXml3Test">
+            <summary>
+            Verifies that the third saved Xml file loads back into an <see cref="T:BindOpen.Data.ExpressionDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Objects.IBdoExpression"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.MergerJsonTests">
+            <summary>
+            Contains unit tests for JSON serialization and deserialization of <see cref="T:BindOpen.Data.Objects.IBdoMerger"/>
+            instances via <see cref="T:BindOpen.Data.MergerDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that mergers created by <see cref="T:BindOpen.Data.BdoMergerTests"/> can be mapped to DTOs,
+            persisted to JSON files on disk, and reloaded back into domain objects without losing
+            structural or property equality.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.MergerJsonTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous test output files and initializes the shared <see cref="T:BindOpen.Data.BdoMergerTests"/>
+            helper before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.MergerJsonTests.SaveJson1Test">
+            <summary>
+            Verifies that the first test <see cref="T:BindOpen.Data.Objects.IBdoMerger"/> instance converts to a
+            <see cref="T:BindOpen.Data.MergerDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.MergerJsonTests.LoadJson1Test">
+            <summary>
+            Verifies that the first saved JSON file loads back into a <see cref="T:BindOpen.Data.MergerDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Objects.IBdoMerger"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.MergerJsonTests.SaveJson2Test">
+            <summary>
+            Verifies that the second test <see cref="T:BindOpen.Data.Objects.IBdoMerger"/> instance converts to a
+            <see cref="T:BindOpen.Data.MergerDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.MergerJsonTests.LoadJson2Test">
+            <summary>
+            Verifies that the second saved JSON file loads back into a <see cref="T:BindOpen.Data.MergerDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Objects.IBdoMerger"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.MergerJsonTests.SaveJson3Test">
+            <summary>
+            Verifies that the third test <see cref="T:BindOpen.Data.Objects.IBdoMerger"/> instance converts to a
+            <see cref="T:BindOpen.Data.MergerDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.MergerJsonTests.LoadJson3Test">
+            <summary>
+            Verifies that the third saved JSON file loads back into a <see cref="T:BindOpen.Data.MergerDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Objects.IBdoMerger"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.MergerXmlTests">
+            <summary>
+            Contains unit tests for XML serialization and deserialization of <see cref="T:BindOpen.Data.Objects.IBdoMerger"/>
+            instances via <see cref="T:BindOpen.Data.MergerDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that mergers created by <see cref="T:BindOpen.Data.BdoMergerTests"/> can be mapped to DTOs,
+            persisted to XML files on disk, and reloaded back into domain objects without losing
+            structural or property equality.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.MergerXmlTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous test output files and initializes the shared <see cref="T:BindOpen.Data.BdoMergerTests"/>
+            helper before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.MergerXmlTests.SaveXml1Test">
+            <summary>
+            Verifies that the first test <see cref="T:BindOpen.Data.Objects.IBdoMerger"/> instance converts to a
+            <see cref="T:BindOpen.Data.MergerDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.MergerXmlTests.LoadXml1Test">
+            <summary>
+            Verifies that the first saved XML file loads back into a <see cref="T:BindOpen.Data.MergerDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Objects.IBdoMerger"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.MergerXmlTests.SaveXml2Test">
+            <summary>
+            Verifies that the second test <see cref="T:BindOpen.Data.Objects.IBdoMerger"/> instance converts to a
+            <see cref="T:BindOpen.Data.MergerDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.MergerXmlTests.LoadXml2Test">
+            <summary>
+            Verifies that the second saved XML file loads back into a <see cref="T:BindOpen.Data.MergerDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Objects.IBdoMerger"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.MergerXmlTests.SaveXml3Test">
+            <summary>
+            Verifies that the third test <see cref="T:BindOpen.Data.Objects.IBdoMerger"/> instance converts to a
+            <see cref="T:BindOpen.Data.MergerDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.MergerXmlTests.LoadXml3Test">
+            <summary>
+            Verifies that the third saved XML file loads back into a <see cref="T:BindOpen.Data.MergerDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Objects.IBdoMerger"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.ReferenceJsonTests">
+            <summary>
+            Contains unit tests for JSON serialization and deserialization of <see cref="T:BindOpen.Data.IBdoReference"/>
+            instances via <see cref="T:BindOpen.Data.ReferenceDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that standard and scoping references created by <see cref="T:BindOpen.Data.BdoReferenceTests"/>
+            and <see cref="T:BindOpen.Data.BdoScopingReferenceTests"/> can be mapped to DTOs, persisted to JSON files on disk,
+            and reloaded back into domain objects without losing structural or property equality.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.ReferenceJsonTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous test output files and initializes the shared <see cref="T:BindOpen.Data.BdoReferenceTests"/>
+            and <see cref="T:BindOpen.Data.BdoScopingReferenceTests"/> helpers before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ReferenceJsonTests.SaveJson1Test">
+            <summary>
+            Verifies that the first test <see cref="T:BindOpen.Data.IBdoReference"/> instance converts to a
+            <see cref="T:BindOpen.Data.ReferenceDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ReferenceJsonTests.LoadJson1Test">
+            <summary>
+            Verifies that the first saved JSON file loads back into a <see cref="T:BindOpen.Data.ReferenceDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.IBdoReference"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ReferenceJsonTests.SaveJson2Test">
+            <summary>
+            Verifies that the second test <see cref="T:BindOpen.Data.IBdoReference"/> instance converts to a
+            <see cref="T:BindOpen.Data.ReferenceDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ReferenceJsonTests.LoadJson2Test">
+            <summary>
+            Verifies that the second saved JSON file loads back into a <see cref="T:BindOpen.Data.ReferenceDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.IBdoReference"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ReferenceJsonTests.SaveJson3Test">
+            <summary>
+            Verifies that the third scoping test <see cref="T:BindOpen.Data.IBdoReference"/> instance converts to a
+            <see cref="T:BindOpen.Data.ReferenceDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ReferenceJsonTests.LoadJson3Test">
+            <summary>
+            Verifies that the third saved JSON file loads back into a <see cref="T:BindOpen.Data.ReferenceDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.IBdoReference"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.ReferenceXmlTests">
+            <summary>
+            Contains unit tests for XML serialization and deserialization of <see cref="T:BindOpen.Data.IBdoReference"/>
+            instances via <see cref="T:BindOpen.Data.ReferenceDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that standard and scoping references created by <see cref="T:BindOpen.Data.BdoReferenceTests"/>
+            and <see cref="T:BindOpen.Data.BdoScopingReferenceTests"/> can be mapped to DTOs, persisted to XML files on disk,
+            and reloaded back into domain objects without losing structural or property equality.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.ReferenceXmlTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous test output files and initializes the shared <see cref="T:BindOpen.Data.BdoReferenceTests"/>
+            and <see cref="T:BindOpen.Data.BdoScopingReferenceTests"/> helpers before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ReferenceXmlTests.SaveXml1Test">
+            <summary>
+            Verifies that the first test <see cref="T:BindOpen.Data.IBdoReference"/> instance converts to a
+            <see cref="T:BindOpen.Data.ReferenceDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ReferenceXmlTests.LoadXml1Test">
+            <summary>
+            Verifies that the first saved XML file loads back into a <see cref="T:BindOpen.Data.ReferenceDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.IBdoReference"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ReferenceXmlTests.SaveXml2Test">
+            <summary>
+            Verifies that the second test <see cref="T:BindOpen.Data.IBdoReference"/> instance converts to a
+            <see cref="T:BindOpen.Data.ReferenceDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ReferenceXmlTests.LoadXml2Test">
+            <summary>
+            Verifies that the second saved XML file loads back into a <see cref="T:BindOpen.Data.ReferenceDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.IBdoReference"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ReferenceXmlTests.SaveXml3Test">
+            <summary>
+            Verifies that the third scoping test <see cref="T:BindOpen.Data.IBdoReference"/> instance converts to a
+            <see cref="T:BindOpen.Data.ReferenceDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.ReferenceXmlTests.LoadXml3Test">
+            <summary>
+            Verifies that the third saved XML file loads back into a <see cref="T:BindOpen.Data.ReferenceDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.IBdoReference"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.StringDictionaryJsonTests">
+            <summary>
+            Contains unit tests for JSON serialization and deserialization of <see cref="T:BindOpen.Data.Objects.ITBdoDictionary`1"/>
+            string dictionaries via <see cref="T:BindOpen.Data.StringDictionaryDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that string dictionaries created by <see cref="T:BindOpen.Data.BdoStringDictionaryTests"/> can be
+            mapped to DTOs, persisted to JSON files on disk, and reloaded back into domain objects without losing
+            key-value entries or structural equality.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryJsonTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous test output files and initializes the shared <see cref="T:BindOpen.Data.BdoStringDictionaryTests"/>
+            helper before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryJsonTests.Equals(BindOpen.Data.Objects.ITBdoDictionary{System.String},BindOpen.Data.Objects.ITBdoDictionary{System.String})">
+            <summary>
+            Determines whether two <see cref="T:BindOpen.Data.Objects.ITBdoDictionary`1"/> string dictionary instances
+            are non-null and deeply equal.
+            </summary>
+            <param name="exp1">The first dictionary instance to compare.</param>
+            <param name="exp2">The second dictionary instance to compare.</param>
+            <returns><c>true</c> if both dictionaries are non-null and deeply equal; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryJsonTests.SaveJson1Test">
+            <summary>
+            Verifies that the first test <see cref="T:BindOpen.Data.Objects.ITBdoDictionary`1"/> string dictionary converts to a
+            <see cref="T:BindOpen.Data.StringDictionaryDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryJsonTests.LoadJson1Test">
+            <summary>
+            Verifies that the first saved JSON file loads back into a <see cref="T:BindOpen.Data.StringDictionaryDto"/>,
+            converts to a POCO via <c>ToPoco&lt;string&gt;()</c>, and matches the original dictionary.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryJsonTests.SaveJson2Test">
+            <summary>
+            Verifies that the second test <see cref="T:BindOpen.Data.Objects.ITBdoDictionary`1"/> string dictionary converts to a
+            <see cref="T:BindOpen.Data.StringDictionaryDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryJsonTests.LoadJson2Test">
+            <summary>
+            Verifies that the second saved JSON file loads back into a <see cref="T:BindOpen.Data.StringDictionaryDto"/>,
+            converts to a POCO via <c>ToPoco&lt;string&gt;()</c>, and matches the original dictionary.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryJsonTests.SaveJson3Test">
+            <summary>
+            Verifies that the third test <see cref="T:BindOpen.Data.Objects.ITBdoDictionary`1"/> string dictionary converts to a
+            <see cref="T:BindOpen.Data.StringDictionaryDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryJsonTests.LoadJson3Test">
+            <summary>
+            Verifies that the third saved JSON file loads back into a <see cref="T:BindOpen.Data.StringDictionaryDto"/>,
+            converts to a POCO via <c>ToPoco&lt;string&gt;()</c>, and matches the original dictionary.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.StringDictionaryXmlTests">
+            <summary>
+            Contains unit tests for XML serialization and deserialization of <see cref="T:BindOpen.Data.Objects.ITBdoDictionary`1"/>
+            string dictionaries via <see cref="T:BindOpen.Data.StringDictionaryDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that string dictionaries created by <see cref="T:BindOpen.Data.BdoStringDictionaryTests"/> can be
+            mapped to DTOs, persisted to XML files on disk, and reloaded back into domain objects without losing
+            key-value entries or structural equality.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryXmlTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous test output files and initializes the shared <see cref="T:BindOpen.Data.BdoStringDictionaryTests"/>
+            helper before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryXmlTests.Equals(BindOpen.Data.Objects.ITBdoDictionary{System.String},BindOpen.Data.Objects.ITBdoDictionary{System.String})">
+            <summary>
+            Determines whether two <see cref="T:BindOpen.Data.Objects.ITBdoDictionary`1"/> string dictionary instances
+            are non-null and deeply equal.
+            </summary>
+            <param name="exp1">The first dictionary instance to compare.</param>
+            <param name="exp2">The second dictionary instance to compare.</param>
+            <returns><c>true</c> if both dictionaries are non-null and deeply equal; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryXmlTests.SaveXml1Test">
+            <summary>
+            Verifies that the first test <see cref="T:BindOpen.Data.Objects.ITBdoDictionary`1"/> string dictionary converts to a
+            <see cref="T:BindOpen.Data.StringDictionaryDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryXmlTests.LoadXml1Test">
+            <summary>
+            Verifies that the first saved XML file loads back into a <see cref="T:BindOpen.Data.StringDictionaryDto"/>,
+            converts to a POCO via <c>ToPoco&lt;string&gt;()</c>, and matches the original dictionary.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryXmlTests.SaveXml2Test">
+            <summary>
+            Verifies that the second test <see cref="T:BindOpen.Data.Objects.ITBdoDictionary`1"/> string dictionary converts to a
+            <see cref="T:BindOpen.Data.StringDictionaryDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryXmlTests.LoadXml2Test">
+            <summary>
+            Verifies that the second saved XML file loads back into a <see cref="T:BindOpen.Data.StringDictionaryDto"/>,
+            converts to a POCO via <c>ToPoco&lt;string&gt;()</c>, and matches the original dictionary.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryXmlTests.SaveXml3Test">
+            <summary>
+            Verifies that the third test <see cref="T:BindOpen.Data.Objects.ITBdoDictionary`1"/> string dictionary converts to a
+            <see cref="T:BindOpen.Data.StringDictionaryDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.StringDictionaryXmlTests.LoadXml3Test">
+            <summary>
+            Verifies that the third saved XML file loads back into a <see cref="T:BindOpen.Data.StringDictionaryDto"/>,
+            converts to a POCO via <c>ToPoco&lt;string&gt;()</c>, and matches the original dictionary.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Schema.SchemaJsonTests">
+            <summary>
+            Contains unit tests for JSON serialization and deserialization of <see cref="T:BindOpen.Data.Schema.IBdoSchema"/>
+            instances via <see cref="T:BindOpen.Data.Schema.SchemaDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that schema definitions generated by <see cref="T:BindOpen.Tests.BdoSchemaFaker"/> can be
+            mapped to DTOs, persisted to JSON files on disk, and reloaded back into domain objects without losing
+            structural or property equality.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaJsonTests.OneTimeSetUp">
+            <summary>
+            Cleans up any leftover JSON output file and initializes a faked <see cref="T:BindOpen.Data.Schema.IBdoSchema"/>
+            instance using <see cref="T:BindOpen.Tests.BdoSchemaFaker"/> before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaJsonTests.Equals(BindOpen.Data.Schema.IBdoSchema,BindOpen.Data.Schema.IBdoSchema)">
+            <summary>
+            Determines whether two <see cref="T:BindOpen.Data.Schema.IBdoSchema"/> instances are non-null and deeply equal.
+            </summary>
+            <param name="spec1">The first schema instance to compare.</param>
+            <param name="spec2">The second schema instance to compare.</param>
+            <returns><c>true</c> if both schemas are non-null and deeply equal; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaJsonTests.SaveJsonTest">
+            <summary>
+            Verifies that the test <see cref="T:BindOpen.Data.Schema.IBdoSchema"/> instance converts to a
+            <see cref="T:BindOpen.Data.Schema.SchemaDto"/> and saves cleanly to a JSON file on disk.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaJsonTests.LoadJsonTest">
+            <summary>
+            Verifies that the saved JSON file loads back into a <see cref="T:BindOpen.Data.Schema.SchemaDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Schema.IBdoSchema"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Data.Schema.SchemaXmlTests">
+            <summary>
+            Contains unit tests for XML serialization and deserialization of <see cref="T:BindOpen.Data.Schema.IBdoSchema"/>
+            instances via <see cref="T:BindOpen.Data.Schema.SchemaDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that schema definitions generated by <see cref="T:BindOpen.Tests.BdoSchemaFaker"/> can be
+            mapped to DTOs, persisted to XML files on disk, and reloaded back into domain objects without losing
+            structural or property equality.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaXmlTests.OneTimeSetUp">
+            <summary>
+            Cleans up any leftover XML output file and initializes a faked <see cref="T:BindOpen.Data.Schema.IBdoSchema"/>
+            instance using <see cref="T:BindOpen.Tests.BdoSchemaFaker"/> before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaXmlTests.Equals(BindOpen.Data.Schema.IBdoSchema,BindOpen.Data.Schema.IBdoSchema)">
+            <summary>
+            Determines whether two <see cref="T:BindOpen.Data.Schema.IBdoSchema"/> instances are non-null and deeply equal.
+            </summary>
+            <param name="spec1">The first schema instance to compare.</param>
+            <param name="spec2">The second schema instance to compare.</param>
+            <returns><c>true</c> if both schemas are non-null and deeply equal; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaXmlTests.SaveXmlTest">
+            <summary>
+            Verifies that the test <see cref="T:BindOpen.Data.Schema.IBdoSchema"/> instance converts to a
+            <see cref="T:BindOpen.Data.Schema.SchemaDto"/> and saves cleanly to an XML file on disk.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Data.Schema.SchemaXmlTests.LoadXmlTest">
+            <summary>
+            Verifies that the saved XML file loads back into a <see cref="T:BindOpen.Data.Schema.SchemaDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Data.Schema.IBdoSchema"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Connectors.ConnectorJsonTests">
+            <summary>
+            Contains unit tests for JSON serialization and deserialization of <see cref="T:BindOpen.Scoping.Connectors.IBdoConnector"/>
+            instances via <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that connectors created from metadata sets, configurations, and direct objects
+            by <see cref="T:BindOpen.Scoping.Connectors.BdoConnectorTests"/> can be converted to <see cref="T:BindOpen.Data.Meta.IBdoMetaObject"/> representations,
+            mapped to DTOs, persisted to JSON files on disk, and reloaded cleanly.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.ConnectorJsonTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous test output files and initializes the shared <see cref="T:BindOpen.Scoping.Connectors.BdoConnectorTests"/>
+            helper before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.ConnectorJsonTests.SaveJson1Test">
+            <summary>
+            Verifies that the first test <see cref="T:BindOpen.Scoping.Connectors.IBdoConnector"/> instance (created from a metadata set)
+            converts to a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.ConnectorJsonTests.LoadJson1Test">
+            <summary>
+            Verifies that the first saved JSON file loads back into a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/>,
+            converts to a metadata object via <c>ToPoco()</c>, and preserves valid connector state.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.ConnectorJsonTests.SaveJson2Test">
+            <summary>
+            Verifies that the second test <see cref="T:BindOpen.Scoping.Connectors.IBdoConnector"/> instance (created from a configuration)
+            converts to a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.ConnectorJsonTests.LoadJson2Test">
+            <summary>
+            Verifies that the second saved JSON file loads back into a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/>,
+            converts to a metadata object via <c>ToPoco()</c>, and preserves valid connector state.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.ConnectorJsonTests.SaveJson3Test">
+            <summary>
+            Verifies that the third test <see cref="T:BindOpen.Scoping.Connectors.IBdoConnector"/> instance (created from an object)
+            converts to a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.ConnectorJsonTests.LoadJson3Test">
+            <summary>
+            Verifies that the third saved JSON file loads back into a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/>,
+            converts to a metadata object via <c>ToPoco()</c>, and preserves valid connector state.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Connectors.ConnectorXmlTests">
+            <summary>
+            Contains unit tests for XML serialization and deserialization of <see cref="T:BindOpen.Scoping.Connectors.IBdoConnector"/>
+            instances via <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that connectors created from metadata sets, configurations, and direct objects
+            by <see cref="T:BindOpen.Scoping.Connectors.BdoConnectorTests"/> can be converted to <see cref="T:BindOpen.Data.Meta.IBdoMetaObject"/> representations,
+            mapped to DTOs, persisted to XML files on disk, and reloaded cleanly.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.ConnectorXmlTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous test output files and initializes the shared <see cref="T:BindOpen.Scoping.Connectors.BdoConnectorTests"/>
+            helper before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.ConnectorXmlTests.SaveXml1Test">
+            <summary>
+            Verifies that the first test <see cref="T:BindOpen.Scoping.Connectors.IBdoConnector"/> instance (created from a metadata set)
+            converts to a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.ConnectorXmlTests.LoadXml1Test">
+            <summary>
+            Verifies that the first saved XML file loads back into a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/>,
+            converts to a metadata object via <c>ToPoco()</c>, and preserves valid connector state.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.ConnectorXmlTests.SaveXml2Test">
+            <summary>
+            Verifies that the second test <see cref="T:BindOpen.Scoping.Connectors.IBdoConnector"/> instance (created from a configuration)
+            converts to a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.ConnectorXmlTests.LoadXml2Test">
+            <summary>
+            Verifies that the second saved XML file loads back into a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/>,
+            converts to a metadata object via <c>ToPoco()</c>, and preserves valid connector state.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.ConnectorXmlTests.SaveXml3Test">
+            <summary>
+            Verifies that the third test <see cref="T:BindOpen.Scoping.Connectors.IBdoConnector"/> instance (created from an object)
+            converts to a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Connectors.ConnectorXmlTests.LoadXml3Test">
+            <summary>
+            Verifies that the third saved XML file loads back into a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/>,
+            converts to a metadata object via <c>ToPoco()</c>, and preserves valid connector state.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Entities.EntityJsonTests">
+            <summary>
+            Contains unit tests for JSON serialization and deserialization of <see cref="T:BindOpen.Scoping.Entities.IBdoEntity"/>
+            instances via <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that entities created from metadata sets, configurations, and direct objects
+            by <see cref="T:BindOpen.Scoping.Entities.BdoEntityTests"/> can be converted to <see cref="T:BindOpen.Data.Meta.IBdoMetaObject"/> representations,
+            mapped to DTOs, persisted to JSON files on disk, and reloaded cleanly.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Scoping.Entities.EntityJsonTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous test output files and initializes the shared <see cref="T:BindOpen.Scoping.Entities.BdoEntityTests"/>
+            helper before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Entities.EntityJsonTests.SaveJson1Test">
+            <summary>
+            Verifies that the first test <see cref="T:BindOpen.Scoping.Entities.IBdoEntity"/> instance (created from a metadata set)
+            converts to a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Entities.EntityJsonTests.LoadJson1Test">
+            <summary>
+            Verifies that the first saved JSON file loads back into a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/>,
+            converts to a metadata object via <c>ToPoco()</c>, and preserves valid entity state.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Entities.EntityJsonTests.SaveJson2Test">
+            <summary>
+            Verifies that the second test <see cref="T:BindOpen.Scoping.Entities.IBdoEntity"/> instance (created from a configuration)
+            converts to a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Entities.EntityJsonTests.LoadJson2Test">
+            <summary>
+            Verifies that the second saved JSON file loads back into a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/>,
+            converts to a metadata object via <c>ToPoco()</c>, and preserves valid entity state.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Entities.EntityJsonTests.SaveJson3Test">
+            <summary>
+            Verifies that the third test <see cref="T:BindOpen.Scoping.Entities.IBdoEntity"/> instance (created from an object)
+            converts to a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Entities.EntityJsonTests.LoadJson3Test">
+            <summary>
+            Verifies that the third saved JSON file loads back into a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/>,
+            converts to a metadata object via <c>ToPoco()</c>, and preserves valid entity state.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Script.ScriptwordJsonTests">
+            <summary>
+            Contains unit tests for JSON serialization and deserialization of <see cref="T:BindOpen.Scoping.Script.IBdoScriptword"/>
+            instances via <see cref="T:BindOpen.Scoping.Script.ScriptwordDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that scriptwords created by <see cref="T:BindOpen.Scoping.Script.BdoScriptwordTests"/> can be mapped
+            to DTOs, persisted to JSON files on disk, and reloaded back into domain objects without losing
+            structural or property equality.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptwordJsonTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous test output files and initializes the shared <see cref="T:BindOpen.Scoping.Script.BdoScriptwordTests"/>
+            helper before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptwordJsonTests.SaveJson1Test">
+            <summary>
+            Verifies that the first test <see cref="T:BindOpen.Scoping.Script.IBdoScriptword"/> instance converts to a
+            <see cref="T:BindOpen.Scoping.Script.ScriptwordDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptwordJsonTests.LoadJson1Test">
+            <summary>
+            Verifies that the first saved JSON file loads back into a <see cref="T:BindOpen.Scoping.Script.ScriptwordDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Scoping.Script.IBdoScriptword"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptwordJsonTests.SaveJson2Test">
+            <summary>
+            Verifies that the second test <see cref="T:BindOpen.Scoping.Script.IBdoScriptword"/> instance converts to a
+            <see cref="T:BindOpen.Scoping.Script.ScriptwordDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptwordJsonTests.LoadJson2Test">
+            <summary>
+            Verifies that the second saved JSON file loads back into a <see cref="T:BindOpen.Scoping.Script.ScriptwordDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Scoping.Script.IBdoScriptword"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptwordJsonTests.SaveJson3Test">
+            <summary>
+            Verifies that the third test <see cref="T:BindOpen.Scoping.Script.IBdoScriptword"/> instance converts to a
+            <see cref="T:BindOpen.Scoping.Script.ScriptwordDto"/> and saves cleanly to a JSON file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptwordJsonTests.LoadJson3Test">
+            <summary>
+            Verifies that the third saved JSON file loads back into a <see cref="T:BindOpen.Scoping.Script.ScriptwordDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Scoping.Script.IBdoScriptword"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Script.ScriptwordXmlTests">
+            <summary>
+            Contains unit tests for XML serialization and deserialization of <see cref="T:BindOpen.Scoping.Script.IBdoScriptword"/>
+            instances via <see cref="T:BindOpen.Scoping.Script.ScriptwordDto"/> conversion.
+            </summary>
+            <remarks>
+            These tests verify that scriptwords created by <see cref="T:BindOpen.Scoping.Script.BdoScriptwordTests"/> can be mapped
+            to DTOs, persisted to XML files on disk, and reloaded back into domain objects without losing
+            structural or property equality.
+            </remarks>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptwordXmlTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous test output files and initializes the shared <see cref="T:BindOpen.Scoping.Script.BdoScriptwordTests"/>
+            helper before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptwordXmlTests.SaveXml1Test">
+            <summary>
+            Verifies that the first test <see cref="T:BindOpen.Scoping.Script.IBdoScriptword"/> instance converts to a
+            <see cref="T:BindOpen.Scoping.Script.ScriptwordDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptwordXmlTests.LoadXml1Test">
+            <summary>
+            Verifies that the first saved XML file loads back into a <see cref="T:BindOpen.Scoping.Script.ScriptwordDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Scoping.Script.IBdoScriptword"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptwordXmlTests.SaveXml2Test">
+            <summary>
+            Verifies that the second test <see cref="T:BindOpen.Scoping.Script.IBdoScriptword"/> instance converts to a
+            <see cref="T:BindOpen.Scoping.Script.ScriptwordDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptwordXmlTests.LoadXml2Test">
+            <summary>
+            Verifies that the second saved XML file loads back into a <see cref="T:BindOpen.Scoping.Script.ScriptwordDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Scoping.Script.IBdoScriptword"/>.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptwordXmlTests.SaveXml3Test">
+            <summary>
+            Verifies that the third test <see cref="T:BindOpen.Scoping.Script.IBdoScriptword"/> instance converts to a
+            <see cref="T:BindOpen.Scoping.Script.ScriptwordDto"/> and saves cleanly to an XML file.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Script.ScriptwordXmlTests.LoadXml3Test">
+            <summary>
+            Verifies that the third saved XML file loads back into a <see cref="T:BindOpen.Scoping.Script.ScriptwordDto"/>,
+            converts to a POCO via <c>ToPoco()</c>, and matches the original <see cref="T:BindOpen.Scoping.Script.IBdoScriptword"/>.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Scoping.Tasks.IOTaskTests">
+            <summary>
+            Contains unit tests for XML and JSON serialization and deserialization of <see cref="T:BindOpen.Scoping.Tests.TaskFake"/>
+            instances via <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/> conversion and scope-based instantiation.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tasks.IOTaskTests.OneTimeSetUp">
+            <summary>
+            Cleans up previous XML and JSON test output files and generates faked task test data
+            using <see cref="T:BindOpen.Scoping.Tests.BdoTaskFaker"/> before any tests in this fixture are executed.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tasks.IOTaskTests.SaveXmlTest">
+            <summary>
+            Verifies that a <see cref="T:BindOpen.Scoping.Tests.TaskFake"/> instance converts to a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/>
+            and saves cleanly to an XML file on disk.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tasks.IOTaskTests.LoadXmlTest">
+            <summary>
+            Verifies that the saved XML file loads back into a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/>, converts to a
+            metadata object via <c>ToPoco()</c>, and creates a valid <see cref="T:BindOpen.Scoping.Tests.TaskFake"/> instance.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tasks.IOTaskTests.SaveJsonTest">
+            <summary>
+            Verifies that a <see cref="T:BindOpen.Scoping.Tests.TaskFake"/> instance converts to a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/>
+            and saves cleanly to a JSON file on disk.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Scoping.Tasks.IOTaskTests.LoadJsonTest">
+            <summary>
+            Verifies that the saved JSON file loads back into a <see cref="T:BindOpen.Data.Meta.MetaObjectDto"/>, converts to a
+            metadata object via <c>ToPoco()</c>, and creates a valid <see cref="T:BindOpen.Scoping.Tests.TaskFake"/> instance.
+            </summary>
+        </member>
+        <member name="T:BindOpen.Tests.DeepEqualExtensions">
+            <summary>
+            Provides custom comparison helpers for DeepEqual assertions in unit tests.
+            </summary>
+        </member>
+        <member name="M:BindOpen.Tests.DeepEqualExtensions.IsDeepEqualWithEmptyCollections``2(``0,``1)">
+            <summary>
+            Compares two objects for deep equality while treating <c>null</c> and empty collections as equivalent.
+            </summary>
+        </member>
         <member name="T:BindOpen.GlobalDtosTestSetup">
             <summary>
-            This class set the global setup.
+            Provides global NUnit setup initialization for the <see cref="N:BindOpen"/> DTO test assembly,
+            preparing required filesystem directories before any test fixtures execute.
             </summary>
+            <remarks>
+            As an NUnit <see cref="T:NUnit.Framework.SetUpFixtureAttribute"/> at the root namespace level, this class runs once
+            prior to all tests in the assembly to ensure <see cref="P:BindOpen.DataTestData.WorkingFolder"/> exists.
+            </remarks>
         </member>
         <member name="M:BindOpen.GlobalDtosTestSetup.OneTimeSetUp">
             <summary>
-            
+            Ensures that the working directory specified by <see cref="P:BindOpen.DataTestData.WorkingFolder"/>
+            is created on disk before any tests in the assembly are executed.
             </summary>
         </member>
     </members>

@@ -6,46 +6,47 @@ using NUnit.Framework;
 namespace BindOpen.Data.Stores;
 
 /// <summary>
-/// Contains unit tests for <see cref="IBdoDatasource"/>, focusing on datasource initialization and metadata updates.
+/// Contains unit tests for <see cref="IBdoDatasource"/>, focusing on datasource initialization and metadata synchronization.
 /// </summary>
 /// <remarks>
-/// These tests verify that datasource objects correctly store connection information, 
-/// extension types, and that their internal metadata details are properly synchronized.
+/// These tests verify that datasource instances properly store connection settings,
+/// extension data types, and automatically synchronize their internal detail metadata set.
 /// </remarks>
-[TestFixture, Order(210)]
+[TestFixture]
 public class BdoDatasourceTests
 {
     /// <summary>
-    /// The meta node to consider.
+    /// Gets or sets the mock <see cref="IBdoMetaSet"/> representing connector configuration settings.
     /// </summary>
     public IBdoMetaSet _metaSet;
 
     /// <summary>
-    /// Initializes a mock metadata node representing connector settings.
+    /// Initializes a mock metadata object representing connector settings before any tests in this fixture are executed.
     /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
         var f = new Faker();
 
-        // We simulate a connector configuration (e.g., SMTP or Database)
-        _metaSet = BdoData.NewObject("testA")
-            .WithId()
-            .WithDataType(BdoExtensionKinds.Connector, "bindopen.tests$testConnector")
-            .With(
-                BdoData.NewScalar("host", f.Random.Word()),
-                BdoData.NewScalar("port", f.Random.Int()),
-                BdoData.NewScalar("isSslEnabled", f.Random.Bool()));
+        // Simulate a connector configuration (e.g., SMTP or Database)
+        _metaSet = BdoMetaSetExtensions.Add(
+            BdoData.NewObject("testA")
+                .WithId()
+                .WithDataType(BdoExtensionKinds.Connector, "bindopen.tests$testConnector"),
+            BdoData.NewScalar("host", f.Random.Word()),
+            BdoData.NewScalar("port", f.Random.Int()),
+            BdoData.NewScalar("isSslEnabled", f.Random.Bool()));
     }
 
     /// <summary>
-    /// Tests the creation of a datasource and the automatic synchronization of its detail metadata.
+    /// Verifies the creation of a <see cref="BdoDatasource"/> via fluent builders and ensures
+    /// that its internal <see cref="IBdoMetaSet"/> detail stays synchronized when properties are assigned or updated.
     /// </summary>
     /// <remarks>
-    /// This test ensures that when a connection string or a datasource kind is set, 
-    /// the internal <see cref="IBdoMetaSet"/> (Detail) reflects these values.
+    /// Ensures that setting a connection string or <see cref="DatasourceKind"/> automatically populates
+    /// the internal <c>Detail</c> metadata set, and that calling <c>UpdateDetail(null)</c> safely preserves existing values.
     /// </remarks>
-    [Test, Order(2)]
+    [Test]
     public void Create2Test()
     {
         // 1. Initialize the datasource with fluent API

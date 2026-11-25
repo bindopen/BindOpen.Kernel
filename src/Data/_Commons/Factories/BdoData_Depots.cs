@@ -1,23 +1,22 @@
 ﻿using BindOpen.Data.Stores;
 using System;
 
-namespace BindOpen.Data
+namespace BindOpen.Data;
+
+/// <summary>
+/// This static class provides methods to handle configs.
+/// </summary>
+public static partial class BdoData
 {
     /// <summary>
-    /// This static class provides methods to handle configs.
+    /// Instantiates a new instance of the BdoBaseConfiguration class.
     /// </summary>
-    public static partial class BdoData
+    /// <param key="items">The items to consider.</param>
+    public static BdoDepotStore NewDepotStore(
+        Action<IBdoDepotStore> initializer = null)
     {
-        /// <summary>
-        /// Instantiates a new instance of the BdoBaseConfiguration class.
-        /// </summary>
-        /// <param key="items">The items to consider.</param>
-        public static BdoDepotStore NewDepotStore(
-            Action<IBdoDepotStore> initializer = null)
-        {
-            var store = new BdoDepotStore();
-            initializer?.Invoke(store);
-            return store;
-        }
+        var store = new BdoDepotStore();
+        initializer?.Invoke(store);
+        return store;
     }
 }

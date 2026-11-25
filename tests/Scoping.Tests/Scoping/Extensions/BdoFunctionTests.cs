@@ -6,17 +6,23 @@ using NUnit.Framework;
 namespace BindOpen.Scoping.Functions;
 
 /// <summary>
-/// This class provides unit tests for script functions, verifying their resolution 
-/// and execution within the BindOpen scoping engine.
+/// Contains unit tests for script functions within the BindOpen scoping engine,
+/// verifying their resolution and execution from both metadata configurations and fluent scriptwords.
 /// </summary>
-[TestFixture, Order(300)]
+/// <remarks>
+/// These tests verify that <see cref="IBdoScope.CallFunction{T}"/> accurately resolves registered
+/// function extensions (such as <c>scoping.tests$testEqual</c>), maps input arguments, and returns
+/// the expected evaluated result.
+/// </remarks>
+[TestFixture]
 public class BdoFunctionTests
 {
     private readonly string _filePath = DataTestData.WorkingFolder + "Function.xml";
     private dynamic _testData;
 
     /// <summary>
-    /// Initializes the test data using the function faker.
+    /// Initializes randomized function parameter data using <see cref="BdoFunctionFaker"/>
+    /// before any tests in this fixture are executed.
     /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -25,19 +31,19 @@ public class BdoFunctionTests
     }
 
     /// <summary>
-    /// Tests the creation of a script word from a raw metadata configuration 
-    /// and its execution via the Scope.
+    /// Verifies that a scriptword constructed from a raw <see cref="IBdoMetaObject"/> targeting
+    /// the <c>scoping.tests$testEqual</c> function extension executes properly via <see cref="IBdoScope.CallFunction{T}"/>.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void NewWordFromConfigTest()
     {
         // 1. Manually build the metadata for the function call
-        // We specify the unique DataType that points to the 'testEqual' extension
-        var meta = BdoData.NewObject()
-            .WithDataType(BdoExtensionKinds.Function, "scoping.tests$testEqual")
-            .With(
-                BdoData.NewScalar("stringValue", _testData.stringValue as string),
-                BdoData.NewScalar("intValue", _testData.intValue as int?));
+        // Specify the unique DataType that points to the 'testEqual' extension
+        var meta = BdoMetaSetExtensions.Add(
+            BdoData.NewObject()
+                .WithDataType(BdoExtensionKinds.Function, "scoping.tests$testEqual"),
+            BdoData.NewScalar("stringValue", _testData.stringValue as string),
+            BdoData.NewScalar("intValue", _testData.intValue as int?));
 
         // 2. Convert the metadata into a script word
         var word = BdoScript.NewWord(meta);
@@ -50,15 +56,17 @@ public class BdoFunctionTests
     }
 
     /// <summary>
-    /// Tests the creation of a script function call using the fluent BdoScript API.
+    /// Verifies that a script function call constructed via the fluent <see cref="BdoScript.Func"/> API
+    /// executes properly through the scoping engine and returns the expected boolean result.
     /// </summary>
-    [Test, Order(2)]
+    [Test]
     public void NewFunTest()
     {
         // 1. Create a function word using the simplified fluent syntax
-        var word = BdoScript.Func("testEqual",
-                _testData.stringValue as string,
-                _testData.intValue as int?);
+        var word = BdoScript.Func(
+            "testEqual",
+            _testData.stringValue as string,
+            _testData.intValue as int?);
 
         // 2. Call the function through the scoping engine
         var result = ScopingTestData.Scope?.CallFunction<bool?>(word);

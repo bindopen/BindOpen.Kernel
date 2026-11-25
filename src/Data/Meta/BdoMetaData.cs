@@ -330,8 +330,8 @@ public abstract partial class BdoMetaData : BdoObject, IBdoMetaData
     {
         if (Schema != null)
         {
-            var localVarSet = BdoData.NewNode(varSet?.ToArray());
-            localVarSet.With(BdoData.__VarName_This, this);
+            var localVarSet = BdoData.NewSet(varSet?.ToArray());
+            localVarSet.Add(BdoData.__VarName_This, this);
 
             var rule = Schema?.GetRule(groupId, ruleKind, scope, localVarSet, log);
 
@@ -457,8 +457,8 @@ public abstract partial class BdoMetaData : BdoObject, IBdoMetaData
     {
         if (Condition != null)
         {
-            var localVarSet = BdoData.NewNode(varSet?.ToArray());
-            localVarSet.With(BdoData.__VarName_This, this);
+            var localVarSet = BdoData.NewSet(varSet?.ToArray());
+            localVarSet.Add(BdoData.__VarName_This, this);
 
             var b = scope?.Interpreter?.Evaluate(Condition, localVarSet, log) == true;
 

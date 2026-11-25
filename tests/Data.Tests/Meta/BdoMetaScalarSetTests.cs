@@ -8,21 +8,21 @@ namespace BindOpen.Data.Meta;
 /// Contains unit tests for sets of scalar metadata, focusing on collection management and data updates.
 /// </summary>
 /// <remarks>
-/// These tests ensure that <see cref="IBdoMetaSet"/> correctly handles multiple <see cref="IBdoMetaScalar"/> elements,
-/// supports complex update/repair scenarios, and allows access via both names and custom keys.
+/// These tests verify that <see cref="IBdoMetaSet"/> correctly handles multiple <see cref="IBdoMetaScalar"/> elements,
+/// supports complex update and repair scenarios, and allows element retrieval via both names and custom keys.
 /// </remarks>
-[TestFixture, Order(202)]
+[TestFixture]
 public class BdoMetaScalarSetTests
 {
     private dynamic _testData;
 
     /// <summary>
-    /// The global meta set used across tests to verify state persistence.
+    /// Gets or sets the <see cref="IBdoMetaSet"/> instance produced during test execution.
     /// </summary>
     public IBdoMetaSet _metaSet;
 
     /// <summary>
-    /// Initializes randomized test data.
+    /// Initializes randomized scalar test data before any tests in this fixture are executed.
     /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -31,9 +31,9 @@ public class BdoMetaScalarSetTests
     }
 
     /// <summary>
-    /// Verifies that a scalar can be created even with null data.
+    /// Verifies that an <see cref="IBdoMetaScalar"/> can be instantiated even when initialized with a <see langword="null"/> value.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void NewTest_WithNull()
     {
         var el1 = BdoData.NewScalar("null1", null);
@@ -41,9 +41,10 @@ public class BdoMetaScalarSetTests
     }
 
     /// <summary>
-    /// Tests the population of a meta set with various scalar types (Number, String, Integer, Binary).
+    /// Verifies the population of an <see cref="IBdoMetaSet"/> with various scalar array types (Number, String, Integer, Binary)
+    /// and validates typed data retrieval by key.
     /// </summary>
-    [Test, Order(2)]
+    [Test]
     public void NewTest()
     {
         double[] arrayNumber = _testData.arrayNumber;
@@ -56,7 +57,7 @@ public class BdoMetaScalarSetTests
         var el3 = BdoData.NewScalar("integer3", arrayInteger);
         var el4 = BdoData.NewScalar("byteArray4", arrayArrayByte);
 
-        _metaSet = BdoData.NewNode(el1, el2, el3, el4);
+        _metaSet = BdoData.NewSet(el1, el2, el3, el4);
 
         // Validation of data retrieval by key
         _metaSet.GetDataList<double>("number1").Should().Contain(arrayNumber);
@@ -68,41 +69,40 @@ public class BdoMetaScalarSetTests
     }
 
     /// <summary>
-    /// Tests complex update and repair scenarios between meta sets, including null handling and type switching.
+    /// Verifies complex update and repair scenarios between <see cref="IBdoMetaSet"/> instances,
+    /// including <see langword="null"/> handling, duplicate additions, and type-based placeholder resolution.
     /// </summary>
-    [Test, Order(3)]
+    [Test]
     public void UpdateCheckRepairTest()
     {
         var elAA = BdoData.NewScalar<int?>("name1", null);
         var elAB = BdoData.NewScalar("name1", "Test1");
         elAA.Update(elAB);
 
-        var elSetA = BdoData.NewNode(elAA, elAB);
+        var elSetA = BdoData.NewSet(elAA, elAB);
 
         var elBA = BdoData.NewScalar("name1", "Test1");
         var elBB = BdoData.NewScalar<int?>("name1", null);
         elBA.Update(elBB);
 
-        var elSetB = BdoData.NewNode(elBA, elBB);
+        var elSetB = BdoData.NewSet(elBA, elBB);
 
-        TBdoSetExtensions.WithItems(elSetB, elBB);
-        TBdoSetExtensions.WithItems(elSetA, elAB);
+        TBdoSetExtensions.AddItems(elSetB, elBB);
+        TBdoSetExtensions.AddItems(elSetA, elAB);
         elSetB.Update(elSetA);
 
         // Advanced repair testing: adding nulls and type-based placeholders
-        TBdoSetExtensions.WithItems(elSetA, (IBdoMetaData[])null);
-        TBdoSetExtensions.WithItems(elSetB
-, (IBdoMetaScalar)null)
-            .WithItems(BdoData.NewScalar("name1", typeof(string)))
-            .WithItems(BdoData.NewScalar("name3", typeof(int)))
-            .WithItems(BdoData.NewScalar("name4", typeof(double)))
-            .WithItems(BdoData.NewScalar("name5", DataValueTypes.Text));
+        TBdoSetExtensions.AddItems(elSetA, (IBdoMetaData[])null);
+        TBdoSetExtensions.AddItems(elSetB, (IBdoMetaScalar)null)
+            .AddItems(BdoData.NewScalar("name1", typeof(string)))
+            .AddItems(BdoData.NewScalar("name3", typeof(int)))
+            .AddItems(BdoData.NewScalar("name4", typeof(double)))
+            .AddItems(BdoData.NewScalar("name5", DataValueTypes.Text));
 
-        TBdoSetExtensions.WithItems(elSetA
-, BdoData.NewScalar("name1", typeof(string)))
-            .WithItems((IBdoMetaData)BdoData.NewObject("name2", null as string))
-            .WithItems(BdoData.NewScalar("name4", DataValueTypes.Text, null))
-            .WithItems(BdoData.NewScalar("name5", null as string));
+        TBdoSetExtensions.AddItems(elSetA, BdoData.NewScalar("name1", typeof(string)))
+            .AddItems((IBdoMetaData)BdoData.NewObject("name2", null as string))
+            .AddItems(BdoData.NewScalar("name4", DataValueTypes.Text, null))
+            .AddItems(BdoData.NewScalar("name5", null as string));
 
         elSetB.Update(elSetA);
 
@@ -111,9 +111,9 @@ public class BdoMetaScalarSetTests
     }
 
     /// <summary>
-    /// Validates the string conversion of scalars within a set for different data types.
+    /// Verifies that <see cref="object.ToString"/> produces accurate string representations for text and integer scalar values.
     /// </summary>
-    [Test, Order(4)]
+    [Test]
     public void ToStringTest()
     {
         string[] arrayString = _testData.arrayString;
@@ -126,9 +126,10 @@ public class BdoMetaScalarSetTests
     }
 
     /// <summary>
-    /// Tests the ability to add elements to a set using explicit keys and retrieving them.
+    /// Verifies adding elements to an <see cref="IBdoMetaSet"/> using explicit tuple keys,
+    /// <see langword="null"/> keys, and direct object references, as well as retrieving them by key or name.
     /// </summary>
-    [Test, Order(5)]
+    [Test]
     public void AddMetaSetWithKeys()
     {
         var elAA = BdoData.NewScalar("name1", null);

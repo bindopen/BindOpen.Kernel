@@ -1,0 +1,24 @@
+﻿<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://storage.bindopen.org/xsd/bindopen/kernel">
+
+  <scalar name="folderPath">_folderPath</scalar>
+  <scalar name="secretKey">_secretKey</scalar>
+
+  <config name="$datasources">
+    <object name="db.testA" definition="messages$smtp">
+      <scalar name="connectionString">connectionString_test1</scalar>
+      <scalar name="datasourceKind">EmailServer</scalar>
+      <scalar name="host" value="smtp.toto.com" />
+      <scalar name="port" valueType="Integer" value="587" />
+      <scalar name="isDefaultCredentialsUsed" valueType="Boolean" value="true" />
+      <scalar name="isSslEnabled" valueType="Boolean" value="true" />
+      <scalar name="timeout" valueType="Integer" value="60000" />
+      <scalar name="login" value="login" />
+      <scalar name="password" value="password" />
+    </object>
+    <object name="db.testB" definition="database.mssqlserver$client">
+      <scalar name="datasourceKind">Database</scalar>
+      <scalar name="connectionString">connectionString_test2</scalar>
+    </object>
+  </config>
+
+</config>

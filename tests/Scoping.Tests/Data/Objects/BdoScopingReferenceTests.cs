@@ -5,19 +5,23 @@ using NUnit.Framework;
 namespace BindOpen.Data;
 
 /// <summary>
-/// This class provides unit tests for script-based references within the scoping engine,
-/// verifying how metadata links to dynamic function results.
+/// Contains unit tests for script-based <see cref="IBdoReference"/> instances within the BindOpen scoping engine,
+/// verifying how metadata elements link to and evaluate dynamic script function results.
 /// </summary>
-[TestFixture, Order(210)]
+/// <remarks>
+/// These tests verify script reference serialization syntax, scope-based expression evaluation on metadata sets,
+/// and direct conversion from <see cref="IBdoScriptword"/> instances into <see cref="IBdoReference"/> objects.
+/// </remarks>
+[TestFixture]
 public class BdoScopingReferenceTests
 {
     /// <summary>
-    /// The reference instance used across multiple tests.
+    /// Gets or sets the <see cref="IBdoReference"/> instance currently under test.
     /// </summary>
     public IBdoReference _reference = null;
 
     /// <summary>
-    /// Initializes the test environment and shared reference data.
+    /// Initializes the shared reference test environment before any tests in this fixture are executed.
     /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -27,9 +31,10 @@ public class BdoScopingReferenceTests
     }
 
     /// <summary>
-    /// Tests the creation of a reference from a scriptword name retrieved from a data faker.
+    /// Verifies that creating an <see cref="IBdoReference"/> from a <see cref="BdoScript.Func"/> scriptword
+    /// serializes to the expected <c>$funcName()</c> script syntax.
     /// </summary>
-    [Test, Order(3)]
+    [Test]
     public void Create3Test()
     {
         // 1. Retrieve test data
@@ -44,35 +49,41 @@ public class BdoScopingReferenceTests
     }
 
     /// <summary>
-    /// Tests the creation and data resolution of metadata nodes using references.
+    /// Verifies that metadata elements configured with script function references (<c>$eq(1, 1)</c>)
+    /// dynamically evaluate and resolve their expected boolean values within an <see cref="IBdoScope"/>.
     /// </summary>
-    [Test, Order(4)]
+    [Test]
     public void NewReferenceTest()
     {
         // Create a node set where each element uses a script-based reference
-        var set = BdoData.NewNode(
-                BdoData.NewMeta().WithReference(BdoData.NewReference(BdoScript.Func("eq", 1, 1))),
-                BdoData.NewMeta().WithReference(BdoScript.Func("eq", 1, 1))
-            );
+        var set = BdoData.NewSet(
+            BdoData.NewMeta().WithReference(BdoData.NewReference(BdoScript.Func("eq", 1, 1))),
+            BdoData.NewMeta().WithReference(BdoData.NewReference(BdoScript.Func("eq", 1, 1)))
+        );
 
-        // Resolve data using the test scope. 
+        // Resolve data using the test scope.
         // The interpreter should evaluate $eq(1, 1) to true.
         var value1 = set[0].GetData<bool?>(ScopingTestData.Scope);
         var value2 = set[1].GetData<bool?>(ScopingTestData.Scope);
 
-        Assert.That(value1 == true && value2 == true, Is.True, "Failed to resolve boolean data from script references.");
+        Assert.Multiple(() =>
+        {
+            Assert.That(value1, Is.True, "Failed to resolve boolean data from the first script reference.");
+            Assert.That(value2, Is.True, "Failed to resolve boolean data from the second script reference.");
+        });
     }
 
     /// <summary>
-    /// Tests the conversion of a standard scriptword into a reference object.
+    /// Verifies that converting an <see cref="IBdoScriptword"/> (such as <see cref="BdoScript.Eq"/>)
+    /// into an <see cref="IBdoReference"/> via <c>ToReference()</c> formats arguments using the expected script syntax.
     /// </summary>
-    [Test, Order(5)]
+    [Test]
     public void NewReferenceFromScriptwordTest()
     {
         // Convert an 'Equals' scriptword directly to a reference
         _reference = BdoScript.Eq(1, 0).ToReference();
 
         // Verify the formatted script string (numeric arguments are treated as strings in basic scriptwords)
-        Assert.That(_reference?.ToString(), Is.EqualTo($"$eq('1', '0')"), "Scriptword to reference conversion string mismatch.");
+        Assert.That(_reference?.ToString(), Is.EqualTo("$eq('1', '0')"), "Scriptword to reference conversion string mismatch.");
     }
 }

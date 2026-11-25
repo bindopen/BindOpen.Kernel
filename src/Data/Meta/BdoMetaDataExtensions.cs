@@ -105,7 +105,7 @@ public static partial class BdoMetaDataExtensions
         if (meta != null)
         {
             varSet ??= BdoData.NewSet();
-            varSet.With((BdoData.__VarName_This, meta));
+            varSet.Add((BdoData.__VarName_This, meta));
 
             var exp = meta.GetOrAddSpec().Label.ToExpression();
             var label = scope?.Interpreter?.Evaluate<string>(exp, varSet, log);
@@ -157,8 +157,8 @@ public static partial class BdoMetaDataExtensions
         {
             if (parent?._Children != null)
             {
-                var localVarSet = BdoData.NewNode(varSet?.ToArray());
-                localVarSet.With(BdoData.__VarName_This, meta);
+                var localVarSet = BdoData.NewSet(varSet?.ToArray());
+                localVarSet.Add(BdoData.__VarName_This, meta);
 
                 foreach (var child in parent._Children)
                 {

@@ -1,11 +1,20 @@
-﻿using BindOpen.Tests;
+﻿using BindOpen.Data.Meta.Reflection;
+using BindOpen.Tests;
 using DeepEqual.Syntax;
 using NUnit.Framework;
 using System.IO;
 
 namespace BindOpen.Data.Meta;
 
-[TestFixture, Order(201)]
+/// <summary>
+/// Contains unit tests for JSON serialization and deserialization of <see cref="BdoMetaSet"/>
+/// collections containing complex CLR objects via <see cref="MetaSetDto"/> conversion.
+/// </summary>
+/// <remarks>
+/// These tests verify that metadata sets populated with faked object instances preserve deep object
+/// equality when converted to DTOs, saved to a JSON file, and reloaded back into a domain <see cref="IBdoMetaSet"/>.
+/// </remarks>
+[TestFixture]
 public class MetaObjectSetJsonTests
 {
     private readonly string _filePath_json = DataTestData.WorkingFolder + "MetaObjectSet.json";
@@ -16,53 +25,61 @@ public class MetaObjectSetJsonTests
     private object _obj2 = null;
     private object _obj3 = null;
 
+    /// <summary>
+    /// Cleans up any leftover JSON output file and generates three faked object instances
+    /// using <see cref="ClassObjectFaker"/> before any tests in this fixture are executed.
+    /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
+        File.Delete(_filePath_json);
+
         _obj1 = ClassObjectFaker.Fake();
         _obj2 = ClassObjectFaker.Fake();
         _obj3 = ClassObjectFaker.Fake();
     }
 
+    /// <summary>
+    /// Validates that the specified <see cref="IBdoMetaSet"/> contains all three expected object entries
+    /// and that each retrieved value is deeply equal to its original faked instance.
+    /// </summary>
+    /// <param name="metaSet">The metadata set to validate.</param>
     private void Test(IBdoMetaSet metaSet)
     {
         var obj1 = metaSet.GetData("object1");
         var obj2 = metaSet.GetData("object2");
         var obj3 = metaSet["object3"].GetData();
 
-        Assert.That(obj1.IsDeepEqual(_obj1) == true, "Bad obj element set - Count");
-        Assert.That(obj2.IsDeepEqual(_obj2) == true, "Bad obj element set - Count");
-        Assert.That(obj3.IsDeepEqual(_obj3) == true, "Bad obj element set - Count");
-        Assert.That(metaSet?.Count == 3, "Bad object element set - Count");
+        Assert.Multiple(() =>
+        {
+            Assert.That(obj1.IsDeepEqual(_obj1), Is.True, "The 'object1' entry does not match the original faked object.");
+            Assert.That(obj2.IsDeepEqual(_obj2), Is.True, "The 'object2' entry does not match the original faked object.");
+            Assert.That(obj3.IsDeepEqual(_obj3), Is.True, "The 'object3' entry does not match the original faked object.");
+            Assert.That(metaSet?.Count, Is.EqualTo(3), "Metadata set item count mismatch.");
+        });
     }
 
-    [Test, Order(1)]
+    /// <summary>
+    /// Verifies that a <see cref="BdoMetaSet"/> created from three named <see cref="IBdoMetaObject"/>
+    /// instances accurately stores and exposes each underlying CLR object.
+    /// </summary>
+    [Test]
     public void CreateTest()
     {
-        //        var metaEntity1 = BdoMeta.NewEntity(
-        //"entity1",
-        //        BdoConfig.New(
-        //    "bindopen.scoping.tests$testEntity",
-        //    BdoMeta.NewScalar("path", _testData.path1)));
-
-        //        var metaEntity2 = BdoMeta.NewEntity("entity2", "bindopen.scoping.tests$testEntity")
-        //            .With(new { path = _testData.path2 }).ToMetaSet<BdoConfiguration>());
-        //        var metaEntity3 = new EntityFake(_testData.path3, _testData.folderPath3)?.ToMeta();
-
-        //        var metaEntity4 = BdoExt.NewEntity<EntityFake>(
-        //        BdoConfig.New("bindopen.scoping.tests$testEntity")
-        //                .With(new { path = _testData.path4 }).ToMetaArray()))?.ToMeta();
-
         var meta1 = BdoData.NewObject("object1", _obj1);
         var meta2 = BdoData.NewObject("object2", _obj2);
         var meta3 = BdoData.NewObject("object3", _obj3);
 
-        _metaSet = BdoData.NewNode(meta1, meta2, meta3);
+        _metaSet = BdoData.NewSet(meta1, meta2, meta3);
 
         Test(_metaSet);
     }
 
-    [Test, Order(7)]
+    /// <summary>
+    /// Verifies that the populated <see cref="BdoMetaSet"/> converts to a <see cref="MetaSetDto"/>
+    /// and saves cleanly to a JSON file on disk.
+    /// </summary>
+    [Test]
     public void SaveJsonTest()
     {
         if (_metaSet == null)
@@ -70,11 +87,17 @@ public class MetaObjectSetJsonTests
             CreateTest();
         }
 
+        _metaSet.UpdateTree();
+
         var isSaved = _metaSet.ToDto().SaveJson(_filePath_json);
-        Assert.That(isSaved, "Meta list saving failed. ");
+        Assert.That(isSaved, Is.True, "Meta list saving failed.");
     }
 
-    [Test, Order(8)]
+    /// <summary>
+    /// Verifies that the saved JSON file loads back into a <see cref="MetaSetDto"/>, converts to a POCO
+    /// via <c>ToPoco()</c>, and retains all expected object entries and values.
+    /// </summary>
+    [Test]
     public void LoadJsonTest()
     {
         if (_metaSet == null || !File.Exists(_filePath_json))
@@ -83,6 +106,6 @@ public class MetaObjectSetJsonTests
         }
 
         var metaSet = JsonHelper.LoadJson<MetaSetDto>(_filePath_json).ToPoco();
-        Equals(metaSet, _metaSet);
+        Test(metaSet);
     }
 }

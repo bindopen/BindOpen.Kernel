@@ -1,23 +1,22 @@
-﻿namespace BindOpen.Scoping.Functions
+﻿namespace BindOpen.Scoping.Functions;
+
+/// <summary>
+/// This class represents a DTO function dico.
+/// </summary>
+public class BdoFunctionDictionary : TBdoExtensionDictionary<IBdoFunctionDefinition>, IBdoFunctionDictionary
 {
+    // ------------------------------------------
+    // CONSTRUCTORS
+    // ------------------------------------------
+
+    #region Constructors
+
     /// <summary>
-    /// This class represents a DTO function dico.
+    /// Instantiates a new instance of the BdoFunctionDictionary class.
     /// </summary>
-    public class BdoFunctionDictionary : TBdoExtensionDictionary<IBdoFunctionDefinition>, IBdoFunctionDictionary
+    public BdoFunctionDictionary()
     {
-        // ------------------------------------------
-        // CONSTRUCTORS
-        // ------------------------------------------
-
-        #region Constructors
-
-        /// <summary>
-        /// Instantiates a new instance of the BdoFunctionDictionary class.
-        /// </summary>
-        public BdoFunctionDictionary()
-        {
-        }
-
-        #endregion
     }
+
+    #endregion
 }

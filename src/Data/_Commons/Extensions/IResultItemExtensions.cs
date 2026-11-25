@@ -1,34 +1,33 @@
-﻿namespace BindOpen.Data
+﻿namespace BindOpen.Data;
+
+/// <summary>
+/// This static class provides methods to handle conditions.
+/// </summary>
+public static class IResultItemExtensions
 {
-    /// <summary>
-    /// This static class provides methods to handle conditions.
-    /// </summary>
-    public static class IResultItemExtensions
+    public static T WithKey<T>(
+        this T obj,
+        string key)
+        where T : IResultItem
     {
-        public static T WithKey<T>(
-            this T obj,
-            string key)
-            where T : IResultItem
+        if (obj != null)
         {
-            if (obj != null)
-            {
-                obj.Key = key;
-            }
-
-            return obj;
+            obj.Key = key;
         }
 
-        public static T WithStatus<T>(
-            this T obj,
-            ResourceStatus status)
-            where T : IResultItem
-        {
-            if (obj != null)
-            {
-                obj.Status = status;
-            }
+        return obj;
+    }
 
-            return obj;
+    public static T WithStatus<T>(
+        this T obj,
+        ResourceStatus status)
+        where T : IResultItem
+    {
+        if (obj != null)
+        {
+            obj.Status = status;
         }
+
+        return obj;
     }
 }

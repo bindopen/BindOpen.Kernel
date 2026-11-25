@@ -9,24 +9,25 @@ namespace BindOpen.Data.Assemblies;
 /// Contains unit tests for class reference management within the BindOpen Kernel.
 /// </summary>
 /// <remarks>
-/// These tests verify that class references, which combine an assembly reference 
-/// with a class name, are correctly instantiated and compared.
+/// These tests verify that <see cref="IBdoClassReference"/> instances, which combine an
+/// <see cref="IBdoAssemblyReference"/> with a class name and identifier, are properly
+/// initialized and compared for equality.
 /// </remarks>
-[TestFixture, Order(210)]
+[TestFixture]
 public class BdoClassReferenceTests
 {
     /// <summary>
-    /// The first class reference used for comparison.
+    /// Gets or sets the first class reference instance used in comparison tests.
     /// </summary>
     public IBdoClassReference _classRef1 = null;
 
     /// <summary>
-    /// The second class reference used for comparison.
+    /// Gets or sets the second class reference instance used in comparison tests.
     /// </summary>
     public IBdoClassReference _classRef2 = null;
 
     /// <summary>
-    /// Performs one-time setup for the class reference tests.
+    /// Performs one-time setup before any tests in this fixture are executed.
     /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -34,11 +35,13 @@ public class BdoClassReferenceTests
     }
 
     /// <summary>
-    /// Asserts that two class references are equivalent.
+    /// Asserts that two <see cref="IBdoClassReference"/> instances are structurally equivalent.
     /// </summary>
     /// <param name="reference1">The first class reference to compare.</param>
     /// <param name="reference2">The second class reference to compare.</param>
-    /// <exception cref="AssertionException">Thrown when the references are not equivalent.</exception>
+    /// <exception cref="AssertionException">
+    /// Thrown when only one of the references is <see langword="null"/> or when their properties do not match.
+    /// </exception>
     public static void AssertEquals(
         IBdoClassReference reference1,
         IBdoClassReference reference2)
@@ -53,7 +56,7 @@ public class BdoClassReferenceTests
     }
 
     /// <summary>
-    /// Creates a class reference using a default/null assembly reference.
+    /// Initializes <see cref="_classRef1"/> using an empty assembly reference and a randomized class name.
     /// </summary>
     public void Create1Test()
     {
@@ -65,7 +68,7 @@ public class BdoClassReferenceTests
     }
 
     /// <summary>
-    /// Creates a randomized class reference using a fully populated assembly reference.
+    /// Initializes <see cref="_classRef2"/> using a populated assembly reference, a randomized class name, and a generated identifier.
     /// </summary>
     public void Create2Test()
     {
@@ -78,9 +81,9 @@ public class BdoClassReferenceTests
     }
 
     /// <summary>
-    /// Tests that two different class references are not considered equal.
+    /// Verifies that two distinct class references are not evaluated as equal.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void ClassRefEqualsTest()
     {
         Create1Test();

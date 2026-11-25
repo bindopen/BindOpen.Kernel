@@ -12,10 +12,10 @@ namespace BindOpen.Data;
 /// Contains unit tests for the <see cref="BdoMerger"/> class, focusing on collection merging logic.
 /// </summary>
 /// <remarks>
-/// These tests verify that the merger correctly applies differential updates (additions and removals) 
-/// to existing string collections.
+/// These tests verify that <see cref="IBdoMerger"/> instances properly apply differential updates
+/// (additions and removals) to string collections via both factory constructors and fluent builders.
 /// </remarks>
-[TestFixture, Order(210)]
+[TestFixture]
 public class BdoMergerTests
 {
     private List<string> _addList = [];
@@ -23,12 +23,12 @@ public class BdoMergerTests
     private List<string> _list = [];
 
     /// <summary>
-    /// The merger instance currently being tested.
+    /// Gets or sets the <see cref="BdoMerger"/> instance currently under test.
     /// </summary>
     public BdoMerger _merger = null;
 
     /// <summary>
-    /// Initializes randomized string lists for testing merger operations.
+    /// Initializes randomized string collections before any tests in this fixture are executed.
     /// </summary>
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -40,10 +40,14 @@ public class BdoMergerTests
     }
 
     /// <summary>
-    /// Asserts that two merger instances are equivalent, handling empty collections gracefully.
+    /// Asserts that two <see cref="IBdoMerger"/> instances are structurally equivalent,
+    /// gracefully ignoring empty <see cref="IBdoMerger.AddedValues"/> or <see cref="IBdoMerger.RemovedValues"/> collections.
     /// </summary>
-    /// <param name="merger1">The first merger to compare.</param>
-    /// <param name="merger2">The second merger to compare.</param>
+    /// <param name="merger1">The first merger instance to compare.</param>
+    /// <param name="merger2">The second merger instance to compare.</param>
+    /// <exception cref="AssertionException">
+    /// Thrown when only one of the mergers is <see langword="null"/> or when their active rules do not match.
+    /// </exception>
     public static void AssertEquals(
         IBdoMerger merger1,
         IBdoMerger merger2)
@@ -57,7 +61,7 @@ public class BdoMergerTests
             merger2,
             options =>
             {
-                // We exclude empty collections from the comparison to avoid false negatives
+                // Exclude empty collections from the comparison to avoid false negatives
                 if (merger1?.AddedValues?.Any() != true && merger2?.AddedValues?.Any() != true)
                 {
                     options = options.Excluding(x => x.AddedValues);
@@ -72,9 +76,10 @@ public class BdoMergerTests
     }
 
     /// <summary>
-    /// Tests a merger initialized with both addition and removal lists in the constructor.
+    /// Verifies that a merger initialized with both addition and removal collections via <see cref="BdoData.NewMerger"/>
+    /// accurately inserts new items and strips removed ones.
     /// </summary>
-    [Test, Order(1)]
+    [Test]
     public void Create1Test()
     {
         var list = _list.Adding(_removeList?.ToArray());
@@ -89,9 +94,9 @@ public class BdoMergerTests
     }
 
     /// <summary>
-    /// Tests a merger using the fluent API to specify removals only.
+    /// Verifies that a merger configured fluently with <c>Removing</c> filters out all specified items from the target list.
     /// </summary>
-    [Test, Order(2)]
+    [Test]
     public void Create2Test()
     {
         var list = _list.Adding(_removeList?.ToArray());
@@ -102,9 +107,10 @@ public class BdoMergerTests
     }
 
     /// <summary>
-    /// Tests a merger using the fluent API for both additions and removals.
+    /// Verifies that a merger configured fluently with both <c>Adding</c> and <c>Removing</c>
+    /// produces the expected combined collection state.
     /// </summary>
-    [Test, Order(3)]
+    [Test]
     public void Create3Test()
     {
         var list = _list.Adding(_removeList?.ToArray());
