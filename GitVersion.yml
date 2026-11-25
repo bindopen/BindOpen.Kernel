@@ -5,7 +5,7 @@ calculation:
     feature:
       increment: Patch
     main:
-      increment: None
+      increment: Patch
   commit-message-incrementing: Disabled
   tag-prefix: 'v'
 output:
